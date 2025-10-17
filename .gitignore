@@ -1,0 +1,8 @@
+# 临时音频文件
+*.aiff
+*.wav
+*.mp3
+# 日志和缓存
+*.log
+__pycache__/
+*.pyc

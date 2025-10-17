@@ -1,0 +1,38 @@
+# Luna 实体徽章 MVP - 依赖包列表
+
+# 核心依赖
+opencv-python>=4.8.0
+numpy>=1.24.0
+Pillow>=9.5.0
+
+# AI模型相关
+ultralytics>=8.0.0  # YOLOv8
+paddlepaddle>=2.5.0  # PaddlePaddle
+paddleocr>=2.7.0  # PaddleOCR
+openai-whisper>=20231117  # Whisper语音识别
+speechrecognition>=3.10.0  # 语音识别库
+pyaudio>=0.2.11  # 音频处理
+pyttsx3>=2.90  # TTS语音合成
+edge-tts>=6.1.0  # 备选TTS引擎
+
+# API调用
+requests>=2.31.0
+httpx>=0.24.0
+
+# 数据处理
+pandas>=2.0.0
+scipy>=1.11.0
+
+# 日志和配置
+python-dotenv>=1.0.0
+colorlog>=6.7.0
+
+# 可选依赖（用于更好的性能）
+# torch>=2.0.0  # PyTorch（如果需要GPU加速）
+# torchvision>=0.15.0
+# torchaudio>=2.0.0
+
+# 开发和调试
+# jupyter>=1.0.0
+# matplotlib>=3.7.0
+# seaborn>=0.12.0
