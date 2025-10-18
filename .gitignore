@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Audio files
+*.mp3
+*.wav
+*.m4a
+
+# Navigation files
+navigation_*.txt
+navigation_*.mp3
+
+# External repositories
+whisper.cpp/
+modules/Webcam-Face-Detect/
+
+# Camera test files
+camera_test.py
+camera_loop_optimized.py
+high_res_camera.py
+1080p_camera.py
+test_*.py
+
+# Temporary demo files
+*_demo.py
+quick_*.py
+simple_*.py
+optimized_*.py
+
+# API Keys (security)
+navigation_config.py
