@@ -70,9 +70,15 @@ test_*.py
 
 # Temporary demo files
 *_demo.py
-quick_*.py
 simple_*.py
 optimized_*.py
+
+# Keep important files
+!quick_test.py
+!setup_environment.sh
+!DEPLOYMENT_GUIDE.md
+!PROJECT_STATUS.md
+!requirements.txt
 
 # API Keys (security)
 navigation_config.py

@@ -1,0 +1,28 @@
+# Luna-2 项目依赖包
+
+# 计算机视觉
+opencv-python>=4.8.0
+ultralytics>=8.0.0
+
+# 语音处理
+edge-tts>=6.1.0
+pyttsx3>=2.90
+
+# 地图和导航
+openrouteservice>=2.3.0
+
+# 网络请求
+requests>=2.31.0
+
+# 数据处理
+numpy>=1.24.0
+pandas>=2.0.0
+
+# 异步处理
+asyncio-mqtt>=0.13.0
+
+# 日志处理
+logging>=0.4.9.6
+
+# 系统工具
+psutil>=5.9.0
