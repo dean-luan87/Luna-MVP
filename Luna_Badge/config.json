@@ -1,0 +1,45 @@
+{
+  "platform": "mac",
+  "system": {
+    "mode": "OFF",
+    "auto_start": false,
+    "debug_mode": true,
+    "idle_threshold": 300
+  },
+  "hardware": {
+    "camera": {
+      "enabled": true,
+      "resolution": "640x480",
+      "fps": 30
+    },
+    "microphone": {
+      "enabled": true,
+      "sample_rate": 16000,
+      "channels": 1
+    },
+    "speaker": {
+      "enabled": true,
+      "volume": 0.8
+    }
+  },
+  "ai_models": {
+    "yolo": {
+      "model_path": "models/yolov8n.pt",
+      "confidence_threshold": 0.5
+    },
+    "whisper": {
+      "model_size": "base",
+      "language": "zh"
+    }
+  },
+  "navigation": {
+    "environment_detection": true,
+    "weather_fail_safe": true,
+    "signboard_navigation": true,
+    "speech_route_understand": true
+  },
+  "voice": {
+    "wake_word": "启动环境智能导航",
+    "tts_engine": "edge-tts"
+  }
+}
