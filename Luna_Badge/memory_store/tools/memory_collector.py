@@ -207,3 +207,4 @@ if __name__ == "__main__":
         # 标记为已上传（测试）
         # collector.mark_as_uploaded(pending[0]["file"])
 
+

@@ -217,3 +217,4 @@ if __name__ == "__main__":
               f"(置信度: {result.confidence:.2f})")
     
     print("\n" + "=" * 60)
+

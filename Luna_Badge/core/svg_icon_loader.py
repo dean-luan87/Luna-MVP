@@ -164,3 +164,4 @@ def load_svg_icon(icon_path: str, size: int = 64) -> Optional[np.ndarray]:
     """加载SVG图标的便捷函数"""
     return SVGIconLoader.load_svg_icon(icon_path, size)
 
+

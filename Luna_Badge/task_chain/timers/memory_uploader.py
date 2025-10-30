@@ -49,15 +49,40 @@ class MemoryUploader:
             system = platform.system()
             
             if system == "Darwin":  # macOS
-                result = subprocess.run(
-                    ["/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport", "-I"],
-                    capture_output=True,
-                    text=True
-                )
-                connected = "SSID:" in result.stdout and "off" not in result.stdout.lower()
-                if connected:
-                    logger.debug("📶 WiFi已连接（macOS）")
-                return connected
+                # 方法1: 使用 networksetup
+                try:
+                    result = subprocess.run(
+                        ["networksetup", "-getairportnetwork", "en0"],
+                        capture_output=True,
+                        text=True,
+                        timeout=3
+                    )
+                    if result.returncode == 0 and "You are not associated" not in result.stdout:
+                        logger.debug("📶 WiFi已连接（macOS via networksetup）")
+                        return True
+                except:
+                    pass
+                
+                # 方法2: 尝试使用 airport（如果存在）
+                try:
+                    airport_path = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
+                    if Path(airport_path).exists():
+                        result = subprocess.run(
+                            [airport_path, "-I"],
+                            capture_output=True,
+                            text=True,
+                            timeout=3
+                        )
+                        connected = "SSID:" in result.stdout and "off" not in result.stdout.lower()
+                        if connected:
+                            logger.debug("📶 WiFi已连接（macOS via airport）")
+                        return connected
+                except:
+                    pass
+                
+                # 如果都失败，在开发环境假设已连接
+                logger.warning("⚠️ macOS WiFi检测失败，假设已连接（开发模式）")
+                return True
             
             elif system == "Linux":  # Linux/RV1126
                 result = subprocess.run(
@@ -192,6 +217,10 @@ class MemoryUploader:
         Returns:
             上传结果统计
         """
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+        
         from memory_store.tools.memory_collector import MemoryCollector
         
         collector = MemoryCollector()
@@ -254,6 +283,11 @@ def mock_upload_func(memories: List[Dict]) -> Dict:
 # 测试函数
 if __name__ == "__main__":
     import logging
+    import sys
+    from pathlib import Path
+    
+    # 添加路径
+    sys.path.insert(0, str(Path(__file__).parent.parent.parent))
     
     logging.basicConfig(
         level=logging.INFO,
@@ -285,4 +319,5 @@ if __name__ == "__main__":
     print("=" * 60)
     result = uploader.upload_pending_memories(retry_on_failure=False)
     print(json.dumps(result, indent=2, ensure_ascii=False))
+
 

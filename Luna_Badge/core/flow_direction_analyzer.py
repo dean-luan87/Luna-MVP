@@ -305,3 +305,4 @@ if __name__ == "__main__":
     print(f"  逆向比例: {result.counterflow_percentage:.1%}")
     
     print("\n" + "=" * 60)
+

@@ -484,3 +484,4 @@ if __name__ == "__main__":
         print(f"   复杂度: {template.metadata.get('complexity', 'unknown')}")
     
     print("\n🎉 模板库测试完成！")
+

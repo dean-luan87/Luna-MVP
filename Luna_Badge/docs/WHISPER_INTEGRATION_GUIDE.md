@@ -336,3 +336,4 @@ pip install openai-whisper sounddevice scipy
 **文档结束**
 
 *Luna Badge v1.6 - 让语音更智能，让交互更自然*
+

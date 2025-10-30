@@ -344,3 +344,4 @@ result = generator.generate_emotional_map("path_id")
 
 *Luna Badge - 情绪地图生成器增强版 v1.1*
 
+

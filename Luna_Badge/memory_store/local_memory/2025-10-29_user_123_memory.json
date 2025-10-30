@@ -1,0 +1,24 @@
+{
+  "user_id": "user_123",
+  "date": "2025-10-29",
+  "maps": [
+    {
+      "map_id": "hospital_yesterday",
+      "nodes_visited": [
+        "entrance_yesterday",
+        "toilet_yesterday"
+      ],
+      "emotion_tags": {
+        "entrance_yesterday": "推荐"
+      },
+      "duration_minutes": 20,
+      "path": []
+    }
+  ],
+  "app_behavior": {
+    "asked_for_guidance": false,
+    "used_voice_input": false,
+    "requested_nearby_toilet": 0
+  },
+  "created_at": "2025-10-30T17:56:18.006772"
+}

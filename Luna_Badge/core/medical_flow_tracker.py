@@ -250,3 +250,4 @@ if __name__ == "__main__":
     print(f"   状态: {status}")
     
     print("\n" + "=" * 70)
+

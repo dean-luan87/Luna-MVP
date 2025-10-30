@@ -390,3 +390,4 @@ if __name__ == "__main__":
     # 统计信息
     stats = detector.get_queue_statistics()
     print(f"\n统计信息: {stats}")
+

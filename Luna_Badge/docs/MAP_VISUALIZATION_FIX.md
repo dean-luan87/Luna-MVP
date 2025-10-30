@@ -237,3 +237,4 @@ def get_chinese_font():
 ---
 
 *Luna Badge v1.6 - 让导航更智能，让显示更清晰*
+

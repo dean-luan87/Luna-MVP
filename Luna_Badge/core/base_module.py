@@ -282,3 +282,4 @@ if __name__ == "__main__":
     print(f"停止后状态: {module.get_status().to_dict()}")
     
     print("\n" + "=" * 70)
+

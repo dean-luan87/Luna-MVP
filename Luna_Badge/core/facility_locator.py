@@ -317,3 +317,4 @@ if __name__ == "__main__":
         print(f"   推荐: {best.name} ({best.distance_meters:.0f}米)")
     
     print("\n" + "=" * 70)
+

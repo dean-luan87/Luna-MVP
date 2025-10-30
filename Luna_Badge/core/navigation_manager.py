@@ -291,3 +291,4 @@ if __name__ == "__main__":
     print(f"\n❌ 导航已取消: {manager.get_status()}")
     
     print("\n" + "=" * 70)
+

@@ -249,3 +249,4 @@ if __name__ == "__main__":
     print(f"  音调: {config.pitch}")
     
     print("\n" + "=" * 60)
+

@@ -272,3 +272,4 @@ if __name__ == "__main__":
         print(f"   缺失字段: {validation['missing_fields']}")
     
     print("\n" + "=" * 70)
+

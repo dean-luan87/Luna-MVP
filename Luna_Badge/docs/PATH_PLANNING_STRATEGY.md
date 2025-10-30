@@ -439,3 +439,4 @@ recommended_config = {
 **文档结束**
 
 *Luna Badge v1.6 - 让导航更智能，让路径更灵活*
+

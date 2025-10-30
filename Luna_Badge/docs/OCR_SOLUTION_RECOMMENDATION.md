@@ -321,3 +321,4 @@ pip install paddlepaddle paddleocr
 **文档结束**
 
 *Luna Badge OCR方案 - 让识别更准确，让场景更智能*
+

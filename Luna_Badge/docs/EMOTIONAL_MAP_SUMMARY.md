@@ -209,3 +209,4 @@ generator.generate_emotional_map("path_id")
 
 *Luna Badge - 让导航更直观，让情绪可感知*
 
+

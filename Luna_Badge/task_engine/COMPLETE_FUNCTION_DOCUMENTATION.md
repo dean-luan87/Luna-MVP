@@ -460,3 +460,4 @@ execute_recovery()      reset_to_fresh_state()
 ---
 
 **Luna Badge v1.4 完整功能文档** ✅
+

@@ -347,3 +347,4 @@ if __name__ == "__main__":
             print("\n📋 地图摘要：")
             print(json.dumps(summary, indent=2, ensure_ascii=False))
 
+

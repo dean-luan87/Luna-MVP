@@ -1,416 +1,459 @@
-# Luna 记忆模块使用指南
+# 🧠 Luna Badge 记忆模块使用指南 v1.0
 
-## 🎯 核心功能
+## 📋 概述
 
-记忆模块提供用户端缓存管理和后台分析数据上传功能。
+Luna Badge 记忆模块（Memory Module）是 EmotionMap 系统的核心组件之一，负责记录、缓存和上传用户的导航行为、情绪偏好和习惯数据，为后台用户画像分析和个性化推荐提供数据基础。
 
----
+### 🎯 核心功能
 
-## 📋 目录
-
-1. [架构概述](#架构概述)
-2. [缓存管理](#缓存管理)
-3. [t+1上传机制](#t+1上传机制)
-4. [使用示例](#使用示例)
+- **📝 本地缓存**：在用户设备上缓存地图访问、节点情绪、操作行为
+- **☁️ T+1上传**：每日自动在WiFi环境下上传昨天的数据到云端
+- **🔒 隐私保护**：WiFi-only上传，支持数据加密和增量同步
+- **📊 行为分析**：为后台用户画像、习惯学习、路线推荐提供数据
 
 ---
 
-## 架构概述
+## 🧩 模块架构
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                  记忆模块架构                             │
-├─────────────────────────────────────────────────────────┤
-│                                                           │
-│  ┌──────────────┐      ┌──────────────┐                │
-│  │  缓存管理器  │  ──►  │  后台上传器  │                │
-│  │              │      │              │                │
-│  │ - 地图缓存   │      │ - WiFi检测   │                │
-│  │ - 场景缓存   │      │ - t+1上传    │                │
-│  │ - 行为记录   │      │ - 队列管理   │                │
-│  │ - 偏好设置   │      │              │                │
-│  └──────────────┘      └──────────────┘                │
-│          │                      │                        │
-│          ▼                      ▼                        │
-│  ┌──────────────────────────────────┐                   │
-│  │        本地缓存存储                │                   │
-│  │  - maps_cache.json                │                   │
-│  │  - scenes_cache.json              │                   │
-│  │  - user_behavior_cache.json       │                   │
-│  │  - upload_queue.json              │                   │
-│  └──────────────────────────────────┘                   │
-│                                                           │
-│          ▲                      ▼                        │
-│          │                ┌──────────────┐               │
-│          │                │   云端存储    │               │
-│          │                │              │               │
-│          │                │ - S3/OSS     │               │
-│          │                │ - 数据分析   │               │
-│          │                └──────────────┘               │
-│          │                                                │
-└──────────────────────────────────────────────────────────┘
+memory_store/
+├── local_memory/              # 本地记忆存储
+│   ├── 2025-10-30_user123_memory.json
+│   └── 2025-10-31_user123_memory.json
+├── uploaded_flags/            # 已上传标记
+│   └── 2025-10-30_user123.uploaded
+├── packages/                  # 打包数据（临时）
+│   └── memory_package_20251030_120000.json.gz
+└── tools/
+    ├── memory_writer.py       # 记忆写入器
+    └── memory_collector.py    # 记忆收集器
+
+task_chain/timers/
+└── memory_uploader.py         # 记忆上传器（T+1 + WiFi）
+
+config/
+└── memory_schema.json         # 数据结构标准
 ```
 
 ---
 
-## 缓存管理
+## 📚 API 使用
 
-### 地图缓存
+### 1. MemoryWriter - 记忆写入器
+
+**功能**：记录用户地图访问、节点情绪、操作行为
+
+#### 初始化
 
 ```python
-from core.memory_cache_manager import MemoryCacheManager
+from memory_store.tools.memory_writer import MemoryWriter
 
-cache_manager = MemoryCacheManager()
+writer = MemoryWriter(user_id="user_123")
+```
 
-# 缓存地图
+#### 记录地图访问
+
+```python
+writer.record_map_visit(
+    map_id="hospital_outpatient",
+    nodes_visited=["entrance", "toilet", "elevator_3f", "consult_301"],
+    emotion_tags={
+        "toilet": "推荐",
+        "elevator_3f": "焦躁",
+        "consult_301": "安静"
+    },
+    duration_minutes=37,
+    path=["entrance→toilet→elevator→consult_301"]
+)
+```
+
+#### 记录应用行为
+
+```python
+# 请求导航指引
+writer.record_app_behavior("asked_for_guidance")
+
+# 使用语音输入
+writer.record_app_behavior("used_voice_input")
+
+# 查找附近厕所（计数型）
+writer.record_app_behavior("requested_nearby_toilet")
+writer.record_app_behavior("requested_nearby_toilet")
+```
+
+#### 写入完整记忆
+
+```python
 map_data = {
-    "map_id": "hospital_main",
-    "path_name": "医院导航路径",
-    "nodes": [...]
+    "map_id": "hospital_outpatient",
+    "nodes_visited": ["entrance", "toilet", "elevator_3f"],
+    "emotion_tags": {"toilet": "推荐"},
+    "duration_minutes": 37
 }
 
-metadata = {
-    "created_at": "2025-10-30T10:00:00",
-    "regions": ["挂号大厅", "三楼病区"]
+app_behavior = {
+    "asked_for_guidance": True,
+    "used_voice_input": True,
+    "requested_nearby_toilet": 2
 }
 
-cache_manager.cache_map(map_data, metadata)
-```
-
-### 场景记忆缓存
-
-```python
-# 缓存场景
-scene_data = {
-    "scene_id": "scene_001",
-    "location": "虹口医院",
-    "caption": "医院入口",
-    "image_path": "data/scenes/scene_001.jpg"
-}
-
-cache_manager.cache_scene(scene_data)
-```
-
-### 用户行为记录
-
-```python
-# 记录导航事件
-cache_manager.record_navigation_event("start_navigation", {
-    "destination": "虹口医院",
-    "route_type": "walking",
-    "distance": 1000,
-    "start_time": "2025-10-30T10:00:00"
-})
-
-# 记录语音交互
-cache_manager.record_voice_interaction("voice_command", {
-    "command": "导航到虹口医院",
-    "result": "success",
-    "response_time": 0.5
-})
-
-# 记录偏好变化
-cache_manager.update_user_preferences({
-    "voice_speed": "normal",
-    "prefer_walk": True,
-    "avoid_transfer": False
-})
-```
-
-### 获取缓存统计
-
-```python
-stats = cache_manager.get_cache_stats()
-print(f"总地图数: {stats['total_maps']}")
-print(f"未上传: {stats['unuploaded_maps']}")
-print(f"缓存大小: {stats['cache_size_kb']} KB")
+writer.write_user_memory(map_data, app_behavior)
 ```
 
 ---
 
-## t+1上传机制
+### 2. MemoryCollector - 记忆收集器
 
-### 设计原理
+**功能**：收集待上传的记忆文件，打包数据，标记已上传状态
 
-**t+1机制**：上次上传后至少间隔1小时才进行下一次上传
-
-**优势**：
-- ✅ 节省流量：批量上传，减少网络请求
-- ✅ 降低功耗：减少频繁上传对电池的影响
-- ✅ 智能触发：只在WiFi环境下自动上传
-- ✅ 数据聚合：一小时内的数据合并上传
-
-### 实现流程
+#### 初始化
 
 ```python
-from core.background_uploader import BackgroundUploader
+from memory_store.tools.memory_collector import MemoryCollector
 
-# 定义上传函数
-def upload_to_cloud(upload_package):
-    """实际上传函数"""
-    import requests
-    
-    try:
-        response = requests.post(
-            "https://api.luna-project.com/v1/upload",
-            json=upload_package,
-            headers={"Authorization": f"Bearer {api_key}"},
-            timeout=30
-        )
-        
-        if response.status_code == 200:
-            return {"success": True}
-        else:
-            return {"success": False, "error": response.text}
-    except Exception as e:
-        return {"success": False, "error": str(e)}
+collector = MemoryCollector()
+```
 
-# 初始化上传器
-cache_manager = MemoryCacheManager()
-uploader = BackgroundUploader(
-    cache_manager=cache_manager,
-    upload_func=upload_to_cloud,
-    wifi_check_interval=30,      # 30秒检测一次WiFi
-    upload_check_interval=300    # 5分钟检查一次上传
+#### 收集待上传记忆
+
+```python
+# 收集昨天的记忆（T+1）
+pending = collector.collect_pending_memories()
+
+# 收集指定日期
+pending = collector.collect_pending_memories(date="2025-10-29")
+```
+
+#### 创建上传包
+
+```python
+# 压缩打包
+package_path = collector.create_upload_package(pending, compress=True)
+
+# 不压缩
+package_path = collector.create_upload_package(pending, compress=False)
+```
+
+#### 标记已上传
+
+```python
+for memory_item in pending:
+    collector.mark_as_uploaded(memory_item["file"])
+```
+
+#### 查看统计
+
+```python
+stats = collector.get_statistics()
+print(f"总文件数: {stats['total_files']}")
+print(f"已上传: {stats['uploaded_files']}")
+print(f"待上传: {stats['pending_files']}")
+print(f"总大小: {stats['total_size_kb']} KB")
+```
+
+---
+
+### 3. MemoryUploader - 记忆上传器
+
+**功能**：T+1自动上传记忆数据到云端（仅WiFi环境）
+
+#### 初始化
+
+```python
+from task_chain.timers.memory_uploader import MemoryUploader
+
+# 使用默认HTTP上传
+uploader = MemoryUploader(
+    upload_api_url="https://api.luna-project.com/v1/user/memory"
 )
 
-# 启动后台上传服务
-uploader.start()
+# 使用自定义上传函数
+def custom_upload_func(memories):
+    # 自定义上传逻辑
+    return {"success": True}
 
-# 停止服务（应用退出时）
-uploader.stop()
+uploader = MemoryUploader(
+    upload_api_url="https://api.luna-project.com/v1/user/memory",
+    upload_func=custom_upload_func
+)
 ```
 
-### WiFi检测
-
-系统会自动检测WiFi连接状态：
+#### 检查WiFi
 
 ```python
-# macOS
-uploader.is_wifi_connected  # True/False
-
-# Linux/RV1126
-# 使用nmcli命令检测
-```
-
-### 手动强制上传
-
-```python
-# 立即上传（不等待t+1）
-success = uploader.force_upload_now()
-
-if success:
-    print("✅ 上传成功")
+if uploader.check_wifi_connected():
+    print("📶 WiFi已连接")
 else:
-    print("❌ 上传失败")
+    print("⚠️ WiFi未连接")
 ```
 
-### 获取上传状态
+#### 检查上传条件（T+1）
 
 ```python
-status = uploader.get_status()
+# 检查昨天的记忆是否满足T+1条件
+yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+if uploader.should_upload(yesterday):
+    print("✅ 可以上传")
+```
 
-print(f"WiFi连接: {status['is_wifi_connected']}")
-print(f"上次上传: {status['last_upload_time']}")
-print(f"待上传: {status['pending_uploads']}")
+#### 上传待上传记忆
+
+```python
+result = uploader.upload_pending_memories(retry_on_failure=True)
+
+print(f"成功: {result['success']}")
+print(f"上传数量: {result['uploaded_count']}")
 ```
 
 ---
 
-## 使用示例
+## 🔄 完整工作流程
 
-### 完整示例
+### 日常使用
 
 ```python
-#!/usr/bin/env python3
-"""Luna 记忆模块完整示例"""
+from memory_store.tools.memory_writer import MemoryWriter
 
-import logging
-from core.memory_cache_manager import MemoryCacheManager
-from core.background_uploader import BackgroundUploader
+# 1. 创建写入器
+writer = MemoryWriter(user_id="user_123")
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+# 2. 记录地图访问
+writer.record_map_visit(
+    map_id="hospital_outpatient",
+    nodes_visited=["entrance", "toilet", "elevator"],
+    emotion_tags={"toilet": "推荐"},
+    duration_minutes=25
 )
 
-def main():
-    # 1. 初始化缓存管理器
-    cache_manager = MemoryCacheManager(cache_dir="data/cache")
-    
-    # 2. 定义上传函数
-    def upload_to_cloud(upload_package):
-        """实际上传函数（替换为真实API）"""
-        print(f"📤 上传数据包: {len(upload_package['maps'])}个地图")
-        return {"success": True}
-    
-    # 3. 初始化上传器
-    uploader = BackgroundUploader(
-        cache_manager=cache_manager,
-        upload_func=upload_to_cloud
-    )
-    
-    # 4. 模拟使用场景
-    print("=" * 60)
-    print("🎨 模拟使用场景")
-    print("=" * 60)
-    
-    # 用户生成地图
-    print("\n1. 用户生成地图...")
-    map_data = {
-        "map_id": "test_hospital",
-        "path_name": "医院导航",
-        "nodes": [
-            {"node_id": "n1", "label": "入口", "type": "entrance"},
-            {"node_id": "n2", "label": "诊室", "type": "destination"}
-        ]
-    }
-    cache_manager.cache_map(map_data)
-    
-    # 用户导航
-    print("2. 用户开始导航...")
-    cache_manager.record_navigation_event("start_navigation", {
-        "destination": "虹口医院",
-        "route": "walking"
-    })
-    
-    # 语音交互
-    print("3. 用户语音交互...")
-    cache_manager.record_voice_interaction("voice_command", {
-        "command": "导航到虹口医院",
-        "result": "success"
-    })
-    
-    # 5. 显示缓存统计
-    print("\n4. 缓存统计...")
-    stats = cache_manager.get_cache_stats()
-    print(f"  总地图数: {stats['total_maps']}")
-    print(f"  未上传: {stats['unuploaded_maps']}")
-    print(f"  缓存大小: {stats['cache_size_kb']} KB")
-    
-    # 6. 启动后台上传
-    print("\n5. 启动后台上传服务...")
-    uploader.start()
-    
-    # 7. 显示上传状态
-    status = uploader.get_status()
-    print(f"  WiFi连接: {status['is_wifi_connected']}")
-    print(f"  服务运行: {status['is_running']}")
-    
-    # 8. 强制上传（测试）
-    print("\n6. 强制上传测试...")
-    uploader.force_upload_now()
-    
-    # 9. 停止服务
-    print("\n7. 停止服务...")
-    uploader.stop()
+# 3. 记录操作行为
+writer.record_app_behavior("asked_for_guidance")
+writer.record_app_behavior("used_voice_input")
+```
 
-if __name__ == "__main__":
-    main()
+### T+1自动上传
+
+```python
+from task_chain.timers.memory_uploader import MemoryUploader
+
+# 1. 初始化上传器
+uploader = MemoryUploader(
+    upload_api_url="https://api.luna-project.com/v1/user/memory"
+)
+
+# 2. 上传昨天的记忆
+result = uploader.upload_pending_memories()
+
+if result["success"]:
+    print(f"✅ 成功上传 {result['uploaded_count']} 条记忆")
+else:
+    print("❌ 上传失败，下次再试")
 ```
 
 ---
 
-## 数据上传包结构
+## 📊 数据结构
 
-上传包格式：
+### 记忆文件格式
 
 ```json
 {
-  "timestamp": "2025-10-30T17:00:00",
+  "user_id": "user_123",
+  "date": "2025-10-30",
   "maps": [
     {
-      "map_id": "hospital_main",
-      "path_name": "医院导航路径",
-      "nodes": [...],
-      "metadata": {...}
+      "map_id": "hospital_outpatient",
+      "nodes_visited": ["entrance", "toilet", "elevator_3f"],
+      "emotion_tags": {
+        "toilet": "推荐",
+        "elevator_3f": "焦躁"
+      },
+      "duration_minutes": 37,
+      "path": ["entrance→toilet→elevator"]
     }
   ],
-  "scenes": [
-    {
-      "scene_id": "scene_001",
-      "location": "虹口医院",
-      "caption": "医院入口",
-      "cached_at": "2025-10-30T10:00:00"
-    }
-  ],
-  "behaviors": [
-    {
-      "behavior_type": "navigation",
-      "data": {
-        "event_type": "start_navigation",
-        "data": {...},
-        "timestamp": "2025-10-30T10:00:00"
-      }
-    }
-  ],
-  "preferences": {
-    "voice_speed": "normal",
-    "prefer_walk": true
+  "app_behavior": {
+    "asked_for_guidance": true,
+    "used_voice_input": true,
+    "requested_nearby_toilet": 2
   },
-  "metadata": {
-    "maps_count": 1,
-    "scenes_count": 1,
-    "behaviors_count": 5
-  }
+  "created_at": "2025-10-30T17:49:31.976655",
+  "updated_at": "2025-10-30T18:00:00.000000"
 }
 ```
 
 ---
 
-## 最佳实践
+## 🔒 隐私与安全
 
-### 1. 内存管理
+### WiFi-Only上传
+
+记忆上传仅在使用WiFi时执行：
 
 ```python
-# 定期清理已上传的旧数据（保留最近30天）
-cache_manager.cleanup_old_uploaded_data(days=30)
+if uploader.check_wifi_connected():
+    result = uploader.upload_pending_memories()
+else:
+    print("⚠️ WiFi未连接，跳过上传")
 ```
 
-### 2. 错误处理
+### T+1延迟上传
+
+- 当日数据**不**立即上传
+- 次日（T+1）统一上传
+- 为后台分析提供完整日度数据
+
+### 已上传标记
+
+- 上传成功后生成 `.uploaded` 标记文件
+- 防止重复上传
+- 支持增量同步
+
+---
+
+## 🧪 测试示例
+
+### 完整测试流程
 
 ```python
-try:
-    cache_manager.cache_map(map_data)
-except Exception as e:
-    logger.error(f"缓存失败: {e}")
-    # 降级处理：保存到本地文件
-```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-### 3. 数据压缩
+import logging
+from datetime import datetime, timedelta
+from memory_store.tools.memory_writer import MemoryWriter
+from memory_store.tools.memory_collector import MemoryCollector
+from task_chain.timers.memory_uploader import MemoryUploader
 
-```python
-# 大文件先压缩再缓存
-import gzip
+logging.basicConfig(level=logging.INFO)
 
-compressed_data = gzip.compress(json.dumps(map_data).encode())
-cache_manager.cache_compressed_map(compressed_data)
-```
+# 1. 写入测试数据
+writer = MemoryWriter(user_id="test_user")
+writer.record_map_visit(
+    map_id="test_map",
+    nodes_visited=["node1", "node2"],
+    emotion_tags={"node1": "安静"},
+    duration_minutes=15
+)
 
-### 4. 隐私保护
+# 2. 收集待上传记忆
+collector = MemoryCollector()
+pending = collector.collect_pending_memories()
 
-```python
-# 敏感数据脱敏处理
-def anonymize_data(data):
-    # 移除个人信息
-    data.pop("user_name", None)
-    data.pop("phone_number", None)
-    return data
+# 3. 创建上传包
+package = collector.create_upload_package(pending, compress=True)
 
-cache_manager.cache_map(anonymize_data(map_data))
+# 4. 模拟上传
+def mock_upload(memories):
+    print(f"📤 模拟上传 {len(memories)} 条记忆")
+    return {"success": True}
+
+uploader = MemoryUploader(
+    upload_api_url="https://api.luna-project.com/v1/user/memory",
+    upload_func=mock_upload
+)
+
+result = uploader.upload_pending_memories()
+print(f"上传结果: {result}")
+
+# 5. 标记已上传
+if result["success"]:
+    for memory_item in pending:
+        collector.mark_as_uploaded(memory_item["file"])
 ```
 
 ---
 
-## 总结
+## 📌 集成建议
 
-记忆模块提供了：
+### 1. EmotionMap系统集成
 
-- ✅ **本地缓存**：快速读写，离线可用
-- ✅ **t+1上传**：智能批量上传，节省资源
-- ✅ **WiFi检测**：自动检测网络环境
-- ✅ **队列管理**：可靠的消息队列系统
-- ✅ **数据分析**：丰富的行为数据采集
+在生成情绪地图后记录访问：
 
-**核心价值**：让Luna真正理解用户，持续优化体验！
+```python
+from core.emotional_map_card_generator_enhanced import EmotionalMapCardGeneratorEnhanced
+from memory_store.tools.memory_writer import MemoryWriter
 
+# 生成地图
+generator = EmotionalMapCardGeneratorEnhanced()
+result = generator.generate_emotional_map("hospital_main")
+
+# 记录访问
+writer = MemoryWriter()
+writer.record_map_visit(
+    map_id="hospital_main",
+    nodes_visited=["entrance", "toilet", "elevator"],
+    emotion_tags={"toilet": "推荐"}
+)
+```
+
+### 2. 定时上传任务
+
+使用 `cron` 或系统任务调度器：
+
+```bash
+# 每天凌晨2点上传昨天的记忆
+0 2 * * * cd /path/to/Luna_Badge && python3 task_chain/timers/memory_uploader.py
+```
+
+或在Python中：
+
+```python
+import schedule
+import time
+
+def upload_memories():
+    uploader = MemoryUploader("https://api.luna-project.com/v1/user/memory")
+    uploader.upload_pending_memories()
+
+# 每天凌晨2点执行
+schedule.every().day.at("02:00").do(upload_memories)
+
+while True:
+    schedule.run_pending()
+    time.sleep(60)
+```
+
+---
+
+## 🐛 常见问题
+
+### Q1: WiFi检测失败
+
+**问题**：`check_wifi_connected()` 返回 `False` 但实际已连接
+
+**解决**：根据系统调整检测逻辑（macOS/Linux），或手动设置WiFi状态
+
+### Q2: 重复上传
+
+**问题**：同一条记忆被多次上传
+
+**解决**：确保上传成功后调用 `mark_as_uploaded()` 标记
+
+### Q3: 数据合并冲突
+
+**问题**：同一天多次写入导致数据混乱
+
+**解决**：MemoryWriter 自动合并同一天的记忆，使用 `updated_at` 字段跟踪更新时间
+
+---
+
+## 📚 相关文档
+
+- `config/memory_schema.json` - 数据结构标准
+- `MEMORY_MODULE_GUIDE.md` - 本文档
+- `CROSS_DEVICE_SYNC_GUIDE.md` - 跨设备同步指南
+- `MAP_SHARING_GUIDE.md` - 地图共享指南
+
+---
+
+## ✅ 总结
+
+Luna Badge 记忆模块 v1.0 提供了完整的用户数据记录、缓存和上传解决方案：
+
+- ✅ **本地缓存**：低功耗、安全存储
+- ✅ **T+1上传**：隐私保护、完整数据
+- ✅ **WiFi检测**：节省流量、保证质量
+- ✅ **增量同步**：避免重复、高效传输
+- ✅ **后台分析**：用户画像、智能推荐
+
+准备就绪！🚀

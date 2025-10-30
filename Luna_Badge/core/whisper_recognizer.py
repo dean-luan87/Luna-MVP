@@ -283,3 +283,4 @@ if __name__ == "__main__":
     print(f"语言: {details.get('language', 'unknown')}")
     
     print("\n" + "=" * 60)
+

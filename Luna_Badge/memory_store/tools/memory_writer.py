@@ -144,7 +144,8 @@ class MemoryWriter:
                         nodes_visited: List[str],
                         emotion_tags: Dict[str, str] = None,
                         duration_minutes: float = 0,
-                        path: List[str] = None) -> bool:
+                        path: List[str] = None,
+                        date: Optional[str] = None) -> bool:
         """记录地图访问
         
         Args:
@@ -153,6 +154,7 @@ class MemoryWriter:
             emotion_tags: 情绪标签
             duration_minutes: 持续时间（分钟）
             path: 路径
+            date: 指定日期（默认为今天）
             
         Returns:
             是否成功
@@ -171,7 +173,7 @@ class MemoryWriter:
             "requested_nearby_toilet": 0
         }
         
-        return self.write_user_memory(map_data, app_behavior)
+        return self.write_user_memory(map_data, app_behavior, date=date)
     
     def record_app_behavior(self, behavior_type: str, behavior_data: Dict = None) -> bool:
         """记录应用行为
@@ -269,4 +271,5 @@ if __name__ == "__main__":
         with open(filepath, 'r', encoding='utf-8') as f:
             memory = json.load(f)
         print(json.dumps(memory, indent=2, ensure_ascii=False))
+
 

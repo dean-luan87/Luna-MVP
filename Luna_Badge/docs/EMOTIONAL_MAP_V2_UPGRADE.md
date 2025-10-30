@@ -376,3 +376,4 @@ from core.svg_icon_loader import SVGIconLoader
 
 *Luna Badge - 让情绪地图更有体感*
 
+

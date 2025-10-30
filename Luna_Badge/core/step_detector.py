@@ -188,3 +188,4 @@ class StepDataMigration:
         except Exception as e:
             print(f"恢复台阶数据失败: {e}")
             return False
+

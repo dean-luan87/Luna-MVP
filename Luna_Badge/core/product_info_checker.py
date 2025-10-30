@@ -344,3 +344,4 @@ if __name__ == "__main__":
         print(f"     描述: {ingredient.description}")
     
     print("\n" + "=" * 60)
+

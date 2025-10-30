@@ -398,3 +398,4 @@ if __name__ == "__main__":
         print(f"   恢复结果: {'成功' if result else '失败'}")
     
     print("\n🎉 FailsafeTrigger测试完成！")
+

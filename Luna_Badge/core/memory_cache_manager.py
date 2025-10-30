@@ -504,3 +504,4 @@ if __name__ == "__main__":
     print(f"包含 {upload_package['metadata']['scenes_count']} 个场景")
     print(f"包含 {upload_package['metadata']['behaviors_count']} 个行为记录")
 
+
