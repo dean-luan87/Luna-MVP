@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-情绪地图生成器增强版 v1.2
+情绪地图生成器增强版 v1.2.1
 生成具备方向感、中文表达、区域划分和情绪标签的高质量地图图卡
 
 v1.2 更新：
@@ -11,6 +11,14 @@ v1.2 更新：
 - 手绘风格字体和路径抖动
 - 统一情绪标注样式（气泡、圆角、圆形）
 - 增强纸张背景纹理（平铺支持）
+
+v1.2.1 优化：
+- 图标显示优化（节点内/上方居中，32px）
+- 字体加大加粗（主标签20-22pt，#333颜色）
+- 路径抖动±3px，更自然
+- 背景纹理20-30%透明度
+- 添加图标图例说明（左上角）
+- 元信息补充icons_used字段
 """
 
 import json
@@ -52,9 +60,10 @@ class EmotionalMapCardGeneratorEnhanced:
         except ImportError:
             self.svg_loader = None
         
-        # 加载中文字体
-        self.chinese_font_small = self._load_chinese_font(size=16)
-        self.chinese_font_large = self._load_chinese_font(size=24)
+        # 加载中文字体（v1.2.1优化）
+        self.chinese_font_small = self._load_chinese_font(size=18)
+        self.chinese_font_medium = self._load_chinese_font(size=20)
+        self.chinese_font_large = self._load_chinese_font(size=22)
         
         # 情绪标签颜色映射（统一样式 - v1.2优化版）
         self.emotion_colors = {
@@ -78,15 +87,18 @@ class EmotionalMapCardGeneratorEnhanced:
             "医院三楼": {"color": (250, 240, 255, 180), "outline": (190, 160, 200), "outline_width": 2},
         }
         
-        # 样式配置
+        # 样式配置（v1.2.1优化）
         self.style = {
             "paper_color": (249, 247, 238),
-            "line_color": (50, 50, 50),
+            "line_color": (30, 30, 30),  # 纯黑或#333
             "node_size": 48,
             "icon_size": 32,  # 节点图标大小
             "node_thickness": 3,
             "arrow_size": 20,
-            "jitter_intensity": 2,  # 手绘抖动强度
+            "jitter_intensity": 3,  # 手绘抖动强度±3px
+            "label_color": (51, 51, 51),  # #333
+            "main_label_size": 22,  # 主标签20-22pt
+            "region_label_size": 18,  # 区域标签
         }
         
         logger.info("🎨 情绪地图生成器增强版 v1.1 初始化完成")
@@ -372,6 +384,67 @@ class EmotionalMapCardGeneratorEnhanced:
         draw.line([x, y - size + 10, x, y + size - 10],
                  fill=(255, 0, 0), width=2)
     
+    def _draw_icon_legend(self, draw: ImageDraw.Draw, nodes: List[Dict]) -> None:
+        """绘制图标图例（v1.2.1新增）"""
+        # 提取所有使用的节点类型
+        node_types = set()
+        for node in nodes:
+            node_type = node.get("type", "default")
+            if node_type:
+                node_types.add(node_type.lower())
+        
+        if not node_types:
+            return
+        
+        # 图标名称映射
+        icon_name_map = {
+            "destination": "目的地",
+            "waypoint": "途经点",
+            "entrance": "入口",
+            "toilet": "厕所",
+            "elevator": "电梯",
+            "stairs": "楼梯",
+            "building": "建筑",
+            "hospital": "医院",
+            "registration": "挂号",
+            "reception": "接待",
+            "wheelchair": "无障碍",
+        }
+        
+        # 从左上角开始绘制图例
+        legend_x = 50
+        legend_y = 100
+        icon_size = 24
+        spacing = 35
+        
+        # 绘制标题
+        if self.chinese_font_small:
+            draw.text((legend_x, legend_y), "图例",
+                     font=self.chinese_font_medium,
+                     fill=self.style.get("label_color", (51, 51, 51)))
+            legend_y += 35
+        
+        # 绘制每个图标的说明
+        for idx, node_type in enumerate(sorted(node_types)[:8]):  # 最多显示8个
+            if node_type in icon_name_map:
+                name = icon_name_map[node_type]
+                
+                # 绘制图标示例（简化为圆点+文字）
+                icon_x = legend_x + 10
+                icon_y = legend_y + idx * spacing
+                
+                # 绘制小圆点
+                draw.ellipse([icon_x - 8, icon_y - 8, icon_x + 8, icon_y + 8],
+                           fill=(100, 100, 100),
+                           outline=(100, 100, 100))
+                
+                # 绘制文字说明
+                if self.chinese_font_small:
+                    draw.text((icon_x + 15, icon_y - 10),
+                             name,
+                             font=self.chinese_font_small,
+                             fill=self.style.get("label_color", (51, 51, 51)))
+    
     def _apply_paper_texture(self, img: Image.Image) -> Image.Image:
         """应用纸张纹理背景（增强版 v1.2）"""
         texture_path = os.path.join(self.textures_dir, "paper_background.png")
@@ -398,8 +471,8 @@ class EmotionalMapCardGeneratorEnhanced:
                 if img.mode != 'RGBA':
                     img = img.convert('RGBA')
                 
-                # 半透明叠加（增强纸张质感，从30提高到45）
-                texture.putalpha(45)
+                # 半透明叠加（v1.2.1优化：20-30%透明度）
+                texture.putalpha(28)
                 
                 # 叠加纹理
                 img = Image.alpha_composite(img, texture)
@@ -560,17 +633,18 @@ class EmotionalMapCardGeneratorEnhanced:
                          font=ImageFont.load_default(),
                          fill=self.style["line_color"])
                 
-                # 绘制中文标签
+                # 绘制中文标签（v1.2.1优化：字体加大加粗，#333颜色）
                 label = node.get("label", "")
-                if label and self.chinese_font_small:
-                    bbox = draw.textbbox((0, 0), label, font=self.chinese_font_small)
+                if label and self.chinese_font_medium:
+                    bbox = draw.textbbox((0, 0), label, font=self.chinese_font_medium)
                     text_width = bbox[2] - bbox[0]
                     text_height = bbox[3] - bbox[1]
                     
+                    # 使用label_color（#333）和medium字体
                     draw.text((x - text_width // 2, y + 45),
                              label,
-                             font=self.chinese_font_small,
-                             fill=self.style["line_color"])
+                             font=self.chinese_font_medium,
+                             fill=self.style.get("label_color", (51, 51, 51)))
                 
                 # 绘制情绪标签
                 emotions = node.get("emotion", [])
@@ -584,6 +658,9 @@ class EmotionalMapCardGeneratorEnhanced:
             
             # 绘制指南针
             self._draw_compass(draw, (width - 150, 150))
+            
+            # 绘制图标图例（v1.2.1新增）
+            self._draw_icon_legend(draw, nodes)
             
             # 保存图像
             output_path = os.path.join(self.output_dir, f"{path_id}_emotional.png")
@@ -619,11 +696,20 @@ class EmotionalMapCardGeneratorEnhanced:
         # 计算总距离
         total_distance = sum(node.get("distance", 0) for node in nodes)
         
+        # 检查是否使用了图标
+        node_types = set()
+        for node in nodes:
+            node_type = node.get("type", "")
+            if node_type:
+                node_types.add(node_type.lower())
+        
         return {
             "path_id": path_data.get("path_id"),
             "path_name": path_data.get("path_name"),
             "map_direction_reference": "上 = 北",
             "compass_added": True,
+            "icons_used": True,  # v1.2.1新增
+            "icon_types": list(node_types),  # v1.2.1新增
             "regions_detected": sorted(list(regions)),
             "node_count": len(nodes),
             "total_distance": f"{total_distance}米",
