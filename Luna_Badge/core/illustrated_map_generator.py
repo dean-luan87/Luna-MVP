@@ -89,129 +89,93 @@ class IllustratedMapGenerator:
         
         return ImageFont.load_default()
     
-    def _draw_node_icon(self, draw: ImageDraw.Draw, x: int, y: int, node_type: str) -> None:
-        """绘制节点图标（替代建筑物轮廓）"""
+    def _draw_node_icon(self, draw: ImageDraw.Draw, x: int, y: int, node_type: str, img: Image.Image) -> None:
+        """绘制节点图标（使用SVG图标）"""
         if not self.illustration_config["building_outline"]:
             return
         
-        # 根据节点类型绘制不同的图标
+        # 图标名称映射（优先匹配中文关键词）
+        icon_map = {
+            "医院": "hospital.svg",
+            "入口": "door-enter.svg",
+            "挂号": "info-square.svg",
+            "电梯": "elevator.svg",
+            "卫生间": "toilet.svg",
+            "诊室": "hospital.svg",
+            "候诊": "building.svg",
+            "hospital": "hospital.svg",
+            "destination": "map-pin.svg",
+            "clinic": "hospital.svg",
+            "building": "building.svg",
+            "entrance": "door-enter.svg",
+            "registration": "info-square.svg",
+            "reception": "user.svg",
+            "elevator": "elevator.svg",
+            "toilet": "toilet.svg",
+            "waiting": "building.svg",
+            "room": "info-square.svg",
+            "bus": "bus.svg",
+            "stop": "bus.svg",
+            "stairs": "stairs.svg",
+        }
+        
+        # 获取图标名称
+        icon_name = None
+        for key, svg_name in icon_map.items():
+            if key in node_type.lower():
+                icon_name = svg_name
+                break
+        
+        # 加载SVG图标
+        if icon_name:
+            try:
+                from core.svg_icon_loader import SVGIconLoader
+                icon_path = os.path.join(self.icons_dir, icon_name)
+                if os.path.exists(icon_path):
+                    icon_img = SVGIconLoader.load_svg_icon(icon_path, size=36)
+                    if icon_img is not None:
+                        icon_pil = Image.fromarray(icon_img)
+                        # 粘贴图标到画布
+                        icon_x = x - 18
+                        icon_y = y - 18
+                        if icon_pil.mode == 'RGBA':
+                            img.paste(icon_pil, (icon_x, icon_y), icon_pil)
+                        else:
+                            img.paste(icon_pil, (icon_x, icon_y))
+                        return
+            except Exception as e:
+                logger.warning(f"SVG图标加载失败: {e}")
+        
+        # Fallback: 绘制简化图标
         if "hospital" in node_type.lower() or "destination" in node_type.lower() or "clinic" in node_type.lower():
-            # 医院/诊室图标：红十字符号
-            cross_size = 15
-            # 十字横线
+            # 红十字符号
+            cross_size = 18
             draw.line([x - cross_size, y, x + cross_size, y],
-                     fill=(220, 50, 50), width=4)
-            # 十字竖线
+                     fill=(220, 50, 50), width=5)
             draw.line([x, y - cross_size, x, y + cross_size],
-                     fill=(220, 50, 50), width=4)
-            
-        elif "building" in node_type.lower():
-            # 建筑图标：简化建筑
-            # 小房子图标
-            # 屋顶（三角形）
-            roof_points = [
-                (x - 12, y - 5),
-                (x, y - 15),
-                (x + 12, y - 5),
-            ]
-            draw.polygon(roof_points, fill=(100, 120, 140), outline=(60, 80, 100), width=2)
-            # 墙面
-            draw.rectangle([x - 10, y - 5, x + 10, y + 10],
-                         fill=(180, 200, 220), outline=(100, 120, 140), width=2)
-            # 门
-            draw.rectangle([x - 3, y, x + 3, y + 10],
-                         fill=(100, 80, 60), outline=(60, 40, 20), width=1)
-        
-        elif "entrance" in node_type.lower():
-            # 入口图标：打开的门
-            # 门框左柱
-            draw.rectangle([x - 8, y - 12, x - 5, y + 8],
-                         fill=(140, 120, 100), outline=(100, 80, 60), width=1)
-            # 门（打开状态）
-            door_points = [
-                (x - 5, y - 12),
-                (x + 5, y - 8),
-                (x + 5, y + 8),
-                (x - 5, y + 8),
-            ]
-            draw.polygon(door_points, fill=(120, 100, 80), outline=(80, 60, 40), width=1)
-            # 门把手
-            draw.ellipse([x + 2, y, x + 4, y + 2],
-                        fill=(60, 60, 60), outline=(40, 40, 40), width=1)
-        
-        elif "registration" in node_type.lower() or "reception" in node_type.lower():
-            # 挂号处/接待处：服务台图标
-            # 服务台台面
-            draw.rectangle([x - 15, y - 8, x + 15, y - 3],
-                         fill=(120, 140, 160), outline=(80, 100, 120), width=2)
-            # 服务台支撑
-            draw.rectangle([x - 12, y - 3, x + 12, y + 8],
-                         fill=(180, 200, 220), outline=(140, 160, 180), width=2)
-            # 台面标记
-            draw.ellipse([x - 8, y - 6, x + 8, y - 1], 
-                        fill=(200, 200, 200), outline=(150, 150, 150), width=1)
-        
+                     fill=(220, 50, 50), width=5)
         elif "elevator" in node_type.lower():
-            # 电梯图标：简化立方体
-            # 前面
-            draw.rectangle([x - 12, y - 18, x + 12, y + 5],
+            # 电梯立方体
+            draw.rectangle([x - 14, y - 20, x + 14, y + 5],
                          fill=(200, 200, 200), outline=(140, 140, 140), width=2)
-            # 顶部
-            top_points = [
-                (x - 12, y - 18),
-                (x - 8, y - 22),
-                (x + 8, y - 22),
-                (x + 12, y - 18),
-            ]
+            top_points = [(x - 14, y - 20), (x - 8, y - 25), (x + 8, y - 25), (x + 14, y - 20)]
             draw.polygon(top_points, fill=(220, 220, 220), outline=(160, 160, 160), width=2)
-            # 按钮
-            draw.ellipse([x - 3, y - 8, x + 3, y - 2], 
+            draw.ellipse([x - 4, y - 10, x + 4, y - 2], 
                         fill=(100, 100, 100), outline=(60, 60, 60), width=1)
-        
         elif "toilet" in node_type.lower():
-            # 卫生间图标：马桶符号
-            # 马桶座圈
-            draw.ellipse([x - 10, y - 8, x + 10, y + 8],
+            # 马桶
+            draw.ellipse([x - 12, y - 10, x + 12, y + 10],
                         fill=(220, 220, 220), outline=(140, 140, 140), width=2)
-            # 马桶水箱
-            draw.rectangle([x - 6, y - 15, x + 6, y - 8],
+            draw.rectangle([x - 7, y - 18, x + 7, y - 10],
                          fill=(200, 200, 200), outline=(120, 120, 120), width=1)
-            # 马桶盖前端开口
-            draw.arc([x - 8, y - 5, x + 8, y + 15],
-                    start=0, end=180, fill=(255, 255, 255), width=0)
-        
-        elif "waiting" in node_type.lower() or "room" in node_type.lower():
-            # 候诊区/房间：椅子图标
-            # 椅子背
-            draw.rectangle([x - 3, y - 15, x + 3, y - 5],
-                         fill=(120, 100, 80), outline=(80, 60, 40), width=1)
-            # 椅子座
-            draw.rectangle([x - 10, y - 5, x + 10, y + 2],
-                         fill=(140, 120, 100), outline=(100, 80, 60), width=1)
-            # 椅子扶手
-            draw.rectangle([x - 12, y - 5, x - 10, y + 2],
+        elif "building" in node_type.lower() or "entrance" in node_type.lower():
+            # 房子
+            roof_points = [(x - 14, y - 5), (x, y - 18), (x + 14, y - 5)]
+            draw.polygon(roof_points, fill=(100, 120, 140), outline=(60, 80, 100), width=2)
+            draw.rectangle([x - 12, y - 5, x + 12, y + 12],
+                         fill=(180, 200, 220), outline=(100, 120, 140), width=2)
+            draw.rectangle([x - 3, y, x + 3, y + 12],
                          fill=(100, 80, 60), outline=(60, 40, 20), width=1)
-            draw.rectangle([x + 10, y - 5, x + 12, y + 2],
-                         fill=(100, 80, 60), outline=(60, 40, 20), width=1)
-        
-        elif "bus" in node_type.lower() or "stop" in node_type.lower():
-            # 公交站：站牌图标
-            # 站牌柱
-            draw.rectangle([x - 2, y, x + 2, y + 12],
-                         fill=(100, 100, 100), outline=(60, 60, 60), width=1)
-            # 站牌
-            draw.rectangle([x - 12, y - 8, x + 12, y],
-                         fill=(250, 200, 50), outline=(180, 140, 30), width=2)
-            # 站牌数字标识
-            draw.rectangle([x - 8, y - 6, x + 8, y - 2],
-                         fill=(255, 255, 255), outline=(200, 200, 200), width=1)
-        
-        elif "stairs" in node_type.lower():
-            # 楼梯：台阶图标
-            for i in range(3):
-                step_y = y - 5 + i * 4
-                draw.rectangle([x - 10, step_y, x + 10, step_y + 3],
-                             fill=(180, 180, 180), outline=(120, 120, 120), width=1)
     
     def _draw_decorative_elements(self, draw: ImageDraw.Draw, x: int, y: int) -> None:
         """绘制装饰元素（光线、装饰线条等）"""
@@ -495,8 +459,8 @@ class IllustratedMapGenerator:
                        fill=(220, 220, 220), 
                        outline=None)
         
-        # 绘制节点图标（作为主要地标icon）
-        self._draw_node_icon(draw, x, y, node_type)
+        # 绘制节点图标（作为主要地标icon - 传入img以支持SVG粘贴）
+        self._draw_node_icon(draw, x, y, node_type, img)
         
         # 绘制节点圆圈（很小，作为数字背景）
         # 外圈
@@ -512,31 +476,13 @@ class IllustratedMapGenerator:
         draw.text((x - 4, y - 6), str(index),
                  font=self.font_hint, fill=self.colors["node"])
         
-        # 绘制标签（更大更醒目，带装饰）
+        # 绘制标签（无边框，纯文字）
         if label and self.font_label:
             bbox = draw.textbbox((0, 0), label, font=self.font_label)
             text_width = bbox[2] - bbox[0]
             
-            # 标签阴影
-            draw.rounded_rectangle(
-                [x - text_width//2 - 8, y + 62,
-                 x + text_width//2 + 12, y + 88],
-                radius=8,
-                fill=(220, 220, 220)
-            )
-            
-            # 标签背景（带装饰边框）
-            draw.rounded_rectangle(
-                [x - text_width//2 - 10, y + 60,
-                 x + text_width//2 + 10, y + 85],
-                radius=6,
-                fill=(255, 255, 255, 250),
-                outline=self.colors["accent"],
-                width=3
-            )
-            
-            # 标签文字
-            draw.text((x - text_width//2, y + 70),
+            # 只绘制文字（无边框，无背景）
+            draw.text((x - text_width//2, y + 55),
                      label,
                      font=self.font_label,
                      fill=self.colors["text_dark"])
