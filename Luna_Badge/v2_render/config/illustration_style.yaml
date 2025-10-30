@@ -1,0 +1,152 @@
+# EmotionMap v2 插画式地图视觉风格配置
+
+# 字体配置
+font_family: handwriting.ttf
+font_sizes:
+  main_label: 22
+  emotion_tag: 14
+  story_hint: 12
+
+# 节点样式配置
+node_styles:
+  elevator:
+    icon: elevator.svg
+    color: "#555555"
+    emotion: "嘈杂"
+    story: "人流较多，请注意"
+    
+  toilet:
+    icon: toilet.svg
+    color: "#2ECC71"
+    emotion: "安静 推荐"
+    story: "安静舒适，推荐使用"
+    
+  entrance:
+    icon: door-enter.svg
+    color: "#3498DB"
+    emotion: "明亮 温馨"
+    story: "明亮宽敞，氛围温馨"
+    
+  hospital:
+    icon: hospital.svg
+    color: "#E74C3C"
+    emotion: "安静 担忧"
+    story: "请保持安静，注意环境"
+    
+  stairs:
+    icon: stairs.svg
+    color: "#95A5A6"
+    emotion: "安静"
+    story: "安静通道"
+    
+  destination:
+    icon: map-pin.svg
+    color: "#9B59B6"
+    emotion: "温馨 推荐"
+    story: "目的地已到达"
+    
+  building:
+    icon: building.svg
+    color: "#34495E"
+    emotion: "安静"
+    story: "建筑物内区域"
+    
+  registration:
+    icon: info-square.svg
+    color: "#F39C12"
+    emotion: "拥挤 明亮"
+    story: "挂号处，人流较多"
+
+# 路径样式
+line_style:
+  jitter: true          # 手绘抖动
+  stroke: 2.5          # 线宽
+  color: "#606C80"     # 深蓝灰色
+  arrow_size: 20       # 箭头大小
+
+# 背景配置
+background:
+  texture: paper_background.png
+  opacity: 0.28        # 透明度（0-1）
+  color: "#F9F7EE"     # 米黄色
+
+# 区域样式
+region_styles:
+  候诊区:
+    color: "#FFF0F5"
+    opacity: 0.7
+    outline: "#C88B9A"
+    
+  三楼病区:
+    color: "#E6F5FF"
+    opacity: 0.7
+    outline: "#8CAAC8"
+    
+  挂号大厅:
+    color: "#FFF8F0"
+    opacity: 0.7
+    outline: "#C8B48C"
+    
+  电梯间:
+    color: "#F5F5F5"
+    opacity: 0.7
+    outline: "#B4B4B4"
+
+# 情绪标签配置
+emotion_tags:
+  推荐:
+    bg: "#FFB6C1"
+    text: "#FFFFFF"
+    shape: "rounded"
+    emoji: "❤️"
+    
+  安静:
+    bg: "#90EE90"
+    text: "#006400"
+    shape: "rounded"
+    emoji: "🌿"
+    
+  担忧:
+    bg: "#FFA500"
+    text: "#FFFFFF"
+    shape: "bubble"
+    emoji: "⚠️"
+    
+  嘈杂:
+    bg: "#A9A9A9"
+    text: "#FFFFFF"
+    shape: "circle"
+    emoji: "🙉"
+    
+  温馨:
+    bg: "#FFC8C8"
+    text: "#FFFFFF"
+    shape: "bubble"
+    emoji: "💝"
+    
+  拥挤:
+    bg: "#FF9696"
+    text: "#FFFFFF"
+    shape: "rounded"
+    emoji: "👥"
+    
+  明亮:
+    bg: "#FFFF96"
+    text: "#646432"
+    shape: "rounded"
+    emoji: "💡"
+
+# 图例配置
+legend:
+  position: "top-left"
+  icon_size: 20
+  spacing: 35
+  show_title: true
+  title: "图例"
+
+# 指南针配置
+compass:
+  enabled: true
+  position: "top-right"
+  size: 80
+  show_directions: true

@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-情绪地图生成器增强版 v1.2.2
+情绪地图生成器增强版 v1.2.2 (已废弃，请使用 v2_render/emotion_map_renderer.py)
+
+⚠️ 注意：此模块已被 EmotionMap v2 取代
+请使用 EmotionMap v2 架构：
+- v1_core/path_struct_generator.py - 数据层
+- v2_render/emotion_map_renderer.py - 表现层
+
 生成具备方向感、中文表达、区域划分和情绪标签的高质量地图图卡
 
 v1.2 更新：
