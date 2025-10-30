@@ -2,8 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """
-情绪地图生成器增强版 v1.1
+情绪地图生成器增强版 v1.2
 生成具备方向感、中文表达、区域划分和情绪标签的高质量地图图卡
+
+v1.2 更新：
+- 增强区域色块可视性（透明度70-80%，细线边框）
+- 优化节点图标显示（32x32px，节点上方位置）
+- 手绘风格字体和路径抖动
+- 统一情绪标注样式（气泡、圆角、圆形）
+- 增强纸张背景纹理（平铺支持）
 """
 
 import json
@@ -49,20 +56,26 @@ class EmotionalMapCardGeneratorEnhanced:
         self.chinese_font_small = self._load_chinese_font(size=16)
         self.chinese_font_large = self._load_chinese_font(size=24)
         
-        # 情绪标签颜色映射
+        # 情绪标签颜色映射（统一样式）
         self.emotion_colors = {
-            "推荐": {"bg": (255, 182, 193), "text": (255, 255, 255)},  # 粉红色
-            "安静": {"bg": (144, 238, 144), "text": (0, 100, 0)},      # 绿色
-            "担忧": {"bg": (255, 165, 0), "text": (255, 255, 255)},     # 橙色
-            "嘈杂": {"bg": (169, 169, 169), "text": (255, 255, 255)},   # 灰色
+            "推荐": {"bg": (255, 182, 193), "text": (255, 255, 255), "shape": "bubble", "emoji": "⭐"},  # 粉红色气泡
+            "安静": {"bg": (144, 238, 144), "text": (0, 100, 0), "shape": "rounded", "emoji": "🤫"},      # 绿色圆角矩形
+            "担忧": {"bg": (255, 165, 0), "text": (255, 255, 255), "shape": "bubble", "emoji": "😟"},     # 橙色气泡
+            "嘈杂": {"bg": (169, 169, 169), "text": (255, 255, 255), "shape": "circle", "emoji": "🔊"},   # 灰色实心圆
+            "温馨": {"bg": (255, 200, 200), "text": (255, 255, 255), "shape": "bubble", "emoji": "💝"},  # 粉色气泡
+            "拥挤": {"bg": (255, 150, 150), "text": (255, 255, 255), "shape": "rounded", "emoji": "👥"},  # 浅红圆角
+            "明亮": {"bg": (255, 255, 150), "text": (100, 100, 50), "shape": "rounded", "emoji": "💡"},  # 黄色圆角
         }
         
-        # 区域颜色映射
+        # 区域颜色映射（增强可视性，透明度70-80%）
         self.zone_colors = {
-            "候诊区": {"color": (255, 240, 245, 60), "outline": (255, 182, 193)},
-            "三楼病区": {"color": (240, 255, 255, 60), "outline": (173, 216, 230)},
-            "挂号大厅": {"color": (255, 250, 240, 60), "outline": (255, 215, 0)},
-            "电梯间": {"color": (240, 240, 240, 60), "outline": (150, 150, 150)},
+            "候诊区": {"color": (255, 240, 245, 180), "outline": (200, 140, 150), "outline_width": 2},
+            "三楼病区": {"color": (230, 245, 255, 180), "outline": (140, 170, 200), "outline_width": 2},
+            "挂号大厅": {"color": (255, 250, 240, 180), "outline": (200, 180, 140), "outline_width": 2},
+            "电梯间": {"color": (245, 245, 245, 180), "outline": (180, 180, 180), "outline_width": 2},
+            "入口区": {"color": (255, 240, 240, 180), "outline": (200, 140, 140), "outline_width": 2},
+            "医院一楼": {"color": (245, 255, 250, 180), "outline": (180, 200, 190), "outline_width": 2},
+            "医院三楼": {"color": (250, 240, 255, 180), "outline": (190, 160, 200), "outline_width": 2},
         }
         
         # 样式配置
@@ -70,8 +83,10 @@ class EmotionalMapCardGeneratorEnhanced:
             "paper_color": (249, 247, 238),
             "line_color": (50, 50, 50),
             "node_size": 48,
+            "icon_size": 32,  # 节点图标大小
             "node_thickness": 3,
             "arrow_size": 20,
+            "jitter_intensity": 2,  # 手绘抖动强度
         }
         
         logger.info("🎨 情绪地图生成器增强版 v1.1 初始化完成")
@@ -149,13 +164,21 @@ class EmotionalMapCardGeneratorEnhanced:
                 radius_x = (max_x - min_x) // 2
                 radius_y = (max_y - min_y) // 2
                 
-                # 绘制椭圆背景
+                # 绘制椭圆背景（增强可视性）
                 overlay_draw.ellipse(
                     [center_x - radius_x, center_y - radius_y,
                      center_x + radius_x, center_y + radius_y],
                     fill=zone_color_info["color"],
                     outline=zone_color_info["outline"],
-                    width=2
+                    width=zone_color_info.get("outline_width", 2)
+                )
+                
+                # 添加柔灰色细线外圈（0.8pt效果）
+                overlay_draw.ellipse(
+                    [center_x - radius_x - 2, center_y - radius_y - 2,
+                     center_x + radius_x + 2, center_y + radius_y + 2],
+                    outline=(200, 200, 200, 100),
+                    width=1
                 )
                 
                 # 绘制区域标签
@@ -206,13 +229,14 @@ class EmotionalMapCardGeneratorEnhanced:
             y = int((1-t)**2 * y1 + 2*(1-t)*t * ctrl_y + t**2 * y2)
             points.append((x, y))
         
-        # 绘制曲线（带抖动）
+        # 绘制曲线（带抖动 - 增强手绘风格）
+        jitter = self.style.get("jitter_intensity", 2)
         for i in range(len(points) - 1):
             x1_pt, y1_pt = points[i]
             x2_pt, y2_pt = points[i + 1]
             
-            jitter_x = np.random.randint(-1, 2)
-            jitter_y = np.random.randint(-1, 2)
+            jitter_x = np.random.randint(-jitter, jitter + 1)
+            jitter_y = np.random.randint(-jitter, jitter + 1)
             
             draw.line([x1_pt + jitter_x, y1_pt + jitter_y,
                       x2_pt + jitter_x, y2_pt + jitter_y],
@@ -242,7 +266,7 @@ class EmotionalMapCardGeneratorEnhanced:
     def _render_emotion_tags(self, draw: ImageDraw.Draw,
                             emotions: List[str],
                             position: Tuple[int, int]) -> None:
-        """渲染情绪标签气泡"""
+        """渲染情绪标签气泡（统一样式）"""
         x, y = position
         
         for idx, emotion in enumerate(emotions[:2]):  # 最多2个
@@ -250,33 +274,70 @@ class EmotionalMapCardGeneratorEnhanced:
                 continue
             
             color_info = self.emotion_colors[emotion]
+            shape = color_info.get("shape", "bubble")
+            emoji = color_info.get("emoji", "")
             
-            # 圆角矩形背景
             tag_width = 50
             tag_height = 30
             tag_x = x + idx * (tag_width + 5)
             tag_y = y
             
-            # 绘制圆角矩形
-            draw.rounded_rectangle(
-                [tag_x, tag_y, tag_x + tag_width, tag_y + tag_height],
-                radius=8,
-                fill=color_info["bg"],
-                outline=color_info["bg"]
-            )
+            # 根据shape绘制不同形状
+            if shape == "circle":
+                # 实心圆（嘈杂）
+                center = (tag_x + tag_width//2, tag_y + tag_height//2)
+                radius = min(tag_width, tag_height) // 2 - 2
+                draw.ellipse(
+                    [center[0] - radius, center[1] - radius,
+                     center[0] + radius, center[1] + radius],
+                    fill=color_info["bg"],
+                    outline=color_info["bg"]
+                )
+            elif shape == "rounded":
+                # 圆角矩形（安静、拥挤、明亮）
+                draw.rounded_rectangle(
+                    [tag_x, tag_y, tag_x + tag_width, tag_y + tag_height],
+                    radius=10,
+                    fill=color_info["bg"],
+                    outline=(220, 220, 220),
+                    width=1
+                )
+            else:
+                # 气泡（推荐、担忧、温馨）
+                draw.rounded_rectangle(
+                    [tag_x, tag_y, tag_x + tag_width, tag_y + tag_height],
+                    radius=8,
+                    fill=color_info["bg"],
+                    outline=color_info["bg"]
+                )
             
-            # 绘制文字
+            # 绘制文字（emoji + 文字）
             if self.chinese_font_small:
-                bbox = draw.textbbox((0, 0), emotion, font=self.chinese_font_small)
-                text_width = bbox[2] - bbox[0]
-                text_height = bbox[3] - bbox[1]
-                
-                draw.text(
-                    (tag_x + (tag_width - text_width) // 2,
-                     tag_y + (tag_height - text_height) // 2),
-                    emotion,
-                    font=self.chinese_font_small,
-                    fill=color_info["text"])
+                # 先尝试绘制emoji
+                try:
+                    emoji_font = ImageFont.truetype(
+                        "/System/Library/Fonts/Apple Color Emoji.ttc", 16
+                    )
+                    bbox = draw.textbbox((0, 0), emoji, font=emoji_font)
+                    text_width = bbox[2] - bbox[0]
+                    
+                    draw.text((tag_x + 8, tag_y + 7), emoji, font=emoji_font)
+                    # 添加文字
+                    draw.text((tag_x + 25, tag_y + 7), emotion,
+                             font=self.chinese_font_small,
+                             fill=color_info["text"])
+                except:
+                    # Fallback: 只显示文字
+                    bbox = draw.textbbox((0, 0), emotion, font=self.chinese_font_small)
+                    text_width = bbox[2] - bbox[0]
+                    text_height = bbox[3] - bbox[1]
+                    
+                    draw.text(
+                        (tag_x + (tag_width - text_width) // 2,
+                         tag_y + (tag_height - text_height) // 2),
+                        emotion,
+                        font=self.chinese_font_small,
+                        fill=color_info["text"])
     
     def _draw_compass(self, draw: ImageDraw.Draw, position: Tuple[int, int]) -> None:
         """绘制指南针"""
@@ -312,17 +373,39 @@ class EmotionalMapCardGeneratorEnhanced:
                  fill=(255, 0, 0), width=2)
     
     def _apply_paper_texture(self, img: Image.Image) -> Image.Image:
-        """应用纸张纹理"""
+        """应用纸张纹理背景（增强版 v1.2）"""
         texture_path = os.path.join(self.textures_dir, "paper_background.png")
         
         if os.path.exists(texture_path):
             try:
-                texture = Image.open(texture_path).convert('RGBA')
-                texture = texture.resize(img.size)
-                texture.putalpha(30)
-                img = Image.alpha_composite(img.convert('RGBA'), texture).convert('RGB')
-                return img
-            except:
+                texture = Image.open(texture_path)
+                
+                # 如果背景纹理比画布小，则平铺
+                if texture.size[0] < img.size[0] or texture.size[1] < img.size[1]:
+                    # 平铺纹理
+                    full_texture = Image.new('RGB', img.size, (249, 247, 238))
+                    for x in range(0, img.size[0], texture.size[0]):
+                        for y in range(0, img.size[1], texture.size[1]):
+                            full_texture.paste(texture, (x, y))
+                    texture = full_texture
+                else:
+                    # 缩放纹理以适配画布
+                    texture = texture.resize(img.size, Image.Resampling.LANCZOS)
+                
+                # 创建RGBA版本
+                if texture.mode != 'RGBA':
+                    texture = texture.convert('RGBA')
+                if img.mode != 'RGBA':
+                    img = img.convert('RGBA')
+                
+                # 半透明叠加（增强纸张质感，从30提高到45）
+                texture.putalpha(45)
+                
+                # 叠加纹理
+                img = Image.alpha_composite(img, texture)
+                return img.convert('RGB')
+            except Exception as e:
+                logger.warning(f"纹理加载失败: {e}")
                 pass
         
         # Fallback: 噪声纹理
@@ -439,7 +522,7 @@ class EmotionalMapCardGeneratorEnhanced:
             for i, (node, position) in enumerate(zip(nodes, positions)):
                 x, y = position
                 
-                # 绘制节点图标（SVG）
+                # 绘制节点图标（SVG）- 增强版 32x32px
                 node_type = node.get("type", "default")
                 icon_name_map = {
                     "destination": "map-pin",
@@ -449,15 +532,22 @@ class EmotionalMapCardGeneratorEnhanced:
                     "elevator": "elevator",
                     "stairs": "stairs",
                     "building": "building",
+                    "hospital": "hospital",
+                    "registration": "info-square",
+                    "reception": "user",
+                    "wheelchair": "wheelchair",
                 }
                 icon_name = icon_name_map.get(node_type.lower(), "map-pin")
                 
-                icon_img = self._load_svg_icon(icon_name, size=self.style["node_size"])
+                # 使用icon_size（32x32）而不是node_size
+                icon_img = self._load_svg_icon(icon_name, size=self.style["icon_size"])
                 if icon_img:
+                    icon_offset = self.style["icon_size"] // 2
                     if icon_img.mode == 'RGBA':
-                        img.paste(icon_img, (x - 24, y - 24), icon_img)
+                        # 节点上方显示图标
+                        img.paste(icon_img, (x - icon_offset, y - icon_offset - 10), icon_img)
                     else:
-                        img.paste(icon_img, (x - 24, y - 24))
+                        img.paste(icon_img, (x - icon_offset, y - icon_offset - 10))
                 
                 # 绘制节点外圆（加粗）
                 draw.ellipse([x - 30, y - 30, x + 30, y + 30],
