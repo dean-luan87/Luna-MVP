@@ -1,0 +1,36 @@
+{
+  "memories": [
+    {
+      "id": "medication_1761618942",
+      "type": "medication",
+      "title": "高血压药物",
+      "content": "每天早晚各一次，每次一片",
+      "tags": [
+        "重要",
+        "健康"
+      ],
+      "priority": "urgent",
+      "created_at": 1761618942.30003,
+      "updated_at": 1761618942.30003,
+      "remind_at": 1761622542.300023,
+      "reminder_method": "voice",
+      "category": "health"
+    },
+    {
+      "id": "phone_1761618942",
+      "type": "phone",
+      "title": "紧急联系人",
+      "content": "13800138000",
+      "tags": [
+        "紧急",
+        "联系人"
+      ],
+      "priority": "high",
+      "created_at": 1761618942.3003678,
+      "updated_at": 1761618942.3003678,
+      "remind_at": null,
+      "reminder_method": "voice",
+      "category": "contact"
+    }
+  ]
+}

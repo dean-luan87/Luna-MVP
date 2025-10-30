@@ -1,0 +1,30 @@
+{
+  "memories": [
+    {
+      "id": "medication_1761619740",
+      "type": "medication",
+      "title": "测试用药",
+      "content": "每天一次",
+      "tags": [],
+      "priority": "high",
+      "created_at": 1761619740.87679,
+      "updated_at": 1761619740.87679,
+      "remind_at": null,
+      "reminder_method": "voice",
+      "category": ""
+    },
+    {
+      "id": "medication_1761619763",
+      "type": "medication",
+      "title": "测试用药",
+      "content": "每天一次",
+      "tags": [],
+      "priority": "high",
+      "created_at": 1761619763.568335,
+      "updated_at": 1761619763.5683358,
+      "remind_at": null,
+      "reminder_method": "voice",
+      "category": ""
+    }
+  ]
+}

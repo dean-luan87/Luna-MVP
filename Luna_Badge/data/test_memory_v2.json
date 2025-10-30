@@ -1,0 +1,67 @@
+{
+  "paths": [
+    {
+      "path_id": "test_v2_path",
+      "path_name": "医院主路径",
+      "nodes": [
+        {
+          "node_id": "node1",
+          "label": "医院入口",
+          "type": "entrance",
+          "level": "入口区",
+          "emotion": [
+            "嘈杂",
+            "拥挤"
+          ]
+        },
+        {
+          "node_id": "node2",
+          "label": "挂号大厅",
+          "type": "building",
+          "level": "挂号大厅",
+          "emotion": [
+            "宽敞",
+            "明亮"
+          ]
+        },
+        {
+          "node_id": "node3",
+          "label": "一楼西侧电梯",
+          "type": "elevator",
+          "level": "电梯间",
+          "emotion": [
+            "等待"
+          ]
+        },
+        {
+          "node_id": "node4",
+          "label": "三楼候诊区",
+          "type": "building",
+          "level": "医院三楼",
+          "emotion": [
+            "拥挤"
+          ]
+        },
+        {
+          "node_id": "node5",
+          "label": "卫生间",
+          "type": "toilet",
+          "level": "医院三楼",
+          "emotion": [
+            "安静",
+            "整洁"
+          ]
+        },
+        {
+          "node_id": "node6",
+          "label": "目的地",
+          "type": "destination",
+          "level": "医院三楼",
+          "emotion": [
+            "温馨"
+          ]
+        }
+      ]
+    }
+  ]
+}
