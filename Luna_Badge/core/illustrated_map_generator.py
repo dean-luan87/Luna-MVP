@@ -44,16 +44,18 @@ class IllustratedMapGenerator:
         self.font_label = self._load_chinese_font(size=18)    # 标签
         self.font_hint = self._load_chinese_font(size=14)     # 提示小字
         
-        # 插图化配色方案（参考地图风格）
+        # 插图化配色方案（参考地图风格 - 增强版）
         self.colors = {
             "bg": (251, 248, 240),           # 米黄色背景
-            "path": (100, 120, 140),         # 路径蓝灰色
-            "node": (50, 50, 50),            # 节点深灰
-            "region_light": (220, 230, 245),  # 浅蓝区域
-            "region_warm": (255, 245, 220),   # 暖黄区域
-            "highlight": (255, 100, 100),    # 高亮红
-            "text_dark": (30, 30, 30),       # 深色文字
-            "text_medium": (100, 100, 100),  # 中等文字
+            "path": (80, 100, 120),          # 路径蓝灰色（更深）
+            "node": (40, 40, 40),            # 节点深灰
+            "region_light": (220, 235, 250), # 浅蓝区域（更亮）
+            "region_warm": (255, 248, 230),  # 暖黄区域（更暖）
+            "highlight": (255, 80, 80),      # 高亮红
+            "text_dark": (20, 20, 20),       # 深色文字
+            "text_medium": (80, 80, 80),     # 中等文字
+            "shadow": (200, 200, 200),       # 阴影色
+            "accent": (100, 150, 200),       # 强调色
         }
         
         # 插图元素配置
@@ -63,6 +65,9 @@ class IllustratedMapGenerator:
             "scene_bg": True,                # 场景背景
             "decorative_lines": True,        # 装饰线条
             "info_badges": True,             # 信息徽章
+            "shadows": True,                 # 阴影效果
+            "gradients": True,               # 渐变填充
+            "scene_icons": True,             # 场景图标
         }
         
         logger.info("🎨 插图化地图生成器 v3.0 初始化完成")
@@ -85,40 +90,71 @@ class IllustratedMapGenerator:
         return ImageFont.load_default()
     
     def _draw_building_outline(self, draw: ImageDraw.Draw, x: int, y: int, node_type: str) -> None:
-        """绘制建筑物轮廓装饰"""
+        """绘制建筑物轮廓装饰（增强版）"""
         if not self.illustration_config["building_outline"]:
             return
         
         # 根据节点类型绘制不同风格的建筑物轮廓
         if "hospital" in node_type.lower() or "building" in node_type.lower():
-            # 绘制简单的建筑立面
-            points = [
-                (x - 25, y - 15),
-                (x - 25, y - 30),
-                (x - 15, y - 35),
-                (x - 5, y - 32),
-                (x + 5, y - 35),
-                (x + 15, y - 32),
-                (x + 25, y - 35),
-                (x + 25, y - 15),
+            # 绘制建筑立面（参考地图风格）
+            # 屋顶
+            roof_points = [
+                (x - 40, y - 30),
+                (x - 30, y - 45),
+                (x - 15, y - 48),
+                (x, y - 45),
+                (x + 15, y - 48),
+                (x + 30, y - 45),
+                (x + 40, y - 30),
             ]
-            # 主轮廓
-            draw.polygon(points, outline=(120, 120, 120), width=2)
-            # 窗户
-            for i in range(3):
-                wx = x - 15 + i * 15
-                draw.rectangle([wx - 3, y - 25, wx + 3, y - 30], 
-                             fill=(180, 200, 220), outline=(100, 120, 140))
+            draw.polygon(roof_points, fill=(160, 140, 120), outline=(100, 80, 60), width=2)
+            
+            # 墙面
+            draw.rectangle([x - 40, y - 30, x + 40, y - 5],
+                         fill=(220, 210, 200), outline=(150, 140, 130), width=2)
+            
+            # 窗户（更生动）
+            for i in range(2):
+                wx = x - 20 + i * 40
+                # 窗框
+                draw.rectangle([wx - 8, y - 25, wx + 8, y - 10],
+                             fill=(180, 210, 240), outline=(100, 130, 160), width=2)
+                # 窗格
+                draw.line([wx, y - 25, wx, y - 10], fill=(150, 180, 210), width=1)
+                draw.line([wx - 8, y - 17, wx + 8, y - 17], fill=(150, 180, 210), width=1)
         
         elif "entrance" in node_type.lower():
-            # 入口门框装饰
-            draw.rectangle([x - 30, y - 20, x - 20, y - 10],
-                         outline=(120, 100, 80), width=2)
-            draw.rectangle([x + 20, y - 20, x + 30, y - 10],
-                         outline=(120, 100, 80), width=2)
-            # 门楣
-            draw.arc([x - 20, y - 15, x + 20, y + 5], 
-                    start=180, end=0, fill=(120, 100, 80), width=3)
+            # 入口（门框+门楣，更有装饰感）
+            # 门柱
+            draw.rectangle([x - 35, y - 25, x - 28, y - 5],
+                         fill=(180, 160, 140), outline=(120, 100, 80), width=2)
+            draw.rectangle([x + 28, y - 25, x + 35, y - 5],
+                         fill=(180, 160, 140), outline=(120, 100, 80), width=2)
+            
+            # 门楣（弧形）
+            draw.arc([x - 25, y - 30, x + 25, y + 10], 
+                    start=180, end=0, fill=(200, 180, 160), width=4)
+            
+            # 门
+            draw.rectangle([x - 20, y - 18, x + 20, y - 5],
+                         fill=(160, 140, 120), outline=(100, 80, 60), width=2)
+        
+        elif "elevator" in node_type.lower():
+            # 电梯（立方体透视）
+            # 前面
+            draw.rectangle([x - 15, y - 35, x + 15, y - 15],
+                         fill=(220, 220, 220), outline=(150, 150, 150), width=2)
+            # 顶部（透视）
+            top_points = [
+                (x - 15, y - 35),
+                (x - 10, y - 40),
+                (x + 10, y - 40),
+                (x + 15, y - 35),
+            ]
+            draw.polygon(top_points, fill=(200, 200, 200), outline=(130, 130, 130), width=2)
+            # 按钮区域
+            draw.rectangle([x - 8, y - 28, x + 8, y - 20],
+                         fill=(100, 100, 100), outline=(80, 80, 80), width=1)
     
     def _draw_decorative_elements(self, draw: ImageDraw.Draw, x: int, y: int) -> None:
         """绘制装饰元素（光线、装饰线条等）"""
@@ -133,62 +169,98 @@ class IllustratedMapGenerator:
                      fill=(200, 200, 200), width=1)
     
     def _draw_info_badge(self, draw: ImageDraw.Draw, text: str, position: Tuple[int, int], 
-                        color: Tuple[int, int, int]) -> None:
-        """绘制信息徽章（距离、时间等）"""
+                        color: Tuple[int, int, int], icon: Optional[str] = None) -> None:
+        """绘制信息徽章（距离、时间等 - 优化版）"""
         if not self.illustration_config["info_badges"]:
             return
         
         x, y = position
         
-        # 背景圆角矩形
-        padding = 6
-        bbox = draw.textbbox((0, 0), text, font=self.font_hint)
-        w = bbox[2] - bbox[0] + padding * 2
+        # 背景圆角矩形（更大更醒目）
+        padding = 10
+        bbox = draw.textbbox((0, 0), text, font=self.font_label)
+        w = bbox[2] - bbox[0] + padding * 2 + 20  # 留空间给图标
         h = bbox[3] - bbox[1] + padding
         
-        # 白色背景
-        draw.rounded_rectangle([x - w//2, y, x + w//2, y + h],
-                             radius=4, fill=(255, 255, 255, 230), 
-                             outline=color, width=2)
+        # 带阴影的背景
+        draw.rounded_rectangle([x - w//2 + 2, y + 2, x + w//2 + 2, y + h + 2],
+                             radius=6, fill=(200, 200, 200, 150))
         
-        # 文字
-        draw.text((x - w//2 + padding, y + padding//2), text,
-                 font=self.font_hint, fill=self.colors["text_dark"])
+        # 主背景
+        draw.rounded_rectangle([x - w//2, y, x + w//2, y + h],
+                             radius=6, fill=(255, 255, 255), 
+                             outline=color, width=3)
+        
+        # 如果有点图标，绘制一下
+        if icon:
+            icon_x = x - w//2 + 12
+            icon_y = y + h//2
+            # 简化的图标绘制（小圆点表示）
+            draw.ellipse([icon_x - 5, icon_y - 5, icon_x + 5, icon_y + 5],
+                       fill=color, outline=color)
+        
+        # 文字（更大）
+        draw.text((x - w//2 + padding + 15, y + padding//2 + 2), text,
+                 font=self.font_label, fill=self.colors["text_dark"])
     
     def _draw_handdrawn_path(self, draw: ImageDraw.Draw, points: List[Tuple[int, int]],
                             color: Tuple[int, int, int], width: int = 3) -> None:
-        """绘制手绘风格路径"""
+        """绘制手绘风格路径（增强版 - 方向指示）"""
         if len(points) < 2:
             return
         
-        # 添加抖动
+        # 添加轻微抖动
         jitter_points = []
         for x, y in points:
-            jx = x + random.randint(-2, 2)
-            jy = y + random.randint(-2, 2)
+            jx = x + random.randint(-1, 1)
+            jy = y + random.randint(-1, 1)
             jitter_points.append((jx, jy))
         
-        # 绘制路径
-        for i in range(len(jitter_points) - 1):
-            draw.line([jitter_points[i], jitter_points[i + 1]],
-                     fill=color, width=width)
+        # 绘制路径（虚线效果）
+        segment_len = 8
+        gap_len = 4
+        total_len = 0
         
-        # 添加箭头
+        for i in range(len(jitter_points) - 1):
+            x1, y1 = jitter_points[i]
+            x2, y2 = jitter_points[i + 1]
+            dx, dy = x2 - x1, y2 - y1
+            dist = np.sqrt(dx**2 + dy**2)
+            
+            if dist > 0:
+                unit_x, unit_y = dx/dist, dy/dist
+                
+                # 绘制虚线
+                current_pos = 0
+                while current_pos < dist:
+                    seg_start = (int(x1 + unit_x * current_pos), int(y1 + unit_y * current_pos))
+                    seg_end_pos = min(current_pos + segment_len, dist)
+                    seg_end = (int(x1 + unit_x * seg_end_pos), int(y1 + unit_y * seg_end_pos))
+                    
+                    draw.line([seg_start, seg_end], fill=color, width=width)
+                    current_pos += segment_len + gap_len
+        
+        # 添加多个箭头指示方向
         if len(jitter_points) >= 2:
             x1, y1 = jitter_points[-2]
             x2, y2 = jitter_points[-1]
             dx, dy = x2 - x1, y2 - y1
             
-            # 箭头三角形
-            arrow_len = 12
+            # 主箭头（大）
+            arrow_len = 15
             angle = np.arctan2(dy, dx)
             arrow_x1 = int(x2 - arrow_len * np.cos(angle - np.pi / 6))
             arrow_y1 = int(y2 - arrow_len * np.sin(angle - np.pi / 6))
             arrow_x2 = int(x2 - arrow_len * np.cos(angle + np.pi / 6))
             arrow_y2 = int(y2 - arrow_len * np.sin(angle + np.pi / 6))
             
+            # 箭头填充
             draw.polygon([(x2, y2), (arrow_x1, arrow_y1), (arrow_x2, arrow_y2)],
-                        fill=color, outline=color)
+                        fill=color, outline=color, width=2)
+            
+            # 箭头边框突出
+            draw.polygon([(x2, y2), (arrow_x1, arrow_y1), (arrow_x2, arrow_y2)],
+                        fill=None, outline=(255, 255, 255), width=1)
     
     def _apply_handdrawn_filter(self, img: Image.Image) -> Image.Image:
         """应用手绘风格滤镜"""
@@ -207,6 +279,19 @@ class IllustratedMapGenerator:
         
         return Image.fromarray(img_array)
     
+    def _draw_background_grid(self, draw: ImageDraw.Draw, width: int, height: int) -> None:
+        """绘制背景网格"""
+        grid_color = (240, 235, 230)
+        grid_spacing = 50
+        
+        # 垂直线
+        for x in range(0, width, grid_spacing):
+            draw.line([x, 0, x, height], fill=grid_color, width=1)
+        
+        # 水平线
+        for y in range(0, height, grid_spacing):
+            draw.line([0, y, width, y], fill=grid_color, width=1)
+    
     def generate_illustrated_map(self, path_data: Dict, output_name: str) -> Optional[str]:
         """
         生成插图化风格地图
@@ -224,6 +309,9 @@ class IllustratedMapGenerator:
             img = Image.new('RGB', (width, height), self.colors["bg"])
             draw = ImageDraw.Draw(img)
             
+            # 绘制背景网格
+            self._draw_background_grid(draw, width, height)
+            
             nodes = path_data.get("nodes", [])
             if not nodes:
                 logger.error("无节点数据")
@@ -232,15 +320,28 @@ class IllustratedMapGenerator:
             # 计算节点位置
             positions = self._calculate_positions(nodes, width, height)
             
-            # 绘制区域背景
+            # 绘制区域背景（先绘制，在其他元素下方）
             self._draw_regions(draw, nodes, positions, width, height)
             
-            # 绘制路径
+            # 绘制路径（在节点下方）
             self._draw_paths(draw, nodes, positions)
             
-            # 绘制节点和装饰
+            # 绘制节点和装饰（最后绘制，在最上层）
             for i, (node, pos) in enumerate(zip(nodes, positions)):
                 self._draw_node_with_illustration(draw, node, pos, i + 1)
+            
+            # 绘制标题
+            title = path_data.get("path_name", "导航地图")
+            if self.font_heading:
+                # 标题背景
+                bbox = draw.textbbox((0, 0), title, font=self.font_heading)
+                title_w = bbox[2] - bbox[0]
+                draw.rounded_rectangle([90, 40, 110 + title_w, 110],
+                                     radius=8, fill=(255, 255, 255, 240),
+                                     outline=self.colors["accent"], width=3)
+                # 标题文字
+                draw.text((100, 60), title, font=self.font_heading,
+                         fill=self.colors["text_dark"])
             
             # 绘制指南针
             self._draw_compass(draw, width - 120, 120)
@@ -292,56 +393,89 @@ class IllustratedMapGenerator:
     
     def _draw_paths(self, draw: ImageDraw.Draw, nodes: List[Dict], 
                    positions: List[Tuple[int, int]]) -> None:
-        """绘制路径"""
+        """绘制路径（增强版 - 带运动方式图标）"""
         for i in range(len(nodes) - 1):
             from_pos = positions[i]
             to_pos = positions[i + 1]
             
             # 使用手绘路径
             self._draw_handdrawn_path(draw, [from_pos, to_pos], 
-                                     self.colors["path"], width=4)
+                                     self.colors["path"], width=5)  # 更粗
             
-            # 添加距离标注
+            # 添加距离标注（带运动方式图标）
             distance = nodes[i].get("distance", 0)
+            movement_type = nodes[i].get("movement", "walking")  # walking, elevator, stairs
+            
             if distance > 0:
                 mid_x = (from_pos[0] + to_pos[0]) // 2
                 mid_y = (from_pos[1] + to_pos[1]) // 2
+                
+                # 确定运动方式图标
+                movement_icon = None
+                if "elevator" in movement_type.lower():
+                    movement_icon = "🚪"
+                elif "stairs" in movement_type.lower() or "楼梯" in movement_type:
+                    movement_icon = "🪜"
+                else:
+                    movement_icon = "👣"
+                
+                # 绘制带图标的信息徽章
                 self._draw_info_badge(draw, f"{distance}米", 
-                                     (mid_x, mid_y - 20),
-                                     self.colors["path"])
+                                     (mid_x, mid_y - 25),
+                                     self.colors["path"],
+                                     icon=movement_icon)
     
     def _draw_node_with_illustration(self, draw: ImageDraw.Draw, node: Dict, 
                                     position: Tuple[int, int], index: int) -> None:
-        """绘制带插图的节点"""
+        """绘制带插图的节点（增强版 - 地标优先）"""
         x, y = position
         node_type = node.get("type", "").lower()
         label = node.get("label", "")
         
-        # 绘制建筑物轮廓装饰
+        # 绘制阴影（增加层次感）
+        if self.illustration_config["shadows"]:
+            draw.ellipse([x - 38, y - 38, x + 42, y + 42],
+                       fill=(220, 220, 220), 
+                       outline=None)
+        
+        # 绘制建筑物轮廓装饰（作为主要地标icon）
         self._draw_building_outline(draw, x, y, node_type)
         
-        # 绘制节点圆圈（更大）
-        draw.ellipse([x - 40, y - 40, x + 40, y + 40],
+        # 绘制节点圆圈（更小，作为背景）
+        # 外圈
+        draw.ellipse([x - 32, y - 32, x + 32, y + 32],
+                   fill=(240, 240, 250), 
+                   outline=(180, 180, 200), width=2)
+        # 内圈
+        draw.ellipse([x - 28, y - 28, x + 28, y + 28],
                    fill=(255, 255, 255), 
-                   outline=self.colors["node"], width=4)
+                   outline=self.colors["node"], width=3)
         
-        # 绘制编号
-        draw.text((x - 8, y - 12), str(index),
+        # 绘制编号（更小，不遮挡地标）
+        draw.text((x - 6, y - 8), str(index),
                  font=self.font_label, fill=self.colors["node"])
         
-        # 绘制标签（更大更醒目）
+        # 绘制标签（更大更醒目，带装饰）
         if label and self.font_label:
             bbox = draw.textbbox((0, 0), label, font=self.font_label)
             text_width = bbox[2] - bbox[0]
             
-            # 标签背景
+            # 标签阴影
+            draw.rounded_rectangle(
+                [x - text_width//2 - 8, y + 62,
+                 x + text_width//2 + 12, y + 88],
+                radius=8,
+                fill=(220, 220, 220)
+            )
+            
+            # 标签背景（带装饰边框）
             draw.rounded_rectangle(
                 [x - text_width//2 - 10, y + 60,
                  x + text_width//2 + 10, y + 85],
                 radius=6,
-                fill=(255, 255, 255, 240),
-                outline=(180, 180, 180),
-                width=2
+                fill=(255, 255, 255, 250),
+                outline=self.colors["accent"],
+                width=3
             )
             
             # 标签文字
@@ -358,7 +492,7 @@ class IllustratedMapGenerator:
         if emotions and isinstance(emotions, list):
             for idx, emotion in enumerate(emotions[:2]):
                 self._draw_emotion_badge(draw, emotion, 
-                                       (x + 60 + idx * 55, y))
+                                       (x + 70 + idx * 60, y - 10))
     
     def _draw_emotion_badge(self, draw: ImageDraw.Draw, emotion: str, 
                            position: Tuple[int, int]) -> None:
@@ -418,17 +552,17 @@ def main():
         format='%(asctime)s - %(levelname)s - %(message)s'
     )
     
-    # 测试数据
+    # 测试数据（增强版 - 添加运动方式）
     test_path = {
         "path_id": "hospital_test",
         "path_name": "医院导航路径",
         "nodes": [
-            {"type": "entrance", "label": "医院入口", "emotion": ["明亮"], "distance": 0},
-            {"type": "registration", "label": "挂号处", "emotion": ["推荐", "明亮"], "distance": 20},
-            {"type": "elevator", "label": "电梯", "emotion": ["嘈杂", "推荐"], "distance": 15},
-            {"type": "waiting_room", "label": "候诊区", "emotion": ["安静"], "distance": 20},
-            {"type": "toilet", "label": "卫生间", "emotion": ["安静", "推荐"], "distance": 10},
-            {"type": "destination", "label": "诊室", "emotion": ["推荐"], "distance": 5},
+            {"type": "entrance", "label": "医院入口", "emotion": ["明亮"], "distance": 20, "movement": "walking"},
+            {"type": "registration", "label": "挂号处", "emotion": ["推荐", "明亮"], "distance": 15, "movement": "walking"},
+            {"type": "elevator", "label": "电梯", "emotion": ["嘈杂", "推荐"], "distance": 15, "movement": "elevator"},
+            {"type": "waiting_room", "label": "候诊区", "emotion": ["安静"], "distance": 20, "movement": "walking"},
+            {"type": "toilet", "label": "卫生间", "emotion": ["安静", "推荐"], "distance": 10, "movement": "walking"},
+            {"type": "destination", "label": "诊室", "emotion": ["推荐"], "distance": 5, "movement": "walking"},
         ]
     }
     
