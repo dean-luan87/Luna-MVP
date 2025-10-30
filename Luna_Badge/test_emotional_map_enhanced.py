@@ -53,15 +53,16 @@ def main():
                         "node_id": "node3",
                         "label": "一楼电梯",
                         "type": "elevator",
-                        "level": "电梯间",
+                        "level": "1楼电梯间",
                         "emotion": ["等待"],
-                        "distance": 20
+                        "distance": 20,
+                        "movement": "elevator"
                     },
                     {
                         "node_id": "node4",
                         "label": "三楼候诊区",
                         "type": "building",
-                        "level": "三楼病区",
+                        "level": "3楼病区",
                         "emotion": ["安静"],
                         "distance": 30
                     },

@@ -226,7 +226,7 @@ class IllustratedMapGenerator:
     
     def _draw_handdrawn_path(self, draw: ImageDraw.Draw, points: List[Tuple[int, int]],
                             color: Tuple[int, int, int], width: int = 3) -> None:
-        """绘制手绘风格路径（增强版 - 方向指示）"""
+        """绘制手绘风格路径（实线）"""
         if len(points) < 2:
             return
         
@@ -237,31 +237,11 @@ class IllustratedMapGenerator:
             jy = y + random.randint(-1, 1)
             jitter_points.append((jx, jy))
         
-        # 绘制路径（虚线效果）
-        segment_len = 8
-        gap_len = 4
-        total_len = 0
-        
+        # 绘制实线路径
         for i in range(len(jitter_points) - 1):
-            x1, y1 = jitter_points[i]
-            x2, y2 = jitter_points[i + 1]
-            dx, dy = x2 - x1, y2 - y1
-            dist = np.sqrt(dx**2 + dy**2)
-            
-            if dist > 0:
-                unit_x, unit_y = dx/dist, dy/dist
-                
-                # 绘制虚线
-                current_pos = 0
-                while current_pos < dist:
-                    seg_start = (int(x1 + unit_x * current_pos), int(y1 + unit_y * current_pos))
-                    seg_end_pos = min(current_pos + segment_len, dist)
-                    seg_end = (int(x1 + unit_x * seg_end_pos), int(y1 + unit_y * seg_end_pos))
-                    
-                    draw.line([seg_start, seg_end], fill=color, width=width)
-                    current_pos += segment_len + gap_len
+            draw.line([jitter_points[i], jitter_points[i + 1]], fill=color, width=width)
         
-        # 添加多个箭头指示方向
+        # 添加箭头指示方向
         if len(jitter_points) >= 2:
             x1, y1 = jitter_points[-2]
             x2, y2 = jitter_points[-1]
@@ -282,6 +262,135 @@ class IllustratedMapGenerator:
             # 箭头边框突出
             draw.polygon([(x2, y2), (arrow_x1, arrow_y1), (arrow_x2, arrow_y2)],
                         fill=None, outline=(255, 255, 255), width=1)
+    
+    def _draw_dashed_path(self, draw: ImageDraw.Draw, points: List[Tuple[int, int]], 
+                          color: Tuple[int, int, int], width: int = 5) -> None:
+        """绘制虚线路径"""
+        if len(points) < 2:
+            return
+        
+        x1, y1 = points[0]
+        x2, y2 = points[1]
+        dx, dy = x2 - x1, y2 - y1
+        dist = np.sqrt(dx**2 + dy**2)
+        
+        if dist > 0:
+            segment_len = 20
+            gap_len = 8
+            unit_x, unit_y = dx/dist, dy/dist
+            
+            # 绘制虚线
+            current_pos = 0
+            while current_pos < dist:
+                seg_start = (int(x1 + unit_x * current_pos), int(y1 + unit_y * current_pos))
+                seg_end_pos = min(current_pos + segment_len, dist)
+                seg_end = (int(x1 + unit_x * seg_end_pos), int(y1 + unit_y * seg_end_pos))
+                
+                draw.line([seg_start, seg_end], fill=color, width=width)
+                current_pos += segment_len + gap_len
+        
+        # 添加箭头
+        if len(points) >= 2:
+            arrow_len = 15
+            angle = np.arctan2(dy, dx)
+            arrow_x1 = int(x2 - arrow_len * np.cos(angle - np.pi / 6))
+            arrow_y1 = int(y2 - arrow_len * np.sin(angle - np.pi / 6))
+            arrow_x2 = int(x2 - arrow_len * np.cos(angle + np.pi / 6))
+            arrow_y2 = int(y2 - arrow_len * np.sin(angle + np.pi / 6))
+            
+            draw.polygon([(x2, y2), (arrow_x1, arrow_y1), (arrow_x2, arrow_y2)],
+                        fill=color, outline=color, width=2)
+    
+    def _draw_dotted_path(self, draw: ImageDraw.Draw, points: List[Tuple[int, int]], 
+                          color: Tuple[int, int, int], width: int = 5) -> None:
+        """绘制点线路径"""
+        if len(points) < 2:
+            return
+        
+        x1, y1 = points[0]
+        x2, y2 = points[1]
+        dx, dy = x2 - x1, y2 - y1
+        dist = np.sqrt(dx**2 + dy**2)
+        
+        if dist > 0:
+            dot_spacing = 12
+            unit_x, unit_y = dx/dist, dy/dist
+            
+            # 绘制点线
+            current_pos = 0
+            while current_pos < dist:
+                dot_pos = (int(x1 + unit_x * current_pos), int(y1 + unit_y * current_pos))
+                radius = width // 2 + 1
+                draw.ellipse([dot_pos[0] - radius, dot_pos[1] - radius,
+                            dot_pos[0] + radius, dot_pos[1] + radius],
+                           fill=color, outline=None)
+                current_pos += dot_spacing
+        
+        # 添加箭头
+        if len(points) >= 2:
+            arrow_len = 15
+            angle = np.arctan2(dy, dx)
+            arrow_x1 = int(x2 - arrow_len * np.cos(angle - np.pi / 6))
+            arrow_y1 = int(y2 - arrow_len * np.sin(angle - np.pi / 6))
+            arrow_x2 = int(x2 - arrow_len * np.cos(angle + np.pi / 6))
+            arrow_y2 = int(y2 - arrow_len * np.sin(angle + np.pi / 6))
+            
+            draw.polygon([(x2, y2), (arrow_x1, arrow_y1), (arrow_x2, arrow_y2)],
+                        fill=color, outline=color, width=2)
+    
+    def _detect_floor_change(self, from_level: str, to_level: str) -> int:
+        """检测楼层变化
+        
+        Returns:
+            int: 楼层变化数（正数=向上，负数=向下，0=无变化）
+        """
+        # 提取楼层数字
+        import re
+        
+        from_floor = self._extract_floor_number(from_level)
+        to_floor = self._extract_floor_number(to_level)
+        
+        if from_floor is not None and to_floor is not None:
+            return to_floor - from_floor
+        return 0
+    
+    def _extract_floor_number(self, level: str) -> Optional[int]:
+        """从层级字符串中提取楼层数字"""
+        import re
+        
+        # 匹配模式：一楼、二楼、1F、2F等
+        patterns = [
+            r'(\d+)楼',
+            r'(\d+)F',
+            r'(\d+)层',
+            r'第(\d+)层',
+        ]
+        
+        for pattern in patterns:
+            match = re.search(pattern, level)
+            if match:
+                return int(match.group(1))
+        
+        return None
+    
+    def _draw_floor_change_marker(self, draw: ImageDraw.Draw, x: int, y: int, floor_change: int) -> None:
+        """绘制楼层变化标记"""
+        if floor_change == 0:
+            return
+        
+        # 绘制楼层变化徽章
+        marker_text = f"{abs(floor_change)}层"
+        if floor_change > 0:
+            marker_text = f"⬆{marker_text}"
+            bg_color = (200, 200, 255)  # 浅蓝色
+        else:
+            marker_text = f"⬇{marker_text}"
+            bg_color = (255, 200, 200)  # 浅红色
+        
+        # 绘制背景圆
+        radius = 18
+        draw.ellipse([x - radius, y - radius, x + radius, y + radius],
+                   fill=bg_color, outline=(100, 100, 100), width=2)
     
     def _apply_handdrawn_filter(self, img: Image.Image) -> Image.Image:
         """应用手绘风格滤镜"""
@@ -414,36 +523,71 @@ class IllustratedMapGenerator:
     
     def _draw_paths(self, draw: ImageDraw.Draw, nodes: List[Dict], 
                    positions: List[Tuple[int, int]]) -> None:
-        """绘制路径（增强版 - 带运动方式图标）"""
+        """绘制路径（增强版 - 区分不同移动方式）"""
         for i in range(len(nodes) - 1):
             from_pos = positions[i]
             to_pos = positions[i + 1]
+            from_node = nodes[i]
+            to_node = nodes[i + 1]
             
-            # 使用手绘路径
-            self._draw_handdrawn_path(draw, [from_pos, to_pos], 
-                                     self.colors["path"], width=5)  # 更粗
+            # 检测楼层变化
+            from_level = from_node.get("level", "")
+            to_level = to_node.get("level", "")
+            floor_change = self._detect_floor_change(from_level, to_level)
             
-            # 添加距离标注（带运动方式图标）
-            distance = nodes[i].get("distance", 0)
-            movement_type = nodes[i].get("movement", "walking")  # walking, elevator, stairs
+            # 根据移动方式选择路径样式
+            movement_type = from_node.get("movement", "walking")
+            if "elevator" in movement_type.lower() or "电梯" in from_node.get("label", ""):
+                path_color = (100, 150, 200)  # 蓝色：电梯
+                line_style = "dashed"
+                width = 6
+            elif "stairs" in movement_type.lower() or "楼梯" in from_node.get("label", ""):
+                path_color = (150, 100, 80)  # 棕色：楼梯
+                line_style = "dotted"
+                width = 6
+            elif floor_change:
+                path_color = (200, 150, 100)  # 橙色：跨层移动
+                line_style = "dashed"
+                width = 7
+            else:
+                path_color = self.colors["path"]  # 灰色：平层移动
+                line_style = "solid"
+                width = 5
             
+            # 绘制路径
+            if line_style == "dashed":
+                self._draw_dashed_path(draw, [from_pos, to_pos], path_color, width)
+            elif line_style == "dotted":
+                self._draw_dotted_path(draw, [from_pos, to_pos], path_color, width)
+            else:
+                self._draw_handdrawn_path(draw, [from_pos, to_pos], path_color, width)
+            
+            # 绘制楼层变化标记
+            if floor_change:
+                mid_x = (from_pos[0] + to_pos[0]) // 2
+                mid_y = (from_pos[1] + to_pos[1]) // 2
+                self._draw_floor_change_marker(draw, mid_x, mid_y, floor_change)
+            
+            # 添加距离标注
+            distance = from_node.get("distance", 0)
             if distance > 0:
                 mid_x = (from_pos[0] + to_pos[0]) // 2
                 mid_y = (from_pos[1] + to_pos[1]) // 2
                 
                 # 确定运动方式图标
-                movement_icon = None
-                if "elevator" in movement_type.lower():
-                    movement_icon = "🚪"
-                elif "stairs" in movement_type.lower() or "楼梯" in movement_type:
+                if "elevator" in movement_type.lower() or "电梯" in from_node.get("label", ""):
+                    movement_icon = "🛗"
+                elif "stairs" in movement_type.lower() or "楼梯" in from_node.get("label", ""):
                     movement_icon = "🪜"
+                elif floor_change:
+                    movement_icon = "⬆️" if floor_change > 0 else "⬇️"
                 else:
                     movement_icon = "👣"
                 
                 # 绘制带图标的信息徽章
                 self._draw_info_badge(draw, f"{distance}米", 
                                      (mid_x, mid_y - 25),
-                                     self.colors["path"],
+                                     path_color,
                                      icon=movement_icon)
     
     def _draw_node_with_illustration(self, draw: ImageDraw.Draw, node: Dict, 
