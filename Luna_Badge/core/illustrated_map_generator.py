@@ -89,72 +89,129 @@ class IllustratedMapGenerator:
         
         return ImageFont.load_default()
     
-    def _draw_building_outline(self, draw: ImageDraw.Draw, x: int, y: int, node_type: str) -> None:
-        """绘制建筑物轮廓装饰（增强版）"""
+    def _draw_node_icon(self, draw: ImageDraw.Draw, x: int, y: int, node_type: str) -> None:
+        """绘制节点图标（替代建筑物轮廓）"""
         if not self.illustration_config["building_outline"]:
             return
         
-        # 根据节点类型绘制不同风格的建筑物轮廓
-        if "hospital" in node_type.lower() or "building" in node_type.lower():
-            # 绘制建筑立面（参考地图风格）
-            # 屋顶
+        # 根据节点类型绘制不同的图标
+        if "hospital" in node_type.lower() or "destination" in node_type.lower() or "clinic" in node_type.lower():
+            # 医院/诊室图标：红十字符号
+            cross_size = 15
+            # 十字横线
+            draw.line([x - cross_size, y, x + cross_size, y],
+                     fill=(220, 50, 50), width=4)
+            # 十字竖线
+            draw.line([x, y - cross_size, x, y + cross_size],
+                     fill=(220, 50, 50), width=4)
+            
+        elif "building" in node_type.lower():
+            # 建筑图标：简化建筑
+            # 小房子图标
+            # 屋顶（三角形）
             roof_points = [
-                (x - 40, y - 30),
-                (x - 30, y - 45),
-                (x - 15, y - 48),
-                (x, y - 45),
-                (x + 15, y - 48),
-                (x + 30, y - 45),
-                (x + 40, y - 30),
+                (x - 12, y - 5),
+                (x, y - 15),
+                (x + 12, y - 5),
             ]
-            draw.polygon(roof_points, fill=(160, 140, 120), outline=(100, 80, 60), width=2)
-            
+            draw.polygon(roof_points, fill=(100, 120, 140), outline=(60, 80, 100), width=2)
             # 墙面
-            draw.rectangle([x - 40, y - 30, x + 40, y - 5],
-                         fill=(220, 210, 200), outline=(150, 140, 130), width=2)
-            
-            # 窗户（更生动）
-            for i in range(2):
-                wx = x - 20 + i * 40
-                # 窗框
-                draw.rectangle([wx - 8, y - 25, wx + 8, y - 10],
-                             fill=(180, 210, 240), outline=(100, 130, 160), width=2)
-                # 窗格
-                draw.line([wx, y - 25, wx, y - 10], fill=(150, 180, 210), width=1)
-                draw.line([wx - 8, y - 17, wx + 8, y - 17], fill=(150, 180, 210), width=1)
+            draw.rectangle([x - 10, y - 5, x + 10, y + 10],
+                         fill=(180, 200, 220), outline=(100, 120, 140), width=2)
+            # 门
+            draw.rectangle([x - 3, y, x + 3, y + 10],
+                         fill=(100, 80, 60), outline=(60, 40, 20), width=1)
         
         elif "entrance" in node_type.lower():
-            # 入口（门框+门楣，更有装饰感）
-            # 门柱
-            draw.rectangle([x - 35, y - 25, x - 28, y - 5],
-                         fill=(180, 160, 140), outline=(120, 100, 80), width=2)
-            draw.rectangle([x + 28, y - 25, x + 35, y - 5],
-                         fill=(180, 160, 140), outline=(120, 100, 80), width=2)
-            
-            # 门楣（弧形）
-            draw.arc([x - 25, y - 30, x + 25, y + 10], 
-                    start=180, end=0, fill=(200, 180, 160), width=4)
-            
-            # 门
-            draw.rectangle([x - 20, y - 18, x + 20, y - 5],
-                         fill=(160, 140, 120), outline=(100, 80, 60), width=2)
+            # 入口图标：打开的门
+            # 门框左柱
+            draw.rectangle([x - 8, y - 12, x - 5, y + 8],
+                         fill=(140, 120, 100), outline=(100, 80, 60), width=1)
+            # 门（打开状态）
+            door_points = [
+                (x - 5, y - 12),
+                (x + 5, y - 8),
+                (x + 5, y + 8),
+                (x - 5, y + 8),
+            ]
+            draw.polygon(door_points, fill=(120, 100, 80), outline=(80, 60, 40), width=1)
+            # 门把手
+            draw.ellipse([x + 2, y, x + 4, y + 2],
+                        fill=(60, 60, 60), outline=(40, 40, 40), width=1)
+        
+        elif "registration" in node_type.lower() or "reception" in node_type.lower():
+            # 挂号处/接待处：服务台图标
+            # 服务台台面
+            draw.rectangle([x - 15, y - 8, x + 15, y - 3],
+                         fill=(120, 140, 160), outline=(80, 100, 120), width=2)
+            # 服务台支撑
+            draw.rectangle([x - 12, y - 3, x + 12, y + 8],
+                         fill=(180, 200, 220), outline=(140, 160, 180), width=2)
+            # 台面标记
+            draw.ellipse([x - 8, y - 6, x + 8, y - 1], 
+                        fill=(200, 200, 200), outline=(150, 150, 150), width=1)
         
         elif "elevator" in node_type.lower():
-            # 电梯（立方体透视）
+            # 电梯图标：简化立方体
             # 前面
-            draw.rectangle([x - 15, y - 35, x + 15, y - 15],
-                         fill=(220, 220, 220), outline=(150, 150, 150), width=2)
-            # 顶部（透视）
+            draw.rectangle([x - 12, y - 18, x + 12, y + 5],
+                         fill=(200, 200, 200), outline=(140, 140, 140), width=2)
+            # 顶部
             top_points = [
-                (x - 15, y - 35),
-                (x - 10, y - 40),
-                (x + 10, y - 40),
-                (x + 15, y - 35),
+                (x - 12, y - 18),
+                (x - 8, y - 22),
+                (x + 8, y - 22),
+                (x + 12, y - 18),
             ]
-            draw.polygon(top_points, fill=(200, 200, 200), outline=(130, 130, 130), width=2)
-            # 按钮区域
-            draw.rectangle([x - 8, y - 28, x + 8, y - 20],
-                         fill=(100, 100, 100), outline=(80, 80, 80), width=1)
+            draw.polygon(top_points, fill=(220, 220, 220), outline=(160, 160, 160), width=2)
+            # 按钮
+            draw.ellipse([x - 3, y - 8, x + 3, y - 2], 
+                        fill=(100, 100, 100), outline=(60, 60, 60), width=1)
+        
+        elif "toilet" in node_type.lower():
+            # 卫生间图标：马桶符号
+            # 马桶座圈
+            draw.ellipse([x - 10, y - 8, x + 10, y + 8],
+                        fill=(220, 220, 220), outline=(140, 140, 140), width=2)
+            # 马桶水箱
+            draw.rectangle([x - 6, y - 15, x + 6, y - 8],
+                         fill=(200, 200, 200), outline=(120, 120, 120), width=1)
+            # 马桶盖前端开口
+            draw.arc([x - 8, y - 5, x + 8, y + 15],
+                    start=0, end=180, fill=(255, 255, 255), width=0)
+        
+        elif "waiting" in node_type.lower() or "room" in node_type.lower():
+            # 候诊区/房间：椅子图标
+            # 椅子背
+            draw.rectangle([x - 3, y - 15, x + 3, y - 5],
+                         fill=(120, 100, 80), outline=(80, 60, 40), width=1)
+            # 椅子座
+            draw.rectangle([x - 10, y - 5, x + 10, y + 2],
+                         fill=(140, 120, 100), outline=(100, 80, 60), width=1)
+            # 椅子扶手
+            draw.rectangle([x - 12, y - 5, x - 10, y + 2],
+                         fill=(100, 80, 60), outline=(60, 40, 20), width=1)
+            draw.rectangle([x + 10, y - 5, x + 12, y + 2],
+                         fill=(100, 80, 60), outline=(60, 40, 20), width=1)
+        
+        elif "bus" in node_type.lower() or "stop" in node_type.lower():
+            # 公交站：站牌图标
+            # 站牌柱
+            draw.rectangle([x - 2, y, x + 2, y + 12],
+                         fill=(100, 100, 100), outline=(60, 60, 60), width=1)
+            # 站牌
+            draw.rectangle([x - 12, y - 8, x + 12, y],
+                         fill=(250, 200, 50), outline=(180, 140, 30), width=2)
+            # 站牌数字标识
+            draw.rectangle([x - 8, y - 6, x + 8, y - 2],
+                         fill=(255, 255, 255), outline=(200, 200, 200), width=1)
+        
+        elif "stairs" in node_type.lower():
+            # 楼梯：台阶图标
+            for i in range(3):
+                step_y = y - 5 + i * 4
+                draw.rectangle([x - 10, step_y, x + 10, step_y + 3],
+                             fill=(180, 180, 180), outline=(120, 120, 120), width=1)
     
     def _draw_decorative_elements(self, draw: ImageDraw.Draw, x: int, y: int) -> None:
         """绘制装饰元素（光线、装饰线条等）"""
@@ -438,22 +495,22 @@ class IllustratedMapGenerator:
                        fill=(220, 220, 220), 
                        outline=None)
         
-        # 绘制建筑物轮廓装饰（作为主要地标icon）
-        self._draw_building_outline(draw, x, y, node_type)
+        # 绘制节点图标（作为主要地标icon）
+        self._draw_node_icon(draw, x, y, node_type)
         
-        # 绘制节点圆圈（更小，作为背景）
+        # 绘制节点圆圈（很小，作为数字背景）
         # 外圈
-        draw.ellipse([x - 32, y - 32, x + 32, y + 32],
+        draw.ellipse([x - 20, y - 20, x + 20, y + 20],
                    fill=(240, 240, 250), 
-                   outline=(180, 180, 200), width=2)
+                   outline=(180, 180, 200), width=1)
         # 内圈
-        draw.ellipse([x - 28, y - 28, x + 28, y + 28],
+        draw.ellipse([x - 17, y - 17, x + 17, y + 17],
                    fill=(255, 255, 255), 
-                   outline=self.colors["node"], width=3)
+                   outline=self.colors["node"], width=2)
         
-        # 绘制编号（更小，不遮挡地标）
-        draw.text((x - 6, y - 8), str(index),
-                 font=self.font_label, fill=self.colors["node"])
+        # 绘制编号（很小，不遮挡地标）
+        draw.text((x - 4, y - 6), str(index),
+                 font=self.font_hint, fill=self.colors["node"])
         
         # 绘制标签（更大更醒目，带装饰）
         if label and self.font_label:
