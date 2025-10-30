@@ -1,0 +1,7 @@
+{
+  "allow_crowded_passage": true,
+  "broadcast_frequency": "low",
+  "tone_preference": "default",
+  "auto_confirm_silence": true,
+  "max_repeat_count": 3
+}

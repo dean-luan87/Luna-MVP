@@ -1,0 +1,13 @@
+{
+  "prefer_walk": true,
+  "avoid_transfer": true,
+  "prefer_shortest": true,
+  "prefer_fastest": false,
+  "avoid_crowded": false,
+  "prefer_indoor": false,
+  "behavior_stats": {
+    "reject_bus": 1,
+    "reject_transfer": 2,
+    "accept_walk": 4
+  }
+}

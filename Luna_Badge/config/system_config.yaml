@@ -1,0 +1,8 @@
+audio_input_device: default
+auto_update: true
+camera_device: 0
+device_id: luna_badge_dev_001
+language: zh-CN
+log_level: info
+startup_mode: active
+wake_word_engine: porcupine

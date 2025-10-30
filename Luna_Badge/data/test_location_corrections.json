@@ -1,0 +1,59 @@
+{
+  "corrections": [
+    {
+      "original_name": "洗手间",
+      "corrected_name": "商场洗手间A",
+      "gps_location": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "timestamp": 1761547178.7753239,
+      "correction_method": "voice",
+      "user_id": "user_001",
+      "trust_level": "user_feedback",
+      "corrections_count": 1
+    },
+    {
+      "original_name": "洗手间",
+      "corrected_name": "商场洗手间A",
+      "gps_location": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "timestamp": 1761547178.775676,
+      "correction_method": "voice",
+      "user_id": "user_002",
+      "trust_level": "user_feedback",
+      "corrections_count": 1
+    },
+    {
+      "original_name": "洗手间",
+      "corrected_name": "商场洗手间A",
+      "gps_location": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "timestamp": 1761547178.775882,
+      "correction_method": "interface",
+      "user_id": "user_003",
+      "trust_level": "user_feedback",
+      "corrections_count": 1
+    }
+  ],
+  "mappings": [
+    {
+      "location_key": "3513d3ffa76087b3fee84f508737745d",
+      "original_name": "洗手间",
+      "corrected_name": "商场洗手间A",
+      "gps_center": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "correction_count": 3,
+      "unique_users": 1,
+      "trust_level": "verified",
+      "last_update": 1761547178.775882,
+      "active": true
+    }
+  ]
+}

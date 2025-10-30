@@ -1,0 +1,11 @@
+failover_behavior:
+  config_file_missing: auto_generate_defaults
+  gps_unavailable: allow_with_warning
+privacy_zones:
+  hospital:
+    camera_lock: false
+  toilet:
+    camera_lock: true
+    gps_radius: 5
+    lock_duration: 300
+    manual_unlock_allowed: false

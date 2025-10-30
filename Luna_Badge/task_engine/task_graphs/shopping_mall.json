@@ -1,0 +1,177 @@
+{
+  "graph_id": "shopping_mall",
+  "scene_type": "retail",
+  "goal": "完成一次购物流程",
+  "entry_trigger": "用户说：我要去购物/我要买东西",
+  "target": {
+    "location": "购物中心",
+    "shopping_category": "日用品"
+  },
+  "nodes": [
+    {
+      "id": "confirm_shopping_goal",
+      "type": "interaction",
+      "title": "确认购物目标",
+      "expected_input": "购物清单或商品类别",
+      "output": "购物清单",
+      "config": {
+        "question": "请问您要买什么？我可以帮您规划购物路线。",
+        "options": ["日用品", "食品", "服装", "其他"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "plan_shopping_route",
+      "type": "navigation",
+      "title": "规划购物路线",
+      "input": "当前地址 + 购物中心地址",
+      "output": "路径 + 预计时间",
+      "config": {
+        "destination": "购物中心",
+        "transport_mode": "walking"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "confirm_shopping_list",
+      "type": "memory_action",
+      "title": "记录购物清单",
+      "output": "购物清单",
+      "config": {
+        "action": "save",
+        "memory_type": "shopping_list",
+        "fields": ["items", "estimated_budget"]
+      },
+      "status": "pending",
+      "timeout": 30
+    },
+    {
+      "id": "navigate_to_mall",
+      "type": "navigation",
+      "title": "前往购物中心",
+      "config": {
+        "mode": "real_time_navigation",
+        "enable_voice_guidance": true
+      },
+      "status": "pending",
+      "timeout": 1800
+    },
+    {
+      "id": "arrive_mall",
+      "type": "observation",
+      "title": "识别购物中心入口",
+      "trigger": "GPS/视觉识别商场标志",
+      "config": {
+        "type": "ocr",
+        "target": "mall_signs",
+        "detection_keywords": ["购物中心", "Mall", "商场", "超市"]
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "observe_mall_layout",
+      "type": "observation",
+      "title": "观察商场布局",
+      "config": {
+        "type": "ocr",
+        "target": "mall_directory",
+        "detection_keywords": ["楼层", "店铺", "区域"]
+      },
+      "status": "pending",
+      "timeout": 180
+    },
+    {
+      "id": "find_target_shops",
+      "type": "navigation",
+      "title": "寻找目标店铺",
+      "input": "购物清单",
+      "config": {
+        "mode": "indoor_navigation",
+        "target_shops": "based_on_shopping_list"
+      },
+      "status": "pending",
+      "timeout": 600
+    },
+    {
+      "id": "execute_shopping",
+      "type": "interaction",
+      "title": "执行购物",
+      "config": {
+        "question": "请告诉我您找到了什么商品，还需要什么？",
+        "options": ["找到了", "没找到", "需要帮助"]
+      },
+      "status": "pending",
+      "timeout": 3600
+    },
+    {
+      "id": "find_checkout",
+      "type": "observation",
+      "title": "寻找收银台",
+      "config": {
+        "type": "ocr",
+        "target": "checkout_signs",
+        "detection_keywords": ["收银", "结账", "Cashier"]
+      },
+      "status": "pending",
+      "timeout": 180
+    },
+    {
+      "id": "process_payment",
+      "type": "external_call",
+      "title": "完成结账",
+      "output": "购物小票",
+      "config": {
+        "service": "retail_checkout",
+        "payment_methods": ["现金", "刷卡", "移动支付"]
+      },
+      "status": "pending",
+      "timeout": 600
+    },
+    {
+      "id": "confirm_shopping_complete",
+      "type": "interaction",
+      "title": "确认购物完成",
+      "config": {
+        "question": "购物完成了吗？还有其他需要买的吗？",
+        "options": ["完成了", "还有要买的", "需要帮助"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "exit_mall",
+      "type": "navigation",
+      "title": "离开购物中心",
+      "config": {
+        "mode": "exit_navigation",
+        "destination": "mall_exit"
+      },
+      "status": "pending",
+      "timeout": 300
+    }
+  ],
+  "edges": [
+    {"from": "confirm_shopping_goal", "to": "plan_shopping_route"},
+    {"from": "plan_shopping_route", "to": "confirm_shopping_list"},
+    {"from": "confirm_shopping_list", "to": "navigate_to_mall"},
+    {"from": "navigate_to_mall", "to": "arrive_mall"},
+    {"from": "arrive_mall", "to": "observe_mall_layout"},
+    {"from": "observe_mall_layout", "to": "find_target_shops"},
+    {"from": "find_target_shops", "to": "execute_shopping"},
+    {"from": "execute_shopping", "to": "find_checkout"},
+    {"from": "find_checkout", "to": "process_payment"},
+    {"from": "process_payment", "to": "confirm_shopping_complete"},
+    {"from": "confirm_shopping_complete", "to": "exit_mall"}
+  ],
+  "metadata": {
+    "estimated_duration": 90,
+    "complexity": "medium",
+    "user_interaction_level": "medium",
+    "ai_assistance_level": "medium",
+    "insertable_tasks": ["toilet", "rest", "snack"],
+    "version": "1.0"
+  }
+}

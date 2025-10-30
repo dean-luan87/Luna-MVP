@@ -1,0 +1,1962 @@
+{
+  "task_chains": [
+    {
+      "chain_id": "hospital_workflow_1761720706746",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720706746",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720706.746439,
+          "updated_at": 1761720706.747395,
+          "started_at": 1761720706.747395,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720706746"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720706746",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720706.746441,
+          "updated_at": 1761720706.746441,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720706746"
+          ],
+          "next_tasks": [
+            "waiting_1761720706746"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720706746",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720706.746443,
+          "updated_at": 1761720706.746443,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720706746"
+          ],
+          "next_tasks": [
+            "examination_1761720706746"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720706746",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720706.746444,
+          "updated_at": 1761720706.746444,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720706746"
+          ],
+          "next_tasks": [
+            "payment_1761720706746"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720706746",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720706.746445,
+          "updated_at": 1761720706.746445,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720706746"
+          ],
+          "next_tasks": [
+            "medication_1761720706746"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720706746",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720706.746447,
+          "updated_at": 1761720706.746447,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720706746"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720706.746453,
+      "updated_at": 1761720706.747394,
+      "started_at": 1761720706.747394,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720706746",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720748331",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720748331",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720748.331695,
+          "updated_at": 1761720748.332355,
+          "started_at": 1761720748.332355,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720748331"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720748331",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.331697,
+          "updated_at": 1761720748.331697,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720748331"
+          ],
+          "next_tasks": [
+            "waiting_1761720748331"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720748331",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720748.331698,
+          "updated_at": 1761720748.331698,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720748331"
+          ],
+          "next_tasks": [
+            "examination_1761720748331"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720748331",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.331699,
+          "updated_at": 1761720748.331699,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720748331"
+          ],
+          "next_tasks": [
+            "payment_1761720748331"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720748331",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.331701,
+          "updated_at": 1761720748.331701,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720748331"
+          ],
+          "next_tasks": [
+            "medication_1761720748331"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720748331",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.331702,
+          "updated_at": 1761720748.331702,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720748331"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720748.3317068,
+      "updated_at": 1761720748.332354,
+      "started_at": 1761720748.332354,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720748331",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720748333",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720748333",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720748.3332212,
+          "updated_at": 1761720748.3332212,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720748333"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720748333",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.333222,
+          "updated_at": 1761720748.333222,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720748333"
+          ],
+          "next_tasks": [
+            "waiting_1761720748333"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720748333",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720748.3332238,
+          "updated_at": 1761720748.3332238,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720748333"
+          ],
+          "next_tasks": [
+            "examination_1761720748333"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720748333",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.333225,
+          "updated_at": 1761720748.333225,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720748333"
+          ],
+          "next_tasks": [
+            "payment_1761720748333"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720748333",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.333226,
+          "updated_at": 1761720748.333226,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720748333"
+          ],
+          "next_tasks": [
+            "medication_1761720748333"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720748333",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720748.333228,
+          "updated_at": 1761720748.333228,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720748333"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720748.3332329,
+      "updated_at": 1761720748.3332329,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "hospital_workflow_1761720838497",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720838497",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720838.497483,
+          "updated_at": 1761720838.4991,
+          "started_at": 1761720838.4991,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720838497"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720838497",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.497487,
+          "updated_at": 1761720838.497487,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720838497"
+          ],
+          "next_tasks": [
+            "waiting_1761720838497"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720838497",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720838.4974878,
+          "updated_at": 1761720838.497489,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720838497"
+          ],
+          "next_tasks": [
+            "examination_1761720838497"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720838497",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.49749,
+          "updated_at": 1761720838.49749,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720838497"
+          ],
+          "next_tasks": [
+            "payment_1761720838497"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720838497",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.497491,
+          "updated_at": 1761720838.497491,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720838497"
+          ],
+          "next_tasks": [
+            "medication_1761720838497"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720838497",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.497493,
+          "updated_at": 1761720838.497493,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720838497"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720838.4975,
+      "updated_at": 1761720838.4990988,
+      "started_at": 1761720838.4990988,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720838497",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720838500",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720838500",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720838.500761,
+          "updated_at": 1761720838.500761,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720838500"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720838500",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.500763,
+          "updated_at": 1761720838.500763,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720838500"
+          ],
+          "next_tasks": [
+            "waiting_1761720838500"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720838500",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720838.500764,
+          "updated_at": 1761720838.500764,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720838500"
+          ],
+          "next_tasks": [
+            "examination_1761720838500"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720838500",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.5007648,
+          "updated_at": 1761720838.5007648,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720838500"
+          ],
+          "next_tasks": [
+            "payment_1761720838500"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720838500",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.500767,
+          "updated_at": 1761720838.500767,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720838500"
+          ],
+          "next_tasks": [
+            "medication_1761720838500"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720838500",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720838.500768,
+          "updated_at": 1761720838.500768,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720838500"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720838.500774,
+      "updated_at": 1761720838.5007749,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "hospital_workflow_1761720872797",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720872797",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720872.797143,
+          "updated_at": 1761720872.798343,
+          "started_at": 1761720872.798343,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720872797"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720872797",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.7971442,
+          "updated_at": 1761720872.7971442,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720872797"
+          ],
+          "next_tasks": [
+            "waiting_1761720872797"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720872797",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720872.797146,
+          "updated_at": 1761720872.797146,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720872797"
+          ],
+          "next_tasks": [
+            "examination_1761720872797"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720872797",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.7971468,
+          "updated_at": 1761720872.7971468,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720872797"
+          ],
+          "next_tasks": [
+            "payment_1761720872797"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720872797",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.797149,
+          "updated_at": 1761720872.797149,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720872797"
+          ],
+          "next_tasks": [
+            "medication_1761720872797"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720872797",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.797151,
+          "updated_at": 1761720872.797151,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720872797"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720872.797156,
+      "updated_at": 1761720872.798342,
+      "started_at": 1761720872.798342,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720872797",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720872800",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720872800",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720872.800214,
+          "updated_at": 1761720872.800214,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720872800"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720872800",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.800216,
+          "updated_at": 1761720872.800216,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720872800"
+          ],
+          "next_tasks": [
+            "waiting_1761720872800"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720872800",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720872.8002172,
+          "updated_at": 1761720872.8002172,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720872800"
+          ],
+          "next_tasks": [
+            "examination_1761720872800"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720872800",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.800218,
+          "updated_at": 1761720872.8002188,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720872800"
+          ],
+          "next_tasks": [
+            "payment_1761720872800"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720872800",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.80022,
+          "updated_at": 1761720872.80022,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720872800"
+          ],
+          "next_tasks": [
+            "medication_1761720872800"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720872800",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720872.800221,
+          "updated_at": 1761720872.800221,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720872800"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720872.800228,
+      "updated_at": 1761720872.800229,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "hospital_workflow_1761720893891",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720893891",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720893.891121,
+          "updated_at": 1761720893.892572,
+          "started_at": 1761720893.892572,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720893891"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720893891",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.891123,
+          "updated_at": 1761720893.891123,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720893891"
+          ],
+          "next_tasks": [
+            "waiting_1761720893891"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720893891",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720893.891124,
+          "updated_at": 1761720893.891124,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720893891"
+          ],
+          "next_tasks": [
+            "examination_1761720893891"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720893891",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.891126,
+          "updated_at": 1761720893.891126,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720893891"
+          ],
+          "next_tasks": [
+            "payment_1761720893891"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720893891",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.891127,
+          "updated_at": 1761720893.891127,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720893891"
+          ],
+          "next_tasks": [
+            "medication_1761720893891"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720893891",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.891128,
+          "updated_at": 1761720893.891128,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720893891"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720893.891134,
+      "updated_at": 1761720893.892571,
+      "started_at": 1761720893.892571,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720893891",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720893894",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720893894",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720893.894719,
+          "updated_at": 1761720893.89472,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720893894"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720893894",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.894721,
+          "updated_at": 1761720893.894721,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720893894"
+          ],
+          "next_tasks": [
+            "waiting_1761720893894"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720893894",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720893.8947232,
+          "updated_at": 1761720893.8947232,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720893894"
+          ],
+          "next_tasks": [
+            "examination_1761720893894"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720893894",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.8947241,
+          "updated_at": 1761720893.8947241,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720893894"
+          ],
+          "next_tasks": [
+            "payment_1761720893894"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720893894",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.894725,
+          "updated_at": 1761720893.894725,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720893894"
+          ],
+          "next_tasks": [
+            "medication_1761720893894"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720893894",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720893.894727,
+          "updated_at": 1761720893.894727,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720893894"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720893.894733,
+      "updated_at": 1761720893.894733,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "hospital_workflow_1761720953837",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720953837",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "active",
+          "created_at": 1761720953.837875,
+          "updated_at": 1761720953.840757,
+          "started_at": 1761720953.840757,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720953837"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720953837",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.837877,
+          "updated_at": 1761720953.837877,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720953837"
+          ],
+          "next_tasks": [
+            "waiting_1761720953837"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720953837",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.837878,
+          "updated_at": 1761720953.837878,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720953837"
+          ],
+          "next_tasks": [
+            "examination_1761720953837"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720953837",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378801,
+          "updated_at": 1761720953.8378801,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720953837"
+          ],
+          "next_tasks": [
+            "payment_1761720953837"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720953837",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.837881,
+          "updated_at": 1761720953.837881,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720953837"
+          ],
+          "next_tasks": [
+            "medication_1761720953837"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720953837",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.837882,
+          "updated_at": 1761720953.837882,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720953837"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "active",
+      "created_at": 1761720953.837889,
+      "updated_at": 1761720953.840755,
+      "started_at": 1761720953.840754,
+      "completed_at": null,
+      "current_task_id": "nav_to_hospital_1761720953837",
+      "template_id": "hospital_workflow",
+      "user_customizations": {
+        "hospital_name": "虹口医院",
+        "department": "内科"
+      }
+    },
+    {
+      "chain_id": "hospital_workflow_1761720953842",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital_1761720953842",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720953.842964,
+          "updated_at": 1761720953.842965,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration_1761720953842"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration_1761720953842",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.842966,
+          "updated_at": 1761720953.842966,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital_1761720953842"
+          ],
+          "next_tasks": [
+            "waiting_1761720953842"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting_1761720953842",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.842968,
+          "updated_at": 1761720953.842968,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration_1761720953842"
+          ],
+          "next_tasks": [
+            "examination_1761720953842"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination_1761720953842",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8429692,
+          "updated_at": 1761720953.8429692,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting_1761720953842"
+          ],
+          "next_tasks": [
+            "payment_1761720953842"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment_1761720953842",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8429701,
+          "updated_at": 1761720953.8429701,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination_1761720953842"
+          ],
+          "next_tasks": [
+            "medication_1761720953842"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication_1761720953842",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8429718,
+          "updated_at": 1761720953.8429718,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment_1761720953842"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720953.842979,
+      "updated_at": 1761720953.842979,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    }
+  ],
+  "templates": [
+    {
+      "chain_id": "hospital_workflow",
+      "name": "医院就诊流程",
+      "description": "完整的医院就诊流程，包括导航、挂号、候诊、就诊、缴费、取药",
+      "tasks": [
+        {
+          "task_id": "nav_to_hospital",
+          "task_type": "navigation",
+          "title": "导航到医院",
+          "description": "使用导航系统引导用户到达目标医院",
+          "data": {
+            "destination": "医院",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720953.837836,
+          "updated_at": 1761720953.837836,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "registration"
+          ],
+          "estimated_duration": 30,
+          "priority": 3
+        },
+        {
+          "task_id": "registration",
+          "task_type": "registration",
+          "title": "挂号",
+          "description": "在医院挂号处完成挂号流程",
+          "data": {
+            "department": "",
+            "doctor": "",
+            "time": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378382,
+          "updated_at": 1761720953.8378382,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_hospital"
+          ],
+          "next_tasks": [
+            "waiting"
+          ],
+          "estimated_duration": 15,
+          "priority": 4
+        },
+        {
+          "task_id": "waiting",
+          "task_type": "waiting",
+          "title": "候诊",
+          "description": "在候诊区等待叫号",
+          "data": {
+            "queue_number": "",
+            "estimated_wait": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378391,
+          "updated_at": 1761720953.8378391,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "registration"
+          ],
+          "next_tasks": [
+            "examination"
+          ],
+          "estimated_duration": 60,
+          "priority": 2
+        },
+        {
+          "task_id": "examination",
+          "task_type": "examination",
+          "title": "就诊",
+          "description": "与医生进行诊疗",
+          "data": {
+            "doctor": "",
+            "department": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378398,
+          "updated_at": 1761720953.8378398,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "waiting"
+          ],
+          "next_tasks": [
+            "payment"
+          ],
+          "estimated_duration": 30,
+          "priority": 5
+        },
+        {
+          "task_id": "payment",
+          "task_type": "payment",
+          "title": "缴费",
+          "description": "完成医疗费用支付",
+          "data": {
+            "amount": 0,
+            "payment_method": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378408,
+          "updated_at": 1761720953.8378408,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "examination"
+          ],
+          "next_tasks": [
+            "medication"
+          ],
+          "estimated_duration": 10,
+          "priority": 3
+        },
+        {
+          "task_id": "medication",
+          "task_type": "medication",
+          "title": "取药",
+          "description": "在药房取药",
+          "data": {
+            "prescription": "",
+            "pharmacy_location": ""
+          },
+          "status": "pending",
+          "created_at": 1761720953.837842,
+          "updated_at": 1761720953.837842,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "payment"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 20,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720953.837845,
+      "updated_at": 1761720953.837845,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "hospital_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "shopping_workflow",
+      "name": "购物流程",
+      "description": "完整的购物流程，包括导航、购物、结账",
+      "tasks": [
+        {
+          "task_id": "nav_to_mall",
+          "task_type": "navigation",
+          "title": "导航到商场",
+          "description": "导航到目标购物中心",
+          "data": {
+            "destination": "商场",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720953.837848,
+          "updated_at": 1761720953.837848,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "shopping"
+          ],
+          "estimated_duration": 20,
+          "priority": 3
+        },
+        {
+          "task_id": "shopping",
+          "task_type": "shopping",
+          "title": "购物",
+          "description": "在商场内进行购物",
+          "data": {
+            "shopping_list": [],
+            "budget": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.8378549,
+          "updated_at": 1761720953.8378549,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "nav_to_mall"
+          ],
+          "next_tasks": [
+            "payment_shopping"
+          ],
+          "estimated_duration": 120,
+          "priority": 4
+        },
+        {
+          "task_id": "payment_shopping",
+          "task_type": "payment",
+          "title": "结账",
+          "description": "完成购物结账",
+          "data": {
+            "items": [],
+            "total_amount": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.837858,
+          "updated_at": 1761720953.8378592,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "shopping"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 15,
+          "priority": 3
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720953.837861,
+      "updated_at": 1761720953.8378618,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "shopping_workflow",
+      "user_customizations": {}
+    },
+    {
+      "chain_id": "transport_workflow",
+      "name": "出行流程",
+      "description": "出行路线规划和执行",
+      "tasks": [
+        {
+          "task_id": "plan_route",
+          "task_type": "navigation",
+          "title": "规划路线",
+          "description": "规划出行路线",
+          "data": {
+            "destination": "",
+            "transport_mode": "auto"
+          },
+          "status": "pending",
+          "created_at": 1761720953.837864,
+          "updated_at": 1761720953.8378649,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [],
+          "next_tasks": [
+            "transport"
+          ],
+          "estimated_duration": 5,
+          "priority": 3
+        },
+        {
+          "task_id": "transport",
+          "task_type": "transport",
+          "title": "出行",
+          "description": "执行出行计划",
+          "data": {
+            "route": "",
+            "estimated_time": 0
+          },
+          "status": "pending",
+          "created_at": 1761720953.837866,
+          "updated_at": 1761720953.837866,
+          "started_at": null,
+          "completed_at": null,
+          "dependencies": [
+            "plan_route"
+          ],
+          "next_tasks": [],
+          "estimated_duration": 60,
+          "priority": 4
+        }
+      ],
+      "status": "draft",
+      "created_at": 1761720953.837867,
+      "updated_at": 1761720953.837867,
+      "started_at": null,
+      "completed_at": null,
+      "current_task_id": null,
+      "template_id": "transport_workflow",
+      "user_customizations": {}
+    }
+  ],
+  "last_updated": 1761720953.8430421
+}

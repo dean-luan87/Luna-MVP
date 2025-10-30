@@ -1,0 +1,40 @@
+{
+  "behaviors": [
+    {
+      "behavior_id": "navigation_1761817643",
+      "behavior_type": "navigation",
+      "behavior_data": {
+        "event_type": "start_navigation",
+        "data": {
+          "destination": "虹口医院",
+          "route_type": "walking"
+        },
+        "timestamp": "2025-10-30T17:47:23.156759"
+      },
+      "timestamp": "2025-10-30T17:47:23.156780",
+      "cached_at": "2025-10-30T17:47:23.156781",
+      "uploaded": false
+    },
+    {
+      "behavior_id": "voice_1761817643",
+      "behavior_type": "voice",
+      "behavior_data": {
+        "interaction_type": "voice_command",
+        "data": {
+          "command": "导航到虹口医院",
+          "result": "success"
+        },
+        "timestamp": "2025-10-30T17:47:23.156914"
+      },
+      "timestamp": "2025-10-30T17:47:23.156940",
+      "cached_at": "2025-10-30T17:47:23.156941",
+      "uploaded": false
+    }
+  ],
+  "preferences": {
+    "voice_speed": "normal",
+    "prefer_walk": true
+  },
+  "habits": {},
+  "last_update": "2025-10-30T17:47:23.157114"
+}

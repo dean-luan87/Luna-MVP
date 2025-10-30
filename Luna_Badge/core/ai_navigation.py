@@ -119,6 +119,10 @@ class AINavigation:
                 print("❌ 摄像头初始化失败")
                 return False
             
+            # 注册摄像头到资源管理器
+            if self.camera_manager:
+                self.camera_manager.register_camera(self.camera)
+            
             start_time = time.time()
             frame_count = 0
             
@@ -167,17 +171,49 @@ class AINavigation:
                     break
             
             # 清理资源
-            self.camera.release()
-            cv2.destroyAllWindows()
+            self._cleanup_camera()
             print("✅ YOLO检测完成")
             return True
             
+        except KeyboardInterrupt:
+            print("\n⚠️ 用户中断检测")
+            self._cleanup_camera()
+            return False
         except Exception as e:
             print(f"❌ YOLO检测失败: {e}")
-            if self.camera:
-                self.camera.release()
-            cv2.destroyAllWindows()
+            self._cleanup_camera()
             return False
+        finally:
+            # 确保摄像头关闭
+            self._cleanup_camera()
+    
+    def _cleanup_camera(self):
+        """清理摄像头资源"""
+        try:
+            if self.camera:
+                # 从资源管理器注销
+                if self.camera_manager:
+                    self.camera_manager.unregister_camera(self.camera)
+                
+                self.camera.release()
+                self.camera = None
+            cv2.destroyAllWindows()
+            
+            # 尝试使用摄像头管理器关闭
+            try:
+                from core.camera_manager import get_camera_manager
+                camera_manager = get_camera_manager()
+                if camera_manager.state.is_open:
+                    camera_manager.close_camera()
+            except Exception:
+                pass
+                
+            # 强制清理所有摄像头资源
+            if self.camera_manager:
+                self.camera_manager.force_cleanup_all()
+                
+        except Exception as e:
+            print(f"⚠️ 摄像头清理警告: {e}")
     
     def _get_safety_message(self, class_name):
         """根据检测到的对象类型生成安全提示"""

@@ -1,0 +1,21 @@
+[
+  {
+    "timestamp": "2025-10-29T15:41:01.483625",
+    "task_id": "hospital_visit",
+    "last_node_id": "goto_department",
+    "user_choice": "recover",
+    "reason": "AI导航模块无响应"
+  },
+  {
+    "timestamp": "2025-10-29T15:41:01.484471",
+    "task_id": "hospital_visit",
+    "last_node_id": "goto_department",
+    "status": "success",
+    "reason": "recovery_completed"
+  },
+  {
+    "timestamp": "2025-10-29T15:41:01.485363",
+    "status": "reset",
+    "reason": "user_cancelled_or_recovery_failed"
+  }
+]

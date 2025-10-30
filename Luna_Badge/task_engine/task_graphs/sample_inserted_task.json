@@ -1,0 +1,55 @@
+{
+  "graph_id": "sample_inserted_task",
+  "scene_type": "emergency",
+  "goal": "处理临时插入任务",
+  "entry_trigger": "用户说：我想去洗手间/我想买零食",
+  "name": "示例插入任务",
+  "description": "用于测试的插入任务示例",
+  "nodes": [
+    {
+      "id": "find_location",
+      "type": "observation",
+      "title": "寻找位置",
+      "description": "识别目标位置",
+      "config": {
+        "type": "ocr",
+        "target": "store_signs"
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "navigate_to_location",
+      "type": "navigation",
+      "title": "导航到位置",
+      "description": "导航到目标位置",
+      "config": {
+        "mode": "short_distance"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "complete_task",
+      "type": "interaction",
+      "title": "完成任务",
+      "description": "确认任务完成",
+      "config": {
+        "question": "任务已完成，是否返回主任务？",
+        "options": ["返回", "继续", "取消"]
+      },
+      "status": "pending",
+      "timeout": 60
+    }
+  ],
+  "edges": [
+    {"from": "find_location", "to": "navigate_to_location"},
+    {"from": "navigate_to_location", "to": "complete_task"}
+  ],
+  "metadata": {
+    "estimated_duration": 5,
+    "complexity": "low",
+    "priority": "medium",
+    "interruptible": true
+  }
+}

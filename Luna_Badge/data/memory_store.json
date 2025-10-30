@@ -1,0 +1,25 @@
+{
+  "memories": [
+    {
+      "id": "note_1761720953",
+      "type": "note",
+      "title": "任务对话: check_status",
+      "content": "用户意图：check_status，输入：任务状态如何，响应：任务链'医院就诊流程'当前状态：draft，进度：0.0%",
+      "tags": [
+        "task_conversation",
+        "check_status"
+      ],
+      "priority": "normal",
+      "created_at": 1761720953.845109,
+      "updated_at": 1761720953.845109,
+      "trigger_time": null,
+      "repeat": null,
+      "status": "active",
+      "remind_at": null,
+      "reminder_method": "voice",
+      "category": "",
+      "feedback_history": []
+    }
+  ],
+  "navigation_status": "idle"
+}

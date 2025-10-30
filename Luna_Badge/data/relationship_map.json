@@ -1,0 +1,26 @@
+{
+  "face_001": {
+    "face_id": "face_001",
+    "relation": "mother",
+    "nickname": "小妈",
+    "preferred_tone": "gentle",
+    "alert_level": "none",
+    "emotion_tag": "calm",
+    "social_attributes": [
+      "intimate",
+      "protective"
+    ]
+  },
+  "face_20251028_002": {
+    "face_id": "face_20251028_002",
+    "relation": "mother",
+    "nickname": "小妈",
+    "preferred_tone": "gentle",
+    "alert_level": "none",
+    "emotion_tag": "calm",
+    "social_attributes": [
+      "intimate",
+      "protective"
+    ]
+  }
+}

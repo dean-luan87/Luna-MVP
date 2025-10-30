@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Luna Badge User Memory Schema",
+  "description": "用户记忆数据结构标准",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "用户唯一ID"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "日期（yyyy-mm-dd）"
+    },
+    "maps": {
+      "type": "array",
+      "description": "地图使用记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "map_id": {
+            "type": "string"
+          },
+          "nodes_visited": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "emotion_tags": {
+            "type": "object",
+            "description": "节点情绪标签",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "duration_minutes": {
+            "type": "number"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["map_id"]
+      }
+    },
+    "app_behavior": {
+      "type": "object",
+      "description": "应用行为记录",
+      "properties": {
+        "asked_for_guidance": {
+          "type": "boolean"
+        },
+        "used_voice_input": {
+          "type": "boolean"
+        },
+        "requested_nearby_toilet": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": ["user_id", "date"]
+}
+

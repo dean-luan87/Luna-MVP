@@ -1,0 +1,16 @@
+communication:
+  tts: true
+  wakeup: true
+  whisper: true
+memory:
+  memory_caller: true
+  memory_store: true
+navigation:
+  doorplate_inference: true
+  path_evaluator: true
+other:
+  debug_mode: false
+vision:
+  crowd_detector: true
+  hazard_detector: true
+  signboard_detector: true

@@ -1,0 +1,104 @@
+{
+  "graph_id": "task_graph_template",
+  "scene_type": "custom",
+  "goal": "任务图模板 - 供新建任务参考",
+  "entry_trigger": "用户说：XXX",
+  "target": {
+    "location": "目标地点",
+    "service_type": "服务类型"
+  },
+  "nodes": [
+    {
+      "id": "node_001",
+      "type": "interaction",
+      "title": "任务节点标题",
+      "expected_input": "期望的用户输入",
+      "output": "节点输出结果",
+      "config": {
+        "question": "用户交互问题",
+        "options": ["选项1", "选项2", "选项3"]
+      },
+      "status": "pending",
+      "timeout": 60,
+      "fallback_action": "失败时的容错行为"
+    },
+    {
+      "id": "node_002",
+      "type": "navigation",
+      "title": "导航节点",
+      "input": "输入数据",
+      "output": "输出数据",
+      "config": {
+        "destination": "目标地点",
+        "transport_mode": "walking"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "node_003",
+      "type": "observation",
+      "title": "观察节点",
+      "trigger": "触发条件",
+      "config": {
+        "type": "ocr",
+        "target": "识别目标",
+        "detection_keywords": ["关键词1", "关键词2"]
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "node_004",
+      "type": "condition_check",
+      "title": "条件检查节点",
+      "fallback_action": "条件不满足时的处理",
+      "config": {
+        "condition": "检查条件",
+        "required_items": ["项目1", "项目2"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "node_005",
+      "type": "external_call",
+      "title": "外部服务调用",
+      "output": "服务返回结果",
+      "config": {
+        "service": "service_name",
+        "service_type": "service_type"
+      },
+      "status": "pending",
+      "timeout": 600
+    },
+    {
+      "id": "node_006",
+      "type": "memory_action",
+      "title": "记忆操作节点",
+      "output": "记忆存储结果",
+      "config": {
+        "action": "save",
+        "memory_type": "memory_type",
+        "fields": ["field1", "field2"]
+      },
+      "status": "pending",
+      "timeout": 60
+    }
+  ],
+  "edges": [
+    {"from": "node_001", "to": "node_002"},
+    {"from": "node_002", "to": "node_003"},
+    {"from": "node_003", "to": "node_004"},
+    {"from": "node_004", "to": "node_005"},
+    {"from": "node_005", "to": "node_006"}
+  ],
+  "metadata": {
+    "estimated_duration": 60,
+    "complexity": "medium",
+    "user_interaction_level": "medium",
+    "ai_assistance_level": "medium",
+    "insertable_tasks": ["toilet", "rest", "snack"],
+    "version": "1.0"
+  }
+}

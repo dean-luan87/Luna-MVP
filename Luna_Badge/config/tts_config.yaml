@@ -1,0 +1,9 @@
+default_style: default
+default_voice: zh-CN-XiaoxiaoNeural
+speech_pitch: 1.0
+speech_speed: 1.0
+style_mapping:
+  caution: calm
+  normal: cheerful
+  reroute: empathetic
+  stop: serious

@@ -29,7 +29,7 @@ class ErrorCode(Enum):
     E400 = "E400"  # 语音引擎故障
     E500 = "E500"  # AI模型加载失败
 
-class SystemControl:
+class LunaCore:
     """系统控制器"""
     
     def __init__(self):

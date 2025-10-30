@@ -1,0 +1,66 @@
+{
+  "graph_id": "buy_snack",
+  "scene_type": "retail",
+  "goal": "临时插入的购买零食任务",
+  "entry_trigger": "用户说：我想买面包/我想买零食",
+  "name": "购买零食",
+  "description": "临时插入的购买零食任务",
+  "nodes": [
+    {
+      "id": "find_store",
+      "type": "observation",
+      "title": "寻找商店",
+      "description": "识别附近的商店",
+      "config": {
+        "type": "ocr",
+        "target": "store_signs"
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "navigate_to_store",
+      "type": "navigation",
+      "title": "导航到商店",
+      "description": "导航到最近的商店",
+      "config": {
+        "mode": "short_distance"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "confirm_purchase",
+      "type": "interaction",
+      "title": "确认购买",
+      "description": "确认是否购买",
+      "config": {
+        "question": "找到商店了，要买面包吗？",
+        "options": ["买", "不买", "换个店"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "payment_process",
+      "type": "external_call",
+      "title": "支付",
+      "description": "完成支付",
+      "config": {
+        "service": "retail_checkout"
+      },
+      "status": "pending",
+      "timeout": 300
+    }
+  ],
+  "edges": [
+    {"from": "find_store", "to": "navigate_to_store"},
+    {"from": "navigate_to_store", "to": "confirm_purchase"},
+    {"from": "confirm_purchase", "to": "payment_process"}
+  ],
+  "metadata": {
+    "estimated_duration": 10,
+    "complexity": "low",
+    "priority": "medium"
+  }
+}

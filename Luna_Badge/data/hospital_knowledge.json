@@ -1,0 +1,51 @@
+{
+  "hospitals": {
+    "虹口医院": {
+      "name": "虹口医院",
+      "departments": {
+        "牙科": {
+          "name": "牙科",
+          "building": "门诊楼",
+          "floor": 2,
+          "room": "305",
+          "phone": "021-12345678",
+          "hours": "8:00-17:00"
+        }
+      },
+      "materials": {
+        "required": [
+          "医保卡",
+          "病历本"
+        ],
+        "optional": [
+          "身份证",
+          "现金",
+          "银行卡"
+        ],
+        "notes": "部分医院已无需身份证"
+      },
+      "last_updated": "2025-10-29T13:50:25.582733",
+      "corrections": [
+        {
+          "field": "牙科.floor",
+          "old_value": 3,
+          "new_value": 2,
+          "source": "user",
+          "timestamp": "2025-10-29T13:50:25.582729",
+          "confidence": 1.0
+        }
+      ]
+    }
+  },
+  "corrections": [
+    {
+      "field": "牙科.floor",
+      "old_value": 3,
+      "new_value": 2,
+      "source": "user",
+      "timestamp": "2025-10-29T13:50:25.582729",
+      "confidence": 1.0
+    }
+  ],
+  "last_updated": "2025-10-29T13:50:25.582735"
+}

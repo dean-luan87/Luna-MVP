@@ -1,0 +1,16 @@
+{
+  "maps": [
+    {
+      "map_id": "test_map_001",
+      "map_data": {
+        "map_id": "test_map_001",
+        "path_name": "测试路径",
+        "nodes": []
+      },
+      "metadata": null,
+      "cached_at": "2025-10-30T17:47:23.156402",
+      "uploaded": false
+    }
+  ],
+  "last_update": "2025-10-30T17:47:23.156405"
+}

@@ -16,7 +16,7 @@ class HardwareType(Enum):
     SPEAKER = "speaker"
     NETWORK = "network"
 
-class HALInterface(ABC):
+class HardwareInterface(ABC):
     """硬件抽象层接口基类"""
     
     @abstractmethod

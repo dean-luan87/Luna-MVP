@@ -227,6 +227,16 @@ class LunaBadgeMac:
             # 清理硬件资源
             self.hal_interface.cleanup()
             
+            # 强制关闭所有摄像头资源
+            try:
+                from core.camera_resource_fix import force_close_all_cameras
+                print("📹 强制关闭摄像头资源...")
+                force_close_all_cameras()
+            except ImportError:
+                print("⚠️ 摄像头资源修复模块不可用")
+            except Exception as e:
+                print(f"⚠️ 强制关闭摄像头失败: {e}")
+            
             print("✅ 系统关闭完成")
             
         except Exception as e:

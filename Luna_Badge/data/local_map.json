@@ -1,0 +1,92 @@
+{
+  "origin": [
+    0.0,
+    0.0
+  ],
+  "landmarks": [
+    {
+      "type": "entrance",
+      "position": [
+        8.0,
+        0.0
+      ],
+      "label": "商场入口",
+      "confidence": 0.7,
+      "timestamp": 5.602836608886719e-05,
+      "description": "entrance at 3.0m ahead, 0.0m left"
+    },
+    {
+      "type": "toilet",
+      "position": [
+        2.0,
+        7.0
+      ],
+      "label": "洗手间A",
+      "confidence": 0.7,
+      "timestamp": 8.511543273925781e-05,
+      "description": "toilet at 2.0m ahead, -3.0m left"
+    },
+    {
+      "type": "elevator",
+      "position": [
+        7.0,
+        10.0
+      ],
+      "label": "电梯1号",
+      "confidence": 0.7,
+      "timestamp": 9.799003601074219e-05,
+      "description": "elevator at 5.0m ahead, 2.0m left"
+    },
+    {
+      "type": "chair",
+      "position": [
+        5.000000000000001,
+        16.0
+      ],
+      "label": "休息区",
+      "confidence": 0.7,
+      "timestamp": 0.00011086463928222656,
+      "description": "chair at 1.0m ahead, 0.0m left"
+    },
+    {
+      "type": "hazard_edge",
+      "position": [
+        7.000000000000001,
+        15.0
+      ],
+      "label": "台阶边缘",
+      "confidence": 0.8,
+      "timestamp": 0.00012183189392089844,
+      "description": "hazard_edge at position (7.00, 15.00)"
+    }
+  ],
+  "paths": [
+    [
+      [
+        5.0,
+        0.0
+      ],
+      [
+        5.0,
+        0.0
+      ],
+      [
+        5.0,
+        5.0
+      ],
+      [
+        5.000000000000001,
+        15.0
+      ]
+    ]
+  ],
+  "metadata": {
+    "created_at": 1761547637.037241,
+    "version": "1.0",
+    "map_size": [
+      50.0,
+      50.0
+    ],
+    "coordinate_system": "relative"
+  }
+}

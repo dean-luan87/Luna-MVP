@@ -1,0 +1,200 @@
+{
+  "graph_id": "hospital_visit",
+  "scene_type": "hospital",
+  "goal": "完成一次医院就诊流程",
+  "entry_trigger": "用户说：我要去医院",
+  "target": {
+    "location": "虹口医院",
+    "department": "牙科"
+  },
+  "nodes": [
+    {
+      "id": "confirm_hospital",
+      "type": "interaction",
+      "title": "确认目标医院",
+      "expected_input": "医院名称或看病需求",
+      "output": "虹口医院",
+      "config": {
+        "question": "请问您要去哪家医院？",
+        "options": ["虹口医院", "其他医院", "不知道"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "plan_route",
+      "type": "navigation",
+      "title": "规划路线",
+      "input": "当前地址 + 医院地址",
+      "output": "路径 + 预计时间",
+      "config": {
+        "destination": "虹口医院",
+        "transport_mode": "walking"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "confirm_materials",
+      "type": "condition_check",
+      "title": "确认是否带好证件",
+      "expected_input": "医保卡、病历本",
+      "fallback_action": "提醒用户准备",
+      "config": {
+        "question": "请确认是否带好医保卡和病历本？",
+        "required_items": ["医保卡", "病历本"],
+        "reminder": "如果没带，请先回家取，或使用电子医保卡"
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "start_navigation",
+      "type": "navigation",
+      "title": "出发前往医院",
+      "config": {
+        "mode": "real_time_navigation",
+        "enable_voice_guidance": true
+      },
+      "status": "pending",
+      "timeout": 1800
+    },
+    {
+      "id": "arrive_hospital",
+      "type": "observation",
+      "title": "判断是否到达医院",
+      "trigger": "GPS/视觉识别医院标志",
+      "config": {
+        "type": "ocr",
+        "target": "hospital_signs",
+        "detection_keywords": ["医院", "Hospital", "门诊", "急诊"]
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "check_open_time",
+      "type": "condition_check",
+      "title": "判断医院是否处于服务时间",
+      "fallback_action": "建议等待或改去急诊",
+      "config": {
+        "service_hours": "08:00-17:00",
+        "check_current_time": true,
+        "suggest_emergency_if_closed": true
+      },
+      "status": "pending",
+      "timeout": 10
+    },
+    {
+      "id": "choose_registration_mode",
+      "type": "interaction",
+      "title": "选择挂号方式",
+      "options": ["人工窗口", "自助机", "寻求帮助"],
+      "priority": ["咨询台", "人工窗口", "自助机"],
+      "config": {
+        "question": "请选择挂号方式：",
+        "options": ["人工窗口", "自助机", "寻求帮助"],
+        "default": "寻求帮助"
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "register_department",
+      "type": "external_call",
+      "title": "完成挂号",
+      "output": "科室 + 排队号",
+      "config": {
+        "service": "hospital_registration",
+        "department": "牙科",
+        "output_fields": ["queue_number", "department", "estimated_wait_time"]
+      },
+      "status": "pending",
+      "timeout": 600
+    },
+    {
+      "id": "goto_department",
+      "type": "navigation",
+      "title": "前往科室",
+      "input": "科室位置",
+      "config": {
+        "mode": "indoor_navigation",
+        "target": "department_location"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "wait_for_call",
+      "type": "observation",
+      "title": "监听叫号或排队状态",
+      "input": "排队号 + 当前叫号",
+      "config": {
+        "type": "ocr",
+        "target": "queue_screen",
+        "monitor_interval": 30,
+        "alert_when_called": true
+      },
+      "status": "pending",
+      "timeout": 3600
+    },
+    {
+      "id": "enter_consultation",
+      "type": "interaction",
+      "title": "进入诊室看病",
+      "trigger": "叫到号或诊室无人",
+      "config": {
+        "question": "是否已进入诊室？",
+        "options": ["是", "否", "还在等待"]
+      },
+      "status": "pending",
+      "timeout": 1800
+    },
+    {
+      "id": "record_followup",
+      "type": "memory_action",
+      "title": "记录是否需复诊",
+      "output": "下次时间/检查项目",
+      "config": {
+        "action": "save",
+        "memory_type": "medical_followup",
+        "fields": ["next_appointment", "check_items", "medications"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "exit_hospital",
+      "type": "navigation",
+      "title": "离开医院",
+      "config": {
+        "mode": "exit_navigation",
+        "destination": "hospital_exit"
+      },
+      "status": "pending",
+      "timeout": 300
+    }
+  ],
+  "edges": [
+    {"from": "confirm_hospital", "to": "plan_route"},
+    {"from": "plan_route", "to": "confirm_materials"},
+    {"from": "confirm_materials", "to": "start_navigation"},
+    {"from": "start_navigation", "to": "arrive_hospital"},
+    {"from": "arrive_hospital", "to": "check_open_time"},
+    {"from": "check_open_time", "to": "choose_registration_mode"},
+    {"from": "choose_registration_mode", "to": "register_department"},
+    {"from": "register_department", "to": "goto_department"},
+    {"from": "goto_department", "to": "wait_for_call"},
+    {"from": "wait_for_call", "to": "enter_consultation"},
+    {"from": "enter_consultation", "to": "record_followup"},
+    {"from": "record_followup", "to": "exit_hospital"}
+  ],
+  "metadata": {
+    "estimated_duration": 120,
+    "complexity": "high",
+    "user_interaction_level": "high",
+    "ai_assistance_level": "high",
+    "insertable_tasks": ["toilet", "snack", "rest"],
+    "version": "1.0"
+  }
+}

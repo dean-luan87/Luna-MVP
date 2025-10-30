@@ -1,0 +1,183 @@
+{
+  "graph_id": "government_service",
+  "scene_type": "government",
+  "goal": "完成一次政务服务办理",
+  "entry_trigger": "用户说：我要办证件/我要去政务大厅",
+  "target": {
+    "location": "政务服务中心",
+    "service_type": "身份证办理"
+  },
+  "nodes": [
+    {
+      "id": "confirm_service_center",
+      "type": "interaction",
+      "title": "确认目标政务中心",
+      "expected_input": "政务中心名称或办理事项",
+      "output": "政务中心地址",
+      "config": {
+        "question": "请问您要去哪个政务中心办理什么业务？",
+        "options": ["身份证", "护照", "社保", "其他"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "plan_route_to_center",
+      "type": "navigation",
+      "title": "规划路线到政务中心",
+      "input": "当前地址 + 政务中心地址",
+      "output": "路径 + 预计时间",
+      "config": {
+        "destination": "政务服务中心",
+        "transport_mode": "walking"
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "check_required_documents",
+      "type": "condition_check",
+      "title": "检查所需材料",
+      "expected_input": "身份证、户口本、照片等",
+      "fallback_action": "提醒用户准备缺失材料",
+      "config": {
+        "question": "请确认是否带齐所需材料？",
+        "required_items": ["身份证", "户口本", "照片"],
+        "reminder": "如果材料不齐，请先回家准备"
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "navigate_to_center",
+      "type": "navigation",
+      "title": "前往政务中心",
+      "config": {
+        "mode": "real_time_navigation",
+        "enable_voice_guidance": true
+      },
+      "status": "pending",
+      "timeout": 1800
+    },
+    {
+      "id": "arrive_service_center",
+      "type": "observation",
+      "title": "识别政务中心入口",
+      "trigger": "GPS/视觉识别政务中心标志",
+      "config": {
+        "type": "ocr",
+        "target": "government_signs",
+        "detection_keywords": ["政务", "服务中心", "Service Center"]
+      },
+      "status": "pending",
+      "timeout": 120
+    },
+    {
+      "id": "check_service_hours",
+      "type": "condition_check",
+      "title": "确认服务时间",
+      "fallback_action": "建议等待或改日再来",
+      "config": {
+        "service_hours": "09:00-17:00",
+        "check_current_time": true,
+        "suggest_alternative_time": true
+      },
+      "status": "pending",
+      "timeout": 10
+    },
+    {
+      "id": "find_service_window",
+      "type": "observation",
+      "title": "寻找服务窗口",
+      "config": {
+        "type": "ocr",
+        "target": "service_window_signs",
+        "detection_keywords": ["身份证", "办证", "窗口"]
+      },
+      "status": "pending",
+      "timeout": 180
+    },
+    {
+      "id": "take_queue_number",
+      "type": "external_call",
+      "title": "取号排队",
+      "output": "排队号码",
+      "config": {
+        "service": "government_queue",
+        "service_type": "身份证办理",
+        "output_fields": ["queue_number", "estimated_wait_time"]
+      },
+      "status": "pending",
+      "timeout": 300
+    },
+    {
+      "id": "wait_for_service",
+      "type": "observation",
+      "title": "等待叫号",
+      "input": "排队号 + 当前叫号",
+      "config": {
+        "type": "ocr",
+        "target": "queue_display",
+        "monitor_interval": 30,
+        "alert_when_called": true
+      },
+      "status": "pending",
+      "timeout": 3600
+    },
+    {
+      "id": "process_service",
+      "type": "external_call",
+      "title": "办理业务",
+      "config": {
+        "service": "government_service",
+        "service_type": "身份证办理",
+        "required_documents": ["身份证", "户口本", "照片"]
+      },
+      "status": "pending",
+      "timeout": 1800
+    },
+    {
+      "id": "receive_result",
+      "type": "interaction",
+      "title": "确认办理结果",
+      "config": {
+        "question": "业务办理完成了吗？需要等待多久取件？",
+        "options": ["已完成", "需要等待", "需要补充材料"]
+      },
+      "status": "pending",
+      "timeout": 60
+    },
+    {
+      "id": "exit_service_center",
+      "type": "navigation",
+      "title": "离开政务中心",
+      "config": {
+        "mode": "exit_navigation",
+        "destination": "service_center_exit"
+      },
+      "status": "pending",
+      "timeout": 300
+    }
+  ],
+  "edges": [
+    {"from": "confirm_service_center", "to": "plan_route_to_center"},
+    {"from": "plan_route_to_center", "to": "check_required_documents"},
+    {"from": "check_required_documents", "to": "navigate_to_center"},
+    {"from": "navigate_to_center", "to": "arrive_service_center"},
+    {"from": "arrive_service_center", "to": "check_service_hours"},
+    {"from": "check_service_hours", "to": "find_service_window"},
+    {"from": "find_service_window", "to": "take_queue_number"},
+    {"from": "take_queue_number", "to": "wait_for_service"},
+    {"from": "wait_for_service", "to": "process_service"},
+    {"from": "process_service", "to": "receive_result"},
+    {"from": "receive_result", "to": "exit_service_center"}
+  ],
+  "metadata": {
+    "estimated_duration": 90,
+    "complexity": "high",
+    "user_interaction_level": "high",
+    "ai_assistance_level": "high",
+    "insertable_tasks": ["toilet", "rest"],
+    "version": "1.0"
+  }
+}

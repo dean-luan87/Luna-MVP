@@ -1,0 +1,15 @@
+{
+  "scenes": [
+    {
+      "scene_id": "scene_001",
+      "scene_data": {
+        "scene_id": "scene_001",
+        "location": "虹口医院",
+        "caption": "医院入口"
+      },
+      "cached_at": "2025-10-30T17:47:23.156608",
+      "uploaded": false
+    }
+  ],
+  "last_update": "2025-10-30T17:47:23.156609"
+}

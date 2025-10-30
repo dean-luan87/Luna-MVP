@@ -1,0 +1,46 @@
+{
+  "corrections": [
+    {
+      "original_name": "洗手间",
+      "corrected_name": "测试洗手间A",
+      "gps_location": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "timestamp": 1761549207.9905899,
+      "correction_method": "voice",
+      "user_id": "test_user_001",
+      "trust_level": "user_feedback",
+      "corrections_count": 1
+    },
+    {
+      "original_name": "洗手间",
+      "corrected_name": "测试洗手间A",
+      "gps_location": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "timestamp": 1761549307.842761,
+      "correction_method": "voice",
+      "user_id": "test_user_001",
+      "trust_level": "user_feedback",
+      "corrections_count": 1
+    }
+  ],
+  "mappings": [
+    {
+      "location_key": "3513d3ffa76087b3fee84f508737745d",
+      "original_name": "洗手间",
+      "corrected_name": "测试洗手间A",
+      "gps_center": {
+        "latitude": 39.904,
+        "longitude": 116.407
+      },
+      "correction_count": 2,
+      "unique_users": 1,
+      "trust_level": "verified",
+      "last_update": 1761549307.842761,
+      "active": true
+    }
+  ]
+}

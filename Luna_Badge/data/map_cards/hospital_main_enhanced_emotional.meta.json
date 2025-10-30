@@ -1,0 +1,23 @@
+{
+  "path_id": "hospital_main_enhanced",
+  "path_name": "医院完整导航路径",
+  "map_direction_reference": "上 = 北",
+  "compass_added": true,
+  "icons_used": true,
+  "icon_types": [
+    "elevator",
+    "entrance",
+    "destination",
+    "toilet",
+    "building"
+  ],
+  "legend_synced": true,
+  "label_font_size": 22,
+  "regions_detected": [
+    "三楼病区",
+    "挂号大厅"
+  ],
+  "node_count": 6,
+  "total_distance": "100米",
+  "generation_timestamp": "2025-10-30T16:29:28.699831"
+}

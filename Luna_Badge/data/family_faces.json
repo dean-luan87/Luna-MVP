@@ -1,0 +1,42 @@
+{
+  "face_20251028_001": {
+    "face_id": "face_20251028_001",
+    "label": "妈妈",
+    "relationship": "mother",
+    "nickname": null,
+    "feature_vector": "jXmEPbXn1j6PkXk+cgdtP1WKCD8g1TU+pbksPtrCYT7uw0o/EM/0PaBkxT7XjQc/1K94P5ryEz+jMTk/qPxmPzTGPT/4lwk/8XgVP8MzcT9d+i8/+CpAP2H4CT9Re949k8QSP1oryT5WvCw/IEBbP3bQdD8F/Hc93Vz/Pj2+lz4Ewf89TFksP4MftD6ZmqU+JxFjPRbIJjwopAY/6fknPc9PJj8QuRs+fw5TPV/MJj863Po8XQYkPz04Uj8nhbQ+YzIFPkyPgj7Lgg0+MTA3Pzwa5T3HwmQ/i6l7P+PwET9AXfo+MIc4P5jl1j6rXkE+r0+oPjX3Zz3qO7o+ht3SPQkwZz8KoVs+WusiP2vBvz0Quts+EWLtPn3fYz+kv1Y/j7wvPwJTJj3I9KI+JGe2PhcPYz791j4+oKQlPzjE0D5IkFU/MMeBPu/fcj4pRoc+NTH5PlUT3j2d8ls/H31pPkG8Cj/3YJE+WmeLPt6gpj4uaQU/eOJKPxDWWj9FLPg7NX5nPzNlbD+zmhc/6b8oP6bXIz3CyHM/unw7P6L3RT9YqH0/nHVsP0phXz9mSp8+OBgMPkz2RDvP/Mg+4YZgP27i8j5xqmU/0rjdPghs/z7e0lE/aOdrPwdhwTt7PGA/phQ0PipDMD6GGz8/0A8XPtj/ST0ux3A9/OLpPlocRT8=",
+    "registered_at": "2025-10-28T06:27:06Z",
+    "confidence": 0.9,
+    "metadata": {}
+  },
+  "face_20251028_002": {
+    "face_id": "face_20251028_002",
+    "label": "妈妈",
+    "relationship": "mother",
+    "nickname": null,
+    "feature_vector": "ZnvrPUBHWT8rYHo/3sjAPiDGfj6R/RA/zkmJPsEzGT9n37o+JE1xPwcfID+cyXg/lzwiP48LaD9VxWY+ki7PPhn9MD1Q4Bs/4plEP42ftD4bcWY+4fEDP6O8CT90nGs/6tJMPgDgYT8F3XA/CKyLPvQQMz8Ehjg/G8cBPnr35T36eeA9S8EMPz3U0j63plg/HUPWPo8KcD/FYxQ//C6dPkDSNj9mInk/eTsiO8mpcD8kIzs/K1vSPjMatD7PQV8/mpUOPmX/Jz+ItmI/bvp+P6nHXD/i2Bw/qGptPo8xrDx6JEo/VJgxPwPN8TxmUM0+hJ0gPquCsj4iYx0/6M9RP3UEmz7Ehuc+svtJP+8MRT97GLg++KZoP7uNPD9TwWQ/OG1TP4gsDj/Ij+Y9UGSUPl0xCD+Gm9A+cvkWP8Fohj4Gn3Y++u8WPyzFlD5RsTU/J6RtPsV5dT/+RDc/tABRPxx8Aj+1imo/Qj2wPvOf3z6MyUY/QPycPrA5Ej/abVM/nDHGPsNcez/JNhI/u/n+PlsugD2Kfzo/fYUMPy0NND8yXdo+vIRUPxNgyD53peQ+Ct9yPzebAD++FSU+yRBSP5hZ8z5RBw89k3MxPzpZbT+vthg/8lc7PpyKXj/Wic0+sLi3PkLacT/+hzQ/QHAAP3WDiT6lrEo+KQIPP7iiPT8=",
+    "registered_at": "2025-10-28T06:28:45Z",
+    "confidence": 0.9,
+    "metadata": {}
+  },
+  "face_20251028_003": {
+    "face_id": "face_20251028_003",
+    "label": "妈妈",
+    "relationship": "mother",
+    "nickname": null,
+    "feature_vector": "t/gBPkKsED8pghg/kx4NPvkEsj7GguA+twtSP7EuVzz8J54++DXHPuI4yz5WZcY+tkyZPiCynD6g4mU/I2f5PiGesz3W5P8+uRxTP5StvD6MqEA/5dAAP6Feoz6iYno/SODtPpWG+z7Mnsc+KE9MPxBlej4qY8c+S2ZIP9aXujtYuis/xrxkPwyBJD/OKTs+Jt++PX390D5htHE/wpYTP54UaT6KDCY/YPp2P7GoYz/Gw28/ptdsP/ABoT0qYFQ/DPMuP8ViFD+x3rY9nrmGPq7bXT95+aM8pOLGPcjSRT+4V4Y+AgceP5vdej/Bamk+igMJP4EdQD/q8do+QhBtP6WoPD8/6W0/ow4CPpb0tT4pUmw//ZJ4P7g2Yz9mZJY++gvNPoTBGDx6t9I9wEMIPSza/D0WLTw/AoJcPjREFD/EHVc/t6q8PlR4TD01iko/0IRmP1/cAD8n/Ts/1FOsPkaQVD01JYU+fClqPwGC/z6sJUk/RBAfP8fwBj+jezs/DO8mP8rpZj7ica0+jMeuPqI/ez/zqo8+9PjwPoWSEz8FGss+fltHP3Bqjj4msJs+KB3rPlD2iz4ZUHU/bTHhPqOoAT9BwaE+m9SQPk08XD/A0Oo75UG6PA3PDj8P0kI/3+FKP/IjSj6kGBg/hcLDPgJn/D4QJGs+EaRoP1orAT8=",
+    "registered_at": "2025-10-28T06:32:37Z",
+    "confidence": 0.9,
+    "metadata": {}
+  },
+  "face_20251028_004": {
+    "face_id": "face_20251028_004",
+    "label": "哥哥",
+    "relationship": "brother",
+    "nickname": null,
+    "feature_vector": "nK1UP73oqD4ylG0/c3G9PQ0eZT+DJgE/qZtDPrA29T7LEko9XuaQPkl3qT4cQQA/kXplP4lgQT/a/hw/MMtIP7dRsz0KCck+cjhTP74OLz4ZnOw+DnK9Pm0VKzyXrlA/U4wSP/7dsz0wTaI+JdtWPxR/Tj24wrs+luQ2P1TSfT/K93U/CvwuPxeIPz9He/4+EeDVPtxb3T4DASc/+ZRRP8dJcz8jQzA/YyvYPmrz5D6Gags/eS7wPoNPtj5pZHc/K+hUP/u5Yz82/lk/Y79aP8Dprj0ph0Q/8bchPxl+Jz8iAQo/2SgoP2egKz/3bFM/6cvZPn+KAj9pkPY+4DYhP9Vpzj66FUw/18pfP2jyIj8bFBo/dHJRP8O1AD//wUE/kByRPnFI6DvTTR4+JkwyP0I/Uz5oL8Y+2RKaPgViqj7551w+9t4dP1Ge/D47Jak9dPwtPyl8Vz9OI68+O5aDPus1Oj+AHiw/modnP4QS4T5vQ2w/lnE4P1liPT7u6J89DiYcPo9QWT4IvJA+FpZ5Pxp/+j5qVFs/PGokPph1PD98MkQ/6T56P3d/bD4RQ28+Qk4fPwrDGj3YIV8/cDWLPafsVj/nP2w++zZBPhDXPD+lUVE/uGCjPSZtIj+GJRY/Q9DSPkdVKT8rC58+UjAwP+ZTdj9+bAk+5twmPs73dD4=",
+    "registered_at": "2025-10-28T06:33:24Z",
+    "confidence": 0.9,
+    "metadata": {}
+  }
+}

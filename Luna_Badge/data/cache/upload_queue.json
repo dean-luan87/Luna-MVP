@@ -1,0 +1,35 @@
+{
+  "queue": [
+    {
+      "data_type": "map",
+      "data_id": "test_map_001",
+      "added_at": "2025-10-30T17:47:23.156506",
+      "retry_count": 0
+    },
+    {
+      "data_type": "scene",
+      "data_id": "scene_001",
+      "added_at": "2025-10-30T17:47:23.156687",
+      "retry_count": 0
+    },
+    {
+      "data_type": "behavior",
+      "data_id": "navigation_1761817643",
+      "added_at": "2025-10-30T17:47:23.156858",
+      "retry_count": 0
+    },
+    {
+      "data_type": "behavior",
+      "data_id": "voice_1761817643",
+      "added_at": "2025-10-30T17:47:23.157030",
+      "retry_count": 0
+    },
+    {
+      "data_type": "preference",
+      "data_id": "all",
+      "added_at": "2025-10-30T17:47:23.157198",
+      "retry_count": 0
+    }
+  ],
+  "last_check": "2025-10-30T17:47:23.157200"
+}

@@ -1,0 +1,30 @@
+{
+  "user_id": "user_123",
+  "date": "2025-10-30",
+  "maps": [
+    {
+      "map_id": "hospital_outpatient",
+      "nodes_visited": [
+        "entrance",
+        "toilet",
+        "elevator_3f",
+        "consult_301"
+      ],
+      "emotion_tags": {
+        "toilet": "推荐",
+        "elevator_3f": "焦躁",
+        "consult_301": "安静"
+      },
+      "duration_minutes": 37,
+      "path": [
+        "entrance→toilet→elevator→consult_301"
+      ]
+    }
+  ],
+  "app_behavior": {
+    "asked_for_guidance": true,
+    "used_voice_input": true,
+    "requested_nearby_toilet": 2
+  },
+  "created_at": "2025-10-30T17:49:31.976655"
+}

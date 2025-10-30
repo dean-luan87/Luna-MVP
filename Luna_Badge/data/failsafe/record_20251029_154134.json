@@ -1,0 +1,8 @@
+{
+  "timestamp": "2025-10-29T15:41:34.976669",
+  "reason": "测试故障",
+  "active_task_id": null,
+  "last_known_node": null,
+  "recovery_available": true,
+  "module_name": "test_module"
+}

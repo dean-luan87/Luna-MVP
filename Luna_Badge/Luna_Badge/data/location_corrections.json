@@ -1,0 +1,18 @@
+{
+  "corrections": [
+    {
+      "original": "电梯",
+      "correction": "这不是电梯，这是扶梯",
+      "target": "elevator",
+      "timestamp": 1761620823.861058,
+      "verified": false
+    },
+    {
+      "original": "电梯",
+      "correction": "这不是电梯，这是扶梯",
+      "target": "elevator",
+      "timestamp": 1761633204.760669,
+      "verified": false
+    }
+  ]
+}

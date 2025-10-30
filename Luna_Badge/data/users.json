@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "user_id": "user_1761544290",
+      "phone": "13800138000",
+      "nickname": "测试用户",
+      "email": "",
+      "created_at": 1761544290.303904,
+      "last_login": 1761544290.303904,
+      "status": "active",
+      "devices": [
+        "device_001"
+      ]
+    }
+  ],
+  "devices": [
+    {
+      "device_id": "device_001",
+      "device_name": "Luna Badge",
+      "device_type": "badge",
+      "user_id": "user_1761544290",
+      "registered_at": 1761544290.304308,
+      "last_active": 1761544290.304308,
+      "status": "online",
+      "ip_address": ""
+    }
+  ]
+}
