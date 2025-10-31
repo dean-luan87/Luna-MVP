@@ -1,0 +1,48 @@
+# Luna Badge 导航配置
+# Navigation Configuration
+
+# 基本导航设置
+basic:
+  environment_detection: true
+  weather_fail_safe: true
+  signboard_navigation: true
+  speech_route_understand: true
+
+# 路径规划
+path_planning:
+  max_path_length: 1000
+  path_cache_size: 100
+  alternative_routes: 3
+  avoid_stairs: false  # 是否优先避开楼梯
+
+# 路径评估
+path_evaluation:
+  enable_dynamic_evaluation: true
+  re_evaluate_interval: 30  # 秒
+  obstacle_detection: true
+  hazard_detection: true
+
+# 语音导航
+voice_navigation:
+  enable_guidance: true
+  guidance_interval: 50  # 米
+  guidance_types:
+    - turn
+    - straight
+    - arrival
+    - obstacle
+  guidance_language: zh-CN
+
+# 地图记忆
+map_memory:
+  enable_scene_memory: true
+  scene_detection_threshold: 0.8
+  auto_save_map: true
+  map_update_interval: 86400  # 秒（1天）
+
+# 紧急处理
+emergency:
+  enable_help_request: true
+  nearby_help_search_radius: 500  # 米
+  alert_frequency: 60  # 秒
+

@@ -1,0 +1,77 @@
+# Luna Badge 硬件配置
+# Hardware Configuration
+
+camera:
+  enabled: true
+  device: 0  # 摄像头设备号
+  resolution: "640x480"  # 分辨率
+  fps: 30  # 帧率
+  format: rgb  # rgb, bgr, grayscale
+  auto_exposure: true
+  auto_white_balance: true
+  brightness: 0.0  # -1.0 to 1.0
+  contrast: 0.0  # -1.0 to 1.0
+  
+  # 夜间模式
+  night_mode:
+    enabled: true
+    threshold: 50  # 亮度阈值
+    gain: 2.0
+    exposure_compensation: 1.0
+
+microphone:
+  enabled: true
+  device: "default"  # 麦克风设备
+  sample_rate: 16000  # 采样率
+  channels: 1  # 声道数
+  format: pcm  # 格式
+  chunk_size: 1024  # 块大小
+  record_duration: 5.0  # 录音时长（秒）
+  
+  # 降噪
+  noise_reduction:
+    enabled: true
+    aggressiveness: 2  # 0-3
+
+speaker:
+  enabled: true
+  device: "default"  # 扬声器设备
+  volume: 0.8  # 音量 0.0-1.0
+  
+  # 音频质量
+  audio:
+    sample_rate: 22050
+    channels: 2
+    buffer_size: 1024
+
+# GPS/位置
+gps:
+  enabled: true
+  update_interval: 1.0  # 秒
+  accuracy_threshold: 10  # 米
+  coordinate_system: wgs84  # wgs84, gcj02, bd09
+
+# 传感器
+sensors:
+  # 加速度计
+  accelerometer:
+    enabled: true
+    update_rate: 100  # Hz
+  
+  # 陀螺仪
+  gyroscope:
+    enabled: true
+    update_rate: 100  # Hz
+  
+  # 磁力计
+  magnetometer:
+    enabled: false
+    update_rate: 50  # Hz
+
+# 电源管理
+power:
+  low_battery_threshold: 20  # 百分比
+  critical_battery_threshold: 10  # 百分比
+  auto_sleep_enabled: true
+  sleep_after_idle_minutes: 30
+

@@ -1,0 +1,41 @@
+# Luna Badge AI模型配置
+# AI Models Configuration
+
+yolo:
+  # YOLO对象检测模型
+  model_path: models/yolov8n.pt
+  confidence_threshold: 0.5
+  device: cpu  # cpu or cuda
+  image_size: 640
+  max_detections: 100
+
+whisper:
+  # Whisper语音识别模型
+  model_size: base  # tiny, base, small, medium, large
+  language: zh
+  device: cpu  # cpu or cuda
+  beam_size: 5
+  temperature: 0.0
+  best_of: 5
+  patience: 1.0
+
+ocr:
+  # OCR文字识别引擎
+  engine: paddleocr  # paddleocr, tesseract
+  language: ch
+  use_gpu: false
+  enable_mkldnn: true
+  cpu_threads: 10
+  det: true  # 文字检测
+  rec: true  # 文字识别
+  cls: false  # 方向分类
+
+step_detector:
+  # 台阶检测模型
+  enabled: true
+  model_path: models/step_detector.pt
+  confidence_threshold: 0.5
+  depth_estimation: true
+  min_step_height_cm: 5
+  max_step_height_cm: 30
+
