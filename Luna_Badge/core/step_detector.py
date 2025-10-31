@@ -25,8 +25,8 @@ class StepDetector:
     
     def detect_step(self, frame) -> Optional[Dict[str, Any]]:
         """
-        模拟视觉识别台阶逻辑：传入图像帧，返回是否检测到台阶
-        TODO：后续接入真实深度估计或YOLO模型
+        视觉识别台阶逻辑：传入图像帧，返回是否检测到台阶
+        支持YOLO模型检测
         
         Args:
             frame: 图像帧（numpy array或PIL Image）
@@ -34,22 +34,70 @@ class StepDetector:
         Returns:
             台阶信息字典，如果未检测到则返回None
         """
-        # Placeholder: 模拟检测逻辑
-        step_detected = False  # 实际应用中这里应该调用模型检测
-        
-        if step_detected:
-            step_info = {
-                "position": (100, 250),
-                "height_cm": 15,
-                "width_cm": 30,
-                "direction": "up",  # up/down
-                "steps_count": 5,
-                "bbox": [100, 150, 200, 400],  # [x1, y1, x2, y2]
-                "confidence": 0.85,
-                "timestamp": datetime.now().isoformat()
-            }
-            return step_info
-        return None
+        try:
+            # 尝试使用YOLO模型检测
+            import numpy as np
+            from ultralytics import YOLO
+            
+            # 初始化YOLO模型（如果未初始化）
+            if not hasattr(self, 'yolo_model') or self.yolo_model is None:
+                try:
+                    self.yolo_model = YOLO('yolov8n.pt')
+                    print("✅ YOLO模型加载成功（台阶检测）")
+                except Exception as e:
+                    print(f"⚠️ YOLO模型加载失败: {e}")
+                    return None
+            
+            # 确保frame是numpy array
+            if not isinstance(frame, np.ndarray):
+                import cv2
+                frame = np.array(frame)
+            
+            # YOLO检测
+            results = self.yolo_model(frame, verbose=False)
+            
+            # 查找台阶相关的物体
+            step_keywords = ['stairs', 'stair', 'step']
+            
+            for result in results:
+                boxes = result.boxes
+                if boxes is not None:
+                    for box in boxes:
+                        class_id = int(box.cls)
+                        class_name = result.names[class_id]
+                        confidence = float(box.conf)
+                        
+                        # 检查是否是台阶相关
+                        for keyword in step_keywords:
+                            if keyword in class_name.lower():
+                                # 提取边界框
+                                x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
+                                
+                                # 判断方向（简单判断：根据高度）
+                                height = y2 - y1
+                                width = x2 - x1
+                                direction = "up" if height > width else "forward"
+                                
+                                step_info = {
+                                    "position": (int((x1 + x2) / 2), int((y1 + y2) / 2)),
+                                    "height_cm": int(height * 0.1),  # 假设缩放
+                                    "width_cm": int(width * 0.1),
+                                    "direction": direction,
+                                    "steps_count": 1,  # 简化为1
+                                    "bbox": [int(x1), int(y1), int(x2), int(y2)],
+                                    "confidence": confidence,
+                                    "timestamp": datetime.now().isoformat()
+                                }
+                                return step_info
+            
+            return None
+            
+        except ImportError:
+            print("⚠️ 未安装YOLO，使用模拟检测")
+            return None
+        except Exception as e:
+            print(f"⚠️ 台阶检测错误: {e}")
+            return None
     
     def save_step_data(self, step_info: Dict[str, Any]) -> bool:
         """
