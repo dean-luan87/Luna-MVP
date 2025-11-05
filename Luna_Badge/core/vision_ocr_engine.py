@@ -6,6 +6,9 @@ Luna Badge 视觉OCR引擎
 集成 PaddleOCR + YOLOv8n 实现多模态识别
 """
 
+__version__ = "1.0.0"
+__version_info__ = (1, 0, 0)
+
 import logging
 import cv2
 import numpy as np
@@ -38,20 +41,22 @@ class VisionOCREngine:
     组合YOLOv8物体检测 + PaddleOCR文字识别
     """
     
-    def __init__(self, use_yolo: bool = True, use_ocr: bool = True):
+    def __init__(self, use_yolo: bool = True, use_ocr: bool = True, yolo_imgsz: int = 1280):
         """
         初始化视觉OCR引擎
         
         Args:
             use_yolo: 是否使用YOLO检测
             use_ocr: 是否使用OCR识别
+            yolo_imgsz: YOLO输入图像尺寸（默认1280，支持1080P）
         """
         self.use_yolo = use_yolo
         self.use_ocr = use_ocr
         self.yolo_model = None
         self.ocr_model = None
+        self.yolo_imgsz = yolo_imgsz  # 1080P使用1280，保持比例resize
         
-        logger.info(f"🎯 视觉OCR引擎初始化 (YOLO={use_yolo}, OCR={use_ocr})")
+        logger.info(f"🎯 视觉OCR引擎初始化 (YOLO={use_yolo}, OCR={use_ocr}, imgsz={yolo_imgsz})")
     
     def _init_yolo(self):
         """初始化YOLO模型"""
@@ -61,10 +66,10 @@ class VisionOCREngine:
         try:
             from ultralytics import YOLO
             
-            logger.info("正在加载YOLOv8模型...")
+            logger.info(f"正在加载YOLOv8模型 (输入尺寸: {self.yolo_imgsz})...")
             self.yolo_model = YOLO('yolov8n.pt')  # nano版本，轻量级
             
-            logger.info("✅ YOLOv8模型加载成功")
+            logger.info(f"✅ YOLOv8模型加载成功 (输入尺寸: {self.yolo_imgsz}，支持1080P)")
         except ImportError:
             logger.error("❌ 未安装ultralytics，请运行: pip install ultralytics")
         except Exception as e:
@@ -119,7 +124,8 @@ class VisionOCREngine:
             return []
         
         try:
-            results = self.yolo_model(image, verbose=False)
+            # 使用指定的输入尺寸进行推理（支持1080P）
+            results = self.yolo_model(image, imgsz=self.yolo_imgsz, verbose=False)
             
             detections = []
             for result in results:
@@ -298,13 +304,14 @@ class VisionOCREngine:
 # 全局引擎实例
 _vision_ocr_engine: Optional[VisionOCREngine] = None
 
-def get_vision_ocr_engine(use_yolo: bool = True, use_ocr: bool = True) -> VisionOCREngine:
+def get_vision_ocr_engine(use_yolo: bool = True, use_ocr: bool = True, yolo_imgsz: int = 1280) -> VisionOCREngine:
     """
     获取全局视觉OCR引擎实例
     
     Args:
         use_yolo: 是否使用YOLO
         use_ocr: 是否使用OCR
+        yolo_imgsz: YOLO输入图像尺寸（默认1280，支持1080P）
         
     Returns:
         VisionOCREngine: 引擎实例
@@ -312,7 +319,7 @@ def get_vision_ocr_engine(use_yolo: bool = True, use_ocr: bool = True) -> Vision
     global _vision_ocr_engine
     
     if _vision_ocr_engine is None:
-        _vision_ocr_engine = VisionOCREngine(use_yolo, use_ocr)
+        _vision_ocr_engine = VisionOCREngine(use_yolo, use_ocr, yolo_imgsz=yolo_imgsz)
         _vision_ocr_engine.load_models()
     
     return _vision_ocr_engine

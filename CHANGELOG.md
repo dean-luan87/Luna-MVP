@@ -1,0 +1,165 @@
+# Luna-2 版本变更日志
+
+所有重要的变更都会记录在此文件中。
+
+格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
+版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+
+## [1.0.0] - 2025-11-05
+
+### 🎉 首次发布 - 硬件Demo测试版本
+
+这是Luna-2系统的第一个正式版本，面向硬件Demo测试。
+
+### ✨ 新增功能
+
+#### 核心系统
+- **系统控制中枢** (`system_orchestrator.py`)
+  - 完整的系统生命周期管理
+  - 事件驱动架构
+  - 模块化设计
+
+- **增强版系统控制中枢** (`system_orchestrator_enhanced.py`)
+  - Whisper语音识别集成
+  - YOLO视觉检测集成
+  - 任务打断与恢复机制
+  - 失败重试队列
+
+#### 语音系统
+- **Whisper语音识别** (`whisper_recognizer.py`)
+  - 支持多种模型大小（tiny, base, small, medium, large）
+  - 中文语音识别
+  - 实时录音和识别
+
+- **TTS语音合成** (`tts_manager.py`)
+  - 多引擎支持（edge-tts, pyttsx3）
+  - 中文语音播报
+  - 异步播报支持
+
+- **语音唤醒** (`voice_wakeup.py`, `voice_wakeup_manager.py`)
+  - 关键词唤醒检测
+  - 实时语音处理
+
+#### 视觉系统
+- **视觉OCR引擎** (`vision_ocr_engine.py`)
+  - YOLOv8物体检测（支持1080P输入，imgsz=1280）
+  - PaddleOCR文字识别
+  - 多模态识别组合
+
+- **台阶检测** (`step_detector.py`)
+  - YOLO模型集成
+  - 台阶方向识别
+  - 1080P分辨率支持
+
+- **标识牌检测** (`signboard_detector.py`)
+  - 颜色识别
+  - 形状识别
+
+- **设施检测** (`facility_detector.py`)
+  - 公共设施识别
+  - 位置定位
+
+#### 导航系统
+- **导航管理器** (`navigation_manager.py`)
+  - 路径规划
+  - 语音导航
+  - 实时位置更新
+
+- **AI导航** (`ai_navigation.py`)
+  - YOLO实时检测
+  - 导航引导
+
+- **医院导航** (`hospital_facility_navigator.py`)
+  - 医院场景专用导航
+  - 诊室定位
+
+#### 学习系统
+- **错误学习引擎** (`error_learning.py`)
+  - 错误记录与分析
+  - 纠正方案学习
+  - 错误模式识别
+
+- **任务优化引擎** (`task_optimizer.py`)
+  - 任务执行记录
+  - 优化方案学习
+  - 性能分析
+
+- **用户习惯分析** (`user_habit_analyzer.py`)
+  - 行走习惯记录
+  - 用户画像生成
+  - 时间估算
+
+- **视觉学习引擎** (`visual_learning.py`)
+  - 物体识别学习
+  - 知识库构建
+  - 识别结果纠正
+
+- **统一学习管理器** (`learning_manager.py`)
+  - 统一接口管理
+  - 数据同步
+  - 统计汇总
+
+#### 任务系统
+- **任务引擎** (`task_engine.py`)
+  - 任务链管理
+  - 任务模板
+  - 任务执行
+
+- **任务打断器** (`task_interruptor.py`)
+  - 主任务暂停
+  - 子任务插入
+  - 任务恢复
+
+#### 地图系统
+- **情感地图生成** (`emotional_map_card_generator_enhanced.py`)
+  - 手绘风格地图
+  - 图标标注
+  - 情感标签
+
+#### 数据管理
+- **记忆存储** (`memory_store.py`)
+  - 本地存储
+  - 云端同步
+  - 数据持久化
+
+- **日志管理** (`log_manager.py`)
+  - 行为日志记录
+  - 日志查询
+  - 日志导出
+
+- **配置管理** (`config.py`, `unified_config_manager.py`)
+  - 统一配置管理
+  - 配置验证
+  - 配置热更新
+
+#### 故障处理
+- **故障处理器** (`fault_handler.py`)
+  - 故障检测
+  - 故障回调
+  - 故障恢复
+
+- **重试队列** (`retry_queue.py`)
+  - 失败任务重试
+  - 重试策略
+  - 队列管理
+
+### 🔧 技术特性
+
+- **模块化架构**: 高度模块化设计，易于扩展
+- **事件驱动**: 基于事件总线的异步处理
+- **1080P支持**: YOLO模型支持1080P输入（imgsz=1280）
+- **性能优化**: 多线程处理、异步I/O
+- **容错机制**: 完善的错误处理和重试机制
+
+### 📝 文档
+
+- 完整的模块文档
+- 集成测试用例
+- 使用指南
+
+### 🔒 稳定性
+
+- 完整的错误处理
+- 资源清理机制
+- 线程安全设计
+

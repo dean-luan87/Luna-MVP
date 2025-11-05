@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
 
 """
-Luna Badge 系统控制中枢增强版 v2.0
+Luna Badge 系统控制中枢增强版
 完整集成AI模型、摄像头管线、增强能力模块
 """
+
+__version__ = "1.0.0"
+__version_info__ = (1, 0, 0)
 
 import logging
 import threading
@@ -114,9 +117,13 @@ class EnhancedSystemOrchestrator(SystemOrchestrator):
             
             # 使用Whisper识别语音
             if audio_data:
-                # 从bytes转换为文本（需要实现recognize_bytes方法）
-                text = "模拟识别文本"  # TODO: 实现bytes识别
-                details = {}
+                # 从bytes识别语音
+                try:
+                    text, details = self.whisper.recognize_bytes(audio_data)
+                except Exception as e:
+                    logger.warning(f"Whisper bytes识别失败: {e}")
+                    text = ""
+                    details = {"confidence": 0.0}
             else:
                 # 从麦克风识别（或模拟）
                 try:

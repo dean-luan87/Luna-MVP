@@ -77,8 +77,8 @@ def test_yolo_integration():
     from core.vision_ocr_engine import VisionOCREngine
     from core.system_orchestrator_enhanced import EnhancedSystemOrchestrator
     
-    # 创建视觉引擎
-    vision = VisionOCREngine(use_yolo=True, use_ocr=False)  # 暂时不用OCR加快速度
+    # 创建视觉引擎（支持1080P）
+    vision = VisionOCREngine(use_yolo=True, use_ocr=False, yolo_imgsz=1280)  # 支持1080P输入
     
     # 尝试加载模型
     print("\n📦 尝试加载YOLO模型...")
@@ -104,10 +104,10 @@ def test_yolo_integration():
     print("\n📝 测试视觉事件处理:")
     
     if vision:
-        # 创建测试图像
-        test_image = np.random.randint(0, 255, (480, 640, 3), dtype=np.uint8)
+        # 创建1080P测试图像
+        test_image = np.random.randint(0, 255, (1080, 1920, 3), dtype=np.uint8)
         
-        print("  输入：测试图像 640x480")
+        print("  输入：测试图像 1920x1080 (1080P)")
         
         # 检测
         result = vision.detect_and_recognize(test_image)

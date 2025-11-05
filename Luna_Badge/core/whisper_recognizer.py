@@ -6,6 +6,9 @@ Luna Badge Whisper 语音识别引擎
 集成 OpenAI Whisper 模型实现离线语音识别
 """
 
+__version__ = "1.0.0"
+__version_info__ = (1, 0, 0)
+
 import os
 import logging
 import time
@@ -136,6 +139,33 @@ class WhisperRecognizer:
                 
         except Exception as e:
             logger.error(f"❌ 数组识别失败: {e}")
+            return "", {}
+    
+    def recognize_bytes(self, audio_bytes: bytes, sample_rate: int = 16000, dtype: np.dtype = np.int16) -> Tuple[str, Dict[str, Any]]:
+        """
+        从bytes音频数据识别语音
+        
+        Args:
+            audio_bytes: 音频数据(bytes)
+            sample_rate: 采样率，默认16000Hz
+            dtype: 数据类型，默认int16
+            
+        Returns:
+            Tuple[str, Dict[str, Any]]: (识别的文本, 详细信息)
+        """
+        try:
+            # 将bytes转换为numpy数组
+            audio_array = np.frombuffer(audio_bytes, dtype=dtype)
+            
+            # 归一化到float32格式（Whisper要求）
+            if dtype == np.int16:
+                audio_array = audio_array.astype(np.float32) / 32768.0
+            
+            # 使用已有的数组识别方法
+            return self.recognize_from_array(audio_array, sample_rate)
+            
+        except Exception as e:
+            logger.error(f"❌ Bytes识别失败: {e}")
             return "", {}
     
     def recognize_from_microphone(self, duration: int = 5) -> Tuple[str, Dict[str, Any]]:
