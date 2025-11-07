@@ -280,17 +280,21 @@ HTML_TEMPLATE = """
         
         <!-- 视觉识别标签页 -->
         <div id="vision-tab" class="tab-content active">
-            <video id="video" autoplay playsinline></video>
+            <div style="background:#fff3cd; border:1px solid #ffc107; border-radius:8px; padding:12px; margin-bottom:15px; font-size:14px; color:#856404;">
+                <strong>💡 Safari浏览器提示：</strong><br>
+                如果摄像头无法使用，请使用"选择图片"功能上传照片进行识别。
+            </div>
+            <video id="video" autoplay playsinline webkit-playsinline></video>
             <canvas id="canvas"></canvas>
             
             <button class="btn btn-primary" onclick="startCamera()">📷 打开摄像头</button>
             <button class="btn btn-primary" onclick="capturePhoto()" id="captureBtn" style="display:none;">📸 拍照识别</button>
             <button class="btn btn-secondary" onclick="stopCamera()" id="stopBtn" style="display:none;">⏹️ 关闭摄像头</button>
             
-            <label for="fileInput" class="btn btn-secondary">
-                📁 选择图片
+            <label for="fileInput" class="btn btn-secondary" style="background:#28a745; color:white;">
+                📁 选择图片（推荐Safari使用）
             </label>
-            <input type="file" id="fileInput" class="file-input" accept="image/*" onchange="handleFileSelect(event)">
+            <input type="file" id="fileInput" class="file-input" accept="image/*" capture="environment" onchange="handleFileSelect(event)">
             
             <button class="btn btn-success" onclick="testStepDetection()">🪜 台阶检测</button>
             <button class="btn btn-success" onclick="testSignboardDetection()">🚏 标识牌检测</button>
@@ -360,29 +364,51 @@ HTML_TEMPLATE = """
         
         async function startCamera() {
             try {
+                // 检测Safari浏览器
+                const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                const isSecureContext = window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                
+                // Safari特殊检查
+                if ((isSafari || isIOS) && !isSecureContext) {
+                    showError('⚠️ Safari浏览器需要HTTPS才能访问摄像头。\\n\\n解决方案：\\n1. 使用"选择图片"功能代替摄像头\\n2. 或配置HTTPS访问');
+                    return;
+                }
+                
                 // 检查浏览器支持
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    showError('您的浏览器不支持摄像头访问。请使用Chrome、Safari或Firefox浏览器，并确保使用HTTPS或localhost访问。');
+                    showError('您的浏览器不支持摄像头访问。\\n\\n建议：使用"选择图片"功能上传照片进行识别。');
                     return;
                 }
                 
                 stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: 'environment' }
+                    video: { 
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
                 });
                 video.srcObject = stream;
-                video.play();
+                video.setAttribute('playsinline', 'true');
+                video.setAttribute('webkit-playsinline', 'true');
+                await video.play();
                 document.getElementById('captureBtn').style.display = 'block';
                 document.getElementById('stopBtn').style.display = 'block';
                 document.querySelector('#vision-tab .btn-primary').style.display = 'none';
             } catch (err) {
                 let errorMsg = '无法访问摄像头: ';
                 if (err.name === 'NotAllowedError') {
-                    errorMsg += '请允许浏览器访问摄像头权限';
+                    errorMsg += '请允许浏览器访问摄像头权限（在Safari设置中允许）';
                 } else if (err.name === 'NotFoundError') {
                     errorMsg += '未找到摄像头设备';
+                } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+                    errorMsg += '摄像头被其他应用占用，请关闭其他应用后重试';
+                } else if (err.name === 'OverconstrainedError') {
+                    errorMsg += '摄像头不支持请求的配置';
                 } else {
-                    errorMsg += err.message;
+                    errorMsg += err.message || '未知错误';
                 }
+                errorMsg += '\\n\\n💡 提示：可以使用"选择图片"功能上传照片';
                 showError(errorMsg);
             }
         }
@@ -475,30 +501,64 @@ HTML_TEMPLATE = """
         
         async function startRecording() {
             try {
+                // 检测Safari浏览器
+                const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                const isSecureContext = window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                
+                // Safari特殊检查
+                if ((isSafari || isIOS) && !isSecureContext) {
+                    showError('⚠️ Safari浏览器需要HTTPS才能访问麦克风。\\n\\n当前功能受限，建议使用桌面浏览器测试。');
+                    return;
+                }
+                
                 // 检查浏览器支持
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    showError('您的浏览器不支持麦克风访问。请使用Chrome、Safari或Firefox浏览器，并确保使用HTTPS或localhost访问。');
+                    showError('您的浏览器不支持麦克风访问。\\n\\nSafari在iOS上可能需要HTTPS。');
                     return;
                 }
                 
-                const audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const audioStream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 16000
+                    }
+                });
                 audioChunks = [];
                 
-                // 检查MediaRecorder支持
+                // 检查MediaRecorder支持（Safari支持有限）
                 if (!window.MediaRecorder) {
-                    showError('您的浏览器不支持录音功能。请使用Chrome、Safari或Firefox浏览器。');
+                    showError('您的浏览器不支持录音功能。\\n\\nSafari的MediaRecorder支持有限，建议使用Chrome浏览器。');
                     return;
                 }
                 
-                mediaRecorder = new MediaRecorder(audioStream);
+                // Safari需要指定MIME类型
+                let options = {};
+                if (MediaRecorder.isTypeSupported('audio/webm')) {
+                    options = { mimeType: 'audio/webm' };
+                } else if (MediaRecorder.isTypeSupported('audio/mp4')) {
+                    options = { mimeType: 'audio/mp4' };
+                } else if (MediaRecorder.isTypeSupported('audio/ogg')) {
+                    options = { mimeType: 'audio/ogg' };
+                }
+                
+                mediaRecorder = new MediaRecorder(audioStream, options);
                 
                 mediaRecorder.ondataavailable = (event) => {
-                    audioChunks.push(event.data);
+                    if (event.data && event.data.size > 0) {
+                        audioChunks.push(event.data);
+                    }
                 };
                 
                 mediaRecorder.onstop = async () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                    const mimeType = mediaRecorder.mimeType || 'audio/webm';
+                    const audioBlob = new Blob(audioChunks, { type: mimeType });
                     await sendAudio(audioBlob);
+                };
+                
+                mediaRecorder.onerror = (event) => {
+                    showError('录音过程中出错: ' + (event.error?.message || '未知错误'));
                 };
                 
                 mediaRecorder.start();
@@ -507,11 +567,16 @@ HTML_TEMPLATE = """
             } catch (err) {
                 let errorMsg = '无法访问麦克风: ';
                 if (err.name === 'NotAllowedError') {
-                    errorMsg += '请允许浏览器访问麦克风权限';
+                    errorMsg += '请允许浏览器访问麦克风权限（在Safari设置 > 网站设置中允许）';
                 } else if (err.name === 'NotFoundError') {
                     errorMsg += '未找到麦克风设备';
+                } else if (err.name === 'NotReadableError') {
+                    errorMsg += '麦克风被其他应用占用';
                 } else {
-                    errorMsg += err.message;
+                    errorMsg += err.message || '未知错误';
+                }
+                if (isIOS || isSafari) {
+                    errorMsg += '\\n\\n💡 Safari在iOS上需要HTTPS才能使用麦克风';
                 }
                 showError(errorMsg);
             }
