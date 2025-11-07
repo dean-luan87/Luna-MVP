@@ -1106,9 +1106,24 @@ if __name__ == '__main__':
         logger.warning("部分模块初始化失败，但服务器仍会启动")
     
     port = int(os.environ.get('PORT', 5000))
-    logger.info(f"🚀 Luna 完整功能测试服务器启动中...")
-    logger.info(f"📱 手机访问地址: http://<你的Mac IP>:{port}")
-    logger.info(f"💻 本地访问地址: http://localhost:{port}")
     
-    app.run(host='0.0.0.0', port=port, debug=False)
+    # HTTPS配置
+    ssl_cert_path = os.path.join(os.path.dirname(__file__), 'ssl', 'cert.pem')
+    ssl_key_path = os.path.join(os.path.dirname(__file__), 'ssl', 'key.pem')
+    use_https = os.path.exists(ssl_cert_path) and os.path.exists(ssl_key_path)
+    
+    logger.info(f"🚀 Luna 完整功能测试服务器启动中...")
+    
+    if use_https:
+        logger.info(f"🔒 HTTPS模式已启用")
+        logger.info(f"📱 手机访问地址: https://192.168.3.213:{port}")
+        logger.info(f"💻 本地访问地址: https://localhost:{port}")
+        logger.info(f"⚠️  首次访问需要在手机上信任自签名证书")
+        app.run(host='0.0.0.0', port=port, debug=False, ssl_context=(ssl_cert_path, ssl_key_path))
+    else:
+        logger.info(f"📱 手机访问地址: http://192.168.3.213:{port}")
+        logger.info(f"💻 本地访问地址: http://localhost:{port}")
+        logger.warning(f"⚠️  HTTP模式：Safari浏览器无法使用摄像头/麦克风")
+        logger.info(f"💡 提示：运行 'python3 generate_ssl_cert.py' 生成SSL证书启用HTTPS")
+        app.run(host='0.0.0.0', port=port, debug=False)
 
