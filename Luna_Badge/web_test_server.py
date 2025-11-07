@@ -11,7 +11,7 @@ import logging
 import base64
 import io
 import tempfile
-from flask import Flask, request, jsonify, render_template_string, send_file
+from flask import Flask, request, jsonify, render_template_string, send_file, send_file
 from flask_cors import CORS
 import cv2
 import numpy as np
@@ -1099,6 +1099,202 @@ def health():
             'tts_manager': tts_manager is not None
         }
     })
+
+@app.route('/install-cert')
+def install_cert():
+    """证书安装页面"""
+    cert_install_html = """
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安装SSL证书 - Luna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .step-content {
+            color: #666;
+            line-height: 1.6;
+            margin-left: 40px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .btn:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+        }
+        .btn-secondary {
+            background: #28a745;
+            margin-top: 10px;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #28a745;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #155724;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 安装SSL证书</h1>
+        
+        <div class="warning">
+            <strong>⚠️ 重要提示：</strong><br>
+            这是自签名证书，仅用于开发和测试。安装后需要在系统设置中信任证书。
+        </div>
+        
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">1</span>
+                下载证书文件
+            </div>
+            <div class="step-content">
+                点击下面的按钮下载证书文件
+            </div>
+            <a href="/ssl/cert.pem" class="btn" download="luna-cert.pem">
+                📥 下载证书文件
+            </a>
+        </div>
+        
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">2</span>
+                安装证书
+            </div>
+            <div class="step-content">
+                <strong>iPhone/iPad:</strong><br>
+                1. 下载后，系统会提示"已下载描述文件"<br>
+                2. 打开 <strong>设置</strong> > <strong>通用</strong> > <strong>VPN与设备管理</strong>（或<strong>描述文件</strong>）<br>
+                3. 找到"Luna"证书，点击<strong>安装</strong><br>
+                4. 输入密码确认安装
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">3</span>
+                信任证书
+            </div>
+            <div class="step-content">
+                <strong>iPhone/iPad:</strong><br>
+                1. 打开 <strong>设置</strong> > <strong>通用</strong> > <strong>关于本机</strong><br>
+                2. 滚动到底部，点击 <strong>证书信任设置</strong><br>
+                3. 找到"Luna"证书，打开<strong>信任开关</strong>
+            </div>
+        </div>
+        
+        <div class="step">
+            <div class="step-title">
+                <span class="step-number">4</span>
+                访问网站
+            </div>
+            <div class="step-content">
+                返回Safari，访问：<br>
+                <div class="code">https://192.168.3.213:5001</div>
+                现在应该可以正常使用了！
+            </div>
+            <a href="https://192.168.3.213:5001" class="btn btn-secondary">
+                🌐 前往Luna测试页面
+            </a>
+        </div>
+        
+        <div class="success">
+            <strong>✅ 安装完成后：</strong><br>
+            • 可以使用摄像头拍照识别<br>
+            • 可以使用麦克风录音识别<br>
+            • 所有功能正常工作
+        </div>
+    </div>
+</body>
+</html>
+    """
+    return cert_install_html
+
+@app.route('/ssl/cert.pem')
+def download_cert():
+    """下载证书文件"""
+    cert_path = os.path.join(os.path.dirname(__file__), 'ssl', 'cert.pem')
+    if os.path.exists(cert_path):
+        return send_file(cert_path, mimetype='application/x-x509-ca-cert', 
+                        as_attachment=True, download_name='luna-cert.pem')
+    else:
+        return "证书文件不存在", 404
 
 if __name__ == '__main__':
     # 初始化所有模块
