@@ -11,7 +11,7 @@ import logging
 import base64
 import io
 import tempfile
-from flask import Flask, request, jsonify, render_template_string, send_file, send_file
+from flask import Flask, request, jsonify, render_template_string, send_file
 from flask_cors import CORS
 import cv2
 import numpy as np
@@ -738,7 +738,23 @@ HTML_TEMPLATE = """
                 div.innerHTML = '<div class="result-title">🎤 语音识别</div>';
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'result-item';
-                itemDiv.innerHTML = `<div class="result-text">${data.voice_result.text || '未识别到语音'}</div>`;
+                
+                const voiceData = data.voice_result;
+                const confidence = voiceData.details?.confidence || 0;
+                const confidencePercent = (confidence * 100).toFixed(1);
+                const confidenceColor = confidence > 0.7 ? '#51cf66' : confidence > 0.5 ? '#ffd43b' : '#ff6b6b';
+                
+                itemDiv.innerHTML = `
+                    <div class="result-text">${voiceData.text || '未识别到语音'}</div>
+                    <div style="margin-top: 8px;">
+                        <span style="font-size: 13px; color: #666;">置信度: </span>
+                        <span style="font-size: 14px; font-weight: bold; color: ${confidenceColor};">
+                            ${confidencePercent}%
+                        </span>
+                        ${voiceData.details?.language ? `<span style="font-size: 12px; color: #999; margin-left: 10px;">语言: ${voiceData.details.language}</span>` : ''}
+                    </div>
+                    ${confidence < 0.5 ? '<div style="margin-top: 5px; font-size: 12px; color: #ff6b6b;">⚠️ 识别置信度较低，建议在安静环境下清晰说话</div>' : ''}
+                `;
                 div.appendChild(itemDiv);
                 results.appendChild(div);
             }
@@ -925,7 +941,7 @@ def comprehensive_detection():
 
 @app.route('/api/recognize/voice', methods=['POST'])
 def recognize_voice():
-    """语音识别"""
+    """语音识别（改进版：音频格式标准化）"""
     try:
         if whisper_recognizer is None:
             return jsonify({'success': False, 'error': '语音识别器未初始化'}), 500
@@ -935,27 +951,92 @@ def recognize_voice():
         
         # 保存临时文件
         audio_file = request.files['audio']
-        with tempfile.NamedTemporaryFile(delete=False, suffix='.wav') as tmp_file:
+        mime_type = audio_file.content_type or 'audio/webm'
+        
+        # 保存原始音频
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.tmp') as tmp_file:
             audio_file.save(tmp_file.name)
             tmp_path = tmp_file.name
         
         try:
+            # 音频格式转换（统一转换为WAV格式，16kHz，单声道）
+            converted_path = tmp_path
+            try:
+                import subprocess
+                import os
+                
+                # 检查是否需要转换（非WAV格式需要转换）
+                if not mime_type.startswith('audio/wav') and not tmp_path.endswith('.wav'):
+                    wav_path = tmp_path + '.wav'
+                    # 使用ffmpeg转换（如果可用）
+                    try:
+                        subprocess.run([
+                            'ffmpeg', '-i', tmp_path,
+                            '-ar', '16000',  # 采样率16kHz
+                            '-ac', '1',      # 单声道
+                            '-f', 'wav',     # WAV格式
+                            '-y',            # 覆盖输出文件
+                            wav_path
+                        ], check=True, capture_output=True, timeout=10)
+                        converted_path = wav_path
+                        logger.info(f"音频格式转换成功: {mime_type} -> WAV")
+                    except (subprocess.CalledProcessError, FileNotFoundError):
+                        # ffmpeg不可用，尝试直接使用（Whisper支持多种格式）
+                        logger.warning("ffmpeg不可用，使用原始音频格式")
+                        converted_path = tmp_path
+            except Exception as e:
+                logger.warning(f"音频格式转换失败，使用原始格式: {e}")
+                converted_path = tmp_path
+            
             # 加载模型（如果未加载）
             if not whisper_recognizer.is_loaded:
                 whisper_recognizer.load_model()
             
-            # 识别
-            text, details = whisper_recognizer.recognize_from_file(tmp_path)
+            # 识别（使用优化的参数）
+            result = whisper_recognizer.model.transcribe(
+                converted_path,
+                language="zh",
+                task="transcribe",
+                temperature=0.0,  # 降低随机性，提高一致性
+                beam_size=5,      # 束搜索大小
+                best_of=5,        # 候选数量
+                fp16=False        # 使用FP32提高准确率（如果CPU）
+            )
+            
+            text = result.get("text", "").strip()
+            
+            # 提取详细结果
+            details = {
+                "language": result.get("language", "zh"),
+                "duration": result.get("segments", [{}])[0].get("duration", 0) if result.get("segments") else 0,
+                "confidence": whisper_recognizer._calculate_confidence(result),
+                "segments": [
+                    {
+                        "start": seg.get("start", 0),
+                        "end": seg.get("end", 0),
+                        "text": seg.get("text", "").strip(),
+                        "confidence": 1.0 - seg.get("no_speech_prob", 0.5)
+                    }
+                    for seg in result.get("segments", [])
+                ]
+            }
+            
+            logger.info(f"✅ 识别成功: {text} (置信度: {details['confidence']:.2f})")
             
             return jsonify({
                 'success': True,
                 'text': text,
-                'details': details
+                'details': details,
+                'audio_format': mime_type
             })
         finally:
             # 清理临时文件
-            if os.path.exists(tmp_path):
-                os.unlink(tmp_path)
+            for path in [tmp_path, tmp_path + '.wav']:
+                if os.path.exists(path):
+                    try:
+                        os.unlink(path)
+                    except:
+                        pass
     except Exception as e:
         logger.error(f"语音识别错误: {e}")
         return jsonify({'success': False, 'error': str(e)}), 500
