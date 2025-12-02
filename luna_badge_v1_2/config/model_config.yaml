@@ -1,0 +1,30 @@
+# 模型相关配置（v1.3 扩展）
+
+yolo:
+  model_name: "yolo11-tiny"  # 默认使用 yolo11-tiny（最快）
+  # 可选值: "yolo11n", "yolo11-tiny", "yolov8n", "yolov8"
+  backend: "yolo11"  # v1.3 新增：支持 "yolov8" 或 "yolo11"
+  conf_threshold: 0.5
+  iou_threshold: 0.45
+  device: "cpu"  # 未来可设置为 "npu" / "cuda"
+
+depth:
+  enabled: false
+  model_name: "depth_anything_v2_small"
+
+# v1.3 新增：分割模型配置
+segformer:
+  enabled: true
+  model_name: "segformer_b0"
+  num_classes: 19  # 预留：分割类别数
+
+# v1.3 新增：跟踪器配置
+tracker:
+  enabled: true
+  algorithm: "sort"  # 预留：未来可设置为 "bytetrack" 等
+
+# v1.3 新增：光流/相机运动估计配置
+optical_flow:
+  enabled: true
+  method: "lucas_kanade"  # 预留：未来可设置为其他方法
+

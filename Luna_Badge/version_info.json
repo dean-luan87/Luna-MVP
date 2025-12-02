@@ -1,0 +1,22 @@
+{
+  "version": "1.2.0",
+  "release_date": "2024-11-20",
+  "build_date": "2025-11-20",
+  "status": "stable",
+  "features": {
+    "v1.1": "浏览器 UI 面板版自动测试",
+    "v1.2": "视频自动检测",
+    "v1.3": "多场景 Playlist 自动测试",
+    "v2.0": "真实设备数据上报骨架",
+    "v6.1": "自动搜图 + 错误聚类增强",
+    "test_engine_v1.0": "完整的自动化测试框架"
+  },
+  "api_routes": {
+    "auto_test": 11,
+    "telemetry": 2
+  },
+  "keywords_supported": {
+    "v1.1_new_judger": 17,
+    "v2_v6_old_judger": 60
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "crosswalk",
+  "keyword": "斑马线 人行横道",
+  "expected_labels": ["person", "crosswalk", "traffic_light"]
+}
+
+

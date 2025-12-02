@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Luna Badge Mobile Client</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .camera-btn {
+            width: 100%;
+            padding: 20px;
+            font-size: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .camera-btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .preview-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        #preview {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .result-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .detection-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .detection-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .detection-conf {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .nav-message {
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin-top: 10px;
+        }
+        
+        .timing {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3e0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .timing-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            padding: 15px;
+            background: #ffebee;
+            border-radius: 8px;
+            border-left: 4px solid #f44336;
+            color: #c62828;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .server-config {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        
+        .server-config input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .server-config label {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Luna Badge</h1>
+        <p class="subtitle">智能导航助手</p>
+        
+        <div class="server-config">
+            <label>服务器地址:</label>
+            <input type="text" id="serverUrl" value="" placeholder="http://192.168.1.22:8899">
+            <small style="color: #999; font-size: 12px;">留空则使用当前域名</small>
+        </div>
+        
+        <button class="camera-btn" onclick="capture()">📷 拍照并识别</button>
+        
+        <div class="preview-container">
+            <img id="preview" alt="预览图片">
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>正在处理...</div>
+        </div>
+        
+        <div class="error" id="error"></div>
+        
+        <div class="result-container" id="result">
+            <div class="result-title">识别结果</div>
+            <div id="detections"></div>
+            <div id="navResult"></div>
+            <div id="timing"></div>
+        </div>
+    </div>
+
+    <script>
+        // 自动检测服务器地址
+        function getServerUrl() {
+            const input = document.getElementById("serverUrl");
+            const url = input.value.trim();
+            if (url) {
+                return url;
+            }
+            // 使用当前域名
+            return window.location.origin;
+        }
+        
+        async function capture() {
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.capture = "camera";
+            
+            input.onchange = async () => {
+                const file = input.files[0];
+                if (!file) return;
+                
+                // 显示预览
+                const preview = document.getElementById("preview");
+                preview.src = URL.createObjectURL(file);
+                preview.style.display = "block";
+                
+                // 隐藏之前的结果
+                document.getElementById("result").style.display = "none";
+                document.getElementById("error").style.display = "none";
+                document.getElementById("loading").style.display = "block";
+                
+                try {
+                    // 读取文件为 base64
+                    const reader = new FileReader();
+                    reader.onload = async () => {
+                        const base64 = reader.result.split(",")[1];
+                        
+                        // 调用 API
+                        const serverUrl = getServerUrl();
+                        const response = await fetch(`${serverUrl}/api/full_pipeline`, {
+                            method: "POST",
+                            headers: {"Content-Type": "application/json"},
+                            body: JSON.stringify({ image: base64 })
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        
+                        const data = await response.json();
+                        
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
+                        
+                        // 显示结果
+                        displayResult(data);
+                        
+                        // 播放音频（如果有）
+                        if (data.audio && data.audio !== "audio_placeholder") {
+                            playAudio(data.audio);
+                        }
+                        
+                        document.getElementById("loading").style.display = "none";
+                    };
+                    
+                    reader.readAsDataURL(file);
+                } catch (error) {
+                    console.error("Error:", error);
+                    document.getElementById("loading").style.display = "none";
+                    const errorDiv = document.getElementById("error");
+                    errorDiv.textContent = `错误: ${error.message}`;
+                    errorDiv.style.display = "block";
+                }
+            };
+            
+            input.click();
+        }
+        
+        function displayResult(data) {
+            const resultDiv = document.getElementById("result");
+            const detectionsDiv = document.getElementById("detections");
+            const navResultDiv = document.getElementById("navResult");
+            const timingDiv = document.getElementById("timing");
+            
+            // 显示检测结果
+            detectionsDiv.innerHTML = "";
+            if (data.detections && data.detections.length > 0) {
+                data.detections.forEach(det => {
+                    const item = document.createElement("div");
+                    item.className = "detection-item";
+                    item.innerHTML = `
+                        <div class="detection-label">${det.class_name || "未知"}</div>
+                        <div class="detection-conf">置信度: ${(det.conf * 100).toFixed(1)}%</div>
+                    `;
+                    detectionsDiv.appendChild(item);
+                });
+            } else {
+                detectionsDiv.innerHTML = "<div style='padding: 10px; color: #999;'>未检测到对象</div>";
+            }
+            
+            // 显示导航结果
+            navResultDiv.innerHTML = "";
+            if (data.nav_result) {
+                const message = data.nav_result.message || data.nav_result.instruction || "前方环境正常";
+                const navDiv = document.createElement("div");
+                navDiv.className = "nav-message";
+                navDiv.textContent = message;
+                navResultDiv.appendChild(navDiv);
+            }
+            
+            // 显示性能数据
+            if (data.timing) {
+                timingDiv.innerHTML = `
+                    <div class="timing">
+                        <div class="timing-item">
+                            <span>图像处理:</span>
+                            <span><strong>${data.timing.image_ms}ms</strong></span>
+                        </div>
+                        <div class="timing-item">
+                            <span>YOLO 检测:</span>
+                            <span><strong>${data.timing.detect_ms}ms</strong></span>
+                        </div>
+                        <div class="timing-item">
+                            <span>导航规划:</span>
+                            <span><strong>${data.timing.nav_ms}ms</strong></span>
+                        </div>
+                        <div class="timing-item">
+                            <span>TTS 生成:</span>
+                            <span><strong>${data.timing.tts_ms}ms</strong></span>
+                        </div>
+                        <div class="timing-item" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                            <span><strong>总延迟:</strong></span>
+                            <span><strong style="color: #667eea; font-size: 18px;">${data.timing.total_ms}ms</strong></span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            resultDiv.style.display = "block";
+        }
+        
+        function playAudio(audioBase64) {
+            try {
+                const audioData = atob(audioBase64);
+                const len = audioData.length;
+                const audioBuffer = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    audioBuffer[i] = audioData.charCodeAt(i);
+                }
+                const blob = new Blob([audioBuffer], {type: "audio/wav"});
+                const url = URL.createObjectURL(blob);
+                const audio = new Audio(url);
+                audio.play().catch(e => {
+                    console.warn("音频播放失败:", e);
+                });
+            } catch (e) {
+                console.warn("音频解码失败:", e);
+            }
+        }
+        
+        // 页面加载时自动检测服务器地址
+        window.addEventListener("load", () => {
+            const serverUrl = getServerUrl();
+            if (!document.getElementById("serverUrl").value) {
+                document.getElementById("serverUrl").value = serverUrl;
+            }
+        });
+    </script>
+</body>
+</html>
+
+

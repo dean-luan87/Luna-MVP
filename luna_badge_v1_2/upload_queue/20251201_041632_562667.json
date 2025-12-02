@@ -1,0 +1,9 @@
+{
+  "ts": 1764562592.561988,
+  "type": "selfheal_action",
+  "cpu": 30.0,
+  "mem": 74.1,
+  "action": "clear_cache",
+  "scope": "all",
+  "result": "success"
+}

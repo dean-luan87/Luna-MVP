@@ -318,6 +318,56 @@ class LogManager:
             logger.error(f"❌ 读取日志失败: {e}")
             return []
     
+    def list_available_dates(self) -> List[str]:
+        """
+        列出所有可用的日志日期
+        
+        Returns:
+            日期列表（格式：YYYY-MM-DD）
+        """
+        dates = []
+        if not self.log_dir.exists():
+            return dates
+        
+        pattern = f"*_{self.user_id}.log"
+        for log_file in self.log_dir.glob(pattern):
+            # 从文件名提取日期：YYYY-MM-DD_userid.log
+            try:
+                date_str = log_file.stem.replace(f"_{self.user_id}", "")
+                # 验证日期格式
+                datetime.strptime(date_str, "%Y-%m-%d")
+                dates.append(date_str)
+            except ValueError:
+                continue
+        
+        return sorted(dates, reverse=True)  # 最新的在前
+    
+    def get_latest_logs(self, limit: Optional[int] = None) -> List[Dict[str, Any]]:
+        """
+        获取最新的日志（自动查找最近的日志文件）
+        
+        Args:
+            limit: 限制条数
+            
+        Returns:
+            日志列表
+        """
+        available_dates = self.list_available_dates()
+        if not available_dates:
+            return []
+        
+        # 尝试从最新的日期开始读取
+        all_logs = []
+        for date in available_dates:
+            logs = self.read_logs(date=date)
+            all_logs.extend(logs)
+            if limit and len(all_logs) >= limit:
+                break
+        
+        if limit:
+            return all_logs[-limit:]
+        return all_logs
+    
     def get_statistics(self, date: Optional[str] = None) -> Dict[str, Any]:
         """
         获取统计信息

@@ -1,0 +1,13 @@
+camera:
+  enabled: true
+  resolution: 640x480
+  fps: 30
+  format: rgb
+microphone:
+  enabled: true
+  sample_rate: 16000
+  channels: 1
+  format: pcm
+speaker:
+  enabled: true
+  volume: 0.8

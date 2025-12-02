@@ -1,0 +1,9 @@
+device_id: luna_badge_dev_001
+platform: mac
+startup_mode: active
+log_level: info
+language: zh-CN
+wake_word_engine: porcupine
+audio_input_device: default
+camera_device: 0
+auto_update: false

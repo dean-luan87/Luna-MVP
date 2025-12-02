@@ -1,0 +1,33 @@
+{
+  "user_id": "anonymous",
+  "date": "2025-10-31",
+  "maps": [
+    {
+      "map_id": "test_map_002",
+      "nodes_visited": [
+        "start",
+        "end"
+      ],
+      "emotion_tags": {},
+      "duration_minutes": 5.0,
+      "path": []
+    },
+    {
+      "map_id": "test_map_002",
+      "nodes_visited": [
+        "start",
+        "end"
+      ],
+      "emotion_tags": {},
+      "duration_minutes": 5.0,
+      "path": []
+    }
+  ],
+  "app_behavior": {
+    "asked_for_guidance": 0,
+    "used_voice_input": 0,
+    "requested_nearby_toilet": 0
+  },
+  "created_at": "2025-10-31T15:30:02.019184",
+  "updated_at": "2025-10-31T15:30:41.971768"
+}

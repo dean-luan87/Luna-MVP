@@ -116,13 +116,17 @@ class LunaUsageGuide:
             print(f"Luna: {line}")
             
             if use_tts:
-                # TODO: 接入TTS模块
+                # 已接入TTS模块
                 self._speak_text(line)
     
     def _speak_text(self, text: str):
         """文本转语音"""
         # 使用TTS管理器播报
-        speak(text, style=TTSStyle.CHEERFUL)
+        try:
+            speak(text, style=TTSStyle.CHEERFUL)
+        except Exception as e:
+            # TTS播报失败时仅打印，不阻塞引导流程
+            print(f"⚠️ TTS播报失败: {e}")
     
     def add_custom_guide(self, trigger: str, content: List[str]) -> bool:
         """

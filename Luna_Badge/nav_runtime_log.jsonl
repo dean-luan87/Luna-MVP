@@ -1,0 +1,58 @@
+{"time": "2025-11-19T05:30:54.418Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T05:30:54.442Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 22, "cached": true}}
+{"time": "2025-11-19T05:31:00.504Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T05:31:13.815Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T05:31:13.975Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 7, "cached": true}}
+{"time": "2025-11-19T05:31:20.019Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T05:35:48.905Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T05:35:48.921Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 15, "cached": true}}
+{"time": "2025-11-19T05:35:54.976Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T05:55:06.452Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T05:55:06.589Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 130, "cached": true}}
+{"time": "2025-11-19T05:55:13.205Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:13:53.028Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:13:53.340Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 310, "cached": true}}
+{"time": "2025-11-19T06:13:59.973Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:26:01.329Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:26:01.348Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 18, "cached": true}}
+{"time": "2025-11-19T06:26:07.404Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:35:55.128Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:35:55.164Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 34, "cached": true}}
+{"time": "2025-11-19T06:36:01.214Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:41:32.075Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:41:32.106Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 29, "cached": true}}
+{"time": "2025-11-19T06:41:38.158Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:43:13.998Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:43:14.039Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 37, "cached": true}}
+{"time": "2025-11-19T06:43:20.096Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T06:47:27.248Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T06:47:27.286Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 36, "cached": true}}
+{"time": "2025-11-19T06:47:33.339Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T07:08:54.456Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T07:08:54.499Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 41, "cached": true}}
+{"time": "2025-11-19T07:09:00.557Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T09:41:27.265Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T09:41:27.396Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 122, "cached": true}}
+{"time": "2025-11-19T09:41:34.004Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T09:42:00.296Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "priority": false}}
+{"time": "2025-11-19T11:06:40.002Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "测试一下语音播报，一号。", "style": "calm"}}
+{"time": "2025-11-19T11:06:43.695Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "测试一下语音播报，一号。", "style": "calm", "delay": 3691, "cached": false}}
+{"time": "2025-11-19T11:06:47.042Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "测试一下语音播报，一号。", "style": "calm"}}
+{"time": "2025-11-19T11:06:54.181Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "这是第二次播报，如果你能听到，说明 TTS 队列没有卡死。", "style": "calm"}}
+{"time": "2025-11-19T11:06:58.295Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "这是第二次播报，如果你能听到，说明 TTS 队列没有卡死。", "style": "calm", "delay": 4019, "cached": false}}
+{"time": "2025-11-19T11:07:04.906Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "这是第二次播报，如果你能听到，说明 TTS 队列没有卡死。", "style": "calm"}}
+{"time": "2025-11-19T11:07:07.431Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "第三次播报，用于测试连续触发可靠性。", "style": "calm"}}
+{"time": "2025-11-19T11:07:12.608Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "第三次播报，用于测试连续触发可靠性。", "style": "calm", "delay": 5092, "cached": false}}
+{"time": "2025-11-19T11:07:17.365Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "第三次播报，用于测试连续触发可靠性。", "style": "calm"}}
+{"time": "2025-11-19T11:07:31.821Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T11:07:31.854Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 22, "cached": true}}
+{"time": "2025-11-19T11:07:37.927Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T12:49:03.654Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T12:49:03.730Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 72, "cached": true}}
+{"time": "2025-11-19T12:49:09.802Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T13:12:29.515Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T13:12:29.539Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 21, "cached": true}}
+{"time": "2025-11-19T13:12:35.591Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T13:13:03.915Z", "level": "INFO", "source": "TTS", "message": "speakText调用", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}
+{"time": "2025-11-19T13:13:04.129Z", "level": "INFO", "source": "TTS", "message": "开始播报", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm", "delay": 22, "cached": true}}
+{"time": "2025-11-19T13:13:10.248Z", "level": "INFO", "source": "TTS", "message": "播报完成", "extra": {"text": "Luna已启动，开始环境扫描，我将主动为您提示周围环境", "style": "calm"}}

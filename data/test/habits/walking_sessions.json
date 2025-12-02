@@ -1,0 +1,54 @@
+{
+  "session_20251105133404_0": {
+    "session_id": "session_20251105133404_0",
+    "user_id": "test_user_001",
+    "timestamp": "2025-11-05T13:34:04.304320",
+    "distance": 10.0,
+    "duration": 12.5,
+    "steps": 15,
+    "environment": "outdoor",
+    "surface_type": "flat",
+    "obstacles": false,
+    "step_length": 0.6666666666666666,
+    "walking_speed": 0.8
+  },
+  "session_20251105133404_1": {
+    "session_id": "session_20251105133404_1",
+    "user_id": "test_user_001",
+    "timestamp": "2025-11-05T13:34:04.304583",
+    "distance": 20.0,
+    "duration": 25.0,
+    "steps": 30,
+    "environment": "indoor",
+    "surface_type": "flat",
+    "obstacles": false,
+    "step_length": 0.6666666666666666,
+    "walking_speed": 0.8
+  },
+  "session_20251105133425_2": {
+    "session_id": "session_20251105133425_2",
+    "user_id": "test_user_001",
+    "timestamp": "2025-11-05T13:34:25.605641",
+    "distance": 10.0,
+    "duration": 12.5,
+    "steps": 15,
+    "environment": "outdoor",
+    "surface_type": "flat",
+    "obstacles": false,
+    "step_length": 0.6666666666666666,
+    "walking_speed": 0.8
+  },
+  "session_20251105133425_3": {
+    "session_id": "session_20251105133425_3",
+    "user_id": "test_user_001",
+    "timestamp": "2025-11-05T13:34:25.605972",
+    "distance": 20.0,
+    "duration": 25.0,
+    "steps": 30,
+    "environment": "indoor",
+    "surface_type": "flat",
+    "obstacles": false,
+    "step_length": 0.6666666666666666,
+    "walking_speed": 0.8
+  }
+}

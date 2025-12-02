@@ -122,12 +122,13 @@ class HazardDetector:
         
         self.logger.info("⚠️ 危险环境检测器初始化完成")
     
-    def detect_hazards(self, image: np.ndarray) -> List[HazardResult]:
+    def detect_hazards(self, image: np.ndarray, detected_objects: List[Dict] = None) -> List[HazardResult]:
         """
         检测图像中的危险环境
         
         Args:
             image: 输入图像 (BGR格式)
+            detected_objects: YOLO检测到的物体列表（用于过滤人脸等误报）
             
         Returns:
             List[HazardResult]: 检测结果列表
@@ -135,6 +136,15 @@ class HazardDetector:
         results = []
         
         try:
+            # 如果检测到人脸，降低危险检测的敏感度（避免误报）
+            has_person = False
+            if detected_objects:
+                for obj in detected_objects:
+                    obj_class = obj.get('class', '').lower()
+                    if 'person' in obj_class or 'face' in obj_class or 'head' in obj_class:
+                        has_person = True
+                        break
+            
             # 转换为HSV颜色空间
             hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
             
@@ -152,6 +162,57 @@ class HazardDetector:
             
             # 去重和排序
             results = self._filter_and_sort(results)
+            
+            # 如果检测到人脸，进一步过滤误报（优化：更严格的过滤条件）
+            if has_person:
+                self.logger.info(f"👤 检测到人脸/人物，启用严格误报过滤模式")
+                filtered_results = []
+                img_center_x = image.shape[1] // 2
+                img_center_y = image.shape[0] // 2
+                img_area = image.shape[0] * image.shape[1]
+                
+                for result in results:
+                    x, y, w, h = result.bbox
+                    center_x = x + w // 2
+                    center_y = y + h // 2
+                    area = w * h
+                    area_ratio = area / img_area if img_area > 0 else 0
+                    distance_to_center = np.sqrt((center_x - img_center_x)**2 + (center_y - img_center_y)**2)
+                    
+                    # 优化1: 提高置信度阈值（从0.7提高到0.75）
+                    # 优化2: 扩大中心区域过滤范围（从200像素扩大到300像素）
+                    # 优化3: 扩大面积比例过滤范围（从0.05-0.3扩大到0.03-0.4）
+                    # 优化4: 如果置信度低于0.8且距离中心较近，直接过滤
+                    
+                    should_filter = False
+                    
+                    # 规则1: 低置信度 + 中心区域 = 可能是人脸误报
+                    if result.confidence < 0.75 and distance_to_center < 300 and 0.03 < area_ratio < 0.4:
+                        should_filter = True
+                        self.logger.debug(f"过滤误报（规则1-低置信度+中心区域）: {result.type.value}, 置信度={result.confidence:.2f}, 距离中心={distance_to_center:.1f}px, 面积比例={area_ratio:.3f}")
+                    
+                    # 规则2: 置信度低于0.8且距离中心很近（<250像素）= 很可能是人脸误报
+                    elif result.confidence < 0.8 and distance_to_center < 250:
+                        should_filter = True
+                        self.logger.debug(f"过滤误报（规则2-低置信度+很近）: {result.type.value}, 置信度={result.confidence:.2f}, 距离中心={distance_to_center:.1f}px")
+                    
+                    # 规则3: 面积比例很大（>0.4）且距离中心很近 = 可能是人体/背景误报
+                    elif area_ratio > 0.4 and distance_to_center < 200:
+                        should_filter = True
+                        self.logger.debug(f"过滤误报（规则3-大面积+中心）: {result.type.value}, 面积比例={area_ratio:.3f}, 距离中心={distance_to_center:.1f}px")
+                    
+                    # 规则4: 置信度低于0.65 = 低质量检测，直接过滤
+                    elif result.confidence < 0.65:
+                        should_filter = True
+                        self.logger.debug(f"过滤误报（规则4-低置信度）: {result.type.value}, 置信度={result.confidence:.2f}")
+                    
+                    if not should_filter:
+                        filtered_results.append(result)
+                    else:
+                        self.logger.info(f"🚫 过滤误报: {result.type.value} (置信度={result.confidence:.2f}, 距离中心={distance_to_center:.1f}px, 面积比例={area_ratio:.3f})")
+                
+                results = filtered_results
+                self.logger.info(f"✅ 误报过滤完成，剩余 {len(results)} 个危险区域")
             
             # 评估严重程度
             results = self._assess_severity(results, image.shape)
@@ -280,8 +341,24 @@ class HazardDetector:
                         # 获取边界框
                         x, y, w, h = cv2.boundingRect(contour)
                         
-                        # 计算置信度
-                        confidence = min(area / 10000.0, 1.0)
+                        # 计算置信度（改进：避免所有大区域都是100%）
+                        # 使用面积比例和类型特征来综合计算置信度
+                        img_area = img_shape[0] * img_shape[1]
+                        area_ratio = area / img_area if img_area > 0 else 0
+                        
+                        # 基础置信度：面积越大置信度越高，但不超过0.9
+                        base_confidence = min(area / 20000.0, 0.9)
+                        
+                        # 根据面积比例调整
+                        if area_ratio > 0.3:
+                            confidence = min(base_confidence + 0.1, 0.95)
+                        elif area_ratio > 0.1:
+                            confidence = base_confidence
+                        else:
+                            confidence = base_confidence * 0.8
+                        
+                        # 确保置信度在合理范围内
+                        confidence = max(0.3, min(confidence, 0.95))
                         
                         result = HazardResult(
                             type=hazard_type,
@@ -510,32 +587,68 @@ class HazardDetector:
         return results
     
     def _filter_and_sort(self, results: List[HazardResult]) -> List[HazardResult]:
-        """过滤和排序结果"""
+        """过滤和排序结果（改进版：更严格的去重和过滤）"""
         if not results:
             return []
         
         # 按置信度排序
         results.sort(key=lambda x: x.confidence, reverse=True)
         
-        # 去重（保留置信度最高的）
+        # 改进的去重策略：
+        # 1. 按类型分组，每种类型只保留最严重的几个
+        # 2. 位置相近的结果合并（提高阈值）
+        # 3. 过滤低置信度结果
+        
         filtered = []
-        used_areas = set()
+        used_centers = set()
+        type_counts = {}  # 记录每种类型的数量
+        
+        # 置信度阈值：提高阈值，过滤误报（特别是人脸等）
+        confidence_threshold = 0.65  # 从0.6提高到0.65，进一步减少误报
         
         for result in results:
-            # 使用中心点作为唯一标识
-            center_key = result.center
+            # 过滤低置信度
+            if result.confidence < confidence_threshold:
+                continue
             
-            # 检查是否已存在相似结果
+            hazard_type = result.type.value
+            
+            # 限制每种类型的数量（避免同一类型过多）
+            max_per_type = {
+                "water": 2,          # 水域最多2个
+                "construction": 2,   # 工地最多2个
+                "roadway": 2,        # 车行道最多2个
+                "electric": 1,       # 电力设施最多1个
+                "pit": 3,            # 坑洞最多3个
+                "high_platform": 2   # 高台最多2个
+            }
+            
+            max_count = max_per_type.get(hazard_type, 3)
+            current_count = type_counts.get(hazard_type, 0)
+            
+            if current_count >= max_count:
+                continue
+            
+            # 检查是否与已有结果位置相近（提高阈值到100像素）
             is_duplicate = False
-            for used_center in used_areas:
-                if abs(center_key[0] - used_center[0]) < 50 and \
-                   abs(center_key[1] - used_center[1]) < 50:
+            for used_center in used_centers:
+                if abs(result.center[0] - used_center[0]) < 100 and \
+                   abs(result.center[1] - used_center[1]) < 100:
                     is_duplicate = True
                     break
             
             if not is_duplicate:
                 filtered.append(result)
-                used_areas.add(center_key)
+                used_centers.add(result.center)
+                type_counts[hazard_type] = current_count + 1
+        
+        # 按严重程度和置信度重新排序
+        filtered.sort(key=lambda x: (
+            x.severity.value == "critical",
+            x.severity.value == "high",
+            x.severity.value == "medium",
+            x.confidence
+        ), reverse=True)
         
         return filtered
     

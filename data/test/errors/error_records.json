@@ -1,0 +1,50 @@
+{
+  "error_20251105133404_0": {
+    "error_id": "error_20251105133404_0",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T13:34:04.302829",
+    "user_id": "test_user",
+    "context": {
+      "location_accuracy": "low",
+      "unfamiliar_scenario": true
+    },
+    "user_input": "去305诊室",
+    "system_response": "向左转",
+    "expected_response": "向右转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "修正方向判断逻辑",
+      "action": "更新导航算法",
+      "notes": "用户反馈方向错误"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T13:34:04.303057",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105133425_1": {
+    "error_id": "error_20251105133425_1",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T13:34:25.603302",
+    "user_id": "test_user",
+    "context": {
+      "location_accuracy": "low",
+      "unfamiliar_scenario": true
+    },
+    "user_input": "去305诊室",
+    "system_response": "向左转",
+    "expected_response": "向右转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "修正方向判断逻辑",
+      "action": "更新导航算法",
+      "notes": "用户反馈方向错误"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T13:34:25.603515",
+    "learned": false,
+    "applied_to_other_cases": 0
+  }
+}

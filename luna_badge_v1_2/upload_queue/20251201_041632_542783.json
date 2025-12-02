@@ -1,0 +1,8 @@
+{
+  "ts": 1764562592.5424151,
+  "type": "selfheal_action",
+  "cpu": 20.8,
+  "mem": 74.1,
+  "action": "restart_camera_driver",
+  "result": "success"
+}

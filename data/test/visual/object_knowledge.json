@@ -1,0 +1,67 @@
+{
+  "路障": {
+    "object_name": "路障",
+    "category": "obstacle",
+    "description": "用于阻挡或引导交通的临时或永久障碍物",
+    "common_locations": [
+      "道路",
+      "施工现场",
+      "人行道"
+    ],
+    "typical_appearance": [
+      "橙色",
+      "锥形",
+      "柱状",
+      "反光条"
+    ],
+    "meaning": "指示危险区域或需要绕行",
+    "safety_impact": "高：需要避开，否则可能导致碰撞或摔倒",
+    "action_guidance": "检测到路障时，应提醒用户绕行或停止前进",
+    "visual_features": {
+      "shape": "cone",
+      "color": "orange"
+    },
+    "recognition_keywords": [
+      "路障",
+      "障碍",
+      "锥桶",
+      "barrier",
+      "concentration"
+    ],
+    "source": "online_query",
+    "learned_at": "2025-11-05T13:34:25.607138",
+    "recognition_count": 0,
+    "verification_count": 0,
+    "accuracy": 0.0,
+    "last_seen": null
+  },
+  "指示牌": {
+    "object_name": "指示牌",
+    "category": "sign",
+    "description": "用于指示方向、警告或提供信息的标识牌",
+    "common_locations": [
+      "道路",
+      "建筑物"
+    ],
+    "typical_appearance": [
+      "文字",
+      "图标",
+      "箭头"
+    ],
+    "meaning": "提供方向指引或重要信息",
+    "safety_impact": "中：需要注意指示内容",
+    "action_guidance": "识别指示牌内容，更新导航路径",
+    "visual_features": {},
+    "recognition_keywords": [
+      "指示牌",
+      "标志",
+      "标识"
+    ],
+    "source": "backend_sync",
+    "learned_at": "2025-11-05T13:34:25.607440",
+    "recognition_count": 0,
+    "verification_count": 0,
+    "accuracy": 0.0,
+    "last_seen": null
+  }
+}

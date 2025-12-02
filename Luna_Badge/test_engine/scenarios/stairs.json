@@ -1,0 +1,7 @@
+{
+  "name": "stairs",
+  "keyword": "上下楼梯 场景",
+  "expected_labels": ["person", "stairs"]
+}
+
+

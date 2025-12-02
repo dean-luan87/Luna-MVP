@@ -1,0 +1,9 @@
+{
+  "ts": 1764562064.15501,
+  "type": "selfheal_decision",
+  "cpu": 0.0,
+  "mem": 72.4,
+  "anomaly": {
+    "code": "MEMORY_LEAK"
+  }
+}

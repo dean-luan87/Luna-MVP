@@ -1,0 +1,29 @@
+{
+  "env": "dev",
+  "models": {
+    "l1_model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "l2_model_name": "Qwen/Qwen2.5-3B-Instruct",
+    "enable_l1": true,
+    "enable_l2": true
+  },
+  "features": {
+    "enable_task_chain": true,
+    "enable_replay": true
+  },
+  "logging": {
+    "level": "DEBUG",
+    "event_log_file": "logs/luna_events.log",
+    "trace_log_file": "logs/trace_events.log",
+    "max_file_size_mb": 10,
+    "trace_sampling_rate": 1.0
+  }
+}
+
+
+
+
+
+
+
+
+

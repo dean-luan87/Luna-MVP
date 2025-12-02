@@ -1,0 +1,6 @@
+environment_detection: true
+weather_fail_safe: true
+signboard_navigation: true
+speech_route_understand: true
+max_path_length: 1000
+path_cache_size: 100

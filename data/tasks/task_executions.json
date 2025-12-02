@@ -1,0 +1,201 @@
+{
+  "task_2637f603": {
+    "task_id": "task_2637f603",
+    "task_type": "navigation",
+    "timestamp": "2025-11-05T15:08:53.844796",
+    "task_description": "导航到A点",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "execution_steps": [
+      {
+        "step": 1,
+        "action": "start"
+      },
+      {
+        "step": 2,
+        "action": "turn_left"
+      },
+      {
+        "step": 3,
+        "action": "go_straight"
+      },
+      {
+        "step": 4,
+        "action": "turn_right"
+      },
+      {
+        "step": 5,
+        "action": "arrive"
+      }
+    ],
+    "success": true,
+    "execution_time": 120.5,
+    "user_satisfaction": 0.8,
+    "optimized_plan": null,
+    "optimization_source": null,
+    "optimization_notes": null
+  },
+  "task_b087e2c4": {
+    "task_id": "task_b087e2c4",
+    "task_type": "navigation",
+    "timestamp": "2025-11-05T15:09:00.018941",
+    "task_description": "导航到A点",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "execution_steps": [
+      {
+        "step": 1,
+        "action": "start"
+      },
+      {
+        "step": 2,
+        "action": "turn_left"
+      },
+      {
+        "step": 3,
+        "action": "go_straight"
+      },
+      {
+        "step": 4,
+        "action": "turn_right"
+      },
+      {
+        "step": 5,
+        "action": "arrive"
+      }
+    ],
+    "success": true,
+    "execution_time": 120.5,
+    "user_satisfaction": 0.8,
+    "optimized_plan": null,
+    "optimization_source": null,
+    "optimization_notes": null
+  },
+  "task_42235763": {
+    "task_id": "task_42235763",
+    "task_type": "navigation",
+    "timestamp": "2025-11-05T15:09:22.710803",
+    "task_description": "导航到A点",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "execution_steps": [
+      {
+        "step": 1,
+        "action": "start"
+      },
+      {
+        "step": 2,
+        "action": "turn_left"
+      },
+      {
+        "step": 3,
+        "action": "go_straight"
+      },
+      {
+        "step": 4,
+        "action": "turn_right"
+      },
+      {
+        "step": 5,
+        "action": "arrive"
+      }
+    ],
+    "success": true,
+    "execution_time": 120.5,
+    "user_satisfaction": 0.8,
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "optimization_notes": "用户反馈：路线更短"
+  },
+  "task_ab6629d6": {
+    "task_id": "task_ab6629d6",
+    "task_type": "navigation",
+    "timestamp": "2025-11-05T15:09:29.750379",
+    "task_description": "导航到A点",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "execution_steps": [
+      {
+        "step": 1,
+        "action": "start"
+      },
+      {
+        "step": 2,
+        "action": "turn_left"
+      },
+      {
+        "step": 3,
+        "action": "go_straight"
+      },
+      {
+        "step": 4,
+        "action": "turn_right"
+      },
+      {
+        "step": 5,
+        "action": "arrive"
+      }
+    ],
+    "success": true,
+    "execution_time": 120.5,
+    "user_satisfaction": 0.8,
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "optimization_notes": "用户反馈：路线更短"
+  },
+  "task_ed4fc765": {
+    "task_id": "task_ed4fc765",
+    "task_type": "navigation",
+    "timestamp": "2025-11-05T15:09:49.791607",
+    "task_description": "导航到A点",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "execution_steps": [
+      {
+        "step": 1,
+        "action": "start"
+      },
+      {
+        "step": 2,
+        "action": "turn_left"
+      },
+      {
+        "step": 3,
+        "action": "go_straight"
+      },
+      {
+        "step": 4,
+        "action": "turn_right"
+      },
+      {
+        "step": 5,
+        "action": "arrive"
+      }
+    ],
+    "success": true,
+    "execution_time": 120.5,
+    "user_satisfaction": 0.8,
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "optimization_notes": "用户反馈：路线更短"
+  }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>Luna 1.2.0 测试面板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/luna_test_panel.css') }}"
+    />
+</head>
+<body>
+  <div id="app">
+    <header class="ltp-header">
+      <div class="ltp-title">
+        <span class="ltp-title-main">Luna Badge 1.2.0 测试面板</span>
+        <span class="ltp-title-sub">视觉 × 导航 × 场景描述 × Hook 事件</span>
+      </div>
+      <div class="ltp-header-right">
+        <span class="ltp-tag">ENV: TEST</span>
+        <span class="ltp-tag ltp-tag-version">v1.2.0</span>
+      </div>
+    </header>
+
+    <main class="ltp-main">
+      <!-- 左侧：控制区 -->
+      <section class="ltp-left">
+        <!-- Tab 切换 -->
+        <div class="ltp-tabs">
+          <button class="ltp-tab ltp-tab-active" data-tab="vision">视觉测试</button>
+          <button class="ltp-tab" data-tab="hazard">危险 / 台阶</button>
+          <button class="ltp-tab" data-tab="navigation">导航 & 场景</button>
+          <button class="ltp-tab" data-tab="hooks">事件 Hook</button>
+        </div>
+
+        <!-- 视觉测试 -->
+        <div class="ltp-panel ltp-panel-active" id="panel-vision">
+          <h2>视觉测试（/api/recognize）</h2>
+          <div class="ltp-form-row">
+            <label class="ltp-label">测试图片：</label>
+            <input type="file" id="visionFile" accept="image/*" />
+          </div>
+          <div class="ltp-form-row">
+            <button id="btnTestVision" class="ltp-button">识别物体 & OCR</button>
+            <button id="btnTestComprehensive" class="ltp-button ltp-button-secondary">
+              综合检测（/api/detect/*）
+            </button>
+          </div>
+          <div class="ltp-result-block">
+            <div class="ltp-result-header">
+              <span>识别结果</span>
+              <span id="visionCost" class="ltp-small-text"></span>
+            </div>
+            <pre id="visionResult" class="ltp-pre"></pre>
+          </div>
+        </div>
+
+        <!-- 危险 / 台阶 -->
+        <div class="ltp-panel" id="panel-hazard">
+          <h2>危险 / 台阶 单点测试</h2>
+          <div class="ltp-form-row">
+            <label class="ltp-label">测试图片：</label>
+            <input type="file" id="hazardFile" accept="image/*" />
+          </div>
+          <div class="ltp-form-row">
+            <button id="btnTestStep" class="ltp-button">台阶检测（/api/detect/step）</button>
+            <button id="btnTestHazard" class="ltp-button">危险检测（/api/detect/hazard）</button>
+          </div>
+          <div class="ltp-result-grid">
+            <div class="ltp-result-block">
+              <div class="ltp-result-header">
+                <span>台阶检测结果</span>
+              </div>
+              <pre id="stepResult" class="ltp-pre"></pre>
+            </div>
+            <div class="ltp-result-block">
+              <div class="ltp-result-header">
+                <span>危险检测结果</span>
+              </div>
+              <pre id="hazardResult" class="ltp-pre"></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- 导航 & 场景描述 -->
+        <div class="ltp-panel" id="panel-navigation">
+          <h2>导航 & 场景描述</h2>
+
+          <div class="ltp-section">
+            <div class="ltp-section-header">
+              <span>导航控制（/api/navigation/*）</span>
+            </div>
+            <div class="ltp-form-row">
+              <label class="ltp-label">目的地：</label>
+              <input
+                type="text"
+                id="navDestination"
+                placeholder="例如：上海市第一人民医院门诊楼"
+              />
+            </div>
+            <div class="ltp-form-row">
+              <button id="btnStartNav" class="ltp-button">开始导航</button>
+              <button id="btnNavStatus" class="ltp-button ltp-button-secondary">
+                获取状态
+              </button>
+              <button id="btnPauseNav" class="ltp-button ltp-button-secondary">
+                暂停
+              </button>
+              <button id="btnResumeNav" class="ltp-button ltp-button-secondary">
+                恢复
+              </button>
+              <button id="btnCancelNav" class="ltp-button ltp-button-danger">
+                取消
+              </button>
+            </div>
+            <div class="ltp-result-block">
+              <div class="ltp-result-header">
+                <span>导航状态</span>
+              </div>
+              <pre id="navStatus" class="ltp-pre"></pre>
+            </div>
+          </div>
+
+          <div class="ltp-section">
+            <div class="ltp-section-header">
+              <span>场景描述（/api/navigation/describe_scene）</span>
+            </div>
+            <div class="ltp-form-row">
+              <label class="ltp-label">场景图片（可选）：</label>
+              <input type="file" id="sceneFile" accept="image/*" />
+            </div>
+            <div class="ltp-form-row">
+              <button id="btnDescribeScene" class="ltp-button">
+                生成场景描述
+              </button>
+            </div>
+            <div class="ltp-result-grid">
+              <div class="ltp-result-block">
+                <div class="ltp-result-header">
+                  <span>结构化描述</span>
+                </div>
+                <pre id="sceneStructured" class="ltp-pre"></pre>
+              </div>
+              <div class="ltp-result-block">
+                <div class="ltp-result-header">
+                  <span>TTS 文案（给用户说什么）</span>
+                </div>
+                <pre id="sceneSpeech" class="ltp-pre"></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="ltp-section">
+            <div class="ltp-section-header">
+              <span>快速自检</span>
+            </div>
+            <div class="ltp-form-row">
+              <button id="btnRunNavDiag" class="ltp-button ltp-button-secondary">
+                runNavigationDiagnosis()
+              </button>
+              <button id="btnRunFullChain" class="ltp-button ltp-button-secondary">
+                testFullChain()
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 事件 Hook -->
+        <div class="ltp-panel" id="panel-hooks">
+          <h2>Hook 事件监控（前端 Hooks.onXxx ）</h2>
+          <div class="ltp-hooks-grid">
+            <div class="ltp-hooks-col">
+              <h3>危险事件 onHazard</h3>
+              <ul id="hookHazardList" class="ltp-hook-list"></ul>
+            </div>
+            <div class="ltp-hooks-col">
+              <h3>导航事件 onNavigation</h3>
+              <ul id="hookNavList" class="ltp-hook-list"></ul>
+            </div>
+            <div class="ltp-hooks-col">
+              <h3>动作建议 onActionSuggest</h3>
+              <ul id="hookActionList" class="ltp-hook-list"></ul>
+            </div>
+          </div>
+          <div class="ltp-form-row">
+            <button id="btnClearHooks" class="ltp-button ltp-button-secondary">
+              清空 Hook 事件
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 右侧：预览 & 日志 -->
+      <section class="ltp-right">
+        <div class="ltp-preview">
+          <div class="ltp-preview-header">
+            <span>图像预览 / 调试画面</span>
+          </div>
+          <div class="ltp-preview-body">
+            <img id="previewImage" alt="预览图片" />
+            <div id="previewPlaceholder" class="ltp-preview-placeholder">
+              选择图片后这里会显示预览
+            </div>
+          </div>
+        </div>
+
+        <div class="ltp-logs">
+          <div class="ltp-logs-header">
+            <span>日志 & 错误码</span>
+            <button id="btnClearLog" class="ltp-button ltp-button-secondary ltp-button-xs">
+              清空日志
+            </button>
+          </div>
+          <textarea id="logArea" class="ltp-log-area" readonly></textarea>
+
+          <div class="ltp-metrics">
+            <div class="ltp-metric-item">
+              <span class="ltp-metric-label">内存：</span>
+              <span id="metricMemory">-</span> MB
+            </div>
+            <div class="ltp-metric-item">
+              <span class="ltp-metric-label">Vision 延迟：</span>
+              <span id="metricVision">-</span> ms
+            </div>
+            <div class="ltp-metric-item">
+              <span class="ltp-metric-label">Audio 延迟：</span>
+              <span id="metricAudio">-</span> ms
+            </div>
+            <div class="ltp-metric-item">
+              <span class="ltp-metric-label">FPS：</span>
+              <span id="metricFps">-</span>
+            </div>
+            <div class="ltp-metric-item">
+              <span class="ltp-metric-label">降级等级：</span>
+              <span id="metricDegrade">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 你现有的前端脚本（如果已经拆成文件，可以继续保留这些引入） -->
+  <!-- 统一 TTS 入口 -->
+  <script src="/frontend/speak_text_entry.js"></script>
+  <!-- 语音指令解析器 -->
+  <script src="/frontend/voice/CommandParser.js"></script>
+  <!-- 导航诊断脚本（提供 runNavigationDiagnosis） -->
+  <script src="/frontend/tests/navigation_diagnosis.js"></script>
+  <!-- 全链路测试脚本（提供 testFullChain） -->
+  <script src="/frontend/tests/test_full_chain.js"></script>
+
+  <!-- 测试面板 JS -->
+  <script src="{{ url_for('static', filename='js/luna_test_panel.js') }}"></script>
+</body>
+</html>
+
+
+

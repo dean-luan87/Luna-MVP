@@ -1,0 +1,18 @@
+# 当前识别类别配置（v1.2）
+
+categories:
+  - person
+  - obstacle
+  - stair
+  - vehicle
+  - sign
+
+
+
+
+
+
+
+
+
+

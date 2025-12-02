@@ -563,6 +563,104 @@ def set_config(module: str, key: str, value: Any, save: bool = True) -> bool:
     return unified_config_manager.set_config(module, key, value, save)
 
 
+# 参数中心接口
+def get_all_runtime_params() -> Dict[str, Dict[str, Any]]:
+    """
+    获取所有可调参数的当前值，用于参数中心页面。
+    
+    返回格式：
+    {
+        "navigation.max_deviation": {"value": 1.5, "description": "允许偏航距离（米）"},
+        "vision.yolo_conf": {"value": 0.65, "description": "YOLO 置信度阈值"},
+        ...
+    }
+    """
+    params = {}
+    
+    # 从配置文件中读取可调参数
+    # 这里先做一个简单的实现，后续可以根据实际配置文件扩展
+    
+    # 导航参数
+    nav_config = unified_config_manager.get_config("navigation", None, {})
+    if isinstance(nav_config, dict):
+        if "max_deviation" in nav_config:
+            params["navigation.max_deviation"] = {
+                "value": nav_config.get("max_deviation", 1.5),
+                "description": "允许偏航距离（米）"
+            }
+        if "step_distance_threshold" in nav_config:
+            params["navigation.step_distance_threshold"] = {
+                "value": nav_config.get("step_distance_threshold", 2.0),
+                "description": "台阶检测距离阈值（米）"
+            }
+    
+    # 视觉参数
+    vision_config = unified_config_manager.get_config("vision", None, {})
+    if isinstance(vision_config, dict):
+        if "yolo_conf" in vision_config:
+            params["vision.yolo_conf"] = {
+                "value": vision_config.get("yolo_conf", 0.65),
+                "description": "YOLO 置信度阈值"
+            }
+        if "ocr_enabled" in vision_config:
+            params["vision.ocr_enabled"] = {
+                "value": vision_config.get("ocr_enabled", True),
+                "description": "是否启用OCR识别"
+            }
+    
+    # 危险检测参数
+    hazard_config = unified_config_manager.get_config("hazard", None, {})
+    if isinstance(hazard_config, dict):
+        if "human_filter_zone" in hazard_config:
+            params["hazard.human_filter_zone"] = {
+                "value": hazard_config.get("human_filter_zone", 0.3),
+                "description": "人像过滤中心区域半径（米）"
+            }
+    
+    # 系统参数
+    system_config = unified_config_manager.get_config("system", None, {})
+    if isinstance(system_config, dict):
+        if "log_level" in system_config:
+            params["system.log_level"] = {
+                "value": system_config.get("log_level", "info"),
+                "description": "日志级别（debug/info/warning/error）"
+            }
+    
+    return params
+
+
+def update_runtime_params(updates: Dict[str, Any]) -> Dict[str, str]:
+    """
+    更新部分参数。
+    
+    Args:
+        updates: 要更新的参数，格式如 {"navigation.max_deviation": 1.5, "vision.yolo_conf": 0.65}
+    
+    Returns:
+        成功更新的参数列表
+    """
+    updated = {}
+    
+    for key, value in updates.items():
+        try:
+            # 解析键名：module.key
+            parts = key.split(".", 1)
+            if len(parts) != 2:
+                continue
+            
+            module, param_key = parts
+            
+            # 更新配置
+            success = unified_config_manager.set_config(module, param_key, value, save=True)
+            if success:
+                updated[key] = str(value)
+        except Exception as e:
+            logger.warning(f"Failed to update parameter {key}: {e}")
+            continue
+    
+    return updated
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     

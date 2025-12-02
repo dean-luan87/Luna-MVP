@@ -1,0 +1,101 @@
+{
+  "办公楼": {
+    "object_id": "办公楼",
+    "category": "building",
+    "name": "商业大厦",
+    "recognition_count": 8,
+    "first_seen": "2025-11-05T15:07:10.924098",
+    "last_seen": "2025-11-05T15:09:49.794395",
+    "locations": [
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      {
+        "lat": 39.9,
+        "lon": 116.4
+      }
+    ],
+    "confidence_history": [
+      0.85,
+      0.85,
+      0.85,
+      0.85,
+      0.85,
+      0.85,
+      0.85,
+      0.85
+    ],
+    "average_confidence": 0.8499999999999999,
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "user_corrections": [
+      {
+        "timestamp": "2025-11-05T15:08:53.850447",
+        "user_id": "test_user_001",
+        "original_category": "building",
+        "original_name": "办公楼",
+        "correct_category": null,
+        "correct_name": "商业大厦"
+      },
+      {
+        "timestamp": "2025-11-05T15:09:00.020842",
+        "user_id": "test_user_001",
+        "original_category": "building",
+        "original_name": "商业大厦",
+        "correct_category": null,
+        "correct_name": "商业大厦"
+      },
+      {
+        "timestamp": "2025-11-05T15:09:22.713120",
+        "user_id": "test_user_001",
+        "original_category": "building",
+        "original_name": "商业大厦",
+        "correct_category": null,
+        "correct_name": "商业大厦"
+      },
+      {
+        "timestamp": "2025-11-05T15:09:29.753274",
+        "user_id": "test_user_001",
+        "original_category": "building",
+        "original_name": "商业大厦",
+        "correct_category": null,
+        "correct_name": "商业大厦"
+      },
+      {
+        "timestamp": "2025-11-05T15:09:49.794911",
+        "user_id": "test_user_001",
+        "original_category": "building",
+        "original_name": "商业大厦",
+        "correct_category": null,
+        "correct_name": "商业大厦"
+      }
+    ]
+  }
+}

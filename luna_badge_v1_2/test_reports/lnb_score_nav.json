@@ -1,0 +1,42 @@
+{
+  "total_score": 88.18,
+  "kpi_scores": {
+    "KPI1": 100,
+    "KPI2": 100,
+    "KPI3": 100,
+    "KPI4": 100,
+    "KPI5": 100,
+    "KPI6": 40,
+    "KPI7": 100,
+    "KPI8": 100,
+    "KPI9": 60,
+    "KPI10": 100,
+    "KPI11": 80
+  },
+  "kpi_weights": {
+    "KPI1": 12,
+    "KPI2": 8,
+    "KPI3": 10,
+    "KPI4": 15,
+    "KPI5": 15,
+    "KPI6": 15,
+    "KPI7": 10,
+    "KPI8": 5,
+    "KPI9": 5,
+    "KPI10": 5,
+    "KPI11": 10
+  },
+  "details": {
+    "pass_rate": 0.0,
+    "yolo_avg_ms": 12.0,
+    "yolo_p95_ms": 12.58,
+    "depth_avg_ms": 6.17,
+    "perception_chain_ms": 18.22,
+    "orch_step_ms": 18.21,
+    "stress_error_rate": 0.0,
+    "cpu_usage": 35.08,
+    "mem_usage": 71.54,
+    "device_ok": true,
+    "nav_stuck_errors": 1
+  }
+}

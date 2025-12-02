@@ -59,7 +59,7 @@ def generate_ssl_cert():
         print("=" * 60)
         print("📱 在iPhone上信任证书的步骤：")
         print("=" * 60)
-        print("1. 在Safari中访问: https://" + local_ip + ":5001")
+        print("1. 在Safari中访问: https://" + local_ip + ":8080")
         print("2. 点击地址栏的锁图标")
         print("3. 点击'显示详细信息'")
         print("4. 点击'访问此网站'")
@@ -82,4 +82,5 @@ def generate_ssl_cert():
 
 if __name__ == '__main__':
     generate_ssl_cert()
+
 

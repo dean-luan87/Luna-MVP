@@ -1,0 +1,77 @@
+{
+  "error_20251105150853_3": {
+    "error_id": "error_20251105150853_3",
+    "root_cause": "导航系统判断错误",
+    "contributing_factors": [
+      "未知因素"
+    ],
+    "severity": "high",
+    "frequency": 4,
+    "impact": "影响当前会话",
+    "solution": "应该向左转",
+    "prevention_measures": [
+      "加强错误监控和预警",
+      "定期分析错误模式"
+    ]
+  },
+  "error_20251105150900_4": {
+    "error_id": "error_20251105150900_4",
+    "root_cause": "导航系统判断错误",
+    "contributing_factors": [
+      "未知因素"
+    ],
+    "severity": "high",
+    "frequency": 5,
+    "impact": "影响当前会话",
+    "solution": "应该向左转",
+    "prevention_measures": [
+      "加强错误监控和预警",
+      "定期分析错误模式"
+    ]
+  },
+  "error_20251105150922_5": {
+    "error_id": "error_20251105150922_5",
+    "root_cause": "导航系统判断错误",
+    "contributing_factors": [
+      "未知因素"
+    ],
+    "severity": "high",
+    "frequency": 6,
+    "impact": "影响当前会话",
+    "solution": "应该向左转",
+    "prevention_measures": [
+      "加强错误监控和预警",
+      "定期分析错误模式"
+    ]
+  },
+  "error_20251105150929_6": {
+    "error_id": "error_20251105150929_6",
+    "root_cause": "导航系统判断错误",
+    "contributing_factors": [
+      "未知因素"
+    ],
+    "severity": "high",
+    "frequency": 7,
+    "impact": "影响当前会话",
+    "solution": "应该向左转",
+    "prevention_measures": [
+      "加强错误监控和预警",
+      "定期分析错误模式"
+    ]
+  },
+  "error_20251105150949_7": {
+    "error_id": "error_20251105150949_7",
+    "root_cause": "导航系统判断错误",
+    "contributing_factors": [
+      "未知因素"
+    ],
+    "severity": "high",
+    "frequency": 8,
+    "impact": "影响当前会话",
+    "solution": "应该向左转",
+    "prevention_measures": [
+      "加强错误监控和预警",
+      "定期分析错误模式"
+    ]
+  }
+}

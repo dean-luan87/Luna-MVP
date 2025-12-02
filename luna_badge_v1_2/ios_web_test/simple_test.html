@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>简单测试</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #1a1a1a; color: #fff; }
+        .status { padding: 15px; margin: 10px 0; background: #2a2a2a; border-radius: 8px; }
+        .success { background: #2d5016; }
+        .error { background: #50162d; }
+    </style>
+</head>
+<body>
+    <h1>✅ 页面加载成功！</h1>
+    <div class="status success">
+        <p><strong>协议:</strong> <span id="protocol"></span></p>
+        <p><strong>主机:</strong> <span id="host"></span></p>
+        <p><strong>时间:</strong> <span id="time"></span></p>
+    </div>
+    <div class="status">
+        <p>如果你能看到这个页面，说明 HTTPS 服务器工作正常。</p>
+        <p>下一步：测试 WebSocket 连接</p>
+    </div>
+    <script>
+        document.getElementById('protocol').textContent = window.location.protocol;
+        document.getElementById('host').textContent = window.location.hostname;
+        document.getElementById('time').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

@@ -50,7 +50,7 @@ def main():
     
     # 获取IP地址
     local_ip = get_local_ip()
-    port = 5000
+    port = 9000  # 注意：端口5000和8080不可用，已改为9000
     
     print(f"\n📱 手机访问地址: http://{local_ip}:{port}")
     print(f"💻 本地访问地址: http://localhost:{port}")

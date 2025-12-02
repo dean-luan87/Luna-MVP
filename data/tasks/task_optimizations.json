@@ -1,0 +1,77 @@
+{
+  "opt_20251105150922_0": {
+    "optimization_id": "opt_20251105150922_0",
+    "task_id": "task_42235763",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "timestamp": "2025-11-05T15:09:22.711155",
+    "reason": "用户反馈路线过长",
+    "improvements": [
+      "减少路径点",
+      "优化转弯次数"
+    ],
+    "expected_benefits": {},
+    "applied": false,
+    "verified": false,
+    "verification_result": null,
+    "application_count": 0,
+    "success_rate": 0.0
+  },
+  "opt_20251105150929_1": {
+    "optimization_id": "opt_20251105150929_1",
+    "task_id": "task_ab6629d6",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "timestamp": "2025-11-05T15:09:29.750900",
+    "reason": "用户反馈路线过长",
+    "improvements": [
+      "减少路径点",
+      "优化转弯次数"
+    ],
+    "expected_benefits": {},
+    "applied": false,
+    "verified": false,
+    "verification_result": null,
+    "application_count": 0,
+    "success_rate": 0.0
+  },
+  "opt_20251105150949_2": {
+    "optimization_id": "opt_20251105150949_2",
+    "task_id": "task_ed4fc765",
+    "original_plan": {
+      "route": "route1",
+      "steps": 5
+    },
+    "optimized_plan": {
+      "route": "route2",
+      "steps": 3
+    },
+    "optimization_source": "user_feedback",
+    "timestamp": "2025-11-05T15:09:49.792197",
+    "reason": "用户反馈路线过长",
+    "improvements": [
+      "减少路径点",
+      "优化转弯次数"
+    ],
+    "expected_benefits": {},
+    "applied": false,
+    "verified": false,
+    "verification_result": null,
+    "application_count": 0,
+    "success_rate": 0.0
+  }
+}

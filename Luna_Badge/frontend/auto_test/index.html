@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luna Auto Test Panel v1.1</title>
+    <link rel="stylesheet" href="/auto_test/auto_test.css" />
+</head>
+
+<body>
+<div class="container">
+
+    <div class="left-panel">
+        <h2>场景测试关键字</h2>
+
+        <div id="keyword-list">
+            <!-- JS 自动插入 -->
+        </div>
+
+        <button id="run-all" class="btn-run">
+            ▶ 运行全部测试
+        </button>
+
+        <h3 style="margin-top:24px;">场景组 Playlist（v1.3）</h3>
+        <select id="playlistSelect" style="width:100%;padding:8px;border-radius:6px;margin-bottom:8px;">
+            <option value="">请选择场景组</option>
+        </select>
+        <button id="btnRunPlaylist" class="btn-run">▶ 运行场景组</button>
+    </div>
+
+    <div class="right-panel">
+        <h2>测试结果</h2>
+
+        <div id="result-box">
+            <div class="placeholder">请选择左侧关键字开始测试</div>
+        </div>
+
+        <hr />
+
+        <h2>🎥 视频场景测试（v1.2）</h2>
+        <input type="file" id="videoInput" accept="video/*" />
+        <button id="btnVideoTest" class="btn-run" style="margin-top:10px;">
+            ▶ 上传视频并分析场景
+        </button>
+        <div id="videoResult" class="mt-2"></div>
+
+        <hr />
+
+        <h2>📊 测试统计（v2.0）</h2>
+        <button id="btnLoadMetrics" class="btn-run" style="background:#455a64;">
+            刷新统计
+        </button>
+        <div id="metricsBox" class="mt-2"></div>
+
+        <hr class="mt-4 mb-3" />
+
+        <h4>📁 自动识别与分类（v1.4）</h4>
+        <div class="form-inline mt-2" style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
+            <label for="autoSortInputDir" style="margin-right: 8px;">图片目录：</label>
+            <input id="autoSortInputDir" type="text" class="form-control" style="width: 260px; padding: 6px; border: 1px solid #ccc; border-radius: 4px;"
+                   value="test_images" />
+            <button id="btnRunAutoSort" class="btn btn-primary" style="padding: 6px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                运行自动分类
+            </button>
+        </div>
+        <div id="autoSortResult" class="mt-3" style="font-size: 14px; white-space: pre-line; padding: 12px; background: #f8f9fa; border-radius: 4px; border: 1px solid #ddd; margin-top: 12px;"></div>
+
+        <hr />
+
+        <!-- =============== 批量场景测试面板 =============== -->
+        <div class="card mt-4" id="batchTestPanel" style="margin-top: 20px; padding: 16px; border: 1px solid #ddd; border-radius: 8px;">
+            <div class="card-header" style="background: #f8f9fa; padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">
+                批量场景测试（本地图片，不影响已有图片）
+            </div>
+            <div class="card-body" style="padding: 16px;">
+                <!-- 1. 选择图片 -->
+                <div class="mb-3">
+                    <label class="form-label" style="display: block; margin-bottom: 8px; font-weight: 500;">选择本地图片（可多选）</label>
+                    <input
+                        type="file"
+                        id="batchFilesInput"
+                        class="form-control"
+                        accept="image/*"
+                        multiple
+                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;"
+                    />
+                    <div class="form-text" style="margin-top: 4px; font-size: 12px; color: #666;">
+                        这些只是从你电脑选的图片，不会修改你项目里已有那批图片。
+                    </div>
+                </div>
+
+                <!-- 2. 场景标签 -->
+                <div class="mb-3">
+                    <label class="form-label" style="display: block; margin-bottom: 8px; font-weight: 500;">场景标签（用于后续统计）</label>
+                    <select id="batchSceneTag" class="form-select" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;">
+                        <option value="unknown">-- 请选择或手动填写 --</option>
+                        <option value="stairs_up">上下楼梯</option>
+                        <option value="community_walk">小区里走路</option>
+                        <option value="bus_station">公交站 / 上下公交</option>
+                        <option value="cross_road">过马路 / 斑马线</option>
+                        <option value="subway_station">地铁口 / 地铁站</option>
+                        <option value="mall_entrance">商场入口 / 室内通道</option>
+                        <option value="hospital_hall">医院大厅 / 挂号区</option>
+                    </select>
+                    <input
+                        type="text"
+                        id="batchSceneTagCustom"
+                        class="form-control mt-2"
+                        placeholder="如果上面没有，就在这里自定义一个场景标签"
+                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100%;"
+                    />
+                </div>
+
+                <!-- 3. 控制按钮 -->
+                <div class="mb-3 d-flex align-items-center" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <button id="btnBatchStart" class="btn btn-primary" style="padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                        ▶ 开始批量测试
+                    </button>
+                    <button id="btnBatchStop" class="btn btn-outline-secondary" style="padding: 8px 16px; background: white; color: #6c757d; border: 1px solid #6c757d; border-radius: 4px; cursor: pointer;">
+                        ⏹ 停止
+                    </button>
+                    <button id="btnBatchExport" class="btn btn-outline-dark" style="padding: 8px 16px; background: white; color: #212529; border: 1px solid #212529; border-radius: 4px; cursor: pointer;">
+                        ⬇ 导出 CSV
+                    </button>
+                    <button id="btnBatchReport" class="btn btn-outline-success" style="padding: 8px 16px; background: white; color: #28a745; border: 1px solid #28a745; border-radius: 4px; cursor: pointer;">
+                        ☁ 上传本次结果（后端保存）
+                    </button>
+                    <span id="batchStatusText" class="ms-3 text-muted" style="margin-left: 12px; color: #6c757d;">
+                        当前状态：空闲
+                    </span>
+                </div>
+
+                <!-- 4. 结果表 -->
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px;">
+                    <table class="table table-sm table-bordered align-middle" id="batchResultTable" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                        <thead class="table-light" style="background: #f8f9fa; position: sticky; top: 0;">
+                            <tr>
+                                <th style="padding: 8px; border: 1px solid #ddd;">#</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">文件名</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">场景标签</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">场景描述</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">危险检测</th>
+                                <th style="padding: 8px; border: 1px solid #ddd;">自动判断</th>
+                            </tr>
+                        </thead>
+                        <tbody id="batchResultTbody" style="background: white;">
+                            <!-- JS 动态填充 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 5. 汇总指标 -->
+                <div class="mt-3" style="margin-top: 16px;">
+                    <h6 style="margin-bottom: 8px; font-weight: 600;">统计指标</h6>
+                    <pre
+                        id="batchMetrics"
+                        style="background:#f8f9fa; padding:8px; border-radius:4px; border:1px solid #eee; white-space: pre-wrap; font-size: 12px; margin: 0;"
+                    >暂无数据</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/auto_test/auto_test.js"></script>
+</body>
+</html>
+
