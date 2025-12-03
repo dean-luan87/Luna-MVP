@@ -24,6 +24,8 @@ system:
     enabled: true
     index: 0  # 摄像头索引
     fps_limit: 20  # 帧率限制
+  vision:
+    infer_interval: 0.1  # 推理间隔（秒），默认 0.1 秒（10 FPS）
   sensors:
     enabled: true
 

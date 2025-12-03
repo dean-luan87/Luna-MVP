@@ -9,6 +9,7 @@ from core.speed.thread_controller import ThreadController
 from core.speed.speed_context import SpeedContext
 from core.speed.vision_buffer import VisionBuffer
 from core.speed.camera_stream_worker import CameraStreamWorker
+from core.speed.vision_infer_worker import VisionInferWorker
 
 __all__ = [
     "WorkerBase",
@@ -17,5 +18,6 @@ __all__ = [
     "SpeedContext",
     "VisionBuffer",
     "CameraStreamWorker",
+    "VisionInferWorker",
 ]
 

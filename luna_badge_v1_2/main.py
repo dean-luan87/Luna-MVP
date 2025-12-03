@@ -18,6 +18,7 @@ from core.concurrency.thread_pool import ThreadPool
 from core.speed.thread_controller import ThreadController
 from core.speed.speed_thread_pool import SpeedThreadPool
 from core.speed.camera_stream_worker import CameraStreamWorker
+from core.speed.vision_infer_worker import VisionInferWorker
 from core.speed.speed_context import SpeedContext
 from core.speed.speed_thread_pool import SpeedThreadPool
 from core.speed.camera_stream_worker import CameraStreamWorker
@@ -64,7 +65,7 @@ def bootstrap():
     # task_manager.start()
     logger.info("任务链系统: 待实现")
 
-    # 5. 启动 Speed Engine 线程（1.4.1-speed.1 + speed.2）
+    # 5. 启动 Speed Engine 线程（1.4.1-speed.1 + speed.2 + speed.3）
     # 注册 CameraStreamWorker（1.4.1-speed.2）
     cam_index = ConfigCenter.get("system.camera.index", 0)
     fps_limit = ConfigCenter.get("system.camera.fps_limit", 20)
@@ -72,6 +73,18 @@ def bootstrap():
     SpeedThreadPool.register(camera_worker)
     SpeedContext.set_camera_worker(camera_worker)
     logger.info(f"CameraStreamWorker registered (cam_index={cam_index}, fps_limit={fps_limit})")
+    
+    # 注册 VisionInferWorker（1.4.1-speed.3）
+    try:
+        from core.yolo_detector import YoloDetector
+        yolo_model = YoloDetector()
+        infer_interval = ConfigCenter.get("system.vision.infer_interval", 0.1)  # 默认 10 FPS
+        infer_worker = VisionInferWorker(model=yolo_model, infer_interval=infer_interval)
+        SpeedThreadPool.register(infer_worker)
+        logger.info(f"VisionInferWorker registered (infer_interval={infer_interval}s)")
+    except Exception as e:
+        logger.warning(f"VisionInferWorker registration failed: {e}")
+        logger.warning("系统将使用旧推理逻辑（fallback）")
     
     ThreadController.start_speed_threads()
     logger.info(f"Speed Engine: {ThreadController.get_worker_count()} workers started")

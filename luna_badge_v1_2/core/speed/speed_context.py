@@ -17,6 +17,10 @@ class SpeedContext:
     
     speed_mode: SpeedMode = "normal"  # normal, fast, safe
     camera_worker: Optional[object] = None  # CameraStreamWorker 实例
+    
+    # 1.4.1-speed.3: 推理结果共享状态
+    current_yolo_result: Optional[Any] = None  # 当前 YOLO 推理结果
+    last_yolo_ts: float = 0.0  # 最后一次推理时间戳
 
     @staticmethod
     def set_mode(mode: SpeedMode):
