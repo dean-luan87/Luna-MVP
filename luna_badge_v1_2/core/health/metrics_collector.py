@@ -5,10 +5,10 @@
 import time
 from contextlib import contextmanager
 from typing import Dict
+import logging
 
-from core.logging.log_manager import LogManager
-
-logger = LogManager.get_logger(__name__)
+# 使用标准 logging，避免循环依赖
+logger = logging.getLogger(__name__)
 
 
 class MetricsCollector:

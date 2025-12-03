@@ -6,10 +6,11 @@ import threading
 import time
 from abc import ABC, abstractmethod
 from typing import Optional
+import logging
 
-from core.logging.log_manager import LogManager
-
-logger = LogManager.get_logger(__name__)
+# 使用标准 logging，避免循环依赖
+# 在实际使用时，Worker 可以通过 LogManager.get_logger() 获取日志器
+logger = logging.getLogger(__name__)
 
 
 class WorkerBase(ABC):

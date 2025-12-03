@@ -4,10 +4,10 @@
 """
 from queue import Queue
 from typing import Generic, TypeVar
+import logging
 
-from core.logging.log_manager import LogManager
-
-logger = LogManager.get_logger(__name__)
+# 使用标准 logging，避免循环依赖
+logger = logging.getLogger(__name__)
 
 T = TypeVar("T")
 

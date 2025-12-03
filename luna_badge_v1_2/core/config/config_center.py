@@ -4,12 +4,13 @@
 """
 from pathlib import Path
 from typing import Any, Optional
+import logging
 
 import yaml
 
-from core.logging.log_manager import LogManager
-
-logger = LogManager.get_logger(__name__)
+# 注意：ConfigCenter 不能使用 LogManager，因为 LogManager 依赖 ConfigCenter
+# 使用标准 logging 作为临时方案
+logger = logging.getLogger(__name__)
 
 
 class ConfigCenter:

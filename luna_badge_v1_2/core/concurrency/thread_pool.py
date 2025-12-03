@@ -4,11 +4,10 @@
 """
 from concurrent.futures import ThreadPoolExecutor, Future
 from typing import Callable, Any
+import logging
 
-from core.config.config_center import ConfigCenter
-from core.logging.log_manager import LogManager
-
-logger = LogManager.get_logger(__name__)
+# 延迟导入，避免循环依赖
+logger = logging.getLogger(__name__)
 
 
 class ThreadPool:
@@ -28,6 +27,9 @@ class ThreadPool:
             logger.warning("ThreadPool already initialized, skipping")
             return
 
+        # 延迟导入，避免循环依赖
+        from core.config.config_center import ConfigCenter
+        
         max_workers = ConfigCenter.get("concurrency.default_worker_threads", 4)
         cls._executor = ThreadPoolExecutor(max_workers=max_workers)
         cls._initialized = True

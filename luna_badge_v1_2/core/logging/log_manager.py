@@ -7,11 +7,8 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Optional
 
-from core.config.config_center import ConfigCenter
-
-# 注意：这里不能使用 LogManager.get_logger，因为 LogManager 还没初始化
-# 使用标准 logging 作为临时方案
-_temp_logger = logging.getLogger(__name__)
+# 延迟导入，避免循环依赖
+# ConfigCenter 会在 LogManager.init() 中导入
 
 
 class LogManager:
@@ -27,8 +24,11 @@ class LogManager:
         从 ConfigCenter 读取配置并设置日志系统
         """
         if cls._initialized:
-            _temp_logger.warning("LogManager already initialized, skipping")
+            logging.warning("LogManager already initialized, skipping")
             return
+
+        # 延迟导入 ConfigCenter，避免循环依赖
+        from core.config.config_center import ConfigCenter
 
         # 从配置中心读取日志配置
         level_str = ConfigCenter.get("logging.level", "INFO")
@@ -70,7 +70,7 @@ class LogManager:
         root_logger.addHandler(file_handler)
 
         cls._initialized = True
-        _temp_logger.info(f"LogManager initialized: level={level_str}, file={log_file}")
+        logging.info(f"LogManager initialized: level={level_str}, file={log_file}")
 
     @classmethod
     def get_logger(cls, name: Optional[str] = None) -> logging.Logger:
