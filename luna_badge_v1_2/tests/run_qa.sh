@@ -1,10 +1,11 @@
 #!/bin/bash
-# Luna Badge v1.4.1 自动化 QA 测试入口
+# Luna Badge v1.4.1 自动化 QA 测试入口（完整版）
 
 set -e
 
 echo "=========================================="
 echo "Luna Badge v1.4.1 自动化 QA 测试"
+echo "（核心 + FailSafe + 压力 + 内存 + TTS）"
 echo "=========================================="
 echo ""
 
@@ -17,9 +18,9 @@ fi
 # 进入项目根目录
 cd "$(dirname "$0")/.."
 
-# 运行 QA 测试
-echo "运行自动化 QA 测试..."
-pytest tests/qa_1_4_1/test_entry.py tests/qa_1_4_1/test_hooks.py -s -v
+# 运行完整 QA 测试套件
+echo "运行完整 QA 测试套件..."
+pytest tests/qa_1_4_1/ -s -v
 
 echo ""
 echo "=========================================="
