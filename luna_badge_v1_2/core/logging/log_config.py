@@ -1,6 +1,4 @@
-from core.logging import get_logger
-
-log = get_logger("log_config")
+# 日志配置模块，不使用 logger 避免循环导入
 """
 日志配置管理
 支持全局开关、日志级别、输出目录等配置

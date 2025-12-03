@@ -1,6 +1,4 @@
-from core.logging import get_logger
-
-log = get_logger("log_writer")
+# 日志写入模块，不使用 logger 避免循环导入
 """
 日志写入器
 支持同步和异步写入
