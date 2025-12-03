@@ -45,4 +45,9 @@ failsafe:
     cpu_threshold: 80.0  # CPU 使用率阈值（%）
     mem_threshold: 85.0  # 内存使用率阈值（%）
     check_interval: 0.1  # 检查间隔（秒）
+  recovery:
+    enabled: true  # 是否启用自动恢复
+    stable_duration_sec: 15  # 连续稳定时间（秒）才允许恢复
+    check_interval_sec: 1  # 恢复检查周期（秒）
+    auto_restart_enabled: false  # v1 默认不自动重启线程，仅恢复模式
 

@@ -22,6 +22,7 @@ from core.speed.vision_infer_worker import VisionInferWorker
 from core.speed.speed_context import SpeedContext
 from core.failsafe.health_monitor import HealthMonitor
 from core.failsafe.fail_safe_manager import FailSafeManager
+from core.failsafe.auto_recovery import AutoRecoveryManager
 
 
 def bootstrap():
@@ -129,6 +130,15 @@ def bootstrap():
         health_monitor.start_monitor()
         logger.info(f"HealthMonitor started (camera_timeout={camera_timeout}s, infer_timeout={infer_timeout}s)")
         logger.info("FailSafeManager attached and ready")
+        
+        # 启动 AutoRecoveryManager（1.4.1-failsafe.4）
+        try:
+            auto_recovery = AutoRecoveryManager()
+            auto_recovery.start_manager()
+            logger.info("AutoRecoveryManager started")
+        except Exception as e:
+            logger.warning(f"AutoRecoveryManager initialization failed: {e}")
+            logger.warning("系统将在无自动恢复模式下运行")
     except Exception as e:
         logger.warning(f"FailSafe system initialization failed: {e}")
         logger.warning("系统将在无健康监控模式下运行")

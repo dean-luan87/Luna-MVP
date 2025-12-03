@@ -179,6 +179,39 @@ class FailSafeManager:
         except Exception as e:
             self.logger.error(f"[FailSafeManager] Degraded hooks restore failed: {e}")
 
+    def get_last_event_time(self, types: Optional[List[str]] = None) -> float:
+        """
+        返回最近一次指定类型事件的时间戳（1.4.1-failsafe.4）
+        
+        若 types 为 None，则返回任意事件的最近时间。
+        
+        Args:
+            types: 事件类型列表，None 表示任意类型
+        
+        Returns:
+            最近事件的时间戳，如果没有则返回 0.0
+        """
+        if not self.event_history:
+            return 0.0
+        
+        if types is None:
+            return self.event_history[-1][0]
+        
+        # 从后往前查找指定类型的事件
+        for ts, ev in reversed(self.event_history):
+            if ev in types:
+                return ts
+        return 0.0
+
+    def has_active_protection(self) -> bool:
+        """
+        当前是否处于任何保护模式（emergency / degraded）（1.4.1-failsafe.4）
+        
+        Returns:
+            True 如果处于保护模式，False 否则
+        """
+        return self.emergency_active or self.degraded_active
+
     def get_stats(self) -> dict:
         """
         获取统计信息
@@ -193,5 +226,6 @@ class FailSafeManager:
             "event_count": len(self.event_history),
             "last_emergency_time": self.last_emergency_time,
             "last_degraded_time": self.last_degraded_time,
+            "has_active_protection": self.has_active_protection(),
         }
 

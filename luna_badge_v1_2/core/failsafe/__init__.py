@@ -7,6 +7,7 @@ from core.failsafe.health_monitor import HealthMonitor
 from core.failsafe.fail_safe_manager import FailSafeManager
 from core.failsafe.emergency_voice import EmergencyVoiceLayer
 from core.failsafe.degraded_hooks import DegradedHooks
+from core.failsafe.auto_recovery import AutoRecoveryManager
 
 __all__ = [
     "HealthEvent",
@@ -14,5 +15,6 @@ __all__ = [
     "FailSafeManager",
     "EmergencyVoiceLayer",
     "DegradedHooks",
+    "AutoRecoveryManager",
 ]
 
