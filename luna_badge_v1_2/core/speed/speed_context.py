@@ -1,8 +1,9 @@
 """
 Speed Engine 共享上下文
 1.4.1-speed.1: 线程基础框架
+1.4.1-speed.2: 添加 CameraStreamWorker 支持
 """
-from typing import Literal
+from typing import Literal, Optional
 
 SpeedMode = Literal["normal", "fast", "safe"]
 
@@ -11,9 +12,11 @@ class SpeedContext:
     """
     SpeedEngine 的共享上下文，包括线程运行状态、模式等。
     1.4.1-speed.1 仅作为占位，将在 speed.4 扩展。
+    1.4.1-speed.2 添加 CameraStreamWorker 支持。
     """
     
     speed_mode: SpeedMode = "normal"  # normal, fast, safe
+    camera_worker: Optional[object] = None  # CameraStreamWorker 实例
 
     @staticmethod
     def set_mode(mode: SpeedMode):
@@ -34,4 +37,26 @@ class SpeedContext:
             当前速度模式
         """
         return SpeedContext.speed_mode
+
+    @staticmethod
+    def set_camera_worker(worker):
+        """
+        设置 CameraStreamWorker 实例
+        
+        Args:
+            worker: CameraStreamWorker 实例
+        """
+        SpeedContext.camera_worker = worker
+
+    @staticmethod
+    def get_latest_frame():
+        """
+        获取最新帧（从 CameraStreamWorker 的 buffer）
+        
+        Returns:
+            最新的图像帧，如果没有则返回 None
+        """
+        if SpeedContext.camera_worker is None:
+            return None
+        return SpeedContext.camera_worker.buffer.read_latest()
 

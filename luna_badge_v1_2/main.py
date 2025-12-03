@@ -58,7 +58,15 @@ def bootstrap():
     # task_manager.start()
     logger.info("任务链系统: 待实现")
 
-    # 5. 启动 Speed Engine 线程（1.4.1-speed.1）
+    # 5. 启动 Speed Engine 线程（1.4.1-speed.1 + speed.2）
+    # 注册 CameraStreamWorker（1.4.1-speed.2）
+    cam_index = ConfigCenter.get("system.camera.index", 0)
+    fps_limit = ConfigCenter.get("system.camera.fps_limit", 20)
+    camera_worker = CameraStreamWorker(cam_index=cam_index, fps_limit=fps_limit)
+    SpeedThreadPool.register(camera_worker)
+    SpeedContext.set_camera_worker(camera_worker)
+    logger.info(f"CameraStreamWorker registered (cam_index={cam_index}, fps_limit={fps_limit})")
+    
     ThreadController.start_speed_threads()
     logger.info(f"Speed Engine: {ThreadController.get_worker_count()} workers started")
 

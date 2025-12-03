@@ -22,6 +22,8 @@ metrics:
 system:
   camera:
     enabled: true
+    index: 0  # 摄像头索引
+    fps_limit: 20  # 帧率限制
   sensors:
     enabled: true
 
