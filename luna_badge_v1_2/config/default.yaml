@@ -1,0 +1,27 @@
+# Luna Badge 默认配置文件
+# 所有环境的基础配置
+
+env: dev
+
+# 日志配置
+logging:
+  level: INFO
+  file_path: logs/runtime.log
+  max_bytes: 5242880  # 5MB
+  backup_count: 5
+
+# 并发配置
+concurrency:
+  default_worker_threads: 4
+
+# 指标配置
+metrics:
+  enable: true
+
+# 系统配置
+system:
+  camera:
+    enabled: true
+  sensors:
+    enabled: true
+
