@@ -15,6 +15,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from core.config.config_center import ConfigCenter
 from core.logging.log_manager import LogManager
 from core.concurrency.thread_pool import ThreadPool
+from core.speed.thread_controller import ThreadController
 
 
 def bootstrap():
@@ -57,6 +58,10 @@ def bootstrap():
     # task_manager.start()
     logger.info("任务链系统: 待实现")
 
+    # 5. 启动 Speed Engine 线程（1.4.1-speed.1）
+    ThreadController.start_speed_threads()
+    logger.info(f"Speed Engine: {ThreadController.get_worker_count()} workers started")
+
     logger.info("=" * 60)
     logger.info("Luna Badge 1.4.1-core bootstrap 完成")
     logger.info("=" * 60)
@@ -82,6 +87,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger = LogManager.get_logger(__name__)
         logger.info("收到停止信号，正在关闭...")
+        ThreadController.stop_speed_threads()
         ThreadPool.shutdown(wait=True)
         logger.info("系统已关闭")
 
