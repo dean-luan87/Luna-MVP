@@ -19,6 +19,7 @@ class SpeedContext:
     
     speed_mode: SpeedMode = "normal"  # normal, fast, safe
     camera_worker: Optional[object] = None  # CameraStreamWorker 实例
+    infer_worker: Optional[object] = None  # VisionInferWorker 实例（1.4.1-failsafe.3）
     
     # 1.4.1-speed.3: 推理结果共享状态
     current_yolo_result: Optional[Any] = None  # 当前 YOLO 推理结果
@@ -54,6 +55,16 @@ class SpeedContext:
             worker: CameraStreamWorker 实例
         """
         SpeedContext.camera_worker = worker
+
+    @staticmethod
+    def set_infer_worker(worker):
+        """
+        设置 VisionInferWorker 实例（1.4.1-failsafe.3）
+        
+        Args:
+            worker: VisionInferWorker 实例
+        """
+        SpeedContext.infer_worker = worker
 
     @staticmethod
     def get_latest_frame():

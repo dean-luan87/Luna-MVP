@@ -98,6 +98,7 @@ def bootstrap():
             infer_interval=infer_interval
         )
         SpeedThreadPool.register(infer_worker)
+        SpeedContext.set_infer_worker(infer_worker)  # 1.4.1-failsafe.3: 注册到 SpeedContext
         logger.info(f"VisionInferWorker registered (infer_interval={infer_interval}s, light_model={'available' if light_model else 'not available'})")
     except Exception as e:
         logger.warning(f"VisionInferWorker registration failed: {e}")

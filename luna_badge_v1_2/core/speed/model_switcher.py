@@ -128,6 +128,29 @@ class ModelSwitcher:
         
         return result
 
+    def force_to_lightweight(self) -> bool:
+        """
+        强制切换到轻量级模型（1.4.1-failsafe.3）
+        
+        用于降级模式，强制使用最轻量的模型
+        
+        Returns:
+            True 如果成功切换，False 如果 light 模型不存在
+        """
+        if self.light_model is None:
+            self.logger.warning("[ModelSwitcher] Cannot force to lightweight: light_model not available")
+            return False
+        
+        if self.active_name == "light":
+            # 已经在使用 light 模型
+            return True
+        
+        self.active_model = self.light_model
+        self.active_name = "light"
+        self.logger.warning("[ModelSwitcher] Forced to LIGHTWEIGHT model (degraded mode)")
+        MetricsCollector.incr("model_switcher.forced_to_light")
+        return True
+
     def get_stats(self) -> dict:
         """
         获取统计信息

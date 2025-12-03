@@ -9,6 +9,8 @@ from typing import List, Tuple, Optional
 from core.logging.log_manager import LogManager
 from core.speed.speed_context import SpeedContext
 from core.failsafe.health_events import HealthEvent
+from core.failsafe.emergency_voice import EmergencyVoiceLayer
+from core.failsafe.degraded_hooks import DegradedHooks
 
 
 class FailSafeManager:
@@ -118,9 +120,19 @@ class FailSafeManager:
 
         self.logger.error(f"[FailSafeManager] Enter EMERGENCY mode, reason={reason}")
 
-        # TODO: 未来版本在这里挂 TTS 播报，例如：
-        #   "当前视觉识别异常，请原地停下，确认安全后再继续移动。"
-        # 暂时只做日志 + 状态标记，不做语音和自动重启，降低风险。
+        # 1.4.1-failsafe.3: 应急播报
+        try:
+            EmergencyVoiceLayer.get_instance().play(
+                "当前视觉系统异常，请原地停下并注意安全。"
+            )
+        except Exception as e:
+            self.logger.error(f"[FailSafeManager] Emergency voice failed: {e}")
+
+        # 1.4.1-failsafe.3: 降级行为
+        try:
+            DegradedHooks.get_instance().apply()
+        except Exception as e:
+            self.logger.error(f"[FailSafeManager] Degraded hooks failed: {e}")
 
     def enter_degraded_mode(self, reason: str) -> None:
         """
@@ -142,10 +154,11 @@ class FailSafeManager:
         
         self.logger.warning(f"[FailSafeManager] Enter DEGRADED mode, reason={reason}")
 
-        # TODO: 未来版本可以在这里：
-        #   - 通知 ModelSwitcher 强制使用 light 模型
-        #   - 暂停部分非关键视觉任务（如 OCR）
-        #   - 降低 TTS 频率
+        # 1.4.1-failsafe.3: 降级行为
+        try:
+            DegradedHooks.get_instance().apply()
+        except Exception as e:
+            self.logger.error(f"[FailSafeManager] Degraded hooks failed: {e}")
 
     def reset_mode(self) -> None:
         """
@@ -159,6 +172,12 @@ class FailSafeManager:
         self.degraded_active = False
         SpeedContext.set_mode("normal")
         self.logger.info("[FailSafeManager] Reset to NORMAL mode")
+        
+        # 1.4.1-failsafe.3: 恢复降级行为
+        try:
+            DegradedHooks.get_instance().restore()
+        except Exception as e:
+            self.logger.error(f"[FailSafeManager] Degraded hooks restore failed: {e}")
 
     def get_stats(self) -> dict:
         """
