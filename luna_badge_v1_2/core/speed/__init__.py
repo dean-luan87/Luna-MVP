@@ -10,6 +10,7 @@ from core.speed.speed_context import SpeedContext
 from core.speed.vision_buffer import VisionBuffer
 from core.speed.camera_stream_worker import CameraStreamWorker
 from core.speed.vision_infer_worker import VisionInferWorker
+from core.speed.model_switcher import ModelSwitcher
 
 __all__ = [
     "WorkerBase",
@@ -19,5 +20,6 @@ __all__ = [
     "VisionBuffer",
     "CameraStreamWorker",
     "VisionInferWorker",
+    "ModelSwitcher",
 ]
 

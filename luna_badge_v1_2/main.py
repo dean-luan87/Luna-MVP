@@ -71,14 +71,32 @@ def bootstrap():
     SpeedContext.set_camera_worker(camera_worker)
     logger.info(f"CameraStreamWorker registered (cam_index={cam_index}, fps_limit={fps_limit})")
     
-    # 注册 VisionInferWorker（1.4.1-speed.3）
+    # 注册 VisionInferWorker（1.4.1-speed.3 + speed.4）
     try:
         from core.yolo_detector import YoloDetector
-        yolo_model = YoloDetector()
+        
+        # 加载 heavy 模型
+        heavy_model = YoloDetector()
+        
+        # 尝试加载 light 模型（可选）
+        light_model = None
+        try:
+            # 如果有专门的 light 模型加载函数，可以在这里调用
+            # 目前暂时使用 None，后续可以扩展
+            # from core.vision.model_loader import load_yolo_light_model
+            # light_model = load_yolo_light_model()
+            pass
+        except Exception as e:
+            logger.debug(f"Light model not available: {e}")
+        
         infer_interval = ConfigCenter.get("system.vision.infer_interval", 0.1)  # 默认 10 FPS
-        infer_worker = VisionInferWorker(model=yolo_model, infer_interval=infer_interval)
+        infer_worker = VisionInferWorker(
+            heavy_model=heavy_model,
+            light_model=light_model,
+            infer_interval=infer_interval
+        )
         SpeedThreadPool.register(infer_worker)
-        logger.info(f"VisionInferWorker registered (infer_interval={infer_interval}s)")
+        logger.info(f"VisionInferWorker registered (infer_interval={infer_interval}s, light_model={'available' if light_model else 'not available'})")
     except Exception as e:
         logger.warning(f"VisionInferWorker registration failed: {e}")
         logger.warning("系统将使用旧推理逻辑（fallback）")

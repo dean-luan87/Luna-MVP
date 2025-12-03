@@ -79,23 +79,26 @@ async def process_frame(frame: UploadFile = File(...)) -> JSONResponse:
 
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 
-        # 1.4.1-speed.3: 优先使用 SpeedContext 中的推理结果（非阻塞）
+        # 1.4.1-speed.4: 优先使用 SpeedContext 中的新鲜推理结果（非阻塞）
         from core.speed.speed_context import SpeedContext
         
         det_result = None
         boxes = []
+        model_name = None
         
-        # 尝试从 SpeedContext 获取推理结果
-        if SpeedContext.current_yolo_result is not None:
+        # 检查推理结果是否新鲜（1.4.1-speed.4）
+        if SpeedContext.is_yolo_fresh(max_age_sec=0.3):
             # 使用新线程推理结果
             det_result = SpeedContext.current_yolo_result
-            if hasattr(det_result, 'to_dict'):
-                boxes = det_result.to_dict().get("boxes", [])
-            elif isinstance(det_result, dict):
-                boxes = det_result.get("boxes", [])
-            MetricsCollector.incr("api.frame.processed_from_speed")
+            model_name = SpeedContext.current_model_name
+            if det_result is not None:
+                if hasattr(det_result, 'to_dict'):
+                    boxes = det_result.to_dict().get("boxes", [])
+                elif isinstance(det_result, dict):
+                    boxes = det_result.get("boxes", [])
+                MetricsCollector.incr("api.frame.processed_from_speed")
         else:
-            # Fallback: 使用旧逻辑（兼容模式）
+            # 结果不新鲜或不存在，使用 Fallback
             with MetricsCollector.timeit("yolo.inference"):
                 det_result = detector.detect(img_rgb)
                 boxes = det_result.to_dict()["boxes"]

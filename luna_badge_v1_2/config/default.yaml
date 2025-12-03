@@ -29,3 +29,10 @@ system:
   sensors:
     enabled: true
 
+# Speed Engine 配置
+speed:
+  model_switcher:
+    heavy_to_light_ms: 80  # heavy 模型平均延迟超过此值切换到 light
+    light_to_heavy_ms: 40  # light 模型平均延迟低于此值切换回 heavy
+    min_samples: 5  # 切换前需要的最小样本数
+

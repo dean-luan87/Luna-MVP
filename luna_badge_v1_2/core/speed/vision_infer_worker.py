@@ -1,6 +1,7 @@
 """
 Vision Inference Worker
 1.4.1-speed.3: 独立推理线程
+1.4.1-speed.4: 集成 ModelSwitcher
 将 YOLO/OCR 推理从主线程剥离，实现非阻塞视觉处理
 """
 import time
@@ -11,6 +12,7 @@ import numpy as np
 
 from core.speed.worker_base import WorkerBase
 from core.speed.speed_context import SpeedContext
+from core.speed.model_switcher import ModelSwitcher
 from core.health.metrics_collector import MetricsCollector
 
 
@@ -21,21 +23,22 @@ class VisionInferWorker(WorkerBase):
     功能：
     - 不负责摄像头采集
     - 只从 SpeedContext.camera_worker 读取最新帧
-    - 执行 YOLO 推理
+    - 执行 YOLO 推理（通过 ModelSwitcher）
     - 推理结果写入 SpeedContext（共享状态）
     - 自动丢弃旧帧，只处理最新帧
     """
     
-    def __init__(self, model: Any, infer_interval: float = 0.1):
+    def __init__(self, heavy_model: Any, light_model: Optional[Any] = None, infer_interval: float = 0.1):
         """
         初始化推理 Worker
         
         Args:
-            model: YOLO 模型实例（可以是 YoloDetector 或其他兼容接口）
+            heavy_model: 重型模型（高精度）
+            light_model: 轻型模型（快速），可选
             infer_interval: 推理间隔（秒），默认 0.1 秒（10 FPS）
         """
         super().__init__("VisionInferWorker")
-        self.model = model
+        self.switcher = ModelSwitcher(heavy_model, light_model)
         self.infer_interval = infer_interval
         self.last_infer_ts = 0.0
         self.infer_count = 0
@@ -61,29 +64,19 @@ class VisionInferWorker(WorkerBase):
             time.sleep(0.005)
             return
 
-        # 获取最新帧
-        frame = camera_worker.buffer.read_latest()
+        # 获取最新帧（带元数据）
+        frame, ts, seq = camera_worker.buffer.read_latest_meta()
         if frame is None:
             time.sleep(0.01)
             return
 
-        # YOLO 推理
+        # YOLO 推理（通过 ModelSwitcher）
         try:
             with MetricsCollector.timeit("vision_infer.yolo"):
-                # 支持多种模型接口
-                if hasattr(self.model, 'detect'):
-                    # YoloDetector 接口
-                    results = self.model.detect(frame)
-                elif hasattr(self.model, '__call__'):
-                    # 直接调用接口（如 ultralytics YOLO）
-                    results = self.model(frame)
-                else:
-                    self.logger.error("Unsupported model interface")
-                    return
+                results = self.switcher.infer(frame)
 
             # 写入 SpeedContext（共享状态）
-            SpeedContext.current_yolo_result = results
-            SpeedContext.last_yolo_ts = time.time()
+            SpeedContext.set_yolo_result(results, self.switcher.active_name)
 
             MetricsCollector.incr("vision_infer.frames")
             self.infer_count += 1
@@ -106,6 +99,7 @@ class VisionInferWorker(WorkerBase):
         Returns:
             包含推理次数、错误数等统计信息的字典
         """
+        switcher_stats = self.switcher.get_stats()
         return {
             "infer_count": self.infer_count,
             "error_count": self.error_count,
@@ -114,5 +108,6 @@ class VisionInferWorker(WorkerBase):
                 SpeedContext.last_yolo_ts > 0 and
                 (time.time() - SpeedContext.last_yolo_ts) < 1.0
             ),
+            **switcher_stats,
         }
 

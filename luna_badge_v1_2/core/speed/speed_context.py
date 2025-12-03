@@ -22,6 +22,7 @@ class SpeedContext:
     # 1.4.1-speed.3: 推理结果共享状态
     current_yolo_result: Optional[Any] = None  # 当前 YOLO 推理结果
     last_yolo_ts: float = 0.0  # 最后一次推理时间戳
+    current_model_name: str = "heavy"  # 当前使用的模型名称
 
     @staticmethod
     def set_mode(mode: SpeedMode):
@@ -64,4 +65,34 @@ class SpeedContext:
         if SpeedContext.camera_worker is None:
             return None
         return SpeedContext.camera_worker.buffer.read_latest()
+
+    @staticmethod
+    def set_yolo_result(result: Any, model_name: str) -> None:
+        """
+        设置 YOLO 推理结果（1.4.1-speed.4）
+        
+        Args:
+            result: 推理结果
+            model_name: 使用的模型名称（"heavy" 或 "light"）
+        """
+        import time
+        SpeedContext.current_yolo_result = result
+        SpeedContext.last_yolo_ts = time.time()
+        SpeedContext.current_model_name = model_name
+
+    @staticmethod
+    def is_yolo_fresh(max_age_sec: float = 0.3) -> bool:
+        """
+        检查 YOLO 推理结果是否新鲜（1.4.1-speed.4）
+        
+        Args:
+            max_age_sec: 最大年龄（秒），默认 0.3 秒
+        
+        Returns:
+            True 如果结果新鲜，False 否则
+        """
+        import time
+        if SpeedContext.last_yolo_ts == 0:
+            return False
+        return (time.time() - SpeedContext.last_yolo_ts) <= max_age_sec
 
