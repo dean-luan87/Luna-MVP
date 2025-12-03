@@ -36,3 +36,13 @@ speed:
     light_to_heavy_ms: 40  # light 模型平均延迟低于此值切换回 heavy
     min_samples: 5  # 切换前需要的最小样本数
 
+# FailSafe 应急保障配置
+failsafe:
+  health_monitor:
+    camera_timeout: 0.5  # 摄像头超时时间（秒）
+    infer_timeout: 0.8  # 推理超时时间（秒）
+    heartbeat_timeout: 1.2  # 心跳超时时间（秒）
+    cpu_threshold: 80.0  # CPU 使用率阈值（%）
+    mem_threshold: 85.0  # 内存使用率阈值（%）
+    check_interval: 0.1  # 检查间隔（秒）
+
