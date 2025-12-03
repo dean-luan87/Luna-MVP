@@ -45,7 +45,7 @@ def backup_file(file_path: Path):
 
 def apply_model_switch():
     """切换主模型到 YOLO11-tiny"""
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [1/6] 切换主模型到 YOLO11-tiny")
     log.info("=" * 70")
     
@@ -109,7 +109,7 @@ def apply_model_switch():
 
 def run_tests():
     """运行所有测试"""
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [2/6] 运行全链路 Benchmark")
     log.info("=" * 70")
     
@@ -125,7 +125,7 @@ def run_tests():
     except FileNotFoundError:
         log.info("  ⚠️  全链路 Benchmark 脚本不存在，跳过")
     
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [3/6] 运行 YOLO 模型对比测试")
     log.info("=" * 70")
     
@@ -141,7 +141,7 @@ def run_tests():
     except FileNotFoundError:
         log.info("  ⚠️  YOLO 模型对比测试脚本不存在，跳过")
     
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [4/6] 运行压力测试（60秒 × 并发4）")
     log.info("=" * 70")
     
@@ -157,7 +157,7 @@ def run_tests():
     except FileNotFoundError:
         log.info("  ⚠️  压力测试脚本不存在，跳过")
     
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [5/6] 运行单元测试")
     log.info("=" * 70")
     
@@ -182,7 +182,7 @@ def run_tests():
 
 def generate_final_report():
     """生成最终综合性能报告"""
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info(">>> [6/6] 汇总所有测试结果")
     log.info("=" * 70")
     
@@ -235,7 +235,7 @@ def generate_final_report():
     log.info(f"\n  ✅ 最终总报告已生成: {out_path}")
     
     # 打印摘要
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("📊 测试结果摘要")
     log.info("=" * 70")
     
@@ -268,7 +268,7 @@ def generate_final_report():
 
 def main():
     """主函数"""
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("🚀 YOLO11-tiny 切换 + 全套回归测试")
     log.info("=" * 70")
     log.info(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -284,7 +284,7 @@ def main():
         # 3. 生成报告
         generate_final_report()
         
-        log.info("\n" + "=" * 70")
+        log.info("\n" + "=" * 70)
         log.info("✅ YOLO11-tiny 切换 + 全套测试完成！")
         log.info("=" * 70")
         log.info(f"结束时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

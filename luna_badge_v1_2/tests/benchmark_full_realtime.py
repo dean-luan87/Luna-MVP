@@ -235,7 +235,7 @@ def main():
     os.makedirs(ROOT / "perf_logs", exist_ok=True)
     report_path = ROOT / "perf_logs" / "full_realtime_benchmark.json"
 
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("真实链路单次 Benchmark")
     log.info("=" * 70")
     log.info("")
@@ -260,7 +260,7 @@ def main():
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(metrics, f, ensure_ascii=False, indent=2)
 
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("测试结果")
     log.info("=" * 70")
     print(

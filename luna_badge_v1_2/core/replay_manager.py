@@ -345,7 +345,7 @@ class ReplayManager:
             log.info("⚠️ 没有事件可打印")
             return
 
-        log.info("\n" + "=" * 80")
+        log.info("\n" + "=" * 80)
         log.debug(f"📋 Trace 链路（共 {len(events)} 个事件）")
         log.info("=" * 80")
 
@@ -380,7 +380,7 @@ class ReplayManager:
             if "error_code" in event or "error_message" in event:
                 log.error(f"    ❌ ERROR: {event.get('error_code', '')} - {event.get('error_message', '')}")
 
-        log.info("\n" + "=" * 80")
+        log.info("\n" + "=" * 80)
 
 
 # 便捷函数

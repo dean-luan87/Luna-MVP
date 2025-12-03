@@ -73,7 +73,7 @@ def main():
     duration_s = int(os.getenv("LUNA_STRESS_DURATION", "60"))
     num_threads = int(os.getenv("LUNA_STRESS_THREADS", "4"))
 
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("真实链路压测")
     log.info("=" * 70")
     log.info(f"持续时间: {duration_s} 秒")
@@ -148,7 +148,7 @@ def main():
         for v in ok_samples:
             writer.writerow([f"{v:.3f}"])
 
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("压测结果")
     log.info("=" * 70")
     log.info(f"总样本数: {len(results)}")

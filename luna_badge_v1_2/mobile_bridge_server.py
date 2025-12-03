@@ -381,7 +381,7 @@ def api_full_pipeline():
 
 
 if __name__ == "__main__":
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("Luna Badge Mobile Bridge Server")
     log.info("=" * 70")
     

@@ -19,7 +19,7 @@ class TaskDebugger:
         """
         打印任务树（ASCII 格式）
         """
-        log.info("\n" + "=" * 50")
+        log.info("\n" + "=" * 50)
         log.info("TaskEngine State:")
         log.info("=" * 50")
         

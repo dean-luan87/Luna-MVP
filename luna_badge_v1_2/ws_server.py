@@ -347,7 +347,7 @@ async def main():
         log.error("[ERROR] websockets 库未安装，请执行: pip install websockets")
         return
     
-    log.info("\n" + "=" * 70")
+    log.info("\n" + "=" * 70)
     log.info("Luna Badge WebSocket 实时推理服务器")
     log.info("=" * 70")
     

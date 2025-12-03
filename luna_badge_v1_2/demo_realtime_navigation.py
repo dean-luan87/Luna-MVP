@@ -295,7 +295,7 @@ class RealtimeNavDemo:
     # ========== 主循环：交互模式 ==========
 
     def run_interactive(self):
-        log.info("\n" + "=" * 70")
+        log.info("\n" + "=" * 70)
         log.info("[INFO] 模式：interactive（实时导航），Ctrl+C 退出")
         log.info("=" * 70")
         log.info("")
@@ -336,7 +336,7 @@ class RealtimeNavDemo:
     # ========== 主循环：压测模式 ==========
 
     def run_stress(self):
-        log.info("\n" + "=" * 70")
+        log.info("\n" + "=" * 70)
         log.info(f"[INFO] 模式：stress，持续 {self.stress_duration}s / max_frames={self.stress_max_frames}")
         log.info("=" * 70")
         log.info("")

@@ -107,7 +107,7 @@ class AppController:
             return
 
         logger.info("摄像头打开成功，开始导航 demo")
-        log.info("\n" + "=" * 80")
+        log.info("\n" + "=" * 80)
         log.info("🚀 Luna Badge 导航 Demo 启动")
         log.info("=" * 80")
         log.info("💡 提示:")
@@ -179,7 +179,7 @@ class AppController:
             cap.release()
             cv2.destroyAllWindows()
 
-            log.info("\n" + "=" * 80")
+            log.info("\n" + "=" * 80)
             log.info(f"✅ 导航 Demo 结束")
             log.info(f"   总帧数: {frame_count}")
             log.info(f"   任务状态: {self.nav_task.get_state().value}")
