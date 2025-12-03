@@ -138,11 +138,7 @@ class FailSafeManager:
 
         self.degraded_active = True
         self.last_degraded_time = time.time()
-        SpeedContext.set_mode("fast")  # 使用 "fast" 作为降级模式（或可以扩展为 "degraded"）
-        
-        # 注意：SpeedContext 目前只支持 "normal", "fast", "safe"
-        # 如果需要 "degraded" 模式，需要在 SpeedContext 中扩展
-        # 暂时使用 "fast" 作为降级模式的标记
+        SpeedContext.set_mode("degraded")
         
         self.logger.warning(f"[FailSafeManager] Enter DEGRADED mode, reason={reason}")
 
