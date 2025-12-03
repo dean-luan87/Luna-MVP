@@ -5,7 +5,7 @@ Worker 基类
 import threading
 import time
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, Union
 import logging
 
 # 使用标准 logging，避免循环依赖
@@ -51,7 +51,7 @@ class WorkerBase(ABC):
         self._thread.start()
         logger.info(f"Worker '{self._name}' started")
 
-    def stop(self, timeout: float | None = None) -> None:
+    def stop(self, timeout: Optional[float] = None) -> None:
         """
         停止 Worker
         

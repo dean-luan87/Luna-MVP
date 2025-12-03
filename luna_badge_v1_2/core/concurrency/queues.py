@@ -3,7 +3,7 @@
 提供类型安全的队列接口
 """
 from queue import Queue
-from typing import Generic, TypeVar
+from typing import Generic, TypeVar, Optional
 import logging
 
 # 使用标准 logging，避免循环依赖
@@ -30,7 +30,7 @@ class BoundedQueue(Generic[T]):
         self._maxsize = maxsize
         logger.debug(f"BoundedQueue created with maxsize={maxsize}")
 
-    def put(self, item: T, block: bool = True, timeout: float | None = None) -> None:
+    def put(self, item: T, block: bool = True, timeout: Optional[float] = None) -> None:
         """
         放入队列
         
@@ -44,7 +44,7 @@ class BoundedQueue(Generic[T]):
         """
         self._queue.put(item, block=block, timeout=timeout)
 
-    def get(self, block: bool = True, timeout: float | None = None) -> T:
+    def get(self, block: bool = True, timeout: Optional[float] = None) -> T:
         """
         从队列获取
         
