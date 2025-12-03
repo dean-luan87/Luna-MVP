@@ -21,7 +21,7 @@ class TaskDebugger:
         """
         log.info("\n" + "=" * 50)
         log.info("TaskEngine State:")
-        log.info("=" * 50")
+        log.info("=" * 50)
         
         # 主任务
         log.info(f"  MAIN: {self._ctx_str(self.engine.main_task)}")
