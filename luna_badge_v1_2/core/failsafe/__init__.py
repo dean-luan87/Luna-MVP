@@ -4,9 +4,11 @@ FailSafe 应急保障体系
 """
 from core.failsafe.health_events import HealthEvent
 from core.failsafe.health_monitor import HealthMonitor
+from core.failsafe.fail_safe_manager import FailSafeManager
 
 __all__ = [
     "HealthEvent",
     "HealthMonitor",
+    "FailSafeManager",
 ]
 

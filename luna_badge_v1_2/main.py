@@ -21,6 +21,7 @@ from core.speed.camera_stream_worker import CameraStreamWorker
 from core.speed.vision_infer_worker import VisionInferWorker
 from core.speed.speed_context import SpeedContext
 from core.failsafe.health_monitor import HealthMonitor
+from core.failsafe.fail_safe_manager import FailSafeManager
 
 
 def bootstrap():
@@ -105,23 +106,30 @@ def bootstrap():
     ThreadController.start_speed_threads()
     logger.info(f"Speed Engine: {ThreadController.get_worker_count()} workers started")
     
-    # 6. 启动 FailSafe 健康监控（1.4.1-failsafe.1）
+    # 6. 启动 FailSafe 健康监控和应急管理（1.4.1-failsafe.1 + failsafe.2）
     try:
         camera_timeout = ConfigCenter.get("failsafe.health_monitor.camera_timeout", 0.5)
         infer_timeout = ConfigCenter.get("failsafe.health_monitor.infer_timeout", 0.8)
         cpu_threshold = ConfigCenter.get("failsafe.health_monitor.cpu_threshold", 80.0)
         mem_threshold = ConfigCenter.get("failsafe.health_monitor.mem_threshold", 85.0)
         
+        # 1. 创建 HealthMonitor
         health_monitor = HealthMonitor(
             camera_timeout=camera_timeout,
             infer_timeout=infer_timeout,
             cpu_threshold=cpu_threshold,
             mem_threshold=mem_threshold,
         )
+        
+        # 2. 挂接 FailSafeManager
+        fail_safe_manager = FailSafeManager.attach_to_health_monitor(health_monitor)
+        
+        # 3. 启动监控
         health_monitor.start_monitor()
         logger.info(f"HealthMonitor started (camera_timeout={camera_timeout}s, infer_timeout={infer_timeout}s)")
+        logger.info("FailSafeManager attached and ready")
     except Exception as e:
-        logger.warning(f"HealthMonitor initialization failed: {e}")
+        logger.warning(f"FailSafe system initialization failed: {e}")
         logger.warning("系统将在无健康监控模式下运行")
 
     logger.info("=" * 60)

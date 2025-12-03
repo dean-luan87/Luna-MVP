@@ -3,10 +3,11 @@ Speed Engine 共享上下文
 1.4.1-speed.1: 线程基础框架
 1.4.1-speed.2: 添加 CameraStreamWorker 支持
 1.4.1-speed.3: 添加推理结果存储
+1.4.1-failsafe.2: 支持 degraded 模式（使用 "fast" 作为降级模式标记）
 """
 from typing import Literal, Optional, Any
 
-SpeedMode = Literal["normal", "fast", "safe"]
+SpeedMode = Literal["normal", "fast", "safe", "degraded"]
 
 
 class SpeedContext:
