@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("ws_server")
 """
 Luna Badge WebSocket 实时推理服务器
 
@@ -32,14 +35,14 @@ try:
     PIL_AVAILABLE = True
 except ImportError:
     PIL_AVAILABLE = False
-    print("[WARN] PIL/OpenCV 未安装，图片处理功能受限")
+    log.warning("[WARN] PIL/OpenCV 未安装，图片处理功能受限")
 
 try:
     import websockets
     WEBSOCKETS_AVAILABLE = True
 except ImportError:
     WEBSOCKETS_AVAILABLE = False
-    print("[ERROR] websockets 未安装，请执行: pip install websockets")
+    log.error("[ERROR] websockets 未安装，请执行: pip install websockets")
 
 # 添加项目根目录到路径
 ROOT = Path(__file__).resolve().parent
@@ -51,7 +54,7 @@ try:
     from core.yolo_detector import YoloDetector
 except ImportError:
     YoloDetector = None
-    print("[WARN] YoloDetector 不可用")
+    log.warning("[WARN] YoloDetector 不可用")
 
 try:
     from core.navigation_logic_v1_3 import NavigationLogicV1_3 as NavigationLogic
@@ -60,7 +63,7 @@ except ImportError:
         from core.navigation_logic import NavigationLogic
     except ImportError:
         NavigationLogic = None
-        print("[WARN] NavigationLogic 不可用")
+        log.warning("[WARN] NavigationLogic 不可用")
 
 # 全局实例
 yolo_detector = None
@@ -71,31 +74,31 @@ def init_modules():
     """初始化所有模块"""
     global yolo_detector, nav_logic
     
-    print("[INFO] 正在初始化模块...")
+    log.info("[INFO] 正在初始化模块...")
     
     # 初始化 YOLO
     if YoloDetector is not None:
         try:
             yolo_detector = YoloDetector()
-            print("[INFO] ✅ YOLO11-tiny 检测器初始化成功")
+            log.info("[INFO] ✅ YOLO11-tiny 检测器初始化成功")
         except Exception as e:
-            print(f"[WARN] YOLO 初始化失败: {e}")
+            log.warning(f"[WARN] YOLO 初始化失败: {e}")
             yolo_detector = None
     else:
-        print("[WARN] YoloDetector 不可用")
+        log.warning("[WARN] YoloDetector 不可用")
     
     # 初始化导航逻辑
     if NavigationLogic is not None:
         try:
             nav_logic = NavigationLogic()
-            print("[INFO] ✅ 导航逻辑初始化成功")
+            log.info("[INFO] ✅ 导航逻辑初始化成功")
         except Exception as e:
-            print(f"[WARN] 导航逻辑初始化失败: {e}")
+            log.warning(f"[WARN] 导航逻辑初始化失败: {e}")
             nav_logic = None
     else:
-        print("[WARN] NavigationLogic 不可用")
+        log.warning("[WARN] NavigationLogic 不可用")
     
-    print("[INFO] 模块初始化完成")
+    log.info("[INFO] 模块初始化完成")
 
 
 def generate_tts_audio(text: str):
@@ -135,10 +138,10 @@ def generate_tts_audio(text: str):
         else:
             return None
     except ImportError:
-        print("[WARN] edge-tts 未安装，TTS 功能受限")
+        log.warning("[WARN] edge-tts 未安装，TTS 功能受限")
         return None
     except Exception as e:
-        print(f"[WARN] TTS 生成失败: {e}")
+        log.warning(f"[WARN] TTS 生成失败: {e}")
         return None
 
 
@@ -183,7 +186,7 @@ async def send_heartbeat(ws):
         # 连接关闭，心跳退出
         return
     except Exception as e:
-        print(f"[WS] heartbeat error: {e}")
+        log.error(f"[WS] heartbeat error: {e}")
 
 
 async def handle_connection(websocket):
@@ -205,7 +208,7 @@ async def handle_connection(websocket):
         client_addr = f"{websocket.remote_address[0]}:{websocket.remote_address[1]}"
     except:
         client_addr = "unknown"
-    print(f"[WS] 客户端连接: {client_addr}")
+    log.info(f"[WS] 客户端连接: {client_addr}")
     
     # 开一个心跳任务
     heartbeat_task = asyncio.create_task(send_heartbeat(websocket))
@@ -258,7 +261,7 @@ async def handle_connection(websocket):
                         det_result = yolo_detector.detect(img_array)
                         detections = det_result.get("detections", [])
                     except Exception as e:
-                        print(f"[WS] YOLO 检测失败: {e}")
+                        log.info(f"[WS] YOLO 检测失败: {e}")
                         detections = []
                 else:
                     # mock 结果
@@ -288,7 +291,7 @@ async def handle_connection(websocket):
                         else:
                             nav_result = {"message": "前方环境正常，可以继续前进。"}
                     except Exception as e:
-                        print(f"[WS] 导航规划失败: {e}")
+                        log.info(f"[WS] 导航规划失败: {e}")
                         nav_result = {"message": "前方环境正常，可以继续前进。"}
                 else:
                     # mock 结果
@@ -305,7 +308,7 @@ async def handle_connection(websocket):
                     try:
                         audio_base64 = generate_tts_audio(instruction)
                     except Exception as e:
-                        print(f"[WS] TTS 生成失败: {e}")
+                        log.info(f"[WS] TTS 生成失败: {e}")
                 
                 # 返回结果
                 result_msg = {
@@ -327,9 +330,9 @@ async def handle_connection(websocket):
             }))
     
     except websockets.exceptions.ConnectionClosed:
-        print(f"[WS] 客户端断开: {client_addr}")
+        log.info(f"[WS] 客户端断开: {client_addr}")
     except Exception as e:
-        print(f"[WS] 连接错误: {e}")
+        log.info(f"[WS] 连接错误: {e}")
     finally:
         heartbeat_task.cancel()
         try:
@@ -341,20 +344,20 @@ async def handle_connection(websocket):
 async def main():
     """主函数"""
     if not WEBSOCKETS_AVAILABLE:
-        print("[ERROR] websockets 库未安装，请执行: pip install websockets")
+        log.error("[ERROR] websockets 库未安装，请执行: pip install websockets")
         return
     
-    print("\n" + "=" * 70)
-    print("Luna Badge WebSocket 实时推理服务器")
-    print("=" * 70)
+    log.info("\n" + "=" * 70")
+    log.info("Luna Badge WebSocket 实时推理服务器")
+    log.info("=" * 70")
     
     # 初始化模块
     init_modules()
     
-    print(f"\n[INFO] WebSocket 服务器启动中...")
-    print(f"[INFO] 地址: ws://0.0.0.0:8898/ws")
-    print(f"[INFO] 按 Ctrl+C 停止服务器")
-    print("=" * 70 + "\n")
+    log.info(f"\n[INFO] WebSocket 服务器启动中...")
+    log.info(f"[INFO] 地址: ws://0.0.0.0:8898/ws")
+    log.info(f"[INFO] 按 Ctrl+C 停止服务器")
+    log.info("=" * 70 + "\n")
     
     # 启动 WebSocket 服务器
     # 兼容新旧版本的 websockets API
@@ -374,5 +377,5 @@ if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\n[INFO] 服务器已停止")
+        log.info("\n[INFO] 服务器已停止")
 

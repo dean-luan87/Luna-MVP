@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("main_loop_v1_2_backup")
 """
 Main loop for Luna Badge v1.2.0.
 
@@ -54,7 +57,7 @@ def main():
     navigation_engine = NavigationEngine()
     tts = TTSManager()
 
-    print("[Main] Luna Badge v1.2.0 main loop started.")
+    log.info("[Main] Luna Badge v1.2.0 main loop started.")
 
     try:
         while True:
@@ -82,7 +85,7 @@ def main():
             # 控制主循环速度，避免 CPU 打满
             time.sleep(0.05)
     except KeyboardInterrupt:
-        print("\n[Main] Exiting main loop.")
+        log.info("\n[Main] Exiting main loop.")
 
 
 if __name__ == "__main__":

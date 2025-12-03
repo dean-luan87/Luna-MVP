@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("server")
 """
 H5 实时推理服务器（Flask + WebSocket）
 
@@ -22,7 +25,7 @@ try:
     YOLO_AVAILABLE = True
 except ImportError:
     YOLO_AVAILABLE = False
-    print("[WARN] ultralytics 未安装，使用 stub 推理")
+    log.warning("[WARN] ultralytics 未安装，使用 stub 推理")
 
 # 导入协议库
 try:
@@ -31,7 +34,7 @@ try:
     PROTOCOL_AVAILABLE = True
 except ImportError:
     PROTOCOL_AVAILABLE = False
-    print("[WARN] 协议库未找到，使用旧版消息格式")
+    log.warning("[WARN] 协议库未找到，使用旧版消息格式")
 
 app = Flask(__name__, static_folder=".")
 sock = Sock(app)
@@ -44,7 +47,7 @@ def load_model(model_path="yolo11n.pt"):
     global model
     
     if not YOLO_AVAILABLE:
-        print("[WARN] ultralytics 未安装，使用 stub 推理")
+        log.warning("[WARN] ultralytics 未安装，使用 stub 推理")
         return None
     
     try:
@@ -58,17 +61,17 @@ def load_model(model_path="yolo11n.pt"):
         
         for path in possible_paths:
             try:
-                print(f"[MODEL] 尝试加载: {path}")
+                log.info(f"[MODEL] 尝试加载: {path}")
                 model = YOLO(path)
-                print(f"[MODEL] ✅ 模型加载成功: {path}")
+                log.info(f"[MODEL] ✅ 模型加载成功: {path}")
                 return model
             except Exception as e:
                 continue
         
-        print("[WARN] 模型加载失败，使用 stub 推理")
+        log.warning("[WARN] 模型加载失败，使用 stub 推理")
         return None
     except Exception as e:
-        print(f"[ERROR] 模型加载异常: {e}")
+        log.error(f"[ERROR] 模型加载异常: {e}")
         return None
 
 def decode_image(b64_data):
@@ -147,7 +150,7 @@ def ws_handler_legacy(ws):
 def ws_handler(ws):
     """WebSocket 处理函数"""
     client = f"{ws.remote_address[0]}:{ws.remote_address[1]}"
-    print(f"[WS] 客户端连接: {client}")
+    log.info(f"[WS] 客户端连接: {client}")
     
     frame_count = 0
     
@@ -243,7 +246,7 @@ def ws_handler(ws):
                     ws.send(json.dumps(result, ensure_ascii=False))
                     
                     if frame_count % 10 == 0:
-                        print(f"[WS] 已处理 {frame_count} 帧，平均推理: {infer_ms:.1f}ms")
+                        log.info(f"[WS] 已处理 {frame_count} 帧，平均推理: {infer_ms:.1f}ms")
                 
                 except Exception as e:
                     error_resp = build_error("INF-001", detail=str(e)) if PROTOCOL_AVAILABLE else {
@@ -251,21 +254,21 @@ def ws_handler(ws):
                         "message": f"推理失败: {e}"
                     }
                     ws.send(json.dumps(error_resp))
-                    print(f"[ERROR] 推理异常: {e}")
+                    log.error(f"[ERROR] 推理异常: {e}")
     
     except Exception as e:
-        print(f"[ERROR] WebSocket 异常: {e}")
+        log.error(f"[ERROR] WebSocket 异常: {e}")
     finally:
-        print(f"[WS] 客户端断开: {client}")
+        log.info(f"[WS] 客户端断开: {client}")
 
 if __name__ == "__main__":
     # 加载模型
     load_model()
     
     # 启动服务器
-    print("[SERVER] 启动 Flask + WebSocket 服务器...")
-    print("[SERVER] 访问地址: http://0.0.0.0:5000")
-    print("[SERVER] WebSocket: ws://0.0.0.0:5000/ws")
+    log.info("[SERVER] 启动 Flask + WebSocket 服务器...")
+    log.info("[SERVER] 访问地址: http://0.0.0.0:5000")
+    log.info("[SERVER] WebSocket: ws://0.0.0.0:5000/ws")
     
     app.run(host="0.0.0.0", port=5000, debug=False)
 

@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("analyze_perf")
 """
 性能分析脚本
 
@@ -23,7 +26,7 @@ try:
     PROTOCOL_AVAILABLE = True
 except ImportError:
     PROTOCOL_AVAILABLE = False
-    print("[WARN] 协议库未找到，跳过规范验证")
+    log.warning("[WARN] 协议库未找到，跳过规范验证")
 
 
 def load_frames(path: Path) -> List[Dict[str, Any]]:
@@ -42,7 +45,7 @@ def load_frames(path: Path) -> List[Dict[str, Any]]:
                 if PROTOCOL_AVAILABLE:
                     is_valid, error = PerfLogSpec.validate(rec)
                     if not is_valid:
-                        print(f"[WARN] 第 {line_num} 行不符合 PerfLogSpec: {error}")
+                        log.error(f"[WARN] 第 {line_num} 行不符合 PerfLogSpec: {error}")
                         invalid_count += 1
                         continue
                 
@@ -50,12 +53,12 @@ def load_frames(path: Path) -> List[Dict[str, Any]]:
                 if rec.get("event") == "infer_result":
                     frames.append(rec)
             except json.JSONDecodeError as e:
-                print(f"[WARN] 第 {line_num} 行 JSON 解析失败: {e}")
+                log.warning(f"[WARN] 第 {line_num} 行 JSON 解析失败: {e}")
                 invalid_count += 1
                 continue
     
     if invalid_count > 0:
-        print(f"[INFO] 跳过 {invalid_count} 条无效记录")
+        log.info(f"[INFO] 跳过 {invalid_count} 条无效记录")
     
     return frames
 
@@ -78,7 +81,7 @@ def percentile(values: List[float], p: float) -> float:
 def summarize(frames: List[Dict[str, Any]], path: Path):
     """生成统计报告"""
     if not frames:
-        print(f"[ERROR] 未找到 frame 记录")
+        log.error(f"[ERROR] 未找到 frame 记录")
         return
     
     # 确保输出可以被脚本捕获
@@ -89,26 +92,26 @@ def summarize(frames: List[Dict[str, Any]], path: Path):
     lat = [f.get("end_to_end_ms", 0) for f in frames if "end_to_end_ms" in f]
     
     if not lat:
-        print(f"[ERROR] 未找到端到端延迟数据")
+        log.error(f"[ERROR] 未找到端到端延迟数据")
         return
     
-    print("=" * 70)
-    print("Luna Badge 性能分析报告")
-    print("=" * 70)
-    print(f"日志文件: {path.name}")
-    print(f"总帧数: {len(frames)}")
-    print()
+    log.info("=" * 70")
+    log.info("Luna Badge 性能分析报告")
+    log.info("=" * 70")
+    log.info(f"日志文件: {path.name}")
+    log.info(f"总帧数: {len(frames)}")
+    log.info("")
     
     # 端到端延迟统计
-    print("端到端延迟统计:")
-    print(f"  平均: {statistics.mean(lat):.1f}ms")
-    print(f"  中位数 (P50): {statistics.median(lat):.1f}ms")
-    print(f"  P90: {percentile(lat, 90):.1f}ms")
-    print(f"  P95: {percentile(lat, 95):.1f}ms")
-    print(f"  P99: {percentile(lat, 99):.1f}ms")
-    print(f"  最小: {min(lat):.1f}ms")
-    print(f"  最大: {max(lat):.1f}ms")
-    print()
+    log.info("端到端延迟统计:")
+    log.info(f"  平均: {statistics.mean(lat):.1f}ms")
+    log.info(f"  中位数 (P50): {statistics.median(lat):.1f}ms")
+    log.info(f"  P90: {percentile(lat, 90):.1f}ms")
+    log.info(f"  P95: {percentile(lat, 95):.1f}ms")
+    log.info(f"  P99: {percentile(lat, 99):.1f}ms")
+    log.info(f"  最小: {min(lat):.1f}ms")
+    log.info(f"  最大: {max(lat):.1f}ms")
+    log.info("")
     
     # 分段统计
     segs = {}
@@ -135,7 +138,7 @@ def summarize(frames: List[Dict[str, Any]], path: Path):
         segs["server_pack"] = [f.get("server", {}).get("pack_ms", 0) for f in frames]
     
     # 显示分段占比
-    print("分段耗时统计:")
+    log.info("分段耗时统计:")
     seg_list = []
     for name, vals in segs.items():
         if vals and any(v > 0 for v in vals):
@@ -147,16 +150,16 @@ def summarize(frames: List[Dict[str, Any]], path: Path):
     seg_list.sort(key=lambda x: x[1], reverse=True)
     
     for name, avg, pct in seg_list:
-        print(f"  {name:20} {avg:6.1f}ms  ({pct:5.1f}%)")
-    print()
+        log.info(f"  {name:20} {avg:6.1f}ms  ({pct:5.1f}%)")
+    log.info("")
     
     # 瓶颈分析
     if seg_list:
-        print("⚠️  瓶颈分析（按平均耗时排序）:")
+        log.info("⚠️  瓶颈分析（按平均耗时排序）:")
         for i, (name, avg, pct) in enumerate(seg_list[:3], 1):
-            print(f"  {i}. {name:20} {avg:6.1f}ms  ({pct:5.1f}%)")
-        print(f"\n建议优先优化: {seg_list[0][0]}")
-        print()
+            log.info(f"  {i}. {name:20} {avg:6.1f}ms  ({pct:5.1f}%)")
+        log.info(f"\n建议优先优化: {seg_list[0][0]}")
+        log.info("")
     
     # 输出 CSV
     csv_path = path.with_suffix(".csv")
@@ -217,18 +220,18 @@ def summarize(frames: List[Dict[str, Any]], path: Path):
             
             w.writerow(row)
     
-    print(f"✅ CSV 输出: {csv_path}")
-    print("=" * 70)
+    log.info(f"✅ CSV 输出: {csv_path}")
+    log.info("=" * 70")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("用法: python3 analyze_perf.py <jsonl_file>")
+        log.info("用法: python3 analyze_perf.py <jsonl_file>")
         sys.exit(1)
     
     path = Path(sys.argv[1])
     if not path.exists():
-        print(f"[ERROR] 文件不存在: {path}")
+        log.error(f"[ERROR] 文件不存在: {path}")
         sys.exit(1)
     
     frames = load_frames(path)

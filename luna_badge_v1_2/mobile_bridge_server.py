@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("mobile_bridge_server")
 """
 Luna Badge 手机桥接服务器
 
@@ -41,7 +44,7 @@ if str(ROOT) not in sys.path:
 try:
     from core.yolo_detector import YoloDetector
 except ImportError as e:
-    print(f"[ERROR] 无法导入 YoloDetector: {e}")
+    log.error(f"[ERROR] 无法导入 YoloDetector: {e}")
     YoloDetector = None
 
 try:
@@ -63,7 +66,7 @@ try:
     PIL_AVAILABLE = True
 except ImportError:
     PIL_AVAILABLE = False
-    print("[WARN] PIL 未安装，无法处理图片")
+    log.warning("[WARN] PIL 未安装，无法处理图片")
 
 # Flask app 已在上面定义
 
@@ -77,42 +80,42 @@ def init_modules():
     """初始化所有模块"""
     global yolo_detector, nav_logic, tts_manager
     
-    print("[INFO] 正在初始化模块...")
+    log.info("[INFO] 正在初始化模块...")
     
     # 初始化 YOLO
     if YoloDetector is not None:
         try:
             yolo_detector = YoloDetector()
-            print("[INFO] ✅ YOLO11-tiny 检测器初始化成功")
+            log.info("[INFO] ✅ YOLO11-tiny 检测器初始化成功")
         except Exception as e:
-            print(f"[WARN] YOLO 初始化失败: {e}")
+            log.warning(f"[WARN] YOLO 初始化失败: {e}")
             yolo_detector = None
     else:
-        print("[WARN] YoloDetector 不可用")
+        log.warning("[WARN] YoloDetector 不可用")
     
     # 初始化导航逻辑
     if NavigationLogic is not None:
         try:
             nav_logic = NavigationLogic()
-            print("[INFO] ✅ 导航逻辑初始化成功")
+            log.info("[INFO] ✅ 导航逻辑初始化成功")
         except Exception as e:
-            print(f"[WARN] 导航逻辑初始化失败: {e}")
+            log.warning(f"[WARN] 导航逻辑初始化失败: {e}")
             nav_logic = None
     else:
-        print("[WARN] NavigationLogic 不可用")
+        log.warning("[WARN] NavigationLogic 不可用")
     
     # 初始化 TTS
     if TTSManager is not None:
         try:
             tts_manager = TTSManager(mode="normal")
-            print("[INFO] ✅ TTS 管理器初始化成功")
+            log.info("[INFO] ✅ TTS 管理器初始化成功")
         except Exception as e:
-            print(f"[WARN] TTS 初始化失败: {e}")
+            log.warning(f"[WARN] TTS 初始化失败: {e}")
             tts_manager = None
     else:
-        print("[WARN] TTSManager 不可用")
+        log.warning("[WARN] TTSManager 不可用")
     
-    print("[INFO] 模块初始化完成")
+    log.info("[INFO] 模块初始化完成")
 
 
 def get_local_ip() -> str:
@@ -192,12 +195,12 @@ def generate_tts_audio(text: str) -> Optional[str]:
             return None
     except ImportError:
         # edge-tts 未安装，尝试使用系统 TTS
-        print("[WARN] edge-tts 未安装，TTS 功能受限")
+        log.warning("[WARN] edge-tts 未安装，TTS 功能受限")
         if tts_manager is not None and hasattr(tts_manager, "speak_sync"):
             tts_manager.speak_sync(text)
         return None
     except Exception as e:
-        print(f"[WARN] TTS 生成失败: {e}")
+        log.warning(f"[WARN] TTS 生成失败: {e}")
         return None
 
 
@@ -378,9 +381,9 @@ def api_full_pipeline():
 
 
 if __name__ == "__main__":
-    print("\n" + "=" * 70)
-    print("Luna Badge Mobile Bridge Server")
-    print("=" * 70)
+    log.info("\n" + "=" * 70")
+    log.info("Luna Badge Mobile Bridge Server")
+    log.info("=" * 70")
     
     # 初始化模块
     init_modules()
@@ -389,13 +392,13 @@ if __name__ == "__main__":
     local_ip = get_local_ip()
     port = 8899
     
-    print(f"\n[INFO] 服务器启动中...")
-    print(f"[INFO] 本机 IP: {local_ip}")
-    print(f"[INFO] 端口: {port}")
-    print(f"\n[INFO] 手机端访问地址:")
-    print(f"  http://{local_ip}:{port}/mobile_client.html")
-    print(f"\n[INFO] 按 Ctrl+C 停止服务器")
-    print("=" * 70 + "\n")
+    log.info(f"\n[INFO] 服务器启动中...")
+    log.info(f"[INFO] 本机 IP: {local_ip}")
+    log.info(f"[INFO] 端口: {port}")
+    log.info(f"\n[INFO] 手机端访问地址:")
+    log.info(f"  http://{local_ip}:{port}/mobile_client.html")
+    log.info(f"\n[INFO] 按 Ctrl+C 停止服务器")
+    log.info("=" * 70 + "\n")
     
     # 启动服务器
     app.run(host="0.0.0.0", port=port, debug=False, threaded=True)

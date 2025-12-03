@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("stress_realtime_pipeline")
 """
 链路压测脚本（并发 + 热衰减）
 持续压测真实链路，观察性能衰减和错误率
@@ -23,7 +26,7 @@ try:
     PIPELINE_AVAILABLE = True
 except ImportError:
     PIPELINE_AVAILABLE = False
-    print("⚠️ 真实链路模块不可用，将使用 Mock")
+    log.info("⚠️ 真实链路模块不可用，将使用 Mock")
 
 
 def ensure_perf_dir():
@@ -58,7 +61,7 @@ def run_full_pipeline_once():
                 report = run_full_benchmark()
             return report.get("total_ms", 0) if isinstance(report, dict) else 0
         except Exception as e:
-            print(f"⚠️ 链路执行失败: {e}")
+            log.info(f"⚠️ 链路执行失败: {e}")
             return None
     else:
         # Mock 版本（快速执行）
@@ -74,7 +77,7 @@ def stress_test(duration_sec=60, concurrency=4):
     errors = 0
     start_time = time.time()
     
-    print(f"\n=== 压测开始：{duration_sec}s, 并发={concurrency} ===")
+    log.info(f"\n=== 压测开始：{duration_sec}s, 并发={concurrency} ===")
     
     def worker():
         nonlocal errors
@@ -83,7 +86,7 @@ def stress_test(duration_sec=60, concurrency=4):
             return total_ms
         except Exception as e:
             errors += 1
-            print(f"  ⚠️ 任务失败: {e}")
+            log.info(f"  ⚠️ 任务失败: {e}")
             return None
     
     with ThreadPoolExecutor(max_workers=concurrency) as executor:
@@ -99,7 +102,7 @@ def stress_test(duration_sec=60, concurrency=4):
                 latencies.append(ms)
             completed += 1
             if completed % 10 == 0:
-                print(f"  已完成: {completed} 个任务...")
+                log.info(f"  已完成: {completed} 个任务...")
     
     end_time = time.time()
     
@@ -107,10 +110,10 @@ def stress_test(duration_sec=60, concurrency=4):
     total = success + errors
     error_rate = (errors / total) * 100 if total > 0 else 0
     
-    print(f"\n=== 压测结束 ===")
-    print(f"总请求数: {total}")
-    print(f"成功: {success}")
-    print(f"失败: {errors} (错误率 {error_rate:.2f}%)")
+    log.info(f"\n=== 压测结束 ===")
+    log.info(f"总请求数: {total}")
+    log.info(f"成功: {success}")
+    log.error(f"失败: {errors} (错误率 {error_rate:.2f}%)")
     
     if latencies:
         avg = statistics.mean(latencies)
@@ -124,7 +127,7 @@ def stress_test(duration_sec=60, concurrency=4):
         )
     else:
         avg = p50 = p90 = p95 = p99 = None
-        print("无成功请求，无法统计延迟")
+        log.info("无成功请求，无法统计延迟")
     
     # 写日志
     result = {
@@ -154,8 +157,8 @@ def stress_test(duration_sec=60, concurrency=4):
         for idx, v in enumerate(latencies):
             f.write(f"{idx},{v:.2f}\n")
     
-    print(f"\n✅ 压测结果已写入: {out_path}")
-    print(f"✅ 样本数据已写入: {csv_path}")
+    log.info(f"\n✅ 压测结果已写入: {out_path}")
+    log.info(f"✅ 样本数据已写入: {csv_path}")
 
 
 if __name__ == "__main__":

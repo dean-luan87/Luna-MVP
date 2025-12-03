@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 # scene_graph.py
 
+log = get_logger("scene_graph")
 """
 跨场景知识图谱 Scene Graph V1
 
@@ -188,7 +191,7 @@ class SceneGraph:
         
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"[SceneGraph] Exported to {filename}")
+        log.info(f"[SceneGraph] Exported to {filename}")
     
     def load(self, filename: str):
         """
@@ -211,9 +214,9 @@ class SceneGraph:
                 edge = SceneEdge(**edge_dict)
                 self.edges.append(edge)
             
-            print(f"[SceneGraph] Loaded from {filename}")
+            log.info(f"[SceneGraph] Loaded from {filename}")
         except Exception as e:
-            print(f"[SceneGraph] Failed to load: {e}")
+            log.error(f"[SceneGraph] Failed to load: {e}")
     
     def get_statistics(self) -> Dict[str, Any]:
         """

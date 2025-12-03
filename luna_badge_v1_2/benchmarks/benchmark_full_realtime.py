@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("benchmark_full_realtime")
 """
 真实链路一次完整执行（带 A-G 分段计时）
 基于真实模块，不是 sleep 模拟
@@ -292,18 +295,18 @@ def main(runs: int = 10, target_ms: float = 250.0):
     ensure_dir(REPORT_PATH)
     results = []
 
-    print(f"\n=== 真实链路 Benchmark（{runs} 次）===")
-    print(f"目标延迟: {target_ms}ms\n")
+    log.info(f"\n=== 真实链路 Benchmark（{runs} 次）===")
+    log.info(f"目标延迟: {target_ms}ms\n")
 
     for i in range(runs):
         m = run_full_pipeline_once()
         results.append(m)
         status = "✅" if m['success'] else "❌"
-        print(f"[{i+1}/{runs}] {status} total={m['total_ms']:.2f}ms success={m['success']}", end="")
+        log.info(f"[{i+1}/{runs}] {status} total={m['total_ms']:.2f}ms success={m['success']}", end="")
         if m.get('error'):
-            print(f" error={m['error']}")
+            log.error(f" error={m['error']}")
         else:
-            print()
+            log.info("")
 
     # 汇总
     success_runs = [r for r in results if r["success"]]
@@ -357,9 +360,9 @@ def main(runs: int = 10, target_ms: float = 250.0):
     with open(LOG_PATH, "w", encoding="utf-8") as f:
         json.dump(history, f, indent=2, ensure_ascii=False)
 
-    print("\n=== 汇总 ===")
-    print(json.dumps(summary, indent=2, ensure_ascii=False))
-    print(f"\n✅ 报告已保存: {REPORT_PATH}")
+    log.info("\n=== 汇总 ===")
+    log.info("json.dumps(summary, indent=2, ensure_ascii=False)")
+    log.info(f"\n✅ 报告已保存: {REPORT_PATH}")
 
 
 if __name__ == "__main__":

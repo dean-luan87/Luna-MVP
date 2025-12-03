@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("compare_models")
 """
 模型对比脚本
 
@@ -71,7 +74,7 @@ def load(path: Path) -> Dict[str, Any]:
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("用法: python3 compare_models.py <jsonl_file1> [jsonl_file2] ...")
+        log.info("用法: python3 compare_models.py <jsonl_file1> [jsonl_file2] ...")
         sys.exit(1)
     
     paths = [Path(p) for p in sys.argv[1:]]
@@ -79,36 +82,36 @@ if __name__ == "__main__":
     
     for path in paths:
         if not path.exists():
-            print(f"[WARN] 文件不存在，跳过: {path}")
+            log.warning(f"[WARN] 文件不存在，跳过: {path}")
             continue
         result = load(path)
         if result:
             rows.append(result)
     
     if not rows:
-        print("[ERROR] 没有有效的日志文件")
+        log.error("[ERROR] 没有有效的日志文件")
         sys.exit(1)
     
-    print("=" * 100)
-    print("模型对比结果")
-    print("=" * 100)
-    print()
-    print(f"{'Run ID':<30} {'Frames':>8} {'Lat Avg':>10} {'Lat P95':>10} {'Lat P99':>10} {'Inf Avg':>10} {'Inf P95':>10}")
-    print("-" * 100)
+    log.info("=" * 100")
+    log.info("模型对比结果")
+    log.info("=" * 100")
+    log.info("")
+    log.info(f"{'Run ID':<30} {'Frames':>8} {'Lat Avg':>10} {'Lat P95':>10} {'Lat P99':>10} {'Inf Avg':>10} {'Inf P95':>10}")
+    log.info("-" * 100")
     
     for r in rows:
         print(f"{r['name']:<30} {r['count']:>8} {r['lat_avg']:>10.1f} {r['lat_p95']:>10.1f} "
               f"{r['lat_p99']:>10.1f} {r['infer_avg']:>10.1f} {r['infer_p95']:>10.1f}")
     
-    print()
-    print("=" * 100)
+    log.info("")
+    log.info("=" * 100")
     
     # 找出最佳模型
     if len(rows) > 1:
         best_lat = min(rows, key=lambda x: x['lat_avg'])
         best_infer = min(rows, key=lambda x: x['infer_avg'])
-        print(f"\n🏆 最佳端到端延迟: {best_lat['name']} ({best_lat['lat_avg']:.1f}ms)")
-        print(f"🏆 最佳推理速度: {best_infer['name']} ({best_infer['infer_avg']:.1f}ms)")
-        print()
+        log.info(f"\n🏆 最佳端到端延迟: {best_lat['name']} ({best_lat['lat_avg']:.1f}ms)")
+        log.info(f"🏆 最佳推理速度: {best_infer['name']} ({best_infer['infer_avg']:.1f}ms)")
+        log.info("")
 
 

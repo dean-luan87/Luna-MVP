@@ -5,8 +5,11 @@ from typing import Any, Dict, Optional, Tuple
 
 import yaml
 from ultralytics import YOLO
+from core.logging import get_logger
 
 
+
+log = get_logger("yolo_loader")
 class UnifiedYOLOLoader:
     """
     统一的 YOLO 模型加载器：
@@ -78,11 +81,11 @@ class UnifiedYOLOLoader:
         if not self.config:
             self.load_config()
 
-        print(f"[YOLO_LOADER] loading model from {self.model_path} ...")
+        log.info(f"[YOLO_LOADER] loading model from {self.model_path} ...")
 
         if self.framework == "pytorch":
             self.model = YOLO(self.model_path)
-            print("[YOLO_LOADER] ✅ model loaded via ultralytics.YOLO (pytorch)")
+            log.info("[YOLO_LOADER] ✅ model loaded via ultralytics.YOLO (pytorch)")
         else:
             raise ValueError(f"[YOLO_LOADER] unknown framework: {self.framework}")
 

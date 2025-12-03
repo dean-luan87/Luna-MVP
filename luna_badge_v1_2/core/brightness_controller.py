@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("brightness_controller")
 """
 Brightness Controller (MVP 精简版)
 
@@ -85,6 +88,6 @@ class BrightnessController:
         - 后续接 GPIO / PWM
         """
         if analysis.flash_on:
-            print("[Flash] ON")
+            log.info("[Flash] ON")
         else:
-            print("[Flash] OFF")
+            log.info("[Flash] OFF")

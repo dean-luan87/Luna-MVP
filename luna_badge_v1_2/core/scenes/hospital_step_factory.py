@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 # hospital_step_factory.py
 
+log = get_logger("hospital_step_factory")
 """
 医院步骤工厂：将模板 step_id 转换为可执行的 Step 节点
 """
@@ -250,7 +253,7 @@ def _locate_zone(zone_type: str, context: Dict[str, Any]):
     """
     定位区域（占位实现）
     """
-    print(f"[Action] Locate zone: {zone_type}")
+    log.info(f"[Action] Locate zone: {zone_type}")
     # TODO: 实际实现中，这里应该调用 SceneGraph 查找最近节点
 
 
@@ -259,7 +262,7 @@ def _choose_registration_path(context: Dict[str, Any]):
     选择挂号路径（占位实现）
     优先级：咨询台 > 人工窗口 > 自助机
     """
-    print("[Action] Choose registration path (InquiryDesk > Counter > SelfService)")
+    log.info("[Action] Choose registration path (InquiryDesk > Counter > SelfService)")
 
 
 

@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("generate_perf_dashboard")
 """
 从 perf_logs 中最新的一组采样文件生成可视化 Dashboard：
 
@@ -34,8 +37,8 @@ def main():
     os.makedirs(PERF_DIR, exist_ok=True)
     csv_path, json_path, base = _latest_pair()
 
-    print(f"[INFO] 读取采样文件: {csv_path.name}")
-    print(f"[INFO] 读取报告文件: {json_path.name}")
+    log.info(f"[INFO] 读取采样文件: {csv_path.name}")
+    log.info(f"[INFO] 读取报告文件: {json_path.name}")
 
     # 读取 samples
     frames = []
@@ -253,8 +256,8 @@ def main():
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    print(f"[INFO] Dashboard 生成完成：{html_path}")
-    print(f"[INFO] 在浏览器中打开：open {html_path}")
+    log.info(f"[INFO] Dashboard 生成完成：{html_path}")
+    log.info(f"[INFO] 在浏览器中打开：open {html_path}")
 
 
 if __name__ == "__main__":

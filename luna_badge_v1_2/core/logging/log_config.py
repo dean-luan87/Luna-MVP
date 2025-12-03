@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("log_config")
 """
 日志配置管理
 支持全局开关、日志级别、输出目录等配置
@@ -56,7 +59,7 @@ class LogConfig:
                     self._config = {**self.DEFAULT_CONFIG, **file_config}
                     return
                 except Exception as e:
-                    print(f"Warning: Failed to load log config from {config_path}: {e}")
+                    log.error(f"Warning: Failed to load log config from {config_path}: {e}")
         
         # 使用默认配置
         self._config = self.DEFAULT_CONFIG.copy()

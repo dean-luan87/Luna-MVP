@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("heat_decay_test")
 """
 热衰减测试工具
 
@@ -22,7 +25,7 @@ from statistics import mean
 try:
     import psutil
 except ImportError:
-    print("[ERROR] 需要安装 psutil: pip install psutil")
+    log.error("[ERROR] 需要安装 psutil: pip install psutil")
     exit(1)
 
 LOG_DIR = Path("perf_logs")
@@ -34,7 +37,7 @@ def run_stress_command(cmd: str):
     启动一个持续压测命令，例如：
     python tools/stress_runner.py --duration 600 --fps 10 --ws on
     """
-    print(f"[heat] 启动压测命令: {cmd}")
+    log.info(f"[heat] 启动压测命令: {cmd}")
     proc = subprocess.Popen(cmd, shell=True)
     return proc
 
@@ -132,15 +135,15 @@ def main():
     out_jsonl = LOG_DIR / f"{run_id}.jsonl"
     out_csv = LOG_DIR / f"{run_id}.csv"
 
-    print(f"[heat] 运行 ID: {run_id}")
-    print(f"[heat] 总时长: {args.duration} 秒，采样间隔: {args.interval} 秒")
-    print(f"[heat] 输出: {out_json}, {out_jsonl}, {out_csv}")
+    log.info(f"[heat] 运行 ID: {run_id}")
+    log.info(f"[heat] 总时长: {args.duration} 秒，采样间隔: {args.interval} 秒")
+    log.info(f"[heat] 输出: {out_json}, {out_jsonl}, {out_csv}")
 
     # 启动压测进程
     stress_proc = None
     if args.stress_cmd:
         stress_proc = run_stress_command(args.stress_cmd)
-        print(f"[heat] 压测进程 PID: {stress_proc.pid}")
+        log.info(f"[heat] 压测进程 PID: {stress_proc.pid}")
         time.sleep(3)  # 等待进程启动
 
     start = time.time()
@@ -169,11 +172,11 @@ def main():
             time.sleep(args.interval)
 
     except KeyboardInterrupt:
-        print("\n[heat] 用户中断测试")
+        log.info("\n[heat] 用户中断测试")
     finally:
         # 停压测
         if stress_proc and stress_proc.poll() is None:
-            print("[heat] 结束压测进程")
+            log.info("[heat] 结束压测进程")
             stress_proc.terminate()
             try:
                 stress_proc.wait(timeout=5)
@@ -182,7 +185,7 @@ def main():
 
     # 汇总统计
     if not samples:
-        print("[heat] 无采样数据，结束。")
+        log.info("[heat] 无采样数据，结束。")
         return
 
     cpu_list = [s["cpu_percent"] for s in samples]
@@ -233,14 +236,14 @@ def main():
                     row.append(str(s.get(k, "")))
                 f.write(",".join(row) + "\n")
 
-    print("")
-    print("[heat] 热衰减测试完成。Summary:")
-    print(json.dumps(summary, ensure_ascii=False, indent=2))
-    print("")
-    print(f"[heat] 输出文件:")
-    print(f"  - JSON: {out_json}")
-    print(f"  - JSONL: {out_jsonl}")
-    print(f"  - CSV: {out_csv}")
+    log.info("")
+    log.info("[heat] 热衰减测试完成。Summary:")
+    log.info("json.dumps(summary, ensure_ascii=False, indent=2)")
+    log.info("")
+    log.info(f"[heat] 输出文件:")
+    log.info(f"  - JSON: {out_json}")
+    log.info(f"  - JSONL: {out_jsonl}")
+    log.info(f"  - CSV: {out_csv}")
 
 
 if __name__ == "__main__":

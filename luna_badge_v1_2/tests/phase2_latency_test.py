@@ -7,7 +7,10 @@ import json
 import statistics
 import subprocess
 from pathlib import Path
+from core.logging import get_logger
 
+
+log = get_logger("phase2_latency_test")
 ROOT_DIR = Path(__file__).resolve().parents[1]
 REPORT_DIR = ROOT_DIR / "test_reports"
 REPORT_DIR.mkdir(exist_ok=True, parents=True)
@@ -58,21 +61,21 @@ def percentile(values, p):
 
 def main():
     results = []
-    print(f"Phase-2 链路延迟测试：共 {RUNS} 次完整链路 (test_scenes.py) ...")
+    log.info(f"Phase-2 链路延迟测试：共 {RUNS} 次完整链路 (test_scenes.py) ...")
 
     for i in range(RUNS):
-        print(f"[{i+1}/{RUNS}] 运行中...", flush=True)
+        log.info(f"[{i+1}/{RUNS}] 运行中...", flush=True)
         res = run_one()
         results.append(res)
         status = "OK" if res["success"] else f"FAIL({res['returncode']})"
-        print(f"  -> {status}, {res['duration_ms']:.2f} ms")
+        log.info(f"  -> {status}, {res['duration_ms']:.2f} ms")
 
         # 如果有失败，直接打印错误信息，方便排查
         if not res["success"]:
-            print("  stdout:")
-            print(res["stdout"])
-            print("  stderr:")
-            print(res["stderr"])
+            log.info("  stdout:")
+            log.info("res["stdout"]")
+            log.info("  stderr:")
+            log.info("res["stderr"]")
 
     durations = [r["duration_ms"] for r in results if r["success"]]
     failed = [r for r in results if not r["success"]]
@@ -123,8 +126,8 @@ def main():
                 f"{idx+1},{r['duration_ms']:.3f},{int(r['success'])},{r['returncode']}\n"
             )
 
-    print("\n=== Phase-2 链路延迟测试完成 ===")
-    print(f"成功次数: {summary['success']}, 失败次数: {summary['failed']}")
+    log.info("\n=== Phase-2 链路延迟测试完成 ===")
+    log.error(f"成功次数: {summary['success']}, 失败次数: {summary['failed']}")
     if durations:
         print(
             "耗时统计(ms): "
@@ -137,7 +140,7 @@ def main():
             f"p99={summary['p99_ms']:.2f}"
         )
     else:
-        print("无成功样本，无法计算耗时统计。")
+        log.info("无成功样本，无法计算耗时统计。")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("gen_dashboard_nav")
 """
 生成增强版 dashboard_nav.html：
 
@@ -94,7 +97,7 @@ def gen_dashboard_nav():
 
 if __name__ == "__main__":
     p = gen_dashboard_nav()
-    print("dashboard_nav generated at", p)
+    log.info("dashboard_nav generated at", p")
 
 
 

@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("demo_realtime_navigation")
 """
 Luna Badge v1.3.1
 真实链路 Demo + 性能监控 + 压测模式
@@ -74,15 +77,15 @@ if not HAS_YOLO_DETECTOR:
     try:
         from ultralytics import YOLO
         yolo_model = YOLO(YOLO_MODEL_PATH)
-        print(f"[INFO] YOLO11-tiny loaded: {YOLO_MODEL_PATH}")
+        log.info(f"[INFO] YOLO11-tiny loaded: {YOLO_MODEL_PATH}")
     except Exception as e:
-        print(f"[WARN] YOLO model load failed: {e}")
+        log.error(f"[WARN] YOLO model load failed: {e}")
         yolo_model = None
 
 
 class DummyTTS:
     def speak(self, text: str):
-        print(f"[TTS] {text}")
+        log.info(f"[TTS] {text}")
 
 
 class NavCommand:
@@ -114,15 +117,15 @@ class RealtimeNavDemo:
             try:
                 self.camera = CameraHandler(camera_index=device_index)
                 self.use_cv2 = False
-                print("[INFO] 使用内部 CameraHandler")
+                log.info("[INFO] 使用内部 CameraHandler")
             except Exception as e:
-                print(f"[WARN] CameraHandler 初始化失败: {e}，使用 OpenCV")
+                log.warning(f"[WARN] CameraHandler 初始化失败: {e}，使用 OpenCV")
                 self.camera = cv2.VideoCapture(device_index)
                 self.use_cv2 = True
         else:
             self.camera = cv2.VideoCapture(device_index)
             self.use_cv2 = True
-            print("[INFO] 使用 OpenCV VideoCapture")
+            log.info("[INFO] 使用 OpenCV VideoCapture")
 
         if self.use_cv2 and not self.camera.isOpened():
             raise RuntimeError(f"摄像头无法打开: {device_index}")
@@ -133,9 +136,9 @@ class RealtimeNavDemo:
                 self.yolo_detector = YoloDetector()
                 self.yolo_detector.load_model()
                 self.use_internal_yolo = True
-                print("[INFO] 使用内部 YoloDetector")
+                log.info("[INFO] 使用内部 YoloDetector")
             except Exception as e:
-                print(f"[WARN] YoloDetector 初始化失败: {e}，使用 ultralytics")
+                log.warning(f"[WARN] YoloDetector 初始化失败: {e}，使用 ultralytics")
                 self.yolo_detector = None
                 self.use_internal_yolo = False
         else:
@@ -149,28 +152,28 @@ class RealtimeNavDemo:
         if HAS_NAV_LOGIC:
             try:
                 self.navigator = NavigationLogicV1_3()
-                print("[INFO] 使用内部 NavigationLogic")
+                log.info("[INFO] 使用内部 NavigationLogic")
             except Exception as e:
-                print(f"[WARN] NavigationLogic 初始化失败: {e}，使用简单规则")
+                log.warning(f"[WARN] NavigationLogic 初始化失败: {e}，使用简单规则")
                 self.navigator = None
         else:
             self.navigator = None
-            print("[WARN] 未找到 NavigationLogic，使用简单规则导航兜底")
+            log.warning("[WARN] 未找到 NavigationLogic，使用简单规则导航兜底")
 
         # TTS
         if HAS_TTS_MANAGER and enable_tts:
             try:
                 self.tts = TTSManager(mode="normal")
-                print("[INFO] 使用内部 TTSManager")
+                log.info("[INFO] 使用内部 TTSManager")
             except Exception as e:
-                print(f"[WARN] TTSManager 初始化失败: {e}，使用 DummyTTS")
+                log.warning(f"[WARN] TTSManager 初始化失败: {e}，使用 DummyTTS")
                 self.tts = DummyTTS()
         elif enable_tts:
             self.tts = DummyTTS()
-            print("[WARN] 未找到 TTSManager，使用 DummyTTS（仅打印）")
+            log.warning("[WARN] 未找到 TTSManager，使用 DummyTTS（仅打印）")
         else:
             self.tts = None
-            print("[INFO] TTS 已关闭（--no-tts）")
+            log.info("[INFO] TTS 已关闭（--no-tts）")
 
         # 语音限流
         self.last_speak = 0.0
@@ -200,7 +203,7 @@ class RealtimeNavDemo:
                     result["objects"] = result.get("detections", [])
                 return result
             except Exception as e:
-                print(f"[WARN] 内部 YOLO 检测失败: {e}，尝试 ultralytics")
+                log.warning(f"[WARN] 内部 YOLO 检测失败: {e}，尝试 ultralytics")
 
         # 使用 ultralytics YOLO
         if yolo_model is None:
@@ -224,7 +227,7 @@ class RealtimeNavDemo:
                         })
             return {"objects": objs}
         except Exception as e:
-            print(f"[ERROR] YOLO 检测异常: {e}")
+            log.error(f"[ERROR] YOLO 检测异常: {e}")
             return {"objects": []}
 
     # ========== 导航 ==========
@@ -249,7 +252,7 @@ class RealtimeNavDemo:
                     level = getattr(nav_res, "level", "info")
                     return NavCommand(text, level, raw={"nav": nav_res})
             except Exception as e:
-                print(f"[WARN] Navigator error: {e}")
+                log.error(f"[WARN] Navigator error: {e}")
 
         # 兜底规则
         persons = sum(1 for o in det.get("objects", []) if o.get("cls") == "person")
@@ -292,16 +295,16 @@ class RealtimeNavDemo:
     # ========== 主循环：交互模式 ==========
 
     def run_interactive(self):
-        print("\n" + "=" * 70)
-        print("[INFO] 模式：interactive（实时导航），Ctrl+C 退出")
-        print("=" * 70)
-        print()
+        log.info("\n" + "=" * 70")
+        log.info("[INFO] 模式：interactive（实时导航），Ctrl+C 退出")
+        log.info("=" * 70")
+        log.info("")
 
         frame_no = 0
         while not self._stop:
             frame = self._get_frame()
             if frame is None:
-                print("[ERROR] 无法获取 frame，退出")
+                log.error("[ERROR] 无法获取 frame，退出")
                 break
 
             t1 = time.perf_counter()
@@ -333,25 +336,25 @@ class RealtimeNavDemo:
     # ========== 主循环：压测模式 ==========
 
     def run_stress(self):
-        print("\n" + "=" * 70)
-        print(f"[INFO] 模式：stress，持续 {self.stress_duration}s / max_frames={self.stress_max_frames}")
-        print("=" * 70)
-        print()
+        log.info("\n" + "=" * 70")
+        log.info(f"[INFO] 模式：stress，持续 {self.stress_duration}s / max_frames={self.stress_max_frames}")
+        log.info("=" * 70")
+        log.info("")
 
         frame_no = 0
         t_start = time.time()
 
         while not self._stop:
             if self.stress_max_frames is not None and frame_no >= self.stress_max_frames:
-                print("[INFO] 已达到最大帧数，结束压测")
+                log.info("[INFO] 已达到最大帧数，结束压测")
                 break
             if (time.time() - t_start) > self.stress_duration:
-                print("[INFO] 已达到压测时长，结束压测")
+                log.info("[INFO] 已达到压测时长，结束压测")
                 break
 
             frame = self._get_frame()
             if frame is None:
-                print("[ERROR] 无法获取 frame，结束压测")
+                log.error("[ERROR] 无法获取 frame，结束压测")
                 break
 
             t1 = time.perf_counter()
@@ -384,7 +387,7 @@ class RealtimeNavDemo:
 
     def _save_reports(self):
         if not self.perf_samples:
-            print("[INFO] 无性能采样，跳过报告生成")
+            log.info("[INFO] 无性能采样，跳过报告生成")
             return
 
         ts = time.strftime("%Y%m%d_%H%M%S")
@@ -432,9 +435,9 @@ class RealtimeNavDemo:
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(stats, f, indent=2, ensure_ascii=False)
 
-        print("\n[INFO] 性能报告已生成：")
-        print(" -", csv_path)
-        print(" -", json_path)
+        log.info("\n[INFO] 性能报告已生成：")
+        log.info(" -", csv_path")
+        log.info(" -", json_path")
 
     def _cleanup(self):
         """清理资源"""
@@ -468,7 +471,7 @@ def main():
     )
 
     def sig_handler(signum, frame):
-        print("\n[INFO] 收到中断信号，准备退出...")
+        log.info("\n[INFO] 收到中断信号，准备退出...")
         demo._stop = True
 
     signal.signal(signal.SIGINT, sig_handler)

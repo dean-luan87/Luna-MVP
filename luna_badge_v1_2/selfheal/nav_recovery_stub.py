@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("nav_recovery_stub")
 """
 NavRecoveryStub
 ----------------
@@ -86,7 +89,7 @@ if __name__ == "__main__":
         "stuck_type": "no_progress",
     }
     handle_nav_stuck(demo_evt)
-    print("demo nav_stuck event written to", EVENT_LOG_PATH)
+    log.info("demo nav_stuck event written to", EVENT_LOG_PATH")
 
 
 

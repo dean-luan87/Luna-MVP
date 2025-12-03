@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("benchmark_full_pipeline")
 """
 Luna Badge 1.3.0 全链路响应时间 Benchmark
 端到端性能测试脚本，自动测试 A-G 七段链路，对标 250ms 标准
@@ -28,7 +31,7 @@ def measure(func, label, results, repeat=3):
         costs.append((end - start) * 1000)  # 转成 ms
     median_cost = statistics.median(costs)
     results[label] = median_cost
-    print(f"[{label}] {median_cost:.2f} ms")
+    log.info(f"[{label}] {median_cost:.2f} ms")
     return median_cost
 
 
@@ -115,7 +118,7 @@ def run_G(results):
 # ---------------------------------------------------------
 
 def run_full_benchmark():
-    print("\n=== Luna Badge 1.3.0 全链路响应 Benchmark ===\n")
+    log.info("\n=== Luna Badge 1.3.0 全链路响应 Benchmark ===\n")
     results = {}
 
     start_total = time.perf_counter()
@@ -131,17 +134,17 @@ def run_full_benchmark():
     end_total = time.perf_counter()
     total_ms = (end_total - start_total) * 1000
 
-    print("\n=== 总结 ===")
-    print(json.dumps(results, indent=2, ensure_ascii=False))
-    print(f"\n全链路耗时: {total_ms:.2f} ms")
+    log.info("\n=== 总结 ===")
+    log.info("json.dumps(results, indent=2, ensure_ascii=False)")
+    log.info(f"\n全链路耗时: {total_ms:.2f} ms")
 
     # 判断是否达标
     threshold_ms = 250.0
     if total_ms <= threshold_ms:
-        print(f"【✅ PASS】满足 {threshold_ms}ms 响应时间标准")
+        log.info(f"【✅ PASS】满足 {threshold_ms}ms 响应时间标准")
         passed = True
     else:
-        print(f"【❌ FAIL】超出 {threshold_ms}ms 标准，需要优化")
+        log.error(f"【❌ FAIL】超出 {threshold_ms}ms 标准，需要优化")
         passed = False
 
     # 计算各段占比
@@ -155,10 +158,10 @@ def run_full_benchmark():
         "G段(异常处理)": results.get("G1.异常捕捉", 0) + results.get("G2.NavBrain 重启判定", 0),
     }
 
-    print("\n=== 各段耗时占比 ===")
+    log.info("\n=== 各段耗时占比 ===")
     for segment, segment_time in segment_totals.items():
         percentage = (segment_time / total_ms * 100) if total_ms > 0 else 0
-        print(f"{segment}: {segment_time:.2f} ms ({percentage:.1f}%)")
+        log.info(f"{segment}: {segment_time:.2f} ms ({percentage:.1f}%)")
 
     # 保存报告
     report = {
@@ -181,8 +184,8 @@ def run_full_benchmark():
     with log_path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(report, ensure_ascii=False) + "\n")
 
-    print(f"\n📁 报告已保存: {json_path}")
-    print(f"📁 日志已追加: {log_path}")
+    log.info(f"\n📁 报告已保存: {json_path}")
+    log.info(f"📁 日志已追加: {log_path}")
 
     return report
 

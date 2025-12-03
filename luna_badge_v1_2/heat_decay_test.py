@@ -11,7 +11,10 @@ from typing import Dict, Any, Optional
 
 import numpy as np
 import requests
+from core.logging import get_logger
 
+
+log = get_logger("heat_decay_test")
 try:
     import psutil
 except ImportError:
@@ -79,15 +82,15 @@ def get_gpu_temp_mem() -> Dict[str, float]:
 
 
 def main() -> None:
-    print("===========================================")
-    print(" Luna Badge v1.3.0 热衰减压测")
-    print("===========================================")
-    print(f"API: {API_URL}")
-    print(f"持续时间: {DURATION_SEC} 秒")
-    print(f"目标 FPS: {TARGET_FPS}")
-    print(f"CSV: {CSV_PATH}")
-    print(f"JSON: {JSON_PATH}")
-    print("===========================================")
+    log.info("===========================================")
+    log.info(" Luna Badge v1.3.0 热衰减压测")
+    log.info("===========================================")
+    log.info(f"API: {API_URL}")
+    log.info(f"持续时间: {DURATION_SEC} 秒")
+    log.info(f"目标 FPS: {TARGET_FPS}")
+    log.info(f"CSV: {CSV_PATH}")
+    log.info(f"JSON: {JSON_PATH}")
+    log.info("===========================================")
 
     interval = 1.0 / TARGET_FPS
     end_time = datetime.now() + timedelta(seconds=DURATION_SEC)
@@ -175,7 +178,7 @@ def main() -> None:
                         -1,
                     ]
                 )
-                print(f"[ERROR] request failed: {e}")
+                log.error(f"[ERROR] request failed: {e}")
 
             # 控制 FPS
             loop_end = time.perf_counter()
@@ -231,12 +234,12 @@ def main() -> None:
     with open(JSON_PATH, "w", encoding="utf-8") as f_json:
         json.dump(summary, f_json, ensure_ascii=False, indent=2)
 
-    print("===========================================")
-    print(" 压测完成")
-    print(json.dumps(summary, ensure_ascii=False, indent=2))
-    print(" CSV:", CSV_PATH)
-    print(" JSON:", JSON_PATH)
-    print("===========================================")
+    log.info("===========================================")
+    log.info(" 压测完成")
+    log.info("json.dumps(summary, ensure_ascii=False, indent=2)")
+    log.info(" CSV:", CSV_PATH")
+    log.info(" JSON:", JSON_PATH")
+    log.info("===========================================")
 
 
 if __name__ == "__main__":

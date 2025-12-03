@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("tts_manager")
 """
 TTS Manager module (v1.3).
 
@@ -23,5 +26,5 @@ class TTSManager:
         """
         if not text:
             return
-        print(f"[TTS][{self.mode}] {text}")
+        log.info(f"[TTS][{self.mode}] {text}")
 

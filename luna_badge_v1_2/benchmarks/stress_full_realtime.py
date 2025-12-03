@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("stress_full_realtime")
 """
 并发压测 + 热衰减：真实链路版本
 基于真实模块，不是 sleep 模拟
@@ -56,8 +59,8 @@ def stress_test(duration_sec: int = 60, concurrency: int = 4, target_ms: float =
     latencies = []
     errors = []
 
-    print(f"\n=== 真实链路压测开始：duration={duration_sec}s, concurrency={concurrency} ===")
-    print(f"目标延迟: {target_ms}ms\n")
+    log.info(f"\n=== 真实链路压测开始：duration={duration_sec}s, concurrency={concurrency} ===")
+    log.info(f"目标延迟: {target_ms}ms\n")
 
     def worker():
         m = run_full_pipeline_once()
@@ -70,10 +73,10 @@ def stress_test(duration_sec: int = 60, concurrency: int = 4, target_ms: float =
             futures.append(pool.submit(worker))
             submitted += 1
             if submitted % 10 == 0:
-                print(f"  已提交 {submitted} 个任务...")
+                log.info(f"  已提交 {submitted} 个任务...")
             time.sleep(0.1)  # 控制提交频率
 
-        print(f"\n  等待 {len(futures)} 个任务完成...")
+        log.info(f"\n  等待 {len(futures)} 个任务完成...")
         completed = 0
         for fut in as_completed(futures):
             m = fut.result()
@@ -83,7 +86,7 @@ def stress_test(duration_sec: int = 60, concurrency: int = 4, target_ms: float =
                 errors.append(m.get("error", "Unknown error"))
             completed += 1
             if completed % 50 == 0:
-                print(f"  已完成 {completed}/{len(futures)} 个任务...")
+                log.info(f"  已完成 {completed}/{len(futures)} 个任务...")
 
     total = len(latencies) + len(errors)
     error_rate = len(errors) / total if total else 0.0
@@ -111,9 +114,9 @@ def stress_test(duration_sec: int = 60, concurrency: int = 4, target_ms: float =
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
 
-    print("\n=== 压测完成 ===")
-    print(json.dumps(summary, indent=2, ensure_ascii=False))
-    print(f"\n✅ 报告已保存: {REPORT_PATH}")
+    log.info("\n=== 压测完成 ===")
+    log.info("json.dumps(summary, indent=2, ensure_ascii=False)")
+    log.info(f"\n✅ 报告已保存: {REPORT_PATH}")
 
 
 if __name__ == "__main__":

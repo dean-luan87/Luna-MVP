@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("memory_matcher")
 """
 MemoryMatcher（静态环境匹配器，1.3.0 MVP）
 
@@ -48,7 +51,7 @@ class MemoryMatcher:
         kp, des = self.orb.detectAndCompute(frame, None)
 
         if des is None:
-            print("[MemoryMatcher] Warning: memory frame has no descriptors.")
+            log.warning("[MemoryMatcher] Warning: memory frame has no descriptors.")
             return
 
         self.memory_signature = {
@@ -56,7 +59,7 @@ class MemoryMatcher:
             "des": des
         }
 
-        print(f"[MemoryMatcher] Memory scene saved with {len(kp)} keypoints.")
+        log.info(f"[MemoryMatcher] Memory scene saved with {len(kp)} keypoints.")
 
     # ----------------------------------------------------------- #
     # 匹配当前帧与记忆场景

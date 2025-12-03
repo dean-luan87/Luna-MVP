@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("model_smoke_test")
 """
 Model Smoke Test for Luna Badge
 --------------------------------
@@ -24,7 +27,7 @@ from typing import Dict, Any
 try:
     import onnxruntime as ort
 except ImportError:
-    print("❌ onnxruntime 未安装，请运行: pip install onnxruntime")
+    log.info("❌ onnxruntime 未安装，请运行: pip install onnxruntime")
     exit(1)
 
 from core.model_registry import ModelRegistry
@@ -73,7 +76,7 @@ def run_model_test(model_name: str, model_info: Dict[str, Any]):
     # 1) 检查文件是否存在
     if not model_path.exists():
         result["error"] = f"Model file not found: {model_path}"
-        print(f"\033[91m[FAIL] {model_name} - file missing\033[0m")
+        log.error(f"\033[91m[FAIL] {model_name} - file missing\033[0m")
         return result
 
     # 2) 加载模型
@@ -84,7 +87,7 @@ def run_model_test(model_name: str, model_info: Dict[str, Any]):
         result["load_ms"] = load_time
     except Exception as e:
         result["error"] = f"Load failed: {str(e)}"
-        print(f"\033[91m[FAIL] {model_name} - load error\033[0m")
+        log.error(f"\033[91m[FAIL] {model_name} - load error\033[0m")
         return result
 
     # 3) 生成虚拟图片并推理一次
@@ -99,12 +102,12 @@ def run_model_test(model_name: str, model_info: Dict[str, Any]):
         result["infer_ms"] = infer_time
     except Exception as e:
         result["error"] = f"Infer failed: {str(e)}"
-        print(f"\033[91m[FAIL] {model_name} - infer error\033[0m")
+        log.error(f"\033[91m[FAIL] {model_name} - infer error\033[0m")
         return result
 
     # 全部通过
     result["status"] = "PASS"
-    print(f"\033[92m[PASS] {model_name} | load {load_time:.2f}ms | infer {infer_time:.2f}ms\033[0m")
+    log.info(f"\033[92m[PASS] {model_name} | load {load_time:.2f}ms | infer {infer_time:.2f}ms\033[0m")
     return result
 
 
@@ -126,24 +129,24 @@ def write_reports(results):
                 r["error"],
             ])
 
-    print(f"\n报告已生成：\n - {JSON_PATH}\n - {CSV_PATH}")
+    log.info(f"\n报告已生成：\n - {JSON_PATH}\n - {CSV_PATH}")
 
 
 def main():
-    print("\n========== Luna Model Smoke Test ==========\n")
+    log.info("\n========== Luna Model Smoke Test ==========\n")
 
     models = ModelRegistry.list_models()
     
     if not models:
-        print("\033[91m❌ 未找到已注册的模型，请检查 configs/model_registry.yaml\033[0m")
+        log.info("\033[91m❌ 未找到已注册的模型，请检查 configs/model_registry.yaml\033[0m")
         return
     
-    print(f"发现 {len(models)} 个已注册模型\n")
+    log.info(f"发现 {len(models)} 个已注册模型\n")
     
     results = []
 
     for name, info in models.items():
-        print(f">>> 测试模型：{name}")
+        log.info(f">>> 测试模型：{name}")
         result = run_model_test(name, info)
         results.append(result)
 
@@ -153,14 +156,14 @@ def main():
     pass_count = sum(1 for r in results if r["status"] == "PASS")
     fail_count = len(results) - pass_count
 
-    print("\n========== 测试结束 ==========")
-    print(f"通过: {pass_count} / {len(results)}")
-    print(f"失败: {fail_count} / {len(results)}")
+    log.info("\n========== 测试结束 ==========")
+    log.info(f"通过: {pass_count} / {len(results)}")
+    log.error(f"失败: {fail_count} / {len(results)}")
 
     if fail_count == 0:
-        print("\033[92m✅ 全部模型正常，可投入使用。\033[0m\n")
+        log.info("\033[92m✅ 全部模型正常，可投入使用。\033[0m\n")
     else:
-        print("\033[91m❌ 存在失败模型，请检查模型文件或注册表。\033[0m\n")
+        log.info("\033[91m❌ 存在失败模型，请检查模型文件或注册表。\033[0m\n")
 
 
 if __name__ == "__main__":

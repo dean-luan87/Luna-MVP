@@ -7,7 +7,10 @@ import json
 import subprocess
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from core.logging import get_logger
 
+
+log = get_logger("phase2_concurrency_test")
 ROOT_DIR = Path(__file__).resolve().parents[1]
 REPORT_DIR = ROOT_DIR / "test_reports"
 REPORT_DIR.mkdir(exist_ok=True, parents=True)
@@ -66,10 +69,10 @@ def main():
                 f"{res['duration_ms']:.2f} ms"
             )
             if not res["success"]:
-                print("  stdout:")
-                print(res["stdout"])
-                print("  stderr:")
-                print(res["stderr"])
+                log.info("  stdout:")
+                log.info("res["stdout"]")
+                log.info("  stderr:")
+                log.info("res["stderr"]")
 
     successes = [r for r in results if r["success"]]
     failures = [r for r in results if not r["success"]]
@@ -123,8 +126,8 @@ def main():
                 f"{int(r['success'])},{r['returncode']}\n"
             )
 
-    print("\n=== Phase-2 并发稳定性测试完成 ===")
-    print(f"成功任务: {len(successes)}, 失败任务: {len(failures)}")
+    log.info("\n=== Phase-2 并发稳定性测试完成 ===")
+    log.error(f"成功任务: {len(successes)}, 失败任务: {len(failures)}")
     if durations:
         print(
             "耗时统计(ms): "

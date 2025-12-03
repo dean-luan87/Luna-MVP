@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("log_writer")
 """
 日志写入器
 支持同步和异步写入
@@ -56,7 +59,7 @@ class LogWriter:
             except queue.Empty:
                 continue
             except Exception as e:
-                print(f"Log writer error: {e}")
+                log.error(f"Log writer error: {e}")
     
     def _get_log_file_path(self) -> Path:
         """获取日志文件路径"""
@@ -79,7 +82,7 @@ class LogWriter:
             with open(log_file, 'a', encoding='utf-8') as f:
                 f.write(log_entry + '\n')
         except Exception as e:
-            print(f"Failed to write log: {e}")
+            log.error(f"Failed to write log: {e}")
     
     def write(self, log_entry: str):
         """写入日志（同步或异步）"""

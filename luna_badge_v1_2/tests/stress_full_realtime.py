@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("stress_full_realtime")
 """
 真实链路压测
 
@@ -56,7 +59,7 @@ def worker(detector: YoloDetector, results: List[float], lock: threading.Lock, d
                 results.append(m["total_ms"])
         except Exception as e:
             # 出错时记录 -1，后续统计时可过滤
-            print(f"[STRESS] error: {e}")
+            log.error(f"[STRESS] error: {e}")
             with lock:
                 results.append(-1.0)
 
@@ -70,19 +73,19 @@ def main():
     duration_s = int(os.getenv("LUNA_STRESS_DURATION", "60"))
     num_threads = int(os.getenv("LUNA_STRESS_THREADS", "4"))
 
-    print("\n" + "=" * 70)
-    print("真实链路压测")
-    print("=" * 70)
-    print(f"持续时间: {duration_s} 秒")
-    print(f"并发线程: {num_threads}")
-    print("=" * 70)
-    print()
+    log.info("\n" + "=" * 70")
+    log.info("真实链路压测")
+    log.info("=" * 70")
+    log.info(f"持续时间: {duration_s} 秒")
+    log.info(f"并发线程: {num_threads}")
+    log.info("=" * 70")
+    log.info("")
 
     try:
         detector = YoloDetector()
-        print("[INFO] YOLO11-tiny 检测器初始化成功")
+        log.info("[INFO] YOLO11-tiny 检测器初始化成功")
     except Exception as e:
-        print(f"[ERROR] YOLO11-tiny 检测器初始化失败: {e}")
+        log.error(f"[ERROR] YOLO11-tiny 检测器初始化失败: {e}")
         return
 
     results: List[float] = []
@@ -94,7 +97,7 @@ def main():
         for _ in range(num_threads)
     ]
 
-    print("[INFO] 开始压测...")
+    log.info("[INFO] 开始压测...")
     start = time.perf_counter()
     for t in threads:
         t.start()
@@ -145,25 +148,25 @@ def main():
         for v in ok_samples:
             writer.writerow([f"{v:.3f}"])
 
-    print("\n" + "=" * 70)
-    print("压测结果")
-    print("=" * 70)
-    print(f"总样本数: {len(results)}")
-    print(f"成功样本: {len(ok_samples)}")
-    print(f"错误样本: {error_count} (错误率: {report['error_rate']:.2f}%)")
-    print()
-    print("延迟统计:")
-    print(f"  平均: {avg:.2f}ms")
-    print(f"  P50:  {p50:.2f}ms")
-    print(f"  P90:  {p90:.2f}ms")
-    print(f"  P95:  {p95:.2f}ms")
-    print(f"  P99:  {p99:.2f}ms")
-    print(f"  最小: {min_v:.2f}ms")
-    print(f"  最大: {max_v:.2f}ms")
-    print()
-    print(f"报告: {report_path}")
-    print(f"样本: {samples_path}")
-    print("=" * 70)
+    log.info("\n" + "=" * 70")
+    log.info("压测结果")
+    log.info("=" * 70")
+    log.info(f"总样本数: {len(results)}")
+    log.info(f"成功样本: {len(ok_samples)}")
+    log.error(f"错误样本: {error_count} (错误率: {report['error_rate']:.2f}%)")
+    log.info("")
+    log.info("延迟统计:")
+    log.info(f"  平均: {avg:.2f}ms")
+    log.info(f"  P50:  {p50:.2f}ms")
+    log.info(f"  P90:  {p90:.2f}ms")
+    log.info(f"  P95:  {p95:.2f}ms")
+    log.info(f"  P99:  {p99:.2f}ms")
+    log.info(f"  最小: {min_v:.2f}ms")
+    log.info(f"  最大: {max_v:.2f}ms")
+    log.info("")
+    log.info(f"报告: {report_path}")
+    log.info(f"样本: {samples_path}")
+    log.info("=" * 70")
 
 
 if __name__ == "__main__":

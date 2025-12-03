@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("replay_manager")
 """
 Replay Manager (v1.3.0)
 
@@ -339,12 +342,12 @@ class ReplayManager:
             events: 事件列表（已排序）
         """
         if not events:
-            print("⚠️ 没有事件可打印")
+            log.info("⚠️ 没有事件可打印")
             return
 
-        print("\n" + "=" * 80)
-        print(f"📋 Trace 链路（共 {len(events)} 个事件）")
-        print("=" * 80)
+        log.info("\n" + "=" * 80")
+        log.debug(f"📋 Trace 链路（共 {len(events)} 个事件）")
+        log.info("=" * 80")
 
         for i, event in enumerate(events, 1):
             phase = event.get("phase", "unknown")
@@ -355,7 +358,7 @@ class ReplayManager:
             # 格式化时间戳
             time_str = datetime.fromtimestamp(ts).strftime("%H:%M:%S.%f")[:-3] if ts else "N/A"
 
-            print(f"\n[{i}] {time_str} | {phase}.{event_name}")
+            log.info(f"\n[{i}] {time_str} | {phase}.{event_name}")
 
             # 打印 payload（美化）
             if payload:
@@ -371,13 +374,13 @@ class ReplayManager:
                         if len(value_str) > 100:
                             value_str = value_str[:100] + "..."
 
-                    print(f"    {key}: {value_str}")
+                    log.info(f"    {key}: {value_str}")
 
             # 如果有错误信息
             if "error_code" in event or "error_message" in event:
-                print(f"    ❌ ERROR: {event.get('error_code', '')} - {event.get('error_message', '')}")
+                log.error(f"    ❌ ERROR: {event.get('error_code', '')} - {event.get('error_message', '')}")
 
-        print("\n" + "=" * 80)
+        log.info("\n" + "=" * 80")
 
 
 # 便捷函数

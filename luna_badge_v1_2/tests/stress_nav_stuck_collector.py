@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("stress_nav_stuck_collector")
 """
 从 telemetry / nav_stuck_events.jsonl 中统计 NAV_STUCK 次数，
 写入 test_reports/stress_nav_metrics.json，
@@ -64,7 +67,7 @@ def collect_nav_stuck_metrics(
 
 if __name__ == "__main__":
     res = collect_nav_stuck_metrics()
-    print("nav_stuck metrics:", res)
+    log.info("nav_stuck metrics:", res")
 
 
 

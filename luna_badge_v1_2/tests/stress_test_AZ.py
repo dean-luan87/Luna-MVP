@@ -1,4 +1,7 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
+log = get_logger("stress_test_AZ")
 """
 Luna Badge v1.3.0 压力测试运行器
 在指定时间内持续运行测试，收集性能指标和错误率
@@ -90,7 +93,7 @@ class StressTestRunner:
     
     def run(self):
         """执行压力测试"""
-        print(f"开始压力测试: {self.duration_sec}秒, {self.threads}线程")
+        log.info(f"开始压力测试: {self.duration_sec}秒, {self.threads}线程")
         self.running = True
         self.start_time = time.time()
         
@@ -147,14 +150,14 @@ class StressTestRunner:
         with report_path.open("w", encoding="utf-8") as f:
             json.dump(report, f, ensure_ascii=False, indent=2)
         
-        print(f"\n压力测试完成:")
-        print(f"  测试次数: {self.test_count}")
-        print(f"  成功: {self.success_count}")
-        print(f"  错误: {len(self.errors)}")
-        print(f"  错误率: {error_rate:.2f}%")
-        print(f"  平均CPU: {avg_cpu:.1f}%")
-        print(f"  平均内存: {avg_mem:.1f}%")
-        print(f"  报告已保存: {report_path}")
+        log.info(f"\n压力测试完成:")
+        log.info(f"  测试次数: {self.test_count}")
+        log.info(f"  成功: {self.success_count}")
+        log.error(f"  错误: {len(self.errors)}")
+        log.error(f"  错误率: {error_rate:.2f}%")
+        log.info(f"  平均CPU: {avg_cpu:.1f}%")
+        log.info(f"  平均内存: {avg_mem:.1f}%")
+        log.info(f"  报告已保存: {report_path}")
         
         return report
 

@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("benchmark_realtime_pipeline")
 """
 Luna Badge 1.3.0 真实链路 Benchmark
 端到端性能测试脚本，直接调用真实模块，测量实际性能
@@ -36,7 +39,7 @@ except ImportError:
         CameraHandler = CameraManager  # 别名
     except ImportError:
         CAMERA_AVAILABLE = False
-        print("⚠️ Camera 模块不可用，将使用 Mock")
+        log.info("⚠️ Camera 模块不可用，将使用 Mock")
 
 # YOLO Detector
 try:
@@ -44,7 +47,7 @@ try:
     YOLO_AVAILABLE = True
 except ImportError:
     YOLO_AVAILABLE = False
-    print("⚠️ YOLO 模块不可用，将使用 Mock")
+    log.info("⚠️ YOLO 模块不可用，将使用 Mock")
 
 # TTS Manager
 try:
@@ -52,7 +55,7 @@ try:
     TTS_AVAILABLE = True
 except ImportError:
     TTS_AVAILABLE = False
-    print("⚠️ TTS 模块不可用，将使用 Mock")
+    log.info("⚠️ TTS 模块不可用，将使用 Mock")
 
 # Task Chain Manager
 try:
@@ -60,7 +63,7 @@ try:
     TASK_CHAIN_AVAILABLE = True
 except ImportError:
     TASK_CHAIN_AVAILABLE = False
-    print("⚠️ TaskChain 模块不可用，将使用 Mock")
+    log.info("⚠️ TaskChain 模块不可用，将使用 Mock")
 
 # Navigation Planner
 try:
@@ -72,7 +75,7 @@ except ImportError:
         NAV_AVAILABLE = True
     except ImportError:
         NAV_AVAILABLE = False
-        print("⚠️ Navigation 模块不可用，将使用 Mock")
+        log.info("⚠️ Navigation 模块不可用，将使用 Mock")
 
 # Scene Understanding
 try:
@@ -84,7 +87,7 @@ except ImportError:
         SCENE_AVAILABLE = True
     except ImportError:
         SCENE_AVAILABLE = False
-        print("⚠️ Scene Understanding 模块不可用，将使用 Mock")
+        log.info("⚠️ Scene Understanding 模块不可用，将使用 Mock")
 
 # FailSafe (使用 monitor 模块)
 try:
@@ -92,7 +95,7 @@ try:
     FAILSAFE_AVAILABLE = True
 except ImportError:
     FAILSAFE_AVAILABLE = False
-    print("⚠️ FailSafe 模块不可用，将使用 Mock")
+    log.error("⚠️ FailSafe 模块不可用，将使用 Mock")
 
 # Self-Heal
 try:
@@ -100,7 +103,7 @@ try:
     SELF_HEAL_AVAILABLE = True
 except ImportError:
     SELF_HEAL_AVAILABLE = False
-    print("⚠️ Self-Heal 模块不可用，将使用 Mock")
+    log.info("⚠️ Self-Heal 模块不可用，将使用 Mock")
 
 
 # -------------------------
@@ -185,13 +188,13 @@ def measure(label, func, results, repeat=1):
         try:
             func()
         except Exception as e:
-            print(f"  ⚠️ {label} 执行出错: {e}")
+            log.info(f"  ⚠️ {label} 执行出错: {e}")
         end = time.perf_counter()
         durations.append((end - start) * 1000)  # 转成 ms
     
     median = statistics.median(durations) if durations else 0
     results[label] = median
-    print(f"[{label}] {median:.2f} ms")
+    log.info(f"[{label}] {median:.2f} ms")
     return median
 
 
@@ -403,7 +406,7 @@ def run_G(results, healer):
 # -------------------------
 
 def run_full_benchmark():
-    print("\n========== Luna Badge 1.3.0 • 真实链路 Benchmark ==========\n")
+    log.info("\n========== Luna Badge 1.3.0 • 真实链路 Benchmark ==========\n")
     
     results = {}
     frame_holder = {"frame": None, "det_result": {}}
@@ -479,18 +482,18 @@ def run_full_benchmark():
     total_end = time.perf_counter()
     total_ms = (total_end - total_start) * 1000
     
-    print("\n========== 测试完成 ==========")
-    print(json.dumps(results, indent=2, ensure_ascii=False))
-    print(f"\n全链路总时长：{total_ms:.2f} ms")
+    log.info("\n========== 测试完成 ==========")
+    log.info("json.dumps(results, indent=2, ensure_ascii=False)")
+    log.info(f"\n全链路总时长：{total_ms:.2f} ms")
     
     # 判断是否满足 250ms Hard Limit
-    print("\n性能评估:")
+    log.info("\n性能评估:")
     threshold_ms = 250.0
     if total_ms <= threshold_ms:
-        print(f"【✅ PASS】小于 {threshold_ms}ms：满足实时导航标准")
+        log.info(f"【✅ PASS】小于 {threshold_ms}ms：满足实时导航标准")
         passed = True
     else:
-        print(f"【❌ FAIL】大于 {threshold_ms}ms：需要优化核心链路")
+        log.error(f"【❌ FAIL】大于 {threshold_ms}ms：需要优化核心链路")
         passed = False
     
     # 计算各段占比
@@ -504,10 +507,10 @@ def run_full_benchmark():
         "G段(异常处理)": results.get("G1.Self-Heal 判断 (真实)", 0) + results.get("G2.NavBrain 重启 (真实)", 0),
     }
     
-    print("\n=== 各段耗时占比 ===")
+    log.info("\n=== 各段耗时占比 ===")
     for segment, segment_time in segment_totals.items():
         percentage = (segment_time / total_ms * 100) if total_ms > 0 else 0
-        print(f"{segment}: {segment_time:.2f} ms ({percentage:.1f}%)")
+        log.info(f"{segment}: {segment_time:.2f} ms ({percentage:.1f}%)")
     
     # 保存报告
     report = {
@@ -540,8 +543,8 @@ def run_full_benchmark():
     with log_path.open("a", encoding="utf-8") as f:
         f.write(json.dumps(report, ensure_ascii=False) + "\n")
     
-    print(f"\n📁 报告已保存: {json_path}")
-    print(f"📁 日志已追加: {log_path}\n")
+    log.info(f"\n📁 报告已保存: {json_path}")
+    log.info(f"📁 日志已追加: {log_path}\n")
     
     return report
 

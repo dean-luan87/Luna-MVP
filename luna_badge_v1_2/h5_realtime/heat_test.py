@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("heat_test")
 """
 热衰减测试工具（10 分钟）
 
@@ -78,12 +81,12 @@ def collect_sample():
     }
 
 def main():
-    print("============================================")
-    print("  Luna Badge 热衰减测试")
-    print("============================================")
-    print(f"测试时长: {DURATION_SEC} 秒 ({DURATION_SEC // 60} 分钟)")
-    print(f"采样间隔: {INTERVAL_SEC} 秒")
-    print("")
+    log.info("============================================")
+    log.info("  Luna Badge 热衰减测试")
+    log.info("============================================")
+    log.info(f"测试时长: {DURATION_SEC} 秒 ({DURATION_SEC // 60} 分钟)")
+    log.info(f"采样间隔: {INTERVAL_SEC} 秒")
+    log.info("")
     
     run_id = datetime.now().strftime("heat_%Y%m%d_%H%M%S")
     output_dir = Path("perf_logs")
@@ -92,11 +95,11 @@ def main():
     json_path = output_dir / f"{run_id}.json"
     csv_path = output_dir / f"{run_id}.csv"
     
-    print(f"运行 ID: {run_id}")
-    print(f"输出文件: {json_path}, {csv_path}")
-    print("")
-    print("开始测试...")
-    print("")
+    log.info(f"运行 ID: {run_id}")
+    log.info(f"输出文件: {json_path}, {csv_path}")
+    log.info("")
+    log.info("开始测试...")
+    log.info("")
     
     samples = []
     start_time = time.time()
@@ -118,12 +121,12 @@ def main():
             time.sleep(INTERVAL_SEC)
     
     except KeyboardInterrupt:
-        print("\n测试被用户中断")
+        log.info("\n测试被用户中断")
     
-    print("")
-    print("============================================")
-    print("生成报告...")
-    print("============================================")
+    log.info("")
+    log.info("============================================")
+    log.info("生成报告...")
+    log.info("============================================")
     
     # 保存 JSON
     with open(json_path, "w", encoding="utf-8") as f:
@@ -152,23 +155,23 @@ def main():
     mem_values = [s["mem_percent"] for s in samples]
     gpu_temps = [s["gpu_temp"] for s in samples if s["gpu_temp"] is not None]
     
-    print("")
-    print("📊 统计结果:")
-    print(f"   CPU: 平均={sum(cpu_values)/len(cpu_values):.1f}% | "
+    log.info("")
+    log.info("📊 统计结果:")
+    log.info(f"   CPU: 平均={sum(cpu_values)/len(cpu_values)
           f"最大={max(cpu_values):.1f}% | "
           f"最小={min(cpu_values):.1f}%")
-    print(f"   内存: 平均={sum(mem_values)/len(mem_values):.1f}% | "
+    log.info(f"   内存: 平均={sum(mem_values)/len(mem_values)
           f"最大={max(mem_values):.1f}% | "
           f"最小={min(mem_values):.1f}%")
     if gpu_temps:
-        print(f"   GPU: 平均={sum(gpu_temps)/len(gpu_temps):.1f}°C | "
+        log.info(f"   GPU: 平均={sum(gpu_temps)/len(gpu_temps)
               f"最大={max(gpu_temps):.1f}°C | "
               f"最小={min(gpu_temps):.1f}°C")
     
-    print("")
-    print(f"✅ 测试完成！")
-    print(f"   JSON: {json_path}")
-    print(f"   CSV:  {csv_path}")
+    log.info("")
+    log.info(f"✅ 测试完成！")
+    log.info(f"   JSON: {json_path}")
+    log.info(f"   CSV:  {csv_path}")
 
 if __name__ == "__main__":
     main()

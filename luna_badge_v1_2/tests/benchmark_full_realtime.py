@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("benchmark_full_realtime")
 """
 真实链路单次 Benchmark
 
@@ -85,7 +88,7 @@ def get_frame() -> np.ndarray:
             if frame is not None:
                 return frame
         except Exception as e:
-            print(f"[WARN] CameraHandler 获取失败: {e}")
+            log.warning(f"[WARN] CameraHandler 获取失败: {e}")
 
     # 2) cv2 摄像头
     if cv2 is not None:
@@ -96,7 +99,7 @@ def get_frame() -> np.ndarray:
             if ok and frame is not None:
                 return frame
         except Exception as e:
-            print(f"[WARN] OpenCV 摄像头获取失败: {e}")
+            log.warning(f"[WARN] OpenCV 摄像头获取失败: {e}")
 
     # 3) sample_frames 目录
     sample_dir = ROOT / "sample_frames"
@@ -116,7 +119,7 @@ def get_frame() -> np.ndarray:
 
     # 4) 生成一个测试图像（最后兜底）
     if cv2 is not None:
-        print("[WARN] 无法获取真实图像，使用生成的测试图像")
+        log.warning("[WARN] 无法获取真实图像，使用生成的测试图像")
         test_img = np.zeros((480, 640, 3), dtype=np.uint8)
         cv2.rectangle(test_img, (100, 100), (200, 200), (0, 255, 0), 2)
         return test_img
@@ -157,7 +160,7 @@ class DummyTTSEngine:
     def speak(self, text: str) -> None:
         # 模拟 TTS 播报耗时
         time.sleep(0.02)  # 20ms
-        print(f"[TTS] {text}")
+        log.info(f"[TTS] {text}")
 
 
 def build_nav_brain():
@@ -166,7 +169,7 @@ def build_nav_brain():
     try:
         return NavBrainCls()
     except Exception as e:
-        print(f"[WARN] NavBrain 初始化失败: {e}，使用 DummyNavBrain")
+        log.warning(f"[WARN] NavBrain 初始化失败: {e}，使用 DummyNavBrain")
         return DummyNavBrain()
 
 
@@ -176,7 +179,7 @@ def build_tts_engine():
     try:
         return TTSEngineCls(mode="normal")
     except Exception as e:
-        print(f"[WARN] TTS 初始化失败: {e}，使用 DummyTTSEngine")
+        log.warning(f"[WARN] TTS 初始化失败: {e}，使用 DummyTTSEngine")
         return DummyTTSEngine()
 
 
@@ -232,20 +235,20 @@ def main():
     os.makedirs(ROOT / "perf_logs", exist_ok=True)
     report_path = ROOT / "perf_logs" / "full_realtime_benchmark.json"
 
-    print("\n" + "=" * 70)
-    print("真实链路单次 Benchmark")
-    print("=" * 70)
-    print()
+    log.info("\n" + "=" * 70")
+    log.info("真实链路单次 Benchmark")
+    log.info("=" * 70")
+    log.info("")
 
     # 构建 YOLO11-tiny 检测器
     try:
         detector = YoloDetector()
-        print("[INFO] YOLO11-tiny 检测器初始化成功")
+        log.info("[INFO] YOLO11-tiny 检测器初始化成功")
     except Exception as e:
-        print(f"[ERROR] YOLO11-tiny 检测器初始化失败: {e}")
+        log.error(f"[ERROR] YOLO11-tiny 检测器初始化失败: {e}")
         return
 
-    print("[INFO] 开始执行单次完整链路...")
+    log.info("[INFO] 开始执行单次完整链路...")
     metrics = run_full_pipeline_once(detector)
 
     # 判定是否满足 250ms 标准
@@ -257,9 +260,9 @@ def main():
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(metrics, f, ensure_ascii=False, indent=2)
 
-    print("\n" + "=" * 70)
-    print("测试结果")
-    print("=" * 70)
+    log.info("\n" + "=" * 70")
+    log.info("测试结果")
+    log.info("=" * 70")
     print(
         f"全链路延迟: {metrics['total_ms']:.2f} ms "
         f"(camera={metrics['camera_ms']:.2f}, "
@@ -267,12 +270,12 @@ def main():
         f"nav={metrics['nav_ms']:.2f}, "
         f"tts={metrics['tts_ms']:.2f})"
     )
-    print(f"检测数量: {metrics['num_detections']}")
-    print(f"目标延迟: {target_ms} ms")
-    print(f"结果: {'✅ PASS' if metrics['pass'] else '❌ FAIL'}")
-    print()
-    print(f"详细结果已写入: {report_path}")
-    print("=" * 70)
+    log.info(f"检测数量: {metrics['num_detections']}")
+    log.info(f"目标延迟: {target_ms} ms")
+    log.error(f"结果: {'✅ PASS' if metrics['pass'] else '❌ FAIL'}")
+    log.info("")
+    log.info(f"详细结果已写入: {report_path}")
+    log.info("=" * 70")
 
 
 if __name__ == "__main__":

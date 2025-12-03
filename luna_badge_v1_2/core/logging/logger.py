@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("logger")
 """
 统一日志接口
 提供全局日志管理器，所有模块使用此接口记录日志
@@ -66,9 +69,9 @@ class Logger:
         
         # 同时输出到控制台（可选）
         if level in ["WARNING", "ERROR"]:
-            print(log_entry, file=sys.stderr)
+            log.info("log_entry, file=sys.stderr")
         elif self.current_level <= self.level_map.get("DEBUG", 0):
-            print(log_entry)
+            log.info("log_entry")
     
     def debug(self, message: str):
         """记录 DEBUG 级别日志"""

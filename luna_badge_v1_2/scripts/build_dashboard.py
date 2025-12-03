@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("build_dashboard")
 """
 Dashboard 生成脚本
 
@@ -208,8 +211,8 @@ def build(path_jsonl: Path):
     csv_path = path_jsonl.with_suffix(".csv")
     
     if not csv_path.exists():
-        print(f"[ERROR] CSV 文件不存在: {csv_path}")
-        print(f"[INFO] 请先运行: python3 scripts/analyze_perf.py {path_jsonl}")
+        log.error(f"[ERROR] CSV 文件不存在: {csv_path}")
+        log.info(f"[INFO] 请先运行: python3 scripts/analyze_perf.py {path_jsonl}")
         return
     
     # 读取 CSV
@@ -227,7 +230,7 @@ def build(path_jsonl: Path):
             data.append(row)
     
     if not data:
-        print(f"[ERROR] CSV 文件为空")
+        log.error(f"[ERROR] CSV 文件为空")
         return
     
     # 计算统计值
@@ -249,18 +252,18 @@ def build(path_jsonl: Path):
     
     out = path_jsonl.with_suffix(".html")
     out.write_text(html, encoding="utf-8")
-    print(f"✅ Dashboard 已生成: {out}")
-    print(f"   在浏览器中打开查看")
+    log.info(f"✅ Dashboard 已生成: {out}")
+    log.info(f"   在浏览器中打开查看")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("用法: python3 build_dashboard.py <jsonl_file>")
+        log.info("用法: python3 build_dashboard.py <jsonl_file>")
         sys.exit(1)
     
     path = Path(sys.argv[1])
     if not path.exists():
-        print(f"[ERROR] 文件不存在: {path}")
+        log.error(f"[ERROR] 文件不存在: {path}")
         sys.exit(1)
     
     build(path)

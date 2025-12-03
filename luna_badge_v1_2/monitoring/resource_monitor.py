@@ -1,4 +1,7 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
+log = get_logger("resource_monitor")
 """
 资源监控模块 v1.0
 Resource Monitor - CPU / 内存 + LEAK 检测
@@ -21,7 +24,7 @@ except ImportError:
     import time as _time
 
     def log_event(evt: dict):
-        print("[telemetry-fallback]", evt)
+        log.info("[telemetry-fallback]", evt")
 
     def build_event(event_type: str, data: dict):
         d = {"ts": _time.time(), "type": event_type}
@@ -239,10 +242,10 @@ def start_global_resource_monitor(
 if __name__ == "__main__":
     # 简单自测
     m = start_global_resource_monitor()
-    print("[ResourceMonitor] Started, press Ctrl+C to stop")
+    log.info("[ResourceMonitor] Started, press Ctrl+C to stop")
     try:
         while True:
             time.sleep(5)
     except KeyboardInterrupt:
-        print("\n[ResourceMonitor] Stopped")
+        log.info("\n[ResourceMonitor] Stopped")
 

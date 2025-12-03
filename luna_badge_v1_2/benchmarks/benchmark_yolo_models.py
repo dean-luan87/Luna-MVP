@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("benchmark_yolo_models")
 """
 YOLO 多模型对比 Benchmark
 对比 yolov8, yolov11, yolov11-tiny 三种模型的检测耗时分布
@@ -23,7 +26,7 @@ try:
     YOLO_AVAILABLE = True
 except ImportError:
     YOLO_AVAILABLE = False
-    print("⚠️ YOLO 模块不可用，将使用 Mock")
+    log.info("⚠️ YOLO 模块不可用，将使用 Mock")
 
 try:
     from utils.camera_handler import CameraHandler
@@ -35,7 +38,7 @@ except ImportError:
         CAMERA_AVAILABLE = True
     except ImportError:
         CAMERA_AVAILABLE = False
-        print("⚠️ Camera 模块不可用，将使用 Mock 图像")
+        log.info("⚠️ Camera 模块不可用，将使用 Mock 图像")
 
 
 def ensure_perf_dir():
@@ -75,7 +78,7 @@ def get_test_frame():
             if frame is not None:
                 return frame
         except Exception as e:
-            print(f"⚠️ 摄像头捕获失败: {e}")
+            log.info(f"⚠️ 摄像头捕获失败: {e}")
     
     # 使用 Mock 图像
     return np.zeros((480, 640, 3), dtype=np.uint8)
@@ -83,7 +86,7 @@ def get_test_frame():
 
 def benchmark_model(model_name: str, frame, runs: int = 30):
     """测试单个模型的性能"""
-    print(f"  测试模型: {model_name} ({runs} 次)...")
+    log.info(f"  测试模型: {model_name} ({runs} 次)...")
     
     if YOLO_AVAILABLE:
         try:
@@ -91,7 +94,7 @@ def benchmark_model(model_name: str, frame, runs: int = 30):
             if hasattr(detector, 'load_model'):
                 detector.load_model()
         except Exception as e:
-            print(f"  ⚠️ 模型加载失败: {e}，使用 Mock")
+            log.info(f"  ⚠️ 模型加载失败: {e}，使用 Mock")
             detector = None
     else:
         detector = None
@@ -114,7 +117,7 @@ def benchmark_model(model_name: str, frame, runs: int = 30):
                 # Mock
                 time.sleep(0.05)
         except Exception as e:
-            print(f"  ⚠️ 检测失败: {e}")
+            log.info(f"  ⚠️ 检测失败: {e}")
             time.sleep(0.05)  # Mock
         
         end = time.perf_counter()
@@ -140,19 +143,19 @@ def benchmark_model(model_name: str, frame, runs: int = 30):
 def main():
     ensure_perf_dir()
     
-    print("\n=== YOLO 模型对比 Benchmark ===\n")
+    log.info("\n=== YOLO 模型对比 Benchmark ===\n")
     
     # 获取测试图像（只取一帧，保证模型对比公平）
-    print("获取测试图像...")
+    log.info("获取测试图像...")
     frame = get_test_frame()
-    print(f"测试图像尺寸: {frame.shape if isinstance(frame, np.ndarray) else 'Mock'}\n")
+    log.info(f"测试图像尺寸: {frame.shape if isinstance(frame, np.ndarray) else 'Mock'}\n")
     
     models = ["yolov8", "yolov11", "yolov11-tiny"]
     all_results = []
     timestamp = datetime.now().isoformat()
     
     for name in models:
-        print(f"\n=== Benchmark 模型：{name} ===")
+        log.info(f"\n=== Benchmark 模型：{name} ===")
         result = benchmark_model(name, frame, runs=30)
         all_results.append(result)
         
@@ -182,8 +185,8 @@ def main():
                 f"{r['p95']:.2f},{r['p99']:.2f},{r['min']:.2f},{r['max']:.2f}\n"
             )
     
-    print(f"\n✅ 结果已写入：{out_path}")
-    print(f"✅ CSV 已写入：{csv_path}")
+    log.info(f"\n✅ 结果已写入：{out_path}")
+    log.info(f"✅ CSV 已写入：{csv_path}")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,7 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
+log = get_logger("nav_monitor")
 """
 导航卡死监控模块 v1.3.0
 Navigation Stuck Monitor - 检测导航进度卡死
@@ -13,7 +16,7 @@ try:
     from core.telemetry import log_event, build_event, register_observer
 except Exception:
     def log_event(evt: dict):
-        print("[telemetry-fallback]", evt)
+        log.info("[telemetry-fallback]", evt")
 
     def build_event(event_type: str, data: dict):
         d = {"ts": time.time(), "type": event_type}
@@ -223,7 +226,7 @@ if __name__ == "__main__":
     m = start_global_nav_monitor(stuck_threshold_sec=5, check_interval_sec=1)
     m.notify_nav_start(route_id="demo")
     m.notify_nav_progress(10.0)
-    print("等待 5 秒触发 NAV_STUCK")
+    log.info("等待 5 秒触发 NAV_STUCK")
     time.sleep(7)
 
 

@@ -1,5 +1,8 @@
+from core.logging import get_logger
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+log = get_logger("perf_dashboard")
 """
 自动可视化 Dashboard 生成器
 生成 HTML Dashboard，整合 YOLO 模型对比、链路压测等结果
@@ -28,7 +31,7 @@ def load_json(path):
 def main():
     os.makedirs("perf_logs", exist_ok=True)
     
-    print("\n=== 生成性能 Dashboard ===\n")
+    log.info("\n=== 生成性能 Dashboard ===\n")
     
     # 加载数据
     yolo_bench = load_json(os.path.join("perf_logs", "yolo_model_benchmark.json"))
@@ -370,9 +373,9 @@ def main():
     with open(DASHBOARD_PATH, "w", encoding="utf-8") as f:
         f.write(html)
     
-    print(f"✅ Dashboard 已生成: {DASHBOARD_PATH}")
-    print("   用浏览器打开即可查看图表。")
-    print(f"   文件路径: {os.path.abspath(DASHBOARD_PATH)}")
+    log.info(f"✅ Dashboard 已生成: {DASHBOARD_PATH}")
+    log.info("   用浏览器打开即可查看图表。")
+    log.info(f"   文件路径: {os.path.abspath(DASHBOARD_PATH)}")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("app_controller")
 """
 App Controller (v1.3.0)
 
@@ -50,7 +53,7 @@ class DummyTTS:
             priority = event.get("priority", 0)
             
             # 简单打印即可
-            print(f"[TTS] [{style.upper()}] [{priority}] {text}")
+            log.info(f"[TTS] [{style.upper()}] [{priority}] {text}")
 
 
 class AppController:
@@ -100,17 +103,17 @@ class AppController:
         cap = cv2.VideoCapture(camera_index)
         if not cap.isOpened():
             logger.error(f"摄像头打开失败: {camera_index}")
-            print(f"[AppController] 摄像头打开失败，请检查摄像头是否连接")
+            log.info(f"[AppController] 摄像头打开失败，请检查摄像头是否连接")
             return
 
         logger.info("摄像头打开成功，开始导航 demo")
-        print("\n" + "=" * 80)
-        print("🚀 Luna Badge 导航 Demo 启动")
-        print("=" * 80)
-        print("💡 提示:")
-        print("   - 按 'q' 键退出")
-        print("   - 导航语音将显示在控制台")
-        print("-" * 80)
+        log.info("\n" + "=" * 80")
+        log.info("🚀 Luna Badge 导航 Demo 启动")
+        log.info("=" * 80")
+        log.info("💡 提示:")
+        log.info("   - 按 'q' 键退出")
+        log.info("   - 导航语音将显示在控制台")
+        log.info("-" * 80")
 
         try:
             track_event("navigation", "navigation_demo_start", {
@@ -143,12 +146,12 @@ class AppController:
                 if frame_count % 30 == 0:
                     state = self.nav_task.get_state()
                     context = self.nav_task.get_context()
-                    print(f"\n📊 帧 #{frame_count}: 状态={state.value}, 处理帧数={context.frame_count}")
+                    log.info(f"\n📊 帧 #{frame_count}: 状态={state.value}, 处理帧数={context.frame_count}")
 
                 # Demo：按下 'q' 退出
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     logger.info("用户按 'q' 退出")
-                    print("\n👋 用户退出")
+                    log.info("\n👋 用户退出")
                     break
 
                 # 检查任务状态
@@ -158,7 +161,7 @@ class AppController:
 
         except KeyboardInterrupt:
             logger.info("用户中断")
-            print("\n\n👋 用户中断")
+            log.info("\n\n👋 用户中断")
 
         finally:
             # 停止导航任务
@@ -176,12 +179,12 @@ class AppController:
             cap.release()
             cv2.destroyAllWindows()
 
-            print("\n" + "=" * 80)
-            print(f"✅ 导航 Demo 结束")
-            print(f"   总帧数: {frame_count}")
-            print(f"   任务状态: {self.nav_task.get_state().value}")
-            print(f"   处理帧数: {self.nav_task.get_context().frame_count}")
-            print("=" * 80)
+            log.info("\n" + "=" * 80")
+            log.info(f"✅ 导航 Demo 结束")
+            log.info(f"   总帧数: {frame_count}")
+            log.info(f"   任务状态: {self.nav_task.get_state().value}")
+            log.info(f"   处理帧数: {self.nav_task.get_context().frame_count}")
+            log.info("=" * 80")
 
     def pause_navigation(self):
         """

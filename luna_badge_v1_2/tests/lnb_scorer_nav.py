@@ -1,3 +1,6 @@
+from core.logging import get_logger
+
+log = get_logger("lnb_scorer_nav")
 """
 LNB v1.1 评分器（增强版）
 -----------------------
@@ -203,8 +206,8 @@ def compute_lnb_v11() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     res = compute_lnb_v11()
-    print("LNB v1.1 Score:", res["total_score"])
-    print("KPI:", res["kpi_scores"])
+    log.info("LNB v1.1 Score:", res["total_score"]")
+    log.info("KPI:", res["kpi_scores"]")
 
 
 
