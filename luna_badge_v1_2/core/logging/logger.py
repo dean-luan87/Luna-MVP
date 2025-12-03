@@ -1,4 +1,4 @@
-from core.logging import get_logger
+# 移除循环导入，get_logger 在此文件中定义
 
 log = get_logger("logger")
 """
