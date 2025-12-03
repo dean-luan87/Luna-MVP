@@ -5,8 +5,9 @@ Speed Engine Worker 基类
 import threading
 import time
 from typing import Optional
+import logging
 
-from core.logging.log_manager import LogManager
+# 延迟初始化 logger，避免循环依赖
 
 
 class WorkerBase(threading.Thread):
@@ -23,8 +24,21 @@ class WorkerBase(threading.Thread):
         super().__init__(daemon=True)
         self.name = name
         self._running = False
-        self.logger = LogManager.get_logger(name)
+        # 延迟初始化 logger
+        self._logger = None
         self.last_heartbeat: Optional[float] = 0
+    
+    @property
+    def logger(self):
+        """延迟获取 logger"""
+        if self._logger is None:
+            try:
+                from core.logging.log_manager import LogManager
+                self._logger = LogManager.get_logger(self.name)
+            except (ImportError, RuntimeError):
+                # 如果 LogManager 未初始化，使用标准 logging
+                self._logger = logging.getLogger(self.name)
+        return self._logger
 
     def start_worker(self):
         """启动 Worker"""

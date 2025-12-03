@@ -3,11 +3,12 @@ Speed Engine 线程池管理器
 1.4.1-speed.1: 线程基础框架
 """
 from typing import List
+import logging
 
 from core.speed.worker_base import WorkerBase
-from core.logging.log_manager import LogManager
 
-logger = LogManager.get_logger("SpeedThreadPool")
+# 延迟初始化 logger，避免循环依赖
+logger = logging.getLogger("SpeedThreadPool")
 
 
 class SpeedThreadPool:
