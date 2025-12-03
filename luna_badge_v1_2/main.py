@@ -20,9 +20,6 @@ from core.speed.speed_thread_pool import SpeedThreadPool
 from core.speed.camera_stream_worker import CameraStreamWorker
 from core.speed.vision_infer_worker import VisionInferWorker
 from core.speed.speed_context import SpeedContext
-from core.speed.speed_thread_pool import SpeedThreadPool
-from core.speed.camera_stream_worker import CameraStreamWorker
-from core.speed.speed_context import SpeedContext
 
 
 def bootstrap():
