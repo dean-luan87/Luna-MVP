@@ -19,6 +19,9 @@ from core.speed.thread_controller import ThreadController
 from core.speed.speed_thread_pool import SpeedThreadPool
 from core.speed.camera_stream_worker import CameraStreamWorker
 from core.speed.speed_context import SpeedContext
+from core.speed.speed_thread_pool import SpeedThreadPool
+from core.speed.camera_stream_worker import CameraStreamWorker
+from core.speed.speed_context import SpeedContext
 
 
 def bootstrap():
