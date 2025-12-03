@@ -66,9 +66,9 @@ class Logger:
         
         # 同时输出到控制台（可选）
         if level in ["WARNING", "ERROR"]:
-            log.info("log_entry, file=sys.stderr")
+            print(log_entry, file=sys.stderr)
         elif self.current_level <= self.level_map.get("DEBUG", 0):
-            log.info("log_entry")
+            print(log_entry)
     
     def debug(self, message: str):
         """记录 DEBUG 级别日志"""
