@@ -11,6 +11,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 
 from core.yolo_detector import YoloDetector
+from core.logging import get_logger
+
+# 初始化日志器
+log = get_logger("realtime_server")
 
 app = FastAPI(title="Luna Badge Realtime Nav API")
 
@@ -64,7 +68,7 @@ async def process_frame(frame: UploadFile = File(...)) -> JSONResponse:
         "boxes": boxes,
     }
 
-    print(
+    log.debug(
         f"[FRAME] size={img_rgb.shape} boxes={len(boxes)} latency={latency_ms:.2f} ms"
     )
 
@@ -103,7 +107,7 @@ if __name__ == "__main__":
     cert_file = cert_dir / "cert.pem"
 
     if key_file.exists() and cert_file.exists():
-        print("[SERVER] 使用 HTTPS (SSL 证书已找到)")
+        log.info("[SERVER] 使用 HTTPS (SSL 证书已找到)")
         uvicorn.run(
             "realtime_server:app",
             host="0.0.0.0",
@@ -113,6 +117,6 @@ if __name__ == "__main__":
             ssl_certfile=str(cert_file),
         )
     else:
-        print("[SERVER] 使用 HTTP (未找到 SSL 证书)")
-        print("[SERVER] 提示: 运行 'bash generate_ssl_cert.sh' 生成证书以支持 HTTPS")
+        log.warning("[SERVER] 使用 HTTP (未找到 SSL 证书)")
+        log.info("[SERVER] 提示: 运行 'bash generate_ssl_cert.sh' 生成证书以支持 HTTPS")
         uvicorn.run("realtime_server:app", host="0.0.0.0", port=5001, reload=True)

@@ -1,16 +1,10 @@
-# core/yolo_detector.py
-# 向后兼容层：保持旧导入路径可用，实际使用新路径的模块
+# src/vision/models/yolo/yolo_detector.py
 
 from typing import Any, Dict, List
 
 import numpy as np
 
-# 优先使用新路径，如果不存在则使用旧路径
-try:
-    from src.vision.models.yolo.yolo_loader import UnifiedYOLOLoader
-except ImportError:
-    from .yolo_loader import UnifiedYOLOLoader
-
+from .yolo_loader import UnifiedYOLOLoader
 from core.logging import get_logger
 
 log = get_logger("yolo_detector")
