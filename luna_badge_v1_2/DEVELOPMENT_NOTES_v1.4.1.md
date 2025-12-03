@@ -39,9 +39,30 @@ v1.4.1 的开发目标将在开发过程中逐步明确和更新。
 
 ### 2025-12-03
 
+#### v1.4.0 版本封装
 - ✅ v1.4.0 版本封装完成
 - ✅ dev-1.4.1 分支创建
 - ✅ 开发环境初始化
+
+#### 1.4.1-core 开发完成
+- ✅ 创建 core/ 目录结构（config, logging, concurrency, health, vision, ocr, asr, tts, navigation, taskchain）
+- ✅ 实现 ConfigCenter（统一配置中心）
+- ✅ 实现 LogManager v2.0（统一日志系统）
+- ✅ 实现 Worker 基础设施（WorkerBase, ThreadPool, BoundedQueue）
+- ✅ 实现 MetricsCollector（指标收集器）
+- ✅ 创建配置文件（config/default.yaml, config/dev.yaml）
+- ✅ 创建主入口文件（main.py with bootstrap）
+- ✅ 创建单元测试（test_config_center, test_log_manager, test_worker_base）
+- ✅ 修复循环导入问题
+- ✅ 修复 Python 版本兼容性问题（Optional 类型注解）
+
+**测试结果**：
+- ✅ 所有模块导入成功
+- ✅ 完整初始化流程测试通过
+- ✅ 配置系统正常工作
+- ✅ 日志系统正常工作
+- ✅ Worker 系统正常工作
+- ✅ 指标收集器正常工作
 
 ---
 
