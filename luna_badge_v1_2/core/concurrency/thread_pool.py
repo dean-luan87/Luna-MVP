@@ -3,7 +3,7 @@
 提供统一的线程池管理，用于并发任务执行
 """
 from concurrent.futures import ThreadPoolExecutor, Future
-from typing import Callable, Any
+from typing import Callable, Any, Optional
 import logging
 
 # 延迟导入，避免循环依赖
@@ -17,7 +17,7 @@ class ThreadPool:
     提供统一的线程池，用于执行并发任务
     """
     
-    _executor: ThreadPoolExecutor | None = None
+    _executor: Optional[ThreadPoolExecutor] = None
     _initialized = False
 
     @classmethod
