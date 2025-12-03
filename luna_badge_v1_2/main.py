@@ -16,6 +16,9 @@ from core.config.config_center import ConfigCenter
 from core.logging.log_manager import LogManager
 from core.concurrency.thread_pool import ThreadPool
 from core.speed.thread_controller import ThreadController
+from core.speed.speed_thread_pool import SpeedThreadPool
+from core.speed.camera_stream_worker import CameraStreamWorker
+from core.speed.speed_context import SpeedContext
 
 
 def bootstrap():
