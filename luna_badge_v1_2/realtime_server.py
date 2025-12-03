@@ -10,11 +10,22 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 
-from core.yolo_detector import YoloDetector
-from core.logging import get_logger
+# 1.4.1-core: 接入新基础设施
+from core.config.config_center import ConfigCenter
+from core.logging.log_manager import LogManager
+from core.health.metrics_collector import MetricsCollector
 
-# 初始化日志器
-log = get_logger("realtime_server")
+from core.yolo_detector import YoloDetector
+
+# 初始化基础设施（如果还未初始化）
+try:
+    ConfigCenter.init(env="dev")
+    LogManager.init()
+except RuntimeError:
+    pass  # 已经初始化过了
+
+# 使用新的日志系统
+log = LogManager.get_logger("realtime_server")
 
 app = FastAPI(title="Luna Badge Realtime Nav API")
 
@@ -40,37 +51,54 @@ async def health() -> Dict[str, Any]:
 async def process_frame(frame: UploadFile = File(...)) -> JSONResponse:
     """
     接收 H5 上传的一帧 JPEG/PNG，做目标检测，返回 boxes 和耗时。
+    1.4.1-core: 已接入 Metrics 和日志系统
     """
-    t0 = time.perf_counter()
-    content = await frame.read()
+    # 1.4.1-core: 使用 Metrics 记录总耗时
+    with MetricsCollector.timeit("api.frame.total"):
+        t0 = time.perf_counter()
+        
+        # 1.4.1-core: 记录帧接收
+        MetricsCollector.incr("api.frame.received")
+        
+        content = await frame.read()
 
-    # 解析成 RGB
-    image_array = np.frombuffer(content, dtype=np.uint8)
-    img_bgr = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
-    if img_bgr is None:
-        return JSONResponse(
-            status_code=400,
-            content={"error": "invalid_image", "message": "cannot decode image"},
+        # 解析成 RGB
+        image_array = np.frombuffer(content, dtype=np.uint8)
+        
+        # 1.4.1-core: 记录图像解码耗时
+        with MetricsCollector.timeit("api.frame.decode"):
+            img_bgr = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+        
+        if img_bgr is None:
+            MetricsCollector.incr("api.frame.decode_error")
+            log.warning("无法解码图像")
+            return JSONResponse(
+                status_code=400,
+                content={"error": "invalid_image", "message": "cannot decode image"},
+            )
+
+        img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+
+        # 1.4.1-core: 记录 YOLO 推理耗时
+        with MetricsCollector.timeit("yolo.inference"):
+            det_result = detector.detect(img_rgb)
+            boxes = det_result.to_dict()["boxes"]
+        
+        MetricsCollector.incr("yolo.calls")
+        MetricsCollector.incr("api.frame.processed")
+
+        t1 = time.perf_counter()
+        latency_ms = (t1 - t0) * 1000.0
+
+        resp = {
+            "latency_ms": latency_ms,
+            "box_count": len(boxes),
+            "boxes": boxes,
+        }
+
+        log.debug(
+            f"[FRAME] size={img_rgb.shape} boxes={len(boxes)} latency={latency_ms:.2f} ms"
         )
-
-    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-
-    # 推理
-    det_result = detector.detect(img_rgb)
-    boxes = det_result.to_dict()["boxes"]
-
-    t1 = time.perf_counter()
-    latency_ms = (t1 - t0) * 1000.0
-
-    resp = {
-        "latency_ms": latency_ms,
-        "box_count": len(boxes),
-        "boxes": boxes,
-    }
-
-    log.debug(
-        f"[FRAME] size={img_rgb.shape} boxes={len(boxes)} latency={latency_ms:.2f} ms"
-    )
 
     return JSONResponse(content=resp)
 
@@ -100,6 +128,16 @@ if __name__ == "__main__":
     import uvicorn
     import os
     from pathlib import Path
+
+    # 1.4.1-core: 确保基础设施已初始化
+    ConfigCenter.init(env=os.getenv("LUNA_ENV", "dev"))
+    LogManager.init()
+    
+    log.info("=" * 60)
+    log.info("Luna Badge Realtime Server v1.4.1-core 启动")
+    log.info("=" * 60)
+    log.info(f"环境: {ConfigCenter.get('env', 'dev')}")
+    log.info(f"日志级别: {ConfigCenter.get('logging.level', 'INFO')}")
 
     # 检查是否有 SSL 证书
     cert_dir = Path("ssl_certs")

@@ -11,9 +11,16 @@ try:
 except ImportError:
     from .yolo_loader import UnifiedYOLOLoader
 
-from core.logging import get_logger
-
-log = get_logger("yolo_detector")
+# 1.4.1-core: 接入新日志系统和 Metrics
+try:
+    from core.logging.log_manager import LogManager
+    from core.health.metrics_collector import MetricsCollector
+    log = LogManager.get_logger("yolo_detector")
+except (ImportError, RuntimeError):
+    # 兼容旧系统
+    from core.logging import get_logger
+    log = get_logger("yolo_detector")
+    MetricsCollector = None
 
 
 class DetectionResult:
@@ -36,6 +43,15 @@ class YoloDetector:
         self.model = self.loader.load_model()
 
     def detect(self, image: np.ndarray) -> DetectionResult:
+        # 1.4.1-core: 使用 Metrics 记录推理耗时
+        if MetricsCollector:
+            with MetricsCollector.timeit("yolo.inference"):
+                return self._detect_internal(image)
+        else:
+            return self._detect_internal(image)
+    
+    def _detect_internal(self, image: np.ndarray) -> DetectionResult:
+        """内部检测逻辑（分离出来以便 Metrics 包装）"""
         # 确保是 numpy
         if not isinstance(image, np.ndarray):
             image = np.asarray(image)
@@ -71,5 +87,14 @@ class YoloDetector:
                         "cls_id": cls_id,
                     }
                 )
+
+        # 1.4.1-core: 记录检测结果
+        if MetricsCollector:
+            MetricsCollector.incr("yolo.detections", len(boxes))
+        
+        if len(boxes) == 0:
+            log.debug("YOLO 检测结果为空")
+        else:
+            log.debug(f"YOLO 检测到 {len(boxes)} 个目标")
 
         return DetectionResult(boxes)
