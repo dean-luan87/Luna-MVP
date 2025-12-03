@@ -347,7 +347,7 @@ class ReplayManager:
 
         log.info("\n" + "=" * 80)
         log.debug(f"📋 Trace 链路（共 {len(events)} 个事件）")
-        log.info("=" * 80")
+        log.info("=" * 80)
 
         for i, event in enumerate(events, 1):
             phase = event.get("phase", "unknown")
