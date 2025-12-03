@@ -1,0 +1,34 @@
+# Cursor 开发规则
+
+## 重要提醒
+
+**所有开发工作必须严格遵循《Luna Badge 项目结构与开发规范 v1.0》**
+
+规范文档位置：`docs/PROJECT_STRUCTURE_AND_DEVELOPMENT_STANDARDS_v1.0.md`
+
+## 核心规则
+
+1. **目录结构规范**：严格按照规范第二章执行，不允许在 `src` 根目录写散乱文件
+2. **日志系统**：禁止使用 `print()`，必须使用统一 logger（`from core.logging import get_logger`）
+3. **模块独立性**：禁止跨层调用，禁止循环依赖
+4. **代码风格**：使用 Black + isort 格式化
+5. **测试隔离**：测试代码完全独立，不得影响主系统
+6. **分步执行**：所有重构必须分步骤执行，每步生成 diff 预览
+
+## 快速参考
+
+- 规范文档：`docs/PROJECT_STRUCTURE_AND_DEVELOPMENT_STANDARDS_v1.0.md`
+- 指令模板：`docs/CURSOR_INSTRUCTION_TEMPLATE.md`
+- 当前版本：v1.4.1-dev
+- 基础版本：v1.4.0
+
+## 开发检查清单
+
+在提交代码前，请确保：
+- [ ] 符合目录结构规范
+- [ ] 使用统一日志系统
+- [ ] 无循环依赖
+- [ ] 无跨层调用
+- [ ] 代码已格式化
+- [ ] 已删除未使用的代码
+
