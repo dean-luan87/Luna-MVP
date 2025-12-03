@@ -79,12 +79,29 @@ async def process_frame(frame: UploadFile = File(...)) -> JSONResponse:
 
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 
-        # 1.4.1-core: 记录 YOLO 推理耗时
-        with MetricsCollector.timeit("yolo.inference"):
-            det_result = detector.detect(img_rgb)
-            boxes = det_result.to_dict()["boxes"]
+        # 1.4.1-speed.3: 优先使用 SpeedContext 中的推理结果（非阻塞）
+        from core.speed.speed_context import SpeedContext
         
-        MetricsCollector.incr("yolo.calls")
+        det_result = None
+        boxes = []
+        
+        # 尝试从 SpeedContext 获取推理结果
+        if SpeedContext.current_yolo_result is not None:
+            # 使用新线程推理结果
+            det_result = SpeedContext.current_yolo_result
+            if hasattr(det_result, 'to_dict'):
+                boxes = det_result.to_dict().get("boxes", [])
+            elif isinstance(det_result, dict):
+                boxes = det_result.get("boxes", [])
+            MetricsCollector.incr("api.frame.processed_from_speed")
+        else:
+            # Fallback: 使用旧逻辑（兼容模式）
+            with MetricsCollector.timeit("yolo.inference"):
+                det_result = detector.detect(img_rgb)
+                boxes = det_result.to_dict()["boxes"]
+            MetricsCollector.incr("yolo.calls")
+            MetricsCollector.incr("api.frame.processed_fallback")
+        
         MetricsCollector.incr("api.frame.processed")
 
         t1 = time.perf_counter()
