@@ -36,14 +36,20 @@ class TestScenarios:
         fail_safe_manager.reset_mode()
         SpeedContext.set_mode("normal")
         
+        # 设置一个正常的推理时间戳，避免 HealthMonitor 启动时立即检测到 stale
+        SpeedContext.last_yolo_ts = time.time()  # 设置为当前时间，表示推理正常
+        
         health_monitor = HealthMonitor(camera_timeout=0.5, infer_timeout=0.8)
         fail_safe_manager = FailSafeManager.attach_to_health_monitor(health_monitor)
         auto_recovery = AutoRecoveryManager()
         auto_recovery.stable_duration_sec = 2.0  # 缩短稳定时间便于测试
         auto_recovery.check_interval_sec = 0.5
         
-        health_monitor.start_monitor()
+        # 先启动 AutoRecovery，再启动 HealthMonitor（避免立即检测到问题）
         auto_recovery.start_manager()
+        time.sleep(0.1)  # 短暂等待，确保 AutoRecovery 已启动
+        health_monitor.start_monitor()
+        time.sleep(0.2)  # 等待 HealthMonitor 完成首次检查
         
         # 验证初始状态
         assert SpeedContext.get_mode() == "normal", "初始状态应该是 normal"
