@@ -68,15 +68,14 @@ class TestScenarios:
         # 5. Degraded（应急模式自动包含降级）
         assert fail_safe_manager.degraded_active is True, "应急模式应该包含降级"
         
-        # 6. 等恢复时间（需要超过 stable_duration_sec = 2.0 秒）
+        # 6. 停止 HealthMonitor，避免在等待恢复期间持续触发新事件
+        # 这样可以确保恢复窗口不会被重置
+        health_monitor.stop_monitor()
+        
+        # 7. 等恢复时间（需要超过 stable_duration_sec = 2.0 秒）
         time.sleep(3.5)  # 增加等待时间，确保超过稳定时间窗口
         
-        # 7. 回到 normal
-        # 注意：如果 AutoRecovery 还没有恢复，可能需要更长时间
-        # 这里先检查是否已经恢复，如果没有则再等待
-        if SpeedContext.get_mode() != "normal":
-            time.sleep(2.0)  # 再等待 2 秒
-        
+        # 8. 回到 normal
         assert SpeedContext.get_mode() == "normal", f"应该自动恢复为 normal，当前状态: {SpeedContext.get_mode()}"
         assert fail_safe_manager.emergency_active is False, "应急模式应该被恢复"
         assert fail_safe_manager.degraded_active is False, "降级模式应该被恢复"
