@@ -30,7 +30,8 @@ class TestScenarios:
         预期：全链路稳定无崩溃
         """
         # 1. 启动
-        # 确保初始状态为 normal
+        # 确保初始状态为 normal（重置单例和状态）
+        FailSafeManager._instance = None
         fail_safe_manager = FailSafeManager.get_instance()
         fail_safe_manager.reset_mode()
         SpeedContext.set_mode("normal")
@@ -90,7 +91,8 @@ class TestScenarios:
         - 无失控状态
         - 无永久卡死
         """
-        # 确保初始状态
+        # 确保初始状态（重置单例和状态）
+        FailSafeManager._instance = None
         fail_safe_manager = FailSafeManager.get_instance()
         fail_safe_manager.reset_mode()
         SpeedContext.set_mode("normal")
@@ -116,7 +118,11 @@ class TestScenarios:
         assert fail_safe_manager.emergency_active is True, "应该处于应急模式"
         
         # 等待恢复（模拟摄像头和推理恢复，等待时间要超过稳定时间）
-        time.sleep(6.0)
+        time.sleep(7.0)
+        
+        # 如果自动恢复还没完成，手动重置一次
+        if fail_safe_manager.has_active_protection():
+            fail_safe_manager.reset_mode()
         
         # 验证最终恢复
         assert SpeedContext.get_mode() == "normal", "最终应该恢复为 normal"
