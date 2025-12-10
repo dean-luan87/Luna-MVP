@@ -48,7 +48,13 @@ class NavigationTask:
         self.navigator = navigator  # 向后兼容
         self.speech_manager = speech_manager  # 向后兼容
         self.logger = logger_instance or logger
-        self.tts_manager = tts_manager  # TTS 管理器（可选）
+        self.tts_manager = tts_manager  # 仍保留给系统级调用用，不再直接用于导航语音
+
+        # Step 6: 新增导航语音适配和路由
+        from task_engine.navigation.navigation_voice_adapter import NavigationVoiceAdapter
+        from task_engine.navigation.navigation_voice_router import navigation_voice_router
+        self.voice_adapter = NavigationVoiceAdapter()
+        self.voice_router = navigation_voice_router
 
         # 状态
         self.state = NavigationState.IDLE
@@ -286,12 +292,54 @@ class NavigationTask:
                 # 更新上下文
                 self.context.last_frame = frame
 
-                # TTS 播报
-                if speech_event and self.tts_manager:
+                # TTS 播报（v1.4.6d Step 6: 统一走 NavigationVoiceAdapter → Router → TTS）
+                # 支持结构化事件（NavigationEngineV13）和传统 speech_event
+                import traceback
+                from task_engine.navigation.navigation_voice_adapter import NavigationVoiceAdapter
+                from task_engine.navigation.navigation_voice_router import navigation_voice_router
+                from task_engine.navigation.nav_phrase_mapper import nav_phrase_mapper
+
+                nav_decision = result.get("nav_result")
+                speech_event = result.get("speech_event")
+                struct_events = result.get("events") or []  # NavigationEngineV13 的结构化输出
+
+                # Step 4：事件后处理（合并/抑制/去噪）
+                from task_engine.navigation.nav_event_post_processor import nav_event_post_processor
+                try:
+                    if struct_events:
+                        struct_events = nav_event_post_processor.process(struct_events)
+                except Exception:
+                    self.logger.warning("事件后处理失败:\n" + traceback.format_exc())
+
+                # Step 3：处理结构化事件 → speech_event 列表
+                speech_events_from_struct = []
+                try:
+                    if struct_events:
+                        speech_events_from_struct = nav_phrase_mapper.convert_events(struct_events)
+                except Exception:
+                    self.logger.warning("结构化事件转 speech_event 失败:\n" + traceback.format_exc())
+
+                # speech_event 合并（保留旧接口）
+                speech_events = []
+                if speech_event:
+                    speech_events.append(speech_event)
+                speech_events.extend(speech_events_from_struct)
+
+                # Step 6: 统一将 speech_events 通过 Adapter → Router → TTS
+                # 这里 speech_events 可能包含多个事件（例如前方同时有台阶+障碍）
+                if speech_events:
                     try:
-                        self.tts_manager.speak(speech_event)
+                        # 1）把 speech_event 适配为 Utterance 列表
+                        all_utterances = []
+                        for ev in speech_events:
+                            utterances = self.voice_adapter.handle_speech_event(ev)
+                            all_utterances.extend(utterances)
+
+                        # 2）交给导航语音 Router，应用安全优先级 + TTS 策略
+                        if all_utterances:
+                            self.voice_router.route_and_speak(all_utterances)
                     except Exception as e:
-                        self.logger.warning(f"TTS 播报失败: {e}")
+                        self.logger.warning(f"导航语音播报失败: {e}")
 
                 # 日志埋点
                 self._log_frame_event(

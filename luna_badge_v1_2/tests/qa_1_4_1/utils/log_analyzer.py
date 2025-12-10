@@ -112,3 +112,7 @@ class LogAnalyzer:
         errors = self.search_pattern(r"\[ERROR\]|\[CRITICAL\]")
         return errors[-limit:] if len(errors) > limit else errors
 
+
+
+
+

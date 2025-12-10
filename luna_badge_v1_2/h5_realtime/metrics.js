@@ -79,3 +79,7 @@ setInterval(() => {
     updateTraffic();
 }, 1000);
 
+
+
+
+

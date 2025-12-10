@@ -175,3 +175,7 @@ def validate_protocol_version(data: dict) -> bool:
 - [HeartbeatSpec](./heartbeatspec.md) - 心跳规范
 
 
+
+
+
+

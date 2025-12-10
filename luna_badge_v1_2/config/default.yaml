@@ -29,6 +29,21 @@ system:
   sensors:
     enabled: true
 
+# v1.4.2: 多摄像头配置
+camera:
+  front:
+    id: 0  # 前视摄像头索引
+  down:
+    id: 1  # 下视摄像头索引
+    enabled: false  # 默认关闭下视摄像头
+
+# v1.4.2: 视觉调度器配置
+scheduler:
+  interval:
+    fast: 0.0  # 快速模式间隔（秒），每帧都可推理
+    smart: 0.3  # 智能模式间隔（秒）
+    low: 0.8  # 低功耗模式间隔（秒）
+
 # Speed Engine 配置
 speed:
   model_switcher:

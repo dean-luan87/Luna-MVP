@@ -20,3 +20,7 @@ class YOLO11Detector:
 
 
 
+
+
+
+

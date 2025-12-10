@@ -81,3 +81,7 @@ def build_error(code: str, message: Optional[str] = None, detail: Optional[str] 
     """
     return ErrorSpec.create(code=code, message=message, detail=detail)
 
+
+
+
+

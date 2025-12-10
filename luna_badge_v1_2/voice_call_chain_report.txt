@@ -1,0 +1,178 @@
+Voice 调用链完整分析报告
+========================================
+生成时间: 2024-12-04
+问题: 语音重复播放，日志中没有 Voice 内部日志
+
+=== 1. 全局搜索：所有 .speak( 调用 ===
+./test_tts_quick.py:64:print("\n4. 测试统一接口 voice.speak()...")
+./test_tts_quick.py:66:    result = voice.speak("这是统一接口测试", tts_manager)
+./demo_realtime_navigation.py:277:        self.tts.speak(cmd.text)
+./tasks/navigation_task.py:292:                        self.tts_manager.speak(speech_event)
+./core/main_loop_v1_4_2.py:106:        # TTSManager.speak(text)
+./core/navigation/navigation_controller.py:280:                self.tts.speak(text)
+./core/speech/speech_pipeline.py:237:                    self.tts.speak(text)
+./core/task/task_engine.py:263:                self.tts.speak("检测到中断，我已恢复刚才的任务。")
+./core/failsafe/emergency_voice.py:90:                    TTSManager.speak(message)
+./core/failsafe/emergency_voice.py:94:                    self.logger.warning("[EmergencyVoice] TTSManager.speak() not available")
+./core/main_loop_final.py:116:        # TTSManager.speak(text)
+./core/taskchain/task_chain_router.py:43:                self.tts.speak("注意危险！请立即停下。")
+./core/taskchain/task_chain_router.py:52:                self.tts.speak(f"检测到{label_name}，我将为您执行相关流程。")
+./app/main_loop_v1_2_backup.py:83:                tts.speak(text)
+./tests/benchmark_full_realtime.py:215:    tts_engine.speak(instruction)
+./vision/vision_pipeline.py:180:            self.tts.speak(msg)
+./speech/speech_pipeline.py:60:            self.tts.speak("收到，后来由导航模块处理停止逻辑。")
+./speech/speech_pipeline.py:62:            self.tts.speak("收到，可以开始或继续导航。")
+./speech/speech_pipeline.py:64:            self.tts.speak("我听到了，但暂时还不支持这个指令。")
+./benchmarks/benchmark_full_realtime.py:137:            _tts_engine.speak(text)
+./benchmarks/benchmark_full_realtime.py:148:            _tts_engine.speak(text)
+./test_voice_complete.py:48:    result = voice.speak("这是一个基本播放测试", tts)
+./test_voice_complete.py:76:    voice.speak("这是一段用于测试停止功能的较长文本，应该能够被中途停止。", tts)
+./test_voice_complete.py:101:    result1 = voice.speak(test_text, tts)
+./test_voice_complete.py:105:    result2 = voice.speak(test_text, tts)
+./test_voice_complete.py:113:    result3 = voice.speak(test_text, tts)
+./test_voice_complete.py:138:        voice.speak(text, tts)
+./test_voice_complete.py:164:    voice.speak("队列测试第一句", tts)
+./test_voice_complete.py:166:    voice.speak("队列测试第二句", tts)
+./test_voice_complete.py:168:    voice.speak("队列测试第三句", tts)
+
+=== 2. 全局搜索：所有 TTSManager 调用 ===
+./test_tts_quick.py:14:from Luna_Badge.core.tts_manager import TTSManager
+./test_tts_quick.py:21:print("\n1. 初始化 Voice 和 TTSManager...")
+./test_tts_quick.py:24:    tts_manager = TTSManager()
+./test_tts_quick.py:33:    audio_path = tts_manager.synthesize("测试语音播报")
+./test_tts_quick.py:66:    result = voice.speak("这是统一接口测试", tts_manager)
+./demo_realtime_navigation.py:64:    from core.tts_manager import TTSManager
+./demo_realtime_navigation.py:166:                self.tts = TTSManager(mode="normal")
+./demo_realtime_navigation.py:167:                log.info("[INFO] 使用内部 TTSManager")
+./demo_realtime_navigation.py:169:                log.warning(f"[WARN] TTSManager 初始化失败: {e}，使用 DummyTTS")
+./demo_realtime_navigation.py:173:            log.warning("[WARN] 未找到 TTSManager，使用 DummyTTS（仅打印）")
+./tasks/navigation_task.py:33:        tts_manager=None,
+./tasks/navigation_task.py:44:            tts_manager: TTS 管理器（可选）
+./tasks/navigation_task.py:51:        self.tts_manager = tts_manager  # TTS 管理器（可选）
+./tasks/navigation_task.py:290:                if speech_event and self.tts_manager:
+./tasks/navigation_task.py:292:                        self.tts_manager.speak(speech_event)
+./core/main_loop_v1_4_2.py:105:        # from core.tts.tts_manager import TTSManager
+./core/main_loop_v1_4_2.py:106:        # TTSManager.speak(text)
+./core/runtime/app_controller.py:91:            tts_manager=self.tts
+./core/tts_manager.py:3:log = get_logger("tts_manager")
+./core/tts_manager.py:13:class TTSManager:
+./core/failsafe/emergency_voice.py:13:    from core.tts.tts_manager import TTSManager
+./core/failsafe/emergency_voice.py:16:    TTSManager = None
+./core/failsafe/emergency_voice.py:26:    - 不依赖具体 TTS（若无法加载 TTSManager，则仅打印日志）
+./core/failsafe/emergency_voice.py:86:        if TTS_AVAILABLE and TTSManager is not None:
+./core/failsafe/emergency_voice.py:88:                # 假设 TTSManager 有 speak 方法
+./core/failsafe/emergency_voice.py:89:                if hasattr(TTSManager, 'speak'):
+./core/failsafe/emergency_voice.py:90:                    TTSManager.speak(message)
+./core/failsafe/emergency_voice.py:94:                    self.logger.warning("[EmergencyVoice] TTSManager.speak() not available")
+./core/failsafe/emergency_voice.py:98:            self.logger.info("[EmergencyVoice] TTSManager not available, using log only")
+./core/main_loop_final.py:115:        # from core.tts.tts_manager import TTSManager
+
+=== 3. 全局搜索：所有系统命令调用（afplay/say）===
+./core/main_loop_v1_4_2.py:67:        self.safe_mode = SafeModeManager(tts_say=self._tts_say)
+./core/main_loop_v1_4_2.py:75:        self.query_bus = QueryBus(tts_say=self._tts_say)
+./core/main_loop_v1_4_2.py:101:    def _tts_say(self, text: str) -> None:
+./core/navigation/navigation_controller.py:138:                self.say(f"开始前往 {self.current_target.name}")
+./core/navigation/navigation_controller.py:147:            self.say("导航已停止")
+./core/navigation/navigation_controller.py:180:            self.say(nav_state.instruction)
+./core/navigation/navigation_controller.py:276:    def say(self, text: str) -> None:
+./core/navigation/navigation_controller.py:281:            elif hasattr(self.tts, 'say'):
+./core/navigation/navigation_controller.py:282:                self.tts.say(text)
+./core/speech/speech_pipeline.py:227:    def say(self, text: str) -> None:
+./core/speech/speech_pipeline.py:238:                elif hasattr(self.tts, 'say'):
+./core/speech/speech_pipeline.py:239:                    self.tts.say(text)
+./core/speech/speech_pipeline.py:241:                    logger.warning("[SPEECH_PIPELINE] TTS object has no speak/say method")
+./core/speech/speech_pipeline_integration.py:23:        tts_say: Optional[Callable[[str], None]] = None,
+./core/speech/speech_pipeline_integration.py:32:            tts_say: TTS 播报函数
+./core/speech/speech_pipeline_integration.py:37:        self.tts_say = tts_say
+./core/speech/speech_pipeline_integration.py:106:    def say(self, text: str) -> None:
+./core/speech/speech_pipeline_integration.py:113:        if self.tts_say:
+./core/speech/speech_pipeline_integration.py:115:                self.tts_say(text)
+./core/system/system_loop.py:32:        tts_say: Optional[Callable[[str], None]] = None,
+./core/system/system_loop.py:44:            tts_say: TTS 播报函数
+./core/system/system_loop.py:54:        if tts_say is None:
+./core/system/system_loop.py:55:            tts_say = self._default_tts_say
+./core/system/system_loop.py:72:            safe_mode = SafeModeManager(tts_say=tts_say)
+./core/system/system_loop.py:104:    def _default_tts_say(self, text: str) -> None:
+./core/system/safe_mode.py:11:    def __init__(self, tts_say: Callable[[str], None]) -> None:
+./core/system/safe_mode.py:13:        self._tts_say = tts_say
+./core/system/safe_mode.py:18:            self._tts_say("系统进入安全模式，请放慢脚步。")
+./core/system/safe_mode.py:23:            self._tts_say("系统退出安全模式，恢复正常。")
+./core/system/safe_mode.py:32:            self._tts_say("前方一米内有障碍物，请小心。")
+29:from modules.voice import Voice
+30:from Luna_Badge.core.tts_manager import TTSManager
+47:        self.voice = Voice()
+48:        self.tts_manager = TTSManager()
+59:                self.voice.speak(text, self.tts_manager)
+80:                self.voice.speak(text, self.tts_manager)
+107:                self.voice.speak(text, self.tts_manager)
+142:            self.voice.speak("好的，已结束任务。", self.tts_manager)
+145:            self.voice.speak("好的，我会继续保持导航。", self.tts_manager)
+147:            self.voice.speak("我没有听清楚，就先继续导航。", self.tts_manager)
+160:        # Voice 和 TTSManager 已初始化，但禁止播放
+189:            status = self.voice.get_status()
+190:            logger.info(f"[BOOT] Voice 状态: {status}")
+193:                result = self.voice.speak("Luna 已启动", self.tts_manager)
+196:                logger.warning("[BOOT] Voice 不可用，跳过启动播报")
+
+=== 5. 关键发现 ===
+
+从测试结果看：
+- Voice.speak() 单独测试时能正常输出日志
+- 但在 main.py 运行时没有看到 Voice 内部日志
+
+可能原因：
+1. 日志级别设置问题
+2. 日志输出被过滤
+3. 调用时出现异常但被捕获
+
+=== 6. main.py 中的调用方式检查 ===
+        # 语音组件 - 使用新的统一架构
+        self.voice = Voice()
+        self.tts_manager = TTSManager()
+        
+        # TTS 统一调用函数
+        def tts_say(text: str) -> None:
+            """统一 TTS 播报入口"""
+            global VOICE_READY, INIT_READY
+            # 双重保护：启动阶段和初始化阶段都禁止播报
+            if not INIT_READY or not VOICE_READY:
+                logger.debug(f"[TTS] 初始化保护中，跳过播报: {text[:30]}...")
+                return
+            if text and text.strip():
+                self.voice.speak(text, self.tts_manager)
+        
+        self.intent_parser = IntentParser()
+        self.query_bus = QueryBus(tts_say)
+
+        self.asr = DummyASR()
+        # 使用 DummyTTS 作为 SpeechPipeline 的接口（它只打印日志，不实际播放）
+        self.speech = SpeechPipeline(
+            asr=self.asr,
+            tts=DummyTTS(),
+            query_bus=self.query_bus,
+            intent_parser=self.intent_parser,
+        )
+
+        # SafeMode
+        def tts_say(text: str) -> None:
+            """统一 TTS 播报入口"""
+            global VOICE_READY, INIT_READY
+            if not INIT_READY or not VOICE_READY:
+                return
+            if text and text.strip():
+                self.voice.speak(text, self.tts_manager)
+        self.safe_mode = SafeModeManager(tts_say)
+
+        # RecoveryCenter
+        self.recovery_center = RecoveryCenter(
+            get_cpu_load=self.system_monitor.cpu_usage,
+            safe_mode_enter=self.safe_mode.enter,
+            restart_vision=self._restart_vision,
+            restart_speech=self._restart_speech,
+        )
+        self.recovery_center.register_module("vision", timeout_seconds=5.0)
+        self.recovery_center.register_module("speech", timeout_seconds=5.0)
+--
+        self.vision_scheduler = VisionScheduler()
+        self.vision_fail_safe = VisionFailSafe(FailSafeConfig())
+

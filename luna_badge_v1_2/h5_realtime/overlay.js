@@ -79,3 +79,7 @@ function clearOverlay() {
     overlayCtx.clearRect(0, 0, overlay.width, overlay.height);
 }
 
+
+
+
+

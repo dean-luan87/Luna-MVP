@@ -56,3 +56,7 @@ def test_memory_leak_trend():
     # 要求：在 60 秒压力下，内存增长不超过 20%
     assert growth_ratio < 0.2, f"Memory growth too high: {growth_ratio:.2%}"
 
+
+
+
+

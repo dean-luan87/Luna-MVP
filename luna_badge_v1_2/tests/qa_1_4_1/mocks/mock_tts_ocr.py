@@ -77,3 +77,7 @@ class MockOCRManager:
         """检查是否暂停"""
         return cls._paused
 
+
+
+
+

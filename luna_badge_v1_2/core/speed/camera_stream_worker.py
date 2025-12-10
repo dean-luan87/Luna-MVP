@@ -140,3 +140,7 @@ class CameraStreamWorker(WorkerBase):
             "camera_initialized": self._camera_initialized,
         }
 
+
+
+
+

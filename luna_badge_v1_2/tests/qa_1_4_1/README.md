@@ -62,3 +62,7 @@ pytest tests/qa_1_4_1/ --html=reports/qa_report.html --self-contained-html
 - 压力测试（IT-02）需要较长时间，建议单独运行
 - 所有测试都会自动清理资源，确保不影响后续测试
 
+
+
+
+

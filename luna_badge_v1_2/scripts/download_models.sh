@@ -41,3 +41,7 @@ echo "3. 验证模型文件："
 echo "   ls -lh $MODELS_DIR/*.onnx"
 echo ""
 
+
+
+
+
