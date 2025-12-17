@@ -27,6 +27,8 @@ import os
 import sys
 import hashlib
 import subprocess
+import tempfile
+import difflib
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -34,11 +36,15 @@ from typing import Any, Dict, List, Optional, Tuple
 # 1) python3 -m luna_badge_v1_2.replay.replay_runner <file>
 # 2) python3 luna_badge_v1_2/replay/replay_runner.py <file>
 #
-# 直接运行脚本时，相对导入会失败，因此这里做最小兼容处理（不影响业务逻辑）。
+repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+pkg_root = os.path.join(repo_root, "luna_badge_v1_2")
+if repo_root not in sys.path:
+    sys.path.insert(0, repo_root)
+if pkg_root not in sys.path:
+    # 兼容代码库中大量以 `task_engine.* / core.*` 为根的绝对导入
+    sys.path.insert(0, pkg_root)
+
 if __package__ is None or __package__ == "":
-    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    if repo_root not in sys.path:
-        sys.path.insert(0, repo_root)
     from luna_badge_v1_2.replay.replay_models import ReplayInput  # type: ignore
     from luna_badge_v1_2.replay.replay_clock import ReplayClock, patch_time  # type: ignore
 else:
@@ -46,7 +52,7 @@ else:
     from .replay_clock import ReplayClock, patch_time
 
 
-RUNNER_VERSION = "1.4.9-P0-2-C.1"
+RUNNER_VERSION = "1.4.9-P0-2-C.2"
 
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -133,33 +139,153 @@ class ReplayEventStream:
     tts_events: List[Dict[str, Any]]
 
 
-def build_event_stream(replay: ReplayInput) -> ReplayEventStream:
+def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventStream:
     """
     将 replay 输入枚举为“对用户可感知行为面”的标准化事件流。
 
     注意：
     - 目前 runner 仍是 skeleton，不驱动全业务系统；因此：
       - decisions 以 intent 事件作为序列化载体（start/cancel/confirm 等）
-      - behavior_states 以 vision_state（TURNING/STRAIGHT 等行为态）为载体
-      - tts_events 预留为空（待后续把业务输出接入 replay 驱动后填充）
+      - behavior_states 至少覆盖：vision_mode / task_mode / safety_mode
+      - tts_events 至少覆盖：表达系统最终决策事件流（C5）与最小 TTS 路由决策流（节流/入队）
     """
     decisions: List[Dict[str, Any]] = []
     behavior_states: List[Dict[str, Any]] = []
     tts_events: List[Dict[str, Any]] = []
 
-    last_vision_state: Optional[str] = None
+    # ---------------------------
+    # Behavior states (3 modes)
+    # ---------------------------
+    def vision_mode_from_state(vs: str) -> str:
+        v = (vs or "").upper()
+        if v in ("TURNING",):
+            return "turning"
+        if v in ("STRAIGHT", "STABLE", "LOCKED"):
+            return "straight"
+        return "unknown"
+
+    task_mode: str = "active" if replay.initial_state.has_active_task else "idle"
+    safety_mode: str = "normal"
+    last_vision_mode: Optional[str] = None
+    last_task_mode: Optional[str] = None
+    last_safety_mode: Optional[str] = None
+
+    def record_state(step: int, name: str, value: str) -> None:
+        behavior_states.append(
+            {
+                "step_index": step,
+                "state_name": name,
+                "value": value,
+            }
+        )
+
+    # 记录初始态（step=0）
+    clock.step = 0
+    vf0 = replay.vision_at_step(0)
+    last_vision_mode = vision_mode_from_state(vf0.vision_state)
+    last_task_mode = task_mode
+    last_safety_mode = safety_mode
+    record_state(0, "vision_mode", last_vision_mode)
+    record_state(0, "task_mode", last_task_mode)
+    record_state(0, "safety_mode", last_safety_mode)
+
+    # cancel_confirm 的“ended->idle”用 next_step 触发，避免同 step 双变更
+    pending_task_mode_at_step: Dict[int, str] = {}
+
+    # ---------------------------
+    # TTS events capture (C5 + minimal TTS router)
+    # ---------------------------
+    # C5: expression decision stream (EMIT/DROP/REPLACE/SUPPRESS)
+    from expression.scheduler.c5_scheduler import C5Scheduler
+    from expression.scheduler.c5_types import VisionRhythmContext, ExpressionCandidate
+
+    current_step = 0
+
+    def c5_observer(ev: Dict[str, Any]) -> None:
+        # 映射到 tts_events 口径（不 hash 原始文本）
+        # priority_band：critical/high 归为 P0_SAFETY，其余视为 P1_NAV
+        urgency = str(ev.get("urgency") or "normal")
+        is_critical = bool(ev.get("is_critical"))
+        band = "P0_SAFETY" if (is_critical or urgency == "high") else "P1_NAV"
+        tts_events.append(
+            {
+                "step_index": current_step,
+                "source": "c5",
+                "action": ev.get("action"),
+                "category": "NAVIGATION" if band == "P1_NAV" else "SAFETY",
+                "priority_band": band,
+                "message_id": f"expr:{ev.get('contract_id')}",
+                "contract_id": ev.get("contract_id"),
+                "reason": ev.get("reason"),
+                "delay_ms": int(ev.get("delay_ms") or 0),
+            }
+        )
+
+    c5 = C5Scheduler(event_observer=c5_observer)
+    c5.reset()
+
+    # Minimal TTS routing decisions (TimeWindowGate throttle -> enqueue or suppress)
+    # 注意：这里不要求真实音频，仅捕获“是否入队/被节流”这一行为面。
+    from task_engine.tts.tts_manager import TtsManager
+    from task_engine.tts.routers.navigation_voice_router import NavigationVoiceRouter
+    from task_engine.tts.router_facade import TTSRouterFacade
+    from task_engine.tts.tts_policy import TTSCategory
+    from task_engine.tts.priority_bands import PriorityBand
+
+    tts_mgr = TtsManager()
+    nav_router = NavigationVoiceRouter(tts_manager_instance=tts_mgr)
+    # Replay 起点时间可能为 0。为了复现“首次播报允许”的现实语义，
+    # 将 last_* 初始化到“窗口之前”，避免 t0=0 导致首次被误抑制。
+    nav_router.gate.reset()
+    nav_router.gate.last_navigation_time = clock.now_s() - nav_router.gate.navigation_window
+    nav_router.gate.last_safety_time = clock.now_s() - nav_router.gate.safety_window
+    facade = TTSRouterFacade(nav_router=nav_router, queue_manager=tts_mgr)
+
+    def record_tts_from_queue_delta(
+        *,
+        step: int,
+        category: str,
+        band: str,
+        message_id: str,
+        before_main: int,
+        after_main: int,
+        before_safety: int,
+        after_safety: int,
+        source: str,
+    ) -> None:
+        emitted = (after_main > before_main) or (after_safety > before_safety)
+        tts_events.append(
+            {
+                "step_index": step,
+                "source": source,
+                "action": "EMIT" if emitted else "SUPPRESS",
+                "category": category,
+                "priority_band": band,
+                "message_id": message_id,
+            }
+        )
+
+    # 仅在 snapshot step 触发“输入变化”相关的表达/播报，避免伪造大量事件。
+    map_snapshots_by_step = {s.step: s for s in replay.map_snapshots}
+    last_map_snapshot_step: Optional[int] = max(map_snapshots_by_step.keys()) if map_snapshots_by_step else None
+    vision_snapshot_steps = {f.step for f in replay.vision_frames}
+
     for step in range(replay.time.steps):
+        clock.step = step
+        current_step = step
+
+        # delayed task_mode transitions
+        if step in pending_task_mode_at_step:
+            task_mode = pending_task_mode_at_step[step]
+
         vf = replay.vision_at_step(step)
-        if vf.vision_state != last_vision_state:
-            behavior_states.append(
-                {
-                    "step_index": step,
-                    "vision_state": vf.vision_state,
-                }
-            )
-            last_vision_state = vf.vision_state
+        vm = vision_mode_from_state(vf.vision_state)
+        if vm != last_vision_mode:
+            record_state(step, "vision_mode", vm)
+            last_vision_mode = vm
 
         intents = replay.intents_at_step(step)
+        replace_probe = False
         for it in intents:
             # 禁止纳入任何非确定性字段（wall clock/uuid/thread id 等）
             decisions.append(
@@ -169,6 +295,118 @@ def build_event_stream(replay: ReplayInput) -> ReplayEventStream:
                     "task_id": (it.payload or {}).get("task_id"),
                     "params": it.payload or {},
                 }
+            )
+
+            # task_mode derived from intents (一期实现语义：confirm-cancel 两步)
+            if it.intent == "start_task":
+                task_mode = "active"
+                # 触发一次“同 duplicate_key 更新”，用于覆盖 C5 的 REPLACE 行为（不引入新信息）
+                # 仅在直行/稳定场景下触发，避免与 TURNING flush 语义耦合。
+                if vm == "straight":
+                    replace_probe = True
+            elif it.intent == "cancel_task":
+                # 进入确认式取消等待态
+                task_mode = "cancel_confirm"
+            elif it.intent == "confirm_cancel":
+                if bool((it.payload or {}).get("confirm")):
+                    task_mode = "ended"
+                    # 下一步回到 idle（隐式状态）
+                    if step + 1 < replay.time.steps:
+                        pending_task_mode_at_step[step + 1] = "idle"
+
+        # intents 处理完后，再记录 task/safety 的行为态变化，确保 step_index 对齐用户体验
+        if task_mode != last_task_mode:
+            record_state(step, "task_mode", task_mode)
+            last_task_mode = task_mode
+
+        if safety_mode != last_safety_mode:
+            record_state(step, "safety_mode", safety_mode)
+            last_safety_mode = safety_mode
+
+        # -------- C5 decision stream driven by replay snapshots --------
+        # 将 replay 的 vision_state 映射到 C5 的 vision_state 词表
+        c5_vs = "TURNING" if vm == "turning" else "STABLE"
+        ctx = VisionRhythmContext(
+            vision_state=c5_vs,  # type: ignore[arg-type]
+            speed_mps=0.8,       # 固定值：ReplayInput 未提供速度，避免引入浮点随机源
+            last_vision_ts=float(step),  # step-based，避免 wall clock
+        )
+
+        ms = map_snapshots_by_step.get(step)
+        if ms is not None:
+            dist_m = int(round(ms.distance_to_turn))
+            expr = ExpressionCandidate(
+                contract_id="nav.distance_to_turn",
+                urgency="low",
+                is_critical=False,
+                duplicate_key="nav.distance_to_turn",
+            )
+            # 触发一次 schedule（replace/turning drop/emit 都可在 observer 中体现）
+            c5.schedule(expr, ctx, emit_callback=lambda _e, _d: None)
+
+        # C5 REPLACE 覆盖：start_task step 下再次 schedule 相同 duplicate_key
+        if replace_probe:
+            c5.schedule(
+                ExpressionCandidate(
+                    contract_id="nav.distance_to_turn",
+                    urgency="low",
+                    is_critical=False,
+                    duplicate_key="nav.distance_to_turn",
+                ),
+                ctx,
+                emit_callback=lambda _e, _d: None,
+            )
+
+        # TURNING 行为态变化时：触发一次非关键表达，用于验证 TURNING 白名单兜底的稳定 DROP
+        # （来源于 replay 的 vision snapshot，不引入新信息）
+        if vm == "turning" and step in vision_snapshot_steps:
+            c5.schedule(
+                ExpressionCandidate(
+                    contract_id="nav.turning_suppress_probe",
+                    urgency="normal",
+                    is_critical=False,
+                    duplicate_key="nav.turning_suppress_probe",
+                ),
+                ctx,
+                emit_callback=lambda _e, _d: None,
+            )
+
+        # 仅在最后一个 map snapshot step 处理队列，保证能覆盖 REPLACE 语义：
+        # step0 入队 → step10 replace → step10 出队 emit
+        if last_map_snapshot_step is not None and step == last_map_snapshot_step:
+            c5.process_queue(ctx, emit_callback=lambda _e, _d: None)
+
+        # -------- Minimal TTS routing decisions (throttle vs enqueue) --------
+        # 仅在 “straight 且有 map snapshot” 时尝试一次导航播报。
+        if ms is not None and vm == "straight":
+            dist_m = int(round(ms.distance_to_turn))
+            message_id = f"tts:nav.distance_to_turn:{dist_m}"
+            before_main = len(tts_mgr.get_queue())
+            before_safety = len(tts_mgr.get_safety_queue())
+
+            # 走 RouterFacade，确保 category/band 语义与一期一致
+            facade.emit(
+                text="NAV_UPDATE",  # 不纳入 hash；仅作为占位文本
+                category=TTSCategory.NAVIGATION,
+                meta={
+                    "template_id": "nav.distance_to_turn",
+                    "distance_m": dist_m,
+                    "step_index": step,
+                },
+            )
+
+            after_main = len(tts_mgr.get_queue())
+            after_safety = len(tts_mgr.get_safety_queue())
+            record_tts_from_queue_delta(
+                step=step,
+                category="NAVIGATION",
+                band=PriorityBand.from_priority(75).name,
+                message_id=message_id,
+                before_main=before_main,
+                after_main=after_main,
+                before_safety=before_safety,
+                after_safety=after_safety,
+                source="tts_router",
             )
 
     return ReplayEventStream(
@@ -203,7 +441,7 @@ def _run_once(
 
     # 事件流在逻辑时间模式下构建（确保不会误用 wall clock）
     with patch_time(clock):
-        event_stream = build_event_stream(replay)
+        event_stream = build_event_stream(replay, clock)
 
         # 逐 step 枚举（保留原 skeleton 输出能力，但可通过 print_hash_only 关闭）
         if not print_hash_only:
@@ -279,7 +517,7 @@ def _validate(
     fast_sleep_ms: int = 0,
     slow_sleep_ms: int = 5,
 ) -> int:
-    def run_subprocess(sleep_ms: int) -> str:
+    def run_subprocess(sleep_ms: int, dump_events_path: str) -> str:
         out = subprocess.check_output(
             [
                 sys.executable,
@@ -287,11 +525,12 @@ def _validate(
                 input_path,
                 "--sleep-ms",
                 str(sleep_ms),
+                "--dump-events",
+                dump_events_path,
                 "--print-hash-only",
             ],
             stderr=subprocess.STDOUT,
         ).decode("utf-8", errors="replace")
-        # parse last hash line
         for line in out.splitlines()[::-1]:
             if line.startswith("[REPLAY][HASH] sha256="):
                 return line.split("sha256=", 1)[1].strip()
@@ -299,10 +538,40 @@ def _validate(
 
     fast_hashes: List[str] = []
     slow_hashes: List[str] = []
-    for _ in range(runs):
-        fast_hashes.append(run_subprocess(fast_sleep_ms))
-    for _ in range(runs):
-        slow_hashes.append(run_subprocess(slow_sleep_ms))
+    first_diff: Optional[str] = None
+
+    with tempfile.TemporaryDirectory(prefix="replay_gate_") as td:
+        fast_events: List[str] = []
+        slow_events: List[str] = []
+
+        for i in range(runs):
+            p = os.path.join(td, f"fast_{i+1}.json")
+            fast_hashes.append(run_subprocess(fast_sleep_ms, p))
+            fast_events.append(open(p, "r", encoding="utf-8").read())
+
+        for i in range(runs):
+            p = os.path.join(td, f"slow_{i+1}.json")
+            slow_hashes.append(run_subprocess(slow_sleep_ms, p))
+            slow_events.append(open(p, "r", encoding="utf-8").read())
+
+        # 若 hash 不一致，给出首差异定位（基于 canonical JSON 内容）
+        baseline = fast_events[0] if fast_events else ""
+        all_events = fast_events + slow_events
+        for idx, evs in enumerate(all_events, 1):
+            if evs != baseline:
+                # pretty diff
+                try:
+                    a = json.dumps(json.loads(baseline), ensure_ascii=False, sort_keys=True, indent=2).splitlines()
+                    b = json.dumps(json.loads(evs), ensure_ascii=False, sort_keys=True, indent=2).splitlines()
+                    diff_lines = list(
+                        difflib.unified_diff(
+                            a, b, fromfile="baseline", tofile=f"run_{idx}", lineterm=""
+                        )
+                    )
+                    first_diff = "\n".join(diff_lines[:200])
+                except Exception:
+                    first_diff = "diff_unavailable"
+                break
 
     all_hashes = fast_hashes + slow_hashes
     ok = len(set(all_hashes)) == 1
@@ -332,6 +601,13 @@ def _validate(
     lines.append("## Notes")
     lines.append("- Replay 模式下禁止纳入 wall clock / uuid / thread id 等非确定性字段。")
     lines.append("- FailSafe 资源探测（psutil CPU/MEM）在 Replay 证明口径中视为 non-deterministic，应跳过验证。")
+    if not ok and first_diff:
+        lines.append("")
+        lines.append("## First diff (truncated)")
+        lines.append("")
+        lines.append("```")
+        lines.append(first_diff)
+        lines.append("```")
     lines.append("")
 
     with open(report_path, "w", encoding="utf-8") as f:

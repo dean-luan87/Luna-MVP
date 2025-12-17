@@ -65,12 +65,18 @@ class C5Scheduler:
     - 不主动触发播报
     """
     
-    def __init__(self, rules_file: Optional[str] = None):
+    def __init__(
+        self,
+        rules_file: Optional[str] = None,
+        *,
+        event_observer: Optional[Callable[[Dict[str, Any]], None]] = None,
+    ):
         """
         初始化调度器
         
         Args:
             rules_file: 规则文件路径（可选）
+            event_observer: 可选事件观察者（用于 Replay/测试采集，不改变业务语义）
         """
         if rules_file is None:
             current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -80,6 +86,7 @@ class C5Scheduler:
         self.rules: List[Dict[str, Any]] = []
         self.queue = C5ExpressionQueue()
         self._last_vision_state: Optional[VisionState] = None
+        self._event_observer: Optional[Callable[[Dict[str, Any]], None]] = event_observer
         self._load_rules()
 
     # ------------------------------------------------------------------
@@ -237,6 +244,18 @@ class C5Scheduler:
         # 尝试替换（如果存在相同 contract_id 或 duplicate_key）
         if self.queue.replace(expr):
             self._log("QUEUE", ctx, 0, reason="replaced")
+            if self._event_observer:
+                self._event_observer(
+                    {
+                        "action": "REPLACE",
+                        "reason": "replaced",
+                        "contract_id": expr.contract_id,
+                        "duplicate_key": expr.duplicate_key,
+                        "urgency": expr.urgency,
+                        "is_critical": expr.is_critical,
+                        "vision_state": ctx.vision_state,
+                    }
+                )
             return "QUEUE"
         
         # 匹配规则
@@ -244,6 +263,18 @@ class C5Scheduler:
         
         if not rule or not rule.allow:
             self._log("DROP", ctx, 0, reason="rule_block")
+            if self._event_observer:
+                self._event_observer(
+                    {
+                        "action": "DROP",
+                        "reason": "rule_block",
+                        "contract_id": expr.contract_id,
+                        "duplicate_key": expr.duplicate_key,
+                        "urgency": expr.urgency,
+                        "is_critical": expr.is_critical,
+                        "vision_state": ctx.vision_state,
+                    }
+                )
             return "DROP"
         
         # --------------------------------------------------------------
@@ -256,6 +287,18 @@ class C5Scheduler:
         # 这里只做兜底检查，如果规则已经允许（如 critical_override），则跳过此检查
         if ctx.vision_state == "TURNING" and not expr.is_critical and rule.rule_id != "critical_override":
             self._log("DROP", ctx, 0, reason="vision_turning")
+            if self._event_observer:
+                self._event_observer(
+                    {
+                        "action": "DROP",
+                        "reason": "vision_turning",
+                        "contract_id": expr.contract_id,
+                        "duplicate_key": expr.duplicate_key,
+                        "urgency": expr.urgency,
+                        "is_critical": expr.is_critical,
+                        "vision_state": ctx.vision_state,
+                    }
+                )
             return "DROP"
         
         # 计算延迟
@@ -272,11 +315,37 @@ class C5Scheduler:
             if not self.queue.replace(expr):
                 self.queue.enqueue(expr)
             self._log("QUEUE", ctx, delay_ms, reason="enqueued")
+            if self._event_observer:
+                self._event_observer(
+                    {
+                        "action": "SUPPRESS",
+                        "reason": "enqueued",
+                        "delay_ms": delay_ms,
+                        "contract_id": expr.contract_id,
+                        "duplicate_key": expr.duplicate_key,
+                        "urgency": expr.urgency,
+                        "is_critical": expr.is_critical,
+                        "vision_state": ctx.vision_state,
+                    }
+                )
             return "QUEUE"
         
         # 立即输出
         emit_callback(expr, delay_ms)
         self._log("EMIT", ctx, delay_ms, reason="vision_speed")
+        if self._event_observer:
+            self._event_observer(
+                {
+                    "action": "EMIT",
+                    "reason": "vision_speed",
+                    "delay_ms": delay_ms,
+                    "contract_id": expr.contract_id,
+                    "duplicate_key": expr.duplicate_key,
+                    "urgency": expr.urgency,
+                    "is_critical": expr.is_critical,
+                    "vision_state": ctx.vision_state,
+                }
+            )
         return "EMIT"
     
     def _log(
@@ -330,3 +399,16 @@ class C5Scheduler:
                 delay_ms = self.compute_delay_ms(ctx)
                 emit_callback(expr, delay_ms)
                 self._log("EMIT", ctx, delay_ms, reason="queue_processed")
+                if self._event_observer:
+                    self._event_observer(
+                        {
+                            "action": "EMIT",
+                            "reason": "queue_processed",
+                            "delay_ms": delay_ms,
+                            "contract_id": expr.contract_id,
+                            "duplicate_key": expr.duplicate_key,
+                            "urgency": expr.urgency,
+                            "is_critical": expr.is_critical,
+                            "vision_state": ctx.vision_state,
+                        }
+                    )
