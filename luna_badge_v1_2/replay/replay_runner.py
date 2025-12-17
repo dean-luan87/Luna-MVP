@@ -32,6 +32,11 @@ import difflib
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 
+# P0-4: performance baseline must use wall-clock perf_counter.
+# replay_clock.patch_time() will patch time.perf_counter; we capture the original here.
+import time as _wall_time
+_WALL_PERF_COUNTER = _wall_time.perf_counter
+
 # 支持两种运行方式：
 # 1) python3 -m luna_badge_v1_2.replay.replay_runner <file>
 # 2) python3 luna_badge_v1_2/replay/replay_runner.py <file>
@@ -52,7 +57,7 @@ else:
     from .replay_clock import ReplayClock, patch_time
 
 
-RUNNER_VERSION = "1.4.9-P0-3.1"
+RUNNER_VERSION = "1.4.9-P0-4.1"
 
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -93,6 +98,7 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
     - --validate <n>            : run proof mode (spawn subprocess N times for fast+slow)
     - --report <path.md>        : write validation report (proof mode)
     - --fault-config <path.json>: P0-3 test-only adapter fault injection config
+    - --perf-json <path.json>   : P0-4 perf baseline output (not included in hash)
     """
     if not argv:
         return {"help": True}
@@ -105,6 +111,7 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
         "validate": 0,
         "report": None,
         "fault_config": None,
+        "perf_json": None,
     }
 
     it = iter(argv)
@@ -121,6 +128,8 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
             args["report"] = str(next(it))
         elif tok == "--fault-config":
             args["fault_config"] = str(next(it))
+        elif tok == "--perf-json":
+            args["perf_json"] = str(next(it))
         elif tok.startswith("-"):
             return {"help": True, "error": f"Unknown arg: {tok}"}
         else:
@@ -148,6 +157,7 @@ def build_event_stream(
     clock: ReplayClock,
     *,
     fault_config_path: Optional[str] = None,
+    perf: Optional[Dict[str, Any]] = None,
 ) -> ReplayEventStream:
     """
     将 replay 输入枚举为“对用户可感知行为面”的标准化事件流。
@@ -161,6 +171,11 @@ def build_event_stream(
     decisions: List[Dict[str, Any]] = []
     behavior_states: List[Dict[str, Any]] = []
     tts_events: List[Dict[str, Any]] = []
+
+    # perf collector (P0-4 only; never used for hashing)
+    if perf is not None:
+        perf.setdefault("step_wall_us", [])
+        perf.setdefault("tts_enqueue_wall_us", [])
 
     # P0-3: fault injection (test-only, adapter boundary)
     from replay.fault_injector import load_fault_config, FaultConfig
@@ -347,6 +362,7 @@ def build_event_stream(
     vision_snapshot_steps = {f.step for f in replay.vision_frames}
 
     for step in range(replay.time.steps):
+        step_t0 = _WALL_PERF_COUNTER()
         clock.step = step
         current_step = step
 
@@ -486,6 +502,7 @@ def build_event_stream(
 
             # 走 RouterFacade，确保 category/band 语义与一期一致
             try:
+                tts_t0 = _WALL_PERF_COUNTER()
                 tts_adapter_emit(
                     step,
                     category=TTSCategory.NAVIGATION,
@@ -495,6 +512,8 @@ def build_event_stream(
                         "step_index": step,
                     },
                 )
+                if perf is not None:
+                    perf["tts_enqueue_wall_us"].append(int((_WALL_PERF_COUNTER() - tts_t0) * 1_000_000))
             except Exception as e:
                 # TTS adapter boundary failure → degraded（可感知行为：SUPPRESS）
                 trigger_failsafe(step, level="degraded", reason=f"tts_error:{type(e).__name__}")
@@ -524,6 +543,8 @@ def build_event_stream(
                 after_safety=after_safety,
                 source="tts_router",
             )
+        if perf is not None:
+            perf["step_wall_us"].append(int((_WALL_PERF_COUNTER() - step_t0) * 1_000_000))
 
     return ReplayEventStream(
         decisions=decisions,
@@ -538,6 +559,7 @@ def _run_once(
     dump_events: Optional[str] = None,
     print_hash_only: bool = False,
     fault_config: Optional[str] = None,
+    perf_json: Optional[str] = None,
 ) -> Tuple[str, Dict[str, Any]]:
     # NOTE: 这里的 sleep_ms 是 wall-clock 慢跑模拟，不影响逻辑时间与 hash
     from time import sleep as wall_sleep  # bind original before patch_time
@@ -558,7 +580,10 @@ def _run_once(
 
     # 事件流在逻辑时间模式下构建（确保不会误用 wall clock）
     with patch_time(clock):
-        event_stream = build_event_stream(replay, clock, fault_config_path=fault_config)
+        perf: Optional[Dict[str, Any]] = {} if perf_json else None
+        t0_wall = _WALL_PERF_COUNTER()
+        event_stream = build_event_stream(replay, clock, fault_config_path=fault_config, perf=perf)
+        t1_wall = _WALL_PERF_COUNTER()
 
         # 逐 step 枚举（保留原 skeleton 输出能力，但可通过 print_hash_only 关闭）
         if not print_hash_only:
@@ -584,6 +609,23 @@ def _run_once(
 
                 if sleep_ms > 0:
                     wall_sleep(float(sleep_ms) / 1000.0)
+
+    if perf_json:
+        # 输出 perf 数据（不参与 hash）
+        perf_out = {
+            "runner_version": RUNNER_VERSION,
+            "git_commit": _git_commit(),
+            "replay_id": replay.replay_id,
+            "steps": replay.time.steps,
+            "delta_ms": replay.time.delta_ms,
+            "fault_config": fault_config or "",
+            "wall_total_ms": int((t1_wall - t0_wall) * 1000.0),
+            "step_wall_us": (perf or {}).get("step_wall_us", []),
+            "tts_enqueue_wall_us": (perf or {}).get("tts_enqueue_wall_us", []),
+        }
+        with open(perf_json, "w", encoding="utf-8") as f:
+            f.write(json.dumps(perf_out, ensure_ascii=False, sort_keys=True, indent=2))
+            f.write("\n")
 
     # hash 输入（只包含三段事件流 + 输入时间规格与 replay_id/seed，均为确定性字段）
     hash_input = {
@@ -757,6 +799,7 @@ def main() -> int:
     validate_runs: int = int(args["validate"])
     report_path: Optional[str] = args["report"]
     fault_config: Optional[str] = args["fault_config"]
+    perf_json: Optional[str] = args["perf_json"]
 
     script_path = os.path.abspath(__file__)
 
@@ -778,6 +821,7 @@ def main() -> int:
             dump_events=dump_events,
             print_hash_only=print_hash_only,
             fault_config=fault_config,
+            perf_json=perf_json,
         )
         return 0
     except Exception as e:
