@@ -57,7 +57,7 @@ else:
     from .replay_clock import ReplayClock, patch_time
 
 
-RUNNER_VERSION = "1.4.9-P0-4.1"
+RUNNER_VERSION = "1.4.9-P0-5.1"
 
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -430,9 +430,58 @@ def build_event_stream(
                     # 下一步回到 idle（隐式状态）
                     if step + 1 < replay.time.steps:
                         pending_task_mode_at_step[step + 1] = "idle"
+            # P0-5: 用户接管/退出（一期必须服从用户）
+            elif it.intent in ("user_exit", "user_override"):
+                task_mode = "ended"
+                if step + 1 < replay.time.steps:
+                    pending_task_mode_at_step[step + 1] = "idle"
+            # P0-5: 系统不确定性提示 + 用户选择（仅用于审计回放，不改变业务语义）
+            elif it.intent == "system_uncertainty_prompt":
+                tts_events.append(
+                    {
+                        "step_index": step,
+                        "source": "system",
+                        "action": "EMIT",
+                        "category": "SYSTEM",
+                        "priority_band": "P2_TASK",
+                        "message_id": str((it.payload or {}).get("message_id") or "system.uncertainty_prompt"),
+                    }
+                )
+            elif it.intent == "user_choice":
+                choice = str((it.payload or {}).get("choice") or "").lower()
+                if choice in ("exit", "cancel", "stop"):
+                    task_mode = "ended"
+                    if step + 1 < replay.time.steps:
+                        pending_task_mode_at_step[step + 1] = "idle"
+                elif choice in ("continue", "go", "yes"):
+                    task_mode = "active"
+            # P0-5: 反向指令（用户不按系统建议）
+            elif it.intent == "system_suggest_nav":
+                tts_events.append(
+                    {
+                        "step_index": step,
+                        "source": "system",
+                        "action": "EMIT",
+                        "category": "NAVIGATION",
+                        "priority_band": "P1_NAV",
+                        "message_id": str((it.payload or {}).get("message_id") or "nav.suggest"),
+                    }
+                )
+            # P0-5: 用户沉默后的静默退出（无 TTS）
+            elif it.intent == "system_silence_timeout":
+                task_mode = "ended"
+                if step + 1 < replay.time.steps:
+                    pending_task_mode_at_step[step + 1] = "idle"
 
         # intents 处理完后，再记录 task/safety 的行为态变化，确保 step_index 对齐用户体验
         _maybe_record_task_safety(step)
+
+        # P0-5 hard rule: 用户接管/任务结束后，不再产生任何 NAVIGATION EMIT
+        # 说明：replay_runner 是“行为审计抽取器”，这里仅停止后续输出事件生成，不改业务逻辑。
+        if task_mode in ("idle", "ended"):
+            if perf is not None:
+                perf["step_wall_us"].append(int((_WALL_PERF_COUNTER() - step_t0) * 1_000_000))
+            continue
 
         # -------- C5 decision stream driven by replay snapshots --------
         # 将 replay 的 vision_state 映射到 C5 的 vision_state 词表
