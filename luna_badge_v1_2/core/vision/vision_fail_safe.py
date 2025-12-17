@@ -8,6 +8,11 @@ logger = get_logger("vision_fail_safe")
 FailSafeState = Literal["normal", "degraded"]
 
 
+def _default_now() -> float:
+    """默认时间源（动态读取 time.time，便于 ReplayClock patch_time 生效）。"""
+    return time.time()
+
+
 @dataclass
 class VisionErrorCounters:
     infer_timeout_count: int = 0
@@ -35,7 +40,7 @@ class VisionFailSafe:
         self.state: FailSafeState = "normal"
         self._last_trigger_ts: float = 0.0
         # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
-        self._now: Callable[[], float] = now_fn or time.time
+        self._now: Callable[[], float] = now_fn or _default_now
 
     def report_infer_timeout(self) -> None:
         self.counters.infer_timeout_count += 1

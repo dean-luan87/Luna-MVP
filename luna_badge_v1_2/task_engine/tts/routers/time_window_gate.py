@@ -26,6 +26,11 @@ from dataclasses import dataclass, field
 from typing import Callable
 
 
+def _default_now() -> float:
+    """默认时间源（动态读取 time.time，便于 ReplayClock patch_time 生效）。"""
+    return time.time()
+
+
 @dataclass
 class TimeWindowGate:
     """
@@ -41,7 +46,7 @@ class TimeWindowGate:
     last_navigation_time: float = field(default=0.0)
     # [v1.4.9 P0-2-B] 时间源注入点：默认仍为 wall clock，
     # Replay 模式下由 ReplayClock 绑定（不改语义、不改阈值）。
-    now_fn: Callable[[], float] = field(default=time.time, repr=False, compare=False)
+    now_fn: Callable[[], float] = field(default=_default_now, repr=False, compare=False)
 
     def allow(self, category: str) -> bool:
         """

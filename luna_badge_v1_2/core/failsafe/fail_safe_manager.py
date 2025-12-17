@@ -13,6 +13,11 @@ from core.failsafe.emergency_voice import EmergencyVoiceLayer
 from core.failsafe.degraded_hooks import DegradedHooks
 
 
+def _default_now() -> float:
+    """默认时间源（动态读取 time.time，便于 ReplayClock patch_time 生效）。"""
+    return time.time()
+
+
 class FailSafeManager:
     """
     FailSafeManager v1 职责：
@@ -35,7 +40,7 @@ class FailSafeManager:
         """初始化 FailSafeManager"""
         self.logger = LogManager.get_logger("FailSafeManager")
         # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
-        self._now: Callable[[], float] = now_fn or time.time
+        self._now: Callable[[], float] = now_fn or _default_now
         self.emergency_active = False
         self.degraded_active = False
         self.event_history: List[Tuple[float, str]] = []

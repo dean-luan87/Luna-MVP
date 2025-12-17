@@ -19,6 +19,11 @@ from core.speed.speed_thread_pool import SpeedThreadPool
 from core.failsafe.health_events import HealthEvent
 
 
+def _default_now() -> float:
+    """默认时间源（动态读取 time.time，便于 ReplayClock patch_time 生效）。"""
+    return time.time()
+
+
 class HealthMonitor(threading.Thread):
     """
     健康监控引擎
@@ -60,7 +65,7 @@ class HealthMonitor(threading.Thread):
         super().__init__(daemon=True, name="HealthMonitor")
         self.logger = LogManager.get_logger("HealthMonitor")
         # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
-        self._now: Callable[[], float] = now_fn or time.time
+        self._now: Callable[[], float] = now_fn or _default_now
         
         self.running = False
         self._stop_event = threading.Event()
