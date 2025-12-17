@@ -149,59 +149,72 @@ class HealthMonitor(threading.Thread):
         
         self.logger.warning(f"[HealthMonitor] Event: {event}")
 
+    # ------------------------------------------------------------------
+    # [v1.4.9 P0-2-B] Step-driven check (for deterministic replay)
+    # ------------------------------------------------------------------
+    def check_once(self) -> None:
+        """
+        执行一次健康检查（不 sleep / 不等待）。
+
+        说明：
+        - run() 仍保持原有语义：循环 + wait(check_interval)
+        - Replay/测试可以用 step index 驱动调用本方法，避免后台线程改变时序
+        """
+        try:
+            now = self._now()
+            self.last_check = now
+
+            # 1. Camera 超时（无新帧）
+            cam = SpeedContext.camera_worker
+            if cam is not None:
+                try:
+                    last_write_ts = cam.buffer.last_write_ts
+                    if last_write_ts > 0 and (now - last_write_ts) > self.camera_timeout:
+                        self.emit(HealthEvent.CAMERA_STALE)
+                except Exception as e:
+                    self.logger.debug(f"Camera check error: {e}")
+
+            # 2. YOLO 推理超时
+            if SpeedContext.last_yolo_ts > 0:
+                if (now - SpeedContext.last_yolo_ts) > self.infer_timeout:
+                    self.emit(HealthEvent.INFER_STALE)
+
+            # 3. 线程心跳检测
+            try:
+                for w in SpeedThreadPool.workers:
+                    if hasattr(w, 'last_heartbeat') and w.last_heartbeat > 0:
+                        if (now - w.last_heartbeat) > self.heartbeat_timeout:
+                            self.emit(HealthEvent.THREAD_HANG)
+            except Exception as e:
+                self.logger.debug(f"Thread heartbeat check error: {e}")
+
+            # 4. 系统 CPU 检测
+            if PSUTIL_AVAILABLE:
+                try:
+                    cpu_percent = psutil.cpu_percent(interval=0.0)  # 非阻塞
+                    if cpu_percent > self.cpu_threshold:
+                        self.emit(HealthEvent.HIGH_CPU)
+                except Exception as e:
+                    self.logger.debug(f"CPU check error: {e}")
+
+            # 5. 系统内存检测
+            if PSUTIL_AVAILABLE:
+                try:
+                    mem_percent = psutil.virtual_memory().percent
+                    if mem_percent > self.mem_threshold:
+                        self.emit(HealthEvent.HIGH_MEM)
+                except Exception as e:
+                    self.logger.debug(f"Memory check error: {e}")
+
+        except Exception as e:
+            self.logger.exception(f"HealthMonitor check error: {e}")
+
     def run(self) -> None:
         """监控主循环"""
         self.logger.debug("[HealthMonitor] run loop started")
         
         while self.running and not self._stop_event.is_set():
-            try:
-                now = self._now()
-                self.last_check = now
-                
-                # 1. Camera 超时（无新帧）
-                cam = SpeedContext.camera_worker
-                if cam is not None:
-                    try:
-                        last_write_ts = cam.buffer.last_write_ts
-                        if last_write_ts > 0 and (now - last_write_ts) > self.camera_timeout:
-                            self.emit(HealthEvent.CAMERA_STALE)
-                    except Exception as e:
-                        self.logger.debug(f"Camera check error: {e}")
-                
-                # 2. YOLO 推理超时
-                if SpeedContext.last_yolo_ts > 0:
-                    if (now - SpeedContext.last_yolo_ts) > self.infer_timeout:
-                        self.emit(HealthEvent.INFER_STALE)
-                
-                # 3. 线程心跳检测
-                try:
-                    for w in SpeedThreadPool.workers:
-                        if hasattr(w, 'last_heartbeat') and w.last_heartbeat > 0:
-                            if (now - w.last_heartbeat) > self.heartbeat_timeout:
-                                self.emit(HealthEvent.THREAD_HANG)
-                except Exception as e:
-                    self.logger.debug(f"Thread heartbeat check error: {e}")
-                
-                # 4. 系统 CPU 检测
-                if PSUTIL_AVAILABLE:
-                    try:
-                        cpu_percent = psutil.cpu_percent(interval=0.0)  # 非阻塞
-                        if cpu_percent > self.cpu_threshold:
-                            self.emit(HealthEvent.HIGH_CPU)
-                    except Exception as e:
-                        self.logger.debug(f"CPU check error: {e}")
-                
-                # 5. 系统内存检测
-                if PSUTIL_AVAILABLE:
-                    try:
-                        mem_percent = psutil.virtual_memory().percent
-                        if mem_percent > self.mem_threshold:
-                            self.emit(HealthEvent.HIGH_MEM)
-                    except Exception as e:
-                        self.logger.debug(f"Memory check error: {e}")
-                
-            except Exception as e:
-                self.logger.exception(f"HealthMonitor check error: {e}")
+            self.check_once()
             
             # 等待检查间隔
             self._stop_event.wait(self.check_interval)
