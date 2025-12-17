@@ -4,7 +4,7 @@ Fail Safe Manager
 接收 HealthMonitor 事件，执行应急策略（v1 仅做状态标记和日志）
 """
 import time
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Callable
 
 from core.logging.log_manager import LogManager
 from core.speed.speed_context import SpeedContext
@@ -31,9 +31,11 @@ class FailSafeManager:
     
     _instance: Optional["FailSafeManager"] = None
     
-    def __init__(self):
+    def __init__(self, now_fn: Optional[Callable[[], float]] = None):
         """初始化 FailSafeManager"""
         self.logger = LogManager.get_logger("FailSafeManager")
+        # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
+        self._now: Callable[[], float] = now_fn or time.time
         self.emergency_active = False
         self.degraded_active = False
         self.event_history: List[Tuple[float, str]] = []
@@ -77,7 +79,17 @@ class FailSafeManager:
         Args:
             event: 事件类型（HealthEvent 常量）
         """
-        now = time.time()
+        # --------------------------------------------------------------
+        # [1.4.X frozen] FailSafe 触发语义（禁止改语义）
+        #
+        # Frozen trigger classes:
+        # - 严重事件（CAMERA/INFER/THREAD）→ enter_emergency_mode()
+        # - 资源压力事件（HIGH_CPU/HIGH_MEM）→ enter_degraded_mode()
+        #
+        # 说明：此处是 FailSafe 的“唯一触发入口”之一（来自 HealthMonitor）。
+        # 任何新增触发条件/降级路径都属于行为变更，需版本升级讨论。
+        # --------------------------------------------------------------
+        now = self._now()
         self.event_history.append((now, event))
         
         # 限制历史记录长度
@@ -115,7 +127,7 @@ class FailSafeManager:
 
         self.emergency_active = True
         self.degraded_active = True  # 应急模式视为更强降级
-        self.last_emergency_time = time.time()
+        self.last_emergency_time = self._now()
         SpeedContext.set_mode("safe")
 
         self.logger.error(f"[FailSafeManager] Enter EMERGENCY mode, reason={reason}")
@@ -149,7 +161,7 @@ class FailSafeManager:
             return
 
         self.degraded_active = True
-        self.last_degraded_time = time.time()
+        self.last_degraded_time = self._now()
         SpeedContext.set_mode("degraded")
         
         self.logger.warning(f"[FailSafeManager] Enter DEGRADED mode, reason={reason}")
@@ -228,4 +240,20 @@ class FailSafeManager:
             "last_degraded_time": self.last_degraded_time,
             "has_active_protection": self.has_active_protection(),
         }
+
+    # ------------------------------------------------------------------
+    # [v1.4.9 P0-2-B] Replay determinism support (explicit reset)
+    # ------------------------------------------------------------------
+    def reset(self) -> None:
+        """
+        Replay/测试用：显式重置所有可变状态。
+
+        约束：
+        - 不改变 FailSafe 语义
+        - 仅清空历史与计时状态，避免跨运行污染
+        """
+        self.event_history.clear()
+        self.last_emergency_time = 0.0
+        self.last_degraded_time = 0.0
+        self.reset_mode()
 

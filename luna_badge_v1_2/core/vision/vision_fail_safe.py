@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Literal
+from typing import Literal, Callable, Optional
 import time
 from infra.logging_manager import get_logger
 
@@ -29,11 +29,13 @@ class FailSafeConfig:
 
 
 class VisionFailSafe:
-    def __init__(self, config: FailSafeConfig) -> None:
+    def __init__(self, config: FailSafeConfig, now_fn: Optional[Callable[[], float]] = None) -> None:
         self.config = config
         self.counters = VisionErrorCounters()
         self.state: FailSafeState = "normal"
         self._last_trigger_ts: float = 0.0
+        # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
+        self._now: Callable[[], float] = now_fn or time.time
 
     def report_infer_timeout(self) -> None:
         self.counters.infer_timeout_count += 1
@@ -53,9 +55,18 @@ class VisionFailSafe:
     def reset(self) -> None:
         self.counters.reset()
         self.state = "normal"
+        self._last_trigger_ts = 0.0
 
     def _evaluate_state(self) -> None:
-        now = time.time()
+        # --------------------------------------------------------------
+        # [1.4.X frozen] Vision FailSafe 降级触发语义（禁止改语义）
+        #
+        # 触发条件：infer_timeout / model_error / camera_error 的计数超过阈值
+        # 且冷却窗口（cooldown_seconds）已过 → 进入 degraded。
+        #
+        # 注意：该模块仅提供“降级状态”判定，不应越权影响任务链或调度节奏。
+        # --------------------------------------------------------------
+        now = self._now()
         if now - self._last_trigger_ts < self.config.cooldown_seconds:
             return
 

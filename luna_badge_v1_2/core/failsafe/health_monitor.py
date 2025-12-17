@@ -44,6 +44,7 @@ class HealthMonitor(threading.Thread):
         cpu_threshold: float = 80.0,
         mem_threshold: float = 85.0,
         check_interval: float = 0.1,
+        now_fn: Optional[Callable[[], float]] = None,
     ):
         """
         初始化健康监控器
@@ -58,6 +59,8 @@ class HealthMonitor(threading.Thread):
         """
         super().__init__(daemon=True, name="HealthMonitor")
         self.logger = LogManager.get_logger("HealthMonitor")
+        # [v1.4.9 P0-2-B] 时间源注入点：默认 wall clock；Replay 下绑定 ReplayClock.now()
+        self._now: Callable[[], float] = now_fn or time.time
         
         self.running = False
         self._stop_event = threading.Event()
@@ -68,6 +71,24 @@ class HealthMonitor(threading.Thread):
         self.cpu_threshold = cpu_threshold
         self.mem_threshold = mem_threshold
         self.check_interval = check_interval
+
+        # --------------------------------------------------------------
+        # [1.4.X frozen] FailSafe 触发阈值（配置可调，但结构语义冻结）
+        #
+        # 这些阈值属于“对用户可感知”的稳定性行为面：触发降级/应急的频率会影响系统
+        # 是否进入应急播报与降级模式。
+        #
+        # 配置键（存在于 config/default.yaml）：
+        # - failsafe.health_monitor.camera_timeout
+        # - failsafe.health_monitor.infer_timeout
+        # - failsafe.health_monitor.heartbeat_timeout
+        # - failsafe.health_monitor.cpu_threshold
+        # - failsafe.health_monitor.mem_threshold
+        # - failsafe.health_monitor.check_interval
+        #
+        # 注意：本模块构造函数提供默认值；若上层未从 ConfigCenter 注入，
+        # 则将使用硬编码默认值（这会影响“可配置性”，但不应改变语义结构）。
+        # --------------------------------------------------------------
         
         self.last_check = 0.0
         self.event_callback: Optional[Callable[[str], None]] = None
@@ -134,7 +155,7 @@ class HealthMonitor(threading.Thread):
         
         while self.running and not self._stop_event.is_set():
             try:
-                now = time.time()
+                now = self._now()
                 self.last_check = now
                 
                 # 1. Camera 超时（无新帧）
@@ -201,7 +222,10 @@ class HealthMonitor(threading.Thread):
             "has_callback": self.event_callback is not None,
         }
 
-
-
-
-
+    # ------------------------------------------------------------------
+    # [v1.4.9 P0-2-B] Replay determinism support (explicit reset)
+    # ------------------------------------------------------------------
+    def reset(self) -> None:
+        """重置统计与计数（用于 Replay/测试，不改变监控语义）。"""
+        self.last_check = 0.0
+        self.event_counts.clear()
