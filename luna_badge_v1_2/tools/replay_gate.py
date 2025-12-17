@@ -31,6 +31,7 @@ def _parse_args(argv: List[str]) -> dict:
         "cases": [],
         "runs": 5,
         "report_dir": "luna_badge_v1_2/replay",
+        "fault_config": None,
     }
     it = iter(argv)
     for tok in it:
@@ -40,6 +41,8 @@ def _parse_args(argv: List[str]) -> dict:
             args["runs"] = int(next(it))
         elif tok == "--report-dir":
             args["report_dir"] = str(next(it))
+        elif tok == "--fault-config":
+            args["fault_config"] = str(next(it))
         elif tok in ("-h", "--help"):
             args["help"] = True
         else:
@@ -84,12 +87,28 @@ def main() -> int:
 
     cases: List[str] = args["cases"]
     runs: int = int(args["runs"])
+    fault_config = args.get("fault_config")
 
     failed: List[str] = []
     for case_path in cases:
         base = os.path.basename(case_path).replace(".json", "")
-        report_path = os.path.join(report_dir, f"replay_validation_report__{base}.md")
-        code = _run_case(runner, case_path, runs, report_path)
+        suffix = ""
+        if fault_config:
+            suffix = "__fault_" + os.path.basename(fault_config).replace(".json", "")
+        report_path = os.path.join(report_dir, f"replay_validation_report__{base}{suffix}.md")
+        # pass through fault config to runner (test-only)
+        cmd = [
+            sys.executable,
+            runner,
+            case_path,
+            "--validate",
+            str(runs),
+            "--report",
+            report_path,
+        ]
+        if fault_config:
+            cmd.extend(["--fault-config", fault_config])
+        code = subprocess.call(cmd)
         if code != 0:
             failed.append(case_path)
             print(f"[REPLAY_GATE][FAIL] case={case_path} report={report_path}")

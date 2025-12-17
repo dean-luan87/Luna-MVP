@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "specs": [
+    {
+      "fault_type": "vision_no_return",
+      "start_step": 4,
+      "end_step": 6,
+      "message": "Vision adapter returns None (no frame)"
+    }
+  ]
+}
+

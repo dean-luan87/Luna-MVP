@@ -52,7 +52,7 @@ else:
     from .replay_clock import ReplayClock, patch_time
 
 
-RUNNER_VERSION = "1.4.9-P0-2-C.2"
+RUNNER_VERSION = "1.4.9-P0-3.1"
 
 
 def load_json(path: str) -> Dict[str, Any]:
@@ -92,6 +92,7 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
     - --dump-events <path.json> : dump canonical event stream to file
     - --validate <n>            : run proof mode (spawn subprocess N times for fast+slow)
     - --report <path.md>        : write validation report (proof mode)
+    - --fault-config <path.json>: P0-3 test-only adapter fault injection config
     """
     if not argv:
         return {"help": True}
@@ -103,6 +104,7 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
         "dump_events": None,
         "validate": 0,
         "report": None,
+        "fault_config": None,
     }
 
     it = iter(argv)
@@ -117,6 +119,8 @@ def _parse_args(argv: List[str]) -> Dict[str, Any]:
             args["validate"] = int(next(it))
         elif tok == "--report":
             args["report"] = str(next(it))
+        elif tok == "--fault-config":
+            args["fault_config"] = str(next(it))
         elif tok.startswith("-"):
             return {"help": True, "error": f"Unknown arg: {tok}"}
         else:
@@ -139,7 +143,12 @@ class ReplayEventStream:
     tts_events: List[Dict[str, Any]]
 
 
-def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventStream:
+def build_event_stream(
+    replay: ReplayInput,
+    clock: ReplayClock,
+    *,
+    fault_config_path: Optional[str] = None,
+) -> ReplayEventStream:
     """
     将 replay 输入枚举为“对用户可感知行为面”的标准化事件流。
 
@@ -152,6 +161,12 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
     decisions: List[Dict[str, Any]] = []
     behavior_states: List[Dict[str, Any]] = []
     tts_events: List[Dict[str, Any]] = []
+
+    # P0-3: fault injection (test-only, adapter boundary)
+    from replay.fault_injector import load_fault_config, FaultConfig
+    fault_cfg: FaultConfig = FaultConfig()
+    if fault_config_path:
+        fault_cfg = load_fault_config(fault_config_path)
 
     # ---------------------------
     # Behavior states (3 modes)
@@ -166,6 +181,47 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
 
     task_mode: str = "active" if replay.initial_state.has_active_task else "idle"
     safety_mode: str = "normal"
+    failsafe_triggered_at: Optional[int] = None
+
+    def _maybe_record_task_safety(step: int) -> None:
+        nonlocal last_task_mode, last_safety_mode, task_mode, safety_mode
+        if task_mode != last_task_mode:
+            record_state(step, "task_mode", task_mode)
+            last_task_mode = task_mode
+        if safety_mode != last_safety_mode:
+            record_state(step, "safety_mode", safety_mode)
+            last_safety_mode = safety_mode
+
+    def trigger_failsafe(step: int, *, level: str, reason: str) -> None:
+        nonlocal safety_mode, task_mode, failsafe_triggered_at
+        if failsafe_triggered_at is not None:
+            return
+        failsafe_triggered_at = step
+        safety_mode = level  # degraded | emergency
+        # TaskChain 不再推进：进入 ended（行为态），并停止后续导航输出
+        task_mode = "ended"
+        # 触发点必须被记录为“行为态变化”（即使触发发生在本 step 的后半段）
+        _maybe_record_task_safety(step)
+        decisions.append(
+            {
+                "step_index": step,
+                "event_name": "failsafe_triggered",
+                "task_id": None,
+                "params": {"level": level, "reason": reason},
+            }
+        )
+        # 用户可感知行为证据：发出一条“进入降级/应急”的安全播报事件（不 hash 原始文本）
+        tts_events.append(
+            {
+                "step_index": step,
+                "source": "failsafe",
+                "action": "EMIT",
+                "category": "SAFETY",
+                "priority_band": "P0_SAFETY",
+                "message_id": f"failsafe.enter_{level}",
+                "reason": reason,
+            }
+        )
     last_vision_mode: Optional[str] = None
     last_task_mode: Optional[str] = None
     last_safety_mode: Optional[str] = None
@@ -265,6 +321,26 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
             }
         )
 
+    # Adapter boundary wrappers (fault injection happens ONLY here)
+    def vision_adapter(step: int) -> Optional[Any]:
+        if fault_cfg.match(step, "vision_no_return"):
+            return None
+        if fault_cfg.match(step, "vision_timeout"):
+            raise TimeoutError("vision_timeout")
+        return replay.vision_at_step(step)
+
+    def map_adapter(step: int) -> Optional[Any]:
+        if fault_cfg.match(step, "map_timeout"):
+            raise TimeoutError("map_timeout")
+        return map_snapshots_by_step.get(step)
+
+    def tts_adapter_emit(step: int, *, category: Any, meta: Dict[str, Any]) -> None:
+        if fault_cfg.match(step, "tts_block"):
+            raise TimeoutError("tts_block")
+        if fault_cfg.match(step, "tts_exception"):
+            raise RuntimeError("tts_exception")
+        facade.emit(text="NAV_UPDATE", category=category, meta=meta)
+
     # 仅在 snapshot step 触发“输入变化”相关的表达/播报，避免伪造大量事件。
     map_snapshots_by_step = {s.step: s for s in replay.map_snapshots}
     last_map_snapshot_step: Optional[int] = max(map_snapshots_by_step.keys()) if map_snapshots_by_step else None
@@ -278,11 +354,36 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
         if step in pending_task_mode_at_step:
             task_mode = pending_task_mode_at_step[step]
 
-        vf = replay.vision_at_step(step)
-        vm = vision_mode_from_state(vf.vision_state)
+        # Vision adapter boundary
+        try:
+            vf = vision_adapter(step)
+        except Exception as e:
+            trigger_failsafe(step, level="emergency", reason=f"vision_error:{type(e).__name__}")
+            vf = None
+        if vf is None:
+            trigger_failsafe(step, level="emergency", reason="vision_no_return")
+            # 视觉缺失后，行为态转 unknown
+            vm = "unknown"
+        else:
+            vm = vision_mode_from_state(vf.vision_state)
         if vm != last_vision_mode:
             record_state(step, "vision_mode", vm)
             last_vision_mode = vm
+
+        # FailSafe 触发后：TaskChain 不再推进（停止后续导航输出与调度）
+        if failsafe_triggered_at is not None and step > failsafe_triggered_at:
+            # 仍允许记录外部输入（decisions），但不再产生导航输出
+            intents = replay.intents_at_step(step)
+            for it in intents:
+                decisions.append(
+                    {
+                        "step_index": step,
+                        "event_name": it.intent,
+                        "task_id": (it.payload or {}).get("task_id"),
+                        "params": it.payload or {},
+                    }
+                )
+            continue
 
         intents = replay.intents_at_step(step)
         replace_probe = False
@@ -315,13 +416,7 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
                         pending_task_mode_at_step[step + 1] = "idle"
 
         # intents 处理完后，再记录 task/safety 的行为态变化，确保 step_index 对齐用户体验
-        if task_mode != last_task_mode:
-            record_state(step, "task_mode", task_mode)
-            last_task_mode = task_mode
-
-        if safety_mode != last_safety_mode:
-            record_state(step, "safety_mode", safety_mode)
-            last_safety_mode = safety_mode
+        _maybe_record_task_safety(step)
 
         # -------- C5 decision stream driven by replay snapshots --------
         # 将 replay 的 vision_state 映射到 C5 的 vision_state 词表
@@ -332,7 +427,12 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
             last_vision_ts=float(step),  # step-based，避免 wall clock
         )
 
-        ms = map_snapshots_by_step.get(step)
+        # Map adapter boundary
+        try:
+            ms = map_adapter(step)
+        except Exception as e:
+            trigger_failsafe(step, level="degraded", reason=f"map_error:{type(e).__name__}")
+            ms = None
         if ms is not None:
             dist_m = int(round(ms.distance_to_turn))
             expr = ExpressionCandidate(
@@ -385,15 +485,31 @@ def build_event_stream(replay: ReplayInput, clock: ReplayClock) -> ReplayEventSt
             before_safety = len(tts_mgr.get_safety_queue())
 
             # 走 RouterFacade，确保 category/band 语义与一期一致
-            facade.emit(
-                text="NAV_UPDATE",  # 不纳入 hash；仅作为占位文本
-                category=TTSCategory.NAVIGATION,
-                meta={
-                    "template_id": "nav.distance_to_turn",
-                    "distance_m": dist_m,
-                    "step_index": step,
-                },
-            )
+            try:
+                tts_adapter_emit(
+                    step,
+                    category=TTSCategory.NAVIGATION,
+                    meta={
+                        "template_id": "nav.distance_to_turn",
+                        "distance_m": dist_m,
+                        "step_index": step,
+                    },
+                )
+            except Exception as e:
+                # TTS adapter boundary failure → degraded（可感知行为：SUPPRESS）
+                trigger_failsafe(step, level="degraded", reason=f"tts_error:{type(e).__name__}")
+                tts_events.append(
+                    {
+                        "step_index": step,
+                        "source": "tts_router",
+                        "action": "SUPPRESS",
+                        "category": "NAVIGATION",
+                        "priority_band": PriorityBand.from_priority(75).name,
+                        "message_id": message_id,
+                        "reason": f"tts_error:{type(e).__name__}",
+                    }
+                )
+                continue
 
             after_main = len(tts_mgr.get_queue())
             after_safety = len(tts_mgr.get_safety_queue())
@@ -421,6 +537,7 @@ def _run_once(
     sleep_ms: int,
     dump_events: Optional[str] = None,
     print_hash_only: bool = False,
+    fault_config: Optional[str] = None,
 ) -> Tuple[str, Dict[str, Any]]:
     # NOTE: 这里的 sleep_ms 是 wall-clock 慢跑模拟，不影响逻辑时间与 hash
     from time import sleep as wall_sleep  # bind original before patch_time
@@ -441,7 +558,7 @@ def _run_once(
 
     # 事件流在逻辑时间模式下构建（确保不会误用 wall clock）
     with patch_time(clock):
-        event_stream = build_event_stream(replay, clock)
+        event_stream = build_event_stream(replay, clock, fault_config_path=fault_config)
 
         # 逐 step 枚举（保留原 skeleton 输出能力，但可通过 print_hash_only 关闭）
         if not print_hash_only:
@@ -477,6 +594,7 @@ def _run_once(
             "delta_ms": replay.time.delta_ms,
             "steps": replay.time.steps,
         },
+        "fault_config": fault_config or "",
         "decisions": event_stream.decisions,
         "behavior_states": event_stream.behavior_states,
         "tts_events": event_stream.tts_events,
@@ -505,6 +623,7 @@ def _run_once(
         "runner_version": RUNNER_VERSION,
         "git_commit": _git_commit(),
         "sleep_ms": sleep_ms,
+        "fault_config": fault_config or "",
     }
     return digest, meta
 
@@ -516,6 +635,7 @@ def _validate(
     report_path: str,
     fast_sleep_ms: int = 0,
     slow_sleep_ms: int = 5,
+    fault_config: Optional[str] = None,
 ) -> int:
     def run_subprocess(sleep_ms: int, dump_events_path: str) -> str:
         out = subprocess.check_output(
@@ -528,6 +648,7 @@ def _validate(
                 "--dump-events",
                 dump_events_path,
                 "--print-hash-only",
+                *(["--fault-config", fault_config] if fault_config else []),
             ],
             stderr=subprocess.STDOUT,
         ).decode("utf-8", errors="replace")
@@ -586,6 +707,8 @@ def _validate(
     lines.append(f"- runs_slow: {runs} (sleep_ms={slow_sleep_ms})")
     lines.append(f"- runner_version: `{RUNNER_VERSION}`")
     lines.append(f"- git_commit: `{_git_commit()}`")
+    if fault_config:
+        lines.append(f"- fault_config: `{fault_config}`")
     lines.append(f"- result: {'PASS' if ok else 'FAIL'}")
     lines.append("")
     lines.append("## Hashes")
@@ -633,6 +756,7 @@ def main() -> int:
     print_hash_only: bool = bool(args["print_hash_only"])
     validate_runs: int = int(args["validate"])
     report_path: Optional[str] = args["report"]
+    fault_config: Optional[str] = args["fault_config"]
 
     script_path = os.path.abspath(__file__)
 
@@ -644,6 +768,7 @@ def main() -> int:
             input_path=input_path,
             runs=validate_runs,
             report_path=report_path,
+            fault_config=fault_config,
         )
 
     try:
@@ -652,6 +777,7 @@ def main() -> int:
             sleep_ms=sleep_ms,
             dump_events=dump_events,
             print_hash_only=print_hash_only,
+            fault_config=fault_config,
         )
         return 0
     except Exception as e:
