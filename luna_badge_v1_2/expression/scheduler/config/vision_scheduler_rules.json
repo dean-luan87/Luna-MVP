@@ -1,0 +1,72 @@
+{
+  "rules": [
+    {
+      "id": "vision_turning_block_all",
+      "when": {
+        "vision_state": "TURNING"
+      },
+      "then": {
+        "allow_output": false,
+        "reason": "vision_turning"
+      }
+    },
+    {
+      "id": "vision_unstable_block",
+      "when": {
+        "vision_state": "UNSTABLE"
+      },
+      "then": {
+        "allow_output": false,
+        "reason": "vision_unstable"
+      }
+    },
+    {
+      "id": "vision_locked_high_priority",
+      "when": {
+        "vision_state": "LOCKED",
+        "urgency": "high"
+      },
+      "then": {
+        "allow_output": true,
+        "delay_ms": 0,
+        "enqueue": false
+      }
+    },
+    {
+      "id": "vision_stable_low_priority",
+      "when": {
+        "vision_state": "STABLE",
+        "urgency": "low"
+      },
+      "then": {
+        "allow_output": true,
+        "enqueue": true,
+        "delay_strategy": "vision_adaptive"
+      }
+    },
+    {
+      "id": "vision_stable_normal_priority",
+      "when": {
+        "vision_state": "STABLE",
+        "urgency": "normal"
+      },
+      "then": {
+        "allow_output": true,
+        "enqueue": false,
+        "delay_strategy": "vision_adaptive"
+      }
+    },
+    {
+      "id": "vision_searching_high_priority_only",
+      "when": {
+        "vision_state": "SEARCHING",
+        "urgency": "high"
+      },
+      "then": {
+        "allow_output": true,
+        "delay_ms": 0,
+        "enqueue": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "version": "0.1",
+  "description": "Emotion Takeover Protocol (ETP) Rules",
+  "core_rule": "Vision is the primary clock. Emotion can modulate, but never override.",
+  "rules": [
+    {
+      "id": "vision_turning_ignore_emotion",
+      "when": {
+        "vision_state": "TURNING"
+      },
+      "then": {
+        "emotion_takeover_level": "IGNORE"
+      }
+    },
+    {
+      "id": "vision_searching_ignore_emotion",
+      "when": {
+        "vision_state": "SEARCHING"
+      },
+      "then": {
+        "emotion_takeover_level": "IGNORE"
+      }
+    },
+    {
+      "id": "vision_unstable_ignore_emotion",
+      "when": {
+        "vision_state": "UNSTABLE"
+      },
+      "then": {
+        "emotion_takeover_level": "IGNORE"
+      }
+    },
+    {
+      "id": "low_emotion_confidence_ignore",
+      "when": {
+        "emotion_confidence": "< 0.6"
+      },
+      "then": {
+        "emotion_takeover_level": "IGNORE"
+      }
+    },
+    {
+      "id": "medium_emotion_confidence_weak",
+      "when": {
+        "emotion_confidence": "0.6 ~ 0.85"
+      },
+      "then": {
+        "emotion_takeover_level": "WEAK"
+      }
+    },
+    {
+      "id": "high_emotion_confidence_strong",
+      "when": {
+        "emotion_confidence": ">= 0.85"
+      },
+      "then": {
+        "emotion_takeover_level": "STRONG"
+      }
+    }
+  ]
+}
