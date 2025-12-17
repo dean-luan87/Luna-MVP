@@ -63,6 +63,24 @@ class DecisionCore:
     - 否则视为新任务，进入 Planner + Runtime
     
     v1.4.6d Step 10: 增加 TTS_ROUTER_* actions 支持
+
+    ==================================================================
+    [v1.4.9 P0-1 FREEZE] Decision routing order & user-visible behavior
+
+    Frozen routing order for `handle(req)`:
+    1) PendingQuery reply path (QueryEngine)
+    2) Task control intent path (pause/cancel/resume)
+    3) New task path (Planner + Runtime)
+
+    Frozen TTS integration:
+    - All speech outputs initiated by DecisionCore MUST go through
+      `task_engine.tts.router_facade.get_tts_router_facade()`.
+    - `handle_action(Action)` supports only the frozen TTS_ROUTER_* types
+      listed in that method (adding new action types is a behavior change).
+
+    Any change that alters the above routing order or action mapping
+    requires a new minor/major version.
+    ==================================================================
     """
 
     def __init__(
@@ -245,6 +263,18 @@ class DecisionCore:
         Args:
             action: Action 对象，包含 type 和 payload
         """
+        # --------------------------------------------------------------
+        # [v1.4.9 P0-1 FREEZE] TTS_ROUTER_* action surface (DO NOT CHANGE)
+        #
+        # Frozen action types and mappings:
+        # - TTS_ROUTER_TURN     -> tts_router.route_turn(...)
+        # - TTS_ROUTER_STRAIGHT -> tts_router.route_straight(...)
+        # - TTS_ROUTER_OBSTACLE -> tts_router.route_obstacle_warning(...)
+        # - TTS_ROUTER_GENERIC  -> tts_router.route_generic(...)
+        # - TTS_ROUTER_SAFETY   -> tts_router.route_safety(...)
+        #
+        # Any new action type / change in mapping is a contract change.
+        # --------------------------------------------------------------
         # --- TTS ROUTER ACTIONS ---
         if action.type == "TTS_ROUTER_TURN":
             self.tts_router.route_turn(

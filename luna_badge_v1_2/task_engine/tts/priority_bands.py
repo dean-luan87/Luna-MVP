@@ -6,6 +6,19 @@ PriorityBand: 优先级分段定义
 Step 12: 统一优先级调度器
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Priority band thresholds (behavior contract)
+#
+# These thresholds define cross-module ordering. Any change alters which
+# messages the user hears first and is therefore a contract change.
+#
+# Frozen mapping:
+# - priority >= 90  -> P0_SAFETY
+# - priority >= 70  -> P1_NAV
+# - priority >= 40  -> P2_TASK
+# - else            -> P3_CHAT
+# ======================================================================
+
 from __future__ import annotations
 
 from enum import Enum
@@ -49,4 +62,9 @@ class PriorityBand(Enum):
             bool: True 表示当前优先级更高（value 更小）
         """
         return self.value < other.value
+
+
+
+
+
 

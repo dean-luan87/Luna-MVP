@@ -109,6 +109,21 @@ class NavigationVoiceAdapter:
 
     def _category_from_decision(self, decision: str) -> Optional[TTSCategory]:
         """根据决策类型推断类别"""
+        # --------------------------------------------------------------
+        # [v1.4.9 P0-1 FREEZE] Decision→Category mapping (behavior contract)
+        #
+        # TURNING / STRAIGHT / WARNING 等“对用户可见”的语义类别，最终都
+        # 会落在 SAFETY / NAVIGATION 两个播报类别上（影响优先级与节流）。
+        #
+        # Frozen mapping sets:
+        # - SAFETY decisions:
+        #   STOP, DANGER, OBSTACLE_FRONT, OBSTACLE, CLIFF, STAIRS_DOWN
+        # - NAVIGATION decisions:
+        #   LEFT, RIGHT, SLIGHT_LEFT, SLIGHT_RIGHT, FORWARD, KEEP_STRAIGHT,
+        #   TURN_LEFT, TURN_RIGHT
+        #
+        # Changing these sets changes what the user hears first.
+        # --------------------------------------------------------------
         if not decision:
             return None
 
@@ -140,6 +155,14 @@ class NavigationVoiceAdapter:
 
     def _category_from_text(self, text: str) -> Optional[TTSCategory]:
         """根据文本关键词推断类别"""
+        # --------------------------------------------------------------
+        # [v1.4.9 P0-1 FREEZE] Text keyword→Category heuristic (contract)
+        #
+        # This heuristic is used only when decision/category is not provided.
+        # Frozen keyword lists (semantics): danger_keywords/nav_keywords.
+        #
+        # Any change here can reclassify speech output and alter scheduling.
+        # --------------------------------------------------------------
         if not text:
             return None
 

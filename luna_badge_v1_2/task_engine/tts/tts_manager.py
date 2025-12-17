@@ -12,6 +12,18 @@ TtsManager: TTS 抽象门面
   实现"高优先级插队，但同优先级 FIFO"的行为。
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Queue & safety preemption semantics (contract)
+#
+# Frozen behaviors:
+# - Safety queue exists and preempts main queue (via PriorityScheduler).
+# - Safety de-duplication window: 2.0 seconds for identical safety text.
+# - Safety utterance priority floor: at least 100 and interrupt=True.
+# - RuntimeDriver consumes via pop_next(): one utterance per tick.
+#
+# Changing any of the above changes what/when the user hears.
+# ======================================================================
+
 from __future__ import annotations
 
 import time

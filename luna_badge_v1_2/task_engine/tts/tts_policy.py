@@ -4,6 +4,21 @@ TTS Policy: 语音播报策略映射模块
 负责定义 Category → priority / interrupt 的规则，并提供工具函数。
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Policy table semantics (behavior contract)
+#
+# The policy table below defines user-visible precedence and interruption
+# behavior. Any change is a behavior change and requires a version bump.
+#
+# Frozen concepts:
+# - Category set: SAFETY / NAVIGATION / SYSTEM / TASK / CHAT
+# - Category -> (priority, interrupt, default_level) mapping semantics
+# - PriorityBand mapping is frozen in `priority_bands.py`
+#
+# Allowed within 1.4.x without version bump:
+# - Documentation/logging improvements ONLY (no semantic change)
+# ======================================================================
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

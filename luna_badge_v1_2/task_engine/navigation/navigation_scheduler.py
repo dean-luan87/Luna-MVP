@@ -4,6 +4,27 @@ NavigationScheduler: 导航调度器
 负责将导航事件转换为 TTS_ROUTER_* actions，并推送给 DecisionCore
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] User-visible behavior mapping (DO NOT CHANGE)
+#
+# This module defines the canonical mapping from navigation events to
+# TTS_ROUTER_* actions. Any behavior change here is considered a contract
+# change and requires a version bump.
+#
+# Frozen mappings:
+# - TurnEvent            -> Action(type="TTS_ROUTER_TURN")
+# - StraightEvent        -> Action(type="TTS_ROUTER_STRAIGHT")
+# - ObstacleEvent:
+#     * distance < 1.5m  -> Action(type="TTS_ROUTER_SAFETY",
+#                                 text="前方危险，请立即停下")
+#     * distance >= 1.5m -> Action(type="TTS_ROUTER_OBSTACLE")
+#
+# Frozen parameters / invariants:
+# - Safety threshold: 1.5 meters
+# - Safety text: "前方危险，请立即停下" (must not change semantics)
+# - Distances in payload are int meters (int(event.distance))
+# ======================================================================
+
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 from decision_core.decision_core import DecisionCore, Action

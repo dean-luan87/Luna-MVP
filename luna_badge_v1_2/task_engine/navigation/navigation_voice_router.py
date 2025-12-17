@@ -7,6 +7,19 @@ NavigationVoiceRouter: 导航语音路由器
 - CHAT/TASK 类别的可配置穿透策略
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Safety silence window & category suppression
+#
+# Frozen default behaviors (user-visible):
+# - safety_silence_window = 3.0s:
+#   within this window after a SAFETY output, NAVIGATION utterances are
+#   suppressed (dropped) by default routing.
+# - enable_chat_during_safety_window = True by default.
+#
+# Together with TimeWindowGate (0.8s safety / 2.0s navigation), these
+# values define the stable "talking frequency" behavior for 1.4.x.
+# ======================================================================
+
 import time
 from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional

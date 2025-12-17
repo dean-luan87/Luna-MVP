@@ -6,6 +6,21 @@ Step 13: 全局唯一播报入口。所有播报必须通过 emit() 进入。
 统一入口，将 DecisionCore 的 TTS_ROUTER_* actions 路由到具体的 NavigationVoiceRouter
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Global speech routing order (behavior contract)
+#
+# This facade defines the ONLY supported routing path for user-facing
+# speech outputs in v1.4.x.
+#
+# Frozen routing order for emit():
+# - Category -> Policy (priority/interrupt) -> PriorityBand
+# - P0_SAFETY  -> NavigationVoiceRouter.route_safety()
+# - P1_NAV     -> NavigationVoiceRouter.route_navigation()
+# - P2_TASK/P3_CHAT -> TtsManager.enqueue() (main queue)
+#
+# Any change to the above routing order is a contract change.
+# ======================================================================
+
 from __future__ import annotations
 
 from typing import Optional, Dict, Any, TYPE_CHECKING

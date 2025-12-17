@@ -9,6 +9,19 @@ NavigationVoiceRouter: 导航语音路由器（TTS Routers 层）
 v1.4.6d-TW
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Navigation/Safety gating semantics (contract)
+#
+# Frozen behaviors:
+# - NAVIGATION category is throttled by TimeWindowGate("NAVIGATION")
+# - SAFETY category is throttled by TimeWindowGate("SAFETY") for
+#   route_obstacle_warning(), but route_safety()/route_safety_warning()
+#   bypasses the TimeWindowGate and uses TtsManager.push_safety() with
+#   safety de-duplication (2s) in TtsManager.
+#
+# Any change here alters when the user hears navigation vs safety prompts.
+# ======================================================================
+
 from typing import Optional, Dict, Any
 
 from task_engine.tts.routers.time_window_gate import TimeWindowGate

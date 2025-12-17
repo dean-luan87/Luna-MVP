@@ -5,6 +5,22 @@ TimeWindowGate 统一播报节流模块
 v1.4.6d-TW
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Time window thresholds (behavior contract)
+#
+# These windows define user-perceived speaking frequency. Any change is a
+# behavior change and requires a version bump.
+#
+# Frozen parameters:
+# - safety_window:     0.8 seconds
+# - navigation_window: 2.0 seconds
+#
+# Frozen semantics:
+# - allow("SAFETY") updates last_safety_time on pass
+# - allow("NAVIGATION") updates last_navigation_time on pass
+# - unknown category -> allow (fallback)
+# ======================================================================
+
 import time
 from dataclasses import dataclass, field
 

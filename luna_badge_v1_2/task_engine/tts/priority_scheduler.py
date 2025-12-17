@@ -6,6 +6,19 @@ PriorityScheduler: 统一的 TTS 优先级调度器
 Step 12: 优先级调度器实现
 """
 
+# ======================================================================
+# [v1.4.9 P0-1 FREEZE] Scheduling semantics (behavior contract)
+#
+# User-visible ordering guarantees:
+# 1) safety_queue always preempts main_queue (P0 > others)
+# 2) main_queue ordering:
+#    - PriorityBand: P1 > P2 > P3
+#    - Within a band: higher numeric priority first
+#    - If same band & same priority: FIFO by enqueue order
+#
+# Any change to the above ordering is a contract change.
+# ======================================================================
+
 from __future__ import annotations
 
 from collections import deque
@@ -90,4 +103,9 @@ class PriorityScheduler:
         for _ in range(best_idx):
             main_queue.append(main_queue.popleft())
         return main_queue.popleft()
+
+
+
+
+
 
