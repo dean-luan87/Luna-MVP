@@ -17,6 +17,17 @@ NON-NEGOTIABLE RULES:
 - 核心原则：视角主导一切
 """
 
+# ======================================================================
+# [1.4.X frozen] TURNING 状态下的 TTS 白名单（表达调度层）
+#
+# 在 1.4.X 生命周期内，TURNING（视觉转向/注意力占用）期间：
+# - 非关键表达：必须 DROP（永不播报）
+# - 关键表达（is_critical=True）：允许以 0ms 覆盖输出
+#
+# 该白名单语义由 schedule() 内 TURNING 兜底检查 + 规则表 critical_override 共同保证。
+# 任何绕过/扩展该白名单的行为，属于 1.5+ 讨论范围。
+# ======================================================================
+
 import json
 import os
 import logging
@@ -70,6 +81,20 @@ class C5Scheduler:
         self.queue = C5ExpressionQueue()
         self._last_vision_state: Optional[VisionState] = None
         self._load_rules()
+
+    # ------------------------------------------------------------------
+    # [v1.4.9 P0-2-B] Replay determinism support (state reset)
+    # ------------------------------------------------------------------
+    def reset(self) -> None:
+        """
+        重置调度器内部可变状态（仅用于 Replay / 测试）。
+
+        约束：
+        - 不改变任何调度语义/阈值/规则
+        - 仅清空历史状态，避免“沿用上次运行的历史”
+        """
+        self.queue.flush(reason="replay_reset")
+        self._last_vision_state = None
     
     def _load_rules(self):
         """加载规则"""
@@ -221,6 +246,12 @@ class C5Scheduler:
             self._log("DROP", ctx, 0, reason="rule_block")
             return "DROP"
         
+        # --------------------------------------------------------------
+        # [1.4.X frozen] TURNING 白名单兜底（不改逻辑，不改语义）
+        #
+        # TURNING 期间：仅允许 is_critical=True 的表达输出；
+        # 其余一律 DROP（永不播报）。
+        # --------------------------------------------------------------
         # 视觉转弯且非关键 → 丢弃（但关键表达可以覆盖，已在规则中处理）
         # 这里只做兜底检查，如果规则已经允许（如 critical_override），则跳过此检查
         if ctx.vision_state == "TURNING" and not expr.is_critical and rule.rule_id != "critical_override":
