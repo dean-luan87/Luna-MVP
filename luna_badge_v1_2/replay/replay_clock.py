@@ -53,6 +53,7 @@ def patch_time(clock: ReplayClock):
     orig_time: Callable[[], float] = _time.time
     orig_sleep: Callable[[float], None] = _time.sleep
     orig_monotonic: Optional[Callable[[], float]] = getattr(_time, "monotonic", None)
+    orig_perf_counter: Optional[Callable[[], float]] = getattr(_time, "perf_counter", None)
 
     def _patched_time() -> float:
         return clock.now_s()
@@ -63,10 +64,15 @@ def patch_time(clock: ReplayClock):
     def _patched_monotonic() -> float:
         return clock.now_s()
 
+    def _patched_perf_counter() -> float:
+        return clock.now_s()
+
     _time.time = _patched_time
     _time.sleep = _patched_sleep
     if orig_monotonic is not None:
         _time.monotonic = _patched_monotonic  # type: ignore[attr-defined]
+    if orig_perf_counter is not None:
+        _time.perf_counter = _patched_perf_counter  # type: ignore[attr-defined]
 
     try:
         yield
@@ -75,3 +81,5 @@ def patch_time(clock: ReplayClock):
         _time.sleep = orig_sleep
         if orig_monotonic is not None:
             _time.monotonic = orig_monotonic  # type: ignore[attr-defined]
+        if orig_perf_counter is not None:
+            _time.perf_counter = orig_perf_counter  # type: ignore[attr-defined]

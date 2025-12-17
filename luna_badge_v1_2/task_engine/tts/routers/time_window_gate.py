@@ -23,6 +23,7 @@ v1.4.6d-TW
 
 import time
 from dataclasses import dataclass, field
+from typing import Callable
 
 
 @dataclass
@@ -38,12 +39,15 @@ class TimeWindowGate:
 
     last_safety_time: float = field(default=0.0)
     last_navigation_time: float = field(default=0.0)
+    # [v1.4.9 P0-2-B] 时间源注入点：默认仍为 wall clock，
+    # Replay 模式下由 ReplayClock 绑定（不改语义、不改阈值）。
+    now_fn: Callable[[], float] = field(default=time.time, repr=False, compare=False)
 
     def allow(self, category: str) -> bool:
         """
         检查该类型是否超过节流窗口
         """
-        now = time.time()
+        now = self.now_fn()
 
         if category == "SAFETY":
             if now - self.last_safety_time >= self.safety_window:
