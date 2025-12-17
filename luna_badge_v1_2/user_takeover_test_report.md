@@ -4,6 +4,10 @@
 - P0-5 用户可接管验证（v1.4.9）
 - 复用 replay_runner / replay_gate / fault-config
 
+## 一期声明
+一期中，‘用户接管’以任务结束（idle/ended）作为唯一稳定态；
+后续版本若支持‘接管后继续协作’，需重新定义安全边界与责任归属。
+
 ## Pass criteria (hard)
 - takeover 后不再出现 `NAVIGATION EMIT`
 - task_mode 收敛至 `idle/ended`
