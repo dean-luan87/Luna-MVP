@@ -14,6 +14,18 @@ from enum import Enum
 from dataclasses import dataclass, field
 from datetime import datetime
 import queue
+import sys
+import os
+
+# 添加项目根目录到Python路径
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+try:
+    from luna_hub.action import ActionContext, SpeakGuard
+    LUNA_HUB_AVAILABLE = True
+except ImportError:
+    LUNA_HUB_AVAILABLE = False
+    logger.warning("luna_hub.action 不可用，将使用降级模式")
 
 logger = logging.getLogger(__name__)
 
@@ -99,6 +111,12 @@ class SystemOrchestrator:
         self.tts = tts_manager
         self.memory = memory_manager
         self.camera = camera_manager
+        
+        # 初始化 Action 层（Step 2）
+        if LUNA_HUB_AVAILABLE:
+            self.speak_guard = SpeakGuard()
+        else:
+            self.speak_guard = None
         
         # 系统状态
         self.state = SystemState.IDLE
@@ -456,16 +474,49 @@ class SystemOrchestrator:
         return None
     
     def _speak(self, text: str):
-        """语音播报"""
-        if self.tts:
-            try:
-                self.tts.speak(text)
-                logger.info(f"🔊 播报: {text}")
-                
-                # 记录动作日志
-                self._log_action("tts_speak", {"text": text})
-            except Exception as e:
-                logger.error(f"❌ TTS播报失败: {e}")
+        """语音播报（通过 Action 层，Step 2）"""
+        if not self.tts:
+            return
+        
+        # 通过 Action 层判断（如果可用）
+        if LUNA_HUB_AVAILABLE and self.speak_guard:
+            # 构造 ActionContext
+            # 判断是否正在播报：检查 TTS 状态（简单判断，行为保持一致）
+            is_speaking = False
+            if hasattr(self.tts, 'is_speaking'):
+                is_speaking = self.tts.is_speaking()
+            elif hasattr(self.tts, 'speaking'):
+                is_speaking = self.tts.speaking
+            
+            context = ActionContext(
+                is_speaking=is_speaking,
+                source="system_orchestrator",
+                action_type="speak",
+                intent="orchestrator_output"
+            )
+            
+            # 通过 SpeakGuard 判断
+            decision = self.speak_guard.should_speak(context)
+            
+            if not decision.allow:
+                # 不补播、不重试
+                if decision.dropped:
+                    logger.info(
+                        f"[ACTION-DROP] speak rejected by {decision.dropped_by}: {decision.reason}"
+                    )
+                else:
+                    logger.warning(decision.reason)
+                return
+        
+        # 执行播报
+        try:
+            self.tts.speak(text)
+            logger.info(f"🔊 播报: {text}")
+            
+            # 记录动作日志
+            self._log_action("tts_speak", {"text": text})
+        except Exception as e:
+            logger.error(f"❌ TTS播报失败: {e}")
     
     def _record_navigation(self, path: Dict[str, Any], destination: str):
         """记录导航记忆"""

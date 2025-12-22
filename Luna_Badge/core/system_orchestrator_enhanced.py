@@ -17,6 +17,18 @@ from enum import Enum
 from dataclasses import dataclass, field
 from datetime import datetime
 import queue
+import sys
+import os
+
+# 添加项目根目录到Python路径
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+try:
+    from luna_hub.action import ActionContext, SpeakGuard
+    LUNA_HUB_AVAILABLE = True
+except ImportError:
+    LUNA_HUB_AVAILABLE = False
+    logger.warning("luna_hub.action 不可用，将使用降级模式")
 
 # 导入增强模块
 from core.log_manager import LogManager
@@ -76,6 +88,10 @@ class EnhancedSystemOrchestrator(SystemOrchestrator):
         self.context_store = ContextStore(max_entries=5)
         self.task_interruptor = TaskInterruptor()
         self.retry_queue = RetryQueue(max_retries=3, retry_interval=60)
+        
+        # 初始化 Action 层（Step 2，如果父类没有初始化）
+        if LUNA_HUB_AVAILABLE and not hasattr(self, 'speak_guard'):
+            self.speak_guard = SpeakGuard()
         
         # 绑定回调
         self._setup_enhancements()
@@ -384,19 +400,52 @@ class EnhancedSystemOrchestrator(SystemOrchestrator):
         self._speak_enhanced("已取消当前任务")
     
     def _speak_enhanced(self, text: str):
-        """语音播报（增强版）"""
-        if self.tts:
-            try:
-                self.tts.speak(text)
-                logger.info(f"🔊 播报: {text}")
-                
-                # 记录TTS日志
-                self.log_manager.log_tts_output(text, success=True)
-            except Exception as e:
-                logger.error(f"❌ TTS播报失败: {e}")
-                # 添加重试
-                self.retry_queue.add_item("TTS", text)
-                # 记录失败日志
+        """语音播报（增强版，通过 Action 层，Step 2）"""
+        if not self.tts:
+            return
+        
+        # 通过 Action 层判断（如果可用）
+        if LUNA_HUB_AVAILABLE and hasattr(self, 'speak_guard') and self.speak_guard:
+            # 构造 ActionContext
+            # 判断是否正在播报：检查 TTS 状态（简单判断，行为保持一致）
+            is_speaking = False
+            if hasattr(self.tts, 'is_speaking'):
+                is_speaking = self.tts.is_speaking()
+            elif hasattr(self.tts, 'speaking'):
+                is_speaking = self.tts.speaking
+            
+            context = ActionContext(
+                is_speaking=is_speaking,
+                source="system_orchestrator_enhanced",
+                action_type="speak",
+                intent="orchestrator_output"
+            )
+            
+            # 通过 SpeakGuard 判断
+            decision = self.speak_guard.should_speak(context)
+            
+            if not decision.allow:
+                # 不补播、不重试
+                if decision.dropped:
+                    logger.info(
+                        f"[ACTION-DROP] speak rejected by {decision.dropped_by}: {decision.reason}"
+                    )
+                else:
+                    logger.warning(decision.reason)
+                return
+        
+        # 执行播报
+        try:
+            self.tts.speak(text)
+            logger.info(f"🔊 播报: {text}")
+            
+            # 记录TTS日志
+            self.log_manager.log_tts_output(text, success=True)
+        except Exception as e:
+            logger.error(f"❌ TTS播报失败: {e}")
+            # 添加重试（保留原有逻辑，但不在 Action 层）
+            self.retry_queue.add_item("TTS", text)
+            # 记录失败日志
                 self.log_manager.log_tts_output(text, success=False, metadata={"error": str(e)})
     
     def _record_navigation_enhanced(self, path: Dict[str, Any], destination: str):
