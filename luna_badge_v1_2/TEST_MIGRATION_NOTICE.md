@@ -71,3 +71,14 @@ pytest tests/ -v --pythonpath=/Users/luanlei/Desktop/Luna-2/luna_badge_v1_2
 **迁移完成日期**: 2025-12-09  
 **维护者**: Luna Badge Team
 
+
+
+
+
+
+
+
+
+
+
+

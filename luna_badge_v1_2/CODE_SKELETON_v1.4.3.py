@@ -531,3 +531,14 @@ class InquiryManager:
         return parsed
 
 
+
+
+
+
+
+
+
+
+
+
+

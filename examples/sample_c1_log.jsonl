@@ -1,0 +1,9 @@
+{"type":"c1_decision","timestamp":1.01,"prev_state":"stable","current_state":"stable","motion_score":0.1,"frame_diff_score":0.05,"privacy_hit":false,"user_override":false,"allow_frame":true,"target_fps":2,"priority":"env","observation_mode":"forward","reason":"stable_scene"}
+{"type":"pipeline_execution","timestamp":1.01,"navigation_executed":false,"modeling_executed":true,"latency_ms":5.2}
+{"type":"c1_decision","timestamp":1.20,"prev_state":"stable","current_state":"alert","motion_score":0.9,"frame_diff_score":0.8,"privacy_hit":false,"user_override":false,"allow_frame":true,"target_fps":10,"priority":"safety","observation_mode":"local","reason":"sudden_motion"}
+{"type":"pipeline_execution","timestamp":1.20,"navigation_executed":true,"modeling_executed":false,"latency_ms":6.8}
+{"type":"c1_decision","timestamp":1.35,"prev_state":"alert","current_state":"suspended","motion_score":1.0,"frame_diff_score":1.0,"privacy_hit":false,"user_override":false,"allow_frame":false,"target_fps":0,"priority":"safety","observation_mode":"none","reason":"camera_unstable"}
+{"type":"c1_decision","timestamp":1.50,"prev_state":"suspended","current_state":"stable","motion_score":0.1,"frame_diff_score":0.05,"privacy_hit":false,"user_override":false,"allow_frame":true,"target_fps":2,"priority":"env","observation_mode":"forward","reason":"stable_scene"}
+{"type":"pipeline_execution","timestamp":1.50,"navigation_executed":false,"modeling_executed":true,"latency_ms":4.9}
+
+

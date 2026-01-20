@@ -1,23 +1,29 @@
 """
 Luna Badge v1.5 - 语音交互增强：验证码语音输入与反馈
 实现文件：core/voice_verification_code.py
+
+⚠️ 暂时注销：此模块依赖 user_manager，已暂时禁用
 """
 import os
 import json
 from typing import Optional, Dict, Any
-from core.user_manager import UserManager
+# ===== 暂时注销：用户注册模块 =====
+# from core.user_manager import UserManager
 from core.tts_manager import speak
 from core.whisper_recognizer import get_whisper_recognizer
 
 
 class VoiceVerificationCodeHandler:
     """
-    验证码语音输入与反馈处理
+    验证码语音输入与反馈处理（已暂时禁用）
     功能：通过语音输入验证码、发送验证码、播报验证结果
     """
     
-    def __init__(self, user_manager: UserManager = None):
-        self.user_manager = user_manager or UserManager()
+    def __init__(self, user_manager=None):
+        """初始化（已暂时禁用）"""
+        raise NotImplementedError("用户注册模块已暂时禁用，VoiceVerificationCodeHandler 已禁用")
+        # ===== 以下代码已暂时禁用 =====
+        # self.user_manager = user_manager or UserManager()
         self.whisper = get_whisper_recognizer(model_name="base")
     
     def voice_send_verification_code(self, phone: str) -> Dict[str, Any]:

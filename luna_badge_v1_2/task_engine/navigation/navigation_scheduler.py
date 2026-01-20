@@ -5,13 +5,13 @@ NavigationScheduler: 导航调度器
 """
 
 # ======================================================================
-# [v1.4.9 P0-1 FREEZE] User-visible behavior mapping (DO NOT CHANGE)
+# [1.4.X frozen] TURNING / STRAIGHT 判定入口（用户可见行为，禁止改语义）
 #
 # This module defines the canonical mapping from navigation events to
 # TTS_ROUTER_* actions. Any behavior change here is considered a contract
 # change and requires a version bump.
 #
-# Frozen mappings:
+# Frozen mappings (behavior contract):
 # - TurnEvent            -> Action(type="TTS_ROUTER_TURN")
 # - StraightEvent        -> Action(type="TTS_ROUTER_STRAIGHT")
 # - ObstacleEvent:
@@ -27,7 +27,7 @@ NavigationScheduler: 导航调度器
 
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
-from decision_core.decision_core import DecisionCore, Action
+from core.framework.decision.decision_core import DecisionCore, Action
 
 
 @dataclass

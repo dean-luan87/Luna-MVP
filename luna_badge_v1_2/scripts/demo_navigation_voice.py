@@ -93,3 +93,14 @@ def simulate_navigation_flow():
 if __name__ == "__main__":
     simulate_navigation_flow()
 
+
+
+
+
+
+
+
+
+
+
+

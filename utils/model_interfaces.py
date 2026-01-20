@@ -21,6 +21,13 @@ logger = logging.getLogger(__name__)
 
 
 class YOLODetector:
+    """
+    YOLO 目标检测器
+    
+    ⚠️ v1.8.5 Phase B: 使用限制
+    - Must be called ONLY from vision_pipeline.lv4_executors
+    - Forbidden: Direct calls from core/world_model, core/task_chain, decision_controller
+    """
     """YOLOv8 目标检测器"""
     
     def __init__(self, model_path: str = None, confidence_threshold: float = 0.5):
@@ -90,6 +97,13 @@ class YOLODetector:
 
 
 class OCRProcessor:
+    """
+    OCR 文字识别处理器
+    
+    ⚠️ v1.8.5 Phase B: 使用限制
+    - Must be called ONLY from vision_pipeline.lv4_executors
+    - Forbidden: Direct calls from core/world_model, core/task_chain, decision_controller
+    """
     """PaddleOCR 文字识别处理器"""
     
     def __init__(self):
@@ -151,6 +165,13 @@ class OCRProcessor:
 
 
 class QwenVLProcessor:
+    """
+    QwenVL 视觉语言模型处理器
+    
+    ⚠️ v1.8.5 Phase B: 使用限制
+    - Must be called ONLY from vision_pipeline.lv4_executors
+    - Forbidden: Direct calls from core/world_model, core/task_chain, decision_controller
+    """
     """Qwen2-VL 视觉语言模型处理器"""
     
     def __init__(self, api_key: str = None, api_url: str = None):

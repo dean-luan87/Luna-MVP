@@ -79,3 +79,14 @@ function getCameraResolution() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+

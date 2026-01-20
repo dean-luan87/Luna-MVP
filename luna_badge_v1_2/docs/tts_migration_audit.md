@@ -190,3 +190,14 @@ elif "障碍物" in speech_event or "危险" in speech_event:
 **最后更新**: 2025-01-XX  
 **审计人员**: [待填写]
 
+
+
+
+
+
+
+
+
+
+
+

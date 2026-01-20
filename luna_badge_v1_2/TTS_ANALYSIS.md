@@ -105,3 +105,14 @@ def _speak_edge_tts(self, text: str):
 
 
 
+
+
+
+
+
+
+
+
+
+
+

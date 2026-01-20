@@ -20,8 +20,8 @@ except ImportError:
     FLASK_AVAILABLE = False
     print("警告: Flask 未安装，HTTP API 功能不可用。请运行: pip install flask")
 
-from core.vision.vision_debug_service import VisionDebugService
-from core.vision.multi_model_engine import MultiModelEngine
+from capabilities.vision.vision_debug_service import VisionDebugService
+from capabilities.vision.multi_model_engine import MultiModelEngine
 
 # 全局变量（在实际应用中，这些应该从应用初始化时注入）
 _engine: MultiModelEngine = None
@@ -122,8 +122,8 @@ if __name__ == "__main__":
         print("错误: Flask 未安装。请运行: pip install flask")
         sys.exit(1)
 
-    from core.vision.multi_model_engine import ModelSpec
-    from core.vision.vision_task_orchestrator import VisionTask
+    from capabilities.vision.multi_model_engine import ModelSpec
+    from capabilities.vision.vision_task_orchestrator import VisionTask
 
     # 创建测试引擎
     engine = MultiModelEngine(max_workers=4)
@@ -143,4 +143,15 @@ if __name__ == "__main__":
     print("\n按 Ctrl+C 停止服务\n")
 
     app.run(host="0.0.0.0", port=8082, debug=False)
+
+
+
+
+
+
+
+
+
+
+
 

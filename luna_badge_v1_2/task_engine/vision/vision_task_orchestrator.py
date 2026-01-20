@@ -11,7 +11,7 @@ from typing import Optional
 
 from task_engine.vision.vision_event import VisionEvent
 from task_engine.vision.vision_scene_bridge import VisionSceneTaskBridge, VisionSceneTaskResult
-from task_chain.task_chain_manager import TaskChainManager
+from decision.task_chain.task_chain_manager import TaskChainManager
 from task_engine.task_execution_result import TaskExecutionResult
 
 

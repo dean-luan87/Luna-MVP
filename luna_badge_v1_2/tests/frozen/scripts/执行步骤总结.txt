@@ -1,0 +1,38 @@
+# Frozen Test #1 Step 1 执行步骤总结
+
+## 最简单的方法（3步）
+
+### 1. 运行系统并观察
+- 启动 v1.4.9 系统
+- 执行 7 步场景脚本
+- 观察日志，记录关键数据
+
+### 2. 编辑 JSON 文件
+- 打开: tests/frozen/snapshots/frozen_taskchain_insert_resume_v1_4.json
+- 替换三类数据: decision_actions, taskchain_snapshots, event_trace
+- 移除所有 "占位数据" 的 note
+
+### 3. 运行第二遍验证
+- 重启系统
+- 用完全相同输入执行 7 步脚本
+- 对比两次数据是否一致
+
+## 关键数据位置
+
+### Decision Actions
+- 查看: 决策相关的日志输出
+- 记录: action_type, task_id
+
+### TaskChain 状态
+- 查看: 任务链相关的日志输出
+- 记录: stack, active_task
+- 关键点: step_3, step_5, step_7
+
+### Event Trace
+- 查看: 事件总线相关的日志输出
+- 记录: event_type, 顺序
+
+## 完成后说
+"Frozen Test #1 快照已填充：一致性=YES，准备生成 hash"
+或
+"一致性=NO，疑似漂移字段在 XXX"

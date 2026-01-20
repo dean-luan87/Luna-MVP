@@ -1,14 +1,5 @@
 """
 Task Chain Module
 
-对外暴露的任务链管理（封装 FlowRuntime）
+任务链执行与状态管理的统一入口。
 """
-
-from .task_chain_manager import TaskChainManager, TaskStatus, TaskRecord
-
-__all__ = [
-    "TaskChainManager",
-    "TaskStatus",
-    "TaskRecord",
-]
-

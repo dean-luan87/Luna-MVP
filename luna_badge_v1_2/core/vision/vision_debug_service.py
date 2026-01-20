@@ -79,3 +79,14 @@ class VisionDebugService:
         snapshot = self.get_health().to_dict()
         return snapshot.get("models", {}).get(task_type)
 
+
+
+
+
+
+
+
+
+
+
+

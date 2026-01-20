@@ -37,3 +37,14 @@ class QueryPrompts:
         """自定义模板."""
         return template.format(**variables)
 
+
+
+
+
+
+
+
+
+
+
+

@@ -46,11 +46,11 @@ except Exception:
 # 尝试导入 NavBrain
 NavBrainCls = None
 try:
-    from core.navigation_logic_v1_3 import NavigationLogicV1_3
+    from capabilities.navigation_logic_v1_3 import NavigationLogicV1_3
     NavBrainCls = NavigationLogicV1_3
 except Exception:
     try:
-        from core.navigation_logic import NavigationLogic
+        from capabilities.navigation_logic import NavigationLogic
         NavBrainCls = NavigationLogic
     except Exception:
         NavBrainCls = None
@@ -280,6 +280,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
 
 
 

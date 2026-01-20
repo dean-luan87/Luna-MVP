@@ -49,11 +49,11 @@ except ImportError:
 
 # 导航逻辑
 try:
-    from core.navigation_logic_v1_3 import NavigationLogicV1_3
+    from capabilities.navigation_logic_v1_3 import NavigationLogicV1_3
     HAS_NAV_LOGIC = True
 except ImportError:
     try:
-        from core.navigation_logic import NavigationLogic
+        from capabilities.navigation_logic import NavigationLogic
         HAS_NAV_LOGIC = True
         NavigationLogicV1_3 = NavigationLogic
     except ImportError:

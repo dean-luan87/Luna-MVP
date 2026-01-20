@@ -1,0 +1,115 @@
+--- a/vision_pipeline/b2/v03/b2_v03.py
++++ b/vision_pipeline/b2/v03/b2_v03.py
+@@ -151,7 +151,8 @@ class B2v03:
+         # B2 Gate v0.5 组件
+         self.gate_evaluator = GateEvaluator()  # 保留旧版本兼容
+         # v0.4.2: GateEvaluatorV05 作为第一裁判
+         self.gate_evaluator_v05 = GateEvaluatorV05()
++        self.gate = self.gate_evaluator_v05  # v0.4.2: 简化别名
+         self.evidence_lifecycle = EvidenceLifecycle()
+         
+         # B runtime state 相关（用于 trace，v0.4 兼容）
+@@ -195,6 +196,35 @@ class B2v03:
+         """
+         # =========================
+         # v0.4.1 Patch 3: 系统时间唯一性
+         # =========================
+         system_ts = time.time()
+         self._current_frame_id = frame_id
+         
++        # =====================================================
++        # v0.4.2 Gate FIRST — runtime authority
++        # =====================================================
++        # 从 perception 中提取 Gate 所需的最小信息
++        stability_score = None
++        range_m = None
++        evidence_ok = True
++        
++        if isinstance(perception, dict):
++            view_state = perception.get("view_state", {})
++            stability_score = view_state.get("stability_score")
++            range_m = view_state.get("range_m")
++        
++        # 如果没有从 perception 获取，使用实例变量或默认值
++        if stability_score is None:
++            # 使用现有的计算逻辑（如果 imu_data 存在）
++            if self.imu_data:
++                angular_velocity = self.imu_data.get("angular_velocity_deg_s", 0.0)
++                accel_variance = self.imu_data.get("accel_variance", 0.0)
++                from vision_pipeline.b2.v03.gate import compute_stability_score
++                stability_score = compute_stability_score(
++                    angular_velocity_deg_s=angular_velocity,
++                    accel_variance=accel_variance
++                )
++            else:
++                stability_score = 1.0  # 默认稳定
++        
++        if range_m is None:
++            range_m = self.range_m if self.range_m is not None else 10.0
++        
++        mode, reason, gate_eval = self.gate.evaluate(
++            stability_score=stability_score,
++            range_m=range_m,
++            evidence_ok=evidence_ok,
++        )
++        
++        # ---- HARD STOP：Gate SUSPENDED ----
++        if mode == "SUSPENDED":
++            # 必须完全沉默，不进入任何 B2 逻辑
++            # 但仍需要写 trace（如果 trace_writer 存在）
++            if hasattr(self, "trace_writer") and self.trace_writer is not None:
++                trace_minimal = {
++                    "time": {"ts": frame_ts, "frame_id": frame_id},
++                    "gate": {
++                        "mode": mode,
++                        "reason": reason,
++                        "detail": gate_eval,
++                    },
++                    "decision_state": "SUSPENDED",
++                    "to_c_message": {"sent": False, "reason": "gate_suspended"},
++                }
++                self.trace_writer.write(trace_minimal)
++            return None
++        
+         trace = {}
+         
+         # =========================
+@@ -238,7 +268,7 @@ class B2v03
+         # =========================
+         # v0.4.2: Gate 作为第一裁判（最高优先级，在任何感知之前）
+         # =========================
+-        # 0. 构建 tick 上下文（计算 view_state 和 stability_score）
++        # 0. 构建 tick 上下文（Gate 已在顶部评估，这里只计算 view_state）
+         angular_velocity = 0.0
+         accel_variance = 0.0
+         linear_velocity = 0.0
+@@ -273,7 +303,7 @@ class B2v03
+         # 初始值（后续会更新）
+         evidence_frames = 0
+         final_confidence = 0.0
+         
+-        gate_mode_str, gate_trace = self.gate_evaluator_v05.evaluate(
++        gate_mode_str, gate_trace = self.gate.evaluate(
+             stability_score=stability_score,
+             pitch_deg=pitch_deg,
+             roll_deg=roll_deg,
+@@ -304,7 +334,7 @@ class B2v03
+         # 3. Gate=SUSPENDED → 直接返回 None（v0.4.2: 生杀权）
+-        if gate_mode_str == "SUSPENDED":
++        if gate_mode_str == "SUSPENDED":  # 已在顶部处理，这里是冗余检查（可删除）
+             trace["decision_state"] = "SUSPENDED"
+             trace["trigger"] = {
+                 "triggered": False,
+@@ -740,7 +770,10 @@ class B2v03
+         # 9. 写入情况（有没有打标）
+         # v0.4.2: READ_ONLY 不允许写 timeline
+         # =========================
+-        writeback = self._write_outputs(summary)
++        # ---- Gate READ_ONLY：允许计算，不允许留下系统痕迹 ----
++        if mode == "READ_ONLY":
++            return summary
++        
++        writeback = self._write_outputs(summary)
+         # v0.4.2: Gate 降权权 - READ_ONLY 不写 timeline
+         if is_read_only:
+             writeback["timeline_written"] = False

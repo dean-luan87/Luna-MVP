@@ -1,0 +1,42 @@
+{
+  "_comment": "Metrics Schema - 定义指标和日志的结构规范",
+  "description": "v1.5 指标与日志的统一格式定义",
+  "schemas": {
+    "execution_trace": {
+      "description": "执行跟踪日志（execution_trace.jsonl）",
+      "required_fields": ["ts", "trace_id", "task_domain", "node_id", "event", "payload"],
+      "event_types": [
+        "moc_decision",
+        "fallback",
+        "node_start",
+        "node_end",
+        "watchdog"
+      ]
+    },
+    "runtime_metrics": {
+      "description": "性能指标日志（runtime_metrics.log）",
+      "required_fields": ["ts", "metric", "value", "tags"],
+      "metric_types": [
+        "latency_ms",
+        "throughput",
+        "error_rate",
+        "timeout_rate"
+      ]
+    },
+    "error_log": {
+      "description": "错误日志（error_log.jsonl）",
+      "required_fields": ["ts", "error_type", "severity", "context"],
+      "error_types": [
+        "timeout",
+        "invalid_output",
+        "contradiction",
+        "state_mismatch"
+      ],
+      "severity_levels": ["low", "medium", "high"]
+    }
+  }
+}
+
+
+
+

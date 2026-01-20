@@ -104,3 +104,14 @@ navigation_voice_router.route_generic("SAFETY", "前方有危险")
 - **现有代码**：继续使用 Navigation 层 Router（保持兼容性）
 - **未来**：逐步统一到 TTS Routers 层，或明确职责分工
 
+
+
+
+
+
+
+
+
+
+
+

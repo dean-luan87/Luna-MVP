@@ -5,7 +5,7 @@
 用于 TaskChainRouter 调用，实际委托给 TaskEngine
 """
 
-from core.task.task_engine import TaskEngine
+from decision.task_chain.task_engine import TaskEngine
 
 
 class TaskManager:

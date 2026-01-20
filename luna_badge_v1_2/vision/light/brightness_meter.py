@@ -47,3 +47,14 @@ class BrightnessMeter:
 
 
 
+
+
+
+
+
+
+
+
+
+
+

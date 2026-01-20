@@ -2,7 +2,7 @@
 
 from core.taskchain.behavior_map import BEHAVIOR_MAP
 from core.taskchain.label_event import LabelEvent
-from core.task.task_chain import TaskChain
+from decision.task_chain.task_chain import TaskChain
 
 
 class TaskChainRouter:

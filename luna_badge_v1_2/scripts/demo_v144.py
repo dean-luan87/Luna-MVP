@@ -1,6 +1,6 @@
 # scripts/demo_v144.py
-from decision_core.builder_v144 import build_decision_core_v144
-from decision_core.decision_core import DecisionRequest
+from core.framework.decision.builder_v144 import build_decision_core_v144
+from core.framework.decision.decision_core import DecisionRequest
 
 
 if __name__ == "__main__":
@@ -74,4 +74,15 @@ if __name__ == "__main__":
     print("=" * 60)
     print("✅ Demo 完成")
     print("=" * 60)
+
+
+
+
+
+
+
+
+
+
+
 

@@ -24,3 +24,14 @@ class YOLO11Detector:
 
 
 
+
+
+
+
+
+
+
+
+
+
+

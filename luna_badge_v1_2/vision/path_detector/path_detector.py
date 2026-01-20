@@ -27,7 +27,7 @@ class PathDetector:
         try:
             try:
                 # 如果项目中有新的路径分析模块，可以在此适配
-                from core.navigation.path_analyzer import PathAnalyzer  # type: ignore
+                from capabilities.navigation.path_analyzer import PathAnalyzer  # type: ignore
 
                 self._impl = PathAnalyzer(*args, **kwargs)
                 self._mode = "analyzer"

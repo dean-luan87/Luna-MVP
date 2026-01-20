@@ -80,7 +80,7 @@ try:
         return _nav_planner.plan_route("start", ["goal"])
 except ImportError:
     try:
-        from core.navigation_logic import NavigationLogic
+        from capabilities.navigation_logic import NavigationLogic
         NAV_AVAILABLE = True
         _nav_logic = None
         def plan_route(vision_result, ground_state, dispatch_result):

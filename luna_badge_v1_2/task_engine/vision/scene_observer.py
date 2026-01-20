@@ -71,3 +71,14 @@ class SceneObserver:
 
         return guess, self._context
 
+
+
+
+
+
+
+
+
+
+
+

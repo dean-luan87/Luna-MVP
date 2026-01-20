@@ -1,0 +1,15 @@
+{
+  "version": "b2-v0.5",
+  "gate_fingerprint": {
+    "total_frames": 12048,
+    "mode_ratio": {
+      "READ_ONLY": 0.000747011952191235,
+      "ACTIVE": 0.9992529880478087
+    },
+    "mode_switch_count": 1,
+    "avg_active_duration": 12039.0,
+    "avg_read_only_duration": 9.0,
+    "enter_hysteresis_hits": 0,
+    "exit_hysteresis_hits": 0
+  }
+}

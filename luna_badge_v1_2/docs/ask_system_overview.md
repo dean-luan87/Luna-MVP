@@ -120,3 +120,14 @@ result, state = runtime.step(user_input="瑞金医院", now_ts=int(time.time()))
 
 `scripts/demo_askchain.py`
 
+
+
+
+
+
+
+
+
+
+
+

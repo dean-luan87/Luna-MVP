@@ -1,0 +1,22 @@
+{
+  "personality_fingerprint": {
+    "window": {
+      "duration_sec": 401.73,
+      "frame_count": 12048
+    },
+    "gate_profile": {
+      "active_ratio": 0.9993,
+      "read_only_ratio": 0.0007,
+      "suspended_ratio": 0.0,
+      "state_switch_per_min": 0.149
+    },
+    "decision_profile": {
+      "tick_per_min": 0.0,
+      "no_op_ratio": 0.0,
+      "meaningful_decisions": 0
+    },
+    "stability_profile": {
+      "avg_stability_score": 0.9
+    }
+  }
+}

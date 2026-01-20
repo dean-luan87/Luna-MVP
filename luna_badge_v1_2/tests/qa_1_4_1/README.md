@@ -66,3 +66,14 @@ pytest tests/qa_1_4_1/ --html=reports/qa_report.html --self-contained-html
 
 
 
+
+
+
+
+
+
+
+
+
+
+

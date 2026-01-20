@@ -1,0 +1,98 @@
+diff --git a/vision_pipeline/b2/v03/b2_v03.py b/vision_pipeline/b2/v03/b2_v03.py
+--- a/vision_pipeline/b2/v03/b2_v03.py
++++ b/vision_pipeline/b2/v03/b2_v03.py
+@@ -151,6 +151,7 @@ class B2v03:
+         # B2 Gate v0.5 组件
+         self.gate_evaluator = GateEvaluator()  # 保留旧版本兼容
+         # v0.4.2: GateEvaluatorV05 作为第一裁判
+         self.gate_evaluator_v05 = GateEvaluatorV05()
++        self.gate = self.gate_evaluator_v05  # v0.4.2: 简化别名
+         self.evidence_lifecycle = EvidenceLifecycle()
+         
+         # B runtime state 相关（用于 trace，v0.4 兼容）
+@@ -192,6 +193,55 @@ class B2v03:
+         """
+         frame_ts: seconds (human time)
+         """
++        # =====================================================
++        # v0.4.2 Gate FIRST — runtime authority
++        # =====================================================
++        
++        # 从 perception 中提取 Gate 所需的最小信息
++        stability_score = None
++        range_m = None
++        pitch_deg = 0.0
++        roll_deg = 0.0
++        visibility_score = 0.75
++        evidence_ok = True
++        
++        if isinstance(perception, dict):
++            view_state = perception.get("view_state", {})
++            stability_score = view_state.get("stability_score")
++            range_m = view_state.get("range_m")
++            visibility_score = view_state.get("visibility_score", 0.75)
++        
++        # 如果没有从 perception 获取，使用实例变量或默认值
++        if stability_score is None:
++            # 使用现有的计算逻辑（如果 imu_data 存在）
++            if self.imu_data:
++                angular_velocity = self.imu_data.get("angular_velocity_deg_s", 0.0)
++                accel_variance = self.imu_data.get("accel_variance", 0.0)
++                stability_score = compute_stability_score(
++                    angular_velocity_deg_s=angular_velocity,
++                    accel_variance=accel_variance
++                )
++                pitch_deg = self.imu_data.get("pitch_deg", 0.0)
++                roll_deg = self.imu_data.get("roll_deg", 0.0)
++            else:
++                stability_score = 1.0  # 默认稳定
++        
++        if range_m is None:
++            range_m = self.range_m if self.range_m is not None else 10.0
++        
++        # Gate 评估（使用完整参数列表）
++        mode, gate_trace = self.gate.evaluate(
++            stability_score=stability_score,
++            pitch_deg=pitch_deg,
++            roll_deg=roll_deg,
++            range_m=range_m,
++            visibility_score=visibility_score,
++            allow_runtime=True,
++            evidence_frames=0,
++            final_confidence=0.0,
++            now_ts=time.time(),
++        )
++        reason = gate_trace.get("blocked_by") or gate_trace.get("human_readable", "")
++        
++        # ---- HARD STOP: Gate SUSPENDED ----
++        if mode == "SUSPENDED":
++            # 必须完全沉默，不进入任何 B2 逻辑
++            # 但仍需要写 trace（如果 trace_writer 存在）
++            if hasattr(self, "trace_writer") and self.trace_writer is not None:
++                trace_minimal = {
++                    "time": {"ts": frame_ts, "frame_id": frame_id or 0},
++                    "gate_eval": {
++                        "mode": mode,
++                        "blocked_by": reason,
++                        "human_readable": gate_trace.get("human_readable", ""),
++                    },
++                    "decision_state": "SUSPENDED",
++                    "to_c_message": {"sent": False, "reason": "gate_suspended"},
++                }
++                self.trace_writer.write(trace_minimal)
++            return None
++        
+         # =========================
+         # v0.4.1 Patch 3: 系统时间唯一性
+         # =========================
+@@ -740,6 +788,10 @@ class B2v03:
+         # 9. 写入情况（有没有打标）
+         # v0.4.2: READ_ONLY 不允许写 timeline
+         # =========================
++        # ---- Gate READ_ONLY: allow compute, forbid writeback ----
++        if mode == "READ_ONLY":
++            return summary
++        
+         writeback = self._write_outputs(summary)
+         # v0.4.2: Gate 降权权 - READ_ONLY 不写 timeline
+         if is_read_only:

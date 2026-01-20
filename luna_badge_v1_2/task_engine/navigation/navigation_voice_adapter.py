@@ -110,7 +110,7 @@ class NavigationVoiceAdapter:
     def _category_from_decision(self, decision: str) -> Optional[TTSCategory]:
         """根据决策类型推断类别"""
         # --------------------------------------------------------------
-        # [v1.4.9 P0-1 FREEZE] Decision→Category mapping (behavior contract)
+        # [1.4.X frozen] TURNING / STRAIGHT / WARNING → TTS 分类映射（禁止改语义）
         #
         # TURNING / STRAIGHT / WARNING 等“对用户可见”的语义类别，最终都
         # 会落在 SAFETY / NAVIGATION 两个播报类别上（影响优先级与节流）。
@@ -156,7 +156,7 @@ class NavigationVoiceAdapter:
     def _category_from_text(self, text: str) -> Optional[TTSCategory]:
         """根据文本关键词推断类别"""
         # --------------------------------------------------------------
-        # [v1.4.9 P0-1 FREEZE] Text keyword→Category heuristic (contract)
+        # [1.4.X frozen] 文本关键词 → TTS 分类启发式（禁止改语义）
         #
         # This heuristic is used only when decision/category is not provided.
         # Frozen keyword lists (semantics): danger_keywords/nav_keywords.

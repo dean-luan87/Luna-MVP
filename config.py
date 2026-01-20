@@ -61,6 +61,18 @@ PROCESSING_CONFIG = {
     'description_max_length': 200  # 最大描述长度
 }
 
+# 调试配置（v1.8.4: Risk Debug Snapshot）
+DEBUG_CONFIG = {
+    "enable_risk_debug": True,  # 是否启用 Risk 调试快照日志输出（测试时启用）
+    "enable_risk_console": False,  # 是否启用 Risk 调试控制台输出（P0.5，暂不实现）
+    # "enable_risk_overlay": False,  # 是否启用 Risk 调试 Overlay（P1，v1.8.5+，暂不实现）
+}
+
+# Shadow Mode 配置（v1.8.4: 真实模型接入第一阶段）
+# Shadow Mode = 只打日志，不播报
+# 正确顺序：模型输出 → RiskAdvisoryService → RiskDebugSnapshot（日志） → 人工/离线验证 → 确认稳定后开启播报
+RISK_SHADOW_MODE = False  # True = 只打日志，不播报；False = 正常播报
+
 # 输出配置
 OUTPUT_CONFIG = {
     'print_results': True,
@@ -69,3 +81,11 @@ OUTPUT_CONFIG = {
     'show_camera_feed': True
 }
 
+
+
+# Global log level (default INFO; override via env LOG_LEVEL)
+LOG_LEVEL = __import__('os').environ.get('LOG_LEVEL', 'INFO')
+
+# V1.8.1: Observer Mode 配置
+# 可以通过环境变量 OBSERVER_MODE_ENABLED 覆盖
+OBSERVER_MODE_ENABLED = os.environ.get('OBSERVER_MODE_ENABLED', 'false').lower() == 'true'

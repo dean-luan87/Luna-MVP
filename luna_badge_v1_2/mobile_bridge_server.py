@@ -48,10 +48,10 @@ except ImportError as e:
     YoloDetector = None
 
 try:
-    from core.navigation_logic_v1_3 import NavigationLogicV1_3 as NavigationLogic
+    from capabilities.navigation_logic_v1_3 import NavigationLogicV1_3 as NavigationLogic
 except ImportError:
     try:
-        from core.navigation_logic import NavigationLogic
+        from capabilities.navigation_logic import NavigationLogic
     except ImportError:
         NavigationLogic = None
 

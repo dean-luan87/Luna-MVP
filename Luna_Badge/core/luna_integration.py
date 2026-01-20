@@ -84,14 +84,17 @@ class LunaBadgeIntegration:
     def _init_user_layer(self):
         """初始化用户交互层"""
         try:
-            from core.user_manager import UserManager
+            # ===== 暂时注销：用户注册模块 =====
+            # from core.user_manager import UserManager
             from core.memory_store import MemoryStore
             from core.memory_caller import MemoryCaller
             from core.voice_recognition import VoiceRecognitionEngine
             from core.voice_wakeup import VoiceWakeupManager
             from core.mcp_controller import MCPController
             
-            self.user_manager = UserManager()
+            # ===== 暂时注销：用户管理器 =====
+            # self.user_manager = UserManager()
+            self.user_manager = None  # 暂时禁用
             self.memory_store = MemoryStore()
             from core.memory_caller import MemoryCaller
             self.memory_caller = MemoryCaller(self.memory_store)

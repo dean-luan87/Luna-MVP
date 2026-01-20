@@ -67,11 +67,11 @@ except ImportError:
 
 # Navigation Planner
 try:
-    from core.navigation_logic_v1_3 import NavigationLogic
+    from capabilities.navigation_logic_v1_3 import NavigationLogic
     NAV_AVAILABLE = True
 except ImportError:
     try:
-        from core.navigation_logic import NavigationLogic
+        from capabilities.navigation_logic import NavigationLogic
         NAV_AVAILABLE = True
     except ImportError:
         NAV_AVAILABLE = False
@@ -555,6 +555,17 @@ def run_full_benchmark():
 
 if __name__ == "__main__":
     run_full_benchmark()
+
+
+
+
+
+
+
+
+
+
+
 
 
 

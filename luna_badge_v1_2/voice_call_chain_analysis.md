@@ -73,3 +73,14 @@ if self.voice.is_available:  # ❌ 新 Voice 没有这个属性
 
 
 
+
+
+
+
+
+
+
+
+
+
+

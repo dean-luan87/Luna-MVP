@@ -28,3 +28,14 @@ class StaticMapMemory:
 
 
 
+
+
+
+
+
+
+
+
+
+
+

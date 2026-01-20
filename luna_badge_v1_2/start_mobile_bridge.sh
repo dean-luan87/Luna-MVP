@@ -36,3 +36,14 @@ python3 mobile_bridge_server.py
 
 
 
+
+
+
+
+
+
+
+
+
+
+

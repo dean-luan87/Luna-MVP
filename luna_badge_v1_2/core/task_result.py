@@ -45,3 +45,14 @@ class TaskResult:
         return self.status == "cancelled"
 
 
+
+
+
+
+
+
+
+
+
+
+

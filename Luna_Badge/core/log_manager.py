@@ -26,6 +26,7 @@ class LogSource(Enum):
     MEMORY = "memory"
     TTS = "tts"
     SYSTEM = "system"
+    OBSERVER_MODE = "observer_mode"  # v1.8.1: Observer Mode 专属日志
 
 
 class LogLevel(Enum):
@@ -278,6 +279,79 @@ class LogManager:
     def flush(self):
         """手动刷新缓冲区"""
         self._flush_buffer()
+    
+    def log_observer_mode_event(self,
+                                observer_trigger_reason: str,
+                                observer_level: str,
+                                user_response: Optional[str] = None,
+                                intervene_reason: Optional[str] = None,
+                                observer_enabled: bool = False,
+                                observer_bypass_reason: Optional[str] = None,
+                                metadata: Optional[Dict[str, Any]] = None):
+        """
+        v1.8.1: 记录 Observer Mode 专属日志
+        
+        硬约束：
+        1. observer_mode=false 时，禁止写任何新增字段
+        2. 日志写入必须是旁路：失败不影响主流程、可关可删
+        
+        Args:
+            observer_trigger_reason: Observer Mode 触发原因
+            observer_level: Observer Mode 级别（background / confirm / intervene）
+            user_response: 用户响应（accepted / rejected / ignored，仅 CONFIRM 时使用）
+            intervene_reason: 干预原因（仅 INTERVENE 时使用）
+            observer_enabled: Observer Mode 是否启用（bool，写死当前是否启用）
+            observer_bypass_reason: 记录为何未记录/未触发（string）
+            metadata: 额外元数据（应包含 active: bool 字段）
+        
+        最小日志字段：
+        - observer_trigger_reason
+        - observer_level
+        - observer_user_response
+        
+        额外字段（内部日志）：
+        - observer_enabled
+        - observer_bypass_reason
+        """
+        # 硬约束 1: observer_mode=false 时，禁止写任何新增字段
+        if not observer_enabled:
+            return  # Observer Mode 未启用时不记录
+        
+        # 如果 metadata 中 active=False，也不记录
+        if metadata and not metadata.get("active", False):
+            return  # Observer Mode 未激活时不记录
+        
+        try:
+            log_metadata = metadata or {}
+            log_metadata.update({
+                "observer_trigger_reason": observer_trigger_reason,
+                "observer_level": observer_level,
+                "observer_enabled": observer_enabled,
+            })
+            
+            if user_response:
+                log_metadata["observer_user_response"] = user_response
+            
+            if intervene_reason:
+                log_metadata["intervene_reason"] = intervene_reason
+            
+            if observer_bypass_reason:
+                log_metadata["observer_bypass_reason"] = observer_bypass_reason
+            
+            log = BehaviorLog(
+                timestamp=datetime.now().isoformat(),
+                source=LogSource.OBSERVER_MODE.value,
+                content=f"Observer Mode: {observer_level}",
+                metadata=log_metadata,
+                level=LogLevel.INFO.value
+            )
+            
+            # 硬约束 2: 日志写入必须是旁路，失败不影响主流程
+            self._write_log(log)
+        except Exception as e:
+            # 吞掉异常（或降级到 debug），不影响用户侧流程
+            logger.debug(f"[ObserverMode] 日志写入失败（已忽略）: {e}")
+            # 不抛出异常，不影响主流程
     
     def read_logs(self,
                   date: Optional[str] = None,

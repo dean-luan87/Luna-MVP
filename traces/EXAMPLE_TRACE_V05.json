@@ -1,0 +1,73 @@
+{
+  "time": {
+    "ts": 120.02,
+    "frame_id": 3599,
+    "fps": 30.0,
+    "human_time": "02:00"
+  },
+  "runtime_state": {
+    "state": "ACTIVE",
+    "since": "00:02.3",
+    "reason": "stable_camera_and_pose"
+  },
+  "state_gate": {
+    "can_trigger": true,
+    "blocked_by": null
+  },
+  "b_runtime_state": {
+    "active": true,
+    "mode": "ACTIVE",
+    "reason": "stable_camera_and_pose"
+  },
+  "trigger": {
+    "triggered": true,
+    "trigger_ts": 120.02,
+    "trigger_frame": 3599,
+    "trigger_reason": "path.score crossed threshold",
+    "trigger_factor": "path"
+  },
+  "perception": {
+    "path": {
+      "score": 0.65,
+      "reason": "surface texture change detected",
+      "source": "vision/b2_v03"
+    },
+    "env": null,
+    "people": null,
+    "event": null
+  },
+  "rule_evaluation": [
+    {
+      "rule_id": "PATH_SLOW_DOWN",
+      "expression": "path.score >= 0.6",
+      "actual_value": 0.65,
+      "threshold": 0.6,
+      "hit": true
+    }
+  ],
+  "impact_evaluation": {
+    "impact": "NEED_SLOW_DOWN",
+    "main_factor": "path",
+    "confidence": 0.65,
+    "decision_level": "CONDITION_CHANGE"
+  },
+  "human_interpretation": {
+    "summary": "前方路面发生变化，继续前进可能不太舒适。",
+    "urgency": "soft",
+    "risk": "low"
+  },
+  "to_c_message": {
+    "sent": true,
+    "content": {
+      "action": "NEED_SLOW_DOWN",
+      "main_factor": "path",
+      "valid_for_seconds": 3
+    }
+  },
+  "writeback": {
+    "timeline_written": true,
+    "timeline_index": 1,
+    "health_log_written": true,
+    "memory_written": false
+  }
+}

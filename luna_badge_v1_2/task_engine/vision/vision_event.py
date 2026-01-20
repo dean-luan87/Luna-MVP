@@ -31,3 +31,14 @@ class VisionEvent:
         """将 OCR 文本拼成一段，用于 SceneClassifier 输入。"""
         return " ".join(self.ocr_lines or [])
 
+
+
+
+
+
+
+
+
+
+
+

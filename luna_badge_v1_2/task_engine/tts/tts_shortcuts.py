@@ -126,3 +126,14 @@ def speak_chat(
     tts_manager.enqueue(utter)
     return utter
 
+
+
+
+
+
+
+
+
+
+
+

@@ -56,3 +56,14 @@ class SceneObserver:
             gps_hint=gps_hint,
         )
 
+
+
+
+
+
+
+
+
+
+
+

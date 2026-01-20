@@ -31,7 +31,7 @@ from core.yolo_detector import YoloDetector
 from core.depth_estimator import DepthEstimator
 from core.fusion_engine import FusionEngine
 from core.scene_output import build_scene_state
-from core.navigation_logic import NavigationEngine
+from capabilities.navigation_logic import NavigationEngine
 from core.tts_manager import TTSManager
 
 

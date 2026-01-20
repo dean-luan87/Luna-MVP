@@ -86,3 +86,14 @@ if voice.is_speaking():
 
 
 
+
+
+
+
+
+
+
+
+
+
+

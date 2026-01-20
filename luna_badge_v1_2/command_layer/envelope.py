@@ -23,3 +23,14 @@ class CommandEnvelope(BaseModel):
     command_text: Optional[str] = None  # 去掉"Luna"后的命令主体
     mode: Literal["TASK", "HELP_CENTER", "UNKNOWN"] = "UNKNOWN"
 
+
+
+
+
+
+
+
+
+
+
+

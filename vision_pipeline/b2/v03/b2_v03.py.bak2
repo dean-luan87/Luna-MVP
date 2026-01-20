@@ -1,0 +1,743 @@
+# vision_pipeline/b2/v03/b2_v03.py
+
+import time
+from collections import deque
+from typing import Dict, Any, List, Optional
+from enum import Enum, auto
+
+from vision_pipeline.b2.v03.factors import (
+    build_factor_evidences,
+    FactorType,
+    FactorEvidence
+)
+from vision_pipeline.b2.v03.b2_health_logger import B2HealthLogger, B2HealthEvent
+from vision_pipeline.b2.v03.log_utils import B2Logger
+from vision_pipeline.b2.v03.trace.trace_writer import TraceWriter
+
+
+# =========================
+# B2 内部 ActionImpact（仅内部使用，不对外）
+# =========================
+class ActionImpact(Enum):
+    """
+    B2 v0.4+ 内部行为影响评估
+    这是 DTL 的影子层，用于 B2 内部的语义校正
+    
+    唯一真实语义：
+    - NEED_STOP: 需要立即停止
+    - NEED_DETOUR: 需要绕行
+    - PATH_UNCERTAIN: 路径不确定
+    - NEED_SLOW_DOWN: 需要减速
+    - NO_OP: 无操作（不进入 timeline）
+    """
+    NO_OP = auto()
+    NEED_SLOW_DOWN = auto()
+    PATH_UNCERTAIN = auto()
+    NEED_DETOUR = auto()
+    NEED_STOP = auto()
+
+
+class B2v03:
+    """
+    B2 v0.3
+    - 只负责：未来窗口内的"变化判定"
+    - 不做决策、不做语言、不直接干预 C
+    """
+
+    def __init__(
+        self,
+        future_window_start: float = 1.0,
+        future_window_end: float = 8.0,
+        max_buffer: int = 32,
+        debug: bool = False,
+        log_mode: str = "video",
+        log_base_ts: Optional[float] = None,
+        enable_trace: bool = True,
+        trace_file: Optional[str] = None,
+        fps: float = 30.0,
+    ):
+        self.future_window_start = future_window_start
+        self.future_window_end = future_window_end
+        self.debug = debug
+
+        # 保存未来状态（时间有序）
+        self._future_buffer: deque = deque(maxlen=max_buffer)
+        
+        # 健康日志记录器
+        self.health_logger = B2HealthLogger(enable=True)
+        
+        # B2 日志记录器（人类可读）
+        self.logger = B2Logger(mode=log_mode, base_ts=log_base_ts, enable=True)
+        
+        # B2 Runtime Trace 记录器（v0.4）
+        if enable_trace:
+            if trace_file is None:
+                trace_file = "traces/b2_runtime_trace_v04.jsonl"
+            self.trace_writer = TraceWriter(path=trace_file)
+        else:
+            self.trace_writer = None
+        
+        self.fps = fps
+        self.log_base_ts = log_base_ts
+        
+        # B runtime state 相关（用于 trace）
+        self.camera_unstable = False  # 可以从外部设置
+        self.distance_to_front = 10.0  # 可以从外部设置
+
+        # 最近一次有效输出（用于节流 / 对比）
+        self._last_emit_ts: Optional[float] = None
+        self._last_evidences: Optional[Dict[FactorType, FactorEvidence]] = None
+        self._last_summary: Optional[Dict[str, Any]] = None
+        
+        # 用于跟踪因子变化（用于 FACTOR 日志）
+        self._last_factor_evidences: Dict[FactorType, FactorEvidence] = {}
+        
+        # 用于跟踪 timeline 写入计数
+        self._timeline_index = 0
+
+    # ------------------------------------------------------------
+    # 对外主入口：PipelineController 每帧调用
+    # ------------------------------------------------------------
+    def tick(
+        self,
+        frame_ts: float,
+        perception: Dict[str, Any],
+        frame_id: Optional[int] = None
+    ) -> Optional[Dict[str, Any]]:
+        """
+        frame_ts: seconds (human time)
+        """
+        
+        trace = {}
+        
+        # =========================
+        # 1. 时间信息（人类视角）
+        # =========================
+        if frame_id is None:
+            if self.log_base_ts is not None:
+                frame_id = int((frame_ts - self.log_base_ts) * self.fps)
+            else:
+                frame_id = int(frame_ts * self.fps)
+        
+        trace["time"] = {
+            "ts": round(frame_ts, 3),
+            "frame_id": frame_id,
+            "fps": self.fps,
+            "human_time": self.logger.format_ts(frame_ts),
+        }
+        
+        # =========================
+        # 2. B 运行状态（有没有在跑）
+        # =========================
+        b_active, b_mode, b_reason = self._get_b_runtime_state(perception)
+        
+        trace["b_runtime_state"] = {
+            "active": b_active,
+            "mode": b_mode,  # ACTIVE / READ_ONLY / GATED
+            "reason": b_reason
+        }
+        
+        if not b_active:
+            trace["trigger"] = {
+                "triggered": False,
+                "reason": "B not active"
+            }
+            if self.trace_writer:
+                self.trace_writer.write(trace)
+            return None
+        
+        # 1. 写入未来 buffer（B2 只记录，不解释）
+        self._append_future_state(frame_ts, perception)
+        
+        # 2. 提取 [now+1s, now+8s] 窗口
+        future_states = self._collect_future_window(frame_ts)
+        
+        if len(future_states) < 2:
+            trace["trigger"] = {
+                "triggered": False,
+                "reason": "insufficient window data"
+            }
+            if self.trace_writer:
+                self.trace_writer.write(trace)
+            return None
+        
+        # =========================
+        # 3. 感知阶段（有没有看到）
+        # =========================
+        evidences = build_factor_evidences(future_states)
+        
+        trace["perception"] = {
+            k.value: {
+                "score": round(v.score, 2),
+                "reason": v.reason,
+                "source": "vision/b2_v03"
+            }
+            for k, v in evidences.items()
+        } if evidences else {}
+        
+        # TICK 日志：每个 tick 一行，极简
+        active_factors = [k.value for k in evidences.keys()] if evidences else []
+        window_size = self.future_window_end - self.future_window_start
+        self.logger.tick(frame_ts, window_size, active_factors)
+        
+        if not evidences:
+            trace["trigger"] = {
+                "triggered": False,
+                "reason": "no evidences"
+            }
+            trace["rule_evaluation"] = []
+            trace["impact_evaluation"] = {}
+            trace["human_interpretation"] = {}
+            trace["to_c_message"] = {"sent": False, "reason": "no evidences"}
+            trace["writeback"] = {"timeline_written": False, "health_log_written": False, "memory_written": False}
+            if self.trace_writer:
+                self.trace_writer.write(trace)
+            return None
+        
+        # 3.5. 检测因子变化（用于 FACTOR 日志）
+        self._log_factor_changes(frame_ts, evidences)
+        
+        # =========================
+        # 4. 触发判断（有没有跨阈值）
+        # =========================
+        trigger_info = self._check_trigger(evidences)
+        trace["trigger"] = trigger_info
+        
+        # =========================
+        # 5. 规则评估（命中了哪些规则）
+        # =========================
+        rule_hits = self._evaluate_rules(evidences)
+        trace["rule_evaluation"] = rule_hits
+        
+        # =========================
+        # 6. Impact 计算（核心判断）
+        # =========================
+        summary = self._summarize_world_change(evidences, frame_ts)
+        
+        trace["impact_evaluation"] = {
+            "impact": summary["impact"],
+            "main_factor": summary["main_factor"],
+            "confidence": summary.get("confidence", 0.0),
+            "decision_level": summary["level"]
+        }
+        
+        # 4.5. 如果因子存在但未升级，记录 EVAL HOLD
+        if summary.get("level") == "NOTICE":
+            scores = {k.value: v.score for k, v in evidences.items()}
+            self.logger.eval_hold(
+                frame_ts,
+                scores,
+                reason="below threshold"
+            )
+        
+        # 5. 简单节流：避免同一世界状态重复发
+        is_duplicate = self._is_duplicate(summary)
+        if is_duplicate:
+            trace["human_interpretation"] = self._to_human_readable(summary)
+            trace["to_c_message"] = self._build_message_to_c(summary)
+            trace["writeback"] = {
+                "timeline_written": False,
+                "health_log_written": False,
+                "memory_written": False,
+                "reason": "duplicate"
+            }
+            if self.trace_writer:
+                self.trace_writer.write(trace)
+            return None
+        
+        # 5.5. v0.4+ 重构：NO_OP / NOTICE 不污染 timeline（保持沉默）
+        if summary.get("impact") in ("NO_OP", None):
+            if summary.get("level") == "NOTICE":
+                self.logger.decision(
+                    ts=frame_ts,
+                    decision_type="NOTICE",
+                    main_factor=summary.get("main_factor", "unknown"),
+                    confidence=summary.get("confidence", 0.0),
+                    reason="no impact on behavior"
+                )
+            
+            # =========================
+            # 7. 人类可读转译（审计用）
+            # =========================
+            trace["human_interpretation"] = self._to_human_readable(summary)
+            
+            # =========================
+            # 8. B → C 的通信内容
+            # =========================
+            trace["to_c_message"] = self._build_message_to_c(summary)
+            
+            # =========================
+            # 9. 写入情况（有没有打标）
+            # =========================
+            trace["writeback"] = {
+                "timeline_written": False,
+                "health_log_written": False,
+                "memory_written": False,
+                "reason": "NO_OP"
+            }
+            
+            # =========================
+            # 10. 写 trace（不影响主流程）
+            # =========================
+            if self.trace_writer:
+                self.trace_writer.write(trace)
+            
+            return None
+        
+        self._last_emit_ts = frame_ts
+        self._last_evidences = evidences
+        self._last_summary = summary
+        
+        # 记录健康日志（只记录有决策输出的情况）
+        self._log_health_event(summary, evidences)
+        
+        # DECISION 日志：关键输出（最重要）
+        self._log_decision(summary, evidences)
+        
+        # =========================
+        # 7. 人类可读转译（审计用）
+        # =========================
+        trace["human_interpretation"] = self._to_human_readable(summary)
+        
+        # =========================
+        # 8. B → C 的通信内容
+        # =========================
+        trace["to_c_message"] = self._build_message_to_c(summary)
+        
+        # =========================
+        # 9. 写入情况（有没有打标）
+        # =========================
+        writeback = self._write_outputs(summary)
+        trace["writeback"] = writeback
+        
+        # =========================
+        # 10. 写 trace（不影响主流程）
+        # =========================
+        if self.trace_writer:
+            self.trace_writer.write(trace)
+        
+        if self.debug:
+            self._debug_print(summary, evidences)
+        
+        return summary
+
+    # ------------------------------------------------------------
+    # 内部方法
+    # ------------------------------------------------------------
+
+    def _append_future_state(self, ts: float, perception: Dict[str, Any]):
+        self._future_buffer.append({
+            "ts": ts,
+            "perception": perception
+        })
+
+    def _collect_future_window(self, now_ts: float) -> List[Dict[str, Any]]:
+        """
+        收集未来窗口内的状态
+        注意：实际实现中，我们收集的是"从现在往前回溯"的状态
+        因为这些状态会延续到未来窗口
+        """
+        # 收集过去窗口内的状态（用于预测未来）
+        # 窗口大小 = future_window_end
+        window_start = now_ts - self.future_window_end
+        window_end = now_ts
+
+        return [
+            s for s in self._future_buffer
+            if window_start <= s["ts"] <= window_end
+        ]
+
+    def _summarize_world_change(
+        self,
+        evidences: Dict[FactorType, FactorEvidence],
+        ts: float
+    ) -> Dict[str, Any]:
+        """
+        B2 v0.4+
+        核心原则：
+        - 不描述世界
+        - 只回答：是否需要 C 改变行为
+        """
+
+        # =========================
+        # 1. 计算 ActionImpact（核心）
+        # =========================
+        impact = ActionImpact.NO_OP
+        main_factor = None
+
+        # --- 突发事件（最高优先级） ---
+        if FactorType.EVENT in evidences:
+            ev = evidences[FactorType.EVENT]
+
+            # 明确阻断 / 高风险
+            if ev.score >= 0.85:
+                impact = ActionImpact.NEED_STOP
+            elif ev.score >= 0.65:
+                impact = ActionImpact.PATH_UNCERTAIN
+            else:
+                impact = ActionImpact.NO_OP
+
+            main_factor = FactorType.EVENT
+
+        # --- 路况 / 路径变化 ---
+        elif FactorType.PATH in evidences:
+            ev = evidences[FactorType.PATH]
+
+            if ev.score >= 0.8:
+                impact = ActionImpact.PATH_UNCERTAIN
+            elif ev.score >= 0.6:
+                impact = ActionImpact.NEED_SLOW_DOWN
+            else:
+                impact = ActionImpact.NO_OP
+
+            main_factor = FactorType.PATH
+
+        # --- 人流 / 车流（只影响舒适或安全时才说） ---
+        elif FactorType.PEOPLE in evidences:
+            ev = evidences[FactorType.PEOPLE]
+
+            if ev.score >= 0.75:
+                impact = ActionImpact.NEED_SLOW_DOWN
+                main_factor = FactorType.PEOPLE
+            else:
+                impact = ActionImpact.NO_OP
+
+        # --- 环境信息（ENV 永不直接触发 decision） ---
+        # ENV 只能作为 evidence / background，不参与 impact 判定
+        else:
+            impact = ActionImpact.NO_OP
+
+        # =========================
+        # 2. ActionImpact → decision level（对外粗粒度）
+        # =========================
+        if impact == ActionImpact.NO_OP:
+            level = "NOTICE"            # 等价于 SILENT / NO_OP
+        elif impact in (
+            ActionImpact.NEED_SLOW_DOWN,
+            ActionImpact.PATH_UNCERTAIN,
+        ):
+            level = "CONDITION_CHANGE"
+        else:
+            # NEED_STOP / NEED_DETOUR
+            level = "INTERRUPT"
+
+        # =========================
+        # 3. 汇总输出（结构化，不讲故事）
+        # =========================
+        scores = {k.value: v.score for k, v in evidences.items()}
+        reasons = {k.value: v.reason for k, v in evidences.items()}
+
+        # main confidence：取 main_factor 对应的 score（没有则 0）
+        main_score = 0.0
+        if main_factor is not None:
+            main_score = float(evidences.get(main_factor).score) if evidences.get(main_factor) else 0.0
+        
+        # 浮点稳定化：round 到 2 位小数，避免浮点误差导致去重误判
+        main_score = round(main_score, 2)
+
+        return {
+            "ts": ts,
+            "window": [self.future_window_start, self.future_window_end],
+            "level": level,                         # ← 对外 decision
+            "impact": impact.name,                  # ← 内部真实语义
+            "main_factor": main_factor.value if main_factor else None,
+            "confidence": main_score,               # ← main_factor 的 score，用于去重判断
+            "scores": scores,
+            "reasons": reasons,
+        }
+
+    def _is_duplicate(self, summary: Dict[str, Any]) -> bool:
+        """
+        v0.4+ 去重规则（核心修复）：
+        - 以 impact 为主语义，而不是 level（level 太粗，会吞变化）
+        - 同时考虑 main_factor 与 confidence 变化，避免"同类建议"在强度变化时被吞
+        """
+        if not self._last_summary:
+            return False
+
+        # 兼容：老 summary 可能没有 impact（但你现在已经有了）
+        impact = summary.get("impact", "")
+        last_impact = self._last_summary.get("impact", "")
+
+        # confidence 缺失时默认 0
+        conf = float(summary.get("confidence", 0.0)) if summary.get("confidence") is not None else 0.0
+        last_conf = float(self._last_summary.get("confidence", 0.0)) if self._last_summary.get("confidence") is not None else 0.0
+
+        # 允许同一 impact 在强度变化时重新输出（避免"越来越危险但不再说话"）
+        CONF_EPS = 0.12
+
+        return (
+            summary.get("main_factor") == self._last_summary.get("main_factor")
+            and impact == last_impact
+            and abs(conf - last_conf) < CONF_EPS
+        )
+
+    def _log_factor_changes(self, ts: float, evidences: Dict[FactorType, FactorEvidence]):
+        """检测因子变化并记录 FACTOR 日志"""
+        for factor_type, evidence in evidences.items():
+            factor_name = factor_type.value
+            
+            # 检查是否是新变化
+            if factor_type not in self._last_factor_evidences:
+                # 新因子出现
+                self.logger.factor(ts, factor_name, evidence.reason, direction="↑")
+            else:
+                # 检查是否有显著变化
+                last_evidence = self._last_factor_evidences[factor_type]
+                if evidence.score > last_evidence.score + 0.1:  # 阈值可调
+                    self.logger.factor(ts, factor_name, evidence.reason, direction="↑")
+                elif evidence.score < last_evidence.score - 0.1:
+                    self.logger.factor(ts, factor_name, evidence.reason, direction="↓")
+            
+            # 更新因子状态
+            self._last_factor_evidences[factor_type] = evidence
+    
+    def _log_decision(
+        self,
+        summary: Dict[str, Any],
+        evidences: Dict[FactorType, FactorEvidence]
+    ):
+        """记录 DECISION 日志：关键输出（最重要）"""
+        decision_type = summary['level']
+        main_factor = summary['main_factor']
+        
+        # 计算置信度（使用最高分因子的 score）
+        confidence = max([v.score for v in evidences.values()]) if evidences else 0.0
+        
+        # 构建人类可读的原因描述
+        reason_parts = []
+        for factor_type, evidence in evidences.items():
+            if factor_type.value == main_factor:
+                reason_parts.append(evidence.reason)
+        
+        if not reason_parts:
+            reason = "multiple factors changed"
+        else:
+            reason = " / ".join(reason_parts)
+        
+        # 提取所有因子分数
+        scores = {k.value: v.score for k, v in evidences.items()}
+        
+        # 构建组合因子描述
+        combined_factors = ", ".join([k.value for k in evidences.keys()])
+        
+        # 使用更详细的日志格式
+        self.logger.decision(
+            ts=summary['ts'],
+            decision_type=decision_type,
+            main_factor=main_factor,
+            confidence=confidence,
+            reason=reason
+        )
+        
+        # 额外输出分数信息（用于审计）
+        scores_str = " ".join([f"{k}={v:.2f}" for k, v in scores.items()])
+        print(f"[B2-v0.3][DECISION][{self.logger.format_ts(summary['ts'])}] "
+              f"main_factor: {main_factor} combined: {combined_factors} "
+              f"confidence: {confidence:.2f} scores: {scores_str}")
+    
+    def _log_health_event(self, summary: Dict[str, Any], evidences: Dict[FactorType, FactorEvidence]):
+        """记录健康事件（只记录有决策输出的情况）"""
+        # 提取 factor scores 和 reasons
+        scores = {k.value: v.score for k, v in evidences.items()}
+        reasons = {k.value: v.reason for k, v in evidences.items()}
+        
+        # 计算总体 confidence（使用最高分因子的 score）
+        confidence = max([v.score for v in evidences.values()]) if evidences else 0.0
+        
+        # 记录事件
+        self.health_logger.log(
+            B2HealthEvent(
+                ts=summary['ts'],
+                decision=summary['level'],
+                impact=summary.get('impact'),  # 真实语义：NEED_STOP / NEED_DETOUR / PATH_UNCERTAIN / NEED_SLOW_DOWN / NO_OP
+                scores=scores,
+                reasons=reasons,
+                confidence=confidence,
+                main_factor=summary['main_factor']
+            )
+        )
+
+    def _debug_print(self, summary, evidences):
+        print("\n[B2-v0.3] WORLD CHANGE DETECTED")
+        print(f" ts: {summary['ts']:.2f}")
+        print(f" level: {summary['level']}")
+        print(f" main_factor: {summary['main_factor']}")
+        print(f" window: [{summary['window'][0]:.1f}s, {summary['window'][1]:.1f}s]")
+        for k, v in evidences.items():
+            print(f"  - {k.value}: score={v.score:.2f} reason={v.reason}")
+    
+    # =========================
+    # Trace 辅助函数（v0.4）
+    # =========================
+    
+    def _get_b_runtime_state(self, perception: Dict[str, Any]):
+        """1️⃣ B 是否运行"""
+        if self.camera_unstable:
+            return False, "GATED", "camera unstable"
+        if self.distance_to_front < 3.0:
+            return False, "READ_ONLY", "delegated to C (<3m)"
+        return True, "ACTIVE", "normal operation"
+    
+    def _check_trigger(self, evidences: Dict[FactorType, FactorEvidence]):
+        """2️⃣ Trigger 判断（跨阈值）"""
+        if not evidences:
+            return {
+                "triggered": False,
+                "reason": "all scores below thresholds"
+            }
+        
+        # 阈值定义
+        thresholds = {
+            FactorType.EVENT: 0.65,
+            FactorType.PATH: 0.6,
+            FactorType.PEOPLE: 0.75,
+            FactorType.ENV: 0.0  # ENV 不触发
+        }
+        
+        for k, v in evidences.items():
+            threshold = thresholds.get(k, 1.0)
+            if v.score >= threshold:
+                return {
+                    "triggered": True,
+                    "trigger_factor": k.value,
+                    "trigger_reason": f"{k.value}.score crossed threshold"
+                }
+        
+        return {
+            "triggered": False,
+            "reason": "all scores below thresholds"
+        }
+    
+    def _evaluate_rules(self, evidences: Dict[FactorType, FactorEvidence]):
+        """3️⃣ 规则评估（命中了哪些规则）"""
+        rules = []
+        
+        if FactorType.PATH in evidences:
+            path_score = evidences[FactorType.PATH].score
+            rules.append({
+                "rule_id": "PATH_SCORE_SLOW_DOWN",
+                "expression": "path.score >= 0.6",
+                "actual_value": round(path_score, 2),
+                "threshold": 0.6,
+                "hit": path_score >= 0.6
+            })
+            rules.append({
+                "rule_id": "PATH_UNCERTAIN",
+                "expression": "path.score >= 0.8",
+                "actual_value": round(path_score, 2),
+                "threshold": 0.8,
+                "hit": path_score >= 0.8
+            })
+        
+        if FactorType.EVENT in evidences:
+            event_score = evidences[FactorType.EVENT].score
+            rules.append({
+                "rule_id": "EVENT_STOP",
+                "expression": "event.score >= 0.85",
+                "actual_value": round(event_score, 2),
+                "threshold": 0.85,
+                "hit": event_score >= 0.85
+            })
+            rules.append({
+                "rule_id": "EVENT_PATH_UNCERTAIN",
+                "expression": "event.score >= 0.65",
+                "actual_value": round(event_score, 2),
+                "threshold": 0.65,
+                "hit": 0.65 <= event_score < 0.85
+            })
+        
+        if FactorType.PEOPLE in evidences:
+            people_score = evidences[FactorType.PEOPLE].score
+            rules.append({
+                "rule_id": "PEOPLE_SLOW_DOWN",
+                "expression": "people.score >= 0.75",
+                "actual_value": round(people_score, 2),
+                "threshold": 0.75,
+                "hit": people_score >= 0.75
+            })
+        
+        return rules
+    
+    def _to_human_readable(self, summary: Dict[str, Any]):
+        """4️⃣ 人类可读转译（只给审计看）"""
+        impact = summary.get("impact")
+        
+        if impact == "NEED_SLOW_DOWN":
+            return {
+                "summary": "前方路面发生变化，继续前进可能不太舒适。",
+                "urgency": "soft",
+                "risk": "low"
+            }
+        if impact == "NEED_STOP":
+            return {
+                "summary": "前方存在高风险事件，继续前进可能不安全。",
+                "urgency": "high",
+                "risk": "high"
+            }
+        if impact == "PATH_UNCERTAIN":
+            return {
+                "summary": "前方路径不确定，需要谨慎前进。",
+                "urgency": "medium",
+                "risk": "medium"
+            }
+        if impact == "NEED_DETOUR":
+            return {
+                "summary": "前方路径不可行，建议绕行。",
+                "urgency": "high",
+                "risk": "high"
+            }
+        return {
+            "summary": "当前情况对行走无明显影响。",
+            "urgency": "none",
+            "risk": "none"
+        }
+    
+    def _build_message_to_c(self, summary: Dict[str, Any]):
+        """5️⃣ B → C 消息"""
+        if summary.get("impact") == "NO_OP":
+            return {"sent": False, "reason": "impact == NO_OP"}
+        
+        impact = summary.get("impact")
+        main_factor = summary.get("main_factor", "unknown")
+        
+        return {
+            "sent": True,
+            "content": {
+                "action": impact,
+                "main_factor": main_factor,
+                "valid_for_seconds": 3
+            }
+        }
+    
+    def _write_outputs(self, summary: Dict[str, Any]):
+        """写入情况（有没有打标）"""
+        impact = summary.get("impact")
+        timeline_written = impact not in ("NO_OP", None)
+        
+        if timeline_written:
+            self._timeline_index += 1
+        
+        return {
+            "timeline_written": timeline_written,
+            "timeline_index": self._timeline_index if timeline_written else None,
+            "health_log_written": timeline_written,
+            "memory_written": False
+        }
+
+    # =========================
+    # Trace 构建方法（v0.4）
+    # =========================
+    
+        reasons = summary.get("reasons", {})
+        
+        reason_text = reasons.get(main_factor, "environment change") if main_factor else "environment change"
+        
+        return {
+            "sent": True,
+            "content": {
+                "action": action,
+                "reason": reason_text,
+                "valid_for_seconds": 3  # 默认有效期 3 秒
+            }
+        }

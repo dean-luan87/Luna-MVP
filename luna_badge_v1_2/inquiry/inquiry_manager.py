@@ -137,3 +137,14 @@ class InquiryManager:
         self._unknown_count = 0
 
 
+
+
+
+
+
+
+
+
+
+
+

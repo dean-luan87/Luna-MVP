@@ -1,0 +1,155 @@
+# BC Architecture Guard - Hard Rules (READ-ONLY)
+# 状态: FROZEN
+# 用途: CI 硬拦截规则，任何违反 = CI FAIL
+
+version: "1.0"
+status: "FROZEN"
+mode: "READ_ONLY"
+
+# =========================
+# 核心裁决对象
+# =========================
+scope:
+  modules:
+    - "B / B2 / Background / Beyond"
+    - "C / Close / Current"
+    - "B ↔ C 通信层"
+    - "Gate / DTL / DCS / Trace / Timeline"
+  file_patterns:
+    - "**/b2/**/*.py"
+    - "**/c1/**/*.py"
+    - "**/gate/**/*.py"
+    - "**/dcs/**/*.py"
+
+# =========================
+# 硬拦截规则（Hard Block）
+# =========================
+hard_blocks:
+  # 规则 1: B 输出确认性风险语义
+  - id: "BC-GUARD-001"
+    name: "B 禁止确认性风险语义"
+    severity: "BLOCKING"
+    patterns:
+      - "确认.*危险"
+      - "一定.*坑"
+      - "不能走"
+      - "确认.*风险"
+      - "confirmed.*risk"
+      - "certain.*danger"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 输出包含确认性风险语义，违反架构边界"
+
+  # 规则 2: B 直接控制行为
+  - id: "BC-GUARD-002"
+    name: "B 禁止直接控制行为"
+    severity: "BLOCKING"
+    patterns:
+      - "force.*stop"
+      - "强制.*停止"
+      - "强制.*转向"
+      - "强制.*绕行"
+      - "must.*stop"
+      - "must.*turn"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 直接控制行为，违反架构边界"
+
+  # 规则 3: B 跳过 Gate 输出
+  - id: "BC-GUARD-003"
+    name: "B 禁止绕过 Gate"
+    severity: "BLOCKING"
+    patterns:
+      - "gate.*SUSPENDED.*decision"
+      - "gate.*SUSPENDED.*output"
+      - "if.*gate.*SUSPENDED.*:.*return.*summary"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 在 Gate=SUSPENDED 时仍输出 decision"
+
+  # 规则 4: B 在 ≤3m 距离内输出 NEED_STOP
+  - id: "BC-GUARD-004"
+    name: "B 禁止近距离 NEED_STOP"
+    severity: "BLOCKING"
+    patterns:
+      - "distance.*<.*3.*NEED_STOP"
+      - "range.*<=.*3.*NEED_STOP"
+      - "if.*distance.*<=.*3.*and.*NEED_STOP"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 在 ≤3m 距离内输出 NEED_STOP，违反架构边界"
+
+  # 规则 5: ENV 因子触发 CONDITION_CHANGE / INTERRUPT
+  - id: "BC-GUARD-005"
+    name: "ENV 因子禁止触发决策"
+    severity: "BLOCKING"
+    patterns:
+      - "FactorType.ENV.*CONDITION_CHANGE"
+      - "FactorType.ENV.*INTERRUPT"
+      - "ENV.*decision"
+      - "ENV.*impact.*!=.*NO_OP"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "ENV 因子触发 CONDITION_CHANGE / INTERRUPT，违反架构边界"
+
+  # 规则 6: B 输出缺少 advisory_only
+  - id: "BC-GUARD-006"
+    name: "B 输出必须包含 advisory_only"
+    severity: "BLOCKING"
+    patterns:
+      - "advisory_only.*=.*False"
+      - "advisory_only.*=.*None"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 输出缺少或错误设置 advisory_only=True"
+
+  # 规则 7: B 输出非法 Impact
+  - id: "BC-GUARD-007"
+    name: "B 输出非法 Impact"
+    severity: "BLOCKING"
+    forbidden_impacts:
+      - "CONFIRMED_DANGER"
+      - "FORCE_STOP"
+      - "CERTAIN_RISK"
+      - "WORLD_CHANGE"
+    allowed_impacts:
+      - "NO_OP"
+      - "NEED_SLOW_DOWN"
+      - "PATH_UNCERTAIN"
+      - "NEED_DETOUR"
+      - "NEED_STOP"
+    check_files:
+      - "**/b2/**/*.py"
+    message: "B 输出非法 Impact，违反架构边界"
+
+# =========================
+# 自动审计规则
+# =========================
+audit_rules:
+  - id: "BC-AUDIT-001"
+    name: "检测确认性语义"
+    check_type: "semantic"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+    
+  - id: "BC-AUDIT-002"
+    name: "检测缺少 advisory_only"
+    check_type: "structure"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+    
+  - id: "BC-AUDIT-003"
+    name: "检测绕过 Gate"
+    check_type: "flow"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+    
+  - id: "BC-AUDIT-004"
+    name: "检测确定性结论"
+    check_type: "semantic"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+# =========================
+# 最终裁定声明
+# =========================
+final_statement: |
+  B 永远不是世界的裁判。
+  B 只是未来的提醒者。
+  C 才是现实的执行者。
