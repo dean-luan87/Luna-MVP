@@ -25,12 +25,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest
 
       - name: Run invariant tests (BC / C contract)
         env:
           LUNA_INVARIANTS: DEBUG
         run: |
-          pytest tests/invariants \
+          python -m pytest tests/invariants \
                  tests/test_bc_c_cooperation_table.py \
                  tests/test_risk_layer_invariants.py \
                  tests/risk_layer \
@@ -70,6 +71,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest
       - name: Run freeze tests (non-blocking)
         run: |
-          pytest tests/freeze -v
+          python -m pytest tests/freeze -v
