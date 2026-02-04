@@ -1,0 +1,12 @@
+{
+  "ts": 1764562592.478257,
+  "type": "error",
+  "cpu": 32.8,
+  "mem": 74.1,
+  "domain": "latency.yolo",
+  "code": "YOLO_LATENCY_HIGH",
+  "msg": "yolo latency 150.0ms exceeds threshold 100.0ms",
+  "value_ms": 150.0,
+  "threshold": 100.0,
+  "severity": 2
+}

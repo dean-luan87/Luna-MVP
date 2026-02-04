@@ -1,0 +1,1 @@
+"""C Instinct Controller module."""

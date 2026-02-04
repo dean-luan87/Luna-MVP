@@ -1,0 +1,7 @@
+{
+  "name": "mall_navigation",
+  "keyword": "商场 购物中心",
+  "expected_labels": ["person", "elevator", "escalator", "sign"]
+}
+
+

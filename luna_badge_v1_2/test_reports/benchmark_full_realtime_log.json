@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp": "2025-12-02T10:53:52.232779",
+    "avg_total_ms": 0.0,
+    "max_total_ms": null,
+    "min_total_ms": null,
+    "runs": 3,
+    "success": 0,
+    "failures": 3
+  },
+  {
+    "timestamp": "2025-12-02T10:54:05.734769",
+    "avg_total_ms": 0.0,
+    "max_total_ms": null,
+    "min_total_ms": null,
+    "runs": 3,
+    "success": 0,
+    "failures": 3
+  },
+  {
+    "timestamp": "2025-12-02T10:54:38.971205",
+    "avg_total_ms": 35.007111,
+    "max_total_ms": 35.638749999999995,
+    "min_total_ms": 34.29599999999999,
+    "runs": 3,
+    "success": 3,
+    "failures": 0
+  },
+  {
+    "timestamp": "2025-12-02T10:55:47.364660",
+    "avg_total_ms": 33.267879300000004,
+    "max_total_ms": 35.34845800000003,
+    "min_total_ms": 31.20904200000002,
+    "runs": 10,
+    "success": 10,
+    "failures": 0
+  },
+  {
+    "timestamp": "2025-12-02T10:56:43.865278",
+    "avg_total_ms": 33.33119569999999,
+    "max_total_ms": 35.12162499999999,
+    "min_total_ms": 29.100665999999983,
+    "runs": 10,
+    "success": 10,
+    "failures": 0
+  }
+]

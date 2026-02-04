@@ -1,0 +1,9 @@
+{
+  "ts": 1764562167.005895,
+  "type": "selfheal_decision",
+  "cpu": 0.0,
+  "mem": 72.4,
+  "anomaly": {
+    "code": "YOLO_TIMEOUT"
+  }
+}

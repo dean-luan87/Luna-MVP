@@ -1,0 +1,21 @@
+B2 v0.4.1 - FROZEN
+==================
+
+冻结日期: 2025-01-12
+状态: FROZEN
+
+此版本已冻结，任何修改需要架构评审。
+
+关键约束:
+- ActionImpact 枚举已锁定
+- advisory_only = True 强制要求
+- intervention_level 硬编码（NEED_STOP = HARD，其他 = SOFT）
+- 系统时间唯一性（只使用 system_ts）
+- Gate 状态控制（SUSPENDED → None, READ_ONLY → 只读）
+- NO_OP 沉默机制（不写 timeline，写 trace）
+- 角色声明（role = "B", expects_confirmation_from = "C"）
+
+测试状态: 7/7 通过 (100%)
+架构合规性: 完全合规
+
+详细文档: V041_FROZEN.md

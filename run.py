@@ -40,63 +40,93 @@ def main():
     if not check_dependencies():
         sys.exit(1)
     
-    # 检查摄像头
-    try:
-        import cv2
-        import platform
-        
-        print("检查摄像头可用性...")
-        
-        # 在Mac上优先尝试AVFoundation后端
-        if platform.system() == 'Darwin':
-            print("  - 尝试AVFoundation后端...")
-            cap = cv2.VideoCapture(0, cv2.CAP_AVFOUNDATION)
-            if cap.isOpened():
-                print("✓ AVFoundation后端摄像头可用")
-                cap.release()
-            else:
-                cap.release()
-                print("  - 尝试默认后端...")
-                cap = cv2.VideoCapture(0)
+    # 判断是否为视频文件模式（--video 后跟有效路径则跳过摄像头检查）
+    use_video = False
+    if "--video" in sys.argv:
+        try:
+            idx = sys.argv.index("--video")
+            if idx + 1 < len(sys.argv) and sys.argv[idx + 1].strip() and not sys.argv[idx + 1].startswith("-"):
+                use_video = True
+                print("✓ 使用视频文件模式，跳过摄像头检查")
+        except (ValueError, IndexError):
+            pass
+
+    if not use_video:
+        # 检查摄像头（显式索引，不允许 fallback）
+        try:
+            import cv2
+            import platform
+
+            print("检查摄像头可用性...")
+
+            camera_index = int(os.environ.get("CAMERA_INDEX", "0"))
+            if "--camera-index" in sys.argv:
+                try:
+                    idx = sys.argv.index("--camera-index")
+                    if idx + 1 < len(sys.argv):
+                        camera_index = int(sys.argv[idx + 1])
+                except (ValueError, IndexError):
+                    pass
+            camera_backend = os.environ.get("CAMERA_BACKEND", "avfoundation" if platform.system() == "Darwin" else "default")
+
+            if platform.system() == 'Darwin':
+                backend_desc = "AVFoundation" if camera_backend == "avfoundation" else "默认后端"
+                print(f"  - 使用{backend_desc}，索引={camera_index}...")
+                if camera_backend == "avfoundation":
+                    cap = cv2.VideoCapture(camera_index, cv2.CAP_AVFOUNDATION)
+                else:
+                    cap = cv2.VideoCapture(camera_index)
                 if cap.isOpened():
-                    print("✓ 默认后端摄像头可用")
+                    print("✓ 摄像头可用")
                     cap.release()
                 else:
                     cap.release()
-                    print("  - 尝试备用摄像头索引...")
-                    cap = cv2.VideoCapture(1)
-                    if cap.isOpened():
-                        print("✓ 备用摄像头可用")
-                        cap.release()
-                    else:
-                        cap.release()
-                        print("✗ 所有摄像头都不可用")
-                        print("请检查:")
-                        print("1. 摄像头是否已连接")
-                        print("2. 摄像头是否被其他程序占用")
-                        print("3. 系统权限设置（Mac需要摄像头权限）")
-                        sys.exit(1)
-        else:
-            # 非Mac系统使用默认方式
-            cap = cv2.VideoCapture(0)
-            if cap.isOpened():
-                print("✓ 摄像头可用")
-                cap.release()
+                    print("✗ 摄像头不可用")
+                    print("请检查:")
+                    print("1. 摄像头是否已连接")
+                    print("2. 摄像头是否被其他程序占用")
+                    print("3. 系统权限设置（Mac需要摄像头权限）")
+                    print("4. CAMERA_INDEX / CAMERA_BACKEND 配置是否正确")
+                    sys.exit(1)
             else:
-                cap.release()
-                print("✗ 摄像头不可用，请检查摄像头连接")
-                sys.exit(1)
-                
-    except Exception as e:
-        print(f"✗ 摄像头检查失败: {e}")
-        sys.exit(1)
+                cap = cv2.VideoCapture(camera_index)
+                if cap.isOpened():
+                    print("✓ 摄像头可用")
+                    cap.release()
+                else:
+                    cap.release()
+                    print("✗ 摄像头不可用，请检查摄像头连接或 CAMERA_INDEX 配置")
+                    sys.exit(1)
+
+        except Exception as e:
+            print(f"✗ 摄像头检查失败: {e}")
+            sys.exit(1)
     
     print("✓ 所有检查通过，启动主程序...")
     print("=" * 40)
     
-    # 启动主程序
+    # 保证在项目根目录运行 main.py，避免从其他目录执行时找不到 main.py 或相对路径视频
+    project_root = os.path.dirname(os.path.abspath(__file__))
+    main_py = os.path.join(project_root, "main.py")
+    if not os.path.isfile(main_py):
+        print(f"✗ 未找到主程序: {main_py}")
+        sys.exit(1)
+    # 若 --video 给的是相对路径，转为基于项目根的绝对路径，便于 cwd=project_root 时能找到
+    argv = list(sys.argv[1:])
+    if "--video" in argv:
+        try:
+            idx = argv.index("--video")
+            if idx + 1 < len(argv) and argv[idx + 1].strip() and not argv[idx + 1].startswith("-"):
+                v = argv[idx + 1]
+                if not os.path.isabs(v) and not os.path.isfile(v):
+                    abs_v = os.path.join(project_root, v)
+                    if os.path.isfile(abs_v):
+                        argv[idx + 1] = abs_v
+        except (ValueError, IndexError):
+            pass
+    # 启动主程序（cwd=项目根，方便相对路径资源）
     try:
-        subprocess.run([sys.executable, "main.py"] + sys.argv[1:])
+        subprocess.run([sys.executable, main_py] + argv, cwd=project_root)
     except KeyboardInterrupt:
         print("\n程序被用户中断")
     except Exception as e:

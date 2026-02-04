@@ -1,0 +1,141 @@
+# DCS Rules - Red/Yellow/Green Judgment
+# 状态: FROZEN
+# 用途: CI DCS 裁决规则（红黄绿）
+
+version: "1.0"
+status: "FROZEN"
+
+# =========================
+# DCS 评分结构（100 分制）
+# =========================
+scoring:
+  initial_score: 100
+  thresholds:
+    excellent: 90
+    pass: 85
+    warning: 70
+    fail: 0
+
+# =========================
+# RED 规则（硬违规，必须修）
+# =========================
+red_rules:
+  - id: "DCS-R1"
+    name: "B 输出确认性风险结论"
+    penalty: -50
+    check_type: "semantic"
+    patterns:
+      - "确认.*危险"
+      - "一定.*发生"
+      - "confirmed.*risk"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+  - id: "DCS-R2"
+    name: "B 替 C 完成风险核验"
+    penalty: -50
+    check_type: "semantic"
+    patterns:
+      - "verify.*risk"
+      - "核验.*风险"
+      - "确认.*安全"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+  - id: "DCS-R3"
+    name: "Gate=SUSPENDED 仍输出非 NO_OP"
+    penalty: -50
+    check_type: "flow"
+    patterns:
+      - "gate.*SUSPENDED.*decision"
+      - "gate.*SUSPENDED.*output"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+  - id: "DCS-R4"
+    name: "B 在 ≤3m 或室内主导决策"
+    penalty: -50
+    check_type: "distance"
+    patterns:
+      - "distance.*<=.*3.*NEED_STOP"
+      - "range.*<=.*3.*decision"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+  - id: "DCS-R5"
+    name: "使用非系统当前时间"
+    penalty: -50
+    check_type: "time"
+    patterns:
+      - "frame_ts.*decision"
+      - "perception_ts.*decision"
+      - "camera_ts.*decision"
+    violation_marker: "ARCHITECTURE_VIOLATION"
+
+# =========================
+# YELLOW 规则（设计风险，需关注）
+# =========================
+yellow_rules:
+  - id: "DCS-Y1"
+    name: "高频唤醒但长期无有效 impact"
+    penalty: -10
+    check_type: "frequency"
+    threshold: 10  # 10 次唤醒无有效 impact
+
+  - id: "DCS-Y2"
+    name: "世界模型长期只读且无记忆更新"
+    penalty: -10
+    check_type: "memory"
+    threshold: 30  # 30 秒无记忆更新
+
+  - id: "DCS-Y3"
+    name: "C 长期过度保守影响体验"
+    penalty: -5
+    check_type: "behavior"
+    threshold: 60  # 60 秒无任何决策
+
+# =========================
+# GREEN 规则（符合设计）
+# =========================
+green_rules:
+  - id: "DCS-G1"
+    name: "仅条件式风险预警"
+    bonus: +5
+    check_type: "semantic"
+    patterns:
+      - "可能.*发生"
+      - "建议.*注意"
+      - "advisory_only.*True"
+
+  - id: "DCS-G2"
+    name: "C 完成靠近核验并回写"
+    bonus: +5
+    check_type: "interaction"
+    patterns:
+      - "C.*ack"
+      - "C.*confirm"
+
+  - id: "DCS-G3"
+    name: "熟悉场景 B 自动降权"
+    bonus: +5
+    check_type: "adaptation"
+    patterns:
+      - "familiar.*scene.*READ_ONLY"
+
+  - id: "DCS-G4"
+    name: "时间 / 距离标尺一致"
+    bonus: +5
+    check_type: "consistency"
+    patterns:
+      - "system_ts"
+      - "统一坐标系"
+
+# =========================
+# CI 裁决策略
+# =========================
+ci_strategy:
+  red:
+    action: "FAIL"
+    message: "DCS RED 违规，禁止合并"
+  yellow:
+    action: "WARN"
+    message: "DCS YELLOW 警告，建议修复"
+  green:
+    action: "PASS"
+    message: "DCS GREEN，符合设计"

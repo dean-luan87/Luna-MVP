@@ -1,0 +1,341 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "B2 v0.5 DCS Observer Schema",
+  "description": "事故黑匣子 + 设计审计台（观察用，不演示）",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "dcs_observer"
+        },
+        "purpose": {
+          "type": "string",
+          "const": "system_diagnosis"
+        },
+        "visibility": {
+          "type": "string",
+          "const": "internal_only"
+        }
+      },
+      "required": ["name", "purpose", "visibility"]
+    },
+    "sections": {
+      "type": "object",
+      "properties": {
+        "overview": {
+          "$ref": "#/definitions/overview_section"
+        },
+        "dimension_breakdown": {
+          "$ref": "#/definitions/dimension_breakdown_section"
+        },
+        "violation_timeline": {
+          "$ref": "#/definitions/violation_timeline_section"
+        },
+        "frame_trace_inspector": {
+          "$ref": "#/definitions/frame_trace_inspector_section"
+        }
+      },
+      "required": ["overview", "dimension_breakdown", "violation_timeline", "frame_trace_inspector"]
+    }
+  },
+  "required": ["page", "sections"],
+  "definitions": {
+    "overview_section": {
+      "type": "object",
+      "description": "Section 1: Overview（一次判断系统是否'还活着'）",
+      "properties": {
+        "dcs_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "DCS 总分"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["EXCELLENT", "PASS", "WARNING", "FAIL"],
+          "description": "系统状态"
+        },
+        "evaluated_version": {
+          "type": "string",
+          "description": "评估版本（如 v0.5）"
+        },
+        "trace_range": {
+          "$ref": "#/definitions/time_range"
+        },
+        "fatal_violations": {
+          "type": "array",
+          "description": "致命违规列表",
+          "items": {
+            "type": "string"
+          }
+        },
+        "warning_count": {
+          "type": "number",
+          "minimum": 0,
+          "description": "警告数量"
+        }
+      },
+      "required": ["dcs_score", "status", "evaluated_version", "trace_range", "fatal_violations", "warning_count"]
+    },
+    "time_range": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/time_point"
+        },
+        "end": {
+          "$ref": "#/definitions/time_point"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "description": "时长（秒）"
+        }
+      },
+      "required": ["start", "end", "duration_seconds"]
+    },
+    "time_point": {
+      "type": "object",
+      "properties": {
+        "ts": {
+          "type": "number",
+          "description": "Unix 时间戳"
+        },
+        "human_time": {
+          "type": "string",
+          "description": "人类时间（mm:ss.xx）"
+        },
+        "frame_id": {
+          "type": "integer",
+          "description": "帧 ID"
+        }
+      },
+      "required": ["human_time", "frame_id"]
+    },
+    "dimension_breakdown_section": {
+      "type": "object",
+      "description": "Section 2: Dimension Breakdown（责任拆解层）",
+      "properties": {
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "gate": {
+              "$ref": "#/definitions/dimension_detail"
+            },
+            "evidence": {
+              "$ref": "#/definitions/dimension_detail"
+            },
+            "trigger": {
+              "$ref": "#/definitions/dimension_detail"
+            },
+            "impact": {
+              "$ref": "#/definitions/dimension_detail"
+            },
+            "trace": {
+              "$ref": "#/definitions/dimension_detail"
+            },
+            "timeline": {
+              "$ref": "#/definitions/dimension_detail"
+            }
+          },
+          "required": ["gate", "evidence", "trigger", "impact", "trace", "timeline"]
+        }
+      },
+      "required": ["dimensions"]
+    },
+    "dimension_detail": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "description": "实际得分"
+        },
+        "max": {
+          "type": "number",
+          "description": "满分"
+        },
+        "violations": {
+          "type": "array",
+          "description": "违规列表",
+          "items": {
+            "$ref": "#/definitions/violation"
+          }
+        }
+      },
+      "required": ["score", "max", "violations"]
+    },
+    "violation": {
+      "type": "object",
+      "description": "违规项（每个 violation 必须包含）",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "对应 A / B 的规则编号（如 S1.GATE.001）"
+        },
+        "description": {
+          "type": "string",
+          "description": "人类语言描述"
+        },
+        "count": {
+          "type": "number",
+          "minimum": 0,
+          "description": "违规次数"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["WARN", "FAIL"],
+          "description": "严重程度"
+        }
+      },
+      "required": ["rule_id", "description", "count", "severity"]
+    },
+    "violation_timeline_section": {
+      "type": "object",
+      "description": "Section 3: Violation Timeline（时间责任定位）",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "const": "second",
+          "description": "时间单位"
+        },
+        "items": {
+          "type": "array",
+          "description": "违规时间线项",
+          "items": {
+            "$ref": "#/definitions/violation_timeline_item"
+          }
+        }
+      },
+      "required": ["unit", "items"]
+    },
+    "violation_timeline_item": {
+      "type": "object",
+      "description": "违规时间线项（所有扣分都能定位到某一秒）",
+      "properties": {
+        "time": {
+          "$ref": "#/definitions/time_point"
+        },
+        "violation_type": {
+          "type": "string",
+          "enum": ["GATE", "TRIGGER", "IMPACT", "TRACE", "TIMELINE"],
+          "description": "违规类型"
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "规则 ID"
+        },
+        "summary": {
+          "type": "string",
+          "description": "违规摘要"
+        },
+        "drilldown_ref": {
+          "type": "string",
+          "description": "Trace ID（用于下钻到 Frame Trace Inspector）"
+        }
+      },
+      "required": ["time", "violation_type", "rule_id", "summary", "drilldown_ref"]
+    },
+    "frame_trace_inspector_section": {
+      "type": "object",
+      "description": "Section 4: Frame Trace Inspector（终极审判层）",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "trace_id": {
+              "type": "string",
+              "description": "Trace ID（输入）"
+            }
+          },
+          "required": ["trace_id"]
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "time": {
+              "$ref": "#/definitions/time_point"
+            },
+            "gate_state": {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "type": "string",
+                  "enum": ["ACTIVE", "READ_ONLY", "SUSPENDED"],
+                  "description": "Gate 模式"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "Gate 原因"
+                }
+              },
+              "required": ["mode", "reason"]
+            },
+            "evidence_state": {
+              "type": "object",
+              "properties": {
+                "active": {
+                  "type": "array",
+                  "description": "活跃证据列表",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              },
+              "required": ["active"]
+            },
+            "trigger": {
+              "type": "object",
+              "properties": {
+                "fired": {
+                  "type": "boolean",
+                  "description": "是否触发"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "触发原因"
+                }
+              },
+              "required": ["fired", "reason"]
+            },
+            "impact": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "enum": ["NO_OP", "NEED_SLOW_DOWN", "PATH_UNCERTAIN", "NEED_DETOUR", "NEED_STOP", "FORCE_ALERT"],
+                  "description": "Impact 值"
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "置信度"
+                }
+              },
+              "required": ["value", "confidence"]
+            },
+            "to_c": {
+              "type": "object",
+              "properties": {
+                "sent": {
+                  "type": "boolean",
+                  "description": "是否发送"
+                },
+                "payload": {
+                  "type": "object",
+                  "description": "消息负载（可选）"
+                }
+              },
+              "required": ["sent"]
+            }
+          },
+          "required": ["time", "gate_state", "evidence_state", "trigger", "impact", "to_c"]
+        }
+      },
+      "required": ["input", "output"]
+    }
+  }
+}

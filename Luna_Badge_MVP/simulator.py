@@ -23,6 +23,7 @@ from core.debug_logger import DebugLogger, get_debug_logger, EventType, LogLevel
 from core.cooldown_manager import CooldownManager
 from core.state_tracker import StateTracker
 from speech.speech_engine import SpeechEngine
+from luna_hub.action import ActionContext, SpeakGuard
 
 class LunaSimulator:
     """Luna模拟器"""
@@ -35,6 +36,9 @@ class LunaSimulator:
         self.cooldown_manager = CooldownManager()
         self.state_tracker = StateTracker()
         self.speech_engine = SpeechEngine()
+        
+        # 初始化 Action 层（Step 2）
+        self.speak_guard = SpeakGuard()
         
         # 模拟状态
         self.current_scenario = "normal"
@@ -122,9 +126,28 @@ class LunaSimulator:
                     self.debug_logger.log_cooldown("path_clear", False, 
                                                  self.cooldown_manager.get_remaining_time("path_clear"))
             
-            # 播报语音
+            # 播报语音（通过 Action 层，Step 2）
             if should_speak and speech_text:
-                self.speech_engine.speak(speech_text, priority)
+                # 构造 ActionContext
+                is_speaking = not self.speech_engine.speech_queue.empty() if hasattr(self.speech_engine, 'speech_queue') else False
+                
+                context = ActionContext(
+                    is_speaking=is_speaking,
+                    source="task_engine",
+                    action_type="speak",
+                    intent="task_result_speak"
+                )
+                
+                # 通过 SpeakGuard 判断
+                decision = self.speak_guard.should_speak(context)
+                
+                if decision.allow:
+                    self.speech_engine.speak(speech_text, priority)
+                else:
+                    # 不补播、不重试
+                    logger.info(
+                        f"[ACTION-DROP] speak rejected by {decision.dropped_by}: {decision.reason}"
+                    )
             
             # 更新帧计数
             self.frame_count += 1

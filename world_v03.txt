@@ -1,0 +1,5 @@
+   - level: WORLD_SHIFT / CONDITION_CHANGE / INTERRUPT
+ level: CONDITION_CHANGE
+ level: WORLD_SHIFT
+ level: INTERRUPT
+   2) grep 'WORLD_SHIFT\|CONDITION_CHANGE\|INTERRUPT' b2_v03_log.txt > world_v03.txt

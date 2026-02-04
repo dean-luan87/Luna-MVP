@@ -4,7 +4,13 @@
 """
 Luna Badge 用户管理系统
 借鉴小智ESP32的用户认证和设备绑定设计
+
+⚠️ 暂时注销：此模块已暂时禁用，待后续需要时再启用
 """
+
+# ===== 暂时注销：用户注册模块 =====
+# 此模块已暂时禁用，所有功能已注释
+# 如需重新启用，请移除以下注释并恢复代码
 
 import logging
 import hashlib
@@ -82,16 +88,18 @@ class Device:
         }
 
 class UserManager:
-    """用户管理器"""
+    """用户管理器（已暂时禁用）"""
     
     def __init__(self, storage_file: str = "data/users.json"):
         """
-        初始化用户管理器
+        初始化用户管理器（已暂时禁用）
         
         Args:
             storage_file: 用户数据存储文件
         """
-        self.storage_file = storage_file
+        raise NotImplementedError("用户注册模块已暂时禁用，如需使用请移除注销标记")
+        # ===== 以下代码已暂时禁用 =====
+        # self.storage_file = storage_file
         self.users: Dict[str, User] = {}
         self.devices: Dict[str, Device] = {}
         self.sessions: Dict[str, Dict[str, Any]] = {}  # token -> session
@@ -439,57 +447,61 @@ class UserManager:
         }
 
 
-# 全局用户管理器实例
-global_user_manager = UserManager()
+# ===== 暂时注销：全局用户管理器实例 =====
+# global_user_manager = UserManager()
+global_user_manager = None  # 暂时禁用
 
-def send_verification_code(phone: str) -> bool:
-    """发送验证码的便捷函数"""
-    return global_user_manager.send_verification_code(phone)
+# ===== 暂时注销：验证码相关便捷函数 =====
+# def send_verification_code(phone: str) -> bool:
+#     """发送验证码的便捷函数"""
+#     return global_user_manager.send_verification_code(phone)
 
-def verify_code(phone: str, code: str) -> bool:
-    """验证验证码的便捷函数"""
-    return global_user_manager.verify_code(phone, code)
+# def verify_code(phone: str, code: str) -> bool:
+#     """验证验证码的便捷函数"""
+#     return global_user_manager.verify_code(phone, code)
 
-def register_user(phone: str, nickname: str = None, email: str = None) -> Optional[User]:
-    """注册用户的便捷函数"""
-    return global_user_manager.register_user(phone, nickname, email)
+# ===== 暂时注销：用户注册相关便捷函数 =====
+# def register_user(phone: str, nickname: str = None, email: str = None) -> Optional[User]:
+#     """注册用户的便捷函数"""
+#     return global_user_manager.register_user(phone, nickname, email)
 
-def login(phone: str, verification_code: str) -> Optional[str]:
-    """用户登录的便捷函数"""
-    return global_user_manager.login(phone, verification_code)
+# def login(phone: str, verification_code: str) -> Optional[str]:
+#     """用户登录的便捷函数"""
+#     return global_user_manager.login(phone, verification_code)
 
-def verify_token(token: str) -> Optional[str]:
-    """验证令牌的便捷函数"""
-    return global_user_manager.verify_token(token)
+# def verify_token(token: str) -> Optional[str]:
+#     """验证令牌的便捷函数"""
+#     return global_user_manager.verify_token(token)
 
 
-if __name__ == "__main__":
-    # 测试用户管理
-    logging.basicConfig(level=logging.INFO)
-    
-    def test_user_manager():
-        """测试用户管理器"""
-        manager = UserManager()
-        
-        # 发送验证码
-        phone = "13800138000"
-        manager.send_verification_code(phone)
-        
-        # 模拟验证码
-        # 在实际测试中需要从日志中获取验证码
-        # code = "123456"  # 从日志中获取
-        
-        # 注册用户
-        user = manager.register_user(phone, "测试用户")
-        print(f"注册用户: {user}")
-        
-        # 注册设备
-        device = manager.register_device("device_001", "Luna Badge", "badge", user.user_id)
-        print(f"注册设备: {device}")
-        
-        # 获取统计信息
-        stats = manager.get_statistics()
-        print(f"统计信息: {stats}")
-    
-    # 运行测试
-    test_user_manager()
+# ===== 暂时注销：测试代码 =====
+# if __name__ == "__main__":
+#     # 测试用户管理
+#     logging.basicConfig(level=logging.INFO)
+#     
+#     def test_user_manager():
+#         """测试用户管理器"""
+#         manager = UserManager()
+#         
+#         # 发送验证码
+#         phone = "13800138000"
+#         manager.send_verification_code(phone)
+#         
+#         # 模拟验证码
+#         # 在实际测试中需要从日志中获取验证码
+#         # code = "123456"  # 从日志中获取
+#         
+#         # 注册用户
+#         user = manager.register_user(phone, "测试用户")
+#         print(f"注册用户: {user}")
+#         
+#         # 注册设备
+#         device = manager.register_device("device_001", "Luna Badge", "badge", user.user_id)
+#         print(f"注册设备: {device}")
+#         
+#         # 获取统计信息
+#         stats = manager.get_statistics()
+#         print(f"统计信息: {stats}")
+#     
+#     # 运行测试
+#     test_user_manager()

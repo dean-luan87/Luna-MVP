@@ -1,0 +1,207 @@
+{
+  "behavior_profile": {
+    "recovery_profile": "fast",
+    "safety_margin_profile": "tight",
+    "stability_profile": "oscillating"
+  },
+  "correlations": {
+    "corr_distortion_vs_authority_blocked_recovery": 0.0,
+    "corr_gate_blocked_vs_authority_drop": 0.6124,
+    "corr_risk_level_vs_authority_level": -0.4015
+  },
+  "diagnostics": {
+    "counts": {
+      "OVERREACT_NO_RISK_CHANGE": 0,
+      "OVERREACT_RISK_NONE": 1,
+      "UNDERREACT_RISK_HIGH_NO_DROP": 0
+    },
+    "rate": 0.3333,
+    "top_examples": {
+      "OVERREACT_NO_RISK_CHANGE": [],
+      "OVERREACT_RISK_NONE": [
+        "ev_2"
+      ],
+      "UNDERREACT_RISK_HIGH_NO_DROP": []
+    }
+  },
+  "events": [
+    {
+      "after": {
+        "authority_blocked_by": null,
+        "authority_effective": "A1",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "MEDIUM"
+      },
+      "before": {
+        "authority_blocked_by": null,
+        "authority_effective": "A1",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "NONE"
+      },
+      "duration_ms": 0.0,
+      "end_ts": 0.0,
+      "event_id": "ev_0",
+      "start_ts": 0.0,
+      "type": "RISK_RISE"
+    },
+    {
+      "after": {
+        "authority_blocked_by": null,
+        "authority_effective": "A4",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "NONE"
+      },
+      "before": {
+        "authority_blocked_by": null,
+        "authority_effective": "A1",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "MEDIUM"
+      },
+      "duration_ms": 0.0,
+      "end_ts": 0.0,
+      "event_id": "ev_1",
+      "start_ts": 0.0,
+      "type": "RISK_FALL"
+    },
+    {
+      "after": {
+        "authority_blocked_by": null,
+        "authority_effective": "A4",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "NONE"
+      },
+      "before": {
+        "authority_blocked_by": null,
+        "authority_effective": "A1",
+        "c_decision": "REQUEST_TAKEOVER",
+        "distortion_distorted": false,
+        "envelope_status": "WITHIN_ENVELOPE",
+        "gate": "PASS",
+        "risk_level": "MEDIUM"
+      },
+      "duration_ms": 0.0,
+      "end_ts": 0.0,
+      "event_id": "ev_2",
+      "start_ts": 0.0,
+      "type": "AUTH_DROP"
+    }
+  ],
+  "generated_at": 1768872236.086159,
+  "metrics": {
+    "auth_to_risk_lag_ms_p10": 0.0,
+    "auth_to_risk_lag_ms_p50": 0.0,
+    "auth_to_risk_lag_ms_p90": 0.0,
+    "authority_overreaction_rate": 0.5,
+    "corr_distortion_vs_authority_blocked_recovery": 0.0,
+    "corr_gate_blocked_vs_authority_drop": 0.6124,
+    "corr_risk_level_vs_authority_level": -0.4015,
+    "envelope_boundary_alignment": 0.0,
+    "risk_to_authority_lag_ms_p10": 0.0,
+    "risk_to_authority_lag_ms_p50": 0.0,
+    "risk_to_authority_lag_ms_p90": 0.1512
+  },
+  "root_cause_summary": [
+    {
+      "cause_hints": [],
+      "event_id": "ev_0"
+    },
+    {
+      "cause_hints": [],
+      "event_id": "ev_1"
+    },
+    {
+      "cause_hints": [],
+      "event_id": "ev_2"
+    }
+  ],
+  "samples": 5,
+  "schema_version": "risk_authority_view.v1.2",
+  "timeline": [
+    {
+      "authority_blocked_by": null,
+      "authority_effective": "A1",
+      "authority_raw": "A1",
+      "bc_action": "REQUEST_TAKEOVER",
+      "c_decision": "REQUEST_TAKEOVER",
+      "distortion_codes": [],
+      "distortion_distorted": false,
+      "envelope_status": "WITHIN_ENVELOPE",
+      "gate": "PASS",
+      "risk_level": "NONE",
+      "risk_vo_level": "NONE",
+      "ts": 1768872225.535678
+    },
+    {
+      "authority_blocked_by": null,
+      "authority_effective": "A1",
+      "authority_raw": "A1",
+      "bc_action": "REQUEST_TAKEOVER",
+      "c_decision": "REQUEST_TAKEOVER",
+      "distortion_codes": [],
+      "distortion_distorted": false,
+      "envelope_status": "WITHIN_ENVELOPE",
+      "gate": "PASS",
+      "risk_level": "NONE",
+      "risk_vo_level": "NONE",
+      "ts": 1768872225.535917
+    },
+    {
+      "authority_blocked_by": null,
+      "authority_effective": "A1",
+      "authority_raw": "A1",
+      "bc_action": "REQUEST_TAKEOVER",
+      "c_decision": "REQUEST_TAKEOVER",
+      "distortion_codes": [],
+      "distortion_distorted": false,
+      "envelope_status": "WITHIN_ENVELOPE",
+      "gate": "PASS",
+      "risk_level": "MEDIUM",
+      "risk_vo_level": "HIGH",
+      "ts": 1768872225.536067
+    },
+    {
+      "authority_blocked_by": null,
+      "authority_effective": "A4",
+      "authority_raw": "A4",
+      "bc_action": "REQUEST_TAKEOVER",
+      "c_decision": "REQUEST_TAKEOVER",
+      "distortion_codes": [],
+      "distortion_distorted": false,
+      "envelope_status": "WITHIN_ENVELOPE",
+      "gate": "PASS",
+      "risk_level": "NONE",
+      "risk_vo_level": "NONE",
+      "ts": 1768872225.5362182
+    },
+    {
+      "authority_blocked_by": null,
+      "authority_effective": "A5",
+      "authority_raw": "A5",
+      "bc_action": "FORCE_STOP",
+      "c_decision": "STOP",
+      "distortion_codes": [],
+      "distortion_distorted": false,
+      "envelope_status": "WITHIN_ENVELOPE",
+      "gate": "BLOCK",
+      "risk_level": "NONE",
+      "risk_vo_level": "NONE",
+      "ts": 1768872225.536355
+    }
+  ],
+  "window": "full"
+}

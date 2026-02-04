@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "specs": [
+    {
+      "fault_type": "tts_block",
+      "start_step": 0,
+      "end_step": 2,
+      "message": "TTS output blocks/fails at boundary"
+    }
+  ]
+}
+

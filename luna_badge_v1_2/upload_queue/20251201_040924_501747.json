@@ -1,0 +1,9 @@
+{
+  "ts": 1764562164.501632,
+  "type": "selfheal_decision",
+  "cpu": 0.0,
+  "mem": 73.1,
+  "anomaly": {
+    "code": "NAV_STUCK"
+  }
+}

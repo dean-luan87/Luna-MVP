@@ -1,0 +1,21 @@
+[
+  {
+    "roi_kind": "exit_area",
+    "category": "unknown",
+    "meaning": "exit_sign",
+    "stability": 0.19999931235516968,
+    "confidence": 0.1,
+    "suggestion": "IGNORE",
+    "environment_id": "device_default",
+    "scope": "device_local",
+    "evidence": {
+      "appear_count": 2,
+      "confirm_count": 0,
+      "contradict_count": 0,
+      "base": 0.2,
+      "penalty": 1.0,
+      "decay": 0.9999965617758484,
+      "last_seen_ts": 1769653605.8930218
+    }
+  }
+]

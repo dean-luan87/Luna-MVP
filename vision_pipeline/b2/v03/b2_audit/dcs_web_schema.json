@@ -1,0 +1,282 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "B2 v0.5 DCS Web 可视化数据 Schema",
+  "description": "DCS Web 仪表盘的数据结构定义",
+  "type": "object",
+  "properties": {
+    "dcs_summary": {
+      "type": "object",
+      "description": "顶部：DCS 总评分 + 状态灯",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "DCS 总分"
+        },
+        "grade": {
+          "type": "string",
+          "enum": ["EXCELLENT", "PASS", "WARNING", "FAIL"],
+          "description": "评分等级"
+        },
+        "status_color": {
+          "type": "string",
+          "enum": ["green", "yellow", "orange", "red"],
+          "description": "状态颜色（🟢 绿 / 🟡 黄 / 🟠 橙 / 🔴 红）"
+        },
+        "status_emoji": {
+          "type": "string",
+          "enum": ["🟢", "🟡", "🟠", "🔴"],
+          "description": "状态 emoji"
+        },
+        "fatal_violations_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "致命违规数量"
+        },
+        "warnings_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "警告数量"
+        },
+        "thresholds": {
+          "type": "object",
+          "properties": {
+            "pass": {
+              "type": "number",
+              "description": "及格线（85）"
+            },
+            "rollback": {
+              "type": "number",
+              "description": "强制回滚线（70）"
+            }
+          }
+        }
+      },
+      "required": ["score", "grade", "status_color", "status_emoji", "fatal_violations_count", "warnings_count"]
+    },
+    "dimensions": {
+      "type": "object",
+      "description": "中部：6 大维度雷达 / 条形图",
+      "properties": {
+        "gate": {
+          "$ref": "#/definitions/dimension_score"
+        },
+        "evidence": {
+          "$ref": "#/definitions/dimension_score"
+        },
+        "trigger": {
+          "$ref": "#/definitions/dimension_score"
+        },
+        "impact": {
+          "$ref": "#/definitions/dimension_score"
+        },
+        "trace": {
+          "$ref": "#/definitions/dimension_score"
+        },
+        "timeline": {
+          "$ref": "#/definitions/dimension_score"
+        }
+      },
+      "required": ["gate", "evidence", "trigger", "impact", "trace", "timeline"]
+    },
+    "violations_timeline": {
+      "type": "array",
+      "description": "底部：违规与证据时间线",
+      "items": {
+        "$ref": "#/definitions/violation_event"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "trace_file": {
+          "type": "string",
+          "description": "Trace 文件路径"
+        },
+        "timeline_file": {
+          "type": "string",
+          "description": "Timeline 文件路径（可选）"
+        },
+        "total_frames": {
+          "type": "integer",
+          "description": "总帧数"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "description": "总时长（秒）"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "生成时间"
+        }
+      }
+    }
+  },
+  "required": ["dcs_summary", "dimensions", "violations_timeline"],
+  "definitions": {
+    "dimension_score": {
+      "type": "object",
+      "description": "维度得分详情",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "description": "实际得分"
+        },
+        "max_score": {
+          "type": "number",
+          "description": "满分"
+        },
+        "percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "得分百分比"
+        },
+        "deductions": {
+          "type": "array",
+          "description": "扣分项列表",
+          "items": {
+            "$ref": "#/definitions/deduction"
+          }
+        },
+        "manual_check_ref": {
+          "type": "string",
+          "description": "对应 Cursor 自检条目编号（B.x）"
+        }
+      },
+      "required": ["score", "max_score", "percentage"]
+    },
+    "deduction": {
+      "type": "object",
+      "description": "扣分项",
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "description": "规则 ID（如 S1.GATE.001）"
+        },
+        "penalty": {
+          "type": "number",
+          "description": "扣分数值（负数）"
+        },
+        "reason": {
+          "type": "string",
+          "description": "扣分原因"
+        },
+        "evidence": {
+          "type": "object",
+          "description": "证据（trace_index, frame_id, human_time 等）"
+        }
+      },
+      "required": ["rule_id", "penalty", "reason"]
+    },
+    "violation_event": {
+      "type": "object",
+      "description": "违规事件（时间线项）",
+      "properties": {
+        "violation_id": {
+          "type": "string",
+          "description": "违规 ID"
+        },
+        "rule_id": {
+          "type": "string",
+          "description": "规则 ID"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["fatal", "warning"],
+          "description": "严重程度"
+        },
+        "message": {
+          "type": "string",
+          "description": "违规消息"
+        },
+        "time": {
+          "$ref": "#/definitions/time_info"
+        },
+        "frame_info": {
+          "$ref": "#/definitions/frame_info"
+        },
+        "context": {
+          "type": "object",
+          "description": "上下文信息",
+          "properties": {
+            "impact": {
+              "type": "string",
+              "description": "Impact 值"
+            },
+            "decision": {
+              "type": "string",
+              "description": "Decision 值"
+            },
+            "gate_mode": {
+              "type": "string",
+              "description": "Gate Mode"
+            },
+            "human_explanation": {
+              "type": "string",
+              "description": "人类可读解释"
+            }
+          }
+        },
+        "trace_ref": {
+          "type": "object",
+          "description": "Trace 引用",
+          "properties": {
+            "trace_index": {
+              "type": "integer",
+              "description": "Trace 索引"
+            },
+            "frame_id": {
+              "type": "integer",
+              "description": "帧 ID"
+            },
+            "human_time": {
+              "type": "string",
+              "description": "人类时间（mm:ss.xx）"
+            }
+          }
+        }
+      },
+      "required": ["violation_id", "rule_id", "severity", "message", "time"]
+    },
+    "time_info": {
+      "type": "object",
+      "properties": {
+        "ts": {
+          "type": "number",
+          "description": "Unix 时间戳"
+        },
+        "human_time": {
+          "type": "string",
+          "description": "人类时间（mm:ss.xx）"
+        },
+        "frame_id": {
+          "type": "integer",
+          "description": "帧 ID"
+        }
+      },
+      "required": ["human_time", "frame_id"]
+    },
+    "frame_info": {
+      "type": "object",
+      "properties": {
+        "frame_id": {
+          "type": "integer",
+          "description": "帧 ID"
+        },
+        "human_time": {
+          "type": "string",
+          "description": "人类时间（mm:ss.xx）"
+        },
+        "fps": {
+          "type": "number",
+          "description": "帧率"
+        }
+      },
+      "required": ["frame_id", "human_time"]
+    }
+  }
+}

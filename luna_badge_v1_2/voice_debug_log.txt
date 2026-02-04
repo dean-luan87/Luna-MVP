@@ -1,0 +1,165 @@
+Voice/TTS 调试日志
+========================================
+时间范围: 2024-12-04 21:40:01 - 21:42:23
+问题: 语音重复播放
+
+=== 1. 初始化日志 ===
+[21:40:01] [INFO] [main] [INIT-1] 加载基础组件...
+[21:40:01] [INFO] [main] [INIT-1] 基础组件加载完成
+[21:40:01] [INFO] [main] [INIT-2] 视觉模块初始化中...
+[21:40:01] [INFO] [main] [INIT-2] 视觉模块初始化完成
+[21:40:01] [INFO] [main] [INIT] 等待所有模块就绪...
+[21:40:02] [INFO] [main] [INIT] 所有模块初始化完毕，系统进入正常工作模式
+[21:40:02] [INFO] [main] [BOOT] 启动静音保护，2 秒后解锁语音...
+[21:40:03] [DEBUG] [main] [TTS] 初始化保护中，跳过播报: 您已经接近目的地，需要结束当前任务吗？...
+[21:40:04] [INFO] [main] [BOOT] 语音系统已就绪
+[21:40:04] [INFO] [main] [BOOT] Voice 状态: {'available': True, 'speaking': False, 'pydub_available': False, 'simpleaudio_available': True}
+[21:40:04] [INFO] [main] [BOOT] 开始播报启动提示...
+[21:40:06] [INFO] [main] [BOOT] 启动播报结果: True
+
+=== 2. Voice 模块调用日志 ===
+[21:40:03] [DEBUG] [main] [TTS] 初始化保护中，跳过播报: 您已经接近目的地，需要结束当前任务吗？...
+[21:40:04] [INFO] [main] [BOOT] Voice 状态: {'available': True, 'speaking': False, 'pydub_available': False, 'simpleaudio_available': True}
+[21:40:04] [INFO] [main] [BOOT] 开始播报启动提示...
+[21:40:06] [INFO] [main] [BOOT] 启动播报结果: True
+
+=== 3. TTS 合成日志 ===
+[21:40:03] [DEBUG] [main] [TTS] 初始化保护中，跳过播报: 您已经接近目的地，需要结束当前任务吗？...
+
+=== 4. 播放相关日志 ===
+[21:40:03] [DEBUG] [main] [TTS] 初始化保护中，跳过播报: 您已经接近目的地，需要结束当前任务吗？...
+
+=== 6. 最近的完整日志（最后100行）===
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.42
+[21:42:21] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.42
+[21:42:21] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:21] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.28
+[21:42:21] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.49
+[21:42:21] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.49
+[21:42:21] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:21] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.13
+[21:42:21] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.46
+[21:42:21] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.46
+[21:42:21] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:21] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.25
+[21:42:21] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:21] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.30
+[21:42:21] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.30
+[21:42:21] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:21] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.34
+[21:42:22] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.19
+[21:42:22] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.19
+[21:42:22] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:22] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.39
+[21:42:22] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.12
+[21:42:22] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.12
+[21:42:22] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:22] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.28
+[21:42:22] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.43
+[21:42:22] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.43
+[21:42:22] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:22] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.28
+[21:42:22] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:22] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.33
+[21:42:22] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.33
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.27
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.48
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.48
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.11
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.17
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.17
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.10
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.20
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.20
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.33
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.49
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.49
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.19
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.30
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.30
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.22
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.25
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.25
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.31
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.23
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.23
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.41
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.30
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.30
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.50
+[21:42:23] [DEBUG] [camera_router] [CAMERA] read from camera=front
+[21:42:23] [DEBUG] [system_monitor] [SYSTEM] cpu_usage=0.16
+[21:42:23] [DEBUG] [vision_scheduler] [SCHED] mode=fast, cpu=0.16
+[21:42:23] [INFO] [task_transition] [TASK] near target, ASK_END
+[21:42:23] [DEBUG] [query_bus] [QUERY] push id=end_task, priority=10
+
+=== 问题分析 ===
+从日志看，没有看到 Voice 模块内部的日志（如：开始合成、播放请求入队、开始播放等）
+这说明 voice.speak() 可能没有被正确调用，或者调用的方式不对
+
+=== main.py 中的 voice.speak 调用 ===
+51:        def tts_say(text: str) -> None:
+59:                self.voice.speak(text, self.tts_manager)
+62:        self.query_bus = QueryBus(tts_say)
+74:        def tts_say(text: str) -> None:
+80:                self.voice.speak(text, self.tts_manager)
+81:        self.safe_mode = SafeModeManager(tts_say)
+101:        def tts_say(text: str) -> None:
+107:                self.voice.speak(text, self.tts_manager)
+108:        self.nav_controller = NavigationController(tts_say)
+142:            self.voice.speak("好的，已结束任务。", self.tts_manager)
+145:            self.voice.speak("好的，我会继续保持导航。", self.tts_manager)
+147:            self.voice.speak("我没有听清楚，就先继续导航。", self.tts_manager)
+193:                result = self.voice.speak("Luna 已启动", self.tts_manager)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

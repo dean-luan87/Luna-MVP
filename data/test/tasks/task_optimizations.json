@@ -1,0 +1,72 @@
+{
+  "opt_20251105133404_0": {
+    "optimization_id": "opt_20251105133404_0",
+    "task_id": "test_task_001",
+    "original_plan": {
+      "path": "直行->右转",
+      "distance": 50
+    },
+    "optimized_plan": {
+      "path": "直行->左转",
+      "distance": 40,
+      "priority": "high"
+    },
+    "optimization_source": "user_feedback",
+    "timestamp": "2025-11-05T13:34:04.303763",
+    "reason": "用户反馈左转路径更快",
+    "improvements": [
+      "优化路径规划",
+      "缩短距离"
+    ],
+    "expected_benefits": {
+      "time_saving": 5,
+      "satisfaction": 0.9
+    },
+    "applied": false,
+    "verified": true,
+    "verification_result": {
+      "success": true,
+      "metrics": {
+        "time": 40.5
+      },
+      "timestamp": "2025-11-05T13:34:04.303984"
+    },
+    "application_count": 1,
+    "success_rate": 1.0
+  },
+  "opt_20251105133425_1": {
+    "optimization_id": "opt_20251105133425_1",
+    "task_id": "test_task_001",
+    "original_plan": {
+      "path": "直行->右转",
+      "distance": 50
+    },
+    "optimized_plan": {
+      "path": "直行->左转",
+      "distance": 40,
+      "priority": "high"
+    },
+    "optimization_source": "user_feedback",
+    "timestamp": "2025-11-05T13:34:25.604379",
+    "reason": "用户反馈左转路径更快",
+    "improvements": [
+      "优化路径规划",
+      "缩短距离"
+    ],
+    "expected_benefits": {
+      "time_saving": 5,
+      "satisfaction": 0.9
+    },
+    "applied": false,
+    "verified": true,
+    "verification_result": {
+      "success": true,
+      "metrics": {
+        "time": 40.5
+      },
+      "timestamp": "2025-11-05T13:34:25.604645"
+    },
+    "application_count": 1,
+    "success_rate": 1.0
+  }
+}

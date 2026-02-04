@@ -1,0 +1,8 @@
+{
+  "ts": 1764562592.5686588,
+  "type": "selfheal_action",
+  "cpu": 50.0,
+  "mem": 74.1,
+  "action": "force_gc",
+  "result": "success"
+}

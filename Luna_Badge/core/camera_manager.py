@@ -16,6 +16,16 @@ from dataclasses import dataclass
 
 logger = logging.getLogger(__name__)
 
+# 动态导入TTS模块（避免循环依赖）
+def _get_tts_module():
+    """获取TTS模块"""
+    try:
+        from core.tts_manager import speak, TTSStyle
+        return speak, TTSStyle
+    except ImportError:
+        logger.warning("⚠️ TTS模块未导入")
+        return None, None
+
 
 class CameraCloseReason(Enum):
     """摄像头关闭原因"""
@@ -229,8 +239,20 @@ class CameraManager:
         """
         if ask_before_close:
             logger.info("❓ 任务完成，询问是否关闭摄像头...")
-            # TODO: 实现语音询问逻辑
-            # 这里可以先自动关闭，后续可扩展为语音交互
+            
+            # 实现语音询问逻辑
+            try:
+                speak_func, TTSStyle = _get_tts_module()
+                if speak_func and TTSStyle:
+                    speak_func("任务已完成，是否关闭摄像头？", style=TTSStyle.CALM)
+                    logger.info("🎤 已通过TTS询问用户")
+                else:
+                    logger.info("📋 TTS不可用，使用文本询问")
+            except Exception as e:
+                logger.warning(f"⚠️ TTS询问失败: {e}")
+            
+            # 等待3秒后自动关闭（实际场景中可通过Whisper接收用户回复）
+            time.sleep(3)
             return self.close_camera(CameraCloseReason.TASK_COMPLETE)
         else:
             return self.close_camera(CameraCloseReason.TASK_COMPLETE)

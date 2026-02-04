@@ -45,14 +45,16 @@ class VisionPipeline:
     def __init__(self,
                  camera_device: int = 0,
                  target_fps: float = 10.0,
-                 max_buffer_size: int = 5):
+                 max_buffer_size: int = 5,
+                 enable_preprocess_cache: bool = True):
         """
-        初始化视觉管道
+        初始化视觉管道（性能优化版）
         
         Args:
             camera_device: 摄像头设备号
             target_fps: 目标帧率
             max_buffer_size: 最大缓冲大小
+            enable_preprocess_cache: 启用预处理缓存
         """
         self.camera_device = camera_device
         self.target_fps = target_fps
@@ -64,6 +66,11 @@ class VisionPipeline:
         
         # 处理器
         self.processors = {}
+        
+        # 预处理缓存
+        self.enable_preprocess_cache = enable_preprocess_cache
+        self.preprocess_cache = {}
+        self.cache_ttl = 0.5  # 0.5秒TTL
         
         # 运行标志
         self.running = False
@@ -78,10 +85,12 @@ class VisionPipeline:
             "frames_captured": 0,
             "frames_processed": 0,
             "frames_dropped": 0,
-            "current_fps": 0.0
+            "current_fps": 0.0,
+            "cache_hits": 0,
+            "cache_misses": 0
         }
         
-        logger.info(f"📹 视觉管道初始化 (target_fps={target_fps})")
+        logger.info(f"📹 视觉管道初始化 (target_fps={target_fps}, cache={'on' if enable_preprocess_cache else 'off'})")
     
     def register_processor(self, name: str, processor_func: Callable):
         """
@@ -188,12 +197,44 @@ class VisionPipeline:
                 # 获取帧
                 frame = self.frame_buffer.get(timeout=1.0)
                 
-                # 处理所有注册的处理器
+                # 处理所有注册的处理器（带缓存优化）
                 results = {}
                 for name, processor in self.processors.items():
                     try:
+                        # 检查预处理缓存
+                        if self.enable_preprocess_cache:
+                            frame_hash = self._image_hash(frame.data)
+                            cache_key = f"{name}_{frame_hash}"
+                            
+                            current_time = time.time()
+                            if cache_key in self.preprocess_cache:
+                                cached = self.preprocess_cache[cache_key]
+                                if current_time - cached['timestamp'] < self.cache_ttl:
+                                    results[name] = cached['result']
+                                    self.stats["cache_hits"] += 1
+                                    continue
+                            
+                            # 未命中或过期，进行实际处理
+                            self.stats["cache_misses"] += 1
+                        
+                        # 执行处理器
                         result = processor(frame.data)
                         results[name] = result
+                        
+                        # 更新缓存
+                        if self.enable_preprocess_cache:
+                            self.preprocess_cache[cache_key] = {
+                                'result': result,
+                                'timestamp': current_time
+                            }
+                            # 限制缓存大小
+                            if len(self.preprocess_cache) > 50:
+                                # 删除最旧的10个
+                                sorted_items = sorted(self.preprocess_cache.items(), 
+                                                    key=lambda x: x[1]['timestamp'])
+                                for k, _ in sorted_items[:10]:
+                                    del self.preprocess_cache[k]
+                    
                     except Exception as e:
                         logger.error(f"❌ 处理器 {name} 错误: {e}")
                 
@@ -237,12 +278,26 @@ class VisionPipeline:
         
         return latest
     
+    def _image_hash(self, frame: np.ndarray) -> str:
+        """快速图像哈希"""
+        import hashlib
+        # 使用图像中心区域（更稳定）
+        h, w = frame.shape[:2]
+        center = frame[h//4:3*h//4, w//4:3*w//4]
+        return hashlib.sha256(center.tobytes()).hexdigest()[:16]
+    
     def get_stats(self) -> Dict[str, Any]:
         """获取统计信息"""
+        cache_hit_rate = 0
+        if self.stats["cache_hits"] + self.stats["cache_misses"] > 0:
+            cache_hit_rate = self.stats["cache_hits"] / (self.stats["cache_hits"] + self.stats["cache_misses"]) * 100
+        
         return {
             **self.stats,
             "buffer_size": self.frame_buffer.qsize(),
-            "result_size": self.result_buffer.qsize()
+            "result_size": self.result_buffer.qsize(),
+            "cache_hit_rate": f"{cache_hit_rate:.1f}%",
+            "cache_size": len(self.preprocess_cache)
         }
 
 

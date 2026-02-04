@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>B2 v0.5 Trace Viewer — Gate Runtime</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0f1117;
+  color: #e6e6e6;
+  margin: 0;
+  padding: 20px;
+}
+
+h2 {
+  color: #e6e6e6;
+  margin-bottom: 20px;
+}
+
+#fileInput {
+  margin-bottom: 20px;
+  padding: 8px;
+  background: #1f2933;
+  border: 1px solid #333;
+  color: #e6e6e6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #1a1f2e;
+}
+
+th, td {
+  border: 1px solid #2d3748;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  background: #1f2933;
+  color: #a0aec0;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  color: #e6e6e6;
+}
+
+tbody tr:hover {
+  background: #252b3a;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 11px;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+.badge.ACTIVE {
+  background: #14532d;
+  color: #86efac;
+}
+
+.badge.READ_ONLY {
+  background: #92400e;
+  color: #fcd34d;
+}
+
+.badge.SUSPENDED {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+.compute-NONE {
+  color: #fca5a5;
+}
+
+.compute-LIGHT {
+  color: #fcd34d;
+}
+
+.compute-FULL {
+  color: #86efac;
+}
+
+.stats {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #1a1f2e;
+  border-radius: 6px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#rows:empty::before {
+  content: "请选择 trace 文件（JSONL 格式）";
+  display: block;
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+<h2>B2 v0.5 Trace Viewer — Gate Runtime</h2>
+
+<input type="file" id="fileInput" accept=".jsonl,.json" />
+
+<div class="stats" id="stats" style="display: none;">
+  <div class="stat-item">
+    <span class="stat-label">总帧数</span>
+    <span class="stat-value" id="totalFrames">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">ACTIVE</span>
+    <span class="stat-value" id="activeCount">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">READ_ONLY</span>
+    <span class="stat-value" id="readOnlyCount">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">SUSPENDED</span>
+    <span class="stat-value" id="suspendedCount">0</span>
+  </div>
+</div>
+
+<table>
+<thead>
+<tr>
+  <th>Time</th>
+  <th>Frame</th>
+  <th>Gate</th>
+  <th>Compute</th>
+  <th>Tick(ms)</th>
+  <th>Blocked By</th>
+  <th>Reason</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+
+<script>
+let allRecords = [];
+
+document.getElementById("fileInput").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const lines = reader.result.split("\n");
+    const tbody = document.getElementById("rows");
+    tbody.innerHTML = "";
+    allRecords = [];
+
+    let stats = {
+      total: 0,
+      active: 0,
+      readOnly: 0,
+      suspended: 0
+    };
+
+    lines.forEach(line => {
+      if (!line.trim()) return;
+      
+      try {
+        const obj = JSON.parse(line);
+        
+        // 支持两种格式：
+        // 1. event_type === "GATE_RUNTIME_PROFILE"
+        // 2. 直接包含 gate 字段的 trace
+        let profile = null;
+        
+        if (obj.event_type === "GATE_RUNTIME_PROFILE" && obj.gate_runtime_profile) {
+          profile = obj.gate_runtime_profile;
+        } else if (obj.gate) {
+          // 适配 v0.5 的 trace 格式
+          if (obj.gate.version || obj.gate.gate_mode) {
+            profile = obj.gate;
+          } else if (obj.gate.runtime_profile) {
+            // 兼容 v0.4.3 格式
+            profile = {
+              gate_mode: obj.gate.mode || "UNKNOWN",
+              compute_level: obj.gate.runtime_profile?.compute_level || "UNKNOWN",
+              tick_interval_ms: obj.gate.runtime_profile?.tick_interval_ms || 0,
+              blocked_by: obj.gate.blocked_by || null,
+              human_reason: obj.gate.reason || obj.gate.human_readable || "",
+            };
+          }
+        }
+        
+        if (!profile) return;
+
+        stats.total++;
+        const gateMode = profile.gate_mode || profile.mode || "UNKNOWN";
+        
+        if (gateMode === "ACTIVE") stats.active++;
+        else if (gateMode === "READ_ONLY") stats.readOnly++;
+        else if (gateMode === "SUSPENDED") stats.suspended++;
+
+        const time = obj.time || {};
+        const tr = document.createElement("tr");
+
+        const computeLevel = profile.compute_level || profile.runtime_profile?.compute_level || "UNKNOWN";
+        const tickInterval = profile.tick_interval_ms || profile.runtime_profile?.tick_interval_ms || 0;
+        const blockedBy = profile.blocked_by || "";
+        const reason = profile.human_reason || profile.reason || "";
+
+        tr.innerHTML = `
+          <td>${time.ts ? time.ts.toFixed(2) : (time.t_video_s ? time.t_video_s.toFixed(2) : "")}</td>
+          <td>${time.frame_id ?? ""}</td>
+          <td><span class="badge ${gateMode}">${gateMode}</span></td>
+          <td class="compute-${computeLevel}">${computeLevel}</td>
+          <td>${tickInterval}</td>
+          <td>${blockedBy}</td>
+          <td title="${reason}">${reason.length > 50 ? reason.substring(0, 50) + "..." : reason}</td>
+        `;
+        
+        tbody.appendChild(tr);
+        allRecords.push({ obj, profile, time });
+      } catch (err) {
+        console.warn("Failed to parse line:", err, line);
+      }
+    });
+
+    // 更新统计
+    document.getElementById("totalFrames").textContent = stats.total;
+    document.getElementById("activeCount").textContent = stats.active;
+    document.getElementById("readOnlyCount").textContent = stats.readOnly;
+    document.getElementById("suspendedCount").textContent = stats.suspended;
+    document.getElementById("stats").style.display = "flex";
+  };
+
+  reader.readAsText(file);
+});
+</script>
+</body>
+</html>

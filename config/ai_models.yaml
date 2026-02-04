@@ -1,0 +1,12 @@
+yolo:
+  model_path: models/yolov8n.pt
+  confidence_threshold: 0.5
+  device: cpu
+whisper:
+  model_size: base
+  language: zh
+  device: cpu
+ocr:
+  engine: paddleocr
+  language: ch
+  use_gpu: false

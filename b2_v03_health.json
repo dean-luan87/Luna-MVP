@@ -1,0 +1,40 @@
+[
+  {
+    "ts": 1767853394.5331497,
+    "decision": "CONDITION_CHANGE",
+    "scores": {
+      "path": 0.6
+    },
+    "reasons": {
+      "path": "path surface or continuity changed"
+    },
+    "confidence": 0.6,
+    "main_factor": "path"
+  },
+  {
+    "ts": 1767853474.5330029,
+    "decision": "WORLD_SHIFT",
+    "scores": {
+      "env": 0.5,
+      "people": 0.35
+    },
+    "reasons": {
+      "env": "environment scene or density changed",
+      "people": "people density or movement increased"
+    },
+    "confidence": 0.5,
+    "main_factor": "env"
+  },
+  {
+    "ts": 1767853574.5411565,
+    "decision": "INTERRUPT",
+    "scores": {
+      "event": 1.0
+    },
+    "reasons": {
+      "event": "sudden blocking or dangerous event detected"
+    },
+    "confidence": 1.0,
+    "main_factor": "event"
+  }
+]

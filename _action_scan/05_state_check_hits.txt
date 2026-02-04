@@ -1,0 +1,139 @@
+scan_implicit_actions.py:76: print("\n1. 扫描关键词：skip / 忽略 / return / already / busy / 锁 / is_running / is_processing")
+scan_implicit_actions.py:77: keyword_pattern = r"skip|忽略|return|already|busy|锁|is_running|is_processing|正在.*中"
+scan_implicit_actions.py:144: print("\n5. 扫描状态判断：is_speaking / is_running")
+scan_implicit_actions.py:145: state_pattern = r"is_speaking|is_running|is_processing|is_busy"
+scan_implicit_actions.py:160: print("  05_state_check_hits.txt  - 状态判断（is_speaking 等）")
+main.py:97: self.is_running = False
+main.py:126: is_speaking=self.voice.is_speaking() if self.voice else False,
+main.py:234: while self.is_running:
+main.py:389: self.is_running = True
+main.py:396: while self.is_running:
+main.py:434: self.is_running = False
+luna_badge_tests/standalone_tests/test_voice_complete.py:56: while voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:62: if not voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:87: if voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:120: while voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:146: while voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:152: if not voice.is_speaking():
+luna_badge_tests/standalone_tests/test_voice_complete.py:177: if voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:56: while voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:62: if not voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:87: if voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:120: while voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:146: while voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:152: if not voice.is_speaking():
+luna_badge_v1_2/test_voice_complete.py:177: if voice.is_speaking():
+luna_badge_v1_2/core/concurrency/worker_base.py:70: def is_running(self) -> bool:
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/flask/cli.py:20: from werkzeug.serving import is_running_from_reloader
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/flask/cli.py:778: if is_running_from_reloader():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/flask/cli.py:965: if is_running_from_reloader():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/flask/app.py:25: from werkzeug.serving import is_running_from_reloader
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/flask/app.py:612: if not is_running_from_reloader():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/fsspec/implementations/http.py:123: if loop is not None and loop.is_running():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/werkzeug/serving.py:951: def is_running_from_reloader() -> bool:
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/werkzeug/serving.py:1088: if not is_running_from_reloader():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/werkzeug/serving.py:1107: if not is_running_from_reloader():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py:236: def is_running(state: "WorkerState") -> bool:
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/torch/testing/_internal/common_utils.py:927: is_running_via_run_test = "run_test.py" in getattr(__main__, "__file__", "")
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/torch/testing/_internal/common_utils.py:928: parser = argparse.ArgumentParser(add_help=not is_running_via_run_test, allow_abbrev=False)
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/torch/profiler/profiler.py:1084: def is_running(self):
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/filelock/asyncio.py:319: if not loop.is_running():  # pragma: no cover
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/matplotlib/cbook.py:78: if macosx and macosx.event_loop_is_running():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/setuptools/command/install_scripts.py:38: is_wininst = getattr(bw_cmd, '_is_running', False)
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/polars/_utils/nest_asyncio.py:240: cls._num_runs_pending = 1 if loop.is_running() else 0
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:309: is_running() before querying the process.
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:438: # zombie. It's important to do this because is_running()
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:460: if self._pid_reused or (not self.is_running() and self._pid_reused):
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:624: def is_running(self):
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:1295: if sig != signal.SIGTERM and not self.is_running():
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:1371: 'is_running', 'as_dict', 'parent', 'parents', 'children', 'rlimit',
+luna_badge_v1_2/realtime_lab/.venv_realtime/lib/python3.9/site-packages/psutil/__init__.py:1597: if returncode is not None or not proc.is_running():
+luna_badge_v1_2/task_engine/tts/runtime_driver.py:63: def is_running(self) -> bool:
+luna_badge_v1_2/modules/voice_av.py:111: def is_speaking(self) -> bool:
+luna_badge_v1_2/modules/voice_av.py:139: if not self.is_speaking():
+luna_badge_v1_2/modules/voice_av.py:177: "speaking": self.is_speaking(),
+Luna_Badge/test_structure.py:101: print(f"✅ AI导航状态获取成功: {status['is_running']}")
+Luna_Badge/quick_test.py:76: print(f"✅ AI导航状态获取: {ai_status['is_running']}")
+Luna_Badge/main_with_startup.py:39: self.is_running = False
+Luna_Badge/main_with_startup.py:154: while self.is_running:
+Luna_Badge/main_with_startup.py:187: self.is_running = False
+Luna_Badge/main_with_startup.py:240: self.is_running = True
+Luna_Badge/test_architecture.py:193: print(f"✅ AI导航状态获取成功: 运行状态={status['is_running']}")
+Luna_Badge/main_with_integrated_features.py:40: self.is_running = False
+Luna_Badge/main_with_integrated_features.py:141: while self.is_running:
+Luna_Badge/main_with_integrated_features.py:222: self.is_running = False
+Luna_Badge/main_with_integrated_features.py:264: self.is_running = True
+Luna_Badge/main_mac.py:33: self.is_running = False
+Luna_Badge/main_mac.py:116: self.is_running = True
+Luna_Badge/main_mac.py:134: while self.is_running:
+Luna_Badge/main_mac.py:142: print(f"🤖 AI导航状态: {ai_status['is_running']}")
+Luna_Badge/main_mac.py:219: self.is_running = False
+Luna_Badge/main_embedded.py:32: self.is_running = False
+Luna_Badge/main_embedded.py:115: self.is_running = True
+Luna_Badge/main_embedded.py:133: while self.is_running:
+Luna_Badge/main_embedded.py:141: print(f"🤖 AI导航状态: {ai_status['is_running']}")
+Luna_Badge/main_embedded.py:163: self.is_running = False
+Luna_Badge/core/visual_display.py:79: self.is_running = False
+Luna_Badge/core/visual_display.py:125: if not self.is_running and self.enable_display:
+Luna_Badge/core/visual_display.py:126: self.is_running = True
+Luna_Badge/core/visual_display.py:133: if self.is_running:
+Luna_Badge/core/visual_display.py:134: self.is_running = False
+Luna_Badge/core/visual_display.py:142: while self.is_running:
+Luna_Badge/core/visual_display.py:164: self.is_running = False
+Luna_Badge/core/visual_display.py:339: if not self.enable_display or not self.is_running:
+Luna_Badge/core/ai_navigation.py:54: self.is_running = False
+Luna_Badge/core/ai_navigation.py:319: self.is_running = True
+Luna_Badge/core/ai_navigation.py:344: self.is_running = False
+Luna_Badge/core/ai_navigation.py:492: "is_running": self.is_running,
+Luna_Badge/core/system_orchestrator.py:113: self.is_running = False
+Luna_Badge/core/system_orchestrator.py:123: if self.is_running:
+Luna_Badge/core/system_orchestrator.py:127: self.is_running = True
+Luna_Badge/core/system_orchestrator.py:135: self.is_running = False
+Luna_Badge/core/system_orchestrator.py:483: while self.is_running:
+Luna_Badge/core/background_uploader.py:44: self.is_running = False
+Luna_Badge/core/background_uploader.py:55: if self.is_running:
+Luna_Badge/core/background_uploader.py:59: self.is_running = True
+Luna_Badge/core/background_uploader.py:67: self.is_running = False
+Luna_Badge/core/background_uploader.py:76: while self.is_running:
+Luna_Badge/core/background_uploader.py:250: "is_running": self.is_running,
+Luna_Badge/core/real_voice_wakeup.py:35: self.is_running = False
+Luna_Badge/core/real_voice_wakeup.py:122: if self.is_running:
+Luna_Badge/core/real_voice_wakeup.py:125: self.is_running = True
+Luna_Badge/core/real_voice_wakeup.py:133: self.is_running = False
+Luna_Badge/core/real_voice_wakeup.py:164: while self.is_running:
+Luna_Badge/core/system_control.py:40: self.is_running = False
+Luna_Badge/core/system_control.py:403: self.is_running = True
+Luna_Badge/core/system_control.py:409: while self.is_running:
+Luna_Badge/core/system_control.py:441: self.is_running = False
+Luna_Badge/core/system_control.py:460: self.is_running = False
+Luna_Badge/core/system_control.py:468: "is_running": self.is_running,
+Luna_Badge/core/voice_wakeup.py:171: self.is_running = False
+Luna_Badge/core/voice_wakeup.py:181: if self.is_running:
+Luna_Badge/core/voice_wakeup.py:184: self.is_running = True
+Luna_Badge/core/voice_wakeup.py:190: if not self.is_running:
+Luna_Badge/core/voice_wakeup.py:193: self.is_running = False
+Luna_Badge/core/voice_wakeup.py:209: if self.is_running:
+Luna_Badge/core/realtime_system.py:150: self.is_running = False
+Luna_Badge/core/realtime_system.py:162: if self.is_running:
+Luna_Badge/core/realtime_system.py:165: self.is_running = True
+Luna_Badge/core/realtime_system.py:172: self.is_running = False
+Luna_Badge/core/realtime_system.py:215: while self.is_running:
+Luna_Badge/core/complete_voice_wakeup.py:30: self.is_running = False
+Luna_Badge/core/complete_voice_wakeup.py:73: if self.is_running:
+Luna_Badge/core/complete_voice_wakeup.py:77: self.is_running = True
+Luna_Badge/core/complete_voice_wakeup.py:85: self.is_running = False
+Luna_Badge/core/complete_voice_wakeup.py:112: while self.is_running:
+Luna_Badge/core/complete_voice_wakeup.py:146: self.is_running = False
+Luna_Badge/hal_embedded/hardware_embedded.py:167: self.is_running = False
+Luna_Badge/hal_embedded/hardware_embedded.py:201: self.is_running = True
+Luna_Badge/hal_embedded/hardware_embedded.py:211: self.is_running = False
+Luna_Badge/hal_embedded/hardware_embedded.py:262: "running": self.is_running
+Luna_Badge/hal_mac/hardware_mac.py:225: self.is_running = False
+Luna_Badge/hal_mac/hardware_mac.py:258: self.is_running = True
+Luna_Badge/hal_mac/hardware_mac.py:268: self.is_running = False
+Luna_Badge/hal_mac/hardware_mac.py:319: "running": self.is_running
+luna_hub/action/action_context.py:20: is_speaking: 当前是否正在播报
+luna_hub/action/action_context.py:37: is_speaking: bool = False
+luna_hub/action/action_context.py:66: return f"ActionContext(is_speaking={self.is_speaking}, source={self.source}, action_type={self.action_type}, intent={self.intent})"
+luna_hub/action/speak_guard.py:42: 当前实现等价于原 Voice.is_speaking() 判断逻辑
+luna_hub/action/speak_guard.py:46: if context and context.is_speaking:

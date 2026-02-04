@@ -1,0 +1,25 @@
+{
+  "obj_from_unknown_unknown_20251105133425_0": {
+    "object_id": "obj_from_unknown_unknown_20251105133425_0",
+    "timestamp": "2025-11-05T13:34:25.606817",
+    "location": {
+      "x": 1.5,
+      "y": 2.0
+    },
+    "object_name": "路障",
+    "category": "obstacle",
+    "confidence": 0.8,
+    "recognition_source": "online_query",
+    "appearance_description": "橙色锥形物体",
+    "image_features": {
+      "shape": "cone",
+      "color": "orange"
+    },
+    "meaning": "指示危险区域或需要绕行",
+    "safety_impact": "高：需要避开，否则可能导致碰撞或摔倒",
+    "action_required": "检测到路障时，应提醒用户绕行或停止前进",
+    "verified": false,
+    "verification_count": 0,
+    "learning_priority": 5
+  }
+}

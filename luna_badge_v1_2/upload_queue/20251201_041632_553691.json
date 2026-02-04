@@ -1,0 +1,10 @@
+{
+  "ts": 1764562592.552638,
+  "type": "auto_repair",
+  "cpu": 0.0,
+  "mem": 74.1,
+  "error_code": "CAMERA_DROP",
+  "success": true,
+  "duration_ms": 10.281085968017578,
+  "actions_count": 3
+}

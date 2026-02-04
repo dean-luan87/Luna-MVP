@@ -1,0 +1,30 @@
+# Vision 模型配置（预留）
+yolo:
+  model: "yolo11n"
+segformer:
+  model: "b0"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

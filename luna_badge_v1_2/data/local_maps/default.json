@@ -1,0 +1,88 @@
+{
+  "map_id": "default",
+  "nodes": [
+    {
+      "node_id": "landmark_0_1765519709",
+      "kind": "LANDMARK",
+      "label": "elevator_door_1",
+      "ts": 1765519709.262374,
+      "rel_pose": {
+        "dx_m": 1.0,
+        "dy_m": 0.0,
+        "dtheta_deg": 0.0,
+        "step_index": 0
+      },
+      "confidence": 0.9,
+      "meta": {}
+    },
+    {
+      "node_id": "turn_1_1765519709",
+      "kind": "TURN",
+      "label": "turn_TURNING",
+      "ts": 1765519709.3662,
+      "rel_pose": {
+        "dx_m": 1.0,
+        "dy_m": 0.0,
+        "dtheta_deg": 0.0,
+        "step_index": 0
+      },
+      "confidence": 0.8,
+      "meta": {}
+    },
+    {
+      "node_id": "landmark_2_1765520076",
+      "kind": "LANDMARK",
+      "label": "elevator_door_1",
+      "ts": 1765520076.205023,
+      "rel_pose": {
+        "dx_m": 1.0,
+        "dy_m": 0.0,
+        "dtheta_deg": 0.0,
+        "step_index": 0
+      },
+      "confidence": 0.9,
+      "meta": {}
+    },
+    {
+      "node_id": "turn_3_1765520076",
+      "kind": "TURN",
+      "label": "turn_TURNING",
+      "ts": 1765520076.310747,
+      "rel_pose": {
+        "dx_m": 1.0,
+        "dy_m": 0.0,
+        "dtheta_deg": 0.0,
+        "step_index": 0
+      },
+      "confidence": 0.8,
+      "meta": {}
+    }
+  ],
+  "edges": [
+    {
+      "src": "landmark_0_1765519709",
+      "dst": "turn_1_1765519709",
+      "kind": "TURN",
+      "length_m": 0.0,
+      "confidence": 0.8,
+      "meta": {
+        "dtheta_deg": 0.0
+      }
+    },
+    {
+      "src": "landmark_2_1765520076",
+      "dst": "turn_3_1765520076",
+      "kind": "TURN",
+      "length_m": 0.0,
+      "confidence": 0.8,
+      "meta": {
+        "dtheta_deg": 0.0
+      }
+    }
+  ],
+  "created_ts": 1765519708.845154,
+  "updated_ts": 1765520076.310776,
+  "meta": {
+    "last_scene": "INDOOR"
+  }
+}

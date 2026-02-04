@@ -1,0 +1,14 @@
+{
+  "scenario": "approach_and_leave_fast",
+  "frames": 34,
+  "risk_objects": 2,
+  "max_risk_level": 0.7866,
+  "max_delta_risk": 0.15200000000000014,
+  "trend_distribution": {
+    "LEAVING": 2,
+    "STABLE": 65,
+    "APPROACHING": 1
+  },
+  "dynamic_active_ratio": 0.5,
+  "triggered": false
+}

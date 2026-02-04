@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Luna Mobile Realtime Client</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .server-config {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+        
+        .server-config label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .server-config input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        button {
+            font-size: 16px;
+            padding: 10px 16px;
+            margin: 4px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        #status {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .badge-ok {
+            background: #e3fcef;
+            color: #0f7a3b;
+        }
+        
+        .badge-warn {
+            background: #fff4e5;
+            color: #a15c00;
+        }
+        
+        .badge-error {
+            background: #ffecec;
+            color: #b3261e;
+        }
+        
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        
+        #preview {
+            margin-top: 15px;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        #log {
+            margin-top: 15px;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f7f7f7;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        video, canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌙 Luna Badge Realtime (1.3.x)</h2>
+        
+        <div class="server-config">
+            <label>服务器 IP:</label>
+            <input id="serverIp" type="text" value="" placeholder="192.168.1.10">
+            <button onclick="saveIp()" style="margin-top: 8px; width: 100%;">保存</button>
+        </div>
+        
+        <div style="margin-top: 15px;">
+            <button onclick="connectWS()">连接 WebSocket</button>
+            <button onclick="disconnectWS()">断开 WebSocket</button>
+        </div>
+        
+        <div id="status">
+            WS 状态: <span id="wsState" class="badge badge-error">未连接</span><br>
+            心跳: <span id="hbState" class="badge badge-warn">无</span><br>
+            连续导航: <span id="navState" class="badge badge-warn">停止</span>
+        </div>
+        
+        <hr>
+        
+        <div>
+            <button onclick="startContinuous()">开始连续导航 (200ms)</button>
+            <button onclick="stopContinuous()">停止连续导航</button>
+        </div>
+        
+        <video id="video" autoplay playsinline></video>
+        <canvas id="canvas"></canvas>
+        <img id="preview" alt="最近一帧"/>
+        
+        <div id="log"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        let hbTimer = null;
+        let lastHeartbeat = null;
+        let captureTimer = null;
+        let sending = false;
+
+        function log(msg) {
+            const el = document.getElementById("log");
+            const ts = new Date().toISOString().substring(11, 23);
+            el.textContent = `[${ts}] ${msg}\n` + el.textContent;
+        }
+
+        function setBadge(id, text, cls) {
+            const el = document.getElementById(id);
+            el.textContent = text;
+            el.className = "badge " + cls;
+        }
+
+        function loadIp() {
+            const saved = localStorage.getItem("luna_server_ip");
+            if (saved) {
+                document.getElementById("serverIp").value = saved;
+            } else {
+                // 尝试从当前域名获取 IP
+                const hostname = window.location.hostname;
+                if (hostname && hostname !== "localhost" && hostname !== "127.0.0.1") {
+                    document.getElementById("serverIp").value = hostname;
+                }
+            }
+        }
+
+        function saveIp() {
+            const ip = document.getElementById("serverIp").value.trim();
+            localStorage.setItem("luna_server_ip", ip);
+            log(`已保存服务器 IP: ${ip}`);
+        }
+
+        function getWsUrl() {
+            const ip = document.getElementById("serverIp").value.trim();
+            return `ws://${ip}:8898/ws`;
+        }
+
+        function getHttpBase() {
+            const ip = document.getElementById("serverIp").value.trim();
+            return `http://${ip}:8899`;
+        }
+
+        // ===== WebSocket 连接控制 =====
+        function connectWS() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                log("WS 已连接");
+                return;
+            }
+
+            const url = getWsUrl();
+            log("连接 WebSocket: " + url);
+            ws = new WebSocket(url);
+
+            ws.onopen = () => {
+                log("WebSocket 已连接");
+                setBadge("wsState", "已连接", "badge-ok");
+            };
+
+            ws.onclose = () => {
+                log("WebSocket 已断开");
+                setBadge("wsState", "未连接", "badge-error");
+                setBadge("hbState", "无", "badge-warn");
+                stopContinuous();
+            };
+
+            ws.onerror = (e) => {
+                log("WebSocket 错误: " + e);
+                setBadge("wsState", "错误", "badge-error");
+            };
+
+            ws.onmessage = (ev) => {
+                try {
+                    const data = JSON.parse(ev.data);
+                    handleWsMessage(data);
+                } catch (e) {
+                    log("收到非JSON消息: " + ev.data);
+                }
+            };
+        }
+
+        function disconnectWS() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+            stopContinuous();
+        }
+
+        // ===== WebSocket 消息处理 =====
+        function handleWsMessage(data) {
+            const type = data.type;
+            
+            if (type === "heartbeat") {
+                lastHeartbeat = new Date();
+                setBadge("hbState", "正常", "badge-ok");
+                return;
+            }
+            
+            if (type === "pong") {
+                log("收到 pong");
+                return;
+            }
+            
+            if (type === "nav_result") {
+                const nav = data.nav || {};
+                const instruction = nav.instruction || nav.message || JSON.stringify(nav);
+                log("导航指令: " + instruction);
+                
+                // 显示检测结果
+                if (data.det && data.det.length > 0) {
+                    log(`检测到 ${data.det.length} 个对象`);
+                }
+                
+                // 播放音频（如果有）
+                if (data.audio) {
+                    playAudio(data.audio);
+                }
+                return;
+            }
+            
+            if (type === "error") {
+                log("错误: " + data.message);
+                return;
+            }
+            
+            log("未知消息: " + JSON.stringify(data));
+        }
+
+        // ===== 连续导航：摄像头抓帧，每 200ms 发送一帧 =====
+        async function startCamera() {
+            const video = document.getElementById("video");
+            if (video.srcObject) return;
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment" },
+                    audio: false
+                });
+                video.srcObject = stream;
+                await new Promise(res => {
+                    video.onloadedmetadata = () => res();
+                });
+                log("摄像头已打开");
+            } catch (e) {
+                log("打开摄像头失败: " + e);
+                throw e;
+            }
+        }
+
+        function stopCamera() {
+            const video = document.getElementById("video");
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(t => t.stop());
+                video.srcObject = null;
+                log("摄像头已关闭");
+            }
+        }
+
+        async function startContinuous() {
+            if (!ws || ws.readyState !== WebSocket.OPEN) {
+                log("请先连接 WebSocket");
+                return;
+            }
+
+            try {
+                await startCamera();
+            } catch (e) {
+                log("无法启动摄像头: " + e);
+                return;
+            }
+
+            if (captureTimer) {
+                log("连续导航已在运行");
+                return;
+            }
+
+            setBadge("navState", "运行中", "badge-ok");
+            log("开始连续导航 (200ms)");
+
+            const video = document.getElementById("video");
+            const canvas = document.getElementById("canvas");
+            const preview = document.getElementById("preview");
+            const ctx = canvas.getContext("2d");
+
+            captureTimer = setInterval(() => {
+                if (!video.srcObject) return;
+                if (sending) return;
+                if (!ws || ws.readyState !== WebSocket.OPEN) return;
+
+                const vw = video.videoWidth;
+                const vh = video.videoHeight;
+                if (!vw || !vh) return;
+
+                // 适当缩放，减少带宽和推理负担
+                const targetW = 320;
+                const targetH = Math.floor(vh * (targetW / vw));
+                canvas.width = targetW;
+                canvas.height = targetH;
+
+                ctx.drawImage(video, 0, 0, targetW, targetH);
+                const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+                preview.src = dataUrl;
+                preview.style.display = "block";
+
+                const base64 = dataUrl.split(",")[1];
+
+                const payload = JSON.stringify({
+                    type: "frame",
+                    image: base64
+                });
+
+                try {
+                    sending = true;
+                    ws.send(payload);
+                } catch (e) {
+                    log("发送帧失败: " + e);
+                } finally {
+                    // 简单节流：发送动作完就释放
+                    setTimeout(() => {
+                        sending = false;
+                    }, 50);
+                }
+            }, 200);
+        }
+
+        function stopContinuous() {
+            if (captureTimer) {
+                clearInterval(captureTimer);
+                captureTimer = null;
+                log("已停止连续导航");
+            }
+            stopCamera();
+            setBadge("navState", "停止", "badge-warn");
+        }
+
+        // ===== 音频播放 =====
+        function playAudio(audioBase64) {
+            try {
+                const audioData = atob(audioBase64);
+                const len = audioData.length;
+                const audioBuffer = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    audioBuffer[i] = audioData.charCodeAt(i);
+                }
+                const blob = new Blob([audioBuffer], {type: "audio/mpeg"});
+                const url = URL.createObjectURL(blob);
+                const audio = new Audio(url);
+                audio.play().catch(e => {
+                    log("音频播放失败: " + e);
+                });
+                log("播放导航语音");
+            } catch (e) {
+                log("音频解码失败: " + e);
+            }
+        }
+
+        // ===== 页面初始化 =====
+        window.addEventListener("load", () => {
+            loadIp();
+        });
+    </script>
+</body>
+</html>
+

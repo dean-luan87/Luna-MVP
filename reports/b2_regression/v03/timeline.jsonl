@@ -1,0 +1,2 @@
+{"version": "v03", "frame_idx": 3599, "t_video": 120.01645362992475, "decision": "CONDITION_CHANGE", "confidence": 0.6, "main_factor": "path", "level": "CONDITION_CHANGE", "impact": "NEED_SLOW_DOWN"}
+{"version": "v03", "frame_idx": 8997, "t_video": 300.02446049136785, "decision": "INTERRUPT", "confidence": 1.0, "main_factor": "event", "level": "INTERRUPT", "impact": "NEED_STOP"}

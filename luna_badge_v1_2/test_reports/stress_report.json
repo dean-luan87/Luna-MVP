@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-12-01T14:44:34.178575",
+  "duration_sec": 60.005467891693115,
+  "threads": 2,
+  "test_count": 58,
+  "success_count": 58,
+  "error_count": 0,
+  "error_rate": 0.0,
+  "success_rate": 100.0,
+  "cpu_usage": 35.08,
+  "mem_usage": 71.54,
+  "errors": []
+}

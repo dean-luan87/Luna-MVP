@@ -1,0 +1,177 @@
+{
+  "error_20251105150710_0": {
+    "error_id": "error_20251105150710_0",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:07:10.922822",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": null,
+    "correction_source": null,
+    "correction_timestamp": null,
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150759_1": {
+    "error_id": "error_20251105150759_1",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:07:59.893409",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": "用户纠正：应该向左转",
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:07:59.893647",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150807_2": {
+    "error_id": "error_20251105150807_2",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:08:07.733685",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": "用户纠正：应该向左转",
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:08:07.734148",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150853_3": {
+    "error_id": "error_20251105150853_3",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:08:53.838231",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "应该向左转",
+      "notes": "用户纠正：应该向左转"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:08:53.839682",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150900_4": {
+    "error_id": "error_20251105150900_4",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:09:00.012985",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "应该向左转",
+      "notes": "用户纠正：应该向左转"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:09:00.013656",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150922_5": {
+    "error_id": "error_20251105150922_5",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:09:22.708006",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "应该向左转",
+      "notes": "用户纠正：应该向左转"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:09:22.708447",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150929_6": {
+    "error_id": "error_20251105150929_6",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:09:29.748060",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "应该向左转",
+      "notes": "用户纠正：应该向左转"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:09:29.748514",
+    "learned": false,
+    "applied_to_other_cases": 0
+  },
+  "error_20251105150949_7": {
+    "error_id": "error_20251105150949_7",
+    "error_type": "navigation",
+    "timestamp": "2025-11-05T15:09:49.788514",
+    "user_id": null,
+    "context": {
+      "location": "test_location",
+      "action": "turn_left"
+    },
+    "user_input": "向左转",
+    "system_response": "向右转",
+    "expected_response": "向左转",
+    "error_reason": null,
+    "error_details": {},
+    "correction": {
+      "solution": "应该向左转",
+      "notes": "用户纠正：应该向左转"
+    },
+    "correction_source": "user",
+    "correction_timestamp": "2025-11-05T15:09:49.789017",
+    "learned": false,
+    "applied_to_other_cases": 0
+  }
+}

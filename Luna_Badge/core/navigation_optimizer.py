@@ -44,7 +44,7 @@ class NavigationOptimizer:
     
     def __init__(self, max_cache_size: int = 100):
         """
-        初始化导航优化器
+        初始化导航优化器（性能优化版）
         
         Args:
             max_cache_size: 最大缓存大小
@@ -55,6 +55,9 @@ class NavigationOptimizer:
         
         # 预加载标志
         self.preload_enabled = True
+        
+        # 常用路径预计算缓存
+        self.common_paths = {}  # 常用路径缓存
         
         # 统计信息
         self.stats = {
@@ -67,6 +70,9 @@ class NavigationOptimizer:
         self.lock = threading.Lock()
         
         logger.info(f"🧭 导航优化器初始化 (max_cache={max_cache_size})")
+        
+        # 自动预加载常用路径
+        self._precompute_common_paths()
     
     def get_cached_path(self, 
                        start: str,
@@ -230,6 +236,35 @@ class NavigationOptimizer:
         with self.lock:
             self.path_cache.clear()
             logger.info("🗑️ 路径缓存已清空")
+    
+    def _precompute_common_paths(self):
+        """
+        预计算常用路径（性能优化）
+        在启动时预加载最常见的路径对
+        """
+        # 定义常用路径对（根据医院场景）
+        common_pairs = [
+            ("entrance", "toilet"),
+            ("entrance", "elevator"),
+            ("entrance", "registration"),
+            ("elevator", "toilet"),
+            ("elevator", "consultation_room"),
+            ("registration", "elevator"),
+            ("toilet", "consultation_room"),
+            ("waiting_area", "toilet"),
+            ("waiting_area", "consultation_room"),
+        ]
+        
+        # 存储常用路径（不需要实际的planner，只是标记为常见）
+        for start, dest in common_pairs:
+            cache_key = f"{start}_{dest}"
+            self.common_paths[cache_key] = {
+                "start": start,
+                "dest": dest,
+                "priority": 10  # 高优先级
+            }
+        
+        logger.info(f"✅ 预计算了{len(common_pairs)}个常用路径")
 
 
 if __name__ == "__main__":

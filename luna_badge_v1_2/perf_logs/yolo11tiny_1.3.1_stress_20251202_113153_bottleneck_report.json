@@ -1,0 +1,12 @@
+{
+  "base": "yolo11tiny_1.3.1_stress_20251202_113153",
+  "avg_total_ms": 0.05,
+  "avg_det_ms": 0.02,
+  "avg_nav_ms": 0.03,
+  "avg_overhead_ms": 0.0,
+  "share": {
+    "det_pct": 47.6,
+    "nav_pct": 51.4,
+    "overhead_pct": 0.9
+  }
+}

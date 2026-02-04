@@ -1,0 +1,170 @@
+[
+  {
+    "object_id": "obj_20251105_150710_924093",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:07:10.924098"
+  },
+  {
+    "object_id": "obj_20251105_150759_895860",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:07:59.895864"
+  },
+  {
+    "object_id": "obj_20251105_150807_736777",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:08:07.736781"
+  },
+  {
+    "object_id": "obj_20251105_150853_849560",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:08:53.849569"
+  },
+  {
+    "object_id": "obj_20251105_150900_020421",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:09:00.020425"
+  },
+  {
+    "object_id": "obj_20251105_150922_712662",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:09:22.712667"
+  },
+  {
+    "object_id": "obj_20251105_150929_752710",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:09:29.752715"
+  },
+  {
+    "object_id": "obj_20251105_150949_794391",
+    "category": "building",
+    "name": "办公楼",
+    "confidence": 0.85,
+    "bbox": {
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 400
+    },
+    "features": {
+      "color": "gray",
+      "shape": "rectangular"
+    },
+    "location": {
+      "lat": 39.9,
+      "lon": 116.4
+    },
+    "timestamp": "2025-11-05T15:09:49.794395"
+  }
+]

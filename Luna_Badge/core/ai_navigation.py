@@ -276,37 +276,20 @@ class AINavigation:
     
     def initialize_modules(self) -> bool:
         """
-        初始化所有AI模块
+        初始化所有AI模块（统一使用嵌入式平台）
         
         Returns:
             初始化是否成功
         """
         try:
-            # 根据平台类型初始化不同的模块
-            if config_manager.is_mac_platform():
-                self._initialize_mac_modules()
-            else:
-                self._initialize_embedded_modules()
+            # 统一使用嵌入式平台模块
+            self._initialize_embedded_modules()
             
             return True
             
         except Exception as e:
             print(f"AI模块初始化失败: {e}")
             return False
-    
-    def _initialize_mac_modules(self):
-        """初始化Mac平台的AI模块"""
-        # 环境检测模块
-        self.modules[NavigationModule.ENVIRONMENT_DETECT] = MacEnvironmentDetector()
-        
-        # 天气故障保护模块
-        self.modules[NavigationModule.WEATHER_FAIL_SAFE] = MacWeatherFailSafe()
-        
-        # 指示牌导航模块
-        self.modules[NavigationModule.SIGNBOARD_NAVIGATION] = MacSignboardNavigation()
-        
-        # 语音路径理解模块
-        self.modules[NavigationModule.SPEECH_ROUTE_UNDERSTAND] = MacSpeechRouteUnderstand()
     
     def _initialize_embedded_modules(self):
         """初始化嵌入式平台的AI模块"""
@@ -511,40 +494,7 @@ class AINavigation:
             "modules_count": len(self.modules)
         }
 
-# Mac平台AI模块基类
-class MacEnvironmentDetector:
-    """Mac平台环境检测器"""
-    
-    def detect_environment(self) -> Dict[str, Any]:
-        """检测环境"""
-        # TODO: 实现Mac平台的环境检测逻辑
-        return {"success": True, "environment_type": "人行道", "safety_level": "安全"}
-
-class MacWeatherFailSafe:
-    """Mac平台天气故障保护器"""
-    
-    def check_weather(self) -> Dict[str, Any]:
-        """检查天气"""
-        # TODO: 实现Mac平台的天气检查逻辑
-        return {"success": True, "status": "正常"}
-
-class MacSignboardNavigation:
-    """Mac平台指示牌导航器"""
-    
-    def detect_signboards(self) -> Dict[str, Any]:
-        """检测指示牌"""
-        # TODO: 实现Mac平台的指示牌检测逻辑
-        return {"success": True, "signboards": []}
-
-class MacSpeechRouteUnderstand:
-    """Mac平台语音路径理解器"""
-    
-    def understand_route(self) -> Dict[str, Any]:
-        """理解路径"""
-        # TODO: 实现Mac平台的语音路径理解逻辑
-        return {"success": True, "summary": "前方两个红绿灯后右转"}
-
-# 嵌入式平台AI模块基类
+# 嵌入式平台AI模块基类（唯一平台支持）
 class EmbeddedEnvironmentDetector:
     """嵌入式平台环境检测器"""
     

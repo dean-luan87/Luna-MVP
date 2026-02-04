@@ -96,12 +96,19 @@ class JSONLogger:
             return False
     
     def log_recognition_result(self, 
-                             timestamp: str,
-                             objects: list,
-                             texts: list,
-                             description: str,
-                             audio_input: str = "",
-                             processing_time: float = 0.0) -> bool:
+                            timestamp: str,
+                            objects: list,
+                            texts: list,
+                            description: str,
+                            audio_input: str = "",
+                            speech_input: Optional[str] = None,
+                            system_facts: Optional[Dict[str, Any]] = None,
+                            processing_time: float = 0.0,
+                            env_mode: Optional[Dict[str, Any]] = None,
+                            advice_id: Optional[str] = None,
+                            advice_ids: Optional[list] = None,
+                            advice_category: Optional[str] = None,
+                            advice_is_safety: Optional[bool] = None) -> bool:
         """
         记录识别结果到JSON日志
         
@@ -122,9 +129,22 @@ class JSONLogger:
             "texts": texts,
             "description": description,
             "audio_input": audio_input,
+            "speech_input": speech_input if speech_input is not None else audio_input,
             "processing_time": processing_time,
             "status": "success"
         }
+        if system_facts is not None:
+            log_entry["system_facts"] = system_facts
+        if env_mode is not None:
+            log_entry["env_mode"] = env_mode
+        if advice_id is not None:
+            log_entry["advice_id"] = advice_id
+        if advice_ids is not None:
+            log_entry["advice_ids"] = advice_ids
+        if advice_category is not None:
+            log_entry["advice_category"] = advice_category
+        if advice_is_safety is not None:
+            log_entry["advice_is_safety"] = advice_is_safety
         
         return self.log(log_entry)
     

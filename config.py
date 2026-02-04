@@ -4,6 +4,7 @@ Luna 实体徽章 MVP 配置文件
 """
 
 import os
+import platform
 
 # 项目根目录
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -37,11 +38,19 @@ MODEL_PATHS = {
 }
 
 # 摄像头配置
+_env_camera_index = os.environ.get("CAMERA_INDEX")
+try:
+    _camera_index = int(_env_camera_index) if _env_camera_index is not None else 0
+except ValueError:
+    _camera_index = 0
+
+_default_backend = "avfoundation" if platform.system() == "Darwin" else "default"
 CAMERA_CONFIG = {
-    'camera_index': 0,  # 默认摄像头索引
-    'width': 640,
-    'height': 480,
-    'fps': 30
+    "camera_index": _camera_index,  # 显式配置（可用 CAMERA_INDEX 覆盖）
+    "camera_backend": os.environ.get("CAMERA_BACKEND", _default_backend),
+    "width": 640,
+    "height": 480,
+    "fps": 30,
 }
 
 # 日志配置
@@ -61,6 +70,22 @@ PROCESSING_CONFIG = {
     'description_max_length': 200  # 最大描述长度
 }
 
+# 调试配置（v1.8.4: Risk Debug Snapshot）
+DEBUG_CONFIG = {
+    "enable_risk_debug": True,  # 是否启用 Risk 调试快照日志输出（测试时启用）
+    "enable_risk_console": False,  # 是否启用 Risk 调试控制台输出（P0.5，暂不实现）
+    # "enable_risk_overlay": False,  # 是否启用 Risk 调试 Overlay（P1，v1.8.5+，暂不实现）
+}
+
+# Shadow Mode 配置（v1.8.4: 真实模型接入第一阶段）
+# Shadow Mode = 只打日志，不播报
+# 正确顺序：模型输出 → RiskAdvisoryService → RiskDebugSnapshot（日志） → 人工/离线验证 → 确认稳定后开启播报
+RISK_SHADOW_MODE = False  # True = 只打日志，不播报；False = 正常播报
+
+# L) A3 影子运行模式 v0：算=全部照算，说=永远不说
+# 系统完整运行 Eligibility/Rhythm/Engagement/Arbitration，唯一不同：decision 永远不执行
+A3_SHADOW_MODE = os.environ.get("A3_SHADOW_MODE", "false").lower() in ("1", "true", "yes")
+
 # 输出配置
 OUTPUT_CONFIG = {
     'print_results': True,
@@ -69,3 +94,11 @@ OUTPUT_CONFIG = {
     'show_camera_feed': True
 }
 
+
+
+# Global log level (default INFO; override via env LOG_LEVEL)
+LOG_LEVEL = __import__('os').environ.get('LOG_LEVEL', 'INFO')
+
+# V1.8.1: Observer Mode 配置
+# 可以通过环境变量 OBSERVER_MODE_ENABLED 覆盖
+OBSERVER_MODE_ENABLED = os.environ.get('OBSERVER_MODE_ENABLED', 'false').lower() == 'true'

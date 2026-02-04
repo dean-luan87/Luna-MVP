@@ -1,0 +1,52 @@
+{
+  "test_user_001": {
+    "user_id": "test_user_001",
+    "total_sessions": 8,
+    "total_distance": 8000.0,
+    "total_duration": 4800.0,
+    "average_speed": 1.6666666666666667,
+    "time_preferences": {
+      "afternoon": 8
+    },
+    "day_preferences": {
+      "wednesday": 8
+    },
+    "frequent_routes": [
+      {
+        "start": {
+          "name": "起点",
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        "end": {
+          "name": "终点",
+          "lat": 39.91,
+          "lon": 116.41
+        },
+        "count": 8
+      }
+    ],
+    "speed_patterns": {
+      "afternoon": 1.6666666666666665
+    },
+    "route_preferences": {
+      "favorite_routes": [
+        {
+          "start": {
+            "name": "起点",
+            "lat": 39.9,
+            "lon": 116.4
+          },
+          "end": {
+            "name": "终点",
+            "lat": 39.91,
+            "lon": 116.41
+          },
+          "count": 8
+        }
+      ],
+      "route_count": 1
+    },
+    "last_updated": "2025-11-05T15:09:49.793269"
+  }
+}

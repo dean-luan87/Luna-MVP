@@ -1,0 +1,13 @@
+{
+  "ts": 1764562716.3263261,
+  "type": "error",
+  "cpu": 0.0,
+  "mem": 73.2,
+  "domain": "navigation.path",
+  "code": "NAV_STUCK",
+  "msg": "Navigation stuck: state_stuck (elapsed: 1.04s)",
+  "reason": "state_stuck",
+  "elapsed_sec": 1.0398128032684326,
+  "severity": 3,
+  "state": "navigating"
+}

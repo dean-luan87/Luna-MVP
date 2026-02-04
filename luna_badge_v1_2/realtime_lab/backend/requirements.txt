@@ -1,0 +1,10 @@
+flask
+flask-sock
+ultralytics
+pillow
+psutil
+onnxruntime
+opencv-python
+pyyaml
+numpy
+

@@ -1,0 +1,49 @@
+{
+  "behavior_profile_delta": {
+    "baseline": {
+      "recovery_profile": "fast",
+      "safety_margin_profile": "tight",
+      "stability_profile": "oscillating"
+    },
+    "candidate": {
+      "recovery_profile": "fast",
+      "safety_margin_profile": "tight",
+      "stability_profile": "oscillating"
+    }
+  },
+  "event_type_mix_delta": {
+    "baseline": {
+      "AUTH_DROP": 1,
+      "RISK_FALL": 1,
+      "RISK_RISE": 1
+    },
+    "candidate": {
+      "AUTH_DROP": 1,
+      "RISK_FALL": 1,
+      "RISK_RISE": 1
+    }
+  },
+  "events_delta": {
+    "baseline": {
+      "AUTH_DROP": 1,
+      "RISK_FALL": 1,
+      "RISK_RISE": 1
+    },
+    "candidate": {
+      "AUTH_DROP": 1,
+      "RISK_FALL": 1,
+      "RISK_RISE": 1
+    }
+  },
+  "metrics_delta": {
+    "risk_to_authority_lag_ms_p90": {
+      "baseline": 0.2811,
+      "candidate": 0.1512
+    }
+  },
+  "root_cause_hint_delta": {
+    "baseline": {},
+    "candidate": {}
+  },
+  "schema_version": "ra_compare.v1"
+}

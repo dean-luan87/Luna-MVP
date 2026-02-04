@@ -1,0 +1,7 @@
+{
+  "name": "bus_enter",
+  "keyword": "公交站 公交车站",
+  "expected_labels": ["bus", "person", "bus_stop"]
+}
+
+

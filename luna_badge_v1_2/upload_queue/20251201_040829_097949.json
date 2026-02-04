@@ -1,0 +1,9 @@
+{
+  "ts": 1764562109.097364,
+  "type": "selfheal_decision",
+  "cpu": 0.0,
+  "mem": 73.2,
+  "anomaly": {
+    "code": "CAMERA_DROP"
+  }
+}

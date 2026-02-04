@@ -1,0 +1,13 @@
+{
+  "scenario": "static_stay",
+  "frames": 286,
+  "risk_objects": 2,
+  "max_risk_level": 0.7647499999999999,
+  "max_delta_risk": 0.13300000000000012,
+  "trend_distribution": {
+    "APPROACHING": 2,
+    "STABLE": 569
+  },
+  "dynamic_active_ratio": 0.500875656742557,
+  "triggered": true
+}

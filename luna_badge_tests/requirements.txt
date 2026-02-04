@@ -1,0 +1,25 @@
+# Luna Badge 测试项目依赖
+
+# 测试框架
+pytest>=8.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+
+# 类型检查（可选）
+mypy>=1.0.0
+typeguard>=4.0.0
+
+# 其他测试工具
+anyio>=4.0.0
+
+
+
+
+
+
+
+
+
+
+
+

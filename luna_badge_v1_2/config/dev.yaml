@@ -1,0 +1,28 @@
+# Luna Badge 开发环境配置
+# 覆盖 default.yaml 中的配置
+
+env: dev
+
+# 开发环境使用 DEBUG 级别日志
+logging:
+  level: DEBUG
+
+# 开发环境可以使用更多线程
+concurrency:
+  default_worker_threads: 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

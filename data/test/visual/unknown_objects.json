@@ -1,0 +1,34 @@
+{
+  "unknown_20251105133425_0": {
+    "unknown_id": "unknown_20251105133425_0",
+    "timestamp": "2025-11-05T13:34:25.606817",
+    "appearance_description": "橙色锥形物体",
+    "image_features": {
+      "shape": "cone",
+      "color": "orange"
+    },
+    "location": {
+      "x": 1.5,
+      "y": 2.0
+    },
+    "learning_priority": 5,
+    "attempted_learning": true,
+    "learned": true
+  },
+  "unknown_20251105133425_1": {
+    "unknown_id": "unknown_20251105133425_1",
+    "timestamp": "2025-11-05T13:34:25.608524",
+    "appearance_description": "蓝色矩形指示牌",
+    "image_features": {
+      "shape": "rectangular",
+      "color": "blue"
+    },
+    "location": {
+      "x": 3.0,
+      "y": 4.0
+    },
+    "learning_priority": 5,
+    "attempted_learning": false,
+    "learned": false
+  }
+}

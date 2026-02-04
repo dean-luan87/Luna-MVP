@@ -1,0 +1,276 @@
+{
+  "test_user_001": [
+    {
+      "session_id": "session_20251105_150710_test_user_001",
+      "timestamp": "2025-11-05T15:07:10.923597",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150759_test_user_001",
+      "timestamp": "2025-11-05T15:07:59.895126",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150807_test_user_001",
+      "timestamp": "2025-11-05T15:08:07.735854",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150853_test_user_001",
+      "timestamp": "2025-11-05T15:08:53.846950",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150900_test_user_001",
+      "timestamp": "2025-11-05T15:09:00.019651",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150922_test_user_001",
+      "timestamp": "2025-11-05T15:09:22.711748",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150929_test_user_001",
+      "timestamp": "2025-11-05T15:09:29.751681",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    },
+    {
+      "session_id": "session_20251105_150949_test_user_001",
+      "timestamp": "2025-11-05T15:09:49.793250",
+      "start_location": {
+        "name": "起点",
+        "lat": 39.9,
+        "lon": 116.4
+      },
+      "end_location": {
+        "name": "终点",
+        "lat": 39.91,
+        "lon": 116.41
+      },
+      "route": [
+        {
+          "lat": 39.9,
+          "lon": 116.4
+        },
+        {
+          "lat": 39.905,
+          "lon": 116.405
+        },
+        {
+          "lat": 39.91,
+          "lon": 116.41
+        }
+      ],
+      "duration": 600.0,
+      "distance": 1000.0,
+      "average_speed": 1.6666666666666667,
+      "weather": "sunny",
+      "time_of_day": "afternoon",
+      "day_of_week": "wednesday"
+    }
+  ]
+}

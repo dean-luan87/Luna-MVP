@@ -1,0 +1,12 @@
+{
+  "scenario": "multi_risk_overlap",
+  "frames": 48,
+  "risk_objects": 2,
+  "max_risk_level": 0.665,
+  "max_delta_risk": 0.0,
+  "trend_distribution": {
+    "STABLE": 96
+  },
+  "dynamic_active_ratio": 0.5,
+  "triggered": false
+}
