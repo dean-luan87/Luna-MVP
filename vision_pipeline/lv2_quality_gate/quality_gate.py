@@ -103,6 +103,13 @@ class QualityGate:
                 passed=False,
                 reason="empty_frame",
             )
+        if float(np.mean(frame)) < 2.0:
+            return QualityResult(
+                frame_id=frame_id,
+                quality_score=0.0,
+                passed=False,
+                reason="black_frame",
+            )
         
         # 初始化质量分数
         quality_score = 1.0

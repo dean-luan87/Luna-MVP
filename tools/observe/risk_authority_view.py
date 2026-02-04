@@ -20,6 +20,8 @@ from luna_badge_v1_2.governance.observe.ra_view import (
 
 
 def _filter_window(timeline, window: str):
+    if window == "full":
+        return timeline
     if window.startswith("last_") and window.endswith("min"):
         minutes = float(window.replace("last_", "").replace("min", ""))
         cutoff = time.time() - minutes * 60

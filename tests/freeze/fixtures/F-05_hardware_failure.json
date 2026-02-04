@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "fixture_id": "F-05",
+    "scenario_type": "hardware_failure",
+    "description": "Hardware failed with gate blocked.",
+    "version": "1.0",
+    "tags": ["hardware_failure", "fail_safe"]
+  },
+  "system_snapshot": {
+    "ts": 4.0,
+    "frame_id": 5,
+    "context_mode": "NAVIGATION",
+    "system_facts": {
+      "perception_state": "READY",
+      "calibration_state": "OK",
+      "hardware_state": "FAILED",
+      "gate": "BLOCK"
+    },
+    "self_state": {
+      "position": {"x": 0.0, "y": 0.0},
+      "velocity": {"x": 0.0, "y": 0.0},
+      "heading": 0.0
+    },
+    "perceived_objects": [
+      {
+        "object_id": "obj_3",
+        "position": {"x": 1.0, "y": 0.0},
+        "velocity": {"x": 0.0, "y": 0.0},
+        "radius": 0.4,
+        "kind": "unknown"
+      }
+    ],
+    "environment": {
+      "restricted_zones": [],
+      "obstacles": []
+    }
+  },
+  "model_outputs": {
+    "candidate_actions": [
+      {
+        "model_id": "fixture_stub",
+        "model_version": "v1",
+        "confidence": 0.5,
+        "output": {"intent": "halt", "speed": 0.0},
+        "meta": {"fixture": "F-05"}
+      }
+    ]
+  }
+}

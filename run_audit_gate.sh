@@ -14,6 +14,22 @@ exit_code=$?
 if [ $exit_code -eq 0 ]; then
     echo ""
     echo "✅ Audit passed - Freeze gate open"
+    echo ""
+    echo "🔍 Running C Gate validation..."
+    python3 - <<'PY'
+from runtime.main_loop import MainLoop
+
+loop = MainLoop("runs/trace_c_gate.jsonl")
+loop.run_for_seconds(1)
+PY
+    python3 tools/validate_c_gate.py --trace runs/trace_c_gate.jsonl --out runs/c_gate_report.json
+    c_exit=$?
+    if [ $c_exit -ne 0 ]; then
+        echo ""
+        echo "❌ C Gate failed - blocking"
+        exit $c_exit
+    fi
+    echo "✅ C Gate passed"
     exit 0
 elif [ $exit_code -eq 1 ]; then
     echo ""

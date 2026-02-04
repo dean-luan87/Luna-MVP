@@ -33,6 +33,13 @@ class C1State(Enum):
     RECOVERING = "RECOVERING"
 
 
+class OcclusionState(Enum):
+    """遮挡状态（三态）"""
+    CLEAR = "CLEAR"
+    OCCLUDED = "OCCLUDED"
+    UNKNOWN = "UNKNOWN"
+
+
 class C1StateMachine:
     """
     C1 状态机
@@ -78,6 +85,7 @@ class C1StateMachine:
         motion_score: float,
         frame_diff: float,
         timestamp: float,
+        occlusion_state: Optional[OcclusionState] = None,
     ) -> Dict[str, Any]:
         """
         更新状态机
@@ -93,7 +101,7 @@ class C1StateMachine:
         prev_state = self.current_state
         
         # 更新 Protection Mode
-        protection_result = self._update_protection_mode(frame_diff, timestamp)
+        protection_result = self._update_protection_mode(frame_diff, timestamp, occlusion_state)
         
         # 如果 Protection Mode 激活，强制 SKIP_MODELING
         if self.protection_mode_active:
@@ -224,6 +232,7 @@ class C1StateMachine:
         self,
         frame_diff: float,
         timestamp: float,
+        occlusion_state: Optional[OcclusionState] = None,
     ) -> Dict[str, Any]:
         """
         更新 Protection Mode
@@ -252,15 +261,26 @@ class C1StateMachine:
                         self.recovery_start_time = timestamp
                         self.recovery_stable_start_time = timestamp
         
-        # 静态遮挡检测：frame_diff 连续低于阈值
-        if frame_diff < STATIC_DIFF_THRESHOLD:
-            self.low_diff_count += 1
-            if self.low_diff_count >= STATIC_FRAMES_THRESHOLD:
-                if not self.protection_mode_active:
-                    self.protection_mode_active = True
-                    self.protection_mode_start_time = timestamp
-                    self.protection_trigger_reason = "STATIC_OCCLUSION"
-                    return {"triggered": True, "reason": "STATIC_OCCLUSION"}
+        # UNKNOWN = 没看到，不允许触发遮挡保护
+        if occlusion_state == OcclusionState.UNKNOWN:
+            self.low_diff_count = 0
+            self.frame_diff_history = []
+            self.high_freq_jump_count = 0
+            self.last_frame_diff = frame_diff
+            return {"triggered": False, "reason": None}
+
+        # 静态遮挡检测：仅在 OCCLUDED 时允许触发
+        if occlusion_state == OcclusionState.OCCLUDED:
+            if frame_diff < STATIC_DIFF_THRESHOLD:
+                self.low_diff_count += 1
+                if self.low_diff_count >= STATIC_FRAMES_THRESHOLD:
+                    if not self.protection_mode_active:
+                        self.protection_mode_active = True
+                        self.protection_mode_start_time = timestamp
+                        self.protection_trigger_reason = "STATIC_OCCLUSION"
+                        return {"triggered": True, "reason": "STATIC_OCCLUSION"}
+            else:
+                self.low_diff_count = 0
         else:
             self.low_diff_count = 0
         

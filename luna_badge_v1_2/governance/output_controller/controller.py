@@ -32,6 +32,8 @@ from ..invariants import (
 from .debug_view import build_debug_view
 from ..risk_center import RiskCenter, build_world_snapshot
 from ..risk_center.vo import evaluate_vo
+from ..risk_center.phase3 import evaluate_phase3
+from ..risk_center.phase3.invariants import assert_phase3_invariants
 from ..risk_center.interfaces.envelope import evaluate_envelope
 from ..risk_center.interfaces.bus import EnvelopeBus
 
@@ -297,6 +299,32 @@ class ModelOutputController:
             authority_since = now_ts
 
         distortion_report = pre_distortion
+        phase3_context = {
+            "risk": {
+                "present": risk_signal.present,
+                "level": risk_signal.level,
+                "time_to_risk": risk_signal.time_to_event,
+                "vo": {
+                    "time_to_risk": vo_projection.time_to_risk,
+                    "min_distance": vo_projection.min_distance,
+                },
+            }
+        }
+        assert_phase3_invariants(phase3_context)
+        history = [
+            {
+                "time_to_risk": item.get("risk", {}).get("time_to_risk"),
+                "vo": item.get("risk", {}).get("vo", {}),
+            }
+            for item in (list(self._bc_snapshot_history)[-5:])
+        ] + [
+            {
+                "time_to_risk": phase3_context["risk"]["time_to_risk"],
+                "vo": phase3_context["risk"]["vo"],
+            }
+        ]
+        phase3_output = evaluate_phase3(history)
+
         bc_snapshot = {
             "authority": {
                 "raw": raw_authority.value,
@@ -323,6 +351,12 @@ class ModelOutputController:
                     "min_distance": vo_projection.min_distance,
                     "level": vo_projection.level,
                     "schema_version": vo_projection.schema_version,
+                },
+                "phase3": {
+                    "acceleration": phase3_output.acceleration.value,
+                    "curvature": phase3_output.curvature.value,
+                    "irreversibility": phase3_output.irreversibility.value,
+                    "schema_version": phase3_output.schema_version,
                 },
             },
             "distortion": asdict(distortion_report),

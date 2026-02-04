@@ -1,31 +1,56 @@
+import json
+import pathlib
 import pytest
 from luna_badge_v1_2.governance.output_controller.controller import ModelOutputController
 from luna_badge_v1_2.governance.risk_center.interfaces.signal import EnvelopeSignal
 
 
+FIXTURE_DIR = pathlib.Path(__file__).parent / "fixtures"
+FIXTURE_FILES = [
+    "F-01_clear_safe_world.json",
+    "F-02_static_obstacle_approaching.json",
+    "F-03_dynamic_crossing.json",
+    "F-04_perception_unstable.json",
+    "F-05_hardware_failure.json",
+]
+
+
+@pytest.fixture(params=FIXTURE_FILES, ids=lambda x: x.replace(".json", ""))
+def freeze_snapshot(request):
+    path = FIXTURE_DIR / request.param
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 @pytest.fixture
 def base_snapshot():
+    path = FIXTURE_DIR / "F-01_clear_safe_world.json"
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _unwrap_fixture(fixture: dict) -> dict:
+    snapshot = fixture["system_snapshot"]
     return {
-        "model_outputs": [
-            {
-                "model_id": "vision_model_v1",
-                "model_version": "v1",
-                "confidence": 0.9,
-                "meta": {},
-                "output": {"intent": "move", "speed": 0.2},
-            }
-        ],
-        "system_snapshot": {
-            "ts": 0.0,
-            "self": {"position": {"x": 0.0, "y": 0.0}, "velocity": {"x": 0.0, "y": 0.0}, "heading": 0.0},
-            "objects": [],
-            "restricted_zones": [],
-            "perception_state": "READY",
-            "calibration_state": "OK",
-            "hardware_state": "OK",
-            "control_distortion": "FALSE",
-            "gate": "PASS",
-        },
+        "ts": snapshot.get("ts", 0.0),
+        "frame_id": snapshot.get("frame_id"),
+        "context_mode": snapshot.get("context_mode"),
+        "self": snapshot.get("self_state", {}),
+        "objects": snapshot.get("perceived_objects", []),
+        "restricted_zones": snapshot.get("environment", {}).get("restricted_zones", []),
+        "perception_state": snapshot.get("system_facts", {}).get("perception_state"),
+        "calibration_state": snapshot.get("system_facts", {}).get("calibration_state"),
+        "hardware_state": snapshot.get("system_facts", {}).get("hardware_state"),
+        "gate": snapshot.get("system_facts", {}).get("gate"),
+        "control_distortion": snapshot.get("system_facts", {}).get("control_distortion", "FALSE"),
+    }
+
+
+@pytest.fixture
+def freeze_inputs(freeze_snapshot):
+    return {
+        "system_snapshot": _unwrap_fixture(freeze_snapshot),
+        "model_outputs": freeze_snapshot["model_outputs"]["candidate_actions"],
     }
 
 
@@ -57,3 +82,8 @@ def fixed_time(monkeypatch):
 
     monkeypatch.setattr(time, "time", lambda: 1000.0)
     return 1000.0
+
+
+@pytest.fixture
+def controller():
+    return ModelOutputController()

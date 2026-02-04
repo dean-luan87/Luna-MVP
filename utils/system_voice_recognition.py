@@ -24,6 +24,7 @@ class SystemVoiceRecognition:
         self.is_available = False
         self.is_listening = False
         self.recording_command = None
+        self.latest_transcript: str = ""
         self._initialize_recognition()
     
     def _initialize_recognition(self):
@@ -238,6 +239,7 @@ class SystemVoiceRecognition:
             
             # 转录音频
             text = self._transcribe_audio(audio_file)
+            self.latest_transcript = text or ""
             
             # 清理临时文件
             try:
@@ -280,6 +282,7 @@ class SystemVoiceRecognition:
             
             # 转录音频
             text = self._transcribe_audio(audio_file)
+            self.latest_transcript = text or ""
             
             # 清理临时文件
             try:

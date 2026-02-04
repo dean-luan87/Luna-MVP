@@ -29,7 +29,7 @@ from .c1_config import (
     FLICKER_COUNT_THRESHOLD,
     PROTECTION_MODE_DURATION_SEC,
 )
-from .c1_state_machine import C1StateMachine, C1State
+from .c1_state_machine import C1StateMachine, C1State, OcclusionState
 from .c1_decision_logger import C1DecisionLogger
 from .b2_decision_gate import B2DecisionGate
 from .c1_context_hints import CContextHints
@@ -99,6 +99,7 @@ class C1ActiveController:
         # 当前帧的 motion_score 和 frame_diff（用于 B2）
         self._current_motion_score: float = 0.0
         self._current_frame_diff: float = 0.0
+        self._current_occlusion_state: Optional[OcclusionState] = None
     
     # =========================
     # 节律闸门
@@ -128,6 +129,7 @@ class C1ActiveController:
         motion_score: float,
         frame_diff: float,
         timestamp: Optional[float] = None,
+        occlusion_state: Optional[OcclusionState] = None,
         scene_class: str = "allow_camera",
         b2_advisory: Optional[Any] = None,  # A5.2: B2 建议（可选，保留兼容）
         advisory_queue: Optional[Any] = None,  # B2 → C 对接方案：Advisory Queue
@@ -167,9 +169,10 @@ class C1ActiveController:
         # 衰减上下文提示（随时间降低影响）
         self.context_hints.decay(ts)
         
-        # 保存当前帧的 motion_score 和 frame_diff（用于 B2）
+        # 保存当前帧的 motion_score / frame_diff / occlusion_state（用于 B2 & 运行态快照）
         self._current_motion_score = motion_score
         self._current_frame_diff = frame_diff
+        self._current_occlusion_state = occlusion_state
         
         # v0.5: 生成并写入 C RuntimeProfile（每帧都写，类似 B）
         # 注意：在状态更新之前写入，以便捕获当前状态
@@ -178,7 +181,7 @@ class C1ActiveController:
         # ─────────────────────────────
         # 1. 每帧更新内部状态（不记录日志）
         # ─────────────────────────────
-        update = self._update_state(motion_score, frame_diff, ts)
+        update = self._update_state(motion_score, frame_diff, ts, occlusion_state)
         # update 示例：
         # {
         #   "emit_event": True/False,  # 关键：是否应该产出决策事件
@@ -391,6 +394,7 @@ class C1ActiveController:
         motion_score: float,
         frame_diff: float,
         timestamp: float,
+        occlusion_state: Optional[OcclusionState] = None,
     ) -> Dict[str, Any]:
         """
         更新状态（A5.4: C 真正用 B2 的地方）
@@ -444,6 +448,7 @@ class C1ActiveController:
             motion_score=adjusted_motion_score,
             frame_diff=frame_diff,
             timestamp=timestamp,
+            occlusion_state=occlusion_state,
         )
         
         # 更新当前状态（无论是否有变化）
@@ -564,7 +569,8 @@ class C1ActiveController:
                     "state": self._current_state.value,
                     "protection_active": self._protection_active,
                     "motion_score": self._current_motion_score,
-                    "frame_diff": self._current_frame_diff,
+                "frame_diff": self._current_frame_diff,
+                "occlusion_state": self._current_occlusion_state.value if self._current_occlusion_state else None,
                 }
             )
             

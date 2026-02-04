@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "fixture_id": "F-01",
+    "scenario_type": "clear_safe_world",
+    "description": "Open environment, no obstacles, stable perception.",
+    "version": "1.0",
+    "tags": ["safe", "baseline", "no_risk"]
+  },
+  "system_snapshot": {
+    "ts": 0.0,
+    "frame_id": 1,
+    "context_mode": "NAVIGATION",
+    "system_facts": {
+      "perception_state": "READY",
+      "calibration_state": "OK",
+      "hardware_state": "OK",
+      "gate": "PASS"
+    },
+    "self_state": {
+      "position": {"x": 0.0, "y": 0.0},
+      "velocity": {"x": 0.0, "y": 0.0},
+      "heading": 0.0
+    },
+    "perceived_objects": [],
+    "environment": {
+      "restricted_zones": [],
+      "obstacles": []
+    }
+  },
+  "model_outputs": {
+    "candidate_actions": [
+      {
+        "model_id": "fixture_stub",
+        "model_version": "v1",
+        "confidence": 0.5,
+        "output": {"intent": "move", "speed": 0.2},
+        "meta": {"fixture": "F-01"}
+      }
+    ]
+  }
+}

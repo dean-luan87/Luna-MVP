@@ -1,0 +1,9 @@
+{
+  "trace_records": 4966,
+  "checks": {
+    "trace_has_language_output": false,
+    "language_fields_present": false,
+    "no_decision_leak": true
+  },
+  "gate_pass": false
+}

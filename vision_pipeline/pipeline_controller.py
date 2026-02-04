@@ -15,6 +15,7 @@ Vision Pipeline Controller（视觉流水线控制器）
 import time
 from typing import Optional, Dict, Any, Tuple
 import numpy as np
+import cv2
 
 from .lv2_quality_gate import QualityGate, QualityResult
 from .lv3_semantic_router import SemanticRouter, RouteResult
@@ -35,10 +36,15 @@ from vision_pipeline.c1_controller.c1_shadow_controller import C1ShadowControlle
 from vision_pipeline.c1_controller.c1_config import C1_MODE_SHADOW_ONLY
 
 # Phase C1 Active Mode v0.2: 状态机
-from vision_pipeline.c1_controller.c1_state_machine import C1StateMachine, C1State
+from vision_pipeline.c1_controller.c1_state_machine import C1StateMachine, C1State, OcclusionState
 from vision_pipeline.c1_controller.c1_logger_v02 import C1LoggerV02
 from vision_pipeline.c1_controller.c1_decision_logger import C1DecisionLogger
 from vision_pipeline.c1_controller.c1_active_controller import C1ActiveController
+
+# 被动 ROI v0: motion → roi_count（复杂度信号，不进 C1/C2）
+from vision_perception_b1.passive_roi import compute_passive_roi_count
+# Path v0 / Branch v0: optical flow 方向一致性 → path_instability, branch_load
+from vision_perception_b1.passive_path import compute_path_and_branch
 
 # B2 v0.1: 上帝视角的大场景观察器 + 未来 5-10 秒任务链预演器
 from vision_pipeline.b2.b2_controller import B2Controller
@@ -77,23 +83,49 @@ class PipelineController:
         navigation_executor: Optional[NavigationExecutor] = None,
         modeling_executor: Optional[ModelingExecutor] = None,
         camera_handler: Optional[CameraHandler] = None,
+        video_path: Optional[str] = None,
     ):
         """
         初始化视觉流水线控制器
-        
+
         Args:
             quality_gate: 质量过滤层实例（可选，如果为 None 则创建默认实例）
             semantic_router: 语义路由器实例（可选，如果为 None 则创建默认实例）
             navigation_executor: 导航执行器实例（可选）
             modeling_executor: 世界建模执行器实例（可选）
             camera_handler: 摄像头处理器实例（可选，如果为 None 则创建默认实例）
+            video_path: 视频文件路径（可选，指定时从视频读取而非摄像头）
         """
         self.quality_gate = quality_gate or QualityGate()
         self.semantic_router = semantic_router or SemanticRouter()
         self.navigation_executor = navigation_executor
         self.modeling_executor = modeling_executor
         # v1.8.5 Phase B Step 1.1: CameraHandler 迁移到 PipelineController
-        self.camera_handler = camera_handler or CameraHandler()
+        if camera_handler is not None:
+            self.camera_handler = camera_handler
+        elif video_path:
+            self.camera_handler = CameraHandler(video_path=video_path)
+        else:
+            self.camera_handler = CameraHandler()
+        self._last_frame_gray: Optional[np.ndarray] = None
+        self._last_frame_context: Dict[str, Any] = {}
+        self.occlusion_ratio: float = 0.0
+        self.perception_state: str = "DEGRADED"
+        self.view_confidence: float = 1.0
+        self.frame_quality: str = "INVALID"
+        self._last_frame_ts: Optional[float] = None
+        self._motion_ema: Optional[float] = None
+        self.motion_instability: float = 0.0
+        self.roi_count: int = 0  # 被动 ROI v0：motion 空间分布计数
+        self.path_instability: float = 0.0  # Path v0：光流方向一致性
+        self.branch_load: float = 0.0  # Branch v0：有效运动方向数量密度
+        self._frame_id = 0
+        self._continuity = {
+            "valid_streak": 0,
+            "invalid_streak": 0,
+            "degraded_streak": 0,
+            "low_diff_streak": 0,
+        }
         
         # ✅ C1 控制器（新增）
         # C1 是有状态的（state machine），不能每帧 new
@@ -229,9 +261,12 @@ class PipelineController:
         # ===============================
         # Phase C1: Active Mode v0.2（状态机 + Protection Mode）
         # ===============================
-        # 从 context 中提取 C1 需要的信号（如果 context 为 None 则使用默认值）
-        motion_score = context.get("motion_score", 0.0) if context else 0.0
-        frame_diff_score = context.get("frame_diff_score", 0.0) if context else 0.0
+        # 从 context 中提取 C1 需要的信号（如果 context 为 None 则使用最近帧的缓存）
+        if context is None:
+            context = self._last_frame_context or {}
+        motion_score = context.get("motion_score", 0.0)
+        frame_diff_score = context.get("frame_diff_score", 0.0)
+        occlusion_state = context.get("occlusion_state", OcclusionState.UNKNOWN)
         scene_class = context.get("privacy_zone", "allow_camera") if context else "allow_camera"
         timestamp = time.time()
         
@@ -263,6 +298,7 @@ class PipelineController:
                 motion_score=motion_score,
                 frame_diff=frame_diff_score,
                 timestamp=timestamp,
+                occlusion_state=occlusion_state,
                 scene_class=scene_class,
                 b2_advisory=b2_advisory_for_c,  # A5.2: 传递 B2 建议（可选，保留兼容）
                 advisory_queue=self.advisory_queue,  # B2 → C 对接方案：Advisory Queue
@@ -970,11 +1006,269 @@ class PipelineController:
     def read_frame(self) -> Optional[np.ndarray]:
         """
         读取一帧图像（委托给 CameraHandler）
-        
+
         Returns:
             图像数据，如果失败返回None
         """
-        return self.camera_handler.read_frame()
+        frame = self.camera_handler.read_frame()
+        self._frame_id += 1
+        self._update_frame_context(frame, ts=time.time())
+        return frame
+
+    @property
+    def input_ended(self) -> bool:
+        """视频文件是否已播放完毕（仅当输入为视频时有效）"""
+        return getattr(self.camera_handler, "_video_ended", False)
+
+    @property
+    def video_fps(self) -> float:
+        """视频文件帧率（仅当输入为视频时有效，否则为 0）"""
+        if not getattr(self.camera_handler, "video_path", None):
+            return 0.0
+        return self.camera_handler.get_fps()
+
+    def get_frame_context(self) -> Dict[str, Any]:
+        """
+        获取最近一帧的感知上下文（用于 C1 / A3）
+        """
+        return dict(self._last_frame_context)
+
+    def _is_frame_valid(self, frame: Optional[np.ndarray]) -> bool:
+        if frame is None:
+            return False
+        if getattr(frame, "size", 0) == 0:
+            return False
+        mean_val = float(np.mean(frame))
+        return mean_val >= 2.0
+
+    def _compute_frame_metrics(self, frame: np.ndarray) -> Dict[str, Any]:
+        if len(frame.shape) == 3:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        else:
+            gray = frame
+
+        mean_luma = float(np.mean(gray))
+        avg_luminance = mean_luma / 255.0
+
+        if self._last_frame_gray is None:
+            frame_diff = 0.0
+            roi_count = 0
+            path_instability = 0.0
+            branch_load = 0.0
+        else:
+            diff = cv2.absdiff(gray, self._last_frame_gray)
+            frame_diff = float(np.mean(diff)) / 255.0
+            h, w = gray.shape[:2]
+            # 被动 ROI v0：motion 空间分布 → 候选区域计数
+            roi_count = compute_passive_roi_count(diff, h * w)
+            # Path v0 / Branch v0：单次光流 → path_instability, branch_load
+            path_instability, branch_load = compute_path_and_branch(self._last_frame_gray, gray)
+
+        # 运动评分：最小可用版本，使用帧差归一化值
+        motion_score = frame_diff
+
+        # 遮挡估计：基于边缘稀疏度（手挡/遮挡通常边缘极少）
+        edges = cv2.Canny(gray, 50, 150)
+        edge_density = float(np.mean(edges > 0))
+        edge_ref = 0.02
+        occlusion_ratio = 1.0 - min(1.0, edge_density / edge_ref) if edge_ref > 0 else 0.0
+
+        # 视角事实层 v0: 额外指标
+        laplacian_var = cv2.Laplacian(gray, cv2.CV_64F).var()
+        clarity = 1.0 / (1.0 + np.exp(-(laplacian_var - 100) / 20))
+        blur_score = 1.0 - min(1.0, max(0.0, clarity))
+        laplacian = cv2.Laplacian(gray, cv2.CV_64F)
+        high_energy = float(np.mean(np.abs(laplacian)))
+        noise_level = min(1.0, max(0.0, high_energy / 50.0))
+        eps = 0.01
+        freeze_score = 1.0 - min(1.0, frame_diff / eps) if eps > 0 else 0.0
+
+        self._last_frame_gray = gray
+
+        return {
+            "mean_luma": mean_luma,
+            "avg_luminance": avg_luminance,
+            "frame_diff_score": frame_diff,
+            "motion_score": motion_score,
+            "occlusion_ratio": occlusion_ratio,
+            "blur_score": blur_score,
+            "noise_level": noise_level,
+            "frame_diff": frame_diff,
+            "freeze_score": freeze_score,
+            "roi_count": roi_count,
+            "path_instability": path_instability,
+            "branch_load": branch_load,
+        }
+
+    def _update_continuity(self, frame_valid: bool, frame_quality: str, frame_diff: float) -> Dict[str, Any]:
+        if frame_valid:
+            self._continuity["valid_streak"] += 1
+            self._continuity["invalid_streak"] = 0
+        else:
+            self._continuity["invalid_streak"] += 1
+            self._continuity["valid_streak"] = 0
+
+        if frame_quality == "DEGRADED":
+            self._continuity["degraded_streak"] += 1
+        else:
+            self._continuity["degraded_streak"] = 0
+
+        if frame_diff < 0.05:
+            self._continuity["low_diff_streak"] += 1
+        else:
+            self._continuity["low_diff_streak"] = 0
+
+        return {
+            "valid_streak": self._continuity["valid_streak"],
+            "invalid_streak": self._continuity["invalid_streak"],
+            "degraded_streak": self._continuity["degraded_streak"],
+        }
+
+    def _model_status(self) -> Dict[str, str]:
+        ocr_up = False
+        if self.modeling_executor and getattr(self.modeling_executor, "ocr_processor", None):
+            ocr_up = True
+        return {
+            "b2_v02": "UP" if self.b2_v02_enabled else "DOWN",
+            "b2_v03": "UP" if self.b2_v03_enabled else "DOWN",
+            "ocr": "UP" if ocr_up else "DOWN",
+        }
+
+    def _compute_view_confidence(self, frame_quality: str, metrics: Dict[str, Any]) -> Dict[str, Any]:
+        if frame_quality == "INVALID":
+            return {
+                "view_confidence": 0.0,
+                "confidence_reason": "INVALID_FRAME",
+                "model_status": self._model_status(),
+            }
+
+        blur_score = float(metrics.get("blur_score", 0.0))
+        noise_level = float(metrics.get("noise_level", 0.0))
+        quality_score = max(0.0, 1.0 - max(blur_score, noise_level) * 0.5)
+
+        if frame_quality == "DEGRADED":
+            severity = max(blur_score, noise_level)
+            view_conf = max(0.3, min(0.5, 0.5 - 0.2 * severity))
+            return {
+                "view_confidence": view_conf,
+                "confidence_reason": "DEGRADED_QUALITY",
+                "model_status": self._model_status(),
+            }
+
+        model_status = self._model_status()
+        if any(v == "DOWN" for v in model_status.values()):
+            view_conf = min(0.6, 0.8 + 0.2 * quality_score)
+            return {
+                "view_confidence": view_conf,
+                "confidence_reason": "MODEL_DOWN",
+                "model_status": model_status,
+            }
+
+        return {
+            "view_confidence": 0.8 + 0.2 * quality_score,
+            "confidence_reason": "NORMAL",
+            "model_status": model_status,
+        }
+
+    def _update_frame_context(self, frame: Optional[np.ndarray], ts: Optional[float] = None) -> None:
+        # View Fact Layer v0: 仅事实，不做语义推断
+        now_ts = ts if ts is not None else time.time()
+        sampling_interval_ms = None
+        if self._last_frame_ts is not None:
+            sampling_interval_ms = (now_ts - self._last_frame_ts) * 1000.0
+        self._last_frame_ts = now_ts
+
+        if frame is None or getattr(frame, "size", 0) == 0:
+            frame_valid = False
+            metrics = {
+                "mean_luma": None,
+                "avg_luminance": None,
+                "blur_score": 1.0,
+                "noise_level": 1.0,
+                "frame_diff": 0.0,
+                "freeze_score": 1.0,
+                "motion_score": 0.0,
+                "frame_diff_score": 0.0,
+                "occlusion_ratio": 0.0,
+                "roi_count": 0,
+                "path_instability": 0.0,
+                "branch_load": 0.0,
+            }
+        else:
+            metrics = self._compute_frame_metrics(frame)
+            if sampling_interval_ms is not None and sampling_interval_ms > 200:
+                metrics["freeze_score"] = 0.0
+            freeze_score = float(metrics.get("freeze_score", 0.0))
+            mean_luma = metrics.get("mean_luma")
+            frame_valid = bool(mean_luma is not None and mean_luma >= 2.0 and freeze_score < 0.98)
+
+        frame_quality = "INVALID" if not frame_valid else "GOOD"
+        blur_score = float(metrics.get("blur_score", 0.0))
+        noise_level = float(metrics.get("noise_level", 0.0))
+        frame_diff = float(metrics.get("frame_diff", 0.0))
+
+        # v0.1: motion_instability (EMA + linear mapping)
+        alpha = 0.2
+        if self._motion_ema is None:
+            self._motion_ema = frame_diff
+        else:
+            self._motion_ema = alpha * frame_diff + (1.0 - alpha) * self._motion_ema
+        self.motion_instability = max(0.0, min(1.0, self._motion_ema * 8.0))
+
+        if frame_quality != "INVALID":
+            if blur_score > 0.6 or noise_level > 0.5:
+                frame_quality = "DEGRADED"
+            if frame_diff < 0.05:
+                if self._continuity["low_diff_streak"] + 1 >= 3:
+                    frame_quality = "DEGRADED"
+
+        continuity = self._update_continuity(frame_valid, frame_quality, frame_diff)
+        view_confidence = self._compute_view_confidence(frame_quality, metrics)
+
+        # 硬约束：仅在 GOOD 时允许遮挡判断
+        occlusion_ratio = float(metrics.get("occlusion_ratio", 0.0))
+        if frame_quality == "GOOD":
+            occlusion_state = OcclusionState.OCCLUDED if occlusion_ratio >= 0.8 else OcclusionState.CLEAR
+        else:
+            occlusion_state = OcclusionState.UNKNOWN
+
+        self.occlusion_ratio = occlusion_ratio
+        self.perception_state = "NORMAL" if frame_quality == "GOOD" else "DEGRADED"
+        self.view_confidence = float(view_confidence.get("view_confidence", 0.0))
+        self.frame_quality = frame_quality
+
+        # 被动 ROI v0 / Path v0 / Branch v0：只进 A3，不进 perception/C1/C2
+        self.roi_count = int(metrics.get("roi_count", 0))
+        self.path_instability = float(metrics.get("path_instability", 0.0))
+        self.branch_load = float(metrics.get("branch_load", 0.0))
+
+        self._last_frame_context = {
+            "ts": time.time(),
+            "frame_id": self._frame_id,
+            "frame_valid": frame_valid,
+            "frame_quality": frame_quality,
+            "metrics": {
+                "mean_luma": metrics.get("mean_luma"),
+                "blur_score": metrics.get("blur_score"),
+                "noise_level": metrics.get("noise_level"),
+                "frame_diff": metrics.get("frame_diff"),
+                "freeze_score": metrics.get("freeze_score"),
+                "sampling_interval_ms": sampling_interval_ms,
+            },
+            "continuity": continuity,
+            "view_confidence": view_confidence.get("view_confidence"),
+            "confidence_reason": view_confidence.get("confidence_reason"),
+            "model_status": view_confidence.get("model_status"),
+            "motion_instability": self.motion_instability,
+            "roi_count": self.roi_count,
+            "path_instability": self.path_instability,
+            "branch_load": self.branch_load,
+            "occlusion_state": occlusion_state,
+            "perception_state": self.perception_state,
+            "motion_score": float(metrics.get("motion_score", 0.0)),
+            "frame_diff_score": float(metrics.get("frame_diff_score", 0.0)),
+            "avg_luminance": metrics.get("avg_luminance"),
+        }
     
     def is_opened(self) -> bool:
         """

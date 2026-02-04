@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "fixture_id": "F-04",
+    "scenario_type": "perception_unstable",
+    "description": "Perception unstable with moving objects present.",
+    "version": "1.0",
+    "tags": ["unstable_perception", "degraded"]
+  },
+  "system_snapshot": {
+    "ts": 3.0,
+    "frame_id": 4,
+    "context_mode": "NAVIGATION",
+    "system_facts": {
+      "perception_state": "UNSTABLE",
+      "calibration_state": "OK",
+      "hardware_state": "OK",
+      "gate": "PASS"
+    },
+    "self_state": {
+      "position": {"x": 0.0, "y": 0.0},
+      "velocity": {"x": 0.5, "y": 0.0},
+      "heading": 0.0
+    },
+    "perceived_objects": [
+      {
+        "object_id": "obj_2",
+        "position": {"x": 3.0, "y": -1.0},
+        "velocity": {"x": -0.5, "y": 0.2},
+        "radius": 0.5,
+        "kind": "vehicle"
+      }
+    ],
+    "environment": {
+      "restricted_zones": [],
+      "obstacles": []
+    }
+  },
+  "model_outputs": {
+    "candidate_actions": [
+      {
+        "model_id": "fixture_stub",
+        "model_version": "v1",
+        "confidence": 0.5,
+        "output": {"intent": "move", "speed": 0.2},
+        "meta": {"fixture": "F-04"}
+      }
+    ]
+  }
+}
