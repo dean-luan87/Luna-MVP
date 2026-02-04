@@ -86,7 +86,6 @@ REQUIRED_BC_SNAPSHOT_FIELDS = {
     "authority",
     "abilities",
     "gate",
-    "decision",
     "distortion",
     "c_decision",
     "bc_action",
