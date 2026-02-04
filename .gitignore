@@ -61,12 +61,12 @@ navigation_*.mp3
 whisper.cpp/
 modules/Webcam-Face-Detect/
 
-# Camera test files
+# Camera test files (root only; tests/ is tracked)
 camera_test.py
 camera_loop_optimized.py
 high_res_camera.py
 1080p_camera.py
-test_*.py
+/test_*.py
 
 # Temporary demo files
 *_demo.py

@@ -79,15 +79,40 @@ def guard_architecture() -> GuardResult:
 
     # Repo-wide quick scan for legacy / forbidden semantics
     # (Keep it small: only scan b2 folder + docs)
+    # FORBIDDEN_LEGACY: only b2 .py that are "producer" code (exclude audit/validation rules that list the constant)
+    b2_legacy_roots = []
+    for root, _, filenames in os.walk(os.path.join(ROOT, "vision_pipeline")):
+        r = root.replace("\\", "/")
+        if "/b2/" not in r:
+            continue
+        if "/b2_audit/" in r or "/validation/" in r:
+            continue
+        for fn in filenames:
+            if fn.endswith(".py"):
+                b2_legacy_roots.append(os.path.join(root, fn))
+    # FORBIDDEN_PATTERNS: all b2 .py + docs .md (docs not scanned for LEGACY to allow "WORLD_SHIFT deprecated" text)
     scan_targets = []
     for root, _, filenames in os.walk(os.path.join(ROOT, "vision_pipeline")):
+        r = root.replace("\\", "/")
+        if "/b2/" not in r:
+            continue
         for fn in filenames:
-            if fn.endswith(".py") and ("/b2/" in root.replace("\\", "/")):
+            if fn.endswith(".py"):
                 scan_targets.append(os.path.join(root, fn))
     for root, _, filenames in os.walk(os.path.join(ROOT, "docs")):
         for fn in filenames:
             if fn.endswith(".md"):
                 scan_targets.append(os.path.join(root, fn))
+
+    for p in b2_legacy_roots:
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                txt = f.read()
+        except Exception:
+            continue
+        for pat in FORBIDDEN_LEGACY:
+            if re.search(pat, txt):
+                errors.append(f"[ARCH] legacy forbidden '{pat}' in {p}")
 
     for p in scan_targets:
         try:
@@ -95,11 +120,6 @@ def guard_architecture() -> GuardResult:
                 txt = f.read()
         except Exception:
             continue
-
-        for pat in FORBIDDEN_LEGACY:
-            if re.search(pat, txt):
-                errors.append(f"[ARCH] legacy forbidden '{pat}' in {p}")
-
         # forbidden risk-confirm semantics: warning by default, can be upgraded to error later
         for pat in FORBIDDEN_PATTERNS:
             if re.search(pat, txt):

@@ -107,14 +107,19 @@ def build_debug_view(
 def build_debug_view_from_snapshot(bc_snapshot: Dict[str, Any]) -> Dict[str, Any]:
     assert_debug_view_input(bc_snapshot)
     authority = bc_snapshot.get("authority", {})
+    risk = bc_snapshot.get("risk") or {}
+    risk_vo = risk.get("vo", {}) if isinstance(risk, dict) else {}
+    envelope_signal = bc_snapshot.get("envelope") or {}
     return build_debug_view(
         raw_authority=authority.get("raw"),
         effective_authority=authority.get("effective"),
         blocked_by=authority.get("blocked_by"),
         authority_since=authority.get("since"),
         risk_signal=bc_snapshot.get("risk"),
+        risk_vo=risk_vo,
         gate_blocked=bc_snapshot.get("gate") == "BLOCK",
         abilities=bc_snapshot.get("abilities"),
         attempting_recovery=True,
         distortion_distorted=bool(bc_snapshot.get("distortion", {}).get("distorted", False)),
+        envelope_signal=envelope_signal,
     )
