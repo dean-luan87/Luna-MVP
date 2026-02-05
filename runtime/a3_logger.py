@@ -11,6 +11,7 @@ from intervention.eligibility import (
 )
 from intervention.task_state_override import TaskStateOverride
 from intervention.action_mapper_m_v0 import (
+    ActionType,
     map_winner_to_action_plan,
     IntentInfo,
     SlotInfo,
@@ -219,17 +220,15 @@ def log_shadow_decision(shadow_decision: dict, shadow_reason: str = "SHADOW_MODE
         f.write(json.dumps(payload, ensure_ascii=False) + "\n")
 
 
-def log_arbitration_event(
+def build_arbitration_payload(
     arbitration: dict,
     k: Optional[dict] = None,
     l: Optional[dict] = None,
     context: Optional[dict] = None,
-) -> None:
+) -> dict:
     """
-    G) 多任务介入仲裁 v0：记录 arbitration 决策到 trace。
-    K) 介入意图层 v0：可选写入 k.intent，与 G 同条 trace。
-    L) 介入内容规划层 v0：可选写入 l（slot_type + slot），与 G 同条 trace。
-    M) 行为绑定层 v0：在写 trace 前在此处调用 mapper，生成 m 并写入；shadow-only。
+    构建 arbitration tick 的 payload（含 m），不写 trace。
+    P v0 接线：main 在此之后执行 P、写 outcome，再调用 write_arbitration_payload。
     """
     payload = {"ts": time.time(), "arbitration": arbitration}
     if k is not None:
@@ -238,7 +237,6 @@ def log_arbitration_event(
         payload["l"] = l
 
     ctx = context or {}
-    # M 层：仲裁结果已确定后、写 trace 前，在此唯一接入点生成 m（即使 winner=None 或 k/l 缺省也写 m）
     winner_type_enum = _winner_type_to_enum(arbitration.get("winner_type"))
     intent_info = IntentInfo(intent=k.get("intent", "NONE") if k else "NONE")
     slot_info = SlotInfo(
@@ -257,11 +255,41 @@ def log_arbitration_event(
     )
     payload["m"] = action_plan.to_trace_dict()
 
+    # apply_now：仅 L2/L3 允许（P1：L1 只准备不执行，由 main 中 P1 策略最终决定是否执行）
+    if (
+        ctx.get("rhythm_state") == "ENGAGED"
+        and ctx.get("level") in ("L2", "L3")
+        and (arbitration.get("winner_type") or arbitration.get("winner"))
+        and action_plan.action_type == ActionType.SAY
+    ):
+        payload["m"] = {**payload["m"], "apply_now": True}
+
+    return payload
+
+
+def write_arbitration_payload(payload: dict) -> None:
+    """将 arbitration payload（可含 outcome）写入 trace。"""
     log_dir = LOG_CONFIG["log_dir"]
     os.makedirs(log_dir, exist_ok=True)
     path = os.path.join(log_dir, "a3_trace.jsonl")
     with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+
+
+def log_arbitration_event(
+    arbitration: dict,
+    k: Optional[dict] = None,
+    l: Optional[dict] = None,
+    context: Optional[dict] = None,
+):
+    """
+    G) 多任务介入仲裁 v0：记录 arbitration 决策到 trace。
+    K/L/M 同条；不包含 outcome（outcome 由 P 接线点在 main 写入）。
+    无 P 接线的 call site 可直接调用本函数；有 P 接线的 call site 应使用 build_arbitration_payload → P → outcome → write_arbitration_payload。
+    """
+    payload = build_arbitration_payload(arbitration, k=k, l=l, context=context)
+    write_arbitration_payload(payload)
+    return payload
 
 
 def log_advice_rhythm_event(advice_rhythm: dict) -> None:
@@ -277,14 +305,27 @@ def log_advice_rhythm_event(advice_rhythm: dict) -> None:
         f.write(json.dumps(payload, ensure_ascii=False) + "\n")
 
 
-def log_engaged_signal(signal_payload: dict, outcome_payload: Optional[dict] = None) -> None:
+def log_engaged_signal(
+    signal_payload: dict,
+    outcome_payload: Optional[dict] = None,
+    q_payload: Optional[dict] = None,
+    r_payload: Optional[dict] = None,
+    s_payload: Optional[dict] = None,
+) -> None:
     """
     J) ENGAGED 事实信号 v0：写入 engaged_signal（signal-only）。
-    N) Outcome v0：同条 trace 写入 outcome（outcome_type / reason / confidence / evidence），系统唯一解释层。
+    N) Outcome v0：同条 trace 写入 outcome。
+    Q/R/S：同条写入执行回执与观测（有则写），使 P→Q→R→S 整链在 J 路径也可观测。
     """
     payload = {"ts": time.time(), "engaged_signal": signal_payload}
     if outcome_payload is not None:
         payload["outcome"] = outcome_payload
+    if q_payload is not None:
+        payload["q"] = q_payload
+    if r_payload is not None:
+        payload["r"] = r_payload
+    if s_payload is not None:
+        payload["s"] = s_payload
     log_dir = LOG_CONFIG["log_dir"]
     os.makedirs(log_dir, exist_ok=True)
     path = os.path.join(log_dir, "a3_trace.jsonl")

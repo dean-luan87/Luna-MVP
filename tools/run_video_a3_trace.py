@@ -27,6 +27,8 @@ def run_video(
     max_frames: int = None,
     frame_step: int = 1,
     simulate_active: bool = False,
+    force_engaged: bool = False,
+    force_engaged_test_l2: bool = False,
 ) -> None:
     if not os.path.exists(video_path):
         raise FileNotFoundError(f"视频不存在: {video_path}")
@@ -40,14 +42,21 @@ def run_video(
         os.environ["A3_HAS_GOAL"] = "1"
         print("⚠️ 模拟 ACTIVE 任务态 (A3_HAS_GOAL=1)")
 
-    OUTPUT_CONFIG["play_audio"] = False
+    if force_engaged:
+        print("⚠️ 强制 engagement=L1，仲裁与 P 层将执行并写入 trace")
+    if force_engaged_test_l2:
+        print("⚠️ 强制 L2 执行测试：允许真实 SAY，验证 P1–P5→Q/R/S 闭环")
+
+    OUTPUT_CONFIG["play_audio"] = force_engaged_test_l2
     OUTPUT_CONFIG["print_results"] = False
     OUTPUT_CONFIG["show_camera_feed"] = False
     PROCESSING_CONFIG["process_interval"] = 0.0
 
-    app = LunaBadgeMVP()
-    app.voice = None
-    app.voice_recognition = None
+    # L2 执行测试需同时走 SPEAK 分支（占位/门禁），故自动带上 force_engaged_test
+    app = LunaBadgeMVP(force_engaged_test=force_engaged or force_engaged_test_l2, force_engaged_test_l2=force_engaged_test_l2)
+    if not force_engaged_test_l2:
+        app.voice = None
+        app.voice_recognition = None
 
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -97,12 +106,24 @@ def main() -> None:
         action="store_true",
         help="模拟 ACTIVE 任务态，验证 eligible 分布",
     )
+    parser.add_argument(
+        "--force-engaged",
+        action="store_true",
+        help="强制 engagement=L1、eligibility=allowed，使仲裁与 P 层执行并写入 trace",
+    )
+    parser.add_argument(
+        "--force-engaged-test-l2",
+        action="store_true",
+        help="执行链路测试：强制 L2 并允许真实 SAY，验证 P1–P5→Q/R/S 闭环",
+    )
     args = parser.parse_args()
     run_video(
         args.video,
         max_frames=args.max_frames,
         frame_step=args.frame_step,
         simulate_active=args.simulate_active,
+        force_engaged=args.force_engaged,
+        force_engaged_test_l2=getattr(args, "force_engaged_test_l2", False),
     )
 
 

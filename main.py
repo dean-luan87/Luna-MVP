@@ -61,7 +61,17 @@ from core.risk import (
 )
 from a3.config import A3Config
 from runtime.a3_runtime import A3Runtime
-from runtime.a3_logger import log_a3, log_a3_timeseries, log_advice_rhythm_event, log_arbitration_event, log_multimodal_conflict, log_shadow_decision, log_engaged_signal
+from runtime.a3_logger import (
+    log_a3,
+    log_a3_timeseries,
+    log_advice_rhythm_event,
+    log_arbitration_event,
+    log_multimodal_conflict,
+    log_shadow_decision,
+    log_engaged_signal,
+    build_arbitration_payload,
+    write_arbitration_payload,
+)
 from runtime.context import RuntimeContext
 from c3 import C3Config, C3Store, C3Learner
 from c3.maintenance import c3_maintenance
@@ -86,14 +96,38 @@ from intervention.multimodal_conflict_v0 import (
 )
 from intervention.engaged_failure import compute_engaged_signal
 from intervention.outcome_n_v0 import compute_outcome_v0
+from intervention.outcome_q_v0 import OutcomeQRecorderV0
+from intervention.observation_r_v0 import ObservationRCollectorV0
+from intervention.stress_s_v0 import StressObserverSV0
+from execution.p_executor_v0 import PExecutorV0, PExecutionResult
+from intervention.p_executor_v1 import P1Executor, P1Outcome
+from intervention.p_policy_v1 import P1Config
+from intervention.p2_executor_v0 import P2Executor
+from intervention.p3_executor_v0 import P3Executor
+from intervention.p4_planner_v0 import P4Config, plan_speech_p4_v0
+from intervention.p5_expression_plan_v0 import build_expression_plan_v0
+
+
+class _TTSAdapterForP:
+    """P v0：将 submit_tts(voice) 封装为 .say(text) 供 PExecutorV0 调用。"""
+    def __init__(self, voice, submit_fn):
+        self._voice = voice
+        self._submit = submit_fn
+
+    def say(self, text: str) -> None:
+        if self._voice and getattr(self._voice, "is_available", True):
+            self._submit(text, self._voice)
 
 
 class LunaBadgeMVP:
     """Luna 实体徽章 MVP 主类"""
     
-    def __init__(self, video_path: str = None, force_engaged_test: bool = False):
-        """初始化Luna徽章系统。video_path 不为空时从视频文件读取帧，否则使用摄像头。force_engaged_test 仅用于 N 层验收：强制 ENGAGED 且本 tick 不执行动作。"""
+    def __init__(self, video_path: str = None, force_engaged_test: bool = False, force_engaged_test_l2: bool = False):
+        """初始化Luna徽章系统。video_path 不为空时从视频文件读取帧，否则使用摄像头。
+        force_engaged_test：N 层验收，强制 ENGAGED、走 SPEAK 分支写 trace，默认不执行 SAY。
+        force_engaged_test_l2：仅测试用，强制 L2 并允许真实执行 SAY，验证 P1–P5→Q/R/S 闭环。"""
         self.force_engaged_test = force_engaged_test
+        self.force_engaged_test_l2 = force_engaged_test_l2
         # 设置日志
         self.logger = setup_logger('luna_badge')
         self.json_logger = JSONLogger()
@@ -155,6 +189,7 @@ class LunaBadgeMVP:
         self._last_c3_maintenance_ts = 0.0
         self._last_advice_event = None
         self._last_engagement_level = "L0"  # G) ENGAGED 退出时清空仲裁
+        self._last_s_stress_level = None  # P1：上一条 S 的 stress_level（供 payload.s）
         self._last_negative_speech = {"text": None, "ts": 0.0}
         self._negative_feedback_hits = {}
 
@@ -175,6 +210,32 @@ class LunaBadgeMVP:
         except Exception as e:
             self.logger.error(f"语音播报模块初始化失败: {e}")
             self.voice = None
+
+        # P 层：P1 执行器（payload = m/engagement/rhythm/s/text，outcome 写回 trace）
+        _tts_adapter = _TTSAdapterForP(self.voice, submit_tts) if self.voice else None
+        self._p1_executor = (
+            P1Executor(
+                cfg=P1Config(
+                    engaged_stable_s=3.0,
+                    say_cooldown_s=15.0,
+                    block_when_s_saturated=True,
+                ),
+                speak_fn=_tts_adapter.say if _tts_adapter else None,
+            )
+            if _tts_adapter else None
+        )
+        # P2 v0：内容质量门禁（仅在 P1.apply_now 时生效），不增加说话次数
+        self._p2_executor = P2Executor() if self._p1_executor is not None else None
+        # P3 v0：节律闸门（P2 通过后、SAY 前最后一道）
+        self._p3_executor = P3Executor() if self._p2_executor is not None else None
+        # P4 v0：表达结构控制（P1/P2/P3 通过后、SAY 前，只定 prefix/suffix/style）
+        self._p4_cfg = P4Config() if self._p3_executor is not None else None
+        # Q v0：执行回执记录器，P 尝试后写 q 到 trace（只做事实记录）
+        self._q_recorder = OutcomeQRecorderV0()
+        # R v0：执行后观测聚合器，只读统计/解释，不反向影响行为
+        self._r_collector = ObservationRCollectorV0(rolling_window_sec=300)
+        # S v0：系统打扰压力观测器，基于 R 统计判断执行压强（shadow-only）
+        self._s_observer = StressObserverSV0()
         
         # v1.8.5 Phase B Step 1.1: CameraHandler 迁移到 PipelineController
         # 初始化视觉流水线控制器（包含 CameraHandler；支持 video_path 从视频文件读取）
@@ -693,18 +754,24 @@ class LunaBadgeMVP:
             
             # 5. v1.8.3a 阶段 C: 决策闭环（SPEAK / WAIT / YIELD）
             # N 层验收开关：强制 ENGAGED 且本 tick 不执行动作（仅测试用，不进入正式逻辑）
-            if getattr(self, "force_engaged_test", False):
+            if getattr(self, "force_engaged_test", False) or getattr(self, "force_engaged_test_l2", False):
                 self.runtime_ctx.rhythm_state = "ENGAGED"
-                self.runtime_ctx.engagement = {"level": "L1", "advice_scale": 0.7, "pal_lookahead_m": 8.0, "speak_cooldown_s": 8.0}
-                self.runtime_ctx.eligibility = {"allowed": True, "reason": "force_engaged_test"}
+                self.runtime_ctx.engagement = {"level": "L2", "advice_scale": 0.7, "pal_lookahead_m": 8.0, "speak_cooldown_s": 8.0}
+                if getattr(self, "force_engaged_test_l2", False):
+                    self.runtime_ctx.engagement["reason"] = "FORCE_ENGAGED_TEST_L2"
+                self.runtime_ctx.eligibility = {"allowed": True, "reason": "force_engaged_test" if getattr(self, "force_engaged_test", False) else "force_engaged_test_l2"}
             decision = self._handle_speech_decision(result)
-            if getattr(self, "force_engaged_test", False):
-                decision = {"action": "WAIT", "reason": "force_engaged_test"}
+            # 强制 ENGAGED 测试：必须走 SPEAK 分支才能跑仲裁与 P 层并写 trace；若本为 WAIT 则强制为 SPEAK
+            if (getattr(self, "force_engaged_test", False) or getattr(self, "force_engaged_test_l2", False)) and decision.get("action") != "SPEAK":
+                decision = {"action": "SPEAK", "reason": "force_engaged_test_l2" if getattr(self, "force_engaged_test_l2", False) else "force_engaged_test"}
             failure = self._execute_speech_decision(result, decision)
             if failure and failure.get("engaged_signal"):
                 log_engaged_signal(
                     failure["engaged_signal"],
                     outcome_payload=failure.get("outcome"),
+                    q_payload=failure.get("q"),
+                    r_payload=failure.get("r"),
+                    s_payload=failure.get("s"),
                 )
 
             self._maybe_learn_negative_advice_from_speech(result)
@@ -820,6 +887,8 @@ class LunaBadgeMVP:
         """
         self._did_speak_this_tick = False
         self._last_arbitration_winner = False
+        self._last_p_outcome = None
+        self._p_executed_this_tick = False
         now = time.time()
         self._last_cooldown_active = (
             now < getattr(self.speech_gate, "cooldown_until", 0)
@@ -1038,28 +1107,231 @@ class LunaBadgeMVP:
                     "frame_quality": getattr(self.runtime_ctx, "frame_quality", "GOOD"),
                     "cooldown_active": getattr(self, "_last_cooldown_active", False),
                 }
-                log_arbitration_event(
+                # arbitration → K/L/M 已产出；P v0 唯一接线点：m 已生成，在 n_outcome 写入前执行 P，回写 outcome
+                arb_payload = build_arbitration_payload(
                     {
                         "winner": winner.task_id if winner else None,
-                        "winner_type": winner_type,  # J) 体检用
+                        "winner_type": winner_type,
                         "deferred": [t.task_id for t in deferred],
-                        "deferred_types": [t.task_type for t in deferred],  # J) 体检用
+                        "deferred_types": [t.task_type for t in deferred],
                         "scores": scores,
-                        "fairness": fairness,  # I) 公平性状态
+                        "fairness": fairness,
                     },
                     k={"intent": intent.value},
                     l=l_result,
                     context=m_ctx,
                 )
+                m_action = arb_payload.get("m")
+                prepared_text = None
+                if winner and getattr(winner, "decision", None):
+                    prepared_text = winner.decision.get("text")
+                if not prepared_text and m_action:
+                    prepared_text = self._p_v0_say_text(m_action)
+                # force_engaged_test：无 winner 时 m 常为 NOP，P1 会 BLOCKED_NOT_SAY；合成 SAY + 占位文本以跑通 P2/P3/P4
+                # 占位需满足 P2：min_len>=6、非占位短语；首帧用固定句使 P2 通过一次以写 P4（后续帧会因 duplicate 被 P2 拒）
+                if getattr(self, "force_engaged_test", False):
+                    if (m_action or {}).get("action_type") != "SAY" or not (prepared_text or "").strip():
+                        m_action = {**(m_action or {}), "action_type": "SAY", "apply_now": True}
+                        arb_payload["m"] = m_action
+                    prepared_text = "前方路况正常可以通行"
+                    # 满足 P1 ENGAGED 稳定时间门槛（3s），否则 BLOCKED_ENGAGED_NOT_STABLE
+                    if getattr(self._p1_executor, "_rhythm_entered_ts", None) is None:
+                        self._p1_executor._rhythm_entered_ts = now - 5.0
+                        self._p1_executor._rhythm_state_prev = "ENGAGED"
+
+                rhythm_state = getattr(self.runtime_ctx, "rhythm_state", "IDLE")
+                p_outcome = None
+                if self._p1_executor is not None:
+                    s_report = None if getattr(self, "force_engaged_test", False) else ({"stress_level": self._last_s_stress_level} if self._last_s_stress_level else None)
+                    p1_payload = {
+                        "m": m_action or {},
+                        "engagement": {"level": eng_level},
+                        "rhythm": {"state": rhythm_state},
+                        "s": s_report,
+                        "text": prepared_text or "",
+                        "_defer_speak_to_p2": self._p2_executor is not None,
+                    }
+                    p_outcome = self._p1_executor.execute(payload=p1_payload, now_ts=now)
+
+                # P1.apply_now 且存在 P2 时：经 P2 门禁后再决定是否执行 SAY
+                if (
+                    p_outcome is not None
+                    and getattr(p_outcome, "apply_now", p_outcome.executed)
+                    and self._p2_executor is not None
+                    and (prepared_text or "")
+                ):
+                    p2_out = self._p2_executor.evaluate(text=prepared_text or "", now_ts=now)
+                    p2_dict = p2_out.debug.get("p2") or p2_out.to_dict()
+                    if p2_out.allowed:
+                        # P3：节律闸门，P2 通过后才跑；顺序 P1 → P2 → P3 → SAY
+                        p3_out = None
+                        p3_dict = {}
+                        if self._p3_executor is not None:
+                            p3_out = self._p3_executor.evaluate(
+                                rhythm_state=rhythm_state,
+                                now_ts=now,
+                            )
+                            p3_dict = p3_out.debug.get("p3") or p3_out.to_dict()
+                            if not p3_out.allowed:
+                                p_outcome = P1Outcome(
+                                    ts=p_outcome.ts,
+                                    executed=False,
+                                    outcome_type="NO_ACTION",
+                                    reason=p3_out.reason,
+                                    action_type=p_outcome.action_type,
+                                    text_len=p_outcome.text_len,
+                                    debug={**p_outcome.debug, "p2": p2_dict, "p3": p3_dict},
+                                    apply_now=True,
+                                )
+                        # 无 P3 或 P3 通过：P4 定结构 → 执行 SAY
+                        if self._p3_executor is None or (p3_out is not None and p3_out.allowed):
+                            plan = None
+                            if self._p4_cfg is not None:
+                                plan = plan_speech_p4_v0(
+                                    cfg=self._p4_cfg,
+                                    winner_type=arb_payload.get("arbitration", {}).get("winner_type") or winner_type or "NONE",
+                                    engagement_level=eng_level,
+                                    control_mode=m_ctx.get("control_mode", "ASSISTED"),
+                                    view_confidence=float(m_ctx.get("vc") or 0.0),
+                                    complexity_effective=float(m_ctx.get("complexity") or 0.0),
+                                    pal_horizon_difficulty=float(m_ctx.get("pal") or 0.0),
+                                    speak_budget_scale=getattr(self.runtime_ctx, "advice_budget_scale", None),
+                                )
+                                arb_payload["p4"] = plan.to_dict()
+                                arb_payload["g"] = {"winner_type": arb_payload.get("arbitration", {}).get("winner_type") or winner_type or "NONE"}
+                            text_to_say = (plan.prefix + prepared_text + plan.suffix) if plan else prepared_text
+                            try:
+                                # force_engaged_test：只跑 P 层写 trace，不实际播报；force_engaged_test_l2：允许真实 SAY 验证闭环
+                                skip_tts = getattr(self, "force_engaged_test", False) and not getattr(self, "force_engaged_test_l2", False)
+                                if not skip_tts and getattr(self._p1_executor, "speak_fn", None):
+                                    self._p1_executor.speak_fn(text_to_say)
+                                    self._p1_executor.last_say_ts = now
+                                if self._p3_executor is not None:
+                                    self._p3_executor.mark_say_executed(ts=now)
+                                if p3_out is not None:
+                                    p3_dict = p3_out.debug.get("p3") or p3_out.to_dict()
+                                p_outcome = P1Outcome(
+                                    ts=p_outcome.ts,
+                                    executed=not skip_tts,
+                                    outcome_type="ACTION_EXECUTED" if not skip_tts else "NO_ACTION",
+                                    reason="force_engaged_test" if skip_tts else "SAY_OK",
+                                    action_type=p_outcome.action_type,
+                                    text_len=len(text_to_say),
+                                    debug={**p_outcome.debug, "p2": p2_dict, "p3": p3_dict},
+                                    apply_now=True,
+                                )
+                            except Exception as e:
+                                p_outcome = P1Outcome(
+                                    ts=p_outcome.ts,
+                                    executed=False,
+                                    outcome_type="NO_ACTION",
+                                    reason="FAILED_EXCEPTION",
+                                    action_type=p_outcome.action_type,
+                                    text_len=len(text_to_say),
+                                    debug={**p_outcome.debug, "p2": p2_dict, "p3": p3_dict, "exc": repr(e)},
+                                    apply_now=True,
+                                )
+                    else:
+                        p_outcome = P1Outcome(
+                            ts=p_outcome.ts,
+                            executed=False,
+                            outcome_type="NO_ACTION",
+                            reason=p2_out.reason,
+                            action_type=p_outcome.action_type,
+                            text_len=p_outcome.text_len,
+                            debug={**p_outcome.debug, "p2": p2_dict},
+                            apply_now=True,
+                        )
+
+                if p_outcome is not None:
+                    outcome = {
+                        "outcome_type": p_outcome.outcome_type,
+                        "reason": p_outcome.reason,
+                        "apply_now": getattr(p_outcome, "apply_now", p_outcome.executed),
+                        "executed": p_outcome.executed,
+                        "confidence": 1.0 if p_outcome.executed else 0.0,
+                        "evidence": p_outcome.debug,
+                    }
+                    # P2 写入 outcome.p2 供 verify 读取
+                    if "p2" in p_outcome.debug:
+                        p2_info = p_outcome.debug["p2"]
+                        outcome["p2"] = {
+                            "allow": p2_info.get("allow", p2_info.get("allowed")),
+                            "reason": p2_info.get("reason", ""),
+                            "checks": p2_info.get("checks", {}),
+                        }
+                    # P3 写入 outcome.p3
+                    if "p3" in p_outcome.debug:
+                        p3_info = p_outcome.debug["p3"]
+                        outcome["p3"] = {
+                            "allow": p3_info.get("allow", p3_info.get("allowed")),
+                            "reason": p3_info.get("reason", ""),
+                            "checks": p3_info.get("checks", {}),
+                        }
+                else:
+                    outcome = {
+                        "outcome_type": "NO_ACTION",
+                        "reason": "NOT_ATTEMPTED",
+                        "apply_now": False,
+                    }
+
+                self._p_executed_this_tick = bool(p_outcome and p_outcome.executed)
+                if p_outcome and p_outcome.executed:
+                    self._did_speak_this_tick = True
+
+                arb_payload["outcome"] = outcome
+                # P5 v0：表达形态规划（shadow-only，不改变执行）
+                p4_d = arb_payload.get("p4") or {}
+                p5_plan = build_expression_plan_v0(
+                    p1_apply_now=outcome.get("apply_now", False),
+                    p2_allowed=bool(outcome.get("p2", {}).get("allow") or outcome.get("p2", {}).get("allowed")) if outcome.get("p2") else False,
+                    p4_style=p4_d.get("style"),
+                    p4_reason=p4_d.get("reason"),
+                    winner_type=arb_payload.get("arbitration", {}).get("winner_type") or (arb_payload.get("g") or {}).get("winner_type"),
+                )
+                arb_payload["p5"] = p5_plan.to_dict()
+                # Q v0：同条 arbitration 行必有 Q
+                if p_outcome is not None:
+                    q = self._q_recorder.record(
+                        action_type=p_outcome.action_type,
+                        executed=p_outcome.executed,
+                        reason=p_outcome.reason,
+                        latency_ms=None,
+                        extra_meta={"text_len": p_outcome.text_len},
+                    )
+                else:
+                    q = self._q_recorder.record(
+                        action_type="NONE",
+                        executed=False,
+                        reason=outcome.get("reason", "NOT_ATTEMPTED"),
+                        latency_ms=None,
+                        extra_meta={"source": "arbitration_no_p"},
+                    )
+                arb_payload["q"] = q.to_dict()
+                # R v0：喂入 Q，若有可解释观测则写入同条（不要求每 tick 都有 r）
+                r_obs = self._r_collector.feed(q.to_dict())
+                if r_obs is not None:
+                    arb_payload["r"] = r_obs.to_dict()
+                    # S v0：基于 R 观测推导压力报告（不要求每条 R 都产出 s）
+                    s_report = self._s_observer.observe(r_obs.to_dict())
+                    if s_report is not None:
+                        arb_payload["s"] = s_report.to_dict()
+                        self._last_s_stress_level = s_report.stress_level.value
+                write_arbitration_payload(arb_payload)
+                self._last_p_outcome = outcome  # 供 J 路径同条 trace 使用，避免重复计算
+
                 if winner:
                     decisions_to_process = [winner.decision]
                 else:
-                    decisions_to_process = []  # 无 candidates 或最高分 < 0.25，本 tick 不介入
+                    decisions_to_process = []
 
             # E) Advice 内容类型节律 v0：在 AdviceEngine → Decision 之间做配额 gate
             advice_rhythm = get_advice_rhythm_v0()
             arbitrator = get_arbitrator_v0() if eng_level in ("L1", "L2", "L3") else None
             for speak_decision in decisions_to_process:
+                # P v0：本 tick 已通过 P 执行 SAY 则不再走原有播报，避免重复
+                if getattr(self, "_p_executed_this_tick", False):
+                    continue
                 if speak_decision.get("type") != "SPEAK":
                     continue
                 speak_text = speak_decision.get("text")
@@ -1166,12 +1438,54 @@ class LunaBadgeMVP:
             },
         )
         if signal is not None:
-            outcome = compute_outcome_v0(engaged_signal=signal)
+            # P v0：本 tick 已在 arbitration 行写入 outcome 时复用，否则走 shadow-only N
+            if getattr(self, "_last_p_outcome", None) is not None:
+                outcome_payload = self._last_p_outcome
+                self._last_p_outcome = None
+            else:
+                outcome = compute_outcome_v0(engaged_signal=signal)
+                outcome_payload = outcome.to_trace_dict() if outcome else None
+
+            # Q/R/S 链：J 路径有 outcome 时也产出 q（并喂 R、S），使整链可观测
+            q_payload = None
+            r_payload = None
+            s_payload = None
+            if outcome_payload is not None:
+                executed = outcome_payload.get("outcome_type") in ("ACTION_EXECUTED", "ACTION")
+                reason = outcome_payload.get("reason", "UNKNOWN")
+                q = self._q_recorder.record(
+                    action_type="SAY",
+                    executed=executed,
+                    reason=reason,
+                    latency_ms=None,
+                    extra_meta={"source": "J_path"},
+                )
+                q_payload = q.to_dict()
+                r_obs = self._r_collector.feed(q_payload)
+                if r_obs is not None:
+                    r_payload = r_obs.to_dict()
+                    s_report = self._s_observer.observe(r_payload)
+                    if s_report is not None:
+                        s_payload = s_report.to_dict()
+
             return {
                 "engaged_signal": signal.to_trace_dict(),
-                "outcome": outcome.to_trace_dict() if outcome else None,
+                "outcome": outcome_payload,
+                "q": q_payload,
+                "r": r_payload,
+                "s": s_payload,
             }
         return None
+
+    def _p_v0_say_text(self, m: Dict[str, Any]) -> str:
+        """P v0：从 M 的 content_hint 生成最小播报文案（可回滚、可扩展）。"""
+        hint = (m or {}).get("content_hint") or ""
+        return {
+            "environment_observation": "注意到环境变化",
+            "task_state_update": "任务状态更新",
+            "navigation_guidance": "正在导航",
+            "safety_alert": "注意安全",
+        }.get(hint, "收到") if hint else "收到"
 
     def _maybe_learn_advice(self, env_mode, advice_id: str, is_safety: bool) -> None:
         """
@@ -1563,6 +1877,8 @@ def main():
                        help='使用视频文件作为输入（路径），不使用时为摄像头')
     parser.add_argument('--force-engaged-test', dest='force_engaged_test', action='store_true',
                        help='N 层验收：强制 ENGAGED 且本 tick 不执行动作，仅测试用')
+    parser.add_argument('--force-engaged-test-l2', dest='force_engaged_test_l2', action='store_true',
+                       help='执行链路测试：强制 L2 并允许真实 SAY，验证 P1–P5→Q/R/S 闭环（仅测试用）')
     
     args = parser.parse_args()
     
@@ -1584,8 +1900,12 @@ def main():
     print("- 按 's' 键立即处理当前帧")
     print("="*50)
     
-    # 创建并运行Luna徽章系统（支持 --video 指定视频文件、--force-engaged-test 用于 N 层验收）
-    luna_badge = LunaBadgeMVP(video_path=args.video, force_engaged_test=getattr(args, "force_engaged_test", False))
+    # 创建并运行Luna徽章系统（支持 --video、--force-engaged-test、--force-engaged-test-l2）
+    luna_badge = LunaBadgeMVP(
+        video_path=args.video,
+        force_engaged_test=getattr(args, "force_engaged_test", False),
+        force_engaged_test_l2=getattr(args, "force_engaged_test_l2", False),
+    )
     luna_badge.run(show_camera=not args.no_camera)
 
 
