@@ -2,6 +2,9 @@
 
 Luna-2 是一个集成了计算机视觉、语音识别、语音合成和智能导航的综合性AI系统。
 
+**技术红线（Technical constraint）**  
+Any change to Luna visual navigation must pass `tools/determinism_guard.py` before being considered valid.
+
 ## 🎯 功能特性
 
 ### 🎥 视觉感知系统

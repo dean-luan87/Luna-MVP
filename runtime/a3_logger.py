@@ -2,7 +2,7 @@ import json
 import logging
 import os
 import time
-from typing import Optional
+from typing import Any, Optional
 
 from config import LOG_CONFIG
 from intervention.eligibility import (
@@ -10,6 +10,10 @@ from intervention.eligibility import (
     compute_intervention_eligibility,
 )
 from intervention.task_state_override import TaskStateOverride
+from intervention.engagement_v0 import get_engagement_v0
+from intervention.rhythm_v0 import get_rhythm_v0
+from pal.lookahead_modulation import apply_pal_lookahead
+from pal.v0 import compute_pal_horizon_difficulty
 from intervention.action_mapper_m_v0 import (
     ActionType,
     map_winner_to_action_plan,
@@ -17,19 +21,73 @@ from intervention.action_mapper_m_v0 import (
     SlotInfo,
     _winner_type_to_enum,
 )
-from intervention.engagement_v0 import get_engagement_v0
-from intervention.rhythm_v0 import get_rhythm_v0
-from pal.lookahead_modulation import apply_pal_lookahead
-from pal.v0 import compute_pal_horizon_difficulty
 
 log = logging.getLogger("A3")
 _LAST_TS = 0.0
+_LAST_RHYTHM_STATE: Optional[str] = None
+_LAST_ENGAGEMENT_LEVEL: Optional[str] = None
 
 
-def log_a3(mode, signals=None):
+def _serialize_mode(mode: Any) -> dict:
+    """只序列化，不采样不推断。"""
+    if mode is None:
+        return {}
+    out = {
+        "complexity_score": round(getattr(mode, "complexity_score", 0), 3),
+        "safety_level": getattr(getattr(mode, "safety_level", None), "value", None),
+        "control_mode": getattr(getattr(mode, "control_mode", None), "value", None),
+        "advice_budget_scale": round(getattr(mode, "advice_budget_scale", 0), 2),
+        "pal_lookahead_m": round(getattr(mode, "pal_lookahead_m", 0), 1),
+    }
+    if getattr(mode, "debug", None):
+        out["debug"] = {k: round(v, 3) for k, v in mode.debug.items()}
+    return out
+
+
+def log_a3(obs_or_mode: Any, decision_or_signals: Any = None) -> None:
+    """
+    补丁 v1：若第一参数为 ObservationFrame，则只记录 obs + decision，不调用 pipeline/rhythm/engagement。
+    否则走 legacy log_a3(mode, signals)。
+    """
+    if hasattr(obs_or_mode, "sampled") and hasattr(obs_or_mode, "seq"):
+        _log_a3_v1(obs_or_mode, decision_or_signals)
+    else:
+        _log_a3_legacy(obs_or_mode, decision_or_signals)
+
+
+def _log_a3_v1(obs: Any, decision: Any) -> None:
+    """只 dump obs + decision，不做采样、不补值、不推断。"""
+    payload = {
+        "ts": obs.ts,
+        "dt": obs.dt,
+        "seq": obs.seq,
+        "sampled": obs.sampled,
+        "obs": {
+            "motion": obs.motion,
+            "path": obs.path,
+            "branch": obs.branch,
+            "roi": obs.roi,
+            "pal": obs.pal,
+            "complexity": obs.complexity,
+            "vc": obs.vc,
+            "frame_quality": obs.frame_quality,
+            "control_mode": obs.control_mode,
+        },
+        "decision": _serialize_mode(decision),
+    }
+    log_dir = LOG_CONFIG["log_dir"]
+    os.makedirs(log_dir, exist_ok=True)
+    path = os.path.join(log_dir, "a3_trace.jsonl")
+    try:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    except OSError:
+        pass  # 写不进去也不阻塞决策链
+
+
+def _log_a3_legacy(mode, signals=None) -> None:
     if mode is None:
         return
-
     payload = {
         "tag": "A3",
         "complexity": round(mode.complexity_score, 3),
@@ -38,7 +96,6 @@ def log_a3(mode, signals=None):
         "advice_scale": round(mode.advice_budget_scale, 2),
         "pal_lookahead_m": round(mode.pal_lookahead_m, 1),
     }
-
     if mode.debug:
         payload["components"] = {
             k: round(v, 3)
@@ -46,7 +103,6 @@ def log_a3(mode, signals=None):
             if k not in ("raw", "ema")
         }
         payload["raw"] = round(mode.debug.get("raw", 0), 3)
-
     if signals is not None:
         payload["signals"] = {
             "risk": round(signals.risk_density, 2),
@@ -60,19 +116,23 @@ def log_a3(mode, signals=None):
             "has_goal": signals.has_goal,
             "perception": getattr(signals, "perception_state", None).value if getattr(signals, "perception_state", None) else None,
         }
-
     log.info(payload)
 
 
-def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: float = 1.0, runtime_ctx=None, speech_gate=None):
+def log_a3_timeseries(
+    mode,
+    signals=None,
+    frame_context=None,
+    interval_sec: float = 1.0,
+    runtime_ctx=None,
+    speech_gate=None,
+    pipeline_result: Optional[dict] = None,
+):
     if mode is None or signals is None:
         return
 
-    global _LAST_TS
+    global _LAST_TS, _LAST_RHYTHM_STATE, _LAST_ENGAGEMENT_LEVEL
     now = time.time()
-    if now - _LAST_TS < interval_sec:
-        return
-    _LAST_TS = now
 
     def _enum_value(x):
         return getattr(x, "value", x)
@@ -145,6 +205,7 @@ def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: floa
     # ENGAGED 介入强度 v0：仅在 ENGAGED 时计算 L1/L2/L3
     control_mode_str = _enum_value(mode.control_mode)
     eng = get_engagement_v0().tick(
+        now=now,
         rhythm_state=rhythm_state,
         pal=pal_diff,
         complexity=complexity_effective,
@@ -183,8 +244,24 @@ def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: floa
     if runtime_ctx is not None and runtime_ctx.engagement is not None:
         runtime_ctx.engagement["effective_pal_lookahead_m"] = round(effective_lookahead, 1)
 
-    # J) ENGAGED 事实信号：改在 main「最终决定不说」处调用 log_engaged_signal（signal-only，解释交给 N 层）
+    # 有效 tick 门禁：仅当 B2/C1 重算或 rhythm/engagement 状态变化时写 trace，避免空转循环撑爆日志
+    if pipeline_result is not None:
+        b2_recomputed = bool(pipeline_result.get("b2_recomputed", False))
+        c1_recomputed = bool(pipeline_result.get("c1_recomputed", False))
+        rhythm_changed = rhythm_state != _LAST_RHYTHM_STATE
+        engagement_changed = eng.level != _LAST_ENGAGEMENT_LEVEL
+        should_log = b2_recomputed or c1_recomputed or rhythm_changed or engagement_changed
+    else:
+        should_log = True
 
+    if not should_log:
+        return
+
+    _LAST_TS = now
+    _LAST_RHYTHM_STATE = rhythm_state
+    _LAST_ENGAGEMENT_LEVEL = eng.level
+
+    # J) ENGAGED 事实信号：改在 main「最终决定不说」处调用 log_engaged_signal（signal-only，解释交给 N 层）
     log_dir = LOG_CONFIG["log_dir"]
     os.makedirs(log_dir, exist_ok=True)
     path = os.path.join(log_dir, "a3_trace.jsonl")

@@ -61,6 +61,13 @@ from core.risk import (
 )
 from a3.config import A3Config
 from runtime.a3_runtime import A3Runtime
+from runtime.clock import CLOCK
+from runtime.context import RuntimeContext
+from runtime.observation_loop import ObservationLoop
+from runtime.observation_builders import (
+    build_observation_frame,
+    build_empty_observation_frame,
+)
 from runtime.a3_logger import (
     log_a3,
     log_a3_timeseries,
@@ -72,7 +79,7 @@ from runtime.a3_logger import (
     build_arbitration_payload,
     write_arbitration_payload,
 )
-from runtime.context import RuntimeContext
+from pal.v0 import compute_pal_horizon_difficulty
 from c3 import C3Config, C3Store, C3Learner
 from c3.maintenance import c3_maintenance
 from c3.gates import bucket_complexity
@@ -180,6 +187,8 @@ class LunaBadgeMVP:
             ),
         )
         self.a3_log_enabled = a3_log_enabled
+        # 补丁 v1：单一采样节拍入口
+        self.obs_loop = ObservationLoop()
 
         # C3.x v0 (只学习，不控制，默认关闭)
         c3_enabled = os.environ.get("C3_ENABLED", "false").lower() in ("1", "true", "yes")
@@ -620,6 +629,43 @@ class LunaBadgeMVP:
         finally:
             # 确保状态恢复
             audio_io_state = "IDLE"
+
+    def _build_real_obs(self, now: float, dt: float, seq: int):
+        """补丁 v1：仅在采样时刻被 ObservationLoop 调用，从 A3 拉取 mode/signals 填 ObservationFrame。"""
+        try:
+            self.a3_runtime.tick(self.runtime_ctx, now_ms=int(now * 1000))
+        except Exception:
+            return build_empty_observation_frame(now, dt, seq)
+        mode = self.a3_runtime.last_mode
+        sig = self.a3_runtime.last_signals
+        if mode is None or sig is None:
+            return build_empty_observation_frame(now, dt, seq)
+        motion = float(mode.debug.get("motion_instability", 0.0)) if mode.debug else 0.0
+        path = float(mode.debug.get("path_instability", 0.0)) if mode.debug else 0.0
+        branch = float(mode.debug.get("branch_load", 0.0)) if mode.debug else 0.0
+        roi_load = float(mode.debug.get("roi_load", 0.0)) if mode.debug else 0.0
+        roi = int(getattr(sig, "roi_count", 0))
+        vc = float(getattr(sig, "view_confidence", 1.0))
+        pal = compute_pal_horizon_difficulty(motion, path, branch, roi_load, vc)
+        complexity = float(getattr(mode, "complexity_score", 0.5))
+        frame_quality = str(getattr(sig, "frame_quality", "GOOD"))
+        control_mode = getattr(mode, "control_mode", None)
+        control_mode_str = control_mode.value if control_mode and hasattr(control_mode, "value") else (str(control_mode) if control_mode else "NONE")
+        return build_observation_frame(
+            ts=now,
+            dt=dt,
+            seq=seq,
+            sampled=True,
+            motion=motion,
+            path=path,
+            branch=branch,
+            roi=roi,
+            pal=pal,
+            complexity=complexity,
+            vc=vc,
+            frame_quality=frame_quality,
+            control_mode=control_mode_str,
+        )
     
     def process_frame(self, frame: np.ndarray, context: Optional[Dict[str, Any]] = None) -> dict:
         """
@@ -633,42 +679,23 @@ class LunaBadgeMVP:
         """
         global last_frame_ts
         
-        # 止血改造 4: 帧节流（测试期不追求实时性）
-        now = time.time()
-        if now - last_frame_ts < FRAME_MIN_INTERVAL:
-            self.logger.debug(f"[FrameThrottle] 帧节流：距离上次处理仅 {now - last_frame_ts:.2f}s，跳过")
-            return None
+        # 补丁 v1：视频回放时用 current_ts（frame_ts）保证采样确定性；否则用 CLOCK
+        now = getattr(self, "current_ts", None)
+        if now is None:
+            now = CLOCK.now()
+            if now - last_frame_ts < FRAME_MIN_INTERVAL:
+                self.logger.debug(f"[FrameThrottle] 帧节流：距离上次处理仅 {now - last_frame_ts:.2f}s，跳过")
+                return None
         last_frame_ts = now
-        
+
         start_time = time.time()
         timestamp = datetime.now().isoformat()
 
-        # A3: update env_mode once per processed frame
-        try:
-            now_ms = int(time.time() * 1000)
-            self.a3_runtime.tick(self.runtime_ctx, now_ms=now_ms)
-            if self.a3_log_enabled:
-                log_a3(self.a3_runtime.last_mode, self.a3_runtime.last_signals)
-                log_a3_timeseries(
-                    self.a3_runtime.last_mode,
-                    self.a3_runtime.last_signals,
-                    frame_context=context,
-                    runtime_ctx=self.runtime_ctx,
-                    speech_gate=self.speech_gate,
-                )
-        except Exception as e:
-            self.logger.debug(f"[A3] tick skipped: {e}")
-
         self._maybe_run_c3_maintenance()
-        
+
         try:
             # ===== v1.8.5 Phase B Step 2.4: 重构 process_frame() =====
-            # 不再假设 objects / texts / description 的直接存在
-            # 只能从 pipeline_controller.process_frame() 的返回结果中取数据
-            # 使用 navigation_result / modeling_result 的结构化字段
-            
-            # 1. 通过 PipelineController 处理帧（统一入口）
-            self.logger.info("开始视觉流水线处理...")
+            # 1. 先跑 Pipeline，再按「有效 tick」决定是否推进 A3/rhythm/engagement（避免空转循环污染时间累计）
             pipeline_result = None
             navigation_result = None
             modeling_result = None
@@ -685,9 +712,22 @@ class LunaBadgeMVP:
                 modeling_result = pipeline_result.get("modeling_result")
             except Exception as e:
                 self.logger.warning(f"Pipeline 处理失败: {e}")
-                # 降级处理：使用空结果
                 navigation_result = None
                 modeling_result = None
+                pipeline_result = {}
+
+            # 补丁 v1：单一采样节拍，决策入口仅 on_observation(obs)；视频模式传入 now 保证确定性
+            obs = self.obs_loop.step(self._build_real_obs, now=now)
+            if obs.sampled:
+                self.logger.info("开始视觉流水线处理... seq=%s ts=%.3f", obs.seq, obs.ts)
+            else:
+                self.logger.debug("pipeline frame (non-sampled)")
+            try:
+                decision = self.a3_runtime.on_observation(self.runtime_ctx, obs)
+                if self.a3_log_enabled:
+                    log_a3(obs, decision)
+            except Exception as e:
+                self.logger.debug(f"[A3] on_observation skipped: {e}")
             
             # 2. 从结构化结果中提取数据（不再直接假设存在）
             # 2.1 从 NavigationResult 中提取 objects

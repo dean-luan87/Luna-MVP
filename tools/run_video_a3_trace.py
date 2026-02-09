@@ -84,11 +84,14 @@ def run_video(
             app.pipeline_controller._update_frame_context(frame, ts=frame_id / max(1.0, fps))
             frame_context = app.pipeline_controller.get_frame_context()
 
-            main_module.last_frame_ts = 0
+            # 用视频时间驱动采样，保证两遍跑同一视频时 seq/采样数一致（确定性）
+            app.current_ts = frame_id / max(1.0, fps)
             app.process_frame(frame, context=frame_context)
 
             processed += 1
             frame_id += 1
+            # 主循环节流：避免毫秒级自旋，使 A1/ENGAGED 时间累计基于感知 tick 而非 CPU 时间
+            time.sleep(0.03)  # 约 30 FPS 上限
     finally:
         cap.release()
         stop_audio_worker()

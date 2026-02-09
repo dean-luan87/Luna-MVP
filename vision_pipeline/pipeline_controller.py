@@ -256,6 +256,8 @@ class PipelineController:
         result = {
             "frame_id": frame_id,
             "timestamp": time.time(),
+            "b2_recomputed": False,
+            "c1_recomputed": False,
         }
         
         # ===============================
@@ -417,7 +419,8 @@ class PipelineController:
                     if c1_state_result and c1_state_result.get("protection_trigger_reason"):
                         result["c1_modeling_skip_reason"] += f", protection={c1_state_result['protection_trigger_reason']}"
         result["modeling_result"] = modeling_result
-        
+        result["c1_recomputed"] = modeling_executed  # 有效 tick：C1/Modeling 本帧实际执行
+
         # ===============================
         # B2 v0.3: 未来窗口情报（8s horizon，稀疏输出）
         # ===============================
@@ -525,7 +528,8 @@ class PipelineController:
                     frame_ts=frame_ts if frame_ts else timestamp,
                     perception=perception
                 )
-                
+                result["b2_recomputed"] = bool(world_change)  # 有效 tick：B2 本帧实际重算
+
                 if world_change:
                     # 记录世界变化（不指挥 C）
                     result["b2_world_change_v03"] = world_change
@@ -599,6 +603,7 @@ class PipelineController:
                     )
                     
                     if b2_output:
+                        result["b2_recomputed"] = True
                         result["b2_output_v02"] = b2_output
                         result["b2_log"] = {
                             "world_signature": b2_output.get("world_signature"),

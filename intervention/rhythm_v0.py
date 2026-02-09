@@ -22,7 +22,7 @@ T_ENGAGED_MIN = 5.0  # ENGAGED 最少持续 5 秒才可退出
 T_COOLDOWN = 5.0  # ENGAGED→IDLE 后冷却 5 秒
 PAL_ENTER_PREPARE = 0.15  # PAL ≥ 此值可进入 PREPARE
 PAL_ENTER_ENGAGED = 0.20  # PAL ≥ 此值且 PREPARE 满 2 秒可进入 ENGAGED
-PAL_EXIT = 0.10  # PAL < 此值可退出
+PAL_EXIT = 0.08  # PAL < 此值可退出（降低退出阈值以延长 ENGAGED 段，便于 A1 占比验收）
 VC_GATE = 0.6  # view_confidence 门禁
 
 
