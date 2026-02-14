@@ -1,0 +1,10 @@
+{"seq": 0, "decision": {"control_mode": "ASSISTED"}}
+{"seq": 1, "decision": {"control_mode": "ASSISTED"}}
+{"seq": 2, "decision": {"control_mode": "CAUTION"}}
+{"seq": 3, "decision": {"control_mode": "CAUTION"}}
+{"seq": 4, "decision": {"control_mode": "CAUTION"}}
+{"seq": 5, "decision": {"control_mode": "ASSISTED"}}
+{"seq": 6, "decision": {"control_mode": "GUARDED"}}
+{"seq": 7, "decision": {"control_mode": "GUARDED"}}
+{"seq": 8, "decision": {"control_mode": "GUARDED"}}
+{"seq": 9, "decision": {"control_mode": "CAUTION"}}

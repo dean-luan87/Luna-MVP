@@ -5,6 +5,29 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.5.0] - 2026-02-14
+
+### Guardian Discipline Phase 1 冻结
+
+退出纪律审计层：基于 control_mode 评估 B 型配置是否存在粘滞型 Goodhart，与 A3 risk 数值解耦。
+
+#### 新增
+- **tools/audit_exit_latency.py**：baseline/candidate replay 审计，输出 exit_latency、hysteresis_efficiency、baseline_no_entry 等
+- **tools/test_guardian_discipline.py**：审计 + Gate 回归测试（含 --suite 集成）
+- **tools/run_video_replay.py**：真实视频 → trace → episode → recompute → 审计
+- **tools/run_video_replay_suite.py**：6 测试视频批量跑审计
+- **docs/GUARDIAN_DISCIPLINE_PHASE1.md**：口径、Gate 红线、复现命令、最小测试用例与真实视频说明
+- 最小测试用例：baseline_test.jsonl、candidate_test.jsonl、baseline_test2.jsonl
+
+#### 变更
+- **tools/run_sim_suite.py**：集成 exit_latency 审计，per_episode 写入 guardian_discipline、exit_audit_path
+- **simulation/logic/gate.py**：Guardian Discipline 红线（exit_latency_p95≤6、max≤12、hysteresis_efficiency≥0.90）
+
+#### 验证
+- test_guardian_discipline.py 全通过；6 视频套件 6/6 PASS。
+
+---
+
 ## [1.0.0] - 2025-11-05
 
 ### 🎉 首次发布 - 硬件Demo测试版本
