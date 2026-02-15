@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "risk_scale": 5.0,
+    "peak_hold_frames": "2",
+    "peak_decay": "0.9",
+    "alpha_high": "0.45",
+    "PASS_criteria": {
+      "divergence_rate_min": 0.3,
+      "volatility_delta_max": 0.02,
+      "guarded_ratio_delta_max": 0.15
+    }
+  },
+  "combos": [
+    {
+      "combo_id": "hold2_decay0.9_ah0.45",
+      "risk_processing": {
+        "risk_scale_factor": 5.0,
+        "smoothing.peak_hold_frames": 2,
+        "smoothing.peak_decay": 0.9,
+        "smoothing.alpha": 0.25,
+        "smoothing.alpha_high": 0.45,
+        "smoothing.alpha_switch_at": 0.85
+      },
+      "risk_processing_audit": {
+        "peak_hold_frames": 2,
+        "peak_decay": 0.9,
+        "alpha_high_enabled": true,
+        "clamp_hit_ratio": 0.1
+      },
+      "divergence_rate": 1.0,
+      "divergence_episodes": 9,
+      "n_episodes": 9,
+      "avg_diff_frames": 3.1666666666666665,
+      "avg_first_diff_seq": 28.444444444444443,
+      "avg_volatility_delta": 0.0,
+      "avg_guarded_ratio_delta": 0.0,
+      "clamp_hit_ratio": 0.1,
+      "ema_max": 0.8941789104702185,
+      "ema_p95": 0.8857430781911246,
+      "n_frames_trace": 210,
+      "trace_records_path": "/Users/luanlei/Desktop/Luna-2/library_store/v1.1/episodes/20260213/stress_v2_a3_trace/slice_tr0_0_p95_0_02/records.jsonl",
+      "trace_frame_count": 210,
+      "trace_first_seq": 0,
+      "trace_last_seq": 0,
+      "per_episode": [
+        {
+          "episode": "slice_tr0_0_p95_0_02",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 13,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr153_0_p95_0_03",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 4,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 153,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr167_0_p95_0_00",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 6,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr209_0_p95_0_08",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 6,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr307_0_p95_0_04",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 6,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr386_0_p95_0_07",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 8,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr43_0_p95_0_05",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 5,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 43,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr60_0_p95_0_01",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 3,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 60,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        },
+        {
+          "episode": "slice_tr86_0_p95_0_06",
+          "diff_frames_agg": 0,
+          "diff_frames_cons": 6,
+          "first_diff_seq_agg": null,
+          "first_diff_seq_cons": 0,
+          "guarded_ratio_delta_agg": 0,
+          "guarded_ratio_delta_cons": 0,
+          "volatility_delta_agg": 0,
+          "volatility_delta_cons": 0
+        }
+      ],
+      "effective_patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/stress_v2_sweep_spark_effective/effective_patches/hold2_decay0_9_ah0_45.json",
+      "PASS": true
+    }
+  ],
+  "best": {
+    "combo_id": "hold2_decay0.9_ah0.45",
+    "risk_processing": {
+      "risk_scale_factor": 5.0,
+      "smoothing.peak_hold_frames": 2,
+      "smoothing.peak_decay": 0.9,
+      "smoothing.alpha": 0.25,
+      "smoothing.alpha_high": 0.45,
+      "smoothing.alpha_switch_at": 0.85
+    },
+    "risk_processing_audit": {
+      "peak_hold_frames": 2,
+      "peak_decay": 0.9,
+      "alpha_high_enabled": true,
+      "clamp_hit_ratio": 0.1
+    },
+    "divergence_rate": 1.0,
+    "divergence_episodes": 9,
+    "n_episodes": 9,
+    "avg_diff_frames": 3.1666666666666665,
+    "avg_first_diff_seq": 28.444444444444443,
+    "avg_volatility_delta": 0.0,
+    "avg_guarded_ratio_delta": 0.0,
+    "clamp_hit_ratio": 0.1,
+    "ema_max": 0.8941789104702185,
+    "ema_p95": 0.8857430781911246,
+    "n_frames_trace": 210,
+    "trace_records_path": "/Users/luanlei/Desktop/Luna-2/library_store/v1.1/episodes/20260213/stress_v2_a3_trace/slice_tr0_0_p95_0_02/records.jsonl",
+    "trace_frame_count": 210,
+    "trace_first_seq": 0,
+    "trace_last_seq": 0,
+    "per_episode": [
+      {
+        "episode": "slice_tr0_0_p95_0_02",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 13,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr153_0_p95_0_03",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 4,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 153,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr167_0_p95_0_00",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 6,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr209_0_p95_0_08",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 6,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr307_0_p95_0_04",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 6,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr386_0_p95_0_07",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 8,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr43_0_p95_0_05",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 5,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 43,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr60_0_p95_0_01",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 3,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 60,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      },
+      {
+        "episode": "slice_tr86_0_p95_0_06",
+        "diff_frames_agg": 0,
+        "diff_frames_cons": 6,
+        "first_diff_seq_agg": null,
+        "first_diff_seq_cons": 0,
+        "guarded_ratio_delta_agg": 0,
+        "guarded_ratio_delta_cons": 0,
+        "volatility_delta_agg": 0,
+        "volatility_delta_cons": 0
+      }
+    ],
+    "effective_patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/stress_v2_sweep_spark_effective/effective_patches/hold2_decay0_9_ah0_45.json",
+    "PASS": true
+  }
+}

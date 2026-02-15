@@ -1,0 +1,20 @@
+{
+  "episode_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+  "patch_id": "d1_candidate_006",
+  "created_at": "2026-02-12T07:08:30Z",
+  "engine_version": "runtime_v1.1",
+  "record_count": 119,
+  "config_applied": {
+    "weights.risk_density": 0.4065,
+    "weights.redline_hit": 0.1591,
+    "weights.occlusion_ratio": 0.1505,
+    "weights.roi_load": 0.2969,
+    "weights.path_instability": 0.4174,
+    "weights.motion_instability": 0.413,
+    "weights.branch_load": 0.1043,
+    "weights.speak_pressure": 0.0721,
+    "weights.reject_pressure": 0.0382
+  },
+  "weights_only_contract_applied": true,
+  "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213030119/simulations_d1_candidate_006/slice_EPISODE_6M42S_complexity_rise_3_3_baseline/replay_output.jsonl"
+}

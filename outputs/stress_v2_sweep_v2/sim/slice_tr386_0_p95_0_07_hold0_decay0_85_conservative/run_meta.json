@@ -1,0 +1,19 @@
+{
+  "episode_id": "slice_tr386_0_p95_0_07",
+  "patch_id": "hold0_decay0_85_conservative",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 70,
+  "config_applied": {
+    "risk_scale_factor": 5.0,
+    "smoothing.peak_hold_frames": 0,
+    "smoothing.peak_decay": 0.85,
+    "smoothing.alpha": 0.25,
+    "weights.risk_density": 0.15,
+    "weights.path_instability": 0.15,
+    "weights.motion_instability": 0.15
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

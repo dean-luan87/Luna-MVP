@@ -1,0 +1,10 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "slice_EPISODE_6M42S_complexity_rise_4_4",
+  "source_episode_path": "v1.1/golden/slice_EPISODE_6M42S_complexity_rise_4_4",
+  "tags": [
+    "dynamic_object"
+  ],
+  "reason": "slice trigger=complexity_rise ts=4.035007193448429",
+  "created_at": "2026-02-12T07:08:30Z"
+}

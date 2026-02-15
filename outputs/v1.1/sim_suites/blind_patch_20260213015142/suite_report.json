@@ -1,0 +1,128 @@
+{
+  "suite_id": "blind_patch_20260213015142",
+  "patch": "patches/blind_patch.json",
+  "per_episode": {
+    "SPEECH_12__20260212040845": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "SPEECH_12__20260212040854": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_10_10": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_11_11": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_1_1": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_3_3": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_4_4": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_5_5": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_6_6": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_7_7": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_8_8": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_9_9": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_0_1": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_2_2": {
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    }
+  },
+  "per_bucket": {
+    "low_light": {
+      "count": 0,
+      "passed": true
+    },
+    "cross_traffic": {
+      "count": 4,
+      "passed": false
+    },
+    "dynamic_object": {
+      "count": 10,
+      "passed": false
+    },
+    "crowded": {
+      "count": 0,
+      "passed": true
+    },
+    "reflection": {
+      "count": 0,
+      "passed": true
+    },
+    "narrow_passage": {
+      "count": 0,
+      "passed": true
+    }
+  },
+  "overall": false,
+  "overall_fail_reasons": [
+    "BUCKET_FAIL:cross_traffic:SPEECH_12__20260212040845:['PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]']",
+    "BUCKET_FAIL:dynamic_object:slice_EPISODE_6M42S_complexity_rise_10_10:['PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]']"
+  ],
+  "missing_buckets": [
+    "low_light",
+    "crowded",
+    "reflection",
+    "narrow_passage"
+  ],
+  "weighted_early_gain_available_ratio": 0.0
+}

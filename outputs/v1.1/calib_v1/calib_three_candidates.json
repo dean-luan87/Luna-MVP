@@ -1,0 +1,23 @@
+[
+  {
+    "label": "baseline",
+    "returncode": 0,
+    "volatility_mean": 0.013,
+    "early_gain_mean": 0.0,
+    "guarded_ratio_delta_mean": 0.0
+  },
+  {
+    "label": "aggressive",
+    "returncode": 0,
+    "volatility_mean": 0.013,
+    "early_gain_mean": 0.0,
+    "guarded_ratio_delta_mean": 0.0
+  },
+  {
+    "label": "conservative",
+    "returncode": 0,
+    "volatility_mean": 0.013,
+    "early_gain_mean": 0.0,
+    "guarded_ratio_delta_mean": 0.0
+  }
+]

@@ -5,6 +5,12 @@ Luna-2 是一个集成了计算机视觉、语音识别、语音合成和智能�
 **技术红线（Technical constraint）**  
 Any change to Luna visual navigation must pass `tools/determinism_guard.py` before being considered valid.
 
+### Phase 3.3 Human Annotation
+
+Annotation answers are treated as **immutable assets**. They do not affect runtime behavior, policy, or models. Any learning step must consume answers offline.
+
+（标注答案仅作资产存档，不反写策略、不触碰模型；未来学习阶段须离线消费 answers。）
+
 ## 🎯 功能特性
 
 ### 🎥 视觉感知系统

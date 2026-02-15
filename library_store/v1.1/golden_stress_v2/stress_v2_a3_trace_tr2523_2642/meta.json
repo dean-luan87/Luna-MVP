@@ -1,0 +1,17 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "stress_v2_a3_trace_tr2523_2642",
+  "source_episode_path": "v1.1/golden_stress_v2/stress_v2_a3_trace_tr2523_2642",
+  "tags": [
+    "stress_v2",
+    "continuous_near_threshold"
+  ],
+  "reason": "B2 continuous stress: trace a3_trace seg [2523,2642] ±4s",
+  "created_at": "2026-02-13T06:40:00Z",
+  "trace_path": "/Users/luanlei/Desktop/Luna-2/logs/a3_trace.jsonl",
+  "start_idx": 2523,
+  "end_idx": 2642,
+  "start_ts": 1770964283.548038,
+  "end_ts": 89.23701859229747,
+  "stress_v2_near_threshold": 0.38268010209485015
+}

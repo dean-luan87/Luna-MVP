@@ -8,6 +8,7 @@ import os
 from typing import Any, Dict, List, Optional
 
 from simulation.logic.comparator import compare_decisions
+from simulation.logic.event_metrics import extract_risk_events, summarize_events
 
 
 def _load_replay_records(path: str) -> List[Dict[str, Any]]:
@@ -222,22 +223,33 @@ def _weighted_early_gain_block(
 ) -> Dict[str, Any]:
     """
     D2.2 防低风险刷分：仅在“高风险帧”上算 early gain。
-    v1：replay 无 per-frame complexity_delta 时标记 WEIGHTED_EARLY_GAIN_UNAVAILABLE，不进硬门禁。
+    优先用 replay 的 high_risk==True（决策用风险 >= 阈值）；无则 fallback 到 complexity_delta > 0。
     """
     high_risk_seqs = set()
-    for r in candidate_records:
-        complexity_delta = _safe_float(r.get("complexity_delta"))
-        if complexity_delta is not None and complexity_delta > 0:
-            seq = r.get("seq")
-            if seq is not None:
-                high_risk_seqs.add(seq)
-    if not high_risk_seqs:
-        for r in baseline_records:
+
+    def add_by_high_risk(records: List[Dict[str, Any]]) -> None:
+        for r in records:
+            if r.get("high_risk") is True:
+                seq = r.get("seq")
+                if seq is not None:
+                    high_risk_seqs.add(seq)
+
+    def add_by_complexity_delta(records: List[Dict[str, Any]]) -> None:
+        for r in records:
             complexity_delta = _safe_float(r.get("complexity_delta"))
             if complexity_delta is not None and complexity_delta > 0:
                 seq = r.get("seq")
                 if seq is not None:
                     high_risk_seqs.add(seq)
+
+    add_by_high_risk(candidate_records)
+    if not high_risk_seqs:
+        add_by_high_risk(baseline_records)
+    if not high_risk_seqs:
+        add_by_complexity_delta(candidate_records)
+    if not high_risk_seqs:
+        add_by_complexity_delta(baseline_records)
+
     if not high_risk_seqs:
         return {
             "early_gain_weighted": None,
@@ -258,13 +270,20 @@ def _weighted_early_gain_block(
             c_first_hr = r.get("seq", total)
             break
     early_gain_weighted = round((b_first_hr - c_first_hr) / max(n_hr, 1), 4)
-    return {
+    risk_used_vals = [_safe_float(r.get("risk_used_for_decision")) for r in baseline_records + candidate_records if r.get("risk_used_for_decision") is not None]
+    threshold_vals = [_safe_float(r.get("threshold_safe_to_caution")) for r in baseline_records + candidate_records if r.get("threshold_safe_to_caution") is not None]
+    out = {
         "early_gain_weighted": early_gain_weighted,
         "weighted_early_gain_available": True,
         "high_risk_seq_count": n_hr,
         "baseline_first_guarded_in_high_risk": b_first_hr if b_first_hr != total else None,
         "candidate_first_guarded_in_high_risk": c_first_hr if c_first_hr != total else None,
     }
+    if risk_used_vals:
+        out["risk_used_for_decision_max"] = round(max(x for x in risk_used_vals if x is not None), 4)
+    if threshold_vals:
+        out["threshold_safe_to_caution"] = round(threshold_vals[0], 4)
+    return out
 
 
 # D2.3: 相对缩短 ≥10% 视为缓解
@@ -390,6 +409,22 @@ def score(
     coverage = _coverage_block(baseline_records, candidate_records, compared_count)
     perception = _perception_block(baseline_records, candidate_records)
     early_block = _weighted_early_gain_block(baseline_records, candidate_records, compared_count)
+    baseline_events = extract_risk_events(baseline_records)
+    candidate_events = extract_risk_events(candidate_records)
+    event_baseline = summarize_events(baseline_events)
+    event_candidate = summarize_events(candidate_events)
+    total_frames = max(1, len(baseline_records), len(candidate_records))
+    risk_ratio_baseline = round(event_baseline["total_risk_frames"] / total_frames, 4)
+    risk_ratio_candidate = round(event_candidate["total_risk_frames"] / total_frames, 4)
+    event_metrics = {
+        "baseline": event_baseline,
+        "candidate": event_candidate,
+        "delta": {
+            "dwell_p95_delta": round(event_candidate["dwell_p95"] - event_baseline["dwell_p95"], 4),
+            "event_count_delta": event_candidate["event_count"] - event_baseline["event_count"],
+            "risk_frames_ratio_delta": round(risk_ratio_candidate - risk_ratio_baseline, 4),
+        },
+    }
     out = {
         "safety_regression_rate": round(safety_regression_rate, 4),
         "regression_count": regression_count,
@@ -405,6 +440,7 @@ def score(
         "early": early_block,
         "comparison": cmp,
         "lookahead_forced_ratio": lookahead_forced_ratio,
+        "event_metrics": event_metrics,
     }
     out["decision_coverage_delta"] = coverage["decision_coverage_delta"]
     out["lookahead_coverage_delta"] = coverage["lookahead_coverage_delta"]

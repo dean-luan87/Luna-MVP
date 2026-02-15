@@ -1,0 +1,42 @@
+{
+  "suite_id": "baseline_20260214032548",
+  "patch": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032548/candidates/baseline.json",
+  "per_episode": {},
+  "per_bucket": {
+    "low_light": {
+      "count": 0,
+      "passed": true
+    },
+    "cross_traffic": {
+      "count": 0,
+      "passed": true
+    },
+    "dynamic_object": {
+      "count": 0,
+      "passed": true
+    },
+    "crowded": {
+      "count": 0,
+      "passed": true
+    },
+    "reflection": {
+      "count": 0,
+      "passed": true
+    },
+    "narrow_passage": {
+      "count": 0,
+      "passed": true
+    }
+  },
+  "overall": true,
+  "overall_fail_reasons": [],
+  "missing_buckets": [
+    "low_light",
+    "cross_traffic",
+    "dynamic_object",
+    "crowded",
+    "reflection",
+    "narrow_passage"
+  ],
+  "weighted_early_gain_available_ratio": 0.0
+}

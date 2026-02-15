@@ -1,0 +1,10 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "SPEECH_12",
+  "source_episode_path": "v1.1/episodes/20260209/fake-session-001/SPEECH_12",
+  "tags": [
+    "cross_traffic"
+  ],
+  "reason": "对抗验证样本",
+  "created_at": "2026-02-12T04:08:45Z"
+}

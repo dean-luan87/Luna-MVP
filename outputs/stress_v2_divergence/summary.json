@@ -1,0 +1,164 @@
+[
+  {
+    "episode": "slice_tr0_0_p95_0_02",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr0_0_p95_0_02",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr153_0_p95_0_03",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr153_0_p95_0_03",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr167_0_p95_0_00",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr167_0_p95_0_00",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr209_0_p95_0_08",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr209_0_p95_0_08",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr307_0_p95_0_04",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr307_0_p95_0_04",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr386_0_p95_0_07",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr386_0_p95_0_07",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr43_0_p95_0_05",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr43_0_p95_0_05",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr60_0_p95_0_01",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr60_0_p95_0_01",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr86_0_p95_0_06",
+    "candidate": "aggressive",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  },
+  {
+    "episode": "slice_tr86_0_p95_0_06",
+    "candidate": "conservative",
+    "diff_frames": 0,
+    "first_diff_seq": null,
+    "guarded_ratio_delta": 0.0,
+    "early_gain_delta": 0.0,
+    "volatility_delta": 0.0
+  }
+]

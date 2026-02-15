@@ -1,0 +1,13 @@
+{
+  "episode_id": "slice_tr153_0_p95_0_03",
+  "patch_id": "baseline_scale6",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 80,
+  "config_applied": {
+    "risk_scale_factor": 6.0
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "reasons": [
+    "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+  ]
+}

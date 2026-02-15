@@ -1,0 +1,15 @@
+{
+  "episode_id": "episode",
+  "patch_id": "d1_conservative",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 3512,
+  "config_applied": {
+    "weights.risk_density": 0.15,
+    "weights.path_instability": 0.15,
+    "weights.motion_instability": 0.15
+  },
+  "weights_only_contract_applied": true,
+  "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/video_replay_test_video_last2min/video_replay_baseline/replay_output.jsonl",
+  "recompute": true
+}

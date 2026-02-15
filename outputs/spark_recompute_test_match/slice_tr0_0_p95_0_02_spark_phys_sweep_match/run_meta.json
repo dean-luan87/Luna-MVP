@@ -1,0 +1,20 @@
+{
+  "episode_id": "slice_tr0_0_p95_0_02",
+  "patch_id": "spark_phys_sweep_match",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 210,
+  "config_applied": {
+    "metadata": {
+      "risk_processing_version": "spark_phys_match",
+      "is_laboratory_mode": true
+    },
+    "smoothing.peak_hold_frames": 2,
+    "smoothing.peak_decay": 0.9,
+    "smoothing.alpha_high": 0.45,
+    "smoothing.alpha_switch_at": 0.85
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

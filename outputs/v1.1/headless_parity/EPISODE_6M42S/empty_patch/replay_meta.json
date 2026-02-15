@@ -1,0 +1,14 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "EPISODE_6M42S",
+  "episode_path": "v1.1/episodes/20260212/video-6m42s/EPISODE_6M42S",
+  "patch_stem": "empty_patch",
+  "patch_hash": "44136fa355b3678a",
+  "frame_count": 36082,
+  "fields": [
+    "seq",
+    "safety_level",
+    "control_mode",
+    "pal_lookahead_m"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "scope": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+  "frame_count": 119,
+  "weighted_sum_before_clamp": {
+    "p50": 0.0,
+    "p90": 0.0,
+    "p95": 0.0,
+    "max": 0.1879,
+    "mean": 0.0054
+  },
+  "raw_clamped": {
+    "p50": 0.0,
+    "p95": 0.0,
+    "max": 0.1879
+  },
+  "ema": {
+    "p95": 0.0233,
+    "max": 0.0435
+  },
+  "frames_above_0.3": 0,
+  "frames_above_0.5": 0,
+  "components": {
+    "risk_density": {
+      "max": 0.0595,
+      "p95": 0.0,
+      "mean": 0.0014
+    },
+    "redline_hit": {
+      "max": 0.0,
+      "p95": 0.0,
+      "mean": 0.0
+    },
+    "occlusion_ratio": {
+      "max": 0.0,
+      "p95": 0.0,
+      "mean": 0.0
+    },
+    "roi_load": {
+      "max": 0.0,
+      "p95": 0.0,
+      "mean": 0.0
+    },
+    "path_instability": {
+      "max": 0.08,
+      "p95": 0.0,
+      "mean": 0.0026
+    },
+    "motion_instability": {
+      "max": 0.0329,
+      "p95": 0.0,
+      "mean": 0.0008
+    },
+    "branch_load": {
+      "max": 0.0267,
+      "p95": 0.0,
+      "mean": 0.0006
+    },
+    "speak_pressure": {
+      "max": 0.0,
+      "p95": 0.0,
+      "mean": 0.0
+    },
+    "reject_pressure": {
+      "max": 0.0,
+      "p95": 0.0,
+      "mean": 0.0
+    }
+  }
+}

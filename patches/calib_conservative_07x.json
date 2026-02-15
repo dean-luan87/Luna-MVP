@@ -1,0 +1,7 @@
+{
+  "weights.risk_density": 0.21,
+  "weights.path_instability": 0.21,
+  "weights.motion_instability": 0.21,
+  "metadata.trace_tag": "calib_v1",
+  "metadata.note": "conservative 0.7x for calib split test, do not ship"
+}

@@ -76,6 +76,7 @@ class A3HeadlessAdapter:
         self._config = from_flat_dict(merged)
         self._engine: A3Engine | None = None
         self._seq: int = 0
+        self._did_dump_smoothing: bool = False
 
     def reset(self) -> None:
         self._engine = None
@@ -85,6 +86,13 @@ class A3HeadlessAdapter:
         if self._engine is None:
             now_ms = int(virtual_ts * 1000) if virtual_ts is not None else 0
             self._engine = A3Engine(self._config, initial_now_ms=now_ms)
+            if not self._did_dump_smoothing:
+                sm = self._config.smoothing
+                print(
+                    "[A3] smoothing config (engine init): peak_hold_frames=%s peak_decay=%s alpha_high=%s alpha_switch_at=%s"
+                    % (getattr(sm, "peak_hold_frames", None), getattr(sm, "peak_decay", None), getattr(sm, "alpha_high", None), getattr(sm, "alpha_switch_at", None))
+                )
+                self._did_dump_smoothing = True
         now_ms = int(virtual_ts * 1000)
         if isinstance(obs_dict.get("obs"), dict):
             signals = _obs_to_signals(obs_dict)
@@ -93,11 +101,18 @@ class A3HeadlessAdapter:
         mode = self._engine.tick(signals, now_ms=now_ms)
         seq = obs_dict.get("seq", self._seq)
         self._seq = seq + 1
+        debug = getattr(mode, "debug", None) or {}
+        # 决策用风险 = 最终用于 _classify_safety 的 ema（hold + conditional alpha 之后），与 threshold 同口径
+        risk_used = float(debug.get("ema", getattr(mode, "complexity_score", 0.0)))
+        threshold = float(debug.get("threshold_safe_to_caution", 0.38))
         out: Dict[str, Any] = {
             "seq": seq,
             "safety_level": mode.safety_level.value if isinstance(mode.safety_level, SafetyLevel) else str(mode.safety_level),
             "control_mode": mode.control_mode.value if isinstance(mode.control_mode, ControlMode) else str(mode.control_mode),
             "pal_lookahead_m": float(mode.pal_lookahead_m),
+            "complexity_score": float(getattr(mode, "complexity_score", 0.0)),
+            "risk_used_for_decision": risk_used,
+            "threshold_safe_to_caution": threshold,
         }
         if getattr(mode, "debug", None):
             out["a3_debug"] = {k: float(v) for k, v in mode.debug.items()}

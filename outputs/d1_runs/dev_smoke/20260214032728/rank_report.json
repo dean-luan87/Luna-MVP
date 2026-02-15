@@ -1,0 +1,100 @@
+{
+  "champion_id": "baseline",
+  "champion_patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/baseline/patch.json",
+  "ranked": [
+    {
+      "patch_id": "baseline",
+      "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/baseline/patch.json",
+      "aggregated": {
+        "early_gain_weighted_mean": 0.0,
+        "volatility_mean": 0.0,
+        "guarded_ratio_delta_mean": 0.0,
+        "lookahead_drop_mean": 0.0,
+        "early_gain_min": 0.0,
+        "early_gain_max": 0.0,
+        "volatility_min": 0.0,
+        "volatility_max": 0.0,
+        "by_bucket": {},
+        "dwell_p95_delta_mean": 0.0,
+        "guarded_tail_ratio_delta_mean": 0.0
+      },
+      "sort_reason": "L1 early_gain=0.0 L2 dwell_p95_delta=0.0 vol=0.0 L3 gr_delta=0.0"
+    },
+    {
+      "patch_id": "aggressive",
+      "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/aggressive/patch.json",
+      "aggregated": {
+        "early_gain_weighted_mean": 0.0,
+        "volatility_mean": 0.0,
+        "guarded_ratio_delta_mean": 0.0,
+        "lookahead_drop_mean": 0.0,
+        "early_gain_min": 0.0,
+        "early_gain_max": 0.0,
+        "volatility_min": 0.0,
+        "volatility_max": 0.0,
+        "by_bucket": {},
+        "dwell_p95_delta_mean": 0.0,
+        "guarded_tail_ratio_delta_mean": 0.0
+      },
+      "sort_reason": "L1 early_gain=0.0 L2 dwell_p95_delta=0.0 vol=0.0 L3 gr_delta=0.0"
+    },
+    {
+      "patch_id": "conservative",
+      "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/conservative/patch.json",
+      "aggregated": {
+        "early_gain_weighted_mean": 0.0,
+        "volatility_mean": 0.0,
+        "guarded_ratio_delta_mean": 0.0,
+        "lookahead_drop_mean": 0.0,
+        "early_gain_min": 0.0,
+        "early_gain_max": 0.0,
+        "volatility_min": 0.0,
+        "volatility_max": 0.0,
+        "by_bucket": {},
+        "dwell_p95_delta_mean": 0.0,
+        "guarded_tail_ratio_delta_mean": 0.0
+      },
+      "sort_reason": "L1 early_gain=0.0 L2 dwell_p95_delta=0.0 vol=0.0 L3 gr_delta=0.0"
+    },
+    {
+      "patch_id": "d1_candidate_000",
+      "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/d1_candidate_000/patch.json",
+      "aggregated": {
+        "early_gain_weighted_mean": 0.0,
+        "volatility_mean": 0.0,
+        "guarded_ratio_delta_mean": 0.0,
+        "lookahead_drop_mean": 0.0,
+        "early_gain_min": 0.0,
+        "early_gain_max": 0.0,
+        "volatility_min": 0.0,
+        "volatility_max": 0.0,
+        "by_bucket": {},
+        "dwell_p95_delta_mean": 0.0,
+        "guarded_tail_ratio_delta_mean": 0.0
+      },
+      "sort_reason": "L1 early_gain=0.0 L2 dwell_p95_delta=0.0 vol=0.0 L3 gr_delta=0.0"
+    },
+    {
+      "patch_id": "d1_candidate_001",
+      "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032728/d1_candidate_001/patch.json",
+      "aggregated": {
+        "early_gain_weighted_mean": 0.0,
+        "volatility_mean": 0.0,
+        "guarded_ratio_delta_mean": 0.0,
+        "lookahead_drop_mean": 0.0,
+        "early_gain_min": 0.0,
+        "early_gain_max": 0.0,
+        "volatility_min": 0.0,
+        "volatility_max": 0.0,
+        "by_bucket": {},
+        "dwell_p95_delta_mean": 0.0,
+        "guarded_tail_ratio_delta_mean": 0.0
+      },
+      "sort_reason": "L1 early_gain=0.0 L2 dwell_p95_delta=0.0 vol=0.0 L3 gr_delta=0.0"
+    }
+  ],
+  "eliminated": [],
+  "_warnings": [
+    "all_aggregated_zero: scorecards may be missing or suite produced no variance; check run_dir/<id>/episodes/*/scorecard.json"
+  ]
+}

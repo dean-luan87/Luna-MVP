@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "risk_processing_version": "stress_channel_phys_v1",
+    "is_laboratory_mode": true
+  },
+  "risk_scale_factor": 5.0,
+  "smoothing.peak_hold_frames": 3,
+  "smoothing.peak_decay": 0.92,
+  "smoothing.alpha_high": 0.45,
+  "smoothing.alpha_switch_at": 0.85
+}

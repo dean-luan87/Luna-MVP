@@ -1,0 +1,11 @@
+{
+  "episode_id": "slice_tr386_0_p95_0_07",
+  "patch_id": "baseline",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 70,
+  "config_applied": {},
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

@@ -1,0 +1,69 @@
+{
+  "summary": {
+    "exit_latency_p50": 1,
+    "exit_latency_p95": 1,
+    "exit_latency_max": 2,
+    "matched_event_count": 2,
+    "baseline_event_count": 2,
+    "candidate_event_count": 2,
+    "baseline_no_entry_count": 0,
+    "missing_candidate_event_count": 0,
+    "hysteresis_efficiency": 0.5714
+  },
+  "events_matched": [
+    {
+      "baseline_entry_seq": 2,
+      "baseline_exit_seq": 4,
+      "candidate_entry_seq": 2,
+      "candidate_exit_seq": 5,
+      "baseline_dwell_frames": 2,
+      "candidate_dwell_frames": 3,
+      "exit_latency_frames": 1,
+      "overlap_frames": 2,
+      "candidate_frames": 3,
+      "efficiency": 0.6667
+    },
+    {
+      "baseline_entry_seq": 6,
+      "baseline_exit_seq": 8,
+      "candidate_entry_seq": 6,
+      "candidate_exit_seq": 10,
+      "baseline_dwell_frames": 2,
+      "candidate_dwell_frames": 4,
+      "exit_latency_frames": 2,
+      "overlap_frames": 2,
+      "candidate_frames": 4,
+      "efficiency": 0.5
+    }
+  ],
+  "events_baseline_no_entry": [],
+  "top_offenders": {
+    "exit_latency": [
+      {
+        "baseline_entry_seq": 6,
+        "baseline_exit_seq": 8,
+        "candidate_entry_seq": 6,
+        "candidate_exit_seq": 10,
+        "baseline_dwell_frames": 2,
+        "candidate_dwell_frames": 4,
+        "exit_latency_frames": 2,
+        "overlap_frames": 2,
+        "candidate_frames": 4,
+        "efficiency": 0.5
+      },
+      {
+        "baseline_entry_seq": 2,
+        "baseline_exit_seq": 4,
+        "candidate_entry_seq": 2,
+        "candidate_exit_seq": 5,
+        "baseline_dwell_frames": 2,
+        "candidate_dwell_frames": 3,
+        "exit_latency_frames": 1,
+        "overlap_frames": 2,
+        "candidate_frames": 3,
+        "efficiency": 0.6667
+      }
+    ],
+    "baseline_no_entry": []
+  }
+}

@@ -1,0 +1,4 @@
+{"seq": 0, "has_decision": true, "has_lookahead": true, "control_mode": "ASSISTED", "safety_level": "CAUTION", "pal_lookahead_m": 2.0}
+{"seq": 8, "has_decision": true, "has_lookahead": true, "control_mode": "ASSISTED", "safety_level": "SAFE", "pal_lookahead_m": 2.0}
+{"seq": 9, "has_decision": true, "has_lookahead": true, "control_mode": "ASSISTED", "safety_level": "SAFE", "pal_lookahead_m": 2.0}
+{"seq": 10, "has_decision": true, "has_lookahead": true, "control_mode": "ASSISTED", "safety_level": "SAFE", "pal_lookahead_m": 2.0}

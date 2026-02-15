@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "reasons": [
+    "EFF_GUARDED_RATIO_DELTA(0.756)"
+  ]
+}

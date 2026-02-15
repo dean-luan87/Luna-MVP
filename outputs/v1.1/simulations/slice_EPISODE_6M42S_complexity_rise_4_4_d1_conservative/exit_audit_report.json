@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "exit_latency_p50": 0,
+    "exit_latency_p95": 0,
+    "exit_latency_max": 0,
+    "matched_event_count": 1,
+    "baseline_event_count": 1,
+    "candidate_event_count": 1,
+    "baseline_no_entry_count": 0,
+    "missing_candidate_event_count": 0,
+    "hysteresis_efficiency": 1.0
+  },
+  "events_matched": [
+    {
+      "baseline_entry_seq": 0,
+      "baseline_exit_seq": 1,
+      "candidate_entry_seq": 0,
+      "candidate_exit_seq": 1,
+      "baseline_dwell_frames": 1,
+      "candidate_dwell_frames": 1,
+      "exit_latency_frames": 0,
+      "overlap_frames": 1,
+      "candidate_frames": 1,
+      "efficiency": 1.0
+    }
+  ],
+  "events_baseline_no_entry": [],
+  "top_offenders": {
+    "exit_latency": [
+      {
+        "baseline_entry_seq": 0,
+        "baseline_exit_seq": 1,
+        "candidate_entry_seq": 0,
+        "candidate_exit_seq": 1,
+        "baseline_dwell_frames": 1,
+        "candidate_dwell_frames": 1,
+        "exit_latency_frames": 0,
+        "overlap_frames": 1,
+        "candidate_frames": 1,
+        "efficiency": 1.0
+      }
+    ],
+    "baseline_no_entry": []
+  }
+}

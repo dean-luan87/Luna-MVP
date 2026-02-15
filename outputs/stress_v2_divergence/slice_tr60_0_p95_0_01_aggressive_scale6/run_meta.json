@@ -1,0 +1,16 @@
+{
+  "episode_id": "slice_tr60_0_p95_0_01",
+  "patch_id": "aggressive_scale6",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 170,
+  "config_applied": {
+    "risk_scale_factor": 6.0,
+    "weights.risk_density": 0.6,
+    "weights.path_instability": 0.6,
+    "weights.motion_instability": 0.6
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

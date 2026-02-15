@@ -1,0 +1,11 @@
+{
+  "weights.risk_density": 0.4826,
+  "weights.redline_hit": 0.2043,
+  "weights.occlusion_ratio": 0.2093,
+  "weights.roi_load": 0.2691,
+  "weights.path_instability": 0.4912,
+  "weights.motion_instability": 0.2258,
+  "weights.branch_load": 0.2972,
+  "weights.speak_pressure": 0.0349,
+  "weights.reject_pressure": 0.0354
+}

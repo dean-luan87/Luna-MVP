@@ -1,0 +1,4 @@
+{"record_type": "OBS_V1", "ts": 1.0, "seq": 0, "sampled": true, "obs": {"motion": 0.0, "path": 0.0, "branch": 0.0, "roi": 0}, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED"}}
+{"record_type": "OBS_V1", "ts": 2.0, "seq": 1, "sampled": true, "obs": {"motion": 0.0, "path": 0.0, "branch": 0.0, "roi": 0}, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED"}}
+{"record_type": "OBS_V1", "ts": 3.0, "seq": 2, "sampled": true, "obs": {"motion": 0.0, "path": 0.0, "branch": 0.0, "roi": 0}, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED"}}
+{"record_type": "OBS_V1", "ts": 4.0, "seq": 3, "sampled": true, "obs": {"motion": 0.0, "path": 0.0, "branch": 0.0, "roi": 0}, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED"}}

@@ -1,0 +1,26 @@
+{
+  "episode_id": "slice_tr86_0_p95_0_06",
+  "patch_id": "d1_candidate_000",
+  "created_at": "D0_replay",
+  "engine_version": "runtime_v1.1",
+  "record_count": 70,
+  "config_applied": {
+    "metadata": {
+      "patch_kind": "weights_only",
+      "d1_run_id": "20260214032933",
+      "version_tag": "d1_v1"
+    },
+    "weights.risk_density": 0.3806,
+    "weights.redline_hit": 0.3387,
+    "weights.occlusion_ratio": 0.2031,
+    "weights.roi_load": 0.2828,
+    "weights.path_instability": 0.5013,
+    "weights.motion_instability": 0.1996,
+    "weights.branch_load": 0.3638,
+    "weights.speak_pressure": 0.0378,
+    "weights.reject_pressure": 0.0173
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": false
+}

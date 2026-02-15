@@ -1,0 +1,20 @@
+{
+  "episode_id": "SPEECH_12",
+  "patch_id": "d1_candidate_016",
+  "created_at": "2026-02-09T06:48:43Z",
+  "engine_version": "runtime_v1.1",
+  "record_count": 4,
+  "config_applied": {
+    "weights.risk_density": 0.2549,
+    "weights.redline_hit": 0.3418,
+    "weights.occlusion_ratio": 0.1107,
+    "weights.roi_load": 0.345,
+    "weights.path_instability": 0.4856,
+    "weights.motion_instability": 0.1871,
+    "weights.branch_load": 0.2668,
+    "weights.speak_pressure": 0.0506,
+    "weights.reject_pressure": 0.0455
+  },
+  "weights_only_contract_applied": true,
+  "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213030119/simulations_d1_candidate_016/SPEECH_12__20260212040854_baseline/replay_output.jsonl"
+}

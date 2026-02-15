@@ -1,0 +1,11 @@
+{
+  "episode_id": "episode",
+  "patch_id": "baseline",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 600,
+  "config_applied": {},
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

@@ -1,0 +1,12 @@
+{
+  "version_tag": "v1.1",
+  "session_id": "fake-session-001",
+  "episode_id": "SAFETY_CHANGE_11",
+  "trigger_type": "SAFETY_CHANGE",
+  "trigger_ts": 4.0,
+  "trigger_seq": 11,
+  "pre_n": 1,
+  "post_n": 1,
+  "record_count": 4,
+  "created_at": "2026-02-09T06:48:43Z"
+}

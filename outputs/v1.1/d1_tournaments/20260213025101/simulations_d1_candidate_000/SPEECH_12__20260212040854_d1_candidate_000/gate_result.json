@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "reasons": [
+    "WARN_LOOKAHEAD_VALUE_MISSING",
+    "WARN_LOOKAHEAD_PRESENCE_FORCED_HIGH",
+    "WARN: lookahead_forced_ratio=1.00 (weights-only contract applied)"
+  ],
+  "warnings": [
+    "WARN: lookahead_forced_ratio=1.0 (C 层关注)"
+  ]
+}

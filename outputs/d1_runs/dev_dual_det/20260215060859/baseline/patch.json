@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "risk_processing_version": "regular_channel_phys_v1",
+    "is_laboratory_mode": true,
+    "patch_kind": "weights_only",
+    "d1_run_id": "20260215060859",
+    "version_tag": "d1_v1"
+  },
+  "risk_scale_factor": 1.0,
+  "smoothing.peak_hold_frames": 3,
+  "smoothing.peak_decay": 0.92,
+  "smoothing.alpha_high": 0.45,
+  "smoothing.alpha_switch_at": 0.85
+}

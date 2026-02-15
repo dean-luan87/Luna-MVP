@@ -1,0 +1,10 @@
+{
+  "trace": "/Users/luanlei/Desktop/Luna-2/logs/a3_trace.jsonl",
+  "fps_inferred": 10.0,
+  "percentile": 95.0,
+  "hot_line": 0.783,
+  "min_run": 2,
+  "window_sec": 3.0,
+  "max_slices": 12,
+  "created_at": "2026-02-13T07:09:33.125202+00:00"
+}

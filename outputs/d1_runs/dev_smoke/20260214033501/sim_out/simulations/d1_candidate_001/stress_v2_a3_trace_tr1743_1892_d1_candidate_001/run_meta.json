@@ -1,0 +1,26 @@
+{
+  "episode_id": "stress_v2_a3_trace_tr1743_1892",
+  "patch_id": "d1_candidate_001",
+  "created_at": "2026-02-13T06:40:00Z",
+  "engine_version": "recompute_v1",
+  "record_count": 150,
+  "config_applied": {
+    "metadata": {
+      "patch_kind": "weights_only",
+      "d1_run_id": "20260214033501",
+      "version_tag": "d1_v1"
+    },
+    "weights.risk_density": 0.2119,
+    "weights.redline_hit": 0.1442,
+    "weights.occlusion_ratio": 0.0629,
+    "weights.roi_load": 0.1758,
+    "weights.path_instability": 0.3111,
+    "weights.motion_instability": 0.5076,
+    "weights.branch_load": 0.1239,
+    "weights.speak_pressure": 0.0683,
+    "weights.reject_pressure": 0.046
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": true
+}

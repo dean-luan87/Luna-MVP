@@ -1,0 +1,18 @@
+{
+  "episode_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+  "patch_id": "d1_candidate_015",
+  "created_at": "2026-02-12T07:08:30Z",
+  "engine_version": "runtime_v1.1",
+  "record_count": 119,
+  "config_applied": {
+    "weights.risk_density": 0.1683,
+    "weights.redline_hit": 0.1569,
+    "weights.occlusion_ratio": 0.0939,
+    "weights.roi_load": 0.1902,
+    "weights.path_instability": 0.5234,
+    "weights.motion_instability": 0.2346,
+    "weights.branch_load": 0.2814,
+    "weights.speak_pressure": 0.0502,
+    "weights.reject_pressure": 0.0496
+  }
+}

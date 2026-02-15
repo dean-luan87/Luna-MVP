@@ -1,0 +1,18 @@
+{
+  "episode_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+  "patch_id": "d1_candidate_008",
+  "created_at": "2026-02-12T07:08:30Z",
+  "engine_version": "runtime_v1.1",
+  "record_count": 119,
+  "config_applied": {
+    "weights.risk_density": 0.2277,
+    "weights.redline_hit": 0.2307,
+    "weights.occlusion_ratio": 0.1196,
+    "weights.roi_load": 0.1215,
+    "weights.path_instability": 0.1632,
+    "weights.motion_instability": 0.1938,
+    "weights.branch_load": 0.3805,
+    "weights.speak_pressure": 0.0288,
+    "weights.reject_pressure": 0.0344
+  }
+}

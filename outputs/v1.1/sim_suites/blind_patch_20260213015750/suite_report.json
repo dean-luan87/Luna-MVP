@@ -1,0 +1,184 @@
+{
+  "suite_id": "blind_patch_20260213015750",
+  "patch": "patches/blind_patch.json",
+  "per_episode": {
+    "SPEECH_12__20260212040845": {
+      "episode_id": "SPEECH_12__20260212040845",
+      "golden_id": "SPEECH_12__20260212040845",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/SPEECH_12_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/SPEECH_12_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "SPEECH_12__20260212040854": {
+      "episode_id": "SPEECH_12__20260212040854",
+      "golden_id": "SPEECH_12__20260212040854",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/SPEECH_12_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/SPEECH_12_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_10_10": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_10_10",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_10_10",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_10_10_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_10_10_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_11_11": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_11_11",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_11_11",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_11_11_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_11_11_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_1_1": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_1_1",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_1_1",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_1_1_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_1_1_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_3_3": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_3_3_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_3_3_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_4_4": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_4_4",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_4_4",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_4_4_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_4_4_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_5_5": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_5_5",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_5_5",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_5_5_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_5_5_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_6_6": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_6_6",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_6_6",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_6_6_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_6_6_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_7_7": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_7_7",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_7_7",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_7_7_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_7_7_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_8_8": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_8_8",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_8_8",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_8_8_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_8_8_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0, 7]"
+      ]
+    },
+    "slice_EPISODE_6M42S_complexity_rise_9_9": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_9_9",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_9_9",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_9_9_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_complexity_rise_9_9_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_0_1": {
+      "episode_id": "slice_EPISODE_6M42S_control_mode_switch_0_1",
+      "golden_id": "slice_EPISODE_6M42S_control_mode_switch_0_1",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_control_mode_switch_0_1_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_control_mode_switch_0_1_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_2_2": {
+      "episode_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+      "golden_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_control_mode_switch_2_2_blind_patch/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/simulations/slice_EPISODE_6M42S_control_mode_switch_2_2_blind_patch/gate_result.json",
+      "passed": false,
+      "reasons": [
+        "PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]"
+      ]
+    }
+  },
+  "per_bucket": {
+    "low_light": {
+      "count": 0,
+      "passed": true
+    },
+    "cross_traffic": {
+      "count": 4,
+      "passed": false
+    },
+    "dynamic_object": {
+      "count": 10,
+      "passed": false
+    },
+    "crowded": {
+      "count": 0,
+      "passed": true
+    },
+    "reflection": {
+      "count": 0,
+      "passed": true
+    },
+    "narrow_passage": {
+      "count": 0,
+      "passed": true
+    }
+  },
+  "overall": false,
+  "overall_fail_reasons": [
+    "BUCKET_FAIL:cross_traffic:SPEECH_12__20260212040845:['PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]']",
+    "BUCKET_FAIL:dynamic_object:slice_EPISODE_6M42S_complexity_rise_10_10:['PERCEPTION_FAIL: degradation_rate=1.0000 (max 0.000), examples=[0]']"
+  ],
+  "missing_buckets": [
+    "low_light",
+    "crowded",
+    "reflection",
+    "narrow_passage"
+  ],
+  "weighted_early_gain_available_ratio": 0.0
+}

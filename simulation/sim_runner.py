@@ -113,6 +113,8 @@ def run_episode(
     # Phase 2 recompute：weights.* 必选；thresholds.* 仅用于诊断/calibration probe，不进入 D1 候选空间
     a3_adapter = None
     if mode == "recompute":
+        import simulation.logic.a3_headless_adapter as _a3_adapter_mod
+        print("[SIM] using a3_headless_adapter from:", getattr(_a3_adapter_mod, "__file__", "?"))
         from simulation.logic.a3_headless_adapter import A3HeadlessAdapter
         a3_patch = {k: v for k, v in patch_config.items() if isinstance(k, str) and (k == "risk_scale_factor" or k.startswith("weights.") or k.startswith("thresholds.") or k.startswith("smoothing."))}
         a3_adapter = A3HeadlessAdapter(base_config={}, patch_config=a3_patch)
@@ -123,11 +125,15 @@ def run_episode(
         d["control_mode"] = "ASSISTED"
         d["pal_lookahead_m"] = 2.0
 
+    # 用于 scorer early_gain：recompute 时写“决策用风险 + 阈值 + high_risk”，与 A3 口径一致
     replay_lines: List[Dict[str, Any]] = []
     for r in obs_v1:
         seq = r.get("seq", len(replay_lines))
         ts = r.get("ts", 0.0)
         decision: Dict[str, Any]
+        risk_used_this_frame: Optional[float] = None
+        threshold_this_frame: Optional[float] = None
+        high_risk_this_frame: Optional[bool] = None
         if mode == "recompute" and a3_adapter is not None:
             out = a3_adapter.tick(r, virtual_ts=ts)
             decision = {
@@ -135,6 +141,9 @@ def run_episode(
                 "control_mode": out.get("control_mode"),
                 "pal_lookahead_m": out.get("pal_lookahead_m"),
             }
+            risk_used_this_frame = float(out.get("risk_used_for_decision") or out.get("complexity_score") or 0.0)
+            threshold_this_frame = float(out.get("threshold_safe_to_caution", 0.38))
+            high_risk_this_frame = risk_used_this_frame >= threshold_this_frame
         else:
             decision = (r.get("decision") or {}).copy()
 
@@ -165,6 +174,12 @@ def run_episode(
                         "missing_frozen": True,
                     },
                 }
+                if risk_used_this_frame is not None:
+                    rec_out["risk_used_for_decision"] = risk_used_this_frame
+                if threshold_this_frame is not None:
+                    rec_out["threshold_safe_to_caution"] = threshold_this_frame
+                if high_risk_this_frame is not None:
+                    rec_out["high_risk"] = high_risk_this_frame
             else:
                 # A) decision presence 对齐（禁止复制 baseline 数值）；cand_dec 来自 A3(recompute) 或 record(replay)
                 cand_dec = decision if mode == "recompute" else (r.get("decision") or {}).copy()
@@ -201,6 +216,12 @@ def run_episode(
                         "missing_frozen": False,
                     },
                 }
+                if risk_used_this_frame is not None:
+                    rec_out["risk_used_for_decision"] = risk_used_this_frame
+                if threshold_this_frame is not None:
+                    rec_out["threshold_safe_to_caution"] = threshold_this_frame
+                if high_risk_this_frame is not None:
+                    rec_out["high_risk"] = high_risk_this_frame
         else:
             # replay 模式才做 stub/blind_patch；recompute 已由 A3 产出
             if mode != "recompute":
@@ -225,15 +246,29 @@ def run_episode(
                 "decision": decision,
                 "explain_placeholder": mode != "recompute",
             }
+            if risk_used_this_frame is not None:
+                rec_out["risk_used_for_decision"] = risk_used_this_frame
+            if threshold_this_frame is not None:
+                rec_out["threshold_safe_to_caution"] = threshold_this_frame
+            if high_risk_this_frame is not None:
+                rec_out["high_risk"] = high_risk_this_frame
         replay_lines.append(rec_out)
 
     replay_path = os.path.join(bundle_dir, "replay_output.jsonl")
     with open(replay_path, "w", encoding="utf-8") as f:
         for rec in replay_lines:
-            # 写 replay 时保持与 scorer 兼容：顶层 decision/seq/ts；replay_meta 可选
+            # 写 replay：decision/seq/ts；risk_used_for_decision/threshold_safe_to_caution/high_risk 供 scorer early_gain
             out_rec = {"seq": rec["seq"], "ts": rec["ts"], "decision": rec["decision"], "explain_placeholder": rec.get("explain_placeholder", True)}
             if "replay_meta" in rec:
                 out_rec["replay_meta"] = rec["replay_meta"]
+            if "risk_used_for_decision" in rec:
+                out_rec["risk_used_for_decision"] = rec["risk_used_for_decision"]
+            if "threshold_safe_to_caution" in rec:
+                out_rec["threshold_safe_to_caution"] = rec["threshold_safe_to_caution"]
+            if "high_risk" in rec:
+                out_rec["high_risk"] = rec["high_risk"]
+            if "complexity_delta" in rec:
+                out_rec["complexity_delta"] = rec["complexity_delta"]
             f.write(json.dumps(out_rec, ensure_ascii=False) + "\n")
 
     # baseline 跑完后生成 frozen stream

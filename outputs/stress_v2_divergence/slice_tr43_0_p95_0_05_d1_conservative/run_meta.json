@@ -1,0 +1,15 @@
+{
+  "episode_id": "slice_tr43_0_p95_0_05",
+  "patch_id": "d1_conservative",
+  "created_at": "D0_replay",
+  "engine_version": "recompute_v1",
+  "record_count": 70,
+  "config_applied": {
+    "weights.risk_density": 0.15,
+    "weights.path_instability": 0.15,
+    "weights.motion_instability": 0.15
+  },
+  "weights_only_contract_applied": true,
+  "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/stress_v2_divergence/slice_tr43_0_p95_0_05_baseline/replay_output.jsonl",
+  "recompute": true
+}

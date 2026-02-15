@@ -23,6 +23,9 @@ class _A3State:
     last_mode: ControlMode = ControlMode.ASSISTED
     last_safety: SafetyLevel = SafetyLevel.SAFE
     last_change_ms: int = 0
+    # Peak Hold 状态（仅当 smoothing.peak_hold_frames > 0 时使用）
+    peak_hold_value: float = 0.0
+    peak_hold_counter: int = 0
 
 
 class A3Engine:
@@ -32,9 +35,12 @@ class A3Engine:
     - Deterministic given signals + config + internal EMA state.
     """
 
-    def __init__(self, config: A3Config):
+    def __init__(self, config: A3Config, initial_now_ms: Optional[int] = None):
         self.cfg = config
-        now_ms = int(time.time() * 1000)
+        if initial_now_ms is not None:
+            now_ms = initial_now_ms
+        else:
+            now_ms = int(time.time() * 1000)
         self.state = _A3State(ema=0.0, last_change_ms=now_ms)
 
     def tick(self, signals: A3Signals, now_ms: Optional[int] = None) -> EnvironmentMode:
@@ -55,8 +61,15 @@ class A3Engine:
 
         raw, debug = self._compute_raw_complexity(signals)
         view_conf = _clamp01(getattr(signals, "view_confidence", 1.0))
-        raw_effective = _clamp01(raw * (0.5 + 0.5 * view_conf))
-        ema = self._ema(raw_effective)
+        raw_effective_unclamped = raw * (0.5 + 0.5 * view_conf)
+        clamp_hit = raw_effective_unclamped >= 1.0
+        raw_effective = _clamp01(raw_effective_unclamped)
+        x_hold = self._apply_peak_hold(raw_effective)
+        sm = self.cfg.smoothing
+        alpha_eff = sm.alpha
+        if getattr(sm, "alpha_high", None) is not None and x_hold >= getattr(sm, "alpha_switch_at", 0.85):
+            alpha_eff = sm.alpha_high
+        ema = self._ema(x_hold, alpha_override=alpha_eff)
         safety = self._classify_safety(ema, signals)
         control = self._classify_control_mode(safety, signals)
         if view_conf < 0.4:
@@ -69,6 +82,21 @@ class A3Engine:
 
         advice_scale, lookahead = self._map_outputs(safety, control, signals)
 
+        t = self.cfg.thresholds
+        debug_extra = {
+            "raw": raw,
+            "raw_effective": raw_effective,
+            "x_hold": x_hold,
+            "ema": ema,
+            "view_confidence": view_conf,
+            "clamp_hit": clamp_hit,
+            "peak_hold_value": self.state.peak_hold_value,
+            "threshold_safe_to_caution": t.safe_to_caution,
+            "threshold_caution_to_danger": t.caution_to_danger,
+            "hysteresis": t.hysteresis,
+        }
+        if getattr(sm, "alpha_high", None) is not None:
+            debug_extra["alpha_effective"] = alpha_eff
         return EnvironmentMode(
             complexity_score=ema,
             safety_level=safety,
@@ -77,12 +105,7 @@ class A3Engine:
             advice_budget_scale=advice_scale,
             pal_lookahead_m=lookahead,
             updated_at_ms=now_ms,
-            debug=debug | {
-                "raw": raw,
-                "raw_effective": raw_effective,
-                "ema": ema,
-                "view_confidence": view_conf,
-            },
+            debug=debug | debug_extra,
         )
 
     def _compute_raw_complexity(self, s: A3Signals) -> Tuple[float, dict]:
@@ -132,13 +155,40 @@ class A3Engine:
             "speak_pressure": speak * w.speak_pressure,
             "reject_pressure": reject * w.reject_pressure,
         }
-        raw = sum(components.values())
-        raw = _clamp01(raw)
+        weighted_sum_before_clamp = sum(components.values())
+        scale = getattr(self.cfg, "risk_scale_factor", 1.0)
+        scaled_sum = weighted_sum_before_clamp * scale
+        raw = _clamp01(scaled_sum)
         debug = {k: float(v) for k, v in components.items()}
+        debug["weighted_sum_before_clamp"] = float(weighted_sum_before_clamp)
+        debug["risk_scale_factor"] = float(scale)
+        debug["scaled_sum_before_clamp"] = float(scaled_sum)
+        # 量纲审计：raw feature（未乘权重），便于统计真实物理尺度
+        debug["risk_density_raw"] = float(risk)
+        debug["redline_hit_raw"] = float(redline)
+        debug["path_instability_raw"] = float(path_instability)
+        debug["motion_instability_raw"] = float(motion)
+        debug["occlusion_ratio_raw"] = float(occl)
+        debug["roi_load_raw"] = float(roi_load)
         return raw, debug
 
-    def _ema(self, raw: float) -> float:
-        alpha = self.cfg.smoothing.alpha
+    def _apply_peak_hold(self, x: float) -> float:
+        """clamp 后、EMA 前：峰值保持 2～3 帧缓慢衰减，给 EMA 时间累加。"""
+        hold_frames = getattr(self.cfg.smoothing, "peak_hold_frames", 0) or 0
+        if hold_frames <= 0:
+            return x
+        decay = getattr(self.cfg.smoothing, "peak_decay", 0.9)
+        if x >= self.state.peak_hold_value:
+            self.state.peak_hold_value = x
+            self.state.peak_hold_counter = hold_frames
+        else:
+            self.state.peak_hold_counter -= 1
+            if self.state.peak_hold_counter <= 0:
+                self.state.peak_hold_value = _clamp01(self.state.peak_hold_value * decay)
+        return max(x, self.state.peak_hold_value)
+
+    def _ema(self, raw: float, alpha_override: Optional[float] = None) -> float:
+        alpha = alpha_override if alpha_override is not None else self.cfg.smoothing.alpha
         self.state.ema = _clamp01(alpha * raw + (1.0 - alpha) * self.state.ema)
         return self.state.ema
 

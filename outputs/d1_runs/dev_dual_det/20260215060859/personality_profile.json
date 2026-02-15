@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-02-15T06:09:05.490345+00:00",
+  "champion_patch_id": "baseline",
+  "effective_patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_dual_det/20260215060859/baseline/effective_patch.stress.json",
+  "stress_channel": {
+    "risk_scale_factor": 5.0,
+    "guardian_discipline": {
+      "status": "PASS",
+      "exit_latency_p95": 0.0,
+      "hysteresis_efficiency": 1.0
+    },
+    "high_risk_frames_count": 396,
+    "early_gain_mean": 0.0,
+    "exit_latency_p95": 0.0,
+    "hysteresis_efficiency": 1.0
+  },
+  "regular_channel": {
+    "risk_scale_factor": 1.0,
+    "guarded_tail_ratio": 0.0,
+    "volatility_mean": 0.0,
+    "exit_latency_p95": null
+  },
+  "suite_manifest": {
+    "seed": 42,
+    "episode_ids": [
+      "stress_v2_a3_trace_tr1743_1892",
+      "stress_v2_a3_trace_tr1833_2102",
+      "stress_v2_a3_trace_tr2103_2222",
+      "stress_v2_a3_trace_tr2523_2642",
+      "stress_v2_a3_trace_tr3930_4049",
+      "stress_v2_a3_trace_tr4080_4229",
+      "stress_v2_a3_trace_tr4230_4349",
+      "stress_v2_a3_trace_tr4530_4679",
+      "stress_v2_a3_trace_tr4710_4829",
+      "stress_v2_a3_trace_tr4950_5069",
+      "stress_v2_a3_trace_tr5340_5459",
+      "stress_v2_a3_trace_tr9150_9269"
+    ],
+    "suite_id": "effective_patch.stress_617af6a12cbd",
+    "git_commit": "9c9ad8e868afb9ddcac4a917d9e20f159b2fa95d"
+  }
+}

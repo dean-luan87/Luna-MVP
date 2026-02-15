@@ -1,0 +1,17 @@
+{
+  "episode_id": "slice_tr86_0_p95_0_06",
+  "patch_id": "baseline",
+  "created_at": "D0_replay",
+  "engine_version": "runtime_v1.1",
+  "record_count": 70,
+  "config_applied": {
+    "metadata": {
+      "patch_kind": "weights_only",
+      "d1_run_id": "20260214032933",
+      "version_tag": "d1_v1"
+    }
+  },
+  "weights_only_contract_applied": false,
+  "frozen_stream_path": null,
+  "recompute": false
+}

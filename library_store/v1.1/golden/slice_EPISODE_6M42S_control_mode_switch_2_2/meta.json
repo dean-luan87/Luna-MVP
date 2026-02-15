@@ -1,0 +1,10 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+  "source_episode_path": "v1.1/golden/slice_EPISODE_6M42S_control_mode_switch_2_2",
+  "tags": [
+    "dynamic_object"
+  ],
+  "reason": "slice trigger=control_mode_switch ts=2.034177180168216",
+  "created_at": "2026-02-12T07:08:30Z"
+}

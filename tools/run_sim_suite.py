@@ -5,10 +5,10 @@ D2.2: 多 episode 汇总 gate，按 Golden tag 分桶一票否决。
 支持 --golden（从 library_store/v1.1/golden 读）或 --episodes-index。
 任一 bucket 内有一 episode FAIL → overall FAIL；bucket 缺失仅标记 MISSING_COVERAGE。
 """
+import hashlib
 import json
 import os
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
@@ -34,6 +34,7 @@ def main():
     p.add_argument("--golden", action="store_true", help="Use golden dir for episodes and tags")
     p.add_argument("--golden-stress", action="store_true", help="Use golden_stress dir (calibration stress suite)")
     p.add_argument("--golden-stress-v2", action="store_true", help="Use golden_stress_v2 (B2 continuous near-threshold)")
+    p.add_argument("--golden-suite", default="", help="Path to episode dir relative to base-dir/version (e.g. episodes/20260213/stress_v2_a3_trace); overrides --golden/--golden-stress-v2")
     p.add_argument("--episodes-index", default="", help="Path to episodes_index.jsonl (relative to base-dir/version)")
     p.add_argument("--mode", choices=["replay", "recompute"], default="replay", help="replay=record; recompute=A3 headless (baseline and candidate)")
     args = p.parse_args()
@@ -44,7 +45,42 @@ def main():
     os.makedirs(sim_dir, exist_ok=True)
 
     episode_dir_name = "golden_stress_v2" if args.golden_stress_v2 else ("golden_stress" if args.golden_stress else "golden")
-    if args.golden or args.golden_stress or args.golden_stress_v2:
+    golden_suite_path = (args.golden_suite or "").strip().strip("/")
+    if golden_suite_path:
+        # 支持绝对或相对路径：若含 base_dir/version 则截成 version 下相对路径
+        if os.path.isabs(golden_suite_path) or golden_suite_path.startswith(base_dir):
+            p = golden_suite_path.replace(base_dir, "").strip("/")
+            if p.startswith(version + "/"):
+                golden_suite_path = p[len(version) + 1:]
+            else:
+                golden_suite_path = p
+        golden_dir = os.path.join(base_dir, version, golden_suite_path)
+        if not os.path.isdir(golden_dir):
+            print("ERROR: golden-suite dir not found:", golden_dir, file=sys.stderr)
+            return 2
+        episode_paths_and_tags = []
+        for ep_id in sorted(os.listdir(golden_dir)):
+            ep_dir = os.path.join(golden_dir, ep_id)
+            if not os.path.isdir(ep_dir):
+                continue
+            records_ok = os.path.isfile(os.path.join(ep_dir, "records.jsonl"))
+            meta_path = os.path.join(ep_dir, "meta.json")
+            if os.path.isfile(meta_path):
+                try:
+                    meta = json.load(open(meta_path, "r", encoding="utf-8"))
+                except Exception:
+                    continue
+                rel = meta.get("source_episode_path") or meta.get("golden_episode_path") or f"{version}/{golden_suite_path}/{ep_id}"
+                tags = meta.get("tags") or meta.get("golden_tags") or []
+                episode_paths_and_tags.append((rel, ep_id, tags))
+            elif records_ok:
+                # 仅有 records.jsonl、无 meta.json 的子目录也视为 episode（如 stress_v2 slice 目录）
+                rel = f"{version}/{golden_suite_path}/{ep_id}"
+                episode_paths_and_tags.append((rel, ep_id, []))
+        if not episode_paths_and_tags:
+            print("ERROR: golden-suite dir has no episodes (need meta.json or records.jsonl per subdir):", golden_dir, file=sys.stderr)
+            return 2
+    elif args.golden or args.golden_stress or args.golden_stress_v2:
         golden_dir = os.path.join(base_dir, version, episode_dir_name)
         if not os.path.isdir(golden_dir):
             print("ERROR: dir not found:", golden_dir, file=sys.stderr)
@@ -170,7 +206,10 @@ def main():
     if missing_buckets:
         print("MISSING_COVERAGE:", ",".join(missing_buckets))
     print("--- Overall ---")
-    suite_id = Path(args.patch).stem + "_" + datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
+    # 确定性 suite_id（不依赖时间戳，满足 determinism 终极收口）
+    ep_ids = sorted(ep_id for _, ep_id, _ in episode_paths_and_tags)
+    suite_hash = hashlib.sha256(json.dumps(ep_ids).encode()).hexdigest()[:12]
+    suite_id = f"{Path(args.patch).stem}_{suite_hash}"
     suite_dir = os.path.join(out_version, "sim_suites", suite_id)
     os.makedirs(suite_dir, exist_ok=True)
     n_ep = len(results_by_episode)

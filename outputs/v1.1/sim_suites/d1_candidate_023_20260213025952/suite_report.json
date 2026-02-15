@@ -1,0 +1,236 @@
+{
+  "suite_id": "d1_candidate_023_20260213025952",
+  "patch": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/d1_candidate_023.json",
+  "per_episode": {
+    "SPEECH_12__20260212040845": {
+      "episode_id": "SPEECH_12__20260212040845",
+      "golden_id": "SPEECH_12__20260212040845",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040845_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040845_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [
+        "cross_traffic"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040845_baseline/replay_output.jsonl"
+    },
+    "SPEECH_12__20260212040854": {
+      "episode_id": "SPEECH_12__20260212040854",
+      "golden_id": "SPEECH_12__20260212040854",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040854_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040854_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [
+        "cross_traffic"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/SPEECH_12__20260212040854_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_10_10": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_10_10",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_10_10",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_10_10_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_10_10_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_10_10_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_11_11": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_11_11",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_11_11",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_11_11_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_11_11_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_11_11_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_1_1": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_1_1",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_1_1",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_1_1_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_1_1_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [
+        "cross_traffic"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_1_1_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_3_3": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_3_3",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_3_3_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_3_3_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_3_3_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_4_4": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_4_4",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_4_4",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_4_4_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_4_4_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_4_4_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_5_5": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_5_5",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_5_5",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_5_5_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_5_5_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_5_5_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_6_6": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_6_6",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_6_6",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_6_6_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_6_6_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_6_6_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_7_7": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_7_7",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_7_7",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_7_7_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_7_7_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_7_7_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_8_8": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_8_8",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_8_8",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_8_8_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_8_8_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_8_8_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_complexity_rise_9_9": {
+      "episode_id": "slice_EPISODE_6M42S_complexity_rise_9_9",
+      "golden_id": "slice_EPISODE_6M42S_complexity_rise_9_9",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_9_9_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_9_9_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_complexity_rise_9_9_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_0_1": {
+      "episode_id": "slice_EPISODE_6M42S_control_mode_switch_0_1",
+      "golden_id": "slice_EPISODE_6M42S_control_mode_switch_0_1",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_0_1_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_0_1_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [
+        "cross_traffic"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_0_1_baseline/replay_output.jsonl"
+    },
+    "slice_EPISODE_6M42S_control_mode_switch_2_2": {
+      "episode_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+      "golden_id": "slice_EPISODE_6M42S_control_mode_switch_2_2",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_2_2_d1_candidate_023/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_2_2_d1_candidate_023/gate_result.json",
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [
+        "dynamic_object"
+      ],
+      "weights_only_contract_applied": true,
+      "frozen_stream_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213025948/simulations_d1_candidate_023/slice_EPISODE_6M42S_control_mode_switch_2_2_baseline/replay_output.jsonl"
+    }
+  },
+  "per_bucket": {
+    "low_light": {
+      "count": 0,
+      "passed": true
+    },
+    "cross_traffic": {
+      "count": 4,
+      "passed": true
+    },
+    "dynamic_object": {
+      "count": 10,
+      "passed": true
+    },
+    "crowded": {
+      "count": 0,
+      "passed": true
+    },
+    "reflection": {
+      "count": 0,
+      "passed": true
+    },
+    "narrow_passage": {
+      "count": 0,
+      "passed": true
+    }
+  },
+  "overall": true,
+  "overall_fail_reasons": [],
+  "missing_buckets": [
+    "low_light",
+    "crowded",
+    "reflection",
+    "narrow_passage"
+  ],
+  "weighted_early_gain_available_ratio": 0.0
+}

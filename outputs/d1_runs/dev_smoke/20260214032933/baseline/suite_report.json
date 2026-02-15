@@ -1,0 +1,313 @@
+{
+  "suite_id": "baseline_20260214032933",
+  "patch": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/candidates/baseline.json",
+  "per_episode": {
+    "slice_tr0_0_p95_0_02": {
+      "episode_id": "slice_tr0_0_p95_0_02",
+      "golden_id": "slice_tr0_0_p95_0_02",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr0_0_p95_0_02/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr0_0_p95_0_02/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr0_0_p95_0_02_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr0_0_p95_0_02_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr0_0_p95_0_02_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr153_0_p95_0_03": {
+      "episode_id": "slice_tr153_0_p95_0_03",
+      "golden_id": "slice_tr153_0_p95_0_03",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr153_0_p95_0_03/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr153_0_p95_0_03/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr153_0_p95_0_03_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr153_0_p95_0_03_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr153_0_p95_0_03_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr167_0_p95_0_00": {
+      "episode_id": "slice_tr167_0_p95_0_00",
+      "golden_id": "slice_tr167_0_p95_0_00",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr167_0_p95_0_00/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr167_0_p95_0_00/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr167_0_p95_0_00_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr167_0_p95_0_00_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr167_0_p95_0_00_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr209_0_p95_0_08": {
+      "episode_id": "slice_tr209_0_p95_0_08",
+      "golden_id": "slice_tr209_0_p95_0_08",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr209_0_p95_0_08/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr209_0_p95_0_08/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr209_0_p95_0_08_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr209_0_p95_0_08_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr209_0_p95_0_08_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr307_0_p95_0_04": {
+      "episode_id": "slice_tr307_0_p95_0_04",
+      "golden_id": "slice_tr307_0_p95_0_04",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr307_0_p95_0_04/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr307_0_p95_0_04/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr307_0_p95_0_04_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr307_0_p95_0_04_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr307_0_p95_0_04_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr386_0_p95_0_07": {
+      "episode_id": "slice_tr386_0_p95_0_07",
+      "golden_id": "slice_tr386_0_p95_0_07",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr386_0_p95_0_07/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr386_0_p95_0_07/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr386_0_p95_0_07_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr386_0_p95_0_07_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr386_0_p95_0_07_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr43_0_p95_0_05": {
+      "episode_id": "slice_tr43_0_p95_0_05",
+      "golden_id": "slice_tr43_0_p95_0_05",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr43_0_p95_0_05/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr43_0_p95_0_05/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr43_0_p95_0_05_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr43_0_p95_0_05_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr43_0_p95_0_05_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr60_0_p95_0_01": {
+      "episode_id": "slice_tr60_0_p95_0_01",
+      "golden_id": "slice_tr60_0_p95_0_01",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr60_0_p95_0_01/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr60_0_p95_0_01/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr60_0_p95_0_01_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr60_0_p95_0_01_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr60_0_p95_0_01_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    },
+    "slice_tr86_0_p95_0_06": {
+      "episode_id": "slice_tr86_0_p95_0_06",
+      "golden_id": "slice_tr86_0_p95_0_06",
+      "scorecard_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr86_0_p95_0_06/scorecard.json",
+      "gate_result_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/baseline/episodes/slice_tr86_0_p95_0_06/gate_result.json",
+      "baseline_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr86_0_p95_0_06_baseline/replay_output.jsonl",
+      "candidate_replay_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr86_0_p95_0_06_baseline/replay_output.jsonl",
+      "exit_audit_path": "/Users/luanlei/Desktop/Luna-2/outputs/d1_runs/dev_smoke/20260214032933/sim_out/simulations/baseline/slice_tr86_0_p95_0_06_baseline/exit_audit_report.json",
+      "guardian_discipline": {
+        "exit_latency_p50": 0,
+        "exit_latency_p95": 0,
+        "exit_latency_max": 0,
+        "matched_event_count": 0,
+        "baseline_event_count": 0,
+        "candidate_event_count": 0,
+        "baseline_no_entry_count": 0,
+        "missing_candidate_event_count": 0,
+        "hysteresis_efficiency": 1.0,
+        "guarded_tail_ratio": 0.0,
+        "max_dwell_frames": 0
+      },
+      "passed": true,
+      "reasons": [
+        "WARN_DECISION_VALIDITY_DROP",
+        "WARN_LOOKAHEAD_VALUE_MISSING"
+      ],
+      "tags": [],
+      "weights_only_contract_applied": false,
+      "frozen_stream_path": null
+    }
+  },
+  "per_bucket": {
+    "low_light": {
+      "count": 0,
+      "passed": true
+    },
+    "cross_traffic": {
+      "count": 0,
+      "passed": true
+    },
+    "dynamic_object": {
+      "count": 0,
+      "passed": true
+    },
+    "crowded": {
+      "count": 0,
+      "passed": true
+    },
+    "reflection": {
+      "count": 0,
+      "passed": true
+    },
+    "narrow_passage": {
+      "count": 0,
+      "passed": true
+    }
+  },
+  "overall": true,
+  "overall_fail_reasons": [],
+  "missing_buckets": [
+    "low_light",
+    "cross_traffic",
+    "dynamic_object",
+    "crowded",
+    "reflection",
+    "narrow_passage"
+  ],
+  "weighted_early_gain_available_ratio": 0.0
+}

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "patch_kind": "weights_only",
+    "d1_run_id": "20260214032728",
+    "version_tag": "d1_v1"
+  },
+  "weights.risk_density": 0.21,
+  "weights.redline_hit": 0.175,
+  "weights.occlusion_ratio": 0.084,
+  "weights.roi_load": 0.2,
+  "weights.path_instability": 0.21,
+  "weights.motion_instability": 0.21,
+  "weights.branch_load": 0.2,
+  "weights.speak_pressure": 0.05,
+  "weights.reject_pressure": 0.03
+}

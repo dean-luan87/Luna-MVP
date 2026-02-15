@@ -1,0 +1,14 @@
+{
+  "version_tag": "v1.1",
+  "episode_id": "SPEECH_12",
+  "episode_path": "v1.1/episodes/20260209/fake-session-001/SPEECH_12",
+  "patch_stem": "empty_patch",
+  "patch_hash": "44136fa355b3678a",
+  "frame_count": 4,
+  "fields": [
+    "seq",
+    "safety_level",
+    "control_mode",
+    "pal_lookahead_m"
+  ]
+}

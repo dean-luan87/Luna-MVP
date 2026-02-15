@@ -1,0 +1,6 @@
+{
+  "risk_scale_factor": 5.0,
+  "smoothing.peak_hold_frames": 0,
+  "smoothing.peak_decay": 0.92,
+  "smoothing.alpha": 0.25
+}

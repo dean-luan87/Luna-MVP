@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "reasons": [
+    "COVERAGE_FAIL_LOOKAHEAD_LOSS: Lookahead coverage delta = -1.000 (max loss 0.020)"
+  ]
+}
