@@ -1,8 +1,0 @@
-{
-  "risk_scale_factor": 5.0,
-  "smoothing.peak_hold_frames": 3,
-  "smoothing.peak_decay": 0.9,
-  "smoothing.alpha": 0.25,
-  "smoothing.alpha_high": 0.45,
-  "smoothing.alpha_switch_at": 0.85
-}

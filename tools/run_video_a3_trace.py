@@ -29,11 +29,13 @@ def run_video(
     simulate_active: bool = False,
     force_engaged: bool = False,
     force_engaged_test_l2: bool = False,
+    output_path: str = None,
 ) -> None:
     if not os.path.exists(video_path):
         raise FileNotFoundError(f"视频不存在: {video_path}")
 
     trace_path = _ROOT / "logs" / "a3_trace.jsonl"
+    trace_path.parent.mkdir(parents=True, exist_ok=True)
     if trace_path.exists():
         trace_path.unlink()
 
@@ -67,6 +69,9 @@ def run_video(
     print(f"视频: {video_path}")
     print(f"fps={fps:.2f}, total_frames={total_frames}, step={frame_step}")
 
+    BASE_MS = 1700000000000
+    FRAME_MS = 33
+
     frame_id = 0
     processed = 0
     try:
@@ -83,6 +88,10 @@ def run_video(
             app.pipeline_controller._frame_id = frame_id
             app.pipeline_controller._update_frame_context(frame, ts=frame_id / max(1.0, fps))
             frame_context = app.pipeline_controller.get_frame_context()
+            if frame_context is None:
+                frame_context = {}
+            now_ms = BASE_MS + frame_id * FRAME_MS
+            frame_context["now_ms"] = now_ms
 
             # 用视频时间驱动采样，保证两遍跑同一视频时 seq/采样数一致（确定性）
             app.current_ts = frame_id / max(1.0, fps)
@@ -96,7 +105,14 @@ def run_video(
         cap.release()
         stop_audio_worker()
 
-    print(f"处理完成: processed={processed}, trace={trace_path}")
+    if output_path:
+        import shutil
+        out = Path(output_path).resolve()
+        out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(trace_path, out)
+        print(f"处理完成: processed={processed}, trace={trace_path} -> 已复制到 {out}")
+    else:
+        print(f"处理完成: processed={processed}, trace={trace_path}")
 
 
 def main() -> None:
@@ -119,6 +135,7 @@ def main() -> None:
         action="store_true",
         help="执行链路测试：强制 L2 并允许真实 SAY，验证 P1–P5→Q/R/S 闭环",
     )
+    parser.add_argument("--output", default=None, help="trace 输出路径（默认写 logs/a3_trace.jsonl）")
     args = parser.parse_args()
     run_video(
         args.video,
@@ -127,6 +144,7 @@ def main() -> None:
         simulate_active=args.simulate_active,
         force_engaged=args.force_engaged,
         force_engaged_test_l2=getattr(args, "force_engaged_test_l2", False),
+        output_path=args.output,
     )
 
 

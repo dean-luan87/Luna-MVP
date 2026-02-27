@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import time
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 from .types import A3Signals, EnvironmentMode, SafetyLevel, ControlMode, PerceptionState
 from .gates import roi_gate
-from .config import A3Config
+from .config import A3Config, A3ModulationV1
+from modulation.modulator_v1 import ModulatorV1, ModulatorV1Params
 
 
 def _clamp01(x: float) -> float:
@@ -15,6 +16,15 @@ def _clamp01(x: float) -> float:
     if x > 1.0:
         return 1.0
     return x
+
+
+def _view_conf_gate(view_conf: float, floor: float, k: float) -> float:
+    """B2 gate: floor + (1-floor)*view_conf^k. k=1,floor=0.5 → 0.5+0.5*view_conf（旧逻辑）"""
+    if view_conf <= 0.0:
+        return floor
+    if view_conf >= 1.0:
+        return 1.0
+    return floor + (1.0 - floor) * (view_conf ** k)
 
 
 @dataclass
@@ -42,6 +52,17 @@ class A3Engine:
         else:
             now_ms = int(time.time() * 1000)
         self.state = _A3State(ema=0.0, last_change_ms=now_ms)
+        self._modulator: Optional[ModulatorV1] = None
+        mod = getattr(config, "modulation", None)
+        if isinstance(mod, A3ModulationV1) and getattr(mod, "enabled", False):
+            self._modulator = ModulatorV1(
+                ModulatorV1Params(
+                    lam=mod.lam,
+                    alpha_min=mod.alpha_min,
+                    alpha_max=mod.alpha_max,
+                    risk_density_alpha=mod.risk_density_alpha,
+                )
+            )
 
     def tick(self, signals: A3Signals, now_ms: Optional[int] = None) -> EnvironmentMode:
         if now_ms is None:
@@ -61,7 +82,10 @@ class A3Engine:
 
         raw, debug = self._compute_raw_complexity(signals)
         view_conf = _clamp01(getattr(signals, "view_confidence", 1.0))
-        raw_effective_unclamped = raw * (0.5 + 0.5 * view_conf)
+        floor = getattr(self.cfg, "view_conf_gate_floor", 0.5)
+        k = getattr(self.cfg, "view_conf_gate_k", 1.0)
+        gate = _view_conf_gate(view_conf, floor, k)
+        raw_effective_unclamped = raw * gate
         clamp_hit = raw_effective_unclamped >= 1.0
         raw_effective = _clamp01(raw_effective_unclamped)
         x_hold = self._apply_peak_hold(raw_effective)
@@ -69,6 +93,14 @@ class A3Engine:
         alpha_eff = sm.alpha
         if getattr(sm, "alpha_high", None) is not None and x_hold >= getattr(sm, "alpha_switch_at", 0.85):
             alpha_eff = sm.alpha_high
+        mod_debug: Dict[str, Any] = {}
+        if self._modulator is not None:
+            alpha_eff = self._modulator.get_alpha(
+                alpha_base=alpha_eff,
+                signals=signals,
+                state=self.state,
+                debug=mod_debug,
+            )
         ema = self._ema(x_hold, alpha_override=alpha_eff)
         safety = self._classify_safety(ema, signals)
         control = self._classify_control_mode(safety, signals)
@@ -89,6 +121,9 @@ class A3Engine:
             "x_hold": x_hold,
             "ema": ema,
             "view_confidence": view_conf,
+            "view_conf_gate_floor": floor,
+            "view_conf_gate_k": k,
+            "view_conf_gate_value": gate,
             "clamp_hit": clamp_hit,
             "peak_hold_value": self.state.peak_hold_value,
             "threshold_safe_to_caution": t.safe_to_caution,
@@ -97,6 +132,8 @@ class A3Engine:
         }
         if getattr(sm, "alpha_high", None) is not None:
             debug_extra["alpha_effective"] = alpha_eff
+        if mod_debug:
+            debug_extra.update(mod_debug)
         return EnvironmentMode(
             complexity_score=ema,
             safety_level=safety,

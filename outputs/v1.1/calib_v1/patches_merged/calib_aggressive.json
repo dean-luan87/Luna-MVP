@@ -1,8 +1,0 @@
-{
-  "thresholds.safe_to_caution": 0.195,
-  "metadata.trace_tag": "calib_v1",
-  "metadata.note": "threshold calibration, do not ship",
-  "weights.risk_density": 0.6,
-  "weights.path_instability": 0.6,
-  "weights.motion_instability": 0.6
-}

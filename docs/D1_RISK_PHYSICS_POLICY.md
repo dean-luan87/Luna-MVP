@@ -113,4 +113,19 @@ python3 tools/run_d1_tournament.py \
 
 ---
 
-*文档版本：v1.0（与 d1_dual_channel_v1 冻结对齐）。物理常数以 patches/physics/stress_channel_phys_v1.json、regular_channel_phys_v1.json 为准。*
+---
+
+## 八、变更记录
+
+### v1.1（Phase 2 连续高压产线）
+
+- **Guarded 触发依赖动态响应**：默认 alpha=0.25 在「单帧脉冲」型高压下 EMA 追不上，导致 DANGER 永远差一口气；**alpha=0.6 在现有脉冲素材上可触发 DANGER/Guarded**（phase2_alpha06_probe 验证：early_gain_mean=2.73，GUARDED 帧 29650，first_guarded_candidate 非 None）。
+- **结论**：Phase 2 进入**连续高压素材生产线**；不再以 scale/候选数为杠杆，而以「双 stress 物理档位 + 连续高压素材 + 压力密度熔断」为制度。
+- **制度落地**：
+  - Stress 物理两档：`stress_channel_phys_v1_conservative.json`（alpha=0.25，稳健）、`stress_channel_phys_v1_responsive.json`（alpha=0.6，能放电）；Gate 可配置为须同时通过两套（`--stress-base-patch-responsive`）。
+  - PowerClips 主产线默认 `--min-consecutive-over 0.6:30`；pulse 与 sustain 两套素材分离（early_gain 用 pulse，exit/discipline 用 sustain）。
+  - 压力密度红线熔断：`eligible_early_gain_frames_total == 0` 或 `GUARDED_frames_total == 0` 时本次进化无效，不产出冠军。
+
+---
+
+*文档版本：v1.1。物理常数以 patches/physics/stress_channel_phys_v1.json、stress_channel_phys_v1_conservative.json、stress_channel_phys_v1_responsive.json、regular_channel_phys_v1.json 为准。*

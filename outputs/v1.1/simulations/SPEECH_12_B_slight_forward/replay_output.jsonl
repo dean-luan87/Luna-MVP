@@ -1,4 +1,0 @@
-{"seq": 0, "ts": 1.0, "decision": {"safety_level": "SAFE", "control_mode": "GUARDED", "decision_source": "synthetic_slight_forward"}, "explain_placeholder": true}
-{"seq": 1, "ts": 2.0, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED", "decision_source": "baseline_passthrough"}, "explain_placeholder": true}
-{"seq": 2, "ts": 3.0, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED", "decision_source": "baseline_passthrough"}, "explain_placeholder": true}
-{"seq": 3, "ts": 4.0, "decision": {"safety_level": "SAFE", "control_mode": "ASSISTED", "decision_source": "baseline_passthrough"}, "explain_placeholder": true}

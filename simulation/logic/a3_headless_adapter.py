@@ -105,6 +105,8 @@ class A3HeadlessAdapter:
         # 决策用风险 = 最终用于 _classify_safety 的 ema（hold + conditional alpha 之后），与 threshold 同口径
         risk_used = float(debug.get("ema", getattr(mode, "complexity_score", 0.0)))
         threshold = float(debug.get("threshold_safe_to_caution", 0.38))
+        t_caution = float(debug.get("threshold_caution_to_danger", 0.68))
+        hysteresis = float(debug.get("hysteresis", 0.06))
         out: Dict[str, Any] = {
             "seq": seq,
             "safety_level": mode.safety_level.value if isinstance(mode.safety_level, SafetyLevel) else str(mode.safety_level),
@@ -113,6 +115,13 @@ class A3HeadlessAdapter:
             "complexity_score": float(getattr(mode, "complexity_score", 0.0)),
             "risk_used_for_decision": risk_used,
             "threshold_safe_to_caution": threshold,
+            "risk_raw_used_by_mode": risk_used,
+            "mode_thresholds": {
+                "safe_to_caution": threshold,
+                "caution_to_danger": t_caution,
+                "hysteresis": hysteresis,
+                "guarded_requires": "safety_level==DANGER (ema >= caution_to_danger + hysteresis)",
+            },
         }
         if getattr(mode, "debug", None):
             out["a3_debug"] = {k: float(v) for k, v in mode.debug.items()}

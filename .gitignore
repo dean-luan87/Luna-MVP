@@ -1,84 +1,36 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Virtual environments
-venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Logs
-logs/
+# ==========================
+# Runtime artifacts
+# ==========================
+*.jsonl
+*.trace
 *.log
+runs/
+traces/
+artifacts/
+logs/
+htmlcov/
 
-# Audio files
-*.mp3
-*.wav
-*.m4a
+# ==========================
+# Cache
+# ==========================
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
 
-# Navigation files
-navigation_*.txt
-navigation_*.mp3
+# ==========================
+# Virtual environments
+# ==========================
+.venv*
+.env
 
-# External repositories
-whisper.cpp/
-modules/Webcam-Face-Detect/
+# ==========================
+# Local data directories
+# ==========================
+Luna-Data/
+Luna_Data/
 
-# Camera test files (root only; tests/ is tracked)
-camera_test.py
-camera_loop_optimized.py
-high_res_camera.py
-1080p_camera.py
-/test_*.py
-
-# Temporary demo files
-*_demo.py
-simple_*.py
-optimized_*.py
-
-# Keep important files
-!quick_test.py
-!setup_environment.sh
-!DEPLOYMENT_GUIDE.md
-!PROJECT_STATUS.md
-!requirements.txt
-
-# API Keys (security)
-navigation_config.py
+# ==========================
+# OS
+# ==========================
+.DS_Store

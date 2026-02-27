@@ -6,6 +6,7 @@ L0 硬淘汰 → L1 守法(early_gain↑) → L2 冷静(dwell_p95_delta↓, vola
 军工级：Stress Gate 与排序解耦；early_gain 不作为安全门禁；REJECT 均带 reasons。
 """
 import json
+import math
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -83,7 +84,7 @@ def _dwell_p95_delta_mean(scorecards: List[Dict[str, Any]]) -> float:
         v = delta.get("dwell_p95_delta")
         if v is not None:
             vals.append(float(v))
-    return round(sum(vals) / len(vals), 4) if vals else 0.0
+    return round(math.fsum(vals) / len(vals), 4) if vals else 0.0
 
 
 def _aggregate_with_event_metrics(
@@ -104,11 +105,11 @@ def _aggregate_with_event_metrics(
             # candidate 的 guarded_tail_ratio 已在 audit；baseline 无单独字段，用 0 或从同 episode 的 baseline 取
             gd_ratios.append(float(gd.get("guarded_tail_ratio", 0)))
     if gd_ratios:
-        agg["guarded_tail_ratio_mean"] = round(sum(gd_ratios) / len(gd_ratios), 4)
+        agg["guarded_tail_ratio_mean"] = round(math.fsum(gd_ratios) / len(gd_ratios), 4)
     else:
         agg["guarded_tail_ratio_mean"] = None
     eff_gr = [float((sc.get("efficiency") or {}).get("guarded_ratio_delta", 0) or 0) for sc in scorecards]
-    agg["guarded_ratio_delta_mean"] = round(sum(eff_gr) / len(scorecards), 4)
+    agg["guarded_ratio_delta_mean"] = round(math.fsum(eff_gr) / len(scorecards), 4)
     return agg, scorecards
 
 
@@ -130,7 +131,7 @@ def _high_risk_frames_count_from_report(suite_report: Dict[str, Any]) -> int:
     """Sum high_risk_seq_count from stress scorecards (early block). 仅基于 replay 行为字段。"""
     per = suite_report.get("per_episode") or {}
     total = 0
-    for eid, ep in per.items():
+    for eid, ep in sorted(per.items()):
         sc_path = ep.get("scorecard_path")
         if not sc_path or not Path(sc_path).is_file():
             continue
@@ -142,6 +143,27 @@ def _high_risk_frames_count_from_report(suite_report: Dict[str, Any]) -> int:
         n = early.get("high_risk_seq_count")
         if isinstance(n, (int, float)):
             total += int(n)
+    return total
+
+
+def _guarded_frames_count_from_report(suite_report: Dict[str, Any]) -> int:
+    """Sum GUARDED 帧数：从 per_episode 的 candidate_replay_path 读 replay，数 control_mode==GUARDED。"""
+    per = suite_report.get("per_episode") or {}
+    total = 0
+    for eid, ep in sorted(per.items()):
+        replay_path = ep.get("candidate_replay_path")
+        if not replay_path or not Path(replay_path).is_file():
+            continue
+        try:
+            for line in Path(replay_path).read_text(encoding="utf-8").strip().splitlines():
+                if not line:
+                    continue
+                rec = json.loads(line)
+                mode = (rec.get("decision") or {}).get("control_mode") or ""
+                if str(mode).strip().upper() == "GUARDED":
+                    total += 1
+        except Exception:
+            continue
     return total
 
 
@@ -206,9 +228,11 @@ def _lexicographic_sort_key_dual(
 def rank_candidates_dual_channel(
     run_dir: Path,
     candidate_results: List[Dict[str, Any]],
+    rank_by: Optional[str] = None,
 ) -> Dict[str, Any]:
     """
     双通道词典序：先 Stress Gate（军工级，与排序解耦）→ 通过者按 L1 early_gain↑ → L2 guarded_tail_ratio↓ → L3 volatility↓。
+    rank_by="early_gain_only" 时仅按 L1 early_gain 排序（单指标冠军，用于诊断是否排序规则压制变异）。
     candidate_results 需含 stress_suite_report_path、regular_suite_report_path。
     写入 rank_report.json/md；淘汰一律带 reasons（可审计）。
     """
@@ -216,7 +240,7 @@ def rank_candidates_dual_channel(
     run_dir.mkdir(parents=True, exist_ok=True)
     ranked: List[Dict[str, Any]] = []
     eliminated: List[Dict[str, Any]] = []
-    stress_summary: Dict[str, Any] = {"patch_count": 0, "high_risk_frames_total": 0, "risk_used_max_sample": None}
+    stress_summary: Dict[str, Any] = {"patch_count": 0, "high_risk_frames_total": 0, "guarded_frames_total": 0, "risk_used_max_sample": None}
     regular_summary: Dict[str, Any] = {"patch_count": 0}
     judge = D1TournamentJudge()
 
@@ -224,17 +248,45 @@ def rank_candidates_dual_channel(
         patch_id = cr.get("patch_id") or ""
         patch_path = cr.get("patch_path") or ""
         stress_path = cr.get("stress_suite_report_path")
+        stress_path_resp = cr.get("stress_suite_report_path_responsive")
         regular_path = cr.get("regular_suite_report_path")
         stress_report = json.loads(Path(stress_path).read_text(encoding="utf-8")) if stress_path and Path(stress_path).is_file() else None
+        stress_report_resp = json.loads(Path(stress_path_resp).read_text(encoding="utf-8")) if stress_path_resp and Path(stress_path_resp).is_file() else None
         regular_report = json.loads(Path(regular_path).read_text(encoding="utf-8")) if regular_path and Path(regular_path).is_file() else None
         if stress_report is None:
             eliminated.append({"patch_id": patch_id, "reason": "L0: missing_stress_suite_report", "reasons": ["MISSING_STRESS_REPORT"]})
+            continue
+        if stress_path_resp and stress_report_resp is None:
+            eliminated.append({"patch_id": patch_id, "reason": "L0: missing_stress_responsive_suite_report", "reasons": ["MISSING_STRESS_RESPONSIVE_REPORT"]})
             continue
         if regular_report is None:
             eliminated.append({"patch_id": patch_id, "reason": "L0: missing_regular_suite_report", "reasons": ["MISSING_REGULAR_REPORT"]})
             continue
         stress_scorecard = _build_stress_scorecard_from_report(stress_report)
         stress_agg, _ = _aggregate_with_event_metrics(stress_report)
+        if stress_report_resp is not None:
+            stress_scorecard_resp = _build_stress_scorecard_from_report(stress_report_resp)
+            stress_agg_resp, _ = _aggregate_with_event_metrics(stress_report_resp)
+            result_resp = judge.evaluate_candidate(stress_scorecard_resp, {"guarded_tail_ratio_mean": None, "guarded_tail_ratio": None, "volatility_mean": None})
+            if result_resp["status"] != "PASS":
+                eliminated.append({
+                    "patch_id": patch_id,
+                    "reason": "L0: REJECTED_BY_STRESS_RESPONSIVE",
+                    "reasons": result_resp["reasons"],
+                })
+                continue
+            guarded_resp = _guarded_frames_count_from_report(stress_report_resp)
+            eligible_resp = _high_risk_frames_count_from_report(stress_report_resp)
+            if guarded_resp == 0 or eligible_resp == 0:
+                eliminated.append({
+                    "patch_id": patch_id,
+                    "reason": "L0: REJECTED_BY_STRESS_RESPONSIVE",
+                    "reasons": ["RESPONSIVE_REQUIRES_AT_LEAST_ONE_GUARDED_AND_EARLY_GAIN_ELIGIBLE_FRAMES_GT_0"],
+                })
+                continue
+            stress_agg = stress_agg_resp
+            stress_scorecard = stress_scorecard_resp
+            stress_report = stress_report_resp
         regular_agg, _ = _aggregate_with_event_metrics(regular_report) if regular_report else ({}, [])
         regular_scorecard = {
             "guarded_tail_ratio_mean": regular_agg.get("guarded_tail_ratio_mean"),
@@ -250,9 +302,13 @@ def rank_candidates_dual_channel(
             })
             continue
         high_risk_count = stress_scorecard.get("high_risk_frames_count", 0)
+        guarded_count = _guarded_frames_count_from_report(stress_report)
         stress_summary["patch_count"] = stress_summary.get("patch_count", 0) + 1
         stress_summary["high_risk_frames_total"] = stress_summary.get("high_risk_frames_total", 0) + high_risk_count
+        stress_summary["guarded_frames_total"] = stress_summary.get("guarded_frames_total", 0) + guarded_count
         rank_key = result["rank_key"]
+        if rank_by == "early_gain_only":
+            rank_key = (float(stress_agg.get("early_gain_weighted_mean", 0) or 0),)
         ranked.append({
             "patch_id": patch_id,
             "patch_path": patch_path,
@@ -266,7 +322,7 @@ def rank_candidates_dual_channel(
                 f"L1 stress_early_gain={stress_agg.get('early_gain_weighted_mean')} "
                 f"L2 regular_guarded_tail={regular_agg.get('guarded_tail_ratio_mean')} "
                 f"L3 regular_vol={regular_agg.get('volatility_mean')}"
-            ),
+            ) if rank_by != "early_gain_only" else f"early_gain_only={stress_agg.get('early_gain_weighted_mean')}",
         })
 
     ranked.sort(key=lambda x: x["_rank_key"], reverse=True)
@@ -276,7 +332,9 @@ def rank_candidates_dual_channel(
         del e["_rank_key"]
     champion = ranked[0] if ranked else None
     final_rank_reason = (
-        "先过 Stress 安全门禁（high_risk_frames>0 且 gate pass），再按 L1 Stress early_gain↑ → L2 Regular guarded_ratio_delta↓ → L3 Regular volatility↓ 词典序排序。"
+        "仅按 L1 Stress early_gain↑ 排序（单指标冠军模式）。"
+        if rank_by == "early_gain_only"
+        else "先过 Stress 安全门禁（high_risk_frames>0 且 gate pass），再按 L1 Stress early_gain↑ → L2 Regular guarded_ratio_delta↓ → L3 Regular volatility↓ 词典序排序。"
     )
     report_data = {
         "champion_id": champion["patch_id"] if champion else None,

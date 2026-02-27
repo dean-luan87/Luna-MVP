@@ -1,1 +1,0 @@
-{"candidate_id": "baseline", "patch_path": "/Users/luanlei/Desktop/Luna-2/outputs/v1.1/d1_tournaments/20260213021633/empty_patch.json", "episode_id": null, "scorecard_path": null, "gate_result_path": null, "reasons": ["CASE_D: missing_buckets_coverage_gap"], "tags": [], "missing_buckets": ["low_light", "crowded", "reflection", "narrow_passage"]}

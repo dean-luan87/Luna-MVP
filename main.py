@@ -633,7 +633,13 @@ class LunaBadgeMVP:
     def _build_real_obs(self, now: float, dt: float, seq: int):
         """补丁 v1：仅在采样时刻被 ObservationLoop 调用，从 A3 拉取 mode/signals 填 ObservationFrame。"""
         try:
-            self.a3_runtime.tick(self.runtime_ctx, now_ms=int(now * 1000))
+            # 优先使用回放注入时间；实时模式用墙钟
+            context = getattr(self, "_current_frame_context", None)
+            if context and "now_ms" in context:
+                now_ms = context["now_ms"]
+            else:
+                now_ms = int(time.time() * 1000)
+            self.a3_runtime.tick(self.runtime_ctx, now_ms=now_ms)
         except Exception:
             return build_empty_observation_frame(now, dt, seq)
         mode = self.a3_runtime.last_mode
@@ -678,6 +684,7 @@ class LunaBadgeMVP:
             处理结果字典
         """
         global last_frame_ts
+        self._current_frame_context = context  # 供 _build_real_obs 做时间优先级（回放 now_ms 注入）
         
         # 补丁 v1：视频回放时用 current_ts（frame_ts）保证采样确定性；否则用 CLOCK
         now = getattr(self, "current_ts", None)

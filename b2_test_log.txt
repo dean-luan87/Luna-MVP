@@ -1,55 +1,0 @@
-/Users/luanlei/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-  warnings.warn(
-OpenCV: out device of bound (0-1): 2
-OpenCV: camera failed to properly initialize!
-======================================================================
-B2 v0.2 缓存逻辑 - 视频测试
-======================================================================
-
-📋 初始化 PipelineController...
-✅ PipelineController 初始化成功
-✅ B2 v0.2 已启用
-
-📹 使用视频文件: test_video.mp4
-
-📋 开始处理帧...
-   查找以下日志关键词:
-   - [B2] world_signature=xxxx
-   - [B2] future_cache=reused age=Xs
-   - [B2] future_cache=expired recompute
-   - [B2] advisory suppressed (same as last, age=Xs)
-   - [B2-v0.2][timestamp] PREWARN|DEESCALATE|WORLD_NOTE
-
-----------------------------------------------------------------------
-[进度] 已处理 10 帧, FPS: 227.4[进度] 已处理 20 帧, FPS: 262.9[进度] 已处理 30 帧, FPS: 279.5[B2] world_signature=84146092
-[B2] future_cache=expired recompute
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2][1767698427.67] INIT | advisories=1 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.67] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.68] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[进度] 已处理 40 帧, FPS: 282.2[B2-v0.2][1767698427.69] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.69] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[B2-v0.2][1767698427.69] DEESCALATE | trigger=INIT | confidence=0.30 | impacts=0
-[进度] 已处理 50 帧, FPS: 289.9[进度] 已处理 60 帧, FPS: 294.8[进度] 已处理 70 帧, FPS: 298.8[进度] 已处理 80 帧, FPS: 301.3[进度] 已处理 90 帧, FPS: 303.7[进度] 已处理 100 帧, FPS: 305.5
-----------------------------------------------------------------------
-
-📋 处理完成:
-   - 总帧数: 100
-   - 总时间: 0.3s
-   - 平均 FPS: 305.1
-
-======================================================================
-✅ 测试完成
-======================================================================
-
-📋 下一步:
-   1. 查看上面的日志输出，查找 B2 相关日志
-   2. 如果有日志文件，使用观测工具分析:
-      python3 -m vision_pipeline.b2.b2_cache_observer b2_log.txt
-

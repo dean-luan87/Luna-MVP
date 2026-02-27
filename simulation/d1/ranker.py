@@ -5,6 +5,7 @@ D1 Lexicographic 排名 + 冲突集提取。
 排序键：early_gain_weighted(↑) → volatility_index(↓) → guarded_ratio_delta(↓) → lookahead_drop_ratio(↓)。
 """
 import json
+import math
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -91,15 +92,15 @@ def aggregate_suite(
         for t in sc.get("_tags") or []:
             by_bucket.setdefault(t, []).append(_early_gain_for_ranking(sc))
     aggregated = {
-        "early_gain_weighted_mean": round(sum(early_gains) / n, 4),
-        "volatility_mean": round(sum(vol) / n, 4),
-        "guarded_ratio_delta_mean": round(sum(eff_gr) / n, 4),
-        "lookahead_drop_mean": round(sum(eff_la) / n, 4),
+        "early_gain_weighted_mean": round(math.fsum(early_gains) / n, 4),
+        "volatility_mean": round(math.fsum(vol) / n, 4),
+        "guarded_ratio_delta_mean": round(math.fsum(eff_gr) / n, 4),
+        "lookahead_drop_mean": round(math.fsum(eff_la) / n, 4),
         "early_gain_min": round(min(early_gains), 4),
         "early_gain_max": round(max(early_gains), 4),
         "volatility_min": round(min(vol), 4),
         "volatility_max": round(max(vol), 4),
-        "by_bucket": {t: round(sum(v) / len(v), 4) for t, v in by_bucket.items()},
+        "by_bucket": {t: round(math.fsum(v) / len(v), 4) for t, v in sorted(by_bucket.items())},
         "episode_count": n,
     }
     return aggregated, scorecards

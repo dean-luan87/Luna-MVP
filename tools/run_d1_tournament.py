@@ -4,6 +4,12 @@
 Phase 2: D1 Tournament 一键跑通。
 候选生成 → suite 回放 → Gate（含 guardian_discipline）→ 词典序排名 → 冠军证据包。
 双通道时：Stress Gate（军工级）→ 冠军 personality_profile（证据链账本）+ run_manifest（可追溯）。
+
+军检推荐环境（锁死线程/哈希/数值库，避免 determinism 漂移）：
+  PYTHONHASHSEED=0 \\
+  OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 \\
+  VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 \\
+  python3 tools/run_d1_tournament.py ...
 """
 import hashlib
 import json
@@ -22,8 +28,21 @@ from typing import Any, Dict, List, Optional, Tuple
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _hash_dict(d: Dict[str, Any]) -> str:
-    """稳定哈希，供 Determinism 校验（位级一致）。"""
+def _quantize_floats_for_fingerprint(obj: Any, decimals: int = 6) -> Any:
+    """对参与指纹的 dict 内所有 float 量化，滤掉平台/顺序导致的末位噪声。"""
+    if isinstance(obj, dict):
+        return {k: _quantize_floats_for_fingerprint(v, decimals) for k, v in sorted(obj.items())}
+    if isinstance(obj, list):
+        return [_quantize_floats_for_fingerprint(x, decimals) for x in obj]
+    if isinstance(obj, float):
+        return round(obj, decimals)
+    return obj
+
+
+def _hash_dict(d: Dict[str, Any], quantize: bool = True) -> str:
+    """稳定哈希，供 Determinism 校验（位级一致）。默认对 float 量化后再 hash。"""
+    if quantize:
+        d = _quantize_floats_for_fingerprint(d)
     s = json.dumps(d, sort_keys=True, ensure_ascii=False)
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
@@ -41,6 +60,8 @@ def get_fingerprint_from_run(run_dir: Path, dual_channel: bool = True) -> Dict[s
             "rank_key": (),
             "stress_summary_hash": "",
             "regular_summary_hash": "",
+            "stress_summary_raw": {},
+            "regular_summary_raw": {},
         }
     data = json.loads(rp.read_text(encoding="utf-8"))
     ranked = data.get("ranked") or []
@@ -50,6 +71,8 @@ def get_fingerprint_from_run(run_dir: Path, dual_channel: bool = True) -> Dict[s
             "rank_key": (),
             "stress_summary_hash": "",
             "regular_summary_hash": "",
+            "stress_summary_raw": {},
+            "regular_summary_raw": {},
         }
     champ = ranked[0]
     champion_id = champ.get("patch_id") or data.get("champion_id")
@@ -74,6 +97,8 @@ def get_fingerprint_from_run(run_dir: Path, dual_channel: bool = True) -> Dict[s
         "rank_key": rank_key,
         "stress_summary_hash": _hash_dict(stress_summary),
         "regular_summary_hash": _hash_dict(regular_summary),
+        "stress_summary_raw": stress_summary,
+        "regular_summary_raw": regular_summary,
     }
 
 
@@ -88,11 +113,14 @@ def _run_d1_core(config: Dict[str, Any], run_dir: Path) -> Dict[str, Any]:
     version = config["version"]
     golden_suite_rel = config["golden_suite_rel"]
     stress_suite_rel = config["stress_suite_rel"]
+    stress_suite_sustain_rel = config.get("stress_suite_sustain_rel") or stress_suite_rel
+    stress_suite_pulse_rel = config.get("stress_suite_pulse_rel") or stress_suite_rel
     regular_suite_rel = config["regular_suite_rel"]
     dual_channel = config["dual_channel"]
     seed = config["seed"]
     n_candidates = config["n_candidates"]
     stress_base_patch = config.get("stress_base_patch") or {}
+    stress_base_patch_responsive = config.get("stress_base_patch_responsive") or {}
     regular_base_patch = config.get("regular_base_patch") or {}
     base_patch = config.get("base_patch") or {}
     mode = config.get("mode") or "replay"
@@ -101,15 +129,19 @@ def _run_d1_core(config: Dict[str, Any], run_dir: Path) -> Dict[str, Any]:
     from simulation.d1.lexicographic_ranker import rank_candidates, rank_candidates_dual_channel
 
     d1_run_id = run_dir.name
-    candidates_jsonl, _ = generate_candidates(
-        n=n_candidates,
-        out_dir=str(run_dir),
-        method="lhs",
-        seed=seed,
-        include_baseline=True,
-        d1_run_id=d1_run_id,
-        version_tag="d1_v1",
-    )
+    candidates_jsonl_path = run_dir / "candidates.jsonl"
+    if candidates_jsonl_path.is_file():
+        candidates_jsonl = str(candidates_jsonl_path)
+    else:
+        candidates_jsonl, _ = generate_candidates(
+            n=n_candidates,
+            out_dir=str(run_dir),
+            method="lhs",
+            seed=seed,
+            include_baseline=True,
+            d1_run_id=d1_run_id,
+            version_tag="d1_v1",
+        )
     candidate_results: List[Dict[str, Any]] = []
     patch_schema_violations: List[Dict[str, Any]] = []
     with open(candidates_jsonl, "r", encoding="utf-8") as f:
@@ -133,27 +165,44 @@ def _run_d1_core(config: Dict[str, Any], run_dir: Path) -> Dict[str, Any]:
             candidate_dir = run_dir / patch_id
             candidate_dir.mkdir(parents=True, exist_ok=True)
             if dual_channel:
-                effective_stress = _deep_merge(stress_base_patch, candidate_patch)
-                effective_regular = _deep_merge(regular_base_patch, candidate_patch)
+                patch_for_cons = _candidate_patch_for_conservative(candidate_patch)
+                effective_stress = _deep_merge(stress_base_patch, patch_for_cons)
+                effective_regular = _deep_merge(regular_base_patch, patch_for_cons)
+                if config.get("modulation_v1", False):
+                    _inject_modulation_v1(effective_stress, lam=config.get("modulation_lam", 0.10))
                 eff_stress_path = candidate_dir / "effective_patch.stress.json"
                 eff_regular_path = candidate_dir / "effective_patch.regular.json"
                 eff_stress_path.write_text(json.dumps(effective_stress, ensure_ascii=False, indent=2), encoding="utf-8")
                 eff_regular_path.write_text(json.dumps(effective_regular, ensure_ascii=False, indent=2), encoding="utf-8")
                 report_stress = _run_suite(
-                    patch_id, str(eff_stress_path), run_dir, base_dir, version, stress_suite_rel, mode,
+                    patch_id, str(eff_stress_path), run_dir, base_dir, version, stress_suite_sustain_rel, mode,
                     sim_dir_suffix="_stress", report_dest_basename="suite_report.stress.json",
                 )
+                report_stress_responsive = None
+                if stress_base_patch_responsive:
+                    eff_stress_resp_path = candidate_dir / "effective_patch.stress_responsive.json"
+                    effective_stress_resp = _deep_merge(stress_base_patch_responsive, candidate_patch)
+                    if config.get("modulation_v1", False):
+                        _inject_modulation_v1(effective_stress_resp, lam=config.get("modulation_lam", 0.10))
+                    eff_stress_resp_path.write_text(json.dumps(effective_stress_resp, ensure_ascii=False, indent=2), encoding="utf-8")
+                    report_stress_responsive = _run_suite(
+                        patch_id, str(eff_stress_resp_path), run_dir, base_dir, version, stress_suite_pulse_rel, mode,
+                        sim_dir_suffix="_stress_responsive", report_dest_basename="suite_report.stress_responsive.json",
+                    )
                 report_regular = _run_suite(
                     patch_id, str(eff_regular_path), run_dir, base_dir, version, regular_suite_rel, mode,
                     sim_dir_suffix="_regular", report_dest_basename="suite_report.regular.json",
                 )
-                candidate_results.append({
+                cr_entry = {
                     "patch_id": patch_id,
                     "patch_path": str(run_dir / patch_id / "patch.json") if (run_dir / patch_id / "patch.json").exists() else str(eff_stress_path),
                     "suite_report_path": report_stress or "",
                     "stress_suite_report_path": report_stress or "",
                     "regular_suite_report_path": report_regular or "",
-                })
+                }
+                if report_stress_responsive:
+                    cr_entry["stress_suite_report_path_responsive"] = report_stress_responsive
+                candidate_results.append(cr_entry)
             else:
                 effective = _deep_merge(base_patch, candidate_patch)
                 effective_path = candidate_dir / "effective_patch.json"
@@ -168,7 +217,7 @@ def _run_d1_core(config: Dict[str, Any], run_dir: Path) -> Dict[str, Any]:
                 })
 
     if dual_channel:
-        report_data = rank_candidates_dual_channel(run_dir, candidate_results)
+        report_data = rank_candidates_dual_channel(run_dir, candidate_results, rank_by=config.get("rank_by"))
     else:
         report_data = rank_candidates(run_dir, candidate_results)
     if patch_schema_violations:
@@ -191,22 +240,96 @@ def run_d1_once(config: Dict[str, Any], run_dir: Path) -> Dict[str, Any]:
     return get_fingerprint_from_run(run_dir, dual_channel=config.get("dual_channel", False))
 
 
+def _build_stress_per_episode_metrics(run_dir: Path, champion_id: str) -> List[Dict[str, Any]]:
+    """从冠军 stress 报告按 episode_id 排序提取每集指标，供 determinism 漂移对比。"""
+    run_dir = Path(run_dir)
+    for name in ("suite_report.stress_responsive.json", "suite_report.stress.json"):
+        report_path = run_dir / champion_id / name
+        if not report_path.is_file():
+            continue
+        try:
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        per = report.get("per_episode") or {}
+        out: List[Dict[str, Any]] = []
+        for eid in sorted(per.keys()):
+            ep = per[eid] or {}
+            sc_path = ep.get("scorecard_path")
+            entry: Dict[str, Any] = {"episode_id": eid}
+            if sc_path and Path(sc_path).is_file():
+                try:
+                    sc = json.loads(Path(sc_path).read_text(encoding="utf-8"))
+                    early = sc.get("early") or {}
+                    entry["early_gain_weighted"] = early.get("early_gain_weighted")
+                    entry["high_risk_seq_count"] = early.get("high_risk_seq_count")
+                    gd = (sc.get("guardian_discipline") or {}) if isinstance(sc.get("guardian_discipline"), dict) else {}
+                    entry["exit_latency_p95"] = gd.get("exit_latency_p95")
+                    entry["hysteresis_efficiency"] = gd.get("hysteresis_efficiency")
+                except Exception:
+                    pass
+            out.append(entry)
+        return out
+    return []
+
+
+def write_determinism_snapshots(run_dir: Path, fp: Dict[str, Any], pass_label: str = "1") -> None:
+    """每个 determinism pass 落盘 stress_summary_raw、stress_per_episode_metrics，并打印指纹行。"""
+    run_dir = Path(run_dir)
+    raw_stress = fp.get("stress_summary_raw") or {}
+    (run_dir / "stress_summary_raw.json").write_text(
+        json.dumps(raw_stress, sort_keys=True, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    champion_id = fp.get("champion_id") or ""
+    per_ep_metrics = _build_stress_per_episode_metrics(run_dir, champion_id) if champion_id else []
+    (run_dir / "stress_per_episode_metrics.json").write_text(
+        json.dumps(per_ep_metrics, sort_keys=True, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    print("[D1] pass_%s stress_summary_hash %s" % (pass_label, fp.get("stress_summary_hash", "")))
+    print("[D1] pass_%s regular_summary_hash %s" % (pass_label, fp.get("regular_summary_hash", "")))
+    print("[D1] pass_%s champion_id %s" % (pass_label, champion_id))
+    print("[D1] pass_%s champion_rank_key %s" % (pass_label, fp.get("rank_key", ())))
+
+
 def run_with_determinism(config: Dict[str, Any], run_dir: Path, repeat: int = 3) -> Dict[str, Any]:
-    """连续 repeat 次运行，指纹必须位级一致；否则返回 NON_DETERMINISTIC_EVOLUTION。"""
+    """连续 repeat 次运行，指纹必须位级一致；否则返回 NON_DETERMINISTIC_EVOLUTION。每次 pass 写快照便于 diff。"""
     runs: List[Dict[str, Any]] = []
     fp0 = get_fingerprint_from_run(run_dir, dual_channel=config.get("dual_channel", False))
     runs.append(fp0)
+    write_determinism_snapshots(run_dir, fp0, pass_label="1")
     for i in range(1, repeat):
         print("[D1] Determinism pass %s/%s" % (i + 1, repeat))
         sub_dir = run_dir / ("determinism_pass_%s" % (i + 1))
-        fp = run_d1_once(deepcopy(config), sub_dir)
+        sub_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy(run_dir / "candidates.jsonl", sub_dir / "candidates.jsonl")
+        print("[D1] determinism candidates: REUSED")
+        sub_config = deepcopy(config)
+        # 确保 pass 2/3 使用与 pass 1 相同的 pulse/sustain suite（pass 1 由 main() 跑，pass 2/3 由 _run_d1_core）
+        if not (sub_config.get("stress_suite_pulse_rel") and sub_config.get("stress_suite_sustain_rel")):
+            resp_path = run_dir / "baseline" / "suite_report.stress_responsive.json"
+            sust_path = run_dir / "baseline" / "suite_report.stress.json"
+            if resp_path.is_file():
+                n_resp = len((json.loads(resp_path.read_text(encoding="utf-8")) or {}).get("per_episode") or {})
+                if n_resp >= 30 and not sub_config.get("stress_suite_pulse_rel"):
+                    sub_config["stress_suite_pulse_rel"] = "golden_stress_v2_powerclips_pulse"
+            if sust_path.is_file():
+                n_sust = len((json.loads(sust_path.read_text(encoding="utf-8")) or {}).get("per_episode") or {})
+                if n_sust >= 15 and not sub_config.get("stress_suite_sustain_rel"):
+                    sub_config["stress_suite_sustain_rel"] = "golden_stress_v2_powerclips_sustain"
+        fp = run_d1_once(sub_config, sub_dir)
         runs.append(fp)
+        write_determinism_snapshots(sub_dir, fp, pass_label=str(i + 1))
     first = runs[0]
     for idx, r in enumerate(runs[1:], start=2):
-        if r != first:
+        if (
+            r.get("champion_id") != first.get("champion_id")
+            or r.get("rank_key") != first.get("rank_key")
+            or r.get("stress_summary_hash") != first.get("stress_summary_hash")
+            or r.get("regular_summary_hash") != first.get("regular_summary_hash")
+        ):
             print("[D1] NON_DETERMINISTIC_EVOLUTION detected", file=sys.stderr)
-            print("Run 1:", first, file=sys.stderr)
-            print("Run %s:" % idx, r, file=sys.stderr)
+            print("Run 1:", {k: first.get(k) for k in ("champion_id", "rank_key", "stress_summary_hash", "regular_summary_hash")}, file=sys.stderr)
+            print("Run %s:" % idx, {k: r.get(k) for k in ("champion_id", "rank_key", "stress_summary_hash", "regular_summary_hash")}, file=sys.stderr)
             return {"status": "NON_DETERMINISTIC_EVOLUTION", "runs": runs}
     print("[D1] Determinism verified across all %s runs" % repeat)
     return {"status": "PASS", "runs": runs}
@@ -249,13 +372,22 @@ def write_failure_manifest(run_dir: Path, det_result: Dict[str, Any]) -> None:
 
 sys.path.insert(0, str(ROOT))
 
-# Candidate 只允许 weights.* 与 metadata 内白名单；禁止 smoothing.*（防 Goodhart）
+# Candidate 只允许 weights.*、metadata 白名单、以及 stress_responsive 专属 smoothing.alpha（Phase 3 时间响应搜索）
 ALLOWED_CANDIDATE_KEY_PREFIXES = ("weights.",)
-ALLOWED_METADATA_KEYS = frozenset({"patch_id", "seed", "tag", "d1_run_id", "version_tag", "patch_kind"})
+ALLOWED_METADATA_KEYS = frozenset({
+    "patch_id", "seed", "tag", "d1_run_id", "version_tag", "patch_kind", "bucket",
+    "sampler", "converge_alpha", "converge_peak_decay", "converge_peak_hold_frames",
+})
+# 仅 stress_responsive 生效；conservative/regular 合并时会剥离（Phase 3 Step B：峰值记忆结构）
+ALLOWED_RESPONSIVE_ONLY_KEYS = frozenset({
+    "smoothing.alpha",
+    "smoothing.peak_hold_frames",
+    "smoothing.peak_decay",
+})
 
 
 def _validate_candidate_patch(candidate: Dict[str, Any]) -> Optional[str]:
-    """候选 patch 仅允许 weights.* 与 metadata 白名单；禁止 smoothing.*、risk_scale_factor（Presence-Only Contract）。"""
+    """候选 patch：weights.* + metadata；允许 smoothing.alpha / peak_hold_frames / peak_decay（仅 responsive）；禁止其他 smoothing.*、risk_scale_factor。"""
     if not isinstance(candidate, dict):
         return "not_dict"
     for k, v in candidate.items():
@@ -266,11 +398,24 @@ def _validate_candidate_patch(candidate: Dict[str, Any]) -> Optional[str]:
                 if mk not in ALLOWED_METADATA_KEYS:
                     return "metadata_disallowed:%s" % mk
             continue
+        if k in ALLOWED_RESPONSIVE_ONLY_KEYS:
+            continue
         if k == "risk_scale_factor" or k.startswith("smoothing."):
             return "disallowed_key:%s (physics in base only)" % k
         if not any(k.startswith(prefix) for prefix in ALLOWED_CANDIDATE_KEY_PREFIXES):
             return "disallowed_key:%s" % k
     return None
+
+
+def _candidate_patch_for_conservative(candidate_patch: Dict[str, Any]) -> Dict[str, Any]:
+    """仅保留用于 conservative/regular 的键（weights.* + metadata），不把 smoothing.alpha 带入 conservative。"""
+    out: Dict[str, Any] = {}
+    for k, v in (candidate_patch or {}).items():
+        if k in ALLOWED_RESPONSIVE_ONLY_KEYS:
+            continue
+        if k == "metadata" or any(k.startswith(p) for p in ALLOWED_CANDIDATE_KEY_PREFIXES):
+            out[k] = v
+    return out
 
 
 def _deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
@@ -288,6 +433,15 @@ def _deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any
             continue
         result[k] = v
     return result
+
+
+def _inject_modulation_v1(effective: Dict[str, Any], lam: float = 0.10) -> None:
+    """Phase4-MVP：向 effective patch 注入 modulation 扁平键，供 A3 开启 alpha 调制。原地修改。lam 控制调制强度。"""
+    effective["modulation.enabled"] = True
+    effective["modulation.lam"] = lam
+    effective["modulation.alpha_min"] = 0.55
+    effective["modulation.alpha_max"] = 0.80
+    effective["modulation.risk_density_alpha"] = 0.2
 
 
 def _effective_patch_smoothing_summary(patch: Dict[str, Any]) -> Dict[str, Any]:
@@ -485,8 +639,10 @@ def write_run_manifest(
     base_patch_hash: str = "",
     git_commit: str = "",
     det_result: Optional[Dict[str, Any]] = None,
+    run_status: Optional[str] = None,
+    run_status_reason: Optional[str] = None,
 ) -> None:
-    """写入 run_manifest.json，便于冠军人格可追溯；含 determinism 时追加 determinism_status / determinism_runs。"""
+    """写入 run_manifest.json，便于冠军人格可追溯；含 determinism 时追加 determinism_status / determinism_runs；熔断时写 run_status/run_status_reason。"""
     run_dir = Path(run_dir)
     manifest: Dict[str, Any] = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -498,6 +654,10 @@ def write_run_manifest(
         "regular_suite_hash": regular_suite_hash,
         "base_patch_hash": base_patch_hash,
     }
+    if run_status is not None:
+        manifest["run_status"] = run_status
+    if run_status_reason is not None:
+        manifest["run_status_reason"] = run_status_reason
     if det_result is not None:
         manifest["determinism_status"] = det_result.get("status", "")
         manifest["determinism_runs"] = [
@@ -529,10 +689,32 @@ def main() -> int:
     p.add_argument("--base-patch", default="", help="Base physics patch (e.g. patches/physics/stress_v2_phys_v1.json); required with golden_stress_v2_powerclips for early_gain")
     p.add_argument("--dual-channel", action="store_true", help="Run Stress + Regular channels; rank by L0 Stress Gate then L1/L2/L3")
     p.add_argument("--stress-suite", default="", help="Stress channel suite (default=--golden-suite)")
+    p.add_argument("--stress-suite-pulse", default="", help="Stress suite for pulse（early_gain/GUARDED，与 responsive 档配合）")
+    p.add_argument("--stress-suite-sustain", default="", help="Stress suite for sustain（exit/discipline，与 conservative 档配合）")
     p.add_argument("--regular-suite", default="", help="Regular channel suite (default=--golden-suite)")
-    p.add_argument("--stress-base-patch", default="patches/physics/stress_channel_phys_v1.json")
+    p.add_argument("--stress-base-patch", default="patches/physics/stress_channel_phys_conservative.json", help="Stress 保守档（alpha=0.25，检验稳健不过激）")
+    p.add_argument("--stress-base-patch-responsive", default="patches/physics/stress_channel_phys_responsive.json", help="Stress 响应档（alpha=0.6，检验能放电）；双通道时 Gate 须同时通过两套 stress")
     p.add_argument("--regular-base-patch", default="patches/physics/regular_channel_phys_v1.json")
     p.add_argument("--determinism-check", type=int, default=1, help="Repeat N runs and require bit-identical champion; default 1 (no check)")
+    p.add_argument("--modulation-v1", action="store_true", help="Phase4-MVP: enable alpha modulator on stress channel (no default config change)")
+    p.add_argument("--modulation-lam", type=float, default=0.10, help="Phase4: modulation strength lambda (default 0.10); used only with --modulation-v1")
+    p.add_argument("--rank-by", default="", help="Rank mode: empty=lexicographic; early_gain_only=单指标冠军（仅 L1 early_gain↑，用于诊断）")
+    p.add_argument("--phase3-mode", default="lhs", choices=["lhs", "convergent"], help="Phase3 候选采样: lhs=原均匀LHS; convergent=以022类结构为中心的收敛式采样")
+    p.add_argument("--converge-exploit-ratio", type=float, default=0.7, help="convergent 模式 exploit 桶比例")
+    p.add_argument("--converge-peak-hold-fixed", type=int, default=3)
+    p.add_argument("--converge-alpha-mean", type=float, default=0.635)
+    p.add_argument("--converge-alpha-std", type=float, default=0.02)
+    p.add_argument("--converge-alpha-min", type=float, default=0.60)
+    p.add_argument("--converge-alpha-max", type=float, default=0.68)
+    p.add_argument("--converge-decay-mean", type=float, default=0.895)
+    p.add_argument("--converge-decay-std", type=float, default=0.01)
+    p.add_argument("--converge-decay-min", type=float, default=0.88)
+    p.add_argument("--converge-decay-max", type=float, default=0.92)
+    p.add_argument("--converge-explore-alpha-min", type=float, default=0.58)
+    p.add_argument("--converge-explore-alpha-max", type=float, default=0.72)
+    p.add_argument("--converge-explore-decay-min", type=float, default=0.87)
+    p.add_argument("--converge-explore-decay-max", type=float, default=0.93)
+    p.add_argument("--candidates-file", default="", help="固定候选集：使用已有 candidates.jsonl，不重新生成。用于区分「采样波动」与「评估稳定性」。patch_path 指向源 run 的 candidates 目录。")
     args = p.parse_args()
 
     base_dir = args.base_dir.rstrip("/")
@@ -553,12 +735,24 @@ def main() -> int:
 
     dual_channel = getattr(args, "dual_channel", False)  # --dual-channel
     stress_suite_rel = _golden_suite_relative((args.stress_suite or args.golden_suite or "").strip() or "golden_stress_v2", base_dir, version) if dual_channel else golden_suite_rel
+    stress_suite_pulse_rel = _golden_suite_relative((getattr(args, "stress_suite_pulse", "") or "").strip(), base_dir, version) if (dual_channel and (getattr(args, "stress_suite_pulse", "") or "").strip()) else ""
+    stress_suite_sustain_rel = _golden_suite_relative((getattr(args, "stress_suite_sustain", "") or "").strip(), base_dir, version) if (dual_channel and (getattr(args, "stress_suite_sustain", "") or "").strip()) else ""
     regular_suite_rel = _golden_suite_relative((args.regular_suite or args.golden_suite or "").strip() or "golden_stress_v2", base_dir, version) if dual_channel else golden_suite_rel
     if dual_channel:
         for name, rel in [("stress", stress_suite_rel), ("regular", regular_suite_rel)]:
             full = ROOT / base_dir / version / rel.replace("\\", "/").strip("/")
             if not full.is_dir():
                 print("[D1] ERROR: %s-suite dir not found: %s" % (name, full), file=sys.stderr)
+                return 2
+        if stress_suite_pulse_rel:
+            full = ROOT / base_dir / version / stress_suite_pulse_rel.replace("\\", "/").strip("/")
+            if not full.is_dir():
+                print("[D1] ERROR: stress-suite-pulse dir not found: %s" % full, file=sys.stderr)
+                return 2
+        if stress_suite_sustain_rel:
+            full = ROOT / base_dir / version / stress_suite_sustain_rel.replace("\\", "/").strip("/")
+            if not full.is_dir():
+                print("[D1] ERROR: stress-suite-sustain dir not found: %s" % full, file=sys.stderr)
                 return 2
 
     out_root = Path(args.out_dir).resolve()
@@ -571,6 +765,7 @@ def main() -> int:
 
     base_patch: Dict[str, Any] = {}
     stress_base_patch: Dict[str, Any] = {}
+    stress_base_patch_responsive: Dict[str, Any] = {}
     regular_base_patch: Dict[str, Any] = {}
     if dual_channel:
         for attr, key in [("stress_base_patch", "stress_base_patch"), ("regular_base_patch", "regular_base_patch")]:
@@ -588,6 +783,16 @@ def main() -> int:
                         print("[D1] regular_base_patch loaded:", str(p), "keys:", list(regular_base_patch.keys()))
                 else:
                     print("[D1] WARN: %s file not found: %s" % (attr, p), file=sys.stderr)
+        resp_path = (getattr(args, "stress_base_patch_responsive", "") or "").strip()
+        if resp_path:
+            p = Path(resp_path)
+            if not p.is_absolute():
+                p = ROOT / p
+            if p.is_file():
+                stress_base_patch_responsive = json.loads(p.read_text(encoding="utf-8"))
+                print("[D1] stress_base_patch_responsive loaded:", str(p), "keys:", list(stress_base_patch_responsive.keys()))
+            else:
+                print("[D1] WARN: stress_base_patch_responsive not found:", p, file=sys.stderr)
         base_patch = stress_base_patch
     elif (args.base_patch or "").strip():
         base_path = Path(args.base_patch.strip())
@@ -604,29 +809,64 @@ def main() -> int:
         "version": version,
         "golden_suite_rel": golden_suite_rel,
         "stress_suite_rel": stress_suite_rel,
+        "stress_suite_pulse_rel": stress_suite_pulse_rel or stress_suite_rel,
+        "stress_suite_sustain_rel": stress_suite_sustain_rel or stress_suite_rel,
         "regular_suite_rel": regular_suite_rel,
         "dual_channel": dual_channel,
         "seed": args.seed,
         "n_candidates": args.n_candidates,
         "stress_base_patch": stress_base_patch,
+        "stress_base_patch_responsive": stress_base_patch_responsive,
         "regular_base_patch": regular_base_patch,
         "base_patch": base_patch,
         "mode": args.mode,
+        "rank_by": (getattr(args, "rank_by", "") or "").strip() or None,
+        "modulation_v1": getattr(args, "modulation_v1", False),
+        "modulation_lam": getattr(args, "modulation_lam", 0.10),
     }
 
-    # 1) 生成候选
+    # 1) 生成候选或复用固定候选集
     from simulation.d1.candidate_generator import generate_candidates
     d1_run_id = run_dir.name
-    candidates_jsonl, patch_paths = generate_candidates(
-        n=args.n_candidates,
-        out_dir=str(run_dir),
-        method="lhs",
-        seed=args.seed,
-        include_baseline=True,
-        d1_run_id=d1_run_id,
-        version_tag="d1_v1",
-    )
-    print("[D1] candidates:", candidates_jsonl)
+    cf = (getattr(args, "candidates_file", "") or "").strip()
+    if cf:
+        src = Path(cf)
+        if not src.is_absolute():
+            src = ROOT / src
+        if src.is_file():
+            dest = run_dir / "candidates.jsonl"
+            shutil.copy2(src, dest)
+            candidates_jsonl = str(dest)
+            print("[D1] candidates: FIXED (copied from %s)" % src)
+        else:
+            print("[D1] ERROR: --candidates-file not found:", src, file=sys.stderr)
+            return 2
+    else:
+        candidates_jsonl, _ = generate_candidates(
+            n=args.n_candidates,
+            out_dir=str(run_dir),
+            method="lhs",
+            seed=args.seed,
+            include_baseline=True,
+            d1_run_id=d1_run_id,
+            version_tag="d1_v1",
+            phase3_mode=getattr(args, "phase3_mode", "lhs"),
+            converge_exploit_ratio=getattr(args, "converge_exploit_ratio", 0.7),
+            converge_alpha_mean=getattr(args, "converge_alpha_mean", 0.635),
+            converge_alpha_std=getattr(args, "converge_alpha_std", 0.02),
+            converge_alpha_min=getattr(args, "converge_alpha_min", 0.60),
+            converge_alpha_max=getattr(args, "converge_alpha_max", 0.68),
+            converge_decay_mean=getattr(args, "converge_decay_mean", 0.895),
+            converge_decay_std=getattr(args, "converge_decay_std", 0.01),
+            converge_decay_min=getattr(args, "converge_decay_min", 0.88),
+            converge_decay_max=getattr(args, "converge_decay_max", 0.92),
+            converge_explore_alpha_min=getattr(args, "converge_explore_alpha_min", 0.58),
+            converge_explore_alpha_max=getattr(args, "converge_explore_alpha_max", 0.72),
+            converge_explore_decay_min=getattr(args, "converge_explore_decay_min", 0.87),
+            converge_explore_decay_max=getattr(args, "converge_explore_decay_max", 0.93),
+            converge_peak_hold_fixed=getattr(args, "converge_peak_hold_fixed", 3),
+        )
+        print("[D1] candidates:", candidates_jsonl)
 
     # 2) 对每个候选：校验 allowlist → effective = merge(base, candidate) → 写 effective_patch.json → 跑 suite
     candidate_results: List[Dict[str, Any]] = []
@@ -653,27 +893,44 @@ def main() -> int:
             candidate_dir = run_dir / patch_id
             candidate_dir.mkdir(parents=True, exist_ok=True)
             if dual_channel:
-                effective_stress = _deep_merge(stress_base_patch, candidate_patch)
-                effective_regular = _deep_merge(regular_base_patch, candidate_patch)
+                patch_for_cons = _candidate_patch_for_conservative(candidate_patch)
+                effective_stress = _deep_merge(stress_base_patch, patch_for_cons)
+                effective_regular = _deep_merge(regular_base_patch, patch_for_cons)
                 eff_stress_path = candidate_dir / "effective_patch.stress.json"
                 eff_regular_path = candidate_dir / "effective_patch.regular.json"
                 eff_stress_path.write_text(json.dumps(effective_stress, ensure_ascii=False, indent=2), encoding="utf-8")
                 eff_regular_path.write_text(json.dumps(effective_regular, ensure_ascii=False, indent=2), encoding="utf-8")
+                stress_suite_sustain_rel = config.get("stress_suite_sustain_rel") or stress_suite_rel
+                stress_suite_pulse_rel = config.get("stress_suite_pulse_rel") or stress_suite_rel
                 report_stress = _run_suite(
-                    patch_id, str(eff_stress_path), run_dir, base_dir, version, stress_suite_rel, args.mode,
+                    patch_id, str(eff_stress_path), run_dir, base_dir, version, stress_suite_sustain_rel, args.mode,
                     sim_dir_suffix="_stress", report_dest_basename="suite_report.stress.json",
                 )
+                report_stress_responsive = None
+                if stress_base_patch_responsive:
+                    eff_stress_resp_path = candidate_dir / "effective_patch.stress_responsive.json"
+                    effective_stress_resp = _deep_merge(stress_base_patch_responsive, candidate_patch)
+                    if config.get("modulation_v1", False):
+                        _inject_modulation_v1(effective_stress_resp, lam=config.get("modulation_lam", 0.10))
+                    eff_stress_resp_path.write_text(json.dumps(effective_stress_resp, ensure_ascii=False, indent=2), encoding="utf-8")
+                    report_stress_responsive = _run_suite(
+                        patch_id, str(eff_stress_resp_path), run_dir, base_dir, version, stress_suite_pulse_rel, args.mode,
+                        sim_dir_suffix="_stress_responsive", report_dest_basename="suite_report.stress_responsive.json",
+                    )
                 report_regular = _run_suite(
                     patch_id, str(eff_regular_path), run_dir, base_dir, version, regular_suite_rel, args.mode,
                     sim_dir_suffix="_regular", report_dest_basename="suite_report.regular.json",
                 )
-                candidate_results.append({
+                cr_entry = {
                     "patch_id": patch_id,
                     "patch_path": str(run_dir / patch_id / "patch.json") if (run_dir / patch_id / "patch.json").exists() else str(eff_stress_path),
                     "suite_report_path": report_stress or "",
                     "stress_suite_report_path": report_stress or "",
                     "regular_suite_report_path": report_regular or "",
-                })
+                }
+                if report_stress_responsive:
+                    cr_entry["stress_suite_report_path_responsive"] = report_stress_responsive
+                candidate_results.append(cr_entry)
                 if not report_stress:
                     print("[D1] WARN: no stress suite_report for %s" % patch_id, file=sys.stderr)
                 if not report_regular:
@@ -696,7 +953,7 @@ def main() -> int:
     # 3) 词典序排名
     from simulation.d1.lexicographic_ranker import rank_candidates, rank_candidates_dual_channel
     if dual_channel:
-        report_data = rank_candidates_dual_channel(run_dir, candidate_results)
+        report_data = rank_candidates_dual_channel(run_dir, candidate_results, rank_by=config.get("rank_by"))
     else:
         report_data = rank_candidates(run_dir, candidate_results)
     if patch_schema_violations:
@@ -711,6 +968,26 @@ def main() -> int:
                 lines.append("- **%s**: %s" % (e.get("patch_id", ""), e.get("reason", "")))
             md_path.write_text("\n".join(lines), encoding="utf-8")
     champion_id = report_data.get("champion_id")
+    # 压力密度红线熔断：无高压帧或无 GUARDED 帧则本次进化无效，不产出冠军
+    ch_stress = (report_data.get("channels") or {}).get("stress") or {}
+    eligible_hr = ch_stress.get("high_risk_frames_total", 0) or 0
+    guarded_total = ch_stress.get("guarded_frames_total", 0) or 0
+    run_status: Optional[str] = None
+    run_status_reason: Optional[str] = None
+    if eligible_hr == 0 or guarded_total == 0:
+        if champion_id:
+            print("[D1] FUSE: eligible_early_gain_frames_total=%s GUARDED_frames_total=%s → 无效运行，不产出冠军" % (eligible_hr, guarded_total), file=sys.stderr)
+        champion_id = None
+        report_data["champion_id"] = None
+        report_data["run_status"] = "D1_RUN_INVALID"
+        report_data["run_status_reason"] = "NO_STRESS_SIGNAL"
+        run_status = "D1_RUN_INVALID"
+        run_status_reason = "NO_STRESS_SIGNAL"
+        if report_data.get("champion_patch_path"):
+            report_data["champion_patch_path"] = None
+        run_dir.joinpath("rank_report.json").write_text(
+            json.dumps(report_data, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
     print("[D1] Champion:", champion_id)
     print("[D1] rank_report:", str(run_dir / "rank_report.json"))
     print("[D1] rank_report_md:", str(run_dir / "rank_report.md"))
@@ -768,6 +1045,8 @@ def main() -> int:
             base_patch_hash=base_patch_hash,
             git_commit=git_commit,
             det_result=det_result if getattr(args, "determinism_check", 1) > 1 else None,
+            run_status=run_status,
+            run_status_reason=run_status_reason,
         )
         # 冠军 personality_profile（证据链账本，仅 determinism PASS 或未校验时写入）
         if champion_id and ranked:

@@ -1,5 +1,0 @@
-{"ts": 1769149051.0072489, "entities": {"traffic_light_2bc447e4": {"state": "STABLE", "last_seen": 1769149050.907249}}, "tasks": [], "c_decision": {"traffic_light_2bc447e4": "stop"}}
-{"ts": 1769149051.0072489, "entities": {"traffic_light_2bc447e4": {"state": "STABLE", "last_seen": 1769149050.907249}}, "tasks": [{"task": "traffic_light", "state": "active", "reason": "WAIT_RED"}], "c_decision": {"traffic_light_2bc447e4": "stop"}}
-{"ts": 1769149052.0072489, "entities": {"traffic_light_2bc447e4": {"state": "STABLE", "last_seen": 1769149051.907249}}, "tasks": [], "c_decision": {"traffic_light_2bc447e4": "stop"}}
-{"ts": 1769149053.907249, "entities": {"traffic_light_2bc447e4": {"state": "INVISIBLE", "last_seen": 1769149051.907249}}, "tasks": [], "c_decision": {}}
-{"ts": 1769149055.0072489, "entities": {"traffic_light_2bc447e4": {"state": "DISAPPEARED", "last_seen": 1769149051.907249}, "elevator_5a3a326c": {"state": "STABLE", "last_seen": 1769149054.907249}}, "tasks": [], "c_decision": {"elevator_5a3a326c": "pass"}}

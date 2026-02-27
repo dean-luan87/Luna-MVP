@@ -59,7 +59,19 @@ def main():
             print("ERROR: golden-suite dir not found:", golden_dir, file=sys.stderr)
             return 2
         episode_paths_and_tags = []
-        for ep_id in sorted(os.listdir(golden_dir)):
+        # 优先用 suite_manifest.json 的 clips 顺序（PowerClips 产线），保证与 build 一致、determinism 稳定
+        ep_id_order = None
+        manifest_path = os.path.join(golden_dir, "suite_manifest.json")
+        if os.path.isfile(manifest_path):
+            try:
+                manifest = json.load(open(manifest_path, "r", encoding="utf-8"))
+                if isinstance(manifest.get("clips"), list) and manifest["clips"]:
+                    ep_id_order = list(manifest["clips"])
+            except Exception:
+                pass
+        if ep_id_order is None:
+            ep_id_order = sorted(os.listdir(golden_dir))
+        for ep_id in ep_id_order:
             ep_dir = os.path.join(golden_dir, ep_id)
             if not os.path.isdir(ep_dir):
                 continue
@@ -216,7 +228,7 @@ def main():
     weighted_available = sum(1 for sc in results_by_episode.values() if (sc.get("early") or {}).get("weighted_early_gain_available") is True)
     weighted_early_gain_available_ratio = round(weighted_available / max(1, n_ep), 4)
     per_episode = {}
-    for eid, sc in results_by_episode.items():
+    for eid, sc in sorted(results_by_episode.items()):
         ok, reasons = is_gate_passed(sc)
         paths = episode_paths.get(eid, {})
         tags = golden_tags_by_episode.get(eid, [])

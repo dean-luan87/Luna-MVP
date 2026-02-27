@@ -1,6 +1,0 @@
-{
-  "risk_scale_factor": 6.0,
-  "weights.risk_density": 0.15,
-  "weights.path_instability": 0.15,
-  "weights.motion_instability": 0.15
-}

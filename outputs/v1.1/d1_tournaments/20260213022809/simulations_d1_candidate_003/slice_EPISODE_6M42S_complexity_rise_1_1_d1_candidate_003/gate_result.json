@@ -1,7 +1,0 @@
-{
-  "passed": true,
-  "reasons": [],
-  "warnings": [
-    "WARN: lookahead_forced_ratio=1.0 (C 层关注)"
-  ]
-}

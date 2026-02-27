@@ -116,7 +116,7 @@ def run_episode(
         import simulation.logic.a3_headless_adapter as _a3_adapter_mod
         print("[SIM] using a3_headless_adapter from:", getattr(_a3_adapter_mod, "__file__", "?"))
         from simulation.logic.a3_headless_adapter import A3HeadlessAdapter
-        a3_patch = {k: v for k, v in patch_config.items() if isinstance(k, str) and (k == "risk_scale_factor" or k.startswith("weights.") or k.startswith("thresholds.") or k.startswith("smoothing."))}
+        a3_patch = {k: v for k, v in patch_config.items() if isinstance(k, str) and (k == "risk_scale_factor" or k.startswith("weights.") or k.startswith("thresholds.") or k.startswith("smoothing.") or k.startswith("modulation."))}
         a3_adapter = A3HeadlessAdapter(base_config={}, patch_config=a3_patch)
         a3_adapter.reset()
 
@@ -141,6 +141,13 @@ def run_episode(
                 "control_mode": out.get("control_mode"),
                 "pal_lookahead_m": out.get("pal_lookahead_m"),
             }
+            # Guarded 观测：把 A3 内部阈值/peak_hold 等落到 replay，便于确认触发条件
+            if out.get("a3_debug"):
+                decision["a3_debug"] = out["a3_debug"]
+            if out.get("risk_raw_used_by_mode") is not None:
+                decision["risk_raw_used_by_mode"] = out["risk_raw_used_by_mode"]
+            if out.get("mode_thresholds"):
+                decision["mode_thresholds"] = out["mode_thresholds"]
             risk_used_this_frame = float(out.get("risk_used_for_decision") or out.get("complexity_score") or 0.0)
             threshold_this_frame = float(out.get("threshold_safe_to_caution", 0.38))
             high_risk_this_frame = risk_used_this_frame >= threshold_this_frame
@@ -257,7 +264,7 @@ def run_episode(
     replay_path = os.path.join(bundle_dir, "replay_output.jsonl")
     with open(replay_path, "w", encoding="utf-8") as f:
         for rec in replay_lines:
-            # 写 replay：decision/seq/ts；risk_used_for_decision/threshold_safe_to_caution/high_risk 供 scorer early_gain
+            # 写 replay：decision/seq/ts；risk_used_for_decision/threshold_safe_to_caution/high_risk 供 scorer early_gain；decision.a3_debug 供 Guarded 触发观测
             out_rec = {"seq": rec["seq"], "ts": rec["ts"], "decision": rec["decision"], "explain_placeholder": rec.get("explain_placeholder", True)}
             if "replay_meta" in rec:
                 out_rec["replay_meta"] = rec["replay_meta"]
