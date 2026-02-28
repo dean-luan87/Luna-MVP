@@ -78,6 +78,7 @@ from runtime.a3_logger import (
     log_engaged_signal,
     build_arbitration_payload,
     write_arbitration_payload,
+    get_system_time_s,
 )
 from pal.v0 import compute_pal_horizon_difficulty
 from c3 import C3Config, C3Store, C3Learner
@@ -86,7 +87,7 @@ from c3.gates import bucket_complexity
 from c3.advice_map import ADVICE_TO_TENDENCY, ADVICE_TO_CATEGORY, FORBIDDEN_ADVICE_IDS
 from advice.engine import AdviceEngine
 from advice.schema import AdviceTask
-from intervention.advice_rhythm_v0 import get_advice_rhythm_v0
+from intervention.advice_rhythm_v0 import AdviceRhythmV0
 from intervention.arbitrator_v0 import (
     get_arbitrator_v0,
     build_candidate_tasks,
@@ -204,6 +205,8 @@ class LunaBadgeMVP:
 
         # AdviceEngine: 唯一 advice_id 语义源
         self.advice_engine = AdviceEngine()
+        # E) Advice 内容类型节律 v0：实例成员，生命周期绑定本 run，replay 自动干净状态
+        self.advice_rhythm = AdviceRhythmV0()
         
         # 现在才初始化 TTS（此时 decision_scheduler 和 speech_gate 已存在）
         self.logger.info("正在初始化语音播报模块...")
@@ -936,7 +939,7 @@ class LunaBadgeMVP:
         self._last_arbitration_winner = False
         self._last_p_outcome = None
         self._p_executed_this_tick = False
-        now = time.time()
+        now = get_system_time_s()
         self._last_cooldown_active = (
             now < getattr(self.speech_gate, "cooldown_until", 0)
             if self.speech_gate else False
@@ -1072,7 +1075,7 @@ class LunaBadgeMVP:
             # AdviceEngine → Decision（唯一 advice_id 注入点）
             task_decisions = self.advice_engine.generate_decisions(
                 tasks=self._get_advice_tasks(env_mode=self.runtime_ctx.env_mode),
-                now=time.time(),
+                now=get_system_time_s(),
                 context={"env_mode": self.runtime_ctx.env_mode},
             )
             vision_decisions = []
@@ -1086,7 +1089,7 @@ class LunaBadgeMVP:
                 }]
 
             # K) 多模态输入冲突仲裁 v0：统一候选，按来源优先级选择
-            now = time.time()
+            now = get_system_time_s()
             # eng_level / control_mode_str / pal / complexity 已在函数开头读取
 
             candidates_by_source = {}
@@ -1373,7 +1376,7 @@ class LunaBadgeMVP:
                     decisions_to_process = []
 
             # E) Advice 内容类型节律 v0：在 AdviceEngine → Decision 之间做配额 gate
-            advice_rhythm = get_advice_rhythm_v0()
+            advice_rhythm = self.advice_rhythm
             arbitrator = get_arbitrator_v0() if eng_level in ("L1", "L2", "L3") else None
             for speak_decision in decisions_to_process:
                 # P v0：本 tick 已通过 P 执行 SAY 则不再走原有播报，避免重复
@@ -1388,7 +1391,7 @@ class LunaBadgeMVP:
                 allowed, _, advice_type, advice_rhythm_trace = advice_rhythm.check(
                     advice_category=speak_decision.get("advice_category"),
                     is_safety=bool(speak_decision.get("is_safety")),
-                    now=time.time(),
+                    now=get_system_time_s(),
                 )
                 log_advice_rhythm_event(advice_rhythm_trace)
                 if not allowed:
@@ -1403,7 +1406,7 @@ class LunaBadgeMVP:
                         "type": advice_type,
                     },
                 )
-                advice_rhythm.record_spoken(advice_type, now=time.time())
+                advice_rhythm.record_spoken(advice_type, now=get_system_time_s())
                 advice_id = speak_decision.get("advice_id")
                 if arbitrator and advice_id:
                     arbitrator.record_spoken(advice_id, now)

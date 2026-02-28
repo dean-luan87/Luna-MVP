@@ -5,6 +5,7 @@ import time
 from typing import Any, Optional
 
 from config import LOG_CONFIG
+from runtime.a3_fixedpoint import q as _q_fp
 from intervention.eligibility import (
     infer_task_state,
     compute_intervention_eligibility,
@@ -101,7 +102,11 @@ def _serialize_mode(mode: Any) -> dict:
         "pal_lookahead_m": round(getattr(mode, "pal_lookahead_m", 0), 1),
     }
     if getattr(mode, "debug", None):
-        out["debug"] = {k: round(v, 3) for k, v in mode.debug.items()}
+        # Stage 2: keep int fields (ema_q, raw_q, ...) as authoritative; round floats for readability
+        out["debug"] = {
+            k: (v if isinstance(v, (int, bool)) else round(v, 3))
+            for k, v in mode.debug.items()
+        }
     return out
 
 
@@ -118,7 +123,10 @@ def log_a3(obs_or_mode: Any, decision_or_signals: Any = None) -> None:
 
 def _log_a3_v1(obs: Any, decision: Any) -> None:
     """只 dump obs + decision，不做采样、不补值、不推断。"""
+    use_fp = os.environ.get("A3_FIXEDPOINT", "1").strip().lower() in ("1", "true", "yes")
     payload = {
+        "trace_schema_version": 2,
+        "decision_authority": "fixedpoint" if use_fp else "float",
         "ts": obs.ts,
         "dt": obs.dt,
         "seq": obs.seq,
@@ -136,6 +144,16 @@ def _log_a3_v1(obs: Any, decision: Any) -> None:
         },
         "decision": _serialize_mode(decision),
     }
+    if use_fp:
+        payload["obs_quantized"] = {
+            "motion_q": _q_fp(obs.motion),
+            "path_q": _q_fp(obs.path),
+            "branch_q": _q_fp(obs.branch),
+            "roi": int(obs.roi),
+            "pal_q": _q_fp(obs.pal),
+            "complexity_q": _q_fp(obs.complexity),
+            "vc_q": _q_fp(obs.vc),
+        }
     _write_trace_line(payload)
 
 

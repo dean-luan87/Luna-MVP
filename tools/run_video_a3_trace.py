@@ -20,6 +20,8 @@ from config import OUTPUT_CONFIG, PROCESSING_CONFIG  # noqa: E402
 from core.audio_worker import stop_audio_worker  # noqa: E402
 from main import LunaBadgeMVP  # noqa: E402
 import main as main_module  # noqa: E402
+from runtime.a3_logger import set_trace_time_sec  # noqa: E402
+from intervention.advice_rhythm_v0 import reset_advice_rhythm_state  # noqa: E402
 
 
 def run_video(
@@ -38,6 +40,9 @@ def run_video(
     trace_path.parent.mkdir(parents=True, exist_ok=True)
     if trace_path.exists():
         trace_path.unlink()
+
+    # 状态边界：replay 前清空模块级单例，避免跨 run 污染（主路径已用 app.advice_rhythm）
+    reset_advice_rhythm_state()
 
     # 主线 A：模拟 ACTIVE 任务态（用于验证 eligible 分布）
     if simulate_active:
@@ -92,6 +97,8 @@ def run_video(
                 frame_context = {}
             now_ms = BASE_MS + frame_id * FRAME_MS
             frame_context["now_ms"] = now_ms
+            # 记录层 determinism：trace 写入与 A3 驱动使用同一时间源
+            set_trace_time_sec(now_ms / 1000.0)
 
             # 用视频时间驱动采样，保证两遍跑同一视频时 seq/采样数一致（确定性）
             app.current_ts = frame_id / max(1.0, fps)
@@ -102,6 +109,7 @@ def run_video(
             # 主循环节流：避免毫秒级自旋，使 A1/ENGAGED 时间累计基于感知 tick 而非 CPU 时间
             time.sleep(0.03)  # 约 30 FPS 上限
     finally:
+        set_trace_time_sec(None)  # 恢复墙钟，避免影响后续或 live 运行
         cap.release()
         stop_audio_worker()
 

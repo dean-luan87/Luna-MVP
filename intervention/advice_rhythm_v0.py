@@ -11,6 +11,7 @@ ENGAGED = 在一个时间窗内，允许哪些类别出现、出现多少
 
 from __future__ import annotations
 
+import math
 import time
 from collections import deque
 from typing import Any, Dict, Literal, Optional, Tuple
@@ -52,20 +53,20 @@ def normalize_advice_type(advice_category: Optional[str], is_safety: bool = Fals
 
 def advice_type_gate(advice_type: str, window_stats: Dict[str, int]) -> Tuple[bool, str]:
     """
-    放行规则（只读 gate）。
-
-    Args:
-        advice_type: 归一化后的 v0 类型
-        window_stats: 滑窗内各类型已播报次数 {type: count}
-
-    Returns:
-        (allowed, reason)
+    放行规则（只读 gate）。Stage 2: 配额比较在整数域，避免 float 导致分叉。
+    口径：quota 为「每窗最大次数」，业务上为整数；若配置为小数则向上取整（0.8→1），
+    避免 int() 截断导致 0.8→0 产生意外放行。
     """
     if advice_type == SAFETY_REMINDER:
         return True, "OK"
     quota = QUOTA.get(advice_type, 1)
+    if not math.isfinite(quota):
+        return True, "OK"
+    quota_int = math.ceil(quota)
+    if quota_int < 0:
+        quota_int = 0
     count = window_stats.get(advice_type, 0)
-    if count >= quota:
+    if count >= quota_int:
         return False, "QUOTA_EXCEEDED"
     return True, "OK"
 
@@ -97,6 +98,15 @@ class AdviceRhythmV0:
         """记录一次已播报。"""
         now = now or time.time()
         self._prune(now)
+        # 行为路径 trace：便于 diff 两遍 replay 定位第一处 record_spoken 分叉
+        stats: Dict[str, int] = {}
+        for _, t in self._events:
+            stats[t] = stats.get(t, 0) + 1
+        try:
+            from runtime.a3_logger import log_advice_rhythm_record_spoken
+            log_advice_rhythm_record_spoken(now, advice_type, stats, len(self._events))
+        except Exception:
+            pass
         self._events.append((now, advice_type))
 
     def check(

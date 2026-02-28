@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
 
 class SafetyLevel(str, Enum):
@@ -53,4 +53,4 @@ class EnvironmentMode:
     advice_budget_scale: float
     pal_lookahead_m: float
     updated_at_ms: int
-    debug: Dict[str, float] = field(default_factory=dict)
+    debug: Dict[str, Any] = field(default_factory=dict)  # Stage 2: 含 int 权威字段如 ema_q
