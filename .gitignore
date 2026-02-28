@@ -2,6 +2,8 @@
 # Runtime artifacts
 # ==========================
 *.jsonl
+!tests/fixed_input_trace.jsonl
+tests/freeze_ci_out.json
 *.trace
 *.log
 runs/

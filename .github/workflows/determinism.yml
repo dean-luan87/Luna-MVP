@@ -1,0 +1,29 @@
+name: A3 Determinism
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  freeze-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Freeze replay (twice, must be identical)
+        run: |
+          python3 tools/replay_freeze_a3.py tests/fixed_input_trace.jsonl out1.json
+          python3 tools/replay_freeze_a3.py tests/fixed_input_trace.jsonl out2.json
+          diff out1.json out2.json
+
+      - name: SHA256 baseline check
+        run: |
+          python3 tools/replay_freeze_a3.py tests/fixed_input_trace.jsonl tests/freeze_ci_out.json
+          shasum -a 256 tests/freeze_ci_out.json | diff - tests/freeze_baseline.sha
