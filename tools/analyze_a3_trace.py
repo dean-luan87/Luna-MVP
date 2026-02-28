@@ -87,6 +87,40 @@ def _percentile(sorted_vals, pct):
     return float(sorted_vals[max(0, min(len(sorted_vals) - 1, idx))])
 
 
+def _norm_view(r):
+    """兼容 trace：有 view 用 view，否则用 obs 映射为 view。缺失统一为 NONE/0 便于报表。"""
+    view = r.get("view")
+    if view is not None:
+        return view
+    obs = r.get("obs") or {}
+    q = obs.get("frame_quality")
+    return {
+        "frame_quality": q if q is not None else "NONE",
+        "view_confidence": obs.get("vc") if obs.get("vc") is not None else 0.0,
+        "motion_instability": obs.get("motion") if obs.get("motion") is not None else 0.0,
+    }
+
+
+def _norm_a3(r):
+    """兼容 trace：有 a3 用 a3，否则用 decision + obs 映射。缺失统一为 NONE/0 便于报表。"""
+    a3 = r.get("a3")
+    if a3 is not None:
+        return a3
+    dec = r.get("decision") or {}
+    obs = r.get("obs") or {}
+    ctrl = dec.get("control_mode") or obs.get("control_mode")
+    return {
+        "control_mode": ctrl if ctrl is not None else "NONE",
+        "complexity_raw": dec.get("complexity_raw") if dec.get("complexity_raw") is not None else obs.get("complexity"),
+        "complexity_effective": dec.get("complexity_effective") if dec.get("complexity_effective") is not None else obs.get("complexity"),
+        "inputs": {
+            "path_instability": obs.get("path"),
+            "roi_count": obs.get("roi"),
+            "branch_load": obs.get("branch"),
+        },
+    }
+
+
 def compute_jitter(rows):
     control_seq = []
     control_ts = []
@@ -96,8 +130,8 @@ def compute_jitter(rows):
     quality_by_control = defaultdict(list)
 
     for r in rows:
-        view = r.get("view", {})
-        a3 = r.get("a3", {})
+        view = _norm_view(r) or {}
+        a3 = _norm_a3(r) or {}
         ts = r.get("ts")
         control = a3.get("control_mode")
         quality = view.get("frame_quality")
@@ -181,22 +215,13 @@ def maybe_diagnose(jitter_metrics):
     }
 
 
-def main(path, jitter=False, longterm=False):
-    rows = []
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            rows.append(json.loads(line))
+ACTIVE_CONTROL_MODES = {"ASSISTED", "GUARDED"}
 
-    if not rows:
-        print("Trace 为空或无法读取")
-        return
 
+def _compute_core_metrics(rows):
+    """对给定 rows 做一遍聚合，返回 dict（用于 ALL 或 ACTIVE 口径）。"""
     control_counter = Counter()
     quality_counter = Counter()
-
     vc_vals = []
     motion_vals = []
     raw_vals = []
@@ -205,22 +230,18 @@ def main(path, jitter=False, longterm=False):
     roi_vals = []
     branch_vals = []
     pal_vals = []
-    pal_path_pairs = []  # (pal, path) 对齐
-    path_motion_pairs = []  # (path, motion) 对齐
-    path_roi_pairs = []  # (path, roi) 对齐
-    branch_motion_pairs = []  # (branch, motion) 对齐
-    branch_path_pairs = []  # (branch, path) 对齐
-
+    path_motion_pairs = []
+    path_roi_pairs = []
+    branch_motion_pairs = []
+    branch_path_pairs = []
+    pal_path_pairs = []
     for r in rows:
-        view = r.get("view", {})
-        a3 = r.get("a3", {})
-
+        view = _norm_view(r) or {}
+        a3 = _norm_a3(r) or {}
         control = a3.get("control_mode")
         quality = view.get("frame_quality")
-
         control_counter[control] += 1
         quality_counter[quality] += 1
-
         vc = view.get("view_confidence")
         motion = view.get("motion_instability")
         raw = a3.get("complexity_raw")
@@ -229,7 +250,6 @@ def main(path, jitter=False, longterm=False):
         path_in = inputs.get("path_instability")
         roi_in = inputs.get("roi_count")
         branch_in = inputs.get("branch_load")
-
         if vc is not None:
             vc_vals.append(vc)
         if motion is not None:
@@ -253,19 +273,14 @@ def main(path, jitter=False, longterm=False):
             if path_in is not None:
                 branch_path_pairs.append((branch_in, path_in))
         pal = r.get("pal", {}).get("horizon_difficulty")
-        if pal is not None:
+        if pal is not None and path_in is not None:
             pal_vals.append(pal)
-            if path_in is not None:
-                pal_path_pairs.append((pal, path_in))
-
+            pal_path_pairs.append((pal, path_in))
     total = len(rows)
-
-    control_seq = [r.get("a3", {}).get("control_mode") for r in rows]
+    control_seq = [_norm_a3(r).get("control_mode") for r in rows]
     switches = sum(1 for i in range(1, len(control_seq)) if control_seq[i] != control_seq[i - 1])
-
-    duration_sec = rows[-1]["ts"] - rows[0]["ts"]
+    duration_sec = (rows[-1]["ts"] - rows[0]["ts"]) if len(rows) >= 2 else 0.0
     switches_per_min = switches / max(duration_sec / 60.0, 1e-6)
-
     corr_motion_raw = pearson(motion_vals, raw_vals)
     corr_vc_eff = pearson(vc_vals, eff_vals)
     path_for_corr_motion = [p for p, m in path_motion_pairs]
@@ -280,7 +295,6 @@ def main(path, jitter=False, longterm=False):
     path_for_corr_b = [p for b, p in branch_path_pairs]
     corr_branch_motion = pearson(branch_for_corr_motion, motion_for_corr_b) if branch_motion_pairs else 0.0
     corr_branch_path = pearson(branch_for_corr_path, path_for_corr_b) if branch_path_pairs else 0.0
-
     vc_mean, vc_std = mean_std(vc_vals)
     motion_mean, motion_std = mean_std(motion_vals)
     path_p50 = _percentile(sorted(path_vals), 50) if path_vals else 0.0
@@ -288,45 +302,157 @@ def main(path, jitter=False, longterm=False):
     branch_p50 = _percentile(sorted(branch_vals), 50) if branch_vals else 0.0
     branch_p95 = _percentile(sorted(branch_vals), 95) if branch_vals else 0.0
     branch_gt0_ratio = sum(1 for b in branch_vals if b > 0) / len(branch_vals) if branch_vals else 0.0
+    return {
+        "total": total,
+        "control_counter": control_counter,
+        "quality_counter": quality_counter,
+        "vc_vals": vc_vals,
+        "motion_vals": motion_vals,
+        "raw_vals": raw_vals,
+        "eff_vals": eff_vals,
+        "path_vals": path_vals,
+        "roi_vals": roi_vals,
+        "branch_vals": branch_vals,
+        "pal_vals": pal_vals,
+        "path_motion_pairs": path_motion_pairs,
+        "path_roi_pairs": path_roi_pairs,
+        "branch_motion_pairs": branch_motion_pairs,
+        "branch_path_pairs": branch_path_pairs,
+        "pal_path_pairs": pal_path_pairs,
+        "switches_per_min": switches_per_min,
+        "corr_motion_raw": corr_motion_raw,
+        "corr_vc_eff": corr_vc_eff,
+        "corr_path_motion": corr_path_motion,
+        "corr_path_roi": corr_path_roi,
+        "corr_branch_motion": corr_branch_motion,
+        "corr_branch_path": corr_branch_path,
+        "vc_mean": vc_mean,
+        "vc_std": vc_std,
+        "motion_mean": motion_mean,
+        "motion_std": motion_std,
+        "path_p50": path_p50,
+        "path_p95": path_p95,
+        "branch_p50": branch_p50,
+        "branch_p95": branch_p95,
+        "branch_gt0_ratio": branch_gt0_ratio,
+    }
 
-    print("\n=== A3 Trace Metrics ===")
+
+def _print_core_block(label, m):
+    """打印一段 ALL 或 ACTIVE 的核心指标。"""
+    total = m["total"]
+    if total == 0:
+        print(f"\n--- {label} ---\n  (0 frames)")
+        return
+    print(f"\n--- {label} ---")
     print("Total frames:", total)
-    print("\nControl mode ratio:")
-    for k, v in control_counter.items():
+    print("Control mode ratio:")
+    for k, v in m["control_counter"].items():
         print(f"  {k}: {v/total:.2%}")
-
-    print("\nFrame quality ratio:")
-    for k, v in quality_counter.items():
+    print("Frame quality ratio:")
+    for k, v in m["quality_counter"].items():
         print(f"  {k}: {v/total:.2%}")
+    print("Stability:")
+    print(f"  control switches / min: {m['switches_per_min']:.2f}")
+    print(f"  view_confidence mean/std: {m['vc_mean']:.3f} / {m['vc_std']:.3f}")
+    print(f"  motion_instability mean/std: {m['motion_mean']:.3f} / {m['motion_std']:.3f}")
+    print("Path v0 (path_instability):")
+    if m["path_vals"]:
+        print(f"  p50: {m['path_p50']:.3f}, p95: {m['path_p95']:.3f}")
+        print(f"  corr(path, motion): {m['corr_path_motion']:.3f}")
+        print(f"  corr(path, roi): {m['corr_path_roi']:.3f}")
+    else:
+        print("  (no path data)")
+    print("Branch v0 (branch_load):")
+    if m["branch_vals"]:
+        print(f"  p50: {m['branch_p50']:.3f}, p95: {m['branch_p95']:.3f}")
+        print(f"  corr(branch, motion): {m['corr_branch_motion']:.3f}")
+        print(f"  corr(branch, path): {m['corr_branch_path']:.3f}")
+        print(f"  branch>0 占比: {m['branch_gt0_ratio']:.2%}")
+    else:
+        print("  (no branch data)")
+    print("Correlations:")
+    print(f"  corr(motion_instability, complexity_raw): {m['corr_motion_raw']:.3f}")
+    print(f"  corr(view_confidence, complexity_effective): {m['corr_vc_eff']:.3f}")
 
-    print("\nStability:")
-    print(f"  control switches / min: {switches_per_min:.2f}")
-    print(f"  view_confidence mean/std: {vc_mean:.3f} / {vc_std:.3f}")
-    print(f"  motion_instability mean/std: {motion_mean:.3f} / {motion_std:.3f}")
 
-    print("\nPath v0 (path_instability):")
-    if path_vals:
-        print(f"  p50: {path_p50:.3f}, p95: {path_p95:.3f}")
-        print(f"  corr(path, motion): {corr_path_motion:.3f}")
-        print(f"  corr(path, roi): {corr_path_roi:.3f}")
+def main(path, jitter=False, longterm=False, active_only=False):
+    rows = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rows.append(json.loads(line))
 
-    print("\nBranch v0 (branch_load):")
-    if branch_vals:
-        print(f"  p50: {branch_p50:.3f}, p95: {branch_p95:.3f}")
-        print(f"  corr(branch, motion): {corr_branch_motion:.3f}")
-        print(f"  corr(branch, path): {corr_branch_path:.3f}")
-        print(f"  branch>0 占比: {branch_gt0_ratio:.2%}")
+    if not rows:
+        print("Trace 为空或无法读取")
+        return
 
-    print("\nCorrelations:")
-    print(f"  corr(motion_instability, complexity_raw): {corr_motion_raw:.3f}")
-    print(f"  corr(view_confidence, complexity_effective): {corr_vc_eff:.3f}")
+    active_rows = [r for r in rows if _norm_a3(r).get("control_mode") in ACTIVE_CONTROL_MODES]
+    n_active = len(active_rows)
+    n_all = len(rows)
+    active_frame_ratio = n_active / n_all if n_all else 0.0
+
+    if active_only:
+        print("active_frame_ratio (ACTIVE/ALL):", f"{n_active}/{n_all} = {active_frame_ratio:.2%}")
+        if not active_rows:
+            print("ACTIVE: 0 frames (control_mode not in ASSISTED/GUARDED)")
+            return
+        m = _compute_core_metrics(active_rows)
+        _print_core_block("ACTIVE", m)
+        return
+
+    # 默认：ALL + ACTIVE 双口径
+    m_all = _compute_core_metrics(rows)
+    _print_core_block("ALL", m_all)
+    print("\nactive_frame_ratio (ACTIVE/ALL):", f"{n_active}/{n_all} = {active_frame_ratio:.2%}")
+    if active_rows:
+        m_active = _compute_core_metrics(active_rows)
+        _print_core_block("ACTIVE", m_active)
+
+    # 以下沿用 ALL 口径的变量名，供后续 PAL/ENGAGED/CSV/PNG 使用
+    total = m_all["total"]
+    control_counter = m_all["control_counter"]
+    quality_counter = m_all["quality_counter"]
+    vc_vals = m_all["vc_vals"]
+    motion_vals = m_all["motion_vals"]
+    raw_vals = m_all["raw_vals"]
+    eff_vals = m_all["eff_vals"]
+    path_vals = m_all["path_vals"]
+    roi_vals = m_all["roi_vals"]
+    branch_vals = m_all["branch_vals"]
+    pal_vals = m_all["pal_vals"]
+    path_motion_pairs = m_all["path_motion_pairs"]
+    path_roi_pairs = m_all["path_roi_pairs"]
+    branch_motion_pairs = m_all["branch_motion_pairs"]
+    branch_path_pairs = m_all["branch_path_pairs"]
+    pal_path_pairs = m_all["pal_path_pairs"]
+    switches_per_min = m_all["switches_per_min"]
+    corr_motion_raw = m_all["corr_motion_raw"]
+    corr_vc_eff = m_all["corr_vc_eff"]
+    corr_path_motion = m_all["corr_path_motion"]
+    corr_path_roi = m_all["corr_path_roi"]
+    corr_branch_motion = m_all["corr_branch_motion"]
+    corr_branch_path = m_all["corr_branch_path"]
+    vc_mean = m_all["vc_mean"]
+    vc_std = m_all["vc_std"]
+    motion_mean = m_all["motion_mean"]
+    motion_std = m_all["motion_std"]
+    path_p50 = m_all["path_p50"]
+    path_p95 = m_all["path_p95"]
+    branch_p50 = m_all["branch_p50"]
+    branch_p95 = m_all["branch_p95"]
+    branch_gt0_ratio = m_all["branch_gt0_ratio"]
+    control_seq = [_norm_a3(r).get("control_mode") for r in rows]
+    switches = sum(1 for i in range(1, len(control_seq)) if control_seq[i] != control_seq[i - 1])
 
     # PAL v0（只读前瞻）
     if pal_vals:
         pal_p50 = _percentile(sorted(pal_vals), 50)
         pal_p95 = _percentile(sorted(pal_vals), 95)
         pal_mean, pal_std = mean_std(pal_vals)
-        pal_pairs = [(r.get("pal", {}).get("horizon_difficulty"), eff) for r in rows if r.get("pal", {}).get("horizon_difficulty") is not None and (eff := r.get("a3", {}).get("complexity_effective")) is not None]
+        pal_pairs = [(r.get("pal", {}).get("horizon_difficulty"), eff) for r in rows if r.get("pal", {}).get("horizon_difficulty") is not None and (eff := _norm_a3(r).get("complexity_effective")) is not None]
         pal_for_corr = [p for p, e in pal_pairs]
         eff_for_corr = [e for p, e in pal_pairs]
         corr_pal_eff = pearson(pal_for_corr, eff_for_corr) if pal_pairs else 0.0
@@ -370,9 +496,9 @@ def main(path, jitter=False, longterm=False):
             level_seq.append(lev)
             if r.get("rhythm", {}).get("state") == "ENGAGED":
                 engaged_only.append(lev)
-            if r.get("a3", {}).get("control_mode") == "GUARDED" and lev == "L3":
+            if _norm_a3(r).get("control_mode") == "GUARDED" and lev == "L3":
                 guarded_l3 += 1
-            if lev == "L3" and r.get("view", {}).get("view_confidence", 1.0) < 0.75:
+            if lev == "L3" and _norm_view(r).get("view_confidence", 1.0) < 0.75:
                 l3_vc_low += 1
         total_eng = len(engagement_rows)
         print("\n介入强度 v0 (engagement.level):")
@@ -412,7 +538,7 @@ def main(path, jitter=False, longterm=False):
             # corr(level_numeric, pal), corr(level_numeric, complexity_effective)
             levels_num = [LEVEL_MAP.get(r.get("engagement", {}).get("level", "L0"), 0) for r in engaged_rows]
             pal_eng = [r.get("pal", {}).get("horizon_difficulty") for r in engaged_rows]
-            eff_eng = [r.get("a3", {}).get("complexity_effective") for r in engaged_rows]
+            eff_eng = [_norm_a3(r).get("complexity_effective") for r in engaged_rows]
             pairs_pal = [(l, p) for l, p in zip(levels_num, pal_eng) if p is not None]
             pairs_eff = [(l, e) for l, e in zip(levels_num, eff_eng) if e is not None]
             corr_lev_pal = pearson([x[0] for x in pairs_pal], [x[1] for x in pairs_pal]) if len(pairs_pal) >= 2 else 0
@@ -635,5 +761,6 @@ if __name__ == "__main__":
     parser.add_argument("trace", help="a3_trace.jsonl path")
     parser.add_argument("--jitter", action="store_true", help="输出抖动细分统计")
     parser.add_argument("--longterm", action="store_true", help="F) ENGAGED 跨段稳定性体检")
+    parser.add_argument("--active-only", action="store_true", help="仅输出 ACTIVE 口径（control_mode in ASSISTED/GUARDED）")
     args = parser.parse_args()
-    main(args.trace, jitter=args.jitter, longterm=args.longterm)
+    main(args.trace, jitter=args.jitter, longterm=args.longterm, active_only=args.active_only)

@@ -1,0 +1,2 @@
+{"version_tag": "v1.1", "session_id": "fake-session-001", "episode_id": "SAFETY_CHANGE_11", "task_id": "fake-session-001_SAFETY_CHANGE_11_SAFETY_0", "answer": "help", "confidence": 1.0, "annotator": "human", "annotated_at": "2026-02-11T08:07:33Z"}
+{"version_tag": "v1.1", "session_id": "fake-session-001", "episode_id": "SPEECH_10", "task_id": "fake-session-001_SPEECH_10_SPEECH_0", "answer": "汽车", "confidence": 1.0, "annotator": "human", "annotated_at": "2026-02-11T08:07:48Z"}

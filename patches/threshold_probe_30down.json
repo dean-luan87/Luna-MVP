@@ -1,0 +1,6 @@
+{
+  "thresholds.safe_to_caution": 0.266,
+  "thresholds.caution_to_danger": 0.308,
+  "thresholds.hysteresis": 0.001,
+  "thresholds.min_mode_hold_ms": 999999
+}

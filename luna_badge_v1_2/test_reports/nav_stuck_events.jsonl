@@ -1,1 +1,0 @@
-{"ts": 1764564679.3095832, "code": "NAV_STUCK", "route_id": "demo-route", "state": "WALKING", "last_progress_value": 12.3, "idle_sec": 20.5, "stuck_type": "no_progress", "raw": {"type": "error", "domain": "navigation.path", "code": "NAV_STUCK", "route_id": "demo-route", "state": "WALKING", "last_progress_value": 12.3, "idle_sec": 20.5, "stuck_type": "no_progress"}}

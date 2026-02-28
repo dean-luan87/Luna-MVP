@@ -1,0 +1,5 @@
+{
+  "thresholds.safe_to_caution": 0.195,
+  "metadata.trace_tag": "calib_v1",
+  "metadata.note": "threshold calibration, do not ship"
+}

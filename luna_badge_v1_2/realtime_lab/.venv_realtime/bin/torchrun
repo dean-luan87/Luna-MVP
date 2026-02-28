@@ -1,7 +1,0 @@
-#!/Users/luanlei/Desktop/Luna-2/luna_badge_v1_2/realtime_lab/.venv_realtime/bin/python3
-import sys
-from torch.distributed.run import main
-if __name__ == '__main__':
-    if sys.argv[0].endswith('.exe'):
-        sys.argv[0] = sys.argv[0][:-4]
-    sys.exit(main())

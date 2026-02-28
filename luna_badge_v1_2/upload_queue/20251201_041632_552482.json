@@ -1,9 +1,0 @@
-{
-  "ts": 1764562592.552039,
-  "type": "selfheal_action",
-  "cpu": 41.7,
-  "mem": 74.1,
-  "action": "clear_cache",
-  "scope": "camera",
-  "result": "success"
-}

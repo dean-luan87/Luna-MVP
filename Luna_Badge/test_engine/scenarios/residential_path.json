@@ -1,7 +1,0 @@
-{
-  "name": "residential_path",
-  "keyword": "小区道路 住宅区",
-  "expected_labels": ["person", "car", "bicycle", "road"]
-}
-
-

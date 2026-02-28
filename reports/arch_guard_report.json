@@ -1,0 +1,30 @@
+{
+  "final": {
+    "ok": true,
+    "score": 78,
+    "grade": "YELLOW"
+  },
+  "arch": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "[ARCH] suspicious wording '\\bconfirmed\\b' in /Users/luanlei/Desktop/Luna-2/vision_pipeline/b2/v03/dcs_hard_rules_v041.py",
+      "[ARCH] suspicious wording '必然(发生|出现)' in /Users/luanlei/Desktop/Luna-2/vision_pipeline/b2/v03/b2_v03.py",
+      "[ARCH] suspicious wording '\\bconfirmed\\b' in /Users/luanlei/Desktop/Luna-2/vision_pipeline/b2/v03/b2_audit/rules/bc_boundary_rules.py",
+      "[ARCH] suspicious wording '\\bconfirmed\\b' in /Users/luanlei/Desktop/Luna-2/vision_pipeline/b2/v03/validation/b2_v05_validation.py",
+      "[ARCH] suspicious wording '必然(发生|出现)' in /Users/luanlei/Desktop/Luna-2/docs/c_lang.md",
+      "[ARCH] suspicious wording '已经(确认|确定)' in /Users/luanlei/Desktop/Luna-2/docs/Freeze_Fixtures_Design_v1.0.md"
+    ],
+    "score": 70,
+    "grade": "YELLOW"
+  },
+  "dcs": {
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "[DCS] trace not found: /Users/luanlei/Desktop/Luna-2/traces/b2_trace_v043.jsonl (skip)"
+    ],
+    "score": 90,
+    "grade": "YELLOW"
+  }
+}

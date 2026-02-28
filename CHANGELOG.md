@@ -5,6 +5,60 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.5.0] - 2026-02-14
+
+### Guardian Discipline Phase 1 冻结
+
+退出纪律审计层：基于 control_mode 评估 B 型配置是否存在粘滞型 Goodhart，与 A3 risk 数值解耦。
+
+#### 新增
+- **tools/audit_exit_latency.py**：baseline/candidate replay 审计，输出 exit_latency、hysteresis_efficiency、baseline_no_entry 等
+- **tools/test_guardian_discipline.py**：审计 + Gate 回归测试（含 --suite 集成）
+- **tools/run_video_replay.py**：真实视频 → trace → episode → recompute → 审计
+- **tools/run_video_replay_suite.py**：6 测试视频批量跑审计
+- **docs/GUARDIAN_DISCIPLINE_PHASE1.md**：口径、Gate 红线、复现命令、最小测试用例与真实视频说明
+- 最小测试用例：baseline_test.jsonl、candidate_test.jsonl、baseline_test2.jsonl
+
+#### 变更
+- **tools/run_sim_suite.py**：集成 exit_latency 审计，per_episode 写入 guardian_discipline、exit_audit_path
+- **simulation/logic/gate.py**：Guardian Discipline 红线（exit_latency_p95≤6、max≤12、hysteresis_efficiency≥0.90）
+
+#### 验证
+- test_guardian_discipline.py 全通过；6 视频套件 6/6 PASS。
+
+---
+
+## [Unreleased] A3 Deterministic Decision Stage 2
+
+### 目标
+决策闭环定点化：相同量化输入 → 相同 decision 与 advice_rhythm 路径，支持可回放、可审计、可复现（字节级一致）。
+
+### SCALE 与舍入
+- **SCORE_SCALE = 1000**（3 位小数定点）；**ALPHA_SCALE = 1000**
+- **舍入**：round half away from zero（0.5 → 1，-0.5 → -1）
+- **权威字段**：分支与状态更新以整数为准：`ema_q`、`raw_q`、`raw_effective_q`、`x_hold_q`、`peak_hold_value_q`；trace 中同时记录 `ema`（= dq(ema_q)）等浮点 shadow 便于可读
+
+### 变更
+- **runtime/a3_fixedpoint.py**：定点单源真理（q/dq/clamp_i/ema_step_i/view_conf_gate_q）
+- **a3/engine.py**：`A3_FIXEDPOINT=1` 时走定点路径（raw_q → gate_q → raw_effective_q → peak_hold_q → ema_q → _classify_safety_q）；状态增加 `ema_q`、`peak_hold_value_q`
+- **intervention/advice_rhythm_v0.py**：配额比较改为整数域（`count >= int(quota)`），QUOTA_EXCEEDED 判定确定
+- **runtime/a3_logger.py**：debug 序列化保留 int（如 ema_q）不 round，浮点 round 3 位
+
+### 回滚
+- **A3_FIXEDPOINT=0** 关闭定点，恢复原有浮点决策路径（默认 `1`，即开启定点）
+
+### 测试
+- **tests/test_rounding_policy.py**：舍入策略与 0.5 边界、dq 往返
+- **tests/test_determinism_fixedpoint.py**：同 obs 两遍决策一致、多 tick 序列一致、阈值边界、ema_q 权威
+
+### 加固（工业级确定性）
+- **q() 舍入**：加 epsilon（1e-12）消除浮点二进制边界抖动，跨平台一致；0.5005 → 501
+- **advice_rhythm quota**：用 `ceil(quota)` 替代 `int(quota)`，避免 0.8 → 0 意外放行；配额口径明确
+- **trace schema**：`trace_schema_version: 2`、`decision_authority: "fixedpoint"`，明确权威字段
+- **tools/diff_traces.py**：首次分叉定位脚本，输出 ts/seq 及前后 5 行上下文；支持 `--keys` 仅比较决策/rhythm 路径
+
+---
+
 ## [1.0.0] - 2025-11-05
 
 ### 🎉 首次发布 - 硬件Demo测试版本

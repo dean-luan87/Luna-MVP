@@ -2,33 +2,164 @@ import json
 import logging
 import os
 import time
-from typing import Optional
+from typing import Any, Optional
 
 from config import LOG_CONFIG
+from runtime.a3_fixedpoint import q as _q_fp
 from intervention.eligibility import (
     infer_task_state,
     compute_intervention_eligibility,
 )
 from intervention.task_state_override import TaskStateOverride
+from intervention.engagement_v0 import get_engagement_v0
+from intervention.rhythm_v0 import get_rhythm_v0
+from pal.lookahead_modulation import apply_pal_lookahead
+from pal.v0 import compute_pal_horizon_difficulty
 from intervention.action_mapper_m_v0 import (
+    ActionType,
     map_winner_to_action_plan,
     IntentInfo,
     SlotInfo,
     _winner_type_to_enum,
 )
-from intervention.engagement_v0 import get_engagement_v0
-from intervention.rhythm_v0 import get_rhythm_v0
-from pal.lookahead_modulation import apply_pal_lookahead
-from pal.v0 import compute_pal_horizon_difficulty
 
 log = logging.getLogger("A3")
 _LAST_TS = 0.0
+_LAST_RHYTHM_STATE: Optional[str] = None
+_LAST_ENGAGEMENT_LEVEL: Optional[str] = None
+
+# 记录层 determinism：trace 写入使用与 A3 驱动同一时间源（run_video 注入 now_ms/1000）
+_trace_time_sec: Optional[float] = None
 
 
-def log_a3(mode, signals=None):
+def set_trace_time_sec(sec: Optional[float]) -> None:
+    """设置 trace 写入用的固定时间（如 run_video 的 now_ms/1000）。不设置时用墙钟。"""
+    global _trace_time_sec
+    _trace_time_sec = sec
+
+
+def _get_ts_for_trace() -> float:
+    """trace 用时间戳：有注入则用注入，否则用墙钟。"""
+    global _trace_time_sec
+    if _trace_time_sec is not None:
+        return _trace_time_sec
+    return time.time()
+
+
+def get_system_time_s() -> float:
+    """
+    唯一系统时间轴（秒）。
+    实时模式 → time.time()；replay 模式 → 上层注入时间（set_trace_time_sec）。
+    决策路径应只使用此接口，禁止直接 time.time()。
+    """
+    return _get_ts_for_trace()
+
+
+# 阶段 1：trace 量化，消除浮点尾差，使 diff 字节级一致
+TRACE_FLOAT_NDIGITS = 3
+
+
+def _round_float(v: Any, ndigits: int = TRACE_FLOAT_NDIGITS) -> Any:
+    """单值：仅对 float  round 到 ndigits 位小数。"""
+    if isinstance(v, float):
+        return round(v, ndigits)
+    return v
+
+
+def _quantize_floats(obj: Any, ndigits: int = TRACE_FLOAT_NDIGITS) -> Any:
+    """递归：对 dict/list 内所有 float 统一 round，用于 trace 写入前。"""
+    if isinstance(obj, float):
+        return round(obj, ndigits)
+    if isinstance(obj, dict):
+        return {k: _quantize_floats(v, ndigits) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_quantize_floats(x, ndigits) for x in obj]
+    return obj
+
+
+def _write_trace_line(payload: dict) -> None:
+    """统一写入 a3_trace.jsonl：先量化浮点再 dump，避免写失败阻塞。"""
+    payload = _quantize_floats(payload)
+    log_dir = LOG_CONFIG["log_dir"]
+    os.makedirs(log_dir, exist_ok=True)
+    path = os.path.join(log_dir, "a3_trace.jsonl")
+    try:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    except OSError:
+        pass
+
+
+def _serialize_mode(mode: Any) -> dict:
+    """只序列化，不采样不推断。"""
+    if mode is None:
+        return {}
+    out = {
+        "complexity_score": round(getattr(mode, "complexity_score", 0), 3),
+        "safety_level": getattr(getattr(mode, "safety_level", None), "value", None),
+        "control_mode": getattr(getattr(mode, "control_mode", None), "value", None),
+        "advice_budget_scale": round(getattr(mode, "advice_budget_scale", 0), 2),
+        "pal_lookahead_m": round(getattr(mode, "pal_lookahead_m", 0), 1),
+    }
+    if getattr(mode, "debug", None):
+        # Stage 2: keep int fields (ema_q, raw_q, ...) as authoritative; round floats for readability
+        out["debug"] = {
+            k: (v if isinstance(v, (int, bool)) else round(v, 3))
+            for k, v in mode.debug.items()
+        }
+    return out
+
+
+def log_a3(obs_or_mode: Any, decision_or_signals: Any = None) -> None:
+    """
+    补丁 v1：若第一参数为 ObservationFrame，则只记录 obs + decision，不调用 pipeline/rhythm/engagement。
+    否则走 legacy log_a3(mode, signals)。
+    """
+    if hasattr(obs_or_mode, "sampled") and hasattr(obs_or_mode, "seq"):
+        _log_a3_v1(obs_or_mode, decision_or_signals)
+    else:
+        _log_a3_legacy(obs_or_mode, decision_or_signals)
+
+
+def _log_a3_v1(obs: Any, decision: Any) -> None:
+    """只 dump obs + decision，不做采样、不补值、不推断。"""
+    use_fp = os.environ.get("A3_FIXEDPOINT", "1").strip().lower() in ("1", "true", "yes")
+    payload = {
+        "trace_schema_version": 2,
+        "decision_authority": "fixedpoint" if use_fp else "float",
+        "ts": obs.ts,
+        "dt": obs.dt,
+        "seq": obs.seq,
+        "sampled": obs.sampled,
+        "obs": {
+            "motion": obs.motion,
+            "path": obs.path,
+            "branch": obs.branch,
+            "roi": obs.roi,
+            "pal": obs.pal,
+            "complexity": obs.complexity,
+            "vc": obs.vc,
+            "frame_quality": obs.frame_quality,
+            "control_mode": obs.control_mode,
+        },
+        "decision": _serialize_mode(decision),
+    }
+    if use_fp:
+        payload["obs_quantized"] = {
+            "motion_q": _q_fp(obs.motion),
+            "path_q": _q_fp(obs.path),
+            "branch_q": _q_fp(obs.branch),
+            "roi": int(obs.roi),
+            "pal_q": _q_fp(obs.pal),
+            "complexity_q": _q_fp(obs.complexity),
+            "vc_q": _q_fp(obs.vc),
+        }
+    _write_trace_line(payload)
+
+
+def _log_a3_legacy(mode, signals=None) -> None:
     if mode is None:
         return
-
     payload = {
         "tag": "A3",
         "complexity": round(mode.complexity_score, 3),
@@ -37,7 +168,6 @@ def log_a3(mode, signals=None):
         "advice_scale": round(mode.advice_budget_scale, 2),
         "pal_lookahead_m": round(mode.pal_lookahead_m, 1),
     }
-
     if mode.debug:
         payload["components"] = {
             k: round(v, 3)
@@ -45,7 +175,6 @@ def log_a3(mode, signals=None):
             if k not in ("raw", "ema")
         }
         payload["raw"] = round(mode.debug.get("raw", 0), 3)
-
     if signals is not None:
         payload["signals"] = {
             "risk": round(signals.risk_density, 2),
@@ -59,19 +188,23 @@ def log_a3(mode, signals=None):
             "has_goal": signals.has_goal,
             "perception": getattr(signals, "perception_state", None).value if getattr(signals, "perception_state", None) else None,
         }
-
     log.info(payload)
 
 
-def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: float = 1.0, runtime_ctx=None, speech_gate=None):
+def log_a3_timeseries(
+    mode,
+    signals=None,
+    frame_context=None,
+    interval_sec: float = 1.0,
+    runtime_ctx=None,
+    speech_gate=None,
+    pipeline_result: Optional[dict] = None,
+):
     if mode is None or signals is None:
         return
 
-    global _LAST_TS
-    now = time.time()
-    if now - _LAST_TS < interval_sec:
-        return
-    _LAST_TS = now
+    global _LAST_TS, _LAST_RHYTHM_STATE, _LAST_ENGAGEMENT_LEVEL
+    now = _get_ts_for_trace()
 
     def _enum_value(x):
         return getattr(x, "value", x)
@@ -144,6 +277,7 @@ def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: floa
     # ENGAGED 介入强度 v0：仅在 ENGAGED 时计算 L1/L2/L3
     control_mode_str = _enum_value(mode.control_mode)
     eng = get_engagement_v0().tick(
+        now=now,
         rhythm_state=rhythm_state,
         pal=pal_diff,
         complexity=complexity_effective,
@@ -182,25 +316,33 @@ def log_a3_timeseries(mode, signals=None, frame_context=None, interval_sec: floa
     if runtime_ctx is not None and runtime_ctx.engagement is not None:
         runtime_ctx.engagement["effective_pal_lookahead_m"] = round(effective_lookahead, 1)
 
-    # J) ENGAGED 事实信号：改在 main「最终决定不说」处调用 log_engaged_signal（signal-only，解释交给 N 层）
+    # 有效 tick 门禁：仅当 B2/C1 重算或 rhythm/engagement 状态变化时写 trace，避免空转循环撑爆日志
+    if pipeline_result is not None:
+        b2_recomputed = bool(pipeline_result.get("b2_recomputed", False))
+        c1_recomputed = bool(pipeline_result.get("c1_recomputed", False))
+        rhythm_changed = rhythm_state != _LAST_RHYTHM_STATE
+        engagement_changed = eng.level != _LAST_ENGAGEMENT_LEVEL
+        should_log = b2_recomputed or c1_recomputed or rhythm_changed or engagement_changed
+    else:
+        should_log = True
 
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    if not should_log:
+        return
+
+    _LAST_TS = now
+    _LAST_RHYTHM_STATE = rhythm_state
+    _LAST_ENGAGEMENT_LEVEL = eng.level
+
+    # J) ENGAGED 事实信号：改在 main「最终决定不说」处调用 log_engaged_signal（signal-only，解释交给 N 层）
+    _write_trace_line(payload)
 
 
 def log_multimodal_conflict(multimodal_conflict: dict) -> None:
     """
     K) 多模态输入冲突 v0：记录冲突解决到 trace。
     """
-    payload = {"ts": time.time(), "multimodal_conflict": multimodal_conflict}
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    payload = {"ts": _get_ts_for_trace(), "multimodal_conflict": multimodal_conflict}
+    _write_trace_line(payload)
 
 
 def log_shadow_decision(shadow_decision: dict, shadow_reason: str = "SHADOW_MODE_ENABLED") -> None:
@@ -208,37 +350,30 @@ def log_shadow_decision(shadow_decision: dict, shadow_reason: str = "SHADOW_MODE
     L) 影子运行模式 v0：记录"如果真运行会发生什么"到 trace。
     """
     payload = {
-        "ts": time.time(),
+        "ts": _get_ts_for_trace(),
         "shadow_decision": shadow_decision,
         "shadow_reason": shadow_reason,
     }
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    _write_trace_line(payload)
 
 
-def log_arbitration_event(
+def build_arbitration_payload(
     arbitration: dict,
     k: Optional[dict] = None,
     l: Optional[dict] = None,
     context: Optional[dict] = None,
-) -> None:
+) -> dict:
     """
-    G) 多任务介入仲裁 v0：记录 arbitration 决策到 trace。
-    K) 介入意图层 v0：可选写入 k.intent，与 G 同条 trace。
-    L) 介入内容规划层 v0：可选写入 l（slot_type + slot），与 G 同条 trace。
-    M) 行为绑定层 v0：在写 trace 前在此处调用 mapper，生成 m 并写入；shadow-only。
+    构建 arbitration tick 的 payload（含 m），不写 trace。
+    P v0 接线：main 在此之后执行 P、写 outcome，再调用 write_arbitration_payload。
     """
-    payload = {"ts": time.time(), "arbitration": arbitration}
+    payload = {"ts": _get_ts_for_trace(), "arbitration": arbitration}
     if k is not None:
         payload["k"] = k
     if l is not None:
         payload["l"] = l
 
     ctx = context or {}
-    # M 层：仲裁结果已确定后、写 trace 前，在此唯一接入点生成 m（即使 winner=None 或 k/l 缺省也写 m）
     winner_type_enum = _winner_type_to_enum(arbitration.get("winner_type"))
     intent_info = IntentInfo(intent=k.get("intent", "NONE") if k else "NONE")
     slot_info = SlotInfo(
@@ -257,11 +392,37 @@ def log_arbitration_event(
     )
     payload["m"] = action_plan.to_trace_dict()
 
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    # apply_now：仅 L2/L3 允许（P1：L1 只准备不执行，由 main 中 P1 策略最终决定是否执行）
+    if (
+        ctx.get("rhythm_state") == "ENGAGED"
+        and ctx.get("level") in ("L2", "L3")
+        and (arbitration.get("winner_type") or arbitration.get("winner"))
+        and action_plan.action_type == ActionType.SAY
+    ):
+        payload["m"] = {**payload["m"], "apply_now": True}
+
+    return payload
+
+
+def write_arbitration_payload(payload: dict) -> None:
+    """将 arbitration payload（可含 outcome）写入 trace。"""
+    _write_trace_line(payload)
+
+
+def log_arbitration_event(
+    arbitration: dict,
+    k: Optional[dict] = None,
+    l: Optional[dict] = None,
+    context: Optional[dict] = None,
+):
+    """
+    G) 多任务介入仲裁 v0：记录 arbitration 决策到 trace。
+    K/L/M 同条；不包含 outcome（outcome 由 P 接线点在 main 写入）。
+    无 P 接线的 call site 可直接调用本函数；有 P 接线的 call site 应使用 build_arbitration_payload → P → outcome → write_arbitration_payload。
+    """
+    payload = build_arbitration_payload(arbitration, k=k, l=l, context=context)
+    write_arbitration_payload(payload)
+    return payload
 
 
 def log_advice_rhythm_event(advice_rhythm: dict) -> None:
@@ -269,24 +430,51 @@ def log_advice_rhythm_event(advice_rhythm: dict) -> None:
     E) Advice 内容类型节律 v0：记录 advice_rhythm 决策到 trace。
     在 AdviceEngine → Decision 之间调用，仅当 gate 检查时写入。
     """
-    payload = {"ts": time.time(), "advice_rhythm": advice_rhythm}
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    payload = {"ts": _get_ts_for_trace(), "advice_rhythm": advice_rhythm}
+    _write_trace_line(payload)
 
 
-def log_engaged_signal(signal_payload: dict, outcome_payload: Optional[dict] = None) -> None:
+def log_advice_rhythm_record_spoken(
+    ts_sec: float,
+    advice_type: str,
+    window_stats: dict,
+    events_len: int,
+) -> None:
+    """
+    行为路径 trace：record_spoken 调用点。
+    用于 diff 两遍 replay，定位第一处分叉（ts、window_stats、events_len、类型计数）。
+    """
+    payload = {
+        "ts": _get_ts_for_trace(),
+        "advice_rhythm_record": {
+            "ts": ts_sec,
+            "advice_type": advice_type,
+            "window_stats": dict(window_stats),
+            "events_len": events_len,
+        },
+    }
+    _write_trace_line(payload)
+
+
+def log_engaged_signal(
+    signal_payload: dict,
+    outcome_payload: Optional[dict] = None,
+    q_payload: Optional[dict] = None,
+    r_payload: Optional[dict] = None,
+    s_payload: Optional[dict] = None,
+) -> None:
     """
     J) ENGAGED 事实信号 v0：写入 engaged_signal（signal-only）。
-    N) Outcome v0：同条 trace 写入 outcome（outcome_type / reason / confidence / evidence），系统唯一解释层。
+    N) Outcome v0：同条 trace 写入 outcome。
+    Q/R/S：同条写入执行回执与观测（有则写），使 P→Q→R→S 整链在 J 路径也可观测。
     """
-    payload = {"ts": time.time(), "engaged_signal": signal_payload}
+    payload = {"ts": _get_ts_for_trace(), "engaged_signal": signal_payload}
     if outcome_payload is not None:
         payload["outcome"] = outcome_payload
-    log_dir = LOG_CONFIG["log_dir"]
-    os.makedirs(log_dir, exist_ok=True)
-    path = os.path.join(log_dir, "a3_trace.jsonl")
-    with open(path, "a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    if q_payload is not None:
+        payload["q"] = q_payload
+    if r_payload is not None:
+        payload["r"] = r_payload
+    if s_payload is not None:
+        payload["s"] = s_payload
+    _write_trace_line(payload)

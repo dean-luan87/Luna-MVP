@@ -1,0 +1,10 @@
+{
+  "metadata": {
+    "risk_processing_version": "spark_phys_match",
+    "is_laboratory_mode": true
+  },
+  "smoothing.peak_hold_frames": 2,
+  "smoothing.peak_decay": 0.9,
+  "smoothing.alpha_high": 0.45,
+  "smoothing.alpha_switch_at": 0.85
+}

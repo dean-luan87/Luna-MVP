@@ -16,8 +16,13 @@ from pathlib import Path
 
 TRACE_PATH = "logs/a3_trace.jsonl"
 
-# v0 冻结：outcome_type 与 reason 枚举
-VALID_OUTCOME_TYPES = frozenset({"ACTION", "NO_ACTION"})
+# v0 冻结：outcome_type 与 reason 枚举（含 P v0 扩展）
+VALID_OUTCOME_TYPES = frozenset({
+    "ACTION",
+    "NO_ACTION",
+    "ACTION_EXECUTED",   # P v0 执行 SAY 成功
+    "ACTION_FAILED",    # P v0 执行失败（EMPTY_TEXT / TTS_ERROR）
+})
 VALID_REASONS = frozenset({
     "ACTION_EXECUTED",
     "BLOCKED_COOLDOWN",
@@ -25,7 +30,14 @@ VALID_REASONS = frozenset({
     "BLOCKED_ARBITRATION",
     "BLOCKED_UNKNOWN",
     "NOT_ATTEMPTED",
+    # P v0
+    "SAY_OK",
+    "APPLY_NOW_FALSE",
+    "ACTION_NOT_ALLOWED_IN_V0",
+    "EMPTY_TEXT",
 })
+# reason 可为 "TTS_ERROR:..." 前缀，不列入集合，单独判断
+REASON_TTS_ERROR_PREFIX = "TTS_ERROR:"
 
 
 def load_trace(path):
@@ -93,9 +105,10 @@ def main():
 
         if otype not in VALID_OUTCOME_TYPES:
             unknown_outcome_type += 1
-        if reason not in VALID_REASONS:
+        if reason not in VALID_REASONS and not reason.startswith(REASON_TTS_ERROR_PREFIX):
             unknown_reason += 1
-        if apply_now is not False:
+        # P v0：仅 ACTION_EXECUTED 允许 apply_now=True，其余必须 False
+        if apply_now is not False and otype != "ACTION_EXECUTED":
             apply_now_not_false += 1
 
         outcome_type_counter[otype] += 1
@@ -126,11 +139,11 @@ def main():
     else:
         print("\n[PASS] No UNKNOWN outcome type or reason (frozen enum only)")
 
-    # 4b apply_now 必须全为 false（shadow-only）
+    # 4b apply_now 仅 ACTION_EXECUTED 可为 True，其余必须 False
     if outcome_rows and apply_now_not_false > 0:
-        print(f"\n[FAIL] apply_now must be false for all outcomes (got {apply_now_not_false} not false)")
+        print(f"\n[FAIL] apply_now must be false unless outcome_type=ACTION_EXECUTED (got {apply_now_not_false} invalid)")
     elif outcome_rows:
-        print("\n[PASS] apply_now all false (shadow-only)")
+        print("\n[PASS] apply_now rule OK (only ACTION_EXECUTED may have apply_now=True)")
 
     # 5️⃣ Final verdict（封板判据：无缺失、无 UNKNOWN、一致、apply_now 全 false）
     print("\n=== Final verdict ===")
