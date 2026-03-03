@@ -5,6 +5,31 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.6.0] - 2026-03-03
+
+### A3 收口 + B2 TTL 可观测与 A-route 审计封版
+
+本版冻结两条线：A3 决策层不再拧参数；B2 TTL 审计具备可观测性与回归门禁，以 Observed 口径为准。
+
+#### A3 收口与冻结
+- **edge_multiplier** 默认 1.2，仅保留环境变量 `A3_EDGE_MULTIPLIER` 作为可控开关
+- **tools/README_EXPERIMENTS.md** 新增「五.1、A3 回归/验收门槛」：EDGE% 稳定在现有量级，hit_rate 窗口 5/8 保持 EDGE > non_EDGE
+
+#### B2 TTL 可观测性（先补数据再审计）
+- **vision_pipeline/b2**：`b2_controller_v02`、`b2_v02` 增加本帧状态 `_last_ttl_expire`、`_last_suppressed` 与 `telemetry()`，写入 pipeline `result["telemetry"]`
+- **runtime/a3_logger**：`log_a3(..., telemetry=...)`，trace 每帧带 `telemetry.b2`、`telemetry.c1.motion`
+- **main**：采样帧写 trace 时传入 `pipeline_result.get("telemetry")`
+
+#### B2 TTL 审计 A-route（双口径 + 门禁）
+- **tools/analyze_b2_ttl_v2.py**：Observed（采样内）+ Estimated（全量估计）；回归门禁：`ttl_density_observed < 0.05` 且 `edge_suppressed_ratio < 0.2` 且 `suppressed_density_observed < 0.15` 为 PASS
+- 支持 `--trace`、`--processed-frames`、`--out`，输出 JSON 报告与终端 PASS/FAIL
+
+#### 文档与脚本
+- **tools/README_EXPERIMENTS.md**：B2 TTL 审计收尾标准、v2 A-route 命令与三段示例
+- **tools/analyze_b2_ttl.py**：旧版（依赖 logs 字符串），保留兼容
+
+---
+
 ## [1.5.0] - 2026-02-14
 
 ### Guardian Discipline Phase 1 冻结
