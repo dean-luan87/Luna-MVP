@@ -5,6 +5,126 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+（下一版变更将在此记录。）
+
+---
+
+## [1.8.0] - 2026-02-27
+
+### Decision Monitor 目标层与后果层真实化（主线 1.1 / 1.2 封版）
+
+显示器由「可看」进到「可信」：目标与后果由运行态规则生成，不再占位。
+
+#### 新增
+- **decision_monitor/goal_resolver.py**：根据运行态解析 goal_type / goal_description / subgoal / goal_status / goal_switch_reason；支持 observe_navigate、hold_for_floor、slow_down_observe、recheck_environment、run_detector_check、run_ocr_check 等；规则优先级：守底 > B2 介入 > 子目标 > 默认观测导航。
+- **decision_monitor/consequence_evaluator.py**：根据决策与输出做轻量规则型后果评估；输出 expected_gain / expected_cost / expected_risk、consequence_confidence、rollback_hint、post_action_check_needed；分支：floor_guard、b2_impact、controller 采样、sampling_gate 节流。
+
+#### 变更
+- **decision_monitor/builder.py**：`goal` 改为 `goal_resolver.resolve(ctx)`，`consequence` 改为 `consequence_evaluator.evaluate(ctx, decision, outputs)`；移除原 `_build_goal` / `_build_consequence` 占位。
+- **decision_monitor/CONTRACT.md**：更新「当前字段来源」表，标明 goal/consequence 来自 resolver/evaluator 规则驱动。
+
+#### 验收
+- goal 随 floor_forced、b2_impact、sampled、policy_run_detector/ocr 变化，不再固定 observe_navigate。
+- consequence 随 decision_owner 与上述四类情况变化。
+- Viewer 顶部一句话与「现在要做什么 / 预期后果」展示真实生成内容；`tests/test_decision_monitor.py` 全通过。
+
+#### 约束
+- 未接复杂任务系统、大模型意图、复杂后果模拟；未改 Dynamic Policy / B2 契约。
+
+---
+
+### Dynamic Policy × B2 最小 impact × runtime 单一入口 — 本条线已封版并退出主线
+
+**状态（写死）**：已从「主线工程坑」收口为「稳定模块 + backlog」；后续只做 backlog 维护或回归打脸修复，不再占用主线资源。
+
+#### 封版状态（写死）
+- **P0**：通过并封版
+- **P1**：通过
+- **P1.1**：不通过（已归档，根因由 P1.2 修复）
+- **P1.2**：通过（同一 impact 生命周期内 BALANCED→FULL 最多一次）
+- **P1.2a**：已并入 P1.2（活跃 B2 impact 时 450ms 采样 floor，守底红灯已灭）
+- **P2**：**通过**（B2 runtime 单一入口，版本债清理完成）
+
+#### P2 验收项（写死）
+- runtime import 检查通过：`python3 tools/check_b2_runtime_imports.py` → OK，主路径无 b2_v02/b2_v03 直连
+- standalone gate 行为通过：`python3 tests/standalone/b2_v041_gate_behavior_standalone.py` → HARD_FAILURES=0，退出码 0
+- trace anchor 通过：`python3 -m pytest tests/traces/test_baseline_check.py -m trace_anchor -v` → 1 passed（1 skipped 为预期）
+- **Soft warnings 说明**：standalone 中 A/C/F 的「expected impact=NEED_SLOW_DOWN/NEED_STOP, got=None」属于**能力期望未实现**，非契约违规；按 CHANGELOG 约定 Soft 不阻塞封版、不阻塞合并。
+
+#### 最终通过样本与三问（P0/P1.2）
+- **样本**：video-1m01s（1838 帧）；baseline `logs/p11_sample_baseline_1m01s.jsonl`，b2-on `logs/p12a_sample_b2on_1m01s.jsonl`
+- **三问**：算力降、口径未漂、守底未破（max_unsampled_gap_ms=500，floor 全绿）
+
+#### 当前有效实现
+- **P1.2a 的 450ms active-impact floor**：当存在未过期 NEED_SLOW_DOWN impact 时，`SamplingGate` 使用 `MAX_SAMPLING_INTERVAL_SEC_ACTIVE_B2_IMPACT = 0.45`，否则 0.5s。见 `runtime/dynamic_policy/sampling_gate.py`。
+- **P2 单一入口**：`vision_pipeline.b2.b2_runtime.get_b2_engine()`；主路径禁止直连 b2_v02/b2_v03；版本真相表见 `vision_pipeline/b2/B2_VERSION_TRUTH_TABLE.md`；静态检查 `python3 tools/check_b2_runtime_imports.py`。
+
+#### 已知非阻塞尾巴
+- YOLO 仍略高于 P1 第一版（b2-on 56 vs 49），不阻塞封版；后续可 backlog 再压。
+- Standalone 中 3 个 Soft warnings（能力期望），不阻塞封版。
+
+#### 后续（backlog，不占主线）
+- B2 impact 触发更精准；YOLO 再压一点；更多弱证据样本回归；trace/日志降噪。**不再在此线继续磨，除非 backlog 或回归打脸；资源切去下一块工程主线。**
+
+---
+
+## [1.7.0] - 2026-03-04
+
+### Trace Suite 封版与长视频回归锚点
+
+本阶段收尾：稳定回归锚点与压力样本固化，四指标基线校验闭环；抖动治理占位，为下一阶段 jitter governance MVP 做准备。
+
+#### 封版结论（写死）
+- **medium_long_01** = `test_video_complex_6m42s.mp4`（6m42s）：产品级回归锚点，四指标 PASS 即封版通过
+- **stress_oscillate_01** = `video-6m14s.mp4`（6m14s）：压力/故障样本（段内抖动），单独看抖动指标，不与稳定锚点混用
+
+#### 固化命名与配置
+- **tests/traces/suite.yaml**：label → 视频文件名映射（medium_long_01、stress_oscillate_01、easy_01/02）
+- **tests/traces/baselines/medium_long_01.json**：四指标约束（mode_switch_total_max、CAUTION_ratio、SAFE_EDGE_duration、SAFE_EDGE_to_CAUTION_ratio）
+- **tests/traces/baselines/stress_oscillate_01.json**：抖动指标约束（short_caution_run_ratio_max、switch_per_min_max），治理 MVP 通过后校验
+
+#### 一键命令
+- **make trace-suite**：跑 suite（medium_long_01 + stress_oscillate_01），输出 `logs/trace_report.json`
+- **make trace-check**：基线校验稳定锚点四指标（PASS/FAIL，可接 CI）
+- **make trace-check-stress**：压力样本抖动指标校验（jitter governance MVP 后应 PASS）
+
+#### 可观测与脚本
+- **tools/analyze_runtime_trace.py**：新增 caution_runs_total/short、short_caution_run_ratio、switch_per_min（抖动压力报告）
+- **tools/dump_mode_runs.py**：导出 mode 段落 CSV，用于拆解 mode_switch 成因（段落切换 vs 段内抖动）
+- **tools/plot_trace_timeline.py**：三条时间线（risk_score、SAFE_EDGE、mode）
+- **tests/traces/check_baseline.py**：支持稳定锚点四指标 + 压力样本抖动约束；**tests/traces/test_baseline_check.py**：pytest 封装
+
+#### 抖动治理占位（下一阶段 MVP）
+- **a3/config.py**：`caution_min_dwell_sec`、`jitter_governance_enabled`、`jitter_switch_per_min_threshold`、`jitter_short_run_ratio_threshold`；治理逻辑待实现，目标仅针对 stress_oscillate_01 压短 CAUTION 段，不破坏 medium_long_01 四指标
+
+#### B2 v0.4.1 契约回归与封版门禁
+
+- **B2 v0.4.1 standalone regression is now contract-based**
+- **Exit code semantics**: `0` = contract pass（可封版）, `2` = contract violation（架构违约，阻塞合并）
+- **Hard checks** cover: Gate silence（SUSPENDED 必沉默）, `advisory_only` 必须 True, READ_ONLY 不产 impact, ENV 不触发 CONDITION_CHANGE/不确认风险, 禁止确认性语义
+- **Soft warnings** indicate capability gaps only（如 A/C/F impact 未产出）, **do not block merge**
+
+**固定命令**
+
+| 用途 | 命令 |
+|------|------|
+| 锚点回归 | `python3 -m pytest tests/traces/test_baseline_check.py -m trace_anchor -v` |
+| B2 契约 standalone | `python3 tests/standalone/b2_v041_gate_behavior_standalone.py`，`echo $?` 期望 0 |
+| **CI（仅跑锚点 + standalone，避免全量 pytest）** | `python3 -m pytest tests/traces/test_baseline_check.py -m trace_anchor -q`<br>`python3 tests/standalone/b2_v041_gate_behavior_standalone.py` |
+
+**B2 TTL override 门禁（已落地）**
+
+- **tools/analyze_b2_override_effect.py**：密度分母改为全 trace wall-clock（`duration_sec_all = max(ts_all)-min(ts_all)`），不再用“仅 b2 行”口径，避免密度被写入频率带偏；输出 `duration_sec_b2_only` 作对照。
+- **tests/traces/test_b2_ttl_override_gate.py**：CI 级门禁（`@pytest.mark.trace_anchor`）：单段 medium_long_01 trace 检查 `b2_ttl_used_mean ∈ [1.0, 2.5]`、`ttl_expire_density_per_sec ≤ 0.05`、`advisory_suppressed_density_per_sec ≤ 0.2`；trace 不存在则 skip。
+- **vision_pipeline/b2/b2_v02.py**：telemetry 增加 `suppress_reason`（仅 suppressed 时写，如 same_as_last / changed_or_ttl）；`ttl_used` 已有。
+- **tools/analyze_runtime_trace.py**：`policy_fps_changes_per_min > 120` 时打印软门禁告警（不 fail）。
+
+**下一轮**：可按证据链进一步收紧门禁阈值（如 b2_ttl_used_mean 收窄到 1.2–2.5）。
+
+---
+
 ## [1.6.0] - 2026-03-03
 
 ### A3 收口 + B2 TTL 可观测与 A-route 审计封版
