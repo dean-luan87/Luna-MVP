@@ -22,6 +22,7 @@
 | Recheck Planner | M0 | 是 | 是 | hypothesis、evidence、state | recheck_action/reason/target | 是 | 多步 planner |
 | Recheck Whitebox Trace | M0 | 是 | 是 | recheck_planner + action_hint + confirmation + state | reasoning/weights/exclusion/interaction | 否（审计层） | 其他补证模块接入 |
 | Action Hint Whitebox Trace | M0 | 是 | 是 | action_hint_copy + search + grid + confirmation + sidecar | reasoning/weights/exclusion/interaction + user_visible_explanation | 否（审计层） | 用户可见层线上对接 |
+| Confirmation Whitebox Trace | M0 | 是 | 是 | confirmation_input_bridge + action_hint + search +（可选）recheck/grid | reasoning/weights/exclusion/interaction + user_visible_explanation | 否（审计层） | NLU/多轮对话 |
 | Task Arbitration | M0 | 是 | 是 | goal、state、search、recheck 等 | arbitration_action、foreground_task_type | 是 | 多任务执行器 |
 | Task Bundle | M0 | 是 | 是 | arbitration、smap、search 等 | bundle_* | 是 | bundle 执行图 |
 | Task Chain Bridge | M0 | 是 | 是 | arbitration、bundle、search | task_chain_* | 是 | 正式 Task Chain 主体 |
@@ -41,3 +42,4 @@
 ## 备注（测试闭环）
 
 - Action Hint Whitebox Trace（M0）：**单测 4/4 通过**（`tests/test_action_hint_whitebox_trace.py`）+ **smoke/JSONL 验证通过**（`tools/smoke_action_hint_whitebox_trace.py` 生成 `logs/smoke_action_hint_whitebox_trace_*.jsonl`，frame 含 `action_hint_whitebox_trace`）。
+- Confirmation Whitebox Trace（M0）：**单测通过**（`tests/test_confirmation_whitebox_trace.py`）+ **smoke/JSONL 验证通过**（`tools/smoke_confirmation_whitebox_trace.py` 生成 `logs/smoke_confirmation_whitebox_trace_*.jsonl`，frame 含 `confirmation_whitebox_trace`）。

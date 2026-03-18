@@ -59,6 +59,12 @@
 | confirmation_bridge_target_flow | 目标 flow（container_check_flow / occlusion_clear_flow 等） | confirmation_input_bridge |
 | confirmation_bridge_applied | 是否产生有效 next_effect | confirmation_input_bridge |
 
+## E2. Confirmation Whitebox Trace 接口（M0）
+
+| 字段/接口 | 含义 | 来源 |
+|-----------|------|------|
+| confirmation_whitebox_trace | 确认输入白盒轨迹（统一五块骨架 + 用户可见解释层） | decision_monitor（whitebox） |
+
 ---
 
 ## F. Search 终端最小推进接口

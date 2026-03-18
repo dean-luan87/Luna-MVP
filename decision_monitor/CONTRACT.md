@@ -150,6 +150,14 @@
 - **不做**：完整 NLU、多轮对话引擎、动作执行器、任务链重写。
 - **详见**：docs/CONFIRMATION_INPUT_BRIDGE_M0_DELIVERY.md。
 
+## Confirmation Whitebox Trace M0（确认输入白盒轨迹 M0）
+
+- **定位**：对白盒化 `confirmation_input_bridge` 的确认映射与推进进行正式解释：为什么映射成该 confirmation_input_type、为什么 next_effect 是这个、为什么没选其它类型/推进，并产出**用户可见解释层**（短句映射，不直出内部 JSON）。
+- **frame 字段**：`confirmation_whitebox_trace`（ConfirmationWhiteboxTraceResult：reasoning_steps、weight_allocation、exclusion_log、interaction_trace、**user_visible_explanation**、whitebox_summary、whitebox_applied）。
+- **输入（只读）**：confirmation_input_bridge /（可选）action_hint_copy / object_search_interaction / grid_search_expansion / recheck_planner。
+- **约束**：不改 Confirmation Input Bridge 主逻辑；不做 NLU 升级；用户可见层为解释映射层，不得直出 weight_components 等内部 JSON。
+- **详见**：docs/CONFIRMATION_WHITEBOX_TRACE_M0_DELIVERY.md。
+
 ## Local Task Space Grid M0（局部任务空间格 M0）
 
 - **定位**：局部、二维、任务相关的 3x3 网格（left/center/right × back/mid/front），作为组织层把 focus/容器候选/遮挡/候选标签挂到统一空间骨架上；不替代底层 bbox/sidecar 主事实。

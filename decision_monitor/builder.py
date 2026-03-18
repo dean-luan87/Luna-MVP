@@ -54,6 +54,7 @@ from . import grid_search_expansion
 from . import grid_search_whitebox_trace
 from . import recheck_whitebox_trace
 from . import action_hint_whitebox_trace
+from . import confirmation_whitebox_trace
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -611,6 +612,14 @@ class DecisionMonitorBuilder:
             evidence_ledger=ledger,
             hypothesis_layer=hyp_layer,
         )
+        # Confirmation Whitebox Trace M0：确认输入白盒（仅解释 confirmation_input_bridge 结果，不改主逻辑；含用户可见解释层）
+        confirmation_whitebox_result = confirmation_whitebox_trace.build_confirmation_whitebox_trace(
+            confirmation_input_bridge=confirmation_bridge_result,
+            object_search_interaction=search_interaction,
+            action_hint_copy=action_hint_result,
+            grid_search_expansion=grid_expansion_result,
+            recheck_planner=recheck_result,
+        )
         # 任务仲裁 M0：五维判断，仅产出仲裁结果不改 Task Chain
         arb_result = task_arbitration.build_task_arbitration(
             goal,
@@ -704,6 +713,7 @@ class DecisionMonitorBuilder:
             spatial_expression_sidecar=sidecar,
             action_hint_copy=action_hint_result,
             confirmation_input_bridge=confirmation_bridge_result,
+            confirmation_whitebox_trace=confirmation_whitebox_result,
             local_task_space_grid=task_grid_result,
             grid_search_expansion=grid_expansion_result,
             grid_search_whitebox_trace=whitebox_result,
