@@ -3,6 +3,7 @@
 # ==========================
 *.jsonl
 !tests/fixed_input_trace.jsonl
+!tests/baseline_input_trace.jsonl
 tests/freeze_ci_out.json
 *.trace
 *.log
@@ -10,7 +11,11 @@ runs/
 traces/
 artifacts/
 logs/
+archive/
 htmlcov/
+freeze*.json
+check_blackhole.wav
+_action_scan/
 
 # ==========================
 # Cache
@@ -31,6 +36,12 @@ __pycache__/
 # ==========================
 Luna-Data/
 Luna_Data/
+tmp/
+
+# ==========================
+# Editor / IDE
+# ==========================
+.vscode/
 
 # ==========================
 # OS
