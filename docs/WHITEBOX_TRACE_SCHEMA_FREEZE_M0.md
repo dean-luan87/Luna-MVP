@@ -87,7 +87,7 @@
 - **已接入（正式样板）**：
   - Grid-driven Search Expansion 的白盒轨迹 `grid_search_whitebox_trace`（Grid Search Whitebox Trace M0）。
   - Recheck Planner 的白盒轨迹 `recheck_whitebox_trace`（Recheck Whitebox Trace M0）。
-  - Action Hint 的白盒轨迹 `action_hint_whitebox_trace`（Action Hint Whitebox Trace M0，含用户可见解释层）。
+  - Action Hint 的白盒轨迹 `action_hint_whitebox_trace`（Action Hint Whitebox Trace M0，含用户可见解释层；单测 + smoke/JSONL 已闭环）。
 - **未接入**：其余模块尚未白盒化，但后续应优先复用本模板。
 
 ---

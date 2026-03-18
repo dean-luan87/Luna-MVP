@@ -37,3 +37,7 @@
 
 **主链消费**：该模块产出是否被主流程（含 search/arbitration/mainline）直接消费。  
 **仍预留**：该模块在本阶段未实现或明确不做的能力。
+
+## 备注（测试闭环）
+
+- Action Hint Whitebox Trace（M0）：**单测 4/4 通过**（`tests/test_action_hint_whitebox_trace.py`）+ **smoke/JSONL 验证通过**（`tools/smoke_action_hint_whitebox_trace.py` 生成 `logs/smoke_action_hint_whitebox_trace_*.jsonl`，frame 含 `action_hint_whitebox_trace`）。

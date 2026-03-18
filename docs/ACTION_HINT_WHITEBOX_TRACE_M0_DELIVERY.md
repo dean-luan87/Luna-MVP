@@ -128,7 +128,10 @@ Action Hint Whitebox Trace 复用五块骨架：`reasoning_steps`、`weight_allo
 
 ## 15. 本轮结论（待审计后写死）
 
-- **本轮结论**：待自动化测试 + smoke + JSONL 审计后定性。
-- **自动化测试**：4/4 通过（`tests/test_action_hint_whitebox_trace.py`）。
-- **实跑 smoke**：请运行 `run_video_a3_trace.py --smoke --max-frames N`，确认 JSONL 中出现 `action_hint_whitebox_trace`。
-- **当前状态**：实现完成；测试 4/4 通过；用户可见白盒层已接入。
+- **本轮结论**：**实现通过 + 测试均通过（单测 + smoke/JSONL）**。
+- **实现通过**：`decision_monitor/action_hint_whitebox_trace.py` 已接入 `decision_monitor/builder.py` 并落入 `DecisionMonitorFrame.action_hint_whitebox_trace`。
+- **自动化测试通过**：4/4 通过（`tests/test_action_hint_whitebox_trace.py`；覆盖遮挡无互动、容器有反馈、bootstrap、用户可见解释层完整性）。
+- **smoke / JSONL 验证通过**：已运行最小 smoke 脚本 `tools/smoke_action_hint_whitebox_trace.py`，生成 1 帧 JSONL（`logs/smoke_action_hint_whitebox_trace_*.jsonl`），并验证：
+  - frame 中存在 `action_hint_whitebox_trace`
+  - `mainline_integration.integration_summary` 非空（可作为 runtime_ctx 摘要审计入口）
+- **当前状态**：实现完成；单测通过；smoke/JSONL 验证通过；用户可见白盒层已接入。
