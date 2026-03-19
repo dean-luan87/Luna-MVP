@@ -166,6 +166,16 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
     )
     nodes.append(root)
 
+    # continuity influence (M0 reserve): attach one-line summary to root
+    cont = frame.get("spatiotemporal_continuity_reserve") if isinstance(frame.get("spatiotemporal_continuity_reserve"), dict) else None
+    if cont:
+        lvl = _s(_g(cont, "continuity_support_level")) or "unknown"
+        inf = _s(_g(cont, "continuity_influence_reason")) or ""
+        if inf:
+            root.node_summary = (root.node_summary or "") + f" | continuity={lvl}: {inf}"
+        else:
+            root.node_summary = (root.node_summary or "") + f" | continuity={lvl}"
+
     # Layer 1: evidence/search_candidate (1~3)
     ev_entries = _g(frame, "evidence_ledger", "entries") or []
     ev0 = ev_entries[0] if isinstance(ev_entries, list) and ev_entries else None

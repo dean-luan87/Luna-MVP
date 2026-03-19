@@ -60,6 +60,9 @@ from . import experience_governance_whitebox_trace
 from .reasoning_structure_tree import build_reasoning_structure_tree
 from .reasoning_tree_metrics import build_reasoning_tree_metrics
 from .optimization_hint import build_optimization_hint
+from .optimization_feedback_loop import build_optimization_feedback_loop
+from .knowledge_dual_channel_interface import build_knowledge_dual_channel_interface
+from .spatiotemporal_continuity_reserve import build_spatiotemporal_continuity_reserve
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -771,6 +774,46 @@ class DecisionMonitorBuilder:
             frame = replace(frame, optimization_hint=hint)
         except Exception:
             frame = replace(frame, optimization_hint=None)
+
+        # Optimization Feedback Loop M0（验证“建议是否有效”）
+        try:
+            frame_d2 = frame.to_dict()
+            oh_d = frame_d2.get("optimization_hint") if isinstance(frame_d2.get("optimization_hint"), dict) else None
+            m_d2 = frame_d2.get("reasoning_tree_metrics") if isinstance(frame_d2.get("reasoning_tree_metrics"), dict) else None
+            tree_d2 = build_reasoning_structure_tree(frame_d2).to_dict()
+            # baseline input (M0): allow optional ctx injection
+            baseline = ctx.get("optimization_baseline_metrics")
+            fb = build_optimization_feedback_loop(
+                optimization_hint=oh_d,
+                reasoning_tree_metrics=m_d2,
+                reasoning_structure_tree=tree_d2,
+                baseline=baseline if isinstance(baseline, dict) else None,
+            )
+            frame = replace(frame, optimization_feedback_loop=fb)
+        except Exception:
+            frame = replace(frame, optimization_feedback_loop=None)
+
+        # Knowledge Dual-Channel Interface M0（只占坑：沉淀候选/查策略候选/注入口）
+        try:
+            frame_d3 = frame.to_dict()
+            k = build_knowledge_dual_channel_interface(
+                optimization_feedback_loop=frame_d3.get("optimization_feedback_loop")
+                if isinstance(frame_d3.get("optimization_feedback_loop"), dict)
+                else None,
+                optimization_hint=frame_d3.get("optimization_hint") if isinstance(frame_d3.get("optimization_hint"), dict) else None,
+                reasoning_tree_metrics=frame_d3.get("reasoning_tree_metrics") if isinstance(frame_d3.get("reasoning_tree_metrics"), dict) else None,
+            )
+            frame = replace(frame, knowledge_dual_channel_interface=k)
+        except Exception:
+            frame = replace(frame, knowledge_dual_channel_interface=None)
+
+        # Spatiotemporal Continuity Reserve M0（只占坑：连续性影响摘要，不做复杂连续性引擎）
+        try:
+            frame_d4 = frame.to_dict()
+            c = build_spatiotemporal_continuity_reserve(frame_d4)
+            frame = replace(frame, spatiotemporal_continuity_reserve=c)
+        except Exception:
+            frame = replace(frame, spatiotemporal_continuity_reserve=None)
 
         return frame
 

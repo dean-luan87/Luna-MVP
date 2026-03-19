@@ -124,3 +124,38 @@ Reasoning Console 在 Tree Metrics 附近新增 **Optimization Hint** 区块，�
 - trigger issue
 - reason（含“为什么不是别的模块”）
 
+### 10.5 优化建议验证闭环接入（M0）
+
+Reasoning Console 在 Optimization Hint 区块之后新增 **Optimization Feedback Loop** 区块，展示：
+
+- baseline vs current 指标摘要
+- delta 核心指标
+- validation_result / validation_reason
+- suggested_next_step
+- worth_persisting_to_library（占位）
+
+### 10.6 Knowledge Dual-Channel Interface 接口预留（M0）
+
+Reasoning Console 新增轻量区块 **Knowledge Interface Reserve**，仅展示三块摘要：
+
+- Persist Candidate（type / worth / reason）
+- Optimization Candidate（type / needs_external / lookup_type）
+- Injection Slot（target module / stage / mode / payload）
+
+当前仅占坑，不做图书馆写入/检索/注入执行。
+
+### 10.7 时空间连续性接口预留（M0）
+
+Reasoning Console 新增轻量区块 **Spatiotemporal Continuity (M0)**，默认只展示：
+
+- support level（high/medium/low/broken/unknown）
+- influence reason（结果性影响摘要）
+- affected module
+- preserved/broken
+
+并明确：当前不展开连续性底层细节与调试台。
+
+## 11. 阶段性收口（Backbone Closure）
+
+本阶段“推理主线骨架”收口文档见：`docs/MAINLINE_REASONING_BACKBONE_CLOSURE_M0.md`。
+

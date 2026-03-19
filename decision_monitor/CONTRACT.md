@@ -287,6 +287,30 @@
 
 **交付件**：`docs/OPTIMIZATION_HINT_M0_DELIVERY.md`。
 
+## Optimization Feedback Loop M0（优化建议验证闭环）
+
+**原则（写死）**：
+
+> 后续任何优化建议若进入正式建议层，必须逐步进入统一验证闭环；不得长期存在“提出建议但不验证效果”的状态。
+
+**交付件**：`docs/OPTIMIZATION_FEEDBACK_LOOP_M0_DELIVERY.md`。
+
+## Knowledge Dual-Channel Interface M0（知识双通道接口预留层）
+
+**原则（写死）**：
+
+> 图书馆系统正式接入前，统一通过 Knowledge Dual-Channel Interface 预留层承接沉淀候选、优化候选与策略注入口；不得提前散落实现图书馆写入、查找或注入逻辑。
+
+**交付件**：`docs/KNOWLEDGE_DUAL_CHANNEL_INTERFACE_M0_DELIVERY.md`。
+
+## Spatiotemporal Continuity Reserve M0（时空间连续性接口预留层）
+
+**原则（写死）**：
+
+> 时空间连续性属于内部强影响因子。后续必须进入白盒与结构树依据层；前端默认只展示其对当前决策的结果性影响，不默认直出底层 continuity 原始细节。
+
+**交付件**：`docs/SPATIOTEMPORAL_CONTINUITY_RESERVE_M0_DELIVERY.md`。
+
 
 ---
 

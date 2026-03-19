@@ -486,6 +486,23 @@ window.selectSnap = async (id) => {
     </div>
 
     <div class="box">
+      <h3>时空间连续性 / Spatiotemporal Continuity（M0）</h3>
+      <div class="meta">默认只展示“影响结果”摘要；不直出底层 continuity 原始细节。</div>
+      <div class="kv">
+        <div class="k">support level</div><div class="v">${esc(s.spatiotemporal_continuity_reserve?.continuity_support_level ?? '—')}</div>
+        <div class="k">influence</div><div class="v">${esc(s.spatiotemporal_continuity_reserve?.continuity_influence_reason ?? '—')}</div>
+        <div class="k">affected module</div><div class="v">${esc(s.spatiotemporal_continuity_reserve?.continuity_affected_module ?? '—')}</div>
+        <div class="k">preserved / broken</div><div class="v">preserved=${esc(s.spatiotemporal_continuity_reserve?.continuity_preserved ?? '—')} · broken=${esc(s.spatiotemporal_continuity_reserve?.continuity_broken ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;"><summary>展开更多（摘要/调试注记）</summary>
+        <pre>${esc([
+          'source_summary: ' + (s.spatiotemporal_continuity_reserve?.continuity_source_summary ?? '—'),
+          'debug_note: ' + (s.spatiotemporal_continuity_reserve?.continuity_debug_note ?? '—'),
+        ].join('\\n'))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
       <h3>当前行动建议</h3>
       <div class="kv">
         <div class="k">primary</div><div class="v">${esc(s.action_hint_primary||'—')}</div>
@@ -563,6 +580,45 @@ window.selectSnap = async (id) => {
           'suggested_validation_path: ' + (s.optimization_hint?.suggested_validation_path ?? '—'),
         ].join('\\n'))}</pre>
       </details>
+    </div>
+
+    <div class="box">
+      <h3>优化验证 / Optimization Feedback Loop（M0）</h3>
+      <div class="meta">规则版验证：对比 baseline vs current，判断建议是否带来指标改善（不自动优化）。</div>
+      <div class="kv">
+        <div class="k">validation_result</div><div class="v">${esc(s.optimization_feedback_loop?.validation_result ?? '—')}</div>
+        <div class="k">improved / regressed</div><div class="v">improved=${esc(s.optimization_feedback_loop?.improvement_detected ?? '—')} · regressed=${esc(s.optimization_feedback_loop?.regression_detected ?? '—')}</div>
+        <div class="k">baseline</div><div class="v">${esc(s.optimization_feedback_loop?.baseline_metrics_summary ?? '—')}</div>
+        <div class="k">current</div><div class="v">${esc(s.optimization_feedback_loop?.current_metrics_summary ?? '—')}</div>
+        <div class="k">delta</div><div class="v">Δdepth=${esc(s.optimization_feedback_loop?.delta_tree_depth ?? '—')} · Δbranch=${esc(s.optimization_feedback_loop?.delta_branch_count ?? '—')} · Δdead=${esc(s.optimization_feedback_loop?.delta_dead_branch_count ?? '—')} · Δprune=${esc(s.optimization_feedback_loop?.delta_prune_rate ?? '—')} · Δres_path=${esc(s.optimization_feedback_loop?.delta_resolution_path_length ?? '—')} · Δeff_fb=${esc(s.optimization_feedback_loop?.delta_effective_feedback_count ?? '—')}</div>
+        <div class="k">issue change</div><div class="v">${esc(s.optimization_feedback_loop?.baseline_issue_type ?? '—')} → ${esc(s.optimization_feedback_loop?.current_issue_type ?? '—')}</div>
+        <div class="k">next step</div><div class="v">${esc(s.optimization_feedback_loop?.suggested_next_step ?? '—')}</div>
+        <div class="k">worth_persisting</div><div class="v">${esc(s.optimization_feedback_loop?.worth_persisting_to_library ?? '—')}</div>
+        <div class="k">reason</div><div class="v">${esc(s.optimization_feedback_loop?.validation_reason ?? '—')}</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Knowledge Interface Reserve（M0）</h3>
+      <div class="meta">Reserved / Future Library Integration：仅占坑（persist / optimization / injection），不做写入/检索/注入执行。</div>
+      <div class="kv">
+        <div class="k">Persist Candidate</div>
+        <div class="v">${esc(s.knowledge_dual_channel_interface?.persist_candidate?.persist_candidate_type ?? '—')}
+          · worth=${esc(s.knowledge_dual_channel_interface?.persist_candidate?.worth_persisting ?? '—')}
+          · ${esc(s.knowledge_dual_channel_interface?.persist_candidate?.persist_candidate_reason ?? '—')}</div>
+
+        <div class="k">Optimization Candidate</div>
+        <div class="v">${esc(s.knowledge_dual_channel_interface?.optimization_candidate?.optimization_candidate_type ?? '—')}
+          · needs_external=${esc(s.knowledge_dual_channel_interface?.optimization_candidate?.needs_external_strategy_support ?? '—')}
+          · lookup=${esc(s.knowledge_dual_channel_interface?.optimization_candidate?.suggested_library_lookup_type ?? '—')}</div>
+
+        <div class="k">Injection Slot</div>
+        <div class="v">${esc(s.knowledge_dual_channel_interface?.injection_slot?.injection_target_module ?? '—')}
+          · stage=${esc(s.knowledge_dual_channel_interface?.injection_slot?.injection_target_stage ?? '—')}
+          · mode=${esc(s.knowledge_dual_channel_interface?.injection_slot?.injection_mode ?? '—')}
+          · payload=${esc(s.knowledge_dual_channel_interface?.injection_slot?.injection_payload_type ?? '—')}</div>
+      </div>
+      <div class="meta">${esc(s.knowledge_dual_channel_interface?.interface_summary ?? '')}</div>
     </div>
   `;
   fillTab(s, 'grid_search');

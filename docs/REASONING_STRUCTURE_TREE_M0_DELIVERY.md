@@ -88,3 +88,8 @@ M0.5 在 **不改后端树生成逻辑、不改节点模型结构、不改 API**
 当结构树接入后，必须逐步纳入统一指标体系（tree_depth/branch/dead/feedback/resolution_len 等），用于衡量收敛质量与优化抓手。  
 参见：`docs/REASONING_TREE_METRICS_M0_DELIVERY.md`。
 
+## 13. 时空间连续性接口预留（M0）
+
+连续性属于内部强影响因子，应进入结构树依据层。M0 仅做轻挂接：在结构树摘要中附一句 continuity 影响摘要；不改变树模型结构、不引入复杂连续性细节。  
+参见：`docs/SPATIOTEMPORAL_CONTINUITY_RESERVE_M0_DELIVERY.md`。
+

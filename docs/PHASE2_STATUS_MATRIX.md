@@ -41,6 +41,9 @@
 | Experience Governance Whitebox Trace | M0 | 是 | 是 | experience_evolution + feedback | ExperienceGovernanceWhiteboxTraceResult | 白盒 + 树挂接 | scope/contradiction/重复度治理完善 |
 | Reasoning Tree Metrics | M0 | 是 | 是 | Reasoning Structure Tree | ReasoningTreeMetricsResult | 控制台指标区块 | 精度/覆盖面/趋势系统 |
 | Optimization Hint / Tree Improvement Suggestion | M0 | 是 | 是 | tree + metrics + whitebox | OptimizationHintResult | 控制台建议区块 | 从诊断到优化建议 |
+| Optimization Feedback Loop | M0 | 是 | 是 | hint + metrics + baseline | OptimizationFeedbackLoopResult | 控制台验证区块 | 建议→验证→沉淀候选 |
+| Knowledge Dual-Channel Interface Reserve | M0 | 是 | 是 | hint + feedback_loop + metrics | KnowledgeDualChannelInterfaceResult | 控制台轻量区块 | 图书馆接入接口预留 |
+| Spatiotemporal Continuity Reserve | M0 | 是 | 是 | state + feedback + grid + metrics（摘要） | SpatiotemporalContinuityReserveResult | 控制台轻量区块 | 连续性影响摘要预留 |
 
 **主链消费**：该模块产出是否被主流程（含 search/arbitration/mainline）直接消费。  
 **仍预留**：该模块在本阶段未实现或明确不做的能力。

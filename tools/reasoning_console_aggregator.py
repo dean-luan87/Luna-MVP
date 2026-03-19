@@ -137,6 +137,9 @@ class ReasoningConsoleSnapshot:
     reasoning_structure_tree: Optional[Dict[str, Any]] = None
     reasoning_tree_metrics: Optional[Dict[str, Any]] = None
     optimization_hint: Optional[Dict[str, Any]] = None
+    optimization_feedback_loop: Optional[Dict[str, Any]] = None
+    knowledge_dual_channel_interface: Optional[Dict[str, Any]] = None
+    spatiotemporal_continuity_reserve: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -346,6 +349,48 @@ def aggregate_frame(frame: Dict[str, Any]) -> ReasoningConsoleSnapshot:
         snap.optimization_hint = oh
     except Exception:
         snap.optimization_hint = None
+
+    # Optimization Feedback Loop (M0): prefer frame-provided; fallback compute from hint+metrics
+    try:
+        ofl = frame.get("optimization_feedback_loop") if isinstance(frame.get("optimization_feedback_loop"), dict) else None
+        if ofl is None:
+            from decision_monitor.optimization_feedback_loop import build_optimization_feedback_loop
+
+            ofl = build_optimization_feedback_loop(
+                optimization_hint=snap.optimization_hint,
+                reasoning_tree_metrics=snap.reasoning_tree_metrics,
+                reasoning_structure_tree=snap.reasoning_structure_tree,
+                baseline=None,
+            ).to_dict()
+        snap.optimization_feedback_loop = ofl
+    except Exception:
+        snap.optimization_feedback_loop = None
+
+    # Knowledge Dual-Channel Interface (M0): prefer frame-provided; fallback compute from hint/loop/metrics
+    try:
+        k = frame.get("knowledge_dual_channel_interface") if isinstance(frame.get("knowledge_dual_channel_interface"), dict) else None
+        if k is None:
+            from decision_monitor.knowledge_dual_channel_interface import build_knowledge_dual_channel_interface
+
+            k = build_knowledge_dual_channel_interface(
+                optimization_feedback_loop=snap.optimization_feedback_loop,
+                optimization_hint=snap.optimization_hint,
+                reasoning_tree_metrics=snap.reasoning_tree_metrics,
+            ).to_dict()
+        snap.knowledge_dual_channel_interface = k
+    except Exception:
+        snap.knowledge_dual_channel_interface = None
+
+    # Spatiotemporal Continuity Reserve (M0): prefer frame-provided; fallback compute from frame
+    try:
+        c = frame.get("spatiotemporal_continuity_reserve") if isinstance(frame.get("spatiotemporal_continuity_reserve"), dict) else None
+        if c is None:
+            from decision_monitor.spatiotemporal_continuity_reserve import build_spatiotemporal_continuity_reserve
+
+            c = build_spatiotemporal_continuity_reserve(frame).to_dict()
+        snap.spatiotemporal_continuity_reserve = c
+    except Exception:
+        snap.spatiotemporal_continuity_reserve = None
 
     _derive_issue(snap)
     return snap

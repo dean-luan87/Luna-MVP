@@ -45,3 +45,8 @@
 
 优化建议层已建立并接入 frame + JSONL + Console；当前为规则版建议层，不自动更改系统行为，后续可在不破坏接口的前提下迭代覆盖面与精准度。
 
+## 6. 下一层：Optimization Feedback Loop（M0）
+
+建议层用于“指出先改哪里”，下一层 **Optimization Feedback Loop** 用于验证“建议是否有效、改善了哪些指标、是否值得沉淀”。  
+参见：`docs/OPTIMIZATION_FEEDBACK_LOOP_M0_DELIVERY.md`。
+
