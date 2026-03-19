@@ -57,6 +57,8 @@ from . import action_hint_whitebox_trace
 from . import confirmation_whitebox_trace
 from . import evidence_hypothesis_whitebox_trace
 from . import experience_governance_whitebox_trace
+from .reasoning_structure_tree import build_reasoning_structure_tree
+from .reasoning_tree_metrics import build_reasoning_tree_metrics
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -697,7 +699,7 @@ class DecisionMonitorBuilder:
             state,
         )
         trace_anchor_id = ctx.get("trace_anchor_id") or f"{self._trace_anchor_id_prefix}_{seq}"
-        return DecisionMonitorFrame(
+        frame = DecisionMonitorFrame(
             goal=goal,
             inputs=inputs,
             state=state,
@@ -737,6 +739,17 @@ class DecisionMonitorBuilder:
             monitor_version="1.0",
             trace_anchor_id=trace_anchor_id,
         )
+
+        # Reasoning Tree Metrics M0（必须基于结构树计算；不反写主逻辑）
+        try:
+            tree = build_reasoning_structure_tree(frame.to_dict()).to_dict()
+            metrics = build_reasoning_tree_metrics(tree)
+            frame = replace(frame, reasoning_tree_metrics=metrics)
+        except Exception:
+            # keep None on failure (M0: do not break main flow)
+            frame = replace(frame, reasoning_tree_metrics=None)
+
+        return frame
 
     def _resolve_decision_owner(
         self,

@@ -271,6 +271,14 @@
 - `docs/EVIDENCE_HYPOTHESIS_WHITEBOX_TRACE_M0_DELIVERY.md`
 - `docs/EXPERIENCE_GOVERNANCE_WHITEBOX_TRACE_M0_DELIVERY.md`
 
+## Reasoning Tree Metrics M0（结构树指标化 / 决策质量度量）
+
+**原则（写死）**：
+
+> 后续任何新功能若接入 Reasoning Structure Tree，必须逐步纳入统一指标体系；不得长期存在“有树节点但没有质量度量”的状态。
+
+**交付件**：`docs/REASONING_TREE_METRICS_M0_DELIVERY.md`。
+
 
 ---
 

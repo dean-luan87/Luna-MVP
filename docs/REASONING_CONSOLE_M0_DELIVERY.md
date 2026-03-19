@@ -105,3 +105,13 @@ Reasoning Console 新增白盒模块入口（仍默认摘要，可展开）：
 
 并要求结构树可见 evidence/hypothesis/governance/exclusion/feedback-driven 节点。
 
+### 10.3 结构树指标化接入（M0）
+
+Reasoning Console 在结构树区块附近新增 **Tree Metrics** 区块，展示：
+
+- tree_depth / branch_count / dead_branch_count
+- active_path_length / resolution_path_length
+- feedback_node_count / effective_feedback_count
+- prune_rate
+- possible_tree_issue_type / possible_tree_issue_reason
+

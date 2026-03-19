@@ -39,6 +39,7 @@ from .grid_search_whitebox_trace import GridSearchWhiteboxTraceResult
 from .recheck_whitebox_trace import RecheckWhiteboxTraceResult
 from .action_hint_whitebox_trace import ActionHintWhiteboxTraceResult
 from .experience_governance_whitebox_trace import ExperienceGovernanceWhiteboxTraceResult
+from .reasoning_tree_metrics import ReasoningTreeMetricsResult
 
 
 @dataclass
@@ -271,6 +272,7 @@ class DecisionMonitorFrame:
     confirmation_whitebox_trace: Optional[ConfirmationWhiteboxTraceResult] = None  # Confirmation Whitebox Trace M0：确认输入白盒轨迹（解释映射与推进）
     evidence_hypothesis_whitebox_trace: Optional[EvidenceHypothesisWhiteboxTraceResult] = None  # Evidence/Hypothesis Whitebox Trace M0：证据×假设白盒轨迹
     experience_governance_whitebox_trace: Optional[ExperienceGovernanceWhiteboxTraceResult] = None  # Experience Governance Whitebox Trace M0：经验治理白盒轨迹
+    reasoning_tree_metrics: Optional[ReasoningTreeMetricsResult] = None  # Reasoning Tree Metrics M0：结构树指标化/决策质量度量
     local_task_space_grid: Optional[LocalTaskSpaceGridResult] = None  # Local Task Space Grid M0：局部任务二维空间格（组织层）
     grid_search_expansion: Optional[GridSearchExpansionResult] = None  # Grid-driven Search Expansion M0：最小扩搜建议层（不控制）
     grid_search_whitebox_trace: Optional[GridSearchWhiteboxTraceResult] = None  # Grid Search Whitebox Trace M0：扩搜建议层白盒轨迹

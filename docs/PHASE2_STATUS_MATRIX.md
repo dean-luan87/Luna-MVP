@@ -39,6 +39,7 @@
 | Reasoning Structure Tree | M0 | 是 | 是 | frame（聚合）+ whitebox + evidence/hypothesis | ReasoningStructureTreeResult | 控制台展示 | 剪枝/质量/精度优化 |
 | Evidence / Hypothesis Whitebox Trace | M0 | 是 | 是 | evidence_ledger + hypothesis_layer + feedback | EvidenceHypothesisWhiteboxTraceResult | 白盒 + 树挂接 | 权重解释精度/剪枝策略 |
 | Experience Governance Whitebox Trace | M0 | 是 | 是 | experience_evolution + feedback | ExperienceGovernanceWhiteboxTraceResult | 白盒 + 树挂接 | scope/contradiction/重复度治理完善 |
+| Reasoning Tree Metrics | M0 | 是 | 是 | Reasoning Structure Tree | ReasoningTreeMetricsResult | 控制台指标区块 | 精度/覆盖面/趋势系统 |
 
 **主链消费**：该模块产出是否被主流程（含 search/arbitration/mainline）直接消费。  
 **仍预留**：该模块在本阶段未实现或明确不做的能力。

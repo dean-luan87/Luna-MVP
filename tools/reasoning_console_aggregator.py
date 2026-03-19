@@ -135,6 +135,7 @@ class ReasoningConsoleSnapshot:
 
     # Reasoning Structure Tree（M0）
     reasoning_structure_tree: Optional[Dict[str, Any]] = None
+    reasoning_tree_metrics: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -311,6 +312,17 @@ def aggregate_frame(frame: Dict[str, Any]) -> ReasoningConsoleSnapshot:
         snap.reasoning_structure_tree = tree
     except Exception:
         snap.reasoning_structure_tree = None
+
+    # Tree Metrics (M0): prefer frame-provided; fallback compute from tree
+    try:
+        m = frame.get("reasoning_tree_metrics") if isinstance(frame.get("reasoning_tree_metrics"), dict) else None
+        if m is None and snap.reasoning_structure_tree:
+            from decision_monitor.reasoning_tree_metrics import build_reasoning_tree_metrics
+
+            m = build_reasoning_tree_metrics(snap.reasoning_structure_tree).to_dict()
+        snap.reasoning_tree_metrics = m
+    except Exception:
+        snap.reasoning_tree_metrics = None
 
     _derive_issue(snap)
     return snap

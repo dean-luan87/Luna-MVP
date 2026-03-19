@@ -525,6 +525,24 @@ window.selectSnap = async (id) => {
       <div class="meta">仅展示升级：按 parent_node_id 渲染层级树；默认展开 root + active/resolved 路径；pruned 弱化但可见。</div>
       <div id="treeBox">loading...</div>
     </div>
+
+    <div class="box">
+      <h3>结构树指标 / Tree Metrics（M0）</h3>
+      <div class="meta">规则版度量：能算/能展示/能比较；指标来源基于结构树。</div>
+      <div class="kv">
+        <div class="k">tree_depth</div><div class="v">${esc(s.reasoning_tree_metrics?.tree_depth ?? '—')}</div>
+        <div class="k">branch_count</div><div class="v">${esc(s.reasoning_tree_metrics?.branch_count ?? '—')}</div>
+        <div class="k">dead_branch_count</div><div class="v">${esc(s.reasoning_tree_metrics?.dead_branch_count ?? '—')}</div>
+        <div class="k">active_path_length</div><div class="v">${esc(s.reasoning_tree_metrics?.active_path_length ?? '—')}</div>
+        <div class="k">resolution_path_length</div><div class="v">${esc(s.reasoning_tree_metrics?.resolution_path_length ?? '—')}</div>
+        <div class="k">feedback_node_count</div><div class="v">${esc(s.reasoning_tree_metrics?.feedback_node_count ?? '—')}</div>
+        <div class="k">effective_feedback_count</div><div class="v">${esc(s.reasoning_tree_metrics?.effective_feedback_count ?? '—')}</div>
+        <div class="k">prune_rate</div><div class="v">${esc(s.reasoning_tree_metrics?.prune_rate ?? '—')}</div>
+        <div class="k">resolved / blocked</div><div class="v">resolved=${esc(s.reasoning_tree_metrics?.resolved ?? '—')} · blocked=${esc(s.reasoning_tree_metrics?.blocked ?? '—')}</div>
+        <div class="k">possible_tree_issue</div><div class="v">${esc(s.reasoning_tree_metrics?.possible_tree_issue_type ?? '—')} · ${esc(s.reasoning_tree_metrics?.possible_tree_issue_reason ?? '—')}</div>
+      </div>
+      <div class="meta">${esc(s.reasoning_tree_metrics?.metrics_summary ?? '')}</div>
+    </div>
   `;
   fillTab(s, 'grid_search');
   // render tree

@@ -83,3 +83,8 @@ M0.5 在 **不改后端树生成逻辑、不改节点模型结构、不改 API**
 - exclusion 节点：至少包含未采用 hypothesis 与未采用治理 outcome
 - feedback-driven 标记：若确认输入影响 evidence/hypothesis/experience，则节点 `is_user_feedback_driven=true`
 
+## 12. 指标化接入（Reasoning Tree Metrics M0）
+
+当结构树接入后，必须逐步纳入统一指标体系（tree_depth/branch/dead/feedback/resolution_len 等），用于衡量收敛质量与优化抓手。  
+参见：`docs/REASONING_TREE_METRICS_M0_DELIVERY.md`。
+
