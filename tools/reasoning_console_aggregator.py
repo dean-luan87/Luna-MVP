@@ -136,6 +136,7 @@ class ReasoningConsoleSnapshot:
     # Reasoning Structure Tree（M0）
     reasoning_structure_tree: Optional[Dict[str, Any]] = None
     reasoning_tree_metrics: Optional[Dict[str, Any]] = None
+    optimization_hint: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -323,6 +324,28 @@ def aggregate_frame(frame: Dict[str, Any]) -> ReasoningConsoleSnapshot:
         snap.reasoning_tree_metrics = m
     except Exception:
         snap.reasoning_tree_metrics = None
+
+    # Optimization Hint (M0): prefer frame-provided; fallback compute from metrics+tree
+    try:
+        oh = frame.get("optimization_hint") if isinstance(frame.get("optimization_hint"), dict) else None
+        if oh is None:
+            from decision_monitor.optimization_hint import build_optimization_hint
+
+            oh = build_optimization_hint(
+                reasoning_tree_metrics=snap.reasoning_tree_metrics,
+                reasoning_structure_tree=snap.reasoning_structure_tree,
+                whiteboxes={
+                    "grid_search_whitebox_trace": grid_wb,
+                    "recheck_whitebox_trace": recheck_wb,
+                    "action_hint_whitebox_trace": ah_wb,
+                    "confirmation_whitebox_trace": conf_wb,
+                    "evidence_hypothesis_whitebox_trace": frame.get("evidence_hypothesis_whitebox_trace"),
+                    "experience_governance_whitebox_trace": frame.get("experience_governance_whitebox_trace"),
+                },
+            ).to_dict()
+        snap.optimization_hint = oh
+    except Exception:
+        snap.optimization_hint = None
 
     _derive_issue(snap)
     return snap

@@ -279,6 +279,14 @@
 
 **交付件**：`docs/REASONING_TREE_METRICS_M0_DELIVERY.md`。
 
+## Optimization Hint M0（决策树优化建议层）
+
+**原则（写死）**：
+
+> 后续任何新功能若接入 Reasoning Structure Tree 与指标体系，必须逐步接入统一优化建议层；不得长期存在“能诊断但不能给出改进方向”的状态。
+
+**交付件**：`docs/OPTIMIZATION_HINT_M0_DELIVERY.md`。
+
 
 ---
 

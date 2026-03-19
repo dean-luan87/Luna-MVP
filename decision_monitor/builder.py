@@ -59,6 +59,7 @@ from . import evidence_hypothesis_whitebox_trace
 from . import experience_governance_whitebox_trace
 from .reasoning_structure_tree import build_reasoning_structure_tree
 from .reasoning_tree_metrics import build_reasoning_tree_metrics
+from .optimization_hint import build_optimization_hint
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -748,6 +749,28 @@ class DecisionMonitorBuilder:
         except Exception:
             # keep None on failure (M0: do not break main flow)
             frame = replace(frame, reasoning_tree_metrics=None)
+
+        # Optimization Hint M0（在 metrics 之后生成；只读 tree/metrics/whiteboxes）
+        try:
+            frame_d = frame.to_dict()
+            tree_d = build_reasoning_structure_tree(frame_d).to_dict()
+            m_d = frame_d.get("reasoning_tree_metrics") if isinstance(frame_d.get("reasoning_tree_metrics"), dict) else None
+            wb = {
+                "grid_search_whitebox_trace": frame_d.get("grid_search_whitebox_trace"),
+                "recheck_whitebox_trace": frame_d.get("recheck_whitebox_trace"),
+                "action_hint_whitebox_trace": frame_d.get("action_hint_whitebox_trace"),
+                "confirmation_whitebox_trace": frame_d.get("confirmation_whitebox_trace"),
+                "evidence_hypothesis_whitebox_trace": frame_d.get("evidence_hypothesis_whitebox_trace"),
+                "experience_governance_whitebox_trace": frame_d.get("experience_governance_whitebox_trace"),
+            }
+            hint = build_optimization_hint(
+                reasoning_tree_metrics=m_d,
+                reasoning_structure_tree=tree_d,
+                whiteboxes=wb,
+            )
+            frame = replace(frame, optimization_hint=hint)
+        except Exception:
+            frame = replace(frame, optimization_hint=None)
 
         return frame
 

@@ -62,3 +62,8 @@
 
 结构树指标化已建立并接入 frame + Console + JSONL；当前为规则版度量，后续可在不破坏接口的前提下迭代精度与覆盖面。
 
+## 8. 下一层：Optimization Hint（M0）
+
+指标层用于“发现问题并量化”，下一层 **Optimization Hint** 用于把诊断推进为“先改哪里、为什么、怎么改”的可审计建议。  
+参见：`docs/OPTIMIZATION_HINT_M0_DELIVERY.md`。
+

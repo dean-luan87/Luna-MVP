@@ -543,6 +543,27 @@ window.selectSnap = async (id) => {
       </div>
       <div class="meta">${esc(s.reasoning_tree_metrics?.metrics_summary ?? '')}</div>
     </div>
+
+    <div class="box">
+      <h3>优化建议 / Optimization Hint（M0）</h3>
+      <div class="meta">规则版建议：指出“先改哪里、为什么、怎么改”（不自动改系统）。</div>
+      <div class="kv">
+        <div class="k">hint_type / priority</div><div class="v">${esc(s.optimization_hint?.optimization_hint_type ?? '—')} · ${esc(s.optimization_hint?.priority_level ?? '—')}</div>
+        <div class="k">suggested module</div><div class="v">${esc(s.optimization_hint?.suggested_optimization_module ?? '—')}</div>
+        <div class="k">suggested action</div><div class="v">${esc(s.optimization_hint?.suggested_optimization_action ?? '—')}</div>
+        <div class="k">trigger issue</div><div class="v">${esc(s.optimization_hint?.trigger_issue_type ?? '—')} · ${esc(s.optimization_hint?.trigger_issue_reason ?? '—')}</div>
+        <div class="k">reason</div><div class="v">${esc(s.optimization_hint?.optimization_hint_reason ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;"><summary>展开更多（排除备选/验证路径）</summary>
+        <pre>${esc([
+          'supporting_metrics_summary: ' + (s.optimization_hint?.supporting_metrics_summary ?? '—'),
+          'supporting_tree_summary: ' + (s.optimization_hint?.supporting_tree_summary ?? '—'),
+          'excluded_alternative_modules: ' + JSON.stringify(s.optimization_hint?.excluded_alternative_modules ?? []),
+          'suggested_followup_measure: ' + (s.optimization_hint?.suggested_followup_measure ?? '—'),
+          'suggested_validation_path: ' + (s.optimization_hint?.suggested_validation_path ?? '—'),
+        ].join('\\n'))}</pre>
+      </details>
+    </div>
   `;
   fillTab(s, 'grid_search');
   // render tree

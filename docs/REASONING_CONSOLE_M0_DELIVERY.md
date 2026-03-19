@@ -115,3 +115,12 @@ Reasoning Console 在结构树区块附近新增 **Tree Metrics** 区块，展�
 - prune_rate
 - possible_tree_issue_type / possible_tree_issue_reason
 
+### 10.4 优化建议层接入（M0）
+
+Reasoning Console 在 Tree Metrics 附近新增 **Optimization Hint** 区块，展示：
+
+- hint_type / priority
+- suggested module / action
+- trigger issue
+- reason（含“为什么不是别的模块”）
+
