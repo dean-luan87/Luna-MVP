@@ -55,6 +55,8 @@ from . import grid_search_whitebox_trace
 from . import recheck_whitebox_trace
 from . import action_hint_whitebox_trace
 from . import confirmation_whitebox_trace
+from . import evidence_hypothesis_whitebox_trace
+from . import experience_governance_whitebox_trace
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -620,6 +622,12 @@ class DecisionMonitorBuilder:
             grid_search_expansion=grid_expansion_result,
             recheck_planner=recheck_result,
         )
+        # Evidence / Hypothesis Whitebox Trace M0：证据×假设白盒（仅解释 evidence_ledger/hypothesis_layer，不改主逻辑；含用户可见解释层）
+        evidence_hypothesis_whitebox_result = evidence_hypothesis_whitebox_trace.build_evidence_hypothesis_whitebox_trace(
+            evidence_ledger=ledger,
+            hypothesis_layer=hyp_layer,
+            confirmation_input_bridge=confirmation_bridge_result,
+        )
         # 任务仲裁 M0：五维判断，仅产出仲裁结果不改 Task Chain
         arb_result = task_arbitration.build_task_arbitration(
             goal,
@@ -673,6 +681,11 @@ class DecisionMonitorBuilder:
             prev_candidates_snapshot=prev_snapshot,
             current_ts=ctx.get("current_ts"),
         )
+        # Experience Governance Whitebox Trace M0：经验治理白盒（仅解释 experience_evolution，不改主逻辑；含用户可见解释层）
+        experience_governance_whitebox_result = experience_governance_whitebox_trace.build_experience_governance_whitebox_trace(
+            experience_evolution=evolution_result,
+            confirmation_input_bridge=confirmation_bridge_result,
+        )
         # 主线接入 M0：汇总 6 模块摘要与轻量控制，不重构主流程
         mainline_result = mainline_integration.build_mainline_integration(
             bridge_result,
@@ -714,11 +727,13 @@ class DecisionMonitorBuilder:
             action_hint_copy=action_hint_result,
             confirmation_input_bridge=confirmation_bridge_result,
             confirmation_whitebox_trace=confirmation_whitebox_result,
+            evidence_hypothesis_whitebox_trace=evidence_hypothesis_whitebox_result,
             local_task_space_grid=task_grid_result,
             grid_search_expansion=grid_expansion_result,
             grid_search_whitebox_trace=whitebox_result,
             recheck_whitebox_trace=recheck_whitebox_result,
             action_hint_whitebox_trace=action_hint_whitebox_result,
+            experience_governance_whitebox_trace=experience_governance_whitebox_result,
             monitor_version="1.0",
             trace_anchor_id=trace_anchor_id,
         )

@@ -35,6 +35,10 @@
 | LocalGoalSpatialMap | M0/M1/M1.5 | 是 | 是 | goal、state、inputs 等 | 四类区域、标尺 | 是 | 3D/全局地图 |
 | LocalGoalSpatialRelations | M2 | 是 | 是 | smap | relations | 是 | 复杂拓扑 |
 | Scene Gate + 人工校准 | v1 | 是 | 是 | state、domain_guard 等 | goal_progress_paused、human_check_* | 是 | — |
+| Reasoning Console | M0 | 是 | 是 | decision_monitor JSONL/frame | ReasoningConsoleSnapshot + API + UI | 工具入口 | 权限/回放/统计 |
+| Reasoning Structure Tree | M0 | 是 | 是 | frame（聚合）+ whitebox + evidence/hypothesis | ReasoningStructureTreeResult | 控制台展示 | 剪枝/质量/精度优化 |
+| Evidence / Hypothesis Whitebox Trace | M0 | 是 | 是 | evidence_ledger + hypothesis_layer + feedback | EvidenceHypothesisWhiteboxTraceResult | 白盒 + 树挂接 | 权重解释精度/剪枝策略 |
+| Experience Governance Whitebox Trace | M0 | 是 | 是 | experience_evolution + feedback | ExperienceGovernanceWhiteboxTraceResult | 白盒 + 树挂接 | scope/contradiction/重复度治理完善 |
 
 **主链消费**：该模块产出是否被主流程（含 search/arbitration/mainline）直接消费。  
 **仍预留**：该模块在本阶段未实现或明确不做的能力。

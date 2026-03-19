@@ -238,6 +238,39 @@
 - **已完成正式白盒化**：Grid Search Expansion（grid_search_whitebox_trace）、Recheck Planner（recheck_whitebox_trace）、**Action Hint（action_hint_whitebox_trace，含用户可见解释层）**。  
 - **尚未接入**：其余模块未白盒化，但后续应优先复用统一模板（见 docs/WHITEBOX_TRACE_SCHEMA_FREEZE_M0.md）。  
 
+## Luna Reasoning Console M0（推理控制台 M0）
+
+**定位（写死）**：Reasoning Console 是未来 Luna 的**开箱找问题中心**，也是所有推理/白盒/可视化/错判归因的**统一入口**。  
+
+**硬约束（必须遵守）**：
+
+> 后续任何新功能，只要存在判断、排除、推荐、用户反馈影响推进、解释层输出，必须接入 Reasoning Console。不得另起新的独立白盒页/调试页/推理页。
+
+**交付件**：`docs/REASONING_CONSOLE_M0_DELIVERY.md`。  
+**入口脚本**：`tools/reasoning_console_server.py`（读取 DecisionMonitor JSONL，只读聚合与展示，不反写主逻辑）。
+
+## Reasoning Structure Tree M0（推理与决策结构树 M0）
+
+**定位（写死）**：结构树是白盒之上的总组织结构，用于组织线索/假设/动作/反馈/排除/收敛路径，服务推理可视化、错判排查与后续优化。  
+
+**硬约束（必须遵守）**：
+
+> 后续任何新功能，只要产生新的推理分支、排除路径、用户反馈驱动路径或结果收敛路径，都应逐步接入 Reasoning Structure Tree；不得长期只存在于模块内部而不进入总结构树。
+
+**交付件**：`docs/REASONING_STRUCTURE_TREE_M0_DELIVERY.md`。  
+**实现**：`decision_monitor/reasoning_structure_tree.py`（规则版聚合树；Reasoning Console 负责展示）。
+
+## Experience / Evidence Whitebox Trace M0（成长链白盒：证据×假设×经验治理）
+
+**原则（写死）**：
+
+> 证据、假设与经验治理层不得长期停留在模块内部解释；后续凡涉及 evidence / hypothesis / experience 的判断、排除、治理结果，必须接入统一白盒模板与 Reasoning Structure Tree。
+
+**交付件**：
+
+- `docs/EVIDENCE_HYPOTHESIS_WHITEBOX_TRACE_M0_DELIVERY.md`
+- `docs/EXPERIENCE_GOVERNANCE_WHITEBOX_TRACE_M0_DELIVERY.md`
+
 
 ---
 

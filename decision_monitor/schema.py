@@ -32,11 +32,13 @@ from .spatial_expression_sidecar import SpatialExpressionResult
 from .action_hint_copy import ActionHintCopyResult
 from .confirmation_input_bridge import ConfirmationInputBridgeResult
 from .confirmation_whitebox_trace import ConfirmationWhiteboxTraceResult
+from .evidence_hypothesis_whitebox_trace import EvidenceHypothesisWhiteboxTraceResult
 from .local_task_space_grid import LocalTaskSpaceGridResult
 from .grid_search_expansion import GridSearchExpansionResult
 from .grid_search_whitebox_trace import GridSearchWhiteboxTraceResult
 from .recheck_whitebox_trace import RecheckWhiteboxTraceResult
 from .action_hint_whitebox_trace import ActionHintWhiteboxTraceResult
+from .experience_governance_whitebox_trace import ExperienceGovernanceWhiteboxTraceResult
 
 
 @dataclass
@@ -267,6 +269,8 @@ class DecisionMonitorFrame:
     action_hint_copy: Optional[ActionHintCopyResult] = None  # Action Hint Copy M0：推理→引导→确认 文案链
     confirmation_input_bridge: Optional[ConfirmationInputBridgeResult] = None  # Confirmation Input Bridge M0：用户反馈→系统推进
     confirmation_whitebox_trace: Optional[ConfirmationWhiteboxTraceResult] = None  # Confirmation Whitebox Trace M0：确认输入白盒轨迹（解释映射与推进）
+    evidence_hypothesis_whitebox_trace: Optional[EvidenceHypothesisWhiteboxTraceResult] = None  # Evidence/Hypothesis Whitebox Trace M0：证据×假设白盒轨迹
+    experience_governance_whitebox_trace: Optional[ExperienceGovernanceWhiteboxTraceResult] = None  # Experience Governance Whitebox Trace M0：经验治理白盒轨迹
     local_task_space_grid: Optional[LocalTaskSpaceGridResult] = None  # Local Task Space Grid M0：局部任务二维空间格（组织层）
     grid_search_expansion: Optional[GridSearchExpansionResult] = None  # Grid-driven Search Expansion M0：最小扩搜建议层（不控制）
     grid_search_whitebox_trace: Optional[GridSearchWhiteboxTraceResult] = None  # Grid Search Whitebox Trace M0：扩搜建议层白盒轨迹
