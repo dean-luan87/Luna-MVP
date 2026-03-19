@@ -16,6 +16,10 @@ htmlcov/
 freeze*.json
 check_blackhole.wav
 _action_scan/
+.cursor/
+out*.json
+find_test*.jpg
+*.pt
 
 # ==========================
 # Cache
