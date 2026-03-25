@@ -1,0 +1,28 @@
+{
+  "frame_seq": 96,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R96_advisory_near_miss_resume_present_but_fragility_insufficient_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.25,
+  "phase_closure_progress_pair_reappeared_observed": true,
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_can_resume_main_task": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.7-B：叙述上反复提到要回到主链/恢复，但张力档位仍为 pc高·lg中 近邻族，不构成 SF-1′",
+  "object_search_flow_type": "advisory_near_miss_flow_m17",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "advisory_near_miss_flow_m17",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 80, 91], "conf": 0.8 },
+    { "label": "bag", "bbox": [156, 45, 226, 115], "conf": 0.6 }
+  ]
+}

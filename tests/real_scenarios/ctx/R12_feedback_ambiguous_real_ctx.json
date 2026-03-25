@@ -1,0 +1,17 @@
+{
+  "frame_seq": 12,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R12_feedback_ambiguous_real_ctx",
+  "focus_object_label": "bottle",
+
+  "feedback_ambiguity_level": "high",
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [30, 25, 80, 82], "conf": 0.79 },
+    { "label": "cup", "bbox": [5, 5, 55, 70], "conf": 0.66 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "应该不是吧，再看看"
+}

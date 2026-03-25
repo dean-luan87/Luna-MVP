@@ -44,6 +44,22 @@ from .optimization_hint import OptimizationHintResult
 from .optimization_feedback_loop import OptimizationFeedbackLoopResult
 from .knowledge_dual_channel_interface import KnowledgeDualChannelInterfaceResult
 from .spatiotemporal_continuity_reserve import SpatiotemporalContinuityReserveResult
+from .environment_task_context_reserve import EnvironmentTaskContextReserveResult
+from .strategy_injection_shadow import StrategyInjectionShadowResult
+from .reasoning_tree_quality_overlay import ReasoningTreeQualityOverlayResult
+from .reasoning_timeline_view import ReasoningTimelineViewResult
+from .memory_novel_information_channel import MemoryNovelInformationChannelResult
+from .decision_contamination_guard_reserve import DecisionContaminationGuardReserveResult
+from .post_processing_intelligence_reserve import PostProcessingIntelligenceReserveResult
+from .information_source_scheduler import ScheduledSourceState
+from .run_summary_builder import RunSummaryReference
+from .task_chain_state_snapshot import TaskChainStateSnapshot
+from .memory_invocation_explanation import MemoryInvocationExplanation
+from .mainline_state_snapshot import MainlineStateSnapshot
+from .post_processing_summary_contract import PostProcessingSummaryEntry
+from .mainline_narrative_alignment import MainlineNarrativeAlignment
+from .narrative_evidence_tension_review import NarrativeEvidenceTensionReview
+from .advisory_review_observation import AdvisoryReviewObservation
 
 
 @dataclass
@@ -88,6 +104,11 @@ class InputsLayer:
     raw_observation_summary: Optional[str] = None
     goal_relevant_observations: Optional[str] = None
     sensor_notes: Optional[str] = None
+    # Resume Progress Summary Alignment M0：场景 JSON 中的可审计线索 → 同帧 inputs（不改主链拍板）
+    scenario_task_resume_target: Optional[str] = None
+    recovery_declared_but_resume_chain_fragile_expected: Optional[bool] = None
+    phase_correct_but_closure_semantics_misaligned_expected: Optional[bool] = None
+    memory_bias_accumulated_under_familiar_context_expected: Optional[bool] = None
 
 
 @dataclass
@@ -267,6 +288,7 @@ class DecisionMonitorFrame:
     task_arbitration: Optional[TaskArbitrationResult] = None  # 任务仲裁 M0：最小仲裁结果
     task_bundle: Optional[TaskBundleResult] = None  # 联合任务包 M0：merge_into_bundle 时生成的包结构
     task_chain_bridge: Optional[TaskChainBridgeResult] = None  # 任务链桥接 M0：arbitration/bundle/search 摘要
+    task_chain_state_snapshot: Optional[TaskChainStateSnapshot] = None  # Task Chain State Snapshot M0：任务链最小状态快照（正式上下文源）
     experience_evolution: Optional[ExperienceEvolutionResult] = None  # 经验演化 M0：经验候选审计与约束
     mainline_integration: Optional[MainlineIntegrationResult] = None  # 主线接入 M0：认知内核摘要与轻量控制
     visual_candidate_audit: Optional[VisualCandidateAuditResult] = None  # 静态图输入桥 + 候选审计 M0
@@ -277,15 +299,30 @@ class DecisionMonitorFrame:
     evidence_hypothesis_whitebox_trace: Optional[EvidenceHypothesisWhiteboxTraceResult] = None  # Evidence/Hypothesis Whitebox Trace M0：证据×假设白盒轨迹
     experience_governance_whitebox_trace: Optional[ExperienceGovernanceWhiteboxTraceResult] = None  # Experience Governance Whitebox Trace M0：经验治理白盒轨迹
     reasoning_tree_metrics: Optional[ReasoningTreeMetricsResult] = None  # Reasoning Tree Metrics M0：结构树指标化/决策质量度量
+    reasoning_tree_quality_overlay: Optional[ReasoningTreeQualityOverlayResult] = None  # Reasoning Tree Quality Overlay M0：树质量叠加层（非独立评分系统）
+    reasoning_timeline_view: Optional[ReasoningTimelineViewResult] = None  # Reasoning Timeline View M0：推理时间轴视图（先后顺序/关键转折）
+    memory_novel_information_channel: Optional[MemoryNovelInformationChannelResult] = None  # Memory vs Novel Information Channel M0：记忆/新信息来源通道
     optimization_hint: Optional[OptimizationHintResult] = None  # Optimization Hint M0：结构树优化建议层（规则版）
     optimization_feedback_loop: Optional[OptimizationFeedbackLoopResult] = None  # Optimization Feedback Loop M0：优化建议验证闭环（规则版）
     knowledge_dual_channel_interface: Optional[KnowledgeDualChannelInterfaceResult] = None  # Knowledge Dual-Channel Interface M0：图书馆双通道接口预留层
     spatiotemporal_continuity_reserve: Optional[SpatiotemporalContinuityReserveResult] = None  # Spatiotemporal Continuity Reserve M0：时空间连续性接口预留层
+    environment_task_context_reserve: Optional[EnvironmentTaskContextReserveResult] = None  # Environment & Task Context Reserve M0：环境/任务链前提占位层
+    decision_contamination_guard_reserve: Optional[DecisionContaminationGuardReserveResult] = None  # Decision Contamination Guard Reserve M0：决策污染观察占位层（无强判定）
+    post_processing_intelligence_reserve: Optional[PostProcessingIntelligenceReserveResult] = None  # Post-Processing Intelligence Reserve M0：后置信息处理占位层（非记忆系统；无真实写入）
+    strategy_injection_shadow: Optional[StrategyInjectionShadowResult] = None  # Strategy Injection Shadow M0：策略注入影子验证（不执行注入）
     local_task_space_grid: Optional[LocalTaskSpaceGridResult] = None  # Local Task Space Grid M0：局部任务二维空间格（组织层）
     grid_search_expansion: Optional[GridSearchExpansionResult] = None  # Grid-driven Search Expansion M0：最小扩搜建议层（不控制）
     grid_search_whitebox_trace: Optional[GridSearchWhiteboxTraceResult] = None  # Grid Search Whitebox Trace M0：扩搜建议层白盒轨迹
     recheck_whitebox_trace: Optional[RecheckWhiteboxTraceResult] = None  # Recheck Whitebox Trace M0：补证链路白盒轨迹
     action_hint_whitebox_trace: Optional[ActionHintWhiteboxTraceResult] = None  # Action Hint Whitebox Trace M0：引导话术白盒轨迹
+    scheduled_source_state: Optional[ScheduledSourceState] = None  # Scheduled Source State M0：数据源调度层最小显式化
+    memory_invocation_explanation: Optional[MemoryInvocationExplanation] = None  # Memory Invocation Explanation M0.3：记忆调用解释（只读，不实现记忆引擎）
+    mainline_state_snapshot: Optional[MainlineStateSnapshot] = None  # Mainline State / Phase M0.4：主链状态与六阶段显式快照（只读推导）
+    run_summary_reference: Optional[RunSummaryReference] = None  # Run Summary Reference M0.2：运行总结入口（派生自 trace，非替代黑匣子）
+    post_processing_summary_entry: Optional[PostProcessingSummaryEntry] = None  # M0.5：Summary×后处理边界契约入口（只读派生自 run_summary_reference）
+    mainline_narrative_alignment: Optional[MainlineNarrativeAlignment] = None  # M0.6：主线叙事对齐层（只读聚合表达，不替代证据层）
+    narrative_evidence_tension_review: Optional[NarrativeEvidenceTensionReview] = None  # Narrative/Evidence Tension Review M0：只读审计层（非裁决、不回写）
+    advisory_review_observation: Optional[AdvisoryReviewObservation] = None  # Advisory/Review Observation M0：只读提示层（无裁决权）
     monitor_version: str = "1.0"
     trace_anchor_id: Optional[str] = None
 

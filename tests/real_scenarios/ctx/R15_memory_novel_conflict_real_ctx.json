@@ -1,0 +1,19 @@
+{
+  "frame_seq": 15,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R15_memory_novel_conflict_real_ctx",
+  "focus_object_label": "bottle",
+
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [26, 28, 76, 84], "conf": 0.76 },
+    { "label": "thermos", "bbox": [58, 20, 110, 90], "conf": 0.74 },
+    { "label": "box", "bbox": [0, 0, 38, 40], "conf": 0.63 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "以前像在这里，但现在看着又不像"
+}

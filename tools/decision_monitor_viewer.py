@@ -1317,7 +1317,140 @@ function renderDetail() {
       <div class="small"><pre style="margin:6px 0 0; background:#0b1020; color:#e6edf3; padding:8px; border-radius:8px;">${htmlEscape(sesLines || '—')}</pre></div>
     </div>`;
 
-  cards.innerHTML = cGoal + cSafe + cSeen + cDo + cWhy + cView + cHold + cDomain + cSceneGate + cHumanCheck + cLocalGoalState + cLocalGoalSpatialMap + cLocalGoalSpatialRelations + cSkeletonMix + cSkeletonFilter + cSpatialMemoryPools + cSpatialForgetting + cEvidenceLedger + cHypothesisLayer + cRecheckPlanner + cRecheckWhiteboxTrace + cObjectTemporalLedger + cObjectSearchInteraction + cActionHintCopy + cActionHintWhiteboxTrace + cConfirmationInputBridge + cConfirmationWhiteboxTrace + cLocalTaskSpaceGrid + cGridSearchExpansion + cGridSearchWhiteboxTrace + cTaskArbitration + cTaskBundle + cTaskChainBridge + cExperienceEvolution + cMainlineIntegration + cVisualCandidateAudit + cSpatialExpressionSidecar + cSpatialScale;
+  const etc = f?.environment_task_context_reserve;
+  const ec = etc?.environment_context || {};
+  const tcc = etc?.task_chain_context || {};
+  const etcConstr = Array.isArray(ec.environment_constraints) ? ec.environment_constraints.join(', ') : '—';
+  const cEnvTaskContext = `
+    <div class="card env-task-context-reserve">
+      <h3>环境 / 任务链前提 / Environment & Task Context (M0)</h3>
+      <div class="big">场景类型：${htmlEscape(safe(ec.environment_scene_type)) || '—'} · 可见性：${htmlEscape(safe(ec.environment_visibility_state)) || '—'} · 任务阶段：${htmlEscape(safe(tcc.task_chain_stage)) || '—'}</div>
+      <div class="small">约束（轻量）：${htmlEscape(etcConstr)}</div>
+      <div class="small">当前动作：${htmlEscape(safe(tcc.task_chain_current_action)) || '—'}</div>
+      <div class="small">用户侧效果：${htmlEscape(safe(tcc.task_chain_user_action_effect)) || '—'} · 系统侧：${htmlEscape(safe(tcc.task_chain_system_action_effect)) || '—'}</div>
+      <div class="small">一句话前提：${htmlEscape(safe(etc?.context_premise_summary)) || '—'}</div>
+    </div>`;
+
+  const dcg = f?.decision_contamination_guard_reserve;
+  const cContaminationGuard = `
+    <div class="card contamination-guard-reserve">
+      <h3>污染观察 / Decision Contamination Guard (M0)</h3>
+      <div class="small"><strong>Reserved / Future Governance</strong> — 无强判定；仅占位。</div>
+      <div class="small">摘要：${htmlEscape(safe(dcg?.contamination_observation_summary)) || '—'}</div>
+      <div class="small">multi_model_review_reserved：${dcg?.multi_model_review_reserved === true ? 'true' : (dcg?.multi_model_review_reserved === false ? 'false' : '—')} · vote_council_reserved：${dcg?.vote_council_reserved === true ? 'true' : (dcg?.vote_council_reserved === false ? 'false' : '—')}</div>
+    </div>`;
+
+  const ppi = f?.post_processing_intelligence_reserve;
+  const cPostProcessing = `
+    <div class="card post-processing-intelligence-reserve">
+      <h3>后置信息处理预留 / Post-Processing Intelligence (M0)</h3>
+      <div class="small"><strong>Reserved / Pre-Library Layer</strong> — 非记忆系统；无真实写入。</div>
+      <div class="small">摘要：${htmlEscape(safe(ppi?.post_processing_summary)) || '—'}</div>
+      <div class="small">summary_post_processing_entry_id（M0.5 交叉引用）：${htmlEscape(safe(ppi?.summary_post_processing_entry_id)) || '—'}</div>
+      <div class="small">library_link_reserved：${ppi?.library_link_reserved === true ? 'true' : (ppi?.library_link_reserved === false ? 'false' : '—')} · memory_write_reserved：${ppi?.memory_write_reserved === true ? 'true' : (ppi?.memory_write_reserved === false ? 'false' : '—')}</div>
+    </div>`;
+
+  const ppe = f?.post_processing_summary_entry;
+  const cPostProcessingSummaryEntry = `
+    <div class="card post-processing-summary-entry">
+      <h3>Summary × 后处理入口契约 / Post-Processing Summary Entry（M0.5）</h3>
+      <div class="small"><strong>入口非证据本体</strong> — Summary-first 非 Summary-only；详见契约字段。</div>
+      <div class="small">entry_id：${htmlEscape(safe(ppe?.entry_id)) || '—'} · applied：${ppe?.post_processing_summary_entry_applied === true ? 'true' : (ppe?.post_processing_summary_entry_applied === false ? 'false' : '—')}</div>
+      <div class="small">requires trace / event / whitebox backfill：${ppe?.requires_trace_backfill ?? '—'} / ${ppe?.requires_event_backfill ?? '—'} / ${ppe?.requires_whitebox_backfill ?? '—'}</div>
+      <div class="small">narrative_readable：${htmlEscape(safe(ppe?.narrative_readable)) || '—'}</div>
+      <div class="small">backfill_reason：${htmlEscape(safe(ppe?.backfill_reason_summary)) || '—'}</div>
+    </div>`;
+
+  const sscSrc = f?.scheduled_source_state;
+  const cScheduledSource = `
+    <div class="card scheduled-source-state">
+      <h3>数据源调度状态 / Scheduled Source State (M0)</h3>
+      <div class="small"><strong>Scheduling Observation Layer (M0.1)</strong> — 最小解释增强，不含复杂调度策略。</div>
+      <div class="small">dominant_source：${htmlEscape(safe(sscSrc?.dominant_source)) || '—'} · conflict：${htmlEscape(safe(sscSrc?.source_conflict_summary)) || '—'}</div>
+      <div class="small">override：${htmlEscape(safe(sscSrc?.priority_override_summary)) || '—'} · timeliness：${htmlEscape(safe(sscSrc?.timeliness_pressure)) || '—'} · confidence：${htmlEscape(safe(sscSrc?.source_confidence_summary)) || '—'}</div>
+      <div class="small">dominant_reason：${htmlEscape(safe(sscSrc?.dominant_source_reason_summary)) || '—'} · warning：${htmlEscape(safe(sscSrc?.source_scheduling_warning_summary)) || '—'}</div>
+      <div class="small">participating_sources：${htmlEscape((sscSrc?.participating_sources || []).join(', ')) || '—'}</div>
+      <div class="small">events：${htmlEscape((sscSrc?.source_scheduling_event_summaries || []).join(' ; ')) || '—'}</div>
+    </div>`;
+
+  const rsr = f?.run_summary_reference;
+  const rawSnap = rsr?.raw_trace_layer_snapshot;
+  const evSnap = rsr?.structured_event_layer_snapshot;
+  const tcsnap = f?.task_chain_state_snapshot;
+  const cTaskChainSnap = `
+    <div class="card task-chain-state-snapshot">
+      <h3>任务链状态快照 / Task Chain State Snapshot（M0 / M0.1 位置解释）</h3>
+      <div class="small"><strong>Formal task context</strong> — stage / mode / resume；M0.1 增加位置 reason / warn / 事件摘要（只解释不拍板）。</div>
+      <div class="small">stage：${htmlEscape(safe(tcsnap?.task_chain_stage)) || '—'} · mode：${htmlEscape(safe(tcsnap?.task_mode)) || '—'}</div>
+      <div class="small">primary：${htmlEscape(safe(tcsnap?.primary_task_id)) || '—'} · subtask：${htmlEscape(safe(tcsnap?.active_subtask_id)) || '—'}</div>
+      <div class="small">resume_target：${htmlEscape(safe(tcsnap?.task_resume_target)) || '—'} · success_hint：${htmlEscape(safe(tcsnap?.task_success_criteria_summary)) || '—'}</div>
+      <div class="small">position_reason：${htmlEscape(safe(tcsnap?.task_position_reason_summary)) || '—'}</div>
+      <div class="small">position_warn：${htmlEscape(safe(tcsnap?.task_position_warning_summary)) || '—'} · events：${htmlEscape((tcsnap?.task_position_event_summaries || []).join(' ; ')) || '—'}</div>
+    </div>`;
+
+  const mie = f?.memory_invocation_explanation;
+  const cMemoryInvocation = `
+    <div class="card memory-invocation-explanation">
+      <h3>记忆调用解释 / Memory Invocation Explanation（M0.3）</h3>
+      <div class="small"><strong>解释层</strong> — 不判定记忆是否正确；可存在帮助主链或偏移风险并存。</div>
+      <div class="small">invoked：${htmlEscape(String(mie?.memory_invoked ?? '—'))} · type：${htmlEscape(safe(mie?.memory_type_summary)) || '—'} · effect：${htmlEscape(safe(mie?.memory_invocation_effect_summary)) || '—'}</div>
+      <div class="small">reason：${htmlEscape(safe(mie?.memory_invocation_reason_summary)) || '—'}</div>
+      <div class="small">used_content：${htmlEscape(safe(mie?.memory_invocation_used_content_summary)) || '—'} · alt：${htmlEscape(safe(mie?.memory_invocation_alternative_summary)) || '—'}</div>
+    </div>`;
+
+  const mls = f?.mainline_state_snapshot;
+  const cMainlineState = `
+    <div class="card mainline-state-snapshot">
+      <h3>主链状态与阶段 / Mainline State &amp; Phase（M0.4）</h3>
+      <div class="small"><strong>显式推导</strong> — 主链 state/phase ≠ 任务链 mode；不替代拍板。</div>
+      <div class="small">state：${htmlEscape(safe(mls?.mainline_state)) || '—'} · phase：${htmlEscape(safe(mls?.mainline_phase)) || '—'}</div>
+      <div class="small">state_reason：${htmlEscape(safe(mls?.mainline_state_reason_summary)) || '—'}</div>
+      <div class="small">phase_reason：${htmlEscape(safe(mls?.mainline_phase_reason_summary)) || '—'}</div>
+    </div>`;
+
+  const cTraceSummary = `
+    <div class="card trace-summary-separation">
+      <h3>日志链分层 / Trace × Summary（M0.2）</h3>
+      <div class="small"><strong>Raw Trace</strong>（黑匣子事实）：goal=${htmlEscape(safe(rawSnap?.goal_type)) || '—'}/${htmlEscape(safe(rawSnap?.goal_status)) || '—'} · seq=${htmlEscape(String(rawSnap?.frame_seq ?? '—'))} · decision=${htmlEscape(safe(rawSnap?.decision_type)) || '—'}@${htmlEscape(safe(rawSnap?.decision_owner)) || '—'} · action=${htmlEscape(safe(rawSnap?.action_summary)) || '—'}</div>
+      <div class="small"><strong>Structured Events</strong>：count=${htmlEscape(String(evSnap?.event_count ?? '—'))} · types=${htmlEscape((evSnap?.distinct_event_types || []).slice(0, 6).join(', ')) || '—'}</div>
+      <div class="small"><strong>Summary Reference</strong>（Derived from Trace，非原件）：${htmlEscape(safe(rsr?.summary_brief)) || '—'}</div>
+      <div class="small">mainline / memory / schedule / risk：${htmlEscape(safe(rsr?.mainline_summary)) || '—'} · ${htmlEscape(safe(rsr?.memory_usage_summary)) || '—'} · ${htmlEscape(safe(rsr?.source_scheduling_summary)) || '—'} · ${htmlEscape(safe(rsr?.issue_or_risk_summary)) || '—'}</div>
+      <div class="small">${htmlEscape(safe(rsr?.summary_feed_note)) || '—'}</div>
+    </div>`;
+  const netr = f?.narrative_evidence_tension_review;
+  const cNarrativeTension = `
+    <div class="card narrative-evidence-tension-review">
+      <h3>叙事—证据张力审计 / Narrative · Evidence Tension Review（M0）</h3>
+      <div class="small"><strong>Audit-only</strong> — 非裁决、不回写主链；启发式观察五维张力。</div>
+      <div class="small">applied：${netr?.narrative_evidence_tension_review_applied === true ? 'true' : (netr?.narrative_evidence_tension_review_applied === false ? 'false' : '—')}</div>
+      <div class="small">brief：${htmlEscape(safe(netr?.tension_review_brief)) || '—'}</div>
+      <div class="small" style="white-space:pre-wrap;">readable：${htmlEscape(safe(netr?.tension_review_readable)) || '—'}</div>
+      <div class="small">suggested_backfill：${htmlEscape(safe(netr?.suggested_backfill_direction_summary)) || '—'}</div>
+    </div>`;
+
+  const adv = f?.advisory_review_observation;
+  const cAdvisory = `
+    <div class="card advisory-review-observation">
+      <h3>Advisory / Review（SF-1′ 高风险候选）</h3>
+      <div class="small"><strong>Advisory-only</strong> — 仅提示权；不参与 benchmark/hard-fail；不触发 block/defer。</div>
+      <div class="small">applied：${adv?.advisory_review_observation_applied === true ? 'true' : (adv?.advisory_review_observation_applied === false ? 'false' : '—')}</div>
+      <div class="small">soft_fail_candidate_observed：${adv?.soft_fail_candidate_observed === true ? 'true' : (adv?.soft_fail_candidate_observed === false ? 'false' : '—')}</div>
+      <div class="small">clause_id：${htmlEscape(safe(adv?.soft_fail_candidate_clause_id)) || '—'} · level：${htmlEscape(safe(adv?.soft_fail_candidate_level)) || '—'}</div>
+      <div class="small">review_gate_recommended：${adv?.review_gate_recommended === true ? 'true' : (adv?.review_gate_recommended === false ? 'false' : '—')} · advisory_only：${adv?.advisory_only === true ? 'true' : (adv?.advisory_only === false ? 'false' : '—')}</div>
+      <div class="small">reason：${htmlEscape(safe(adv?.soft_fail_candidate_reason_summary)) || '—'}</div>
+    </div>`;
+
+  const mna = f?.mainline_narrative_alignment;
+  const cNarrative = `
+    <div class="card mainline-narrative-alignment">
+      <h3>主线叙事对齐 / Mainline Narrative Alignment（M0.6）</h3>
+      <div class="small"><strong>统一骨架</strong> — context → source → task → memory → mainline → closure → risk。</div>
+      <div class="small">narrative_brief：${htmlEscape(safe(mna?.narrative_brief)) || '—'}</div>
+      <div class="small">context/source/task：${htmlEscape(safe(mna?.context_summary)) || '—'} · ${htmlEscape(safe(mna?.source_summary)) || '—'} · ${htmlEscape(safe(mna?.task_summary)) || '—'}</div>
+      <div class="small">memory/mainline/closure/risk：${htmlEscape(safe(mna?.memory_summary)) || '—'} · ${htmlEscape(safe(mna?.mainline_state_summary)) || '—'} · ${htmlEscape(safe(mna?.closure_summary)) || '—'} · ${htmlEscape(safe(mna?.risk_summary)) || '—'}</div>
+    </div>`;
+
+  cards.innerHTML = cGoal + cSafe + cSeen + cDo + cWhy + cView + cHold + cDomain + cSceneGate + cHumanCheck + cLocalGoalState + cLocalGoalSpatialMap + cLocalGoalSpatialRelations + cSkeletonMix + cSkeletonFilter + cSpatialMemoryPools + cSpatialForgetting + cEvidenceLedger + cHypothesisLayer + cRecheckPlanner + cRecheckWhiteboxTrace + cObjectTemporalLedger + cObjectSearchInteraction + cActionHintCopy + cActionHintWhiteboxTrace + cConfirmationInputBridge + cConfirmationWhiteboxTrace + cLocalTaskSpaceGrid + cGridSearchExpansion + cGridSearchWhiteboxTrace + cTaskArbitration + cTaskBundle + cTaskChainBridge + cExperienceEvolution + cMainlineIntegration + cVisualCandidateAudit + cSpatialExpressionSidecar + cEnvTaskContext + cContaminationGuard + cPostProcessing + cPostProcessingSummaryEntry + cScheduledSource + cTaskChainSnap + cMemoryInvocation + cMainlineState + cTraceSummary + cNarrativeTension + cAdvisory + cNarrative + cSpatialScale;
   right.appendChild(cards);
 
   if (domainMismatch) {
@@ -1396,8 +1529,20 @@ function renderDetail() {
     ['task_arbitration', f.task_arbitration, ['foreground_task_type','candidate_task_types','arbitration_action','arbitration_reason','risk_priority_level','environment_overlap_level','resource_conflict_level','user_interruption_cost','arbitration_applied']],
     ['task_bundle', f.task_bundle, ['bundle_id','bundle_zone','bundle_task_types','bundle_dominant_skeleton','bundle_shared_focus','bundle_reason','bundle_status','bundle_created','bundle_applied','bundle_block_reason']],
     ['task_chain_bridge', f.task_chain_bridge, ['task_chain_foreground_summary','task_chain_state','task_chain_substate','task_chain_blocked','task_chain_block_reason','task_chain_can_resume','task_chain_bundle_state','task_chain_source_modules','task_chain_summary_text','task_chain_bridge_applied']],
+    ['task_chain_state_snapshot', f.task_chain_state_snapshot, ['task_chain_id','task_chain_stage','primary_task_id','active_subtask_id','task_mode','task_resume_target','task_success_criteria_summary','task_chain_context_summary','task_chain_state_snapshot_applied','task_position_reason_summary','task_position_event_summaries','task_position_warning_summary','task_position_timeline_events']],
+    ['memory_invocation_explanation', f.memory_invocation_explanation, ['memory_invoked','memory_type_summary','memory_invocation_reason_summary','memory_invocation_used_content_summary','memory_invocation_effect_summary','memory_invocation_alternative_summary','memory_invocation_explanation_applied','memory_invocation_timeline_events']],
+    ['mainline_state_snapshot', f.mainline_state_snapshot, ['mainline_state','mainline_phase','mainline_state_reason_summary','mainline_phase_reason_summary','mainline_state_transition_summary','mainline_state_snapshot_applied','mainline_state_timeline_events']],
     ['experience_evolution', f.experience_evolution, ['candidates']],
     ['mainline_integration', f.mainline_integration, ['integration_enabled','integration_summary','integration_consumed_modules','integration_observed_modules','integration_effective_modules','integration_soft_actions','integration_blocked_actions','integration_observation_notes','integration_applied','integration_observation_frame_note','integration_pillar_effective']],
+    ['environment_task_context_reserve', f.environment_task_context_reserve, ['context_premise_summary','context_premise_applied','whitebox_context_premise_line']],
+    ['decision_contamination_guard_reserve', f.decision_contamination_guard_reserve, ['contamination_observation_summary','contamination_guard_applied','multi_model_review_reserved','vote_council_reserved','potential_entry_points','potential_flow_chain','potential_mitigation_points']],
+    ['post_processing_intelligence_reserve', f.post_processing_intelligence_reserve, ['post_processing_summary','post_processing_reserve_applied','library_link_reserved','memory_write_reserved','summary_post_processing_entry_id','record_candidates','analysis_reserve','routing_reserve']],
+    ['post_processing_summary_entry', f.post_processing_summary_entry, ['entry_id','trace_anchor_id','summary_id','mainline_summary','mainline_state_summary','memory_usage_summary','source_scheduling_summary','task_chain_progress_summary','issue_or_risk_summary','narrative_readable','summary_brief_hint_only','summary_not_substitute_for_raw_trace','library_default_reads_summary_entry_not_raw_trace','memory_write_forbidden_from_summary_only','requires_trace_backfill','requires_event_backfill','requires_whitebox_backfill','backfill_reason_summary','post_processing_summary_entry_applied','contract_version']],
+    ['scheduled_source_state', f.scheduled_source_state, ['participating_sources','dominant_source','source_conflict_summary','priority_override_summary','timeliness_pressure','source_confidence_summary','dominant_source_reason_summary','source_scheduling_event_summaries','source_scheduling_warning_summary','scheduled_source_state_applied']],
+    ['run_summary_reference', f.run_summary_reference, ['summary_id','summary_brief','mainline_summary','memory_usage_summary','source_scheduling_summary','issue_or_risk_summary','summary_reference_applied','raw_trace_layer_snapshot','structured_event_layer_snapshot','task_chain_progress_summary','mainline_state_summary','mainline_narrative_brief','summary_feed_note']],
+    ['narrative_evidence_tension_review', f.narrative_evidence_tension_review, ['narrative_trace_support_tension','phase_closure_outcome_tension','summary_backfill_tension','local_global_progress_tension','memory_bias_tension','tension_review_brief','tension_review_readable','tension_reason_summaries','suggested_backfill_direction_summary','narrative_evidence_tension_review_applied']],
+    ['advisory_review_observation', f.advisory_review_observation, ['soft_fail_candidate_observed','soft_fail_candidate_clause_id','soft_fail_candidate_level','soft_fail_candidate_reason_summary','review_gate_recommended','advisory_only','advisory_review_observation_applied']],
+    ['mainline_narrative_alignment', f.mainline_narrative_alignment, ['narrative_brief','context_summary','source_summary','task_summary','memory_summary','mainline_state_summary','closure_summary','risk_summary','mainline_narrative_alignment_applied']],
     ['visual_candidate_audit', f.visual_candidate_audit, ['input_source_type','input_source_path','detector_mode','detector_model_name','detector_candidate_count','detector_candidate_labels','detector_probe_candidate_count','detector_probe_candidate_labels','ocr_candidate_count','ocr_texts','scene_description_present','search_target_label','mapped_candidate_labels','candidate_audit_status','candidate_audit_reason']],
     ['spatial_expression_sidecar', f.spatial_expression_sidecar, ['focus_target_label','focus_target_expression','focus_target_debug_expression','focus_target_actionable_expression','focus_target_actionable_debug_reason','candidate_count','candidates','sidecar_reason']],
     ['spatial_scale', f.spatial_scale, ['scene_profile','effective_body_width_cm','effective_body_height_cm','clearance_required_cm','forward_speed_cm_s','speed_band','reaction_horizon_ms']],
@@ -1410,6 +1555,18 @@ function renderDetail() {
     ['decision', '我为什么这么决定'],
     ['outputs', '我实际做了什么'],
     ['consequence', '这样做会有什么结果'],
+    ['environment_task_context_reserve', '环境 / 任务链前提（M0）'],
+    ['decision_contamination_guard_reserve', '污染观察 / Decision Contamination Guard（M0，占位）'],
+    ['post_processing_intelligence_reserve', '后置信息处理预留 / Post-Processing Intelligence（M0，占位）'],
+    ['scheduled_source_state', '数据源调度状态 / Scheduled Source State（M0）'],
+    ['task_chain_state_snapshot', '任务链状态快照 / Task Chain State Snapshot（M0）'],
+    ['memory_invocation_explanation', '记忆调用解释 / Memory Invocation Explanation（M0.3）'],
+    ['mainline_state_snapshot', '主链状态与阶段 / Mainline State & Phase（M0.4）'],
+    ['post_processing_summary_entry', 'Summary×后处理边界契约 / Post-Processing Summary Entry（M0.5）'],
+    ['run_summary_reference', '运行总结入口 / Run Summary Reference（M0.2，Derived from Trace）'],
+    ['narrative_evidence_tension_review', '叙事—证据张力审计 / Narrative · Evidence Tension Review（M0）'],
+    ['advisory_review_observation', 'Advisory / Review（SF-1′ 高风险候选，提示权无裁决）'],
+    ['mainline_narrative_alignment', '主线叙事对齐 / Mainline Narrative Alignment（M0.6）'],
   ]);
   const openByDefault = expertMode ? new Set(['goal','inputs','state','decision','outputs','consequence']) : new Set([]);
   sections.forEach(([name, obj, keys]) => {

@@ -5,7 +5,8 @@
 指标层不是展示装饰，而是后续推理优化、图书馆沉淀与后台评估的抓手。  
 本轮 M0 只做规则版度量：能算、能展示、能比较、能抓明显问题；不做算法优化与学习。
 
-**硬约束**：指标来源必须基于 Reasoning Structure Tree。
+**硬约束**：指标来源必须基于 Reasoning Structure Tree。  
+**下游**：Reasoning Tree Quality Overlay M0 消费本指标产出树级/节点级质量标记，见 `docs/REASONING_TREE_QUALITY_OVERLAY_M0_DELIVERY.md`。
 
 ## 2. 交付件
 

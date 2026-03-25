@@ -41,3 +41,8 @@
 
 双通道与注入口已占坑并接入 frame/JSONL/Console；后续图书馆接入应优先复用本接口预留层。
 
+## 7. 与 Strategy Injection Shadow 的关系（M0）
+
+图书馆策略正式接入前，建议先通过 **Strategy Injection Shadow** 做“如果注入会怎样”的影子预估，再决定是否进入真实注入执行层。  
+参见：`docs/STRATEGY_INJECTION_SHADOW_M0_DELIVERY.md`。
+

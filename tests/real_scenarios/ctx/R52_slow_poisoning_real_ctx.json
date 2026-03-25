@@ -1,0 +1,32 @@
+{
+  "frame_seq": 52,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R52_slow_poisoning_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "slow_poisoning_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "一连串都不算离谱的输入，逐步把路径/目标倾向带歪（慢性污染，晚发为 blocked/unresolved）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [13, 19, 77, 85], "conf": 0.86 },
+    { "label": "box", "bbox": [159, 39, 220, 105], "conf": 0.57 }
+  ]
+}

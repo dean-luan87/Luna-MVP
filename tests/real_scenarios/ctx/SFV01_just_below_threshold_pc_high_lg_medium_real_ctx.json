@@ -1,0 +1,28 @@
+{
+  "frame_seq": 8901,
+  "current_ts": 0.0,
+  "trace_anchor_id": "SFV01_just_below_threshold_pc_high_lg_medium_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.25,
+  "phase_closure_progress_pair_reappeared_observed": true,
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_can_resume_main_task": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "SFV 验证：近邻 pc+lg 压测（与 R85 同族，阈值下）",
+  "object_search_flow_type": "pc_lg_pair_reappear_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "pc_lg_pair_reappear_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 80, 91], "conf": 0.8 },
+    { "label": "bag", "bbox": [156, 45, 226, 115], "conf": 0.6 }
+  ]
+}

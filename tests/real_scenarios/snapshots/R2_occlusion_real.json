@@ -1,0 +1,52 @@
+{
+  "frame": {
+    "trace_anchor_id": "real_R2",
+    "inputs": {"frame_seq": 2, "current_ts": 0.0},
+    "reasoning_tree_metrics": {
+      "tree_depth": 4,
+      "branch_count": 1,
+      "dead_branch_count": 1,
+      "active_path_length": 4,
+      "resolution_path_length": 0,
+      "feedback_node_count": 1,
+      "effective_feedback_count": 1,
+      "prune_rate": 1.0,
+      "resolved": false,
+      "blocked": false,
+      "possible_tree_issue_type": "high_dead_branch_ratio",
+      "possible_tree_issue_reason": "prune_rate=1.00 (reserve snapshot)",
+      "metrics_summary": "reserve snapshot",
+      "metrics_applied": true
+    },
+    "reasoning_tree_quality_overlay": {
+      "structure_score": 55.0,
+      "convergence_score": 80.0,
+      "quality_grade": "acceptable",
+      "quality_summary": "reserve snapshot",
+      "score_reason_summary": "reserve snapshot",
+      "score_penalty_sources": ["high_dead_branch_ratio"],
+      "score_bonus_sources": ["effective_feedback_on_active_path"],
+      "active_path_quality": "short and clear",
+      "active_path_cost": "low",
+      "node_quality_annotations": {
+        "feedback:real_R2": {"quality_flag": "feedback_effective", "quality_note": "reserve"}
+      },
+      "quality_overlay_applied": true
+    },
+    "optimization_hint": {
+      "optimization_hint_type": "reduce_dead_branches",
+      "priority_level": "high",
+      "suggested_optimization_module": "hypothesis_layer",
+      "suggested_optimization_action": "reduce low-confidence alternative branch creation",
+      "trigger_issue_type": "high_dead_branch_ratio",
+      "optimization_hint_reason": "reserve snapshot",
+      "optimization_hint_applied": true
+    },
+    "optimization_feedback_loop": {
+      "validation_result": "not_enough_data",
+      "validation_reason": "reserve snapshot",
+      "optimization_feedback_applied": true
+    }
+  }
+}
+

@@ -1,0 +1,23 @@
+{
+  "frame_seq": 102,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R102_long_narrative_with_sufficient_key_support_should_not_raise_nt_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.16,
+  "search_subtask_state": "main",
+  "search_terminal_status": "found",
+  "confirmation_input_type": "target_found",
+  "confirmation_input_raw_text": "M1.8-B：叙事较长但关键锚点与 terminal 支撑充分，nt 不应升到 review",
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "container_check_flow"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 76, 84], "conf": 0.92 },
+    { "label": "shelf", "bbox": [138, 34, 210, 102], "conf": 0.71 }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "frame_seq": 57,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R57_summary_looks_ok_but_requires_backfill_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.18,
+
+  "summary_looks_ok_but_requires_backfill_expected": true,
+  "delayed_exposure_mismatch_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "摘要看起来没问题，但真正因果必须回看过程事件与白盒",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [13, 21, 77, 87], "conf": 0.88 },
+    { "label": "box", "bbox": [163, 41, 226, 111], "conf": 0.57 }
+  ]
+}

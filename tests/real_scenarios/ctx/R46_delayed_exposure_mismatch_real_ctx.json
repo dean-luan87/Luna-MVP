@@ -1,0 +1,33 @@
+{
+  "frame_seq": 46,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R46_delayed_exposure_mismatch_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.15,
+
+  "delayed_exposure_mismatch_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "前几步都看似合理；错误未立即暴露；到链尾才集中表现为无法收敛/目标与事实分裂",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 1,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 76, 84], "conf": 0.89 },
+    { "label": "box", "bbox": [160, 42, 222, 106], "conf": 0.57 }
+  ]
+}

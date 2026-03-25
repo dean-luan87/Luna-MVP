@@ -1,0 +1,23 @@
+{
+  "frame_seq": 20,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R20_target_switch_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.2,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "blocked",
+
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "不知道",
+
+  "object_search_flow_type": "occlusion_clear_flow",
+  "object_search_step_index": 2,
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 100, 100], "conf": 0.80 },
+    { "label": "cup", "bbox": [130, 10, 230, 110], "conf": 0.60 },
+    { "label": "bottle", "bbox": [0, 0, 210, 50], "conf": 0.85 }
+  ]
+}
+

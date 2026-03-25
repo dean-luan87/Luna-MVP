@@ -1,0 +1,28 @@
+{
+  "frame_seq": 63,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R63_summary_readable_ok_but_backfill_mandatory_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.19,
+  "summary_looks_ok_but_requires_backfill_expected": true,
+  "summary_readable_ok_but_backfill_mandatory_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "总结看起来正常，但关键因果点必须回溯原始链路",
+  "object_search_flow_type": "summary_boundary_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "summary_boundary_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [13, 20, 79, 90], "conf": 0.88 },
+    { "label": "drawer", "bbox": [142, 50, 238, 140], "conf": 0.52 }
+  ]
+}

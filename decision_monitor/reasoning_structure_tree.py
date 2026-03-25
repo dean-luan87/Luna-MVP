@@ -176,6 +176,20 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
         else:
             root.node_summary = (root.node_summary or "") + f" | continuity={lvl}"
 
+    # memory vs novel channel (M0): attach one-line dominant channel summary
+    mn = frame.get("memory_novel_information_channel") if isinstance(frame.get("memory_novel_information_channel"), dict) else None
+    if mn:
+        dom_r = _s(_g(mn, "dominant_reasoning_channel")) or "—"
+        dom_d = _s(_g(mn, "dominant_decision_channel")) or "—"
+        root.node_summary = (root.node_summary or "") + f" | channel=reasoning:{dom_r}/decision:{dom_d}"
+
+    # Environment & task chain premise (M0 reserve): one-line on root
+    envr = frame.get("environment_task_context_reserve") if isinstance(frame.get("environment_task_context_reserve"), dict) else None
+    if envr:
+        est = _s(_g(envr, "environment_context", "environment_scene_type")) or "—"
+        tst = _s(_g(envr, "task_chain_context", "task_chain_stage")) or "—"
+        root.node_summary = (root.node_summary or "") + f" | env={est} task_stage={tst}"
+
     # Layer 1: evidence/search_candidate (1~3)
     ev_entries = _g(frame, "evidence_ledger", "entries") or []
     ev0 = ev_entries[0] if isinstance(ev_entries, list) and ev_entries else None
@@ -227,7 +241,7 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
             )
         )
 
-    # Layer 2: hypothesis (top 1 + 1 pruned)
+    # Layer 2: hypothesis (top 1 + optional pruned alternative)
     hyps = _g(frame, "hypothesis_layer", "hypotheses") or []
     hyp0 = hyps[0] if isinstance(hyps, list) and hyps else None
     hyp_title = _s(_g(hyp0, "hypothesis_summary")) if isinstance(hyp0, dict) else None
@@ -247,20 +261,22 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
         )
     )
 
-    # a pruned alternative hypothesis (minimum)
-    pruned_id = f"hypothesis:{anchor}:alt_pruned"
-    nodes.append(
-        ReasoningTreeNode(
-            node_id=pruned_id,
-            parent_node_id=n_ev.node_id,
-            node_type="hypothesis",
-            node_title="Hypothesis · alternative",
-            node_summary="(pruned) alternative path not selected in M0 rule tree",
-            source_module="hypothesis_layer",
-            status="pruned",
-            exclusion_reason="lower_priority_or_context_mismatch",
+    pruned_id: Optional[str] = None
+    # M0.3: 若假设层已强约束到单一主假设，则不再强行合成 pruned alternative（避免低价值 dead branch 污染指标）。
+    if isinstance(hyps, list) and len(hyps) >= 2:
+        pruned_id = f"hypothesis:{anchor}:alt_pruned"
+        nodes.append(
+            ReasoningTreeNode(
+                node_id=pruned_id,
+                parent_node_id=n_ev.node_id,
+                node_type="hypothesis",
+                node_title="Hypothesis · alternative",
+                node_summary="(pruned) alternative hypothesis not selected",
+                source_module="hypothesis_layer",
+                status="pruned",
+                exclusion_reason="lower_priority_or_context_mismatch",
+            )
         )
-    )
 
     # Layer 3: decisions (grid/recheck/action_hint)
     gse = frame.get("grid_search_expansion") if isinstance(frame.get("grid_search_expansion"), dict) else None
@@ -331,6 +347,7 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
 
     # Growth-chain: experience governance outcome (watchlist/promotable/blocked/rejected)
     exp = frame.get("experience_evolution") if isinstance(frame.get("experience_evolution"), dict) else None
+    rp_for_gov = frame.get("recheck_planner") if isinstance(frame.get("recheck_planner"), dict) else None
     gov_node_id = None
     if exp:
         cands = _g(exp, "candidates") or []
@@ -339,6 +356,27 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
             evo_status = _s(_g(cand0, "evolution_status")) or "candidate"
             evo_scope = _s(_g(cand0, "future_use_scope")) or "local_only"
             evo_reason = _s(_g(cand0, "evolution_reason"))
+            # M0.6: 当 recheck_planner 已给出可行动 fallback（applied=True, blocked=False）时，
+            # governance 的 blocked 更接近“审计保守”而非“执行阻断”，降级为 watchlist，
+            # 避免 metrics 将其误计为 blocked_without_resolution。
+            cib_for_gov = frame.get("confirmation_input_bridge") if isinstance(frame.get("confirmation_input_bridge"), dict) else None
+            feedback_stalled = bool(
+                cib_for_gov
+                and (_s(_g(cib_for_gov, "confirmation_input_type")) in ("unknown", None) or _s(_g(cib_for_gov, "confirmation_input_type")) is None)
+                and (_s(_g(cib_for_gov, "confirmation_bridge_next_effect")) == "none")
+            )
+            actionable_fallback = bool(
+                rp_for_gov
+                and _g(rp_for_gov, "recheck_applied") is True
+                and _g(rp_for_gov, "recheck_blocked") is False
+                and (
+                    _s(_g(rp_for_gov, "recheck_action")) in ("hold_and_confirm", "ask_user_for_clarification")
+                    or feedback_stalled
+                )
+            )
+            if evo_status == "blocked" and actionable_fallback:
+                evo_status = "watchlist"
+                evo_reason = ((evo_reason or "").strip() + "；planner 已给出可行动 fallback，治理状态降级为 watchlist").strip("；")
             gov_node_id = f"resolution:{anchor}:governance"
             nodes.append(
                 ReasoningTreeNode(
@@ -392,29 +430,136 @@ def build_reasoning_structure_tree(frame: Dict[str, Any]) -> ReasoningStructureT
             next_effect=next_effect,
         )
     )
-    # explicit exclusion node linked to pruned hypothesis
-    nodes.append(
-        ReasoningTreeNode(
-            node_id=f"exclusion:{anchor}:0",
-            parent_node_id=pruned_id,
-            node_type="exclusion",
-            node_title="Excluded branch",
-            node_summary="pruned alternative hypothesis",
-            source_module="reasoning_structure_tree",
-            status="pruned",
-            exclusion_reason="lower_priority_or_context_mismatch",
+    # explicit exclusion node linked to pruned hypothesis (only when pruned exists)
+    if pruned_id:
+        nodes.append(
+            ReasoningTreeNode(
+                node_id=f"exclusion:{anchor}:0",
+                parent_node_id=pruned_id,
+                node_type="exclusion",
+                node_title="Excluded branch",
+                node_summary="pruned alternative hypothesis",
+                source_module="reasoning_structure_tree",
+                status="pruned",
+                exclusion_reason="lower_priority_or_context_mismatch",
+            )
         )
-    )
 
     active_path = [root_id, n_ev.node_id, hyp_id]
     if gov_node_id:
         active_path.append(gov_node_id)
-    pruned_ids = [pruned_id, f"exclusion:{anchor}:0"]
+    pruned_ids: List[str] = []
+    if pruned_id:
+        pruned_ids.extend([pruned_id, f"exclusion:{anchor}:0"])
     if gov_node_id:
         pruned_ids.append(f"exclusion:{anchor}:gov0")
     metrics = _compute_metrics(nodes, root_id)
 
     tree_summary = f"root={focus or '—'} flow={flow or '—'} active_path={len(active_path)} pruned={len(pruned_ids)}"
+    envr2 = frame.get("environment_task_context_reserve") if isinstance(frame.get("environment_task_context_reserve"), dict) else None
+    if envr2:
+        prem = _s(envr2.get("context_premise_summary"))
+        if prem:
+            tree_summary = tree_summary + f" | premise={prem[:160]}"
+    dc = frame.get("decision_contamination_guard_reserve") if isinstance(frame.get("decision_contamination_guard_reserve"), dict) else None
+    if dc and dc.get("contamination_guard_applied"):
+        tree_summary = tree_summary + " | contamination_reserved=true"
+    pp = frame.get("post_processing_intelligence_reserve") if isinstance(frame.get("post_processing_intelligence_reserve"), dict) else None
+    if pp and pp.get("post_processing_reserve_applied"):
+        tree_summary = tree_summary + " | post_processing_reserved=true"
+    tc_raw = frame.get("task_chain_state_snapshot")
+    tcsn: Optional[Dict[str, Any]] = None
+    if tc_raw is not None and hasattr(tc_raw, "to_dict"):
+        tcsn = tc_raw.to_dict()
+    elif isinstance(tc_raw, dict):
+        tcsn = tc_raw
+    if tcsn and tcsn.get("task_chain_state_snapshot_applied"):
+        stg2 = _s(tcsn.get("task_chain_stage"))
+        md2 = _s(tcsn.get("task_mode"))
+        sub2 = _s(tcsn.get("active_subtask_id"))
+        rt2 = _s(tcsn.get("task_resume_target"))
+        warn2 = _s(tcsn.get("task_position_warning_summary")) or "none"
+        sub_tag = "sub=y" if sub2 else "sub=n"
+        if rt2 and "resume" in rt2:
+            rt_tag = "resume=pending"
+        elif rt2:
+            rt_tag = "resume=hint"
+        else:
+            rt_tag = "resume=n"
+        crit_hint = "crit=node" if (md2 == "subtask" and "terminal=" in (tcsn.get("task_success_criteria_summary") or "")) else "crit=mix"
+        if stg2 or md2:
+            tree_summary = (
+                tree_summary
+                + f" | task_pos={stg2 or '—'}/{md2 or '—'}|{sub_tag}|{rt_tag}|{crit_hint}|warn={warn2[:48]}"
+            )
+    sss = frame.get("scheduled_source_state") if isinstance(frame.get("scheduled_source_state"), dict) else None
+    if sss and sss.get("scheduled_source_state_applied"):
+        ds = _s(sss.get("dominant_source"))
+        cfx = _s(sss.get("source_conflict_summary"))
+        over = _s(sss.get("priority_override_summary"))
+        tml = _s(sss.get("timeliness_pressure"))
+        conf = _s(sss.get("source_confidence_summary"))
+        if ds:
+            tree_summary = tree_summary + f" | source={ds}"
+        if cfx:
+            tree_summary = tree_summary + f" | source_conflict={cfx}"
+        if over:
+            tree_summary = tree_summary + f" | source_override={over}"
+        if tml:
+            tree_summary = tree_summary + f" | source_t={tml}"
+        if conf:
+            tree_summary = tree_summary + f" | source_conf={conf}"
+
+    mie_raw = frame.get("memory_invocation_explanation")
+    mie: Optional[Dict[str, Any]] = None
+    if mie_raw is not None and hasattr(mie_raw, "to_dict"):
+        mie = mie_raw.to_dict()
+    elif isinstance(mie_raw, dict):
+        mie = mie_raw
+    if mie and mie.get("memory_invocation_explanation_applied"):
+        mt = _s(mie.get("memory_type_summary")) or "—"
+        ef = _s(mie.get("memory_invocation_effect_summary")) or "—"
+        inv = "y" if mie.get("memory_invoked") else "n"
+        tree_summary = tree_summary + f" | mem=inv={inv}|{mt[:48]}|eff={ef[:32]}"
+
+    mls_raw = frame.get("mainline_state_snapshot")
+    mls: Optional[Dict[str, Any]] = None
+    if mls_raw is not None and hasattr(mls_raw, "to_dict"):
+        mls = mls_raw.to_dict()
+    elif isinstance(mls_raw, dict):
+        mls = mls_raw
+    if mls and mls.get("mainline_state_snapshot_applied"):
+        mst = _s(mls.get("mainline_state")) or "—"
+        mph = _s(mls.get("mainline_phase")) or "—"
+        tree_summary = tree_summary + f" | state={mst}|phase={mph}"
+    # M1.1.x-A: process observation anchor (tree-side, no rule change)
+    inp = frame.get("inputs") if isinstance(frame.get("inputs"), dict) else {}
+    if any(
+        bool(inp.get(k))
+        for k in (
+            "recovery_declared_but_resume_chain_fragile_expected",
+            "memory_bias_accumulated_under_familiar_context_expected",
+            "phase_correct_but_closure_semantics_misaligned_expected",
+        )
+    ):
+        rp_obs = frame.get("recheck_planner") if isinstance(frame.get("recheck_planner"), dict) else {}
+        mls_obs = frame.get("mainline_state_snapshot") if isinstance(frame.get("mainline_state_snapshot"), dict) else {}
+        phase_obs = _s(mls_obs.get("mainline_phase")) or "unknown"
+        ract_obs = _s(rp_obs.get("recheck_action")) or "none"
+        tree_summary = tree_summary + f" | proc=m11x_ctx_observed|phase={phase_obs}|recheck={ract_obs}"
+    rsr_raw = frame.get("run_summary_reference")
+    rsr = rsr_raw.to_dict() if rsr_raw is not None and hasattr(rsr_raw, "to_dict") else (rsr_raw if isinstance(rsr_raw, dict) else None)
+    if isinstance(rsr, dict):
+        proc = _s(rsr.get("process_observation_summary"))
+        if proc:
+            tree_summary = tree_summary + f" | proc={proc[:160]}"
+        rfrag = _s(rsr.get("resume_chain_fragility_summary"))
+        if rfrag and rfrag != "none":
+            tree_summary = tree_summary + f" | resume_frag={rfrag[:64]}"
+        mmis = _s(rsr.get("closure_semantics_misalignment_summary"))
+        if mmis and mmis != "none":
+            tree_summary = tree_summary + f" | phase_closure_mis={mmis[:64]}"
+
     return ReasoningStructureTreeResult(
         root_node_id=root_id,
         nodes=nodes,

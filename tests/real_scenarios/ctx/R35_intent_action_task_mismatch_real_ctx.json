@@ -1,0 +1,31 @@
+{
+  "frame_seq": 35,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R35_intent_action_task_mismatch_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "intent_action_task_mismatch_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "不是这个（意图-动作-任务三链错位：嘴上说A，实际走B，任务仍停在C）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 78, 84], "conf": 0.9 },
+    { "label": "box", "bbox": [160, 40, 220, 110], "conf": 0.6 }
+  ]
+}
+

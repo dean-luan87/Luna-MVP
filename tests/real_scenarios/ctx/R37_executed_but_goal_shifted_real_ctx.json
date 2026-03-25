@@ -1,0 +1,32 @@
+{
+  "frame_seq": 37,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R37_executed_but_goal_shifted_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "executed_but_goal_shifted_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "不是这个（动作做了但目标又变了，成功标准漂移）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [14, 16, 80, 82], "conf": 0.88 },
+    { "label": "cup", "bbox": [150, 30, 210, 105], "conf": 0.55 }
+  ]
+}
+

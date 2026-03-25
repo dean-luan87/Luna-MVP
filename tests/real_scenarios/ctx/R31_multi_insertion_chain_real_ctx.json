@@ -1,0 +1,33 @@
+{
+  "frame_seq": 31,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R31_multi_insertion_chain_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "multi_insertion_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "不是这个（主任务未丢但插入链多次打断/回退）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 0,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "pocket_check_flow",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 20, 76, 86], "conf": 0.9 },
+    { "label": "box", "bbox": [180, 45, 230, 120], "conf": 0.6 }
+  ]
+}
+

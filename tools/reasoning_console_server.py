@@ -261,9 +261,12 @@ function nodeCardHtml(n, sets){
   const isBlocked = (String(st).toLowerCase() === 'blocked');
   const feedback = !!n.is_user_feedback_driven;
   const cls = ['nodeCard', isActive?'active':'', isPruned?'pruned':'', isResolved?'resolved':'', isBlocked?'blocked':''].filter(Boolean).join(' ');
+  const qAnn = (sets.nodeQuality || {})[id];
+  const qFlag = (qAnn && qAnn.quality_flag) ? qAnn.quality_flag : '';
   const mini = [
     nodeBadgeHtml(ty, 'type'),
     nodeBadgeHtml(st, nodeStatusClass(st)),
+    qFlag ? nodeBadgeHtml(qFlag, qFlag === 'healthy' ? 'resolved' : (qFlag === 'blocked' ? 'blocked' : (qFlag === 'pruned' ? 'pruned' : ''))) : '',
     isActive ? nodeBadgeHtml('active_path','active') : '',
     feedback ? nodeBadgeHtml('feedback','feedback') : '',
     (conf!=null) ? nodeBadgeHtml(`conf=${conf.toFixed(2)}${band?('·'+band):''}`, '') : (band ? nodeBadgeHtml(`conf·${band}`, '') : ''),
@@ -328,7 +331,7 @@ function buildTreeIndex(t){
   return {nodes, byId, children, roots: sortIds(roots)};
 }
 
-function renderTreeView(t){
+function renderTreeView(t, qualityOverlay){
   const idx = buildTreeIndex(t);
   const byId = idx.byId;
   const children = idx.children;
@@ -336,7 +339,8 @@ function renderTreeView(t){
   const active = new Set(Array.isArray(t?.active_path_node_ids) ? t.active_path_node_ids : []);
   const pruned = new Set(Array.isArray(t?.pruned_node_ids) ? t.pruned_node_ids : []);
   const resolvedId = t?.resolved_node_id || null;
-  const sets = {active, pruned, resolvedId};
+  const nodeQuality = (qualityOverlay && qualityOverlay.node_quality_annotations) ? qualityOverlay.node_quality_annotations : {};
+  const sets = {active, pruned, resolvedId, nodeQuality};
 
   const rootId = t?.root_node_id;
   const mainRoot = (rootId && byId.has(rootId)) ? rootId : (roots[0] || null);
@@ -503,6 +507,21 @@ window.selectSnap = async (id) => {
     </div>
 
     <div class="box">
+      <h3>环境 / 任务链前提 / Environment & Task Context (M0)</h3>
+      <div class="meta">前提条件层：在什么场景、任务链哪一步、人与系统各自推了什么；不是决策结果本身。</div>
+      <div class="kv">
+        <div class="k">environment_scene_type</div><div class="v">${esc(s.environment_scene_type ?? '—')}</div>
+        <div class="k">environment_visibility_state</div><div class="v">${esc(s.environment_visibility_state ?? '—')}</div>
+        <div class="k">environment_constraints</div><div class="v">${esc((Array.isArray(s.environment_task_context_reserve?.environment_context?.environment_constraints) ? s.environment_task_context_reserve.environment_context.environment_constraints.join(', ') : null) || '—')}</div>
+        <div class="k">task_chain_stage</div><div class="v">${esc(s.task_chain_stage ?? '—')}</div>
+        <div class="k">task_chain_current_action</div><div class="v">${esc(s.task_chain_current_action ?? '—')}</div>
+        <div class="k">user_action_effect</div><div class="v">${esc(s.environment_task_context_reserve?.task_chain_context?.task_chain_user_action_effect ?? '—')}</div>
+        <div class="k">system_action_effect</div><div class="v">${esc(s.environment_task_context_reserve?.task_chain_context?.task_chain_system_action_effect ?? '—')}</div>
+        <div class="k">context_premise_summary</div><div class="v">${esc(s.context_premise_summary ?? '—')}</div>
+      </div>
+    </div>
+
+    <div class="box">
       <h3>当前行动建议</h3>
       <div class="kv">
         <div class="k">primary</div><div class="v">${esc(s.action_hint_primary||'—')}</div>
@@ -534,13 +553,41 @@ window.selectSnap = async (id) => {
     <div class="box">
       <h3>白盒详情（默认摘要）</h3>
       <div class="meta">Search / Grid → Recheck → Action Hint → Confirmation</div>
+      ${s.whitebox_context_premise_line ? `<div class="meta" style="margin-top:8px;"><b>前提（白盒锚点）</b>：${esc(s.whitebox_context_premise_line)}</div>` : ''}
       ${renderTabs(s)}
     </div>
 
     <div class="box">
       <h3>推理结构树 / Reasoning Structure Tree（M0.5）</h3>
-      <div class="meta">仅展示升级：按 parent_node_id 渲染层级树；默认展开 root + active/resolved 路径；pruned 弱化但可见。</div>
-      <div id="treeBox">loading...</div>
+      <div class="meta">树 + 质量叠加层（评分与树一体，非独立评分页）。</div>
+      <div class="kv" style="margin-bottom:8px;">
+        <div class="k">Structure Score</div><div class="v">${esc(s.reasoning_tree_quality_overlay?.structure_score ?? '—')}</div>
+        <div class="k">Convergence Score</div><div class="v">${esc(s.reasoning_tree_quality_overlay?.convergence_score ?? '—')}</div>
+        <div class="k">Quality Grade</div><div class="v">${esc(s.reasoning_tree_quality_overlay?.quality_grade ?? '—')}</div>
+      </div>
+      <div class="meta">${esc(s.reasoning_tree_quality_overlay?.quality_summary ?? '')}</div>
+      <div class="meta" style="margin-top:4px;">Penalties: ${esc((s.reasoning_tree_quality_overlay?.score_penalty_sources || []).join(' · ')) || '—'} | Bonuses: ${esc((s.reasoning_tree_quality_overlay?.score_bonus_sources || []).join(' · ')) || '—'}</div>
+      <div id="treeBox" style="margin-top:10px;">loading...</div>
+    </div>
+
+    <div class="box">
+      <h3>推理时间轴 / Reasoning Timeline（M0）</h3>
+      <div class="meta">时间视角：事件先后与关键转折（不替代结构树）。</div>
+      <div class="kv">
+        <div class="k">key_transition_count</div><div class="v">${esc(s.reasoning_timeline_view?.key_transition_count ?? '—')}</div>
+        <div class="k">key_transition_summary</div><div class="v">${esc(s.reasoning_timeline_view?.key_transition_summary ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;" open>
+        <summary>事件列表（按逻辑顺序）</summary>
+        <pre>${esc(((s.reasoning_timeline_view?.events)||[]).map(e => {
+          const idx = e.event_index ?? '—';
+          const imp = e.event_importance ?? '—';
+          const ty = e.event_type ?? '—';
+          const src = e.event_source_module ?? '—';
+          const sum = e.event_summary ?? '—';
+          return `[${idx}][${imp}] ${ty} · ${src}\\n  ${sum}`;
+        }).join('\\n') || '—')}</pre>
+      </details>
     </div>
 
     <div class="box">
@@ -620,13 +667,241 @@ window.selectSnap = async (id) => {
       </div>
       <div class="meta">${esc(s.knowledge_dual_channel_interface?.interface_summary ?? '')}</div>
     </div>
+
+    <div class="box">
+      <h3>策略注入影子验证 / Strategy Injection Shadow（M0）</h3>
+      <div class="meta">Shadow only：不执行真实注入，仅输出“如果注入会怎样”的预估与风险。</div>
+      <div class="kv">
+        <div class="k">target module</div><div class="v">${esc(s.strategy_injection_shadow?.injection_target_module ?? '—')}</div>
+        <div class="k">injection mode</div><div class="v">${esc(s.strategy_injection_shadow?.injection_mode ?? '—')}</div>
+        <div class="k">expected tree change</div><div class="v">${esc(s.strategy_injection_shadow?.expected_tree_change ?? '—')}</div>
+        <div class="k">expected metric change</div><div class="v">${esc(s.strategy_injection_shadow?.expected_metric_change ?? '—')}</div>
+        <div class="k">expected issue relief</div><div class="v">${esc(s.strategy_injection_shadow?.expected_issue_relief ?? '—')}</div>
+        <div class="k">risk level</div><div class="v">${esc(s.strategy_injection_shadow?.expected_risk_level ?? '—')}</div>
+        <div class="k">next step</div><div class="v">${esc(s.strategy_injection_shadow?.recommended_next_step ?? '—')}</div>
+      </div>
+      <div class="meta">${esc(s.strategy_injection_shadow?.shadow_reason ?? '')}</div>
+    </div>
+
+    <div class="box">
+      <h3>记忆 / 新信息通道 / Memory vs Novel Information（M0）</h3>
+      <div class="meta">来源通道层：区分 memory_derived vs newly_observed vs inferred vs user_provided vs hybrid（仅占位，不做记忆系统重构）。</div>
+      <div class="kv">
+        <div class="k">dominant_reasoning_channel</div><div class="v">${esc(s.memory_novel_information_channel?.dominant_reasoning_channel ?? '—')}</div>
+        <div class="k">dominant_decision_channel</div><div class="v">${esc(s.memory_novel_information_channel?.dominant_decision_channel ?? '—')}</div>
+        <div class="k">channel_counts</div><div class="v">memory=${esc(s.memory_novel_information_channel?.memory_channel_count ?? '—')} · novel=${esc(s.memory_novel_information_channel?.novel_channel_count ?? '—')} · hybrid=${esc(s.memory_novel_information_channel?.hybrid_channel_count ?? '—')}</div>
+        <div class="k">novel_memory_candidate</div><div class="v">${esc(s.memory_novel_information_channel?.novel_memory_candidate?.candidate_label ?? '—')} · ready=${esc(s.memory_novel_information_channel?.novel_memory_candidate?.candidate_ready_for_memory ?? '—')} · src=${esc(s.memory_novel_information_channel?.novel_memory_candidate?.candidate_source ?? '—')}</div>
+      </div>
+      <div class="meta">${esc(s.memory_novel_information_channel?.channel_summary ?? '')}</div>
+      <details style="margin-top:10px;">
+        <summary>展开通道详情</summary>
+        <pre>${esc(JSON.stringify(s.memory_novel_information_channel?.information_channels ?? [], null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>污染观察 / 决策污染预留 / Decision Contamination Guard（M0）</h3>
+      <div class="meta"><strong>Reserved / Future Governance Layer</strong> — 当前无强判定；仅潜在入口/链/阻断位点占位。</div>
+      <div class="kv">
+        <div class="k">contamination_observation_summary</div><div class="v">${esc(s.contamination_observation_summary ?? '—')}</div>
+        <div class="k">entry_risk_hint (first)</div><div class="v">${esc(s.contamination_entry_risk_hint ?? '—')}</div>
+        <div class="k">mitigation slots (types)</div><div class="v">${esc(s.contamination_mitigation_reserved ?? '—')}</div>
+        <div class="k">multi_model_review_reserved</div><div class="v">${esc(s.decision_contamination_guard_reserve?.multi_model_review_reserved ?? '—')}</div>
+        <div class="k">vote_council_reserved</div><div class="v">${esc(s.decision_contamination_guard_reserve?.vote_council_reserved ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 entry / flow / mitigation（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.decision_contamination_guard_reserve ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>后置信息处理预留 / Post-Processing Intelligence（M0）</h3>
+      <div class="meta"><strong>Reserved / Pre-Library Layer</strong> — 独立于记忆系统；运行主线之后、图书馆/记忆之前；仅占位，无真实归类/写入。</div>
+      <div class="kv">
+        <div class="k">post_processing_summary</div><div class="v">${esc(s.post_processing_summary ?? '—')}</div>
+        <div class="k">record candidates（条数）</div><div class="v">${esc((s.post_processing_intelligence_reserve?.record_candidates ?? []).length)}</div>
+        <div class="k">analysis reserve（条数）</div><div class="v">${esc((s.post_processing_intelligence_reserve?.analysis_reserve ?? []).length)}</div>
+        <div class="k">routing reserve（条数）</div><div class="v">${esc((s.post_processing_intelligence_reserve?.routing_reserve ?? []).length)}</div>
+        <div class="k">post_processing_routing_hint</div><div class="v">${esc(s.post_processing_routing_hint ?? '—')}</div>
+        <div class="k">library_link_reserved</div><div class="v">${esc(s.library_link_reserved ?? '—')}</div>
+        <div class="k">memory_write_reserved</div><div class="v">${esc(s.memory_write_reserved ?? '—')}</div>
+        <div class="k">post_processing_reserve_applied</div><div class="v">${esc(s.post_processing_intelligence_reserve?.post_processing_reserve_applied ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 post_processing_intelligence_reserve（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.post_processing_intelligence_reserve ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>数据源调度状态 / Scheduled Source State（M0）</h3>
+      <div class="meta"><strong>Minimal Scheduling Layer</strong> — 仅最小显式化：参与源/主导源/冲突/覆盖摘要（不含复杂调度算法）。</div>
+      <div class="kv">
+        <div class="k">readable_summary</div><div class="v">${esc(s.scheduled_source_readable_summary ?? '—')}</div>
+        <div class="k">dominant_source</div><div class="v">${esc(s.scheduled_dominant_source ?? '—')}</div>
+        <div class="k">source_conflict_summary</div><div class="v">${esc(s.scheduled_source_conflict_summary ?? '—')}</div>
+        <div class="k">priority_override_summary</div><div class="v">${esc(s.scheduled_priority_override_summary ?? '—')}</div>
+        <div class="k">participating_sources</div><div class="v">${esc((s.scheduled_source_state?.participating_sources ?? []).join(', ') || '—')}</div>
+        <div class="k">timeliness_pressure</div><div class="v">${esc(s.scheduled_source_state?.timeliness_pressure ?? '—')}</div>
+        <div class="k">source_confidence_summary</div><div class="v">${esc(s.scheduled_source_state?.source_confidence_summary ?? '—')}</div>
+        <div class="k">warning_summary</div><div class="v">${esc(s.scheduled_source_warning_summary ?? '—')}</div>
+        <div class="k">event_summaries</div><div class="v">${esc((s.scheduled_source_state?.source_scheduling_event_summaries ?? []).join(' ; ') || '—')}</div>
+        <div class="k">scheduled_source_state_applied</div><div class="v">${esc(s.scheduled_source_state?.scheduled_source_state_applied ?? '—')}</div>
+        <div class="k">task_state_presence_summary</div><div class="v">${esc(s.task_state_presence_summary ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 scheduled_source_state（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.scheduled_source_state ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>任务链状态快照 / Task Chain State Snapshot（M0）</h3>
+      <div class="meta"><strong>Formal task context source</strong> — 最小快照；不替代主链拍板；经调度层 task_state 参与源可见。</div>
+      <div class="kv">
+        <div class="k">task_chain_stage</div><div class="v">${esc(s.snapshot_task_chain_stage ?? '—')}</div>
+        <div class="k">task_mode</div><div class="v">${esc(s.snapshot_task_mode ?? '—')}</div>
+        <div class="k">primary_task_id</div><div class="v">${esc(s.snapshot_primary_task_id ?? '—')}</div>
+        <div class="k">active_subtask_id</div><div class="v">${esc(s.snapshot_active_subtask_id ?? '—')}</div>
+        <div class="k">task_resume_target</div><div class="v">${esc(s.snapshot_task_resume_target ?? '—')}</div>
+        <div class="k">task_chain_state_snapshot_applied</div><div class="v">${esc(s.task_chain_state_snapshot?.task_chain_state_snapshot_applied ?? '—')}</div>
+        <div class="k">task_position_reason_summary（M0.1）</div><div class="v">${esc(s.snapshot_task_position_reason_summary ?? '—')}</div>
+        <div class="k">task_position_warning_summary（M0.1）</div><div class="v">${esc(s.snapshot_task_position_warning_summary ?? '—')}</div>
+        <div class="k">task_position_readable（M0.1）</div><div class="v">${esc(s.snapshot_task_position_readable ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 task_chain_state_snapshot（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.task_chain_state_snapshot ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>主链状态与阶段 / Mainline State &amp; Phase（M0.4）</h3>
+      <div class="meta"><strong>显式推导</strong> — 主链 state/phase ≠ 任务链 mode；不替代拍板。</div>
+      <div class="kv">
+        <div class="k">mainline_state</div><div class="v">${esc(s.snapshot_mainline_state ?? '—')}</div>
+        <div class="k">mainline_phase</div><div class="v">${esc(s.snapshot_mainline_phase ?? '—')}</div>
+        <div class="k">mainline_state_reason_summary</div><div class="v">${esc(s.snapshot_mainline_state_reason ?? '—')}</div>
+        <div class="k">mainline_phase_reason_summary</div><div class="v">${esc(s.snapshot_mainline_phase_reason ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 mainline_state_snapshot（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.mainline_state_snapshot ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>记忆调用解释 / Memory Invocation Explanation（M0.3）</h3>
+      <div class="meta"><strong>解释层</strong> — 不判定记忆正确；可与风险并存。</div>
+      <div class="kv">
+        <div class="k">memory_invoked</div><div class="v">${esc(s.memory_invocation_invoked ?? '—')}</div>
+        <div class="k">memory_type_summary</div><div class="v">${esc(s.memory_invocation_type_summary ?? '—')}</div>
+        <div class="k">memory_invocation_reason_summary</div><div class="v">${esc(s.memory_invocation_reason_summary ?? '—')}</div>
+        <div class="k">memory_invocation_used_content_summary</div><div class="v">${esc(s.memory_invocation_used_content_summary ?? '—')}</div>
+        <div class="k">memory_invocation_effect_summary</div><div class="v">${esc(s.memory_invocation_effect_summary ?? '—')}</div>
+        <div class="k">memory_invocation_readable</div><div class="v">${esc(s.memory_invocation_readable ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 memory_invocation_explanation（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.memory_invocation_explanation ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>日志链分层 / Trace × Summary（M0.2）</h3>
+      <div class="meta"><strong>Raw Trace</strong> = 黑匣子事实 · <strong>Structured Events</strong> = 时间轴等结构化事件 · <strong>Summary Reference</strong> = 派生总结入口（不可替代 Raw Trace）</div>
+      <div class="kv">
+        <div class="k">raw_trace_layer（one-liner）</div><div class="v">${esc(s.raw_trace_layer_one_liner ?? '—')}</div>
+        <div class="k">structured_event_layer（one-liner）</div><div class="v">${esc(s.structured_event_layer_one_liner ?? '—')}</div>
+        <div class="k">summary_reference（one-liner）</div><div class="v">${esc(s.summary_reference_one_liner ?? '—')}</div>
+        <div class="k">Run Summary Reference · summary_id</div><div class="v">${esc(s.run_summary_id ?? '—')}</div>
+        <div class="k">summary_brief</div><div class="v">${esc(s.run_summary_brief ?? '—')}</div>
+        <div class="k">mainline_summary</div><div class="v">${esc(s.run_summary_mainline_summary ?? '—')}</div>
+        <div class="k">memory_usage_summary</div><div class="v">${esc(s.run_summary_memory_usage_summary ?? '—')}</div>
+        <div class="k">issue_or_risk_summary</div><div class="v">${esc(s.run_summary_issue_or_risk_summary ?? '—')}</div>
+        <div class="k">task_chain_progress_summary</div><div class="v">${esc(s.run_summary_task_chain_progress_summary ?? '—')}</div>
+        <div class="k">mainline_state_summary</div><div class="v">${esc(s.run_summary_mainline_state_summary ?? '—')}</div>
+        <div class="k">mainline_narrative_brief</div><div class="v">${esc(s.run_summary_mainline_narrative_brief ?? '—')}</div>
+        <div class="k">summary_reference_applied</div><div class="v">${esc(s.run_summary_reference?.summary_reference_applied ?? '—')}</div>
+        <div class="k">summary_feed_note</div><div class="v">${esc(s.run_summary_reference?.summary_feed_note ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 run_summary_reference（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.run_summary_reference ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>Summary × 后处理入口契约 / Post-Processing Summary Entry（M0.5）</h3>
+      <div class="meta"><strong>入口非证据本体</strong> — Summary-first 且非 Summary-only；图书馆默认经契约入口，非直接吞 Raw Trace；记忆不得仅凭 Summary 写入。</div>
+      <div class="kv">
+        <div class="k">entry_id</div><div class="v">${esc(s.post_processing_entry_id ?? '—')}</div>
+        <div class="k">requires_trace_backfill</div><div class="v">${esc(s.post_processing_requires_trace_backfill ?? '—')}</div>
+        <div class="k">requires_event_backfill</div><div class="v">${esc(s.post_processing_requires_event_backfill ?? '—')}</div>
+        <div class="k">requires_whitebox_backfill</div><div class="v">${esc(s.post_processing_requires_whitebox_backfill ?? '—')}</div>
+        <div class="k">backfill_reason_summary</div><div class="v">${esc(s.post_processing_backfill_reason_summary ?? '—')}</div>
+        <div class="k">summary_brief_hint_only（契约）</div><div class="v">${esc(s.post_processing_summary_entry?.summary_brief_hint_only ?? '—')}</div>
+        <div class="k">memory_write_forbidden_from_summary_only</div><div class="v">${esc(s.post_processing_summary_entry?.memory_write_forbidden_from_summary_only ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 post_processing_summary_entry（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.post_processing_summary_entry ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>叙事—证据张力审计 / Narrative · Evidence Tension Review（M0）</h3>
+      <div class="meta"><strong>Audit-only</strong> — 只读启发式；非 benchmark 规则、非裁决层。</div>
+      <div class="kv">
+        <div class="k">narrative_evidence_tension_review_applied</div><div class="v">${esc(s.narrative_evidence_tension_review?.narrative_evidence_tension_review_applied ?? '—')}</div>
+        <div class="k">tension_review_brief</div><div class="v">${esc(s.tension_review_brief ?? '—')}</div>
+        <div class="k">tension_review_readable</div><div class="v" style="white-space:pre-wrap;">${esc(s.tension_review_readable ?? '—')}</div>
+        <div class="k">suggested_backfill_direction_summary</div><div class="v">${esc(s.narrative_evidence_tension_review?.suggested_backfill_direction_summary ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 narrative_evidence_tension_review（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.narrative_evidence_tension_review ?? {}, null, 2))}</pre>
+      </details>
+    </div>
+
+    <div class="box">
+      <h3>Advisory / Review（SF-1′ 高风险候选）</h3>
+      <div class="meta"><strong>Advisory-only</strong> — 仅提示权，不参与 benchmark/hard-fail；不触发 block/defer。</div>
+      <div class="kv">
+        <div class="k">soft_fail_candidate_observed</div><div class="v">${esc(s.advisory_soft_fail_candidate_observed ?? '—')}</div>
+        <div class="k">clause_id</div><div class="v">${esc(s.advisory_clause_id ?? '—')}</div>
+        <div class="k">review_gate_recommended</div><div class="v">${esc(s.advisory_review_gate_recommended ?? '—')}</div>
+        <div class="k">reason_summary</div><div class="v">${esc(s.advisory_reason_summary ?? '—')}</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>主线叙事对齐 / Mainline Narrative Alignment（M0.6）</h3>
+      <div class="meta"><strong>统一骨架</strong> — context → source → task → memory → mainline → closure → risk。</div>
+      <div class="kv">
+        <div class="k">mainline_narrative_readable</div><div class="v">${esc(s.mainline_narrative_readable ?? '—')}</div>
+        <div class="k">context_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.context_summary ?? '—')}</div>
+        <div class="k">source_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.source_summary ?? '—')}</div>
+        <div class="k">task_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.task_summary ?? '—')}</div>
+        <div class="k">memory_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.memory_summary ?? '—')}</div>
+        <div class="k">mainline_state_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.mainline_state_summary ?? '—')}</div>
+        <div class="k">closure_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.closure_summary ?? '—')}</div>
+        <div class="k">risk_summary</div><div class="v">${esc(s.mainline_narrative_alignment?.risk_summary ?? '—')}</div>
+      </div>
+      <details style="margin-top:10px;">
+        <summary>展开 mainline_narrative_alignment（JSON）</summary>
+        <pre>${esc(JSON.stringify(s.mainline_narrative_alignment ?? {}, null, 2))}</pre>
+      </details>
+    </div>
   `;
   fillTab(s, 'grid_search');
-  // render tree
+  // render tree (with quality overlay: node flags from overlay.node_quality_annotations)
   try{
     const t = s.reasoning_structure_tree;
+    const overlay = s.reasoning_tree_quality_overlay || null;
     const tb = document.getElementById('treeBox');
-    if(tb) tb.innerHTML = renderTreeView(t);
+    if(tb) tb.innerHTML = renderTreeView(t, overlay);
   }catch(e){
     const tb = document.getElementById('treeBox');
     if(tb) tb.textContent = '—';

@@ -83,6 +83,8 @@ class ExperienceGovernanceWhiteboxTraceResult:
     exclusion_log: List[ExperienceGovernanceExclusionItem] = field(default_factory=list)
     interaction_trace: List[ExperienceGovernanceInteractionItem] = field(default_factory=list)
     user_visible_explanation: Optional[ExperienceGovernanceUserVisibleExplanation] = None
+    # Memory vs Novel Information Channel M0 (light attach): one-line source channel summary
+    information_channel_summary: Optional[str] = None
     whitebox_summary: Optional[str] = None
     whitebox_applied: bool = False
 
@@ -262,12 +264,23 @@ def build_experience_governance_whitebox_trace(
     )
 
     whitebox_summary = f"candidates={len(cands)} outcome={status or '—'} scope={scope or '—'} excl={len(exclusions)}"
+    info_ch = None
+    try:
+        mn = frame.get("memory_novel_information_channel") if isinstance(frame, dict) else None
+        if isinstance(mn, dict):
+            dr = _s(mn.get("dominant_reasoning_channel"))
+            dd = _s(mn.get("dominant_decision_channel"))
+            if dr or dd:
+                info_ch = f"channel reasoning={dr or '—'} decision={dd or '—'}"
+    except Exception:
+        info_ch = None
     return ExperienceGovernanceWhiteboxTraceResult(
         reasoning_steps=steps,
         weight_allocation=weights,
         exclusion_log=exclusions,
         interaction_trace=interactions,
         user_visible_explanation=uv,
+        information_channel_summary=info_ch,
         whitebox_summary=whitebox_summary,
         whitebox_applied=True,
     )

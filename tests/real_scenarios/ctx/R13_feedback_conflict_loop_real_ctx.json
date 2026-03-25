@@ -1,0 +1,17 @@
+{
+  "frame_seq": 13,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R13_feedback_conflict_loop_real_ctx",
+  "focus_object_label": "bottle",
+
+  "feedback_ambiguity_level": "medium",
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 95, 100], "conf": 0.77 },
+    { "label": "bottle", "bbox": [0, 0, 210, 55], "conf": 0.82 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "先说不是这个，但又有点像"
+}

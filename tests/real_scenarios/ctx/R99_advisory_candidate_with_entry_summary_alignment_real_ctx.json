@@ -1,0 +1,28 @@
+{
+  "frame_seq": 99,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R99_advisory_candidate_with_entry_summary_alignment_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.23,
+  "task_resume_target": "resume_advisory_positive_m17_summary_align",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.7-E：正样本 SF-1′；post_processing_summary_entry 可读叙事应与 run_summary_reference.issue_or_risk 同指停滞+脆弱性",
+  "object_search_flow_type": "advisory_sf1_prime_positive_flow_m17e",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "advisory_sf1_prime_positive_flow_m17e",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [14, 18, 80, 89], "conf": 0.82 },
+    { "label": "cup", "bbox": [162, 37, 232, 106], "conf": 0.6 }
+  ]
+}

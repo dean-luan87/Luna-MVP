@@ -1,0 +1,26 @@
+{
+  "frame_seq": 60,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R60_recovery_declared_but_resume_chain_fragile_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "task_resume_target": "resume_main_search_route",
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "系统说在恢复，但恢复链路很脆弱，经常又回到不确定状态",
+  "object_search_flow_type": "occlusion_recheck_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "occlusion_recheck_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 76, 84], "conf": 0.86 },
+    { "label": "box", "bbox": [154, 41, 224, 110], "conf": 0.58 }
+  ]
+}

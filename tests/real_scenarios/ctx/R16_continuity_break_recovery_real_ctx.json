@@ -1,0 +1,19 @@
+{
+  "frame_seq": 16,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R16_continuity_break_recovery_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.91,
+  "continuity_break_expected": true,
+  "task_chain_shift_expected": true,
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [28, 32, 78, 86], "conf": 0.81 },
+    { "label": "bag", "bbox": [5, 6, 70, 80], "conf": 0.69 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "刚才被打断了，现在重新看"
+}

@@ -1,0 +1,23 @@
+{
+  "frame_seq": 18,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R18_user_system_divergence_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.2,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "blocked",
+
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "不知道",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 0,
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 120, 120], "conf": 0.82 },
+    { "label": "bottle", "bbox": [50, 20, 80, 90], "conf": 0.84 },
+    { "label": "box", "bbox": [150, 30, 210, 90], "conf": 0.40 }
+  ]
+}
+

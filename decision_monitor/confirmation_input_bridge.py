@@ -59,18 +59,21 @@ def map_raw_text_to_confirmation_type(raw_text: Optional[str]) -> Tuple[Optional
     # 看过了没有 / 检查了没有（先于通用「没有」）
     if any(k in t for k in ("我看过了没有", "看过了没有", "看过没有", "检查了没有")):
         return "checked_and_not_found", "text_mapped"
-    # 没有/不是/没找到
-    if any(k in t for k in ("没有", "不是", "不在", "没找到", "不是这个")):
-        return "target_not_found", "text_mapped"
-    # 有/是/对/找到了
-    if any(k in t for k in ("有", "是", "对", "找到了", "就是这个", "在的")):
-        return "target_found", "text_mapped"
     # 打开了
     if any(k in t for k in ("打开了", "我打开了", "开过了")):
         return "opened_container", "text_mapped"
     # 移开/清理
     if any(k in t for k in ("移开了", "清理了", "我挪开了", "挪开了", "挡的拿开了")):
         return "occlusion_cleared", "text_mapped"
+    # 看过了（弱否定：表示已检查，但未明确“有/没有”）
+    if any(k in t for k in ("我已经看过了", "我看过了", "看过了")):
+        return "checked_and_not_found", "text_mapped"
+    # 没有/不是/没找到
+    if any(k in t for k in ("没有", "不是", "不在", "没找到", "不是这个")):
+        return "target_not_found", "text_mapped"
+    # 有/是/对/找到了
+    if any(k in t for k in ("有", "是", "对", "找到了", "就是这个", "在的")):
+        return "target_found", "text_mapped"
     # 取消
     if any(k in t for k in ("取消", "不找了")):
         return "cancelled", "text_mapped"
@@ -137,6 +140,9 @@ def build_confirmation_input_bridge(
         if input_type in ("opened_container", "confirmed_yes"):
             next_effect = "advance_to_recheck"
             reason_parts.append("advance_to_recheck")
+        elif input_type == "checked_and_not_found":
+            next_effect = "advance_to_recheck"
+            reason_parts.append("advance_to_recheck")
         elif input_type in ("confirmed_no", "target_not_found"):
             next_effect = "mark_container_rejected"
             reason_parts.append("mark_container_rejected")
@@ -159,6 +165,9 @@ def build_confirmation_input_bridge(
         if input_type == "target_found":
             next_effect = "mark_target_found"
             reason_parts.append("mark_target_found")
+        elif input_type == "checked_and_not_found":
+            next_effect = "advance_to_recheck"
+            reason_parts.append("advance_to_recheck")
         elif input_type == "target_not_found":
             next_effect = "mark_target_not_found"
             reason_parts.append("mark_target_not_found")

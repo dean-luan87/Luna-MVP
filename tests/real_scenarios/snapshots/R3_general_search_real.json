@@ -1,0 +1,47 @@
+{
+  "frame": {
+    "trace_anchor_id": "real_R3",
+    "inputs": {"frame_seq": 3, "current_ts": 0.0},
+    "reasoning_tree_metrics": {
+      "tree_depth": 3,
+      "branch_count": 1,
+      "dead_branch_count": 0,
+      "active_path_length": 3,
+      "resolution_path_length": 0,
+      "feedback_node_count": 0,
+      "effective_feedback_count": 0,
+      "prune_rate": 0.0,
+      "resolved": false,
+      "blocked": false,
+      "possible_tree_issue_type": null,
+      "possible_tree_issue_reason": null,
+      "metrics_summary": "reserve snapshot",
+      "metrics_applied": true
+    },
+    "reasoning_tree_quality_overlay": {
+      "structure_score": 80.0,
+      "convergence_score": 65.0,
+      "quality_grade": "acceptable",
+      "quality_summary": "reserve snapshot",
+      "score_reason_summary": "reserve snapshot",
+      "score_penalty_sources": [],
+      "score_bonus_sources": ["short_active_path"],
+      "active_path_quality": "short and clear",
+      "active_path_cost": "low",
+      "node_quality_annotations": {},
+      "quality_overlay_applied": true
+    },
+    "optimization_hint": {
+      "optimization_hint_type": "none",
+      "priority_level": "low",
+      "optimization_hint_reason": "reserve snapshot",
+      "optimization_hint_applied": true
+    },
+    "optimization_feedback_loop": {
+      "validation_result": "not_applicable",
+      "validation_reason": "reserve snapshot",
+      "optimization_feedback_applied": true
+    }
+  }
+}
+

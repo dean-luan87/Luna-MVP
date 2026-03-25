@@ -1,0 +1,16 @@
+{
+  "frame_seq": 4,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R4_feedback_effective_real_ctx",
+  "focus_object_label": "bottle",
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 10, 50, 80], "conf": 0.90 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+
+  "confirmation_input_type": "target_found",
+  "confirmation_input_raw_text": "找到了"
+}
+

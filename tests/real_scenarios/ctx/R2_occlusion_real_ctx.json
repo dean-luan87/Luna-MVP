@@ -1,0 +1,17 @@
+{
+  "frame_seq": 2,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R2_occlusion_real_ctx",
+  "focus_object_label": "bottle",
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [10, 10, 90, 110], "conf": 0.85 },
+    { "label": "bottle", "bbox": [65, 20, 130, 100], "conf": 0.80 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+
+  "confirmation_input_type": "occlusion_cleared",
+  "confirmation_input_raw_text": "我清理了遮挡"
+}
+

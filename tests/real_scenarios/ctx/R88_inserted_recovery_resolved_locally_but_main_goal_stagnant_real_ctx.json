@@ -1,0 +1,28 @@
+{
+  "frame_seq": 88,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R88_inserted_recovery_resolved_locally_but_main_goal_stagnant_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.22,
+  "inserted_task_exit_ambiguous_expected": true,
+  "task_resume_target": "resume_main_after_inserted_resolved",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "插入任务局部恢复成立，但主任务目标仍停滞",
+  "object_search_flow_type": "pocket_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "pocket_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [15, 21, 79, 89], "conf": 0.84 },
+    { "label": "bag", "bbox": [118, 48, 208, 128], "conf": 0.64 }
+  ]
+}

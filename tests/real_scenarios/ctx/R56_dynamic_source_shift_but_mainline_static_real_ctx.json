@@ -1,0 +1,33 @@
+{
+  "frame_seq": 56,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R56_dynamic_source_shift_but_mainline_static_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.22,
+
+  "dynamic_source_shift_but_mainline_static_expected": true,
+  "fast_environment_shift_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "环境和任务提示都在变，但主链说法几乎不变",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 0,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 75, 83], "conf": 0.87 },
+    { "label": "box", "bbox": [162, 38, 224, 108], "conf": 0.6 }
+  ]
+}

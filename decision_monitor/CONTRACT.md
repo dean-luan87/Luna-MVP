@@ -15,6 +15,73 @@
 - **monitor_version**：契约版本
 - **trace_anchor_id**：与现有 trace 对齐用（如 `frame_123`）
 
+## Strategy Injection Shadow M0（策略注入影子验证，写死）
+
+定位：**只做影子验证**，输出“如果未来注入策略会怎样”的轻量预估，不执行真实注入，不改主逻辑，不做复杂模拟器。
+
+**强约束（写死）**：
+
+> 图书馆策略未来正式接入前，优先先经过 Strategy Injection Shadow 影子验证层；不得直接跳过 shadow 层执行真实策略注入。
+
+## Reasoning Tree Quality Overlay M0（推理树质量叠加层，写死）
+
+- **定位**：评分机制直接叠在 Reasoning Structure Tree 上，形成带质量标记的推理树；树表达“怎么想的”，质量层表达“想得好不好”。
+- **强约束**：推理质量评分默认作为结构树的**质量叠加层**存在，不应长期作为独立、脱离结构树的评分系统平行存在。
+
+## Reasoning Timeline View M0（推理时间轴视图，写死）
+
+推理过程的“结构视角”与“时间视角”应并列存在：结构树负责表达分支与收敛关系，时间轴负责表达事件先后与关键转折。后续相关能力应优先接入这两条统一视角，而不是另起平行展示体系。
+
+## Memory vs Novel Information Channel M0（记忆信息 / 新增信息双通道，写死）
+
+后续推理体系中，应显式区分“记忆信息调用”与“新增信息获取”两条信息通道；新增信息若对推理/决策产生关键作用，应能形成新记忆候选。不得长期将两者混为同一来源处理。
+
+## 推理主线骨架一期基线总原则（Phase Closure M1，写死）
+
+当前推理主线骨架（交互链 + 白盒链 + 结构链 + 质量链 + 知识预留链 + 策略影子层）已形成一期基线。后续新增相关能力时，应优先在此主线内扩展；不得绕开当前骨架另起新的平行推理/解释/优化体系。
+
+## Scenario Benchmark & Evaluation Harness M0（场景基准包 + 评测支架，写死）
+
+后续新增真实场景验证时，应优先接入统一 Scenario Benchmark & Evaluation Harness；不得长期以散落 smoke / 临时脚本替代统一场景评测支架。
+
+## Real Scenario Pack M0（真实场景包，写死）
+
+后续新增真实场景验证时，应优先接入 Real Scenario Pack / Scenario Benchmark Harness 的统一 case 结构；不得长期以散落脚本或口头说明替代标准化真实场景基线。
+
+说明（M0.1 第二批真实场景扩充）：为重新制造有效 triage，新增 `R7~R10` 这类 `ctx_json` case 可在 `ctx` 内显式设置 `detector_floor_due: true`（推动 `hold_for_floor`，使骨架与假设分支更容易暴露问题），同时仍保持 `ScenarioBenchmarkCase/ScenarioBenchmarkResult` 与评测结构不变。
+
+说明（M0.2/M1 第三批真实场景扩充）：可继续在 `ctx_json` 中引入更真实干扰字段（如高运动失稳、反馈歧义、任务链切换、连续性中断预期）制造新 triage 压力；但仍必须复用同一 case/result 结构，禁止另造平行评测体系。
+
+说明（M0.3/M2 第四批真实场景扩充）：可继续通过“强制造语义差异 + 强制可见终端状态（如 terminal=blocked）”来复现已修复路径的回归压力；但仍保持 `ScenarioBenchmarkCase/ScenarioBenchmarkResult` 与 triage 口径不变。
+
+说明（M0.4/M3 第五批真实场景扩充）：可继续通过“强制造行为级背离/恢复链路差异 + 强制可见终端状态（如 terminal=blocked）”来重新制造有效 triage；同时仍复用同一 case/result 与 triage 口径，不引入新平台或新评测体系。
+说明（M0.5/M4 第六批真实场景扩充）：可继续在不引入新平台的前提下，通过 `object_search_retry_count>=3`（repeated_fallback）制造 `blocked_without_resolution` 的可见 triage；同时保持 `ScenarioBenchmarkCase/ScenarioBenchmarkResult` 与 triage 口径不变。
+说明（M0.6/M5 第七批真实场景扩充）：可继续在不引入新平台的前提下，通过“意图-动作-任务错位”语境重塑未收口的 blocked/unresolved 可见性；在本工程口径里保持同一 case/result 与 triage 入口，不引入新评测体系。
+说明（M0.7/M6 第八批真实场景扩充）：可继续在 `ctx_json` 中轻量标注更高阶语义预期（如 `long_term_divergence_expected`、`task_subtask_fact_shift_expected`、`success_condition_overwritten_expected`、`false_multi_recovery_expected`、`multi_feedback_source_conflict_expected`、`delayed_exposure_mismatch_expected`），用于表达“社会性扰动 / 长链语义漂移 / 多方约束冲突”压力；**不得**另造平行评测体系；详见 `docs/REAL_SCENARIO_PACK_M0_7_M6_DELIVERY.md`。
+说明（M1.1 Recheck Planner 定点收口）：上述第八批 `*_expected` 标志命中时，`recheck_planner` 应给出与 M1.0 错位语境同级的可行动澄清（`ask_user_for_clarification`，`recheck_applied=True`，`recheck_blocked=False`），避免结构树长期落在 `blocked_without_resolution`；详见 `docs/TARGETED_FIX_SPRINT_M1_1_RECHECK_NEW_EXPECTED_BLOCKED.md`。
+说明（M0.8/M7 第九批真实场景扩充）：可继续在 `ctx_json` 中轻量标注更高阶语义预期（如 `gradual_goal_drift_expected`、`local_recovery_global_mismatch_expected`、`multi_constraint_soft_shift_expected`、`feedback_fact_consistent_but_wrong_expected`、`task_semantic_crack_expected`、`slow_poisoning_expected`），用于表达“长期累积误差 / 多层约束漂移 / 伪一致性 / 慢性错位”压力；**不得**另造平行评测体系；详见 `docs/REAL_SCENARIO_PACK_M0_8_M7_DELIVERY.md`。
+说明（M1.2 Recheck Planner 定点收口）：上述第九批 `*_expected` 标志命中时，`recheck_planner` 应给出与 M1.1 同级的可行动澄清（`ask_user_for_clarification`，`recheck_applied=True`，`recheck_blocked=False`），避免结构树长期落在 `blocked_without_resolution`；详见 `docs/TARGETED_FIX_SPRINT_M1_2_RECHECK_M08_EXPECTED_BLOCKED.md`。
+
+## Decision Contamination Guard Reserve M0（决策污染观察占位层，写死）
+
+后续白盒与治理体系中，应显式预留「决策污染观察与抵抗」层，用于观察污染如何进入、如何扩散、如何被阻断、如何被消化。当前只做 **reserve**（`decision_contamination_guard_reserve`），**不做**强污染判定结论。未来该层需兼容多模型、多决策、投票议会式复核等机制；详见 `docs/DECISION_CONTAMINATION_GUARD_RESERVE_M0.md`。
+
+## Post-Processing Intelligence Reserve M0（后置信息处理占位层，写死）
+
+**定位**：独立的后置信息处理板块，位于运行主线之后、图书馆与记忆系统之前；**不是**记忆系统的一部分。原始历史处理信息不得直接进入记忆系统；记忆系统只接收经该板块筛选、优化后的高质量结果，不得直接注入原始信息。
+
+**后续 Luna 后端必须保留**独立的后置信息处理板块，用于对历史处理信息进行归类、分析、筛选与优化；该板块与记忆系统严格分离，记忆系统只接收经过该板块处理后的高质量结果，而不直接接收原始信息。
+
+当前只做 **reserve**（`post_processing_intelligence_reserve`）：可归类对象、可分析对象、可筛选对象、图书馆/记忆候选与去向占位；**不做**真实归类算法、错误成因分析、策略效果分析、记忆筛选、图书馆/记忆正式写入、自动知识提炼与去噪压缩。未来该板块需支持错误归因、模式提炼、策略效果比较、污染观察与去向决策；详见 `docs/POST_PROCESSING_INTELLIGENCE_RESERVE_M0.md`。
+
+## 工程执行顺序：主线 → 白盒 → 日志（写死）
+
+凡涉及主链、白盒、日志、benchmark/triage/rebaseline 的工程轮次，**必须**先验证主线通顺，再验证白盒解释同一条主线，再验证 frame/JSONL/runtime_ctx 完整落地；交付须含「主线—白盒—日志」串联检查与明确结论。细则与禁止事项见 **`docs/MAINLINE_WHITEBOX_LOG_CHAIN_RULE.md`**；Cursor 规则见 **`.cursor/rules/Luna-Core-Mainline-Whitebox-Log-Chain.mdc`**。
+
+## Benchmark Triage Board M0（分诊板，写死）
+
+后续真实场景评测结果应优先通过 Benchmark Triage Board 转为研发优先级输出；不得长期停留在“有评测结果但没有统一分诊与优先级”的状态。
+
 ## 各层最小字段
 
 | 层 | 字段 |
@@ -310,6 +377,19 @@
 > 时空间连续性属于内部强影响因子。后续必须进入白盒与结构树依据层；前端默认只展示其对当前决策的结果性影响，不默认直出底层 continuity 原始细节。
 
 **交付件**：`docs/SPATIOTEMPORAL_CONTINUITY_RESERVE_M0_DELIVERY.md`。
+
+## Environment & Task Context Reserve M0（环境信息 / 任务链信息白盒占位层）
+
+**原则（写死）**：
+
+> 后续决策观察、对比分析与白盒解释中，应将**环境信息**与**任务链信息**作为**推理前提条件**显式纳入；不得长期只看结果与分支，而忽略「在什么情况下、处于哪条任务链、发生了哪些人为/系统动作」这些前提。
+
+**边界（M0）**：
+
+- 只做占位与粗摘要映射（`environment_task_context_reserve`），不做复杂环境建模、不做完整任务中心、不做环境评分与历史对比系统。
+- 必须进入 frame / JSONL；Console / Viewer 可展示轻量前提层；结构树根摘要与时间轴可挂接一条前提事件。
+
+**交付件**：`docs/ENVIRONMENT_TASK_CONTEXT_RESERVE_M0_DELIVERY.md`。
 
 
 ---

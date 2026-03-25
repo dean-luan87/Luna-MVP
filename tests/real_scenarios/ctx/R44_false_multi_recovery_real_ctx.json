@@ -1,0 +1,33 @@
+{
+  "frame_seq": 44,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R44_false_multi_recovery_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "false_multi_recovery_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "第一次恢复看似成功，第二次也看似成功，但真实目标语义/路径已深层偏离（伪恢复叠加）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [9, 15, 70, 80], "conf": 0.86 },
+    { "label": "box", "bbox": [155, 40, 218, 112], "conf": 0.6 }
+  ]
+}

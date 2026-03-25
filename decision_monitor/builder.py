@@ -59,10 +59,37 @@ from . import evidence_hypothesis_whitebox_trace
 from . import experience_governance_whitebox_trace
 from .reasoning_structure_tree import build_reasoning_structure_tree
 from .reasoning_tree_metrics import build_reasoning_tree_metrics
+from .reasoning_tree_quality_overlay import build_reasoning_tree_quality_overlay
+from .reasoning_timeline_view import (
+    build_reasoning_timeline_view,
+    append_context_premise_event,
+    append_contamination_guard_event,
+    append_post_processing_reserved_event,
+    append_scheduled_source_state_event,
+    append_task_chain_snapshot_event,
+    append_task_chain_position_explanation_events,
+    append_memory_invocation_explanation_events,
+    append_mainline_state_snapshot_events,
+    append_m11x_process_observation_events,
+)
+from .memory_novel_information_channel import build_memory_novel_information_channel
 from .optimization_hint import build_optimization_hint
 from .optimization_feedback_loop import build_optimization_feedback_loop
 from .knowledge_dual_channel_interface import build_knowledge_dual_channel_interface
 from .spatiotemporal_continuity_reserve import build_spatiotemporal_continuity_reserve
+from .environment_task_context_reserve import build_environment_task_context_reserve
+from .decision_contamination_guard_reserve import build_decision_contamination_guard_reserve
+from .post_processing_intelligence_reserve import build_post_processing_intelligence_reserve
+from .information_source_scheduler import build_scheduled_source_state
+from .run_summary_builder import build_run_summary_reference
+from .memory_invocation_explanation import build_memory_invocation_explanation
+from .mainline_state_snapshot import build_mainline_state_snapshot
+from .post_processing_summary_contract import build_post_processing_summary_entry
+from .mainline_narrative_alignment import build_mainline_narrative_alignment
+from .narrative_evidence_tension_review import build_narrative_evidence_tension_review
+from .advisory_review_observation import build_advisory_review_observation
+from .task_chain_state_snapshot import build_task_chain_state_snapshot
+from .strategy_injection_shadow import build_strategy_injection_shadow
 from .spatial_expression_sidecar import build_focus_target_actionable_expression
 
 
@@ -72,6 +99,13 @@ def _get(obj: Any, key: str, default: Any = None) -> Any:
     if isinstance(obj, dict):
         return obj.get(key, default)
     return getattr(obj, key, default)
+
+
+def _s(x: Any) -> Optional[str]:
+    if x is None:
+        return None
+    t = str(x).strip()
+    return t if t else None
 
 
 def _append_grid_suffix(text: Optional[str], grid_label: Optional[str]) -> Optional[str]:
@@ -410,6 +444,7 @@ class DecisionMonitorBuilder:
             filt,
             pools,
             state,
+            goal=goal,
         )
         # 补证规划 M0：将 verification_hint / suggested_next_check 推进为最小可执行补证
         recheck_result = recheck_planner.build_recheck_planner(
@@ -417,6 +452,7 @@ class DecisionMonitorBuilder:
             ledger,
             state,
             local_goal_spatial_map,
+            ctx=ctx,
         )
         # 对象时空账本 M1.5：单对象优先；最小容器逻辑；用户确认/否认写回（含 M1 寻物用户回复映射）
         search_user_last = ctx.get("search_user_last_location")
@@ -744,6 +780,20 @@ class DecisionMonitorBuilder:
             trace_anchor_id=trace_anchor_id,
         )
 
+        # Task Chain State Snapshot M0（任务链最小状态快照；先于调度层，供 scheduled_source_state 消费）
+        try:
+            tcs0 = build_task_chain_state_snapshot(frame.to_dict())
+            frame = replace(frame, task_chain_state_snapshot=tcs0)
+        except Exception:
+            frame = replace(frame, task_chain_state_snapshot=None)
+
+        # Scheduled Source State M0（数据源调度层最小显式化：主链入口可见对象）
+        try:
+            scheduled_state = build_scheduled_source_state(frame.to_dict())
+            frame = replace(frame, scheduled_source_state=scheduled_state)
+        except Exception:
+            frame = replace(frame, scheduled_source_state=None)
+
         # Reasoning Tree Metrics M0（必须基于结构树计算；不反写主逻辑）
         try:
             tree = build_reasoning_structure_tree(frame.to_dict()).to_dict()
@@ -752,6 +802,24 @@ class DecisionMonitorBuilder:
         except Exception:
             # keep None on failure (M0: do not break main flow)
             frame = replace(frame, reasoning_tree_metrics=None)
+
+        # Reasoning Tree Quality Overlay M0（质量叠加在树上，非独立评分系统）
+        try:
+            frame_d = frame.to_dict()
+            tree_d = build_reasoning_structure_tree(frame_d).to_dict()
+            m_d = frame_d.get("reasoning_tree_metrics")
+            if m_d is not None and hasattr(m_d, "to_dict"):
+                m_d = m_d.to_dict()
+            if not isinstance(m_d, dict):
+                m_d = {}
+            overlay = build_reasoning_tree_quality_overlay(
+                tree_d,
+                m_d,
+                frame_d.get("optimization_feedback_loop") if isinstance(frame_d.get("optimization_feedback_loop"), dict) else None,
+            )
+            frame = replace(frame, reasoning_tree_quality_overlay=overlay)
+        except Exception:
+            frame = replace(frame, reasoning_tree_quality_overlay=None)
 
         # Optimization Hint M0（在 metrics 之后生成；只读 tree/metrics/whiteboxes）
         try:
@@ -814,6 +882,161 @@ class DecisionMonitorBuilder:
             frame = replace(frame, spatiotemporal_continuity_reserve=c)
         except Exception:
             frame = replace(frame, spatiotemporal_continuity_reserve=None)
+
+        # Strategy Injection Shadow M0（影子验证：不注入、不执行，仅预估影响与风险）
+        try:
+            frame_d5 = frame.to_dict()
+            kdc = frame_d5.get("knowledge_dual_channel_interface") if isinstance(frame_d5.get("knowledge_dual_channel_interface"), dict) else None
+            inj_slot = kdc.get("injection_slot") if isinstance(kdc, dict) and isinstance(kdc.get("injection_slot"), dict) else None
+            shadow = build_strategy_injection_shadow(
+                injection_slot=inj_slot,
+                optimization_hint=frame_d5.get("optimization_hint") if isinstance(frame_d5.get("optimization_hint"), dict) else None,
+                optimization_feedback_loop=frame_d5.get("optimization_feedback_loop") if isinstance(frame_d5.get("optimization_feedback_loop"), dict) else None,
+                reasoning_tree_metrics=frame_d5.get("reasoning_tree_metrics") if isinstance(frame_d5.get("reasoning_tree_metrics"), dict) else None,
+                reasoning_structure_tree=build_reasoning_structure_tree(frame_d5).to_dict(),
+            )
+            frame = replace(frame, strategy_injection_shadow=shadow)
+        except Exception:
+            frame = replace(frame, strategy_injection_shadow=None)
+
+        # Reasoning Timeline View M0（时间视角：事件先后与关键转折；不替代结构树）
+        try:
+            frame_d6 = frame.to_dict()
+            tv = build_reasoning_timeline_view(frame_d6)
+            frame = replace(frame, reasoning_timeline_view=tv)
+            sss = frame_d6.get("scheduled_source_state") if isinstance(frame_d6.get("scheduled_source_state"), dict) else None
+            if tv is not None and isinstance(sss, dict):
+                tv_s = append_scheduled_source_state_event(tv, sss)
+                frame = replace(frame, reasoning_timeline_view=tv_s)
+        except Exception:
+            frame = replace(frame, reasoning_timeline_view=None)
+
+        # Memory vs Novel Information Channel M0（信息来源通道：记忆 vs 新信息 vs 排除推断 vs 用户提供）
+        try:
+            frame_d7 = frame.to_dict()
+            ch = build_memory_novel_information_channel(frame_d7)
+            frame = replace(frame, memory_novel_information_channel=ch)
+        except Exception:
+            frame = replace(frame, memory_novel_information_channel=None)
+
+        # Environment & Task Context Reserve M0（环境/任务链前提占位；在时间轴生成之后追加一条 premise 事件）
+        try:
+            frame_d8 = frame.to_dict()
+            etc = build_environment_task_context_reserve(frame_d8)
+            frame = replace(frame, environment_task_context_reserve=etc)
+            tv0 = getattr(frame, "reasoning_timeline_view", None)
+            if tv0 is not None and etc.context_premise_summary:
+                tv1 = append_context_premise_event(tv0, etc.context_premise_summary)
+                frame = replace(frame, reasoning_timeline_view=tv1)
+        except Exception:
+            frame = replace(frame, environment_task_context_reserve=None)
+
+        # Task Chain State Snapshot 精炼 + 调度层刷新（环境/任务前提写入后同帧对齐）
+        try:
+            tcs1 = build_task_chain_state_snapshot(frame.to_dict())
+            frame = replace(frame, task_chain_state_snapshot=tcs1)
+            sched_r = build_scheduled_source_state(frame.to_dict())
+            frame = replace(frame, scheduled_source_state=sched_r)
+        except Exception:
+            pass
+
+        # Decision Contamination Guard Reserve M0（决策污染观察占位；无强判定）
+        try:
+            frame_d9 = frame.to_dict()
+            dcg = build_decision_contamination_guard_reserve(frame_d9)
+            frame = replace(frame, decision_contamination_guard_reserve=dcg)
+            tv0 = getattr(frame, "reasoning_timeline_view", None)
+            if tv0 is not None and dcg.contamination_observation_summary:
+                tv_c = append_contamination_guard_event(tv0, dcg.contamination_observation_summary)
+                frame = replace(frame, reasoning_timeline_view=tv_c)
+        except Exception:
+            frame = replace(frame, decision_contamination_guard_reserve=None)
+
+        # Post-Processing Intelligence Reserve M0（后置信息处理占位；运行主线之后、图书馆/记忆之前）
+        try:
+            frame_d10 = frame.to_dict()
+            pp = build_post_processing_intelligence_reserve(frame_d10)
+            frame = replace(frame, post_processing_intelligence_reserve=pp)
+            tv0 = getattr(frame, "reasoning_timeline_view", None)
+            if tv0 is not None and pp.post_processing_summary:
+                tv_pp = append_post_processing_reserved_event(tv0, pp.post_processing_summary)
+                frame = replace(frame, reasoning_timeline_view=tv_pp)
+        except Exception:
+            frame = replace(frame, post_processing_intelligence_reserve=None)
+
+        # Task Chain Snapshot 时间轴事件（M0：在 post_processing 之后，保证快照已精炼）
+        try:
+            tv_tc = getattr(frame, "reasoning_timeline_view", None)
+            tcs_d = frame.to_dict().get("task_chain_state_snapshot")
+            if tcs_d is not None and hasattr(tcs_d, "to_dict"):
+                tcs_d = tcs_d.to_dict()
+            if tv_tc is not None and isinstance(tcs_d, dict):
+                tv_tc2 = append_task_chain_snapshot_event(tv_tc, tcs_d)
+                tv_tc3 = append_task_chain_position_explanation_events(tv_tc2, tcs_d)
+                frame = replace(frame, reasoning_timeline_view=tv_tc3)
+        except Exception:
+            pass
+
+        # Memory Invocation Explanation M0.3（记忆调用解释：同帧进时间轴与 summary，不改拍板）
+        try:
+            mie = build_memory_invocation_explanation(frame.to_dict())
+            frame = replace(frame, memory_invocation_explanation=mie)
+            tv_mi = getattr(frame, "reasoning_timeline_view", None)
+            mie_d = mie.to_dict()
+            if tv_mi is not None and mie_d.get("memory_invocation_explanation_applied"):
+                tv_mie = append_memory_invocation_explanation_events(tv_mi, mie_d)
+                frame = replace(frame, reasoning_timeline_view=tv_mie)
+        except Exception:
+            frame = replace(frame, memory_invocation_explanation=None)
+
+        # Mainline State / Phase Explicitness M0.4（主链状态与阶段显式化；只读推导，不改拍板）
+        try:
+            mss = build_mainline_state_snapshot(frame.to_dict())
+            frame = replace(frame, mainline_state_snapshot=mss)
+            tv_ms = getattr(frame, "reasoning_timeline_view", None)
+            mss_d = mss.to_dict()
+            if tv_ms is not None and mss_d.get("mainline_state_snapshot_applied"):
+                tv_mss = append_mainline_state_snapshot_events(tv_ms, mss_d)
+                frame = replace(frame, reasoning_timeline_view=tv_mss)
+        except Exception:
+            frame = replace(frame, mainline_state_snapshot=None)
+
+        # Run Summary Reference M0.2（运行总结入口：仅基于已落地 frame 派生，不替代 Raw Trace）
+        try:
+            frame_d11 = frame.to_dict()
+            rsr = build_run_summary_reference(frame_d11)
+            frame = replace(frame, run_summary_reference=rsr)
+            tv_rs = getattr(frame, "reasoning_timeline_view", None)
+            if tv_rs is not None:
+                tv_rs2 = append_m11x_process_observation_events(tv_rs, rsr.to_dict())
+                frame = replace(frame, reasoning_timeline_view=tv_rs2)
+            nar = build_mainline_narrative_alignment(frame.to_dict())
+            frame = replace(frame, mainline_narrative_alignment=nar)
+            pse = build_post_processing_summary_entry(frame.to_dict())
+            frame = replace(frame, post_processing_summary_entry=pse)
+            try:
+                netr = build_narrative_evidence_tension_review(frame.to_dict())
+                frame = replace(frame, narrative_evidence_tension_review=netr)
+            except Exception:
+                frame = replace(frame, narrative_evidence_tension_review=None)
+            # Advisory / Review Observation M0：SF-1′ 最小工程观察（提示权，无裁决权）
+            try:
+                adv = build_advisory_review_observation(frame.to_dict())
+                frame = replace(frame, advisory_review_observation=adv)
+            except Exception:
+                frame = replace(frame, advisory_review_observation=None)
+            pp = getattr(frame, "post_processing_intelligence_reserve", None)
+            if pp is not None and pse.post_processing_summary_entry_applied:
+                frame = replace(
+                    frame,
+                    post_processing_intelligence_reserve=replace(pp, summary_post_processing_entry_id=pse.entry_id),
+                )
+        except Exception:
+            frame = replace(frame, run_summary_reference=None)
+            frame = replace(frame, mainline_narrative_alignment=None)
+            frame = replace(frame, post_processing_summary_entry=None)
+            frame = replace(frame, narrative_evidence_tension_review=None)
+            frame = replace(frame, advisory_review_observation=None)
 
         return frame
 
@@ -890,6 +1113,16 @@ class DecisionMonitorBuilder:
             raw_observation_summary=raw_summary,
             goal_relevant_observations=ctx.get("goal_relevant_observations"),
             sensor_notes=ctx.get("sensor_notes"),
+            scenario_task_resume_target=_s(ctx.get("task_resume_target")),
+            recovery_declared_but_resume_chain_fragile_expected=bool(
+                ctx.get("recovery_declared_but_resume_chain_fragile_expected")
+            ),
+            phase_correct_but_closure_semantics_misaligned_expected=bool(
+                ctx.get("phase_correct_but_closure_semantics_misaligned_expected")
+            ),
+            memory_bias_accumulated_under_familiar_context_expected=bool(
+                ctx.get("memory_bias_accumulated_under_familiar_context_expected")
+            ),
         )
 
     def _build_state(self, ctx: Dict[str, Any], obs: Any, policy_intent: Any) -> StateLayer:

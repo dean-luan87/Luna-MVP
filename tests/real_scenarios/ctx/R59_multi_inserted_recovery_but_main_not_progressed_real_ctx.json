@@ -1,0 +1,28 @@
+{
+  "frame_seq": 59,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R59_multi_inserted_recovery_but_main_not_progressed_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.24,
+  "multi_insertion_expected": true,
+  "main_task_resumed_but_not_progressed_expected": true,
+  "task_resume_target": "resume_main_pickup_bottle",
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "插入任务反复切换后，主任务一直没有真正向前推进",
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [16, 21, 84, 94], "conf": 0.83 },
+    { "label": "bag", "bbox": [130, 55, 220, 138], "conf": 0.64 }
+  ]
+}

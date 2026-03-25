@@ -1,0 +1,29 @@
+{
+  "frame_seq": 78,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R78_local_progress_repeated_but_global_goal_still_weak_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.24,
+  "local_progress_repeated_but_global_goal_still_weak_observed": true,
+  "multi_insertion_expected": true,
+  "main_task_resumed_but_not_progressed_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "局部闭环反复成立，但主目标推进仍弱",
+  "object_search_flow_type": "local_repeat_global_weak_flow",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "local_repeat_global_weak_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [13, 20, 82, 91], "conf": 0.85 },
+    { "label": "tray", "bbox": [128, 48, 218, 124], "conf": 0.55 }
+  ]
+}

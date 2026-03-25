@@ -1,0 +1,28 @@
+{
+  "frame_seq": 98,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R98_global_stall_visible_but_closure_not_overclaimed_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.22,
+  "phase_closure_progress_pair_reappeared_observed": true,
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_can_resume_main_task": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.7-D：全局停滞叙事清楚但 lg 仍为 medium 档，closure 不升格；advisory 近邻排除",
+  "object_search_flow_type": "global_stall_visible_lg_medium_m17",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "global_stall_visible_lg_medium_m17",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 16, 81, 90], "conf": 0.79 },
+    { "label": "bag", "bbox": [154, 44, 224, 113], "conf": 0.62 }
+  ]
+}

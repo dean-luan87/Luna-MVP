@@ -38,6 +38,10 @@ Reasoning Structure Tree 是 Luna 的统一推理骨架，用于把线索/候选
 ## 6. 最小生成规则（M0）
 
 - 根节点：目标/flow/terminal/next_effect 摘要
+
+### 6.1 Environment & Task Context 轻挂接（M0）
+
+当 frame 含 `environment_task_context_reserve` 时，根 `node_summary` 追加 `env=<scene_type> task_stage=<stage>`；`tree_summary` 末尾可追加截断版 `context_premise_summary`（便于与前提层对齐，不重构树模型）。详见 `docs/ENVIRONMENT_TASK_CONTEXT_RESERVE_M0_DELIVERY.md`。
 - 线索节点：evidence_ledger（首条）+ visual_candidate（若有）
 - 假设节点：hypothesis_layer（首条）+ 至少一个 pruned alternative
 - 动作节点：grid/recheck/action_hint（若有则挂接）
@@ -56,7 +60,20 @@ Reasoning Structure Tree 是 Luna 的统一推理骨架，用于把线索/候选
 
 > 后续任何新功能，只要产生新的推理分支、排除路径、用户反馈驱动路径或结果收敛路径，都应逐步接入 Reasoning Structure Tree；不得长期只存在于模块内部而不进入总结构树。
 
-## 9. 结论（M0）
+## 9. 与 Quality Overlay 的关系（M0）
+
+推理树质量叠加层（Reasoning Tree Quality Overlay M0）直接叠在结构树上：树级评分（structure/convergence/grade）与节点级 quality_flag 均以本树为基础；评分与树一体展示，见 `docs/REASONING_TREE_QUALITY_OVERLAY_M0_DELIVERY.md`。
+
+## 9.5 与 Timeline 的关系（M0）
+
+推理时间轴视图（Reasoning Timeline View M0）与结构树为并列视角：
+
+- 结构树：分支/排除/收敛关系
+- 时间轴：事件先后/关键转折/状态切换
+
+时间轴只读主线输出并在 Console 中靠近结构树展示，见 `docs/REASONING_TIMELINE_VIEW_M0_DELIVERY.md`。
+
+## 10. 结论（M0）
 
 结构树已完成“架子”与最小挂接，并在 Reasoning Console 中可视化展示；后续可在不破坏接口的前提下逐步优化树质量与剪枝。
 
@@ -92,4 +109,13 @@ M0.5 在 **不改后端树生成逻辑、不改节点模型结构、不改 API**
 
 连续性属于内部强影响因子，应进入结构树依据层。M0 仅做轻挂接：在结构树摘要中附一句 continuity 影响摘要；不改变树模型结构、不引入复杂连续性细节。  
 参见：`docs/SPATIOTEMPORAL_CONTINUITY_RESERVE_M0_DELIVERY.md`。
+
+## 14. Memory vs Novel Information Channel（M0）
+
+推理过程应显式区分“记忆信息调用”与“新增信息获取”两条信息通道。M0 仅做轻挂接：
+
+- root 摘要附加 dominant_reasoning_channel / dominant_decision_channel 简短标记
+- 不改变树模型主结构，不引入复杂记忆系统细节
+
+参见：`docs/MEMORY_NOVEL_INFORMATION_CHANNEL_M0_DELIVERY.md`。
 
