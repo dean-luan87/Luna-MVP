@@ -52,6 +52,7 @@ class GuardResult:
     warnings: List[str]
     score: int  # 0-100
     grade: str  # GREEN/YELLOW/RED
+    status: str = "VALID"
 
 def scan_repo_text(globs: List[str]) -> List[Tuple[str, str]]:
     files = []
@@ -155,16 +156,18 @@ def dcs_check_trace(trace_path: str, seconds_limit: float = 30.0) -> GuardResult
 
     if not os.path.exists(trace_path):
         warnings.append(f"[DCS] trace not found: {trace_path} (skip)")
-        return GuardResult(ok=True, errors=[], warnings=warnings, score=90, grade="YELLOW")
+        return GuardResult(ok=False, errors=["[DCS] required trace missing"], warnings=warnings, score=0, grade="RED", status="TRACE_MISSING")
 
     first_t = None
     count = 0
+    saw_nonempty_line = False
     try:
         with open(trace_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line:
                     continue
+                saw_nonempty_line = True
                 rec = json.loads(line)
                 t = rec.get("time", {}).get("t_video_s")
                 if t is None:
@@ -204,7 +207,10 @@ def dcs_check_trace(trace_path: str, seconds_limit: float = 30.0) -> GuardResult
         errors.append(f"[DCS] failed to parse trace: {e}")
 
     if count == 0:
-        warnings.append("[DCS] trace empty or no valid lines")
+        status = "TRACE_NO_VALID_RECORDS" if saw_nonempty_line else "TRACE_EMPTY"
+        errors.append(f"[DCS] {status.lower()}")
+    else:
+        status = "TRACE_VALID"
 
     score = 100
     score -= min(70, 10 * len(errors))
@@ -217,8 +223,8 @@ def dcs_check_trace(trace_path: str, seconds_limit: float = 30.0) -> GuardResult
     if errors or score < 70:
         grade = "RED"
 
-    ok = (len(errors) == 0)
-    return GuardResult(ok=ok, errors=errors, warnings=warnings, score=score, grade=grade)
+    ok = (len(errors) == 0 and count > 0)
+    return GuardResult(ok=ok, errors=errors, warnings=warnings, score=score, grade=grade, status=status)
 
 def main() -> int:
     ap = argparse.ArgumentParser()

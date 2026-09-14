@@ -58,8 +58,13 @@ def verify_runtime_validation_closure_v1(
     forbidden_absent = source_present and source.get("external_invocation_observed") is False and all(
         source.get(name) is False for name in ("model_invoked", "network_invoked", "database_invoked")
     )
-    validation_checks_ok = validation_present and all(validation.get("checks", {}).values())
-    deterministic_ok = validation_present and validation.get("deterministic_validation_result") is True and validation_raw == _canonical_json_v1(validation)
+    validation_checks = validation.get("checks")
+    validation_checks_ok = validation_present and isinstance(validation_checks, dict) and bool(validation_checks) and all(validation_checks.values())
+    determinism_evidence = validation.get("determinism_evidence") or {}
+    deterministic_ok = validation_present and validation.get("determinism_status") == "DETERMINISM_VERIFIED" and validation.get("deterministic_validation_result") is True and validation_raw == _canonical_json_v1(validation) and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
+    side_effect_evidence = source.get("side_effect_evidence")
+    side_effect_status = "OBSERVED_NOT_EXECUTED" if isinstance(side_effect_evidence, dict) and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if isinstance(side_effect_evidence, dict) else "UNKNOWN")
+    side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
     checks = (
         source_present,
         validation_present,
@@ -74,6 +79,7 @@ def verify_runtime_validation_closure_v1(
         output_contract_ok,
         forbidden_absent,
         deterministic_ok,
+        side_effect_proof,
     )
     failed = sum(not check for check in checks)
     result = CognitiveAnalysisRuntimeValidationVerificationResultV1(
@@ -87,7 +93,7 @@ def verify_runtime_validation_closure_v1(
         runtime_flag_consistency_ok=flag_consistency,
         permission_boundary_ok=permission_ok,
         output_contract_ok=output_contract_ok,
-        forbidden_capability_absent=forbidden_absent,
+        forbidden_capability_absent=forbidden_absent and side_effect_proof,
         deterministic_validation_result_ok=deterministic_ok,
         verifier_invoked_runner=False,
         runtime_authorized=False,
@@ -96,6 +102,7 @@ def verify_runtime_validation_closure_v1(
             if failed == 0
             else "RUNTIME_VALIDATION_CLOSURE_VERIFICATION_CANDIDATE_BLOCKED"
         ),
+        determinism_status=validation.get("determinism_status", "DETERMINISM_UNVERIFIED"),
     )
     validation_dir.mkdir(parents=True, exist_ok=True)
     (validation_dir / VERIFICATION_RESULT_FILENAME_V1).write_text(_canonical_json_v1(result), encoding="utf-8")

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Tuple
+from dataclasses import dataclass, field
+from typing import Mapping, Tuple
 
 
 RUNTIME_CAPABILITY_ASSESSMENT_PHASE_V1 = "Phase-A3-Cognitive-Analysis-Runtime-Capability-Assessment-v1-001"
@@ -45,6 +45,9 @@ class CognitiveAnalysisRuntimeCapabilityAssessmentReportV1:
     warning_codes: Tuple[str, ...]
     blocker_count: int
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"
+    determinism_evidence: Mapping[str, object] = field(default_factory=dict)
+    side_effect_evidence: Mapping[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -63,3 +66,5 @@ class CognitiveAnalysisRuntimeCapabilityAssessmentVerificationResultV1:
     verifier_invoked_runner: bool
     runtime_authorized: bool
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"
+    side_effect_evidence_status: str = "UNKNOWN"

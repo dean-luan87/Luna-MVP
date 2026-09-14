@@ -98,9 +98,16 @@ def run_runtime_validation_closure_v1(
             else "RUNTIME_VALIDATION_CLOSURE_CANDIDATE_BLOCKED"
         ),
     )
-    candidate_result = replace(provisional, deterministic_validation_result=True)
-    deterministic = _canonical_json_v1(candidate_result) == _canonical_json_v1(candidate_result)
-    result = replace(provisional, deterministic_validation_result=deterministic)
+    result = replace(
+        provisional,
+        deterministic_validation_result=False,
+        determinism_status="DETERMINISM_UNVERIFIED",
+        determinism_evidence={
+            "input_identity": RUNTIME_DRYRUN_RESULT_FILENAME_V1,
+            "proof_status": "NO_INDEPENDENT_RECONSTRUCTION",
+            "reason": "validation reads one serialized dryrun artifact and does not rerun the skeleton",
+        },
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / VALIDATION_RESULT_FILENAME_V1).write_text(_canonical_json_v1(result), encoding="utf-8")
     return result

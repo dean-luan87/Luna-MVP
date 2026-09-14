@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Mapping, Tuple
 
 
@@ -28,6 +28,8 @@ class CognitiveAnalysisRuntimeValidationRunResultV1:
     blocker_count: int
     runtime_authorized: bool
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"
+    determinism_evidence: Mapping[str, object] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -47,3 +49,4 @@ class CognitiveAnalysisRuntimeValidationVerificationResultV1:
     verifier_invoked_runner: bool
     runtime_authorized: bool
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"

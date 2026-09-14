@@ -4,12 +4,16 @@ from __future__ import annotations
 
 import argparse
 import json
+from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Any, Dict, List
 
 from capabilities.midplatform.protocol_manager.module.governance_verification_backbone_v1 import (
     compute_unified_final_decision,
+    resolve_applicable_governance_set,
 )
+
+from .fixtures_v1 import build_governance_backbone_cases_v1
 
 
 OUTPUT_DIR = Path("_eval_out/governance_verification_backbone_core_rules_v1")
@@ -52,14 +56,75 @@ REQUIRED_CASES = {
 }
 
 
+def _json_safe(value: Any) -> Any:
+    if is_dataclass(value):
+        return _json_safe(asdict(value))
+    if isinstance(value, tuple):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, list):
+        return [_json_safe(item) for item in value]
+    if isinstance(value, dict):
+        return {str(key): _json_safe(item) for key, item in value.items()}
+    return value
+
+
+def _validated_cases(summary: Dict[str, Any]) -> tuple[Dict[str, Dict[str, Any]], tuple[str, ...]]:
+    raw_cases = summary.get("cases")
+    if raw_cases is None:
+        return {}, ("cases_missing",)
+    if not isinstance(raw_cases, list):
+        return {}, ("cases_wrong_type",)
+    if not raw_cases:
+        return {}, ("cases_empty",)
+    cases: Dict[str, Dict[str, Any]] = {}
+    errors: List[str] = []
+    for index, item in enumerate(raw_cases):
+        if not isinstance(item, dict):
+            errors.append(f"case_{index}_wrong_type")
+            continue
+        case_id = item.get("case_id")
+        if not isinstance(case_id, str) or not case_id.strip():
+            errors.append(f"case_{index}_identity_missing")
+            continue
+        if case_id in cases:
+            errors.append(f"duplicate_case_id:{case_id}")
+            continue
+        cases[case_id] = item
+    return cases, tuple(errors)
+
+
+def _independent_expected() -> Dict[str, Any]:
+    return {
+        case["case_id"]: _json_safe(case["expected"])
+        for case in build_governance_backbone_cases_v1()
+    }
+
+
+def _independent_determinism(case_id: str) -> Dict[str, Any]:
+    case = next(case for case in build_governance_backbone_cases_v1() if case["case_id"] == case_id)
+    payload = case["payload"]
+    if case_id == "DETERMINISTIC_RULE_RESOLUTION":
+        profile, registry = payload
+        first = resolve_applicable_governance_set(profile, registry)
+        second = resolve_applicable_governance_set(profile, registry)
+        first_safe = _json_safe(first)
+        second_safe = _json_safe(second)
+        return {"first": first_safe, "second": second_safe, "deterministic": first_safe == second_safe}
+    decision_inputs = {key: value for key, value in payload.items() if key != "runner_status"}
+    first = compute_unified_final_decision(**decision_inputs)
+    second = compute_unified_final_decision(**decision_inputs)
+    return {"first": first, "second": second, "deterministic": first == second}
+
+
 def _run_checks(summary: Dict[str, Any]) -> List[Dict[str, Any]]:
-    cases = {item.get("case_id"): item for item in summary.get("cases", [])}
+    cases, case_errors = _validated_cases(summary)
+    independent_expected = _independent_expected()
     checks: List[Dict[str, Any]] = []
 
     def check(check_id: str, passed: bool, detail: str = "") -> None:
         checks.append({"check_id": check_id, "passed": bool(passed), "detail": detail})
 
-    check("required_cases_present", REQUIRED_CASES.issubset(cases), "all 35 core cases")
+    check("required_cases_present", not case_errors and REQUIRED_CASES.issubset(cases), "all 35 core cases")
     check("controlled_marker", summary.get("source_mode") == "CONTROLLED_GOVERNANCE_VERIFICATION_BACKBONE")
     check("protocol_manager_owner", summary.get("canonical_owner") == "Protocol Manager")
     check("protocol_manager_reused", summary.get("protocol_manager_reused") is True)
@@ -99,9 +164,11 @@ def _run_checks(summary: Dict[str, Any]) -> List[Dict[str, Any]]:
     check("provider_reference_no_runtime", all(summary.get("provider_binding_preparation_reference", {}).get(key) is False for key in ("runtime_allocated", "execution_instance_created", "provider_session_started", "gateway_submission", "runtime_started", "resource_allocated")))
     check("provider_reference_no_truth", summary.get("provider_binding_preparation_reference", {}).get("truth_declared") is False and summary.get("provider_binding_preparation_reference", {}).get("world_truth_declared") is False)
 
-    for case_id, case in cases.items():
-        expected = case.get("expected") or {}
-        result = case.get("result") or {}
+    for case_id in REQUIRED_CASES:
+        case = cases.get(case_id, {})
+        expected = independent_expected.get(case_id) or {}
+        result = case.get("result")
+        result = result if isinstance(result, dict) else {}
         for key, expected_value in expected.items():
             if key == "error":
                 actual_errors = json.dumps(
@@ -124,9 +191,11 @@ def _run_checks(summary: Dict[str, Any]) -> List[Dict[str, Any]]:
             check(f"{case_id}:{key}", passed)
 
     deterministic = cases.get("DETERMINISTIC_RULE_RESOLUTION", {}).get("result", {})
-    check("deterministic_rule_resolution_equal", deterministic.get("deterministic") is True and deterministic.get("first") == deterministic.get("second"))
+    independent_rule = _independent_determinism("DETERMINISTIC_RULE_RESOLUTION")
+    check("deterministic_rule_resolution_equal", deterministic == independent_rule)
     deterministic_decision = cases.get("DETERMINISTIC_FINAL_DECISION", {}).get("result", {})
-    check("deterministic_final_decision_equal", deterministic_decision.get("deterministic") is True and deterministic_decision.get("first") == deterministic_decision.get("second"))
+    independent_decision = _independent_determinism("DETERMINISTIC_FINAL_DECISION")
+    check("deterministic_final_decision_equal", deterministic_decision == independent_decision)
     waiting = cases.get("WAITING_STATUS_NOT_USED_AS_FINAL_DECISION", {}).get("result", {})
     check("runner_status_separate_from_final_decision", waiting.get("runner_status") == "WAITING_FOR_USER_TERMINAL_VERIFICATION" and waiting.get("final_decision") == "GO")
     return checks

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Tuple
+from dataclasses import dataclass, field
+from typing import Mapping, Tuple
 
 from ..runtime.cognitive_analysis_runtime_types_v1 import (
     CognitiveAnalysisRuntimeSkeletonResultV1,
@@ -35,6 +35,9 @@ class CognitiveAnalysisRuntimeDryRunResultV1:
     warning_count: int
     blocker_count: int
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"
+    determinism_evidence: Mapping[str, object] = field(default_factory=dict)
+    side_effect_evidence: Mapping[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -52,3 +55,5 @@ class CognitiveAnalysisRuntimeDryRunVerificationResultV1:
     external_invocation_absent: bool
     verifier_invoked_runner: bool
     final_candidate_decision: str
+    determinism_status: str = "DETERMINISM_UNVERIFIED"
+    side_effect_evidence_status: str = "UNKNOWN"

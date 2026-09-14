@@ -49,6 +49,12 @@ def verify_runtime_skeleton_dryrun_v1(
         for name in ("model_invoked", "network_invoked", "database_invoked")
     )
     nested_consistency = present and all(nested_flags.get(name) is value for name, value in expected_flags.items())
+    determinism_evidence = run.get("determinism_evidence") or {}
+    determinism_proof_ok = present and run.get("determinism_status") == "DETERMINISM_VERIFIED" and run.get("deterministic_serialization") is True and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
+    side_effect_evidence = run.get("side_effect_evidence")
+    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
+    side_effect_status = "OBSERVED_NOT_EXECUTED" if declared_side_effects and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if declared_side_effects else "UNKNOWN")
+    side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
     checks = (
         present,
         run.get("phase") == RUNTIME_SKELETON_DRYRUN_PHASE_V1,
@@ -58,9 +64,10 @@ def verify_runtime_skeleton_dryrun_v1(
         permission_ok,
         flag_consistency,
         nested_consistency,
-        run.get("deterministic_serialization") is True,
+        determinism_proof_ok,
         canonical_matches,
         external_absent,
+        side_effect_proof,
         run.get("blocker_count") == 0,
         run.get("skeleton_result", {}).get("analysis_result_candidate", {}).get("status") == "not_executed",
     )
@@ -75,14 +82,16 @@ def verify_runtime_skeleton_dryrun_v1(
         runtime_boundary_ok=boundary_ok,
         permission_boundary_ok=permission_ok,
         flag_consistency_ok=flag_consistency and nested_consistency,
-        deterministic_serialization_ok=bool(canonical_matches),
-        external_invocation_absent=external_absent,
+        deterministic_serialization_ok=determinism_proof_ok,
+        external_invocation_absent=external_absent and side_effect_proof,
         verifier_invoked_runner=False,
         final_candidate_decision=(
             "RUNTIME_SKELETON_DRYRUN_VERIFICATION_CANDIDATE_PASS"
             if failed == 0
             else "RUNTIME_SKELETON_DRYRUN_VERIFICATION_CANDIDATE_BLOCKED"
         ),
+        determinism_status=run.get("determinism_status", "DETERMINISM_UNVERIFIED"),
+        side_effect_evidence_status=side_effect_status,
     )
     input_dir.mkdir(parents=True, exist_ok=True)
     write_json_v1(input_dir / VERIFICATION_RESULT_FILENAME_V1, result)

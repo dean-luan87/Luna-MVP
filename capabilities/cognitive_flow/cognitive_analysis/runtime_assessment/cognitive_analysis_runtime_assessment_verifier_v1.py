@@ -55,7 +55,12 @@ def verify_runtime_capability_assessment_v1(
         report.get(name) is False
         for name in ("runtime_executed", "model_invoked", "evidence_inferred", "hypothesis_generated", "state_writeback", "decision_generated", "action_planned", "memory_updated")
     )
-    deterministic_ok = present and report.get("deterministic_output") is True and raw == _canonical_json_v1(report)
+    determinism_evidence = report.get("determinism_evidence") or {}
+    deterministic_ok = present and report.get("determinism_status") == "DETERMINISM_VERIFIED" and report.get("deterministic_output") is True and raw == _canonical_json_v1(report) and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
+    side_effect_evidence = report.get("side_effect_evidence")
+    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
+    side_effect_status = "OBSERVED_NOT_EXECUTED" if declared_side_effects and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if declared_side_effects else "UNKNOWN")
+    side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
     checks = (
         present,
         report.get("phase") == RUNTIME_CAPABILITY_ASSESSMENT_PHASE_V1,
@@ -67,6 +72,7 @@ def verify_runtime_capability_assessment_v1(
         dependencies_ok,
         forbidden_absent,
         deterministic_ok,
+        side_effect_proof,
     )
     failed = sum(not check for check in checks)
     result = CognitiveAnalysisRuntimeCapabilityAssessmentVerificationResultV1(
@@ -78,7 +84,7 @@ def verify_runtime_capability_assessment_v1(
         warning_count=len(report.get("warning_codes", ())) if present else 0,
         capability_inventory_complete=inventory_complete,
         authority_boundary_ok=boundary_ok,
-        forbidden_capability_absent=forbidden_absent,
+        forbidden_capability_absent=forbidden_absent and side_effect_proof,
         dependency_declaration_ok=dependencies_ok,
         deterministic_output_ok=deterministic_ok,
         verifier_invoked_runner=False,
@@ -88,6 +94,8 @@ def verify_runtime_capability_assessment_v1(
             if failed == 0
             else "RUNTIME_CAPABILITY_ASSESSMENT_VERIFICATION_CANDIDATE_BLOCKED"
         ),
+        determinism_status=report.get("determinism_status", "DETERMINISM_UNVERIFIED"),
+        side_effect_evidence_status=side_effect_status,
     )
     input_dir.mkdir(parents=True, exist_ok=True)
     (input_dir / VERIFICATION_RESULT_FILENAME_V1).write_text(_canonical_json_v1(result), encoding="utf-8")

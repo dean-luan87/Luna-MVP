@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from pathlib import Path
 
 from ..runtime.cognitive_analysis_runtime_skeleton_v1 import CognitiveAnalysisRuntimeSkeletonV1
@@ -55,13 +56,43 @@ def run_runtime_skeleton_dryrun_v1(
         warning_count=len(skeleton_result.warning_codes),
         blocker_count=0,
         final_candidate_decision="RUNTIME_SKELETON_DRYRUN_CANDIDATE_PASS",
+        determinism_status="DETERMINISM_UNVERIFIED",
+        determinism_evidence={},
+        side_effect_evidence={
+            "runtime_executed": "DECLARED_NOT_EXECUTED",
+            "model_invoked": "DECLARED_NOT_EXECUTED",
+            "network_invoked": "DECLARED_NOT_EXECUTED",
+            "database_invoked": "DECLARED_NOT_EXECUTED",
+            "external_invocation_observed": "DECLARED_NOT_EXECUTED",
+            "state_writeback": "DECLARED_NOT_EXECUTED",
+            "decision_executed": "DECLARED_NOT_EXECUTED",
+        },
     )
-    deterministic_result = CognitiveAnalysisRuntimeDryRunResultV1(
-        **{**result.__dict__, "deterministic_serialization": True},
+    independent_request = build_runtime_skeleton_request_fixture_v1()
+    independent_skeleton_result = CognitiveAnalysisRuntimeSkeletonV1().execute(independent_request)
+    independent_result = CognitiveAnalysisRuntimeDryRunResultV1(
+        **{**result.__dict__, "skeleton_result": independent_skeleton_result},
     )
-    deterministic = serialize_json_v1(deterministic_result) == serialize_json_v1(deterministic_result)
+    canonical_a = serialize_json_v1(result)
+    canonical_b = serialize_json_v1(independent_result)
+    deterministic = canonical_a == canonical_b
+    input_digest = hashlib.sha256(serialize_json_v1(request).encode("utf-8")).hexdigest()
+    proof = {
+        "input_identity": RUNTIME_SKELETON_DRYRUN_FIXTURE_REF_V1,
+        "input_digest": f"sha256:{input_digest}",
+        "reconstruction_a": "independent_skeleton_reconstruction_a",
+        "reconstruction_b": "independent_skeleton_reconstruction_b",
+        "canonical_digest_a": f"sha256:{hashlib.sha256(canonical_a.encode('utf-8')).hexdigest()}",
+        "canonical_digest_b": f"sha256:{hashlib.sha256(canonical_b.encode('utf-8')).hexdigest()}",
+        "comparison": "MATCH" if deterministic else "MISMATCH",
+    }
     result = CognitiveAnalysisRuntimeDryRunResultV1(
-        **{**result.__dict__, "deterministic_serialization": deterministic},
+        **{
+            **result.__dict__,
+            "deterministic_serialization": deterministic,
+            "determinism_status": "DETERMINISM_VERIFIED" if deterministic else "DETERMINISM_UNVERIFIED",
+            "determinism_evidence": proof,
+        },
     )
     output_dir.mkdir(parents=True, exist_ok=True)
     write_json_v1(output_dir / RUN_RESULT_FILENAME_V1, result)
