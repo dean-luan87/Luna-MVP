@@ -18,7 +18,7 @@
   "external_record_count": 93,
   "review_required_count": 0,
   "candidate_include_count": 21010,
-  "candidate_include_bytes": 126007078,
+  "candidate_include_bytes": 126007594,
   "candidate_include_bytes_status": "EXACT_STATIC_SUM_OF_INCLUDED_RECORD_SIZES",
   "inventory_record_count": 32726,
   "inventory_regular_and_symlink_path_count": 32722,
@@ -41,7 +41,7 @@
   "remote_gate": "REMOTE_CREDENTIAL_ROTATION_REQUIRED_BEFORE_PUSH",
   "source_manifest_hash_strategy": "SHA-256 of UTF-8 byte ordered tab-separated path/mode/size/content_digest tuples; 21008 tuples; excludes manifest/disposition self-references, external raw bytes, secrets and future commit receipt.",
   "source_manifest_hash": "sha256:f6d4853561c8ab33ba7fc585a47c80933347807328fb73ad073e794f7578fe62",
-  "established_commit_sha": null,
+  "established_commit_sha": "0144bec0a0ffd425222521c907c3bbb3e6e0143f",
   "source_scope_status": "SOURCE_SCOPE_READY_FOR_USER_APPROVAL",
   "additional_scope_blockers": [],
   "ready_for_execution": false,
@@ -12325,6 +12325,10 @@
     "current_approved_candidate_source_manifest_hash": "sha256:f6d4853561c8ab33ba7fc585a47c80933347807328fb73ad073e794f7578fe62"
   },
   "statistics": {
-    "candidate_include_bytes": 126007078
-  }
+    "candidate_include_bytes": 126007594
+  },
+  "local_baseline_created": true,
+  "root_commit_verified": true,
+  "committed_tree_verified": true,
+  "committed_source_hash": "sha256:f6d4853561c8ab33ba7fc585a47c80933347807328fb73ad073e794f7578fe62"
 }
