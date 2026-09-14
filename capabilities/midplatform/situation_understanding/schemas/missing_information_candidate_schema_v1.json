@@ -1,0 +1,21 @@
+{
+  "schema_id": "MissingInformationCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["info_type", "required_for", "suggested_capability", "reason", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "info_type": {
+      "enum": ["text_content", "direction_info", "distance_info", "dynamic_motion",
+        "object_identity", "place_identity", "walkable_area", "user_goal",
+        "spatial_continuity", "social_identity", "unknown"]
+    },
+    "required_for": { "type": "string" },
+    "suggested_capability": { "type": "string" },
+    "reason": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

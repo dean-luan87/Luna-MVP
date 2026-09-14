@@ -1,0 +1,18 @@
+{
+  "contract_id": "a-route-s2-real-raw-camera-input-stream-controlled-v1",
+  "canonical_owner": "Field Perception Orchestrator",
+  "adapter_role": "bounded raw transport/session integration adapter",
+  "real_component": "RAW_CAMERA_INPUT_STREAM",
+  "overall_loop_mode": "HYBRID_S2_REAL_RAW_STREAM",
+  "input": "external image/video/frame reference",
+  "output": ["RawFrameRecordV1", "StreamSessionCandidateV1", "PerceptionIngressCandidateV1"],
+  "not_output": ["Perception Evidence", "Observation Candidate", "Object Detection", "OCR Text", "Spatial Geometry", "World Fact", "Natural-Language Conclusion"],
+  "bounded": true,
+  "provider_autonomous_continuous_execution": false,
+  "provider_invocation": false,
+  "semantic_interpretation": false,
+  "semantic_compression": false,
+  "candidate_only": true,
+  "raw_only": true,
+  "do_not_persist": true
+}

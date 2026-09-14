@@ -1,0 +1,31 @@
+{
+  "artifact_id": "pcn_nested_constraint_closure_review_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cross-Object Boundary Governance",
+  "relations": [
+    {"relation": "Context_to_PCN", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Field_to_Role", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Role_to_Relationship", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Memory_to_PCN", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Resource_to_PCN", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Observation_Axis_to_Interaction", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "PCN_to_Interaction", "lifecycle": "CURRENT", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Emotion_to_Interaction", "lifecycle": "FUTURE_INACTIVE", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Intent_to_PCN", "lifecycle": "FUTURE_INACTIVE", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Causal_to_PCN", "lifecycle": "FUTURE_INACTIVE", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Experience_to_PCN", "lifecycle": "FUTURE_INACTIVE", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true},
+    {"relation": "Decision_to_Interaction", "lifecycle": "FUTURE_INACTIVE", "feedback_allowed": true, "constraint_allowed": true, "projection_allowed": true, "source_mutation_forbidden": true}
+  ],
+  "closure_rules": {
+    "mutual_influence_means_mutual_write": false,
+    "single_direction_pipeline": false,
+    "source_owner_precedence": true,
+    "unique_mutation_owner_per_source_object": true,
+    "future_relations_are_active_runtime": false,
+    "nested_loop_structure_preserved": true
+  },
+  "relation_count": 12,
+  "closure_result": "COMPATIBLE",
+  "candidate_only": true,
+  "runtime_implemented": false
+}

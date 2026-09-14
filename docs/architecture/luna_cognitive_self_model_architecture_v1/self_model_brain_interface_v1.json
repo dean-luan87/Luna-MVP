@@ -1,0 +1,13 @@
+{
+  "title": "Self Model Brain Interface v1",
+  "owner": "Cognitive Self Model",
+  "inputs": ["Global Cognitive State", "Self State", "Capability Awareness", "Limitation Awareness", "Resource Awareness", "Boundary Awareness", "Self Context"],
+  "outputs": ["Self Context Package", "Decision Confidence Context", "Risk Eligibility Context", "Unknown Self Constraint"],
+  "rules": {
+    "brain_retains_judgment": true,
+    "context_not_decision": true,
+    "self_model_does_not_create_goal": true,
+    "self_model_does_not_override_brain": true,
+    "confidence_and_limits_visible": true
+  }
+}

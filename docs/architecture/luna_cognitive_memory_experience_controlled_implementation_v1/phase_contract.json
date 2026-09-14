@@ -1,0 +1,34 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Memory-And-Experience-Governance-Controlled-Implementation-v1-001",
+    "execution_mode": "CONTROLLED_IMPLEMENTATION",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "required_code_files": [
+        "capabilities/midplatform/core/cognitive_memory_experience/__init__.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_registry_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_error_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/experience_candidate_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_candidate_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_admission_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_lifecycle_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_influence_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_trace_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/memory_io_types_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_protocol_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_ownership_guard_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_static_validators_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_engine_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/cognitive_memory_experience_fixture_v1.py",
+        "capabilities/midplatform/core/cognitive_memory_experience/run_cognitive_memory_experience_controlled_implementation_v1.py"
+    ],
+    "required_doc_files": [
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_controlled_implementation_overview_v1.md",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_negative_guards_v1.json",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_controlled_change_manifest_v1.json",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/cognitive_memory_experience_implementation_summary_v1.md",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1/verify_cognitive_memory_experience_controlled_implementation_v1.py"
+    ],
+    "agent_stop_state": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

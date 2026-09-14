@@ -1,0 +1,103 @@
+{
+    "artifact": "self_governance_existing_asset_inventory_v1",
+    "classifications": {
+        "A": "directly reusable current canonical asset",
+        "B": "useful historical/reference asset requiring reinterpretation",
+        "C": "conflicting canonical ownership or naming asset",
+        "D": "deferred future runtime/personality/emotion capability"
+    },
+    "assets": [
+        {
+            "path": "capabilities/midplatform/core/context_foundation",
+            "classification": "A",
+            "reason": "Already carries self/role/emotion projections as read-only context inputs."
+        },
+        {
+            "path": "capabilities/midplatform/core/context_pcn_intent_mainline",
+            "classification": "A",
+            "reason": "Already transports identity/self/role context refs through candidate-only handoffs."
+        },
+        {
+            "path": "capabilities/midplatform/core/intent_governance",
+            "classification": "A",
+            "reason": "Already accepts self refs and role refs as influences without owner transfer."
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_memory_experience",
+            "classification": "A",
+            "reason": "Already emits SELF_RELATED memory types and SelfPersonalityEvolutionEvidenceCandidate without self mutation."
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_learning",
+            "classification": "A",
+            "reason": "Already emits SelfEvolutionEvidenceCandidate while freezing self/personality/emotion mutation."
+        },
+        {
+            "path": "capabilities/midplatform/core/dynamic_cognitive_regulation",
+            "classification": "A",
+            "reason": "Already preserves self-regulation lifecycle as candidate-only and forbids identity/parameter conflation."
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_flow",
+            "classification": "A",
+            "reason": "Already preserves cycle continuity and reverse-locatable trace links without semantic ownership."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_self_world_boundary_architecture_v1",
+            "classification": "B",
+            "reason": "Strong historical source for Self vs World, Identity, and growth protection boundaries, but owner naming needs reinterpretation."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_self_model_architecture_v1",
+            "classification": "B",
+            "reason": "Strong historical source for Self State vs Identity vs Capability/Boundary/History distinctions."
+        },
+        {
+            "path": "docs/architecture/cognitive_self_state_awareness_v1",
+            "classification": "B",
+            "reason": "Useful reference for state/identity/capability separation and transient-state handling."
+        },
+        {
+            "path": "docs/architecture/cognitive_self_capability_awareness_v1",
+            "classification": "B",
+            "reason": "Useful reference for capability and limitation semantics without identity rewrite."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_self_regulation_architecture_v1",
+            "classification": "B",
+            "reason": "Useful historical boundary reference, but canonical regulation owner has already converged elsewhere."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_self_evolution_architecture_v1",
+            "classification": "B",
+            "reason": "Useful reference for future reviewed self-evolution candidate path, not a current canonical owner."
+        },
+        {
+            "path": "docs/architecture/luna_self_social_self_architecture_refactoring_v1",
+            "classification": "C",
+            "reason": "Contains useful ideas but its Self Layer/Social Self Layer owner naming conflicts with current canonical owner convergence."
+        },
+        {
+            "path": "docs/architecture/cognitive_flow/*self*",
+            "classification": "C",
+            "reason": "Multiple legacy Self System/Self Model/Self State proposals conflict with the current freeze that Flow is lifecycle-only and not a semantic owner."
+        },
+        {
+            "path": "docs/architecture/*personality*",
+            "classification": "D",
+            "reason": "Future Personality workstream, explicitly deferred from Self Governance planning."
+        },
+        {
+            "path": "docs/architecture/*emotion*",
+            "classification": "D",
+            "reason": "Future Emotion workstream and evidence interface only; no Emotion owner implementation here."
+        },
+        {
+            "path": "persistent self profile database / cross-user self transfer / real self adaptation runtime",
+            "classification": "D",
+            "reason": "Explicitly deferred runtime capabilities."
+        }
+    ],
+    "equivalent_current_canonical_self_owner_found": false,
+    "recommended_new_planning_owner": "Self Governance"
+}

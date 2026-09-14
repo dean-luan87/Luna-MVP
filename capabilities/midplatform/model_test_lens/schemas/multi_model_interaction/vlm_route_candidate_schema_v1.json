@@ -1,0 +1,78 @@
+{
+  "schema_id": "VlmRouteCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "Route B — VLM 场景观察与 route 建议候选。不是 fact，不确认类别或文字。",
+  "route_id": "route_b_vlm_route_candidate",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "candidate_id",
+    "source_image_ref",
+    "scene_profile_candidate",
+    "suggested_attention_regions",
+    "suggested_followup_models",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "candidate_id": { "type": "string" },
+    "source_image_ref": { "type": "string" },
+    "scene_profile_candidate": {
+      "type": "string",
+      "description": "Scene type candidate e.g. subway_platform — not fact"
+    },
+    "suggested_attention_regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "region_hint": { "type": "string" },
+          "region_description_candidate": { "type": "string" },
+          "bbox_hint": { "type": "object" },
+          "attention_reason_candidate": { "type": "string" }
+        }
+      }
+    },
+    "suggested_followup_models": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["ocr", "detection", "tracking", "depth", "slam_reference", "sam_refine"]
+      }
+    },
+    "reasoning_summary": {
+      "type": "string",
+      "description": "VLM reasoning summary — candidate only, not fact"
+    },
+    "confidence_or_uncertainty": { "type": "number" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "vlm_output_not_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "allowed_suggestions": [
+    "该区域可能值得 OCR",
+    "地铁站场景候选",
+    "上方导视牌区域值得观察",
+    "人群/门区需要 detection 或 tracking"
+  ],
+  "forbidden_outputs": [
+    "confirmed_sign_type",
+    "confirmed_text",
+    "fact_label",
+    "这是路牌",
+    "navigation_instruction",
+    "direct_ocr_runner_trigger"
+  ],
+  "boundary_flags": {
+    "route_b_candidate_only": true,
+    "no_vlm_fact_generation": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "no_ocr_execution": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "artifact_id": "multi_relation_role_field_scenario_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Scenario Alignment Governance",
+  "persons": ["PERSON_A", "PERSON_B"],
+  "timeline": [
+    {
+      "stage": "COLLEAGUE_RELATION_ACTIVE",
+      "active_relationships": ["COLLEAGUE_RELATION"],
+      "active_role_projections": ["COLLEAGUE_ROLE_A", "COLLEAGUE_ROLE_B"],
+      "field_projections": ["WORK_FIELD"]
+    },
+    {
+      "stage": "COLLEAGUE_AND_SPOUSE_RELATIONS_ACTIVE",
+      "active_relationships": ["COLLEAGUE_RELATION", "SPOUSE_RELATION"],
+      "active_role_projections": ["COLLEAGUE_ROLE_A", "COLLEAGUE_ROLE_B", "SPOUSE_ROLE_A", "SPOUSE_ROLE_B"],
+      "field_projections": ["WORK_FIELD", "FAMILY_FIELD"]
+    },
+    {
+      "stage": "DIVORCED_COLLEAGUE_RELATION_REMAINS_ACTIVE",
+      "active_relationships": ["COLLEAGUE_RELATION"],
+      "historical_relationships": ["FORMER_SPOUSE_RELATION"],
+      "active_role_projections": ["COLLEAGUE_ROLE_A", "COLLEAGUE_ROLE_B"],
+      "historical_role_projections": ["FORMER_SPOUSE_ROLE_A", "FORMER_SPOUSE_ROLE_B"],
+      "field_projections": ["WORK_FIELD"],
+      "reactivatable_fields": ["HISTORICAL_FAMILY_FIELD"]
+    }
+  ],
+  "relationship_rules": {
+    "multiple_distinct_relationships_per_pair_allowed": true,
+    "relationship_instances_require_unique_ids": true,
+    "relationship_end_means_delete": false,
+    "former_spouse_relation_states": ["HISTORICAL", "DORMANT", "REACTIVATABLE"],
+    "colleague_relation_survives_divorce": true,
+    "historical_relation_may_not_overwrite_current_relation": true
+  },
+  "expected_candidates": [
+    "MULTI_RELATION_COEXISTENCE_CANDIDATE",
+    "ROLE_PROJECTION_OVERLAP_CANDIDATE",
+    "HISTORICAL_REACTIVATION_CANDIDATE"
+  ],
+  "candidate_only": true,
+  "runtime_executed": false
+}

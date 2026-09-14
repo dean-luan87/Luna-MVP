@@ -1,0 +1,8 @@
+{
+  "artifact":"temporal_comparison_model_v1",
+  "candidate_only":true,
+  "temporal_cases":["IMMEDIATE_EXPECTED_EFFECT","DELAYED_EXPECTED_EFFECT","WITHIN_TEMPORAL_WINDOW","STALE_RESULT","EXPIRED_EXPECTATION","RESULT_TOO_EARLY","RESULT_TOO_LATE","OBSERVATION_AFTER_EXPECTED_WINDOW","SUPERSEDED_EXPECTATION"],
+  "required_fields":["expected_observed_at_or_window","actual_observed_at","valid_from","valid_until","comparison_time_basis","temporal_status","refresh_ref","supersession_ref","expiration_ref","trace_ref","provenance_refs"],
+  "rules":["time mismatch is distinct from value mismatch","stale/expired inputs cannot be silently compared as current","no scheduler-driven expiration or mutation in planning phase","late evidence remains traceable and may produce unknown/stale candidate"],
+  "scheduler_execution":false
+}

@@ -1,0 +1,32 @@
+{
+    "version": "1.0",
+    "name": "Field State Schema",
+    "description": "定义 Field State 对象的核心结构。",
+    "core_fields": [
+        "state_id",
+        "field_id",
+        "state_type",
+        "state_value",
+        "state_status",
+        "confidence",
+        "effective_from",
+        "effective_until",
+        "source_event_ids",
+        "supporting_event_ids",
+        "opposing_event_ids",
+        "ignored_event_ids",
+        "reducer_version",
+        "reduction_policy_version",
+        "temporal_snapshot_ref",
+        "conflict_refs",
+        "provenance_chain",
+        "supersedes_state_id",
+        "derived_not_observed",
+        "created_at",
+        "updated_at"
+    ],
+    "constraints": {
+        "derived_not_observed": true,
+        "fact_promotion_allowed": false
+    }
+}

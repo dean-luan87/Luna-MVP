@@ -1,0 +1,81 @@
+{
+  "contract_id": "LunaObservationLensV1ModelAdapterSlotContract",
+  "version": "v1",
+  "template_reuse_required": true,
+  "adapter_must_not": [
+    "replace_layout_shell",
+    "add_vertical_report_flow",
+    "expose_raw_json_by_default",
+    "execute_model_in_page",
+    "bypass_local_runner_bridge"
+  ],
+  "slots": {
+    "segmentation": {
+      "status": "implemented",
+      "reference_adapter": "perception_hud_mobile_sam_adapter_v1",
+      "hud": ["mask_line_box", "number", "short_label", "confidence", "semantic_color"],
+      "chip": ["short_name", "percent", "status_short"],
+      "reasoning": ["task", "observation", "risk", "next_step"],
+      "metrics_drawer": ["per_category_score", "prompt_success_rate"]
+    },
+    "detection": {
+      "status": "planned_p0",
+      "hud": ["bounding_box", "class_label", "confidence"],
+      "chip": ["vehicle", "pedestrian", "object"],
+      "reasoning": ["risk_targets", "miss_detection", "uncertainty", "suggestion"],
+      "metrics_drawer": ["map", "confidence", "object_count"],
+      "forbidden_default": ["raw_box_json"]
+    },
+    "ocr": {
+      "status": "planned_p0",
+      "hud": ["text_box", "short_text_label"],
+      "chip": ["text_region", "sign", "advertisement"],
+      "reasoning": ["recognized_text", "low_confidence_text", "reading_order"],
+      "metrics_drawer": ["cer", "wer", "reading_order"],
+      "forbidden_default": ["raw_ocr_boxes"]
+    },
+    "slam_vio": {
+      "status": "planned_p1",
+      "hud": ["keyframe", "feature_points", "tracking_state", "trajectory_minimap"],
+      "chip": ["keyframe", "drift_segment", "lost_segment"],
+      "reasoning": ["localization_status", "drift_risk", "loss_reason", "suggestion"],
+      "metrics_drawer": ["ate", "rpe", "drift", "tracking_stability"],
+      "constraints": ["no_gt_no_ate", "no_fake_trajectory"]
+    },
+    "depth": {
+      "status": "planned_p1",
+      "hud": ["depth_heatmap", "near_far_zones", "obstacle_bands"],
+      "chip": ["near_obstacle", "uncertain_depth"],
+      "reasoning": ["passability_candidate", "distance_uncertainty", "suggestion"],
+      "metrics_drawer": ["depth_error", "coverage", "uncertainty"]
+    },
+    "asr": {
+      "status": "planned_p2",
+      "central": ["waveform", "timeline"],
+      "chip": ["word_segment", "uncertain_word", "speech_segment"],
+      "reasoning": ["transcript", "low_confidence_words", "review_suggestion"],
+      "metrics_drawer": ["wer", "cer", "timestamp_alignment"]
+    },
+    "tts": {
+      "status": "planned_p2",
+      "central": ["text", "waveform", "prosody_timeline"],
+      "chip": ["pause", "stress", "anomaly_segment"],
+      "reasoning": ["voice_quality", "pause", "rate", "suggestion"],
+      "metrics_drawer": ["mos", "duration", "pause_metrics"]
+    },
+    "speaker": {
+      "status": "planned_p2",
+      "central": ["speaker_timeline"],
+      "chip": ["speaker_segment", "overlap", "unknown_speaker"],
+      "reasoning": ["diarization_result", "uncertain_segment", "suggestion"],
+      "metrics_drawer": ["eer", "diarization_error"]
+    },
+    "vlm": {
+      "status": "planned_p2",
+      "hud": ["answer_region", "supporting_regions"],
+      "chip": ["evidence_region", "suspicious_region", "missing_evidence"],
+      "reasoning": ["answer", "basis", "uncertainty", "hallucination_risk"],
+      "metrics_drawer": ["qa_accuracy", "hallucination_risk"]
+    }
+  }
+}

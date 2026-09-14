@@ -1,0 +1,26 @@
+{
+  "model_family": "tracking_family",
+  "candidate_models": ["supervision_tracking", "ByteTrack", "DeepSORT"],
+  "planned_target_candidates": [
+    "track_evidence_candidate",
+    "dynamic_risk_candidate",
+    "temporal_consistency_candidate"
+  ],
+  "package_or_module_refs": ["supervision", "bytetrack", "deep_sort_realtime"],
+  "command_refs": [],
+  "local_resource_refs": ["no_weight_needed_for_supervision_bytetrack_tracker"],
+  "license_ref": "mit_or_apache_2_0_per_package",
+  "model_origin": "external_open_source_tracking_package",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "tracking.callable.track_contract_v1",
+  "output_schema_ref": "tracking_output_schema_v1",
+  "adapter_mapping_ref": "track_evidence_candidate",
+  "fallback_plan": "fallback_to_per_frame_object_evidence_candidate_without_track_id",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "research_and_candidate_only",
+  "commercial_use_status": "per_package_license_check_required",
+  "availability_probe_mode": "package_visibility",
+  "availability_status": "contract_only",
+  "dependency_boundary_ref": "tracking_dependency_boundary_v1",
+  "boundaries": ["tracking_is_not_action_trigger"]
+}

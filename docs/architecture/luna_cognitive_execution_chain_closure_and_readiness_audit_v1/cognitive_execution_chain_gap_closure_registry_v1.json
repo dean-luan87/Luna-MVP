@@ -1,0 +1,114 @@
+{
+    "artifact": "cognitive_execution_chain_gap_closure_registry_v1",
+    "source_registry": "docs/architecture/luna_cognitive_execution_chain_integration_planning_v1/cognitive_execution_chain_integration_gap_registry_v1.json",
+    "gaps": [
+        {
+            "gap_id": "GAP-IO-001",
+            "original_severity": "medium",
+            "current_status": "RESOLVED_IN_INTEGRATION",
+            "resolution_location": "cognitive_execution_chain_handoff_mapping_v1.py:map_intent_to_causal",
+            "requires_source_module_change": false,
+            "future_remediation": "none_required_for_controlled_runtime",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-IO-002",
+            "original_severity": "high",
+            "current_status": "RESOLVED_IN_INTEGRATION",
+            "resolution_location": "cognitive_execution_chain_handoff_mapping_v1.py:map_causal_to_decision",
+            "requires_source_module_change": false,
+            "future_remediation": "optional canonical schema convergence",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-IO-003",
+            "original_severity": "medium",
+            "current_status": "RESOLVED_IN_INTEGRATION",
+            "resolution_location": "cognitive_execution_chain_handoff_mapping_v1.py:map_decision_to_action",
+            "requires_source_module_change": false,
+            "future_remediation": "optional direct contract convergence",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-IO-004",
+            "original_severity": "critical",
+            "current_status": "BLOCKER",
+            "resolution_location": "not_resolved_in_v1_controlled_integration",
+            "requires_source_module_change": true,
+            "future_remediation": "align action execution readiness object with runtime request contract",
+            "blocks_runtime_readiness": true
+        },
+        {
+            "gap_id": "GAP-VERSION-001",
+            "original_severity": "medium",
+            "current_status": "ACCEPTED_ADAPTER_GAP",
+            "resolution_location": "cognitive_execution_chain_compatibility_v1.py",
+            "requires_source_module_change": false,
+            "future_remediation": "canonical version alignment",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-VERSION-002",
+            "original_severity": "medium",
+            "current_status": "DEFERRED",
+            "resolution_location": "migration_required_blocked_in_controlled_mode",
+            "requires_source_module_change": true,
+            "future_remediation": "causal/decision uncertainty version migration strategy",
+            "blocks_runtime_readiness": true
+        },
+        {
+            "gap_id": "GAP-VERSION-003",
+            "original_severity": "critical",
+            "current_status": "BLOCKER",
+            "resolution_location": "hard_block_until_compatible",
+            "requires_source_module_change": true,
+            "future_remediation": "action/runtime version compatibility redesign",
+            "blocks_runtime_readiness": true
+        },
+        {
+            "gap_id": "GAP-ENUM-001",
+            "original_severity": "low",
+            "current_status": "RESOLVED_IN_INTEGRATION",
+            "resolution_location": "cognitive_execution_chain_handoff_mapping_v1.py:map_causal_to_decision",
+            "requires_source_module_change": false,
+            "future_remediation": "optional enum unification",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-MISSING-REF-001",
+            "original_severity": "medium",
+            "current_status": "ACCEPTED_ADAPTER_GAP",
+            "resolution_location": "adapter keeps optional extension boundary",
+            "requires_source_module_change": false,
+            "future_remediation": "decision->action unresolved refs explicit field",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-MISSING-REF-002",
+            "original_severity": "high",
+            "current_status": "DEFERRED",
+            "resolution_location": "projection_rule_only",
+            "requires_source_module_change": true,
+            "future_remediation": "action->runtime provenance projection contract refinement",
+            "blocks_runtime_readiness": true
+        },
+        {
+            "gap_id": "GAP-LEGACY-ALIAS-001",
+            "original_severity": "low",
+            "current_status": "OBSOLETE",
+            "resolution_location": "legacy_alias kept as non-authority compatibility metadata",
+            "requires_source_module_change": false,
+            "future_remediation": "none",
+            "blocks_runtime_readiness": false
+        },
+        {
+            "gap_id": "GAP-LEGACY-ALIAS-002",
+            "original_severity": "low",
+            "current_status": "OBSOLETE",
+            "resolution_location": "legacy_alias kept as non-authority compatibility metadata",
+            "requires_source_module_change": false,
+            "future_remediation": "none",
+            "blocks_runtime_readiness": false
+        }
+    ]
+}

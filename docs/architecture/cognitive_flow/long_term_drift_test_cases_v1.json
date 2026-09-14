@@ -1,0 +1,83 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_temporal_stability_validation",
+  "scope": "candidate_only_temporal_continuity",
+  "continuous_life_scenarios": [
+    {
+      "scenario_id": "scenario_a_one_day_life_flow",
+      "duration": "24_hours",
+      "events": ["departure", "navigation", "environment_change", "task_context", "feedback"],
+      "assertion": "continuity_is_not_repeated_identical_task"
+    },
+    {
+      "scenario_id": "scenario_b_one_week_change_flow",
+      "duration": "one_week",
+      "events": ["repeated_location", "new_location", "capability_change"],
+      "assertion": "experience_and_current_evidence_remain_distinct"
+    },
+    {
+      "scenario_id": "scenario_c_one_month_change_flow",
+      "duration": "one_month",
+      "events": ["user_need_change", "environment_change", "capability_change", "experience_accumulation"],
+      "assertion": "identity_and_reality_priority_remain_stable"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "long_term_conservative_route_drift",
+      "history": {
+        "recent_decision_candidates": ["detour", "detour", "detour"],
+        "reason": "temporary_previous_risk"
+      },
+      "current_situation": {
+        "risk_context": "normal",
+        "route_state": "clear"
+      },
+      "expected_candidates": {
+        "current_situation_re_evaluation": true,
+        "fixed_detour_policy": false,
+        "decision_contextuality": true
+      },
+      "forbidden_outputs": ["always_detour", "permanent_conservative_policy"],
+      "assertions": {
+        "decision_drift_resisted": true,
+        "history_is_reference_not_override": true
+      }
+    },
+    {
+      "case_id": "prediction_stability_under_repeated_anomaly",
+      "history": {
+        "route_prediction": "usually_clear",
+        "recent_observed_anomalies": 3
+      },
+      "expected_candidates": {
+        "trend_candidate": "route_conditions_may_have_changed",
+        "prediction_uncertainty_increased": true,
+        "current_evidence_needed": true
+      },
+      "forbidden_outputs": ["fixed_prediction_as_fact", "automatic_prediction_model_rewrite"],
+      "assertions": {
+        "prediction_stability_is_not_rigidity": true,
+        "trend_is_candidate_not_future_fact": true
+      }
+    },
+    {
+      "case_id": "long_term_unresolved_region_unknown",
+      "time_context": {
+        "duration": "one_month"
+      },
+      "world_context": {
+        "region_information": "repeatedly_insufficient"
+      },
+      "expected_candidates": {
+        "unknown_retained": true,
+        "information_gap_visible": true
+      },
+      "forbidden_outputs": ["unknown_becomes_fact_over_time", "unsupported_region_claim"],
+      "assertions": {
+        "long_term_unknown_preserved": true,
+        "elapsed_time_is_not_evidence": true
+      }
+    }
+  ]
+}

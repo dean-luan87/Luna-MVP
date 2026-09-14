@@ -1,0 +1,59 @@
+{
+    "contract_id": "luna_action_governance_controlled_implementation_contract_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "phase": "Phase-Luna-Action-Governance-Controlled-Implementation-v1-001",
+    "canonical_owner": "Action Governance",
+    "legacy_aliases": [
+        {
+            "name": "Action Boundary",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Control",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Commitment",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Execution Governance",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Boundary Governance",
+            "authority": false,
+            "mutation_authority": false
+        }
+    ],
+    "candidate_only": true,
+    "synthetic_fixture_only": true,
+    "deterministic_governance_logic": true,
+    "runtime_execution": false,
+    "database_write": false,
+    "device_control": false,
+    "scheduler_execution": false,
+    "task_creation": false,
+    "source_mutation_allowed": false,
+    "action_output": false,
+    "task_output": false,
+    "executor_handoff_kind": "ACTION_TO_RUNTIME_EXECUTOR_CANDIDATE_HANDOFF",
+    "task_handoff_kind": "ACTION_TO_TASK_MANAGER_REFERENCE_HANDOFF",
+    "forbidden_outputs": [
+        "actuator command",
+        "navigation command",
+        "speech execution",
+        "api side effect",
+        "database mutation",
+        "device control",
+        "scheduler command",
+        "real task creation"
+    ],
+    "active_schema_changed": false,
+    "active_contract_changed": false,
+    "owner_metadata_changed": false
+}

@@ -1,0 +1,183 @@
+{
+  "contract_id": "luna_context_foundation_module_closure_phase_contract_v1",
+  "phase": "Phase-Luna-Context-Foundation-Module-Closure-v1-001",
+  "stage": "Context Foundation Module Closure",
+  "execution_mode": "Planning Only",
+  "execution_profile": "Closure Validation",
+  "execution_mode_normalization_reason": "Planning And Closure Validation and Closure Validation are not registered repository modes; this phase creates closure assets and performs V0 static validation only, so Planning Only is the governing mode.",
+  "current_work_description": {
+    "in_scope": [
+      "Context Foundation module baseline",
+      "Owner closure review",
+      "I/O closure",
+      "Projection governance baseline",
+      "Mental Field Continuity closure",
+      "resource constraint closure",
+      "Unknown handling closure",
+      "PCN handoff candidate",
+      "closure summary and read-only verifier"
+    ],
+    "out_of_scope": [
+      "Context Skeleton modification",
+      "active Schema or Contract change",
+      "Runtime integration",
+      "PCN implementation",
+      "Intent, Causal, Decision, Action, model, provider, database, network, or hardware work"
+    ]
+  },
+  "previous_phase": "Phase-Luna-Context-Foundation-Controlled-DryRun-And-Contract-Validation-v1-001",
+  "previous_phase_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_DRYRUN_VALIDATION_READY",
+  "input_assets": [
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/",
+    "capabilities/midplatform/core/context_foundation/"
+  ],
+  "required_pre_read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/"
+  ],
+  "target_directory": "docs/architecture/luna_context_foundation_module_closure_v1/",
+  "scope": [
+    "closure assets in target directory only",
+    "read-only baseline evidence",
+    "V0 JSON, AST, compile, reference, and protected-hash checks"
+  ],
+  "out_of_scope": [
+    "modifying any existing file",
+    "Runtime or Runner execution",
+    "implementation expansion",
+    "Schema or Contract activation",
+    "PCN, Intent, Causal, Decision, Action, Memory, Emotion, Self, model, provider, or hardware implementation",
+    "next phase entry"
+  ],
+  "required_final_files": [
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_module_baseline_v1.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_owner_closure_review.md",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_io_closure_contract.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_projection_governance_baseline.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/mental_field_continuity_closure_review.md",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_resource_constraint_closure.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_unknown_resolution_closure.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_closure_summary.md",
+    "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_closure_change_manifest.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_module_closure_v1/verify_context_foundation_module_closure_v1.py"
+  ],
+  "implementation_principles": [
+    "Context is infrastructure, not cognition Owner",
+    "one Owner and one candidate write scope",
+    "source-owner precedence",
+    "read-only reference assembly",
+    "current-Reality precedence",
+    "Unknown and contradiction preservation",
+    "resource-bounded expansion without fixed depth",
+    "minimal change and no parallel implementation"
+  ],
+  "required_checks": {
+    "V0": [
+      "exact required file set",
+      "JSON parse",
+      "AST parse and py_compile",
+      "Owner and forbidden-responsibility coverage",
+      "I/O and Projection boundary coverage",
+      "Mental Field Continuity ownership",
+      "resource and Unknown policies",
+      "PCN handoff boundary",
+      "protected Skeleton SHA-256 comparison",
+      "read-only verifier review"
+    ],
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "negative_guards": [
+    "no check weakening",
+    "no hardcoded pass",
+    "no existing asset modification",
+    "no active Contract or Schema",
+    "no Context ownership of Reality, Memory, Emotion, Intent, Causal, Decision, Action, or Runtime",
+    "no PCN implementation",
+    "no Agent Final Phase Verifier execution"
+  ],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": [
+    "file existence",
+    "JSON parsing",
+    "AST parsing",
+    "py_compile with temporary cache",
+    "reference validation",
+    "manifest consistency",
+    "protected Skeleton SHA-256 comparison"
+  ],
+  "allowed_agent_execution": [
+    "create closure assets in target directory",
+    "create read-only Final Phase Verifier asset",
+    "run V0 static checks"
+  ],
+  "prohibited_agent_execution": [
+    "run Final Phase Verifier",
+    "run Context Skeleton Runner or any V1 runner",
+    "execute Runtime",
+    "invoke model or provider",
+    "access database, network, production data, or device",
+    "modify existing Context code, Planning, Alignment, DryRun, Contract, Schema, Owner Metadata, or Runtime",
+    "enter PCN implementation or any next phase"
+  ],
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 docs/architecture/luna_context_foundation_module_closure_v1/verify_context_foundation_module_closure_v1.py"
+  ],
+  "expected_success_decision": "LUNA_CONTEXT_FOUNDATION_MODULE_CLOSURE_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "LUNA_CONTEXT_FOUNDATION_MODULE_CLOSURE_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "All closure assets and V0 checks complete; stop before V2 or PCN planning.",
+  "blocker_conditions": [
+    "non-unique Context Owner",
+    "protected Skeleton hash drift",
+    "Context gains Intent, Causal, Decision, Action, Reality, Memory, Emotion, or Runtime authority",
+    "fixed expansion depth introduced",
+    "PCN implementation started",
+    "existing file changed",
+    "V0 static check failure"
+  ],
+  "completion_report_format": [
+    "Read files",
+    "Created files",
+    "Modified files",
+    "Context baseline",
+    "Owner boundary",
+    "PCN handoff",
+    "Mental Field Continuity ownership",
+    "Resource constraint handling",
+    "Unknown policy",
+    "Static checks",
+    "Terminal command",
+    "Current status"
+  ],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "module_baseline_created": true,
+  "implementation_expansion": false,
+  "runtime_integration": false,
+  "schema_changed": false,
+  "contract_changed": false,
+  "pcn_started": false,
+  "next_phase": "Phase-Luna-Personal-Cognitive-Network-Planning-v1-001",
+  "next_phase_auto_entry": false,
+  "status": "CLOSURE_CANDIDATE"
+}

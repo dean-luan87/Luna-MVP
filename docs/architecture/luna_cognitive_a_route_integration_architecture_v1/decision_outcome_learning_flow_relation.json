@@ -1,0 +1,14 @@
+{
+  "relation_id": "decision_outcome_learning_v1",
+  "flow": ["Selected Decision Candidate", "Action Boundary", "Action Outcome", "Expected/Actual Comparison", "Outcome Evaluation", "Experience Candidate", "Memory/Schema Candidate", "Selective Learning Candidate", "Growth Candidate"],
+  "action_boundary_is_execution_gate": true,
+  "outcome_is_not_experience": true,
+  "single_outcome_not_schema": true,
+  "validation_required": true,
+  "memory_consolidation_requires_governance": true,
+  "learning_requires_self_review": true,
+  "direct_action_from_outcome": false,
+  "direct_self_modification": false,
+  "automatic_learning": false,
+  "candidate_only": true
+}

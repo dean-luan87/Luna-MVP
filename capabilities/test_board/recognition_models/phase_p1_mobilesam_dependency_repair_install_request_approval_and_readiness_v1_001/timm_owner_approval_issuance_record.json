@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T08:10:39.403551+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_owner_approval_issuance_record",
+  "timm_owner_approval_issuance_record": {
+    "approval_id": "timm_owner_approval_issuance_v1",
+    "owner_approval_granted_for_timm_install_preparation": true,
+    "owner_approval_granted_for_timm_install_execution_next": true,
+    "model_load_retry_not_approved": true,
+    "inference_not_approved": true,
+    "runtime_not_approved": true,
+    "output_adapter_not_approved": true,
+    "semantic_layer_not_approved": true,
+    "registry_mutation_not_approved": true,
+    "additional_weight_download_not_approved": true,
+    "commercial_runtime_not_approved": true,
+    "timm_install_approval_not_model_load_retry_approval": true,
+    "timm_install_approval_not_inference_approval": true,
+    "timm_install_approval_not_runtime_approval": true,
+    "timm_install_approval_not_commercial_runtime_approval": true
+  }
+}

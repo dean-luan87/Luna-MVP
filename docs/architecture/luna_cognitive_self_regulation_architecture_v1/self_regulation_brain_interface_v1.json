@@ -1,0 +1,7 @@
+{
+  "title": "Self Regulation Brain Interface v1",
+  "owner": "Self Regulation",
+  "inputs": ["Self Health State", "Degraded Capability Profile", "Recovery Candidate", "Resource Constraint", "Risk"],
+  "outputs": ["Self Regulation Context", "Capability Constraint Context", "Recovery Review Request", "Decision Confidence Adjustment Candidate"],
+  "rules": {"brain_retains_judgment":true,"context_not_decision":true,"no_goal_change":true,"no_value_change":true,"escalation_candidate_only":true}
+}

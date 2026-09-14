@@ -1,0 +1,136 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "ObservationAttentionVisualExpressionPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+    "description": "Observation Attention 在 canvas / panel / summary 的图形表达规则。",
+    "primary_expression_surface": "right_panel",
+    "canvas_rules": {
+      "may_draw_boundary": false,
+      "may_clone_segmentation_box": false,
+      "float_marker_enabled": true,
+      "float_marker_format_default": "{number_glyph} {priority_short} {region_short_label}",
+      "float_marker_format_hover_selected_suffix": " · {primary_semantic_hint}",
+      "float_marker_examples": [
+        "① P0 路牌",
+        "⑤ P0 道路",
+        "③ P1 广告屏",
+        "④ P1 前方车辆",
+        "④ P1 前方车辆 · 跟踪候选"
+      ],
+      "icon_only_expression_forbidden": true,
+      "forbidden_on_canvas_default": [
+        "full_attention_summary",
+        "recommended_followup_model_list",
+        "candidate_only_label",
+        "not_fact_label",
+        "correction_boost_detail",
+        "route_icon_dots_without_text"
+      ]
+    },
+    "priority_display_strategy": {
+      "P0_immediate_attention": {
+        "canvas_float_marker_default": true,
+        "right_panel": true,
+        "bottom_summary": true
+      },
+      "P1_high_attention": {
+        "canvas_float_marker_default": true,
+        "right_panel": true,
+        "bottom_summary": true
+      },
+      "P2_medium_attention": {
+        "canvas_float_marker_default": false,
+        "canvas_float_marker_when_show_all": true,
+        "right_panel": true,
+        "bottom_summary": false
+      },
+      "P3_low_attention": {
+        "canvas_float_marker_default": false,
+        "canvas_float_marker_when_show_all": true,
+        "right_panel": true,
+        "bottom_summary": false
+      },
+      "ignore_for_now": {
+        "canvas_float_marker_default": false,
+        "right_panel": false,
+        "bottom_summary": false
+      }
+    },
+    "show_all_candidates_toggle": {
+      "control_label_zh": "显示全部候选浮标",
+      "default": false,
+      "when_enabled": "show_p2_p3_float_markers_on_canvas"
+    },
+    "right_panel_record_format": {
+      "required_fields": [
+        "number_glyph",
+        "priority_level",
+        "region_display_name",
+        "motion_state_candidate",
+        "attention_summary",
+        "recommended_followup_model",
+        "candidate_only",
+        "not_fact"
+      ],
+      "optional_fields": [
+        "correction_boosted",
+        "human_correction_refs"
+      ],
+      "example": {
+        "headline": "① P0 路牌候选",
+        "why": "结构候选，建议深度 + SLAM",
+        "followup": "Depth / SLAM",
+        "status": "candidate_only / not_fact"
+      }
+    },
+    "bottom_summary_format": {
+      "template_zh": "本帧建议优先观察 {count} 个区域：{breakdown}。",
+      "breakdown_example": "P0 结构候选 2 个，P1 需跟踪复核 1 个，P1 静态候选 1 个",
+      "tag": "候选调度"
+    },
+    "semantic_hints_zh": {
+      "tracking": "跟踪候选",
+      "ocr": "OCR候选",
+      "structure": "结构候选",
+      "static": "静态候选",
+      "needs_tracking_review": "需跟踪复核"
+    },
+    "human_correction_visual_rules": {
+      "may_draw_boundary": false,
+      "panel_may_show_boost": true,
+      "boost_label_zh": "指错加权",
+      "not_ground_truth": true
+    },
+    "followup_route_visual_rules": {
+      "canvas_default": "hidden",
+      "panel_default": "full_list",
+      "hover_selected_canvas": "one_line_hint_only"
+    },
+    "forbidden_operations": [
+      "draw_attention_boundary",
+      "draw_secondary_box",
+      "icon_only_marker_without_readable_text",
+      "upgrade_prompt_label_to_fact_on_canvas",
+      "treat_correction_as_ground_truth_on_canvas",
+      "execute_followup_route_from_canvas_click",
+      "execute_runner_from_canvas_click",
+      "write_fact_from_canvas_interaction",
+      "output_confirmed_dynamic_on_canvas_single_frame"
+    ],
+    "boundary_flags": {
+      "observation_attention_visual_candidate_only": true,
+      "not_fact": true,
+      "not_navigation_instruction": true,
+      "not_runner_execution": true,
+      "planning_only": true
+    }
+  }
+}

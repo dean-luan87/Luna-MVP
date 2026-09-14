@@ -1,0 +1,15 @@
+{
+  "registry_id": "uncertainty_type_registry_v1",
+  "owner": "Cognitive Kernel",
+  "types": [
+    {"type": "Perception Uncertainty", "resolution_context": ["resample", "observation_angle", "device_context"]},
+    {"type": "Semantic Uncertainty", "resolution_context": ["knowledge", "context", "history"]},
+    {"type": "Field Uncertainty", "resolution_context": ["field_expansion", "environment_observation"]},
+    {"type": "Causal Uncertainty", "resolution_context": ["hypothesis_branches", "validation"]},
+    {"type": "Decision Uncertainty", "resolution_context": ["risk_evaluation", "option_comparison"]},
+    {"type": "Capability Uncertainty", "resolution_context": ["self_layer", "capability_boundary"]}
+  ],
+  "unknown_is_first_class": true,
+  "unknown_is_exploration": false,
+  "candidate_only": true
+}

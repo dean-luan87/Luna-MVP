@@ -1,0 +1,18 @@
+{
+  "contract_id": "state_transition_negative_guards_v1",
+  "forbidden": [
+    "state_runtime", "prediction_runtime", "scheduler", "automatic_transition", "b_route_runtime", "hive_runtime", "automatic_learning", "identity_change", "constitution_change", "memory_override_reality", "learning_direct_self_update", "single_outcome_direct_memory_write", "self_transition_direct_identity_change", "self_transition_direct_constitution_change", "stability_automatic_acceptance", "momentum_scheduler", "elasticity_automatic_transition", "persistence_reinitialize_identity", "b_route_override_a_route", "b_route_virtual_outcome_experience", "b_route_update_parameters", "hive_direct_state_modification", "hive_direct_parameter_update", "value_execute_action", "goal_execute_action", "decision_reality_mutation", "runtime_transition_authority", "emotion_direct_invariant_change", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "reality_precedence": true,
+    "seven_state_vector_preserved": true,
+    "state_difference_required": true,
+    "stable_core_protected": true,
+    "momentum_is_not_scheduler": true,
+    "elasticity_is_not_automatic_transition": true,
+    "persistence_preserves_identity": true,
+    "b_route_candidate_only": true,
+    "hive_observer_only": true,
+    "unknowns_preserved": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "format_ref": "rtab_map_native_object",
+  "export_session_id": "rtab_export_session_native_object",
+  "file_origin": {
+    "exporter": "rtabmap-native-backend",
+    "source_file": "rtabmap.db"
+  },
+  "source_chain": ["rtab_map_native_backend"],
+  "direct_field_synthesis_write": true,
+  "rtab_db_read": true,
+  "ros_topic_read": true,
+  "live_rtab_runtime": true,
+  "records": [
+    {
+      "node_id": 51,
+      "timestamp_ms": 0,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.9,
+      "source_chain": ["rtab_map_native_backend", "node_51"]
+    }
+  ]
+}

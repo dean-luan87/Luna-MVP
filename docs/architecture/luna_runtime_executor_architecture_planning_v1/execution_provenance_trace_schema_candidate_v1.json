@@ -1,0 +1,105 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/runtime-executor/provenance-trace/v1",
+    "title": "Execution Provenance Trace Schema Candidate v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "trace_id",
+        "execution_request_ref",
+        "action_candidate_ref",
+        "readiness_ref",
+        "admission_ref",
+        "attempt_refs",
+        "result_ref",
+        "failure_refs",
+        "timeout_refs",
+        "cancellation_refs",
+        "rollback_refs",
+        "adapter_event_refs",
+        "scheduler_refs",
+        "task_refs",
+        "diagnostics_refs",
+        "provenance"
+    ],
+    "properties": {
+        "trace_id": {
+            "type": "string"
+        },
+        "execution_request_ref": {
+            "type": "string"
+        },
+        "action_candidate_ref": {
+            "type": "string"
+        },
+        "readiness_ref": {
+            "type": "string"
+        },
+        "admission_ref": {
+            "type": "string"
+        },
+        "attempt_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "result_ref": {
+            "type": "string"
+        },
+        "failure_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "timeout_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "cancellation_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "rollback_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "adapter_event_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "scheduler_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "task_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "diagnostics_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "provenance": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

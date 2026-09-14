@@ -1,0 +1,12 @@
+{
+  "version":"1.0",
+  "name":"Research Reference Boundary",
+  "owner":"Architecture Governance",
+  "references":[
+    {"asset":"OpenCog Hyperon","reference_scope":["attention allocation","pattern representation"],"runtime_adoption":false},
+    {"asset":"SOAR","reference_scope":["state cycle","decision/action/learning separation"],"runtime_adoption":false},
+    {"asset":"Letta","reference_scope":["memory hierarchy concepts"],"runtime_adoption":false},
+    {"asset":"Generative Agents","reference_scope":["reflection candidate concepts"],"runtime_adoption":false}
+  ],
+  "rules":{"reference_not_dependency":true,"research_not_kernel":true,"no_runtime_adoption_in_phase":true}
+}

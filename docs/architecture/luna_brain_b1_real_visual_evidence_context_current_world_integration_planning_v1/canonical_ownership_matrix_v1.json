@@ -1,0 +1,15 @@
+{
+  "owners": [
+    {"owner": "Vision Provider Integration", "owns": ["provider-native detection capture", "VisualDetectionEvidenceCandidateV1 mapping"], "does_not_own": ["fact admission", "Field", "Context", "Current World", "Intent", "Decision", "Task"]},
+    {"owner": "Observation Gateway", "owns": ["observation ingress normalization", "evidence candidate governance", "admission/routing candidate", "trace/provenance lineage"], "does_not_own": ["provider execution", "Field mutation", "Context mutation", "Current World truth"]},
+    {"owner": "Observation Manager", "owns": ["evidence intake references", "evidence quality/intake metadata"], "does_not_own": ["Field State mutation", "provider authority"]},
+    {"owner": "Context Foundation", "owns": ["reference-only Context Envelope Candidate", "Context trace"], "does_not_own": ["Field State", "fact admission", "Intent", "Decision", "Action"]},
+    {"owner": "Field Event Admission", "owns": ["structural and temporal event admission", "reducer eligibility candidate"], "does_not_own": ["state mutation"]},
+    {"owner": "Field State Reducer", "owns": ["sole Field State mutation authority", "deterministic reduction candidate", "state replay trace"], "does_not_own": ["raw provider output", "raw observation", "semantic authority"]},
+    {"owner": "Cognitive State Formation / Current World", "owns": ["CurrentWorldCandidateV1 and cognitive world representation candidates"], "does_not_own": ["Field State mutation", "direct provider admission", "fact declaration"]}
+  ],
+  "context_role": "reference context / assembly surface, not a second Field State owner",
+  "field_state_reducer_mandatory_for_mutation": true,
+  "current_world_derivation": "Current World candidate references Context and Field State; it is not an independent raw-evidence mutation surface.",
+  "authority_granted_by_provenance": false
+}

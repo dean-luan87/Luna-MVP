@@ -1,0 +1,46 @@
+{
+    "artifact": "decision_to_action_task_handoff_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Decision Governance",
+    "consumer_owners": [
+        "Action Boundary",
+        "Task Manager"
+    ],
+    "handoff_kind": "DECISION_TO_ACTION_TASK_HANDOFF_CANDIDATE",
+    "required_payload": [
+        "handoff_id",
+        "decision_candidate_refs",
+        "selected_candidate_ref",
+        "option_refs",
+        "constraint_refs",
+        "permission_status_refs",
+        "safety_status_refs",
+        "uncertainty",
+        "provenance",
+        "confirmation_requirement",
+        "execution_eligibility_candidate"
+    ],
+    "allowed_output": [
+        "Decision Candidate",
+        "selected candidate reference",
+        "candidate-only authorization context"
+    ],
+    "forbidden_output": [
+        "actual action execution",
+        "actuator command",
+        "navigation command",
+        "speech execution",
+        "api call",
+        "database mutation",
+        "task creation",
+        "scheduler operation"
+    ],
+    "guards": {
+        "candidate_only": true,
+        "decision_execution": false,
+        "action_triggered": false,
+        "task_created": false,
+        "producer_mutates_action_or_task": false,
+        "consumer_mutates_decision": false
+    }
+}

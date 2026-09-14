@@ -1,0 +1,9 @@
+{
+  "boundary_id": "b2_future_dynamic_cognitive_function_boundary_v1",
+  "dynamic_cognitive_function_status": "DEFERRED",
+  "cognitive_parameter_genome_status": "DEFERRED",
+  "self_regulation_function_status": "DEFERRED",
+  "observed_extension_points": ["CognitiveStateVectorCandidateV1", "optional Dynamic Cognitive Regulation handoff in CognitiveFlowInputV1", "regulation candidate fields in CognitiveCycleSnapshotV1"],
+  "b2_rule": "B2 may preserve nullable/reference extension points but must not activate regulation, parameter mutation, self-regulation, learning, or adaptation.",
+  "semantic_compression_status": "DEFERRED"
+}

@@ -1,0 +1,35 @@
+{
+  "schema_id": "QwenVLIntegrationDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Teacher-QwenVL-Integration-DryRun-v1-001",
+  "dryrun_only": true,
+  "deterministic_mock_only": true,
+  "principle": "DryRun 验证 Luna 如何控制 Qwen-VL 参与方式，而非 Qwen 答案准确度。",
+  "rules": [
+    {"rule_id": "teacher_admission_before_qwen", "description": "必须先经 Teacher Admission 再调用 Qwen"},
+    {"rule_id": "qwen_evidence_requires_validation", "description": "Qwen 输出必须经过 Teacher Validation Review"},
+    {"rule_id": "no_auto_situation_override", "description": "禁止自动修改 Situation"},
+    {"rule_id": "no_auto_plan_override", "description": "禁止自动修改 Plan"},
+    {"rule_id": "no_auto_tool_os", "description": "禁止自动调用 Tool OS"},
+    {"rule_id": "no_runner_invocation", "description": "禁止触发 Runner"},
+    {"rule_id": "no_fact_write", "description": "禁止 Fact 写入"},
+    {"rule_id": "no_auto_training", "description": "禁止自动训练"},
+    {"rule_id": "unsupported_claim_gate", "description": "无证据品牌断言必须经过 unsupported_claim 门"},
+    {"rule_id": "scene_conflict_reject", "description": "与 L1 scene 冲突的 Teacher 证据拒绝"}
+  ],
+  "boundary_flags": {
+    "dryrun_only": true,
+    "no_real_qwen_api": true,
+    "no_network": true,
+    "teacher_admission_required": true,
+    "validation_reviews_qwen": true,
+    "no_auto_situation_override": true,
+    "no_auto_plan_override": true,
+    "no_auto_tool_os": true,
+    "no_runner_invocation": true,
+    "no_fact_write": true,
+    "no_auto_training": true,
+    "luna_controls_teacher_invocation": true,
+    "unsupported_claim_gate": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "artifact": "cognitive_state_formation_next_module_selection_v1",
+    "phase_id": "Phase-Luna-Cognitive-State-Formation-Next-Module-Selection-v1-001",
+    "selected_next_module": "Attention -> Hypothesis -> Current World Cognitive State Formation Module",
+    "selection_reason": "该模块是当前主链之后最短、最核心的认知状态形成增益点，能直接提高 Context->PCN->Intent 输入质量，同时不依赖真实 Runtime。",
+    "why_now": [
+        "已有假设与全局状态架构包，且边界约束清晰（candidate-only、read-only、no decision/no mutation）。",
+        "与已闭合 Context->PCN->Intent 主链衔接最直接，可作为上游认知状态形成补强层。",
+        "对后续 Causal/Decision 质量提升明显，但不需要改动其 owner。"
+    ],
+    "why_not_others": {
+        "B_memory_experience_learning": "Learning 依赖 Memory/Experience 正式接合，目前仍 architecture-only 且重复实现风险高，先 defer。",
+        "C_dynamic_function_state_vector_self_regulation": "动态调节需要稳定状态输入，当前 Attention/Hypothesis/Current World 还未形成受控实现模块，先 defer。"
+    },
+    "relationship_to_field_state": "Current World 仅组合和快照，不新增 field owner；Field State Reducer 仍负责 field reduction/policy candidate。",
+    "relationship_to_causal_governance": "Hypothesis 负责候选解释空间，不输出因果真值；Causal Governance 继续负责因果候选建模与下游 handoff。",
+    "relationship_to_context_intent_chain": "作为 Context->PCN->Intent 的上游质量增强层，提供更结构化的 attention/hypothesis/current-world candidates，且不替代 intent owner。",
+    "upstream_dependencies": [
+        "docs/architecture/cognitive_hypothesis_belief_architecture_v1/",
+        "docs/architecture/cognitive_global_state_representation_v1/",
+        "capabilities/midplatform/core/context_foundation/",
+        "capabilities/midplatform/core/personal_cognitive_network/",
+        "capabilities/midplatform/core/intent_governance/"
+    ],
+    "downstream_value": [
+        "提升 Intent 输入证据结构化程度与不确定性表达质量",
+        "为 Causal 提供更稳定的候选解释上下文",
+        "为未来 Dynamic Function 提供可复用状态输入基线"
+    ],
+    "implementation_scope": [
+        "仅定义并实现完整 Attention->Hypothesis->Current World 受控模块（candidate-only）",
+        "不进入 Memory/Learning 与 Dynamic Function 实施",
+        "不修改现有 owner 模块"
+    ],
+    "stop_condition": "完成下一模块选择与理由冻结；不进入所选模块实施；状态停在 WAITING_FOR_USER_TERMINAL_VERIFICATION。"
+}

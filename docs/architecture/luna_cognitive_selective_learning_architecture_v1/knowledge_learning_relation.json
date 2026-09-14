@@ -1,0 +1,11 @@
+{
+  "title": "Knowledge Learning Relation v1",
+  "flow": ["Admitted Knowledge", "Field Contextualization", "Role/Task Application", "Interaction", "Outcome Evidence", "Experience Candidate", "Learning Candidate"],
+  "knowledge_is_learning": false,
+  "reading_alone_is_insufficient": true,
+  "knowledge_admission_required": true,
+  "field_role_task_required": true,
+  "application_or_interaction_required": true,
+  "knowledge_does_not_modify_capability_directly": true,
+  "candidate_only": true
+}

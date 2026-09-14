@@ -1,0 +1,12 @@
+{
+  "contract_id": "field_schema_v1",
+  "owner": "Schema Layer",
+  "schema_type": "Field Schema",
+  "inputs": ["Field Evolution", "Field Memory", "Experience Folding", "validated_pattern_candidate"],
+  "outputs": ["field_schema_candidate", "field_context_structure", "unknowns", "provenance"],
+  "field_bound": true,
+  "reality_replacement": false,
+  "world_model": false,
+  "candidate_only": true,
+  "direct_decision": false
+}

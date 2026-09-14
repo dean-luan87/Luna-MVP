@@ -1,0 +1,10 @@
+{
+  "title": "Decision Value Relation v1",
+  "flow": ["Value Constraints", "Utility Candidate", "Priority Candidate", "Decision Arbitration"],
+  "value_role": "provide contextual importance and hard/soft constraint context",
+  "value_is_not_decision_authority": true,
+  "value_does_not_create_candidate": true,
+  "value_does_not_execute": true,
+  "hard_constraint_precedence": true,
+  "candidate_only": true
+}

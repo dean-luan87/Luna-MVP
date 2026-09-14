@@ -1,0 +1,63 @@
+{
+    "artifact": "cognitive_state_formation_concept_boundary_matrix_v1",
+    "boundaries": [
+        {
+            "concept": "Attention",
+            "is": [
+                "reference-based focus candidate selection",
+                "priority/salience/relevance/uncertainty candidate scoring"
+            ],
+            "is_not": [
+                "decision priority",
+                "action priority",
+                "runtime scheduling authority"
+            ]
+        },
+        {
+            "concept": "Cognitive Hypothesis",
+            "is": [
+                "current-situation explanation candidate",
+                "competing interpretation space",
+                "support/opposition/unknown preserved"
+            ],
+            "is_not": [
+                "causal truth",
+                "causal governance replacement",
+                "decision output"
+            ]
+        },
+        {
+            "concept": "Causal Hypothesis",
+            "owner": "Causal Governance",
+            "is": [
+                "cause-relation candidate for downstream decision"
+            ],
+            "is_not": [
+                "cognitive explanation space owner"
+            ]
+        },
+        {
+            "concept": "Current World",
+            "is": [
+                "read-oriented world snapshot candidate",
+                "multi-source composition with uncertainty and conflicts"
+            ],
+            "is_not": [
+                "field state owner",
+                "field mutation authority",
+                "single truth declaration"
+            ]
+        },
+        {
+            "concept": "Field State",
+            "owner": "Field State Reducer",
+            "is": [
+                "event-driven reduction result",
+                "mutation-controlled and replayable state"
+            ],
+            "is_not": [
+                "current world composition layer"
+            ]
+        }
+    ]
+}

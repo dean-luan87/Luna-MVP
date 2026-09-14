@@ -1,0 +1,12 @@
+{
+    "artifact": "action_decision_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "decision_influence": {
+        "selected_decision_candidate_required": true,
+        "decision_influences_action_candidate": true,
+        "decision_equals_action": false,
+        "selected_decision_equals_action_execution": false
+    },
+    "cross_write": false,
+    "mutates_decision": false
+}

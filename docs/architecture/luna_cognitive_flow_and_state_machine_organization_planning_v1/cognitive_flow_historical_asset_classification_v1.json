@@ -1,0 +1,71 @@
+{
+    "artifact": "cognitive_flow_historical_asset_classification_v1",
+    "classification_labels": {
+        "A": "still valid and reusable",
+        "B": "valid but requires adaptation",
+        "C": "superseded by current canonical implementation",
+        "D": "defer or not required now"
+    },
+    "historical_concepts": [
+        {
+            "concept": "state_is_not_field",
+            "source": "cognitive_state_schema/dependency_boundary",
+            "classification": "A"
+        },
+        {
+            "concept": "transition_is_candidate_not_runtime",
+            "source": "state_transition_contract/negative_guards",
+            "classification": "A"
+        },
+        {
+            "concept": "a_route_b_route_separation",
+            "source": "b_route_state_boundary",
+            "classification": "A"
+        },
+        {
+            "concept": "entry_exit_trace_requirements",
+            "source": "state_entry_exit_contract",
+            "classification": "A"
+        },
+        {
+            "concept": "self_veto_and_reconsideration_context",
+            "source": "state_self_boundary",
+            "classification": "B"
+        },
+        {
+            "concept": "six_state_observation_understanding_decision_action_reflection_learning_cycle",
+            "source": "cognitive_state_schema",
+            "classification": "C"
+        },
+        {
+            "concept": "cognitive_state_governance_super_owner",
+            "source": "ownership_registry",
+            "classification": "C"
+        },
+        {
+            "concept": "learning_as_same-cycle_terminal_state",
+            "source": "state_learning_relation",
+            "classification": "D"
+        },
+        {
+            "concept": "action_state_inside_cognitive_cycle",
+            "source": "state_decision_relation",
+            "classification": "D"
+        },
+        {
+            "concept": "attention_policy_from_state_mode",
+            "source": "state_attention_relation",
+            "classification": "B"
+        },
+        {
+            "concept": "memory_not_state_and_not_reality",
+            "source": "state_memory_relation",
+            "classification": "A"
+        },
+        {
+            "concept": "legacy_runtime_state_adapter_future_extension",
+            "source": "summary/implementation_plan",
+            "classification": "D"
+        }
+    ]
+}

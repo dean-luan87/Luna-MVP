@@ -1,0 +1,58 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_temporal_stability_validation",
+  "scope": "candidate_only_temporal_continuity",
+  "cases": [
+    {
+      "case_id": "historically_open_road_currently_under_construction",
+      "time_context": {
+        "history": "long_term_open_road_experience",
+        "current": "today"
+      },
+      "experience_reference": {
+        "road_status_pattern_candidate": "usually_open"
+      },
+      "current_evidence": {
+        "road_status": "construction",
+        "provenance": "current_governed_evidence"
+      },
+      "expected_candidates": {
+        "reality_priority": "current_evidence_supersedes_old_experience",
+        "situation_update_candidate": true,
+        "experience_conflict_visible": true
+      },
+      "forbidden_outputs": [
+        "old_experience_overrides_current_reality",
+        "road_open_as_current_fact"
+      ],
+      "assertions": {
+        "Reality_greater_than_Experience": true,
+        "world_update_remains_candidate_governed": true,
+        "decision_is_not_fixed_by_history": true
+      }
+    },
+    {
+      "case_id": "capability_upgrade_requires_validation",
+      "time_context": {
+        "change_event": "new_camera_installed"
+      },
+      "capability_change_reference": {
+        "new_camera": "higher_nominal_resolution"
+      },
+      "expected_candidates": {
+        "self_capability_update_candidate": true,
+        "validation_required": true,
+        "capability_boundary_still_visible": true
+      },
+      "forbidden_outputs": [
+        "all_visual_problems_solved",
+        "immediate_capability_adoption"
+      ],
+      "assertions": {
+        "capability_evolution_is_governed": true,
+        "new_asset_is_not_universal_capability_claim": true,
+        "automatic_learning_excluded": true
+      }
+    }
+  ]
+}

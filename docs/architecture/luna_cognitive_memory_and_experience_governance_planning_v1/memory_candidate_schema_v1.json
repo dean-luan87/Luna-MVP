@@ -1,0 +1,30 @@
+{
+    "artifact": "memory_candidate_schema_v1",
+    "entity": "MemoryCandidateV1",
+    "fields": [
+        "memory_candidate_id",
+        "memory_type",
+        "source_experience_candidate_refs",
+        "cycle_refs",
+        "salience_candidate",
+        "retention_candidate",
+        "decay_candidate",
+        "refresh_candidate",
+        "revision_parent_ref",
+        "superseded_ref",
+        "revocation_ref",
+        "uncertainty_refs",
+        "contradiction_refs",
+        "privacy_sensitivity_level",
+        "future_retrieval_eligibility",
+        "provenance_refs",
+        "schema_version",
+        "contract_version"
+    ],
+    "flags": {
+        "candidate_only": true,
+        "persisted": false,
+        "fact_admitted": false,
+        "automatic_consolidation": false
+    }
+}

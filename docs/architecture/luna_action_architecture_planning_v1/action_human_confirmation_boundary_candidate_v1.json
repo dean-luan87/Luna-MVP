@@ -1,0 +1,19 @@
+{
+    "artifact": "action_human_confirmation_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "confirmation_states": [
+        "not_required",
+        "required",
+        "confirmed",
+        "expired",
+        "revoked",
+        "mismatched_scope"
+    ],
+    "rules": {
+        "fabricated_confirmation_forbidden": true,
+        "stale_confirmation_reuse_forbidden": true,
+        "cross_action_confirmation_reuse_forbidden": true,
+        "scope_mismatch_reuse_forbidden": true,
+        "action_governance_evaluates_only": true
+    }
+}

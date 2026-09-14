@@ -1,0 +1,16 @@
+{
+  "phase": "Phase-Luna-A-Route-Orchestration-Backbone-Controlled-Integration-v1-001",
+  "canonical_owner": "A Route Orchestration Governance",
+  "owner_type": "lifecycle_and_handoff_governance",
+  "owned_concepts": ["route lifecycle", "stage sequencing", "handoff sequencing", "stop/defer/fail/reconsider control", "cycle continuity linkage", "cross-stage trace linkage", "orchestration error routing"],
+  "not_owned": ["Context", "PCN", "Intent", "Cognitive State", "Dynamic Regulation", "Decision", "Task", "Action", "Runtime", "Memory", "Learning", "Self", "Personality", "Emotion", "semantic truth", "external reality"],
+  "lifecycle_stages": ["IDLE", "INGRESS_READY", "CONTEXT_READY", "PCN_READY", "INTENT_READY", "COGNITIVE_STATE_READY", "REGULATION_READY", "DECISION_READY", "TASK_READY", "ACTION_READY", "EXECUTION_READY", "RESULT_READY", "FEEDBACK_READY", "MEMORY_EXPERIENCE_READY", "LEARNING_READY", "SELF_CONTINUITY_READY", "PERSONALITY_CONTEXT_READY", "CYCLE_COMPLETE"],
+  "control_states": ["STOPPED", "DEFERRED", "RECONSIDERING", "FAILED", "SUSPENDED"],
+  "handoff_statuses": ["CONTRACT_AVAILABLE", "ADAPTER_AVAILABLE", "CONTROLLED_HANDOFF_READY", "RUNTIME_HANDOFF_READY", "BLOCKED", "DEFERRED"],
+  "runtime_handoff_ready": false,
+  "result_feedback": {"flow": ["Execution / Result", "Result Observation Candidate", "Result Comparison Candidate", "Experience / Learning / Self refs", "next-cycle ingress refs"], "comparison_logic_implemented": false},
+  "reconsideration": {"maximum_depth_candidate": 2, "automatic_retry": false, "duplicate_request_guard": true, "repeated_failure_guard": true},
+  "candidate_only": true,
+  "synthetic_only": true,
+  "controlled_integration_only": true
+}

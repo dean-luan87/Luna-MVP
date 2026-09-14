@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Capability Registry Boundary",
+  "owner": "Capability Registry",
+  "stores": ["Capability Identity", "Capability Schema", "Capability Contract", "Capability Dependencies", "Capability Lifecycle"],
+  "answers": "What capabilities Luna currently has",
+  "does_not_manage": ["Model Version", "Provider", "Runtime Scheduling", "Hardware", "Decision", "Goal"],
+  "interfaces": ["Capability Candidate", "Capability Manifest", "Capability Health Reference", "Lifecycle Update Candidate"],
+  "rules": {"registry_is_not_scheduler": true, "registry_is_not_model_manager": true, "registry_is_not_decision_authority": true, "canonical_id_required": true}
+}

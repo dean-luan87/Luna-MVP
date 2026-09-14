@@ -1,0 +1,26 @@
+{
+  "title": "Expectation Learning Interface v1",
+  "contract_type": "Feedback to Learning Candidate",
+  "input": {
+    "expectation_reference": "expectation-example",
+    "feedback_status": "Contradicted",
+    "expectation_difference": "difference-example",
+    "experience_record": {},
+    "evidence_references": [],
+    "field_reference": "field-example",
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "learning_candidate": {},
+    "future_adjustment_candidate": {},
+    "pattern_candidate": {}
+  },
+  "boundary": {
+    "learning_receives_feedback": true,
+    "learning_does_not_modify_expectation_automatically": true,
+    "learning_does_not_modify_belief_automatically": true,
+    "learning_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "interface_name": "Self Experience Adaptation Interface v1",
+  "experience_reference": "experience-example",
+  "capability_reference": "capability-example",
+  "self_state_reference": "self-state-example",
+  "evidence_reference": [],
+  "capability_adjustment_candidate": null,
+  "self_state_adjustment_candidate": null,
+  "identity_reference": "identity-example",
+  "identity_continuity_required": true,
+  "experience_does_not_modify_identity": true,
+  "experience_does_not_claim_capability_without_evidence": true,
+  "current_reality_precedence": true,
+  "diagnostics_candidate_allowed": true,
+  "unknowns_are_preserved": true
+}

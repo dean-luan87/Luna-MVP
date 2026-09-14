@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:49:19.264346+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_SOURCE_CODE_ONLY_INSTALL_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "source_code_only_registry_patch_execution_profile_count": 1,
+    "stage_ref_count": 14,
+    "registry_patch_pre_snapshot_record_count": 1,
+    "registry_patch_execution_record_count": 1,
+    "registry_patch_diff_record_count": 1,
+    "code_only_readiness_patch_record_count": 2,
+    "weight_boundary_patch_record_count": 2,
+    "model_runtime_boundary_patch_record_count": 2,
+    "registry_patch_post_review_audit_count": 1,
+    "registry_patch_rollback_readiness_record_count": 2,
+    "registry_patch_followup_weight_download_route_count": 1,
+    "negative_guard_count": 18,
+    "changed_asset_count": 2,
+    "blocker_count": 0
+  }
+}

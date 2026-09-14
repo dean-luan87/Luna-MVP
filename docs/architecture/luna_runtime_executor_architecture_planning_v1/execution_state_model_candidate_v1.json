@@ -1,0 +1,36 @@
+{
+    "artifact": "execution_state_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "states": [
+        "REQUESTED",
+        "ADMISSION_PENDING",
+        "ADMITTED_CANDIDATE",
+        "REJECTED_CANDIDATE",
+        "QUEUED_CANDIDATE",
+        "EXECUTION_WINDOW_OPEN_CANDIDATE",
+        "RUNNING_CANDIDATE",
+        "PARTIAL_RESULT_CANDIDATE",
+        "SUCCEEDED_CANDIDATE",
+        "FAILED_CANDIDATE",
+        "CANCELLED_CANDIDATE",
+        "TIMEOUT_CANDIDATE",
+        "ROLLBACK_REQUIRED_CANDIDATE"
+    ],
+    "rules": {
+        "execution_readiness_not_execution": true,
+        "admitted_not_executed": true,
+        "running_candidate_not_device_side_effect_claim": true,
+        "terminal_states": [
+            "SUCCEEDED_CANDIDATE",
+            "FAILED_CANDIDATE",
+            "CANCELLED_CANDIDATE",
+            "TIMEOUT_CANDIDATE"
+        ]
+    },
+    "forbidden_transitions": [
+        "REQUESTED->SUCCEEDED_CANDIDATE",
+        "REQUESTED->FAILED_CANDIDATE",
+        "REJECTED_CANDIDATE->RUNNING_CANDIDATE",
+        "CANCELLED_CANDIDATE->RUNNING_CANDIDATE"
+    ]
+}

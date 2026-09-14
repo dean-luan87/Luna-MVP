@@ -1,0 +1,56 @@
+{
+  "schema_id": "MobileSamOcrControlledExecutionInputPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+  "description": "OCR 受控执行输入边界。输入来自 OCR task candidate + midplatform analysis，不直接读 MobileSAM 原始输出。",
+  "planning_only": true,
+  "runner_type": "OCR",
+  "input_acceptance_principle": "这里值得做文字观察",
+  "input_rejection_principle": "这里是什么文字",
+  "allowed_inputs": [
+    "source_image_ref",
+    "source_region_id",
+    "region_crop_ref",
+    "region_geometry_ref",
+    "source_result_candidate_id",
+    "source_analysis_record_id",
+    "source_ocr_task_candidate_id",
+    "ocr_target_reason",
+    "trace_chain"
+  ],
+  "forbidden_inputs": [
+    "confirmed_text",
+    "fact_label",
+    "这是路牌",
+    "这是广告牌",
+    "confirmed_dynamic",
+    "human_correction_as_ground_truth",
+    "mobilesam_prompt_label_as_fact",
+    "navigation_decision_context",
+    "ground_truth_ocr",
+    "preset_real_text"
+  ],
+  "entry_path": [
+    "segmentation_result_envelope",
+    "result_candidate",
+    "midplatform_processing",
+    "ocr_route_candidate",
+    "ocr_task_candidate",
+    "ocr_invocation_request"
+  ],
+  "forbidden_entry_paths": [
+    "mobilesam_output_direct_to_ocr",
+    "ui_direct_ocr_request",
+    "human_correction_direct_to_ocr_request",
+    "bypass_midplatform"
+  ],
+  "boundary_flags": {
+    "ocr_input_does_not_contain_fact_text": true,
+    "ocr_input_does_not_contain_fact_label": true,
+    "no_mobile_sam_direct_to_ocr": true,
+    "no_bypass_midplatform": true,
+    "no_human_correction_ground_truth": true,
+    "no_prompt_label_fact_upgrade": true,
+    "planning_only": true
+  }
+}

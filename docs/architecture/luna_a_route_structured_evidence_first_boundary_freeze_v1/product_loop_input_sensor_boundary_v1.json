@@ -1,0 +1,22 @@
+{
+  "contract_id": "product-loop-input-sensor-boundary-v1",
+  "ProductLoopInputV1_may_carry": [
+    "human-authored language",
+    "system event references",
+    "task continuation",
+    "user correction",
+    "observation feedback"
+  ],
+  "ProductLoopInputV1_must_not_be_sensor_sink_for": [
+    "raw camera frames",
+    "raw OCR payloads",
+    "raw SLAM/VIO geometry",
+    "raw audio signals",
+    "provider output rewritten as conclusion-level language"
+  ],
+  "sensor_ingress_owner_path": ["Observation / Perception pathway", "Observation Gateway", "Context / Field / Current World integration"],
+  "human_language_path": ["Real User Input Adapter", "ProductLoopInputV1", "A Route Orchestration Governance"],
+  "semantic_compression_execution": false,
+  "raw_sensor_to_product_loop_language_conversion": false,
+  "user_statement_is_external_reality_truth": false
+}

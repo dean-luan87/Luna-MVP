@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Relationship System Mapping",
+  "owner": "Social Self Layer",
+  "relationship_context": ["Participants", "Field", "Time", "Interaction History", "Evidence", "Confidence", "Boundary"],
+  "states": ["Initial", "Developing", "Stable", "Changed", "Unknown", "Archived"],
+  "outputs": ["Relationship Candidate", "Social Context Candidate", "Integration Context Candidate"],
+  "forbidden": ["Automatic Relationship Judgment", "Identity Confirmation Without Evidence", "Direct Emotion Generation", "Direct Decision", "Direct Action"],
+  "rules": {"relationship_is_candidate": true, "field_time_bound": true, "unknown_preserved": true, "emotion_context_only": true}
+}

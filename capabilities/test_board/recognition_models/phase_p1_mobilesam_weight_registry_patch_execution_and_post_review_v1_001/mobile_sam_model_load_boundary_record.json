@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T07:04:08.654615+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_boundary_record",
+  "mobile_sam_model_load_boundary_record": {
+    "record_id": "mobile_sam_model_load_boundary_v1",
+    "weight_registry_patch_success_not_model_load_approval": true,
+    "code_and_weight_ready_not_model_loaded": true,
+    "code_and_weight_ready_not_model_ready": true,
+    "code_and_weight_ready_not_inference_ready": true,
+    "code_and_weight_ready_not_runtime_ready": true,
+    "model_load_requires_separate_request": true,
+    "model_load_requires_owner_approval": true,
+    "model_load_trial_requires_separate_phase": true,
+    "inference_requires_separate_trial": true,
+    "runtime_requires_separate_trial": true,
+    "output_adapter_requires_separate_review": true,
+    "semantic_layer_requires_separate_promotion": true,
+    "commercial_runtime_not_approved": true
+  }
+}

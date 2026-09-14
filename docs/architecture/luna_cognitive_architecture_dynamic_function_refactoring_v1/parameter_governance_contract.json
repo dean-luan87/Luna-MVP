@@ -1,0 +1,13 @@
+{
+  "contract_id": "dynamic_parameter_governance_v1",
+  "required_fields": ["parameter_id", "version", "range", "unit", "field_scope", "provenance", "evidence", "risk", "validation_metric", "rollback_ref"],
+  "lifecycle": ["Proposed", "Evaluated", "Reviewed", "Accepted", "Rejected", "Deferred", "Versioned", "RolledBack", "Archived"],
+  "review_owners": ["Self Governance", "Constitution Governance", "Capability Governance"],
+  "hard_constraints": ["Constitution", "Identity Boundary", "Safety Boundary", "Resource Boundary", "Capability Feasibility"],
+  "automatic_tuning": false,
+  "cross_field_unscoped_transfer": false,
+  "evidence_required": true,
+  "rollback_required": true,
+  "versioning_required": true,
+  "candidate_only": true
+}

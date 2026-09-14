@@ -1,0 +1,23 @@
+{
+  "artifact": "emotion_privacy_sensitivity_boundary_v1",
+  "levels": [
+    "NORMAL",
+    "SENSITIVE",
+    "HIGH_SENSITIVITY",
+    "USER_CONFIRMATION_REQUIRED",
+    "DO_NOT_GENERALIZE",
+    "DO_NOT_TRANSFER",
+    "DO_NOT_PERSIST_CANDIDATE"
+  ],
+  "rules": {
+    "emotion_is_high_sensitivity_longitudinal_data": true,
+    "explicit_user_correction_precedence": true,
+    "high_sensitivity_requires_review_candidate": true,
+    "do_not_generalize_is_scope_limited": true,
+    "do_not_transfer_is_cross_user_prohibition": true,
+    "do_not_persist_candidate_blocks_persistence_candidate": true,
+    "cross_user_transfer": false,
+    "candidate_only": true
+  },
+  "forbidden": ["cross_user_emotion_transfer", "silent_sensitive_inference", "sensitivity_bypass", "automatic_persistence"]
+}

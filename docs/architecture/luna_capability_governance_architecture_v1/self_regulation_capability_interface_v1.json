@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "name": "Self Regulation Capability Interface",
+  "flow": ["Self Regulation", "Capability Health Query", "Capability Governance", "Candidate Options", "Brain Evaluation", "Adjustment"],
+  "self_regulation_can": ["Report Health Change", "Request Health Query", "Propose Degradation", "Propose Recovery", "Propose Stability-Preserving Adjustment"],
+  "self_regulation_cannot": ["Direct Model Switch", "Direct Provider Invocation", "Bypass Admission", "Automatic Upgrade", "Automatic Recovery", "Modify Identity", "Modify Value", "Modify Goal"],
+  "rules": {"proposal_only": true, "brain_review_required": true, "admission_retained_by_governance": true, "self_preservation_priority": true}
+}

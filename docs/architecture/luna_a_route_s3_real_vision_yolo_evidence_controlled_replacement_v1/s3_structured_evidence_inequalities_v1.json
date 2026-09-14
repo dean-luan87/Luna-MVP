@@ -1,0 +1,16 @@
+{
+  "raw_frame_is_visual_evidence": false,
+  "visual_detection_is_fact": false,
+  "confidence_is_correctness": false,
+  "confidence_is_evidence_sufficiency": false,
+  "visual_evidence_is_field_state": false,
+  "visual_evidence_is_current_world_truth": false,
+  "visual_evidence_creates_intent": false,
+  "visual_evidence_creates_task": false,
+  "visual_evidence_invokes_ocr": false,
+  "visual_evidence_invokes_slam": false,
+  "visual_evidence_invokes_vlm": false,
+  "provider_output_is_semantic_authority": false,
+  "visual_evidence_to_natural_language": false,
+  "semantic_compression": false
+}

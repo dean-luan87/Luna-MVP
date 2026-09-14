@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Evidence Gateway Field Interface",
+  "input": {
+    "observation_requirement": "required",
+    "provider_output": "candidate",
+    "human_feedback": "candidate",
+    "provenance": "required"
+  },
+  "validation": [
+    "schema",
+    "confidence",
+    "uncertainty",
+    "timestamp",
+    "capability_reference",
+    "request_reference",
+    "provenance"
+  ],
+  "output": {
+    "evidence_candidate": "validated candidate",
+    "failure_candidate": "diagnostics candidate"
+  },
+  "next_boundary": "Reality Workspace",
+  "field_update": "candidate only",
+  "reality_state_mutation": "Reducer only",
+  "direct_decision": false,
+  "direct_action": false,
+  "provider_bypass": false,
+  "model_output_is_reality": false
+}

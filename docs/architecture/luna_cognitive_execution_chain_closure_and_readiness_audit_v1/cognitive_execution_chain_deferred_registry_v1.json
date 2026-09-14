@@ -1,0 +1,17 @@
+{
+    "artifact": "cognitive_execution_chain_deferred_registry_v1",
+    "deferred_items": [
+        "real event bus",
+        "real async orchestration",
+        "real scheduler runtime",
+        "real Task runtime orchestration",
+        "real retry engine",
+        "real rollback engine",
+        "real adapter/provider/device invocation",
+        "Field State writeback",
+        "Memory fact writeback",
+        "distributed tracing backend",
+        "schema registry implementation",
+        "production transaction model"
+    ]
+}

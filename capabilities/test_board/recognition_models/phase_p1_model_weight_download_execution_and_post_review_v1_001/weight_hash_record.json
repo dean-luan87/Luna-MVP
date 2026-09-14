@@ -1,0 +1,23 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T06:45:17.757852+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "execution_scope": "mobile_sam_only",
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_hash_record",
+  "weight_hash_record": {
+    "asset_id": "mobile_sam",
+    "hash_algorithm": "sha256",
+    "sha256_value": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "sha256_recorded": true,
+    "hash_computed_after_download": true
+  }
+}

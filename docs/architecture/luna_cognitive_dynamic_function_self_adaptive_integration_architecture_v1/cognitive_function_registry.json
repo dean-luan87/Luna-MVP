@@ -1,0 +1,18 @@
+{
+  "registry_id": "cognitive_function_registry_v1",
+  "functions": [
+    {"function_id": "field_input_space", "module": "Field", "role": "Input State Space"},
+    {"function_id": "attention_function", "module": "Attention", "role": "Resource Allocation Function"},
+    {"function_id": "memory_influence_function", "module": "Memory", "role": "Historical Influence Function"},
+    {"function_id": "prior_knowledge_function", "module": "Knowledge", "role": "Prior Knowledge Function"},
+    {"function_id": "confidence_dynamics_function", "module": "Belief/Understanding", "role": "Dynamic Cognitive State Variable"},
+    {"function_id": "goal_drive_function", "module": "Goal", "role": "Cognitive Drive Function"},
+    {"function_id": "utility_function", "module": "Value Utility", "role": "Utility Function"},
+    {"function_id": "decision_function", "module": "Decision Arbitration", "role": "Decision Function"},
+    {"function_id": "error_signal_function", "module": "Outcome Evaluation", "role": "Error Signal Function"},
+    {"function_id": "parameter_evolution_candidate_generator", "module": "Selective Learning", "role": "Parameter Evolution Candidate Generator"}
+  ],
+  "unique_function_owner": true,
+  "mapping_is_not_replacement": true,
+  "runtime": false
+}

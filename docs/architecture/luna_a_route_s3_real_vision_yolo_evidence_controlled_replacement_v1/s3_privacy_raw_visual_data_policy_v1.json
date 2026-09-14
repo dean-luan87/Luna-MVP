@@ -1,0 +1,12 @@
+{
+  "sensitivity_default": "HIGH_SENSITIVITY",
+  "do_not_persist_raw_content": true,
+  "cross_user_transfer": false,
+  "training_use": false,
+  "runner_artifacts": "metadata, references, provider output metadata and evidence candidates only",
+  "raw_video_copy": false,
+  "raw_frame_copy": false,
+  "embedding_execution": false,
+  "upload": false,
+  "provenance_grants_authority": false
+}

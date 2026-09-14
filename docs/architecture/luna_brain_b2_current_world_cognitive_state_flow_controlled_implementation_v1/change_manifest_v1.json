@@ -1,0 +1,7 @@
+{
+  "new_integration_files": ["b2_current_world_cognitive_state_flow_types_v1.py", "b2_current_world_cognitive_state_flow_adapter_v1.py", "b2_current_world_cognitive_state_flow_fixture_v1.py", "run_b2_current_world_cognitive_state_flow_controlled_implementation_v1.py", "verify_b2_current_world_cognitive_state_flow_controlled_implementation_v1.py"],
+  "canonical_contract_change": "optional read-only current_world_ref added to CognitiveStateFormationInputV1; Cognitive State Formation preserves that source reference in candidate provenance/trace",
+  "existing_files_modified": ["capabilities/midplatform/core/cognitive_state_formation/cognitive_state_formation_io_types_v1.py", "capabilities/midplatform/core/cognitive_state_formation/cognitive_state_formation_engine_v1.py"],
+  "protected": ["B1", "Observation Gateway", "Field State Reducer", "Model Manager", "YOLO provider", "Intent/Decision/Task owners"],
+  "implementation_scope": "narrow integration only"
+}

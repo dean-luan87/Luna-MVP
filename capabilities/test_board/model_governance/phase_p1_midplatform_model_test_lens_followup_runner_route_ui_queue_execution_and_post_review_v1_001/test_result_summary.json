@@ -1,0 +1,21 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-UI-Queue-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-03T06:23:39.246282+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MIDPLATFORM_MODEL_TEST_LENS_FOLLOWUP_RUNNER_ROUTE_UI_QUEUE_EXECUTION_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "followup_runner_route_ui_queue_execution_profile_count": 1,
+    "negative_guard_count": 26,
+    "blocker_count": 0
+  }
+}

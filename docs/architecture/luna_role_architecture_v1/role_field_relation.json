@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Role Field Relation",
+  "owner":"Role Layer",
+  "relation":"Role Instance = Field + Task + Relationship + Social Expectation + Self Capability + Time",
+  "field_requirements":["field_id","field_type","active_state","rules","dynamic_context"],
+  "effects":["responsibility_candidate","behavior_boundary_candidate","attention_requirement_candidate"],
+  "rules":{"no_context_free_role":true,"role_deactivates_with_field":true,"same_self_multiple_field_roles":true,"field_overrides_history":true}
+}

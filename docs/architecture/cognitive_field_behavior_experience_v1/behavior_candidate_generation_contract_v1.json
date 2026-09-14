@@ -1,0 +1,22 @@
+{
+  "contract_name": "Behavior Candidate Generation Contract v1",
+  "field_reference": "field-example",
+  "self_reference": "self-example",
+  "goal_reference": "goal-example",
+  "task_reference": "task-example",
+  "rule_context": [],
+  "dynamic_context": [],
+  "experience_context": [],
+  "preference_context": [],
+  "capability_context": [],
+  "unknowns": [],
+  "behavior_candidate": {"pattern": null, "constraints": [], "confidence": null},
+  "adaptation_candidate": null,
+  "reality_validation_required": true,
+  "behavior_is_not_action": true,
+  "behavior_is_not_decision": true,
+  "behavior_is_not_goal": true,
+  "behavior_does_not_execute": true,
+  "a_route_review_required": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,16 @@
+{
+  "contract_name": "Prediction Error Contract v1",
+  "prediction_error_definition": "Expectation → Reality → Difference → Learning Signal",
+  "expectation_reference": {},
+  "reality_reference": {},
+  "difference_reference": {},
+  "learning_signal_reference": {},
+  "provenance": [],
+  "confidence": null,
+  "unknowns": [],
+  "prediction_runtime": false,
+  "does_not_modify_reality": true,
+  "does_not_modify_goal": true,
+  "does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

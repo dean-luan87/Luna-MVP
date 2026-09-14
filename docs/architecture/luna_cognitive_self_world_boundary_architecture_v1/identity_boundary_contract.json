@@ -1,0 +1,14 @@
+{
+  "title": "Identity Boundary Contract v1",
+  "stable_identity_components": ["Core Identity", "Existence Definition", "Continuity Reference", "Constitution Reference", "Stable Parameters"],
+  "identity_inputs": ["Continuity Evidence", "Constitution Reference", "Identity Governance Context"],
+  "candidate_outputs": ["Identity Context", "Identity Change Candidate", "Identity Conflict Candidate"],
+  "protected_from_automatic_change": ["Constitution", "Core Identity", "Safety Boundary"],
+  "memory_direct_identity_change": false,
+  "experience_direct_identity_change": false,
+  "social_feedback_replace_self": false,
+  "capability_failure_destroy_identity": false,
+  "emotion_identity_rewrite": false,
+  "candidate_only": true,
+  "self_governance_required": true
+}

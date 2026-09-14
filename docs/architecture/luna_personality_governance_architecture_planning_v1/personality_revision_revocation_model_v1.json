@@ -1,0 +1,24 @@
+{
+  "artifact": "personality_revision_revocation_model_v1",
+  "supported_lineage": {
+    "revision": true,
+    "supersession": true,
+    "revocation": true,
+    "expiration": true,
+    "source_deletion": false,
+    "history_erasure": false
+  },
+  "candidate_types": ["PersonalityRevisionCandidateV1", "PersonalitySupersessionCandidateV1", "PersonalityRevocationCandidateV1", "PersonalityExpirationCandidateV1"],
+  "revision_triggers": ["explicit_user_correction", "new_cross_context_evidence", "counterexample", "contradiction", "stale_temporal_scope", "source_revocation", "sensitivity_change", "context_scope_change"],
+  "rules": {
+    "revision_parent_required": true,
+    "supersedes_ref_required_for_supersession": true,
+    "revocation_reason_required": true,
+    "counterexamples_preserved": true,
+    "contradictions_preserved": true,
+    "user_correction_precedence": true,
+    "revoked_candidate_not_reactivated_silently": true,
+    "superseded_candidate_remains_reverse_locatable": true,
+    "profile_revision_does_not_mutate_identity": true
+  }
+}

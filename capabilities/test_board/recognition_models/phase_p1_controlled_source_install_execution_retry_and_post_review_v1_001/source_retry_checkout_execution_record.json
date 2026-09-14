@@ -1,0 +1,103 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.414059+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "code_only_source_install": true,
+  "post_review_included": true,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "source_retry_checkout_execution_record",
+  "source_retry_checkout_execution_records": [
+    {
+      "asset_id": "byte_track",
+      "checkout_strategy": "scoped_partial_clone_then_checkout_pinned_commit",
+      "full_clone_used": false,
+      "weight_excluding_checkout_used": false,
+      "checkout_path": "_tmp_eval_out/p1_source_retry_workspace/checkout/byte_track_src",
+      "checkout_path_is_controlled": true,
+      "resolved_commit_hash": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "checkout_succeeded": true,
+      "weight_files_materialized": [],
+      "committed_weight_blob_fetched": false,
+      "git_lfs_triggered": false,
+      "unauthorized_large_file_download": false
+    },
+    {
+      "asset_id": "mobile_sam",
+      "checkout_strategy": "weight_excluding_partial_clone_sparse_checkout_exclude_weights",
+      "full_clone_used": false,
+      "weight_excluding_checkout_used": true,
+      "checkout_path": "_tmp_eval_out/p1_source_retry_workspace/checkout/mobile_sam_src",
+      "checkout_path_is_controlled": true,
+      "resolved_commit_hash": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "checkout_succeeded": true,
+      "weight_files_materialized": [],
+      "committed_weight_blob_fetched": false,
+      "git_lfs_triggered": false,
+      "unauthorized_large_file_download": false
+    }
+  ],
+  "source_retry_commit_pin_validation_records": [
+    {
+      "asset_id": "byte_track",
+      "expected_commit_hash": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "resolved_commit_hash": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "commit_pin_matches": true,
+      "commit_pin_not_fabricated": true,
+      "commit_pin_validation_passed": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "expected_commit_hash": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "resolved_commit_hash": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "commit_pin_matches": true,
+      "commit_pin_not_fabricated": true,
+      "commit_pin_validation_passed": true
+    }
+  ],
+  "source_retry_checkout_plan_records": [
+    {
+      "asset_id": "byte_track",
+      "checkout_strategy": "scoped_partial_clone_then_checkout_pinned_commit",
+      "full_clone_allowed": true,
+      "weight_excluding_checkout_required": false,
+      "blocked_file_patterns": [
+        "weights/mobile_sam.pt",
+        "*.pth",
+        "*.pt",
+        "*.ckpt",
+        "*.safetensors",
+        "*.onnx",
+        "*.bin",
+        "*.h5",
+        "*.pb"
+      ],
+      "controlled_checkout_path": "_tmp_eval_out/p1_source_retry_workspace/checkout/byte_track_src"
+    },
+    {
+      "asset_id": "mobile_sam",
+      "checkout_strategy": "weight_excluding_partial_clone_sparse_checkout_exclude_weights",
+      "full_clone_allowed": false,
+      "weight_excluding_checkout_required": true,
+      "blocked_file_patterns": [
+        "weights/mobile_sam.pt",
+        "*.pth",
+        "*.pt",
+        "*.ckpt",
+        "*.safetensors",
+        "*.onnx",
+        "*.bin",
+        "*.h5",
+        "*.pb"
+      ],
+      "controlled_checkout_path": "_tmp_eval_out/p1_source_retry_workspace/checkout/mobile_sam_src"
+    }
+  ]
+}

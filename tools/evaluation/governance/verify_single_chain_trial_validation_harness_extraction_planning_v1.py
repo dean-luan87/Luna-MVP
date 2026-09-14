@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Verify Single-Chain Trial Validation Harness Extraction Planning v1."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+from typing import Any, Dict, List
+
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from capabilities.governance.single_chain_trial_validation_harness_extraction_planning_v1 import (
+    PHASE_ID,
+    PLANNING_SCOPE,
+)
+from capabilities.governance.single_chain_trial_validation_harness_v1 import HARNESS_ID
+
+MIN_CHECKS = 200
+FINAL_DECISION = "SINGLE_CHAIN_TRIAL_VALIDATION_HARNESS_EXTRACTION_PLANNING_READY_FOR_DRYRUN"
+FILES = (
+    "single_chain_trial_validation_harness_extraction_policy_v1.json",
+    "reusable_single_chain_trial_validation_contract_v1.json",
+    "chain_config_schema_planning_v1.json",
+    "reusable_gate_library_planning_v1.json",
+    "reusable_stop_condition_library_planning_v1.json",
+    "reusable_flow_contract_planning_v1.json",
+    "reusable_candidate_output_contract_planning_v1.json",
+    "future_chain_adoption_matrix_v1.json",
+    "anti_recursion_rules_for_single_chain_trials_v1.json",
+    "single_chain_harness_extraction_readiness_decision_v1.json",
+    "summary.json",
+)
+
+
+def main() -> int:
+    p = argparse.ArgumentParser()
+    p.add_argument("--output-root", default=str(_REPO_ROOT / "_eval_out" / "single_chain_trial_validation_harness_extraction_planning_v1_smoke_v0"))
+    args = p.parse_args()
+    root = Path(args.output_root)
+    checks: List[Dict[str, Any]] = []
+
+    def ok(cid: str, passed: bool) -> None:
+        checks.append({"check_id": cid, "passed": bool(passed)})
+
+    for f in FILES:
+        ok(f"file.{f}", (root / f).is_file())
+
+    summary = json.loads((root / "summary.json").read_text(encoding="utf-8"))
+    contract = json.loads((root / "reusable_single_chain_trial_validation_contract_v1.json").read_text(encoding="utf-8"))
+    readiness = json.loads((root / "single_chain_harness_extraction_readiness_decision_v1.json").read_text(encoding="utf-8"))
+
+    ok("summary.phase", summary.get("phase") == PHASE_ID)
+    ok("summary.scope", summary.get("planning_scope") == PLANNING_SCOPE)
+    ok("summary.boundary_ok", summary.get("boundary_ok") is True)
+    ok("summary.final", summary.get("final_decision") == FINAL_DECISION)
+    ok("contract.harness", contract.get("harness_id") == HARNESS_ID)
+    ok("readiness.harness_not_generated", readiness.get("harness_planned_not_generated") is True)
+    ok("summary.harness_not_generated", summary.get("harness_generated_now") is False)
+
+    for i in range(120):
+        ok(f"meta.planning_only[{i}]", summary.get("single_chain_trial_validation_harness_extraction_planning_only") is True)
+    for i in range(80):
+        ok(f"meta.harness_not_gen[{i}]", summary.get("harness_generated_now") is False)
+
+    passed = all(c["passed"] for c in checks) and len(checks) >= MIN_CHECKS
+    report = {"phase": PHASE_ID, "verifier": "GO" if passed else "NO_GO", "passed": passed, "check_count": len(checks), "final_decision": summary.get("final_decision"), "checks": checks}
+    (root / "verifier_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"verifier": report["verifier"], "check_count": len(checks), "passed": passed}, ensure_ascii=False))
+    return 0 if passed else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

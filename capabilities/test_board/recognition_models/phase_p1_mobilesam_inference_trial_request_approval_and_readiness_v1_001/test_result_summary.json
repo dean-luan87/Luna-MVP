@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.529711+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_INFERENCE_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_inference_trial_request_approval_readiness_profile_count": 1,
+    "stage_ref_count": 16,
+    "mobile_sam_model_load_verified_registry_audit_count": 1,
+    "mobile_sam_inference_trial_request_record_count": 1,
+    "mobile_sam_inference_owner_approval_issuance_record_count": 1,
+    "mobile_sam_local_test_image_manifest_plan_count": 1,
+    "mobile_sam_inference_candidate_output_boundary_count": 1,
+    "mobile_sam_inference_command_whitelist_count": 1,
+    "mobile_sam_inference_memory_timeout_boundary_count": 1,
+    "mobile_sam_inference_rollback_cleanup_count": 1,
+    "mobile_sam_inference_readiness_review_count": 1,
+    "mobile_sam_followup_inference_execution_route_count": 1,
+    "negative_guard_count": 17,
+    "blocker_count": 0
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-Cognitive-Uncertainty-Exploration-Governance-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_UNCERTAINTY_EXPLORATION_GOVERNANCE_ARCHITECTURE_READY",
+  "uncertainty_types": ["Perception Uncertainty", "Semantic Uncertainty", "Field Uncertainty", "Causal Uncertainty", "Decision Uncertainty", "Capability Uncertainty"],
+  "exploration_strategies": ["Perception Exploration", "Interaction Exploration", "Environment Exploration", "Knowledge Exploration", "Experience Exploration"],
+  "exploration_states": ["Detected", "Evaluated", "Candidate", "Approved", "Exploring", "Partial Result", "Completed", "Accepted Unknown", "Archived"],
+  "stop_conditions": ["Value Exhausted", "Budget Exhausted", "Information Ceiling", "Decision Sufficient", "Accept Unknown"],
+  "reusable_assets": ["Cognitive State", "Reality Validation", "Hypothesis", "Cognitive Field", "Information Lifecycle", "Memory", "Schema", "Self Regulation", "Self Rhythm"],
+  "exploration_assets": ["Hypothesis Validation", "Attention Observation Requirement", "B Route Interface Placeholder"],
+  "self_governance_assets": ["Self Regulation", "Self Rhythm Controller", "Cognitive State", "Resource Budget"],
+  "owner_conflicts": ["Cognitive Kernel proposal vs Self Layer approval", "Attention observation request vs Exploration Governance", "Knowledge retrieval vs Self budget"],
+  "parallel_risks": ["parallel exploration engine", "parallel scheduler", "parallel unknown registry", "parallel resource owner"],
+  "migration_mapping": ["exploration_candidate_to_future_runtime_adapter", "unknown_to_existing_field_validation_context"],
+  "runtime": false,
+  "scheduler": false,
+  "automatic_exploration": false,
+  "automatic_learning": false,
+  "database_access": false
+}

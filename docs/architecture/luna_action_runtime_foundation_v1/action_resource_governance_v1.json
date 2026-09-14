@@ -1,0 +1,9 @@
+{
+  "title": "Action Resource Governance v1",
+  "owner": "Cognitive OS Resource Governance",
+  "resources": ["Time", "Energy", "Network", "Device", "Permission", "Environment Condition"],
+  "schema": ["action", "resource", "budget", "limit", "status", "trace_id"],
+  "inputs": ["Approved Action", "Priority", "Resource State", "Environment"],
+  "outputs": ["Resource Admission Candidate", "Resource Denied Candidate", "Degraded Candidate"],
+  "rules": {"action_cannot_request_unlimited": true, "budget_required": true, "resource_not_goal_owner": true, "resource_not_decision_owner": true}
+}

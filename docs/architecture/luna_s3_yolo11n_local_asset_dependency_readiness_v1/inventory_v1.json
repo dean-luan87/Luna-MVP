@@ -1,0 +1,12 @@
+{
+  "canonical_owner": "Model Manager / Model Governance",
+  "existing_model_asset_id": "model-asset:yolo11n:weights-v1",
+  "declared_asset": true,
+  "physical_asset_status": "ASSET_NOT_PRESENT",
+  "expected_asset_path": "vision/detection/yolo/yolo11n.pt",
+  "expected_asset_filename": "yolo11n.pt",
+  "local_yolo11n_files_found": [],
+  "yolov5_reference_file": "/Users/luanlei/Desktop/Luna-Workspace-Min/models/yolo/yolov5n.pt",
+  "s0_s1_s2_s3_protected": true,
+  "new_owner_required": false
+}

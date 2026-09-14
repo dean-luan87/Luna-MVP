@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Role Knowledge Relation",
+  "owner":"Role Layer and Knowledge Library Boundary",
+  "flow":["Current Role","Capability Gap Detection","Field/Role Knowledge Match","Knowledge Admission","Field Application","Experience","Role Growth Candidate"],
+  "knowledge_permissions":{"match":true,"admit_candidate":true,"direct_role_creation":false,"direct_role_activation":false},
+  "rules":{"knowledge_not_role":true,"practice_required":true,"capability_gap_driven":true,"selective_absorption":true,"no_automatic_learning":true}
+}

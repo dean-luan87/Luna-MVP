@@ -1,0 +1,15 @@
+{
+  "contract_name": "Role Activation Contract v1",
+  "field_reference": "field-example",
+  "role_assignment_candidate": "Employee Candidate",
+  "activation_source": "Field Context",
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "activation_state": "Created | Active | Background | Suspended | Closed",
+  "activation_is_field_driven": true,
+  "activation_does_not_modify_identity": true,
+  "activation_does_not_make_decision": true,
+  "activation_does_not_execute_social_action": true,
+  "unknowns_are_preserved": true
+}

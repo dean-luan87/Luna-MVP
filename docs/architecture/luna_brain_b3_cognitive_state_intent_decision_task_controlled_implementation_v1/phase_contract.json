@@ -1,0 +1,9 @@
+{
+  "phase": "Phase-Luna-Brain-B3-Cognitive-State-Intent-Decision-Task-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION",
+  "entry": ["B1=GO", "B2=GO", "validated B2-shaped reference available"],
+  "route": ["REAL_B2_COGNITIVE_STATE_FLOW_INPUT", "Intent Governance", "Decision Governance", "Task Manager"],
+  "stop": "TaskCandidate/readiness candidate",
+  "forbidden": ["Action execution", "Runtime execution", "provider invocation", "scheduler/device control", "semantic compression", "dynamic cognitive function"],
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

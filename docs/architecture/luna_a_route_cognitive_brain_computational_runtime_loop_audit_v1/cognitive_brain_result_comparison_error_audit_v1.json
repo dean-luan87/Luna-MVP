@@ -1,0 +1,13 @@
+{
+  "artifact":"cognitive_brain_result_comparison_error_audit_v1",
+  "expected_result":{"status":"contract candidate only","evidence":"docs/architecture/cognitive_expectation_feedback_architecture_v1/expectation_feedback_contract_v1.json"},
+  "actual_result":{"status":"runtime result candidate types and synthetic status candidates","evidence":"capabilities/midplatform/core/runtime_executor/execution_result_types_v1.py"},
+  "comparison":{"exists":"CONTRACT_ONLY","implementation":"ABSENT","evidence":"docs/architecture/cognitive_action_outcome_evaluation_architecture_v1/expected_actual_comparison_contract.json"},
+  "deviation":"candidate difference only in planning schema; no producer",
+  "prediction_error":"contract-only; no numerical or typed executable error object",
+  "error_taxonomy":{"observation_error":"not adjudicated","prediction_error":"not computed","decision_error":"not adjudicated","execution_error":"runtime status/failure candidate exists","world_state_change":"field/context references exist but no result comparator"},
+  "learning_link":"learning engine accepts outcome/feedback refs, but no comparison/error producer closes the link",
+  "maturity":"M3_GOVERNANCE_CONTRACT",
+  "p0_finding":"A complete product loop needs a bounded Result Comparison / Outcome Evaluation module before learning can consume reliable error signals",
+  "evidence_refs":["docs/architecture/cognitive_action_outcome_evaluation_architecture_v1/expected_actual_comparison_contract.json","docs/architecture/cognitive_learning_system_v1/prediction_error_contract_v1.json","capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_reconsideration_v1.py"]
+}

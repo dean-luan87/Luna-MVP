@@ -1,0 +1,15 @@
+{
+  "classification_definitions": {
+    "A":"Current canonical asset directly reusable without changing semantic owner.",
+    "B":"Existing useful capability requiring typed adapter, handoff, or controlled integration.",
+    "C":"Legacy, duplicate, provider-driven, or semantic-authority drift; do not promote.",
+    "D":"Deliberately outside current A Route or deferred capability."
+  },
+  "asset_groups": {
+    "A":["Field Perception Orchestrator candidate control path","Observation Manager candidate request/evidence path","Model Manager admission/routing candidates","Observation Gateway","A Route Orchestration","Cognitive Flow","Field State Reducer","Attention candidate types"],
+    "B":["Task Observation Request contract","Cognitive Observation Attention Selection planning","Attention Axis Observation Requirement planning","OCR provider admission checklist","SLAM spatial evidence provider manager","Model/Capability admission contracts","Expectation and sufficiency feedback references"],
+    "C":["Provider-driven continuous execution assets","direct provider/model-to-owner mutation paths","legacy task observation contract environment defaults","any model routing path treated as invocation authority"],
+    "D":["real provider execution","Emotion Engine","Advanced Emotion Governance","semantic compression","affective memory compression","Personality-memory fusion","B Route","cross-user transfer","persistent scheduler-driven observation"]
+  },
+  "owner_rule": "No C asset is promoted to canonical authority; no D capability is started in this phase."
+}

@@ -1,0 +1,23 @@
+{
+  "contract_id": "causal_network_boundary_v1",
+  "owner": "Causal Reasoning Governance",
+  "reused_assets": [
+    "docs/architecture/cognitive_flow/cognitive_causality_model_architecture_plan_v1.md",
+    "docs/architecture/cognitive_flow/cognitive_causality_boundary_contract_v1.md",
+    "docs/architecture/luna_v2_cognitive_object_model_planning_v1/subjective_causality_object_schema_v1.json"
+  ],
+  "node_types": ["Person", "Event", "Role", "Relationship", "State", "Goal", "Field", "Experience"],
+  "edge_types": ["Influence", "Temporal", "Benefit", "Cost", "Condition", "Counter Evidence", "Role Projection"],
+  "outputs": ["Causal Candidate", "Causal Projection Candidate", "Future State Candidate", "Decision Evaluation Candidate", "Unknown Candidate"],
+  "evidence_required": true,
+  "counter_evidence_preserved": true,
+  "temporal_validity_required": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "not_knowledge_base": true,
+  "not_rule_engine": true,
+  "graph_execution": false,
+  "simulation_runtime": false,
+  "decision_authority": false,
+  "action_authority": false
+}

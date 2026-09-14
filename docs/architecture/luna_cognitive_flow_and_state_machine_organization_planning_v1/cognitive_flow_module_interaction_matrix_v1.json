@@ -1,0 +1,104 @@
+{
+    "artifact": "cognitive_flow_module_interaction_matrix_v1",
+    "rows": [
+        {
+            "module": "Context Foundation",
+            "reads": [
+                "Field refs",
+                "Self/Role/Relationship projections"
+            ],
+            "writes": [
+                "Context candidate"
+            ],
+            "flow_role": "cycle bootstrap",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Personal Cognitive Network",
+            "reads": [
+                "Context candidate",
+                "source-owned refs"
+            ],
+            "writes": [
+                "PCN snapshot/projection candidate"
+            ],
+            "flow_role": "relational context enrichment",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Intent Governance",
+            "reads": [
+                "Context refs",
+                "PCN refs",
+                "Field refs"
+            ],
+            "writes": [
+                "Intent candidate"
+            ],
+            "flow_role": "direction source",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Cognitive State Formation",
+            "reads": [
+                "Context refs",
+                "PCN refs",
+                "Intent refs",
+                "Field refs",
+                "Observation refs"
+            ],
+            "writes": [
+                "Attention/Hypothesis/Current World/State Vector candidates"
+            ],
+            "flow_role": "state formation",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Dynamic Cognitive Regulation",
+            "reads": [
+                "State Vector ref",
+                "Context/Intent/Hypothesis/Emotion/Resource refs"
+            ],
+            "writes": [
+                "Regulation candidate",
+                "Influence handoff candidate"
+            ],
+            "flow_role": "bounded regulation",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Field State Reducer",
+            "reads": [
+                "Admitted field events"
+            ],
+            "writes": [
+                "Field state"
+            ],
+            "flow_role": "independent read source only",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Causal Governance",
+            "reads": [
+                "Cognitive handoff refs"
+            ],
+            "writes": [
+                "Causal candidates"
+            ],
+            "flow_role": "independent downstream inference",
+            "rewrite_allowed": false
+        },
+        {
+            "module": "Cognitive Flow Governance",
+            "reads": [
+                "all candidate refs and traces"
+            ],
+            "writes": [
+                "transition/reconsideration/suspend/resume/abort candidates",
+                "cycle trace links"
+            ],
+            "flow_role": "organization layer",
+            "rewrite_allowed": false
+        }
+    ]
+}

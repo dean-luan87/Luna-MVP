@@ -1,0 +1,12 @@
+{
+  "model_id": "state_elasticity_v1",
+  "definition": "Different response speeds for entering and leaving state conditions",
+  "inputs": ["State Difference", "Risk", "Evidence Strength", "Self Regulation", "Current State"],
+  "outputs": ["Entry Elasticity Candidate", "Exit Elasticity Candidate", "Hysteresis Candidate"],
+  "parameters": ["entry_threshold", "exit_threshold", "recovery_rate", "risk_escalation_rate"],
+  "risk_entry_can_be_fast": true,
+  "risk_exit_can_be_slow": true,
+  "not_scheduler": true,
+  "automatic_transition": false,
+  "candidate_only": true
+}

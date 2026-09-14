@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "name": "Field Event Replay Contract",
+    "description": "定义 replay 范围、约束和边界。",
+    "replay_types": [
+        "full_replay",
+        "partial_replay",
+        "replay_from_snapshot",
+        "replay_by_field_scope",
+        "replay_by_time_range",
+        "replay_by_correlation_id",
+        "replay_after_correction",
+        "replay_after_revocation"
+    ],
+    "deterministic_replay_required": true,
+    "provider_recall_during_replay_allowed": false,
+    "action_trigger_during_replay_allowed": false,
+    "frozen_evidence_required": true
+}

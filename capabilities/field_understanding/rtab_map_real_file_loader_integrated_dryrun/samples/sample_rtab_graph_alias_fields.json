@@ -1,0 +1,44 @@
+{
+  "format_ref": "rtab_map_graph_export_file",
+  "export_session_id": "rtab_int_graph_session_alias_0001",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_graph_int_alias_0001.g2o",
+    "map_ref": "rtab_map_demo_room_v1"
+  },
+  "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_alias_0001"],
+  "graph_nodes": [
+    {
+      "id": "gnode_a1",
+      "timestamp_ms": 5000,
+      "tx": 0.0, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.92,
+      "coordinate_scope": "local",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_alias_0001", "gnode_a1"]
+    },
+    {
+      "vertex_id": "gnode_a2",
+      "timestamp_ms": 5100,
+      "tx": 1.3, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.04, "qw": 0.9992,
+      "confidence": 0.88,
+      "coordinate_scope": "local",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_alias_0001", "gnode_a2"]
+    }
+  ],
+  "graph_edges": [
+    {
+      "edge_id": "gedge_a1_a2",
+      "from": "gnode_a1",
+      "to": "gnode_a2",
+      "link_type": "loop_closure",
+      "timestamp_ms": 5150,
+      "confidence": 0.7,
+      "relative_translation": [1.3, 0.0, 0.0],
+      "lc_hint": true,
+      "drift_hint": 0.28,
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_alias_0001", "gedge_a1_a2"]
+    }
+  ]
+}

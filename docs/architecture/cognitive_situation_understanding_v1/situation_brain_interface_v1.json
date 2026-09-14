@@ -1,0 +1,31 @@
+{
+  "title": "Situation Brain Interface v1",
+  "contract_type": "Situation to Brain Interface",
+  "brain_input": {
+    "situation_candidate": "required",
+    "environment_context": {},
+    "self_context": {},
+    "goal_context": {},
+    "constraint_context": {},
+    "risk_context": {},
+    "unknown_context": [],
+    "confidence": {},
+    "evidence_support": [],
+    "provenance": []
+  },
+  "brain_actions": {
+    "may_request_reobservation": true,
+    "may_evaluate_situation": true,
+    "retains_goal_authority": true,
+    "retains_decision_authority": true,
+    "retains_value_authority": true
+  },
+  "boundary": {
+    "brain_does_not_receive_raw_world_by_default": true,
+    "situation_does_not_command_brain": true,
+    "situation_does_not_create_goal": true,
+    "situation_does_not_create_decision": true,
+    "situation_does_not_issue_action": true,
+    "brain_can_request_reobservation": true
+  }
+}

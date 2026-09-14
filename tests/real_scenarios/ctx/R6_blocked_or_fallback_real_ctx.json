@@ -1,0 +1,14 @@
+{
+  "frame_seq": 6,
+  "current_ts": 0.0,
+  "trace_anchor_id": "real_R6_ctx",
+  "focus_object_label": "bottle",
+  "minimum_mode_active": true,
+  "visual_audit_objects_main": [
+    {"label": "bottle", "bbox": [10, 10, 50, 80]},
+    {"label": "cup", "bbox": [0, 0, 60, 60]}
+  ],
+  "confirmation_input_raw_text": "我看过了没有",
+  "confirmation_input_type": "checked_and_not_found"
+}
+

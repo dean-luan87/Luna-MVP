@@ -1,0 +1,22 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T01:34:15.395372+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "execution_status": "go",
+    "static_site_files_written": true,
+    "open_instructions": "Open capabilities/midplatform/model_test_lens/static_site/index.html or run: python3 -m http.server 8765 --directory capabilities/midplatform/model_test_lens/static_site",
+    "recommended_next_phase": "Phase-P1-Midplatform-Model-Test-Lens-Data-Adapter-Planning-v1-001",
+    "transition_note": "Skeleton static site generated. Local JSON viewer + MobileSAM example. No model execution. Next: Data Adapter to convert _tmp_eval_out to envelopes."
+  },
+  "final_decision": "P1_MIDPLATFORM_MODEL_TEST_LENS_STATIC_SITE_SKELETON_EXECUTION_GO"
+}

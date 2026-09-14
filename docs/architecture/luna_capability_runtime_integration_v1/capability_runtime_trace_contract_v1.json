@@ -1,0 +1,8 @@
+{
+  "title": "Capability Runtime Trace Contract v1",
+  "owner": "Cognitive OS Governance",
+  "chain": ["Capability Request", "Execution Context", "Provider Reference", "Result", "Evidence", "Cognitive Update"],
+  "fields": ["trace_id", "request_id", "execution_id", "capability_id", "provider_reference", "context_reference", "result_reference", "evidence_reference", "cognitive_update_reference", "timestamp"],
+  "readers": ["Diagnostics", "Health Manager", "Calibration", "Governance Audit"],
+  "rules": {"provenance_required": true, "trace_not_authority": true, "provider_reference_not_provider_control": true}
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "understanding_transition_v1",
+  "equation": "Understanding(t+1)=f(Understanding(t),Evidence,Memory)",
+  "inputs": ["Current Understanding", "Evidence", "Memory Influence", "Prediction Error", "Field Context", "Unknowns"],
+  "outputs": ["Understanding Update Candidate", "Belief Confidence Candidate", "Hypothesis Revision Candidate", "Unknown Preservation Candidate"],
+  "reality_precedence": true,
+  "memory_is_context_not_authority": true,
+  "single_evidence_not_certainty": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

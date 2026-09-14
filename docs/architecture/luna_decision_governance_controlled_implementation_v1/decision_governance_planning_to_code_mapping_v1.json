@@ -1,0 +1,189 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "planning_source": "docs/architecture/luna_decision_architecture_planning_v1",
+    "all_code_assets": [
+        "capabilities/midplatform/core/decision_governance/__init__.py",
+        "capabilities/midplatform/core/decision_governance/decision_registry_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_error_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_state_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_core_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_trace_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_handoff_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_io_types_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_governance_protocol_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_ownership_guard_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_static_validators_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_governance_fixture_v1.py",
+        "capabilities/midplatform/core/decision_governance/decision_governance_engine_v1.py",
+        "capabilities/midplatform/core/decision_governance/run_decision_governance_controlled_implementation_v1.py"
+    ],
+    "mappings": [
+        {
+            "planning_asset": "decision_owner_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_registry_v1.py",
+                "decision_ownership_guard_v1.py"
+            ],
+            "coverage": "canonical owner freeze and legacy aliases non-authority"
+        },
+        {
+            "planning_asset": "decision_candidate_schema_v1.json",
+            "code_assets": [
+                "decision_core_types_v1.py",
+                "decision_io_types_v1.py"
+            ],
+            "coverage": "decision candidate fields, authority boundary, uncertainty and confirmation"
+        },
+        {
+            "planning_asset": "decision_option_model_candidate_v1.json",
+            "code_assets": [
+                "decision_core_types_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "option admissibility and multi-option candidate formation"
+        },
+        {
+            "planning_asset": "decision_state_model_candidate_v1.json",
+            "code_assets": [
+                "decision_state_types_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "deterministic lifecycle outcomes and transition candidate"
+        },
+        {
+            "planning_asset": "decision_selection_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_core_types_v1.py"
+            ],
+            "coverage": "selection, non-selection, and contested preservation"
+        },
+        {
+            "planning_asset": "decision_risk_model_candidate_v1.json",
+            "code_assets": [
+                "decision_core_types_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "risk representation and non-authority gating"
+        },
+        {
+            "planning_asset": "decision_utility_model_candidate_v1.json",
+            "code_assets": [
+                "decision_core_types_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "utility representation as soft preference"
+        },
+        {
+            "planning_asset": "decision_constraint_model_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_static_validators_v1.py"
+            ],
+            "coverage": "hard constraint veto precedence"
+        },
+        {
+            "planning_asset": "decision_permission_safety_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_static_validators_v1.py"
+            ],
+            "coverage": "permission/safety gating and no bypass"
+        },
+        {
+            "planning_asset": "decision_role_influence_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "role influence changes eligibility but not owner authority"
+        },
+        {
+            "planning_asset": "decision_intent_influence_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "intent influence as preference only"
+        },
+        {
+            "planning_asset": "decision_causal_influence_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "causal uncertainty influences defer/contested only"
+        },
+        {
+            "planning_asset": "decision_defer_abstain_evidence_request_model_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_core_types_v1.py"
+            ],
+            "coverage": "DEFER/ABSTAIN/REQUEST_MORE_EVIDENCE first-class outcomes"
+        },
+        {
+            "planning_asset": "decision_reversibility_model_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_core_types_v1.py"
+            ],
+            "coverage": "irreversible candidates require confirmation"
+        },
+        {
+            "planning_asset": "decision_human_confirmation_boundary_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py",
+                "decision_registry_v1.py"
+            ],
+            "coverage": "no fabricated confirmation and explicit requirement state"
+        },
+        {
+            "planning_asset": "decision_resource_constraint_model_candidate_v1.json",
+            "code_assets": [
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "resource degradation drives lower-cost candidate preference"
+        },
+        {
+            "planning_asset": "decision_provenance_trace_schema_candidate_v1.json",
+            "code_assets": [
+                "decision_trace_types_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "full provenance and selection/non-selection reason trace"
+        },
+        {
+            "planning_asset": "decision_revision_suspension_revocation_model_candidate_v1.json",
+            "code_assets": [
+                "decision_state_types_v1.py",
+                "decision_core_types_v1.py"
+            ],
+            "coverage": "revision lineage and lifecycle transition extension points"
+        },
+        {
+            "planning_asset": "decision_to_action_task_handoff_contract_candidate_v1.json",
+            "code_assets": [
+                "decision_handoff_types_v1.py",
+                "decision_ownership_guard_v1.py"
+            ],
+            "coverage": "candidate-only handoff to Action Boundary and Task Manager"
+        },
+        {
+            "planning_asset": "decision_negative_guards_v1.json",
+            "code_assets": [
+                "decision_registry_v1.py",
+                "decision_static_validators_v1.py"
+            ],
+            "coverage": "guard flags and verification entry points"
+        },
+        {
+            "planning_asset": "decision_minimum_scenario_suite_v1.json",
+            "code_assets": [
+                "decision_governance_fixture_v1.py",
+                "run_decision_governance_controlled_implementation_v1.py",
+                "decision_governance_engine_v1.py"
+            ],
+            "coverage": "14 executable synthetic fixtures and deterministic behavior"
+        }
+    ],
+    "planning_assets_modified": false,
+    "parallel_implementation_created": false
+}

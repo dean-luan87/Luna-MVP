@@ -1,0 +1,14 @@
+{
+  "title": "Goal Task Relation v1",
+  "flow": ["Goal", "Task", "Decision Candidate", "Action Boundary"],
+  "goal_role": "provide direction and desired state",
+  "task_role": "manage bounded execution workflow and progress evidence",
+  "task_manager_owner": "Task Manager",
+  "task_manager_reuse_required": true,
+  "goal_is_not_task": true,
+  "task_does_not_modify_goal": true,
+  "goal_does_not_direct_action": true,
+  "action_execution": false,
+  "parallel_task_manager_forbidden": true,
+  "parallel_goal_manager_forbidden": true
+}

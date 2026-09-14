@@ -1,0 +1,13 @@
+{
+  "relation_id": "goal_decision_v1",
+  "flow": ["Understanding Candidate", "Goal Candidate", "Value Utility Candidate", "Decision Candidate Set", "Decision Arbitration", "Selected Decision Candidate"],
+  "understanding_required": true,
+  "goal_is_direction_not_action": true,
+  "value_provides_priority_support": true,
+  "brain_generates_candidates": true,
+  "arbitration_selects_candidate": true,
+  "self_constraint_required": true,
+  "decision_is_not_action": true,
+  "decision_does_not_create_goal": true,
+  "candidate_only": true
+}

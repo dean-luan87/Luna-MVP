@@ -1,0 +1,8 @@
+{
+  "title": "Action Runtime to L1 OS Interface v1",
+  "owner": "Cognitive OS Governance",
+  "inputs": ["Lifecycle", "Event", "State", "Recovery", "Trace", "Resource Governance"],
+  "outputs": ["Action Lifecycle Candidate", "Action Event", "State Proposal", "Recovery Candidate", "Trace Reference"],
+  "runtime_not_modify": ["Governance", "Constitution", "Runtime Rules", "Decision Authority"],
+  "rules": {"l1_owns_lifecycle": true, "l1_owns_recovery_contract": true, "runtime_does_not_modify_os": true, "interface_only": true}
+}

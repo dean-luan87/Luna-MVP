@@ -1,0 +1,42 @@
+{
+    "schema_id": "FieldStateReadQuerySchemaV1",
+    "version": "v1",
+    "description": "Field State Read Model query contract candidate (planning only)",
+    "required_fields": [
+        "query_id",
+        "requester_ref",
+        "query_scope",
+        "required_fields",
+        "trace_ref",
+        "replay_key",
+        "metadata"
+    ],
+    "optional_fields": [
+        "field_state_ref",
+        "snapshot_ref",
+        "task_ref",
+        "scene_ref",
+        "object_ref",
+        "temporal_scope"
+    ],
+    "constraints": {
+        "read_only": true,
+        "candidate_only": true,
+        "state_reference_required": true,
+        "no_state_mutation": true,
+        "no_event_reduction": true,
+        "no_fact_admission": true,
+        "no_model_execution": true,
+        "no_action_execution": true,
+        "no_runtime_loop": true
+    },
+    "query_scope_registry": [
+        "field_state",
+        "task_scope",
+        "scene_scope",
+        "object_scope",
+        "temporal_scope"
+    ],
+    "unknown_fields_rejected": true,
+    "input_immutability_required": true
+}

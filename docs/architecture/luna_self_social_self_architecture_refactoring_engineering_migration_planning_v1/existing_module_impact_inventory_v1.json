@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "name": "Existing Module Impact Inventory",
+  "scan_scope": ["capabilities/", "docs/architecture/", "tools/"],
+  "observed_assets": [
+    {"asset_id": "self_architecture_phase", "path": "docs/architecture/luna_self_social_self_architecture_refactoring_v1/", "current_owner": "Self Model / Social Boundary", "target_owner": "Self/Social Self/Integration", "status": "Active", "impact": "baseline mapping source"},
+    {"asset_id": "self_model_architecture", "path": "docs/architecture/luna_cognitive_self_model_architecture_v1/", "current_owner": "Self Model", "target_owner": "Self Layer", "status": "Active", "impact": "identity/capability/resource ownership"},
+    {"asset_id": "self_regulation_architecture", "path": "docs/architecture/luna_cognitive_self_regulation_architecture_v1/", "current_owner": "Self Regulation", "target_owner": "Self Layer", "status": "Active", "impact": "stability and capability regulation"},
+    {"asset_id": "self_evolution_architecture", "path": "docs/architecture/luna_cognitive_self_evolution_architecture_v1/", "current_owner": "Self Evolution", "target_owner": "Self Layer", "status": "Active", "impact": "growth candidate routing"},
+    {"asset_id": "emotion_code", "path": "capabilities/emotion/", "current_owner": "Emotion Capability Boundary", "target_owner": "Integration Layer", "status": "Skeleton", "impact": "future context interface; no runtime"},
+    {"asset_id": "capability_registry", "path": "capabilities/registry/luna_capability_registry_v1.json", "current_owner": "Capability Registry", "target_owner": "Capability Governance interface", "status": "Active", "impact": "ownership and capability boundary reference"},
+    {"asset_id": "model_manager_manifest", "path": "capabilities/registry/manifests/model_manager_manifest_v1.json", "current_owner": "Model Manager", "target_owner": "Capability Governance external interface", "status": "Active", "impact": "implementation resource mapping"},
+    {"asset_id": "runtime_capability_assets", "path": "capabilities/ocr_runtime/ and capabilities/vision_runtime/", "current_owner": "Capability Runtime", "target_owner": "Capability Runtime boundary", "status": "Active", "impact": "runtime must consume Self/Social context only through contracts"},
+    {"asset_id": "role_relationship_architecture", "path": "docs/architecture/cognitive_role_relationship_system_v1/", "current_owner": "Social Field / Role", "target_owner": "Social Self Layer", "status": "Active", "impact": "role and relationship ownership"},
+    {"asset_id": "social_field_architecture", "path": "docs/architecture/cognitive_social_field_architecture_v1/", "current_owner": "Social Field", "target_owner": "Social Self Layer input", "status": "Active", "impact": "external cognition context"},
+    {"asset_id": "runtime_foundation", "path": "docs/architecture/luna_cognitive_runtime_foundation_v1/", "current_owner": "Cognitive Runtime", "target_owner": "Runtime context interface", "status": "Active", "impact": "state/event schema review"}
+  ],
+  "rules": {"inventory_is_read_only": true, "historical_assets_preserved": true, "missing_owner_is_registered": true, "no_automatic_migration": true}
+}

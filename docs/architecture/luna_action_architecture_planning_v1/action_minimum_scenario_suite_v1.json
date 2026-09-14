@@ -1,0 +1,151 @@
+{
+    "artifact": "action_minimum_scenario_suite_v1",
+    "status": "PLANNING_CANDIDATE",
+    "scenario_count": 16,
+    "scenarios": [
+        {
+            "id": "A01",
+            "name": "happy_path_candidate_ready",
+            "expect": {
+                "action_state": "READY_CANDIDATE",
+                "execution_readiness": "candidate_ready",
+                "runtime_executed": false
+            }
+        },
+        {
+            "id": "A02",
+            "name": "unknown_precondition_blocks_readiness",
+            "expect": {
+                "action_state": "PRECONDITION_PENDING",
+                "execution_readiness": "blocked",
+                "unknown_not_satisfied": true
+            }
+        },
+        {
+            "id": "A03",
+            "name": "permission_recheck_failed",
+            "expect": {
+                "action_state": "NEEDS_PERMISSION",
+                "execution_readiness": "blocked",
+                "permission_bypass": false
+            }
+        },
+        {
+            "id": "A04",
+            "name": "safety_recheck_failed",
+            "expect": {
+                "action_state": "BLOCKED",
+                "execution_readiness": "blocked",
+                "safety_bypass": false
+            }
+        },
+        {
+            "id": "A05",
+            "name": "confirmation_required_missing",
+            "expect": {
+                "action_state": "NEEDS_CONFIRMATION",
+                "execution_readiness": "not_ready",
+                "confirmation_state": "required"
+            }
+        },
+        {
+            "id": "A06",
+            "name": "stale_confirmation_rejected",
+            "expect": {
+                "action_state": "NEEDS_CONFIRMATION",
+                "execution_readiness": "blocked",
+                "stale_confirmation_reuse_forbidden": true
+            }
+        },
+        {
+            "id": "A07",
+            "name": "irreversible_requires_stronger_gate",
+            "expect": {
+                "reversibility": "irreversible",
+                "execution_readiness": "not_ready",
+                "stronger_confirmation_requirement": true
+            }
+        },
+        {
+            "id": "A08",
+            "name": "resource_constrained_to_suspended",
+            "expect": {
+                "action_state": "SUSPENDED",
+                "execution_readiness": "suspended",
+                "resource_state": "unavailable"
+            }
+        },
+        {
+            "id": "A09",
+            "name": "cancelled_not_suspended",
+            "expect": {
+                "action_state": "CANCELLED",
+                "cancelled_not_suspended": true,
+                "execution_readiness": "blocked"
+            }
+        },
+        {
+            "id": "A10",
+            "name": "dependency_unknown_blocks",
+            "expect": {
+                "action_state": "PRECONDITION_PENDING",
+                "execution_readiness": "blocked",
+                "dependency_unknown_not_executable": true
+            }
+        },
+        {
+            "id": "A11",
+            "name": "decision_selected_not_execution",
+            "expect": {
+                "selected_decision_equals_action_execution": false,
+                "execution_readiness": "candidate_ready",
+                "runtime_executed": false
+            }
+        },
+        {
+            "id": "A12",
+            "name": "task_handoff_reference_only",
+            "expect": {
+                "task_handoff_reference_only": true,
+                "real_task_create_command": false,
+                "task_created": false
+            }
+        },
+        {
+            "id": "A13",
+            "name": "executor_handoff_candidate_only",
+            "expect": {
+                "handoff_kind": "candidate_only_reference_handoff",
+                "execute_now_command": false,
+                "action_execution": false
+            }
+        },
+        {
+            "id": "A14",
+            "name": "rollback_required_boundary_only",
+            "expect": {
+                "action_state": "ROLLBACK_REQUIRED",
+                "rollback_candidate_not_execution": true,
+                "runtime_executed": false
+            }
+        },
+        {
+            "id": "A15",
+            "name": "failure_with_runtime_reference",
+            "expect": {
+                "action_state": "FAILED_CANDIDATE",
+                "failure_trace_reference_required": true,
+                "execution_result_reference_required": true
+            }
+        },
+        {
+            "id": "A16",
+            "name": "revision_revokes_stale_confirmation",
+            "expect": {
+                "action_state": "REVISED",
+                "revision_invalidates_stale_confirmation": true,
+                "revision_rechecks_permission_and_safety": true
+            }
+        }
+    ]
+}

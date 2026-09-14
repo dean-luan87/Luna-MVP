@@ -1,0 +1,20 @@
+{
+  "contract_name": "Memory Admission Contract v1",
+  "experience_candidate_reference": "experience-example",
+  "evaluation_reference": "evaluation-example",
+  "value_check": null,
+  "stability_check": null,
+  "reusability_check": null,
+  "risk_check": null,
+  "provenance_check": null,
+  "unknown_check": null,
+  "admission_state": "Candidate | Review | Admitted Candidate | Rejected | Deferred | Archived",
+  "one_off_noise_not_admitted": true,
+  "unconfirmed_information_not_admitted": true,
+  "model_guess_not_admitted": true,
+  "admission_does_not_modify_reality": true,
+  "admission_does_not_modify_goal": true,
+  "admission_does_not_modify_decision": true,
+  "automatic_learning_disabled": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,16 @@
+{
+    "version": "1.0",
+    "name": "Field Event Revision and Revocation Protocol",
+    "description": "修订与撤回协议，强调历史不可物理删除。",
+    "revision_events": [
+        "human_correction_submitted",
+        "field_definition_corrected",
+        "evidence_retracted",
+        "revocation_requested",
+        "revision_applied"
+    ],
+    "physical_delete_allowed": false,
+    "correction_requires_new_event": true,
+    "lineage_required": true,
+    "derived_state_invalidation_required": true
+}

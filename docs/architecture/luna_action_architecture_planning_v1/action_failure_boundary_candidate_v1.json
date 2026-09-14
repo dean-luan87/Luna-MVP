@@ -1,0 +1,17 @@
+{
+    "artifact": "action_failure_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "failure_classes": [
+        "candidate_invalidation",
+        "precondition_failure",
+        "execution_rejection",
+        "execution_failure",
+        "partial_execution",
+        "downstream_timeout"
+    ],
+    "downstream_result_contract": {
+        "execution_result_reference_required": true,
+        "failure_trace_reference_required": true,
+        "retry_authority_not_granted_by_failure_only": true
+    }
+}

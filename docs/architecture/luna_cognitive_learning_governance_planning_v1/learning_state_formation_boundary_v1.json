@@ -1,0 +1,12 @@
+{
+    "artifact": "learning_state_formation_boundary_v1",
+    "allowed": [
+        "historical_pattern_references"
+    ],
+    "forbidden": [
+        "attention_ownership",
+        "hypothesis_truth_declaration",
+        "current_world_mutation",
+        "state_vector_mutation"
+    ]
+}

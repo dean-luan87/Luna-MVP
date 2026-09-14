@@ -1,0 +1,11 @@
+{
+  "policy_id": "document_surface_option_b_preflight_closure_policy_v1",
+  "preflight_closure_only": true,
+  "preflight_execution_forbidden": true,
+  "segmentation_execution_forbidden": true,
+  "controlled_execution_forbidden": true,
+  "runtime_activation_allowed": false,
+  "option_b_execution_allowed": false,
+  "candidate_only": true,
+  "not_fact": true
+}

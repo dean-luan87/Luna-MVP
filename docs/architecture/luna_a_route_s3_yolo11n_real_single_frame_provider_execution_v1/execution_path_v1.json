@@ -1,0 +1,18 @@
+{
+  "stages": [
+    "raw_frame_reference",
+    "observation_demand",
+    "observation_request",
+    "model_manager_contract_resolution",
+    "technical_admission",
+    "bounded_provider_admission",
+    "ultralytics_local_model_load",
+    "single_frame_inference",
+    "provider_native_detection",
+    "canonical_visual_detection_evidence",
+    "observation_gateway_handoff_candidate"
+  ],
+  "model_manager_bypass": false,
+  "loader_guessing": false,
+  "automatic_download": false
+}

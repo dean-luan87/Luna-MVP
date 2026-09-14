@@ -1,0 +1,31 @@
+{
+    "model_id": "personal_cognitive_network_dormancy_reactivation_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "states": [
+        "ACTIVE",
+        "WEAK",
+        "DORMANT",
+        "REACTIVATED"
+    ],
+    "transition_principles": {
+        "fixed_time_threshold_switching_forbidden": true,
+        "dormant_is_not_deleted": true,
+        "dormant_is_not_invalid": true,
+        "reactivation_by_high_current_relevance_allowed": true,
+        "example": "A long-unused link can reactivate when current context relevance is high."
+    },
+    "transition_constraints": [
+        "context_relevance",
+        "task_need",
+        "resource_budget",
+        "temporal_validity",
+        "uncertainty",
+        "traceable_activation_reason"
+    ],
+    "forbidden": [
+        "inactivity_auto_delete",
+        "fixed_dormancy_period"
+    ]
+}

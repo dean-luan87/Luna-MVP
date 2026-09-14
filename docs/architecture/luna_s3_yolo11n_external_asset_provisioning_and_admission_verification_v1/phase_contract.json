@@ -1,0 +1,13 @@
+{
+  "phase": "Phase-Luna-A-Route-S3-YOLO11n-External-Asset-Provisioning-And-Admission-Verification-v1-001",
+  "mode": "CONTROLLED_PROVISIONING_AND_READINESS_ONLY",
+  "target_model": "YOLO11n",
+  "target_model_asset_id": "model-asset:yolo11n:weights-v1",
+  "target_governed_path": "vision/detection/yolo/yolo11n.pt",
+  "agent_may_copy_or_move": false,
+  "agent_may_compute_checksum": false,
+  "agent_may_probe_dependencies": false,
+  "agent_may_infer": false,
+  "technical_admission_candidate_only": true,
+  "commercial_license_separate": true
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version":"1.0",
+  "maturity_legend":{"M0":"missing","M1":"concept only","M2":"schema/planning only","M3":"governance contract","M4":"controlled skeleton","M5":"deterministic controlled algorithm","M6":"controlled cross-module integration","M7":"runtime adapter exists","M8":"real product-loop execution proven","M9":"real-data validated/calibrated"},
+  "nodes":[
+    {"id":"N01","name":"Product input ingress","owner":"A Route Orchestration Governance + input adapter","maturity":"M2","product_required":true,"gap":"no canonical runtime caller/input adapter proven"},
+    {"id":"N02","name":"Observation demand/control","owner":"Field Perception Orchestrator","maturity":"M6","product_required":true,"gap":"runtime provider admission absent"},
+    {"id":"N03","name":"Observation Gateway","owner":"Observation Gateway","maturity":"M6","product_required":true,"gap":"runtime-connected ingress absent"},
+    {"id":"N04","name":"Context/Field/Current World","owner":"Context Foundation + Field State Reducer","maturity":"M6","product_required":true,"gap":"runtime state handoff absent"},
+    {"id":"N05","name":"Cognitive flow and decision candidates","owner":"Cognitive Flow + Intent/Causal/Decision","maturity":"M5","product_required":true,"gap":"runtime caller absent"},
+    {"id":"N06","name":"Task/Action candidates","owner":"Task Manager + Action Governance","maturity":"M5","product_required":true,"gap":"runtime authorization handoff absent"},
+    {"id":"N07","name":"Runtime execution","owner":"Runtime Executor","maturity":"M4","product_required":true,"gap":"execution remains candidate/planning-only"},
+    {"id":"N08","name":"Actual result","owner":"Runtime Executor / result adapter","maturity":"M2","product_required":true,"gap":"no canonical live producer"},
+    {"id":"N09","name":"Outcome evaluation feedback","owner":"Outcome Evaluation Governance","maturity":"M6","product_required":true,"gap":"route callback absent"},
+    {"id":"N10","name":"Memory/Learning/Self/Personality continuity","owner":"respective canonical owners","maturity":"M4","product_required":true,"gap":"session/persistence integration absent"},
+    {"id":"N11","name":"User-facing output","owner":"output adapter","maturity":"M2","product_required":true,"gap":"delivery path not proven"},
+    {"id":"N12","name":"Emotion Engine and B Route","owner":"deferred workstreams","maturity":"M2","product_required":false,"gap":"deliberately deferred"}
+  ],
+  "distribution":{"M0":0,"M1":0,"M2":3,"M3":0,"M4":3,"M5":3,"M6":3,"M7":0,"M8":0,"M9":0}
+}

@@ -1,0 +1,14 @@
+{
+  "interface_name": "Capability Memory Interface v1",
+  "memory_reference": "memory-example",
+  "experience_reference": "experience-example",
+  "performance_evidence_reference": "performance-evidence-example",
+  "capability_assessment_candidate": null,
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "memory_is_supporting_evidence": true,
+  "experience_is_not_capability_automatically": true,
+  "assessment_required": true,
+  "current_reality_precedence": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Self Social Integration Contract",
+  "owner": "Cognitive Integration Layer",
+  "inputs": ["Self State", "Self Capability", "Social State", "Role Context", "Relationship Context", "Field Context", "Memory Context", "Constitution Constraints"],
+  "flow": ["Self State", "Social State", "Integration Assessment", "Context Package", "Brain Review", "Possible Candidate Update"],
+  "responsibilities": ["Classify external feedback", "Separate transient feedback from durable capability evidence", "Preserve Identity boundary", "Route candidate to Self Evolution or Social Adaptation"],
+  "outputs": ["Integration Context Candidate", "Self Update Candidate", "Social Adaptation Candidate", "Emotion Context Candidate"],
+  "cannot": ["Direct Self Mutation", "Direct Social Decision", "Direct Brain Override", "Direct Action", "Constitution Modification"],
+  "rules": {"candidate_only": true, "identity_protected": true, "current_reality_first": true, "brain_review_required": true, "emotion_is_context_only": true}
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "handoffs":[
+    {"id":"H01","producer":"Product Input Adapter","consumer":"A Route Orchestration Governance","input":"ProductLoopInputV1","output":"ingress candidate","candidate_only":true},
+    {"id":"H02","producer":"A Route Orchestration Governance","consumer":"Field Perception Orchestrator","input":"ingress candidate","output":"Observation Demand Candidate","candidate_only":true},
+    {"id":"H03","producer":"Observation Gateway","consumer":"Context Foundation / Field State Reducer","input":"Observation Candidate","output":"Context/Field references","candidate_only":true},
+    {"id":"H04","producer":"Context / Current World","consumer":"Cognitive State Formation / Cognitive Flow","input":"context/world references","output":"cognitive state/flow references","candidate_only":true},
+    {"id":"H05","producer":"Decision Governance","consumer":"Task Manager","input":"Decision Candidate","output":"Task Candidate","candidate_only":true},
+    {"id":"H06","producer":"Task Manager","consumer":"Action Governance","input":"Task Candidate","output":"Action Candidate","candidate_only":true},
+    {"id":"H07","producer":"Action Governance","consumer":"Runtime Executor","input":"Action Candidate","output":"RuntimeAdmissionCandidateV1","candidate_only":true},
+    {"id":"H08","producer":"Runtime Executor","consumer":"Outcome Evaluation Governance","input":"ControlledExecutionResultV1","output":"outcome evaluation candidate","candidate_only":true},
+    {"id":"H09","producer":"Outcome Evaluation Governance","consumer":"A Route Orchestration Governance","input":"OutcomeFeedbackRouteV1","output":"complete/reobserve/reconsider/next-cycle candidate","candidate_only":true},
+    {"id":"H10","producer":"A Route Orchestration Governance","consumer":"Product Output Adapter","input":"cycle result","output":"ProductOutputCandidateV1","candidate_only":true}
+  ],
+  "mutation_authority":"downstream canonical owners only",
+  "runtime_handoff_ready":false
+}

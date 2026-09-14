@@ -1,0 +1,12 @@
+{
+  "contract_id": "schema_activation_v1",
+  "owner": "Schema Layer",
+  "activation_trigger": "current_field",
+  "flow": ["Current Field", "Schema Activation Candidate", "Context Enhancement Candidate", "Hypothesis" , "Understanding"],
+  "inputs": ["current_field", "active_role", "task", "context_match", "schema_scope"],
+  "outputs": ["relevant_schema_candidate", "context_enhancement_candidate", "activation_trace", "unknowns"],
+  "autonomous_activation": false,
+  "direct_decision_override": false,
+  "reality_replacement": false,
+  "candidate_only": true
+}

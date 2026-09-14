@@ -1,0 +1,13 @@
+{
+  "artifact":"outcome_evaluation_candidate_schema_v1",
+  "type":"OutcomeEvaluationCandidateV1",
+  "required_fields":["evaluation_id","root_cycle_trace_id","expected_outcome_refs","actual_result_refs","comparability_ref","deviation_refs","intended_outcome_observed_candidate","task_completion_candidate","action_effect_observed_candidate","world_change_observed_candidate","evidence_sufficiency_candidate","uncertainty_refs","contradiction_refs","attribution_candidate_refs","reconsideration_candidate_refs","learning_signal_candidate_refs","observation_need_candidate_refs","evaluation_status","candidate_only","truth_declared","mutation_authority","trace_ref","provenance_refs","schema_version","contract_version"],
+  "evaluation_statuses":["PROPOSED","COMPARABLE","PARTIALLY_EVALUATED","MATCH","PARTIAL_MATCH","MISMATCH","UNKNOWN","CONTESTED","NEEDS_CONFIRMATION","STALE","SUPERSEDED","REVOKED","EXPIRED"],
+  "candidate_only":true,
+  "truth_declared":false,
+  "mutation_authority":false,
+  "decision_authority":false,
+  "learning_execution":false,
+  "field_state_mutation":false,
+  "task_mutation":false
+}

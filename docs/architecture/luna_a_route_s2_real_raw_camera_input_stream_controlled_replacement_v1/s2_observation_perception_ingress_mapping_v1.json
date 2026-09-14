@@ -1,0 +1,15 @@
+{
+  "producer": "Raw Camera Stream Adapter under Field Perception Orchestrator",
+  "consumer": "governed observation/perception ingress boundary",
+  "output": "PerceptionIngressCandidateV1",
+  "ingress_kind": "RAW_FRAME_REFERENCE",
+  "raw_frame_refs_preserved": true,
+  "observation_demand_ref_required": true,
+  "observation_gateway_direct_admission": false,
+  "evidence_admission": "not performed by S2",
+  "field_mutation": false,
+  "context_mutation": false,
+  "route": ["A Route / Observation Demand", "Field Perception Orchestrator", "bounded Raw Camera Stream Adapter", "Raw Frame Reference", "Observation / Perception pipeline boundary"],
+  "future_downstream": ["Observation Gateway", "Perception Evidence", "Observation Candidate"],
+  "semantic_authority": false
+}

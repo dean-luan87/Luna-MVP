@@ -1,0 +1,22 @@
+{
+  "schema_id": "AttentionTargetHintV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["target_hint_id", "target_type", "priority", "reason", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "target_hint_id": { "type": "string" },
+    "target_type": {
+      "enum": ["primary_text_block", "direction_sign", "entrance_exit", "obstacle_candidate",
+        "moving_object", "walkable_path", "product_shelf", "price_tag",
+        "person_candidate", "spatial_boundary", "unknown_region"]
+    },
+    "priority": { "enum": ["P0", "P1", "P2", "P3"] },
+    "reason": { "type": "string" },
+    "region_ref_optional": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

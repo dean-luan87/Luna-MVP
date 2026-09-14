@@ -1,0 +1,6 @@
+{
+  "schema_version":"1.0",
+  "guards":{"runtime_execution":false,"provider_invocation":false,"model_call":false,"database_write":false,"vector_store_write":false,"embedding_execution":false,"scheduler_execution":false,"device_control":false,"field_state_mutation":false,"context_mutation":false,"intent_mutation":false,"attention_mutation":false,"hypothesis_mutation":false,"cognitive_state_mutation":false,"regulation_parameter_mutation":false,"parameter_genome_activation":false,"decision_execution":false,"task_mutation":false,"action_execution":false,"learning_execution":false,"memory_mutation":false,"self_mutation":false,"personality_mutation":false,"emotion_engine_execution":false,"b_route_execution":false,"semantic_compression_execution":false,"real_side_effect":false,"source_owner_mutation":false,"cross_user_transfer":false},
+  "candidate_only":true,
+  "planning_only":true
+}

@@ -1,0 +1,114 @@
+{
+    "artifact": "cognitive_execution_chain_integration_gap_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "gaps": [
+        {
+            "gap_id": "GAP-IO-001",
+            "severity": "medium",
+            "title": "Intent uncertainty to causal unknowns normalization",
+            "type": "io_semantics",
+            "owner": "Intent/Causal",
+            "blocker": false,
+            "resolution_mode": "mapping_contract"
+        },
+        {
+            "gap_id": "GAP-IO-002",
+            "severity": "high",
+            "title": "Causal evidence split to Decision evidence_refs merge",
+            "type": "io_shape",
+            "owner": "Causal/Decision",
+            "blocker": false,
+            "resolution_mode": "mapping_contract"
+        },
+        {
+            "gap_id": "GAP-IO-003",
+            "severity": "medium",
+            "title": "Decision selected candidate projection to Action selected_decision_refs",
+            "type": "io_shape",
+            "owner": "Decision/Action",
+            "blocker": false,
+            "resolution_mode": "mapping_contract"
+        },
+        {
+            "gap_id": "GAP-IO-004",
+            "severity": "critical",
+            "title": "Action execution readiness object vs Runtime execution_readiness_ref",
+            "type": "io_incompatible",
+            "owner": "Action/Runtime Executor",
+            "blocker": true,
+            "resolution_mode": "future_contract_upgrade"
+        },
+        {
+            "gap_id": "GAP-VERSION-001",
+            "severity": "medium",
+            "title": "Intent to causal handoff version normalization needed",
+            "type": "version",
+            "owner": "Intent/Causal",
+            "blocker": false,
+            "resolution_mode": "version_mapping"
+        },
+        {
+            "gap_id": "GAP-VERSION-002",
+            "severity": "medium",
+            "title": "Causal uncertainty representation mismatch",
+            "type": "version",
+            "owner": "Causal/Decision",
+            "blocker": false,
+            "resolution_mode": "migration"
+        },
+        {
+            "gap_id": "GAP-VERSION-003",
+            "severity": "critical",
+            "title": "Action to runtime readiness representation incompatible",
+            "type": "version",
+            "owner": "Action/Runtime Executor",
+            "blocker": true,
+            "resolution_mode": "hard_block_until_compatible"
+        },
+        {
+            "gap_id": "GAP-ENUM-001",
+            "severity": "low",
+            "title": "Uncertainty enum mismatch across causal/decision",
+            "type": "enum",
+            "owner": "Causal/Decision",
+            "blocker": false,
+            "resolution_mode": "enum_mapping"
+        },
+        {
+            "gap_id": "GAP-MISSING-REF-001",
+            "severity": "medium",
+            "title": "Decision->Action explicit unresolved refs missing",
+            "type": "missing_field",
+            "owner": "Decision/Action",
+            "blocker": false,
+            "resolution_mode": "optional_extension"
+        },
+        {
+            "gap_id": "GAP-MISSING-REF-002",
+            "severity": "high",
+            "title": "Action->Runtime single provenance ref projection ambiguity",
+            "type": "missing_field",
+            "owner": "Action/Runtime Executor",
+            "blocker": false,
+            "resolution_mode": "projection_rule"
+        },
+        {
+            "gap_id": "GAP-LEGACY-ALIAS-001",
+            "severity": "low",
+            "title": "Decision Arbitration legacy alias still appears in assets",
+            "type": "naming_alias",
+            "owner": "Decision",
+            "blocker": false,
+            "resolution_mode": "compatibility_registry_only"
+        },
+        {
+            "gap_id": "GAP-LEGACY-ALIAS-002",
+            "severity": "low",
+            "title": "Action Boundary legacy alias still appears in assets",
+            "type": "naming_alias",
+            "owner": "Action",
+            "blocker": false,
+            "resolution_mode": "compatibility_registry_only"
+        }
+    ]
+}

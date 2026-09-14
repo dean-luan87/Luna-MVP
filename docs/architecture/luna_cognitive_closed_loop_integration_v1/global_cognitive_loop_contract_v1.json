@@ -1,0 +1,8 @@
+{
+  "title": "Global Cognitive Loop Contract v1",
+  "owner": "Cognitive Core Governance",
+  "stages": ["Observe", "Context Formation", "Attention Allocation", "Situation Understanding", "Hypothesis / Belief Update", "Expectation Comparison", "Brain Evaluation", "Decision Commitment", "Action Boundary", "Action Runtime", "Outcome Collection", "Learning Update", "Memory Consolidation", "Next Cycle"],
+  "entry": "Runtime Foundation Tick/Wake-up Candidate",
+  "exit": "Memory and Learning Update Candidate",
+  "rules": {"runtime_manages_cycle": true, "cycle_not_infinite_automatic": true, "action_runtime_future_only": true, "stage_trace_required": true}
+}

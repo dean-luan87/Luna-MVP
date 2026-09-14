@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "name": "Luna Cognitive Core Master Flow",
+  "stages": ["Observation", "Evidence", "Field", "Context", "Workspace", "Attention", "Hypothesis", "Belief", "Expectation", "Global State", "Brain", "Decision Candidate", "Commitment", "Action Request", "Action", "Outcome", "Feedback", "Learning", "Self Evolution", "Self Regulation", "State Update"],
+  "links": [
+    {"from": "Observation", "to": "Evidence", "object": "evidence candidate", "owner": "Evidence Gateway"},
+    {"from": "Evidence", "to": "Field", "object": "reality update candidate", "owner": "Reality / Field System"},
+    {"from": "Field", "to": "Context", "object": "field context", "owner": "Field System"},
+    {"from": "Context", "to": "Workspace", "object": "active context", "owner": "Workspace"},
+    {"from": "Workspace", "to": "Attention", "object": "attention request", "owner": "Attention System"},
+    {"from": "Attention", "to": "Hypothesis", "object": "validation requirement", "owner": "Hypothesis System"},
+    {"from": "Hypothesis", "to": "Belief", "object": "validated belief candidate", "owner": "Belief System"},
+    {"from": "Belief", "to": "Expectation", "object": "expectation candidate", "owner": "Expectation System"},
+    {"from": "Expectation", "to": "Global State", "object": "expectation state", "owner": "Global State"},
+    {"from": "Global State", "to": "Brain", "object": "brain context package", "owner": "Brain"},
+    {"from": "Brain", "to": "Decision Candidate", "object": "decision candidate", "owner": "Brain"},
+    {"from": "Decision Candidate", "to": "Commitment", "object": "commitment candidate", "owner": "Decision Commitment"},
+    {"from": "Commitment", "to": "Action Request", "object": "action request", "owner": "Action Boundary"},
+    {"from": "Action Request", "to": "Action", "object": "authorized execution request", "owner": "Action Runtime"},
+    {"from": "Action", "to": "Outcome", "object": "outcome evidence", "owner": "Outcome Evaluation"},
+    {"from": "Outcome", "to": "Feedback", "object": "feedback candidate", "owner": "Feedback System"},
+    {"from": "Feedback", "to": "Learning", "object": "learning signal", "owner": "Learning System"},
+    {"from": "Learning", "to": "Self Evolution", "object": "evolution candidate", "owner": "Self Evolution"},
+    {"from": "Self Evolution", "to": "Self Regulation", "object": "profile/adaptation candidate", "owner": "Self Regulation"},
+    {"from": "Self Regulation", "to": "State Update", "object": "state update candidate", "owner": "Global State"}
+  ],
+  "reentry_links": [
+    {"from": "Feedback", "to": "Expectation", "kind": "validation re-entry"},
+    {"from": "State Update", "to": "Workspace", "kind": "context refresh"},
+    {"from": "Self Regulation", "to": "Capability Governance", "kind": "stability proposal"}
+  ],
+  "rules": {"single_canonical_flow": true, "feedback_is_event_reentry_not_owner_cycle": true, "candidate_outputs_require_review": true, "provider_to_brain_forbidden": true, "model_to_memory_forbidden": true, "action_execution_externalized": true}
+}

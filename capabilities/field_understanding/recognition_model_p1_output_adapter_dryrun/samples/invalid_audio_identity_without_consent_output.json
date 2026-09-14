@@ -1,0 +1,18 @@
+{
+  "model_id": "mock_p2_audio_invalid_j",
+  "model_family": "audio_speech_family",
+  "model_version_ref": "reserved_sensevoice_pyannote_v0",
+  "model_origin": "external_open_source_audio_speech_model_reserved",
+  "license_ref": "per_model_license_and_identity_consent_required",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "reserved_no_audio_input_executed",
+  "output_schema_ref": "audio_speech_output_schema_reserved_v1",
+  "confidence": 0.72,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "speaker_identity_candidate",
+  "allowed_use": "reserved_only_no_execution",
+  "commercial_use_status": "not_evaluated_reserved",
+  "fallback_plan": "reserved_only_no_execution",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "identity_without_consent": true
+}

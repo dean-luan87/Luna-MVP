@@ -1,0 +1,13 @@
+{
+  "contract_id": "luna-dynamic-visual-capability-registration-v1",
+  "owner": "Capability Governance",
+  "record_fields": [
+    "capability_id", "capability_class", "mandatory_or_optional",
+    "slot_ref", "model_asset_refs", "provider_adapter_refs",
+    "evidence_contract_ref", "dependency_contract_ref", "license_ref",
+    "minimum_supported_baseline", "lifecycle_status", "provenance_ref"
+  ],
+  "registration_requires": ["unique_capability_id", "contract_refs", "provenance", "admission_review"],
+  "registration_does_not_imply": ["installation", "activation", "provider_authority", "world_truth"],
+  "safety_registration_rule": "approved_provider_and_governed_upgrade_only"
+}

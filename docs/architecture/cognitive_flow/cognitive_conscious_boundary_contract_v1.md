@@ -1,0 +1,21 @@
+# Cognitive Conscious Boundary Contract v1
+
+- Conscious Layer != Authority.
+- Conscious Layer != Reality Observation.
+- Conscious Layer != Reality Mutation.
+- Conscious Layer != Decision.
+- Conscious Layer != Action.
+- Conscious Layer != Permission.
+- Workspace != Memory Storage.
+- Workspace != Reality State.
+- Simulation != Prediction.
+- Simulation != Reality.
+- Possible World != Future Truth.
+- Experience != Rule.
+- Experience != Truth.
+- Language != Cognition.
+- B Route != Higher Intelligence.
+- B Route != Default Runtime.
+- Emotion != Cognition Override.
+- Hive != Individual Cognition Control.
+- Reducer remains the only State Mutation Authority.

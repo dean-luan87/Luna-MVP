@@ -1,0 +1,68 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "repository_verification_plan_record",
+  "source_repository_verification_planning_inputs": [
+    {
+      "asset_id": "byte_track",
+      "source_family": "ByteTrack_YOLOX",
+      "from_all_deferred_no_violation": true,
+      "current_status": "DEFERRED",
+      "source_execution_retry_allowed_now": false,
+      "weight_download_allowed_now": false
+    },
+    {
+      "asset_id": "mobile_sam",
+      "source_family": "MobileSAM",
+      "from_all_deferred_no_violation": true,
+      "current_status": "DEFERRED",
+      "source_execution_retry_allowed_now": false,
+      "weight_download_allowed_now": false
+    }
+  ],
+  "source_repository_candidate_planning_records": [
+    {
+      "asset_id": "byte_track",
+      "source_family": "ByteTrack_YOLOX",
+      "repository_candidate_required": true,
+      "repository_url_candidate_status": "unverified_candidate_or_missing",
+      "repository_url_must_be_verified_before_execution": true,
+      "repository_candidate_must_not_be_fabricated": true,
+      "network_lookup_required_in_future_review": true,
+      "network_lookup_allowed_now": false,
+      "git_clone_allowed_now": false,
+      "source_checkout_allowed_now": false,
+      "repository_identity_resolution_required": true,
+      "package_import_identity_unresolved_or_source_component": true,
+      "repository_may_contain_committed_checkpoint_weight": false,
+      "full_clone_may_equal_weight_download": false
+    },
+    {
+      "asset_id": "mobile_sam",
+      "source_family": "MobileSAM",
+      "repository_candidate_required": true,
+      "repository_url_candidate_status": "unverified_candidate_or_missing",
+      "repository_url_must_be_verified_before_execution": true,
+      "repository_candidate_must_not_be_fabricated": true,
+      "network_lookup_required_in_future_review": true,
+      "network_lookup_allowed_now": false,
+      "git_clone_allowed_now": false,
+      "source_checkout_allowed_now": false,
+      "repository_identity_resolution_required": true,
+      "package_import_identity_unresolved_or_source_component": false,
+      "repository_may_contain_committed_checkpoint_weight": true,
+      "full_clone_may_equal_weight_download": true
+    }
+  ]
+}

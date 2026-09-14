@@ -1,0 +1,29 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "negative_guards": [
+        "decision != action",
+        "selected decision != action execution",
+        "action candidate != runtime command",
+        "eligible != executed",
+        "ready != executed",
+        "authorized != executed",
+        "action governance != executor",
+        "action governance != task manager",
+        "permission context != permanent authorization",
+        "safety context != permanent authorization",
+        "confirmation cannot be fabricated",
+        "stale confirmation cannot be reused",
+        "unknown precondition != satisfied",
+        "rollback candidate != rollback execution",
+        "failure result != retry authority",
+        "no runtime side effect",
+        "no database write",
+        "no device control",
+        "no task creation",
+        "no scheduler execution",
+        "no permission bypass",
+        "no safety bypass",
+        "no parallel action owner",
+        "no checker weakening"
+    ]
+}

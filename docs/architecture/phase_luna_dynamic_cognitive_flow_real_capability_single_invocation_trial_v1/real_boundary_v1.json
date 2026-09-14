@@ -1,0 +1,6 @@
+{
+  "real_components": ["YOLO11n single-frame provider execution", "local model load/inference when existing admission succeeds"],
+  "controlled_components": ["trial scheduling", "scenario projections", "Dynamic Cognitive Flow transitions", "Need/Requirement formation", "Scope/Resolution/Invocation candidates", "Outcome assessment", "B1/B2 handoff assertions"],
+  "limits": {"real_provider_invocations": 1, "frames": 1, "model_download": false, "camera_continuous": false, "second_observation": false},
+  "evidence_boundary": {"candidate_only": true, "truth_declared": false, "fact_admitted": false, "world_truth_authority": false}
+}

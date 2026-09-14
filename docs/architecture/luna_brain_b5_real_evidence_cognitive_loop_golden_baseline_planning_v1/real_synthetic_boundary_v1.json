@@ -1,0 +1,6 @@
+{
+  "real_components":["YOLO11n model/provider execution","real Visual Evidence","real B1 CurrentWorld input","real B2 Cognitive State/Flow input into B3","real B3 Task/Decision input into B4"],
+  "controlled_or_synthetic_components":["downstream Context/World internals","Cognitive State Formation runtime status where controlled","Intent Governance runtime status","Decision Governance runtime status","Task Manager runtime status","Action candidate logic","Controlled Runtime Result fixture","Outcome candidate logic","Reconsideration/Reobserve handoffs"],
+  "not_claimed":["full production brain runtime","real Action","real Runtime","external task success","BEST_FIT","commercial approval"],
+  "rule":"real input boundary does not imply real downstream execution"
+}

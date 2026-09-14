@@ -1,0 +1,59 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m3_runtime_adapter_candidate_registry_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "candidate_only": true,
+  "records": [
+    {
+      "adapter": "Field Context Read Adapter Candidate",
+      "purpose": "Project an admitted, read-only Field State reference into a future Runtime context envelope without mutation.",
+      "source": "Field State Read Model",
+      "target": "Runtime Context Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    },
+    {
+      "adapter": "Observation Evidence Transport Adapter Candidate",
+      "purpose": "Transport Observation and Evidence Candidates with provenance and trace while preserving non-interpretation.",
+      "source": "Observation Manager",
+      "target": "Runtime Evidence Transport Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    },
+    {
+      "adapter": "Governed Capability Invocation Adapter Candidate",
+      "purpose": "Translate an admitted capability-selection reference into a future invocation request without granting Model Manager provider-call authority.",
+      "source": "Capability Governance / Model Manager",
+      "target": "Future Capability Runtime Admission Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    },
+    {
+      "adapter": "Approved Task Lifecycle Adapter Candidate",
+      "purpose": "Carry an approved task-lifecycle candidate to a future Runtime boundary without granting Task Manager dispatch or Decision authority.",
+      "source": "Task Manager",
+      "target": "Future Runtime Task Lifecycle Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    },
+    {
+      "adapter": "Approved Cognitive Execution Request Adapter Candidate",
+      "purpose": "Carry an Action-Governance-approved execution request to a future Runtime admission boundary.",
+      "source": "Decision Arbitration / Action Governance Boundary",
+      "target": "Future Runtime Execution Admission Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    },
+    {
+      "adapter": "Runtime Outcome Trace Projection Adapter Candidate",
+      "purpose": "Project Runtime outcome, failure, resource, and trace evidence back to Reality Validation and Experience Governance without direct Memory mutation.",
+      "source": "Runtime Outcome and Trace Boundary",
+      "target": "Reality Validation / Experience Governance Boundary",
+      "status": "FUTURE_CANDIDATE",
+      "implementation_created": false
+    }
+  ],
+  "adapter_implementation_created": false,
+  "runtime_files_created": false,
+  "runtime_modified": false,
+  "migration_executed": false
+}

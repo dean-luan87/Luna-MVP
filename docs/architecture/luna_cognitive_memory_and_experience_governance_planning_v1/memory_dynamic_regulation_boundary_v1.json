@@ -1,0 +1,15 @@
+{
+    "artifact": "memory_dynamic_regulation_boundary_v1",
+    "allowed": [
+        "historical_regulation_outcome_refs",
+        "prior_experience_refs",
+        "failure_success_experience_refs",
+        "uncertainty_refs"
+    ],
+    "forbidden": [
+        "regulation_parameter_update",
+        "parameter_bounds_update",
+        "parameter_genome_update",
+        "adaptation_policy_update"
+    ]
+}

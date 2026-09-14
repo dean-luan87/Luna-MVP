@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "DocumentSurfaceRuntimeResponseSchemaV1",
+  "type": "object",
+  "required": [
+    "runtime_id",
+    "execution_mode",
+    "document_surface_candidates",
+    "relation_hint_candidates",
+    "runtime_status_candidate",
+    "candidate_only",
+    "not_fact"
+  ],
+  "properties": {
+    "runtime_id": {"type": "string", "const": "document_surface_detector_v1"},
+    "execution_mode": {"type": "string"},
+    "document_surface_candidates": {"type": "array"},
+    "relation_hint_candidates": {"type": "array"},
+    "runtime_status_candidate": {"type": "string"},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

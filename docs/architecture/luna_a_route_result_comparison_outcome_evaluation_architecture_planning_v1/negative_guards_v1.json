@@ -1,0 +1,31 @@
+{
+  "artifact":"negative_guards_v1",
+  "planning_only":true,
+  "candidate_only":true,
+  "guards":{
+    "runtime_execution":false,
+    "provider_invocation":false,
+    "model_call":false,
+    "database_write":false,
+    "vector_store_write":false,
+    "embedding_execution":false,
+    "scheduler_execution":false,
+    "device_control":false,
+    "field_state_mutation":false,
+    "context_mutation":false,
+    "intent_mutation":false,
+    "decision_mutation":false,
+    "task_mutation":false,
+    "action_execution":false,
+    "memory_mutation":false,
+    "learning_execution":false,
+    "self_mutation":false,
+    "personality_mutation":false,
+    "emotion_engine_execution":false,
+    "b_route_execution":false,
+    "semantic_compression_execution":false,
+    "cross_user_transfer":false,
+    "real_side_effect":false
+  },
+  "semantic_guards":["comparison_is_not_decision","comparison_is_not_learning","result_comparison_is_not_field_mutation","outcome_evaluation_is_not_task_mutation","learning_signal_is_not_learning_execution","reconsideration_is_not_intent_mutation","provenance_is_not_authority","confidence_is_not_correctness","model_confidence_is_not_outcome_success"]
+}

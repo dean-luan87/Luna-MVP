@@ -1,0 +1,127 @@
+{
+    "artifact_id": "pcn_dryrun_scenario_expectation_registry_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "case_count": 12,
+    "cases": [
+        {
+            "case_id": "CASE_01_WEATHER_QUERY",
+            "fixture_case_id": "SCN_01_WEATHER_QUERY",
+            "expectations": [
+                "minimal_activation",
+                "no_historical_reactivation",
+                "no_complex_interaction",
+                "no_causal",
+                "no_intent",
+                "no_decision"
+            ]
+        },
+        {
+            "case_id": "CASE_02_HOME_TEMPORARY_WORK",
+            "fixture_case_id": "SCN_02_TEMP_OVERTIME_AT_HOME",
+            "expectations": [
+                "family_field_core_preserved",
+                "work_temporary_occupation_activated",
+                "employee_role_salience_increase_candidate",
+                "family_roles_not_disappeared",
+                "no_structural_mutation"
+            ]
+        },
+        {
+            "case_id": "CASE_03_REPEATED_HOME_WORK",
+            "fixture_case_id": "SCN_03_LONG_TERM_OVERTIME_AT_HOME",
+            "expectations": [
+                "repeated_occupation_candidate",
+                "persistent_influence_candidate_allowed",
+                "structural_change_candidate_only",
+                "no_automatic_structural_apply"
+            ]
+        },
+        {
+            "case_id": "CASE_04_COLLEAGUE_AND_SPOUSE",
+            "fixture_case_id": "SCN_04_SPOUSE_AND_COLLEAGUE",
+            "expectations": [
+                "colleague_active",
+                "spouse_active",
+                "coexistence_required"
+            ]
+        },
+        {
+            "case_id": "CASE_05_DIVORCED_BUT_COLLEAGUES",
+            "fixture_case_id": "SCN_05_DIVORCED_BUT_COLLEAGUE",
+            "expectations": [
+                "colleague_active",
+                "former_spouse_historical",
+                "historical_relation_not_deleted"
+            ]
+        },
+        {
+            "case_id": "CASE_06_MEETING_REACTIVATES_HISTORY",
+            "fixture_case_id": "SCN_06_MEETING_TRIGGERS_HISTORICAL_SPOUSE",
+            "expectations": [
+                "historical_family_field_reactivatable",
+                "former_spouse_reactivation_candidate",
+                "historical_reactivation_candidate_only",
+                "no_emotion_conclusion",
+                "no_causal_conclusion"
+            ]
+        },
+        {
+            "case_id": "CASE_07_WORK_FIELD_RESONANCE",
+            "fixture_case_id": "SCN_07_NEW_OLD_WORK_RESONANCE",
+            "expectations": [
+                "structural_resonance_candidate_allowed",
+                "no_same_outcome_assertion",
+                "resonance_not_causal_fact"
+            ]
+        },
+        {
+            "case_id": "CASE_08_FATHER_VS_EMPLOYEE",
+            "fixture_case_id": "SCN_08_FATHER_VS_EMPLOYEE",
+            "expectations": [
+                "both_roles_active",
+                "competition_candidate_allowed",
+                "arbitration_forbidden"
+            ]
+        },
+        {
+            "case_id": "CASE_09_COUPLE_BUSINESS",
+            "fixture_case_id": "SCN_09_COFOUNDERS_SPOUSE",
+            "expectations": [
+                "overlap_allowed",
+                "coexistence_allowed",
+                "fusion_candidate_allowed",
+                "competition_not_default"
+            ]
+        },
+        {
+            "case_id": "CASE_10_DORMANT_FRIEND_REACTIVATION",
+            "fixture_case_id": "SCN_10_DORMANT_OLD_FRIEND_REACTIVATION",
+            "expectations": [
+                "dormant_reactivation_allowed",
+                "dormant_not_deleted"
+            ]
+        },
+        {
+            "case_id": "CASE_11_SUBJECTIVE_FALSE_BELIEF",
+            "fixture_case_id": "SCN_11_STRONG_SUBJECTIVE_MISBELIEF",
+            "expectations": [
+                "subjective_true",
+                "truth_status_not_fact",
+                "strong_subjective_link_allowed"
+            ]
+        },
+        {
+            "case_id": "CASE_12_RESOURCE_DEGRADATION",
+            "fixture_case_id": "SCN_12_HIGH_LOW_RESOURCE_DEGRADATION",
+            "expectations": [
+                "high_resource_wider_projection",
+                "low_resource_narrower_projection",
+                "low_resource_no_source_deletion",
+                "low_resource_no_dormant_deletion",
+                "low_resource_no_graph_mutation",
+                "low_resource_no_false_fact"
+            ]
+        }
+    ],
+    "candidate_only": true
+}

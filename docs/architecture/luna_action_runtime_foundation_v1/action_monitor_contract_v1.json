@@ -1,0 +1,8 @@
+{
+  "title": "Action Monitor Contract v1",
+  "owner": "Action Runtime Governance",
+  "observes": ["status", "time", "deviation", "exception", "environment_change"],
+  "schema": ["monitor_id", "execution_id", "observation", "deviation", "threshold", "trace_id"],
+  "outputs": ["Progress Candidate", "Deviation Candidate", "Failure Event", "Revalidation Candidate"],
+  "rules": {"monitor_not_executor": true, "monitor_not_decision_owner": true, "environment_change_revalidates": true, "trace_required": true}
+}

@@ -1,0 +1,123 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T01:34:15.395372+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "p1_midplatform_model_test_lens_static_site_skeleton_execution",
+  "steps_executed": [
+    "this_phase_creates_local_static_model_test_lens_skeleton",
+    "model_test_lens_is_not_whitebox_product_page",
+    "model_test_lens_is_not_runtime",
+    "model_test_lens_is_model_testing_viewer_only",
+    "static_page_must_not_execute_models",
+    "static_page_must_not_trigger_inference",
+    "static_page_must_not_trigger_runtime",
+    "static_page_must_not_call_output_adapter",
+    "static_page_must_not_write_semantic_layer",
+    "static_page_must_not_write_facts",
+    "static_page_must_not_trigger_navigation_action_speech",
+    "static_page_must_not_mutate_registry",
+    "static_page_must_not_fetch_external_url",
+    "static_page_must_not_access_camera",
+    "static_page_must_not_access_microphone",
+    "static_page_must_not_delete_artifacts",
+    "local_json_loader_is_allowed",
+    "builtin_example_loader_is_allowed",
+    "mobile_sam_segmentation_example_is_required",
+    "ten_model_panel_skeletons_are_required",
+    "boundary_panel_is_required",
+    "testboard_refs_panel_is_required",
+    "candidate_outputs_remain_candidate",
+    "readiness_effects_are_read_only",
+    "testboard_record_is_required",
+    "test_process_record_is_required",
+    "test_conclusion_record_is_required",
+    "test_artifacts_are_protected",
+    "test_records_are_non_deletable",
+    "cleanup_must_not_delete_testboard_artifacts",
+    "all_virtual_and_real_test_artifacts_must_be_written_to_the_test_board",
+    "test_process_records_must_be_preserved",
+    "test_conclusions_must_be_preserved",
+    "test_board_artifacts_are_protected_and_must_not_be_deleted",
+    "cleanup_scripts_must_not_remove_protected_test_board_artifacts",
+    "any_test_artifact_deletion_requires_explicit_governance_approval"
+  ],
+  "passed_check_count": 56,
+  "failed_check_count": 0,
+  "stage_refs": [
+    {
+      "stage_index": 1,
+      "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_model_test_lens_static_site_planning_v1_smoke_v0/p1_midplatform_model_test_lens_static_site_planning_review_v1.json",
+      "go_verified": true
+    },
+    {
+      "stage_index": 2,
+      "phase_ref": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_v1_smoke_v0/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_review_v1.json",
+      "go_verified": true
+    },
+    {
+      "stage_index": 3,
+      "phase_ref": "Phase-Test-Board-Protected-Artifact-Rule-v1-001",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/test_board_protocol_v1_smoke_v0/test_board_protocol_review_v1.json",
+      "go_verified": true
+    },
+    {
+      "stage_index": 4,
+      "phase_ref": "GovernanceStandardsManifestV1",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/governance_standards_manifest_v1.json",
+      "go_verified": true
+    },
+    {
+      "stage_index": 5,
+      "phase_ref": "GovernanceStandardsReferencePolicyV1",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/index/governance_standards_reference_policy_v1.md",
+      "go_verified": true
+    },
+    {
+      "stage_index": 6,
+      "phase_ref": "ModelTestResultEnvelopeSchemaV1",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/model_test_lens/schemas/model_test_result_envelope_schema_v1.json",
+      "go_verified": true
+    },
+    {
+      "stage_index": 7,
+      "phase_ref": "ModelTestLensStaticSitePlanV1",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "resolved_path": "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/model_test_lens/model_test_lens_static_site_plan_v1.md",
+      "go_verified": true
+    }
+  ],
+  "upstream_sealed_phase_review": {
+    "model_test_lens_static_site_planning_go_verified": true,
+    "mobile_sam_multi_image_execution_go_verified": true,
+    "test_board_protocol_go_verified": true,
+    "governance_standard_manifest_verified": true,
+    "governance_reference_policy_ref_ok": true,
+    "envelope_schema_ref_ok": true,
+    "static_site_plan_ref_ok": true,
+    "controlled_trial_template_ref_ok": true
+  }
+}

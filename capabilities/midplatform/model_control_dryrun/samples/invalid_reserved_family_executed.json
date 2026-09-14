@@ -1,0 +1,12 @@
+{
+  "control_id": "invalid_reserved_family_executed_001",
+  "policy_id": "reserved_family_execution_block",
+  "model_family": "audio_speech_family",
+  "license_ref": "license:reserved_not_evaluated",
+  "allowed_use": "reserved_only_no_execution",
+  "availability_state": "reserved_only",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "reserved_block_confidence_policy_v1",
+  "fallback_plan": "reserved_only_interface_preserved_no_execution",
+  "reserved_family_executed": true
+}

@@ -1,0 +1,152 @@
+{
+    "artifact": "runtime_executor_minimum_scenario_suite_v1",
+    "status": "PLANNING_CANDIDATE",
+    "scenario_count": 18,
+    "scenarios": [
+        {
+            "scenario_id": "R01",
+            "name": "admission_happy_path_candidate_only",
+            "covers": [
+                "admission",
+                "final_gate",
+                "candidate_only"
+            ]
+        },
+        {
+            "scenario_id": "R02",
+            "name": "permission_revoked_before_final_gate",
+            "covers": [
+                "permission_recheck",
+                "rejection"
+            ]
+        },
+        {
+            "scenario_id": "R03",
+            "name": "safety_veto_before_final_gate",
+            "covers": [
+                "safety_recheck",
+                "rejection"
+            ]
+        },
+        {
+            "scenario_id": "R04",
+            "name": "confirmation_scope_mismatch",
+            "covers": [
+                "confirmation",
+                "admission_reject"
+            ]
+        },
+        {
+            "scenario_id": "R05",
+            "name": "resource_degraded_but_admitted_candidate",
+            "covers": [
+                "resource_constraint",
+                "admitted_candidate"
+            ]
+        },
+        {
+            "scenario_id": "R06",
+            "name": "idempotency_same_key_same_scope",
+            "covers": [
+                "idempotency",
+                "result_reuse_candidate"
+            ]
+        },
+        {
+            "scenario_id": "R07",
+            "name": "idempotency_same_key_different_scope",
+            "covers": [
+                "idempotency",
+                "reject"
+            ]
+        },
+        {
+            "scenario_id": "R08",
+            "name": "retry_requires_explicit_authority",
+            "covers": [
+                "attempt_retry",
+                "authority"
+            ]
+        },
+        {
+            "scenario_id": "R09",
+            "name": "automatic_retry_forbidden",
+            "covers": [
+                "attempt_retry",
+                "negative_guard"
+            ]
+        },
+        {
+            "scenario_id": "R10",
+            "name": "queue_timeout_to_timeout_candidate",
+            "covers": [
+                "timeout",
+                "trace_required"
+            ]
+        },
+        {
+            "scenario_id": "R11",
+            "name": "running_cancelled_by_user",
+            "covers": [
+                "cancellation",
+                "terminal_state"
+            ]
+        },
+        {
+            "scenario_id": "R12",
+            "name": "partial_result_requires_followup",
+            "covers": [
+                "partial_result",
+                "not_success"
+            ]
+        },
+        {
+            "scenario_id": "R13",
+            "name": "partial_failure_triggers_rollback_required",
+            "covers": [
+                "failure",
+                "rollback"
+            ]
+        },
+        {
+            "scenario_id": "R14",
+            "name": "adapter_failure_surface",
+            "covers": [
+                "adapter_boundary",
+                "failure_classification"
+            ]
+        },
+        {
+            "scenario_id": "R15",
+            "name": "scheduler_reference_only",
+            "covers": [
+                "scheduler_boundary",
+                "non_mutation"
+            ]
+        },
+        {
+            "scenario_id": "R16",
+            "name": "task_manager_reference_only",
+            "covers": [
+                "task_manager_boundary",
+                "non_mutation"
+            ]
+        },
+        {
+            "scenario_id": "R17",
+            "name": "result_handoff_no_owner_transfer",
+            "covers": [
+                "result_handoff",
+                "ownership_boundary"
+            ]
+        },
+        {
+            "scenario_id": "R18",
+            "name": "diagnostics_evidence_only",
+            "covers": [
+                "diagnostics_boundary",
+                "non_decision_authority"
+            ]
+        }
+    ]
+}

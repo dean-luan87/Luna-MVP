@@ -1,0 +1,23 @@
+{
+  "flow_id": "a_route_information_processing_pipeline_v1",
+  "execution_mode": "architecture_only",
+  "stages": [
+    {"order": 1, "name": "Reality", "output": "reality_input"},
+    {"order": 2, "name": "Observation Evidence", "output": "evidence_candidate"},
+    {"order": 3, "name": "Information Structuring", "output": "structured_information"},
+    {"order": 4, "name": "Cognitive Field", "output": "current_field_candidate"},
+    {"order": 5, "name": "Attention Allocation", "output": "attention_candidate"},
+    {"order": 6, "name": "Context Assembly", "output": "context_package"},
+    {"order": 7, "name": "Hypothesis Generation", "output": "hypothesis_candidates"},
+    {"order": 8, "name": "Current Understanding", "output": "current_understanding_candidate"},
+    {"order": 9, "name": "Decision Candidate", "output": "decision_candidate"},
+    {"order": 10, "name": "Action / Interaction Boundary", "output": "outcome_input"},
+    {"order": 11, "name": "Experience Extraction", "output": "experience_candidate"},
+    {"order": 12, "name": "Memory Consolidation", "output": "pattern_or_memory_candidate"},
+    {"order": 13, "name": "Pattern / Growth Candidate", "output": "growth_candidates"}
+  ],
+  "rules": ["model_provider_stops_at_evidence", "field_activates_memory", "knowledge_requires_field_role_context", "decision_is_candidate", "experience_is_not_action_log", "unknown_preserved"],
+  "action_execution": false,
+  "automatic_learning": false,
+  "b_route_runtime": false
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "field_memory_relation_v1",
+  "owner": "Field",
+  "memory_scope": "Field Memory",
+  "field_role": "current_reality_context",
+  "memory_role": "historical_field_experience",
+  "flow": ["Current Field", "Historical Field Activation", "Relevant Memory Context", "Understanding Enhancement"],
+  "memory_overwrites_reality": false,
+  "field_owns_memory": false,
+  "current_reality_precedence": true,
+  "candidate_only": true
+}

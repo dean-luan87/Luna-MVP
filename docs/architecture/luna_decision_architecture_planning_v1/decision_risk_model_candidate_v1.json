@@ -1,0 +1,20 @@
+{
+    "artifact": "decision_risk_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "risk_definition": "Potential loss, harm, or adverse impact associated with an option or decision candidate.",
+    "risk_fields": [
+        "risk_ref_id",
+        "risk_type",
+        "risk_severity_candidate",
+        "risk_likelihood_candidate",
+        "risk_scope_refs",
+        "mitigation_candidate_refs",
+        "unknowns",
+        "provenance"
+    ],
+    "risk_rules": {
+        "risk_not_safety_authority": true,
+        "low_risk_not_executable_authority": true,
+        "risk_requires_permission_and_safety_context": true
+    }
+}

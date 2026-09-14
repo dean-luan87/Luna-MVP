@@ -1,0 +1,8 @@
+{
+  "title": "Health Monitoring System v1",
+  "owner": "Cognitive OS Governance",
+  "health_domains": ["Module Health", "State Health", "Contract Health", "Dependency Health"],
+  "output_schema": ["module", "health", "issue", "recommendation", "trace_id", "lifecycle_state"],
+  "health_values": ["Healthy", "Degraded", "Limited", "Failed", "Unknown"],
+  "rules": {"diagnostic_only": true, "no_silent_recovery": true, "health_does_not_grant_authority": true, "unknown_preserved": true}
+}

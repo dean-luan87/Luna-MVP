@@ -1,0 +1,20 @@
+{
+    "version": "1.0",
+    "name": "Field Event and Temporal Validity Negative Guards",
+    "description": "定义协议中的禁止条件，防止不受控状态修改和语义越权",
+    "guards": [
+        "no direct state mutation",
+        "no silent event drop",
+        "no candidate-to-fact promotion",
+        "no personal-to-public promotion",
+        "no revoked event activation",
+        "no expired definition activation",
+        "no recurrence treated as certainty",
+        "no overlay deleting substrate",
+        "no replay triggering external provider",
+        "no replay triggering action",
+        "no correction without lineage",
+        "no extension_data governance bypass"
+    ],
+    "purpose": "负面守卫用于确保协议仅在受控候选路径中工作，而不破坏历史事件或直接写入事实。"
+}

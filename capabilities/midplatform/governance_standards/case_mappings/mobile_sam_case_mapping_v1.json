@@ -1,0 +1,32 @@
+{
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "case_facts": {
+    "asset_id": "mobile_sam",
+    "install_route": "source_component_code_only_weight_excluding_checkout",
+    "committed_weight_risk": true,
+    "weight_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "weight_size_bytes": 40728226,
+    "readiness_progression": [
+      "code_only_ready",
+      "code_and_weight_ready",
+      "model_load_verified",
+      "inference_trial_verified"
+    ],
+    "model_load_failure_cause": "missing_timm_dependency",
+    "timm_full_install_outcome": "timeout_transitive_heavy_deps",
+    "timm_nodeps_install_outcome": "GO_version_1.0.27",
+    "model_load_retry_outcome": "GO_Sam_checkpoint_load",
+    "inference_trial_outcome": "GO_synthetic_128x128_candidate_only",
+    "dependency_repair_method": "timm_no_deps_controlled_install"
+  },
+  "upstream_chain_closed": true,
+  "final_readiness_level": "inference_trial_verified",
+  "broad_flags_remain_false": [
+    "inference_ready",
+    "runtime_ready",
+    "output_adapter_ready",
+    "semantic_layer_ready",
+    "commercial_runtime_approved"
+  ],
+  "recorded_at_utc": "2026-07-01T04:11:05.339176+00:00"
+}

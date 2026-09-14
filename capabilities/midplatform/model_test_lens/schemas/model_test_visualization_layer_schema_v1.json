@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "model_test_visualization_layer_schema_v1",
+  "title": "Model Test Visualization Layer V1",
+  "type": "object",
+  "required": ["layer_id", "layer_type", "candidate_only"],
+  "properties": {
+    "layer_id": { "type": "string" },
+    "layer_type": {
+      "type": "string",
+      "enum": [
+        "image_overlay", "mask", "bbox", "polyline", "trajectory", "heatmap",
+        "waveform", "transcript", "table", "timeline"
+      ]
+    },
+    "source_artifact_ref": { "type": "string" },
+    "display_name": { "type": "string" },
+    "model_id": { "type": "string" },
+    "model_category": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "color_class": { "type": "string" },
+    "geometry": { "type": "object" },
+    "metrics_ref": { "type": "string" },
+    "failure_mode_refs": { "type": "array", "items": { "type": "string" } },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_runtime_output": { "type": "boolean", "const": true }
+  },
+  "additionalProperties": false
+}

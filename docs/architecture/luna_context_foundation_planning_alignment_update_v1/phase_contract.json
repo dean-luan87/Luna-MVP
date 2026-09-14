@@ -1,0 +1,76 @@
+{
+  "contract_id": "luna_context_foundation_planning_alignment_update_phase_contract_v1",
+  "phase": "Phase-Luna-Context-Foundation-Planning-Alignment-Update-v1-001",
+  "stage": "Context Foundation Emotional Carryover Alignment Update",
+  "execution_mode": "Planning Only",
+  "current_work_description": {
+    "in_scope": ["Mental Field Continuity", "Context Carryover Projection", "Field Emotional Signature Reference", "boundary alignment", "scenario extension", "impact review"],
+    "out_of_scope": ["Emotion Engine", "emotion calculation", "pressure algorithm", "Context Skeleton", "PCN", "Causal Runtime", "Runtime", "existing asset modification"]
+  },
+  "previous_phase": "Phase-Luna-Context-Foundation-v1-001",
+  "previous_phase_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_READY",
+  "input_assets": [
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/"
+  ],
+  "required_pre_read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_context_foundation_planning_v1/context_foundation_architecture_plan.md",
+    "docs/architecture/luna_context_foundation_planning_v1/context_projection_schema_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_input_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_output_boundary_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_lifecycle_model_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_complexity_evaluation_candidate.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/cognitive_boundary_audit.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/architecture_flow_integrity_matrix.json"
+  ],
+  "target_directory": "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+  "scope": ["additive planning candidates only", "cross-Field continuity references", "reference-only emotional signature", "read-only verifier"],
+  "out_of_scope": ["modification of luna_context_foundation_planning_v1", "active Schema or Contract change", "Owner Metadata", "implementation", "Runtime", "model", "migration"],
+  "required_final_files": [
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_foundation_emotional_carryover_alignment_update.md",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/mental_field_continuity_schema_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/field_emotional_signature_reference_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_carryover_projection_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_boundary_alignment_update.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_carryover_scenario_extension.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_foundation_alignment_impact_review.md",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_foundation_alignment_update_change_manifest.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/verify_context_foundation_alignment_update_v1.py"
+  ],
+  "implementation_principles": ["additive update", "preserve passed assets", "reference only", "source-owner precedence", "Context describes state only", "minimal change"],
+  "required_checks": {
+    "V0": ["file existence", "JSON parse", "Markdown tokens", "AST parse", "manifest consistency", "boundary and side-effect checks"],
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "negative_guards": ["no check weakening", "no hardcoded pass", "no existing asset modification", "no Emotion Runtime", "no Causal Runtime", "no PCN", "no pressure algorithm", "no final verifier by Agent"],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": ["JSON parsing", "Markdown token checks", "AST parsing", "reference validation", "manifest consistency"],
+  "allowed_agent_execution": ["create planning assets in target directory", "create read-only verifier", "run V0 static checks"],
+  "prohibited_agent_execution": ["run final phase verifier", "run Runtime or Runner", "invoke model", "execute migration", "modify existing Context contracts, schemas, Owner Metadata, or Runtime", "enter Context Skeleton, Emotion, PCN, or Causal implementation"],
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 docs/architecture/luna_context_foundation_planning_alignment_update_v1/verify_context_foundation_alignment_update_v1.py"
+  ],
+  "expected_success_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_ALIGNMENT_UPDATE_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_ALIGNMENT_UPDATE_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "All additive planning assets and V0 checks complete; stop before V2.",
+  "blocker_conditions": ["existing Context asset modified", "Emotion or Causal computation introduced", "PCN or Runtime introduced", "Owner conflict", "active Schema or Contract change"],
+  "completion_report_format": ["read files", "created files", "modified files", "Mental Field Continuity boundary", "Context impact", "Emotion boundary", "static checks", "user terminal command", "current status"],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "implementation_started": false,
+  "runtime_change": false,
+  "architecture_change": false,
+  "next_phase_auto_entry": false,
+  "status": "PLANNING_CANDIDATE"
+}

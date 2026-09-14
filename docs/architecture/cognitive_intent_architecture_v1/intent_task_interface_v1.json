@@ -1,0 +1,26 @@
+{
+  "title": "Intent Task Interface v1",
+  "contract_type": "Intent to Task Reference",
+  "input": {
+    "intent_candidate": "intent-example",
+    "task_reference": null,
+    "goal_reference": null,
+    "task_context": {},
+    "field_reference": "field-example",
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "task_alignment_candidate": {},
+    "task_intent_reference": "intent-example",
+    "pending_information": []
+  },
+  "boundary": {
+    "intent_references_existing_task": true,
+    "intent_does_not_create_task": true,
+    "intent_does_not_modify_task": true,
+    "task_owner_retains_continuity": true,
+    "intent_is_not_task": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "artifact": "cognitive_state_formation_controlled_change_manifest_v1",
+    "canonical_owner": "Cognitive State Formation Governance",
+    "new_module": "capabilities/midplatform/core/cognitive_state_formation",
+    "reuse_mainline_assets": [
+        "capabilities/midplatform/core/context_foundation",
+        "capabilities/midplatform/core/personal_cognitive_network",
+        "capabilities/midplatform/core/intent_governance",
+        "capabilities/midplatform/core/causal_governance",
+        "capabilities/midplatform/core/field_state_reducer"
+    ],
+    "history_reference_only_assets": [
+        "docs/architecture/cognitive_hypothesis_belief_architecture_v1",
+        "docs/architecture/cognitive_global_state_representation_v1",
+        "docs/architecture/luna_cognitive_state_machine_architecture_v1",
+        "docs/architecture/luna_cognitive_dynamic_function_architecture_v1"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/core/information_integration_types_v1.py",
+        "capabilities/midplatform/core/information_integration_skeleton_v1.py"
+    ],
+    "gap_audit": {
+        "A": [
+            {
+                "gap_id": "A",
+                "capability": "attention schema and deterministic selection",
+                "resolution": "implemented inside cognitive_state_formation module"
+            },
+            {
+                "gap_id": "B",
+                "capability": "cognitive hypothesis lifecycle and competition",
+                "resolution": "implemented with isolated cognitive hypothesis types and competition output"
+            },
+            {
+                "gap_id": "C",
+                "capability": "current world candidate and field boundary guards",
+                "resolution": "implemented validators and no-field-mutation hard guards"
+            },
+            {
+                "gap_id": "D",
+                "capability": "causal handoff and trace provenance closure",
+                "resolution": "implemented candidate-only handoff with reverse lookup provenance"
+            }
+        ],
+        "B": [],
+        "C": [],
+        "D": []
+    },
+    "owner_conflict_scan_summary": {
+        "parallel_owner_module_created": false,
+        "attention_governance_created": false,
+        "hypothesis_governance_created": false,
+        "current_world_governance_created": false,
+        "conflict_result": "no active canonical owner conflict in implementation modules"
+    },
+    "planning_assets_modified": false
+}

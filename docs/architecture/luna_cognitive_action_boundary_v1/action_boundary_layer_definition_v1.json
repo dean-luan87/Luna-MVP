@@ -1,0 +1,8 @@
+{
+  "title": "Action Boundary Layer Definition v1",
+  "layer": "L2 → External World Boundary",
+  "owner": "Action Boundary Governance",
+  "subsystems": ["Action Request Layer", "Action Candidate Management", "Action Risk Evaluation", "Action Permission Check", "Action Validation Gateway", "Execution Contract", "Outcome Feedback", "Action Trace", "Action Failure Handling", "Human Override Boundary"],
+  "not_authority": ["Action execution", "Goal ownership", "Value modification", "Decision creation", "Constitution modification", "Reality direct write"],
+  "rules": {"candidate_before_execution": true, "validation_before_approval": true, "human_override_supported": true, "runtime_disabled": true}
+}

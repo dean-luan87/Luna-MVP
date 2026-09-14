@@ -1,0 +1,15 @@
+{
+  "title": "Growth Candidate Schema v1",
+  "owner": "Self Evolution",
+  "schema": ["candidate_id", "candidate_type", "source_trace", "source_experience", "context", "evidence", "confidence", "unknown", "affected_profile_dimension", "review_status", "reversible"],
+  "candidate_types": ["Pattern", "Strategy", "Capability Growth", "Limitation Awareness", "Behavior Adaptation", "Attention Adjustment"],
+  "review_statuses": ["Candidate", "Under Review", "Admitted", "Rejected", "Revoked", "Archived"],
+  "rules": {
+    "candidate_is_not_adoption": true,
+    "evidence_required": true,
+    "confidence_required": true,
+    "unknown_required": true,
+    "reversible_required": true,
+    "no_direct_action": true
+  }
+}

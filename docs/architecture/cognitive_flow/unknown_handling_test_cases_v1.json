@@ -1,0 +1,32 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_logic_validation",
+  "scope": "Evidence_to_Situation_Candidate_only",
+  "cases": [
+    {
+      "case_id": "ambiguous_dark_moving_object",
+      "world_evidence": {
+        "observation": "black_moving_object_ahead",
+        "visibility": "insufficient",
+        "object_identity": "unknown"
+      },
+      "self_state": {
+        "visual_capability": "limited_in_low_light"
+      },
+      "goal_context": {
+        "purpose": "understand_path_condition"
+      },
+      "expected_situation_candidate": {
+        "entity_description": "unknown_moving_object",
+        "further_observation_information_needed": true
+      },
+      "expected_unknowns": ["object_identity", "object_intent", "object_trajectory"],
+      "forbidden_outputs": ["dog", "vehicle", "safe_to_ignore"]
+    }
+  ],
+  "assertions": {
+    "unknown_preservation": true,
+    "absence_of_evidence_is_not_absence_claim": true,
+    "decision_and_action_excluded": true
+  }
+}

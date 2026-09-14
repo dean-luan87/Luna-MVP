@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-UI-Execution-v1-001",
+  "module": "model_governance",
+  "test_mode": "post_review",
+  "recorded_at_utc": "2026-07-07T05:18:07.030068+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MIDPLATFORM_MULTI_MODEL_INTERACTION_MOBILE_SAM_OCR_CONTROLLED_EXECUTION_UI_EXECUTION_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "negative_guard_count": 36,
+    "blocker_count": 0
+  }
+}

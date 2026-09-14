@@ -1,0 +1,69 @@
+{
+    "artifact": "cognitive_execution_chain_layer_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "layers": [
+        {
+            "layer_id": "L1_INTENT",
+            "canonical_owner": "Intent Governance",
+            "input_type": "IntentGovernanceInputV1",
+            "output_type": "IntentGovernanceOutputV1",
+            "handoff_type": "IntentToCausalHandoffCandidateV1",
+            "trace_type": "IntentTraceCandidateV1",
+            "error_namespace": "INTENT_*",
+            "candidate_only": true,
+            "mutation_authority": true
+        },
+        {
+            "layer_id": "L2_CAUSAL",
+            "canonical_owner": "Causal Governance",
+            "input_type": "CausalGovernanceInputV1",
+            "output_type": "CausalGovernanceOutputV1",
+            "handoff_type": "CausalToDecisionHandoffCandidateV1",
+            "trace_type": "CausalTraceCandidateV1",
+            "error_namespace": "causal_governance.controlled_implementation.v1",
+            "candidate_only": true,
+            "mutation_authority": true
+        },
+        {
+            "layer_id": "L3_DECISION",
+            "canonical_owner": "Decision Governance",
+            "input_type": "DecisionGovernanceInputV1",
+            "output_type": "DecisionGovernanceOutputV1",
+            "handoff_type": "DecisionToActionTaskHandoffCandidateV1",
+            "trace_type": "DecisionTraceCandidateV1",
+            "error_namespace": "decision_governance.controlled_implementation.v1",
+            "candidate_only": true,
+            "mutation_authority": true
+        },
+        {
+            "layer_id": "L4_ACTION",
+            "canonical_owner": "Action Governance",
+            "input_type": "ActionGovernanceInputV1",
+            "output_type": "ActionGovernanceOutputV1",
+            "handoff_type": "ActionToRuntimeExecutorHandoffCandidateV1",
+            "trace_type": "ActionTraceCandidateV1",
+            "error_namespace": "action_governance.controlled_implementation.v1",
+            "candidate_only": true,
+            "mutation_authority": true
+        },
+        {
+            "layer_id": "L5_EXECUTION",
+            "canonical_owner": "Runtime Executor",
+            "input_type": "RuntimeExecutorInputV1",
+            "output_type": "RuntimeExecutorOutputV1",
+            "handoff_type": "ResultHandoffCandidateV1",
+            "trace_type": "ExecutionTraceCandidateV1",
+            "error_namespace": "RuntimeExecutorErrorV1",
+            "candidate_only": true,
+            "mutation_authority": true
+        }
+    ],
+    "integration_layer": {
+        "layer_id": "L0_INTEGRATION_PLANNING",
+        "canonical_owner": "Cognitive Execution Chain Integration Planning",
+        "new_cognitive_owner": false,
+        "candidate_only": true,
+        "mutation_authority": false,
+        "runtime_authority": false
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "contract_id": "personal_cognitive_network_boundary_v1",
+  "owner": "Personal Cognitive Network Governance",
+  "owns": ["typed link candidates", "activation weight candidates", "context projection candidates", "network topology revisions", "network trace and provenance"],
+  "references": ["Self", "Role", "Relationship", "Experience", "Memory", "Belief", "Schema", "Emotion Context", "Field"],
+  "does_not_own": ["Self Identity", "Role Lifecycle", "Relationship Truth", "Memory Persistence", "Emotion State", "Value Evaluation", "Intent", "Decision", "Action", "Reality"],
+  "required_fields": ["network_object_id", "source_object_refs", "edge_type", "field_scope", "perspective_scope", "temporal_validity", "activation_weight", "evidence_refs", "counter_evidence_refs", "confidence", "candidate_only", "not_fact", "revision", "revoked", "trace_refs", "unresolved_fields"],
+  "source_owner_precedence": true,
+  "field_activation_required": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "direct_memory_write": false,
+  "direct_self_write": false,
+  "automatic_evolution": false,
+  "runtime": false
+}

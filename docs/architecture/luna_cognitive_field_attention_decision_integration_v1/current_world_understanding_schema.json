@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Current World Understanding Candidate Schema",
+  "owner":"Cognitive Understanding",
+  "fields":["understanding_id","field_ref","situation","selected_evidence","hypothesis_refs","known_state","unknown_state","conflict_state","confidence","provenance","validation_status"],
+  "status_values":["candidate","supported","contradicted","unknown","deprecated"],
+  "precedence":["Current Reality","Evidence","Validated Understanding","Memory","Knowledge","Unknown"],
+  "rules":{"world_model_not_implemented":true,"understanding_not_reality":true,"unknown_first_class":true,"brain_evaluation_required":true}
+}

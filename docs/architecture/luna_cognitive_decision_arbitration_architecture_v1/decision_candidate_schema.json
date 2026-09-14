@@ -1,0 +1,26 @@
+{
+  "title": "Decision Candidate Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["candidate_id", "goal_reference", "expected_outcome", "utility_candidate", "risk", "confidence", "required_capability", "resource_cost", "reversibility", "unknowns", "provenance"],
+  "properties": {
+    "candidate_id": {"type": "string"},
+    "goal_reference": {"type": ["string", "null"]},
+    "expected_outcome": {"type": "string"},
+    "utility_candidate": {"type": "object"},
+    "risk": {"type": "array"},
+    "confidence": {"type": "object"},
+    "required_capability": {"type": "array"},
+    "resource_cost": {"type": "object"},
+    "reversibility": {"type": "string"},
+    "unknowns": {"type": "array"},
+    "provenance": {"type": "array"},
+    "status": {"type": "string"}
+  },
+  "candidate_only": true,
+  "decision_is_not_action": true,
+  "decision_is_not_command": true,
+  "decision_does_not_execute": true,
+  "current_understanding_required": true,
+  "unknowns_preserved": true
+}

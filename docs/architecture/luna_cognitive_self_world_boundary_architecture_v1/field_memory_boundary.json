@@ -1,0 +1,12 @@
+{
+  "title": "Field Memory Boundary v1",
+  "field_memory_role": "retain environmental and place history for Field continuity",
+  "field_memory_inputs": ["Field Snapshot", "Field Evolution", "Outcome", "Experience Candidate", "Evidence"],
+  "field_memory_outputs": ["Field Context Candidate", "Historical Pattern Candidate", "Continuity Reference"],
+  "field_memory_is_not_self": true,
+  "field_memory_is_not_reality": true,
+  "field_memory_does_not_modify_identity": true,
+  "field_memory_does_not_override_current_field": true,
+  "current_field_precedence": true,
+  "candidate_only": true
+}

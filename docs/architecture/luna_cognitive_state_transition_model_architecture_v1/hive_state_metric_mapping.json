@@ -1,0 +1,12 @@
+{
+  "mapping_id": "hive_state_metric_mapping_v1",
+  "comparison_tuple": ["State Transition Quality", "Function Parameters", "Outcome Quality"],
+  "metrics": ["state_stability", "goal_achievement", "safety_result", "prediction_error", "resource_efficiency", "recovery_quality", "capability_growth", "continuity_quality"],
+  "outputs": ["Transition Comparison Candidate", "Parameter Improvement Candidate", "Metric Confidence", "Unknowns"],
+  "hive_is_observer_only": true,
+  "hive_has_no_write_permission": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "hive_runtime": false,
+  "candidate_only": true
+}

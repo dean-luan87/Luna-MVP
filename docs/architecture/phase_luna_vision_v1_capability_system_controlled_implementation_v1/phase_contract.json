@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-Vision-V1-Capability-System-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION",
+  "owner": "Capability Registry",
+  "model_admission_owner": "Model Manager / Model Governance",
+  "runtime_execution": false,
+  "provider_invocation": false,
+  "camera_activation": false,
+  "snsps_runtime": false,
+  "srsk_runtime": false,
+  "learning_execution": false,
+  "candidate_only": true,
+  "observation_gateway_required": true,
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

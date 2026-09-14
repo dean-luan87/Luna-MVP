@@ -1,0 +1,17 @@
+{
+  "interaction_id": "conflict_uncertainty_propagation",
+  "interaction_type": "cross_model_conflict_and_uncertainty",
+  "source_model_families": ["object_detection_completion_family", "segmentation_family", "tracking_family"],
+  "candidate_refs": ["object_evidence_candidate:obj_001(label=chair)", "object_evidence_candidate:obj_002(label=stool)", "mask_boundary_candidate:mask_inconsistent_001", "track_evidence_candidate:low_conf_001", "model_unavailable:depth_spatial_hint_family"],
+  "source_chain": "recognition_model_multi_model_interaction_dryrun_v1",
+  "confidence_policy_ref": "low_confidence_to_uncertainty_policy_v1",
+  "alignment_policy_ref": "contradiction_detection_alignment_policy_v1",
+  "conflict_policy_ref": "contradictory_label_to_conflict_candidate_policy_v1",
+  "uncertainty_policy_ref": "low_confidence_and_missing_model_to_uncertainty_policy_v1",
+  "adapter_mapping_refs": ["cross_model_conflict_candidate", "cross_model_uncertainty_candidate", "model_unavailable_context_candidate"],
+  "fallback_plan": "fallback_to_uncertainty_candidate_no_fact_admission",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "boundaries": ["conflict_is_not_fact", "uncertainty_does_not_trigger_action_speech_navigation"]
+}

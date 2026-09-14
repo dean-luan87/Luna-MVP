@@ -1,0 +1,12 @@
+{
+  "schema_id": "ModelRoutingResultSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "routing_id",
+    "capability_need",
+    "route_type",
+    "provider_scores",
+    "candidate_only",
+    "routing_candidate"
+  ]
+}

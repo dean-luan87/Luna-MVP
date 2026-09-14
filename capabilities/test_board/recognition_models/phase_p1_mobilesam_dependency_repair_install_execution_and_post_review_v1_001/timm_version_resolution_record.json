@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T08:52:29.597968+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_version_resolution_record",
+  "timm_version_resolution_record": {
+    "record_id": "timm_version_resolution_v1",
+    "package_name": "timm",
+    "import_root": "timm",
+    "version_resolution_attempted": true,
+    "version_pin_preexisting": false,
+    "resolved_version": "",
+    "installed_version": "",
+    "version_resolution_evidence_ref": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_dependency_repair_install_execution_and_post_review_v1_smoke_v0/timm_install_execution_record_v1.json",
+    "version_fabricated": false,
+    "version_status": "unresolved_install_failed"
+  }
+}

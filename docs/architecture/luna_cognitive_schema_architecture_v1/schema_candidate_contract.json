@@ -1,0 +1,11 @@
+{
+  "contract_id": "schema_candidate_v1",
+  "owner": "Schema Layer",
+  "inputs": ["memory_cluster", "pattern_candidate", "field_context", "role_context", "time_context", "validation_results"],
+  "outputs": ["schema_candidate", "schema_type", "scope", "supporting_memory_refs", "confidence", "unknowns", "provenance"],
+  "required_sources": ["memory_cluster", "pattern_candidate", "field_context", "validation_results"],
+  "candidate_only": true,
+  "automatic_generation": false,
+  "automatic_admission": false,
+  "single_experience_to_schema": false
+}

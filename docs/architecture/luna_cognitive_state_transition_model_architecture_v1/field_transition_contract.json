@@ -1,0 +1,11 @@
+{
+  "contract_id": "field_transition_v1",
+  "equation": "Field(t+1)=f(Field(t),Reality)",
+  "inputs": ["Current Field", "Reality Evidence", "Temporal Continuity", "Spatial Continuity", "Entity Continuity", "Task Continuity", "Role Continuity"],
+  "outputs": ["Field State Update Candidate", "Field Identity Candidate", "Field Transition Candidate", "Field Difference Candidate"],
+  "field_is_not_reality": true,
+  "field_does_not_modify_self": true,
+  "field_does_not_execute": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

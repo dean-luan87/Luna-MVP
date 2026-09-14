@@ -1,0 +1,10 @@
+{
+  "title": "Capability Runtime Layer Definition v1",
+  "layer": "L4 Capability Runtime",
+  "parent": "L4 Capability & Execution System",
+  "upstream": ["L1 Cognitive OS", "L2 Capability Request", "Capability Execution Boundary"],
+  "downstream": ["Evidence Gateway", "Capability Health", "Capability Feedback"],
+  "subsystems": ["Capability Executor", "Execution Context Manager", "Provider Adapter Layer", "Capability Runtime Lifecycle", "Resource Governance", "Capability Runtime Scheduler Boundary", "Result Collector", "Capability Health Manager", "Capability Cache Boundary", "Runtime Trace Integration", "Runtime Failure Handler"],
+  "not_authority": ["Goal", "Decision", "Reality", "Constitution", "Action"],
+  "rules": {"contract_only": true, "provider_not_instantiated": true, "runtime_execution_disabled": true, "evidence_gateway_required": true}
+}

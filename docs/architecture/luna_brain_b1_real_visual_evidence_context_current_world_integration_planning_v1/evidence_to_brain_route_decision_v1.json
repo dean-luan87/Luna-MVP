@@ -1,0 +1,27 @@
+{
+  "decision": "D_EXISTING_CANONICAL_INGESTION_BOUNDARY",
+  "selected_route": [
+    "Real YOLO11n VisualDetectionEvidenceCandidateV1",
+    "ObservationGatewayEvidenceHandoffCandidateV1",
+    "Observation Gateway canonical PerceptionEvidenceV1 / ObservationCandidateV1",
+    "existing Context World State Controlled Integration boundary",
+    "Context Foundation reference-only Context candidate",
+    "Field Event Admission branch when an explicit field-relevant candidate exists",
+    "Field State Reducer only for admitted field events and future state candidate",
+    "CurrentWorldCandidateV1 referencing Context and Field State"
+  ],
+  "why_selected": [
+    "existing synthetic C01-C36 path already implements the downstream handoff shape",
+    "Observation Gateway owns evidence admission and routing",
+    "Context Foundation already accepts observation and field projections without mutation",
+    "Field Event Admission and Field State Reducer preserve the canonical state authority",
+    "Current World already derives a candidate from Context and Field State references"
+  ],
+  "rejected_routes": {
+    "A_gateway_to_context_direct": "rejected because Context Foundation is not the evidence admission owner and direct bypass would lose gateway admission semantics",
+    "B_gateway_to_field_event_reducer_as_default": "rejected as the universal route because not every visual detection is field-relevant and raw/model output cannot enter the reducer; use only the governed field-relevant branch",
+    "C_gateway_to_current_world_direct": "rejected because Current World is a derived candidate and must not bypass Context, Field Event Admission, or Field State references"
+  },
+  "new_parallel_world_owner": false,
+  "new_parallel_evidence_owner": false
+}

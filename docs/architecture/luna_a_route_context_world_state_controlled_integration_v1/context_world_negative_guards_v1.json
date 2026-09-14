@@ -1,0 +1,29 @@
+{
+  "guards": {
+    "provider_can_mutate_context": false,
+    "provider_can_mutate_field": false,
+    "observation_can_mutate_field": false,
+    "context_can_mutate_field": false,
+    "current_world_can_mutate_field": false,
+    "observation_declares_truth": false,
+    "context_declares_truth": false,
+    "current_world_is_field_truth": false,
+    "second_field_writer": false,
+    "runtime_execution": false,
+    "provider_invocation": false,
+    "model_call": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "scheduler_execution": false,
+    "device_control": false,
+    "emotion_engine_execution": false,
+    "b_route_execution": false,
+    "semantic_compression_execution": false,
+    "real_side_effect": false,
+    "candidate_only": true,
+    "synthetic_only": true,
+    "controlled_integration_only": true
+  },
+  "no_check_weakening": true,
+  "no_hardcoded_pass": true
+}

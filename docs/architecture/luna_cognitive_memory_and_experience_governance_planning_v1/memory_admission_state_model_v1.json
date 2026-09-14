@@ -1,0 +1,35 @@
+{
+    "artifact": "memory_admission_state_model_v1",
+    "states": [
+        "PROPOSED",
+        "ELIGIBLE",
+        "INSUFFICIENT_EVIDENCE",
+        "CONTESTED",
+        "NEEDS_CONFIRMATION",
+        "TEMPORARY",
+        "ADMITTED_CANDIDATE",
+        "REJECTED",
+        "SUPERSEDED",
+        "REVISED",
+        "REVOKED",
+        "EXPIRED"
+    ],
+    "evaluation_axes": [
+        "evidence_sufficiency",
+        "provenance_completeness",
+        "uncertainty",
+        "contradiction",
+        "source_reliability_reference",
+        "repetition",
+        "salience",
+        "user_confirmation",
+        "privacy_sensitivity_boundary",
+        "temporal_validity",
+        "owner_authority"
+    ],
+    "invariants": {
+        "seen_once_not_memory_fact": true,
+        "admission_candidate_only": true,
+        "forced_single_truth": false
+    }
+}

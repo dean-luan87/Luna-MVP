@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Situated Experience Context Contract",
+  "owner":"Experience System",
+  "required_context":["field","role","task","time","space","interaction","knowledge_used","outcome"],
+  "optional_context":["relationship","self_state","social_state","emotion_metadata"],
+  "experience_definition":"situated use of knowledge followed by interaction and outcome evidence",
+  "not_experience":["reading_only","import_only","unverified_claim","detached_rule","model_statement_without_outcome"],
+  "rules":{"field_required":true,"role_required":true,"task_required":true,"outcome_required":true,"reading_alone_insufficient":true,"knowledge_not_memory":true}
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "memory_schema_relation_v1",
+  "owner": "Memory / Schema Boundary",
+  "flow": ["Memory", "Pattern", "Schema Candidate", "Schema Validation", "Schema Admission", "Understanding"],
+  "memory_role": "preserve_experience",
+  "schema_role": "organize_validated_regularity",
+  "schema_deletes_memory": false,
+  "memory_direct_schema_activation": false,
+  "candidate_only": true,
+  "provenance_required": true,
+  "unknown_preserved": true
+}

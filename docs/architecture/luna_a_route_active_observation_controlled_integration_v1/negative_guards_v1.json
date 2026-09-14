@@ -1,0 +1,33 @@
+{
+  "guards": {
+    "provider_autonomous_continuous_execution": false,
+    "provider_invocation": false,
+    "runtime_execution": false,
+    "provider_can_mutate_context": false,
+    "provider_can_mutate_field": false,
+    "provider_can_mutate_intent": false,
+    "provider_can_mutate_task": false,
+    "provider_can_mutate_decision": false,
+    "observation_control_can_mutate_context": false,
+    "observation_control_can_mutate_field": false,
+    "observation_control_can_mutate_intent": false,
+    "observation_control_can_mutate_task": false,
+    "observation_control_can_mutate_decision": false,
+    "observation_gateway_admission_is_execution": false,
+    "model_confidence_is_sufficiency": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "model_call": false,
+    "scheduler_execution": false,
+    "device_control": false,
+    "emotion_engine_execution": false,
+    "b_route_execution": false,
+    "semantic_compression_execution": false,
+    "candidate_only": true,
+    "synthetic_only": true,
+    "controlled_integration_only": true
+  },
+  "no_hardcoded_pass": true,
+  "no_check_weakening": true
+}

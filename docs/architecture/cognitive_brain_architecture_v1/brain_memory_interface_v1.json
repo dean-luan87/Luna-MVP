@@ -1,0 +1,26 @@
+{
+  "title": "Brain Memory Interface v1",
+  "contract_type": "Brain Relevant Memory Context",
+  "input": {
+    "memory_candidates": [],
+    "current_field": {},
+    "current_situation": {},
+    "current_task": {},
+    "attention_context": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "memory_context": {},
+    "experience_relevance_candidate": {},
+    "pattern_reference": null,
+    "memory_conflict_candidate": null
+  },
+  "boundary": {
+    "brain_does_not_own_memory": true,
+    "memory_is_context_not_fact_override": true,
+    "memory_does_not_make_decision": true,
+    "brain_does_not_modify_memory_automatically": true,
+    "unknowns_are_preserved": true
+  }
+}

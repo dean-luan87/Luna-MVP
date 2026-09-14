@@ -1,0 +1,74 @@
+calm_female_v1:
+  display_name: Calm Female v1
+  description: 平静、清晰、默认提示音色（不刺耳，适合日常交互）
+  provider: piper
+  speed: 1.0
+  volume: 1.0
+  text_style_hints:
+    - short_sentences
+    - avoid_exaggeration
+  model_params:
+    model: speech/tts/piper/zh_CN-huayan-medium.onnx
+    # length_scale：1.0=模型默认语速；越大越慢（当前默认约慢 32%）
+    length_scale: 1.32
+    # sentence_silence>0 在部分 Piper+stdin 组合下会在尾部产生杂音，保持 0
+    sentence_silence: 0
+    noise_scale: 0.55
+    noise_w_scale: 0.72
+    volume: 1.0
+  intended_use: default
+
+navigation_clear_v1:
+  display_name: Navigation Clear v1
+  description: 导航指令更清晰、更短句、更强可懂度
+  provider: piper
+  speed: 1.05
+  volume: 1.0
+  text_style_hints:
+    - concise
+    - explicit_direction
+  model_params:
+    model: speech/tts/piper/zh_CN-huayan-medium.onnx
+    length_scale: 1.22
+    sentence_silence: 0
+    noise_scale: 0.60
+    noise_w_scale: 0.75
+    volume: 1.05
+  intended_use: navigation
+
+warning_strong_v1:
+  display_name: Warning Strong v1
+  description: 风险/警告输出更强提示（但仍需 Output Plane 治理放行）
+  provider: piper
+  speed: 1.0
+  volume: 1.1
+  text_style_hints:
+    - urgent
+    - crisp
+  model_params:
+    model: speech/tts/piper/zh_CN-huayan-medium.onnx
+    length_scale: 1.18
+    sentence_silence: 0
+    noise_scale: 0.65
+    noise_w_scale: 0.85
+    volume: 1.12
+  intended_use: safety
+
+gentle_companion_v1:
+  display_name: Gentle Companion v1
+  description: 温和陪伴语气（一期不做开放闲聊主线，仅作为表达风格预留）
+  provider: piper
+  speed: 0.98
+  volume: 1.0
+  text_style_hints:
+    - gentle
+    - warm
+  model_params:
+    model: speech/tts/piper/zh_CN-huayan-medium.onnx
+    length_scale: 1.35
+    sentence_silence: 0
+    noise_scale: 0.62
+    noise_w_scale: 0.78
+    volume: 0.98
+  intended_use: reserved
+

@@ -1,0 +1,11 @@
+{
+  "flow": ["model_file_or_descriptor", "model_identity", "exact_model_asset_contract", "loader_contract", "provider_adapter_contract", "capability_contract", "canonical_evidence_contract", "deployment_compatibility", "admission"],
+  "human_contract_selection_required_normal_path": false,
+  "missing_asset_result": "ASSET_NOT_PRESENT",
+  "missing_asset_admission": "BLOCKED",
+  "ambiguous_match_admission": "BLOCKED",
+  "conflicting_contract_admission": "BLOCKED",
+  "model_availability_implies_execution": false,
+  "automatic_model_upgrade": false,
+  "loader_guessing": false
+}

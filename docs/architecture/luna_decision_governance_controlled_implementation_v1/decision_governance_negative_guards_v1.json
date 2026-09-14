@@ -1,0 +1,25 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "negative_guards": [
+        "intent != decision",
+        "causal != decision",
+        "correlation != decision authority",
+        "model suggestion != decision authority",
+        "memory preference != decision authority",
+        "emotion != decision authority",
+        "utility != permission",
+        "risk != safety authority",
+        "preferred candidate != executable action",
+        "selected candidate != task",
+        "decision layer != action executor",
+        "decision layer != task creator",
+        "no permission bypass",
+        "no safety bypass",
+        "no fabricated confirmation",
+        "no runtime side effect",
+        "no database write",
+        "no source mutation",
+        "no parallel decision owner",
+        "no checker weakening"
+    ]
+}

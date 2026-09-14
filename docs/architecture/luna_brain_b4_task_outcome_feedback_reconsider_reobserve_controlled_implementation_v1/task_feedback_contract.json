@@ -1,0 +1,8 @@
+{
+  "type":"TaskLifecycleFeedbackHandoffCandidateV1",
+  "consumer":"Task Manager",
+  "effects":["pending","blocked","deferred","requires_observation","completed_candidate","recovery candidate"],
+  "task_manager_mutation_executed":false,
+  "external_success_verified":false,
+  "rule":"Outcome Evaluation emits feedback; Task Manager owns lifecycle consumption and mutation"
+}

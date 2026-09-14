@@ -1,0 +1,26 @@
+{
+    "artifact": "cognitive_state_formation_trace_provenance_contract_v1",
+    "trace_model": {
+        "root_trace_id": "required",
+        "attention_trace_ref": "required",
+        "hypothesis_trace_ref": "required",
+        "current_world_trace_ref": "required",
+        "downstream_handoff_trace_ref": "required"
+    },
+    "provenance_model": {
+        "source_refs": "required",
+        "owner_refs": "required",
+        "version_refs": "required",
+        "reverse_lookup_supported": true
+    },
+    "reverse_lookup_chain": [
+        "current_world_candidate",
+        "active_hypothesis_refs",
+        "attention_refs",
+        "source_context_or_field_or_observation_refs"
+    ],
+    "forbidden": [
+        "provenance_as_fact_authority",
+        "trace_rewrite_of_source_modules"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+  "rules":[
+    {"change":"Visual Evidence contract","rerun":["S3","B1","downstream evidence compatibility"]},
+    {"change":"Observation Gateway handoff","rerun":["S3","B1","B2","B3","B4"]},
+    {"change":"CurrentWorldCandidate","rerun":["B1","B2","B3","B4"]},
+    {"change":"Cognitive State Formation","rerun":["B2","B3","B4"]},
+    {"change":"Cognitive Flow","rerun":["B2","B3","B4"]},
+    {"change":"Intent Governance","rerun":["B3","B4"]},
+    {"change":"Decision or Task contract","rerun":["B3","B4"]},
+    {"change":"Outcome contract","rerun":["B4"]},
+    {"change":"negative guard semantics","rerun":["full Golden Baseline review"]},
+    {"change":"trace/provenance contract","rerun":["affected upstream suite","all downstream suites if reverse trace breaks"]}
+  ],
+  "silent_impact_reduction":false
+}

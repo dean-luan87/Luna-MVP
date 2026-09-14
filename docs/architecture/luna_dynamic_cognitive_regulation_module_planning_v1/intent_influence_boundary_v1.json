@@ -1,0 +1,14 @@
+{
+    "artifact": "intent_influence_boundary_v1",
+    "allowed_outputs": [
+        "intent_pressure_influence_candidate",
+        "goal_reconsideration_sensitivity_candidate"
+    ],
+    "forbidden_outputs": [
+        "direct_intent_mutation",
+        "intent_owner_transfer",
+        "goal_creation",
+        "task_creation"
+    ],
+    "rule": "intent can influence regulation but cannot be directly mutated"
+}

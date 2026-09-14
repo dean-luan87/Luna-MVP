@@ -1,0 +1,199 @@
+{
+  "mapping_id": "dynamic_cognitive_architecture_existing_asset_mapping_v1",
+  "scan_mode": "baseline_first_targeted_read_only",
+  "baseline_refs": [
+    "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/architecture_to_engineering_mapping_v2.json",
+    "docs/architecture/luna_engineering_execution_roadmap_v1/architecture_engineering_mapping_v1.json",
+    "docs/architecture/luna_engineering_execution_roadmap_v1/engineering_asset_inventory_v1.json",
+    "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+    "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/model_manager_module_baseline_v1.json"
+  ],
+  "mappings": [
+    {
+      "asset": "Field State Reducer",
+      "current_location": "capabilities/midplatform/core/field_state_reducer/module/",
+      "current_owner": "Field State Reducer",
+      "current_status": "functional_module_ready",
+      "v2_position": "Field System / Field Context Management input",
+      "disposition": "reuse_with_adapter",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Preserve candidate reduction mainline; add a future context projection adapter."
+    },
+    {
+      "asset": "Observation Manager",
+      "current_location": "capabilities/midplatform/observation_manager/module/",
+      "current_owner": "Observation Manager",
+      "current_status": "active_baseline",
+      "v2_position": "Environment Understanding / Evidence",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Already coordinates candidate-only observation and evidence intake."
+    },
+    {
+      "asset": "Cognitive Attention",
+      "current_location": "docs/architecture/luna_cognitive_attention_resource_allocation_architecture_v1/",
+      "current_owner": "Attention Governance",
+      "current_status": "architecture_only",
+      "v2_position": "Cognitive attention allocation consuming Intent/Causal projections",
+      "disposition": "extend_contract",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Separate cognitive allocation from Observation Manager perceptual coordination."
+    },
+    {
+      "asset": "Self and Social Self",
+      "current_location": "docs/architecture/luna_self_social_self_architecture_refactoring_v1/",
+      "current_owner": "Self Governance and Social Self Governance",
+      "current_status": "architecture_only",
+      "v2_position": "Canonical source objects referenced by Personal Cognitive Network",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Network projection must not replace Self or Social Self ownership."
+    },
+    {
+      "asset": "Role System",
+      "current_location": "docs/architecture/luna_role_architecture_v1/",
+      "current_owner": "Social Self Governance",
+      "current_status": "architecture_only",
+      "v2_position": "Field-bound causal observation projection",
+      "disposition": "extend_contract",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Add goal, responsibility, cost, benefit, attention-bias, and causal-projection fields while preserving lifecycle owner."
+    },
+    {
+      "asset": "Relationship System",
+      "current_location": "docs/architecture/cognitive_role_relationship_system_v1/",
+      "current_owner": "Social Self Governance",
+      "current_status": "architecture_only",
+      "v2_position": "Canonical relationship source projected into Personal Cognitive Network",
+      "disposition": "reuse_with_projection",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Network references relationship candidates and history; it does not own relationship truth."
+    },
+    {
+      "asset": "Memory System",
+      "current_location": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/; docs/runtime/luna_cognitive_memory_runtime_integration_v1/",
+      "current_owner": "Memory System",
+      "current_status": "architecture_and_skeleton",
+      "v2_position": "Historical influence, consolidation, and network-evolution input",
+      "disposition": "reuse_with_adapter",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Keep storage/activation owner; consume compression and emit governed projection candidates."
+    },
+    {
+      "asset": "Cognitive Intent Architecture",
+      "current_location": "docs/architecture/cognitive_intent_architecture_v1/",
+      "current_owner": "Intent Governance",
+      "current_status": "architecture_only",
+      "v2_position": "Intent Processing",
+      "disposition": "reuse_and_align",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Intent is not a new architecture; align existing candidate contracts to the evaluation gate."
+    },
+    {
+      "asset": "Cognitive Causality Model",
+      "current_location": "docs/architecture/cognitive_flow/cognitive_causality_model_architecture_plan_v1.md",
+      "current_owner": "Causal Reasoning Governance",
+      "current_status": "planning_only",
+      "v2_position": "Causal Network",
+      "disposition": "reuse_and_extend",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Existing candidate-causality plan needs a typed network contract, not a parallel engine."
+    },
+    {
+      "asset": "Luna V2 Cognitive Object Model",
+      "current_location": "docs/architecture/luna_v2_cognitive_object_model_planning_v1/",
+      "current_owner": "Cognitive Object Governance",
+      "current_status": "planning_only",
+      "v2_position": "Typed object envelope for Personal Cognitive Network and Causal Network",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Already defines perspective, living context, attachment, and subjective-causality candidates."
+    },
+    {
+      "asset": "Cognitive Experience Compression",
+      "current_location": "docs/architecture/cognitive_flow/cognitive_experience_compression_architecture_plan_v1.md",
+      "current_owner": "Experience Governance",
+      "current_status": "planning_only",
+      "v2_position": "Experience Compression",
+      "disposition": "reuse_and_align",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Produces experience representation/guidance candidates; cannot write Memory or network directly."
+    },
+    {
+      "asset": "Emotion Context",
+      "current_location": "docs/architecture/cognitive_emotion_context_boundary_v1/; docs/architecture/cognitive_emotion_engine_v1/",
+      "current_owner": "Cognitive Integration",
+      "current_status": "boundary_and_architecture_only",
+      "v2_position": "Attachment/adaptive-signal projection into Personal Cognitive Network",
+      "disposition": "reuse_with_boundary",
+      "migration_needed": true,
+      "rewrite_required": false,
+      "reason": "Emotion remains separate and cannot become Value, Intent, Decision, or network mutation owner."
+    },
+    {
+      "asset": "Decision Arbitration",
+      "current_location": "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/",
+      "current_owner": "Decision Arbitration",
+      "current_status": "architecture_only",
+      "v2_position": "Decision candidate selection after intent/gate/causal context",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Selection ownership remains distinct from Intent and Causal Reasoning."
+    },
+    {
+      "asset": "Task Manager",
+      "current_location": "capabilities/midplatform/core/task_manager/module/",
+      "current_owner": "Task Manager",
+      "current_status": "functional_module_ready",
+      "v2_position": "Task lifecycle and capability-routing orchestration",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Task Manager is downstream orchestration, not Action execution or Intent ownership."
+    },
+    {
+      "asset": "Model Manager",
+      "current_location": "capabilities/midplatform/model_manager/module/",
+      "current_owner": "Capability Governance",
+      "current_status": "functional_module_ready",
+      "v2_position": "Capability Layer / model asset management",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Model capability remains an external cognitive organ with no cognitive authority."
+    },
+    {
+      "asset": "Action Boundary and Runtime",
+      "current_location": "docs/architecture/luna_cognitive_action_boundary_v1/; docs/architecture/luna_action_runtime_foundation_v1/",
+      "current_owner": "Action Governance and Action Runtime",
+      "current_status": "architecture_only",
+      "v2_position": "Only action execution path",
+      "disposition": "reuse",
+      "migration_needed": false,
+      "rewrite_required": false,
+      "reason": "Prevents Intent, Causal, Task, or network layers from executing actions."
+    }
+  ],
+  "new_integration_constructs": ["Personal Cognitive Network"],
+  "existing_architecture_to_align": ["Intent Processing", "Causal Network", "Experience Compression"],
+  "qualitative_reuse_estimate": 0.8,
+  "estimate_is_not_inventory_count": true,
+  "read_only": true,
+  "no_move": true,
+  "no_delete": true,
+  "no_code_change": true
+}

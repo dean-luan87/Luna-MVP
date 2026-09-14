@@ -1,0 +1,57 @@
+{
+  "artifact": "personality_governance_controlled_execution_contract_v1",
+  "phase": "Phase-Luna-Personality-Governance-Controlled-Implementation-v1-001",
+  "execution_mode": "CONTROLLED_IMPLEMENTATION",
+  "canonical_owner": "Personality Governance",
+  "module_directory": "capabilities/midplatform/core/personality_governance/",
+  "documentation_directory": "docs/architecture/luna_personality_governance_controlled_implementation_v1/",
+  "synthetic_only": true,
+  "candidate_only": true,
+  "input_contract": {
+    "source_inputs": ["Self Governance", "Cognitive Memory & Experience Governance", "Cognitive Learning Governance", "Emotion Governance future interface", "Dynamic Cognitive Regulation Governance", "Personal Cognitive Network Governance", "Intent Governance", "Cognitive Flow cycle trace"],
+    "reference_only": true,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false
+  },
+  "trait_contract": {
+    "trait_dimensions": 18,
+    "candidate_only": true,
+    "activated": false,
+    "persisted": false,
+    "truth_declared": false,
+    "single_personality_score": false
+  },
+  "profile_contract": {
+    "multi_trait": true,
+    "uncertain_traits": true,
+    "contested_traits": true,
+    "contradictory_candidates": true,
+    "immutable_identity": false,
+    "direct_action_control": false
+  },
+  "lifecycle": ["EMERGING", "TENTATIVE", "SEMI_STABLE", "STABLE_CANDIDATE", "CONTESTED", "REVISING", "SUPERSEDED", "REVOKED", "EXPIRED"],
+  "lineage": ["revision", "supersession", "revocation", "expiration"],
+  "privacy": {"sensitivity_levels": 7, "cross_user_transfer": false},
+  "semantic_compression": {"status": "DEFERRED_TO_EMOTION_ENGINE", "execution": false, "affective_memory_compression": false, "emotion_memory_summary_generation": false, "personality_memory_semantic_fusion": false},
+  "runner": {
+    "path": "capabilities/midplatform/core/personality_governance/run_personality_governance_controlled_implementation_v1.py",
+    "fixture_scope": "P01-P36_SYNTHETIC_ONLY",
+    "output_directory": "_eval_out/personality_governance_controlled_implementation_v1/",
+    "expected_artifacts": ["personality_governance_result_v1.json", "personality_governance_case_results_v1.json", "personality_governance_trace_v1.json"]
+  },
+  "boundary_flags": {
+    "runtime_execution": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "model_call": false,
+    "scheduler_execution": false,
+    "task_mutation": false,
+    "device_control": false,
+    "source_owner_mutation": false,
+    "trait_activation": false,
+    "cross_user_transfer": false,
+    "semantic_compression_execution": false,
+    "real_side_effect": false
+  }
+}

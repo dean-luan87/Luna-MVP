@@ -1,0 +1,17 @@
+{
+  "registry_id": "uncertainty_exploration_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Uncertainty Detection", "owner": "Cognitive Kernel", "writer": "Cognitive Understanding", "readers": ["Attention", "Exploration Evaluation"]},
+    {"object": "Impact Evaluation", "owner": "Exploration Evaluation", "writer": "Evaluation Governance", "readers": ["Self Layer", "Brain"]},
+    {"object": "Self Exploration Governance", "owner": "Self Layer", "writer": "Exploration Governance Controller", "readers": ["Runtime Boundary", "Brain"]},
+    {"object": "Self Rhythm Constraint", "owner": "Self Rhythm", "writer": "Self Rhythm Controller", "readers": ["Self Layer", "Cognitive State"]},
+    {"object": "Cognitive State Context", "owner": "Cognitive State", "writer": "State Governance", "readers": ["Self Layer", "Cognitive Kernel"]},
+    {"object": "Knowledge Context", "owner": "Knowledge", "writer": "Knowledge Admission", "readers": ["Cognitive Kernel", "Exploration Evaluation"]},
+    {"object": "Historical Context", "owner": "Memory", "writer": "Memory Governance", "readers": ["Cognitive Kernel", "Exploration Evaluation"]},
+    {"object": "Schema Context", "owner": "Schema", "writer": "Schema Governance", "readers": ["Cognitive Kernel", "Brain"]},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain", "readers": ["Action Boundary", "Experience"]},
+    {"object": "Runtime Execution", "owner": "Runtime", "writer": "Runtime Governance", "readers": ["Self Layer"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "candidate_writes_only": true, "exploration_is_not_cognitive_kernel_authority": true}
+}

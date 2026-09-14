@@ -1,0 +1,17 @@
+{
+    "artifact": "emotion_influence_boundary_v1",
+    "allowed_inputs": [
+        "emotion_signal_refs",
+        "emotion_volatility_refs",
+        "emotion_intensity_refs"
+    ],
+    "allowed_outputs": [
+        "emotion_aware_modulation_candidate"
+    ],
+    "forbidden": [
+        "emotion_as_regulation_authority",
+        "emotion_direct_parameter_write",
+        "emotion_direct_decision_command"
+    ],
+    "rule": "emotion is influence/reference only"
+}

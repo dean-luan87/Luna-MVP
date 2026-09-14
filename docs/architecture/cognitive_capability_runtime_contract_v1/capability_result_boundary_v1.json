@@ -1,0 +1,17 @@
+{
+  "contract_name": "Capability Result Boundary v1",
+  "provider_output": {"raw_payload_reference": null, "status": "candidate"},
+  "raw_evidence_candidate": {"content": null, "confidence": null, "uncertainty": null},
+  "evidence_gateway_validation": {"schema": "candidate", "provenance": "candidate", "timestamp": "candidate", "capability_reference": "candidate"},
+  "reality_update_candidate": null,
+  "reducer_reference": "sole State mutation authority",
+  "result_is_not_reality": true,
+  "result_is_not_situation": true,
+  "result_is_not_decision": true,
+  "result_is_not_goal": true,
+  "result_is_not_action": true,
+  "evidence_gateway_required": true,
+  "reality_update_candidate_required": true,
+  "provider_cannot_modify_reality": true,
+  "unknowns_are_preserved": true
+}

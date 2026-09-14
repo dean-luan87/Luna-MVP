@@ -1,0 +1,162 @@
+{
+    "schema_id": "world_object_envelope_v1",
+    "schema_version": "1.0.0",
+    "description": "Common envelope for all Luna V2 world objects.",
+    "fields": {
+        "object_id": {
+            "type": "string",
+            "description": "Globally unique object identifier."
+        },
+        "object_type": {
+            "type": "string",
+            "description": "Declared object taxonomy type."
+        },
+        "schema_version": {
+            "type": "string",
+            "description": "Envelope schema version."
+        },
+        "lifecycle_status": {
+            "type": "string",
+            "description": "Current lifecycle state."
+        },
+        "owner_scope": {
+            "type": "object",
+            "description": "Ownership domains for the object."
+        },
+        "source_scope": {
+            "type": "string",
+            "description": "Reality source scope."
+        },
+        "perspective_scope": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Perspective domains that apply."
+        },
+        "field_scope": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Field-level domains for the object."
+        },
+        "temporal_validity": {
+            "type": "object",
+            "description": "Temporal validity window and policies."
+        },
+        "confidence": {
+            "type": "number",
+            "description": "Interpretation confidence score."
+        },
+        "evidence_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "References to supporting evidence."
+        },
+        "trace_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Audit and execution trace references."
+        },
+        "governance_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Governance artifacts and decisions."
+        },
+        "candidate_only": {
+            "type": "boolean",
+            "description": "Whether object is candidate-only."
+        },
+        "not_fact": {
+            "type": "boolean",
+            "description": "Whether object is prohibited from fact admission."
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp."
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp."
+        },
+        "revision": {
+            "type": "integer",
+            "description": "Revision number."
+        },
+        "supersedes_ref": {
+            "type": "string",
+            "description": "Reference to superseded object."
+        },
+        "revoked": {
+            "type": "boolean",
+            "description": "Whether object has been revoked."
+        },
+        "revocation_reason": {
+            "type": "string",
+            "description": "Explanation for revocation."
+        },
+        "unresolved_fields": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Fields that still require resolution."
+        },
+        "extension_data": {
+            "type": "object",
+            "description": "Governed extension data; may not bypass formal fields."
+        }
+    },
+    "required_fields": [
+        "object_id",
+        "object_type",
+        "schema_version",
+        "lifecycle_status",
+        "owner_scope",
+        "source_scope",
+        "perspective_scope",
+        "field_scope",
+        "temporal_validity",
+        "confidence",
+        "candidate_only",
+        "not_fact",
+        "created_at",
+        "updated_at",
+        "revision",
+        "revoked",
+        "unresolved_fields"
+    ],
+    "allowed_lifecycle_statuses": [
+        "proposed",
+        "observed",
+        "admitted_candidate",
+        "active_candidate",
+        "suspended",
+        "expired",
+        "superseded",
+        "revoked",
+        "archived"
+    ],
+    "negative_guards": [
+        "candidate_only must remain true unless admission governance is completed",
+        "not_fact must remain true unless explicit fact admission occurs",
+        "revoked objects may not participate in ActiveFieldProjection",
+        "extension_data may not bypass required envelope fields or governance_refs"
+    ],
+    "validation_rules": [
+        "candidate_only defaults to true",
+        "not_fact defaults to true",
+        "object_type must be one of the typed object taxonomy",
+        "temporal_validity must include valid_from and valid_until or explicit refresh_policy",
+        "revoked true prohibits active_projection participation"
+    ]
+}

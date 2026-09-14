@@ -1,0 +1,11 @@
+{
+  "schema_id": "exploration_candidate_v1",
+  "owner": "Cognitive Kernel",
+  "fields": ["exploration_id", "uncertainty_ref", "strategy_ref", "field_ref", "goal_context", "expected_benefit", "information_gain", "resource_cost", "priority", "stop_conditions", "provenance", "unknowns"],
+  "required_refs": ["uncertainty_ref", "strategy_ref", "field_ref", "provenance"],
+  "candidate_only": true,
+  "self_approval_required": true,
+  "execution": false,
+  "unlimited_resources": false,
+  "direct_action": false
+}

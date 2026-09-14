@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Model Manager Boundary",
+  "owner": "Model Manager",
+  "manages": ["Model Identity", "Version", "Resource Requirement", "Runtime Compatibility", "Deployment Status"],
+  "provides": ["Model Options", "Compatibility Evidence", "Resource Profile", "Health Candidate"],
+  "does_not_decide": ["Capability Value", "Goal", "Decision", "Action", "Reality", "Identity"],
+  "binding": {"from": "Capability", "through": "Model Options", "to": "Model Asset"},
+  "existing_asset_roots": ["docs/architecture/cognitive_model_manager_runtime_boundary_v1", "docs/architecture/luna_governance_asset_discovery_v1/model_management_asset_inventory_v1.json"],
+  "rules": {"capability_first": true, "model_is_resource": true, "manager_not_cognitive_owner": true, "admission_before_available": true}
+}

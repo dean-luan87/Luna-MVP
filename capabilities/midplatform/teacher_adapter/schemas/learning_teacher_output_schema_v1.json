@@ -1,0 +1,12 @@
+{
+  "schema_id": "LearningTeacherOutputSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "learning_candidate_ref",
+    "review_status",
+    "candidate_only",
+    "not_fact"
+  ],
+  "review_status_default": "pending_policy_review",
+  "forbidden": "direct_training_update"
+}

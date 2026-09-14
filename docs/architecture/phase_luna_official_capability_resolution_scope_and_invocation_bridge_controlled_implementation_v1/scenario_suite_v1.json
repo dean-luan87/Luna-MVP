@@ -1,0 +1,13 @@
+{
+  "suite_id": "official-capability-resolution-scope-invocation-bridge-v1",
+  "scenario_count": 35,
+  "scenarios": [
+    "CSR-01 text reading in scope", "CSR-02 text ready", "CSR-03 precise OCR in scope", "CSR-04 OCR cannot determine Field Rule", "CSR-05 OCR cannot declare action",
+    "CSR-06 object detection in scope", "CSR-07 object detection cannot identify", "CSR-08 object detection cannot declare danger", "CSR-09 spatial mapping in scope", "CSR-10 spatial mapping cannot OCR",
+    "CSR-11 unknown problem rejected", "CSR-12 operation rejected", "CSR-13 input rejected", "CSR-14 output rejected", "CSR-15 authority rejected",
+    "CSR-16 rejection before invocation", "CSR-17 provider cannot extend scope", "CSR-18 model cannot extend scope", "CSR-19 CSA cannot extend scope", "CSR-20 ready invocation",
+    "CSR-21 unavailable no ready invocation", "CSR-22 degraded result", "CSR-23 permission blocked", "CSR-24 resource blocked", "CSR-25 implementation missing",
+    "CSR-26 unbound Slot", "CSR-27 Self scope visibility", "CSR-28 Self cannot mutate", "CSR-29 Gap candidate", "CSR-30 no acquisition",
+    "CSR-31 no Learning", "CSR-32 safety priority no bypass", "CSR-33 Gateway/FPO boundary", "CSR-34 Slot no authority", "CSR-35 Module no World Truth authority"
+  ]
+}

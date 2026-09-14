@@ -1,0 +1,7 @@
+{
+  "title": "Capability Feedback Loop v1",
+  "owner": "Capability Governance",
+  "pipeline": ["Execution Result", "Capability Performance Evidence", "Calibration Update Candidate", "Self Capability Update Candidate", "Attention Adjustment Candidate"],
+  "schema": ["feedback_id", "capability", "result", "performance_evidence", "failure_or_limitation", "confidence_delta_candidate", "trace_id"],
+  "rules": {"no_auto_model_update": true, "no_auto_parameter_update": true, "candidate_only": true, "self_capability_owner_preserved": true}
+}

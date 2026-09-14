@@ -1,0 +1,62 @@
+{
+  "artifact_id": "field_role_interaction_stress_test_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Scenario Alignment Governance",
+  "cases": [
+    {
+      "case_id": "CASE_1_TEMPORARY_OVERTIME_AT_HOME",
+      "scenario": "在家临时加班",
+      "validates": ["TEMPORARY_OCCUPATION"],
+      "expected": ["HOME_FIELD_REMAINS_SOURCE_OWNED", "WORK_FIELD_TEMPORARY_DOMINANT_PROJECTION", "NO_STRUCTURAL_CHANGE"]
+    },
+    {
+      "case_id": "CASE_2_LONG_TERM_OVERTIME_AT_HOME",
+      "scenario": "长期在家加班",
+      "validates": ["REPEATED_OCCUPATION", "PERSISTENT_INFLUENCE_CANDIDATE"],
+      "expected": ["REPETITION_AND_RELEVANCE_REVIEW", "NO_FIXED_TIME_THRESHOLD", "NO_AUTOMATIC_CORE_FIELD_CHANGE"]
+    },
+    {
+      "case_id": "CASE_3_SPOUSES_AND_COLLEAGUES",
+      "scenario": "夫妻 + 同事",
+      "validates": ["MULTI_RELATIONSHIP_COEXISTENCE"],
+      "expected": ["SPOUSE_AND_COLLEAGUE_RELATIONS_RETAIN_DISTINCT_IDS", "MULTIPLE_ROLE_PROJECTIONS_ALLOWED", "NO_OVERWRITE"]
+    },
+    {
+      "case_id": "CASE_4_DIVORCED_BUT_STILL_COLLEAGUES",
+      "scenario": "离婚但继续同事",
+      "validates": ["RELATION_STATE_SEPARATION"],
+      "expected": ["COLLEAGUE_RELATION_ACTIVE", "FORMER_SPOUSE_RELATION_HISTORICAL_OR_DORMANT", "ENDED_RELATION_NOT_DELETED"]
+    },
+    {
+      "case_id": "CASE_5_MEETING_REACTIVATES_FORMER_RELATION",
+      "scenario": "离婚同事会议触发旧关系",
+      "validates": ["HISTORICAL_REACTIVATION"],
+      "expected": ["HISTORICAL_PROJECTION_CANDIDATE", "CURRENT_COLLEAGUE_REALITY_PRECEDENCE", "NO_EMOTION_OR_CAUSAL_CONCLUSION"]
+    },
+    {
+      "case_id": "CASE_6_TWO_SAME_TYPE_WORK_FIELDS",
+      "scenario": "两个同类型工作场",
+      "validates": ["STRUCTURAL_RESONANCE"],
+      "expected": ["STRUCTURE_SIMILARITY_EVALUATED", "SAME_TYPE_NOT_SUFFICIENT", "RESONANCE_NOT_CAUSAL"]
+    },
+    {
+      "case_id": "CASE_7_FATHER_AND_EMPLOYEE_ROLE_TENSION",
+      "scenario": "父亲角色与员工角色冲突",
+      "validates": ["ROLE_COMPETITION_CANDIDATE"],
+      "expected": ["BOTH_ROLE_PROJECTIONS_RETAINED", "TENSION_EXPRESSED", "NO_AUTOMATIC_WINNER"]
+    },
+    {
+      "case_id": "CASE_8_SPOUSES_BUILD_BUSINESS_TOGETHER",
+      "scenario": "夫妻共同创业",
+      "validates": ["FIELD_OVERLAP", "COEXISTENCE"],
+      "expected": ["FAMILY_AND_BUSINESS_PROJECTIONS_MAY_OVERLAP", "COEXISTENCE_ALLOWED", "COMPETITION_NOT_ASSUMED"]
+    }
+  ],
+  "case_count": 8,
+  "rules": {
+    "candidate_only": true,
+    "runtime_executed": false,
+    "no_source_mutation": true,
+    "no_hardcoded_outcome": true
+  }
+}

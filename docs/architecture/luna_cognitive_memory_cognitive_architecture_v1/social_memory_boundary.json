@@ -1,0 +1,12 @@
+{
+  "boundary_id": "social_memory_boundary_v1",
+  "owner": "Social Self Layer",
+  "memory_scope": "Social Memory",
+  "content": ["interpersonal_patterns", "social_experience", "relationship_context", "social_rule_context"],
+  "output": "social_self_growth_candidate",
+  "governance_required": true,
+  "direct_social_self_modification": false,
+  "identity_write": false,
+  "role_write": false,
+  "decision_override": false
+}

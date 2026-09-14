@@ -1,0 +1,18 @@
+{
+  "schema_name": "Capability Dimension Schema v1",
+  "capability_id": "capability-example",
+  "dimension": "Perception | Field Understanding | Task Execution | Adaptation | Information Seeking | Reliability",
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "known_strength": null,
+  "known_limitation": null,
+  "unknown": true,
+  "current_state_reference": "capability-state-example",
+  "hardware_reference": "hardware-example",
+  "memory_reference": "memory-example",
+  "confidence_candidate": null,
+  "provenance": [],
+  "assessment_candidate": null,
+  "identity_is_unchanged": true,
+  "unknowns_are_preserved": true
+}

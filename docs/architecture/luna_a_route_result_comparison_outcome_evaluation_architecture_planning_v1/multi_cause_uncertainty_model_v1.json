@@ -1,0 +1,11 @@
+{
+  "artifact":"multi_cause_uncertainty_model_v1",
+  "candidate_only":true,
+  "supports":["multiple attribution candidates","competing causes","partial causes","unresolved cause","contradictory evidence","per-attribution uncertainty","counterevidence","revision","supersession","revocation"],
+  "example":"navigation outcome may retain stale Field information + insufficient observation + execution deviation candidates concurrently",
+  "aggregation":"preserve a set/ordered candidate collection with independent provenance; do not flatten to one root cause",
+  "resolution":"future governance may admit/revise/defer; Result Comparison has no authority to resolve",
+  "confidence":"candidate metadata only",
+  "contradiction":"visible and traceable",
+  "single_root_cause_forced":false
+}

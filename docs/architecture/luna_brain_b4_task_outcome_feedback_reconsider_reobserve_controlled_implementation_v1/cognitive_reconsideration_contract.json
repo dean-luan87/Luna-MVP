@@ -1,0 +1,9 @@
+{
+  "source":"Outcome Evaluation ReconsiderationHandoffCandidateV1",
+  "consumer":"Cognitive Flow",
+  "mapped_type":"ReconsiderationCandidateV1",
+  "candidate_only":true,
+  "executes_reconsideration":false,
+  "automatic_retry":false,
+  "provider_invocation":false
+}

@@ -1,0 +1,45 @@
+{
+  "registry_name": "A Route Failure Injection Scenario Registry v1",
+  "scenarios": [
+    {
+      "fixture_id": "wrong-evidence-001",
+      "injected_condition": "wrong_evidence",
+      "expected_boundary": "Evidence is lowered or disputed before Reality update",
+      "candidate_response": "request confirmation and preserve Unknown"
+    },
+    {
+      "fixture_id": "capability-degradation-001",
+      "injected_condition": "capability_degradation",
+      "expected_boundary": "Self Capability and Self State candidate changes",
+      "candidate_response": "alternative observation requirement"
+    },
+    {
+      "fixture_id": "task-interruption-001",
+      "injected_condition": "task_interruption",
+      "expected_boundary": "Task enters Suspended or Background",
+      "candidate_response": "preserve task identity and resume conditions"
+    },
+    {
+      "fixture_id": "goal-conflict-001",
+      "injected_condition": "goal_conflict",
+      "expected_boundary": "Conflict escalates to Brain",
+      "candidate_response": "Brain review candidate"
+    },
+    {
+      "fixture_id": "incorrect-experience-001",
+      "injected_condition": "incorrect_experience",
+      "expected_boundary": "Experience remains disputed and cannot replace Reality",
+      "candidate_response": "Attention/Adaptation candidate only"
+    }
+  ],
+  "reality_must_not_be_directly_mutated": true,
+  "goal_must_not_be_directly_mutated": true,
+  "decision_must_not_be_directly_mutated": true,
+  "self_identity_must_not_be_directly_mutated": true,
+  "diagnostic_candidate": true,
+  "evidence_gateway": true,
+  "reducer": "sole State mutation authority",
+  "unknowns_preserved": true,
+  "no_runtime_execution": true,
+  "no_action_execution": true
+}

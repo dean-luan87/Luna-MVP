@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:49:19.264346+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "registry_patch_execution_status": "byte_track_and_mobile_sam_registry_patched_code_only_source_install_metadata_only_code_only_ready_no_readiness_true",
+    "registry_overlay_file": "capabilities/midplatform/model_registry/code_only_source_install_registry_overlay_v1.json",
+    "registry_patch_applied": true,
+    "byte_track_install_method": "source_component_code_only",
+    "mobile_sam_install_method": "source_component_code_only_weight_excluding_checkout",
+    "both_readiness_level": "code_only_ready",
+    "recommended_next_phase": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+    "transition_note": "REAL registry write complete. A pre-patch snapshot captured the byte_track/mobile_sam registry records, then a scoped, reversible OVERLAY (capabilities/midplatform/model_registry/code_only_source_install_registry_overlay_v1.json) was written with code-only source-install metadata ONLY for the two in-scope assets (install_method, source repo/commit/branch/license, import_root, code_only_install_verified=true, find_spec_verified=true, readiness_level=code_only_ready, weight not_downloaded), with model/inference/runtime/output_adapter/semantic readiness and commercial_runtime ALL written false. mobile_sam keeps full_clone_allowed=false + weight_excluding_checkout_required=true and its committed weights/mobile_sam.pt remains not_downloaded; clean_pypi_candidate stays false for both. A registry diff (changed_asset_count=2) and an inline post-review were produced; rollback readiness recorded (not triggered). No unscoped asset was changed, and NO install/download/import/model-load/inference/runtime/output-adapter/semantic action occurred. Registry patch GO is NOT weight-download / inference / runtime approval. Next phase: Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001 may plan the weight-download request/approval/hash/storage/source-review/readiness — but still does NOT download weights; download requires a separate owner approval + post-review."
+  },
+  "final_decision": "P1_SOURCE_CODE_ONLY_INSTALL_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO"
+}

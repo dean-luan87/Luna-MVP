@@ -1,0 +1,48 @@
+{
+    "artifact": "cognitive_execution_chain_existing_asset_reuse_mapping_v1",
+    "status": "PLANNING_CANDIDATE",
+    "reuse": [
+        {
+            "integration_contract": "owner_boundary",
+            "reuse_assets": [
+                "luna_intent_architecture_planning_v1/intent_owner_boundary_candidate_v1.json",
+                "luna_causal_architecture_planning_v1/causal_owner_boundary_candidate_v1.json",
+                "luna_decision_architecture_planning_v1/decision_owner_boundary_candidate_v1.json",
+                "luna_action_architecture_planning_v1/action_owner_boundary_candidate_v1.json",
+                "luna_runtime_executor_architecture_planning_v1/runtime_executor_owner_boundary_candidate_v1.json"
+            ]
+        },
+        {
+            "integration_contract": "forward_handoff",
+            "reuse_assets": [
+                "luna_intent_architecture_planning_v1/intent_to_causal_handoff_contract_candidate_v1.json",
+                "luna_causal_architecture_planning_v1/causal_to_decision_handoff_contract_candidate_v1.json",
+                "luna_decision_architecture_planning_v1/decision_to_action_task_handoff_contract_candidate_v1.json",
+                "luna_action_architecture_planning_v1/action_runtime_executor_handoff_contract_candidate_v1.json",
+                "luna_runtime_executor_architecture_planning_v1/execution_result_handoff_contract_candidate_v1.json"
+            ]
+        },
+        {
+            "integration_contract": "diagnostics_boundary",
+            "reuse_assets": [
+                "luna_runtime_executor_architecture_planning_v1/execution_diagnostics_maintenance_boundary_candidate_v1.json"
+            ]
+        },
+        {
+            "integration_contract": "task_manager_boundary",
+            "reuse_assets": [
+                "luna_action_architecture_planning_v1/action_task_manager_boundary_candidate_v1.json",
+                "capabilities/midplatform/core/task_manager/module/task_manager_module_types_v1.py"
+            ]
+        },
+        {
+            "integration_contract": "field_memory_boundary",
+            "reuse_assets": [
+                "luna_intent_architecture_planning_v1/intent_memory_experience_boundary_candidate_v1.json",
+                "luna_causal_architecture_planning_v1/causal_memory_prior_influence_boundary_candidate_v1.json",
+                "luna_intent_architecture_planning_v1/intent_field_role_relationship_boundary_candidate_v1.json",
+                "luna_causal_architecture_planning_v1/causal_field_context_influence_boundary_candidate_v1.json"
+            ]
+        }
+    ]
+}

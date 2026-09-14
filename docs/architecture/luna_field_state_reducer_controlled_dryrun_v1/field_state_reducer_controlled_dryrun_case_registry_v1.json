@@ -1,0 +1,250 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Controlled DryRun Case Registry",
+    "cases": [
+        {
+            "case_id": "baseline_all_fixtures_case",
+            "category": "positive",
+            "fixture_refs": [
+                "road_accessible_event",
+                "construction_notice_event",
+                "barrier_visual_event",
+                "road_blocked_event",
+                "temporary_passage_event",
+                "conflict_event",
+                "overlay_expired_event",
+                "refresh_evidence_event",
+                "road_reopened_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_pass_and_placeholder",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "repeated_identical_input_case",
+            "category": "positive",
+            "fixture_refs": [
+                "road_accessible_event",
+                "construction_notice_event",
+                "barrier_visual_event",
+                "road_blocked_event",
+                "temporary_passage_event",
+                "conflict_event",
+                "overlay_expired_event",
+                "refresh_evidence_event",
+                "road_reopened_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "deterministic_equal_to_baseline",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "reversed_input_order_case",
+            "category": "positive",
+            "fixture_refs": [
+                "road_reopened_event",
+                "refresh_evidence_event",
+                "overlay_expired_event",
+                "conflict_event",
+                "temporary_passage_event",
+                "road_blocked_event",
+                "barrier_visual_event",
+                "construction_notice_event",
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "stable_order_equal_to_baseline",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "single_event_case",
+            "category": "positive",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "single_placeholder_output",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "conflict_fixture_case",
+            "category": "positive",
+            "fixture_refs": [
+                "conflict_event",
+                "road_blocked_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "conflict_trace_preserved_no_fact_promotion",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "overlay_fixture_case",
+            "category": "positive",
+            "fixture_refs": [
+                "temporary_passage_event",
+                "overlay_expired_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "overlay_boundary_preserved_no_permanent_state",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "non_admitted_event_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "non_admitted_event_not_allowed",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "raw_observation_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "raw_observation_not_allowed",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_temporal_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "missing_temporal_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_version_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "missing_version_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "unstable_event_id_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event",
+                "construction_notice_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "unstable_event_order",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "direct_mutation_request_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "direct_state_mutation_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "provider_recall_request_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "provider_recall_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "external_lookup_request_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "external_lookup_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "action_trigger_request_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected",
+            "expected_error_code": "action_trigger_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "event_mutation_guard_case",
+            "category": "negative",
+            "fixture_refs": [
+                "road_accessible_event",
+                "construction_notice_event",
+                "barrier_visual_event",
+                "road_blocked_event",
+                "temporary_passage_event",
+                "conflict_event",
+                "overlay_expired_event",
+                "refresh_evidence_event",
+                "road_reopened_event"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "real_event_allowed": false,
+            "runtime_allowed": false,
+            "expected_outcome": "validation_rejected_and_fixture_immutable",
+            "expected_error_code": "non_admitted_event_not_allowed",
+            "blocker_if_failed": true
+        }
+    ],
+    "case_registry_complete": true
+}

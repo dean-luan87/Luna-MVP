@@ -1,0 +1,9 @@
+{
+  "mapping": [
+    {"input": "CurrentWorldCandidateV1", "adapter": "build_state_request_from_current_world_v1", "owner": "Cognitive State Formation Governance"},
+    {"input": "CognitiveStateFormationOutputV1", "adapter": "build_flow_request_v1", "owner": "Cognitive Flow Governance"},
+    {"input": "uncertainty/conflict", "adapter": "build_observation_need_bridge_v1", "owner": "Field Perception Orchestrator"},
+    {"input": "B1 provenance/trace", "output": "B2 provenance_chain", "authority": false}
+  ],
+  "no_parallel_owner": true
+}

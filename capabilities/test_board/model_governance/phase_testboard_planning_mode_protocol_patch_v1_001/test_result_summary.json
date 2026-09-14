@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-TestBoard-Planning-Mode-Protocol-Patch-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-29T03:54:10.389833+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "TEST_BOARD_PLANNING_MODE_PROTOCOL_PATCH_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "protocol_patch_profile_count": 1,
+    "stage_ref_count": 3,
+    "allowed_test_mode_count": 7,
+    "mode_compatibility_check_count": 7,
+    "negative_guard_count": 11,
+    "blocker_count": 0
+  }
+}

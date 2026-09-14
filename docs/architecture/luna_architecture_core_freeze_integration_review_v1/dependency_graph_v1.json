@@ -1,0 +1,29 @@
+{
+  "title": "Canonical Dependency Graph v1",
+  "nodes": ["constitution","governance_plane","reality_workspace","cognitive_field","attention_system","cognitive_workspace","brain","memory_system","learning_system","self_evolution","cognitive_self_model","emotion_context_boundary","capability_governance","capability_runtime","evidence_gateway","action_boundary","action_runtime","provider_boundary"],
+  "edges": [
+    {"from":"constitution","to":"governance_plane","kind":"required"},
+    {"from":"governance_plane","to":"reality_workspace","kind":"governance"},
+    {"from":"governance_plane","to":"brain","kind":"governance"},
+    {"from":"reality_workspace","to":"cognitive_field","kind":"required"},
+    {"from":"cognitive_field","to":"attention_system","kind":"required"},
+    {"from":"attention_system","to":"cognitive_workspace","kind":"required"},
+    {"from":"cognitive_workspace","to":"brain","kind":"required"},
+    {"from":"memory_system","to":"cognitive_workspace","kind":"context"},
+    {"from":"learning_system","to":"self_evolution","kind":"candidate"},
+    {"from":"self_evolution","to":"cognitive_self_model","kind":"candidate"},
+    {"from":"cognitive_self_model","to":"brain","kind":"context"},
+    {"from":"capability_governance","to":"capability_runtime","kind":"required"},
+    {"from":"capability_runtime","to":"evidence_gateway","kind":"required"},
+    {"from":"evidence_gateway","to":"reality_workspace","kind":"candidate"},
+    {"from":"brain","to":"action_boundary","kind":"candidate"},
+    {"from":"action_boundary","to":"action_runtime","kind":"execution_boundary"},
+    {"from":"provider_boundary","to":"capability_runtime","kind":"isolation"}
+  ],
+  "feedback_edges": [
+    {"from":"action_runtime","to":"learning_system","kind":"outcome_feedback"},
+    {"from":"evidence_gateway","to":"reality_workspace","kind":"evidence_reentry"}
+  ],
+  "forbidden_edges": ["Capability → Brain Override","Model → Brain Replacement","Provider → Reality Authority","Emotion → Direct Action","Learning → Value Rewrite","Self Evolution → Identity Rewrite","Capability → Goal Ownership"],
+  "rules": {"acyclic_ownership_graph":true,"feedback_is_event_not_owner_cycle":true,"forbidden_edges_explicit":true}
+}

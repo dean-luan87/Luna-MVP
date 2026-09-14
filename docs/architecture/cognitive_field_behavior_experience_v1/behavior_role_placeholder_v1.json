@@ -1,0 +1,16 @@
+{
+  "placeholder_name": "Behavior Role Placeholder v1",
+  "status": "schema_only",
+  "field_reference": "field-example",
+  "role_binding_placeholder": null,
+  "behavior_context_candidate": null,
+  "runtime_enabled": false,
+  "does_not_modify_identity": true,
+  "does_not_modify_goal": true,
+  "does_not_modify_decision": true,
+  "does_not_execute_action": true,
+  "no_role_system": true,
+  "no_social_relationship_runtime": true,
+  "no_personality_switching": true,
+  "unknowns_are_preserved": true
+}

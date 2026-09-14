@@ -1,0 +1,8 @@
+{
+  "title": "Capability Runtime Scheduler Boundary v1",
+  "owner": "Cognitive OS Governance",
+  "inputs": ["Capability Request", "Priority", "Resource State", "Admission Result"],
+  "output": "Execution Candidate",
+  "not_authority": ["Goal", "Decision", "Action", "Brain", "Reality"],
+  "rules": {"boundary_only": true, "scheduler_not_implemented": true, "no_goal_authority": true, "no_action_authority": true, "priority_is_candidate": true}
+}

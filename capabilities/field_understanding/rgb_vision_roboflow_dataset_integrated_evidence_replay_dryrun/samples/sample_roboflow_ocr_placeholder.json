@@ -1,0 +1,27 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "json",
+  "license_ref": {
+    "license": "CC BY-SA 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "signage-text/1",
+    "dataset_url": "https://universe.roboflow.com/example/signage-text"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export_plus_ocr_placeholder",
+    "annotation_tool": "roboflow_annotate",
+    "export_format": "json_text_placeholder"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export", "roboflow_ocr_placeholder"],
+  "images": [
+    {"image_id": "img_030", "file_name": "sign_030.jpg", "width": 640, "height": 480, "scene_label_hint": "signage", "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_030", "type": "text", "label": "entrance_sign", "image_id": "img_030", "text": "ENTRANCE", "text_span": [300, 45, 378, 105], "bbox": [300, 40, 380, 110], "confidence": 0.9},
+    {"ann_id": "ann_031", "type": "text", "label": "floor_sign", "image_id": "img_030", "text": "FLOOR 2", "text_span": [310, 120, 372, 160], "bbox": [305, 115, 380, 165], "confidence": 0.83}
+  ]
+}

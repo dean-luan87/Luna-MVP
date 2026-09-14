@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T06:45:17.757852+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "execution_scope": "mobile_sam_only",
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "followup_model_load_trial_route_record",
+  "weight_download_followup_route_record": {
+    "route_id": "weight_download_followup_route_record_v1",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Weight-Registry-Patch-And-Model-Load-Readiness-Planning-v1-001",
+    "next_phase_scope": "mobile_sam_only",
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001",
+    "next_phase_allows_registry_overlay_weight_patch_planning": true,
+    "next_phase_allows_model_load_trial_request": true,
+    "next_phase_still_no_direct_inference": true,
+    "next_phase_still_no_direct_runtime": true
+  }
+}

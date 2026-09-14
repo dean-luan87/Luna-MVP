@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Pattern Candidate Schema",
+  "pattern_scope": "Field and Self situated",
+  "base_field_reference": "required",
+  "attention_axis_candidate": "candidate",
+  "expected_requirement": "candidate",
+  "normal_cost_candidate": "candidate",
+  "supporting_experience": [],
+  "support_count": "candidate",
+  "confidence": "required",
+  "uncertainty": "required",
+  "exceptions": [],
+  "validation_status": "candidate",
+  "adoption_requires_validation": true,
+  "single_event_is_insufficient": true,
+  "automatic_policy_update": false
+}

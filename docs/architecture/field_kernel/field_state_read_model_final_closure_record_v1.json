@@ -1,0 +1,91 @@
+{
+    "record_version": "v1",
+    "phase": "Phase-P1-Field-Kernel-Field-State-Read-Model-Final-Closure-v1-001",
+    "capability_id": "luna.field_state_read_model",
+    "module_id": "luna.midplatform.field_state_read_model",
+    "module_version": "v1",
+    "closure_status": "final_closure_candidate",
+    "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "module_status": {
+        "promotion": "promotion_candidate",
+        "baseline_freeze": "baseline_freeze_candidate",
+        "governance_admission": "governance_admission_candidate",
+        "lifecycle_closure": "lifecycle_closure_candidate",
+        "production": false,
+        "formal_l1_admission_executed": false
+    },
+    "accepted_phase_evidence": {
+        "controlled_skeleton": {
+            "runner": "10/10",
+            "verifier": "18/18",
+            "report_ref": "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json"
+        },
+        "contract_dryrun": {
+            "runner": "45/45",
+            "verifier": "20/20",
+            "report_ref": "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json"
+        },
+        "controlled_runtime": {
+            "runner": "24/24",
+            "verifier": "25/25",
+            "report_ref": "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json"
+        },
+        "module_integration": {
+            "runner": "25/25",
+            "verifier": "26/26",
+            "report_ref": "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+        },
+        "promotion_governance_admission": {
+            "runner": "30/30",
+            "verifier": "28/28",
+            "report_ref": "_tmp_eval_out/field_state_read_model_promotion_governance_admission_v1_smoke_v0/field_state_read_model_promotion_governance_admission_v1.json"
+        }
+    },
+    "handoffs": {
+        "baseline_freeze": {
+            "status": "candidate_only",
+            "candidate_ref": "capabilities/registry/baselines/field_state_read_model_module_baseline_freeze_candidate_v1.json",
+            "active_baseline_modified": false,
+            "normal_runtime_load_allowed": false
+        },
+        "governance_admission": {
+            "status": "candidate_only",
+            "review_ref": "docs/architecture/field_kernel/field_state_read_model_governance_admission_review_v1.json",
+            "formal_l1_registry_modified": false,
+            "l1_candidate_count": 8,
+            "module_rule_count": 10
+        },
+        "lifecycle_closure": {
+            "status": "candidate_only",
+            "formal_lifecycle_modified": false,
+            "formal_registry_modified": false
+        }
+    },
+    "preserved_boundaries": {
+        "reducer_is_sole_mutation_authority": true,
+        "read_only": true,
+        "state_mutation": false,
+        "event_reduction": false,
+        "fact_admission": false,
+        "real_state_store_connected": false,
+        "downstream_dispatch": false,
+        "read_semantics_changed": false,
+        "runtime_semantics_changed": false,
+        "candidate_only": true
+    },
+    "unchanged_formal_assets": [
+        "capabilities/registry/manifests/field_state_read_model_manifest_v1.json",
+        "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+        "capabilities/registry/luna_capability_registry_v1.json",
+        "capabilities/registry/luna_capability_module_baseline_registry_v1.json",
+        "capabilities/registry/luna_capability_dependency_map_v1.json"
+    ],
+    "deferred_actions": [
+        "user_terminal_final_closure_verification",
+        "chatgpt_v3_final_audit",
+        "authorized_baseline_activation_if_later_approved",
+        "authorized_l1_admission_if_later_approved",
+        "authorized_lifecycle_transition_if_later_approved"
+    ],
+    "closure_recorded_at": "2026-07-20"
+}

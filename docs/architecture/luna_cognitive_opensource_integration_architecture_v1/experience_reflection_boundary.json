@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Experience Reflection Boundary",
+  "owner":"Experience Processing Governance",
+  "flow":["Experience Stream","Reflection Candidate","Pattern Candidate","Memory Governance","Memory Candidate"],
+  "external_can":["summarize candidate","suggest pattern","rank similarity"],
+  "external_cannot":["modify Self","modify Role","modify Decision","modify Value","write Memory directly"],
+  "rules":{"field_role_time_context_required":true,"reflection_is_candidate":true,"memory_governance_required":true,"automatic_growth_forbidden":true}
+}

@@ -1,0 +1,35 @@
+{
+  "standard_id": "ModelTestLensUIFlowStandardV1",
+  "version": "v1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-UI-Standardization-Planning-v1-001",
+  "default_flow": [
+    "simple_mode",
+    "test_conclusion",
+    "visual_compare_view",
+    "perception_hud_view",
+    "system_observations",
+    "system_reasoning",
+    "uncertainty_and_gaps",
+    "recommendations",
+    "metrics",
+    "advanced_mode",
+    "developer_mode"
+  ],
+  "levels": [
+    { "level": 1, "id": "simple_mode", "user_facing_name": "简洁模式" },
+    { "level": 2, "id": "visual_compare_view", "user_facing_name": "模型识别对比" },
+    { "level": 3, "id": "perception_hud_view", "user_facing_name": "机器人视角 HUD" },
+    { "level": 4, "id": "metrics", "user_facing_name": "详细指标" },
+    { "level": 5, "id": "advanced_mode", "user_facing_name": "高级流程" },
+    { "level": 6, "id": "developer_mode", "user_facing_name": "开发者模式" }
+  ],
+  "forbidden_default_orders": [
+    "raw_json_first",
+    "metrics_table_first",
+    "artifact_path_first",
+    "manifest_job_bridge_first"
+  ],
+  "candidate_only": true,
+  "not_runtime": true,
+  "not_fact": true
+}

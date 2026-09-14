@@ -1,0 +1,17 @@
+{
+  "schema_name": "Learning System Schema v1",
+  "learning_id": "learning-example",
+  "domain": "Survival Learning",
+  "experience_reference": {},
+  "memory_reference": {},
+  "field_pattern": {},
+  "attention_pattern": {},
+  "navigation_pattern": {},
+  "safety_pattern": {},
+  "interaction_pattern": {},
+  "skill_learning_placeholder": true,
+  "candidate_only": true,
+  "reality_priority": true,
+  "unknowns_are_preserved": true,
+  "revocable": true
+}

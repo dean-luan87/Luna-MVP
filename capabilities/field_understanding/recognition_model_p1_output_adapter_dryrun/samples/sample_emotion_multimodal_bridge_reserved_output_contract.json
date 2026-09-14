@@ -1,0 +1,23 @@
+{
+  "model_id": "mock_p2_emotion_bridge_reserved_v1",
+  "model_family": "emotion_multimodal_bridge_family",
+  "model_version_ref": "reserved_emotion_multimodal_bridge_v0",
+  "model_origin": "luna_internal_reserved_emotion_multimodal_bridge_interface",
+  "license_ref": "reserved_interface_no_external_model_license_yet",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "reserved_no_multimodal_input_executed",
+  "output_schema_ref": "emotion_multimodal_bridge_output_schema_reserved_v1",
+  "confidence": 0.0,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "affective_scene_hint_candidate",
+  "allowed_use": "reserved_only_future_emotion_multimodal_evidence_bridge",
+  "commercial_use_status": "not_evaluated_reserved",
+  "fallback_plan": "reserved_only_no_execution_fallback_to_no_affective_hint",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "reserved_only": true,
+  "affective_scene_hint_stub": "calm_scene_stub",
+  "user_state_hint_stub": "neutral_stub",
+  "social_context_hint_stub": "solo_context_stub",
+  "confidence_policy": "low_confidence_reserved_stub_only",
+  "boundaries": ["no_psychological_fact_write", "no_behavior_manipulation"]
+}

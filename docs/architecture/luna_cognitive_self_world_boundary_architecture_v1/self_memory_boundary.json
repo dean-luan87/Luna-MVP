@@ -1,0 +1,15 @@
+{
+  "title": "Self Memory Boundary v1",
+  "memory_types": ["Self Memory", "Social Memory", "Field Memory"],
+  "self_memory_contains": ["Capability History", "Operating History", "Self Regulation History", "Self Evolution Evidence"],
+  "social_memory_contains": ["People", "Roles", "Relationships", "Interaction Experience"],
+  "field_memory_contains": ["Environment History", "Place Continuity", "Field Evolution", "Context Patterns"],
+  "social_memory_is_not_self_memory": true,
+  "field_memory_is_not_self_memory": true,
+  "memory_is_not_identity": true,
+  "memory_direct_identity_change": false,
+  "memory_overrides_reality": false,
+  "current_reality_precedence": true,
+  "retrieval_is_contextual": true,
+  "candidate_only": true
+}

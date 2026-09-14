@@ -1,0 +1,17 @@
+{
+  "model_family": "tracking_model_family",
+  "callable_interface_ref": "tracking.callable.track_stub_v1",
+  "input_format_ref": "detection_sequence_placeholder_ref_v1",
+  "output_schema_ref": "tracking_output_schema_v1",
+  "runtime_requirement_ref": "cpu_runtime_v1",
+  "model_origin": "external_open_source_tracking_model",
+  "license_ref": "mit_or_per_model_license",
+  "dependency_boundary_ref": "tracking_dependency_boundary_v1",
+  "resource_requirement_ref": "lightweight_cpu_v1",
+  "offline_or_online_mode": "offline",
+  "adapter_mapping_target": "track_evidence_candidate",
+  "source_chain": "recognition_model_invocation_feasibility_dryrun_v1",
+  "confidence_policy_ref": "tracking_confidence_policy_v1",
+  "invocation_mode": "import_check",
+  "expected_output_fields": ["track_id", "bbox_sequence", "timestamp", "velocity_hint", "confidence"]
+}

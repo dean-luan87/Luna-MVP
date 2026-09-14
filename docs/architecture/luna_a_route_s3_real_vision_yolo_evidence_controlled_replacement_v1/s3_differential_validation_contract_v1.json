@@ -1,0 +1,8 @@
+{
+  "synthetic_provider_fixture_retained": true,
+  "real_provider_replaces_only": "VISION_YOLO_EVIDENCE",
+  "one_component_at_a_time": true,
+  "comparison_dimensions": ["contract outputs", "trace/provenance", "state transitions", "negative guards", "unrelated module behavior"],
+  "allowed_real_differences": ["provider/model identifiers", "detections", "bbox coordinates", "confidence", "timestamps", "frame IDs"],
+  "forbidden_differences": ["semantic authority", "provider autonomy", "Field/World mutation", "OCR/SLAM/VLM activation", "truth promotion", "hidden retries"]
+}

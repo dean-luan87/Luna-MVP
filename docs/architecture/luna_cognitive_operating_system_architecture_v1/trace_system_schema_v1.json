@@ -1,0 +1,8 @@
+{
+  "title": "Trace System Schema v1",
+  "owner": "Cognitive OS Governance",
+  "trace_fields": ["trace_id", "timestamp", "input", "evidence", "context", "state_snapshot", "attention", "reasoning_reference", "decision_candidate", "outcome", "learning_candidate"],
+  "stages": ["Input", "Evidence", "Context", "State", "Attention", "Reasoning Reference", "Decision", "Outcome", "Learning"],
+  "readers": ["Diagnostics", "Learning", "Brain Review", "Governance Audit"],
+  "rules": {"provenance_required": true, "append_only_reference": true, "trace_not_authority": true, "no_secret_payload_inference": true}
+}

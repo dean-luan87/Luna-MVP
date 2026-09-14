@@ -1,0 +1,47 @@
+{
+  "artifact": "intent_state_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "model_kind": "SEMANTIC_STATE_CANDIDATES_NOT_PRODUCTION_ENUM_OR_FSM",
+  "state_candidates": [
+    {"state": "UNKNOWN", "meaning": "Available evidence cannot support even a stable potential direction."},
+    {"state": "POTENTIAL", "meaning": "Conditions may be forming Intent but evidence is insufficient."},
+    {"state": "FORMING", "meaning": "Multiple governed references increasingly support a direction candidate."},
+    {"state": "ACTIVE_CANDIDATE", "meaning": "A qualified direction currently participates in cognitive processing."},
+    {"state": "SUPPRESSED", "meaning": "A candidate remains preserved but another constraint or candidate reduces its active influence."},
+    {"state": "DORMANT", "meaning": "A preserved candidate is not currently activated."},
+    {"state": "REACTIVATED", "meaning": "New context or reference support reactivates a preserved candidate."},
+    {"state": "RESOLVED_CANDIDATE", "meaning": "Evidence suggests the intended state relation may have been resolved; downstream validation remains separate."},
+    {"state": "ABANDONED_CANDIDATE", "meaning": "A governed candidate is no longer pursued while its trace remains available."}
+  ],
+  "temporal_patterns": ["SHORT_LIVED", "PERSISTENT", "RECURRING", "DORMANT", "REACTIVATED", "EVOLVING"],
+  "transition_requirements": [
+    "source_refs",
+    "context_refs",
+    "provenance",
+    "formation_or_update_trace",
+    "uncertainty",
+    "resource_condition"
+  ],
+  "transition_semantics": [
+    "UNKNOWN may remain UNKNOWN without forced classification",
+    "POTENTIAL does not auto-promote",
+    "SUPPRESSED and DORMANT candidates remain preserved",
+    "REACTIVATED requires new support or context match",
+    "RESOLVED_CANDIDATE does not assert outcome truth",
+    "ABANDONED_CANDIDATE does not delete provenance"
+  ],
+  "not_frozen": [
+    "production enum",
+    "runtime finite state machine",
+    "numeric score thresholds",
+    "fixed duration thresholds",
+    "automatic promotion rules",
+    "persistence retention schedule"
+  ],
+  "guards": {
+    "multiple_states_across_candidates_allowed": true,
+    "single_winner_required": false,
+    "state_implies_decision": false,
+    "state_implies_truth": false
+  }
+}

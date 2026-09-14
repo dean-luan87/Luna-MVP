@@ -1,0 +1,9 @@
+{
+  "session_fields": ["session_id", "source_type", "source_ref", "started_at", "ended_at", "max_frames", "max_duration_ms", "observation_demand_ref", "capability_requirement_ref", "revocation_condition", "stop_reason", "trace_ref", "provenance_refs"],
+  "required": {"bounded": true, "autonomous_continuous_execution": false, "provider_invocation": false, "candidate_only": true},
+  "continuation_authority": "active bounded observation demand and session budget only",
+  "non_authorizers": ["camera available", "first frame received", "previous frame succeeded", "Observation Gateway admission", "provider readiness", "later YOLO/OCR/SLAM need"],
+  "controls": ["STOP", "REVOKE"],
+  "no_hidden_retry": true,
+  "no_hidden_continuation": true
+}

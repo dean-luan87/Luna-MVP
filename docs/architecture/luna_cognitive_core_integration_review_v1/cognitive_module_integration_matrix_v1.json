@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "name": "Cognitive Module Integration Matrix",
+  "modules": [
+    {"module": "Reality / Evidence", "layer": "L2 Cognitive Core", "owner": "Reality Workspace", "inputs": ["Observation"], "outputs": ["Evidence", "Reality Update Candidate"], "writes": ["Reality Candidate"], "lifecycle": "candidate -> validated -> active"},
+    {"module": "Field System", "layer": "L2 Cognitive Core", "owner": "Field System", "inputs": ["Reality Update Candidate", "Social Context"], "outputs": ["Field Context", "Field State"], "writes": ["Field State"], "lifecycle": "created -> active -> background -> closed"},
+    {"module": "Workspace", "layer": "L2 Cognitive Core", "owner": "Cognitive Workspace", "inputs": ["Field Context", "Role", "Task", "Memory Retrieval"], "outputs": ["Active Context Package"], "writes": ["Working Workspace State"], "lifecycle": "created -> active -> updated -> closed"},
+    {"module": "Attention", "layer": "L2 Cognitive Core", "owner": "Attention System", "inputs": ["Workspace", "Risk", "Drive", "Value"], "outputs": ["Allocation Candidate", "Observation Requirement"], "writes": ["Attention State"], "lifecycle": "candidate -> arbitrated -> active"},
+    {"module": "Hypothesis / Belief / Expectation", "layer": "L2 Cognitive Core", "owner": "Understanding Systems", "inputs": ["Evidence", "Field", "Experience", "Feedback"], "outputs": ["Understanding Candidates", "Expectation Candidate"], "writes": ["Hypothesis/Belief/Expectation State"], "lifecycle": "candidate -> validated -> contradicted -> archived"},
+    {"module": "Global State", "layer": "L2 Cognitive Core", "owner": "Global State", "inputs": ["Canonical Module States"], "outputs": ["Global Cognitive State Package"], "writes": ["Global State"], "lifecycle": "snapshot -> active -> superseded"},
+    {"module": "Brain", "layer": "L2 Cognitive Core", "owner": "Brain", "inputs": ["Global Cognitive State Package"], "outputs": ["Decision Candidate", "Decision Trace"], "writes": ["Decision Candidate"], "lifecycle": "review -> candidate -> accepted/rejected"},
+    {"module": "Decision Commitment", "layer": "L2 Cognitive Core", "owner": "Decision Commitment", "inputs": ["Brain Decision Candidate", "Authority", "Constraints"], "outputs": ["Commitment Candidate", "Revision Trace"], "writes": ["Commitment State"], "lifecycle": "candidate -> reviewed -> committed -> revised"},
+    {"module": "Action Boundary / Runtime", "layer": "L3/L4 Runtime Boundary", "owner": "Action Boundary", "inputs": ["Commitment Candidate", "Permission", "Capability Request"], "outputs": ["Action Request", "Outcome Evidence"], "writes": ["Action Request Trace"], "lifecycle": "requested -> validated -> executed/failed"},
+    {"module": "Memory", "layer": "L2 Cognitive Core", "owner": "Memory System", "inputs": ["Admitted Experience", "Retrieval Query"], "outputs": ["Relevant Memory", "Memory Candidate"], "writes": ["Long-term Memory"], "lifecycle": "candidate -> admitted -> active -> decayed/archived"},
+    {"module": "Learning / Self Evolution", "layer": "L2 Cognitive Core", "owner": "Learning System / Self Evolution", "inputs": ["Outcome", "Feedback", "Experience", "Performance Evidence"], "outputs": ["Pattern Candidate", "Strategy Candidate", "Evolution Candidate"], "writes": ["Learning/Evolution Candidates"], "lifecycle": "candidate -> reviewed -> adopted/rejected"},
+    {"module": "Self Model / Self Regulation", "layer": "L2 Cognitive Core", "owner": "Self Model / Self Regulation", "inputs": ["Self Observation", "Capability Health", "Resource State"], "outputs": ["Self State", "Regulation Candidate"], "writes": ["Self State Candidate"], "lifecycle": "observed -> assessed -> candidate -> reviewed"},
+    {"module": "Capability System", "layer": "L4 Capability Governance", "owner": "Capability Governance", "inputs": ["Capability Request", "Admission", "Self Regulation Proposal"], "outputs": ["Provider Result", "Evidence Candidate", "Capability Health"], "writes": ["Capability State"], "lifecycle": "candidate -> admitted -> available -> degraded/deprecated"}
+  ],
+  "dependency_graph": {
+    "nodes": ["Reality / Evidence", "Field System", "Workspace", "Attention", "Hypothesis / Belief / Expectation", "Global State", "Brain", "Decision Commitment", "Action Boundary / Runtime", "Memory", "Learning / Self Evolution", "Self Model / Self Regulation", "Capability System"],
+    "edges": [
+      {"from": "Reality / Evidence", "to": "Field System"}, {"from": "Field System", "to": "Workspace"}, {"from": "Workspace", "to": "Attention"}, {"from": "Attention", "to": "Hypothesis / Belief / Expectation"}, {"from": "Hypothesis / Belief / Expectation", "to": "Global State"}, {"from": "Global State", "to": "Brain"}, {"from": "Brain", "to": "Decision Commitment"}, {"from": "Decision Commitment", "to": "Action Boundary / Runtime"}, {"from": "Action Boundary / Runtime", "to": "Memory"}, {"from": "Memory", "to": "Learning / Self Evolution"}, {"from": "Learning / Self Evolution", "to": "Self Model / Self Regulation"}, {"from": "Self Model / Self Regulation", "to": "Capability System"}
+    ],
+    "feedback_edges": [{"from": "Action Boundary / Runtime", "to": "Reality / Evidence", "kind": "outcome event"}],
+    "rules": {"dependency_graph_is_review_graph": true, "feedback_event_not_control_cycle": true, "no_provider_core_authority": true}
+  }
+}

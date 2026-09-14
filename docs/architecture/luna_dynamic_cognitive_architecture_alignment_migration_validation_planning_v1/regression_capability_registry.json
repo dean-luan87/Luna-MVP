@@ -1,0 +1,15 @@
+{
+  "registry_id": "architecture_alignment_regression_capabilities_v1",
+  "capabilities": [
+    {"capability": "Vision Pipeline", "owner": "Capability Governance / Vision Capability", "baseline_ref": "capabilities/vision_runtime/", "checks": ["evidence output preserved", "provider boundary preserved", "no direct fact promotion"], "required": true},
+    {"capability": "OCR Pipeline", "owner": "Capability Governance / OCR Capability", "baseline_ref": "capabilities/ocr_runtime/", "checks": ["evidence output preserved", "provider boundary preserved", "no direct fact promotion"], "required": true},
+    {"capability": "Model Admission", "owner": "Capability Governance", "baseline_ref": "capabilities/registry/baselines/model_manager_module_baseline_v1.json", "checks": ["admission boundary preserved", "routing remains candidate-only", "trace/replay preserved"], "required": true},
+    {"capability": "Task Manager", "owner": "Task Manager", "baseline_ref": "capabilities/registry/baselines/task_manager_module_baseline_v1.json", "checks": ["public API preserved", "task lifecycle preserved", "no action authority", "trace/replay preserved"], "required": true},
+    {"capability": "Field State Reducer", "owner": "Field System", "baseline_ref": "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json", "checks": ["module API preserved", "candidate reduction preserved", "no runtime authority", "trace/replay preserved"], "required": true},
+    {"capability": "Protocol Manager", "owner": "Cognitive OS Governance / Protocol Manager", "baseline_ref": "capabilities/registry/", "checks": ["protocol validation preserved", "governance owner preserved", "no cognitive authority"], "required": true}
+  ],
+  "all_required": true,
+  "baseline_evidence_required": true,
+  "missing_regression_result_blocks_freeze": true,
+  "current_phase_runs_regression": false
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "deferred":[
+    {"name":"Emotion Engine","status":"DEFERRED"},
+    {"name":"Advanced Emotion Governance runtime","status":"DEFERRED"},
+    {"name":"B Route","status":"DEFERRED"},
+    {"name":"semantic compression","status":"DEFERRED"},
+    {"name":"affective memory compression","status":"DEFERRED"},
+    {"name":"emotion-memory summary generation","status":"DEFERRED"},
+    {"name":"personality-memory fusion","status":"DEFERRED"},
+    {"name":"cross-user transfer","status":"DEFERRED"},
+    {"name":"online model training","status":"DEFERRED"},
+    {"name":"automatic personality activation","status":"DEFERRED"}
+  ],
+  "reopen_during_S1_to_S12_without_separate_approval":false
+}

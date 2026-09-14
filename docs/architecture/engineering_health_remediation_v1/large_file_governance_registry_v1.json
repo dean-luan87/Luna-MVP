@@ -1,0 +1,21 @@
+{
+  "title": "Large File Governance Registry v1",
+  "thresholds": {"normal_max_lines": 600, "warning_over_lines": 800, "blocker_candidate_over_lines": 1200},
+  "entries": [
+    {"file": "capabilities/voice/runtime/voice_final_text_dispatcher.py", "line_count": 5161, "category": "Active Code", "action": "future split plan", "priority": "P0"},
+    {"file": "capabilities/governance/gate_taxonomy_and_requirement_framework_planning_v1.py", "line_count": 1596, "category": "Active Code", "action": "architecture review before split", "priority": "P1"},
+    {"file": "capabilities/midplatform/task_manager_runtime_dryrun_v1.py", "line_count": 1462, "category": "Frozen Compatibility", "action": "defer split; register ownership", "priority": "P1"},
+    {"file": "capabilities/midplatform/protocol_input_output_symmetry_registry_patch_v1.py", "line_count": 1416, "category": "Registry / Generated", "action": "special registry review", "priority": "P1"},
+    {"file": "capabilities/vision/controlled_frame_file_stat_guarded_dryrun_v1.py", "line_count": 1444, "category": "Frozen Compatibility", "action": "defer split; preserve dryrun contract", "priority": "P2"},
+    {"file": "capabilities/vision/controlled_frame_input_dryrun_v1.py", "line_count": 1377, "category": "Frozen Compatibility", "action": "defer split; preserve fixture contract", "priority": "P2"},
+    {"file": "capabilities/vision/visual_ocr_map_task_feedback_dryrun_v1.py", "line_count": 1299, "category": "Frozen Compatibility", "action": "future split plan", "priority": "P2"}
+  ],
+  "governance_rules": {
+    "no_direct_split_in_this_phase": true,
+    "blocker_candidate_requires_owner": true,
+    "generated_files_need_special_handling": true,
+    "frozen_compatibility_is_not_deleted": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

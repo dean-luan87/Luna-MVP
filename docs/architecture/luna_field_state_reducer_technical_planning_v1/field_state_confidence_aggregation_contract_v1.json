@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "name": "Field State Confidence Aggregation Contract",
+    "components": [
+        "confidence_aggregation",
+        "source_reliability_weighting",
+        "contradiction_penalty",
+        "temporal_decay",
+        "uncertainty_floor",
+        "minimum_evidence_threshold",
+        "confidence_cap",
+        "no_fabricated_confidence",
+        "no_automatic_100_confidence"
+    ],
+    "aggregation_policies": {
+        "presence_state": "weighted_confidence_with_temporal_decay",
+        "accessibility_state": "negative_event_override_weighted",
+        "path_state": "latest_valid_weighted",
+        "obstruction_state": "contradiction_penalty_weighted",
+        "uncertainty_state": "uncertainty_floor_policy",
+        "conflict_state": "conflict_preservation_floor"
+    },
+    "global_simple_average_default": false
+}

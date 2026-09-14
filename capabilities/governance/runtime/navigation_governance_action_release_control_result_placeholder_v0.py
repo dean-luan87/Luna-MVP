@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""
+Navigation Governance Action — Release Control Result Placeholder v0 (read-only; non-action).
+
+Builds a standardized placeholder object:
+`navigation_governance_action_release_control_result_v0`
+
+Hard boundaries:
+- NOT a completion event; NOT proof of release_control execution or upstream handover.
+- Does NOT trigger release_control/rollback/interrupt; no maps; no voice/memory; no mid-platform migration.
+- Consumes ONLY standardized objects; does not fabricate missing evidence.
+- No time/space anchors.
+"""
+
+from __future__ import annotations
+
+from typing import Any, Dict, Optional, Tuple
+
+_SCOPE = "navigation_governance_action_release_control_result_v0"
+_RC_STATUS_SCOPE = "navigation_governance_action_release_control_status_v0"
+_RC_WIRING_SCOPE = "navigation_governance_action_release_control_wiring_v0"
+_RC_INPUT_SCOPE = "navigation_governance_action_release_control_input_v0"
+_RC_READINESS_SCOPE = "navigation_governance_action_release_control_readiness_gate_v0"
+
+
+def _as_dict(x: Any) -> Optional[Dict[str, Any]]:
+    return x if isinstance(x, dict) else None
+
+
+def evaluate_navigation_governance_action_release_control_result_placeholder_v0(
+    *,
+    navigation_governance_action_release_control_status_v0: Any,
+    navigation_governance_action_release_control_wiring_v0: Any,
+    navigation_governance_action_release_control_input_v0: Any = None,
+    navigation_governance_action_release_control_readiness_gate_v0: Any = None,
+) -> Tuple[bool, Optional[Dict[str, Any]]]:
+    """
+    Returns (applicable, payload).
+
+    relevant-only:
+    - Requires valid implemented release_control status object AND valid release_control wiring object.
+    - Optional objects are read-only consistency context only (must NOT expand authority).
+    """
+    st = _as_dict(navigation_governance_action_release_control_status_v0)
+    if not st:
+        return False, None
+    if str(st.get("release_control_status_scope") or "") != _RC_STATUS_SCOPE:
+        return False, None
+    if st.get("release_control_status_present") is not True:
+        return False, None
+    # Accept both placeholder_v0 and implemented_v0 status; result placeholder should not depend on runtime facts.
+    if str((st.get("action_type_class") or {}).get("action_type_confirmed") or st.get("action_type_confirmed") or "") != "release_control":
+        return False, None
+
+    wg = _as_dict(navigation_governance_action_release_control_wiring_v0)
+    if not wg:
+        return False, None
+    if str(wg.get("release_control_wiring_scope") or "") != _RC_WIRING_SCOPE:
+        return False, None
+    if wg.get("release_control_wiring_attempted") is not True:
+        return False, None
+
+    # Optional: read-only context only
+    inp = _as_dict(navigation_governance_action_release_control_input_v0)
+    inp_ok = bool(inp and str(inp.get("release_control_input_scope") or "") == _RC_INPUT_SCOPE)
+    rg = _as_dict(navigation_governance_action_release_control_readiness_gate_v0)
+    rg_ok = bool(rg and str(rg.get("release_control_readiness_scope") or "") == _RC_READINESS_SCOPE)
+
+    payload: Dict[str, Any] = {
+        "release_control_result_present": True,
+        "release_control_result_scope": _SCOPE,
+        "object_kind": "placeholder_v0",
+        "release_control_result_state": "pending_placeholder",
+        "action_type_confirmed": "release_control",
+        "effect_state": "unknown_not_applied",
+        "route_binding_ready": False,
+        "consume_mode": "read_only",
+        "upstream_evidence": {
+            "release_control_status_scope": _RC_STATUS_SCOPE,
+            "release_control_wiring_scope": _RC_WIRING_SCOPE,
+        },
+        "consistency_observations": {
+            "release_control_input_present": bool(inp_ok),
+            "release_control_readiness_gate_present": bool(rg_ok),
+        },
+        "hard_boundaries": {
+            "can_execute_real_release_control": False,
+            "can_execute_real_governance_actions": False,
+            "no_route_change": True,
+            "no_voice_or_memory_side_effects": True,
+            "no_mid_platform_real_migration": True,
+            "no_time_or_space_anchors": True,
+        },
+    }
+    return True, payload
+

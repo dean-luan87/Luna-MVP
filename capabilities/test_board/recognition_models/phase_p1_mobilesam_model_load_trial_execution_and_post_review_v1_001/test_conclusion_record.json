@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T07:31:16.780157+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "model_load_trial_status": "failed_no_boundary_violation",
+    "import_success": false,
+    "import_error": "ModuleNotFoundError:No module named 'timm'",
+    "checkpoint_load_success": false,
+    "checkpoint_load_error": "",
+    "model_load_trial_success": false,
+    "no_boundary_violation": true,
+    "sha256_matches": true,
+    "size_matches": true,
+    "elapsed_seconds": 0.8738,
+    "peak_memory_mb": 174.86,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_only",
+    "transition_note": "REAL EXECUTION (mobile_sam_only). A pre-load snapshot was taken and mobile_sam.pt was rechecked (sha256==6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f, size==40728226): match=True. A REAL import of the code-only-installed `mobile_sam` package and a REAL checkpoint-load build were attempted under a 4096MB/300s boundary. import_success=False, checkpoint_load_success=False. NOTHING was image-fed / segmented / predicted / inferred / run; no runtime / output adapter / semantic layer was started; the registry was NOT mutated and nothing was downloaded. Decision=P1_MOBILE_SAM_MODEL_LOAD_TRIAL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION. Honest load failure with NO boundary violation (e.g. missing transitive dependency: ModuleNotFoundError:No module named 'timm'); next: Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001 (repair planning)."
+  },
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION"
+}

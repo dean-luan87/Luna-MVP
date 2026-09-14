@@ -1,0 +1,11 @@
+{
+  "boundary_id": "self_attention_governance_boundary_v1",
+  "owner": "Self Regulation",
+  "controller": "Self Attention Governance",
+  "inputs": ["attention_candidate", "current_state", "resource_state", "task", "risk", "self_rhythm_hint"],
+  "outputs": ["approved_attention_budget_candidate", "rejected_attention_candidate", "deferred_attention_candidate", "reduced_attention_candidate"],
+  "allowed": ["review_state", "review_resource", "review_task", "review_risk", "approve", "reject", "defer", "reduce"],
+  "forbidden": ["modify_identity", "modify_value", "modify_goal", "modify_constitution", "modify_brain_rules", "direct_model_switch", "direct_hardware_control", "direct_action", "scheduler_modification"],
+  "self_has_final_resource_governance": true,
+  "candidate_only": true
+}

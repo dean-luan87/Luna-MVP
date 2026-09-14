@@ -1,0 +1,35 @@
+{
+  "title": "Cognitive Goal Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Field -> Goal Candidate Context",
+    "Intent -> Goal Alignment Candidate",
+    "Drive -> Goal Candidate Context",
+    "Memory -> Goal Candidate Context",
+    "Schema -> Goal Candidate Context",
+    "Self -> Goal Governance",
+    "Value -> Goal Priority Candidate",
+    "Goal -> Task Manager Reference",
+    "Task Manager -> Action Boundary Request",
+    "Brain -> Decision Candidate",
+    "Runtime -> Future Execution Boundary"
+  ],
+  "forbidden_dependencies": [
+    "Goal -> Direct Action",
+    "Task -> Modify Goal",
+    "Memory -> Create Goal Automatically",
+    "Emotion -> Modify Goal",
+    "B Route -> Override Current Goal",
+    "Goal -> Ignore Self Boundary",
+    "Goal -> Modify Identity",
+    "Goal -> Modify Constitution",
+    "Provider -> Create Goal",
+    "Model -> Create Goal"
+  ],
+  "no_parallel_task_manager": true,
+  "no_parallel_goal_manager": true,
+  "goal_runtime": false,
+  "action_execution": false,
+  "b_route_runtime": false,
+  "model_integration": false,
+  "provider_integration": false
+}

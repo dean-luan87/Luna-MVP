@@ -1,0 +1,225 @@
+{
+  "version": "v1",
+  "rules": [
+    {
+      "id": "authority_violation",
+      "severity": "RED",
+      "desc": "B/C 越权（例如 B 在近距范围输出硬停）",
+      "applies_to": ["tick"],
+      "enabled": true,
+      "check": {
+        "condition": "range_m < 2.0 AND (impact IN ['NEED_STOP', 'NEED_DETOUR'] OR decision_level == 'INTERRUPT')",
+        "fields": ["range_m", "impact", "decision_level"]
+      }
+    },
+    {
+      "id": "env_overreach",
+      "severity": "RED",
+      "desc": "ENV 不得触发 CONDITION_CHANGE / impact",
+      "applies_to": ["tick"],
+      "enabled": true,
+      "check": {
+        "condition": "main_factor == 'ENV' AND decision_level IN ['CONDITION_CHANGE', 'INTERRUPT']",
+        "fields": ["main_factor", "decision_level"]
+      }
+    },
+    {
+      "id": "no_op_timeline",
+      "severity": "RED",
+      "desc": "NO_OP 不得写 timeline",
+      "applies_to": ["tick"],
+      "enabled": true,
+      "check": {
+        "condition": "impact == 'NO_OP' AND (writeback.timeline == true OR writeback.decision == true)",
+        "fields": ["impact", "writeback"]
+      }
+    },
+    {
+      "id": "missing_advisory",
+      "severity": "RED",
+      "description": "缺少 advisory_only=true（若字段存在则必须为 true）",
+      "check": {
+        "condition": "impact.advisory_only EXISTS AND impact.advisory_only != true",
+        "fields": ["impact"]
+      }
+    },
+    {
+      "id": "missing_core_fields",
+      "severity": "YELLOW",
+      "description": "缺少 engine_version/time/frame_id/impact 任一字段",
+      "check": {
+        "condition": "MISSING(engine_version) OR MISSING(time) OR MISSING(time.frame_id) OR MISSING(impact)",
+        "fields": ["engine_version", "time", "time.frame_id", "impact"]
+      }
+    },
+    {
+      "id": "over_prediction_language",
+      "severity": "RED",
+      "desc": "禁止确认性风险措辞（B 只能提醒，不确认）",
+      "applies_to": ["tick"],
+      "enabled": true,
+      "check": {
+        "condition": "CONTAINS(human_interpretation, ['一定', '必然', '确认', '已发生']) OR CONTAINS(reason, ['一定', '必然', '确认', '已发生'])",
+        "fields": ["human_interpretation", "reason"],
+        "keywords": ["一定", "必然", "确认", "已发生", "confirmed", "certain", "inevitable"]
+      }
+    },
+    {
+      "id": "gate_suspended_but_output",
+      "severity": "RED",
+      "desc": "Gate=SUSPENDED 时仍输出 decision（调度违规）",
+      "applies_to": ["tick"],
+      "enabled": true,
+      "check": {
+        "condition": "gate.mode == 'SUSPENDED' AND (writeback.timeline == true OR writeback.decision == true OR to_c.send == true)",
+        "fields": ["gate", "writeback", "to_c"]
+      }
+    },
+    {
+      "id": "no_gate_runtime_profile",
+      "severity": "RED",
+      "desc": "GATE_RUNTIME_PROFILE 事件必须包含 gate 字段（仅 Gate runtime 事件）",
+      "applies_to": ["GATE_RUNTIME_PROFILE"],
+      "enabled": true
+    },
+    {
+      "id": "no_c_runtime_profile",
+      "severity": "RED",
+      "desc": "C_RUNTIME_PROFILE 事件必须包含 c 字段（仅 C runtime 事件）",
+      "applies_to": ["C_RUNTIME_PROFILE"],
+      "enabled": true
+    },
+    {
+      "id": "missing_view_state_but_active",
+      "severity": "RED",
+      "desc": "缺失 view_state 但系统仍判 ACTIVE（调度违规）",
+      "applies_to": ["GATE_RUNTIME_PROFILE", "tick"],
+      "enabled": true,
+      "check": {
+        "condition": "gate.mode == 'ACTIVE' AND (view_state MISSING OR view_state.stability_score MISSING)",
+        "fields": ["gate", "view_state"]
+      },
+      "message": "缺少视角稳定性信息（view_state），但 Gate 仍进入 ACTIVE，属于架构级越权",
+      "category": "architecture_violation",
+      "owner": "B2-Gate",
+      "since": "v0.4.2"
+    },
+    {
+      "id": "gate_suspended_but_b_executed",
+      "severity": "RED",
+      "description": "Gate=SUSPENDED 但 B 仍执行了任意感知/判断/输出逻辑",
+      "check": {
+        "condition": "gate.mode == 'SUSPENDED' AND (impact EXISTS OR summary EXISTS OR to_c.send == true)",
+        "fields": ["gate", "impact", "summary", "to_c"]
+      },
+      "message": "Gate 已明确禁止运行，但 B 仍在执行逻辑（架构越权）",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "compute_none_but_output_exists",
+      "severity": "RED",
+      "description": "runtime_profile.compute_level == NONE 但存在任何 B summary/impact/trace 输出",
+      "check": {
+        "condition": "runtime_profile.compute_level == 'NONE' AND (impact EXISTS OR summary EXISTS)",
+        "fields": ["runtime_profile", "impact", "summary"]
+      },
+      "message": "Gate 已裁定完全不运行，但 B 仍产生行为或结果",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "future_probe_enabled_in_v05",
+      "severity": "RED",
+      "description": "runtime_profile.allow_future_probe == true（v0.5 明确禁止）",
+      "check": {
+        "condition": "runtime_profile.allow_future_probe == true",
+        "fields": ["runtime_profile"]
+      },
+      "message": "v0.5 明确禁止未来预演，提前开启未授权能力",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "gate_profile_missing",
+      "severity": "RED",
+      "description": "B trace/runtime 中缺失 gate_runtime_profile",
+      "check": {
+        "condition": "runtime_profile MISSING",
+        "fields": ["runtime_profile"]
+      },
+      "message": "Gate 调度结果未进入可审计系统，等同于无 Gate 运行",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "read_only_but_heavy_compute",
+      "severity": "YELLOW",
+      "description": "gate_mode == READ_ONLY 但 runtime_profile.compute_level == FULL",
+      "check": {
+        "condition": "gate.mode == 'READ_ONLY' AND runtime_profile.compute_level == 'FULL'",
+        "fields": ["gate", "runtime_profile"]
+      },
+      "message": "只读模式却跑满算力，不违规但浪费资源/风险升高",
+      "category": "scheduling_warning",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "gate_blocked_reason_missing",
+      "severity": "YELLOW",
+      "description": "gate_mode != ACTIVE 但 blocked_by == null",
+      "check": {
+        "condition": "gate.mode != 'ACTIVE' AND gate.blocked_by == null",
+        "fields": ["gate"]
+      },
+      "message": "Gate 阻断但未说明原因，可审计性不足",
+      "category": "scheduling_warning",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "missing_gate_runtime_profile",
+      "severity": "RED",
+      "description": "v0.5 运行必须写入 gate_runtime_profile，否则不可审计",
+      "check": {
+        "condition": "event_type == 'DECISION' AND NOT EXISTS(gate_runtime_profile)",
+        "fields": ["event_type", "gate_runtime_profile"]
+      },
+      "message": "v0.5 必须写入 gate_runtime_profile 才能审计调度行为",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "gate_read_only_but_output",
+      "severity": "RED",
+      "description": "Gate=READ_ONLY 时，禁止产生任何 B→C 输出/decision",
+      "check": {
+        "condition": "gate_runtime_profile.gate_mode == 'READ_ONLY' AND (event_type == 'DECISION' OR EXISTS(to_c_message))",
+        "fields": ["gate_runtime_profile", "event_type", "to_c_message"]
+      },
+      "message": "Gate=READ_ONLY 时禁止产生任何 B→C 输出/decision",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    },
+    {
+      "id": "authority_scope_not_advisory_only",
+      "severity": "RED",
+      "description": "v0.5 冻结：B2 只能 advisory_only",
+      "check": {
+        "condition": "EXISTS(gate_runtime_profile) AND gate_runtime_profile.authority_scope != 'ADVISORY_ONLY'",
+        "fields": ["gate_runtime_profile"]
+      },
+      "message": "v0.5 冻结：B2 只能 advisory_only，不允许其他 authority_scope",
+      "category": "scheduling_violation",
+      "owner": "B2-Gate",
+      "since": "v0.5"
+    }
+  ]
+}

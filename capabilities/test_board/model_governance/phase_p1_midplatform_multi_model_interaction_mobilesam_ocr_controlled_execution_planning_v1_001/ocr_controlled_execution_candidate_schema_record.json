@@ -1,0 +1,133 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "multi_model_interaction_planning": true,
+  "record": {
+    "schema_id": "OcrControlledExecutionCandidateSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+    "description": "OCR 受控执行候选。本阶段 planning endpoint — planned_only / not_executed。",
+    "required_fields": [
+      "ocr_execution_candidate_id",
+      "source_ocr_invocation_request_id",
+      "source_ocr_task_candidate_id",
+      "source_region_id",
+      "source_result_candidate_id",
+      "source_analysis_record_id",
+      "requested_runner_type",
+      "execution_mode",
+      "execution_status",
+      "input_crop_ref",
+      "input_region_geometry_ref",
+      "ocr_runner_config_ref",
+      "output_envelope_schema_ref",
+      "timeout_policy_ref",
+      "error_policy_ref",
+      "trace_chain",
+      "candidate_only",
+      "not_executed",
+      "not_fact",
+      "needs_fact_admission"
+    ],
+    "field_definitions": {
+      "ocr_execution_candidate_id": {
+        "type": "string",
+        "pattern": "^ocec_ocr_[a-z0-9_]+$"
+      },
+      "source_ocr_invocation_request_id": {
+        "type": "string"
+      },
+      "source_ocr_task_candidate_id": {
+        "type": "string"
+      },
+      "source_region_id": {
+        "type": "string"
+      },
+      "source_result_candidate_id": {
+        "type": "string"
+      },
+      "source_analysis_record_id": {
+        "type": "string"
+      },
+      "requested_runner_type": {
+        "type": "string",
+        "enum": [
+          "OCR"
+        ],
+        "const": "OCR"
+      },
+      "execution_mode": {
+        "type": "string",
+        "enum": [
+          "manual_controlled"
+        ],
+        "const": "manual_controlled"
+      },
+      "execution_status": {
+        "type": "string",
+        "enum": [
+          "planned_only",
+          "not_executed"
+        ],
+        "description": "本阶段禁止 running/executed/completed"
+      },
+      "input_crop_ref": {
+        "type": "string"
+      },
+      "input_region_geometry_ref": {
+        "type": "string"
+      },
+      "ocr_runner_config_ref": {
+        "type": "string"
+      },
+      "output_envelope_schema_ref": {
+        "type": "string",
+        "default": "schemas/multi_model_interaction/ocr_result_envelope_schema_v1.json"
+      },
+      "timeout_policy_ref": {
+        "type": "string"
+      },
+      "error_policy_ref": {
+        "type": "string",
+        "default": "schemas/multi_model_interaction/ocr_runner_error_candidate_schema_v1.json"
+      },
+      "trace_chain": {
+        "type": "array",
+        "minItems": 10
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_executed": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "needs_fact_admission": {
+        "type": "boolean",
+        "const": true
+      }
+    },
+    "forbidden_execution_status": [
+      "running",
+      "executed",
+      "completed",
+      "success",
+      "failed_with_model_output"
+    ],
+    "boundary_flags": {
+      "ocr_execution_candidate_requires_admitted_request": true,
+      "no_orphan_ocr_execution_candidate": true,
+      "candidate_only_not_executed_not_fact_preserved": true,
+      "planning_only": true
+    }
+  }
+}

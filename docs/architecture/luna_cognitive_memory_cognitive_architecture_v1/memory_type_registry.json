@@ -1,0 +1,13 @@
+{
+  "registry_id": "memory_type_registry_v1",
+  "owner": "Memory System",
+  "types": [
+    {"type": "Episode Memory", "source": "validated experience", "scope": "event_bound", "promotion": "Experience Memory Candidate"},
+    {"type": "Experience Memory", "source": "multiple Episode Memories", "scope": "reusable_pattern", "promotion": "Principle Memory Candidate"},
+    {"type": "Principle Memory", "source": "long_term_validated_experience", "scope": "high_level_subject_structure", "promotion": "rare_governed_admission"}
+  ],
+  "candidate_required": true,
+  "raw_observation_auto_memory": false,
+  "knowledge_auto_memory": false,
+  "decision_authority": false
+}

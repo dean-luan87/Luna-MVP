@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_experience_boundary_v1",
+  "owner":"Cognitive Memory/Experience",
+  "reusable":"ExperienceCandidateV1 and CognitiveMemoryExperienceInputV1 exist as candidate-only contracts.",
+  "B4_decision":"Stop before Experience/Memory. Preserve optional outcome/evaluation/feedback references for a later non-mutating Experience phase.",
+  "forbidden":["memory write", "memory admission", "experience learning", "PCN update", "parameter update", "semantic compression"],
+  "reason":"B4 objective is Outcome/Feedback -> Reconsider/Reobserve; existing architecture does not require Experience creation for that boundary."
+}

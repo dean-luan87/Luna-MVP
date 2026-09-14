@@ -1,0 +1,103 @@
+{
+    "artifact": "cognitive_state_formation_planning_to_code_mapping_v1",
+    "planning_dir": "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1",
+    "module_dir": "capabilities/midplatform/core/cognitive_state_formation",
+    "mappings": [
+        {
+            "planning_asset": "attention_candidate_schema_v1.json",
+            "code_assets": [
+                "attention_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "attention_selection_model_v1.json",
+            "code_assets": [
+                "attention_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_hypothesis_schema_v1.json",
+            "code_assets": [
+                "cognitive_hypothesis_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_hypothesis_state_model_v1.json",
+            "code_assets": [
+                "cognitive_hypothesis_types_v1.py",
+                "cognitive_state_formation_registry_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_hypothesis_competition_model_v1.json",
+            "code_assets": [
+                "cognitive_hypothesis_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "current_world_candidate_schema_v1.json",
+            "code_assets": [
+                "current_world_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "current_world_field_boundary_v1.json",
+            "code_assets": [
+                "current_world_types_v1.py",
+                "cognitive_state_formation_static_validators_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_state_formation_causal_handoff_v1.json",
+            "code_assets": [
+                "cognitive_state_formation_handoff_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_state_vector_candidate_contract_v1.json",
+            "code_assets": [
+                "cognitive_state_vector_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_state_formation_trace_provenance_contract_v1.json",
+            "code_assets": [
+                "cognitive_state_formation_core_types_v1.py",
+                "cognitive_state_formation_engine_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_state_formation_scenario_suite_v1.json",
+            "code_assets": [
+                "cognitive_state_formation_fixture_v1.py",
+                "run_cognitive_state_formation_controlled_implementation_v1.py"
+            ],
+            "status": "implemented"
+        },
+        {
+            "planning_asset": "cognitive_state_formation_negative_guards_v1.json",
+            "code_assets": [
+                "cognitive_state_formation_registry_v1.py",
+                "cognitive_state_formation_static_validators_v1.py"
+            ],
+            "status": "implemented"
+        }
+    ]
+}

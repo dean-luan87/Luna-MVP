@@ -1,0 +1,11 @@
+{
+  "title": "Goal Memory Relation v1",
+  "flow": ["Memory Context", "Goal Candidate Context", "Self Governance Review"],
+  "memory_role": "provide historical experience and context",
+  "memory_can_create_goal_automatically": false,
+  "memory_can_modify_goal": false,
+  "memory_overrides_current_reality": false,
+  "current_reality_precedence": true,
+  "candidate_only": true,
+  "memory_owner": "Memory"
+}

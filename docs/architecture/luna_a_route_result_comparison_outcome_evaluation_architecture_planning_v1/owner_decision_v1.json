@@ -1,0 +1,16 @@
+{
+  "artifact":"owner_decision_v1",
+  "classification":"D_NO_CANONICAL_OWNER_FOUND",
+  "canonical_owner_exists":false,
+  "evidence":[
+    {"asset":"capabilities/midplatform/core/runtime_executor/execution_result_types_v1.py","finding":"result candidate type and status only; no comparison/evaluation authority"},
+    {"asset":"capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_reconsideration_v1.py","finding":"feedback-to-reconsideration candidate helpers; no outcome comparison"},
+    {"asset":"docs/architecture/cognitive_action_outcome_evaluation_architecture_v1/","finding":"valuable architecture contracts, explicitly no implementation/runtime"},
+    {"asset":"docs/architecture/cognitive_expectation_feedback_architecture_v1/","finding":"expectation difference and feedback contracts; no executable owner"}
+  ],
+  "recommended_future_owner":"Outcome Evaluation Governance",
+  "owner_scope":["comparability gate","deviation candidate","outcome evaluation candidate","multi-cause attribution candidate","candidate handoffs to reconsideration and learning"],
+  "owner_exclusions":["Reality truth","Field mutation","Decision mutation","Task mutation","Action execution","Learning execution","Memory mutation","Prediction Engine","Emotion","B Route"],
+  "decision_status":"planning recommendation only; no owner implementation created",
+  "parallel_super_owner_prohibited":["Cognitive Brain Governance","Cognitive Feedback Governance","Intelligence Governance","Cognitive Supervision Governance"]
+}

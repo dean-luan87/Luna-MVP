@@ -1,0 +1,17 @@
+{
+  "owner": "Field Perception Orchestrator",
+  "model_confidence_is_sufficiency": false,
+  "inputs": ["information need", "expected evidence", "received visual evidence", "target coverage", "semantic coverage", "temporal validity", "contradiction", "uncertainty", "resource/session state"],
+  "statuses": ["SUFFICIENT", "INSUFFICIENT", "CONTESTED", "STALE", "NEEDS_CONFIRMATION", "NEEDS_ADDITIONAL_MODALITY", "NEEDS_REDIRECT", "NEEDS_PROVIDER_SWITCH"],
+  "control_routes": {
+    "SUFFICIENT": "STOP",
+    "INSUFFICIENT": "CONTINUE",
+    "CONTESTED": "RECONSIDER",
+    "NEEDS_ADDITIONAL_MODALITY": "ADD_CAPABILITY",
+    "NEEDS_REDIRECT": "REDIRECT",
+    "NEEDS_PROVIDER_SWITCH": "SWITCH_PROVIDER"
+  },
+  "candidate_only": true,
+  "provider_invocation": false,
+  "field_mutation": false
+}

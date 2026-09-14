@@ -1,0 +1,18 @@
+{
+    "temporal_types": [
+        "persistent",
+        "interval",
+        "recurring",
+        "temporary",
+        "seasonal",
+        "event_driven",
+        "until_revoked",
+        "unknown_validity"
+    ],
+    "activation_rule": "定义在 valid_from 范围内且未被 revoked 或 expired 的 temporal definition 可进入 active eligibility。",
+    "expiry_rule": "定义在 valid_until 之后或 expiration_event 触发后进入 expired_state。",
+    "refresh_rule": "具有 refresh_policy 的 definition 可生成 refresh requests，用于延长或重新评估。",
+    "decay_rule": "置信度和 active eligibility 会受到 temporal_decay 的影响，随时间衰减。",
+    "replay_behavior": "时间模型可通过事件回放重建；历史 temporal definitions 保留在 timeline 中。",
+    "projection_eligibility": "当前时间、recurrence 与 temporary_overlay 状态决定 projection 是否包含该 definition。"
+}

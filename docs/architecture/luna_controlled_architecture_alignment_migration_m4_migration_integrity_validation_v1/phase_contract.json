@@ -1,0 +1,218 @@
+{
+  "Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M4-Migration-Integrity-Validation-v1-001",
+  "Stage": "M4 Migration Integrity Validation",
+  "Execution Mode": "Planning Only",
+  "Execution Profile": "Validation Planning Only",
+  "planning_status": "PLANNING_CANDIDATE",
+  "Previous Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M3-Runtime-Boundary-Alignment-v1-001",
+  "Previous Phase Decision": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M3_RUNTIME_BOUNDARY_ALIGNMENT_READY",
+  "Current Work Description": {
+    "in_scope": [
+      "cross-phase consistency validation for M0 through M3",
+      "migration integrity checklist",
+      "migration safety assessment",
+      "validation evidence registry",
+      "rollback readiness review",
+      "migration blocker review",
+      "planning-only summary and change manifest",
+      "V0 static checks"
+    ],
+    "out_of_scope": [
+      "migration execution",
+      "existing-file modification",
+      "Runtime Schema Contract Owner Metadata or Baseline modification",
+      "Candidate Contract activation",
+      "Adapter or Cognitive Runtime creation",
+      "Runner or business Runtime execution",
+      "M5 Architecture Freeze entry"
+    ]
+  },
+  "Input Assets": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/"
+  ],
+  "Required Pre-Read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_engineering_phase_execution_role_standard_v1.md",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_verification_execution_authority_standard_v1.md",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_execution_mode_verification_authority_matrix_v1.json",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_required_fields_standard_v1.json",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_template_v1.md",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_runner_and_verifier_naming_standard_v1.md",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_status_registry_v1.json",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_failure_classification_and_remediation_standard_v1.json",
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_agent_product_development_compliance_contract_v1.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/documentation_change_manifest.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/phase_contract.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/existing_contract_compatibility_matrix.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/legacy_compatibility_rollback_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/blocked_contract_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/m1_change_manifest.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/phase_contract.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/capability_registry_alignment_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_conflict_review.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/m2_change_manifest.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/phase_contract.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/future_cognitive_runtime_gap_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_adapter_candidate_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_risk_register.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/m3_change_manifest.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/phase_contract.json"
+  ],
+  "Target Directory": "docs/architecture/luna_controlled_architecture_alignment_migration_m4_migration_integrity_validation_v1/",
+  "Scope": [
+    "create PLANNING_CANDIDATE integrity-validation assets only in the M4 target directory",
+    "validate M0 M1 M2 and M3 consistency from repository evidence",
+    "assess future migration safety and rollback readiness without authorization",
+    "run authorized V0 static checks only"
+  ],
+  "Out Of Scope": [
+    "modify any existing file",
+    "modify Runtime Schema Contract Owner Metadata Registry or Baseline",
+    "activate Candidate Contract",
+    "create Adapter or Cognitive Runtime",
+    "execute migration Runner or business Runtime",
+    "start M5 Architecture Freeze",
+    "run Final Phase Verifier by Agent"
+  ],
+  "Required Final Files": [
+    "cross_phase_consistency_matrix.json",
+    "migration_integrity_checklist.json",
+    "migration_safety_assessment.md",
+    "validation_evidence_registry.json",
+    "rollback_readiness_review.json",
+    "migration_blocker_registry.json",
+    "m4_migration_integrity_validation_summary.md",
+    "m4_change_manifest.json",
+    "phase_contract.json",
+    "verify_controlled_architecture_alignment_m4_migration_integrity_validation_v1.py"
+  ],
+  "Implementation Principles": [
+    "Planning Only",
+    "Validation Planning Only profile",
+    "evidence before readiness claim",
+    "candidate is not activation",
+    "migration safety condition is not migration authorization",
+    "source Owner and single Writer precedence",
+    "Runtime transports and executes but does not own cognition",
+    "Legacy and Baseline preservation",
+    "M5 requires a separate authorized phase"
+  ],
+  "Required Checks": {
+    "V0": [
+      "required file existence and exact target file set",
+      "JSON parse and Markdown nonempty",
+      "PLANNING_CANDIDATE marking",
+      "required M0 to M3 cross-phase directions and evidence references",
+      "all consistency statuses PASS and conflict fields empty",
+      "Architecture Schema Owner Runtime and Compatibility checklist coverage",
+      "Candidate inactive Owner and Writer unique Runtime unmodified Migration false",
+      "evidence registry covers M0 M1 M2 and M3",
+      "rollback readiness and blocker categories",
+      "manifest no active asset Runtime code adapter migration or M5 side effects",
+      "Verifier AST parse standard-import boundary and py_compile"
+    ],
+    "V1": [],
+    "V2": [
+      "User Terminal runs Final Phase Verifier"
+    ],
+    "V3": [
+      "ChatGPT performs final integrity and side-effect audit"
+    ]
+  },
+  "Negative Guards": [
+    "no-check-weaken",
+    "no-hardcoded-pass",
+    "no Final Phase Verifier by Agent",
+    "no existing-file modification",
+    "no migration execution",
+    "no Runtime Runner model provider database device or network execution",
+    "no Schema Contract Owner Metadata Registry or Baseline modification",
+    "no Candidate Contract activation",
+    "no Adapter or Cognitive Runtime creation",
+    "no M5 entry"
+  ],
+  "Verification Authority": {
+    "V0": "Agent",
+    "V1": "Not Authorized",
+    "V2": "User Terminal Only",
+    "V3": "ChatGPT Only"
+  },
+  "Allowed Agent Checks": [
+    "file existence",
+    "JSON parse",
+    "Markdown nonempty",
+    "reference path existence",
+    "static cross-phase and boundary consistency",
+    "AST parse",
+    "standard import checks",
+    "py_compile"
+  ],
+  "Allowed Agent Execution": [
+    "read required governance and M0 M1 M2 M3 evidence",
+    "create M4 planning candidate assets in the target directory",
+    "run V0 static checks",
+    "prepare exact user terminal command"
+  ],
+  "Prohibited Agent Execution": [
+    "run Final Phase Verifier",
+    "run Runner Runtime migration model provider network database or device",
+    "modify existing code Runtime Schema Contract Owner Metadata Registry or Baseline",
+    "activate Candidate Contract",
+    "implement Adapter or Cognitive Runtime",
+    "execute migration",
+    "enter M5"
+  ],
+  "Agent Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "User Terminal Commands": [
+    "python3 docs/architecture/luna_controlled_architecture_alignment_migration_m4_migration_integrity_validation_v1/verify_controlled_architecture_alignment_m4_migration_integrity_validation_v1.py"
+  ],
+  "Expected Success Decision": "V2_FINAL_VERIFICATION_PASSED",
+  "Expected Success Readiness": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M4_MIGRATION_INTEGRITY_VALIDATION_READY",
+  "Expected Next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "Expected Failure Decision": "BLOCKED_BY_VERIFIER_FAILURE",
+  "Expected Failure Readiness": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M4_MIGRATION_INTEGRITY_VALIDATION_REMEDIATION_REQUIRED",
+  "Expected Failure Next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "Stop Condition": "All required M4 planning candidate assets and authorized V0 static checks are complete; stop before user-terminal V2, migration, active-asset change, Runtime work, or M5.",
+  "Blocker Conditions": [
+    "cross-phase conflict or missing required evidence",
+    "duplicate Owner or Writer",
+    "candidate contract activation",
+    "Runtime cognitive ownership or Field State bypass",
+    "legacy or baseline replacement",
+    "rollback gap that makes a future migration irreversible",
+    "existing-file code Runtime Schema Contract Owner Metadata Registry or Baseline side effect",
+    "migration execution or M5 entry",
+    "Verifier syntax or import boundary failure"
+  ],
+  "Completion Report Format": [
+    "Read files",
+    "Created files",
+    "Modified files",
+    "Cross phase findings",
+    "Integrity status",
+    "Rollback status",
+    "Blocker status",
+    "Static checks",
+    "Side-effect boundary",
+    "User terminal command",
+    "Current status"
+  ],
+  "Migration": false,
+  "Runtime Change": false,
+  "Schema Change": false,
+  "Contract Change": false,
+  "Owner Metadata Change": false,
+  "M5 Started": false,
+  "Current Status Contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

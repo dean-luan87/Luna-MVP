@@ -1,0 +1,9 @@
+{
+  "title": "Resource Regulation Contract v1",
+  "owner": "Self Regulation / Resource Regulation",
+  "resource_domains": ["CPU", "GPU", "Memory", "Energy", "Network", "Storage", "Time"],
+  "inputs": ["Resource Observation", "Task Priority", "Risk", "Capability Requirement", "Runtime Resource State"],
+  "outputs": ["Resource Regulation Candidate", "Budget Constraint Candidate", "Observation Frequency Candidate"],
+  "schema": ["resource_id", "resource", "available", "usage", "threshold", "candidate_adjustment", "impact", "confidence", "unknown", "review_status"],
+  "rules": {"read_only_observation":true,"candidate_only":true,"attention_governance_link_required":true,"no_hardware_control":true,"no_action_execution":true}
+}

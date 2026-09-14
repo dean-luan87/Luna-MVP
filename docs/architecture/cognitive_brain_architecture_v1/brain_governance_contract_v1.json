@@ -1,0 +1,59 @@
+{
+  "title": "Brain Governance Contract v1",
+  "contract_type": "Brain Admission and Authority Governance",
+  "admission_checks": [
+    "Global Cognitive State package",
+    "Relevant Evidence",
+    "Hypothesis Candidates",
+    "Expectation Feedback",
+    "Option Candidates",
+    "Constraint Candidates",
+    "Intent alignment",
+    "Value constraints",
+    "Drive influence",
+    "Unknown",
+    "Risk",
+    "Conflict",
+    "Confidence",
+    "Provenance"
+  ],
+  "authority": {
+    "reality": "owns facts and reducer",
+    "field": "owns Field state",
+    "self": "owns Identity, Capability, and State",
+    "memory": "owns historical context",
+    "attention": "owns resource management",
+    "value": "supplies constraints",
+    "drive": "supplies influence",
+    "learning": "supplies candidates",
+    "brain": "owns interpretation and final Decision authority",
+    "decision_boundary": "governs Decision Candidate integration",
+    "action_boundary": "governs execution request"
+  },
+  "boundary": {
+    "brain_does_not_replace_reality": true,
+    "brain_does_not_modify_field": true,
+    "brain_does_not_own_memory": true,
+    "brain_does_not_own_goal": true,
+    "brain_does_not_execute_action": true,
+    "brain_does_not_access_camera": true,
+    "brain_does_not_access_model": true,
+    "brain_does_not_access_hardware": true,
+    "brain_does_not_access_database": true,
+    "brain_does_not_run_prediction": true,
+    "brain_does_not_run_world_model": true,
+    "brain_does_not_run_b_simulation": true,
+    "brain_does_not_run_automatic_learning": true,
+    "brain_does_not_bypass_attention": true,
+    "brain_does_not_bypass_governance": true,
+    "decision_candidate_is_not_action": true,
+    "unknowns_are_preserved": true
+  },
+  "change_control": {
+    "constitution_review_required": true,
+    "protocol_version_required": true,
+    "decision_boundary_review_required": true,
+    "action_boundary_review_required": true,
+    "brain_scope_change_is_candidate_based": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "contract_name": "Experience Conflict Resolution Contract v1",
+  "current_reality_precedence": "Current Reality > Recent Experience > Old Experience",
+  "current_reality": true,
+  "recent_experience": true,
+  "old_experience": true,
+  "conflict_candidate": [],
+  "supporting_evidence": [],
+  "recency": null,
+  "reliability": null,
+  "unknowns": [],
+  "conflict_is_not_silently_erased": true,
+  "reducer_or_governed_review_required": true,
+  "experience_does_not_overwrite_reality": true,
+  "experience_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

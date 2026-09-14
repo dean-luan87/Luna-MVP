@@ -1,0 +1,12 @@
+device_id: luna_badge_dev_001
+platform: mac
+startup_mode: active
+log_level: info
+language: zh-CN
+wake_word_engine: porcupine
+audio_input_device: default
+camera_device: 0
+auto_update: false
+# V1.8.1: Observer Mode 配置
+# 设置为 false 时，Observer Mode 功能完全关闭，行为 100% 等价 v1.8
+observer_mode_enabled: false

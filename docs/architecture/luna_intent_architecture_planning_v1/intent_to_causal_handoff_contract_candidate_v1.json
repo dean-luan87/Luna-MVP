@@ -1,0 +1,57 @@
+{
+  "artifact": "intent_to_causal_handoff_contract_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "producer_owner": "Intent Governance",
+  "consumer_owner": "Causal Governance",
+  "handoff_kind": "INTENT_TO_CAUSAL_HANDOFF_CANDIDATE",
+  "semantic_separation": {
+    "intent_question": "What future state is sought, avoided, maintained, or changed?",
+    "causal_question": "Why, what causes what, and what may happen if conditions change?",
+    "decision_question": "Which admissible course should be selected?"
+  },
+  "required_payload": [
+    "handoff_id",
+    "intent_candidate_refs",
+    "potential_intent_refs",
+    "competition_refs",
+    "suppression_refs",
+    "temporary_dominance_refs",
+    "context_refs",
+    "pcn_refs",
+    "field_refs",
+    "role_refs",
+    "relationship_refs",
+    "resource_ref",
+    "provenance",
+    "uncertainty",
+    "handoff_reason_candidate"
+  ],
+  "allowed_output": [
+    "source-owned references",
+    "Intent Candidate references",
+    "interaction references",
+    "unresolved unknowns",
+    "candidate-only request for future causal analysis"
+  ],
+  "forbidden_output": [
+    "causal explanation",
+    "causal truth",
+    "counterfactual result",
+    "selected Decision",
+    "Action command",
+    "Task creation",
+    "Goal mutation",
+    "Reality mutation",
+    "Runtime instruction"
+  ],
+  "admission_guards": [
+    "at least one Intent or Potential Intent candidate reference exists",
+    "provenance remains source-addressable",
+    "Unknown and alternatives are preserved",
+    "temporary dominance is not represented as Decision",
+    "consumer may reject or request clarification"
+  ],
+  "consumer_mutation_authority_over_intent": false,
+  "producer_mutation_authority_over_causal": false,
+  "active_contract": false
+}

@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Learning Scheduler Contract v1",
+  "learning_request": {},
+  "experience_reference": {},
+  "pattern_evaluation_candidate": {},
+  "adaptation_candidate": {},
+  "schedule_class": "Low Frequency",
+  "learning_scheduler_does_not_execute_automatic_learning": true,
+  "learning_scheduler_does_not_modify_model": true,
+  "unknowns_are_preserved": true
+}

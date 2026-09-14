@@ -1,0 +1,30 @@
+{
+  "frame_seq": 27,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R27_multi_object_multi_feedback_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "blocked",
+
+  "confirmation_input_type": "checked_and_not_found",
+  "confirmation_input_raw_text": "我看过了但仍不对（多对象/多反馈干扰）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [25, 15, 80, 75], "conf": 0.88 },
+    { "label": "cup", "bbox": [0, 0, 55, 55], "conf": 0.7 },
+    { "label": "box", "bbox": [120, 30, 190, 90], "conf": 0.55 },
+    { "label": "bag", "bbox": [200, 120, 250, 180], "conf": 0.45 }
+  ]
+}
+

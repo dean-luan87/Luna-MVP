@@ -1,0 +1,8 @@
+{
+  "title": "Action Recovery Contract v1",
+  "owner": "Action Runtime Governance",
+  "failure_types": ["Execution Failure", "Environment Change", "Permission Change", "Unexpected Outcome"],
+  "pipeline": ["Failure", "Diagnosis", "Retry Candidate", "Alternative Action", "Abort"],
+  "schema": ["recovery_id", "execution_id", "failure_type", "cause_candidate", "retry_candidate", "alternative_candidate", "abort_candidate", "trace_id"],
+  "rules": {"goal_immutable": true, "value_immutable": true, "constitution_immutable": true, "no_auto_retry": true, "abort_supported": true}
+}

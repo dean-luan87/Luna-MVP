@@ -1,0 +1,8 @@
+{
+  "title": "Action Permission Check v1",
+  "owner": "Action Boundary Governance",
+  "checks": ["Constitution", "Safety", "Permission", "Context", "Human Authorization When Required"],
+  "inputs": ["Action Candidate", "Risk Evaluation", "Active Role", "Context", "Authority Registry"],
+  "outputs": ["Permission Pass Candidate", "Permission Reject Candidate", "Confirmation Required Candidate"],
+  "rules": {"constitution_check_required": true, "safety_check_required": true, "permission_not_execution": true, "no_implicit_authority": true}
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "experience_extraction_v1",
+  "owner": "Experience System",
+  "inputs": ["decision_candidate", "action_or_interaction_outcome", "current_field", "active_role", "task_context", "knowledge_used", "feedback"],
+  "output": "experience_candidate",
+  "required_fields": ["event_summary", "outcome", "value", "impact", "feedback", "provenance"],
+  "outcome_required": true,
+  "not_action_log": true,
+  "automatic_memory_write": false,
+  "automatic_learning": false
+}

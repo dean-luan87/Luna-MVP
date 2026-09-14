@@ -1,0 +1,44 @@
+{
+  "contract_id": "luna_context_to_pcn_handoff_contract_candidate_v1",
+  "producer": "Context_Foundation",
+  "consumer": "Personal Cognitive Network Governance",
+  "handoff_direction": "Context Envelope Candidate -> PCN",
+  "accepted_input": "Context Envelope Candidate",
+  "provided_references": [
+    "Current Context",
+    "Related Projection",
+    "Activation Reference",
+    "Provenance"
+  ],
+  "required_handoff_metadata": [
+    "Context ID",
+    "Context Version",
+    "Temporal Scope",
+    "Source Owner",
+    "Source Reference",
+    "Confidence",
+    "Unknown",
+    "Trace Reference"
+  ],
+  "activation_reference_semantics": "A source relevance reference only; PCN remains the Owner of any future activation candidate.",
+  "pcn_entry_consumes_context_handoff_only": true,
+  "pcn_allowed_outputs_after_future_admission": [
+    "Typed Connection Candidate",
+    "Activation Candidate",
+    "Read-only Contextual Projection Candidate"
+  ],
+  "forbidden_handoff_outputs": [
+    "Decision",
+    "Causal Result",
+    "Intent",
+    "Fact",
+    "Action",
+    "Source Mutation Command"
+  ],
+  "source_owner_precedence": true,
+  "source_owner_transfer": false,
+  "pcn_source_object_ownership": false,
+  "implementation_started": false,
+  "active_contract": false,
+  "status": "HANDOFF_CONTRACT_CANDIDATE"
+}

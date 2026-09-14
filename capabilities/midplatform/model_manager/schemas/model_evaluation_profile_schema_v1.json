@@ -1,0 +1,12 @@
+{
+  "schema_id": "ModelEvaluationProfileSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "profile_id",
+    "model_id",
+    "scene_type",
+    "routing_profile_candidate",
+    "candidate_only",
+    "does_not_affect_current_decision"
+  ]
+}

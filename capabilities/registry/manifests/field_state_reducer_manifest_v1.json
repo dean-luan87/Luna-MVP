@@ -1,0 +1,87 @@
+{
+    "capability_id": "luna.field_state_reducer",
+    "capability_name": "Field State Reducer",
+    "domain": "midplatform.field_state",
+    "owner_layer": "midplatform.core",
+    "responsibility": "Reduce admitted field events into a field state candidate under temporal, evidence, policy, conflict, overlay, and governance constraints.",
+    "lifecycle_status": "functional_module_ready",
+    "module_version": "v1",
+    "api_version": "v1",
+    "input_contract": {
+        "summary": "admitted field events, existing state snapshot, temporal snapshot, governed contract snapshots, version snapshots",
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+            "docs/architecture/luna_field_state_reducer_technical_planning_v1/field_state_type_registry_v1.json"
+        ]
+    },
+    "output_contract": {
+        "summary": "field state candidate, read projection candidate, diagnostics, trace ref, replay key",
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_output_builder_v1.py"
+        ]
+    },
+    "dependencies": [],
+    "dependents": [],
+    "module_api": {
+        "path": "capabilities/midplatform/core/field_state_reducer/module/",
+        "exists": true
+    },
+    "implementation_path": "capabilities/midplatform/core/field_state_reducer/",
+    "integration_runner": {
+        "path": "tools/evaluation/midplatform/run_field_state_reducer_module_integration_v1.py",
+        "exists": true,
+        "runner_type": "module_integration"
+    },
+    "diagnostics_support": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_diagnostics_v1.py"
+        ]
+    },
+    "trace_support": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/field_state_reducer_trace_types_v1.py"
+        ]
+    },
+    "replay_support": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/state_reduction/state_reduction_provenance_replay_v1.py"
+        ]
+    },
+    "persistence_authority": false,
+    "fact_admission_authority": false,
+    "action_execution_authority": false,
+    "runtime_authority": false,
+    "replacement_policy": "planned_replacement",
+    "upgrade_policy": "evidence_gated",
+    "deprecation_policy": "announce_and_freeze_dependents",
+    "known_limitations": [
+        "candidate-only boundary; no fact admission",
+        "no state store persistence",
+        "no read model store write",
+        "no action execution",
+        "no provider/model/runtime invocation"
+    ],
+    "ready_evidence": {
+        "total_cases": 16,
+        "passed_cases": 16,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "boundary_preserved": true,
+        "evidence_ref": "_tmp_eval_out/_latest_module_integration_report.json"
+    },
+    "internal_components": [
+        "policy_evaluation",
+        "policy_selection",
+        "state_reduction",
+        "trace_builder",
+        "replay_builder"
+    ],
+    "manifest_path": "capabilities/registry/manifests/field_state_reducer_manifest_v1.json",
+    "last_updated": "2026-07-16"
+}

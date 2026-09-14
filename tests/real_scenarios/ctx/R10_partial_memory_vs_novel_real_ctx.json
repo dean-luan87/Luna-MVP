@@ -1,0 +1,18 @@
+{
+  "frame_seq": 10,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R10_partial_memory_vs_novel_real_ctx",
+  "focus_object_label": "bottle",
+  "detector_floor_due": true,
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [30, 30, 80, 80], "conf": 0.88 },
+    { "label": "box", "bbox": [0, 0, 40, 40], "conf": 0.65 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "我有点不确定"
+}
+

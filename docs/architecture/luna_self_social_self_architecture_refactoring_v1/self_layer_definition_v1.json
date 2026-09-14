@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "name": "Self Layer Definition",
+  "layer": "Self Layer",
+  "purpose": "Luna's recognition and maintenance of its own existence conditions",
+  "components": [
+    {"component": "Self Identity", "answers": "Who am I", "owns": ["Core Identity", "Continuity"]},
+    {"component": "Self Capability", "answers": "What can I do", "owns": ["Capability Profile", "Limitations"]},
+    {"component": "Self Boundary", "answers": "What can and cannot I do", "owns": ["Internal Permission Boundary"]},
+    {"component": "Self Resource", "answers": "What resources sustain me", "owns": ["Hardware", "Software", "Memory", "Compute", "Energy"]},
+    {"component": "Self Regulation", "answers": "Am I stable and how do I preserve stability", "owns": ["Health", "Isolation", "Degradation", "Recovery Candidates"]},
+    {"component": "Self Evolution", "answers": "How can I improve over time", "owns": ["Growth Candidates", "Long-term Adaptation"]}
+  ],
+  "forbidden_domains": ["Social Role", "Relationship", "External Evaluation", "Social Norm", "Social Runtime"],
+  "rules": {"identity_continuity": true, "social_concerns_externalized": true, "self_boundary_protected": true, "no_direct_action": true}
+}

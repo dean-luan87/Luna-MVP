@@ -1,0 +1,241 @@
+{
+    "governance_assets": [
+        {
+            "governance_asset": "Survival and Safety Constitution",
+            "current_status": "defined",
+            "target_role": "constitutional foundation",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_0",
+            "notes": "Do not rewrite; foundational."
+        },
+        {
+            "governance_asset": "Field-Centric Cognitive Constitution",
+            "current_status": "defined",
+            "target_role": "field_centric_constitution",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_0",
+            "notes": "Core cognitive constitution."
+        },
+        {
+            "governance_asset": "Layer Charters",
+            "current_status": "draft",
+            "target_role": "layer_charters",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": true,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Adapt per layer charters as needed."
+        },
+        {
+            "governance_asset": "Cross-Layer Protocols",
+            "current_status": "defined",
+            "target_role": "protocols",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": true,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Reuse existing protocols."
+        },
+        {
+            "governance_asset": "Model / Skill Admission",
+            "current_status": "defined",
+            "target_role": "admission_gateway",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "governance",
+                "evaluation"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retention of admission contract."
+        },
+        {
+            "governance_asset": "Candidate / Fact Admission",
+            "current_status": "defined",
+            "target_role": "fact_admission",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain as-is."
+        },
+        {
+            "governance_asset": "Runtime Boundary",
+            "current_status": "defined",
+            "target_role": "execution_guardrail",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Do not rewrite."
+        },
+        {
+            "governance_asset": "Evidence Chain",
+            "current_status": "defined",
+            "target_role": "evidence_backbone",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain evidence chain."
+        },
+        {
+            "governance_asset": "Input / Output Symmetry",
+            "current_status": "defined",
+            "target_role": "io_symmetry",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Keep IO symmetry."
+        },
+        {
+            "governance_asset": "Negative Guards",
+            "current_status": "defined",
+            "target_role": "safety_guards",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain negative guards."
+        },
+        {
+            "governance_asset": "Verifier",
+            "current_status": "defined",
+            "target_role": "verification_services",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Reuse verifiers."
+        },
+        {
+            "governance_asset": "Model Test Lens",
+            "current_status": "defined",
+            "target_role": "evaluation_primitive",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "evaluation",
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain test lens."
+        },
+        {
+            "governance_asset": "Human Correction",
+            "current_status": "defined",
+            "target_role": "correction_route",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "evaluation",
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain human correction."
+        },
+        {
+            "governance_asset": "Trace and Diagnostics",
+            "current_status": "defined",
+            "target_role": "diagnostics",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain diagnostics."
+        },
+        {
+            "governance_asset": "Change Control",
+            "current_status": "defined",
+            "target_role": "change_control",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain change control."
+        },
+        {
+            "governance_asset": "Post-Review / Freeze",
+            "current_status": "defined",
+            "target_role": "post_review_freeze",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain freeze."
+        },
+        {
+            "governance_asset": "Rollback / Revocation",
+            "current_status": "defined",
+            "target_role": "rollback_revocation",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Retain rollback."
+        },
+        {
+            "governance_asset": "Permission / Owner Approval",
+            "current_status": "defined",
+            "target_role": "owner_approval",
+            "reuse_decision": "required",
+            "rewrite_required": false,
+            "extension_required": false,
+            "target_consumers": [
+                "all_layers"
+            ],
+            "migration_wave": "wave_1",
+            "notes": "Owner approval needed for migrations."
+        }
+    ]
+}

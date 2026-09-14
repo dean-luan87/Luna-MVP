@@ -1,0 +1,25 @@
+{
+    "artifact": "decision_negative_guards_v1",
+    "status": "PLANNING_CANDIDATE",
+    "negative_guards": [
+        "intent != decision",
+        "causal != decision",
+        "decision != action",
+        "decision != task",
+        "correlation != decision authority",
+        "model suggestion != decision authority",
+        "memory preference != decision authority",
+        "emotion != decision authority",
+        "utility != permission",
+        "risk score != safety authority",
+        "preferred candidate != executable action",
+        "selected candidate != task",
+        "decision layer != action executor",
+        "decision layer != task creator",
+        "no runtime side effects",
+        "no database write",
+        "no source mutation",
+        "no permission bypass",
+        "no safety bypass"
+    ]
+}

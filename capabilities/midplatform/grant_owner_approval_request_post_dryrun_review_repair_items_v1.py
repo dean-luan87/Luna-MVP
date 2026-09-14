@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+"""Grant owner approval request post-dryrun review repair — items v1."""
+
+from __future__ import annotations
+
+from typing import Dict, Tuple
+
+PHASE_ID = "Phase-Midplatform-Grant-Owner-Approval-Request-Post-DryRun-Review-Repair-v1-001"
+SCOPE = "grant_owner_approval_request_post_dryrun_review_repair_only"
+
+DEFAULT_OUTPUT = (
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/"
+    "grant_owner_approval_request_post_dryrun_review_repair_v1_smoke_v0"
+)
+
+CANONICAL_REBUILD_OUTPUT = (
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/"
+    "task_manager_owner_approval_canonical_go_checkpoint_rebuild_v1_smoke_v0"
+)
+
+POST_REVIEW_OUTPUT = (
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/"
+    "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1_smoke_v0"
+)
+
+DRYRUN_OUTPUT = (
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/"
+    "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_dryrun_v1_smoke_v0"
+)
+
+POST_REVIEW_STAGE_ID = (
+    "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1"
+)
+POST_REVIEW_STAGE_KEY = "grant_owner_approval_request_post_dryrun_review"
+POST_REVIEW_RUNNER = (
+    "run_midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1"
+)
+POST_REVIEW_FINAL_GO = (
+    "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_OWNER_APPROVAL_REQUEST_POST_DRYRUN_REVIEW_READY_FOR_ISSUANCE_PLANNING"
+)
+
+FINAL_DECISION_COMPLETE = (
+    "MIDPLATFORM_GRANT_OWNER_APPROVAL_REQUEST_POST_DRYRUN_REVIEW_REPAIR_READY_FOR_CANONICAL_CHECKPOINT_REBUILD_TOPDOWN_RERUN"
+)
+FINAL_DECISION_BLOCKED = (
+    "MIDPLATFORM_GRANT_OWNER_APPROVAL_REQUEST_POST_DRYRUN_REVIEW_REPAIR_STILL_BLOCKED_BY_REVIEW_LOGIC_OR_TRACEABILITY_GAP"
+)
+
+NEXT_PHASE_COMPLETE = (
+    "Phase-Midplatform-Task-Manager-Owner-Approval-Canonical-GO-Checkpoint-Rebuild-v1-001"
+)
+NEXT_PHASE_BLOCKED = PHASE_ID
+
+PASS_FLAG = "grant_owner_approval_request_post_dryrun_review_repair_complete"
+
+REQUIRED_ORIGINAL_FILES: Tuple[str, ...] = (
+    "capabilities/midplatform/task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1.py",
+    "tools/evaluation/midplatform/run_midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1.py",
+    "tools/evaluation/midplatform/verify_midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_request_post_dryrun_review_v1.py",
+)
+
+NON_EXECUTION_FLAGS: Dict[str, bool] = {
+    "grant_owner_approval_request_post_dryrun_review_repair_only": True,
+    "candidate_only": True,
+    "no_protocol_change": True,
+    "no_model_route_touched": True,
+    "no_world_model_assembly": True,
+    "no_scene_graph_smoke_io": True,
+    "no_task_reasoning": True,
+    "no_field_simulation": True,
+    "no_fake_go_artifacts": True,
+    "no_issue_review_stage_created": True,
+    "no_gap_review_stage_created": True,
+    "no_rerun_review_stage_created": True,
+}
+
+FAILURE_CLASSES: Tuple[str, ...] = (
+    "runner_verifier_decision_drift",
+    "evidence_traceability_gap",
+    "schema_output_gap",
+    "downstream_expectation_gap",
+    "genuine_logic_hold",
+)

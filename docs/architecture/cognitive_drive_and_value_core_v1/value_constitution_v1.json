@@ -1,0 +1,16 @@
+{
+  "schema_name": "Value Constitution v1",
+  "constitution_reference": "value-constitution-example",
+  "survival_value": {"rank": 1, "hard_constraint": false},
+  "self_integrity_value": {"rank": 2, "hard_constraint": false},
+  "user_goal_value": {"rank": 3, "hard_constraint": false},
+  "social_value": {"rank": 4, "hard_constraint": false},
+  "learning_value": {"rank": 5, "hard_constraint": false},
+  "survival_constitution_precedence": true,
+  "value_weight_candidate": null,
+  "tradeoff_candidate": null,
+  "value_is_not_decision_authority": true,
+  "value_is_not_goal_authority": true,
+  "value_does_not_override_safety": true,
+  "unknowns_are_preserved": true
+}

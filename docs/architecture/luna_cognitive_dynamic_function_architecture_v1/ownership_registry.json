@@ -1,0 +1,18 @@
+{
+  "registry_id": "dynamic_cognitive_function_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Cognitive State Vector", "owner": "Dynamic Cognitive Function Governance", "writer": "Vector Update Candidate Flow", "reader": "Attention, Understanding, Decision"},
+    {"module": "Dynamic Cognitive Function", "owner": "Cognitive Function Governance", "writer": "Function Contract Boundary", "reader": "State Vector and Self Regulation"},
+    {"module": "Self Regulation Function", "owner": "Self Regulation", "writer": "Self Regulation Candidate Flow", "reader": "Cognitive Function, Runtime Boundary"},
+    {"module": "Parameter Space", "owner": "Cognitive Parameter Governance", "writer": "Parameter Candidate Registry", "reader": "Genome, Function Governance"},
+    {"module": "Cognitive Genome", "owner": "Cognitive Genome Governance", "writer": "Versioned Genome Candidate Flow", "reader": "Hive Evaluation, Self Review"},
+    {"module": "Adaptive Adjustment", "owner": "Adaptive Adjustment Governance", "writer": "Adjustment Candidate Flow", "reader": "Self Review, Capability Governance"},
+    {"module": "Hive Evaluation", "owner": "Hive Evaluation Boundary", "writer": "Comparative Observation Interface", "reader": "Luna Self Review"},
+    {"module": "State Machine Migration", "owner": "Architecture Governance", "writer": "Mapping Registry", "reader": "Dynamic Function Governance"},
+    {"module": "Self", "owner": "Self Governance", "writer": "Self Review", "reader": "All Parameter Governance"},
+    {"module": "Constitution", "owner": "Constitution Governance", "writer": "Constitution Change Governance", "reader": "All Parameter Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"},
+    {"module": "B Route", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "Current Context Candidate"}
+  ]
+}

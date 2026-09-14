@@ -1,0 +1,30 @@
+{
+  "guard_set_id": "cognitive_state_reality_validation_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": [
+    "runtime_implementation",
+    "scheduler_implementation",
+    "automatic_state_transition",
+    "automatic_learning",
+    "emotion_runtime",
+    "b_route_runtime",
+    "action_execution",
+    "model_or_provider_integration",
+    "hardware_control",
+    "memory_mutation_from_validation",
+    "self_mutation_from_validation",
+    "identity_rewrite",
+    "goal_rewrite",
+    "model_switch_from_cognitive_state",
+    "if_emotion_runtime_modify_state",
+    "if_validation_modify_memory",
+    "if_cognitive_state_switch_model",
+    "if_hypothesis_execute_action"
+  ],
+  "state_output_must_be_candidate": true,
+  "understanding_adjustment_must_be_candidate": true,
+  "unknown_preserved": true,
+  "original_hypothesis_preserved": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

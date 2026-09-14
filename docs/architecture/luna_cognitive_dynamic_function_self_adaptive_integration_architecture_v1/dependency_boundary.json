@@ -1,0 +1,18 @@
+{
+  "contract_id": "dynamic_self_adaptive_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Self Constitution -> Self Regulation Function", "Self Regulation Function -> Dynamic Cognitive Function", "Field -> Dynamic Function", "Attention -> Resource Allocation", "Memory -> Historical Influence", "Knowledge -> Prior Knowledge", "Belief -> Confidence Dynamics", "Goal -> Cognitive Drive", "Value -> Utility Function", "Decision -> Decision Function", "Outcome -> Error Signal", "Learning -> Parameter Evolution Candidate", "Self Calibration -> Optimization Candidate", "Hive -> Optimization Candidate", "Self Review -> Adaptive Update Candidate"
+  ],
+  "forbidden_dependencies": [
+    "Dynamic Function -> Runtime", "Dynamic Function -> Direct Action", "Dynamic Function -> Reality Mutation", "Self Regulation -> Switch Model", "Self Regulation -> Hardware Control", "Self Calibration -> Automatic Parameter Update", "Self Calibration -> Identity Change", "Knowledge -> Replace Reality", "Memory -> Override Reality", "Goal -> Direct Action", "Value -> Commit Decision", "Decision -> Execute Action", "Outcome -> Direct Self Modification", "Learning -> Automatic Parameter Update", "Learning -> Model Training", "Hive -> Direct Parameter Modification", "Hive -> Direct Self Change", "Genome -> Identity Change", "B Route -> Modify A Function", "B Route -> Direct Parameter Adoption", "B Route -> Virtual Outcome as Experience", "Runtime -> Adaptive Parameter Authority", "Emotion -> Direct Parameter Adoption"
+  ],
+  "no_runtime": true,
+  "no_automatic_tuning": true,
+  "no_hive_connection": true,
+  "no_parameter_update": true,
+  "no_self_automatic_modification": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true,
+  "no_model_integration": true,
+  "no_hardware_control": true
+}

@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Cognitive Flow Compatibility Review",
+  "legacy_flow": ["Observation", "Field", "Brain", "Decision"],
+  "canonical_flow": ["Observation", "Evidence", "Field", "Context", "Workspace", "Attention", "Hypothesis", "Belief", "Expectation", "Global State", "Brain", "Decision Candidate", "Commitment", "Action Boundary", "Outcome", "Feedback", "Learning"],
+  "refactored_external_flow": ["External World", "Social Self", "Integration", "Brain", "Self Evaluation", "Decision"],
+  "compatibility": [
+    {"legacy_stage": "Observation", "new_stage": "External World / Evidence", "preserved": true},
+    {"legacy_stage": "Field", "new_stage": "Social Self context + Field", "preserved": true},
+    {"legacy_stage": "Brain", "new_stage": "Brain after Integration", "preserved": true},
+    {"legacy_stage": "Decision", "new_stage": "Decision after Self Evaluation", "preserved": true}
+  ],
+  "rules": {"legacy_flow_is_subflow": true, "new_layers_do_not_replace_evidence": true, "integration_before_brain": true, "decision_owner_unchanged": true, "flow_conflict_is_blocker": true}
+}

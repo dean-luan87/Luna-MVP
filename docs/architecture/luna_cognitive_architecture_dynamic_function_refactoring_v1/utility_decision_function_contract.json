@@ -1,0 +1,14 @@
+{
+  "contract_id": "utility_decision_function_v1",
+  "utility_equation": "Utility = f(Value, Goal, Resource, Risk)",
+  "decision_equation": "Decision = f(Understanding, Goal, Value, Self)",
+  "utility_inputs": ["Value", "Goal", "Resource", "Risk"],
+  "decision_inputs": ["Understanding", "Goal", "Value", "Self"],
+  "outputs": ["Utility Candidate", "Priority Candidate", "Decision Candidate", "Reconsideration Candidate"],
+  "hard_constraints_precede_score": true,
+  "utility_is_not_decision_authority": true,
+  "decision_is_not_action": true,
+  "self_has_veto_context": true,
+  "automatic_decision": false,
+  "candidate_only": true
+}

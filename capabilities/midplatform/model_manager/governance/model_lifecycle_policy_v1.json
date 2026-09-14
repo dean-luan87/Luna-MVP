@@ -1,0 +1,22 @@
+{
+  "schema_id": "ModelLifecyclePolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Foundation-Planning-v1-001",
+  "lifecycle_states": [
+    "candidate",
+    "sandbox",
+    "admitted",
+    "active",
+    "deprecated",
+    "blocked"
+  ],
+  "transitions": [
+    {"from": "candidate", "to": "sandbox", "requires": "security_review_passed"},
+    {"from": "sandbox", "to": "admitted", "requires": "benchmark_passed"},
+    {"from": "admitted", "to": "active", "requires": "admission_approved"},
+    {"from": "active", "to": "deprecated", "requires": "replacement_available"},
+    {"from": "any", "to": "blocked", "requires": "policy_violation"}
+  ],
+  "routing_eligible_states": ["admitted", "active"],
+  "execution_eligible_states": ["active"]
+}

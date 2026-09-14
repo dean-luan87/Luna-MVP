@@ -1,0 +1,25 @@
+{
+  "schema_id": "TeacherPerformanceRecordSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "record_id",
+    "provider_id",
+    "scene_type",
+    "admission_status",
+    "validation_status",
+    "evaluation_outcome",
+    "candidate_only",
+    "not_fact",
+    "does_not_affect_current_decision"
+  ],
+  "optional_fields": [
+    "case_id",
+    "job_id",
+    "teacher_noop_correct",
+    "value_score",
+    "latency_ms",
+    "cost_estimate",
+    "conflict_types",
+    "trace_refs"
+  ]
+}

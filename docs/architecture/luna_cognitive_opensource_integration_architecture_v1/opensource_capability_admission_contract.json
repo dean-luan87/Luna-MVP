@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Open Source Capability Admission Contract",
+  "owner":"Capability Governance",
+  "checks":["capability declaration","scope and layer","input/output contract","provenance and license","resource profile","failure domain","replacement path","evidence format","permission boundary"],
+  "lifecycle":["candidate","inventory","review","admitted","controlled_available","degraded","deprecated","retired"],
+  "required_adapter":["input adapter","output/evidence adapter","health adapter","failure adapter"],
+  "rules":{"admission_required":true,"external_asset_not_brain":true,"no_direct_memory_write":true,"no_direct_decision":true}
+}

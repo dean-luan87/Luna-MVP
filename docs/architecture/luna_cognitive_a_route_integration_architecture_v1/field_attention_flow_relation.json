@@ -1,0 +1,10 @@
+{
+  "relation_id": "field_attention_v1",
+  "flow": ["Current Field", "Field Complexity/Risk/Task Context", "Attention Candidate", "Context Candidate"],
+  "field_drives_attention_candidate": true,
+  "attention_recomputed_on_field_change": true,
+  "attention_does_not_modify_field": true,
+  "attention_does_not_write_memory": true,
+  "attention_does_not_execute_action": true,
+  "candidate_only": true
+}

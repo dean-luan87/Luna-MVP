@@ -1,0 +1,14 @@
+{
+    "artifact": "resource_influence_boundary_v1",
+    "allowed_outputs": [
+        "resource_allocation_candidate",
+        "compute_budget_candidate",
+        "interaction_intensity_candidate"
+    ],
+    "forbidden_outputs": [
+        "direct_device_control",
+        "direct_scheduler_execution",
+        "runtime_resource_mutation_command"
+    ],
+    "rule": "resource influence is bounded candidate output only"
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Option Brain Interface v1",
+  "contract_type": "Decision Candidate Package",
+  "brain_input": {
+    "situation_reference": {},
+    "option_list": [],
+    "tradeoff": {},
+    "risk": {},
+    "unknown": [],
+    "confidence": {},
+    "constraint": {},
+    "provenance": []
+  },
+  "brain_operations": {
+    "accept_candidate": true,
+    "modify_candidate": true,
+    "reject_candidate": true,
+    "request_more_information": true,
+    "retains_goal_authority": true,
+    "retains_decision_authority": true
+  },
+  "boundary": {
+    "option_layer_does_not_command_brain": true,
+    "option_layer_does_not_create_goal": true,
+    "option_layer_does_not_create_decision": true,
+    "option_layer_does_not_issue_action": true,
+    "brain_evaluation_is_final_boundary": true,
+    "no_direct_execution": true
+  }
+}

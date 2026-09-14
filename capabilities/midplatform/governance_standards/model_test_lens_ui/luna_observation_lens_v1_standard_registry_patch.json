@@ -1,0 +1,44 @@
+{
+  "patch_id": "LunaObservationLensV1StandardRegistryPatch",
+  "version": "v1",
+  "applied_by_phase": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Lens-V1-Closure-And-Standard-Freeze-Review-v1-001",
+  "registry_target": "capabilities/midplatform/governance_standards/model_test_lens_ui/model_test_lens_ui_standard_registry_v1.json",
+  "add_standards": [
+    {
+      "standard_id": "LunaObservationLensV1TemplateStandard",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_template_standard.md",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true,
+      "frozen": true,
+      "default_ui_template": true
+    },
+    {
+      "standard_id": "LunaObservationLensV1ComponentContract",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_component_contract.json",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "LunaObservationLensV1ModelAdapterSlotContract",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_model_adapter_slot_contract.json",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true
+    }
+  ],
+  "closure_artifacts": [
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_closure_report.md",
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_closure_manifest.json",
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_ui_freeze_snapshot.json",
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_followup_routes.json"
+  ],
+  "policy_updates": {
+    "all_future_model_test_pages_must_follow": true,
+    "luna_observation_lens_v1_default": true,
+    "robot_vision_hud_default": true,
+    "object_chip_bar_default": true,
+    "drawer_first_engineering_info": true
+  }
+}

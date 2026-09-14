@@ -1,0 +1,55 @@
+{
+    "artifact": "cognitive_state_formation_current_inventory_v1",
+    "phase_id": "Phase-Luna-Cognitive-State-Formation-Next-Module-Selection-v1-001",
+    "upstream_mainline_status": {
+        "context_pcn_intent_chain": "GO",
+        "intent_to_runtime_chain": "GO_CONTROLLED_WITH_RUNTIME_HARDENING_DEFERRED",
+        "evidence": [
+            "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/phase_contract.json",
+            "docs/architecture/luna_cognitive_execution_chain_closure_and_readiness_audit_v1/cognitive_execution_chain_readiness_decision_v1.json"
+        ]
+    },
+    "candidate_domain_assets": {
+        "A_attention_hypothesis_current_world": {
+            "doc_packages": [
+                "docs/architecture/cognitive_hypothesis_belief_architecture_v1/",
+                "docs/architecture/cognitive_global_state_representation_v1/"
+            ],
+            "core_code_assets": [
+                "capabilities/midplatform/core/information_integration_types_v1.py"
+            ],
+            "controlled_implementation_found": false,
+            "architecture_only": true
+        },
+        "B_memory_experience_learning": {
+            "doc_packages": [
+                "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/",
+                "docs/architecture/cognitive_learning_system_v1/"
+            ],
+            "core_code_assets": [
+                "capabilities/midplatform/core/working_memory_skeleton_v1.py"
+            ],
+            "controlled_implementation_found": false,
+            "architecture_only": true
+        },
+        "C_dynamic_function_state_vector_self_regulation": {
+            "doc_packages": [
+                "docs/architecture/luna_cognitive_dynamic_function_architecture_v1/",
+                "docs/architecture/luna_cognitive_dynamic_function_self_adaptive_integration_architecture_v1/",
+                "docs/architecture/luna_cognitive_self_regulation_architecture_v1/"
+            ],
+            "core_code_assets": [],
+            "controlled_implementation_found": false,
+            "architecture_only": true
+        }
+    },
+    "field_state_related_facts": {
+        "field_state_reducer_controlled_dryrun_go": true,
+        "field_state_reducer_real_runtime_implemented": false,
+        "field_state_reducer_behavior_policy_real_execution": false,
+        "evidence": [
+            "docs/architecture/luna_field_state_reducer_controlled_dryrun_v1/field_state_reducer_controlled_dryrun_summary_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_dryrun_v1/field_state_reducer_behavior_policy_controlled_dryrun_summary_v1.json"
+        ]
+    }
+}

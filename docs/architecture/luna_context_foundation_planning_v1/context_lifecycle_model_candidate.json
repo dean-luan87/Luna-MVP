@@ -1,0 +1,61 @@
+{
+  "model_id": "luna_context_lifecycle_model_candidate_v1",
+  "states": ["Create", "Activate", "Update", "Suspend", "Expire", "Archive"],
+  "transitions": [
+    {
+      "state": "Create",
+      "transition": "Create -> Activate",
+      "trigger": "minimum required source projections admitted with provenance and temporal scope",
+      "allowed": true
+    },
+    {
+      "state": "Activate",
+      "transition": "Activate -> Update",
+      "trigger": "new source projection, source revision, confidence change, or temporal change",
+      "allowed": true
+    },
+    {
+      "state": "Update",
+      "transition": "Update -> Activate",
+      "trigger": "updated Context Envelope Candidate accepted as current",
+      "allowed": true
+    },
+    {
+      "state": "Activate",
+      "transition": "Activate -> Suspend",
+      "trigger": "temporary context loss, attention transfer, or unresolved source conflict",
+      "allowed": true
+    },
+    {
+      "state": "Suspend",
+      "transition": "Suspend -> Activate",
+      "trigger": "source validity restored before expiry",
+      "allowed": true
+    },
+    {
+      "state": "Activate",
+      "transition": "Activate -> Expire",
+      "trigger": "temporal scope ends or governing source projections are revoked",
+      "allowed": true
+    },
+    {
+      "state": "Suspend",
+      "transition": "Suspend -> Expire",
+      "trigger": "suspension exceeds validity window",
+      "allowed": true
+    },
+    {
+      "state": "Expire",
+      "transition": "Expire -> Archive",
+      "trigger": "audit reference retention approved without source-object ownership transfer",
+      "allowed": true
+    }
+  ],
+  "update_requires_source_projection": true,
+  "physical_field_switch_forces_reset": false,
+  "suspend_is_not_delete": true,
+  "expire_is_not_memory": true,
+  "archive_owns_source_objects": false,
+  "runtime_state_machine_implemented": false,
+  "status": "PLANNING_CANDIDATE"
+}

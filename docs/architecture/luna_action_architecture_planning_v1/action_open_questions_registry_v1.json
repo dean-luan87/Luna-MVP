@@ -1,0 +1,41 @@
+{
+    "artifact": "action_open_questions_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "questions": [
+        {
+            "id": "AQ-001",
+            "topic": "irreversible escalation threshold",
+            "question": "How to parameterize stronger confirmation and safety thresholds for irreversible actions?",
+            "owner": "Action Governance",
+            "status": "open"
+        },
+        {
+            "id": "AQ-002",
+            "topic": "readiness decay",
+            "question": "Should readiness candidate expire after context drift and what timer authority owns expiration?",
+            "owner": "Action Governance",
+            "status": "open"
+        },
+        {
+            "id": "AQ-003",
+            "topic": "task-reference granularity",
+            "question": "What minimum task reference fields are required without leaking runtime ownership?",
+            "owner": "Action Governance",
+            "status": "open"
+        },
+        {
+            "id": "AQ-004",
+            "topic": "rollback obligation",
+            "question": "When partial execution feedback arrives, which rollback obligations are mandatory before next candidate revision?",
+            "owner": "Action Governance",
+            "status": "open"
+        },
+        {
+            "id": "AQ-005",
+            "topic": "cross-module revocation latency",
+            "question": "What latency budget is acceptable between permission revocation and candidate revocation?",
+            "owner": "Action Governance",
+            "status": "open"
+        }
+    ]
+}

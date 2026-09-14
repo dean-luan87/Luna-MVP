@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Cognitive Field Interface Contract",
+  "field_inputs": ["reality_field", "field_state", "self_state", "goal_context", "unknowns"],
+  "attention_outputs": ["attention_relevance_candidate", "allocation_candidate", "observation_requirement_candidate"],
+  "field_update": "candidate only",
+  "cross_field_isolation": true,
+  "direct_reality_mutation": false,
+  "direct_field_mutation": false,
+  "direct_decision": false,
+  "context_binding_required": true
+}

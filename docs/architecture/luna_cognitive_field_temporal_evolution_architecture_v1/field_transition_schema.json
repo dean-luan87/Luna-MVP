@@ -1,0 +1,10 @@
+{
+  "schema_id": "field_transition_candidate_v1",
+  "owner": "Field Temporal Evolution",
+  "fields": ["transition_id", "transition_type", "prior_snapshot_ref", "next_snapshot_ref", "field_identity_ref", "event_ref", "cause", "observed_at", "evidence_refs", "confidence", "unknowns", "lifecycle_state"],
+  "transition_types": ["Stable", "Changed", "Expanded", "Merged", "Split", "Expired", "Replaced"],
+  "candidate_only": true,
+  "direct_field_mutation": false,
+  "direct_action": false,
+  "direct_memory_write": false
+}

@@ -1,0 +1,23 @@
+{
+  "phase": "Phase-Luna-Cognitive-A-Route-Integration-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_A_ROUTE_INTEGRATION_ARCHITECTURE_READY",
+  "canonical_flow": ["Reality", "Evidence", "Cognitive Field", "Attention", "Context", "Hypothesis", "Belief", "Understanding", "Goal", "Value Utility", "Decision Arbitration", "Action Boundary", "Outcome", "Experience", "Memory", "Schema", "Selective Learning", "Growth Candidate", "Self Review"],
+  "flow_state": ["Observed", "Structured", "Fielded", "Attending", "Contextualized", "Hypothesized", "Understood", "GoalEvaluated", "Valued", "Arbitrated", "ActionPending", "OutcomePending", "Evaluated", "Experienced", "Remembered", "Learned", "SelfReviewed"],
+  "ownership_unique": true,
+  "reusable_assets": ["luna_cognitive_field_architecture_v1", "luna_cognitive_field_attention_decision_integration_v1", "luna_cognitive_memory_cognitive_architecture_v1", "luna_cognitive_decision_arbitration_architecture_v1", "luna_cognitive_action_outcome_evaluation_architecture_v1", "luna_cognitive_selective_learning_architecture_v1", "luna_cognitive_self_world_boundary_architecture_v1"],
+  "integration_is_architecture_only": true,
+  "runtime_integration": false,
+  "module_invocation": false,
+  "automatic_flow": false,
+  "learning_runtime": false,
+  "action_execution": false,
+  "model_integration": false,
+  "provider_integration": false,
+  "hardware_integration": false,
+  "emotion_runtime": false,
+  "social_runtime": false,
+  "b_route_runtime": false,
+  "parallel_risks": ["duplicate_flow_owner", "memory_reality_confusion", "learning_boundary_leak", "a_b_route_mixing"],
+  "migration_mapping": ["reuse_existing_module_contracts", "adapter_before_runtime", "owner_registry_alignment", "candidate_trace_propagation"]
+}

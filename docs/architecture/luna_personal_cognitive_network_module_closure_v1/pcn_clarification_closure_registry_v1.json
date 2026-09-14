@@ -1,0 +1,59 @@
+{
+    "artifact_id": "pcn_clarification_closure_registry_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "source": "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_dryrun_clarification_inheritance_v1.json",
+    "clarifications": [
+        {
+            "clarification_id": "CLAR-001-LINK-MULTI-RELATION",
+            "source": "Link Model",
+            "current_interpretation": "Multi-relationship links remain concurrent subjective candidates without source merge or overwrite.",
+            "closure_status": "OPEN_DEFERRED",
+            "architecture_blocker": false,
+            "implementation_blocker": false,
+            "future_owner": "PCN Governance + Intent/Causal downstream consumers",
+            "resolution_phase": "Phase-Luna-Intent-Architecture-v1-001_or_later"
+        },
+        {
+            "clarification_id": "CLAR-002-ACTIVATION-DISTINCTION",
+            "source": "Activation",
+            "current_interpretation": "Activation, temporary occupation, resonance, overlap, coexistence, and historical reactivation are distinct candidate semantics.",
+            "closure_status": "OPEN_DEFERRED",
+            "architecture_blocker": false,
+            "implementation_blocker": false,
+            "future_owner": "PCN Governance + Interaction Governance",
+            "resolution_phase": "Phase-Luna-Intent-Architecture-v1-001_or_later"
+        },
+        {
+            "clarification_id": "CLAR-003-GROWTH-NON-AUTO-STRUCTURAL",
+            "source": "Growth",
+            "current_interpretation": "Growth outputs remain review-required candidates; no automatic structural mutation is allowed.",
+            "closure_status": "OPEN_DEFERRED",
+            "architecture_blocker": false,
+            "implementation_blocker": false,
+            "future_owner": "PCN Governance + Experience Governance",
+            "resolution_phase": "Phase-Luna-Experience-Compression-Cognitive-Evolution-v1-001_or_later"
+        },
+        {
+            "clarification_id": "CLAR-004-NESTED-AXIS-KERNEL-FEEDBACK",
+            "source": "Nested Constraints",
+            "current_interpretation": "Nested feedback and observation-axis interactions remain projection/constraint only and do not grant cross-owner writes.",
+            "closure_status": "OPEN_DEFERRED",
+            "architecture_blocker": false,
+            "implementation_blocker": false,
+            "future_owner": "Cross-Object Boundary Governance",
+            "resolution_phase": "Phase-Luna-Intent-Architecture-v1-001_or_later"
+        },
+        {
+            "clarification_id": "CLAR-005-SCENARIO-EXTENSION-TO-12",
+            "source": "Scenario Model",
+            "current_interpretation": "12-case synthetic coverage is frozen for validation breadth without changing owner boundaries.",
+            "closure_status": "OPEN_DEFERRED",
+            "architecture_blocker": false,
+            "implementation_blocker": false,
+            "future_owner": "PCN Governance",
+            "resolution_phase": "Phase-Luna-Personal-Cognitive-Network-v1-001_or_later"
+        }
+    ],
+    "clarification_count": 5,
+    "forced_resolution_applied": false
+}

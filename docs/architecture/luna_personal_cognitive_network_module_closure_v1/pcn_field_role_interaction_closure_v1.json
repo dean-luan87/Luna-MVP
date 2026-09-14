@@ -1,0 +1,37 @@
+{
+    "artifact_id": "pcn_field_role_interaction_closure_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "frozen_interaction_candidates": [
+        "HARD_FIELD_BOUNDARY",
+        "FUZZY_FIELD_BOUNDARY",
+        "TEMPORARY_OCCUPATION",
+        "FIELD_EXPANSION_OR_CONTRACTION",
+        "RESONANCE",
+        "COMPETITION",
+        "OVERLAP",
+        "COEXISTENCE",
+        "FUSION_CANDIDATE",
+        "HISTORICAL_REACTIVATION"
+    ],
+    "semantic_guards": {
+        "coexistence_not_equal_overlap": true,
+        "overlap_not_equal_fusion": true,
+        "resonance_not_causal_fact": true,
+        "competition_not_arbitration": true,
+        "temporary_occupation_not_structural_mutation": true,
+        "historical_reactivation_not_new_truth": true
+    },
+    "co_presence_allowed": {
+        "multiple_fields": true,
+        "multiple_roles": true,
+        "multiple_relationships": true,
+        "historical_and_current_relations": true,
+        "forced_single_correct_relation": false
+    },
+    "interaction_kernel_boundary": {
+        "pcn_owns_interaction_kernel": false,
+        "pcn_computes_interaction_kernel": false,
+        "pcn_consumes_or_forwards_interaction_reference": true
+    },
+    "candidate_only": true
+}

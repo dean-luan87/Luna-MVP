@@ -1,0 +1,12 @@
+{
+  "scenario_ids": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12", "C13", "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22", "C23", "C24", "C25", "C26", "C27", "C28", "C29", "C30", "C31", "C32", "C33", "C34", "C35", "C36"],
+  "groups": {
+    "observation_context_field": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08"],
+    "contradiction_temporal_correction": ["C09", "C10", "C11", "C12", "C13", "C14", "C15", "C16", "C28", "C29"],
+    "provider_truth_boundary": ["C17", "C18", "C19"],
+    "read_only_context_refs": ["C20", "C21", "C22"],
+    "idempotency_trace_handoff": ["C23", "C24", "C25", "C26", "C27", "C30"],
+    "negative_and_deferred": ["C31", "C32", "C33", "C34", "C35", "C36"]
+  },
+  "fixture_source": "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_fixture_v1.py"
+}

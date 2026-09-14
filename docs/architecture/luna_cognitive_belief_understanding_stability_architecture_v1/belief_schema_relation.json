@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_schema_relation_v1",
+  "owner": "Schema",
+  "inputs": ["schema_context", "current_field", "hypothesis", "memory_context", "validation_result"],
+  "outputs": ["prior_context_candidate", "belief_candidate_support", "uncertainty"],
+  "flow": ["Schema", "Prior", "Hypothesis", "Belief", "Understanding"],
+  "schema_influences": true,
+  "schema_determines": false,
+  "forced_conclusion": false,
+  "candidate_only": true
+}

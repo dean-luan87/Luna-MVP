@@ -1,0 +1,83 @@
+{
+    "artifact": "cognitive_execution_chain_contract_closure_matrix_v1",
+    "hops": [
+        {
+            "hop": "Intent->Causal",
+            "source_contract": "intent_handoff_types_v1.py:IntentToCausalHandoffCandidateV1",
+            "target_contract": "causal_io_types_v1.py:CausalGovernanceInputV1",
+            "schema_compatibility": "compatible",
+            "enum_compatibility": "compatible",
+            "required_ref_coverage": "full_via_mapping",
+            "trace_coverage": "full",
+            "provenance_coverage": "full",
+            "version_coverage": "compatible",
+            "error_namespace_coverage": "full",
+            "candidate_only": true,
+            "mutation_forbidden": true,
+            "remaining_gap_refs": [
+                "GAP-IO-001",
+                "GAP-VERSION-001"
+            ],
+            "closure_status": "CLOSED_WITH_ADAPTER"
+        },
+        {
+            "hop": "Causal->Decision",
+            "source_contract": "causal_handoff_types_v1.py:CausalToDecisionHandoffCandidateV1",
+            "target_contract": "decision_io_types_v1.py:DecisionGovernanceInputV1",
+            "schema_compatibility": "adapter_normalized",
+            "enum_compatibility": "adapter_enum_mapping",
+            "required_ref_coverage": "full_via_mapping",
+            "trace_coverage": "full",
+            "provenance_coverage": "full",
+            "version_coverage": "migration_required_blocked_in_controlled",
+            "error_namespace_coverage": "full",
+            "candidate_only": true,
+            "mutation_forbidden": true,
+            "remaining_gap_refs": [
+                "GAP-IO-002",
+                "GAP-VERSION-002",
+                "GAP-ENUM-001"
+            ],
+            "closure_status": "CLOSED_WITH_ADAPTER"
+        },
+        {
+            "hop": "Decision->Action",
+            "source_contract": "decision_handoff_types_v1.py:DecisionToActionTaskHandoffCandidateV1",
+            "target_contract": "action_io_types_v1.py:ActionGovernanceInputV1",
+            "schema_compatibility": "adapter_projected",
+            "enum_compatibility": "compatible",
+            "required_ref_coverage": "full_via_mapping",
+            "trace_coverage": "full",
+            "provenance_coverage": "full",
+            "version_coverage": "compatible",
+            "error_namespace_coverage": "full",
+            "candidate_only": true,
+            "mutation_forbidden": true,
+            "remaining_gap_refs": [
+                "GAP-IO-003",
+                "GAP-MISSING-REF-001"
+            ],
+            "closure_status": "CLOSED_WITH_ADAPTER"
+        },
+        {
+            "hop": "Action->Runtime",
+            "source_contract": "action_handoff_types_v1.py:ActionToRuntimeExecutorHandoffCandidateV1",
+            "target_contract": "runtime_executor_io_types_v1.py:RuntimeExecutorInputV1",
+            "schema_compatibility": "adapter_projection_with_constraints",
+            "enum_compatibility": "compatible",
+            "required_ref_coverage": "partial_with_projection_rule",
+            "trace_coverage": "full",
+            "provenance_coverage": "full",
+            "version_coverage": "incompatible_for_real_runtime",
+            "error_namespace_coverage": "full",
+            "candidate_only": true,
+            "mutation_forbidden": true,
+            "remaining_gap_refs": [
+                "GAP-IO-004",
+                "GAP-VERSION-003",
+                "GAP-MISSING-REF-002"
+            ],
+            "closure_status": "DEFERRED_GAP"
+        }
+    ]
+}

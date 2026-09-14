@@ -1,0 +1,18 @@
+{
+  "contract_id": "homeostasis_balance_negative_guards_v1",
+  "forbidden": [
+    "runtime", "automatic_control", "automatic_optimization", "hive_runtime", "b_route_runtime", "emotion_runtime", "identity_change", "constitution_change", "homeostasis_direct_action", "range_automatic_control", "balance_automatic_optimization", "drift_direct_identity_change", "drift_direct_constitution_change", "adaptive_layer_stable_core_change", "experimental_layer_core_activation", "genome_automatic_update", "hive_direct_state_modification", "hive_direct_genome_update", "emotion_direct_decision", "emotion_direct_identity_change", "b_route_override_a_route", "b_route_update_state", "b_route_update_genome", "runtime_homeostasis_authority", "quality_direct_action", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "homeostasis_is_constraint_layer": true,
+    "stable_core_protected": true,
+    "adaptive_layer_requires_governance": true,
+    "experimental_layer_isolated": true,
+    "drift_requires_review": true,
+    "stability_balances_quality": true,
+    "hive_observer_only": true,
+    "emotion_is_adaptive_signal_only": true,
+    "b_route_candidate_only": true,
+    "unknowns_preserved": true
+  }
+}

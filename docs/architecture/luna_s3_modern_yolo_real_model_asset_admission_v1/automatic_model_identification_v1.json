@@ -1,0 +1,12 @@
+{
+  "flow": ["physical_model_asset", "identity_signals", "model_asset_identification", "model_asset_contract", "loader_contract", "provider_adapter_contract", "capability_contract", "evidence_contract"],
+  "unique_match": "MODEL_ASSET_IDENTIFIED_UNIQUE",
+  "unknown_registered_asset": "MODEL_ASSET_NOT_REGISTERED",
+  "ambiguous_match": "MODEL_ASSET_IDENTITY_AMBIGUOUS",
+  "conflict": "MODEL_ASSET_IDENTITY_CONFLICT",
+  "unresolved_provenance": "MODEL_ASSET_PROVENANCE_UNRESOLVED",
+  "ambiguous_or_conflicting_admission": "ADMISSION_BLOCKED_IDENTITY",
+  "human_contract_selection_required_normal_path": false,
+  "filename_is_authority": false,
+  "loader_selected_from_extension": false
+}

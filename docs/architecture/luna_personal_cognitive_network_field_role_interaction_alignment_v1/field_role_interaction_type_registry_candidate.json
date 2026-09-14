@@ -1,0 +1,23 @@
+{
+  "artifact_id": "field_role_interaction_type_registry_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cognitive Interaction Governance",
+  "interaction_types": [
+    {"type": "RESONANCE", "definition": "Structurally similar projections mutually increase candidate relevance.", "sources": ["field_projection", "role_projection", "historical_projection"], "targets": ["activation_candidate", "related_historical_projection"], "forbidden_inference": "causal_fact_or_same_identity", "owner_boundary": "local_interaction_candidate_only"},
+    {"type": "COMPETITION", "definition": "Simultaneously active projections make incompatible demands on bounded cognitive resources or responsibilities.", "sources": ["field_projection", "role_projection", "goal_reference", "relationship_projection", "benefit_cost_projection"], "targets": ["competition_candidate"], "forbidden_inference": "automatic_winner", "owner_boundary": "future_decision_arbitration_selects"},
+    {"type": "TEMPORARY_OCCUPATION", "definition": "One projection temporarily dominates the current cognitive scope without acquiring structural ownership.", "sources": ["field_projection", "context", "role_projection"], "targets": ["temporary_occupation_candidate"], "forbidden_inference": "core_field_transfer", "owner_boundary": "field_source_owner_unchanged"},
+    {"type": "OVERLAP", "definition": "Distinct Fields or Roles share locally relevant objects, relations, tasks, or constraints.", "sources": ["field_projection", "role_projection", "relationship_projection"], "targets": ["overlap_candidate"], "forbidden_inference": "object_or_owner_merge", "owner_boundary": "source_objects_remain_distinct"},
+    {"type": "COEXISTENCE", "definition": "Multiple projections remain simultaneously active without requiring conflict or fusion.", "sources": ["multiple_active_fields", "multiple_active_roles"], "targets": ["coexistence_candidate"], "forbidden_inference": "conflict_from_multiplicity", "owner_boundary": "no_arbitration_authority"},
+    {"type": "FUSION_CANDIDATE", "definition": "Repeated governed interaction may justify review of a new composite structural pattern.", "sources": ["repeated_interaction", "persistent_influence_candidate"], "targets": ["structural_change_candidate"], "forbidden_inference": "automatic_fusion", "owner_boundary": "source_owner_governance_required"},
+    {"type": "HISTORICAL_REACTIVATION", "definition": "A dormant or historical projection becomes contextually relevant again.", "sources": ["structure_similarity", "object_overlap", "relationship_trigger"], "targets": ["activation_candidate", "historical_projection"], "forbidden_inference": "historical_state_equals_current_reality", "owner_boundary": "memory_and_relationship_sources_remain_authoritative"}
+  ],
+  "rules": {
+    "multiple_active_fields_imply_conflict": false,
+    "multiple_active_roles_imply_conflict": false,
+    "every_interaction_is_candidate_only": true,
+    "source_mutation_allowed": false
+  },
+  "candidate_only": true,
+  "active_schema": false,
+  "runtime_implemented": false
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Self History Reference Contract v1",
+  "owner": "Cognitive Self Model / History Reference",
+  "inputs": ["Memory", "Self Experience", "Current Task", "Current Context", "Attention Query"],
+  "output": "Relevant Self History Reference",
+  "schema": ["reference_id", "memory_ref", "context_match", "task_match", "outcome", "confidence", "relevance", "unknown", "provenance"],
+  "rules": {
+    "relevant_subset_only": true,
+    "memory_remains_owner": true,
+    "history_is_not_current_fact": true,
+    "current_reality_priority": true,
+    "identity_continuity_reference": true
+  }
+}

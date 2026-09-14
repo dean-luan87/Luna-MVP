@@ -1,0 +1,17 @@
+{
+  "contract_id": "integrated_self_regulation_v1",
+  "equation": "R(t)=f(Self,Resource,Constitution)",
+  "inputs": ["Self State", "Resource State", "Capability Health", "Self Rhythm", "Constitution"],
+  "outputs": ["Attention Budget", "Compute Budget", "Exploration Permission", "Risk Threshold", "Learning Permission"],
+  "outputs_are_candidates_or_hints": true,
+  "self_protective_precedence": true,
+  "does_not_generate_goal": true,
+  "does_not_select_decision_alone": true,
+  "does_not_switch_model": true,
+  "does_not_control_hardware": true,
+  "does_not_modify_identity": true,
+  "does_not_modify_constitution": true,
+  "automatic_regulation": false,
+  "candidate_only": true,
+  "runtime": false
+}

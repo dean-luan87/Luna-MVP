@@ -1,0 +1,17 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Mainline-Roadmap-Decision-After-OptionB-Closure-v1-001",
+    "decision_completed": true,
+    "closed_route": "option_b_document_surface_detector_candidate_route",
+    "closed_route_status": "deferred_candidate_route",
+    "selected_route": "field_centric_object_role_dryrun",
+    "selected_route_priority": "P0",
+    "field_first_alignment": true,
+    "minimum_sufficient_representation_alignment": true,
+    "predictive_field_cognition_alignment": true,
+    "option_b_execution_allowed": false,
+    "runtime_activation_allowed": false,
+    "production_activation_allowed": false,
+    "blocker_count": 0,
+    "final_decision": "LUNA_MAINLINE_ROADMAP_DECISION_FIELD_CENTRIC_OBJECT_ROLE_DRYRUN_GO",
+    "recommended_next_phase": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

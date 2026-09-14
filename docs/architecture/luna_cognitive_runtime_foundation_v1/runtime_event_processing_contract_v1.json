@@ -1,0 +1,9 @@
+{
+  "title": "Runtime Event Processing Contract v1",
+  "owner": "Cognitive OS Governance",
+  "pipeline": ["Event", "Validation", "Classification", "Priority Evaluation", "Routing", "Cognitive OS Flow", "Trace"],
+  "event_classes": ["External Event", "Internal Event", "System Event", "Reflex Event"],
+  "required_fields": ["event_id", "source", "timestamp", "target", "payload", "trace_id"],
+  "forbidden": ["Event → Action", "Event → direct Reality write", "Event → Decision ownership"],
+  "rules": {"validation_before_route": true, "trace_required": true, "decision_boundary_required": true}
+}

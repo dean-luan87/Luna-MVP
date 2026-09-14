@@ -1,0 +1,8 @@
+{
+  "demand_input": {"producer":"A Route / Context / Intent / Task / Safety references", "consumer":"Field Perception Orchestrator", "status":"CONTROLLED_HANDOFF_READY", "mutation_authority":false},
+  "observation_gateway_handoff": {"producer":"Observation Gateway", "consumer":"Field Perception Orchestrator / A Route control feedback", "status":"CONTROLLED_HANDOFF_READY", "admission_is_continuation_authority":false},
+  "a_route_ingress": {"producer":"Field Perception Orchestrator controlled integration", "consumer":"A Route Orchestration Governance", "route_lifecycle_target":"INGRESS_READY", "status":"CONTROLLED_HANDOFF_READY", "runtime_handoff_ready":false, "mutation_authority":false},
+  "next_cycle_ingress": {"producer":"Observation Control Decision candidate", "consumer":"A Route Orchestration / Cognitive Flow", "status":"CONTROLLED_HANDOFF_READY", "candidate_only":true, "runtime_handoff_ready":false},
+  "reverse_lookup": ["A Route Cycle", "Observation Demand", "Observation Request", "Attention Target", "Capability Requirement", "Model/Provider Candidate", "Provider Session Candidate", "Evidence", "Observation Gateway", "Observation Candidate", "Evidence Sufficiency", "Control Decision", "Next Cycle"],
+  "existing_owner_files_modified": []
+}

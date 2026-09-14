@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "input_path":{"user_input":"typed candidate assets exist","system_event":"contract/reference exists","environment_event":"observation ingress candidate exists","safety_trigger":"safety contracts exist","runtime_connection":"not proven"},
+  "output_path":{"internal_candidate":"present","system_output_candidate":"partial","speech_ui_candidate":"assets/adapters require integration","actual_delivery":"not proven"},
+  "correction":{"candidate_contract":"present","user_visible_correction_ingress":"adapter needed","history_overwrite":false},
+  "product_blocker":"P0 for a standalone user-facing product loop",
+  "runtime_execution":false
+}

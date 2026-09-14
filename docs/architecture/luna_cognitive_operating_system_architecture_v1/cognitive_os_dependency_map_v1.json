@@ -1,0 +1,35 @@
+{
+  "title": "Cognitive OS Dependency Map v1",
+  "nodes": [
+    {"node":"L0 Constitution","owner":"Constitution Governance","role":"constraint"},
+    {"node":"L1 Lifecycle","owner":"Cognitive OS Governance","role":"module lifecycle"},
+    {"node":"L1 Flow Controller","owner":"Cognitive OS Governance","role":"process routing"},
+    {"node":"L1 State Management","owner":"Cognitive OS Governance","role":"state ownership"},
+    {"node":"L1 Event System","owner":"Cognitive OS Governance","role":"event routing"},
+    {"node":"L1 Trace System","owner":"Cognitive OS Governance","role":"explanation trace"},
+    {"node":"L1 Recovery System","owner":"Cognitive OS Governance","role":"degrade recover resume"},
+    {"node":"L1 Contract Enforcement","owner":"Cognitive OS Governance","role":"contract guard"},
+    {"node":"L1 Admission","owner":"Cognitive OS Governance","role":"entry gate"},
+    {"node":"L1 Health Monitoring","owner":"Cognitive OS Governance","role":"health observation"},
+    {"node":"L2 Cognitive Core","owner":"Cognitive Core Governance","role":"meaning and judgment"},
+    {"node":"L3 Social Emotion Boundary","owner":"Social-Emotion Boundary Governance","role":"context candidate"},
+    {"node":"L4 Capability Execution","owner":"Capability Governance","role":"evidence and execution gate"}
+  ],
+  "allowed_edges": [
+    {"source":"L0 Constitution","target":"L1 Cognitive OS","mode":"constraint"},
+    {"source":"L1 Cognitive OS","target":"L2 Cognitive Core","mode":"lifecycle/state/contract"},
+    {"source":"L1 Cognitive OS","target":"L3 Social Emotion Boundary","mode":"lifecycle/state/contract"},
+    {"source":"L1 Cognitive OS","target":"L4 Capability Execution","mode":"admission/resource/contract"},
+    {"source":"L2 Cognitive Core","target":"L1 Cognitive OS","mode":"event/state request"},
+    {"source":"L4 Capability Execution","target":"L1 Cognitive OS","mode":"health/failure event"}
+  ],
+  "forbidden_edges": [
+    "Cognitive OS → Decision Ownership",
+    "Cognitive OS → Reality Modification",
+    "Capability → Cognitive OS Control",
+    "Emotion → Runtime Control",
+    "Event → Action Direct",
+    "Recovery → Goal Mutation"
+  ],
+  "rules": {"l1_is_substrate_not_brain": true, "events_are_not_actions": true, "state_writer_is_explicit": true, "no_runtime_activation": true}
+}

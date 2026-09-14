@@ -1,0 +1,11 @@
+{
+  "schema_id": "experience_memory_v1",
+  "owner": "Memory System",
+  "fields": ["experience_memory_id", "episode_refs", "pattern_candidate_ref", "field_contexts", "role_contexts", "reusable_experience", "validation_history", "confidence", "unknowns", "provenance"],
+  "minimum_episode_refs": 2,
+  "multiple_episodes_required": true,
+  "pattern_candidate_required": true,
+  "candidate_only": true,
+  "direct_role_update": false,
+  "direct_self_update": false
+}

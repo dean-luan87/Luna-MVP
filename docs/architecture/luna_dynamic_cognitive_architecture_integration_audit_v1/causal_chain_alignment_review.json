@@ -1,0 +1,43 @@
+{
+  "audit_id": "luna_dynamic_cognitive_architecture_causal_chain_alignment_review_v1",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "records": [
+    {
+      "causal_position": "After governed Field, Role, Relationship, Emotion, Memory, PCN, and Intent context formation; before A/B Route evaluation and Decision Arbitration.",
+      "input_sources": [
+        "Field Context",
+        "Role Context",
+        "Relationship Context",
+        "Emotion Context",
+        "Memory Context"
+      ],
+      "output_scope": [
+        "Causal Candidate",
+        "Alternative Explanation",
+        "Confidence",
+        "Decision Support Reference"
+      ],
+      "forbidden_outputs": [
+        "Fact",
+        "Action",
+        "Reality Mutation"
+      ],
+      "candidate_only": true,
+      "unknown_preserved": true,
+      "counter_evidence_required": true,
+      "temporal_validity_required": true,
+      "valid": true,
+      "risk": "LOW: Intent and Causal Reasoning form a typed partial order rather than an unconditional total order; future implementation must preserve candidate status and explicit context references.",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json",
+        "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/personal_cognitive_network_boundary.json",
+        "docs/architecture/cognitive_flow/cognitive_causality_model_architecture_plan_v1.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/canonical_architecture_freeze.md"
+      ]
+    }
+  ],
+  "causal_fact_promotion_allowed": false,
+  "causal_action_execution_allowed": false,
+  "reality_mutation_allowed": false,
+  "blocker_count": 0
+}

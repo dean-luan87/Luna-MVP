@@ -1,0 +1,23 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Learning-Governance-Planning-v1-001",
+    "execution_mode": "PLANNING_ONLY",
+    "planning_only": true,
+    "runtime_execution": false,
+    "runtime_training": false,
+    "model_weight_update": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "parameter_mutation": false,
+    "parameter_activation": false,
+    "genome_activation": false,
+    "memory_mutation": false,
+    "intent_mutation": false,
+    "state_mutation": false,
+    "personality_mutation": false,
+    "emotion_mutation": false,
+    "semantic_compression_execution": false,
+    "source_owner_mutation": false,
+    "real_side_effect": false,
+    "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

@@ -1,0 +1,35 @@
+{
+    "artifact": "runtime_executor_concept_boundary_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Runtime Executor",
+    "concepts": [
+        "action_candidate",
+        "execution_readiness_candidate",
+        "execution_request_candidate",
+        "execution_admission_candidate",
+        "execution_attempt_candidate",
+        "execution_result_candidate",
+        "execution_failure_candidate",
+        "execution_rollback_candidate",
+        "task_reference",
+        "scheduler_reference",
+        "adapter_reference"
+    ],
+    "non_equivalence_guards": {
+        "action_candidate_not_execution_request": true,
+        "execution_readiness_not_execution": true,
+        "executor_not_decision_governance": true,
+        "executor_not_action_governance": true,
+        "executor_not_task_manager": true,
+        "executor_not_scheduler": true,
+        "admission_not_execution": true,
+        "result_not_authorization": true
+    },
+    "boundary_relations": {
+        "action_governance_produces_candidate_only": true,
+        "runtime_executor_consumes_candidate_only": true,
+        "scheduler_consumed_as_reference_only": true,
+        "task_manager_consumed_as_reference_only": true,
+        "adapter_invocation_is_boundary_contract_only": true
+    }
+}

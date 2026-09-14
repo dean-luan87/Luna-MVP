@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "fixture_id": "F-03",
+    "scenario_type": "dynamic_crossing",
+    "description": "Self and other object crossing paths within short horizon.",
+    "version": "1.0",
+    "tags": ["dynamic", "vo", "crossing"]
+  },
+  "system_snapshot": {
+    "ts": 2.0,
+    "frame_id": 3,
+    "context_mode": "NAVIGATION",
+    "system_facts": {
+      "perception_state": "READY",
+      "calibration_state": "OK",
+      "hardware_state": "OK",
+      "gate": "PASS"
+    },
+    "self_state": {
+      "position": {"x": 0.0, "y": 0.0},
+      "velocity": {"x": 1.0, "y": 0.0},
+      "heading": 0.0
+    },
+    "perceived_objects": [
+      {
+        "object_id": "obj_1",
+        "position": {"x": 2.0, "y": 2.0},
+        "velocity": {"x": 0.0, "y": -1.0},
+        "radius": 0.4,
+        "kind": "unknown"
+      }
+    ],
+    "environment": {
+      "restricted_zones": [],
+      "obstacles": []
+    }
+  },
+  "model_outputs": {
+    "candidate_actions": [
+      {
+        "model_id": "fixture_stub",
+        "model_version": "v1",
+        "confidence": 0.5,
+        "output": {"intent": "move", "speed": 0.6},
+        "meta": {"fixture": "F-03"}
+      }
+    ]
+  }
+}

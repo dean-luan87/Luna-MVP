@@ -1,0 +1,37 @@
+{
+  "artifact": "personality_governance_owner_boundary_v1",
+  "canonical_owner": "Personality Governance",
+  "owner_required": true,
+  "equivalent_existing_owner": false,
+  "owns": [
+    "Personality Trait Candidate",
+    "Personality Profile Candidate",
+    "Personality Evolution Candidate",
+    "Personality Attribution Candidate",
+    "trait stability, confidence, and evidence governance",
+    "personality evidence admission",
+    "personality revision, supersession, revocation, expiration",
+    "personality trace and provenance"
+  ],
+  "must_not_own": [
+    "Self identity truth", "Self attribution", "Self continuity", "Emotion state", "Memory", "Experience", "Learning", "Intent", "PCN relationships", "Dynamic Regulation parameter store", "Task", "Decision", "Action", "Runtime", "user identity truth"
+  ],
+  "candidate_only_rules": {
+    "candidate_only": true,
+    "activated": false,
+    "persisted": false,
+    "truth_declared": false,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false
+  },
+  "forbidden_parallel_owners": ["trait_governance", "persona_governance", "temperament_governance", "character_governance"],
+  "allowed_handoffs": [
+    "Self Governance -> Personality Evidence Candidate",
+    "Cognitive Memory & Experience Governance -> Personality Evidence Candidate",
+    "Cognitive Learning Governance -> Personality Evolution Evidence Candidate",
+    "Emotion Governance -> EmotionToPersonalityEvidenceCandidate",
+    "Dynamic Cognitive Regulation Governance -> long-term regulation-pattern evidence",
+    "Personality Governance -> Self Personality Reference Candidate"
+  ],
+  "mutation_rule": "Both inbound evidence and outbound references are candidate-only and cannot directly mutate a source owner or downstream owner."
+}

@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"A/B Field Interface",
+  "a_route":{"name":"Cognitive Field","status":"current","role":"current reality understanding"},
+  "b_route":{"name":"Simulation Field","status":"future_boundary","role":"possible-world candidate based on Field snapshot"},
+  "interface":["A Field Snapshot","Simulation Variable Candidate","Future Scenario Candidate","Simulation Result Candidate","A Field Update Review"],
+  "permissions":{"b_reads_field_snapshot":true,"b_writes_current_field":false,"b_executes_action":false,"b_changes_reality":false,"brain_reviews_return":true},
+  "rules":{"b_is_not_second_world":true,"simulation_not_active":true,"return_requires_review":true}
+}

@@ -1,0 +1,51 @@
+{
+  "artifact": "emotion_state_candidate_schema_v1",
+  "entity": "EmotionStateCandidateV1",
+  "schema_version": "emotion-state-candidate-schema-v1",
+  "required_fields": [
+    "emotion_state_candidate_id",
+    "emotion_appraisal_refs",
+    "emotion_evidence_refs",
+    "valence_candidate",
+    "arousal_candidate",
+    "activation_intensity_candidate",
+    "emotion_category_candidates",
+    "mixed_emotion_refs",
+    "competing_state_refs",
+    "uncertainty_refs",
+    "context_refs",
+    "temporal_valid_from",
+    "temporal_valid_until",
+    "lifecycle_state",
+    "confidence_candidate",
+    "stability_candidate",
+    "revision_parent_ref",
+    "supersedes_ref",
+    "revocation_refs",
+    "trace_ref",
+    "provenance_refs",
+    "sensitivity",
+    "schema_version",
+    "contract_version"
+  ],
+  "invariants": {
+    "candidate_only": true,
+    "activated": false,
+    "persisted": false,
+    "truth_declared": false,
+    "self_mutation": false,
+    "personality_mutation": false,
+    "memory_mutation": false,
+    "intent_mutation": false,
+    "attention_mutation": false,
+    "regulation_parameter_mutation": false,
+    "external_reality_mutation": false
+  },
+  "rules": {
+    "multidimensional_not_single_score": true,
+    "temporary_and_context_bound": true,
+    "mixed_and_competing_states_allowed": true,
+    "uncertainty_required_when_unresolved": true,
+    "provenance_required": true
+  }
+}

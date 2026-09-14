@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Capability Runtime Boundary",
+  "flow": ["Capability Request", "Capability Runtime", "Provider Adapter", "Model", "Evidence Return"],
+  "runtime_owns": ["Execution Context", "Invocation Lifecycle", "Result Collection", "Failure Trace"],
+  "runtime_does_not_own": ["Capability Value", "Goal", "Decision", "Identity", "Reality Authority", "Admission"],
+  "existing_asset_roots": ["docs/architecture/luna_capability_runtime_integration_v1", "docs/architecture/luna_cognitive_capability_execution_boundary_v1"],
+  "rules": {"runtime_executes_only_admitted_request": true, "evidence_return_required": true, "runtime_not_decision_authority": true, "no_scheduler_implementation_in_phase": true}
+}

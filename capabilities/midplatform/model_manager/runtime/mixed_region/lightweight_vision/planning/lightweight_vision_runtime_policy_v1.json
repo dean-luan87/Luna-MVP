@@ -1,0 +1,34 @@
+{
+  "schema_id": "LightweightVisionRuntimePlanningPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Lightweight-Vision-Runtime-Planning-v1-001",
+  "planning_only": true,
+  "principle": "轻量 Runtime 为 Ownership Graph 提供候选证据，非一次性理解区域",
+  "runtimes": [
+    {"id": "document_surface_detector_v1", "capability": "detect_document_surface", "output_type": "document_surface_candidate"},
+    {"id": "layout_detector_v1", "capability": "detect_layout_blocks", "output_type": "layout_region_candidate"},
+    {"id": "price_tag_detector_v1", "capability": "detect_price_tag", "output_type": "price_tag_candidate"},
+    {"id": "screen_surface_detector_v1", "capability": "detect_screen_surface", "output_type": "screen_surface_candidate"},
+    {"id": "reflection_detector_v1", "capability": "detect_reflection", "output_type": "reflection_candidate"},
+    {"id": "overlap_occlusion_detector_v1", "capability": "detect_overlap_occlusion", "output_type": "occlusion_relation_candidate"}
+  ],
+  "first_real_runtime_priority": "document_surface_detector_v1",
+  "forbidden": [
+    "global_ocr",
+    "full_scene_segmentation_by_default",
+    "all_model_activation",
+    "runtime_assign_fact",
+    "runtime_override_ownership_graph",
+    "silent_fallback_on_failure"
+  ],
+  "boundary_flags": {
+    "planning_only": true,
+    "attention_gate_required": true,
+    "runtime_outputs_candidate_only": true,
+    "runtime_does_not_assign_fact": true,
+    "runtime_does_not_override_ownership_graph": true,
+    "failure_returns_runtime_error_candidate": true,
+    "deterministic_fixture_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Integration-DryRun-v1-001"
+}

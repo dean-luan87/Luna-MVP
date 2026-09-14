@@ -1,0 +1,31 @@
+{
+    "artifact": "cognitive_state_formation_input_contract_v1",
+    "input_mode": "SOURCE_OWNED_REFERENCE_ONLY",
+    "required_input_reference_groups": [
+        "context_refs",
+        "pcn_refs",
+        "intent_refs",
+        "field_refs",
+        "observation_refs"
+    ],
+    "optional_input_reference_groups": [
+        "risk_refs",
+        "uncertainty_refs",
+        "task_refs",
+        "role_refs",
+        "memory_refs"
+    ],
+    "ownership_rules": {
+        "source_owner_precedence": true,
+        "source_owner_transfer": false,
+        "source_mutation_allowed": false
+    },
+    "forbidden_input_authority_transfer": [
+        "field_mutation_authority",
+        "intent_mutation_authority",
+        "causal_mutation_authority",
+        "decision_authority",
+        "action_authority",
+        "task_authority"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Self Growth Governance v1",
+  "owner": "Self Layer",
+  "review_criteria": ["Evidence Quality", "Repetition or Impact", "Capability Relevance", "Stability", "Reversibility", "Constitution Compliance", "Identity Boundary"],
+  "outputs": ["Approved Growth Candidate", "Rejected Growth Candidate", "Deferred Growth Candidate", "Self Evolution Candidate"],
+  "allowed": ["review_growth_candidate", "request_evidence", "approve_capability_candidate", "reject_candidate", "defer_candidate", "request_reconsideration"],
+  "forbidden": ["modify_constitution", "rewrite_identity", "rewrite_safety_boundary", "automatic_personality_change", "direct_code_change", "direct_model_training", "direct_action"],
+  "single_outcome_is_insufficient": true,
+  "self_governance_required": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

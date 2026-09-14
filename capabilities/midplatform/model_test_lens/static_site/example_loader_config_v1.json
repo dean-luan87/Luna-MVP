@@ -1,0 +1,60 @@
+{
+  "config_id": "model_test_lens_example_loader_config_v1",
+  "version": "1",
+  "description": "Local example loader config for Model Test Lens static site. No external URL.",
+  "canonical_entry_ref": "canonical_entry_v1.json",
+  "canonical_local_url": "http://localhost:8765",
+  "canonical_index_html": "capabilities/midplatform/model_test_lens/static_site/index.html",
+  "builtin_examples": [
+    {
+      "example_id": "mobile_sam_multi_real_image",
+      "label": "MobileSAM Multi-Real-Image Segmentation",
+      "loader_type": "embedded_in_app_js",
+      "embedded_global": "ModelTestLens.BUILTIN_MOBILE_SAM_EXAMPLE",
+      "file_rel_path": "../examples/mobile_sam_multi_real_image_envelope_example_v1.json",
+      "model_id": "mobile_sam",
+      "model_category": "segmentation",
+      "phase_ref": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+      "active_panel": "segmentation"
+    },
+    {
+      "example_id": "slam_orb_luna_street_scene",
+      "label": "SLAM ORB Luna Street Scene (MUEP)",
+      "loader_type": "embedded_in_app_js",
+      "embedded_global": "ModelTestLens.fetchBuiltinSlamExample",
+      "file_rel_path": "../examples/slam_orb_luna_street_scene_envelope_example_slim_v1.json",
+      "model_id": "orb_slam",
+      "model_category": "slam_vio",
+      "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MUEP-SLAM-Adapter-v1-001",
+      "active_panel": "slam_vio"
+    }
+  ],
+  "local_json_file_input": {
+    "enabled": true,
+    "accept": ".json,application/json",
+    "validate_minimum_fields": [
+      "envelope_id",
+      "test_case_id",
+      "model_id",
+      "model_category",
+      "input_asset_refs",
+      "boundary_flags",
+      "readiness_effect"
+    ]
+  },
+  "forbidden": [
+    "external_url_fetch",
+    "live_camera",
+    "microphone",
+    "model_execution",
+    "runtime_server",
+    "registry_mutation",
+    "artifact_delete"
+  ],
+  "read_sources_allowed": [
+    "_tmp_eval_out/",
+    "capabilities/test_board/",
+    "capabilities/test_assets/",
+    "capabilities/midplatform/model_test_lens/"
+  ]
+}

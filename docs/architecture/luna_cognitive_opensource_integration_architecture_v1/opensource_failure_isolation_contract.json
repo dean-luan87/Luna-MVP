@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Open Source Failure Isolation Contract",
+  "owner":"Self Regulation",
+  "failure_states":["healthy","degraded","unavailable","quarantined","replaced_candidate"],
+  "flow":["External Asset Failure","Capability Failure Domain","Affected Capability Update","Self State Candidate","Runtime Hint"],
+  "isolation_rules":["external failure is local","unaffected capabilities remain available","Unknown increases when evidence is lost","no whole Self failure by default"],
+  "forbidden_effects":["automatic model switch","automatic provider switch","automatic identity change","direct Action"],
+  "rules":{"failure_domain_required":true,"self_preservation":true,"diagnostics_first":true}
+}

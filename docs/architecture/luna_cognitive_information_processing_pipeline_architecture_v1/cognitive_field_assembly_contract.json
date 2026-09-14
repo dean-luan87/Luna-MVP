@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_field_assembly_v1",
+  "owner": "Cognitive Field System",
+  "inputs": ["structured_information", "temporal_state", "spatial_state", "task_context", "role_context", "self_state", "social_self_context"],
+  "output": "current_field_candidate",
+  "field_is_current_reality_slice": true,
+  "field_is_reality": false,
+  "field_is_world_model": false,
+  "reality_write": false,
+  "unknown_preserved": true,
+  "update_source": "evidence_and_governed_context"
+}

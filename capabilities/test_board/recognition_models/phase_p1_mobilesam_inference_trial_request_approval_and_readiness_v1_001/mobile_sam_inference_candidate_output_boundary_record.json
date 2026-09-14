@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.530878+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_inference_candidate_output_boundary_record",
+  "mobile_sam_inference_candidate_output_boundary_record": {
+    "record_id": "mobile_sam_inference_candidate_output_boundary_v1",
+    "inference_output_candidate_only": true,
+    "output_must_not_enter_fact_layer": true,
+    "output_must_not_enter_runtime": true,
+    "output_must_not_enter_output_adapter": true,
+    "output_must_not_enter_semantic_layer": true,
+    "output_must_not_trigger_navigation_action_speech": true,
+    "output_must_not_be_user_visible_runtime_output": true,
+    "output_must_be_written_only_to_eval_artifacts": true,
+    "output_must_be_marked_candidate": true,
+    "output_requires_post_review": true
+  }
+}

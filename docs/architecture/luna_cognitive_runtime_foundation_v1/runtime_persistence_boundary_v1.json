@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Persistence Boundary v1",
+  "owner": "Cognitive OS Governance",
+  "allowed": ["Long-term Memory Reference", "Experience Reference", "Important Snapshot"],
+  "forbidden": ["Temporary Workspace", "Runtime Cache", "Unverified State", "Sensitive transient data"],
+  "admission_fields": ["persistence_id", "source", "owner", "retention_reason", "validation_state", "trace_id"],
+  "rules": {"owner_validation_required": true, "unverified_not_persisted": true, "temporary_not_persisted": true, "persistence_not_decision": true}
+}

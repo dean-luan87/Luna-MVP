@@ -1,0 +1,29 @@
+{
+    "artifact": "causal_multi_hypothesis_coexistence_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "supports": [
+        "multiple hypothesis coexistence",
+        "competing explanations",
+        "parallel unresolved hypotheses",
+        "partial support without forced winner"
+    ],
+    "required_fields": [
+        "hypothesis_refs",
+        "coexistence_reason_candidate",
+        "unresolved_conflicts",
+        "uncertainty",
+        "provenance"
+    ],
+    "preservation_rules": [
+        "no winner_take_all",
+        "no automatic hypothesis deletion",
+        "keep alternatives visible",
+        "keep unresolved conflicts explicit"
+    ],
+    "guards": {
+        "single_winner_required": false,
+        "coexistence_implies_decision": false,
+        "coexistence_implies_action": false
+    }
+}

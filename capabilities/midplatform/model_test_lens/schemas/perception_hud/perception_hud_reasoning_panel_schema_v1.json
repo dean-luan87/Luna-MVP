@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "perception_hud_reasoning_panel_schema_v1",
+  "title": "Perception HUD Reasoning Panel V1",
+  "description": "Read-only reasoning panel for Perception HUD. Test observations only; not navigation instruction.",
+  "type": "object",
+  "required": [
+    "reasoning_panel_id",
+    "source_annotation_ref",
+    "current_task",
+    "system_observations",
+    "reasoning_steps",
+    "uncertainty_summary",
+    "missing_information",
+    "recommended_next_steps",
+    "human_review_required",
+    "candidate_only",
+    "not_fact",
+    "not_navigation_instruction",
+    "not_speech_output"
+  ],
+  "properties": {
+    "reasoning_panel_id": { "type": "string" },
+    "source_annotation_ref": { "type": "string" },
+    "current_task": {
+      "type": "object",
+      "required": ["task_name", "task_goal", "test_mode"],
+      "properties": {
+        "task_name": { "type": "string" },
+        "task_goal": { "type": "string" },
+        "task_context": { "type": "string" },
+        "test_mode": { "type": "boolean", "const": true }
+      }
+    },
+    "system_observations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Plain-language: what the system sees (test observation)"
+    },
+    "reasoning_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "text"],
+        "properties": {
+          "step": { "type": "integer" },
+          "text": { "type": "string" },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } },
+          "uncertainty_refs": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "uncertainty_summary": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "missing_information": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks_and_gaps": {
+      "type": "object",
+      "properties": {
+        "missing_objects": { "type": "array", "items": { "type": "string" } },
+        "low_confidence_items": { "type": "array", "items": { "type": "string" } },
+        "possible_false_positive": { "type": "array", "items": { "type": "string" } },
+        "possible_false_negative": { "type": "array", "items": { "type": "string" } },
+        "model_limitations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "recommended_next_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "enum": [
+              "continue_observation", "supplement_test", "recommended_model",
+              "recommended_prompt", "human_review", "missing_runner"
+            ]
+          },
+          "text": { "type": "string" }
+        }
+      }
+    },
+    "human_review_required": { "type": "boolean" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_navigation_instruction": { "type": "boolean", "const": true },
+    "not_speech_output": { "type": "boolean", "const": true }
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Governance Mapping",
+    "governance_mapping": [
+        "L0 Constitution constraints",
+        "L1 System Protocols",
+        "Information Channel Governance",
+        "Permission / Admission Contract",
+        "Change Control",
+        "Runtime Boundary Contract",
+        "Model / Skill Admission Contract",
+        "System Diagnostics",
+        "Protocol lifecycle governance"
+    ],
+    "reducer_has_constitutional_authority": false,
+    "governance_mapping_complete": true
+}

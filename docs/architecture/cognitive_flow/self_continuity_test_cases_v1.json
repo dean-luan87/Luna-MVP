@@ -1,0 +1,40 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_temporal_stability_validation",
+  "scope": "candidate_only_temporal_continuity",
+  "cases": [
+    {
+      "case_id": "day_1_to_day_30_visual_capability_change",
+      "time_context": {
+        "start": "day_1",
+        "end": "day_30"
+      },
+      "self_timeline": [
+        {
+          "time": "day_1",
+          "identity_reference": "Luna",
+          "visual_capability": "normal"
+        },
+        {
+          "time": "day_30",
+          "identity_reference": "Luna",
+          "visual_capability": "reduced"
+        }
+      ],
+      "expected_candidates": {
+        "identity_stability": "Identity Stable",
+        "capability_context": "Capability Changed",
+        "self_capability_update": "requires_validation_before_adoption"
+      },
+      "forbidden_outputs": [
+        "identity_replaced_by_capability_loss",
+        "automatic_self_model_mutation"
+      ],
+      "assertions": {
+        "self_continuity_preserved": true,
+        "capability_change_is_not_identity_change": true,
+        "state_mutation_excluded": true
+      }
+    }
+  ]
+}

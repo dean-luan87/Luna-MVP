@@ -1,0 +1,49 @@
+{
+    "contract_id": "legacy_compatibility_rollback_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "rollback_scope": "candidate_contract_aliases_only_no_runtime_mutation",
+    "records": [
+        {
+            "existing_contract": "field_state_reducer_module_types_v1",
+            "candidate_contract": "field_context_projection_contract_candidate_v1",
+            "compatibility_alias": "field_state_projection_alias",
+            "rollback_trigger": "projection_breaks_single_writer_or_trace_invariant",
+            "rollback_scope": "remove_projection_alias_and_preserve_existing_field_contract_only"
+        },
+        {
+            "existing_contract": "observation_manager_admission_handoff_v1",
+            "candidate_contract": "observation_cognitive_handoff_contract_candidate_v1",
+            "compatibility_alias": "observation_admission_handoff_alias",
+            "rollback_trigger": "handoff_introduces_fact_or_decision_authority",
+            "rollback_scope": "revert_to_existing_observation_handoff_reference_only"
+        },
+        {
+            "existing_contract": "memory_cognitive_architecture_reference",
+            "candidate_contract": "memory_context_projection_contract_candidate_v1",
+            "compatibility_alias": "memory_projection_alias",
+            "rollback_trigger": "projection_implies_persistence_transfer_or_reality_override",
+            "rollback_scope": "retain_memory_as_only_historical_owner"
+        },
+        {
+            "existing_contract": "task_manager_contract_v1",
+            "candidate_contract": "decision_input_contract_candidate_v1",
+            "compatibility_alias": "task_handoff_reference_alias",
+            "rollback_trigger": "decision_input_grants_task_manager_intent_or_runtime_dispatch",
+            "rollback_scope": "remove_new_upstream_reference_binding_and preserve task mainline"
+        },
+        {
+            "existing_contract": "model_manager_module_output_builder_v1",
+            "candidate_contract": "decision_input_contract_candidate_v1",
+            "compatibility_alias": "model_capability_reference_alias",
+            "rollback_trigger": "model_reference_treated_as_cognitive_fact_or_decision_authority",
+            "rollback_scope": "restore_model_manager_capability_only_position"
+        },
+        {
+            "existing_contract": "protocol_manager_module_output_builder_v1",
+            "candidate_contract": "decision_input_contract_candidate_v1",
+            "compatibility_alias": "protocol_reference_alias",
+            "rollback_trigger": "protocol_reference_expands_into_cognitive_or_runtime_authority",
+            "rollback_scope": "preserve_protocol_governance_as_compatibility_support_only"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+  "artifact":"cognitive_brain_parameter_genome_audit_v1",
+  "schema_exists":true,
+  "owner":"Cognitive Genome Governance (planning boundary)",
+  "parameter_groups":["perception_tendencies","cognitive_tendencies","memory_tendencies","decision_tendencies","resource_risk_tendencies"],
+  "ownership":"candidate registry and review contracts; no active runtime owner",
+  "activation":false,
+  "mutation":false,
+  "inheritance":false,
+  "evolution":false,
+  "guards_only":true,
+  "maturity":"M3_GOVERNANCE_CONTRACT",
+  "a_route_dependency":"not a blocker by itself because current A Route does not require parameter activation",
+  "evidence_refs":["capabilities/midplatform/core/dynamic_cognitive_regulation/cognitive_parameter_genome_types_v1.py","docs/architecture/luna_cognitive_dynamic_function_architecture_v1/cognitive_genome_v1.json"]
+}

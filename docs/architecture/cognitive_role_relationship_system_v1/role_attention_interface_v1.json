@@ -1,0 +1,16 @@
+{
+  "interface_name": "Role Attention Interface v1",
+  "role_reference": "role-example",
+  "field_context": "field-example",
+  "responsibility": [],
+  "expectation": [],
+  "attention_candidate": null,
+  "information_value": null,
+  "risk_context": null,
+  "unknowns": [],
+  "role_provides_attention_candidate": true,
+  "role_does_not_allocate_attention_directly": true,
+  "role_does_not_modify_goal": true,
+  "role_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,181 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "FollowupModelRouteSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+    "description": "后续模型观察路线候选。route candidate only，不是立即执行命令。",
+    "recommended_followup_models": [
+      {
+        "model_id": "detection",
+        "label_zh": "目标检测"
+      },
+      {
+        "model_id": "ocr",
+        "label_zh": "文字识别"
+      },
+      {
+        "model_id": "depth",
+        "label_zh": "深度感知"
+      },
+      {
+        "model_id": "slam",
+        "label_zh": "SLAM / 定位"
+      },
+      {
+        "model_id": "tracking",
+        "label_zh": "目标跟踪"
+      },
+      {
+        "model_id": "motion_analysis",
+        "label_zh": "运动分析"
+      },
+      {
+        "model_id": "slam_reference",
+        "label_zh": "SLAM 定位参考"
+      },
+      {
+        "model_id": "walkable_area_review",
+        "label_zh": "可通行区域复核"
+      },
+      {
+        "model_id": "vio",
+        "label_zh": "视觉惯性里程计"
+      },
+      {
+        "model_id": "vlm",
+        "label_zh": "视觉语言模型"
+      },
+      {
+        "model_id": "human_review",
+        "label_zh": "人工复核"
+      },
+      {
+        "model_id": "no_followup_required",
+        "label_zh": "暂不需要补测"
+      }
+    ],
+    "route_reasons": [
+      {
+        "reason_id": "confirm_object_category",
+        "label_zh": "确认物体类别"
+      },
+      {
+        "reason_id": "read_text",
+        "label_zh": "读取文字"
+      },
+      {
+        "reason_id": "estimate_distance",
+        "label_zh": "估计距离"
+      },
+      {
+        "reason_id": "verify_walkable_area",
+        "label_zh": "验证可通行区域"
+      },
+      {
+        "reason_id": "check_motion",
+        "label_zh": "检查运动"
+      },
+      {
+        "reason_id": "verify_boundary",
+        "label_zh": "验证边界"
+      },
+      {
+        "reason_id": "inspect_low_confidence",
+        "label_zh": "检查低置信区域"
+      },
+      {
+        "reason_id": "validate_human_correction",
+        "label_zh": "验证人工指错"
+      },
+      {
+        "reason_id": "background_reference_only",
+        "label_zh": "仅作背景参考"
+      },
+      {
+        "reason_id": "regression_test_candidate",
+        "label_zh": "回归测试候选"
+      },
+      {
+        "reason_id": "hard_case_candidate",
+        "label_zh": "困难样本候选"
+      },
+      {
+        "reason_id": "recommendation_policy_review",
+        "label_zh": "建议策略复核"
+      },
+      {
+        "reason_id": "verify_motion",
+        "label_zh": "验证运动状态"
+      },
+      {
+        "reason_id": "track_dynamic_object",
+        "label_zh": "跟踪动态目标"
+      },
+      {
+        "reason_id": "estimate_relative_motion",
+        "label_zh": "估计相对运动"
+      },
+      {
+        "reason_id": "confirm_static_text",
+        "label_zh": "确认静态文字"
+      },
+      {
+        "reason_id": "use_as_slam_reference",
+        "label_zh": "作为 SLAM 参考"
+      },
+      {
+        "reason_id": "verify_walkable_structure",
+        "label_zh": "验证可通行结构"
+      },
+      {
+        "reason_id": "distinguish_static_vs_dynamic",
+        "label_zh": "区分静态与动态"
+      }
+    ],
+    "route_priorities": [
+      {
+        "route_priority": "P0",
+        "label_zh": "最高"
+      },
+      {
+        "route_priority": "P1",
+        "label_zh": "高"
+      },
+      {
+        "route_priority": "P2",
+        "label_zh": "中"
+      },
+      {
+        "route_priority": "P3",
+        "label_zh": "低"
+      }
+    ],
+    "route_record_fields": {
+      "route_id": "string",
+      "region_id": "string",
+      "recommended_followup_model": "string",
+      "route_reason": "string",
+      "route_priority": "string",
+      "route_candidate_only": "boolean const true",
+      "not_execution_command": "boolean const true"
+    },
+    "boundary_flags": {
+      "followup_model_route_candidate_only": true,
+      "not_runtime_output": true,
+      "not_execution_command": true
+    },
+    "forbidden_interpretations": [
+      "immediate_runner_execution",
+      "automatic_model_invocation",
+      "navigation_command",
+      "speech_output"
+    ]
+  }
+}

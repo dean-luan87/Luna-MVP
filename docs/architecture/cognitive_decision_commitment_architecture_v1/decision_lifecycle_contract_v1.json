@@ -1,0 +1,39 @@
+{
+  "title": "Decision Lifecycle Contract v1",
+  "contract_type": "Decision Commitment Lifecycle",
+  "states": [
+    "Created",
+    "Candidate",
+    "Reviewing",
+    "Committed",
+    "Executing Preparation",
+    "Invalidated",
+    "Expired",
+    "Archived"
+  ],
+  "transitions": [
+    "Created → Candidate",
+    "Candidate → Reviewing",
+    "Reviewing → Committed",
+    "Committed → Executing Preparation",
+    "Reviewing → Invalidated",
+    "Committed → Invalidated",
+    "Executing Preparation → Invalidated",
+    "Committed → Expired",
+    "Invalidated → Archived",
+    "Expired → Archived"
+  ],
+  "transition_rules": {
+    "candidate_based": true,
+    "reality_freshness_required": true,
+    "evidence_sufficiency_required": true,
+    "constraint_check_required": true,
+    "intent_alignment_required": true,
+    "capability_availability_check_required": true,
+    "human_override_supported": true,
+    "provenance_preserved": true,
+    "lifecycle_does_not_execute_action": true,
+    "lifecycle_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

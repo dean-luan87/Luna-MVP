@@ -1,0 +1,12 @@
+{
+  "title": "Decision Arbitration Input Contract v1",
+  "inputs": ["Current Understanding", "Current Reality", "Goal", "Value", "Utility", "Self State", "Risk", "Unknowns", "Candidate Set"],
+  "candidate_source": "Brain",
+  "memory_is_context_not_authority": true,
+  "current_reality_precedence": true,
+  "self_constraint_required": true,
+  "candidate_only": true,
+  "action_execution": false,
+  "planner": false,
+  "b_route": false
+}

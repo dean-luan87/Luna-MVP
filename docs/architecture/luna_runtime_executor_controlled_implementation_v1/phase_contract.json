@@ -1,0 +1,99 @@
+{
+    "phase": "Phase-Luna-Runtime-Executor-Controlled-Implementation-v1-001",
+    "stage": "Runtime Executor Controlled Implementation",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "current_work_description": {
+        "in_scope": [
+            "runtime executor controlled implementation code",
+            "synthetic fixture suite",
+            "deterministic controlled engine",
+            "controlled runner",
+            "phase-local documentation and final verifier"
+        ],
+        "out_of_scope": [
+            "real runtime execution",
+            "python execution by agent",
+            "runner or verifier execution by agent",
+            "scheduler runtime mutation",
+            "task lifecycle mutation",
+            "adapter/device/provider real command",
+            "database write",
+            "existing passed asset mutation"
+        ]
+    },
+    "previous_phase": "Phase-Luna-Runtime-Executor-Architecture-Planning-v1-001",
+    "previous_phase_decision": "LUNA_RUNTIME_EXECUTOR_ARCHITECTURE_PLANNING_READY",
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_engineering_phase_execution_role_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_verification_execution_authority_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_execution_mode_verification_authority_matrix_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_required_fields_standard_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_template_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_runner_and_verifier_naming_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_status_registry_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_failure_classification_and_remediation_standard_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_agent_product_development_compliance_contract_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/"
+    ],
+    "target_directory": "capabilities/midplatform/core/runtime_executor/ and docs/architecture/luna_runtime_executor_controlled_implementation_v1/",
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "ast parse",
+            "editor diagnostics"
+        ],
+        "V1": [
+            "controlled runner and result verifier exist",
+            "scenario suite deterministic behavior check definitions"
+        ],
+        "V2": "USER_TERMINAL_ONLY_FINAL_PHASE_VERIFIER",
+        "V3": "CHATGPT_ONLY"
+    },
+    "negative_guards": [
+        "no checker weakening",
+        "no hardcoded pass",
+        "no final gate bypass",
+        "no automatic retry",
+        "no runtime side effect",
+        "no owner transfer via handoff",
+        "no parallel runtime executor authority"
+    ],
+    "verification_authority": {
+        "V0": "AGENT_STATIC_ONLY",
+        "V1": "AGENT_COMPONENT_LEVEL_ONLY",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "allowed_agent_execution": [
+        "create or update in-scope files",
+        "editor diagnostics checks"
+    ],
+    "prohibited_agent_execution": [
+        "python",
+        "python3",
+        "runner execution",
+        "verifier execution",
+        "pytest",
+        "py_compile",
+        "shell validation"
+    ],
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "cd /Users/luanlei/Desktop/Luna-Core && python3 capabilities/midplatform/core/runtime_executor/run_runtime_executor_controlled_implementation_v1.py",
+        "cd /Users/luanlei/Desktop/Luna-Core && python3 docs/architecture/luna_runtime_executor_controlled_implementation_v1/verify_runtime_executor_controlled_implementation_v1.py"
+    ],
+    "expected_success_decision": "LUNA_RUNTIME_EXECUTOR_CONTROLLED_IMPLEMENTATION_READY",
+    "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+    "expected_failure_decision": "LUNA_RUNTIME_EXECUTOR_CONTROLLED_IMPLEMENTATION_REMEDIATION_REQUIRED",
+    "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+    "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "runtime_executed": false,
+    "scheduler_execution": false,
+    "task_lifecycle_mutation": false,
+    "adapter_call_execution": false,
+    "provider_call_execution": false,
+    "device_control": false,
+    "database_write": false,
+    "source_mutation": false
+}

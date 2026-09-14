@@ -1,0 +1,21 @@
+{
+  "control_id": "model_availability_state_control_001",
+  "policy_id": "model_availability_state_control",
+  "model_family": "multi_family_availability_matrix",
+  "model_id": "availability_state_router_v1",
+  "license_ref": "license:multi_family_mixed",
+  "allowed_use": "candidate_only",
+  "availability_state": "mixed",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "availability_state_confidence_policy_v1",
+  "fallback_plan": "fallback_to_available_state_route_only",
+  "availability_states": [
+    "available", "contract_only", "test_only", "download_planning_required",
+    "deferred_due_to_resource", "reserved_only", "unavailable_declared"
+  ],
+  "boundaries": [
+    "download_planning_required_does_not_trigger_download",
+    "reserved_only_does_not_trigger_execution",
+    "unavailable_declared_is_not_blocker"
+  ]
+}

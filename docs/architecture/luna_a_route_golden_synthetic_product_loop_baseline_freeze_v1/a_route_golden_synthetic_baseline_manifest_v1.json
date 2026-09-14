@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "freeze_id":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "freeze_status":"FROZEN_V1",
+  "phase":"Phase-Luna-A-Route-Golden-Synthetic-Product-Loop-Baseline-Freeze-v1-001",
+  "source_implementation_phase":"Phase-Luna-A-Route-Runtime-Product-Loop-Controlled-Integration-v1-001",
+  "canonical_loop_caller":"A Route Orchestration Governance",
+  "runner_evidence_ref":"_eval_out/a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_result_v1.json",
+  "case_evidence_ref":"_eval_out/a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_case_results_v1.json",
+  "trace_evidence_ref":"_eval_out/a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_trace_v1.json",
+  "prior_verifier_ref":"docs/architecture/luna_a_route_runtime_product_loop_controlled_integration_v1/verify_a_route_runtime_product_loop_controlled_integration_v1.py",
+  "required_evidence":{"scenario_count":40,"all_cases_passed":true,"failed_case_ids":[],"failed_check_count":0,"blocker_count":0,"controlled_integration_status":"PASS"},
+  "frozen_chain":["Product Input","Observation / Context when required","Cognitive processing","Decision","Task","Action","Controlled Runtime","Actual Result","Outcome Evaluation","Feedback","Product Output","Cycle Completion / Next Cycle"],
+  "implementation_modified_by_freeze":false,
+  "synthetic_adapters_permanent":true
+}

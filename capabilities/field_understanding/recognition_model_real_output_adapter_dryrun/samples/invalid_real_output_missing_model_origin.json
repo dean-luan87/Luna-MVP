@@ -1,0 +1,16 @@
+{
+  "model_id": "opencv_rule_based_visual_symbol",
+  "model_family": "visual_symbol_rule_family",
+  "model_version_ref": "opencv_rule_real_v1",
+  "license_ref": "apache_2_0_opencv",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "input_ref": "sample_p0_visual_symbol_arrow_image.png",
+  "output_schema_ref": "visual_symbol_output_schema_v1",
+  "confidence": 0.82,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "visual_symbol_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "commercial_allowed_under_apache_2_0",
+  "real_output": true,
+  "inference_scope": "p0_controlled_sample_only"
+}

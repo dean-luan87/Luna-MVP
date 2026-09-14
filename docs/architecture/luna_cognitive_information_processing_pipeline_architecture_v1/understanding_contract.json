@@ -1,0 +1,12 @@
+{
+  "contract_id": "current_understanding_v1",
+  "owner": "Cognitive Understanding System",
+  "inputs": ["current_field", "relevant_memory_candidates", "knowledge_context", "hypothesis_candidates"],
+  "output": "current_understanding_candidate",
+  "required_fields": ["known_state", "unknowns", "conflicts", "provenance", "confidence"],
+  "is_reality": false,
+  "is_world_model": false,
+  "candidate_only": true,
+  "current_reality_precedence": true,
+  "decision_authority": false
+}

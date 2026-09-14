@@ -1,0 +1,11 @@
+{
+  "contract_id": "attention_value_v1",
+  "owner": "Attention Evaluation",
+  "inputs": ["task_importance", "safety_impact", "decision_impact", "uncertainty_value", "conflict_value", "memory_relevance", "resource_cost"],
+  "output": "attention_value_candidate",
+  "formula": "Task Importance + Safety Impact + Decision Impact + Uncertainty Value + Conflict Value + Memory Relevance - Resource Cost",
+  "algorithm_implemented": false,
+  "unknown_is_impact_weighted": true,
+  "candidate_only": true,
+  "decision_authority": false
+}

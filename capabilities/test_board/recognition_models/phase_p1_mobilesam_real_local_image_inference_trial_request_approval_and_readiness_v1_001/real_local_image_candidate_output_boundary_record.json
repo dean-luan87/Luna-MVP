@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:45:11.725615+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "real_inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "real_local_image_candidate_output_boundary_record",
+  "record": {
+    "record_id": "real_local_image_candidate_output_boundary_v1",
+    "candidate_output_only": true,
+    "output_target_dir": "_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/",
+    "output_must_be_candidate": true,
+    "output_not_fact": true,
+    "output_not_runtime_output": true,
+    "output_not_output_adapter_output": true,
+    "output_not_semantic_output": true,
+    "output_not_navigation_action_speech": true,
+    "output_not_user_visible_runtime_output": true,
+    "output_requires_post_review": true,
+    "output_requires_quality_summary": true,
+    "output_requires_failure_mode_annotation": true
+  }
+}

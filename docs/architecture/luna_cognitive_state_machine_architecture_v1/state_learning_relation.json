@@ -1,0 +1,13 @@
+{
+  "relation_id": "cognitive_state_learning_v1",
+  "flow": ["Reflection State", "Outcome Evaluation", "Experience Candidate", "Pattern/Schema Candidate", "Learning State", "Growth Candidate", "Self Review", "Observation State"],
+  "learning_state_requires": ["validated_experience", "pattern_or_capability_gap", "learning_utility", "self_review"],
+  "learning_is_not_memory": true,
+  "learning_is_not_runtime": true,
+  "single_outcome_not_schema": true,
+  "automatic_learning": false,
+  "automatic_schema_update": false,
+  "automatic_capability_update": false,
+  "self_review_required": true,
+  "candidate_only": true
+}

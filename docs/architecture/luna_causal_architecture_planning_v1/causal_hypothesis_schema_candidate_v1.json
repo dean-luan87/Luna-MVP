@@ -1,0 +1,167 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/causal/causal-hypothesis-candidate/v1",
+    "title": "Causal Hypothesis Candidate v1",
+    "description": "Planning-only candidate explanation object governed by Causal Governance.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "hypothesis_id",
+        "owner",
+        "candidate_kind",
+        "hypothesis_statement",
+        "target_event_refs",
+        "cause_candidate_refs",
+        "evidence_support_refs",
+        "evidence_opposition_refs",
+        "confounder_refs",
+        "temporal_order_refs",
+        "uncertainty",
+        "alternative_hypothesis_refs",
+        "state_candidate",
+        "provenance",
+        "trace_ref",
+        "decision_authority",
+        "action_authority",
+        "task_authority"
+    ],
+    "properties": {
+        "hypothesis_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "owner": {
+            "const": "Causal Governance"
+        },
+        "candidate_kind": {
+            "const": "CAUSAL_HYPOTHESIS_CANDIDATE"
+        },
+        "hypothesis_statement": {
+            "type": "string",
+            "minLength": 1
+        },
+        "target_event_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "cause_candidate_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "evidence_support_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "evidence_opposition_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "confounder_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "temporal_order_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "uncertainty": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "unknowns",
+                "confidence_candidate",
+                "confidence_not_truth"
+            ],
+            "properties": {
+                "unknowns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "confidence_candidate": {
+                    "type": [
+                        "number",
+                        "string",
+                        "null"
+                    ]
+                },
+                "confidence_not_truth": {
+                    "const": true
+                }
+            }
+        },
+        "alternative_hypothesis_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "state_candidate": {
+            "type": "string",
+            "minLength": 1
+        },
+        "provenance": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "trace_ref": {
+            "type": "string",
+            "minLength": 1
+        },
+        "decision_authority": {
+            "const": false
+        },
+        "action_authority": {
+            "const": false
+        },
+        "task_authority": {
+            "const": false
+        }
+    },
+    "$defs": {
+        "ref": {
+            "type": "object",
+            "required": [
+                "owner",
+                "ref_id"
+            ],
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ref_id": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "planning_guards": {
+        "correlation_not_causality": true,
+        "temporal_precedence_not_causality": true,
+        "causal_hypothesis_not_decision": true,
+        "no_runtime": true,
+        "active_schema": false
+    }
+}

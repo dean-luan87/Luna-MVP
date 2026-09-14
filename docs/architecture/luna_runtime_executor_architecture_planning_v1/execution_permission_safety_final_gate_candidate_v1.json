@@ -1,0 +1,17 @@
+{
+    "artifact": "execution_permission_safety_final_gate_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "final_gate": {
+        "required": true,
+        "permission_still_valid": true,
+        "safety_still_valid": true,
+        "target_scope_still_match": true,
+        "time_window_still_valid": true,
+        "confirmation_not_revoked": true
+    },
+    "guards": {
+        "final_gate_pass_not_equal_execution_success": true,
+        "permission_inheritance_without_recheck_forbidden": true,
+        "safety_inheritance_without_recheck_forbidden": true
+    }
+}

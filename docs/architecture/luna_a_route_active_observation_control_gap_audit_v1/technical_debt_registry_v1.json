@@ -1,0 +1,5 @@
+{
+  "debt_items": [
+    {"debt_id":"TD-AOC-001","classification":"NON_BLOCKING_VERIFIER_TRACEABILITY_DEBT","asset":"docs/architecture/luna_a_route_perception_observation_gateway_controlled_integration_v1/verify_observation_gateway_controlled_integration_v1.py","evidence":"User-terminal verification reported 22/22 checks and 0 blockers, but some check_id values were serialized as boolean true/false instead of stable identifiers.","impact":"Traceability/readability debt only; does not invalidate the passed result based on supplied terminal evidence.","action":"Register only; do not modify Observation Gateway verifier or reopen its implementation in this phase.","status":"REGISTERED_NOT_BLOCKING"}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "schema_validation_v1",
+  "owner": "Schema Governance",
+  "inputs": ["schema_candidate", "memory_cluster", "field_contexts", "validation_history", "contradicting_evidence", "unknowns"],
+  "validation_dimensions": ["Repeatability", "Context Stability", "Prediction Support", "Contradiction"],
+  "outputs": ["validation_result", "schema_admission_candidate", "confidence_change", "unknowns"],
+  "long_term_validation_required": true,
+  "reality_precedence": true,
+  "prediction_engine": false,
+  "automatic_admission": false,
+  "candidate_only": true
+}

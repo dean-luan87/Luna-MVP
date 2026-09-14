@@ -1,0 +1,17 @@
+{
+  "title": "Self World Boundary Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Self Layer", "owner": "Self Layer", "writer": "Self Governance", "reader": ["Brain", "Field", "Social Self"]},
+    {"module": "Social Self", "owner": "Social Self", "writer": "Social Self Governance", "reader": ["Brain", "Self Layer", "Field"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Self Layer", "Social Self", "Field", "Brain"]},
+    {"module": "Schema", "owner": "Schema", "writer": "Schema Governance", "reader": ["Self Layer", "Field", "Brain"]},
+    {"module": "Capability Governance", "owner": "Capability Governance", "writer": "Capability Admission", "reader": ["Self Layer", "Brain"]},
+    {"module": "Constitution", "owner": "Constitution", "writer": "Constitution Governance", "reader": ["Self Layer", "Social Self", "Brain"]},
+    {"module": "Field", "owner": "Field", "writer": "Field State Owner", "reader": ["Self Layer", "Social Self", "Memory", "Brain"]},
+    {"module": "Integration", "owner": "Integration", "writer": "Integration Governance", "reader": ["Self Layer", "Social Self", "Brain"]},
+    {"module": "Self Evolution", "owner": "Self Evolution", "writer": "Self Growth Governance", "reader": ["Self Layer", "Memory", "Schema"]},
+    {"module": "Knowledge", "owner": "Knowledge", "writer": "Knowledge Governance", "reader": ["Field", "Social Self", "Self Layer"]},
+    {"module": "Action Boundary", "owner": "Action Boundary", "writer": "Action Permission Gate", "reader": ["Brain", "Capability Governance"]}
+  ]
+}

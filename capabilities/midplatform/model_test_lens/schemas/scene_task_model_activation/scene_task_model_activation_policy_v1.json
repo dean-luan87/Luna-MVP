@@ -1,0 +1,80 @@
+{
+  "schema_id": "SceneTaskModelActivationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "Scene-Task Model Activation 总策略 — 场景决定任务，任务决定模型出场权。",
+  "planning_only": true,
+  "principle": "不是模型看到图就工作，而是中台批准模型在某个区域为某个任务工作。",
+  "activation_chain": [
+    "input_image",
+    "scene_profile_candidate",
+    "task_intent_candidate",
+    "model_activation_plan_candidate",
+    "model_region_assignment",
+    "followup_runner_task_candidate"
+  ],
+  "model_policies": {
+    "ocr_text_detector": {
+      "activate_when": [
+        "task_intent in read_text, find_direction, locate_place",
+        "scene_profile in text_signage_scene, shopfront_sign, subway_platform",
+        "text_likelihood_region_exists"
+      ],
+      "noop_when": [
+        "task is pure spatial tracking",
+        "no text_likelihood",
+        "route_conflict_blocks_ocr"
+      ]
+    },
+    "slam": {
+      "activate_when": [
+        "task_intent in assess_walkable_area, spatial_continuity",
+        "multi_frame_spatial_consistency_needed"
+      ],
+      "noop_when": [
+        "task_intent is read_text only",
+        "scene_profile is shopfront_sign or text_signage_scene",
+        "no_spatial_continuity_requirement"
+      ]
+    },
+    "detection": {
+      "activate_when": [
+        "task_intent in identify_object, track_dynamic_target",
+        "object_or_dynamic_candidate_exists"
+      ],
+      "noop_when": ["task is text-only", "pure_ocr_crop_task"]
+    },
+    "depth": {
+      "activate_when": ["walkable_area", "obstacle", "platform_edge", "spatial_risk"],
+      "noop_when": ["pure text reading", "static sign OCR without navigation"]
+    },
+    "tracking": {
+      "activate_when": ["dynamic_target", "multi_frame_review"],
+      "noop_when": ["single_frame_static_signage", "text-only task"]
+    },
+    "vlm_route_enhancer": {
+      "activate_when": ["unknown_scene", "route_conflict", "low_confidence_selection"],
+      "noop_when": ["task clear and covered by OCR/Detection"]
+    },
+    "mobile_sam_region_proposal": {
+      "activate_when": ["mask_refine_needed", "region_proposal_for_non_text_primary"],
+      "noop_when": ["text-first scene with text_detector primary", "sam_not_primary_text_detector"]
+    }
+  },
+  "forbidden_patterns": [
+    "blanket_activate_all_models",
+    "slam_for_text_discovery",
+    "ocr_for_spatial_mapping",
+    "inactive_model_generates_runner_task"
+  ],
+  "boundary_flags": {
+    "no_blanket_model_activation": true,
+    "no_slam_for_text_task": true,
+    "model_activation_candidate_not_fact": true,
+    "noop_record_required_for_inactive_models": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "no_runner_execution_in_planning": true,
+    "planning_only": true
+  }
+}

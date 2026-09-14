@@ -1,0 +1,249 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Matrix",
+    "policies": [
+        {
+            "policy_id": "latest_valid_event",
+            "evaluation_rules": [
+                "latest_event_admitted",
+                "latest_event_temporal",
+                "latest_event_provenance",
+                "latest_event_conflict"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "ineligible",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "highest_confidence_valid_event",
+            "evaluation_rules": [
+                "confidence_threshold_pass",
+                "confidence_source_diversity",
+                "confidence_temporal_valid",
+                "confidence_conflict_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "ineligible",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "multi_event_consensus",
+            "evaluation_rules": [
+                "consensus_event_count",
+                "consensus_source_diversity",
+                "consensus_contradiction_gate",
+                "consensus_temporal_valid"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "unresolved_conflict",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "negative_event_override",
+            "evaluation_rules": [
+                "negative_signal_present",
+                "negative_signal_temporal_active",
+                "negative_signal_provenance",
+                "negative_conflict_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "ineligible",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "revocation_override",
+            "evaluation_rules": [
+                "revocation_present",
+                "revocation_temporal_valid",
+                "revocation_provenance",
+                "revocation_governance_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "temporally_invalid",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "expiration_degrade",
+            "evaluation_rules": [
+                "expiration_detected",
+                "expiration_refresh_gate",
+                "expiration_provenance",
+                "expiration_conflict_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "insufficient_evidence",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "conflict_preservation",
+            "evaluation_rules": [
+                "conflict_present",
+                "conflict_unresolved_allowed",
+                "conflict_provenance",
+                "conflict_governance_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "unresolved_conflict",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "insufficient_evidence_unresolved",
+            "evaluation_rules": [
+                "insufficient_evidence_detected",
+                "missing_required_source_check",
+                "missing_provenance_check",
+                "stale_evidence_check"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "insufficient_evidence",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "explicit_owner_override_candidate",
+            "evaluation_rules": [
+                "owner_correction_condition",
+                "owner_review_gate",
+                "owner_provenance_required",
+                "owner_conflict_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "governance_review_required",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "temporary_overlay_separation",
+            "evaluation_rules": [
+                "overlay_boundary_valid",
+                "overlay_temporal_valid",
+                "overlay_provenance_required",
+                "overlay_conflict_gate"
+            ],
+            "required_rule_count": 3,
+            "optional_rule_count": 1,
+            "blocking_rule_count": 2,
+            "minimum_passed_required_rules": 3,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "blocked",
+            "candidate_only": true,
+            "selection_executed": false
+        },
+        {
+            "policy_id": "no_state_change",
+            "evaluation_rules": [
+                "fallback_allowed",
+                "fallback_temporal_safe",
+                "fallback_conflict_safe",
+                "fallback_governance_safe"
+            ],
+            "required_rule_count": 2,
+            "optional_rule_count": 2,
+            "blocking_rule_count": 1,
+            "minimum_passed_required_rules": 2,
+            "evidence_sufficiency_ref": "default_evidence_sufficiency",
+            "temporal_evaluation_ref": "default_temporal_contract",
+            "confidence_evaluation_ref": "state_type_confidence_contract",
+            "conflict_evaluation_ref": "default_conflict_contract",
+            "governance_evaluation_ref": "default_governance_contract",
+            "eligible_status": "eligible_candidate",
+            "ineligible_status": "blocked",
+            "candidate_only": true,
+            "selection_executed": false
+        }
+    ],
+    "evaluation_matrix_complete": true
+}

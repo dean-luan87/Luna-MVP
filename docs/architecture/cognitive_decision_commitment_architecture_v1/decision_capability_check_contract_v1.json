@@ -1,0 +1,27 @@
+{
+  "title": "Decision Capability Check Contract v1",
+  "contract_type": "Capability Availability Check",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "required_capability": "navigation",
+    "capability_state": {},
+    "self_capability_state": {},
+    "hardware_state": {},
+    "resource_requirement": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "capability_availability_check": "available | degraded | limited | unavailable | unknown",
+    "capability_constraint_candidate": {},
+    "fallback_review_requirement": {},
+    "commitment_status_candidate": "candidate"
+  },
+  "boundary": {
+    "capability_check_is_state_only": true,
+    "capability_check_does_not_invoke_capability": true,
+    "capability_check_does_not_select_provider": true,
+    "capability_check_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

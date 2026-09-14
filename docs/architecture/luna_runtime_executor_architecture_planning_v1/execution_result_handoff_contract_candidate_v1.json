@@ -1,0 +1,23 @@
+{
+    "artifact": "execution_result_handoff_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Runtime Executor",
+    "consumer_owners": [
+        "Action Governance",
+        "Task Manager",
+        "Diagnostics"
+    ],
+    "handoff_kind": "RUNTIME_EXECUTOR_RESULT_CANDIDATE_HANDOFF",
+    "required_payload": [
+        "execution_result_candidate_ref",
+        "failure_candidate_ref_optional",
+        "partial_result_candidate_ref_optional",
+        "trace_ref",
+        "provenance_ref"
+    ],
+    "guards": {
+        "result_handoff_not_owner_mutation": true,
+        "result_handoff_not_retry_authority_grant": true,
+        "result_handoff_not_decision_override": true
+    }
+}

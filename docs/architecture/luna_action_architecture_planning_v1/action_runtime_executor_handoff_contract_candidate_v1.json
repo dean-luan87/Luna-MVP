@@ -1,0 +1,28 @@
+{
+    "artifact": "action_runtime_executor_handoff_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Action Governance",
+    "consumer_owner": "Runtime Executor",
+    "handoff_kind": "candidate_only_reference_handoff",
+    "required_payload": [
+        "action_candidate_ref",
+        "execution_readiness_candidate_ref",
+        "permission_recheck_ref",
+        "safety_recheck_ref",
+        "confirmation_ref",
+        "resource_constraint_ref",
+        "rollback_policy_ref",
+        "provenance_ref"
+    ],
+    "forbidden_payload": [
+        "execute_now_command",
+        "device_control_command",
+        "scheduler_execution_command",
+        "database_mutation_command"
+    ],
+    "guards": {
+        "handoff_means_execution": false,
+        "runtime_decision_owned_by_executor": true,
+        "action_governance_executes_runtime": false
+    }
+}

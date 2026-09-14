@@ -1,0 +1,16 @@
+{
+  "artifact": "emotion_intent_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "intent_owner": "Intent Governance",
+  "allowed_interfaces": ["EmotionToIntentInfluenceCandidate", "IntentContextToEmotionCandidate", "emotion_need_strength_reference"],
+  "frozen_rules": {
+    "emotion_may_influence_intent_candidate": true,
+    "emotion_cannot_create_intent": true,
+    "emotion_cannot_activate_intent": true,
+    "emotion_cannot_reprioritize_intent": true,
+    "emotion_cannot_revoke_intent": true,
+    "intent_retains_authority": true,
+    "candidate_only": true
+  },
+  "forbidden": ["intent_creation", "intent_activation", "intent_reprioritization", "intent_revocation", "decision_override", "action_command"]
+}

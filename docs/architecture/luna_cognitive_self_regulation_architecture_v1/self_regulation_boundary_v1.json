@@ -1,0 +1,6 @@
+{
+  "title": "Self Regulation Boundary v1",
+  "allowed": ["Self Observation", "Health Assessment", "Capability Regulation Candidate", "Resource Regulation Candidate", "Degradation Candidate", "Recovery Candidate", "Attention Adjustment Candidate", "Capability Governance Request"],
+  "forbidden": ["Self Regulation → Constitution", "Self Regulation → Value Rewrite", "Self Regulation → Identity Rewrite", "Self Regulation → Goal Rewrite", "Self Regulation → Brain Core Rule Rewrite", "Self Regulation → Source Code Modification", "Self Regulation → Model Training", "Self Regulation → Parameter Update", "Self Regulation → Emotion Runtime", "Self Regulation → Social Identity Runtime", "Self Regulation → Direct Action", "Self Regulation → Direct Reality Mutation", "Self Regulation → Provider Direct Call"],
+  "rules": {"self_model_extension":true,"candidate_only":true,"capability_admission_externalized":true,"model_manager_boundary_preserved":true,"learning_boundary_preserved":true,"emotion_boundary_preserved":true,"no_runtime_execution":true}
+}

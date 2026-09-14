@@ -1,0 +1,43 @@
+{
+  "title": "Selective Learning Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Experience -> Learning Candidate",
+    "Knowledge -> Field/Role/Task Application Context",
+    "Memory -> Pattern and Schema Context",
+    "Schema -> Capability Gap Context",
+    "Value Utility -> Learning Utility Candidate",
+    "Self -> Learning Boundary and Resource Context",
+    "Learning -> Growth Candidate",
+    "Self -> Learning Admission Review",
+    "Capability Governance -> Capability Growth Admission",
+    "Self Evolution -> Long-Term Growth Review",
+    "Constitution -> Highest Learning Constraint"
+  ],
+  "forbidden_dependencies": [
+    "Knowledge -> Direct Capability Change",
+    "Knowledge -> Direct Self Modification",
+    "Memory -> Automatic Learning",
+    "Schema -> Automatic Learning",
+    "Experience -> Automatic Self Modification",
+    "Learning -> Direct Memory Write",
+    "Learning -> Direct Schema Update",
+    "Learning -> Direct Identity Change",
+    "Learning -> Direct Constitution Change",
+    "Learning -> Direct Goal Change",
+    "Learning -> Model Parameter Update",
+    "Learning -> Model Training",
+    "Learning -> Execute Action",
+    "B Route -> Direct Self Modification",
+    "Emotion -> Direct Learning Adoption",
+    "Provider -> Learning Authority",
+    "Runtime -> Learning Authority"
+  ],
+  "no_learning_runtime": true,
+  "no_automatic_learning": true,
+  "no_model_training": true,
+  "no_parameter_update": true,
+  "no_automatic_memory_write": true,
+  "no_automatic_schema_update": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true
+}

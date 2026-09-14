@@ -1,0 +1,18 @@
+{
+  "classification_id": "OfficialCapabilityModuleClassificationV1",
+  "origin_values": ["OFFICIAL", "MARKET"],
+  "current_origin": "OFFICIAL",
+  "requirement_values": ["MANDATORY_SAFETY", "SYSTEM_REQUIRED", "OPTIONAL"],
+  "valid_combinations": [
+    ["OFFICIAL", "MANDATORY_SAFETY"],
+    ["OFFICIAL", "SYSTEM_REQUIRED"],
+    ["OFFICIAL", "OPTIONAL"]
+  ],
+  "rules": {
+    "official_is_mandatory": false,
+    "safety_is_slot_type": false,
+    "requirement_is_independent_from_origin": true,
+    "current_admission_scope": "OFFICIAL",
+    "market_admission": "DEFERRED"
+  }
+}

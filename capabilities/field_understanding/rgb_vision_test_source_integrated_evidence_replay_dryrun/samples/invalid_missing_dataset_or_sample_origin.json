@@ -1,0 +1,16 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "ade20k",
+  "license_ref": {"license": "BSD-3-Clause-research", "commercial_use_confirmed": false},
+  "source_chain": ["ade20k", "vision_test_source_backup_pool"],
+  "annotation_origin": {"provider": "ade20k_export", "export_format": "semantic_segmentation_masks"},
+  "annotation_format": "semantic_segmentation",
+  "confidence": 0.78,
+  "allowed_use": "research_test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"segmentation": "region_evidence_candidate"},
+  "images": [{"image_id": "x_060", "width": 1024, "height": 768, "confidence": 0.8}],
+  "annotations": [
+    {"ann_id": "x_ann_060", "type": "segmentation", "label": "floor", "image_id": "x_060", "mask_ref": "mask://x_060/floor", "polygon": [[0, 600], [1024, 600], [1024, 768], [0, 768]], "confidence": 0.8}
+  ]
+}

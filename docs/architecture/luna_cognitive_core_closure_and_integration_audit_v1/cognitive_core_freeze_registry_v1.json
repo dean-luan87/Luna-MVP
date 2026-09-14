@@ -1,0 +1,76 @@
+{
+    "artifact": "cognitive_core_freeze_registry_v1",
+    "freeze_items": [
+        {
+            "freeze_id": "FZ01",
+            "statement": "canonical owners are single-source per core module",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ02",
+            "statement": "candidate-only architecture is preserved across the cognitive core",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ03",
+            "statement": "source-owner mutation boundary remains false across audited modules",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ04",
+            "statement": "Current World is not Field State owner",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ05",
+            "statement": "Hypothesis is not Causal truth owner",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ06",
+            "statement": "Cognitive State Vector is not parameter store",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ07",
+            "statement": "Learning cannot activate parameters or genome",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ08",
+            "statement": "Memory candidate is not fact and not persistent memory",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ09",
+            "statement": "Cognitive Flow authority is lifecycle-only",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ10",
+            "statement": "trace/provenance continuity supports reverse lookup but does not transfer semantic authority",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ11",
+            "statement": "idempotency boundaries block duplicate evidence and duplicate update candidate loops",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ12",
+            "statement": "revision/revocation/supersession lineage remains explicit",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ13",
+            "statement": "no automatic self-reinforcing learning loop is permitted",
+            "frozen": true
+        },
+        {
+            "freeze_id": "FZ14",
+            "statement": "semantic compression remains deferred to Emotion Engine workstream",
+            "frozen": true
+        }
+    ],
+    "overall_status": "FROZEN"
+}

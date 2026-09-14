@@ -1,0 +1,51 @@
+{
+    "space_anchor": [
+        "road",
+        "gate",
+        "entrance_exit"
+    ],
+    "physical_definitions": [
+        "road: traffic corridor",
+        "gate: physical entrance structure",
+        "entrance_exit: permitted access point"
+    ],
+    "institutional_definitions": [
+        "road regulation: traffic control policy",
+        "occupancy restriction: capacity limit"
+    ],
+    "social_definitions": [
+        "evening temporary night market: social activity definition"
+    ],
+    "personal_definitions": [
+        "name: 小北门",
+        "home entrance: personal access definition"
+    ],
+    "temporal_states": [
+        "daytime",
+        "evening",
+        "enforcement inspection",
+        "temporary suspension"
+    ],
+    "temporary_overlays": [
+        "evening temporary night market",
+        "temporary suspension during enforcement inspection"
+    ],
+    "task_variants": [
+        "find food",
+        "go home",
+        "internet ride-hailing",
+        "communicate with local taxi driver"
+    ],
+    "expected_projection_differences": [
+        "daytime projection emphasizes road regulation and home entrance",
+        "evening projection includes temporary night market definitions",
+        "enforcement inspection projection suppresses some social definitions",
+        "temporary suspension projection marks temporary overlay as inactive"
+    ],
+    "unresolved_cases": [
+        "institutional regulation vs social night market coexistence",
+        "personal home entrance definition vs public occupancy restriction"
+    ],
+    "candidate_only": true,
+    "not_fact": true
+}

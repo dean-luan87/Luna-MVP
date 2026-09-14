@@ -1,0 +1,8 @@
+{
+  "title": "Closed Loop to Cognitive Core Interface v1",
+  "owner": "Cognitive Core Governance",
+  "core_inputs": ["Evidence", "Field Context", "Self Context", "Attention", "Memory Retrieval", "Expectation Feedback"],
+  "core_outputs": ["Situation", "Hypothesis", "Brain Input Package", "Decision Commitment", "Learning Candidate", "Memory Candidate"],
+  "core_not_modified": ["Constitution", "Runtime Rules", "Capability Provider", "External World"],
+  "rules": {"core_owns_meaning": true, "brain_owns_judgment": true, "closed_loop_not_brain": true, "candidate_boundaries_preserved": true}
+}

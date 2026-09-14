@@ -1,0 +1,23 @@
+{
+  "version":"2.0",
+  "name":"Architecture to Engineering Mapping Baseline",
+  "mappings":[
+    {"architecture_module":"System Constitution","engineering_assets":["docs/architecture/luna_system_constitution_governance_v1/"],"status":"implemented","owner":"Constitution","migration_needed":false},
+    {"architecture_module":"Cognitive OS Governance","engineering_assets":["docs/architecture/luna_cognitive_operating_system_architecture_v1/","docs/architecture/governance/"],"status":"implemented","owner":"Cognitive OS Governance","migration_needed":false},
+    {"architecture_module":"Cognitive Core","engineering_assets":["docs/architecture/luna_cognitive_core_integration_review_v1/","docs/architecture/cognitive_global_state_representation_v1/"],"status":"implemented","owner":"Cognitive Core Governance","migration_needed":false},
+    {"architecture_module":"Brain","engineering_assets":["docs/architecture/cognitive_brain_architecture_v1/"],"status":"implemented","owner":"Brain","migration_needed":false},
+    {"architecture_module":"Self Layer","engineering_assets":["docs/architecture/luna_cognitive_self_model_architecture_v1/","docs/architecture/luna_cognitive_self_regulation_architecture_v1/","docs/architecture/luna_cognitive_self_evolution_architecture_v1/"],"status":"implemented","owner":"Self Governance","migration_needed":false},
+    {"architecture_module":"Social Self Layer","engineering_assets":["docs/architecture/luna_self_social_self_architecture_refactoring_v1/","docs/architecture/luna_self_social_self_architecture_refactoring_engineering_migration_planning_v1/"],"status":"implemented","owner":"Social Self Governance","migration_needed":false},
+    {"architecture_module":"Integration Layer","engineering_assets":["docs/architecture/cognitive_emotion_context_boundary_v1/","docs/architecture/luna_self_social_self_architecture_refactoring_v1/"],"status":"implemented","owner":"Cognitive Integration","migration_needed":false},
+    {"architecture_module":"Capability Governance","engineering_assets":["docs/architecture/luna_capability_governance_architecture_v1/","capabilities/registry/luna_capability_registry_v1.json"],"status":"implemented","owner":"Capability Governance","migration_needed":false},
+    {"architecture_module":"Model Manager","engineering_assets":["docs/architecture/cognitive_model_manager_runtime_boundary_v1/","capabilities/registry/manifests/model_manager_manifest_v1.json"],"status":"implemented","owner":"Capability Governance","migration_needed":false},
+    {"architecture_module":"Action Boundary","engineering_assets":["docs/architecture/luna_cognitive_action_boundary_v1/","docs/architecture/luna_action_runtime_foundation_v1/"],"status":"implemented","owner":"Action Governance","migration_needed":false},
+    {"architecture_module":"Cognitive Runtime","engineering_assets":["docs/architecture/luna_cognitive_runtime_foundation_v1/","docs/architecture/cognitive_runtime_life_process_architecture_v1/"],"status":"implemented","owner":"Cognitive Runtime Governance","migration_needed":false},
+    {"architecture_module":"External Provider Boundary","engineering_assets":["docs/architecture/luna_cognitive_capability_execution_boundary_v1/","docs/architecture/luna_capability_runtime_integration_v1/"],"status":"implemented","owner":"Capability Runtime","migration_needed":false},
+    {"architecture_module":"Emotion Engine","engineering_assets":["docs/architecture/cognitive_emotion_context_boundary_v1/"],"status":"conceptual","owner":"Cognitive Integration","migration_needed":false},
+    {"architecture_module":"Role Manager Runtime","engineering_assets":["docs/architecture/cognitive_role_relationship_system_v1/"],"status":"planned","owner":"Social Self Governance","migration_needed":false},
+    {"architecture_module":"World Model","engineering_assets":[],"status":"conceptual","owner":"Cognitive Core Governance","migration_needed":false},
+    {"architecture_module":"Embodiment Runtime","engineering_assets":[],"status":"planned","owner":"Capability and Action Governance","migration_needed":false}
+  ],
+  "rules":{"mapping_only":true,"no_move":true,"no_delete":true,"baseline_references_only":true}
+}

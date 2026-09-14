@@ -1,0 +1,30 @@
+{
+  "frame_seq": 50,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R50_feedback_fact_consistent_but_wrong_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.17,
+
+  "feedback_fact_consistent_but_wrong_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "用户说法与当前观察互相支持，看似一致，但真正目标/成功条件已变（表面一致性欺骗）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 75, 83], "conf": 0.91 },
+    { "label": "box", "bbox": [162, 38, 224, 102], "conf": 0.56 }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_readiness_review_record",
+  "mobile_sam_model_load_readiness_review": {
+    "review_id": "mobile_sam_model_load_readiness_review_v1",
+    "can_enter_model_load_execution_next": true,
+    "model_load_execution_scope": "mobile_sam_only",
+    "can_inference_after_model_load": false,
+    "can_runtime_after_model_load": false,
+    "can_output_adapter_after_model_load": false,
+    "can_semantic_layer_after_model_load": false,
+    "inference_requires_separate_trial": true,
+    "runtime_requires_separate_trial": true,
+    "output_adapter_requires_separate_review": true,
+    "semantic_layer_requires_separate_promotion": true
+  }
+}

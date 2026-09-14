@@ -1,0 +1,48 @@
+{
+    "schema_id": "FieldStateReadResultSchemaV1",
+    "version": "v1",
+    "description": "Field State Read Model result contract candidate (planning only)",
+    "required_fields": [
+        "query_id",
+        "read_status",
+        "projection",
+        "state_version",
+        "source_state_ref",
+        "provenance_refs",
+        "trace_ref",
+        "replay_key",
+        "boundary_flags",
+        "rejection_reason",
+        "module_status",
+        "runtime_executed"
+    ],
+    "optional_fields": [
+        "stale_reason",
+        "insufficiency_reason"
+    ],
+    "read_status_registry": [
+        "read_ready",
+        "partial_projection",
+        "insufficient_state",
+        "stale_state",
+        "state_unavailable",
+        "query_rejected"
+    ],
+    "boundary_flags_contract": {
+        "read_only": true,
+        "candidate_only": true,
+        "state_mutation_executed": false,
+        "event_reduction_executed": false,
+        "fact_admission_executed": false,
+        "evidence_fabrication_executed": false,
+        "model_execution_executed": false,
+        "action_execution_executed": false,
+        "runtime_loop_executed": false,
+        "real_state_store_connected": false
+    },
+    "projection_constraints": {
+        "projection_from_controlled_state_candidate_only": true,
+        "no_new_fact_generation": true,
+        "no_missing_evidence_backfill": true
+    }
+}

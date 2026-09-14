@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Capability Integration Review",
+  "flow": ["Brain", "Capability Request", "Capability Governance", "Capability Runtime", "Evidence"],
+  "inputs": ["Cognitive Need", "Self Regulation Proposal", "Capability Requirement", "Resource/Health State"],
+  "outputs": ["Evidence Candidate", "Capability Health Candidate", "Failure/Degradation Candidate"],
+  "owners": {"request": "Brain / Cognitive Core", "admission": "Capability Governance", "implementation": "Capability Runtime / Provider", "evidence": "Evidence Gateway"},
+  "forbidden": ["Capability → Direct Brain Decision", "Provider → Direct Cognitive Core", "Provider → Reality Authority", "Model → Goal Creation", "Capability → Goal Ownership"],
+  "rules": {"capability_first": true, "provider_isolation": true, "evidence_gateway_required": true, "self_regulation_cannot_bypass_admission": true, "failure_isolation_required": true}
+}

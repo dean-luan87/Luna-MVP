@@ -1,0 +1,11 @@
+{
+  "title": "Goal Source Contract v1",
+  "sources": ["Self-Originated Goal", "User-Originated Goal", "Environment-Originated Goal", "System-Originated Goal"],
+  "source_is_provenance_not_authority": true,
+  "candidate_only": true,
+  "self_governance_required": true,
+  "automatic_goal_generation": false,
+  "source_can_bypass_constitution": false,
+  "source_can_execute_action": false,
+  "unknowns_preserved": true
+}

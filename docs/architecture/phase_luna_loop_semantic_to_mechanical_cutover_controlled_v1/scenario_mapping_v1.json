@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-Loop-Semantic-To-Mechanical-Cutover-Controlled-Implementation-v1-001",
+  "scenario_count": 33,
+  "families": {
+    "resume": ["RS-01", "RS-02", "RS-03", "RS-04", "RS-05", "RS-06", "RS-07", "RS-08", "RS-09"],
+    "local_disposition": ["LD-01", "LD-02", "LD-03", "LD-04", "LD-05", "LD-06"],
+    "closure": ["CL-01", "CL-02", "CL-03", "CL-04", "CL-05", "CL-06", "CL-07"],
+    "continuity": ["CT-01", "CT-02", "CT-03", "CT-04"],
+    "isolation": ["IS-01", "IS-02", "IS-03"],
+    "negative": ["NG-01", "NG-02", "NG-03", "NG-04"]
+  },
+  "provider_invocation": false,
+  "runtime_execution": false
+}
+

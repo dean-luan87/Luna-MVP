@@ -1,0 +1,13 @@
+{
+  "contract_id": "goal_activation_function_v1",
+  "function_role": "Goal Activation Function",
+  "inputs": ["Goal Candidates", "Current Field", "Value Utility", "Self State", "Resource State", "Risk", "Task Demand"],
+  "parameters": ["goal_activation_threshold", "task_relevance_weight", "resource_suppression_weight", "risk_priority_weight"],
+  "outputs": ["Goal Activation Candidate", "Goal Suppression Candidate", "Goal Reconsideration Candidate", "Goal Priority Candidate"],
+  "goal_is_not_created_by_function": true,
+  "goal_is_not_action": true,
+  "self_constraint_required": true,
+  "constitution_constraint_required": true,
+  "automatic_goal_activation": false,
+  "candidate_only": true
+}

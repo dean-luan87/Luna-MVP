@@ -1,0 +1,16 @@
+{
+    "artifact": "memory_pcn_boundary_v1",
+    "allowed": [
+        "memory_reference_input",
+        "experience_reference_input",
+        "link_update_candidate",
+        "activation_influence_candidate"
+    ],
+    "forbidden": [
+        "identity_mutation",
+        "relationship_mutation",
+        "personal_cognitive_link_mutation",
+        "self_model_mutation",
+        "preference_profile_mutation"
+    ]
+}

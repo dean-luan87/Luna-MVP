@@ -1,0 +1,75 @@
+{
+  "snapshot_id": "luna_observation_lens_v1_ui_freeze_snapshot",
+  "frozen_at": "2026-07-02T00:00:00Z",
+  "page_title": "Luna 观察镜",
+  "page_title_en": "Luna Observation Lens",
+  "default_layout": "canvas_first_compact_observation_window",
+  "entry_html": "capabilities/midplatform/model_test_lens/static_site/index.html",
+  "required_components": [
+    "lol-top-bar",
+    "lol-left-rail",
+    "lol-central",
+    "lol-right-panel",
+    "lol-object-chip-host",
+    "lol-bottom-dock",
+    "phud-hud-canvas",
+    "hud_object_chip_bar_v1",
+    "hud_hidpi_renderer_v1",
+    "hud_label_layout_policy_v1",
+    "luna_left_capability_drawer_v1",
+    "luna_capability_grid_trigger_v1",
+    "luna_bottom_drawer_tabs_v1",
+    "luna_bottom_drawer_state_guard_v1",
+    "hud_reasoning_compression_v1",
+    "simple_mode_ui_v1",
+    "runner_bridge_ui_v1"
+  ],
+  "collapsed_by_default_components": [
+    "lol-drawer-overlay",
+    "phud-external-panel-host",
+    "advanced-workflow",
+    "lol-rp-collapsed",
+    "developer-json-details",
+    "whitebox-drawer-body",
+    "metrics-drawer-body",
+    "objects-drawer-body"
+  ],
+  "forbidden_default_components": [
+    "full_object_detail_cards_in_main_flow",
+    "segmentation_bar_chart_in_main_viewport",
+    "manifest_in_main_viewport",
+    "job_request_in_main_viewport",
+    "runner_bridge_in_main_viewport",
+    "envelope_json_in_main_viewport",
+    "artifact_ref_in_main_viewport",
+    "phase_ref_in_main_viewport",
+    "raw_json_in_main_viewport",
+    "testboard_paths_in_main_viewport",
+    "vertical_five_screen_report_flow"
+  ],
+  "model_adapter_slots": [
+    "segmentation_mobile_sam",
+    "detection_yolo",
+    "ocr",
+    "slam_vio",
+    "depth",
+    "asr",
+    "tts",
+    "speaker",
+    "vlm"
+  ],
+  "boundary_flags": {
+    "candidate_only": true,
+    "non_runtime": true,
+    "no_fact_write": true,
+    "no_semantic_write": true,
+    "no_registry_mutation": true,
+    "no_navigation_speech": true,
+    "execution_via_local_runner_bridge_8787": true
+  },
+  "protected_artifact_refs": [
+    "capabilities/midplatform/model_test_lens/static_site/index.html",
+    "capabilities/midplatform/model_test_lens/static_site/app.js",
+    "capabilities/midplatform/model_test_lens/static_site/styles.css"
+  ]
+}

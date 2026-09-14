@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Execution-Trace-Streaming-DryRun-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T02:55:35.871605+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_execution_trace_streaming_dryrun_status": "streaming_execution_trace_simulation_established_candidate_only",
+    "next_step_options_ref": "p1_execution_trace_streaming_dryrun_post_review",
+    "transition_note": "P1 executability simulation is upgraded from a single-shot node-level dry-run into a continuous 8-frame streaming-trace dry-run. The streaming execution graph (segmentation -> tracking -> detection -> depth -> scene_relation deferred) builds with no cycles. Temporal candidate evolution (region/track/object/spatial_hint/scene_relation), cross-frame consistency, cross-model temporal agreement, drift signals, uncertainty smoothing, conflict evolution, streaming fallback and midplatform stream governance are all simulated and stay candidate-only. This is a virtual test, not runtime: no real inference, no model download, no dependency install, no dataset download, no live camera/sensor, no continuous runtime. Temporal stability is not fact admission; cross-model agreement is not semantic promotion; conflict/uncertainty are not fact; deferred/reserved VLM nodes are not executed; no VLA action chain; commercial runtime not approved. All test process and conclusion records are written to the protected, non-deletable test board. Next: Phase-P1-Execution-Trace-Streaming-DryRun-Post-Review-v1-001 to re-verify test-record completeness, non-deletable marking, and that streaming consistency conclusions were not mis-promoted to fact / semantic."
+  },
+  "final_decision": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_GO"
+}

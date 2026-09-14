@@ -1,0 +1,53 @@
+{
+    "artifact": "cognitive_flow_gap_registry_v1",
+    "gaps": [
+        {
+            "gap_id": "A",
+            "classification": "solvable_entirely_in_new_organization_planning",
+            "items": [
+                "cycle definition",
+                "minimal state machine",
+                "transition and reconsideration governance",
+                "inheritance and trace contracts"
+            ],
+            "blocker": false
+        },
+        {
+            "gap_id": "B",
+            "classification": "requires_future_extension_of_existing_owner_contract",
+            "items": [
+                {
+                    "affected_owner": "Future Memory Governance",
+                    "affected_contract": "future cycle summary ingestion contract",
+                    "reason": "memory insertion point reserved but no canonical module implemented yet",
+                    "proposed_future_remediation": "create memory observation and admission contract in future phase",
+                    "blocker": false
+                },
+                {
+                    "affected_owner": "Future Learning Governance",
+                    "affected_contract": "experience to learning to parameter-update bridge",
+                    "reason": "learning insertion boundary reserved but no canonical module implemented yet",
+                    "proposed_future_remediation": "create candidate-only learning handoff planning phase",
+                    "blocker": false
+                }
+            ]
+        },
+        {
+            "gap_id": "C",
+            "classification": "conflicts_with_already_passed_canonical_architecture",
+            "items": [],
+            "blocker": false
+        },
+        {
+            "gap_id": "D",
+            "classification": "intentionally_deferred",
+            "items": [
+                "runtime wakeup/interrupt execution",
+                "real async orchestration",
+                "memory implementation",
+                "learning implementation"
+            ],
+            "blocker": false
+        }
+    ]
+}

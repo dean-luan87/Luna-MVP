@@ -1,0 +1,8 @@
+{
+  "artifact":"attribution_taxonomy_v1",
+  "candidate_only":true,
+  "types":["OBSERVATION_ERROR_CANDIDATE","WORLD_MODEL_ERROR_CANDIDATE","PREDICTION_ERROR_CANDIDATE","DECISION_ERROR_CANDIDATE","TASK_PLANNING_ERROR_CANDIDATE","EXECUTION_ERROR_CANDIDATE","CAPABILITY_ERROR_CANDIDATE","TEMPORAL_VALIDITY_ERROR_CANDIDATE","STALE_INFORMATION_CANDIDATE","EXTERNAL_WORLD_CHANGE_CANDIDATE","USER_CORRECTION_CANDIDATE","INSUFFICIENT_EVIDENCE","UNRESOLVED_ATTRIBUTION"],
+  "required_fields":["attribution_id","attribution_kind","support_refs","counterevidence_refs","related_expectation_refs","related_actual_result_refs","confidence_candidate","uncertainty_refs","competing_attribution_refs","partial_cause_refs","revision_parent_ref","supersedes_ref","revocation_ref","trace_ref","provenance_refs"],
+  "rules":["multiple causes may coexist","attribution does not declare an owner wrong","unknown and unresolved are valid outputs","confidence is not correctness","one outcome cannot automatically update a schema or owner state"],
+  "failure_boundary":"Failure != Execution Error; unexpected outcome != wrong decision"
+}

@@ -1,0 +1,81 @@
+{
+  "schema_id": "ModelAdapterInputSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+  "description": "中台 Model Adapter 标准输入。禁止直接传递内部 store 对象。",
+  "required_fields": [
+    "image_ref",
+    "region_ref",
+    "task_type",
+    "model_id",
+    "constraints",
+    "trace_chain",
+    "source_execution_candidate_id"
+  ],
+  "field_definitions": {
+    "image_ref": {
+      "type": "string",
+      "description": "源图或帧引用，如 local-file:// 或 envelope input_asset_refs"
+    },
+    "region_ref": {
+      "type": "string",
+      "pattern": "^region://",
+      "description": "segmentation region 引用"
+    },
+    "task_type": {
+      "type": "string",
+      "enum": ["segmentation"],
+      "const": "segmentation"
+    },
+    "model_id": {
+      "type": "string",
+      "enum": ["mobile_sam"],
+      "const": "mobile_sam"
+    },
+    "constraints": {
+      "type": "object",
+      "required": ["candidate_only", "no_fact_write", "no_navigation_decision"],
+      "properties": {
+        "candidate_only": { "type": "boolean", "const": true },
+        "no_fact_write": { "type": "boolean", "const": true },
+        "no_navigation_decision": { "type": "boolean", "const": true },
+        "crop_policy_ref": { "type": "string" },
+        "timeout_ms": { "type": "integer", "minimum": 1000 }
+      }
+    },
+    "trace_chain": {
+      "type": "array",
+      "minItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["stage", "ref"],
+        "properties": {
+          "stage": { "type": "string" },
+          "ref": { "type": "string" }
+        }
+      }
+    },
+    "source_execution_candidate_id": {
+      "type": "string",
+      "pattern": "^crec_"
+    },
+    "source_invocation_request_id": { "type": "string" },
+    "source_admission_result_id": { "type": "string" },
+    "prompt_label_candidate": {
+      "type": "string",
+      "description": "仅 candidate，非 fact label"
+    }
+  },
+  "forbidden_inputs": [
+    "internal_store_object",
+    "fact_label",
+    "confirmed_object_name",
+    "navigation_context",
+    "human_correction_as_ground_truth"
+  ],
+  "boundary_flags": {
+    "adapter_input_normalized": true,
+    "no_internal_object_pass_through": true,
+    "trace_chain_required": true
+  }
+}

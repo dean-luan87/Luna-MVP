@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0",
+  "path":"Outcome Evaluation -> ObservationNeedCandidate -> Field Perception Orchestrator -> bounded ObservationDemandCandidate",
+  "allowed_reasons":["INSUFFICIENT_EVIDENCE","STALE_RESULT","CONTESTED_OUTCOME","TARGET_CHANGED","TEMPORAL_WINDOW_UNMET"],
+  "provider_authority":false,
+  "provider_invocation":false,
+  "bounds":["max_reobservation_depth","resource_budget","temporal_scope","target_scope","trace_ref","idempotency_key"],
+  "gateway_admission_is_continuation_authority":false
+}

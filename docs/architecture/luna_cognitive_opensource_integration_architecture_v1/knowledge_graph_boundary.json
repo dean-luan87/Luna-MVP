@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Graph Boundary",
+  "owner":"Knowledge Library Governance",
+  "engine":"Neo4j",
+  "can_store":["Entity","Relation","Rule","Concept","Experience Pattern Candidate"],
+  "cannot_decide":["Knowledge Admission","Reality truth","Role activation","Self growth","Decision"],
+  "flow":["Knowledge Candidate","Admission","Graph Adapter","Graph Storage","Contextual Knowledge Candidate"],
+  "rules":{"graph_not_knowledge_authority":true,"admission_required":true,"provenance_required":true,"external_graph_not_kernel":true}
+}

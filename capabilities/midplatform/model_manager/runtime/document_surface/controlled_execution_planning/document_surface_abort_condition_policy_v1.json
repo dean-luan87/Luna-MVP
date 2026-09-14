@@ -1,0 +1,19 @@
+{
+  "schema_id": "DocumentSurfaceAbortConditionPolicyV1",
+  "version": "v1",
+  "abort_conditions": [
+    {"abort_id": "attention_gate_not_allowed", "abort_reason": "attention_gate_status != allowed", "output_candidate": "skipped_by_attention_gate", "next_action": "skip_runtime_no_cv2_import", "forbidden_fallback": ["ocr", "vlm", "layout", "full_scene_segmentation"]},
+    {"abort_id": "input_not_in_registry", "abort_reason": "source image not in controlled registry", "output_candidate": "input_boundary_violation_candidate", "next_action": "reject_input", "forbidden_fallback": ["arbitrary_file_read", "ocr", "vlm"]},
+    {"abort_id": "dependency_missing", "abort_reason": "cv2/opencv not admitted or missing", "output_candidate": "runtime_dependency_missing_candidate", "next_action": "handoff_dependency_admission_review", "forbidden_fallback": ["silent_install", "ocr", "vlm"]},
+    {"abort_id": "unsupported_image_format", "abort_reason": "image format not in allowed list", "output_candidate": "unsupported_format_candidate", "next_action": "reject_input", "forbidden_fallback": ["ocr", "vlm"]},
+    {"abort_id": "image_read_failed", "abort_reason": "controlled image read failed", "output_candidate": "image_read_error_candidate", "next_action": "abort_with_trace", "forbidden_fallback": ["ocr", "vlm", "fallback_image_source"]},
+    {"abort_id": "candidate_output_schema_invalid", "abort_reason": "output does not match candidate schema", "output_candidate": "schema_validation_error_candidate", "next_action": "abort_with_trace", "forbidden_fallback": ["fact_promotion", "ocr"]},
+    {"abort_id": "output_contains_ocr_text", "abort_reason": "OCR text detected in output", "output_candidate": "ocr_leak_abort_candidate", "next_action": "abort_and_rollback", "forbidden_fallback": ["ocr", "fact_write"]},
+    {"abort_id": "output_contains_fact", "abort_reason": "fact output detected", "output_candidate": "fact_leak_abort_candidate", "next_action": "abort_and_rollback", "forbidden_fallback": ["fact_write", "registry_activation"]},
+    {"abort_id": "fallback_attempt_detected", "abort_reason": "silent fallback to OCR/VLM/layout detected", "output_candidate": "fallback_violation_candidate", "next_action": "abort_and_rollback", "forbidden_fallback": ["ocr", "vlm", "layout", "full_scene_segmentation"]},
+    {"abort_id": "runtime_timeout", "abort_reason": "execution exceeded timeout", "output_candidate": "runtime_timeout_candidate", "next_action": "handoff_l2_replan", "forbidden_fallback": ["ocr", "vlm", "full_scene_segmentation"]},
+    {"abort_id": "excessive_candidate_count", "abort_reason": "too many surface candidates", "output_candidate": "excessive_candidate_abort", "next_action": "validation_review", "forbidden_fallback": ["merge_documents", "global_ocr"]},
+    {"abort_id": "write_outside_output_dir", "abort_reason": "attempted write outside controlled output dir", "output_candidate": "output_boundary_violation_candidate", "next_action": "abort_and_rollback", "forbidden_fallback": ["production_write", "registry_write"]},
+    {"abort_id": "protocol_compliance_failed", "abort_reason": "protocol compliance check failed", "output_candidate": "protocol_compliance_abort_candidate", "next_action": "handoff_protocol_review", "forbidden_fallback": ["bypass_protocol", "fact_write"]}
+  ]
+}

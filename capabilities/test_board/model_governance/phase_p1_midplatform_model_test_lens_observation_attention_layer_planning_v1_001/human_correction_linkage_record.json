@@ -1,0 +1,129 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "plan_id": "human_correction_linkage_plan_v1",
+    "linkage": {
+      "description": "Human Correction 记录影响 priority signal，不得成为 ground truth。",
+      "rules": [
+        {
+          "correction_type": "false_negative",
+          "priority_boost": "P0_immediate_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "needs_detection_review"
+          ],
+          "followup": [
+            "human_review",
+            "detection",
+            "ocr",
+            "depth"
+          ]
+        },
+        {
+          "correction_type": "boundary_inaccurate",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "boundary_uncertain",
+            "human_marked_error"
+          ],
+          "followup": [
+            "detection",
+            "depth"
+          ]
+        },
+        {
+          "correction_type": "wrong_label",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "needs_detection_review"
+          ],
+          "followup": [
+            "detection",
+            "vlm",
+            "human_review"
+          ]
+        },
+        {
+          "correction_type": "risk_assessment_error",
+          "priority_boost": "P0_immediate_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "possible_risk"
+          ],
+          "followup": [
+            "human_review"
+          ]
+        },
+        {
+          "correction_type": "recommendation_error",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "human_marked_error"
+          ],
+          "followup": [
+            "human_review"
+          ]
+        }
+      ],
+      "correction_is_priority_signal_only": true,
+      "not_ground_truth": true
+    },
+    "motion_linkage": {
+      "description": "Human Correction 影响 motion_state_candidate，不得成为 motion ground truth",
+      "rules": [
+        {
+          "user_signal": "这个目标会动",
+          "motion_state_boost": "dynamic_candidate",
+          "followup": [
+            "tracking",
+            "detection",
+            "depth"
+          ]
+        },
+        {
+          "user_signal": "这个目标不会动",
+          "motion_state_boost": "static_candidate",
+          "followup": [
+            "ocr",
+            "detection",
+            "slam_reference"
+          ]
+        },
+        {
+          "user_signal": "漏了一个移动目标",
+          "motion_state_boost": "dynamic_candidate",
+          "followup": [
+            "tracking",
+            "detection",
+            "human_review"
+          ]
+        },
+        {
+          "user_signal": "这个文字区域应该读",
+          "motion_state_boost": "static_candidate",
+          "followup": [
+            "ocr",
+            "human_review"
+          ]
+        },
+        {
+          "user_signal": "这个目标不是风险",
+          "motion_state_adjust": "downgrade_risk_priority",
+          "followup": [
+            "human_review"
+          ]
+        }
+      ],
+      "correction_is_priority_signal_only": true,
+      "not_motion_ground_truth": true
+    },
+    "upstream": "capabilities/midplatform/model_test_lens/human_correction/human_correction_layer_plan_v1.md"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.412768+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_controlled_source_install_execution_retry_post_review_status": "code_only_install_success_both_assets_no_weight_download_no_full_clone_no_import_no_inference",
+    "attempted": 2,
+    "successful": 2,
+    "failed_or_deferred": 0,
+    "byte_track_status": "SUCCESS",
+    "byte_track_commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+    "byte_track_find_spec_yolox": true,
+    "mobile_sam_status": "SUCCESS",
+    "mobile_sam_commit": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+    "mobile_sam_full_clone_used": false,
+    "mobile_sam_weight_files_materialized": [],
+    "recommended_next_phase": "Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001",
+    "transition_note": "REAL controlled source-install execution retry + inline post-review complete. A pre-execution snapshot was captured, then both assets were checked out at their PINNED commits inside a controlled path and code-only installed into ISOLATED targets (pip --no-index --no-deps --no-build-isolation --target), with find_spec-only probes. mobile_sam used a WEIGHT-EXCLUDING checkout (partial clone + sparse-checkout excluding weights/ and weight extensions): the ~40MB committed weights/mobile_sam.pt was NEVER fetched (full clone forbidden and not used; 0 weight files materialized). byte_track was checked out at d1bf019 and its yolox C++ extension compiled cleanly from the locally-present toolchain (no PyPI download). Result: attempted=2, successful=2, failed/deferred=0, blocker_count=0 -> P1_CONTROLLED_SOURCE_INSTALL_EXECUTION_RETRY_CODE_ONLY_GO. There was NO weight/model/checkpoint/dataset/example download, NO real import, NO model load, NO inference, NO runtime, NO output adapter, NO semantic promotion, NO registry mutation, and NO global-environment pollution (pip freeze before==after). Code-only install success is NOT weight / inference / runtime / model readiness. Rollback readiness recorded (not triggered). Next phase: Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001 — still NOT weight download; the code-only install result and registry state must be aligned first, and there is no inference phase until a weight-download post-review."
+  },
+  "final_decision": "P1_CONTROLLED_SOURCE_INSTALL_EXECUTION_RETRY_CODE_ONLY_GO"
+}

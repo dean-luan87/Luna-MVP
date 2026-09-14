@@ -1,0 +1,10 @@
+{
+  "contract_id": "context_world_temporal_validity_integration_v1",
+  "statuses": ["ACTIVE", "STALE", "EXPIRED", "REFRESHED", "SUPERSEDED", "REVOKED"],
+  "required_lineage": ["observed_at", "valid_from", "valid_until", "temporal_refs", "trace_ref", "provenance_refs"],
+  "propagation": ["Observation", "Context", "Field Event", "Field State reference", "Current World", "A Route handoff"],
+  "scheduler_driven_mutation": false,
+  "silent_expiration": false,
+  "stale_behavior": "degrade_or_reject_candidate_without_truth_collapse",
+  "candidate_only": true
+}

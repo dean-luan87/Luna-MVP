@@ -1,0 +1,103 @@
+version: "0.5"
+description: >
+  B2 Runtime Gate Config
+  控制 B2 何时 ACTIVE / READ_ONLY / SUSPENDED
+  核心目标：抵抗视角污染，保证世界模型可信度
+
+# =========================
+# Runtime Policy (Anti-Jitter)
+# =========================
+runtime_policy:
+  # Once mode changes, lock switching for N frames to avoid flip-flop.
+  cooldown_frames_after_switch: 15
+  # Minimum residence time per mode, to avoid 1-2 frame flicker.
+  min_hold_frames:
+    ACTIVE: 20
+    READ_ONLY: 10
+    SUSPENDED: 10
+
+# =========================
+# Layer A: Hard Gate（一票否决）
+# =========================
+hard_gates:
+
+  camera_stability:
+    enabled: true
+    # Hysteresis: enter/exit thresholds
+    # enter: must be >= enter_threshold to allow ACTIVE
+    # exit:  if < exit_threshold then exit ACTIVE (exit is usually lower -> adds slack)
+    enter_threshold: 0.65
+    exit_threshold: 0.55
+    block_reason: camera_shake
+    human_readable: "镜头晃动过大，无法稳定感知环境"
+
+  camera_pose:
+    enabled: true
+    pitch_deg_max: 20        # 上下
+    roll_deg_max: 15         # 左右
+    block_reason: camera_tilt
+    human_readable: "镜头角度异常（过度仰俯或倾斜）"
+
+  distance_range:
+    enabled: true
+    range_min_m: 2.0         # 2m 内完全交给 C
+    block_reason: too_close
+    human_readable: "观察距离过近，进入 C 主导范围"
+
+  visibility:
+    enabled: true
+    min_score: 0.40
+    block_reason: low_visibility
+    human_readable: "当前视野可见度过低"
+
+  runtime_yield:
+    enabled: true
+    block_reason: yield_to_c
+    human_readable: "系统资源让渡给 C（性能或安全优先）"
+
+# =========================
+# Layer B: Soft Gate（降级）
+# =========================
+soft_gates:
+
+  evidence_continuity:
+    enabled: true
+    consecutive_frames: 6
+    downgrade_reason: insufficient_evidence
+    human_readable: "证据尚未稳定，仅允许只读"
+
+  cooldown:
+    enabled: true
+    min_interval_sec: 3.0
+    downgrade_reason: cooldown_active
+    human_readable: "处于冷却期，避免重复判断"
+
+  confidence_floor:
+    enabled: true
+    min_final_confidence: 0.55
+    downgrade_reason: low_confidence
+    human_readable: "整体置信度不足，仅记录不触发"
+
+# =========================
+# Gate Mode Mapping
+# =========================
+mode_mapping:
+  hard_fail: SUSPENDED
+  soft_fail: READ_ONLY
+  pass: ACTIVE
+
+# =========================
+# Stability Score Policy
+# =========================
+stability_score:
+  # When view_state is missing, be conservative.
+  missing_view_state_default_mode: "READ_ONLY"
+  missing_view_state_human_readable: "缺少 view_state，仅允许只读（保守）"
+
+# =========================
+# Trace 语义映射（必须写）
+# =========================
+trace_labels:
+  ACTIVE: "B2 正常工作"
+  READ_ONLY: "B2 只读运行（不产生新判断）"
+  SUSPENDED: "B2 暂停（视角或条件不可信）"

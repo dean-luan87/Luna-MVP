@@ -1,0 +1,10 @@
+{
+  "title": "Decision Self Boundary v1",
+  "self_inputs": ["Capability State", "Resource State", "Health State", "Self Rhythm Hint", "Self Preservation Constraint", "Identity Boundary"],
+  "self_permissions": ["constrain_candidate", "veto_candidate", "request_reconsideration", "provide_constraint_context"],
+  "self_forbidden": ["rewrite_brain_rules", "rewrite_constitution", "create_goal", "execute_action", "modify_reality", "rewrite_identity"],
+  "self_has_veto_context": true,
+  "self_does_not_select_alone": true,
+  "candidate_only": true,
+  "action_execution": false
+}

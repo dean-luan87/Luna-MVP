@@ -1,0 +1,8 @@
+{
+  "observation_to_context": {"producer": "Observation Gateway", "consumer": "Context Foundation", "status": "CONTROLLED_HANDOFF_READY", "runtime_handoff_ready": false, "mutation_authority": false},
+  "observation_to_field_event": {"producer": "Context Foundation integration adapter", "consumer": "Field Event Admission", "status": "CONTROLLED_HANDOFF_READY", "field_relevant_required": true, "runtime_handoff_ready": false},
+  "field_event_to_reducer": {"producer": "Field Event Admission", "consumer": "Field State Reducer", "status": "CONTROLLED_HANDOFF_READY", "reducer_eligible_after_admission": true, "reducer_invoked": false},
+  "context_to_current_world": {"producer": "Context Foundation", "consumer": "Cognitive State Formation", "status": "CONTROLLED_HANDOFF_READY", "candidate_only": true},
+  "current_world_to_a_route": {"producer": "Cognitive State Formation", "consumer": "A Route Orchestration", "status": "CONTROLLED_HANDOFF_READY", "runtime_handoff_ready": false, "mutation_authority": false},
+  "existing_owner_files_modified": []
+}

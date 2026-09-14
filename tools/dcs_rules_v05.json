@@ -1,0 +1,63 @@
+{
+  "version": "v0.5",
+  "scope": "runtime_and_decision_scheduling",
+  "rules": [
+    {
+      "id": "missing_view_state_but_active",
+      "level": "RED",
+      "desc": "缺失 view_state 但 Gate 判为 ACTIVE（调度违规）",
+      "applies_to": ["GATE_RUNTIME_PROFILE", "tick"],
+      "enabled": true
+    },
+    {
+      "id": "gate_suspended_but_output",
+      "level": "RED",
+      "desc": "Gate=SUSPENDED 时仍输出 decision",
+      "applies_to": ["tick"],
+      "enabled": true
+    },
+    {
+      "id": "authority_violation",
+      "level": "RED",
+      "desc": "B/C 越权（B 在近距/高确定性场景做确认性决策）",
+      "applies_to": ["tick"],
+      "enabled": true
+    },
+    {
+      "id": "no_gate_runtime_profile",
+      "level": "RED",
+      "desc": "GATE_RUNTIME_PROFILE 事件缺失 gate 字段",
+      "applies_to": ["GATE_RUNTIME_PROFILE"],
+      "enabled": true
+    },
+    {
+      "id": "no_c_runtime_profile",
+      "level": "RED",
+      "desc": "C_RUNTIME_PROFILE 事件缺失 c 字段",
+      "applies_to": ["C_RUNTIME_PROFILE"],
+      "enabled": true
+    },
+    {
+      "id": "gate_switch_excessive",
+      "level": "YELLOW",
+      "desc": "Gate 状态切换过于频繁（抖动）",
+      "applies_to": ["GATE_RUNTIME_PROFILE"],
+      "enabled": true
+    },
+    {
+      "id": "runtime_stability_low",
+      "level": "YELLOW",
+      "desc": "稳定性评分偏低",
+      "applies_to": ["GATE_RUNTIME_PROFILE"],
+      "enabled": true
+    }
+  ],
+  "thresholds": {
+    "gate_switch_excessive": {
+      "max_switches_per_min": 75
+    },
+    "runtime_stability_low": {
+      "min_stability_score": 0.70
+    }
+  }
+}

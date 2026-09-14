@@ -1,0 +1,57 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Lens-V1-Closure-And-Standard-Freeze-Review-v1-001",
+  "closure_type": "luna_observation_lens_v1_closure",
+  "closure_at": "2026-07-02T00:00:00Z",
+  "ui_template_frozen": true,
+  "compact_observation_window_ready": true,
+  "central_hud_priority": true,
+  "left_drawer_ready": true,
+  "object_chip_bar_ready": true,
+  "right_reasoning_panel_ready": true,
+  "bottom_drawers_ready": true,
+  "developer_mode_preserved": true,
+  "whitebox_slot_preserved": true,
+  "model_execution_boundary_preserved": true,
+  "default_entry_url": "http://localhost:8765",
+  "internal_module_name": "model_test_lens",
+  "user_facing_name": "Luna 观察镜",
+  "upstream_phases_go": [
+    "Phase-P1-Midplatform-Model-Test-Lens-Observation-Canvas-First-Collapsible-Layout-Patch-Execution-And-Post-Review-v1-001",
+    "Phase-P1-Midplatform-Model-Test-Lens-Left-Drawer-Trigger-And-Bottom-Drawer-Cleanup-Patch-Execution-And-Post-Review-v1-001",
+    "Phase-P1-Midplatform-Model-Test-Lens-HUD-Readability-And-External-Annotation-Panel-Patch-Execution-And-Post-Review-v1-001",
+    "Phase-P1-Midplatform-Model-Test-Lens-HUD-Visual-Policy-And-Reasoning-Compression-Patch-Execution-And-Post-Review-v1-001",
+    "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-UI-Execution-And-Post-Review-v1-001",
+    "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Execution-And-Post-Review-v1-001"
+  ],
+  "next_model_adapter_routes": [
+    "detection_yolo_runner_v1",
+    "ocr_runner_v1",
+    "slam_video_backend_v1",
+    "depth_world_perception_v1",
+    "asr_runner_v1",
+    "tts_runner_v1",
+    "speaker_diarization_v1",
+    "vlm_evidence_regions_v1",
+    "whitebox_lens_v1"
+  ],
+  "test_board_refs": [
+    "capabilities/test_board/model_governance/phase_p1_midplatform_model_test_lens_luna_observation_lens_v1_closure_and_standard_freeze_review_v1_001/"
+  ],
+  "protected_artifact_refs": [
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_closure_manifest.json",
+    "capabilities/midplatform/model_test_lens/closure/luna_observation_lens_v1_ui_freeze_snapshot.json",
+    "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_template_standard.md",
+    "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_component_contract.json",
+    "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_model_adapter_slot_contract.json"
+  ],
+  "boundary_flags": {
+    "candidate_only": true,
+    "not_fact": true,
+    "not_runtime_output": true,
+    "not_output_adapter_output": true,
+    "not_semantic_output": true,
+    "not_navigation_action_speech": true,
+    "no_page_model_execution": true,
+    "local_runner_bridge_only": true
+  }
+}

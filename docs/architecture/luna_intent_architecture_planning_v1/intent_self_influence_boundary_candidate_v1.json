@@ -1,0 +1,39 @@
+{
+  "artifact": "intent_self_influence_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "intent_owner": "Intent Governance",
+  "self_owner": "Self Layer / Self Governance",
+  "self_influence_refs": [
+    "identity boundary",
+    "value reference",
+    "belief reference",
+    "historical preference reference",
+    "capability boundary",
+    "resource and health state",
+    "self-preservation constraint",
+    "Social Self context"
+  ],
+  "allowed_effects_on_intent_candidates": [
+    "constrain",
+    "qualify",
+    "suppress",
+    "amplify",
+    "invalidate candidate under hard boundary",
+    "request clarification"
+  ],
+  "future_feedback_candidates": [
+    "repeated Intent pattern observation",
+    "unresolved Intent continuity observation",
+    "Intent-outcome discrepancy observation",
+    "possible growth review reference"
+  ],
+  "forbidden": [
+    "Self automatically creates all Intent",
+    "Intent owns Self",
+    "Intent mutates Identity",
+    "Intent rewrites Constitution",
+    "single Intent changes personality",
+    "Intent feedback directly evolves Self"
+  ],
+  "rule": "Self constrains and influences Intent; Intent may return candidate-only observations for future Self Review, with no direct mutation in either direction."
+}

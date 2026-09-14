@@ -1,0 +1,8 @@
+{
+  "physical_states": ["ASSET_PRESENT", "ASSET_NOT_PRESENT", "ASSET_NOT_REGISTERED", "ASSET_IDENTITY_UNRESOLVED", "ASSET_CONTRACT_MISMATCH", "ASSET_READY_CANDIDATE"],
+  "identity_states": ["MODEL_ASSET_IDENTIFIED_UNIQUE", "MODEL_ASSET_NOT_REGISTERED", "MODEL_ASSET_IDENTITY_AMBIGUOUS", "MODEL_ASSET_IDENTITY_CONFLICT", "MODEL_ASSET_PROVENANCE_UNRESOLVED"],
+  "identity_signals": ["explicit_registered_asset_id", "canonical_registered_path", "manifest_identity", "model_family", "model_name", "model_version", "weights_version", "checksum", "trusted_asset_provenance"],
+  "filename_is_authority": false,
+  "extension_is_authority": false,
+  "pickle_internals_inspected": false
+}

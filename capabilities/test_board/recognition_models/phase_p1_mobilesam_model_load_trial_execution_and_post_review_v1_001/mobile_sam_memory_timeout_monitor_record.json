@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T07:31:16.781070+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_trial_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_memory_timeout_monitor_record",
+  "mobile_sam_memory_timeout_monitor_record": {
+    "monitor_id": "mobile_sam_memory_timeout_monitor_v1",
+    "memory_limit_mb": 4096,
+    "timeout_seconds": 300,
+    "started_at": "2026-06-30T07:31:15.904757+00:00",
+    "ended_at": "2026-06-30T07:31:16.778559+00:00",
+    "elapsed_seconds": 0.8738,
+    "peak_memory_mb": 174.86,
+    "timeout_occurred": false,
+    "oom_occurred": false,
+    "model_object_cleanup_attempted": true,
+    "persistent_process_left": false
+  }
+}

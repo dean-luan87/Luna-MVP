@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "name": "Field Event Protocol Test Strategy",
+    "test_categories": [
+        "schema_validation",
+        "event_admission",
+        "temporal_validity_evaluation",
+        "overlay_lifecycle",
+        "revision_revocation",
+        "replay_determinism",
+        "conflict_coexistence"
+    ],
+    "focus_points": [
+        "验证事件分类与准入结果类型一致。",
+        "验证 temporal_validity 状态转换正确。",
+        "验证 overlay 结束后投影重算。",
+        "验证修订与撤回历史保留。",
+        "验证 replay 不调用 provider 且不触发 action。"
+    ],
+    "test_strategy_complete": true
+}

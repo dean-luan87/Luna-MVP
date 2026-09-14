@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Self Rhythm Trace Schema",
+  "owner":"Self Rhythm Controller",
+  "record_fields":["trace_id","event","observation","source_state","candidate_mode","resource_budget","reason","impact","confidence","unknowns","lifecycle_state"],
+  "event_examples":[{"event":"battery_low","observation":"resource_available_decreased","candidate_mode":"low_power","impact":"reduce_background_processing"},{"event":"health_warning","observation":"capability_degraded","candidate_mode":"recovery","impact":"restrict_capability_intensity"}],
+  "trace_properties":{"append_only_candidate":true,"source_required":true,"reason_required":true,"impact_required":true},
+  "forbidden_trace_claims":["action_executed","model_switched","hardware_controlled","emotion_decided"]
+}

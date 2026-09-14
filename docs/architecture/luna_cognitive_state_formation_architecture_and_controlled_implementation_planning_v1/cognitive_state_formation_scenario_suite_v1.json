@@ -1,0 +1,106 @@
+{
+    "artifact": "cognitive_state_formation_scenario_suite_v1",
+    "scenario_count": 20,
+    "scenarios": [
+        {
+            "id": "S01",
+            "name": "multi_attention_basic",
+            "expect": "multi attention candidates with one selected and alternatives preserved"
+        },
+        {
+            "id": "S02",
+            "name": "risk_override_attention",
+            "expect": "high risk candidate survives even if relevance lower"
+        },
+        {
+            "id": "S03",
+            "name": "high_uncertainty_attention",
+            "expect": "uncertainty candidate is preserved, not dropped"
+        },
+        {
+            "id": "S04",
+            "name": "conflicting_attention_sources",
+            "expect": "conflict refs emitted for competing attention signals"
+        },
+        {
+            "id": "S05",
+            "name": "single_hypothesis_supported",
+            "expect": "hypothesis remains candidate and non-truth"
+        },
+        {
+            "id": "S06",
+            "name": "dual_hypothesis_contested",
+            "expect": "support/opposition both preserved"
+        },
+        {
+            "id": "S07",
+            "name": "hypothesis_revision",
+            "expect": "revision parent link preserved"
+        },
+        {
+            "id": "S08",
+            "name": "hypothesis_suspend_for_missing_evidence",
+            "expect": "state becomes suspended or insufficient evidence"
+        },
+        {
+            "id": "S09",
+            "name": "hypothesis_revoke",
+            "expect": "state revoked with trace and provenance retained"
+        },
+        {
+            "id": "S10",
+            "name": "current_world_partial",
+            "expect": "partial world mode with unknown refs"
+        },
+        {
+            "id": "S11",
+            "name": "current_world_conflicted",
+            "expect": "conflict refs visible in world candidate"
+        },
+        {
+            "id": "S12",
+            "name": "current_world_multi_hypothesis",
+            "expect": "alternative hypothesis refs preserved"
+        },
+        {
+            "id": "S13",
+            "name": "world_field_boundary_guard",
+            "expect": "no field mutation fields present"
+        },
+        {
+            "id": "S14",
+            "name": "cognitive_to_causal_handoff",
+            "expect": "candidate refs only and no truth/decision/action payload"
+        },
+        {
+            "id": "S15",
+            "name": "trace_chain_complete",
+            "expect": "trace present from attention to world to handoff"
+        },
+        {
+            "id": "S16",
+            "name": "provenance_reverse_lookup",
+            "expect": "can lookup source refs from world candidate"
+        },
+        {
+            "id": "S17",
+            "name": "intent_reference_preserved",
+            "expect": "intent refs retained without intent mutation"
+        },
+        {
+            "id": "S18",
+            "name": "field_reference_preserved",
+            "expect": "field refs retained without field mutation"
+        },
+        {
+            "id": "S19",
+            "name": "causal_boundary_preserved",
+            "expect": "cognitive hypothesis not labeled as causal truth"
+        },
+        {
+            "id": "S20",
+            "name": "runtime_authority_blocked",
+            "expect": "no runtime/task/action authority surfaces"
+        }
+    ]
+}

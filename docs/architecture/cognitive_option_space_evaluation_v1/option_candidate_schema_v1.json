@@ -1,0 +1,44 @@
+{
+  "title": "Option Candidate Schema v1",
+  "type": "object",
+  "required": [
+    "option_id",
+    "description",
+    "situation_reference",
+    "expected_benefit_candidate",
+    "resource_cost",
+    "risk_candidate",
+    "capability_requirement",
+    "unknowns",
+    "dependencies",
+    "provenance",
+    "confidence"
+  ],
+  "properties": {
+    "option_id": {"type": "string"},
+    "description": {"type": "string"},
+    "situation_reference": {"type": "object"},
+    "expected_benefit_candidate": {"type": "object"},
+    "resource_cost": {"type": "object"},
+    "risk_candidate": {"type": "object"},
+    "capability_requirement": {"type": "object"},
+    "unknowns": {"type": "array"},
+    "dependencies": {"type": "array"},
+    "provenance": {"type": "array"},
+    "confidence": {"type": "object"},
+    "constraint_status": {"type": "string"},
+    "experience_reference": {"type": "object"}
+  },
+  "boundary": {
+    "option_is_not_decision": true,
+    "option_is_not_action": true,
+    "option_is_not_execution": true,
+    "option_is_not_prediction": true,
+    "provider_cannot_select_option": true,
+    "option_cannot_modify_reality": true,
+    "option_cannot_modify_goal": true,
+    "option_cannot_execute": true,
+    "unknowns_are_preserved": true,
+    "brain_retains_decision_authority": true
+  }
+}

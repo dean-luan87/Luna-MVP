@@ -1,0 +1,11 @@
+{
+  "contract_id": "understanding_belief_relation_v1",
+  "owner": "Understanding",
+  "inputs": ["belief_candidates", "evidence", "field_context", "memory_context", "schema_context", "uncertainty"],
+  "outputs": ["current_understanding_candidate", "known_state", "unknown_state", "conflict_state", "provenance"],
+  "multiple_beliefs_allowed": true,
+  "belief_is_not_fact": true,
+  "schema_is_prior_not_decision": true,
+  "memory_is_context_not_override": true,
+  "candidate_only": true
+}

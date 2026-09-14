@@ -1,0 +1,70 @@
+{
+    "version": "1.0",
+    "name": "Temporary Overlay Protocol",
+    "description": "定义临时覆盖协议的生命周期、优先级和边界",
+    "overlay_types": [
+        "temporary_event",
+        "construction",
+        "enforcement_inspection",
+        "festival",
+        "emergency",
+        "crowd_control",
+        "weather_disruption",
+        "business_closure"
+    ],
+    "overlay_contract": {
+        "must_not_delete_substrate": true,
+        "must_have_expiry": true,
+        "has_priority": true,
+        "must_end_before_reprojection": true,
+        "safety_overlay_priority": "highest"
+    },
+    "guidelines": [
+        "Overlay 不得永久改变基础定义。",
+        "Overlay 结束后需重新计算 Active Field Projection。",
+        "Overlay 不能直接恢复旧状态。",
+        "Overlay 证据需要明确的时间范围和来源。"
+    ],
+    "overlay_class_matrix": [
+        {
+            "overlay_type": "temporary_event",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "construction",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "enforcement_inspection",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "festival",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "emergency",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "crowd_control",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "weather_disruption",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        },
+        {
+            "overlay_type": "business_closure",
+            "substrate_mutation_allowed": false,
+            "refresh_required_after_end": true
+        }
+    ]
+}

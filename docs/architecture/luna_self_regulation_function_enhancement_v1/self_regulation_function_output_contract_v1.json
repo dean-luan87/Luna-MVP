@@ -1,0 +1,13 @@
+{
+  "contract_id": "self_regulation_function_output_v1",
+  "owner": "Self Regulation Function",
+  "outputs": ["Regulation Strategy Candidate", "Homeostasis Check Candidate", "Calibration Candidate", "Adaptive Parameter Candidate", "Stability/Veto Candidate", "Permission Candidate", "Defer Candidate", "Reject Candidate"],
+  "required_fields": ["candidate_id", "candidate_type", "source_refs", "field_scope", "reason", "expected_benefit", "resource_cost", "risk", "reversibility", "confidence", "unknowns", "review_status", "version", "rollback_ref", "trace_ref"],
+  "application_owner": "External Governance/Application Boundary",
+  "self_review_required": true,
+  "runtime_execution": false,
+  "direct_action": false,
+  "direct_model_switch": false,
+  "direct_hardware_control": false,
+  "candidate_only": true
+}

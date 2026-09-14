@@ -1,0 +1,20 @@
+{
+  "artifact":"expected_outcome_input_model_v1",
+  "candidate_only":true,
+  "truth_declared":false,
+  "inputs":[
+    {"kind":"DECISION_EXPECTED_OUTCOME","owner":"Decision Governance","source":"decision candidate/trace","meaning":"candidate intended effect or selected result"},
+    {"kind":"TASK_COMPLETION_CRITERION","owner":"Task Manager","source":"task candidate","meaning":"condition for task completion"},
+    {"kind":"ACTION_EXPECTED_EFFECT","owner":"Action Governance","source":"action precondition/readiness/expected effect reference","meaning":"candidate effect of admitted action"},
+    {"kind":"EXPECTED_OBSERVATION","owner":"Active Observation Control","source":"observation demand/request","meaning":"evidence expected to resolve information need"},
+    {"kind":"EXPECTED_WORLD_STATE_CHANGE","owner":"Context / Field / Current World consumers","source":"read-only candidate reference","meaning":"candidate change expected after action"},
+    {"kind":"EXPECTED_FIELD_CHANGE","owner":"Field State owner","source":"field event/state reference","meaning":"candidate field transition"},
+    {"kind":"EXPECTED_TEMPORAL_RESULT","owner":"Task/Action/Observation contract","source":"temporal window","meaning":"when effect should be observable"},
+    {"kind":"EXPECTED_USER_VISIBLE_RESULT","owner":"User interaction boundary","source":"user-facing contract","meaning":"candidate externally visible outcome"},
+    {"kind":"EXPECTED_SAFETY_CONDITION","owner":"Safety / Permission Governance","source":"safety contract","meaning":"required safety condition"}
+  ],
+  "required_fields":["expectation_ref","expectation_kind","source_owner","source_ref","target_ref","semantic_scope","temporal_scope","spatial_scope","expected_attributes","completion_criteria","uncertainty_refs","supersedes_ref","revocation_ref","trace_ref","provenance_refs"],
+  "non_equivalence":["Declared Expectation != Predicted Outcome","Predicted Outcome != Task Completion Criterion","Task Completion Criterion != Desired Outcome","Desired Outcome != Actual Result"],
+  "prediction_engine":false,
+  "mutation_authority":false
+}

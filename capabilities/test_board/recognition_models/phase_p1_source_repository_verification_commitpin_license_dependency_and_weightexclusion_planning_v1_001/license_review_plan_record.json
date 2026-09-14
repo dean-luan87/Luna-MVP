@@ -1,0 +1,38 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "license_review_plan_record",
+  "source_license_review_planning_records": [
+    {
+      "asset_id": "byte_track",
+      "license_review_required": true,
+      "source_license_currently_unverified": true,
+      "repository_license_file_must_be_checked": true,
+      "transitive_dependency_license_review_required": true,
+      "commercial_runtime_not_approved": true,
+      "license_review_must_complete_before_source_execution_retry": true,
+      "license_review_must_not_be_fabricated": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "license_review_required": true,
+      "source_license_currently_unverified": true,
+      "repository_license_file_must_be_checked": true,
+      "transitive_dependency_license_review_required": true,
+      "commercial_runtime_not_approved": true,
+      "license_review_must_complete_before_source_execution_retry": true,
+      "license_review_must_not_be_fabricated": true
+    }
+  ]
+}

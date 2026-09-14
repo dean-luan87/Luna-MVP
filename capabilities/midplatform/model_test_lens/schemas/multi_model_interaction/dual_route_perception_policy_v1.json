@@ -1,0 +1,106 @@
+{
+  "schema_id": "DualRoutePerceptionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "双路线感知验证总策略。Route A 与 Route B 并行，中台 comparison，均 candidate_only。",
+  "planning_only": true,
+  "planning_endpoint": "dual_route_comparison_candidate",
+  "routes": [
+    {
+      "route_id": "route_a_detector_grounding_sam",
+      "label": "Route A: Detector / Grounding → SAM refine",
+      "character": "engineering_controllable",
+      "flow": [
+        "image",
+        "grounding_detection_candidate",
+        "bbox_candidate",
+        "sam_refine_mask_candidate",
+        "midplatform_route_candidate"
+      ],
+      "output_schemas": [
+        "grounding_detection_candidate_schema_v1.json",
+        "sam_refine_mask_candidate_schema_v1.json"
+      ],
+      "candidate_only": true,
+      "not_fact": true
+    },
+    {
+      "route_id": "route_b_vlm_route_candidate",
+      "label": "Route B: VLM → Route Candidate",
+      "character": "semantic_adaptive",
+      "flow": [
+        "image",
+        "vlm_observation_candidate",
+        "scene_profile_candidate",
+        "attention_route_candidate",
+        "midplatform_route_candidate"
+      ],
+      "output_schemas": [
+        "vlm_route_candidate_schema_v1.json"
+      ],
+      "candidate_only": true,
+      "not_fact": true
+    }
+  ],
+  "midplatform_comparison": {
+    "artifact": "dual_route_comparison_candidate",
+    "schema_ref": "dual_route_comparison_candidate_schema_v1.json",
+    "dimensions": [
+      "region_overlap",
+      "text_likelihood",
+      "route_agreement",
+      "route_conflict",
+      "trace_completeness",
+      "uncertainty",
+      "recommended_next_task"
+    ],
+    "forbidden": [
+      "direct_fact_write",
+      "direct_category_confirmation",
+      "direct_text_confirmation",
+      "direct_ocr_execution"
+    ]
+  },
+  "no_slam_for_text_policy_ref": "no_slam_for_text_policy_v1.json",
+  "smoke_cases": [
+    {
+      "case_id": "case_a_subway_direction_sign",
+      "image_ref": "capabilities/test_assets/p1/ocr/ocr_real_image_subway_platform_jiahuihu_v1_001.png",
+      "expected_route_a": ["direction_sign", "text_region"],
+      "expected_route_b": ["subway_platform", "top_sign_ocr_route"],
+      "expected_comparison": "ocr_task_candidate"
+    },
+    {
+      "case_id": "case_b_outdoor_street",
+      "image_ref": "capabilities/test_assets/p1/mobile_sam/mobile_sam_real_local_image_street_scene_v1.png",
+      "expected_route_a": ["sign", "vehicle", "advertisement"],
+      "expected_route_b": ["road", "sign", "vehicle"],
+      "expected_comparison": ["ocr_task_candidate", "detection_task_candidate", "depth_task_candidate"]
+    },
+    {
+      "case_id": "case_c_route_a_miss_route_b_hit",
+      "expected_comparison": "manual_review",
+      "trust_vlm_directly": false
+    },
+    {
+      "case_id": "case_d_route_conflict",
+      "expected_comparison": "conflict_review",
+      "priority_signal": "block_auto_admission"
+    }
+  ],
+  "boundary_flags": {
+    "route_a_candidate_only": true,
+    "route_b_candidate_only": true,
+    "dual_route_comparison_not_fact": true,
+    "no_mobile_sam_direct_to_ocr": true,
+    "no_bypass_midplatform": true,
+    "no_visual_expression_mutation": true,
+    "no_boundary_clone": true,
+    "human_correction_not_ground_truth": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "no_ocr_execution": true,
+    "no_detection_execution": true,
+    "planning_only": true
+  }
+}

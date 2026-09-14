@@ -1,0 +1,34 @@
+{
+  "bundle_id": "p0_multi_model_real_output_bundle_v1",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "inference_scope": "p0_controlled_sample_only",
+  "p0_targets": [
+    {
+      "target": "rapidocr_p0",
+      "input_ref": "sample_p0_ocr_text_sign_image.png",
+      "expected_real_output_ref": "real_ocr_output.json",
+      "expected_candidate": "text_evidence_candidate",
+      "optional_availability": true
+    },
+    {
+      "target": "yolo_lightweight_p0",
+      "input_ref": "sample_p0_yolo_object_image.png",
+      "expected_real_output_ref": "real_yolo_output.json",
+      "expected_candidate": "object_evidence_candidate",
+      "optional_availability": true,
+      "commercial_runtime_approved": false
+    },
+    {
+      "target": "opencv_visual_symbol_p0",
+      "input_ref": "sample_p0_visual_symbol_arrow_image.png",
+      "expected_real_output_ref": "real_visual_symbol_output.json",
+      "expected_candidate": [
+        "color_evidence_candidate",
+        "shape_evidence_candidate",
+        "visual_symbol_candidate",
+        "symbol_meaning_candidate"
+      ],
+      "optional_availability": false
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "schema_id": "TextTargetProposalPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+  "description": "Text-first target proposal 总策略：文字场景以 text detector 为主入口，SAM 为 region proposal 辅链。",
+  "planning_only": true,
+  "principle": "文字场景：text detector first；对象场景：grounding/detection；结构场景：SAM/Depth/SLAM。",
+  "candidate_layers": {
+    "region_proposal_candidate": {
+      "source": ["mobile_sam", "sam_refine"],
+      "role": "spatial_region_proposal",
+      "not_primary_for_text_discovery": true
+    },
+    "text_region_candidate": {
+      "source": ["text_detector_stub", "ocr_text_detector"],
+      "role": "text_area_proposal",
+      "primary_for_text_scenes": true
+    },
+    "semantic_target_candidate": {
+      "source": ["grounding", "detection", "vlm_route"],
+      "role": "object_or_attention_target"
+    }
+  },
+  "text_first_chain": [
+    "input_image",
+    "text_detector_stub",
+    "text_region_candidate",
+    "midplatform_target_selection",
+    "target_proposal_comparison_candidate",
+    "ocr_task_candidate"
+  ],
+  "sam_role": {
+    "allowed": ["region_proposal", "mask_refine", "spatial_association_with_text_region"],
+    "forbidden": ["primary_text_detection", "text_content_inference", "ocr_result_generation"]
+  },
+  "forbidden_chains": [
+    "sam_region_only_to_ocr_without_text_detector",
+    "sam_prompt_as_text_discovery_primary",
+    "text_region_candidate_to_fact_without_admission"
+  ],
+  "boundary_flags": {
+    "sam_not_primary_text_detector": true,
+    "text_region_candidate_not_fact": true,
+    "no_ocr_recognition": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "planning_only": true
+  }
+}

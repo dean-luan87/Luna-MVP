@@ -1,0 +1,26 @@
+{
+  "schema_version": "v1",
+  "contract_type": "capability_registration",
+  "capability_manifest": {
+    "capability_id": "text_evidence_extraction",
+    "capability_type": "text_evidence",
+    "input_contract": {
+      "required": ["image_or_text_region_candidate", "request_id"],
+      "boundary": "candidate evidence input only"
+    },
+    "output_evidence_contract": {
+      "required": ["text_candidate", "confidence", "provenance", "uncertainty"],
+      "meaning": "text evidence candidate, not Reality"
+    },
+    "resource_requirement": {
+      "compute": "declared_candidate",
+      "memory": "declared_candidate",
+      "latency": "declared_candidate"
+    },
+    "limitation": ["low_light", "occlusion", "distance", "language_scope"],
+    "confidence_boundary": "confidence is evidence quality, not truth",
+    "failure_namespace": ["provider_unavailable", "low_quality_output", "protocol_error"]
+  },
+  "forbidden_capability_claims": ["world_understanding", "decision", "brain_authority"],
+  "registration_does_not_execute_provider": true
+}

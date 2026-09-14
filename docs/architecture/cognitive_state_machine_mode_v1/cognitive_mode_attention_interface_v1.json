@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Mode Attention Interface",
+  "mode_input": "Cognitive Mode Candidate",
+  "attention_effect": "Attention Budget Adjustment Candidate",
+  "profiles": {
+    "Survival Mode": "increase safety attention candidate",
+    "Normal Mode": "balanced allocation candidate",
+    "Focus Mode": "increase task attention candidate",
+    "Recovery Mode": "reduce consumption candidate",
+    "Maintenance Mode": "background attention candidate"
+  },
+  "attention_does_not_select_mode": true,
+  "direct_attention_mutation": false,
+  "automatic_frequency_adjustment": false,
+  "decision_authority": false
+}

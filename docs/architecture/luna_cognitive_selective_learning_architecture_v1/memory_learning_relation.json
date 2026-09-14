@@ -1,0 +1,11 @@
+{
+  "title": "Memory Learning Relation v1",
+  "flow": ["Memory", "Pattern", "Schema", "Learning Candidate", "Self Review"],
+  "memory_role": "provide validated historical context",
+  "memory_is_learning": false,
+  "memory_creates_learning_automatically": false,
+  "memory_direct_capability_change": false,
+  "memory_direct_self_change": false,
+  "current_reality_precedence": true,
+  "candidate_only": true
+}

@@ -1,0 +1,18 @@
+{
+  "artifact":"actual_result_input_model_v1",
+  "candidate_only":true,
+  "truth_declared":false,
+  "sources":[
+    {"kind":"RUNTIME_EXECUTOR_RESULT","owner":"Runtime Executor","reference":"ExecutionResultCandidateV1"},
+    {"kind":"ACTION_RESULT","owner":"Action Governance","reference":"action result/failure candidate"},
+    {"kind":"TASK_RESULT","owner":"Task Manager","reference":"task lifecycle/status candidate"},
+    {"kind":"OBSERVATION_RESULT","owner":"Observation Gateway","reference":"Observation Candidate"},
+    {"kind":"CURRENT_WORLD_REFERENCE","owner":"Cognitive State Formation","reference":"CurrentWorldCandidateV1"},
+    {"kind":"FIELD_STATE_REFERENCE","owner":"Field State Reducer / Field Read Model","reference":"read-only field state/event reference"},
+    {"kind":"USER_CONFIRMATION_OR_CORRECTION","owner":"Human Correction / User Interaction","reference":"user evidence/correction candidate"},
+    {"kind":"SYSTEM_EVENT","owner":"System Diagnostics / Runtime Boundary","reference":"system event candidate"},
+    {"kind":"CAPABILITY_PROVIDER_RESULT","owner":"Capability/Provider owner","reference":"provider result evidence only"}
+  ],
+  "required_fields":["actual_result_ref","source_owner","source_ref","result_kind","target_ref","observed_at","valid_from","valid_until","status_candidate","observed_attributes","uncertainty_refs","contradiction_refs","correction_refs","trace_ref","provenance_refs"],
+  "rules":["actual result is evidence/reference, not automatic external reality truth","provider/model confidence is evidence quality input, not outcome correctness","correction does not erase prior result lineage","stale/expired/revoked results remain traceable"]
+}

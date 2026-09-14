@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "trace_type": "capability_failure_trace",
+  "required_fields": ["request_id", "capability_reference", "provider_reference", "failure_namespace", "observed_at", "diagnostic_reference", "downstream_effect"],
+  "failure_cases": {
+    "provider_unavailable": {
+      "output": "capability_unavailable_candidate",
+      "direct_self_update": false,
+      "direct_reality_assertion": false
+    },
+    "low_quality_output": {
+      "output": "evidence_confidence_decrease",
+      "direct_self_update": false,
+      "direct_reality_assertion": false
+    },
+    "protocol_error": {
+      "output": "diagnostics_protocol_error_candidate",
+      "diagnostics_required": true,
+      "direct_self_update": false,
+      "direct_reality_assertion": false
+    }
+  },
+  "state_mutation_authority": "Reducer only"
+}

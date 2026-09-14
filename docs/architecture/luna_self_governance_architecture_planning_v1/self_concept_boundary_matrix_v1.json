@@ -1,0 +1,28 @@
+{
+    "artifact": "self_concept_boundary_matrix_v1",
+    "assertions": [
+        "Self != external identity record",
+        "Self != user identity",
+        "Self != account identity",
+        "Self != biometric identity",
+        "Self != personality",
+        "Self != emotion",
+        "Self != memory",
+        "Self != PCN",
+        "Self attribution candidate != self fact",
+        "identity attribution candidate != identity mutation",
+        "self continuity candidate != immutable identity",
+        "SelfEvolutionEvidenceCandidate != Self mutation",
+        "Regulation parameter != self identity",
+        "Parameter Genome != Self",
+        "trace continuity != self authority",
+        "provenance continuity != self truth"
+    ],
+    "boundary_decisions": {
+        "self_reference": "reference to the subject position attributed to Luna itself within a bounded cognitive cycle or continuity chain",
+        "identity_reference": "reference to a stable existence/agent-definition boundary; not the same as all self-state content",
+        "identity_attribution_candidate": "candidate that proposes how a subject should be identified or disambiguated",
+        "self_attribution_candidate": "candidate that proposes which evidence-bearing property belongs to self under bounded confidence",
+        "self_continuity_candidate": "candidate that proposes how self-linked state persists or changes across cycles"
+    }
+}

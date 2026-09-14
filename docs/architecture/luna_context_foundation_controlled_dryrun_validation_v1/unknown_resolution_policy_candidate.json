@@ -1,0 +1,25 @@
+{
+  "policy_id": "luna_context_unknown_resolution_policy_candidate_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "unknown_type": "Context Unknown Reference",
+  "completion_source": [
+    "Historical Experience",
+    "Personal Memory Pattern",
+    "System Rule"
+  ],
+  "completion_output": "Unknown Completion Candidate",
+  "confidence_required": true,
+  "source_reference_required": true,
+  "provenance_required": true,
+  "candidate_status_required": true,
+  "multiple_candidates_allowed": true,
+  "contradiction_preservation_required": true,
+  "current_reality_precedence": true,
+  "fact_promotion_forbidden": true,
+  "automatic_memory_write_allowed": false,
+  "intent_generation_allowed": false,
+  "causal_conclusion_allowed": false,
+  "decision_generation_allowed": false,
+  "active_policy": false
+}
+

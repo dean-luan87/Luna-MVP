@@ -1,0 +1,74 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "multi_model_interaction_planning": true,
+  "record": {
+    "schema_id": "MobileSamOcrFusionInputSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+    "description": "MobileSAM + OCR 中台融合输入。本阶段仅规划，不执行 fusion。",
+    "planning_only": true,
+    "fusion_stage": "after_ocr_result_envelope",
+    "required_inputs": [
+      "segmentation_result_envelope",
+      "ocr_result_envelope",
+      "shared_region_id",
+      "region_relation",
+      "trace_chain",
+      "candidate_only"
+    ],
+    "field_definitions": {
+      "segmentation_result_envelope": {
+        "type": "object",
+        "description": "MobileSAM geometry candidate"
+      },
+      "ocr_result_envelope": {
+        "type": "object",
+        "description": "OCR text candidate envelope"
+      },
+      "shared_region_id": {
+        "type": "string"
+      },
+      "region_relation": {
+        "type": "string",
+        "enum": [
+          "same_region",
+          "crop_within_mask",
+          "aligned_bbox"
+        ]
+      },
+      "trace_chain": {
+        "type": "array"
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      }
+    },
+    "future_outputs": {
+      "multimodal_evidence_candidate": true,
+      "text_on_region_candidate": true,
+      "needs_fact_admission": true
+    },
+    "forbidden_fusion_shortcuts": [
+      "ocr_completed_implies_sign_fact",
+      "direct_confirmed_sign_label",
+      "navigation_instruction",
+      "overwrite_mobilesam_geometry",
+      "overwrite_ocr_text_candidate"
+    ],
+    "boundary_flags": {
+      "fusion_candidate_not_fact": true,
+      "fusion_requires_ocr_result_envelope": true,
+      "planning_only": true
+    }
+  }
+}

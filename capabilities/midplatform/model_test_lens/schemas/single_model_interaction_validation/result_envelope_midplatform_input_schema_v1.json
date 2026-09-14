@@ -1,0 +1,43 @@
+{
+  "schema_id": "ResultEnvelopeMidplatformInputSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "description": "模型结果进入中台处理层的标准输入。禁止直出 UI 路由。",
+  "required_fields": [
+    "envelope_type",
+    "source_model",
+    "source_runner_execution_id",
+    "source_execution_candidate_id",
+    "region_id",
+    "mask_ref",
+    "candidate_only",
+    "not_fact",
+    "needs_fact_admission",
+    "trace_chain"
+  ],
+  "midplatform_input_shape": {
+    "result_candidate_ref": "string",
+    "segmentation_result_envelope": "object",
+    "region_geometry_ref": "string",
+    "appearance_candidate_signals": "array",
+    "task_context": "string",
+    "policy_refs": "array"
+  },
+  "forbidden_fields": [
+    "fact_label",
+    "confirmed_object_name",
+    "navigation_decision",
+    "direct_ui_route_command"
+  ],
+  "processing_path": [
+    "segmentation_result_envelope",
+    "result_candidate",
+    "midplatform_processing",
+    "observation_update_candidate"
+  ],
+  "boundary_flags": {
+    "mobilesam_output_not_direct_ui_routing": true,
+    "mobilesam_does_not_assert_fact_label": true,
+    "result_envelope_to_midplatform_input": true
+  }
+}

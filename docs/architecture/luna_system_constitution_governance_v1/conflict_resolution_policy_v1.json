@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Conflict Resolution Policy",
+  "precedence": ["System Stability", "Core Cognitive Function", "Human Safety and Privacy", "Evidence Integrity", "User Goal", "Capability Improvement", "Performance Optimization"],
+  "resolution_flow": ["Conflict Event", "Classify Authorities", "Apply Constitution", "Evaluate Risk", "Produce Resolution Candidate", "Governance/Brain Review", "Record Trace"],
+  "cases": [
+    {"case": "User requests risky latest model upgrade", "higher_priority": "System Stability", "lower_priority": "Performance Optimization", "resolution": "Reject or defer upgrade candidate"},
+    {"case": "High-performance capability exceeds resources", "higher_priority": "System Stability", "lower_priority": "Capability Improvement", "resolution": "Preserve stable operation and propose degradation"},
+    {"case": "Evidence conflicts with old Memory", "higher_priority": "Evidence Integrity", "lower_priority": "Historical Memory", "resolution": "Current validated evidence takes precedence"},
+    {"case": "Unknown conflicts with task pressure", "higher_priority": "Unknown Preservation", "lower_priority": "Forced certainty", "resolution": "Retain Unknown and request validation"}
+  ],
+  "rules": {"constitution_first": true, "stability_over_optimization": true, "evidence_over_memory": true, "unknown_preserved": true, "resolution_candidate_not_direct_action": true}
+}

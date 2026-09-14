@@ -1,0 +1,40 @@
+{
+  "artifact_id": "pcn_field_boundary_model_candidate_v1",
+  "phase": "Phase-Luna-Personal-Cognitive-Network-Field-Role-Interaction-Alignment-v1-001",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cognitive Field Governance",
+  "boundary_classes": {
+    "HARD_BOUNDARY": {
+      "definition": "An externally established Field boundary that cognitive projection may reference but cannot blur, override, or rewrite.",
+      "allowed_sources": [
+        "physical_constraint",
+        "governance_constraint",
+        "permission_constraint",
+        "legal_or_organizational_relationship",
+        "explicit_task_responsibility",
+        "confirmed_structural_boundary"
+      ],
+      "mutation_authority": "source_owner_only",
+      "pcn_override_allowed": false,
+      "context_override_allowed": false,
+      "interaction_kernel_override_allowed": false
+    },
+    "FUZZY_BOUNDARY": {
+      "definition": "A graded cognitive participation boundary used for projection and activation without changing source-owned Field structure.",
+      "regions": ["CORE_REGION", "STRONG_REGION", "FUZZY_EDGE", "WEAK_ASSOCIATION"],
+      "binary_inside_outside_required": false,
+      "projection_only": true,
+      "structural_write_allowed": false
+    }
+  },
+  "precedence": ["current_reality", "source_owner_boundary", "governed_candidate_projection"],
+  "rules": {
+    "field_state_reducer_remains_sole_state_mutation_authority": true,
+    "cognitive_field_is_not_reality": true,
+    "pcn_may_project_but_not_own_field": true,
+    "unknown_and_conflict_preserved": true
+  },
+  "candidate_only": true,
+  "active_schema": false,
+  "runtime_implemented": false
+}

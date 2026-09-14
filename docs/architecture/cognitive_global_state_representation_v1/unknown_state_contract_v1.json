@@ -1,0 +1,27 @@
+{
+  "title": "Global Unknown State Contract v1",
+  "contract_type": "Unknown and Conflict State Preservation",
+  "unknown_state": {
+    "unknown_id": "unknown-example",
+    "source_reference": "module-example",
+    "reason": "unavailable or unresolved",
+    "confidence": "unknown",
+    "provenance": [],
+    "time_context": {}
+  },
+  "conflict_state": {
+    "conflict_id": "conflict-example",
+    "source_references": [],
+    "candidate_values": [],
+    "provenance": []
+  },
+  "rules": {
+    "unknown_is_first_class": true,
+    "unknown_is_not_silently_completed": true,
+    "unknown_affects_brain_context": true,
+    "unknown_affects_attention_candidate": true,
+    "conflict_is_preserved": true,
+    "composer_does_not_resolve_unknown": true,
+    "unknowns_are_preserved": true
+  }
+}

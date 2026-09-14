@@ -1,0 +1,12 @@
+{
+  "interface_name": "Reflex Field Binding v1",
+  "field_reference": {},
+  "field_context": {},
+  "field_rule_reference": {},
+  "condition": {},
+  "risk": {},
+  "field_binding_required": true,
+  "same_signal_can_differ_by_field": true,
+  "reflex_does_not_modify_field": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "memory_consolidation_v1",
+  "owner": "Memory Governance",
+  "input": "experience_candidate",
+  "stages": ["experience_evaluation", "validation", "admission", "reinforcement", "decay", "compression", "folding"],
+  "outputs": ["memory_candidate", "pattern_candidate", "no_update"],
+  "source_required": ["provenance", "time", "field", "confidence", "unknowns"],
+  "automatic_consolidation": false,
+  "runtime_implementation": false,
+  "store_before_validation": false,
+  "governance_admission_required": true
+}

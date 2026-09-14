@@ -1,0 +1,42 @@
+{
+  "artifact": "emotion_appraisal_candidate_schema_v1",
+  "entity": "EmotionAppraisalCandidateV1",
+  "schema_version": "emotion-appraisal-candidate-schema-v1",
+  "required_fields": [
+    "appraisal_candidate_id",
+    "emotion_evidence_refs",
+    "appraisal_kind",
+    "relevance_candidate",
+    "expectation_alignment_candidate",
+    "goal_relation_candidate",
+    "risk_candidate",
+    "control_candidate",
+    "novelty_candidate",
+    "valence_candidate",
+    "arousal_candidate",
+    "uncertainty_refs",
+    "contradiction_refs",
+    "context_refs",
+    "temporal_validity",
+    "confidence_candidate",
+    "trace_ref",
+    "provenance_refs",
+    "sensitivity",
+    "schema_version",
+    "contract_version"
+  ],
+  "invariants": {
+    "candidate_only": true,
+    "appraisal_is_not_state_truth": true,
+    "does_not_mutate_self": true,
+    "does_not_mutate_personality": true,
+    "does_not_mutate_memory": true,
+    "does_not_create_intent": true,
+    "does_not_execute_action": true
+  },
+  "rules": {
+    "multiple_appraisals_allowed": true,
+    "contradictory_appraisals_preserved": true,
+    "appraisal_requires_evidence_refs": true
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "artifact": "causal_counterfactual_candidate_model_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "definition": "A counterfactual candidate asks what might differ if one candidate cause were absent or changed.",
+    "required_fields": [
+        "counterfactual_id",
+        "base_hypothesis_ref",
+        "intervention_candidate",
+        "expected_difference_candidate",
+        "required_assumptions",
+        "uncertainty",
+        "provenance",
+        "trace_ref"
+    ],
+    "guards": {
+        "counterfactual_is_fact": false,
+        "counterfactual_is_decision": false,
+        "counterfactual_outputs_action": false,
+        "counterfactual_requires_model_execution": false
+    },
+    "allowed_results": [
+        "alternative_explanation_candidate",
+        "support_change_candidate",
+        "uncertainty_increase_candidate",
+        "hypothesis_revision_request_candidate"
+    ]
+}

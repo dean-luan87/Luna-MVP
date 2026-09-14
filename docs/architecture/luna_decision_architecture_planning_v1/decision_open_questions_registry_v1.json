@@ -1,0 +1,46 @@
+{
+    "artifact": "decision_open_questions_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "open_questions": [
+        {
+            "question_id": "DQ-001",
+            "topic": "utility_function",
+            "question": "What final multi-objective utility aggregation function should be used?",
+            "frozen_in_planning": false,
+            "target_phase": "Decision implementation or research"
+        },
+        {
+            "question_id": "DQ-002",
+            "topic": "risk_scoring_formula",
+            "question": "How should risk severity and likelihood be calibrated for domain-specific contexts?",
+            "frozen_in_planning": false,
+            "target_phase": "Decision implementation"
+        },
+        {
+            "question_id": "DQ-003",
+            "topic": "uncertainty_thresholds",
+            "question": "What thresholds should trigger defer/abstain/request-more-evidence?",
+            "frozen_in_planning": false,
+            "target_phase": "Controlled implementation"
+        },
+        {
+            "question_id": "DQ-004",
+            "topic": "partial_ordering_strategy",
+            "question": "How should unresolved tie and partial ordering be represented operationally?",
+            "frozen_in_planning": false,
+            "target_phase": "Decision implementation"
+        },
+        {
+            "question_id": "DQ-005",
+            "topic": "learning_policy",
+            "question": "Should learned policy proposals influence utility/risk estimates, and under which governance envelope?",
+            "frozen_in_planning": false,
+            "target_phase": "Research"
+        }
+    ],
+    "explicitly_not_decided": [
+        "RL policy",
+        "probabilistic decision theory runtime",
+        "final optimizer implementation"
+    ]
+}

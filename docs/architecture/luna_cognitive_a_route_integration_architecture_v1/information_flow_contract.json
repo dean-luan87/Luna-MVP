@@ -1,0 +1,13 @@
+{
+  "contract_id": "a_route_information_flow_v1",
+  "flow": ["Reality", "Evidence", "Cognitive Field", "Attention", "Context", "Hypothesis", "Belief", "Understanding", "Goal", "Value Utility", "Decision Arbitration", "Action Boundary", "Outcome", "Experience", "Memory", "Schema", "Selective Learning", "Growth Candidate", "Self Review"],
+  "reality_precedence": true,
+  "memory_is_context_not_reality": true,
+  "knowledge_requires_field_role_task_context": true,
+  "observation_does_not_imply_memory": true,
+  "candidate_metadata_required": ["provenance", "field_ref", "confidence", "unknowns"],
+  "direct_reality_mutation": false,
+  "direct_memory_write": false,
+  "direct_schema_update": false,
+  "automatic_learning": false
+}

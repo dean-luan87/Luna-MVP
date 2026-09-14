@@ -1,0 +1,25 @@
+{
+  "artifact": "personality_privacy_sensitivity_boundary_v1",
+  "sensitivity_levels": ["NORMAL", "SENSITIVE", "HIGH_SENSITIVITY", "USER_CONFIRMATION_REQUIRED", "DO_NOT_GENERALIZE", "DO_NOT_TRANSFER", "DO_NOT_PERSIST_CANDIDATE"],
+  "default_personality_sensitivity": "HIGH_SENSITIVITY",
+  "rules": {
+    "personality_is_long_term_sensitive_subject_data": true,
+    "user_confirmation_required_for_high_risk_admission": true,
+    "do_not_generalize_is_hard_boundary": true,
+    "do_not_transfer_is_hard_boundary": true,
+    "do_not_persist_candidate_is_hard_boundary": true,
+    "cross_user_transfer": false,
+    "identity_truth_inference": false,
+    "sensitive_trait_is_not_global_user_label": true,
+    "source_scope_and_context_scope_required": true
+  },
+  "handling": {
+    "NORMAL": "candidate evidence may be evaluated within declared scope",
+    "SENSITIVE": "minimize references and preserve access scope",
+    "HIGH_SENSITIVITY": "strong provenance and explicit review metadata required",
+    "USER_CONFIRMATION_REQUIRED": "hold candidate until explicit user review path",
+    "DO_NOT_GENERALIZE": "retain local candidate only; no cross-context promotion",
+    "DO_NOT_TRANSFER": "never cross user/subject boundary",
+    "DO_NOT_PERSIST_CANDIDATE": "candidate remains non-persistent and nullable downstream"
+  }
+}

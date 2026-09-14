@@ -1,0 +1,10 @@
+{
+  "input":"B3TaskDecisionReferenceV1",
+  "action":"ActionGovernanceEngineV1",
+  "runtime_result":"ExecutionResultCandidateV1 wrapped as ControlledRuntimeResultCandidateV1",
+  "outcome":"OutcomeEvaluationEngineV1",
+  "task_feedback":"TaskLifecycleFeedbackHandoffCandidateV1 consumed by Task Manager later",
+  "reconsideration":"Cognitive Flow ReconsiderationCandidateV1",
+  "reobserve":"ReobserveCandidateV1 referencing canonical ObservationNeedHandoffCandidateV1",
+  "owners_created":[]
+}

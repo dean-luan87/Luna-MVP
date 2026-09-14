@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Tick Manager Contract v1",
+  "cognitive_tick": "Logical State Advance",
+  "cadence_classes": ["High Frequency", "Normal Cadence", "Low Frequency"],
+  "high_frequency": ["Safety", "Reflex"],
+  "normal_cadence": ["Attention", "Field Refresh"],
+  "low_frequency": ["Memory Maintenance", "Learning Evaluation"],
+  "tick_is_not_wall_clock_promise": true,
+  "tick_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

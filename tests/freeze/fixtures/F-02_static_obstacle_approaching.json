@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "fixture_id": "F-02",
+    "scenario_type": "static_obstacle_approaching",
+    "description": "Self moving toward a static obstacle.",
+    "version": "1.0",
+    "tags": ["static_obstacle", "ttc", "one_moving"]
+  },
+  "system_snapshot": {
+    "ts": 1.0,
+    "frame_id": 2,
+    "context_mode": "NAVIGATION",
+    "system_facts": {
+      "perception_state": "READY",
+      "calibration_state": "OK",
+      "hardware_state": "OK",
+      "gate": "PASS"
+    },
+    "self_state": {
+      "position": {"x": 0.0, "y": 0.0},
+      "velocity": {"x": 1.0, "y": 0.0},
+      "heading": 0.0
+    },
+    "perceived_objects": [
+      {
+        "object_id": "obs_1",
+        "position": {"x": 4.0, "y": 0.0},
+        "velocity": null,
+        "radius": 0.5,
+        "kind": "obstacle"
+      }
+    ],
+    "environment": {
+      "restricted_zones": [],
+      "obstacles": [
+        {"center": {"x": 4.0, "y": 0.0}, "radius": 0.5}
+      ]
+    }
+  },
+  "model_outputs": {
+    "candidate_actions": [
+      {
+        "model_id": "fixture_stub",
+        "model_version": "v1",
+        "confidence": 0.5,
+        "output": {"intent": "move", "speed": 0.4},
+        "meta": {"fixture": "F-02"}
+      }
+    ]
+  }
+}

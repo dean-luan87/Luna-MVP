@@ -1,0 +1,135 @@
+{
+    "slice_binding": [
+        {
+            "step_id": "field_candidate",
+            "owning_layer": "L1",
+            "primary_module_owner": "Situation Understanding",
+            "supporting_governance": [
+                "candidate_fact_admission"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [
+                "Vision Evidence",
+                "OCR Evidence"
+            ],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "expectation_candidate",
+            "owning_layer": "L3",
+            "primary_module_owner": "Field-Centric Object Role",
+            "supporting_governance": [
+                "candidate_fact_admission"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [
+                "Vision Evidence"
+            ],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "attention_candidate",
+            "owning_layer": "L4",
+            "primary_module_owner": "Observation Attention",
+            "supporting_governance": [
+                "runtime_boundary"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [
+                "Vision Evidence"
+            ],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "region_evidence_candidate",
+            "owning_layer": "L5",
+            "primary_module_owner": "Region Intelligence",
+            "supporting_governance": [
+                "evidence_chain"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [
+                "Vision Evidence",
+                "OCR Evidence"
+            ],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "role_candidate",
+            "owning_layer": "L6",
+            "primary_module_owner": "Field-Centric Object Role",
+            "supporting_governance": [
+                "candidate_fact_admission"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [
+                "Vision Evidence"
+            ],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "interaction_decision_candidate",
+            "owning_layer": "L8",
+            "primary_module_owner": "Task Manager",
+            "supporting_governance": [
+                "change_control"
+            ],
+            "supporting_evaluation": [
+                "Model Test Lens"
+            ],
+            "allowed_providers": [],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        },
+        {
+            "step_id": "feedback_candidate",
+            "owning_layer": "L9",
+            "primary_module_owner": "Human Correction Layer",
+            "supporting_governance": [
+                "post_review_freeze"
+            ],
+            "supporting_evaluation": [
+                "Human Correction"
+            ],
+            "allowed_providers": [],
+            "runtime_requirement": false,
+            "physical_migration_required_now": false,
+            "candidate_only": true,
+            "not_fact": true,
+            "unresolved_dependencies": []
+        }
+    ]
+}

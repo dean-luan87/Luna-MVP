@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "local_runner_result_schema_v1",
+  "title": "Local Runner Job Result V1",
+  "description": "Result returned after adapter conversion. MUEP envelope required before UI display.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "status",
+    "envelope_path",
+    "envelope_schema",
+    "adapter_id",
+    "test_board_refs",
+    "candidate_output_only",
+    "adapter_required_before_ui_display",
+    "not_runtime_output",
+    "not_fact"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "status": { "const": "completed" },
+    "envelope_path": { "type": "string" },
+    "envelope_schema": { "const": "model_test_result_envelope_v1" },
+    "result_manifest_path": { "type": "string" },
+    "adapter_id": { "type": "string" },
+    "test_board_refs": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "metrics_summary": { "type": "object" },
+    "candidate_output_only": { "const": true },
+    "adapter_required_before_ui_display": { "const": true },
+    "not_runtime_output": { "const": true },
+    "not_output_adapter_output": { "const": true },
+    "not_semantic_output": { "const": true },
+    "not_fact": { "const": true },
+    "not_navigation_action_speech": { "const": true },
+    "slam_no_gt_limited_mode": { "type": "boolean" },
+    "not_comparable_to_gt_benchmark": { "type": "boolean" },
+    "protected": { "const": true },
+    "non_deletable": { "const": true }
+  }
+}

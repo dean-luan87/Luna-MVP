@@ -1,0 +1,97 @@
+{
+    "artifact": "cognitive_memory_experience_concept_boundary_matrix_v1",
+    "boundaries": [
+        {
+            "concept": "Observation",
+            "is_not": [
+                "Experience"
+            ]
+        },
+        {
+            "concept": "Experience Candidate",
+            "is_not": [
+                "Memory Fact",
+                "Persisted Memory"
+            ]
+        },
+        {
+            "concept": "Repeated Event",
+            "is_not": [
+                "Learned Rule"
+            ]
+        },
+        {
+            "concept": "Unresolved Hypothesis",
+            "is_not": [
+                "Fact"
+            ]
+        },
+        {
+            "concept": "Current World",
+            "is_not": [
+                "Long-term Memory"
+            ]
+        },
+        {
+            "concept": "Field State",
+            "is_not": [
+                "Memory"
+            ]
+        },
+        {
+            "concept": "PCN",
+            "is_not": [
+                "Memory"
+            ]
+        },
+        {
+            "concept": "Intent",
+            "is_not": [
+                "Memory"
+            ]
+        },
+        {
+            "concept": "Regulation Outcome",
+            "is_not": [
+                "Parameter Update"
+            ]
+        },
+        {
+            "concept": "Memory",
+            "is_not": [
+                "Learning",
+                "Truth"
+            ]
+        },
+        {
+            "concept": "Memory Retrieval",
+            "is_not": [
+                "Truth Declaration"
+            ]
+        },
+        {
+            "concept": "Memory Salience",
+            "is_not": [
+                "Importance Truth"
+            ]
+        },
+        {
+            "concept": "User Preference Evidence",
+            "is_not": [
+                "Stable Preference"
+            ]
+        },
+        {
+            "concept": "Relationship Evidence",
+            "is_not": [
+                "Relationship Fact"
+            ]
+        },
+        {
+            "concept": "Self-related Evidence",
+            "is_not": [
+                "Identity Mutation"
+            ]
+        }
+    ]
+}

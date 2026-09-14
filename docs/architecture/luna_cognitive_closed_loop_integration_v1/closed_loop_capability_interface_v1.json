@@ -1,0 +1,8 @@
+{
+  "title": "Closed Loop to Capability Interface v1",
+  "owner": "Capability Governance",
+  "loop_inputs": ["Capability Requirement", "Observation Requirement", "Priority", "Resource Constraint"],
+  "capability_outputs": ["Evidence Candidate", "Capability Health Candidate", "Failure Candidate", "Performance Evidence"],
+  "capability_not_own": ["Cognitive Loop Ownership", "Brain", "Goal", "Decision", "Reality"],
+  "rules": {"capability_provides_evidence": true, "capability_does_not_initiate_loop": true, "gateway_required": true, "provider_isolated": true}
+}

@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:07:08.046384+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "prompt_strategy_recommendation_record",
+  "record": {
+    "record_id": "prompt_strategy_recommendation_v1",
+    "large_object_building_strategy": "box_prompt_preferred_single_box_sufficient",
+    "road_crosswalk_strategy": "box_with_negative_or_multi_point_not_for_navigation_fact",
+    "sign_advertisement_strategy": "detector_or_ocr_assisted_box_sam_does_not_read_text",
+    "vehicle_strategy": "detector_or_tracker_box_then_sam_refinement",
+    "mobile_sam_role": "boundary_refinement_segmentation_candidate_provider",
+    "object_labels_are_not_facts": true
+  }
+}

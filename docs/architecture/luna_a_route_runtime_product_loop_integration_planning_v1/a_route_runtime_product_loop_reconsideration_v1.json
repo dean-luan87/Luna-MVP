@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "recommendations":["NO_ACTION","REOBSERVE","RECONSIDER_HYPOTHESIS","RECONSIDER_DECISION","REPLAN_TASK","RETRY_EXECUTION","REQUEST_USER_CONFIRMATION","DEFER","FAIL_CYCLE","START_NEXT_CYCLE"],
+  "candidate_only":true,
+  "mutation_authority":false,
+  "guards":["max_reconsideration_depth","repeated_failure_signature","completed_cycle_immutable","duplicate_feedback"],
+  "lineage_required":["source_evaluation_ref","prior_cycle_ref","reason_ref","trace_ref","provenance_refs"]
+}

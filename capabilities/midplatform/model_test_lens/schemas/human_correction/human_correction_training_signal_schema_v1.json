@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "HumanCorrectionTrainingSignalSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "title": "Human Correction Training Signal",
+  "description": "训练/复测候选信号，不是训练数据本身。进入训练或强化前必须经过 owner / quality / consent review。",
+  "type": "object",
+  "required": [
+    "signal_id",
+    "correction_ref",
+    "model_category",
+    "failure_pattern",
+    "error_type",
+    "not_auto_training_data",
+    "needs_owner_review"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "signal_id": {
+      "type": "string",
+      "pattern": "^training_signal_[a-z0-9_]+$"
+    },
+    "correction_ref": {
+      "type": "string",
+      "description": "关联 correction_id"
+    },
+    "model_category": {
+      "type": "string"
+    },
+    "failure_pattern": {
+      "type": "string",
+      "description": "失败模式摘要，如 segmentation_boundary_undercoverage_vehicle"
+    },
+    "scene_context": {
+      "type": "string",
+      "description": "场景上下文，如 street_scene_daylight"
+    },
+    "object_type": {
+      "type": "string",
+      "description": "对象类型，如 vehicle / sign / pedestrian"
+    },
+    "error_type": {
+      "type": "string",
+      "description": "与 correction_type 对齐"
+    },
+    "recurrence_key": {
+      "type": "string",
+      "description": "同类场景复测键，用于 Failure Pattern Registry"
+    },
+    "suggested_dataset_bucket": {
+      "type": "string",
+      "description": "建议数据集桶，如 hard_case_street_vehicle_boundary"
+    },
+    "suggested_benchmark_case": {
+      "type": "string",
+      "description": "建议 benchmark case id"
+    },
+    "suggested_prompt_or_runner_adjustment": {
+      "type": "string",
+      "description": "建议 prompt / runner / adapter 调整方向"
+    },
+    "should_add_to_hard_case_set": {
+      "type": "boolean",
+      "default": false
+    },
+    "should_add_to_regression_test": {
+      "type": "boolean",
+      "default": false
+    },
+    "needs_owner_review": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_auto_training_data": {
+      "type": "boolean",
+      "const": true
+    },
+    "consent_required_if_sensitive": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "downstream_queues": [
+    "Correction Registry",
+    "Failure Pattern Registry",
+    "Hard Case Dataset Candidate",
+    "Model Improvement Queue",
+    "Regression Test Candidate"
+  ],
+  "explicitly_not": [
+    "auto_training_data",
+    "auto_ground_truth",
+    "auto_fact",
+    "auto_model_weight_update",
+    "auto_rl_reward"
+  ],
+  "pre_training_review_gates": [
+    "owner_review",
+    "sensitive_data_review",
+    "data_quality_review",
+    "task_relevance_review",
+    "consent_review_if_needed"
+  ],
+  "boundary_flags": {
+    "training_signal_candidate": true,
+    "hard_case_candidate": true,
+    "regression_test_candidate": true,
+    "failure_pattern_candidate": true,
+    "correction_candidate_only": true
+  }
+}

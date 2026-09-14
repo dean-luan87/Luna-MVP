@@ -1,0 +1,11 @@
+{
+  "contract_id": "luna-visual-unknown-partial-known-v1",
+  "states": ["UNKNOWN", "PARTIAL_KNOWN", "SUFFICIENT_CANDIDATE", "CONTESTED"],
+  "required_fields": ["evidence_refs", "uncertainty_refs", "provenance_refs", "task_relevance", "evidence_sufficiency_status", "semantic_sufficiency_status"],
+  "semantic_owner": "future SRSK",
+  "vision_may_emit_unresolved_evidence": true,
+  "unknown_is_failure": false,
+  "unknown_triggers_learning_automatically": false,
+  "brain_evaluates_task_blocking_after_SRSK_gap_evaluation": true,
+  "world_truth_declaration": false
+}

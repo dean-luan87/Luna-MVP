@@ -1,0 +1,46 @@
+{
+    "artifact": "runtime_executor_owner_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Runtime Executor",
+    "unique_owner": true,
+    "legacy_aliases": [
+        {
+            "name": "Action Runtime Governance",
+            "classification": "legacy_alias_non_canonical",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Executor",
+            "classification": "legacy_reference",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        }
+    ],
+    "owned_candidate_types": [
+        "Execution Request Candidate",
+        "Execution Admission Candidate",
+        "Execution Plan Candidate",
+        "Execution Attempt Candidate",
+        "Execution Result Candidate",
+        "Execution Failure Candidate",
+        "Execution Rollback Candidate",
+        "Execution Provenance Candidate"
+    ],
+    "forbidden_ownership": [
+        "Decision",
+        "Action Governance",
+        "Task Manager",
+        "Scheduler",
+        "Permission Policy",
+        "Safety Policy"
+    ],
+    "forbidden_responsibility": [
+        "re-decide intent",
+        "mutate action eligibility",
+        "create scheduler policy",
+        "create task lifecycle policy"
+    ],
+    "cross_write_authority": false,
+    "source_owner_transfer": false
+}

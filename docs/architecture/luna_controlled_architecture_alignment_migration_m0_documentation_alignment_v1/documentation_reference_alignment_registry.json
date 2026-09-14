@@ -1,0 +1,235 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_v2_m0_documentation_reference_alignment",
+  "purpose": "Record how existing source assets are interpreted by M0 without modifying them.",
+  "allowed_actions": [
+    "REFERENCE_AS_IS",
+    "QUALIFY_IN_M0_OVERLAY",
+    "PRESERVE_HISTORICAL"
+  ],
+  "references": [
+    {
+      "reference_id": "architecture_baseline_v2",
+      "source_path": "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/luna_architecture_baseline_v2.md",
+      "canonical_term": "Luna Architecture Baseline v2.0",
+      "canonical_owner": "System Architecture Governance",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "QUALIFY_IN_M0_OVERLAY",
+      "alignment_note": "Remains the active high-level layer and authority planning baseline; historical implementation wording is qualified by current baseline evidence.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "dynamic_cognitive_architecture_v2",
+      "source_path": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/architecture_v2.md",
+      "canonical_term": "Luna Dynamic Cognitive System v2",
+      "canonical_owner": "Dynamic Cognitive Architecture Governance",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Used as the cross-module cognitive integration view; it is not a new governance layer or Runtime implementation.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "dynamic_v2_module_boundaries",
+      "source_path": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/module_boundary_update.md",
+      "canonical_term": "Dynamic Cognitive v2 Module Boundary Update",
+      "canonical_owner": "Dynamic Cognitive Architecture Governance",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Provides owner-preserving boundary language for M0.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "controlled_migration_inventory",
+      "source_path": "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/existing_asset_migration_inventory.json",
+      "canonical_term": "Existing Asset Migration Inventory",
+      "canonical_owner": "Architecture Migration Governance",
+      "status_term": "PLANNING_ONLY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Provides current locations, target owners, migration types, and implementation evidence.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "field_state_reducer_baseline",
+      "source_path": "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+      "canonical_term": "Field State Reducer Active Baseline",
+      "canonical_owner": "Field State Reducer",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Authoritative engineering evidence for Field reduction; M0 does not change its API or authority.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "field_state_read_model_baseline",
+      "source_path": "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+      "canonical_term": "Field State Read Model Active Baseline",
+      "canonical_owner": "Field State Read Model",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Authoritative engineering evidence for read-only Field projections.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "observation_manager_baseline",
+      "source_path": "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+      "canonical_term": "Observation Manager Active Baseline",
+      "canonical_owner": "Observation Manager",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Observation coordination and evidence candidates remain separate from final cognition.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "task_manager_baseline",
+      "source_path": "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+      "canonical_term": "Task Manager Active Baseline",
+      "canonical_owner": "Task Manager",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Task lifecycle authority remains distinct from Intent and Decision governance.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "model_manager_baseline",
+      "source_path": "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+      "canonical_term": "Model Manager Active Baseline",
+      "canonical_owner": "Capability Governance / Model Manager",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Model capability management remains distinct from cognition and decision authority.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "protocol_manager_baseline",
+      "source_path": "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+      "canonical_term": "Protocol Manager Active Baseline",
+      "canonical_owner": "Protocol Manager",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Protocol support remains an engineering organ under Cognitive OS governance.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "ocr_manager_baseline",
+      "source_path": "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+      "canonical_term": "OCR Manager Active Baseline",
+      "canonical_owner": "Capability Governance / OCR Capability",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "OCR output remains admitted evidence, not fact or cognition.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "vision_manager_baseline",
+      "source_path": "capabilities/registry/baselines/vision_manager_module_baseline_v1.json",
+      "canonical_term": "Vision Manager Active Baseline",
+      "canonical_owner": "Capability Governance / Vision Capability",
+      "status_term": "ENGINEERING_BASELINE_ACTIVE",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Vision output remains admitted evidence, not fact or decision.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "memory_cognitive_architecture",
+      "source_path": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/memory_cognitive_architecture.md",
+      "canonical_term": "Cognitive Memory Architecture",
+      "canonical_owner": "Memory System",
+      "status_term": "ARCHITECTURE_AND_CONTROLLED_SKELETON",
+      "m0_action": "QUALIFY_IN_M0_OVERLAY",
+      "alignment_note": "Memory is a historical influence source and controlled skeleton, not a complete cognitive system or production Runtime.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "intent_architecture",
+      "source_path": "docs/architecture/cognitive_intent_architecture_v1/",
+      "canonical_term": "Cognitive Intent Architecture",
+      "canonical_owner": "Intent Governance",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Intent remains an architecture asset and does not replace Task Manager.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "causal_reasoning_plan",
+      "source_path": "docs/architecture/cognitive_flow/cognitive_causality_model_architecture_plan_v1.md",
+      "canonical_term": "Causal Reasoning Architecture Plan",
+      "canonical_owner": "Causal Reasoning Governance",
+      "status_term": "PLANNING_ONLY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "No canonical Causal Runtime is inferred from the planning asset.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "experience_compression_plan",
+      "source_path": "docs/architecture/cognitive_flow/cognitive_experience_compression_architecture_plan_v1.md",
+      "canonical_term": "Experience Compression Architecture Plan",
+      "canonical_owner": "Experience Governance",
+      "status_term": "PLANNING_ONLY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Experience compression remains candidate-only and cannot directly write Memory or Schema.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "emotion_context_boundary",
+      "source_path": "docs/architecture/cognitive_emotion_context_boundary_v1/",
+      "canonical_term": "Emotion Context Boundary",
+      "canonical_owner": "Cognitive Integration",
+      "status_term": "FUTURE_BOUNDARY_ONLY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Emotion is an integration signal boundary, not Value, Decision, or Self owner.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "a_b_route_boundary",
+      "source_path": "docs/architecture/luna_cognitive_a_route_integration_architecture_v1/a_route_b_route_boundary.json",
+      "canonical_term": "A/B Route Boundary",
+      "canonical_owner": "A/B Route Boundary Governance",
+      "status_term": "FUTURE_BOUNDARY_ONLY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "A Route retains current-reality authority; B Route remains candidate-only and unimplemented.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "decision_arbitration_architecture",
+      "source_path": "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/",
+      "canonical_term": "Decision Arbitration Architecture",
+      "canonical_owner": "Decision Arbitration",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "Decision Arbitration selects candidates; it does not execute actions.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "action_boundary_architecture",
+      "source_path": "docs/architecture/luna_cognitive_action_boundary_v1/",
+      "canonical_term": "Cognitive Action Boundary",
+      "canonical_owner": "Action Governance / Action Runtime",
+      "status_term": "ARCHITECTURE_VALIDATED",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "The execution path is architecturally governed; M0 does not activate Action Runtime.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "pcn_boundary",
+      "source_path": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/personal_cognitive_network_boundary.json",
+      "canonical_term": "Personal Cognitive Network Boundary",
+      "canonical_owner": "Personal Cognitive Network Governance",
+      "status_term": "FUTURE_CORE_CAPABILITY",
+      "m0_action": "REFERENCE_AS_IS",
+      "alignment_note": "PCN owns cross-object links, activation, and projection only; all source-object owners remain unchanged.",
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "root_a3_runtime",
+      "source_path": "runtime/",
+      "canonical_term": "Root A3 Runtime",
+      "canonical_owner": "Legacy A3 Runtime Governance",
+      "status_term": "LEGACY_RUNTIME_UNALIGNED",
+      "m0_action": "QUALIFY_IN_M0_OVERLAY",
+      "alignment_note": "Existing Runtime files are not evidence that Dynamic Cognitive Architecture v2 is implemented or active.",
+      "modified_in_m0": false
+    }
+  ],
+  "all_sources_are_read_only": true,
+  "existing_source_modification_allowed": false,
+  "runtime_equivalence_inferred": false,
+  "m1_started": false
+}

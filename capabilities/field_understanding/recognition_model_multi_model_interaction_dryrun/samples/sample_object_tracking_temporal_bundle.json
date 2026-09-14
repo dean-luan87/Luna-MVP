@@ -1,0 +1,17 @@
+{
+  "interaction_id": "object_tracking_temporal",
+  "interaction_type": "cross_model_temporal_alignment",
+  "source_model_families": ["object_detection_completion_family", "tracking_family"],
+  "candidate_refs": ["object_evidence_candidate:obj_001", "track_evidence_candidate:track_001", "temporal_consistency_candidate:tc_001"],
+  "source_chain": "recognition_model_multi_model_interaction_dryrun_v1",
+  "confidence_policy_ref": "min_of_member_confidence_policy_v1",
+  "alignment_policy_ref": "object_track_id_association_policy_v1",
+  "conflict_policy_ref": "track_switch_conflict_to_candidate_policy_v1",
+  "uncertainty_policy_ref": "temporal_uncertainty_propagation_policy_v1",
+  "adapter_mapping_refs": ["object_track_alignment_candidate", "temporal_object_consistency_candidate"],
+  "fallback_plan": "fallback_to_per_frame_object_candidate_without_track",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "boundaries": ["tracking_is_not_action_trigger", "moving_object_does_not_directly_trigger_speech_or_action"]
+}

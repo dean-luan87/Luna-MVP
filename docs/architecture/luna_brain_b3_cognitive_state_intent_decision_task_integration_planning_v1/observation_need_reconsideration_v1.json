@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_observation_need_reconsideration_v1",
+  "owners": {"observation_need_and_provider_control": "Active Observation Control / Field Perception Orchestrator", "decision_reconsideration": "Decision Governance", "cognitive_expression": "Cognitive Flow candidate"},
+  "inputs": ["B2 observation_need_candidate", "reconsideration_candidate", "evidence sufficiency refs", "uncertainty/conflict refs"],
+  "allowed_effects": ["defer Intent/Decision progression", "emit candidate for additional observation", "produce NEEDS_MORE_EVIDENCE/DEFERRED/RECONSIDERATION candidate", "mark Task readiness REQUIRES_OBSERVATION"],
+  "forbidden_effects": ["provider invocation", "camera activation", "scheduler execution", "automatic Intent promotion", "automatic Decision selection", "task execution"],
+  "rule": "Cognitive Flow may express information need; Active Observation Control/FPO retains observation execution authority."
+}

@@ -1,0 +1,105 @@
+{
+  "schema_id": "ObservationTargetMotionStateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "patch_ref": "Static-Dynamic-Observation-Routing-Patch-v1",
+  "description": "区域运动状态候选分类。motion_state_candidate only — 单帧 MobileSAM 不得判定 confirmed_dynamic。",
+  "motion_state_candidates": [
+    {
+      "motion_state_candidate": "static_candidate",
+      "label_zh": "静态观察候选",
+      "label_en": "Static Candidate",
+      "description": "路牌、广告屏、门头、建筑、固定设施等可能静止的目标",
+      "typical_regions": ["sign", "advertisement", "facade", "building", "fixed_facility", "static_display"],
+      "preferred_followup_models": ["ocr", "detection", "slam_reference", "vlm", "human_review"],
+      "single_frame_allowed": true,
+      "single_frame_label": "static_or_structure_candidate"
+    },
+    {
+      "motion_state_candidate": "dynamic_candidate",
+      "label_zh": "动态观察候选",
+      "label_en": "Dynamic Candidate",
+      "description": "车辆、行人、骑行者、宠物等可能移动的目标",
+      "typical_regions": ["vehicle", "pedestrian", "cyclist", "pet", "cart", "moving_object"],
+      "preferred_followup_models": ["tracking", "detection", "depth", "motion_analysis", "human_review"],
+      "single_frame_allowed": true,
+      "single_frame_label": "dynamic_candidate_by_label",
+      "single_frame_must_not_assert": "confirmed_dynamic"
+    },
+    {
+      "motion_state_candidate": "scene_structure_candidate",
+      "label_zh": "场景结构候选",
+      "label_en": "Scene Structure Candidate",
+      "description": "道路、斑马线、地面、通道、楼梯、门口、大型空间结构",
+      "typical_regions": ["road", "crosswalk", "ground", "stair", "doorway", "passage", "wall", "large_structure"],
+      "preferred_followup_models": ["depth", "slam", "vio", "walkable_area_review", "detection", "human_review"],
+      "single_frame_allowed": true,
+      "single_frame_label": "static_or_structure_candidate"
+    },
+    {
+      "motion_state_candidate": "unknown_motion_state",
+      "label_zh": "运动状态未知",
+      "label_en": "Unknown Motion State",
+      "description": "单帧无法判断、类别不明、区域碎片化、mask 边界不稳定",
+      "typical_regions": ["fragmented_region", "unstable_mask", "unclear_category"],
+      "preferred_followup_models": ["detection", "tracking", "human_review"],
+      "single_frame_allowed": true
+    },
+    {
+      "motion_state_candidate": "needs_tracking_review",
+      "label_zh": "需跟踪复核",
+      "label_en": "Needs Tracking Review",
+      "description": "单帧疑似动态但缺少多帧证据，必须标记为需跟踪复核",
+      "typical_regions": ["vehicle_by_label", "pedestrian_by_label"],
+      "preferred_followup_models": ["tracking", "detection", "human_review"],
+      "single_frame_only": true,
+      "requires_video_for_confirmation": true
+    }
+  ],
+  "video_or_single_frame_context": {
+    "values": ["single_frame", "video_multi_frame", "frame_sequence"],
+    "single_frame_rules": {
+      "vehicle_prompt_label": "dynamic_candidate_by_label",
+      "pedestrian_prompt_label": "dynamic_candidate_by_label",
+      "road_building_sign_prompt_label": "static_or_structure_candidate",
+      "all_motion_states_candidate_only": true,
+      "must_not_output_confirmed_dynamic": true
+    },
+    "video_multi_frame_rules": {
+      "evidence_sources": [
+        "tracking_id",
+        "mask_displacement",
+        "bbox_displacement",
+        "optical_flow",
+        "frame_consistency"
+      ],
+      "may_strengthen_dynamic_candidate": true,
+      "must_not_write_fact": true,
+      "must_not_trigger_navigation": true
+    }
+  },
+  "motion_state_reasons": [
+    {"reason_id": "label_suggests_static", "label_zh": "标签提示静态"},
+    {"reason_id": "label_suggests_dynamic", "label_zh": "标签提示动态"},
+    {"reason_id": "text_region_detected", "label_zh": "疑似文字区域"},
+    {"reason_id": "structure_region_detected", "label_zh": "疑似结构区域"},
+    {"reason_id": "tracking_id_present", "label_zh": "存在跟踪 ID"},
+    {"reason_id": "mask_displacement_observed", "label_zh": "观察到 mask 位移"},
+    {"reason_id": "bbox_displacement_observed", "label_zh": "观察到框位移"},
+    {"reason_id": "optical_flow_cue", "label_zh": "光流提示"},
+    {"reason_id": "frame_consistency_cue", "label_zh": "多帧一致性提示"},
+    {"reason_id": "single_frame_insufficient", "label_zh": "单帧证据不足"},
+    {"reason_id": "human_correction_signal", "label_zh": "人工指错信号"}
+  ],
+  "boundary_flags": {
+    "motion_state_candidate_only": true,
+    "not_confirmed_motion_fact": true,
+    "single_frame_no_confirmed_dynamic": true
+  },
+  "forbidden_outputs": [
+    "confirmed_dynamic",
+    "confirmed_static",
+    "motion_ground_truth",
+    "navigation_instruction_from_motion"
+  ]
+}

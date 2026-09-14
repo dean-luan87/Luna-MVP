@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-UI-Redesign-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:40:05.600501+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "record": {
+    "plan_id": "luna_observation_lens_copywriting_standard_plan_v1",
+    "title": "Luna Observation Lens",
+    "forbidden_default_terms": [
+      "manifest",
+      "job request",
+      "runner bridge",
+      "candidate_output",
+      "visualization_layers",
+      "adapter",
+      "artifact_ref",
+      "phase_ref",
+      "workflow phase",
+      "expected_envelope"
+    ]
+  }
+}

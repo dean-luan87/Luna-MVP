@@ -1,0 +1,27 @@
+{
+  "title": "Decision Attention Interface v1",
+  "contract_type": "Commitment Validation Attention Request",
+  "input": {
+    "commitment_reference": "commitment-example",
+    "validation_requirement": {},
+    "missing_evidence": [],
+    "risk": [],
+    "unknowns": [],
+    "field_context": {},
+    "provenance": []
+  },
+  "output": {
+    "attention_request": "candidate",
+    "observation_requirement": {},
+    "validation_targets": [],
+    "priority_candidate": {},
+    "resource_cost_candidate": {}
+  },
+  "boundary": {
+    "commitment_produces_validation_requirement": true,
+    "commitment_does_not_allocate_attention": true,
+    "attention_retains_resource_management": true,
+    "attention_request_is_candidate_only": true,
+    "unknowns_are_preserved": true
+  }
+}

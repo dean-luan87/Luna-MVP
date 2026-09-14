@@ -1,0 +1,8 @@
+{
+  "title": "Capability Health Manager v1",
+  "owner": "Capability Governance",
+  "schema": ["capability", "availability", "confidence", "performance", "limitation", "last_check", "trace_id"],
+  "health_values": ["Available", "Degraded", "Limited", "Unavailable", "Unknown"],
+  "outputs": ["Capability Profile Update Candidate", "Health Event", "Degradation Candidate"],
+  "rules": {"diagnostic_and_profile_only": true, "no_model_parameter_update": true, "no_auto_goal_change": true, "unknown_preserved": true}
+}

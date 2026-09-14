@@ -1,0 +1,24 @@
+{
+  "title": "Expectation Lifecycle Contract v1",
+  "contract_type": "Expectation Candidate Lifecycle",
+  "states": ["Created", "Active", "Validated", "Updated", "Contradicted", "Deprecated", "Archived"],
+  "transitions": [
+    "Created → Active",
+    "Active → Validated",
+    "Validated → Updated",
+    "Active → Contradicted",
+    "Updated → Contradicted",
+    "Contradicted → Deprecated",
+    "Deprecated → Archived"
+  ],
+  "transition_rules": {
+    "candidate_based": true,
+    "feedback_status_required": true,
+    "time_context_required": true,
+    "provenance_preserved": true,
+    "contradiction_does_not_delete_history": true,
+    "lifecycle_does_not_make_decision": true,
+    "lifecycle_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

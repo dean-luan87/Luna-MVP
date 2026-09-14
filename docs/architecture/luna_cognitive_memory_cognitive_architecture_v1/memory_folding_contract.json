@@ -1,0 +1,12 @@
+{
+  "contract_id": "memory_folding_v1",
+  "owner": "Memory Governance",
+  "input": "episode_memory_candidates",
+  "steps": ["similarity_candidate", "relation_candidate", "pattern_candidate", "experience_memory_candidate", "principle_memory_candidate"],
+  "outputs": ["pattern_candidate", "folded_memory_candidate"],
+  "minimum_episode_count": 2,
+  "provenance_preserved": true,
+  "unknown_preserved": true,
+  "automatic_folding": false,
+  "fact_assertion": false
+}

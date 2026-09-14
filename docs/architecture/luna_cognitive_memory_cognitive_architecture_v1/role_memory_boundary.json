@@ -1,0 +1,12 @@
+{
+  "boundary_id": "role_memory_boundary_v1",
+  "owner": "Role",
+  "memory_scope": "Role Memory",
+  "content": ["role_experience", "task_strategy", "responsibility_outcome", "interaction_method", "capability_gap"],
+  "output": "role_growth_candidate",
+  "governance_required": true,
+  "direct_role_activation": false,
+  "direct_identity_write": false,
+  "decision_authority": false,
+  "repetition_not_automatic_role": true
+}

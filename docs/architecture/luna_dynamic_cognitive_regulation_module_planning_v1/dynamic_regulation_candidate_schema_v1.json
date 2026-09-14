@@ -1,0 +1,29 @@
+{
+    "artifact": "dynamic_regulation_candidate_schema_v1",
+    "entity": "dynamic_regulation_candidate",
+    "fields": {
+        "regulation_id": "string",
+        "state_vector_ref": "string",
+        "context_refs": "string[]",
+        "resource_refs": "string[]",
+        "policy_refs": "string[]",
+        "parameter_bound_refs": "string[]",
+        "attention_modulation_candidate": "object|null",
+        "salience_modulation_candidate": "object|null",
+        "exploration_exploitation_bias_candidate": "object|null",
+        "confidence_threshold_candidate": "object|null",
+        "persistence_decay_candidate": "object|null",
+        "resource_allocation_candidate": "object|null",
+        "interaction_intensity_candidate": "object|null",
+        "reconsideration_sensitivity_candidate": "object|null",
+        "trace_ref": "string",
+        "provenance_refs": "string[]",
+        "revision_parent_ref": "string|null",
+        "revocation_parent_ref": "string|null"
+    },
+    "invariants": {
+        "candidate_only": true,
+        "owner_mutation_forbidden": true,
+        "runtime_side_effect_forbidden": true
+    }
+}

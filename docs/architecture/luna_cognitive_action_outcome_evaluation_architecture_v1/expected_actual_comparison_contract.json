@@ -1,0 +1,12 @@
+{
+  "title": "Expected Actual Comparison Contract v1",
+  "inputs": ["Expected Outcome", "Actual Outcome", "Decision Reference", "Reality Evidence", "Field Context", "Unknowns"],
+  "output": "Outcome Difference Candidate",
+  "comparison": "Expected Outcome - Actual Outcome",
+  "expected_source_required": true,
+  "actual_reality_evidence_required": true,
+  "prediction_error_preserved": true,
+  "comparison_is_not_reality_mutation": true,
+  "comparison_is_not_belief_mutation": true,
+  "candidate_only": true
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_decision_logic_validation",
+  "scope": "Situation_to_Decision_Candidate_only",
+  "cases": [
+    {
+      "case_id": "small_horse_crossing_capability_fit",
+      "world_state": {
+        "gully_width_m": 1.5,
+        "bridge_present": false
+      },
+      "goal_context": {
+        "purpose": "cross_safely"
+      },
+      "self_variants": [
+        {
+          "self_id": "child_low_jump",
+          "capability": "low_jump",
+          "expected_option_space": ["seek_detour", "seek_help"],
+          "forbidden_selected_candidate": "direct_crossing_confirmed"
+        },
+        {
+          "self_id": "adult_normal_mobility",
+          "capability": "normal_mobility",
+          "expected_option_space": ["attempt_crossing_with_caution", "seek_detour"],
+          "forbidden_selected_candidate": "universal_direct_crossing"
+        }
+      ],
+      "assertions": {
+        "self_capability_changes_option_evaluation": true,
+        "world_state_alone_does_not_select_decision": true,
+        "decision_is_not_action": true
+      }
+    },
+    {
+      "case_id": "risk_resource_route_tradeoff",
+      "situation_reference": {
+        "route_a": "short_high_risk",
+        "route_b": "long_low_risk"
+      },
+      "contexts": [
+        {
+          "context_id": "normal_resources",
+          "self_resource_context": "normal",
+          "expected_evaluation_visibility": ["risk", "goal_alignment", "resource_cost"]
+        },
+        {
+          "context_id": "reduced_user_condition",
+          "self_resource_context": "reduced_tolerance",
+          "expected_evaluation_visibility": ["risk", "capability_fit", "resource_cost", "survival_impact"]
+        }
+      ],
+      "assertions": {
+        "risk_and_resource_tradeoff_visible": true,
+        "no_theoretical_optimality_claim": true,
+        "brain_evaluation_required": true
+      }
+    },
+    {
+      "case_id": "low_resource_navigation",
+      "situation_reference": {
+        "navigation_needed": true,
+        "battery_context": "low"
+      },
+      "self_context": {
+        "capability_envelope": "resource_constrained"
+      },
+      "expected_evaluation_visibility": ["resource_cost", "capability_fit", "risk", "uncertainty"],
+      "assertions": {
+        "resource_constraint_participates_in_decision": true,
+        "resource_saving_does_not_hide_safety_risk": true,
+        "action_excluded": true
+      }
+    }
+  ]
+}

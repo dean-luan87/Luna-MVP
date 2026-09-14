@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T08:52:29.597968+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_dependency_mutation_record",
+  "timm_dependency_mutation_record": {
+    "record_id": "timm_dependency_mutation_record_v1",
+    "pip_freeze_after_count": 396,
+    "pip_freeze_after_digest": "ebf9d8c017979b8c1992667341147eb65a6fef7bfc3a55b0491f87b17b6ef05c",
+    "installed_package_list_after_count": 396,
+    "target_path_top_level_count": 0,
+    "new_packages_in_target_path": [],
+    "transitive_dependencies_installed": [],
+    "torch_changed": false,
+    "global_env_changed": false,
+    "no_global_env_contamination": true,
+    "dependency_mutation_scope": "controlled_target_only"
+  }
+}

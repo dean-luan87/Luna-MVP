@@ -1,0 +1,33 @@
+{
+  "loader_contract_id": "loader:ultralytics:yolo:v1",
+  "static_required_dependencies": ["ultralytics"],
+  "provider_path_input_dependencies": ["PIL", "cv2"],
+  "runtime_framework": "ultralytics",
+  "torch": {
+    "status": "CONDITIONAL_RUNTIME_FRAMEWORK_DEPENDENCY",
+    "declared_in_modern_loader_contract": false,
+    "verification_executed": false
+  },
+  "torchvision": {
+    "status": "CONDITIONAL_DEPENDENCY_UNRESOLVED",
+    "declared_in_modern_loader_contract": false,
+    "verification_executed": false
+  },
+  "ultralytics": {
+    "status": "PYTHON_DEPENDENCY_UNRESOLVED",
+    "root_requirements_declaration": false,
+    "historical_stage_declaration": true
+  },
+  "PIL": {
+    "status": "PYTHON_DEPENDENCY_UNRESOLVED",
+    "historical_ocr_declaration": true,
+    "verification_executed": false
+  },
+  "cv2": {
+    "status": "PYTHON_DEPENDENCY_UNRESOLVED",
+    "historical_ocr_declaration": true,
+    "verification_executed": false
+  },
+  "installation_by_model_manager": false,
+  "automatic_dependency_repair": false
+}

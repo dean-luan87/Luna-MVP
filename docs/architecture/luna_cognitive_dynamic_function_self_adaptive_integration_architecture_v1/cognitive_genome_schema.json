@@ -1,0 +1,14 @@
+{
+  "schema_id": "integrated_cognitive_genome_v1",
+  "status": "architecture_only",
+  "layers": ["Fixed Genome", "Adaptive Genome", "Learned Genome"],
+  "fixed_genome": {"mutable": false, "examples": ["Constitution Reference", "Identity Boundary Reference", "Safety Boundary Reference"]},
+  "adaptive_genome": {"mutable": true, "requires_self_review": true, "examples": ["risk_sensitivity", "exploration_threshold", "memory_influence"]},
+  "learned_genome": {"mutable": "candidate_only", "requires_evidence": true, "examples": ["strategy_weight", "context_weight", "threshold_candidate"]},
+  "required_fields": ["genome_id", "version", "parameter_refs", "field_scope", "provenance", "validation_history", "risk_profile", "rollback_ref"],
+  "genome_is_not_biological": true,
+  "genome_is_not_identity": true,
+  "genome_has_no_decision_authority": true,
+  "automatic_evolution": false,
+  "candidate_only": true
+}

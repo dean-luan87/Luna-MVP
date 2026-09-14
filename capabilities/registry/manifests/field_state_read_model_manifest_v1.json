@@ -1,0 +1,202 @@
+{
+    "capability_id": "luna.field_state_read_model",
+    "capability_name": "Field State Read Model",
+    "module_id": "luna.midplatform.field_state_read_model",
+    "module_name": "Field State Read Model",
+    "version": "v1",
+    "module_version": "v1",
+    "api_version": "v1",
+    "layer": "L1 Midplatform / Field Kernel",
+    "domain": "midplatform.field_state",
+    "owner": "midplatform.core.field_kernel",
+    "owner_layer": "midplatform.core",
+    "role": "read_only_state_projection",
+    "module_role": "read_only_state_projection",
+    "authority": "read_only",
+    "mutation_authority": false,
+    "upstream_authority": "field_state_reducer",
+    "runtime_mode": "controlled_read_runtime",
+    "responsibility": "Provide controlled read-only field state projection and query access over reducer-compatible state candidates without mutation, fact admission, or runtime dispatch.",
+    "lifecycle_status": "integration_ready",
+    "promotion_status": "integration_candidate",
+    "module_status": "integration_candidate",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "input_contract": {
+        "summary": "Field state read query plus controlled runtime request.",
+        "refs": [
+            "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+        ]
+    },
+    "output_contract": {
+        "summary": "Field state read result plus controlled runtime envelope.",
+        "refs": [
+            "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+        ]
+    },
+    "input_contract_refs": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+    ],
+    "output_contract_refs": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+    ],
+    "runtime_contract_refs": [
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_controlled_source_adapter_v1.py",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_envelope_builder_v1.py"
+    ],
+    "dependencies": [
+        "luna.field_state_reducer"
+    ],
+    "dependency_refs": {
+        "contract_dependency": [
+            "luna.field_state_reducer"
+        ],
+        "runtime_dependency": [
+            "python.standard_library"
+        ],
+        "governance_dependency": [
+            "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md"
+        ],
+        "prohibited_dependency": [
+            "luna.task_manager",
+            "luna.navigation_manager",
+            "luna.observation_manager",
+            "luna.situation_understanding",
+            "luna.ocr_manager",
+            "database.cache.queue.network"
+        ]
+    },
+    "upstream_modules": [
+        "luna.field_state_reducer"
+    ],
+    "downstream_modules": [],
+    "dependents": [],
+    "module_api": {
+        "path": "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+        "exists": true
+    },
+    "implementation_path": "capabilities/midplatform/core/field_state_read_model/",
+    "public_api_refs": [
+        {
+            "path": "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+            "entrypoint": "read_field_state"
+        },
+        {
+            "path": "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_controlled_runtime_v1.py",
+            "entrypoint": "run_controlled_read_runtime"
+        }
+    ],
+    "integration_runner": {
+        "path": "tools/evaluation/midplatform/run_field_state_read_model_module_integration_v1.py",
+        "exists": true,
+        "runner_type": "module_integration"
+    },
+    "runner_refs": [
+        "tools/evaluation/midplatform/run_field_state_read_model_module_integration_v1.py"
+    ],
+    "verifier_refs": [
+        "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+    ],
+    "diagnostics_support": {
+        "supported": true,
+        "refs": [
+            "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+        ]
+    },
+    "trace_support": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+        ]
+    },
+    "replay_support": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py",
+            "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json",
+            "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json"
+        ]
+    },
+    "evidence_refs": [
+        "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json",
+        "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json",
+        "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json",
+        "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+    ],
+    "boundary_flags": {
+        "read_only": true,
+        "state_mutation": false,
+        "event_reduction": false,
+        "fact_admission": false,
+        "evidence_fabrication": false,
+        "real_model_execution": false,
+        "action_execution": false,
+        "runtime_loop": false,
+        "real_state_store_connected": false,
+        "candidate_only": true
+    },
+    "persistence_authority": false,
+    "fact_admission_authority": false,
+    "action_execution_authority": false,
+    "runtime_authority": false,
+    "replacement_policy": "planned_replacement",
+    "upgrade_policy": "evidence_gated",
+    "deprecation_policy": "announce_and_freeze_dependents",
+    "created_from_phases": [
+        "Phase-P1-Field-Kernel-Field-State-Read-Model-Asset-Inventory-And-Technical-Planning-v1-001",
+        "Phase-P1-Field-Kernel-Field-State-Read-Model-Controlled-Skeleton-v1-001",
+        "Phase-P1-Field-Kernel-Field-State-Read-Model-Contract-DryRun-v1-001",
+        "Phase-P1-Field-Kernel-Field-State-Read-Model-Controlled-Read-Runtime-v1-001"
+    ],
+    "known_limitations": [
+        "no real state store",
+        "no asynchronous runtime",
+        "no downstream dispatch",
+        "no batch query",
+        "no retry orchestration",
+        "no persistence",
+        "no real source adapter"
+    ],
+    "prohibited_capabilities": [
+        "source_of_truth_authority",
+        "state_owner_authority",
+        "fact_authority",
+        "mutation_owner_authority",
+        "event_reducer_authority",
+        "admission_authority",
+        "database_runtime_dependency",
+        "network_client_dependency"
+    ],
+    "ready_evidence": {
+        "integration_candidate": true,
+        "skeleton_total_cases": 10,
+        "skeleton_passed_cases": 10,
+        "skeleton_verifier_passed_checks": 18,
+        "contract_dryrun_total_cases": 45,
+        "contract_dryrun_passed_cases": 45,
+        "contract_dryrun_verifier_passed_checks": 20,
+        "controlled_runtime_total_cases": 24,
+        "controlled_runtime_passed_cases": 24,
+        "controlled_runtime_verifier_passed_checks": 25,
+        "boundary_preserved": true,
+        "candidate_only": true,
+        "evidence_ref": "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+    },
+    "internal_components": [
+        "query_validator",
+        "projection_builder",
+        "result_builder",
+        "module_api",
+        "controlled_source_adapter",
+        "runtime_envelope_builder",
+        "controlled_runtime"
+    ],
+    "manifest_path": "capabilities/registry/manifests/field_state_read_model_manifest_v1.json",
+    "last_updated": "2026-07-17"
+}

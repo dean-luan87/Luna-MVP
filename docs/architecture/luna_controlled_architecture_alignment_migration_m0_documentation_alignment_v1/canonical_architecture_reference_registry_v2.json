@@ -1,0 +1,68 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_v2_m0_canonical_reference_registry",
+  "purpose": "Unify architecture references without rewriting passed source assets or activating a new baseline.",
+  "references": [
+    {
+      "reference_id": "system_architecture_baseline_v2",
+      "name": "Luna Architecture Baseline v2.0",
+      "path": "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/luna_architecture_baseline_v2.md",
+      "status": "ACTIVE_PLANNING_BASELINE",
+      "authority_scope": "L0-L3 layer tree, high-level authority, ownership, and information-flow constraints",
+      "precedence": 1,
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "dynamic_cognitive_architecture_v2_candidate",
+      "name": "Luna Dynamic Cognitive System v2",
+      "path": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/architecture_v2.md",
+      "status": "CANONICAL_FREEZE_CANDIDATE",
+      "authority_scope": "Cross-module cognitive organization and owner-safe integration view under the existing L0/L1 governance tree",
+      "precedence": 2,
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "controlled_migration_plan_v1",
+      "name": "Controlled Architecture Alignment Migration Planning",
+      "path": "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/migration_planning_summary.md",
+      "status": "MIGRATION_PLAN_READY",
+      "authority_scope": "Engineering status evidence, migration type, dependency order, and no-change boundaries",
+      "precedence": 3,
+      "modified_in_m0": false
+    },
+    {
+      "reference_id": "m0_documentation_alignment_overlay",
+      "name": "Dynamic Cognitive Architecture v2 M0 Documentation Alignment",
+      "path": "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+      "status": "DOCUMENTATION_ALIGNMENT_CANDIDATE",
+      "authority_scope": "Canonical terminology, status qualification, module responsibility wording, and source-reference alignment",
+      "precedence": 4,
+      "modified_in_m0": true
+    }
+  ],
+  "interpretation_order": [
+    "Constitution and L1 governance constraints",
+    "Luna Architecture Baseline v2 layer and authority tree",
+    "Dynamic Cognitive Architecture v2 integration view",
+    "Active module baselines for engineering implementation truth",
+    "M0 documentation status and terminology qualification"
+  ],
+  "dynamic_v2_relation": {
+    "relation": "canonical cognitive integration view above module-level documentation and below Constitution/Cognitive OS governance",
+    "new_governance_layer": false,
+    "replaces_architecture_baseline_v2": false,
+    "replaces_module_owners": false,
+    "activates_runtime": false
+  },
+  "source_of_truth_rules": {
+    "constitutional_authority": "L0 System Constitution",
+    "layer_authority": "Luna Architecture Baseline v2.0",
+    "cognitive_integration_view": "Luna Dynamic Cognitive System v2 candidate",
+    "engineering_implementation_status": "active capability module baselines plus controlled migration inventory",
+    "m0_terminology": "M0 documentation alignment registries",
+    "historical_phase_assets_are_immutable": true
+  },
+  "no_dual_mainline": true,
+  "active_baseline_replacement": false,
+  "runtime_activation": false,
+  "schema_or_contract_change": false
+}

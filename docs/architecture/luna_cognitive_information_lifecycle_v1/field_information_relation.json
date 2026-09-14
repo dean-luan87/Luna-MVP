@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Field Information Relation",
+  "owner":"Cognitive Field System",
+  "flow":["Observed","Admitted","Active Field Information","Cognitive Processing","Dormant or Experience Candidate"],
+  "context":["field","attention","task","role","risk","unknowns"],
+  "rules":{"field_context_required":true,"active_information_time_bound":true,"current_reality_precedence":true,"field_not_long_term_memory":true}
+}

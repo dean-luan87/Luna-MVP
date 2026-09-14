@@ -1,0 +1,28 @@
+{
+  "artifact_id": "field_role_interaction_nested_constraint_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cross-Object Boundary Governance",
+  "required_relation_fields": ["incoming_constraint", "outgoing_constraint", "feedback", "mutation_owner", "projection_authority"],
+  "relations": [
+    {"relation": "Field_to_Role", "incoming_constraint": "Field relevance and hard boundaries", "outgoing_constraint": "Role projection candidate", "feedback": "role continuity or tension candidate", "mutation_owner": "Field Governance and Role Governance respectively", "projection_authority": "PCN activation/projection only"},
+    {"relation": "Field_to_Relationship", "incoming_constraint": "current Field and relationship source state", "outgoing_constraint": "relationship relevance projection", "feedback": "overlap or historical reactivation candidate", "mutation_owner": "Field Governance and Relationship Governance respectively", "projection_authority": "PCN projection only"},
+    {"relation": "Field_to_Context", "incoming_constraint": "current Reality and admitted Field references", "outgoing_constraint": "Field context reference", "feedback": "context completion or uncertainty candidate", "mutation_owner": "Field Governance and Context Foundation respectively", "projection_authority": "Context composition only"},
+    {"relation": "Role_to_Relationship", "incoming_constraint": "role and relationship lifecycle references", "outgoing_constraint": "joint projection candidate", "feedback": "competition or coexistence candidate", "mutation_owner": "Role Governance and Relationship Governance respectively", "projection_authority": "PCN projection only"},
+    {"relation": "Context_to_Interaction", "incoming_constraint": "current context envelope and unknowns", "outgoing_constraint": "local interaction scope", "feedback": "interaction relevance candidate", "mutation_owner": "Context Foundation", "projection_authority": "Interaction Kernel local observation only"},
+    {"relation": "PCN_to_Interaction", "incoming_constraint": "PCN activation and link projection", "outgoing_constraint": "local projection neighborhood", "feedback": "interaction candidate and trace", "mutation_owner": "PCN Governance for links and activation", "projection_authority": "Interaction Kernel owns local candidate only"},
+    {"relation": "Resource_to_Interaction", "incoming_constraint": "resource budget candidate", "outgoing_constraint": "bounded interaction scope", "feedback": "defer or shrink signal", "mutation_owner": "Resource Governance", "projection_authority": "scope control only"},
+    {"relation": "Observation_Axis_to_Interaction", "incoming_constraint": "selected role stance and relationship perspective", "outgoing_constraint": "axis-bounded local observation", "feedback": "axis review candidate", "mutation_owner": "Observation Axis Governance", "projection_authority": "perspective selection only"},
+    {"relation": "Future_Emotion_to_Interaction", "incoming_constraint": "future emotion influence reference", "outgoing_constraint": "future weighting candidate only", "feedback": "none in this phase", "mutation_owner": "future Integration Layer", "projection_authority": "inactive future placeholder"},
+    {"relation": "Future_Causal_to_Interaction", "incoming_constraint": "future causal evaluation request", "outgoing_constraint": "interaction evidence reference only", "feedback": "future causal candidate", "mutation_owner": "future Causal Governance", "projection_authority": "inactive future placeholder"},
+    {"relation": "Future_Decision_to_Interaction", "incoming_constraint": "future arbitration request", "outgoing_constraint": "competition and utility references only", "feedback": "future selection result reference", "mutation_owner": "future Decision Arbitration", "projection_authority": "inactive future placeholder"}
+  ],
+  "rules": {
+    "source_owner_precedence": true,
+    "projection_does_not_imply_mutation": true,
+    "future_placeholders_inactive": true,
+    "unique_mutation_owner_per_source_object": true
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

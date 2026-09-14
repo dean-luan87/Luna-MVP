@@ -1,0 +1,61 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "OcrControlledExecutionInputPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+    "description": "OCR 受控执行输入边界。不预设真实文本，human correction 仅 priority signal。",
+    "planning_only": true,
+    "runner_type": "OCR",
+    "allowed_inputs": [
+      "region_crop",
+      "text_likely_region_ref",
+      "source_image_ref",
+      "source_frame_ref",
+      "ocr_target_reason",
+      "envelope_ref",
+      "route_reason"
+    ],
+    "input_field_rules": {
+      "ocr_target_reason": {
+        "role": "route_explanation_only"
+      },
+      "human_correction_read_hint": {
+        "role": "priority_signal_only",
+        "forbidden_as": [
+          "ground_truth_text",
+          "expected_ocr_output"
+        ]
+      },
+      "region_crop": {
+        "required_for_execution": true,
+        "derived_from": "source_region_id"
+      }
+    },
+    "forbidden_inputs": [
+      "fact_text",
+      "confirmed_text_content",
+      "ground_truth_ocr",
+      "human_correction_as_ocr_truth",
+      "preset_real_text",
+      "navigation_hint",
+      "fact_write_intent"
+    ],
+    "crop_policy": {
+      "mode": "text_region_tight_or_label_region",
+      "must_preserve_source_region_id": true,
+      "invalid_crop_error": "invalid_crop"
+    },
+    "boundary_flags": {
+      "ocr_input_does_not_contain_fact_text": true,
+      "no_human_correction_ground_truth": true,
+      "planning_only": true
+    }
+  }
+}

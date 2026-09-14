@@ -1,0 +1,13 @@
+{
+  "schema_id": "self_regulation_function_v1",
+  "canonical_owner": "Self Regulation Function",
+  "status": "architecture_only",
+  "equation": "R_t=f(Self_t,Resource_t,Constitution,State_t)",
+  "inputs": ["Self State", "Resource State", "Cognitive State", "Field Scope", "Measurement Evidence", "Outcome/Error Evidence", "Goal Context", "Constitution"],
+  "outputs": ["Regulation Strategy Candidate", "Parameter Candidate", "Permission Candidate", "Stability Candidate", "Defer Candidate", "Reject Candidate"],
+  "subfunctions": ["Homeostasis Regulation", "Resource Regulation", "Cognitive Balance Regulation", "Calibration Regulation", "Adaptive Regulation", "Stability Protection"],
+  "candidate_only": true,
+  "automatic_update": false,
+  "automatic_control": false,
+  "runtime": false
+}

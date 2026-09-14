@@ -1,0 +1,14 @@
+{
+  "interface_name": "Memory Experience Interface v1",
+  "experience_candidate_reference": "experience-example",
+  "cause_attribution_reference": "cause-example",
+  "memory_admission_reference": "admission-example",
+  "memory_class_candidate": null,
+  "storage_candidate": null,
+  "provenance": [],
+  "unknowns": [],
+  "experience_is_not_memory_automatically": true,
+  "admission_required": true,
+  "current_reality_precedence": true,
+  "unknowns_are_preserved": true
+}

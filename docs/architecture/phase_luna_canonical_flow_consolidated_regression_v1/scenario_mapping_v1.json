@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-Canonical-Flow-Consolidated-Regression-v1-001",
+  "synthetic_only": true,
+  "child_module_count": 3,
+  "child_scenario_counts": {
+    "SOURCE_STATE_OUTCOME_RETURN": 30,
+    "CAPABILITY_MODEL_PROVIDER_BINDING": 34,
+    "EXECUTION_HANDOFF_ADAPTERS": 48
+  },
+  "cross_module_case_count": 28,
+  "active_bypass_count_target": 0,
+  "runtime_execution": false,
+  "model_loading": false,
+  "provider_invocation": false,
+  "observation_execution": false,
+  "action_execution": false,
+  "source_mutation": false,
+  "world_truth": false
+}
+

@@ -1,0 +1,13 @@
+{
+  "contract_id": "hive_metric_interface_v1",
+  "input_tuple": ["State Vector", "Transition Pattern", "Outcome Quality"],
+  "inputs": ["State Observation", "Transition Trace", "Metric Candidates", "Field Scope", "Genome/Parameter Version"],
+  "outputs": ["Comparative Evidence", "Metric Confidence", "State Quality Candidate", "Optimization Candidate", "Unknowns"],
+  "hive_is_observer_only": true,
+  "hive_has_no_write_permission": true,
+  "privacy_scope_required": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "hive_connection": false,
+  "candidate_only": true
+}

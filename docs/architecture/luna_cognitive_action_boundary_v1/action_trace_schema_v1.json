@@ -1,0 +1,8 @@
+{
+  "title": "Action Trace Schema v1",
+  "owner": "Action Boundary Governance",
+  "chain": ["Observation", "Context", "Role/Emotion Context", "Decision", "Action Candidate", "Validation", "Execution Future", "Outcome"],
+  "fields": ["trace_id", "observation_reference", "context_reference", "decision_reference", "candidate_reference", "risk_reference", "permission_reference", "execution_reference", "outcome_reference", "timestamp"],
+  "readers": ["Diagnostics", "Safety Review", "Learning Candidate Review", "Governance Audit"],
+  "rules": {"provenance_required": true, "trace_not_authority": true, "future_execution_reference_allowed": true}
+}

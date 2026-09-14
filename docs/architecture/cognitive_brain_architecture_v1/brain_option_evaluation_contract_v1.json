@@ -1,0 +1,30 @@
+{
+  "title": "Brain Option Evaluation Contract v1",
+  "contract_type": "Option Evaluation Candidate",
+  "input": {
+    "option_candidates": [],
+    "global_cognitive_state": {},
+    "situation_evaluation": {},
+    "intent_alignment": {},
+    "value_constraints": [],
+    "drive_influence": {},
+    "capability_state": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "option_evaluation_candidates": [],
+    "tradeoffs": [],
+    "risk_candidates": [],
+    "resource_cost_candidates": [],
+    "confidence": {},
+    "constraint_fit": {}
+  },
+  "boundary": {
+    "evaluation_is_not_action": true,
+    "evaluation_does_not_execute": true,
+    "evaluation_does_not_modify_option_owner": true,
+    "evaluation_does_not_make_final_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

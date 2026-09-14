@@ -1,0 +1,44 @@
+{
+  "title": "Intent Brain Interface v1",
+  "contract_type": "Brain Intent Review Package",
+  "input": {
+    "intent_candidate": "intent-example",
+    "intent_expression": "purpose candidate",
+    "intent_source": "User Intent",
+    "field_context": {},
+    "role_context": {},
+    "relationship_context": {},
+    "self_context": {},
+    "situation": {},
+    "goal_context": {},
+    "task_context": {},
+    "drive_state": {},
+    "value_constraints": [],
+    "attention_influence_candidate": {},
+    "conflicts": [],
+    "unknowns": [],
+    "risks": [],
+    "confidence": {},
+    "provenance": []
+  },
+  "brain_review": {
+    "accept": "candidate",
+    "modify": "candidate",
+    "reject": "candidate",
+    "defer": "candidate",
+    "request_clarification": "candidate",
+    "request_more_information": "candidate",
+    "goal_alignment_review": "Brain authority",
+    "value_review": "Brain authority",
+    "decision_authority": "Brain retains final Decision authority"
+  },
+  "boundary": {
+    "intent_does_not_command_brain": true,
+    "brain_retains_goal_authority": true,
+    "brain_retains_final_decision_authority": true,
+    "intent_does_not_make_decision": true,
+    "intent_does_not_create_action": true,
+    "intent_does_not_execute": true,
+    "unknowns_are_preserved": true
+  }
+}

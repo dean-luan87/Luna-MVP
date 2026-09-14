@@ -1,0 +1,44 @@
+{
+    "artifact": "decision_concept_boundary_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Decision Governance",
+    "concepts": [
+        "intent",
+        "causal_hypothesis",
+        "causal_candidate",
+        "option",
+        "decision_candidate",
+        "preferred_decision_candidate",
+        "selected_candidate",
+        "executable_decision",
+        "action",
+        "task",
+        "plan",
+        "policy",
+        "permission",
+        "safety_override"
+    ],
+    "non_equivalence_guards": {
+        "intent_not_decision": true,
+        "causal_hypothesis_not_decision": true,
+        "causal_candidate_not_decision": true,
+        "decision_candidate_not_action": true,
+        "selected_candidate_not_runtime_execution": true,
+        "decision_not_task": true,
+        "decision_governance_not_task_manager": true,
+        "preferred_not_authorized": true,
+        "utility_not_permission": true,
+        "risk_not_safety_authority": true
+    },
+    "permission_safety_position": {
+        "decision_consumes_permission": true,
+        "decision_consumes_safety": true,
+        "decision_owns_permission": false,
+        "decision_owns_safety": false
+    },
+    "action_task_boundary": {
+        "decision_outputs_candidate_handoff_only": true,
+        "decision_executes_action": false,
+        "decision_creates_task": false
+    }
+}

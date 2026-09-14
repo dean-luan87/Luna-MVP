@@ -1,0 +1,124 @@
+{
+    "version": "1.0",
+    "name": "PCN Planning To Code Mapping v1",
+    "status": "CONTROLLED_SKELETON_CANDIDATE",
+    "mappings": [
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_cognitive_network_object_model_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py"
+            ],
+            "mapping_type": "reference_only_object_model_to_dataclass"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_cognitive_link_schema_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py"
+            ],
+            "mapping_type": "link_candidate_schema_to_types_and_validators"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_cognitive_network_activation_model_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py"
+            ],
+            "mapping_type": "activation_candidate_model_to_types_and_placeholder"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_cognitive_network_growth_model_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py"
+            ],
+            "mapping_type": "growth_candidate_model_to_types_and_placeholder"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_cognitive_network_dormancy_reactivation_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py"
+            ],
+            "mapping_type": "dormancy_reactivation_candidate_to_growth_family"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/personal_subjective_cognitive_boundary_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py"
+            ],
+            "mapping_type": "subjective_boundary_to_truth_status_guard"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/pcn_context_projection_contract_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_projection_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py"
+            ],
+            "mapping_type": "projection_contract_to_candidate_projection"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_planning_v1/pcn_resource_constraint_model_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_resource_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py"
+            ],
+            "mapping_type": "resource_model_to_budget_reference_and_degradation"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/field_role_interaction_type_registry_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_types_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py"
+            ],
+            "mapping_type": "interaction_registry_to_handoff_reference_types"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/cognitive_interaction_kernel_boundary_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py"
+            ],
+            "mapping_type": "kernel_boundary_to_no_kernel_ownership_guard"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/pcn_planning_conflict_matrix.json",
+            "code_assets": [
+                "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_skeleton_clarification_inheritance_v1.json"
+            ],
+            "mapping_type": "clarification_inheritance_registry"
+        },
+        {
+            "planning_asset": "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+            "code_assets": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_protocol_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py"
+            ],
+            "mapping_type": "context_handoff_to_activation_entry_contract"
+        }
+    ],
+    "all_code_assets": [
+        "capabilities/midplatform/core/personal_cognitive_network/__init__.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_projection_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_resource_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_trace_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_error_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_protocol_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_skeleton_v1.py"
+    ],
+    "planning_assets_modified": false,
+    "parallel_top_level_implementation_created": false,
+    "runtime_logic_deferred": true
+}

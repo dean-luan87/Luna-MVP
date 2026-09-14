@@ -1,0 +1,12 @@
+{
+  "model_id": "state_persistence_v1",
+  "definition": "Continuity of one Luna State Vector across time",
+  "inputs": ["State Vector Version", "Identity Reference", "Field Continuity", "Trace History", "Snapshot Reference"],
+  "outputs": ["Persistence Candidate", "Continuity Check Candidate", "Restore Candidate"],
+  "requirements": ["stable_identity_ref", "version", "timestamp", "trace_ref", "field_scope"],
+  "same_subject_continuity": true,
+  "reinitialization_without_governance": false,
+  "snapshot_is_not_memory": true,
+  "runtime": false,
+  "candidate_only": true
+}

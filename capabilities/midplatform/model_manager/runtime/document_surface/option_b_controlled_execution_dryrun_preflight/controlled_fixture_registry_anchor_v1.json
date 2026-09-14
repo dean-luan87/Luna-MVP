@@ -1,0 +1,79 @@
+{
+  "registry_id": "option_b_controlled_execution_fixture_registry_anchor_v1",
+  "registry_mode": "metadata_only_preflight",
+  "image_content_read_allowed": false,
+  "fixtures": [
+    {
+      "fixture_id": "overlapping_receipts_clear_two_surfaces",
+      "file_name": "overlapping_receipts_clear_two_surfaces.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison",
+      "expected_behavior": ["surface_mask_candidate_or_uncertain_candidate"],
+      "forbidden_behavior": ["fact_output", "ocr_text", "caption_output"]
+    },
+    {
+      "fixture_id": "high_overlap_with_visible_corners",
+      "file_name": "high_overlap_with_visible_corners.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1",
+      "expected_behavior": ["partial_surface_candidate", "occlusion_surface_hint_candidate"],
+      "forbidden_behavior": ["forced_full_surface", "fact_output"]
+    },
+    {
+      "fixture_id": "receipt_attached_clear",
+      "file_name": "receipt_attached_clear.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison",
+      "expected_behavior": ["document_surface_candidate_or_uncertain_candidate"],
+      "forbidden_behavior": ["attached_to_fact", "ocr_text"]
+    },
+    {
+      "fixture_id": "receipt_attached_uncertain",
+      "file_name": "receipt_attached_uncertain.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1",
+      "expected_behavior": ["partial_surface_candidate_or_runtime_error_candidate"],
+      "forbidden_behavior": ["forced_attached_to", "fact_output"]
+    },
+    {
+      "fixture_id": "low_contrast_single_paper",
+      "file_name": "low_contrast_single_paper.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1",
+      "expected_behavior": ["boundary_candidate_or_low_confidence_candidate"],
+      "forbidden_behavior": ["fact_output"]
+    },
+    {
+      "fixture_id": "texture_false_positive_no_document",
+      "file_name": "texture_false_positive_no_document.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison",
+      "expected_behavior": ["no_surface_candidate_or_low_confidence_candidate"],
+      "forbidden_behavior": ["document_fact", "ocr_text"]
+    },
+    {
+      "fixture_id": "true_screen_document_fixture",
+      "file_name": "true_screen_document_fixture.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1",
+      "expected_behavior": ["defer_to_screen_surface_detector"],
+      "forbidden_behavior": ["document_surface_fact"]
+    },
+    {
+      "fixture_id": "single_clear_boundary_baseline",
+      "file_name": "single_clear_boundary_baseline.png",
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1",
+      "expected_behavior": ["boundary_candidate"],
+      "forbidden_behavior": ["fact_output"]
+    }
+  ]
+}

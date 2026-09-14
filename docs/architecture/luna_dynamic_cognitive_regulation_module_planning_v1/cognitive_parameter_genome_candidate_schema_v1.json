@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_parameter_genome_candidate_schema_v1",
+    "entity": "cognitive_parameter_genome_candidate",
+    "fields": {
+        "genome_candidate_id": "string",
+        "version": "string",
+        "parameter_refs": "string[]",
+        "parameter_class_refs": "string[]",
+        "field_scope": "string",
+        "evidence_refs": "string[]",
+        "risk_refs": "string[]",
+        "rollback_ref": "string",
+        "trace_ref": "string",
+        "provenance_refs": "string[]"
+    },
+    "invariants": {
+        "candidate_only": true,
+        "active_genome_mutation_forbidden": true,
+        "permanent_personality_rewrite_forbidden": true,
+        "autonomous_genome_mutation_forbidden": true,
+        "auto_persistence_forbidden": true,
+        "cross_user_propagation_forbidden": true
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Capability Governance Permission Matrix",
+  "rows": [
+    {"actor": "Capability Registry", "can": ["Define Capability", "Register Capability", "Manage Capability Lifecycle"], "cannot": ["Select Model", "Generate Goal", "Generate Decision", "Execute Action"]},
+    {"actor": "Capability Admission", "can": ["Review Candidate", "Coordinate Qualification", "Admit/Reject/Defer"], "cannot": ["Modify Identity", "Generate Goal", "Execute Runtime Without Request"]},
+    {"actor": "Model Manager", "can": ["Register Model Asset", "Expose Model Options", "Report Compatibility"], "cannot": ["Own Capability", "Generate Decision", "Modify Reality", "Create Goal"]},
+    {"actor": "Provider", "can": ["Implement Adapter", "Return Evidence Candidate"], "cannot": ["Own State", "Write Reality", "Generate Decision", "Invoke Itself"]},
+    {"actor": "Calibration", "can": ["Assess Capability Health", "Emit Health Evidence"], "cannot": ["Auto Upgrade", "Auto Switch", "Modify Value", "Execute Action"]},
+    {"actor": "Self Regulation", "can": ["Observe", "Analyze", "Propose Adjustment"], "cannot": ["Bypass Admission", "Switch Model", "Modify Identity", "Modify Goal"]},
+    {"actor": "Brain", "can": ["Request Capability"], "cannot": ["Own Model", "Direct Provider", "Execute Action"]}
+  ],
+  "rules": {"capability_governance_no_goal": true, "capability_governance_no_decision": true, "capability_governance_no_action": true, "provider_evidence_only": true, "admission_required": true}
+}

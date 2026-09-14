@@ -1,0 +1,70 @@
+{
+  "schema_id": "CollaborationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Model-Collaboration-Planning-v1-001",
+  "layer_id": "Model_Manager_Collaboration",
+  "planning_only": true,
+  "principle": "Model Collaboration ≠ Model Competition — 编排多能力共同完成任务",
+  "chain": [
+    "Luna_Goal",
+    "Capability_Requirement",
+    "Model_Manager",
+    "Collaboration_Planner",
+    "Multi_Capability_Collaboration_Plan",
+    "Provider_Sequence_Or_Parallel_Strategy",
+    "Evidence_Fusion",
+    "Decision_Validation",
+    "Fact_Admission"
+  ],
+  "collaboration_modes": [
+    {
+      "mode_id": "pipeline",
+      "label": "Pipeline Collaboration",
+      "priority": 1,
+      "description": "流水线 — 每个模型负责自己的能力，顺序协作",
+      "example": "Text Detector → OCR Recognition → VLM Context Check"
+    },
+    {
+      "mode_id": "parallel_evidence",
+      "label": "Parallel Evidence",
+      "priority": 2,
+      "description": "并行证据 — 多 Provider 提供 evidence set，非投票",
+      "example": "Qwen-VL + InternVL + Grounding → evidence collection plan"
+    },
+    {
+      "mode_id": "challenge",
+      "label": "Challenge Mode",
+      "priority": 3,
+      "description": "挑战模式 — Teacher 提供替代解释，不改变 L2 计划",
+      "example": "Validation 发现 uncertainty high → Teacher Challenge"
+    }
+  ],
+  "rules": [
+    {"rule_id": "collaboration_not_competition", "description": "协作解决能力组合，竞争解决 Provider 选择"},
+    {"rule_id": "no_voting", "description": "禁止多模型投票决定事实"},
+    {"rule_id": "no_auto_answer_fusion", "description": "禁止 Qwen=A + InternVL=B → 综合答案"},
+    {"rule_id": "evidence_fusion_then_validation", "description": "Evidence Fusion → Validation → Candidate"},
+    {"rule_id": "need_driven_not_cost_driven", "description": "按任务需求编排，非按成本全跑"},
+    {"rule_id": "challenge_no_plan_override", "description": "Challenge 不改变 L2 selected plan"},
+    {"rule_id": "degradation_explicit", "description": "资源不足须产出 collaboration_degradation_candidate"},
+    {"rule_id": "conflict_no_score_wins", "description": "冲突禁止谁分高听谁"}
+  ],
+  "forbidden": [
+    "multi_model_voting",
+    "auto_answer_synthesis",
+    "simultaneous_all_providers",
+    "auto_training",
+    "auto_weight_update",
+    "silent_collaboration_degradation"
+  ],
+  "boundary_flags": {
+    "collaboration_not_competition": true,
+    "collaboration_not_voting": true,
+    "no_auto_answer_fusion": true,
+    "no_simultaneous_all_models": true,
+    "evidence_fusion_not_fact": true,
+    "challenge_does_not_override_plan": true,
+    "degradation_explicit_not_silent": true,
+    "registry_distinct_from_collaboration": true
+  }
+}

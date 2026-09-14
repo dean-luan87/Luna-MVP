@@ -1,0 +1,11 @@
+{
+  "title": "Selective Learning Source Registry v1",
+  "sources": ["Experience Learning", "Knowledge Assimilation", "Social Learning", "Self Reflection Learning"],
+  "source_is_provenance_not_authority": true,
+  "field_context_required": true,
+  "experience_or_application_required": true,
+  "knowledge_reading_alone_is_learning": false,
+  "candidate_only": true,
+  "automatic_learning": false,
+  "social_learning_runtime": false
+}

@@ -1,0 +1,8 @@
+{
+  "contract_id": "context_world_trace_provenance_integration_v1",
+  "reverse_route": ["Current World / Cognitive State", "Context", "Field State / Field Event", "Observation Candidate", "Perception Evidence", "Provider or original user input"],
+  "required_lineage": ["root_trace_id", "observation_trace_refs", "field_event_trace_refs", "context_trace_ref", "current_world_trace_ref", "correction_lineage", "contradiction_lineage", "temporal_lineage", "provenance_refs"],
+  "authority_granted_by_provenance": false,
+  "source_owner_trace_preserved": true,
+  "candidate_only": true
+}

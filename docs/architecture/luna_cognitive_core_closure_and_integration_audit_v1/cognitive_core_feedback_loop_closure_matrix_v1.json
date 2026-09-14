@@ -1,0 +1,118 @@
+{
+    "artifact": "cognitive_core_feedback_loop_closure_matrix_v1",
+    "overall_status": "CLOSED_WITH_ADAPTER",
+    "automatic_self_reinforcing_loop_detected": false,
+    "feedback_paths": [
+        {
+            "feedback_id": "F01",
+            "path": "LearningCandidate -> ParameterUpdateCandidate",
+            "source_owner": "Cognitive Learning Governance",
+            "target_owner": "Cognitive Learning Governance",
+            "status": "CLOSED",
+            "guards": {
+                "candidate_only": true,
+                "parameter_activation_blocked": true,
+                "same_source_repetition_guard": true,
+                "duplicate_candidate_guard": true,
+                "contradiction_guard": true,
+                "counterexample_guard": true,
+                "revocation_guard": true,
+                "expiration_guard": true,
+                "no_new_evidence_guard": true
+            },
+            "evidence_basis": [
+                "learning_dynamic_regulation_boundary_v1.json",
+                "cognitive_learning_idempotency_contract_v1.json",
+                "cognitive_learning_minimum_scenario_suite_v1.json"
+            ]
+        },
+        {
+            "feedback_id": "F02",
+            "path": "ParameterUpdateCandidate -> Dynamic Regulation admission/bounds",
+            "source_owner": "Cognitive Learning Governance",
+            "target_owner": "Dynamic Cognitive Regulation Governance",
+            "status": "CLOSED_WITH_ADAPTER",
+            "guards": {
+                "learning_not_parameter_owner": true,
+                "bounds_bypass_blocked": true,
+                "parameter_activation_blocked": true,
+                "genome_activation_blocked": true,
+                "duplicate_update_candidate_guard": true,
+                "bound_rejection_supported": true
+            },
+            "evidence_basis": [
+                "learning_dynamic_regulation_boundary_v1.json",
+                "dynamic_cognitive_regulation_controlled_execution_contract_v1.json",
+                "dynamic_regulation_minimum_scenario_suite_v1.json"
+            ]
+        },
+        {
+            "feedback_id": "F03",
+            "path": "Regulation outcome -> Cognitive Flow / Experience Candidate",
+            "source_owner": "Dynamic Cognitive Regulation Governance",
+            "target_owner": "Cognitive Flow Governance / Cognitive Memory & Experience Governance",
+            "status": "CLOSED_WITH_ADAPTER",
+            "guards": {
+                "runtime_command_blocked": true,
+                "source_owner_mutation_blocked": true,
+                "cycle_boundary_guard": true,
+                "loop_depth_guard": true,
+                "reconsideration_trace_required": true
+            },
+            "evidence_basis": [
+                "dynamic_regulation_handoff_types_v1.py",
+                "cognitive_flow_trace_provenance_contract_v1.json",
+                "memory_trace_provenance_contract_v1.json"
+            ]
+        },
+        {
+            "feedback_id": "F04",
+            "path": "Experience Candidate -> Memory Candidate",
+            "source_owner": "Cognitive Memory & Experience Governance",
+            "target_owner": "Cognitive Memory & Experience Governance",
+            "status": "CLOSED",
+            "guards": {
+                "experience_not_memory_fact": true,
+                "admission_required": true,
+                "duplicate_source_guard": true,
+                "revocation_guard": true,
+                "expiration_guard": true,
+                "persistent_write_blocked": true
+            },
+            "evidence_basis": [
+                "experience_to_memory_formation_contract_v1.json",
+                "memory_admission_state_model_v1.json",
+                "memory_contradiction_revision_revocation_model_v1.json"
+            ]
+        },
+        {
+            "feedback_id": "F05",
+            "path": "Experience / Memory -> Learning Evidence Candidate",
+            "source_owner": "Cognitive Memory & Experience Governance",
+            "target_owner": "Cognitive Learning Governance",
+            "status": "CLOSED_WITH_ADAPTER",
+            "guards": {
+                "memory_does_not_execute_learning": true,
+                "learning_does_not_mutate_memory": true,
+                "write_persistent_memory_blocked": true,
+                "duplicate_evidence_guard": true,
+                "same_feedback_guard": true,
+                "contradiction_guard": true,
+                "counterexample_guard": true,
+                "revoked_source_guard": true,
+                "expired_evidence_guard": true
+            },
+            "evidence_basis": [
+                "memory_learning_boundary_v1.json",
+                "learning_memory_experience_boundary_v1.json",
+                "cognitive_learning_minimum_scenario_suite_v1.json"
+            ]
+        }
+    ],
+    "freeze_assertions": {
+        "learning_candidate_not_parameter_activation": true,
+        "parameter_update_candidate_not_parameter_activation": true,
+        "parameter_activation_requires_dynamic_regulation_admission": true,
+        "automatic_loop_freeze_preserved": true
+    }
+}

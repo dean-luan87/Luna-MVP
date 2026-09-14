@@ -1,0 +1,95 @@
+{
+  "schema_id": "CorrectionRoutingPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "description": "中台分析纠错后的路由策略。训练只是出口之一。",
+  "pipeline": [
+    "user_correction_raw",
+    "human_correction_layer",
+    "midplatform_analysis",
+    "correction_taxonomy",
+    "routing_decision",
+    "destination_queues"
+  ],
+  "routing_table": [
+    {
+      "attribution_id": "model_error",
+      "destinations": [
+        "model_training_data_candidate",
+        "model_rerun_candidate",
+        "new_task_candidate"
+      ],
+      "training_candidate_default": "pending_review",
+      "impact_default": "priority_signal"
+    },
+    {
+      "attribution_id": "task_strategy_error",
+      "destinations": [
+        "routing_policy_update_candidate",
+        "decision_layer_review_candidate"
+      ],
+      "training_candidate_default": false,
+      "impact_default": "task_routing_signal"
+    },
+    {
+      "attribution_id": "attention_priority_error",
+      "destinations": [
+        "attention_policy_update_candidate",
+        "priority_update_signal",
+        "new_task_candidate"
+      ],
+      "training_candidate_default": false,
+      "impact_default": "priority_signal"
+    },
+    {
+      "attribution_id": "user_preference",
+      "destinations": [
+        "user_preference_update_candidate",
+        "knowledge_memory_update_candidate"
+      ],
+      "training_candidate_default": false,
+      "impact_default": "preference_signal"
+    },
+    {
+      "attribution_id": "environment_limitation",
+      "destinations": [
+        "attention_policy_update_candidate",
+        "human_review_candidate"
+      ],
+      "training_candidate_default": false,
+      "impact_default": "context_signal"
+    }
+  ],
+  "correction_type_routing_hints": {
+    "boundary_inaccurate": {
+      "primary_attribution": "model_error",
+      "target_model": "mobile_sam",
+      "destination": "model_training_data_candidate"
+    },
+    "wrong_label": {
+      "primary_attribution": "model_error",
+      "destination": "model_training_data_candidate"
+    },
+    "false_negative": {
+      "primary_attribution": "model_error",
+      "destination": "model_training_data_candidate"
+    },
+    "task_relevance_error": {
+      "primary_attribution": "task_strategy_error",
+      "destination": "routing_policy_update_candidate"
+    },
+    "priority_wrong": {
+      "primary_attribution": "attention_priority_error",
+      "destination": "attention_policy_update_candidate"
+    }
+  },
+  "forbidden_routes": [
+    "user_correction_to_training_pipeline_direct",
+    "user_correction_to_model_weight_update_direct",
+    "user_correction_modify_segmentation_mask"
+  ],
+  "boundary_flags": {
+    "midplatform_schedules_not_direct_training": true,
+    "training_is_one_of_many_exits": true
+  }
+}

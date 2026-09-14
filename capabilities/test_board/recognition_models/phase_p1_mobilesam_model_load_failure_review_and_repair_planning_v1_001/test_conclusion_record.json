@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:48:33.644720+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "failure_review_status": "dependency_gap_timm_missing_repair_planned_no_install_no_load_no_inference_no_runtime",
+    "failure_category": "dependency_gap",
+    "missing_dependency": "timm",
+    "root_cause": "missing runtime dependency timm",
+    "not_model_capability_failure": true,
+    "not_weight_download_failure": true,
+    "not_checkpoint_corruption": true,
+    "is_transitive_dependency_gap": true,
+    "timm_installed_this_phase": false,
+    "model_load_retry_allowed_now": false,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+    "suggested_retry_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+    "transition_note": "PLANNING ONLY (mobile_sam_only). Upstream model-load trial returned P1_MOBILE_SAM_MODEL_LOAD_TRIAL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION with blocker_count=0 and no_boundary_violation=true. sha256/size matched; real import was attempted and failed with ModuleNotFoundError: No module named 'timm'. This is a runtime dependency gap — NOT model-capability failure, NOT weight corruption, NOT checkpoint damage. A timm dependency-gap record, a controlled repair plan (install into controlled_model_load_env, version pin, torch compatibility review, find_spec-only post-install probe), a dependency-install request route, a model-load retry gate (retry NOT allowed now), a repair risk record, and an inference/runtime boundary record were produced. NOTHING was installed / imported / model-loaded / inferred / run; the registry was NOT mutated. Dependency-repair planning is NOT timm install approval. Next: Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001 (timm install request + owner approval + readiness; still no direct pip install). After timm install execution GO, retry via Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001."
+  },
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO"
+}

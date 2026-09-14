@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "synthetic_adapters_permanent":true,
+  "replacement_pattern":["Synthetic Baseline","Single Real Component Replacement","Differential Verification","Freeze","Next Component"],
+  "one_major_component_per_phase":true,
+  "real_component_must_not_delete_synthetic_adapter":true,
+  "required_comparison_dimensions":["contract-level outputs","trace/provenance","state transitions","negative guards","unrelated module behavior"],
+  "failure_localization_default":"replaced component -> its adapter -> adjacent handoff",
+  "unrelated_owner_reopen_without_evidence":false,
+  "order_change_requires_justification":true
+}

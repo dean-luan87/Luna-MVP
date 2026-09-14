@@ -1,0 +1,28 @@
+{
+  "handling_id": "unavailable_reserved_degraded_001",
+  "policy_id": "unavailable_reserved_degraded_handling",
+  "candidate_refs": [
+    "model_unavailable:object_detection_completion_family(yolo_declared_unavailable)",
+    "download_planning_required:segmentation_family",
+    "deferred_due_to_resource:depth_spatial_hint_family",
+    "deferred_due_to_output_instability:scene_relation_vlm_family",
+    "reserved_only:audio_speech_family",
+    "reserved_only:emotion_multimodal_bridge_family"
+  ],
+  "model_family_refs": [
+    "object_detection_completion_family", "segmentation_family", "depth_spatial_hint_family",
+    "scene_relation_vlm_family", "audio_speech_family", "emotion_multimodal_bridge_family"
+  ],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "degraded_state_confidence_policy_v1",
+  "fallback_plan": "fallback_to_available_family_candidates_only_with_records",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "boundaries": [
+    "unavailable_is_not_blocker_if_declared",
+    "reserved_only_family_must_not_execute",
+    "degraded_state_does_not_trigger_runtime_action"
+  ]
+}

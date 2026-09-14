@@ -1,0 +1,24 @@
+{
+  "format_ref": "rtab_map_odometry_export_file",
+  "export_session_id": "rtab_odom_export_session_invalid_native",
+  "file_origin": {
+    "exporter": "rtabmap-native",
+    "source_file": "rtabmap_odometry_native_object.bin"
+  },
+  "source_chain": ["rtab_map_odometry_export", "rtab_odom_export_session_invalid_native"],
+  "direct_field_synthesis_write": true,
+  "rtab_db_read": true,
+  "ros_topic_read": true,
+  "live_rtab_runtime": true,
+  "records": [
+    {
+      "node_id": "odom_native1",
+      "timestamp_ms": 6300,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.90,
+      "tracking_state": "ok",
+      "source_chain": ["rtab_map_odometry_export", "rtab_odom_export_session_invalid_native", "odom_native1"]
+    }
+  ]
+}

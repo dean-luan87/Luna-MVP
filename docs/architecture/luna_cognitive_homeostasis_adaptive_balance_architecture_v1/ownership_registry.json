@@ -1,0 +1,19 @@
+{
+  "registry_id": "homeostasis_balance_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Homeostasis", "owner": "Homeostasis Governance", "writer": "Homeostasis Check Flow", "reader": "Adaptive Balance"},
+    {"module": "State Range", "owner": "State Range Governance", "writer": "Range Constraint Flow", "reader": "Homeostasis"},
+    {"module": "Adaptive Balance", "owner": "Adaptive Balance Governance", "writer": "Balance Candidate Flow", "reader": "Self Review"},
+    {"module": "Drift Detection", "owner": "Cognitive Drift Governance", "writer": "Drift Observation Flow", "reader": "Self Review"},
+    {"module": "Stable Core", "owner": "Constitution Governance", "writer": "Explicit Change Control", "reader": "All Adaptive Governance"},
+    {"module": "Adaptive Layer", "owner": "Adaptive Parameter Governance", "writer": "Versioned Adaptive Candidate Flow", "reader": "Self Review"},
+    {"module": "Experimental Layer", "owner": "Experimental Governance", "writer": "Isolated Experiment Candidate Flow", "reader": "Self Review"},
+    {"module": "Cognitive Genome", "owner": "Cognitive Genome Governance", "writer": "Genome Update Candidate Flow", "reader": "Homeostasis and Self Review"},
+    {"module": "State Quality Balance", "owner": "State Quality Governance", "writer": "Balanced Quality Flow", "reader": "Calibration"},
+    {"module": "Hive Stability Metric", "owner": "Hive Observation Boundary", "writer": "Stability Metric Interface", "reader": "Self Review"},
+    {"module": "Emotion Future Signal", "owner": "Integration Boundary", "writer": "Future Emotion Signal Interface", "reader": "Homeostasis Candidate"},
+    {"module": "B Route Stability", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"}
+  ]
+}

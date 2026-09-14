@@ -1,0 +1,14 @@
+{
+  "version":"1.0",
+  "name":"Self Runtime Mode Schema",
+  "owner":"Self Rhythm Controller",
+  "modes":[
+    {"mode_id":"active","purpose":"ordinary interaction and high-priority events","entry_triggers":["user_interaction","high_priority_event"],"exit_conditions":["demand_reduced","resource_constraint"],"activity_profile":"normal"},
+    {"mode_id":"focus","purpose":"bounded high cognitive investment","entry_triggers":["complex_task","explicit_focus_request"],"exit_conditions":["task_boundary","resource_constraint","focus_timeout"],"activity_profile":"high_cognitive"},
+    {"mode_id":"observe","purpose":"low-frequency environment observation","entry_triggers":["waiting_state","low_external_demand"],"exit_conditions":["new_event","observation_deadline"],"activity_profile":"low_frequency"},
+    {"mode_id":"maintain","purpose":"health, calibration, and organization candidates","entry_triggers":["maintenance_window","health_check"],"exit_conditions":["maintenance_complete","new_priority_event"],"activity_profile":"maintenance"},
+    {"mode_id":"recovery","purpose":"degraded and recovery-oriented operation","entry_triggers":["health_warning","capability_degradation"],"exit_conditions":["recovery_candidate_validated","critical_escalation"],"activity_profile":"restricted"},
+    {"mode_id":"low_power","purpose":"minimal resource operation","entry_triggers":["battery_low","resource_shortage","long_wait"],"exit_conditions":["resource_restored","high_priority_event"],"activity_profile":"minimal"}
+  ],
+  "rules":{"canonical_owner_unique":true,"mode_is_candidate":true,"runtime_acceptance_required":true,"emotion_independent":true}
+}

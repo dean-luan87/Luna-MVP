@@ -1,0 +1,20 @@
+{
+  "contract_id": "cognitive_state_transition_v1",
+  "canonical_cycle": ["Observation", "Understanding", "Decision", "Action", "Reflection", "Learning", "Observation"],
+  "transitions": [
+    {"from": "Observation", "to": "Understanding", "condition": "Evidence Sufficient Candidate"},
+    {"from": "Understanding", "to": "Decision", "condition": "Belief/Understanding Available Candidate"},
+    {"from": "Decision", "to": "Action", "condition": "Decision Approved Candidate"},
+    {"from": "Action", "to": "Reflection", "condition": "Outcome Available Candidate"},
+    {"from": "Reflection", "to": "Learning", "condition": "Long-Term Value or Pattern Candidate"},
+    {"from": "Learning", "to": "Observation", "condition": "Governed Learning Candidate Complete"}
+  ],
+  "transition_is_candidate": true,
+  "automatic_transition": false,
+  "scheduler": false,
+  "runtime_implemented": false,
+  "action_execution": false,
+  "learning_runtime": false,
+  "reconsideration_allowed": true,
+  "unknowns_preserved": true
+}

@@ -1,0 +1,61 @@
+{
+    "artifact": "action_owner_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Action Governance",
+    "unique_owner": true,
+    "legacy_aliases": [
+        {
+            "name": "Action Boundary Governance",
+            "classification": "legacy_alias_non_canonical",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Control",
+            "classification": "legacy_reference",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Commitment",
+            "classification": "legacy_reference",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Action Execution Governance",
+            "classification": "legacy_reference",
+            "creates_new_owner": false,
+            "mutation_authority": false
+        }
+    ],
+    "owned_candidate_types": [
+        "Action Option Candidate",
+        "Action Candidate",
+        "Action Eligibility Candidate",
+        "Execution Readiness Candidate",
+        "Action-to-Executor Handoff Candidate",
+        "Action-to-TaskManager Handoff Candidate"
+    ],
+    "forbidden_ownership": [
+        "Decision",
+        "Task",
+        "Scheduler",
+        "Executor",
+        "Permission Policy",
+        "Safety Policy",
+        "Runtime",
+        "Database",
+        "Device"
+    ],
+    "forbidden_responsibility": [
+        "execute action",
+        "create real task",
+        "run scheduler",
+        "emit actuator command",
+        "perform device control",
+        "modify permission or safety rule"
+    ],
+    "cross_write_authority": false,
+    "source_owner_transfer": false
+}

@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standard_reuse_policy_record",
+  "governance_standard_reuse_policy_record": {
+    "record_id": "governance_standard_reuse_policy_v1",
+    "reuse_before_create_rules": [
+      "search_governance_standards_before_creating_new_rule",
+      "if_rule_exists_must_reference_standard_id_not_duplicate",
+      "extension_requires_standard_patch_phase_not_inline_fork",
+      "no_ad_hoc_governance_in_business_phases",
+      "no_governance_rules_in_runtime_main_program",
+      "model_special_case_requires_standardization_phase_for_generalization",
+      "new_rule_requires_usage_note_negative_guard_owner_layer_canonical_path_test_board"
+    ],
+    "duplicate_rule_creation_forbidden": true
+  }
+}

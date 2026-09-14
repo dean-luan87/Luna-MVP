@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Adaptation Candidate Contract",
+  "input": {
+    "current_attention": "required",
+    "historical_pattern": "candidate",
+    "self_capability": "required",
+    "reality_stability": "required",
+    "current_goal": "candidate"
+  },
+  "candidate_types": [
+    "Attention Prior Candidate",
+    "Attention Allocation Adjustment Candidate",
+    "Reduced Observation Candidate",
+    "Alternative Observation Candidate",
+    "Attention Reactivation Candidate",
+    "Attention Drift Candidate"
+  ],
+  "requires_validation": true,
+  "single_event_adoption": false,
+  "automatic_allocation_change": false,
+  "automatic_strategy_change": false,
+  "automatic_learning": false,
+  "decision_authority": false,
+  "action_authority": false
+}

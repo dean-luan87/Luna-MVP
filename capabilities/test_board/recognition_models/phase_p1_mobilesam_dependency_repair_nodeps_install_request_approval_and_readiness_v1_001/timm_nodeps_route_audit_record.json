@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.542206+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "pip_install_allowed": false,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_nodeps_route_audit_record",
+  "timm_nodeps_route_audit": {
+    "audit_id": "timm_nodeps_route_audit_v1",
+    "upstream_review_file_ref": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_dependency_repair_install_failure_review_and_repair_planning_v1_smoke_v0/p1_mobile_sam_dependency_repair_install_failure_review_and_repair_planning_review_v1.json",
+    "upstream_review_exists": true,
+    "final_decision_observed": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+    "final_decision_ok": true,
+    "blocker_count_observed": 0,
+    "failure_category_observed": "dependency_install_timeout",
+    "selected_route_observed": "timm_no_deps_controlled_install",
+    "same_full_isolated_install_retry_not_recommended_observed": true,
+    "model_load_retry_allowed_now_observed": false,
+    "no_deps_install_missing_transitive_dependency_risk_recorded": true,
+    "torch_timm_compatibility_risk_recorded": true,
+    "route_a_selected": true,
+    "audit_passed": true
+  }
+}

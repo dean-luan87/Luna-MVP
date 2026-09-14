@@ -1,0 +1,10 @@
+{
+  "schema_id": "exploration_state_v1",
+  "owner": "Exploration Governance Controller",
+  "states": ["Detected", "Evaluated", "Candidate", "Approved", "Exploring", "Partial Result", "Completed", "Accepted Unknown", "Archived"],
+  "state_candidate": true,
+  "automatic_state_transition": false,
+  "accepted_unknown_is_valid": true,
+  "runtime": false,
+  "execution": false
+}

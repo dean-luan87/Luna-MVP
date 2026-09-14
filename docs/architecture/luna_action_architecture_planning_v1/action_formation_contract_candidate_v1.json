@@ -1,0 +1,38 @@
+{
+    "artifact": "action_formation_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Action Governance",
+    "required_inputs": [
+        "selected_decision_candidate_refs",
+        "intent_refs",
+        "causal_refs",
+        "target_refs",
+        "context_refs",
+        "permission_refs",
+        "safety_refs",
+        "precondition_refs",
+        "dependency_refs",
+        "resource_refs",
+        "confirmation_refs"
+    ],
+    "formation_steps": [
+        "admit_reference_inputs",
+        "build_action_option_candidates",
+        "evaluate_preconditions_and_dependencies",
+        "recheck_permission_and_safety",
+        "derive_execution_readiness_candidate",
+        "derive_action_state_candidate",
+        "attach_provenance_and_revision_lineage",
+        "emit_candidate_only_handoff_context"
+    ],
+    "formation_guards": {
+        "planning_only": true,
+        "runtime_executed": false,
+        "action_execution": false,
+        "task_created": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "source_mutation": false
+    }
+}

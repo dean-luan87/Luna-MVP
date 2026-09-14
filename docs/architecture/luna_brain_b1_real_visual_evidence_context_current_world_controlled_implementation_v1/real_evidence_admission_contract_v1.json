@@ -1,0 +1,16 @@
+{
+  "input": "VisualDetectionEvidenceCandidateV1 + ObservationGatewayEvidenceHandoffCandidateV1",
+  "modes": ["REAL_CONTROLLED_EVIDENCE", "SYNTHETIC_EVIDENCE"],
+  "required": [
+    "candidate_only=true",
+    "truth_declared=false",
+    "fact_admitted=false",
+    "semantic_authority=false",
+    "trace_ref",
+    "provenance_refs",
+    "source frame reference"
+  ],
+  "gateway_result": "ADMITTED_OBSERVATION",
+  "meaning": "structural/procedural acceptance for candidate construction only",
+  "forbidden": ["provider invocation", "fact admission", "truth declaration", "semantic compression"]
+}

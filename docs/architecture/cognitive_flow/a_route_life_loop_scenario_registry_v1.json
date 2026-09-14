@@ -1,0 +1,158 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_a_route_e2e_validation",
+  "scope": "candidate_only_end_to_end_life_loop",
+  "required_chain": [
+    "Survival Drive",
+    "Brain Intent",
+    "Intent Preservation",
+    "Attention Requirement",
+    "Reality Evidence",
+    "World Understanding",
+    "Self Understanding",
+    "Situation Candidate",
+    "Option Generation",
+    "Decision Evaluation",
+    "Decision Candidate",
+    "Execution Boundary",
+    "Outcome Evidence",
+    "Situated Outcome Evaluation",
+    "Cause Attribution",
+    "Adaptation Candidate",
+    "Experience Candidate"
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "life_loop_01_daily_pharmacy_task",
+      "complexity": "low",
+      "intent": "obtain_nearby_pharmacy_information_for_medicine_purchase",
+      "input_context": [
+        "goal_context",
+        "self_capability",
+        "resource_context",
+        "road_and_store_evidence"
+      ],
+      "expected_trace_outcomes": [
+        "situation_candidate",
+        "route_decision_candidate",
+        "outcome_reference",
+        "experience_candidate"
+      ],
+      "assertions": {
+        "full_chain_present": true,
+        "no_evidence_to_decision_skip": true,
+        "no_real_action": true
+      }
+    },
+    {
+      "scenario_id": "life_loop_02_unfamiliar_mall_exit",
+      "complexity": "world_understanding",
+      "intent": "find_exit_in_unfamiliar_mall",
+      "input_context": [
+        "incomplete_map_evidence",
+        "unknown_exit_location",
+        "self_position",
+        "resource_context"
+      ],
+      "expected_trace_outcomes": [
+        "attention_requirement_for_exit_information",
+        "unknown_preserved",
+        "situation_candidate",
+        "decision_candidate_with_confidence"
+      ],
+      "assertions": {
+        "world_evidence_is_not_fact": true,
+        "unknown_is_not_hidden": true,
+        "full_chain_present": true
+      }
+    },
+    {
+      "scenario_id": "life_loop_03_degraded_visual_capability",
+      "complexity": "self_understanding",
+      "intent": "continue_navigation_with_visual_confirmation_need",
+      "input_context": [
+        "camera_contamination_candidate",
+        "reduced_visual_capability",
+        "goal_context",
+        "resource_context"
+      ],
+      "expected_trace_outcomes": [
+        "self_capability_limitation_candidate",
+        "confidence_adjustment",
+        "adaptation_candidate",
+        "experience_candidate"
+      ],
+      "assertions": {
+        "identity_stable": true,
+        "capability_not_ignored": true,
+        "no_automatic_self_update": true
+      }
+    },
+    {
+      "scenario_id": "life_loop_04_speed_safety_goal_conflict",
+      "complexity": "survival_and_goal_conflict",
+      "intent": "arrive_quickly_without_overriding_safety",
+      "input_context": [
+        "short_high_risk_route",
+        "long_low_risk_route",
+        "survival_constitution",
+        "resource_context"
+      ],
+      "expected_trace_outcomes": [
+        "option_set",
+        "survival_impact_visible",
+        "risk_visible",
+        "brain_evaluation_candidate"
+      ],
+      "assertions": {
+        "local_speed_does_not_override_safety": true,
+        "decision_is_candidate_only": true,
+        "full_chain_present": true
+      }
+    },
+    {
+      "scenario_id": "life_loop_05_repeated_map_data_failure",
+      "complexity": "feedback_and_failure",
+      "intent": "navigate_to_destination",
+      "input_context": [
+        "repeated_outcome_deviation",
+        "map_data_error_candidate",
+        "current_reality_evidence"
+      ],
+      "expected_trace_outcomes": [
+        "difference_candidate",
+        "external_cause_attribution_candidate",
+        "bounded_adaptation_candidate",
+        "pattern_candidate_pending_validation"
+      ],
+      "assertions": {
+        "failure_does_not_reduce_all_capabilities": true,
+        "experience_not_automatic_adoption": true,
+        "full_chain_present": true
+      }
+    },
+    {
+      "scenario_id": "life_loop_06_long_duration_travel",
+      "complexity": "temporal_continuity",
+      "intent": "complete_multi_stage_travel_context",
+      "input_context": [
+        "departure",
+        "transport",
+        "location_search",
+        "unexpected_environment_change",
+        "goal_completion_context"
+      ],
+      "expected_trace_outcomes": [
+        "multiple_situation_candidates",
+        "temporal_context",
+        "reconsideration_candidate",
+        "experience_candidate_with_context"
+      ],
+      "assertions": {
+        "temporal_continuity_preserved": true,
+        "reality_priority_over_old_experience": true,
+        "no_runtime_or_real_action": true
+      }
+    }
+  ]
+}

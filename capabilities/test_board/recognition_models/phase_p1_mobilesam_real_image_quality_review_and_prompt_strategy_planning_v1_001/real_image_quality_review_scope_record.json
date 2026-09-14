@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:07:08.046384+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "real_image_quality_review_scope_record",
+  "record": {
+    "record_id": "real_image_quality_review_scope_v1",
+    "upstream_execution_ref": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+    "upstream_execution_go": "P1_MOBILE_SAM_REAL_LOCAL_IMAGE_INFERENCE_TRIAL_EXECUTION_GO",
+    "canonical_test_asset_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/capabilities/test_assets/p1/mobile_sam/mobile_sam_real_local_image_street_scene_v1.png",
+    "image_width": 767,
+    "image_height": 1024,
+    "scene_type": "dusk_urban_street_scene",
+    "prompt_count": 5,
+    "prompt_success_count": 5,
+    "candidate_masks_written": true,
+    "review_reads_upstream_metadata_only": true,
+    "new_inference_executed": false,
+    "new_image_read": false
+  }
+}

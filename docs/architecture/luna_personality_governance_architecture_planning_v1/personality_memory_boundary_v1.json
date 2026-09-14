@@ -1,0 +1,14 @@
+{
+  "artifact": "personality_memory_boundary_v1",
+  "memory_owner_preserved": "Cognitive Memory & Experience Governance",
+  "allowed_memory_experience_inputs": ["behavior history", "interaction history", "preference history", "social experience", "task experience", "emotional experience refs", "success/failure history"],
+  "allowed_outputs": ["Personality Evidence Candidate", "context-specific behavior evidence", "counterexample reference"],
+  "forbidden": ["Memory direct personality mutation", "Repeated Memory = Trait Truth", "one event changes personality", "automatic trait rewriting", "memory semantic compression in this phase"],
+  "rules": {
+    "memory_is_evidence_only": true,
+    "personality_reads_references_only": true,
+    "memory_owner_mutation": false,
+    "personality_owner_mutation_of_memory": false,
+    "semantic_compression_status": "DEFERRED_TO_EMOTION_ENGINE"
+  }
+}

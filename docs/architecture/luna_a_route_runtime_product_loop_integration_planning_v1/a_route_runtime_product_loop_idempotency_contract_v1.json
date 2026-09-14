@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0",
+  "guards":["duplicate_input","duplicate_observation_demand","duplicate_provider_session","duplicate_decision_handoff","duplicate_task","duplicate_action","duplicate_runtime_execution_request","duplicate_execution_result","duplicate_outcome_evaluation","duplicate_feedback","duplicate_next_cycle_ingress","max_reconsideration_depth","max_reobservation_depth","repeated_failure_signature","completed_cycle_immutability","revoked_result","stale_result","user_cancellation","safety_interruption"],
+  "hidden_retry":false,
+  "global_mutable_state":false,
+  "required_key_refs":["cycle_id","source_id","request_id","trace_ref","contract_version"]
+}

@@ -1,0 +1,31 @@
+{
+    "artifact": "causal_competition_alternative_explanation_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "competition_modes": [
+        "evidence_strength_competition",
+        "temporal_consistency_competition",
+        "confounder_resilience_competition",
+        "counter_evidence_resilience_competition"
+    ],
+    "alternative_explanation_policy": {
+        "required": true,
+        "minimum_alternatives": 1,
+        "insufficient_evidence_allows_unresolved": true,
+        "forced_resolution": false
+    },
+    "comparison_fields": [
+        "hypothesis_ref",
+        "support_refs",
+        "opposition_refs",
+        "confounder_refs",
+        "temporal_order_refs",
+        "uncertainty",
+        "provenance"
+    ],
+    "guards": {
+        "competition_is_decision": false,
+        "competition_outputs_action": false,
+        "alternative_hidden_without_trace": false
+    }
+}

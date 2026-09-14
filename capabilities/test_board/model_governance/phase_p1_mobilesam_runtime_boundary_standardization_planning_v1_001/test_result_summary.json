@@ -1,0 +1,22 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Runtime-Boundary-Standardization-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:38:54.577828+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_RUNTIME_BOUNDARY_STANDARDIZATION_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_runtime_boundary_standardization_planning_profile_count": 1,
+    "stage_ref_count": 10,
+    "negative_guard_count": 19,
+    "blocker_count": 0
+  }
+}

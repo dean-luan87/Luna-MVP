@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Runner-Invocation-Admission-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-03T07:09:14.350430+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "",
+  "steps_executed": [],
+  "passed_check_count": 0,
+  "failed_check_count": 0,
+  "stage_refs": [],
+  "upstream_sealed_phase_review": {}
+}

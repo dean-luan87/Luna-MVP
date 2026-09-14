@@ -1,0 +1,167 @@
+{
+  "artifact": "intent_existing_asset_reuse_mapping_v1",
+  "status": "PLANNING_CANDIDATE",
+  "review_complete": true,
+  "structural_owner_conflict": false,
+  "parallel_intent_system_required": false,
+  "canonical_owner": "Intent Governance",
+  "disposition_registry": [
+    "REUSE",
+    "REFERENCE_ONLY",
+    "NEEDS_ALIGNMENT",
+    "FUTURE_EXTENSION",
+    "DO_NOT_REUSE"
+  ],
+  "existing_intent_like_assets": [
+    {
+      "asset": "Cognitive Intent Architecture v1",
+      "location": "docs/architecture/cognitive_intent_architecture_v1/",
+      "current_owner": "Intent Governance",
+      "intent_relevance": "Earlier candidate-only Intent definition and boundary set",
+      "disposition": "NEEDS_ALIGNMENT",
+      "reason": "Retain useful candidate boundaries but align source classes, lifecycle semantics, Potential Intent, coexistence, carryover, and dynamic-state language.",
+      "conflict": false
+    },
+    {
+      "asset": "PCN-to-Intent handoff closure",
+      "location": "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json",
+      "current_owner": "Personal Cognitive Network Governance",
+      "intent_relevance": "Source-owned PCN projection boundary for downstream Intent qualification",
+      "disposition": "REUSE",
+      "reason": "It already prevents PCN activation from becoming Intent and preserves downstream ownership.",
+      "conflict": false
+    },
+    {
+      "asset": "M1 Intent binding contract candidate",
+      "location": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json",
+      "current_owner": "Intent Governance",
+      "intent_relevance": "Frozen candidate-only exchange boundary",
+      "disposition": "REUSE",
+      "reason": "Compatible with candidate admission, revision, revocation, trace, and downstream consumption.",
+      "conflict": false
+    },
+    {
+      "asset": "Cognitive Intent Preservation / Cognitive Intent Signal",
+      "location": "docs/architecture/cognitive_intent_preservation_control_boundary_v1/",
+      "current_owner": "Cognitive Flow Governance",
+      "intent_relevance": "Preserves information-acquisition purpose across neural and middleware paths",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "This narrower signal must not be treated as the subject-level future-state Intent ontology.",
+      "conflict": false
+    },
+    {
+      "asset": "Attention Intent",
+      "location": "docs/architecture/cognitive_flow/",
+      "current_owner": "Observation Attention Governance",
+      "intent_relevance": "Information-requirement and observation-focus signal",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Attention allocation is not subject-level Intent.",
+      "conflict": false
+    }
+  ],
+  "existing_goal_like_assets": [
+    {
+      "asset": "Cognitive Goal Architecture v1",
+      "location": "docs/architecture/luna_cognitive_goal_architecture_v1/",
+      "current_owner": "Goal Layer / Self Governance",
+      "intent_relevance": "Downstream direction admission and temporal target state",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Goal remains distinct from Intent and retains its owner.",
+      "conflict": false
+    }
+  ],
+  "existing_task_assets": [
+    {
+      "asset": "Task Manager",
+      "location": "capabilities/midplatform/core/task_manager/",
+      "current_owner": "Task Manager Governance",
+      "intent_relevance": "Downstream task lifecycle and orchestration",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Task does not create, own, or modify Intent.",
+      "conflict": false
+    }
+  ],
+  "existing_decision_assets": [
+    {
+      "asset": "Cognitive Decision Arbitration Architecture v1",
+      "location": "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/",
+      "current_owner": "Decision Arbitration",
+      "intent_relevance": "Downstream candidate selection",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Intent competition and temporary dominance never replace Decision arbitration.",
+      "conflict": false
+    },
+    {
+      "asset": "Action Intent envelope",
+      "location": "docs/architecture/cognitive_action_boundary_v1/",
+      "current_owner": "Action Boundary",
+      "intent_relevance": "Downstream execution-intent envelope after Decision",
+      "disposition": "DO_NOT_REUSE",
+      "reason": "Its name collides with subject-level Intent but its semantics belong to Action execution.",
+      "conflict": false
+    }
+  ],
+  "existing_self_drive_assets": [
+    {
+      "asset": "Cognitive Survival Drive Model v1",
+      "location": "docs/architecture/cognitive_flow/cognitive_survival_drive_model_v1.md",
+      "current_owner": "Self Drive Governance",
+      "intent_relevance": "Provides Need or Strategy candidates under Self constraints",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Drive and Need can influence Intent formation but are not Intent.",
+      "conflict": false
+    }
+  ],
+  "existing_emotion_influence_assets": [
+    {
+      "asset": "Emotion boundary and drive interface",
+      "location": "docs/architecture/",
+      "current_owner": "Emotion / Integration Governance",
+      "intent_relevance": "Future influence candidate with independent ownership",
+      "disposition": "FUTURE_EXTENSION",
+      "reason": "Preserve a reference-only influence interface without requiring Emotion Runtime.",
+      "conflict": false
+    }
+  ],
+  "existing_memory_influence_assets": [
+    {
+      "asset": "Memory cognitive and runtime boundaries",
+      "location": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/",
+      "current_owner": "Memory Governance",
+      "intent_relevance": "Historical and experience references for qualification and carryover",
+      "disposition": "REUSE",
+      "reason": "Memory remains source-owned and cannot create or mutate Intent.",
+      "conflict": false
+    }
+  ],
+  "existing_role_field_influence_assets": [
+    {
+      "asset": "Cognitive Field Architecture v1",
+      "location": "docs/architecture/luna_cognitive_field_architecture_v1/",
+      "current_owner": "Cognitive Field",
+      "intent_relevance": "Current reality and Field constraints",
+      "disposition": "REUSE",
+      "reason": "Field pressure is an influence reference, never Intent.",
+      "conflict": false
+    },
+    {
+      "asset": "Role Architecture v1",
+      "location": "docs/architecture/luna_role_architecture_v1/",
+      "current_owner": "Social Self / Role Governance",
+      "intent_relevance": "Role obligation and participation constraints",
+      "disposition": "REUSE",
+      "reason": "Role obligation can influence but cannot own Intent.",
+      "conflict": false
+    },
+    {
+      "asset": "Relationship Architecture assets",
+      "location": "docs/architecture/",
+      "current_owner": "Social Self / Relationship Governance",
+      "intent_relevance": "Relationship strength, history, and current-state references",
+      "disposition": "REFERENCE_ONLY",
+      "reason": "Relationship context influences qualification without cross-writing Intent.",
+      "conflict": false
+    }
+  ],
+  "review_conclusion": "Existing assets permit one aligned Intent Governance planning layer; no parallel implementation or structural blocker is required."
+}

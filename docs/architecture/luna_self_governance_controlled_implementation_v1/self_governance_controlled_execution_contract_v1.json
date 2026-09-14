@@ -1,0 +1,66 @@
+{
+  "artifact": "self_governance_controlled_execution_contract_v1",
+  "phase": "Phase-Luna-Self-Governance-Controlled-Implementation-v1-001",
+  "execution_mode": "CONTROLLED_IMPLEMENTATION",
+  "governance_mode_mapping": "Controlled Skeleton Implementation",
+  "synthetic_only": true,
+  "candidate_only": true,
+  "runtime_execution": false,
+  "final_phase_verifier": "user_terminal_only",
+  "canonical_owner": "Self Governance",
+  "allowed_owner_scope": [
+    "self reference candidate semantics",
+    "self attribution candidate semantics",
+    "self continuity candidate semantics",
+    "self boundary classification semantics",
+    "candidate lifecycle governance",
+    "revision revocation supersession lineage",
+    "trace provenance linkage",
+    "privacy sensitivity restrictions"
+  ],
+  "forbidden_owner_scope": [
+    "PCN relationships",
+    "persistent Memory",
+    "Learning execution",
+    "Intent mutation",
+    "Attention",
+    "Hypothesis",
+    "Current World",
+    "Cognitive State Vector",
+    "Dynamic Regulation parameters",
+    "Personality",
+    "Emotion",
+    "Task",
+    "Decision",
+    "Action",
+    "Runtime",
+    "database persistence",
+    "user identity authority",
+    "external identity truth"
+  ],
+  "allowed_agent_checks": ["read files", "search", "editor diagnostics"],
+  "prohibited_agent_execution": [
+    "python",
+    "python3",
+    "py_compile",
+    "pytest",
+    "runner",
+    "verifier",
+    "shell validation",
+    "real runtime",
+    "model execution"
+  ],
+  "verification_authority": {
+    "V0": "AGENT_EDITOR_STATIC_ONLY",
+    "V1": "NOT_USED_BY_AGENT",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "cd /Users/luanlei/Desktop/Luna-Core",
+    "python3 capabilities/midplatform/core/self_governance/run_self_governance_controlled_implementation_v1.py",
+    "python3 docs/architecture/luna_self_governance_controlled_implementation_v1/verify_self_governance_controlled_implementation_v1.py"
+  ],
+  "go_decision_authority": "user V2 plus ChatGPT V3; agent may not declare GO"
+}

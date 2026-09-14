@@ -1,0 +1,59 @@
+{
+    "contract_id": "memory_context_projection_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Memory System",
+    "producer": "Memory System",
+    "consumer": [
+        "Personal Cognitive Network Governance",
+        "Intent Governance",
+        "Experience Governance"
+    ],
+    "candidate_fact": "historical_projection_candidate_only_not_reality",
+    "unknown": {
+        "allowed": true,
+        "representation": "missing_history_or_partial_match",
+        "behavior": "preserve_influence_gap_without_override"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "memory_refs",
+            "provenance"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "historical_reference_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "memory_admitted_objects_only"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "memory_revision_follow_source_owner"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "projection_removed_when_source_revoked"
+    },
+    "failure_behavior": {
+        "on_missing_memory": "emit_projection_unavailable_candidate",
+        "on_provenance_gap": "reject_projection_candidate",
+        "on_scope_conflict": "emit_read_only_conflict_candidate"
+    },
+    "write_authority": "Memory System",
+    "allowed_payload_fields": [
+        "historical_reference",
+        "experience_reference",
+        "association",
+        "provenance"
+    ],
+    "forbidden_payload_fields": [
+        "reality_override",
+        "decision",
+        "source_mutation"
+    ],
+    "compatibility_alias": "memory_projection_alias"
+}

@@ -1,0 +1,41 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-UI-Standardization-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:21:11.429440+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "ui_standardization_planning": true,
+  "candidate_output_only": true,
+  "record": {
+    "plan_id": "perception_hud_model_adapter_requirements_plan_v1",
+    "requirements_ref": "capabilities/midplatform/model_test_lens/standards/perception_hud/perception_hud_model_adapter_requirements_v1.json",
+    "model_categories": [
+      "segmentation",
+      "detection_tracking",
+      "ocr",
+      "slam_vio",
+      "depth_world",
+      "asr",
+      "tts",
+      "speaker",
+      "face_expression_gesture",
+      "multimodal_vlm"
+    ],
+    "adapter_categories_status": {
+      "segmentation_hud_requirement_defined": true,
+      "detection_tracking_hud_requirement_defined": true,
+      "ocr_hud_requirement_defined": true,
+      "slam_vio_hud_requirement_defined": true,
+      "depth_world_hud_requirement_defined": true,
+      "asr_hud_requirement_defined": true,
+      "tts_hud_requirement_defined": true,
+      "speaker_hud_requirement_defined": true,
+      "face_expression_gesture_hud_requirement_defined": true,
+      "multimodal_vlm_hud_requirement_defined": true
+    }
+  }
+}

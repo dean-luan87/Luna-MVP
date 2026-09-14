@@ -1,0 +1,13 @@
+{
+  "artifact": "personality_semantic_compression_deferred_boundary_v1",
+  "semantic_compression_status": "DEFERRED_TO_EMOTION_ENGINE",
+  "deferred_items": ["semantic compression execution", "affective memory compression", "emotion-memory summary generation", "personality-memory semantic fusion", "relationship narrative compression", "long-term autobiographical abstraction"],
+  "allowed_now": ["nullable semantic_compression_ref", "nullable affective_memory_summary_ref", "nullable emotion_memory_summary_ref", "nullable personality_memory_fusion_ref"],
+  "forbidden_now": ["semantic compression execution", "affective memory compression", "emotion-memory summary generation", "personality-memory semantic fusion", "memory mutation", "Emotion Engine implementation"],
+  "rules": {
+    "current_phase_executes_compression": false,
+    "memory_owner_is_not_rewritten": true,
+    "personality_owner_is_not_rewritten": true,
+    "future_refs_must_be_nullable": true
+  }
+}

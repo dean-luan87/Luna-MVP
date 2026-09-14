@@ -1,0 +1,24 @@
+{
+  "schema_id": "TeacherReliabilityMetricsSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "metrics_id",
+    "provider_id",
+    "sample_count",
+    "unsupported_claim_rate",
+    "scene_conflict_rate",
+    "policy_violation_rate",
+    "useful_evidence_rate",
+    "candidate_only",
+    "not_fact"
+  ],
+  "optional_fields": [
+    "evidence_accept_rate",
+    "rejection_rate",
+    "hallucination_rate",
+    "teacher_noop_correct_rate",
+    "latency_ms_avg",
+    "cost_estimate_total",
+    "teacher_value_score"
+  ]
+}

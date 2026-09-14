@@ -1,0 +1,125 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "text_first_target_proposal_planning": true,
+  "record": {
+    "schema_id": "TargetProposalComparisonCandidateSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+    "description": "中台对 text / region / semantic 三类 target proposal 的比较候选。本阶段终点。",
+    "planning_only": true,
+    "planning_endpoint": "target_proposal_comparison_candidate",
+    "candidate_only": true,
+    "not_fact": true,
+    "required_fields": [
+      "comparison_id",
+      "text_candidate_refs",
+      "region_proposal_refs",
+      "semantic_target_refs",
+      "alignment_level",
+      "recommended_followup_route",
+      "candidate_only",
+      "not_fact",
+      "trace_chain"
+    ],
+    "field_definitions": {
+      "comparison_id": {
+        "type": "string"
+      },
+      "text_candidate_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "region_proposal_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "semantic_target_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "alignment_level": {
+        "type": "string",
+        "enum": [
+          "high_overlap",
+          "partial_overlap",
+          "alignment_conflict",
+          "text_only",
+          "region_only",
+          "no_candidates"
+        ]
+      },
+      "conflict_type": {
+        "type": "string",
+        "enum": [
+          "none",
+          "sam_text_misalignment",
+          "semantic_text_mismatch",
+          "low_confidence_all"
+        ]
+      },
+      "text_region_overlap_score": {
+        "type": "number"
+      },
+      "recommended_followup_route": {
+        "type": "string",
+        "enum": [
+          "ocr_task_candidate",
+          "detection_task_candidate",
+          "manual_review",
+          "low_confidence_ocr_candidate",
+          "alignment_conflict_review",
+          "no_followup"
+        ]
+      },
+      "priority_signal": {
+        "type": "string",
+        "enum": [
+          "boost",
+          "neutral",
+          "downgrade",
+          "block_auto_admission"
+        ]
+      },
+      "recommended_admission_mode": {
+        "type": "string",
+        "enum": [
+          "task_candidate_only",
+          "manual_review_only",
+          "block_auto_admission"
+        ]
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "target_proposal_comparison_not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "trace_chain": {
+        "type": "array"
+      }
+    },
+    "boundary_flags": {
+      "target_proposal_comparison_not_fact": true,
+      "no_fact_write": true,
+      "no_ocr_recognition": true,
+      "planning_only": true
+    }
+  }
+}

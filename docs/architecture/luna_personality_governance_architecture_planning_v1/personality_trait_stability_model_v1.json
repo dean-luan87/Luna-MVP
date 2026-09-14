@@ -1,0 +1,29 @@
+{
+  "artifact": "personality_trait_stability_model_v1",
+  "states": ["EMERGING", "TENTATIVE", "SEMI_STABLE", "STABLE_CANDIDATE", "CONTESTED", "REVISING", "SUPERSEDED", "REVOKED", "EXPIRED"],
+  "promotion_axes": ["evidence_strength", "repetition", "context_diversity", "temporal_span", "source_diversity", "counterexample_balance", "contradiction_visibility", "user_confirmation"],
+  "rules": {
+    "short_term_single_behavior_not_trait": true,
+    "single_context_repetition_not_auto_generalized": true,
+    "cross_context_required_for_broader_candidate": true,
+    "cross_time_evidence_required_for_stability": true,
+    "diverse_evidence_required": true,
+    "counterexample_retained": true,
+    "contradiction_retained": true,
+    "user_correction_has_highest_precedence": true,
+    "temporary_regulation_pattern_not_trait": true,
+    "repeated_emotion_not_trait": true,
+    "evolution_requires_revision_lineage": true
+  },
+  "state_meanings": {
+    "EMERGING": "initial bounded evidence; insufficient for stable inference",
+    "TENTATIVE": "more than an isolated observation but still narrow or uncertain",
+    "SEMI_STABLE": "repeated across time or bounded contexts with unresolved limits",
+    "STABLE_CANDIDATE": "diverse evidence supports a durable candidate without truth declaration",
+    "CONTESTED": "contradictory evidence materially remains",
+    "REVISING": "new evidence or user correction is creating a lineage successor",
+    "SUPERSEDED": "replaced by a newer candidate while retained for audit",
+    "REVOKED": "source or admission was withdrawn",
+    "EXPIRED": "temporal validity ended without truth promotion"
+  }
+}

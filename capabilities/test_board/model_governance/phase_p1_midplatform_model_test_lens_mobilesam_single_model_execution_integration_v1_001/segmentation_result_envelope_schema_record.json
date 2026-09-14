@@ -1,0 +1,106 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "integration_planning": true,
+  "record": {
+    "schema_id": "SegmentationResultEnvelopeSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+    "description": "MobileSAM runner 输出 envelope。result candidate only，须经 fact admission 才能写 fact。",
+    "envelope_type": "segmentation_result_envelope",
+    "required_fields": [
+      "envelope_type",
+      "source_model",
+      "source_runner_execution_id",
+      "source_execution_candidate_id",
+      "region_id",
+      "mask_ref",
+      "confidence",
+      "candidate_only",
+      "not_fact",
+      "needs_fact_admission"
+    ],
+    "field_definitions": {
+      "envelope_type": {
+        "type": "string",
+        "const": "segmentation_result_envelope"
+      },
+      "source_model": {
+        "type": "string",
+        "enum": [
+          "MobileSAM",
+          "mobile_sam"
+        ]
+      },
+      "model_version": {
+        "type": "string"
+      },
+      "source_runner_execution_id": {
+        "type": "string",
+        "pattern": "^rex_mobile_sam_"
+      },
+      "source_execution_candidate_id": {
+        "type": "string",
+        "pattern": "^crec_"
+      },
+      "region_id": {
+        "type": "string"
+      },
+      "mask_ref": {
+        "type": "string"
+      },
+      "bbox_ref": {
+        "type": "string"
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "result_candidate_type": {
+        "type": "string",
+        "enum": [
+          "segmentation_mask_candidate"
+        ]
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "needs_fact_admission": {
+        "type": "boolean",
+        "const": true
+      },
+      "trace_chain": {
+        "type": "array"
+      }
+    },
+    "downstream": {
+      "result_candidate_layer": "right_panel_result_candidate_zone",
+      "fact_admission_required": true,
+      "must_not_override_segmentation_boundary": true,
+      "must_not_override_observation_attention": true
+    },
+    "forbidden_operations": [
+      "runner_output_direct_to_fact",
+      "runner_output_to_navigation",
+      "overwrite_segmentation_label",
+      "overwrite_observation_attention_record",
+      "main_canvas_execution_box"
+    ],
+    "boundary_flags": {
+      "runner_output_not_fact": true,
+      "runner_output_requires_envelope": true,
+      "fact_admission_required_before_fact_write": true,
+      "no_execution_box_on_canvas": true
+    }
+  }
+}

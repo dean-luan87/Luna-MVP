@@ -1,0 +1,37 @@
+{
+  "chain_id": "a_route_active_observation_control_chain_v1",
+  "semantic_inequalities": [
+    "Observation Demand != Observation Request",
+    "Observation Request != Attention",
+    "Attention != Capability Requirement",
+    "Capability Requirement != Provider Execution",
+    "Provider Execution != Observation Evidence",
+    "Evidence Sufficiency != Model Confidence"
+  ],
+  "nodes": [
+    {"node_id":"N01","name":"Context / Current World / Intent / Task / Safety Need","producer":"Context Foundation, Field State, Intent Governance, Task Manager, Safety/Permission","consumer":"Field Perception Orchestrator","maturity":"PARTIAL","status":"CONTRACT_EXISTS","gap":"No single product-cycle input envelope joins all demand sources."},
+    {"node_id":"N02","name":"Information Need","producer":"Field Perception Orchestrator information-gap detector; observation planning dryrun","consumer":"Field Perception Orchestrator","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"CONTROLLED_HANDOFF_EXISTS","gap":"Need candidate is not admitted into a route-level demand lifecycle."},
+    {"node_id":"N03","name":"Observation Demand","producer":"Field Perception Orchestrator observation-goal builder","consumer":"Observation Request formation","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"ADAPTER_EXISTS","gap":"Demand is visual/task-oriented and lacks canonical cross-modal route handoff."},
+    {"node_id":"N04","name":"Observation Request","producer":"Task Observation Request contract; observation_manager request classifier","consumer":"Attention/region/capability planning","maturity":"PARTIAL","status":"CONTRACT_EXISTS","gap":"Contracts are distributed and some are legacy or controlled-only."},
+    {"node_id":"N05","name":"Attention Target","producer":"Attention candidate types; observation_manager attention coordinator; region planner","consumer":"Capability requirement planning","maturity":"PARTIAL","status":"ADAPTER_EXISTS","gap":"No live bounded target selection or redirect loop is proven."},
+    {"node_id":"N06","name":"Capability Requirement","producer":"Field Perception capability planner and model requirement adapter","consumer":"Capability Registry / Model Manager","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"CONTROLLED_HANDOFF_EXISTS","gap":"Requirement-to-admission handoff is not a product runtime gate."},
+    {"node_id":"N07","name":"Capability Selection","producer":"Capability Registry and Model Manager capability matcher","consumer":"Model/Provider routing","maturity":"PARTIAL","status":"CONTRACT_EXISTS","gap":"Registry/admission/availability are distinct but not closed into an observation control session."},
+    {"node_id":"N08","name":"Model / Provider Routing","producer":"Model Manager routing candidate and fallback planner","consumer":"Provider Execution Boundary","maturity":"PARTIAL","status":"ADAPTER_EXISTS","gap":"Provider candidate selection is not equivalent to invocation admission."},
+    {"node_id":"N09","name":"Provider Execution Boundary","producer":"Model/Capability Admission and Runtime Executor contracts","consumer":"Provider","maturity":"SKELETON_ONLY","status":"DEFERRED","gap":"No A Route product runtime start/stop admission is proven."},
+    {"node_id":"N10","name":"Perception Evidence","producer":"Vision/OCR/SLAM adapters and provider evidence contracts","consumer":"Observation Gateway","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"CONTROLLED_HANDOFF_EXISTS","gap":"Real provider output is not connected; provider source selection remains separate."},
+    {"node_id":"N11","name":"Observation Gateway","producer":"Observation Gateway Governance","consumer":"Canonical Observation / A Route Orchestration","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"CONTROLLED_HANDOFF_EXISTS","gap":"22/22 controlled verification proves candidate ingress, not demand authorization or runtime continuation."},
+    {"node_id":"N12","name":"Canonical Observation","producer":"Observation Gateway and observation_manager candidate builders","consumer":"Evidence Sufficiency / Field / Context / Attention","maturity":"COMPLETE_WITH_INTEGRATION_GAP","status":"ADAPTER_EXISTS","gap":"Admitted observation is structurally admissible, not a fact or a stop decision."},
+    {"node_id":"N13","name":"Evidence Sufficiency","producer":"Field Perception sufficiency input and observation_manager evidence quality candidate","consumer":"Active Observation Control","maturity":"PARTIAL","status":"CONTRACT_EXISTS","gap":"No canonical task/information-need/hypothesis-relative sufficiency adjudicator."},
+    {"node_id":"N14","name":"Continue / Redirect / Switch / Stop","producer":"Field Perception stop/re-observation policy; Model Manager fallback; Cognitive Flow reconsideration","consumer":"Next observation demand or A Route cycle","maturity":"PARTIAL","status":"CONTROLLED_HANDOFF_EXISTS","gap":"Policies are candidates; no unified bounded control loop or runtime revocation."},
+    {"node_id":"N15","name":"Next Cognitive Cycle","producer":"A Route Orchestration / Cognitive Flow","consumer":"Context, Intent, Task and Active Observation Control","maturity":"SKELETON_ONLY","status":"CONTROLLED_HANDOFF_EXISTS","gap":"Observation feedback is not a product-ready next-cycle demand path."}
+  ],
+  "chain_completeness": "PARTIAL",
+  "critical_missing_link": "N03->N04->N06->N08->N09->N13->N14",
+  "evidence_refs": [
+    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_facade_v1.py",
+    "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py",
+    "capabilities/midplatform/core/observation_gateway",
+    "capabilities/midplatform/core/a_route_orchestration",
+    "capabilities/midplatform/model_manager/module/model_manager_module_types_v1.py"
+  ]
+}

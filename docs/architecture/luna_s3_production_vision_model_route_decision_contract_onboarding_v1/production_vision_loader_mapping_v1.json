@@ -1,0 +1,28 @@
+{
+  "loaders": {
+    "loader:yolov5:torch-hub-local:v1": {
+      "models": ["yolov5n"],
+      "loader_kind": "torch_hub_yolov5_custom_local_weights",
+      "runtime_framework": "torch",
+      "supported_weight_formats": ["pt"],
+      "local_source_package_required": true,
+      "network_allowed": false,
+      "automatic_download_allowed": false,
+      "entrypoint": "torch.hub.load(source=local, model=custom)",
+      "compatibility_note": "legacy models.yolo.Model source package required"
+    },
+    "loader:ultralytics:yolo:v1": {
+      "models": ["yolo11n", "yolo26n"],
+      "loader_kind": "ultralytics_yolo",
+      "runtime_framework": "ultralytics",
+      "supported_weight_formats": ["pt", "onnx"],
+      "local_source_package_required": false,
+      "network_allowed": false,
+      "automatic_download_allowed": false,
+      "entrypoint": "ultralytics.YOLO(explicit_local_model_path)",
+      "compatibility_note": "explicit local path; no network fallback"
+    }
+  },
+  "extension_only_loader_selection": false,
+  "try_multiple_loaders_until_success": false
+}

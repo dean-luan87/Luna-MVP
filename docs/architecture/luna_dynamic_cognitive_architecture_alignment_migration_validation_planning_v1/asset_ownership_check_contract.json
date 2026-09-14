@@ -1,0 +1,28 @@
+{
+  "contract_id": "post_migration_asset_ownership_check_v1",
+  "required_assets": ["Field State Reducer", "Observation Manager", "Cognitive Attention", "Self", "Role System", "Relationship System", "Memory System", "Intent Architecture", "Causality Architecture", "Experience Compression", "Decision Arbitration", "Task Manager", "Action Boundary/Runtime", "Model Manager", "OCR Pipeline", "Vision Pipeline", "Protocol Manager"],
+  "canonical_assignments": {
+    "Field State Reducer": "Field System",
+    "Observation Manager": "Observation Manager / Reality Evidence Pipeline",
+    "Cognitive Attention": "Attention Governance",
+    "Self": "Self Governance",
+    "Role System": "Social Self / Role System",
+    "Relationship System": "Social Self / Relationship System",
+    "Memory System": "Memory System",
+    "Intent Architecture": "Intent Governance",
+    "Causality Architecture": "Causal Reasoning Governance",
+    "Experience Compression": "Experience Governance",
+    "Decision Arbitration": "Decision Arbitration",
+    "Task Manager": "Task Manager",
+    "Action Boundary/Runtime": "Action Governance / Action Runtime",
+    "Model Manager": "Capability Governance",
+    "OCR Pipeline": "Capability Governance / OCR Capability",
+    "Vision Pipeline": "Capability Governance / Vision Capability",
+    "Protocol Manager": "Cognitive OS Governance / Protocol Manager"
+  },
+  "personal_network_owner_scope": ["typed cross-object links", "activation projections", "network topology revisions"],
+  "memory_projection_does_not_transfer_memory_ownership": true,
+  "no_asset_left_for_later": true,
+  "unique_owner_required": true,
+  "owner_change_requires_governance": true
+}

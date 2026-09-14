@@ -1,0 +1,226 @@
+{
+    "capability_id": "luna.observation_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_types_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_input_adapter_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_request_classifier_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_task_context_binder_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_scene_context_binder_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_attention_coordinator_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_region_coordinator_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_vision_adapter_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_ocr_adapter_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_evidence_intake_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_crossmodal_association_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_temporal_snapshot_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_evidence_quality_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_candidate_builder_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_admission_handoff_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_diagnostics_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_trace_replay_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+        "entrypoint": "run_observation_manager_module_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Assemble unified observation request chain from task/scene/attention/region context into candidate-only observation outputs",
+        "Coordinate vision and OCR request/evidence candidates without runtime provider invocation",
+        "Build permission-and-admission handoff candidate with diagnostics and deterministic trace/replay"
+    ],
+    "forbidden_authorities": [
+        "fact_admission_execution",
+        "fact_promotion_execution",
+        "field_state_write_execution",
+        "state_mutation_execution",
+        "action_execution",
+        "navigation_decision_execution",
+        "speech_output_execution",
+        "provider_runtime_execution",
+        "model_training_execution",
+        "database_write",
+        "production_runtime_execution"
+    ],
+    "reused_assets": [
+        "capabilities/midplatform/real_observation_candidate_ingestion_core_v1.py",
+        "capabilities/midplatform/real_observation_candidate_ingestion_types_v1.py",
+        "capabilities/midplatform/real_observation_ingestion_result_assembler_v1.py",
+        "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+        "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_types_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_input_adapter_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_request_classifier_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_task_context_binder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_scene_context_binder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_attention_coordinator_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_region_coordinator_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_vision_adapter_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_ocr_adapter_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_evidence_intake_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_crossmodal_association_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_temporal_snapshot_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_evidence_quality_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_candidate_builder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_admission_handoff_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_diagnostics_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_trace_replay_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py"
+    ],
+    "internal_components": [
+        "request_classifier",
+        "task_context_binder",
+        "attention_coordinator",
+        "ROI_coordinator",
+        "evidence_collector",
+        "evidence_associator",
+        "temporal_binder",
+        "quality_assessor",
+        "observation_candidate_builder",
+        "handoff_builder",
+        "diagnostics_builder",
+        "trace_builder",
+        "replay_builder"
+    ],
+    "legacy_assets": [
+        "tools/evaluation/midplatform/run_worldmodel_unresolved_observation_slot_contract_v0.py",
+        "tools/evaluation/midplatform/verify_worldmodel_unresolved_observation_slot_contract_v0.py",
+        "tools/evaluation/midplatform/run_task_observation_request_contract_v1.py",
+        "tools/evaluation/midplatform/verify_task_observation_request_contract_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not create parallel observation core outside capabilities/midplatform/observation_manager/module",
+        "Do not promote internal observation adapters/checkers as separate top-level capabilities"
+    ],
+    "dependency_contracts": [
+        {
+            "depends_on": "luna.task_manager",
+            "dependency_type": "task_context_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_minimal_observation_context",
+            "unavailable_behavior": "emit_context_incomplete",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "perception_signal",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_non_visual_observation_path",
+            "unavailable_behavior": "emit_evidence_partial",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "text_evidence_signal",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_vision_only_observation_path",
+            "unavailable_behavior": "emit_evidence_partial",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "admission_gate_handoff",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "emit_handoff_candidate_for_later_admission",
+            "unavailable_behavior": "block_fact_transition",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.protocol_manager",
+            "dependency_type": "protocol_contract_validation",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "fallback_behavior": "use_local_contract_assumption",
+            "unavailable_behavior": "mark_protocol_check_unresolved",
+            "confidence": "inferred"
+        }
+    ],
+    "input_contract_ref": [
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_input_adapter_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_candidate_builder_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_admission_handoff_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/observation_manager/module/observation_manager_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/observation_manager/module/observation_manager_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 20,
+        "passed_cases": 20,
+        "failed_cases": [],
+        "observation_candidate_present_when_expected": true,
+        "attention_plan_present_when_expected": true,
+        "vision_request_candidate_present_when_expected": true,
+        "ocr_request_candidate_present_when_expected": true,
+        "crossmodal_association_present_when_expected": true,
+        "admission_handoff_present_when_expected": true,
+        "diagnostics_present_all": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "deterministic_replay": true,
+        "boundary_preserved": true,
+        "unhandled_exceptions": 0,
+        "evidence_ref": "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

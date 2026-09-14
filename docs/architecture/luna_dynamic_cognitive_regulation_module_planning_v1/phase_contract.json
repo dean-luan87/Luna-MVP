@@ -1,0 +1,63 @@
+{
+    "phase_id": "Phase-Luna-Dynamic-Cognitive-Function-And-Self-Regulation-Module-Planning-v1-001",
+    "execution_mode": "PLANNING_ONLY",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "scope": {
+        "in_scope": [
+            "planning assets for integrated dynamic regulation module",
+            "owner boundary and contracts",
+            "scenario and negative guard definitions",
+            "gap registry and reuse mapping"
+        ],
+        "out_of_scope": [
+            "runtime execution",
+            "runner execution",
+            "verifier execution by agent",
+            "model updates",
+            "database write"
+        ]
+    },
+    "agent_allowed": [
+        "read",
+        "search",
+        "create_or_update_planning_files",
+        "editor_static_checks"
+    ],
+    "agent_forbidden": [
+        "python",
+        "python3",
+        "py_compile",
+        "runner",
+        "verifier",
+        "pytest",
+        "shell_validation",
+        "runtime_execution"
+    ],
+    "deliverables": [
+        "dynamic_cognitive_regulation_architecture_plan_v1.md",
+        "dynamic_cognitive_regulation_owner_boundary_v1.json",
+        "dynamic_cognitive_regulation_concept_boundary_matrix_v1.json",
+        "cognitive_state_vector_input_contract_v1.json",
+        "dynamic_regulation_candidate_schema_v1.json",
+        "dynamic_regulation_function_contract_v1.json",
+        "cognitive_parameter_classification_v1.json",
+        "cognitive_parameter_bounds_contract_v1.json",
+        "cognitive_parameter_genome_candidate_schema_v1.json",
+        "self_regulation_state_model_v1.json",
+        "attention_influence_boundary_v1.json",
+        "intent_influence_boundary_v1.json",
+        "hypothesis_influence_boundary_v1.json",
+        "emotion_influence_boundary_v1.json",
+        "resource_influence_boundary_v1.json",
+        "learning_boundary_v1.json",
+        "dynamic_regulation_trace_provenance_contract_v1.json",
+        "dynamic_regulation_revision_revocation_model_v1.json",
+        "dynamic_regulation_negative_guards_v1.json",
+        "dynamic_regulation_minimum_scenario_suite_v1.json",
+        "dynamic_regulation_existing_asset_reuse_mapping_v1.json",
+        "dynamic_regulation_gap_registry_v1.json",
+        "phase_contract.json",
+        "verify_dynamic_cognitive_regulation_module_planning_v1.py"
+    ],
+    "agent_stop_state": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

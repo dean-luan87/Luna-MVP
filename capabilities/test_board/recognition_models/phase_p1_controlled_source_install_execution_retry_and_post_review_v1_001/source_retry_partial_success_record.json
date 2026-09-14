@@ -1,0 +1,55 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.414059+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "code_only_source_install": true,
+  "post_review_included": true,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "source_retry_partial_success_record",
+  "source_retry_partial_success_record": {
+    "record_id": "source_retry_partial_success_record_v1",
+    "attempted_source_asset_count": 2,
+    "successful_source_asset_count": 2,
+    "failed_or_deferred_source_asset_count": 0,
+    "all_assets_succeeded": true,
+    "all_assets_deferred": false,
+    "partial_go_subtype": null,
+    "partial_go_not_full_go": false,
+    "source_install_success_not_weight_readiness": true,
+    "source_install_success_not_inference_approval": true,
+    "source_install_success_not_runtime_approval": true,
+    "code_only_install_success_not_model_readiness": true,
+    "no_boundary_violation": true,
+    "no_environment_contamination": true
+  },
+  "source_retry_execution_step_results": [
+    {
+      "asset_id": "byte_track",
+      "snapshot_ok": true,
+      "commit_pin_validated": true,
+      "checkout_succeeded": true,
+      "weight_exclusion_ok": true,
+      "code_install_succeeded": true,
+      "probe_find_spec_only": true,
+      "execution_status": "SUCCESS"
+    },
+    {
+      "asset_id": "mobile_sam",
+      "snapshot_ok": true,
+      "commit_pin_validated": true,
+      "checkout_succeeded": true,
+      "weight_exclusion_ok": true,
+      "code_install_succeeded": true,
+      "probe_find_spec_only": true,
+      "execution_status": "SUCCESS"
+    }
+  ]
+}

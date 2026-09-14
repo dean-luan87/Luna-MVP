@@ -1,0 +1,87 @@
+{
+    "artifact": "cognitive_core_semantic_inequality_registry_v1",
+    "overall_status": "VERIFIED",
+    "assertions": [
+        {
+            "inequality_id": "S01",
+            "statement": "Context != Field State",
+            "status": true
+        },
+        {
+            "inequality_id": "S02",
+            "statement": "Current World != Field State",
+            "status": true
+        },
+        {
+            "inequality_id": "S03",
+            "statement": "Attention Candidate != Attention ownership",
+            "status": true
+        },
+        {
+            "inequality_id": "S04",
+            "statement": "Hypothesis != Causal truth",
+            "status": true
+        },
+        {
+            "inequality_id": "S05",
+            "statement": "Cognitive State Vector != Parameter Store",
+            "status": true
+        },
+        {
+            "inequality_id": "S06",
+            "statement": "Regulation Candidate != Runtime command",
+            "status": true
+        },
+        {
+            "inequality_id": "S07",
+            "statement": "Experience Candidate != Memory",
+            "status": true
+        },
+        {
+            "inequality_id": "S08",
+            "statement": "Memory Candidate != Persisted Memory",
+            "status": true
+        },
+        {
+            "inequality_id": "S09",
+            "statement": "Memory Candidate != Fact",
+            "status": true
+        },
+        {
+            "inequality_id": "S10",
+            "statement": "Learning Evidence Candidate != Learning truth",
+            "status": true
+        },
+        {
+            "inequality_id": "S11",
+            "statement": "Learning Candidate != Truth",
+            "status": true
+        },
+        {
+            "inequality_id": "S12",
+            "statement": "ParameterUpdateCandidate != Parameter Activation",
+            "status": true
+        },
+        {
+            "inequality_id": "S13",
+            "statement": "Cognitive Flow State != semantic cognitive content",
+            "status": true
+        },
+        {
+            "inequality_id": "S14",
+            "statement": "Trace continuity != semantic authority",
+            "status": true
+        },
+        {
+            "inequality_id": "S15",
+            "statement": "Provenance continuity != fact authority",
+            "status": true
+        }
+    ],
+    "evidence_roots": [
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_boundary_risk_matrix_v1.json",
+        "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_formation_causal_handoff_v1.json",
+        "docs/architecture/luna_cognitive_learning_governance_planning_v1/cognitive_learning_concept_boundary_matrix_v1.json",
+        "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/cognitive_flow_owner_boundary_v1.json"
+    ]
+}

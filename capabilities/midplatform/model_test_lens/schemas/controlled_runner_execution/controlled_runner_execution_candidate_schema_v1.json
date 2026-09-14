@@ -1,0 +1,119 @@
+{
+  "schema_id": "ControlledRunnerExecutionCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+  "description": "受控 runner 执行候选。由 admitted runner_invocation_request 生成，是执行计划/封装候选，不是 runner 执行结果。",
+  "five_layer_model": {
+    "runner_task_candidate": "what_could_be_considered",
+    "runner_invocation_request": "prepared_application_to_execute",
+    "runner_invocation_admission": "allowed_into_execution_preparation",
+    "controlled_runner_execution_candidate": "how_to_execute_in_controlled_sandbox",
+    "runner_execution": "actual_model_run"
+  },
+  "required_fields": [
+    "execution_candidate_id",
+    "source_invocation_request_id",
+    "source_admission_result_id",
+    "source_runner_task_candidate_id",
+    "source_region_id",
+    "source_attention_record_id",
+    "requested_runner_type",
+    "execution_mode",
+    "execution_status",
+    "input_region_ref",
+    "input_payload_ref",
+    "crop_policy_ref",
+    "runner_config_ref",
+    "output_envelope_schema_ref",
+    "timeout_policy_ref",
+    "error_policy_ref",
+    "trace_chain",
+    "candidate_only",
+    "not_executed",
+    "not_fact",
+    "no_navigation_decision"
+  ],
+  "field_definitions": {
+    "execution_candidate_id": {
+      "type": "string",
+      "pattern": "^crec_(detection|ocr)_[a-z0-9_]+$",
+      "description": "受控执行候选唯一 ID"
+    },
+    "source_invocation_request_id": { "type": "string" },
+    "source_admission_result_id": { "type": "string" },
+    "source_runner_task_candidate_id": { "type": "string" },
+    "source_region_id": { "type": "string" },
+    "source_attention_record_id": { "type": "string" },
+    "source_followup_model_route_candidate_id": { "type": "string" },
+    "requested_runner_type": { "type": "string", "enum": ["Detection", "OCR"] },
+    "execution_mode": { "type": "string", "enum": ["manual_controlled"], "const": "manual_controlled" },
+    "execution_status": {
+      "type": "string",
+      "enum": ["planned_only", "not_executed"],
+      "description": "本阶段 planning only，禁止 running/executed"
+    },
+    "input_region_ref": { "type": "string" },
+    "input_payload_ref": { "type": "string" },
+    "crop_policy_ref": {
+      "type": "string",
+      "default": "schemas/controlled_runner_execution/detection_controlled_execution_input_policy_v1.json"
+    },
+    "runner_config_ref": { "type": "string" },
+    "output_envelope_schema_ref": {
+      "type": "string",
+      "default": "schemas/controlled_runner_execution/runner_output_envelope_policy_v1.json"
+    },
+    "timeout_policy_ref": { "type": "string" },
+    "error_policy_ref": {
+      "type": "string",
+      "default": "schemas/controlled_runner_execution/runner_error_policy_v1.json"
+    },
+    "admission_decision_at_create": {
+      "type": "string",
+      "enum": ["admitted"],
+      "const": "admitted",
+      "description": "仅 admitted request 可生成"
+    },
+    "trace_chain": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["stage", "ref"],
+        "properties": {
+          "stage": { "type": "string" },
+          "ref": { "type": "string" }
+        }
+      }
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_executed": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "no_navigation_decision": { "type": "boolean", "const": true },
+    "execution_candidate_only": { "type": "boolean", "const": true },
+    "not_runner_execution": { "type": "boolean", "const": true },
+    "needs_fact_admission_for_any_fact_write": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "planning_only": true,
+    "execution_candidate_only": true,
+    "not_runner_execution": true,
+    "not_fact": true,
+    "admitted_request_required": true,
+    "not_auto_runner_trigger": true
+  },
+  "forbidden_interpretations": [
+    "runner_execution",
+    "model_output",
+    "fact_write",
+    "navigation_command",
+    "admitted_means_executed",
+    "execution_candidate_is_runner_result",
+    "orphan_execution_candidate",
+    "bypass_admission_gate"
+  ],
+  "upstream_schema_refs": [
+    "capabilities/midplatform/model_test_lens/schemas/runner_manual_trigger/runner_invocation_request_schema_v1.json",
+    "capabilities/midplatform/model_test_lens/schemas/runner_invocation_admission/runner_invocation_admission_result_schema_v1.json"
+  ]
+}

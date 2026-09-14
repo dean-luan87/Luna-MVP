@@ -1,0 +1,68 @@
+{
+  "registry_id": "luna_architecture_status_terminology_m0_v1",
+  "purpose": "Disambiguate validated architecture assets from active engineering implementations.",
+  "terms": [
+    {
+      "term": "ENGINEERING_BASELINE_ACTIVE",
+      "definition": "A formal module mainline, API, owner, forbidden authority set, and readiness evidence are recorded in an active module baseline.",
+      "may_claim_runtime_implementation": true,
+      "evidence_required": "capabilities/registry/baselines/<module>_module_baseline_v1.json"
+    },
+    {
+      "term": "ARCHITECTURE_AND_CONTROLLED_SKELETON",
+      "definition": "Architecture contracts and an isolated controlled skeleton exist, but production Runtime activation is not implied.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "architecture assets plus controlled skeleton files and phase verification"
+    },
+    {
+      "term": "ARCHITECTURE_VALIDATED",
+      "definition": "Architecture boundaries and contracts passed their phase verification; this does not mean an active engineering module exists.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "architecture phase assets and V2/V3 evidence"
+    },
+    {
+      "term": "ARCHITECTURE_ONLY",
+      "definition": "The component is represented by architecture documents or contracts only.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "architecture directory or contract"
+    },
+    {
+      "term": "PLANNING_ONLY",
+      "definition": "The component has plans or candidate models but no authorized technical implementation.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "planning document"
+    },
+    {
+      "term": "FUTURE_BOUNDARY_ONLY",
+      "definition": "Only an interface or negative boundary is reserved for a future capability.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "future-boundary contract"
+    },
+    {
+      "term": "FUTURE_CORE_CAPABILITY",
+      "definition": "A canonical future responsibility is defined but no engineering mainline exists.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "canonical owner and architecture-boundary record"
+    },
+    {
+      "term": "LEGACY_RUNTIME_UNALIGNED",
+      "definition": "An existing Runtime surface exists, but equivalence with Dynamic Cognitive Architecture v2 has not been established.",
+      "may_claim_runtime_implementation": true,
+      "evidence_required": "existing Runtime files plus explicit non-equivalence record"
+    },
+    {
+      "term": "DOCUMENTATION_ALIGNMENT_CANDIDATE",
+      "definition": "M0 documentation terminology and references are aligned, but no active baseline, contract, schema, code, or Runtime is changed.",
+      "may_claim_runtime_implementation": false,
+      "evidence_required": "M0 documentation alignment assets"
+    }
+  ],
+  "historical_implemented_interpretation": {
+    "source": "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/",
+    "rule": "Where an older registry uses implemented for validated architecture, M0 documentation must qualify the claim as ARCHITECTURE_VALIDATED unless an active module baseline exists.",
+    "retroactive_rewrite": false
+  },
+  "status_inflation_forbidden": true,
+  "runtime_inference_from_document_name_forbidden": true,
+  "active_baseline_required_for_engineering_claim": true
+}

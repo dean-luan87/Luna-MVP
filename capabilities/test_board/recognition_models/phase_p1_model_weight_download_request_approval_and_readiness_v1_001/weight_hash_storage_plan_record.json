@@ -1,0 +1,50 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_hash_storage_plan_record",
+  "weight_hash_storage_plan_records": [
+    {
+      "asset_id": "mobile_sam",
+      "expected_filename": "mobile_sam.pt",
+      "expected_size_bytes": 40728226,
+      "hash_algorithm": "sha256",
+      "hash_required_after_download": true,
+      "hash_record_required": true,
+      "storage_root": "capabilities/model_weights/p1/",
+      "asset_specific_storage_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+      "no_overwrite_without_snapshot": true,
+      "existing_file_policy": "snapshot_then_no_overwrite_without_explicit_approval",
+      "deletion_policy": "delete_or_quarantine_on_hash_mismatch_or_failed_download",
+      "rollback_policy": "delete_partial_or_failed_download_preserve_test_board_and_registry",
+      "test_board_weight_record_required": true,
+      "execution_ready": true
+    },
+    {
+      "asset_id": "byte_track",
+      "expected_filename": null,
+      "expected_size_bytes": 0,
+      "hash_algorithm": "sha256",
+      "hash_required_after_download": true,
+      "hash_record_required": true,
+      "storage_root": "capabilities/model_weights/p1/",
+      "asset_specific_storage_path": "capabilities/model_weights/p1/byte_track/",
+      "no_overwrite_without_snapshot": true,
+      "existing_file_policy": "snapshot_then_no_overwrite_without_explicit_approval",
+      "deletion_policy": "delete_or_quarantine_on_hash_mismatch_or_failed_download",
+      "rollback_policy": "delete_partial_or_failed_download_preserve_test_board_and_registry",
+      "test_board_weight_record_required": true,
+      "execution_ready": false
+    }
+  ]
+}

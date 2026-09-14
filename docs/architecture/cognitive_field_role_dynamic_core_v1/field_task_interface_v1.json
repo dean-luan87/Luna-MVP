@@ -1,0 +1,13 @@
+{
+  "interface_name": "Field Task Interface v1",
+  "goal_reference": "goal-example",
+  "task_reference": "task-example",
+  "field_creation_candidate": null,
+  "field_reference": "task-field-example",
+  "role_assignment_candidate": null,
+  "capability_requirement": null,
+  "task_can_create_temporary_field": true,
+  "task_does_not_make_decision": true,
+  "task_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

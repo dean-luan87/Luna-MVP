@@ -1,0 +1,27 @@
+{
+    "artifact": "cognitive_execution_chain_feedback_loop_governance_v1",
+    "status": "PLANNING_CANDIDATE",
+    "loop_controls": {
+        "reconsideration_depth": "required",
+        "loop_id": "required",
+        "max_reconsideration_depth_candidate": 3,
+        "repeated_failure_signature": "required",
+        "duplicate_feedback_guard": true,
+        "terminal_stop_reason": "required"
+    },
+    "allowed_terminal_stop_reasons": [
+        "repeated_same_failure",
+        "no_new_evidence",
+        "permission_permanently_denied",
+        "safety_hard_block",
+        "irreversible_completion",
+        "user_cancellation",
+        "retry_authority_exhausted"
+    ],
+    "forbidden": [
+        "infinite_retry_loop",
+        "feedback_without_depth_increment",
+        "retry_without_explicit_authority"
+    ],
+    "planning_only": true
+}

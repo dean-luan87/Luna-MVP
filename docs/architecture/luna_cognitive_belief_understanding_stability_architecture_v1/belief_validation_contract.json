@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_validation_v1",
+  "owner": "Reality Validation",
+  "inputs": ["belief", "new_evidence", "field_ref", "validation_event", "current_reality"],
+  "outputs": ["validation_result", "belief_update_candidate", "confidence_change_candidate", "unknowns"],
+  "result_values": ["Confirmed", "Supported", "Contradicted", "Unknown", "Expired"],
+  "reality_precedence": true,
+  "direct_belief_mutation": false,
+  "direct_memory_mutation": false,
+  "candidate_only": true
+}

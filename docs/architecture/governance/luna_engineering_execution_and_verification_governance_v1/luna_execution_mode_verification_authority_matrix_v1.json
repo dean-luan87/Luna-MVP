@@ -1,0 +1,255 @@
+{
+    "version": "1.0",
+    "name": "Luna Execution Mode Verification Authority Matrix",
+    "modes": [
+        {
+            "mode_id": "Planning Only",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": false,
+            "allowed_agent_actions": [
+                "create_or_update_planning_assets",
+                "run_static_checks",
+                "prepare_user_terminal_commands"
+            ],
+            "prohibited_agent_actions": [
+                "run_business_runner",
+                "run_final_phase_verifier",
+                "execute_runtime"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": false,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Controlled Skeleton Implementation",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": true,
+            "allowed_agent_actions": [
+                "implement_skeleton_only_when_phase_explicit",
+                "run_static_checks",
+                "run_authorized_controlled_runner"
+            ],
+            "prohibited_agent_actions": [
+                "run_real_runtime",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": false,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Controlled DryRun",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": true,
+            "allowed_agent_actions": [
+                "run_authorized_dryrun_runner",
+                "run_authorized_result_verifier",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "run_final_phase_verifier",
+                "execute_real_state_mutation"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": false,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Smoke Test",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": true,
+            "allowed_agent_actions": [
+                "run_scope_frozen_smoke_runner",
+                "run_scope_frozen_smoke_result_verifier",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "run_final_phase_verifier",
+                "expand_scope_without_phase_authorization"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": true,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Runtime Execution",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": false,
+            "allowed_agent_actions": [
+                "prepare_runtime_plan_only_when_explicitly_authorized",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "execute_runtime_by_default",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": true,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Audit",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": false,
+            "allowed_agent_actions": [
+                "collect_readonly_evidence",
+                "run_static_checks",
+                "prepare_audit_report"
+            ],
+            "prohibited_agent_actions": [
+                "modify_runtime_components",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": false,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Post Review",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": true,
+            "allowed_agent_actions": [
+                "perform_output_contract_review",
+                "run_authorized_result_verifier",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "run_final_phase_verifier",
+                "change_passed_assets_without_failure_basis"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": false,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Remediation",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": true,
+            "allowed_agent_actions": [
+                "fix_failed_items_only",
+                "run_static_checks",
+                "run_authorized_component_recheck"
+            ],
+            "prohibited_agent_actions": [
+                "weaken_checks",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": true,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Migration",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": false,
+            "allowed_agent_actions": [
+                "prepare_migration_plan",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "execute_migration_by_default",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": true,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        },
+        {
+            "mode_id": "Production Activation",
+            "agent_v0_allowed": true,
+            "agent_v1_allowed": false,
+            "allowed_agent_actions": [
+                "prepare_activation_checklist",
+                "run_static_checks"
+            ],
+            "prohibited_agent_actions": [
+                "activate_production_by_default",
+                "run_final_phase_verifier"
+            ],
+            "user_terminal_required": true,
+            "final_phase_verifier_user_only": true,
+            "runtime_permission": false,
+            "database_permission": false,
+            "network_permission": false,
+            "model_permission": false,
+            "device_permission": false,
+            "production_data_permission": false,
+            "rollback_required": true,
+            "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "final_decision_authority": "ChatGPT_V3"
+        }
+    ],
+    "matrix_complete": true
+}

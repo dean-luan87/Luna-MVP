@@ -1,0 +1,49 @@
+{
+    "version": "1.0",
+    "name": "Field Event Conflict Resolution Matrix",
+    "description": "冲突类型与处理策略矩阵。",
+    "conflict_matrix": [
+        {
+            "conflict_type": "evidence_conflict",
+            "resolution": "request_more_evidence",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "temporal_conflict",
+            "resolution": "prioritize_for_projection",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "perspective_conflict",
+            "resolution": "coexist",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "owner_conflict",
+            "resolution": "human_review",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "institutional_social_conflict",
+            "resolution": "coexist",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "personal_public_conflict",
+            "resolution": "suppress_for_task",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "duplicate_assertion",
+            "resolution": "revoke_candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "incompatible_overlay",
+            "resolution": "human_review",
+            "fact_promotion_allowed": false
+        }
+    ],
+    "conflict_type_count": 8,
+    "resolution_matrix_complete": true
+}

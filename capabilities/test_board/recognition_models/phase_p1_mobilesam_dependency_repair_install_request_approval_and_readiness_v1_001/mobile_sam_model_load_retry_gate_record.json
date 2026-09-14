@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T08:10:39.403551+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_retry_gate_record",
+  "mobile_sam_model_load_retry_gate_after_dependency_repair": {
+    "record_id": "mobile_sam_model_load_retry_gate_after_dependency_repair_v1",
+    "model_load_retry_allowed_now": false,
+    "requires_timm_install_request_go": true,
+    "requires_timm_owner_approval_granted": true,
+    "requires_timm_install_execution_go": true,
+    "requires_timm_find_spec_verified": true,
+    "requires_no_global_env_contamination": true,
+    "requires_sha256_recheck": true,
+    "requires_code_and_weight_ready_still_valid": true,
+    "requires_model_load_retry_command_whitelist_updated": true,
+    "requires_test_board_ready": true,
+    "suggested_retry_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001"
+  }
+}

@@ -1,0 +1,67 @@
+{
+    "contract_id": "field_context_projection_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Field System",
+    "producer": "Field State Reducer",
+    "consumer": [
+        "Personal Cognitive Network Governance",
+        "Intent Governance",
+        "Decision Arbitration"
+    ],
+    "candidate_fact": "candidate_only_projection_not_fact",
+    "unknown": {
+        "allowed": true,
+        "representation": "unresolved_field_items",
+        "behavior": "preserve_unknowns_without_fact_promotion"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "source_event_refs",
+            "reduction_provenance"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "deterministic_reference_only"
+    },
+    "admission": {
+        "required": true,
+        "mode": "admitted_field_events_only",
+        "forbidden": [
+            "bypass_observation_admission",
+            "self_authored_fact"
+        ]
+    },
+    "revision": {
+        "supported": true,
+        "mode": "source_event_or_policy_driven"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "projection_withdrawal_without_runtime_side_effect"
+    },
+    "failure_behavior": {
+        "on_missing_field_state": "emit_projection_unavailable_candidate",
+        "on_trace_gap": "reject_projection_candidate",
+        "on_policy_conflict": "preserve_blocked_projection_candidate"
+    },
+    "write_authority": "Field State Reducer",
+    "allowed_payload_fields": [
+        "field_id",
+        "field_state",
+        "world_state",
+        "evidence_reference",
+        "temporal_validity",
+        "uncertainty",
+        "trace"
+    ],
+    "forbidden_payload_fields": [
+        "intent",
+        "decision",
+        "action",
+        "memory_mutation"
+    ],
+    "compatibility_alias": "field_state_projection_alias"
+}

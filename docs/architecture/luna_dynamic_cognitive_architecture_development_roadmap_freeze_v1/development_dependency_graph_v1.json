@@ -1,0 +1,69 @@
+{
+  "graph_id": "luna_dynamic_cognitive_architecture_development_dependency_graph_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "semantics": "development admission dependency graph; not an active Runtime call graph",
+  "nodes": [
+    "Context Foundation",
+    "Personal Cognitive Network",
+    "Intent Architecture",
+    "Causal Reasoning Engine",
+    "A/B Simulation & Decision Support",
+    "Experience Compression & Cognitive Evolution"
+  ],
+  "edges": [
+    {
+      "from": "Context Foundation",
+      "to": "Personal Cognitive Network",
+      "dependency": "PCN requires admitted typed context primitives and source-owner references.",
+      "required": true
+    },
+    {
+      "from": "Personal Cognitive Network",
+      "to": "Intent Architecture",
+      "dependency": "Intent requires governed PCN activation and context projection candidates.",
+      "required": true
+    },
+    {
+      "from": "Intent Architecture",
+      "to": "Causal Reasoning Engine",
+      "dependency": "Causal relevance and goal binding require a governed Intent Candidate while remaining revisable.",
+      "required": true
+    },
+    {
+      "from": "Causal Reasoning Engine",
+      "to": "A/B Simulation & Decision Support",
+      "dependency": "Simulation and Decision Support require evidence-bound causal and alternative-explanation candidates.",
+      "required": true
+    },
+    {
+      "from": "A/B Simulation & Decision Support",
+      "to": "Experience Compression & Cognitive Evolution",
+      "dependency": "Experience evaluation requires traceable choices, outcomes, and current-Reality versus simulation separation.",
+      "required": true
+    }
+  ],
+  "cross_cutting_inputs": [
+    "Emotion Context",
+    "Memory Projection",
+    "Observation Axis",
+    "Constitution",
+    "Self Regulation",
+    "Value Governance",
+    "Field State",
+    "Runtime Boundary",
+    "Capability Governance"
+  ],
+  "forbidden_shortcuts": [
+    "Context Foundation -> Intent generation",
+    "Context Foundation -> Causal conclusion",
+    "Personal Cognitive Network -> source ownership",
+    "Intent Architecture -> Task execution",
+    "Causal Reasoning Engine -> Fact or Action",
+    "B Route -> Reality override",
+    "Experience Compression -> direct Memory write",
+    "Roadmap phase -> automatic Runtime activation"
+  ],
+  "acyclic": true,
+  "order_conflicts": [],
+  "implementation_authorized": false
+}

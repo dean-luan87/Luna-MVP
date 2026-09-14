@@ -1,0 +1,9 @@
+{
+  "artifact":"b4_retry_recovery_boundary_v1",
+  "retry_not_reconsideration":true,
+  "retry_not_automatic":true,
+  "retry_owner":"Existing Action/Runtime/Task policies, with explicit retry authority and previous attempt refs",
+  "recovery_owner":"Task Manager for task recovery candidates; Runtime Executor for runtime rollback/failure candidates; Action Governance for action cancellation/rollback boundary",
+  "guards":["no retry-on-exception shortcut", "no hidden retry loop", "retry requires authority", "idempotency signature preserved", "previous attempt preserved"],
+  "B4_output":"Retry/Recovery references only; no retry execution."
+}

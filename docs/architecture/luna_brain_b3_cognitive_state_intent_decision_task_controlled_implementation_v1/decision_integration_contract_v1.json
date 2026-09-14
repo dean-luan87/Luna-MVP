@@ -1,0 +1,9 @@
+{
+  "artifact": "b3_decision_integration_contract_v1",
+  "owner": "Decision Governance",
+  "input": "DecisionGovernanceInputV1",
+  "mapped_refs": ["Intent", "Cognitive Flow", "Context", "Field", "Permission", "Safety", "Resource", "Constraint", "Evidence"],
+  "outputs": ["DecisionCandidateV1", "DecisionSelectionCandidateV1", "DecisionTraceCandidateV1", "DecisionToActionTaskHandoffCandidateV1"],
+  "outcomes": ["SELECTED", "DEFER", "ABSTAIN", "RECONSIDER/REQUEST_MORE_EVIDENCE", "CONSTRAINED", "CONTESTED"],
+  "guards": ["decision_candidate != action", "no permission bypass", "no safety bypass", "no provider call", "no task creation by Decision Governance"]
+}

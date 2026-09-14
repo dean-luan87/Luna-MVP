@@ -1,0 +1,53 @@
+{
+    "artifact": "cognitive_execution_chain_version_readiness_matrix_v1",
+    "hops": [
+        {
+            "hop": "Intent->Causal",
+            "schema_version": "1.0.0",
+            "contract_version": "1.0.0",
+            "producer_version": "intent_governance_v1",
+            "consumer_support": "causal_governance_v1",
+            "adapter_requirement": true,
+            "migration_requirement": false,
+            "hard_block": false,
+            "silent_coercion": false,
+            "readiness": "READY_WITH_ADAPTER"
+        },
+        {
+            "hop": "Causal->Decision",
+            "schema_version": "1.0.0",
+            "contract_version": "1.0.0",
+            "producer_version": "causal_governance_v1",
+            "consumer_support": "decision_governance_v1",
+            "adapter_requirement": true,
+            "migration_requirement": true,
+            "hard_block": false,
+            "silent_coercion": false,
+            "readiness": "READY_WITH_ADAPTER"
+        },
+        {
+            "hop": "Decision->Action",
+            "schema_version": "1.0.0",
+            "contract_version": "1.0.0",
+            "producer_version": "decision_governance_v1",
+            "consumer_support": "action_governance_v1",
+            "adapter_requirement": true,
+            "migration_requirement": false,
+            "hard_block": false,
+            "silent_coercion": false,
+            "readiness": "READY_WITH_ADAPTER"
+        },
+        {
+            "hop": "Action->Runtime",
+            "schema_version": "1.0.0",
+            "contract_version": "1.0.0",
+            "producer_version": "action_governance_v1",
+            "consumer_support": "runtime_executor_v1",
+            "adapter_requirement": true,
+            "migration_requirement": true,
+            "hard_block": true,
+            "silent_coercion": false,
+            "readiness": "DEFERRED"
+        }
+    ]
+}

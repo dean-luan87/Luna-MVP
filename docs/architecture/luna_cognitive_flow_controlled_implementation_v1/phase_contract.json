@@ -1,0 +1,35 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Flow-And-State-Machine-Controlled-Implementation-v1-001",
+    "execution_mode": "CONTROLLED_IMPLEMENTATION",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "required_code_files": [
+        "capabilities/midplatform/core/cognitive_flow/__init__.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_registry_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_error_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_cycle_core_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_cycle_state_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_cycle_transition_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_cycle_interrupt_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_cycle_inheritance_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_trace_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_handoff_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_io_types_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_protocol_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_ownership_guard_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_static_validators_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_fixture_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/cognitive_flow_engine_v1.py",
+        "capabilities/midplatform/core/cognitive_flow/run_cognitive_flow_controlled_implementation_v1.py"
+    ],
+    "required_doc_files": [
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_controlled_implementation_overview_v1.md",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_negative_guards_v1.json",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_controlled_change_manifest_v1.json",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/cognitive_flow_implementation_summary_v1.md",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_cognitive_flow_controlled_implementation_v1/verify_cognitive_flow_controlled_implementation_v1.py"
+    ],
+    "agent_stop_state": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "self_regulation_calibration_v1",
+  "owner": "Self Regulation Function",
+  "inputs": ["State Observation", "State Quality", "Outcome", "Prediction Error", "Long Term Pattern", "Resource Efficiency", "Self Stability"],
+  "outputs": ["Calibration Candidate", "Metric Weight Candidate", "Parameter Improvement Candidate", "No Change Candidate", "Defer Candidate"],
+  "requirements": ["Repeated Evidence", "Field Scope", "Trace", "Confidence", "Unknowns", "Self Review", "Version", "Rollback"],
+  "is_internal_mechanism": true,
+  "automatic_calibration": false,
+  "automatic_parameter_update": false,
+  "candidate_only": true
+}

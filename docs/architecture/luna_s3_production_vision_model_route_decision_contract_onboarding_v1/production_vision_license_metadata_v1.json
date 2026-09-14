@@ -1,0 +1,8 @@
+{
+  "models": {
+    "yolov5n": {"license_type": "GNU-GPL-3.0-or-later-or-upstream-review-required", "commercial_use_constraints": "REQUIRES_LICENSE_REVIEW", "enterprise_license_required_candidate": null, "license_source_ref": "existing_yolov5_manifest_and_prior_review"},
+    "yolo11n": {"license_type": "UNKNOWN", "commercial_use_constraints": "REQUIRES_LICENSE_REVIEW", "enterprise_license_required_candidate": null, "license_source_ref": "not_verified_in_repository"},
+    "yolo26n": {"license_type": "UNKNOWN", "commercial_use_constraints": "REQUIRES_LICENSE_REVIEW", "enterprise_license_required_candidate": null, "license_source_ref": "not_verified_in_repository"}
+  },
+  "legal_conclusion_made": false
+}

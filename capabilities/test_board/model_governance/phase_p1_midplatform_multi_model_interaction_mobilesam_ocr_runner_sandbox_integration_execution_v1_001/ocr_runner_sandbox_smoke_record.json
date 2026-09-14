@@ -1,0 +1,11 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Execution-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "ocr_runner_sandbox_smoke_record"
+  }
+}

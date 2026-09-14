@@ -1,0 +1,43 @@
+{
+  "title": "Cognitive Module Dependency Graph v1",
+  "graph_type": "canonical_module_dependency_graph",
+  "dependency_types": ["Required Dependency", "Optional Dependency", "Candidate Dependency", "Future Interface"],
+  "nodes": [
+    {"id": "reality_evidence", "domain": "Core", "depends_on": [], "dependency_type": "Required Dependency"},
+    {"id": "field_network", "domain": "Core", "depends_on": ["reality_evidence"], "dependency_type": "Required Dependency"},
+    {"id": "self", "domain": "Core", "depends_on": ["reality_evidence"], "dependency_type": "Required Dependency"},
+    {"id": "attention", "domain": "Core", "depends_on": ["field_network", "self"], "dependency_type": "Required Dependency"},
+    {"id": "situation", "domain": "Core", "depends_on": ["reality_evidence", "field_network", "self", "attention"], "dependency_type": "Required Dependency"},
+    {"id": "hypothesis_belief_expectation", "domain": "Core", "depends_on": ["situation", "reality_evidence", "field_network"], "dependency_type": "Candidate Dependency"},
+    {"id": "workspace_global_state", "domain": "Core", "depends_on": ["field_network", "self", "attention", "situation", "hypothesis_belief_expectation"], "dependency_type": "Required Dependency"},
+    {"id": "brain", "domain": "Core", "depends_on": ["workspace_global_state", "reality_evidence"], "dependency_type": "Required Dependency"},
+    {"id": "intent_goal_task", "domain": "Core", "depends_on": ["brain", "field_network", "self"], "dependency_type": "Candidate Dependency"},
+    {"id": "decision_commitment", "domain": "Core", "depends_on": ["brain", "intent_goal_task", "reality_evidence", "attention"], "dependency_type": "Candidate Dependency"},
+    {"id": "action_boundary", "domain": "Core", "depends_on": ["decision_commitment"], "dependency_type": "Future Interface"},
+    {"id": "experience_learning", "domain": "Core", "depends_on": ["reality_evidence", "field_network", "self", "action_boundary"], "dependency_type": "Candidate Dependency"},
+    {"id": "governance_plane", "domain": "Governance", "depends_on": ["constitution"], "dependency_type": "Required Dependency"},
+    {"id": "capability_plane", "domain": "Capability", "depends_on": ["governance_plane", "attention", "self"], "dependency_type": "Future Interface"},
+    {"id": "cognitive_runtime", "domain": "Runtime", "depends_on": ["governance_plane", "workspace_global_state", "attention"], "dependency_type": "Future Interface"}
+  ],
+  "canonical_edges": [
+    "Reality → Evidence → Field",
+    "Field → Situation",
+    "Situation → Hypothesis / Belief / Expectation",
+    "Global Cognitive State → Brain",
+    "Brain → Decision Candidate → Decision Commitment",
+    "Decision Commitment → Action Request Candidate → Action Boundary",
+    "Outcome Evidence → Experience → Learning Candidate"
+  ],
+  "forbidden_edges": [
+    "Learning → Reality",
+    "Emotion → Decision Override",
+    "Capability → Goal Creation",
+    "Provider → Brain Direct Access",
+    "Model → Decision",
+    "Hardware → Identity Mutation",
+    "Action Boundary → Reality Direct Write"
+  ],
+  "unknowns_are_preserved": true,
+  "provenance_is_preserved": true,
+  "graph_is_descriptive_not_runtime": true
+}

@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "interaction_validation_planning": true,
+  "record": {
+    "plan_ref": "capabilities/midplatform/model_test_lens/single_model_interaction_validation/single_model_interaction_validation_plan_v1.md"
+  }
+}

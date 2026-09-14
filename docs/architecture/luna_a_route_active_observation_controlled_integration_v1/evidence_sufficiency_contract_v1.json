@@ -1,0 +1,12 @@
+{
+  "contract_id": "a_route_evidence_sufficiency_candidate_contract_v1",
+  "inequality": "Evidence Sufficiency != Model Confidence",
+  "owner": "Field Perception Orchestrator controlled integration candidate; no downstream truth authority",
+  "required_inputs": ["information_need_ref", "observation_request_ref", "expected_evidence", "received_evidence_refs", "source_diversity", "source_independence_candidate", "contradiction_refs", "uncertainty_refs", "temporal_validity", "target_coverage", "semantic_coverage", "spatial_coverage", "user_confirmation", "safety_requirement"],
+  "allowed_statuses": ["SUFFICIENT", "INSUFFICIENT", "CONTESTED", "STALE", "NEEDS_CONFIRMATION", "NEEDS_ADDITIONAL_MODALITY", "NEEDS_REDIRECT", "NEEDS_PROVIDER_SWITCH"],
+  "model_confidence_role": "quality_input_only",
+  "control_mapping": {"SUFFICIENT":"STOP", "INSUFFICIENT":"CONTINUE", "CONTESTED":"RECONSIDER", "STALE":"REDIRECT", "NEEDS_CONFIRMATION":"RECONSIDER", "NEEDS_ADDITIONAL_MODALITY":"ADD_CAPABILITY", "NEEDS_REDIRECT":"REDIRECT", "NEEDS_PROVIDER_SWITCH":"SWITCH_PROVIDER"},
+  "forbidden_shortcuts": ["single_confidence_threshold_as_sufficiency", "opaque_confidence_average", "admission_equals_sufficiency", "successful_detection_equals_continue"],
+  "candidate_only": true,
+  "runtime_execution": false
+}

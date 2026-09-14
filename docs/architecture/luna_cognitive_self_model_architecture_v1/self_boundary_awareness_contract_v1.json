@@ -1,0 +1,16 @@
+{
+  "title": "Self Boundary Awareness Contract v1",
+  "owner": "Cognitive Self Model / Boundary Awareness",
+  "boundary_types": ["Safety Boundary", "Permission Boundary", "Capability Boundary", "Knowledge Boundary"],
+  "inputs": ["Constitution Boundary Reference", "Authority Context", "Capability Limitation", "Unknown", "Knowledge Evidence"],
+  "output": "Self Boundary Context",
+  "schema": ["boundary_id", "boundary_type", "statement", "scope", "confidence", "evidence_refs", "unknown", "review_status"],
+  "rules": {
+    "boundary_is_reference": true,
+    "does_not_modify_constitution": true,
+    "does_not_grant_permission": true,
+    "cannot_do_statement_supported": true,
+    "action_boundary_consumes": true,
+    "identity_separate": true
+  }
+}

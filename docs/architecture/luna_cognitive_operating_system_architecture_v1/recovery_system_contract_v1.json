@@ -1,0 +1,8 @@
+{
+  "title": "Recovery System Contract v1",
+  "owner": "Cognitive OS Governance",
+  "failure_types": ["Module Failure", "Capability Failure", "State Conflict", "Flow Interruption"],
+  "recovery_order": ["Diagnose", "Degrade", "Recover", "Resume", "Escalate"],
+  "required_fields": ["failure_id", "source", "impact", "fallback_candidate", "resume_point", "recovery_state", "trace_id"],
+  "rules": {"degrade_before_stop": true, "resume_requires_state_check": true, "recovery_not_goal_owner": true, "recovery_not_reality_writer": true}
+}

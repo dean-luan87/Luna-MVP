@@ -1,0 +1,41 @@
+{
+  "artifact": "intent_nested_constraint_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Intent Governance",
+  "relation_semantics": [
+    "constraint",
+    "feedback",
+    "activation",
+    "suppression",
+    "amplification",
+    "projection",
+    "candidate update"
+  ],
+  "nested_relations": [
+    {"pair": "Context ↔ Intent", "source_owner": "Context Governance", "semantics": ["constraint", "projection", "candidate update"], "cross_write": false},
+    {"pair": "PCN ↔ Intent", "source_owner": "Personal Cognitive Network Governance", "semantics": ["activation", "projection", "feedback"], "cross_write": false},
+    {"pair": "Self ↔ Intent", "source_owner": "Self Governance", "semantics": ["constraint", "suppression", "candidate update"], "cross_write": false},
+    {"pair": "Field ↔ Intent", "source_owner": "Cognitive Field", "semantics": ["constraint", "activation", "projection"], "cross_write": false},
+    {"pair": "Role ↔ Intent", "source_owner": "Social Self / Role Governance", "semantics": ["constraint", "amplification", "suppression"], "cross_write": false},
+    {"pair": "Relationship ↔ Intent", "source_owner": "Social Self / Relationship Governance", "semantics": ["activation", "amplification", "constraint"], "cross_write": false},
+    {"pair": "Memory Reference ↔ Intent", "source_owner": "Memory Governance", "semantics": ["activation", "amplification", "feedback"], "cross_write": false},
+    {"pair": "Emotion Reference ↔ Intent", "source_owner": "Emotion / Integration Governance", "semantics": ["amplification", "suppression", "feedback"], "cross_write": false},
+    {"pair": "Resource ↔ Intent", "source_owner": "Self Regulation / Runtime Governance", "semantics": ["constraint", "suppression", "projection"], "cross_write": false},
+    {"pair": "Future Causal ↔ Intent", "source_owner": "Causal Governance", "semantics": ["feedback", "candidate update"], "cross_write": false},
+    {"pair": "Future Decision ↔ Intent", "source_owner": "Decision Arbitration", "semantics": ["feedback", "candidate update"], "cross_write": false}
+  ],
+  "core_rules": [
+    "Owner independence does not mean isolation",
+    "Influence does not grant mutation authority",
+    "Every cross-object relation uses source-owned references",
+    "Nested structure does not imply ownership containment",
+    "No fixed nesting depth is frozen",
+    "Future Causal and Decision relations are interfaces, not implementations"
+  ],
+  "forbidden": [
+    "Intent owns nested source objects",
+    "source object writes Intent state",
+    "nested relation executes Runtime behavior",
+    "feedback bypasses owner governance"
+  ]
+}

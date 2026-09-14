@@ -1,0 +1,17 @@
+{
+  "contract_id": "a_route_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Reality -> Evidence", "Evidence -> Cognitive Field", "Cognitive Field -> Attention", "Attention -> Context", "Context -> Hypothesis", "Hypothesis -> Belief", "Belief -> Understanding", "Understanding -> Goal", "Goal -> Value Utility", "Value Utility -> Decision Arbitration", "Decision Arbitration -> Action Boundary", "Action Boundary -> Outcome Evaluation", "Outcome Evaluation -> Experience", "Experience -> Memory", "Memory -> Schema", "Schema -> Selective Learning", "Selective Learning -> Growth Candidate", "Growth Candidate -> Self Review", "Self Constitution -> All A Route Governance", "Self State -> Candidate Constraints"
+  ],
+  "forbidden_dependencies": [
+    "Evidence -> Meaning Authority", "Model -> Understanding Authority", "Memory -> Override Reality", "Memory -> Direct Decision", "Field -> Direct Action", "Attention -> Direct Action", "Goal -> Direct Action", "Value Utility -> Commit Decision", "Decision -> Execute Action", "Outcome -> Direct Self Modification", "Single Outcome -> Schema Update", "Experience -> Direct Identity Change", "Learning -> Direct Memory Write", "Learning -> Direct Schema Update", "Learning -> Direct Identity Change", "Learning -> Direct Constitution Change", "Learning -> Model Training", "Learning -> Parameter Update", "B Route -> Override A Route", "B Route -> Direct Self Modification", "Runtime -> Learning Authority", "Emotion -> Direct Decision Override"
+  ],
+  "no_runtime_integration": true,
+  "no_module_invocation": true,
+  "no_automatic_flow": true,
+  "no_learning_runtime": true,
+  "no_b_route_runtime": true,
+  "no_action_execution": true,
+  "no_model_integration": true,
+  "no_hardware_integration": true
+}

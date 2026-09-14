@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Self / Social Self Boundary Contract",
+  "boundaries": [
+    {"boundary": "Core Identity", "owner": "Self Layer", "social_self_access": "read_context_only", "integration_access": "candidate_review_only"},
+    {"boundary": "Self Capability", "owner": "Self Layer", "social_self_access": "request_context", "integration_access": "candidate_review_only"},
+    {"boundary": "Role", "owner": "Social Self Layer", "self_access": "read_context_only", "integration_access": "candidate_review_only"},
+    {"boundary": "Relationship", "owner": "Social Self Layer", "self_access": "read_context_only", "integration_access": "candidate_review_only"},
+    {"boundary": "Constitution", "owner": "L0 System Constitution", "self_social_access": "read_only", "integration_access": "read_only"},
+    {"boundary": "Decision", "owner": "Brain", "self_social_access": "context_only", "integration_access": "context_package_only"}
+  ],
+  "forbidden_edges": ["Social Self → Core Identity Rewrite", "Social Self → Constitution Modification", "Self → Role Ownership", "Self → Relationship Judgment", "Integration → Direct Decision", "Integration → Direct Action"],
+  "rules": {"self_social_non_overwrite": true, "identity_continuity": true, "integration_candidate_only": true, "constitution_read_only": true}
+}

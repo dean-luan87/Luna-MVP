@@ -1,0 +1,72 @@
+{
+    "artifact": "decision_state_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "model_kind": "SEMANTIC_STATE_CANDIDATES_NOT_PRODUCTION_ENUM_OR_FSM",
+    "state_candidates": [
+        {
+            "state": "PROPOSED",
+            "meaning": "Decision candidate formed from bounded inputs."
+        },
+        {
+            "state": "ELIGIBLE",
+            "meaning": "Candidate is admissible under current hard constraints."
+        },
+        {
+            "state": "CONSTRAINED",
+            "meaning": "Candidate remains possible but bounded by hard constraints."
+        },
+        {
+            "state": "CONTESTED",
+            "meaning": "Competing candidates or unresolved conflicts prevent stable selection."
+        },
+        {
+            "state": "DEFERRED",
+            "meaning": "No immediate selection now; revisit when conditions evolve."
+        },
+        {
+            "state": "ABSTAINED",
+            "meaning": "Current context indicates no decision should be selected."
+        },
+        {
+            "state": "NEEDS_MORE_EVIDENCE",
+            "meaning": "Evidence package is insufficient for reliable selection."
+        },
+        {
+            "state": "NEEDS_CONFIRMATION",
+            "meaning": "Selection blocked until explicit confirmation requirement is met."
+        },
+        {
+            "state": "SELECTED_CANDIDATE",
+            "meaning": "Preferred candidate selected in planning semantics only."
+        },
+        {
+            "state": "REJECTED",
+            "meaning": "Candidate excluded under constraints or evidence."
+        },
+        {
+            "state": "SUSPENDED",
+            "meaning": "Candidate paused due to missing boundary condition."
+        },
+        {
+            "state": "REVISED",
+            "meaning": "Candidate revised with provenance-preserving lineage."
+        },
+        {
+            "state": "REVOKED",
+            "meaning": "Previously selected or eligible candidate withdrawn with trace."
+        }
+    ],
+    "guards": {
+        "boolean_yes_no_only_forbidden": true,
+        "must_allow_non_selection": true,
+        "state_implies_action_execution": false,
+        "state_implies_task_creation": false,
+        "multi_candidate_states_allowed": true
+    },
+    "not_frozen": [
+        "runtime finite state machine",
+        "numeric thresholds",
+        "selection algorithm",
+        "latency budget"
+    ]
+}

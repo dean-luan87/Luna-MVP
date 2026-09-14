@@ -1,0 +1,23 @@
+{
+  "title": "Luna State Ownership Audit v1",
+  "states": [
+    {"state": "Reality State", "owner": "Reality Update Pipeline / Reducer", "writer": "Reducer", "reader": ["Field", "Situation", "Brain"]},
+    {"state": "Field State", "owner": "Field System", "writer": "Field State Pipeline", "reader": ["Attention", "Workspace", "Situation"]},
+    {"state": "Self State", "owner": "Self System", "writer": "Self State Pipeline", "reader": ["Attention", "Brain", "Capability"]},
+    {"state": "Workspace State", "owner": "Workspace", "writer": "Workspace Update Contract", "reader": ["Brain", "Runtime"]},
+    {"state": "Attention State", "owner": "Attention System", "writer": "Attention Arbitration", "reader": ["Workspace", "Runtime"]},
+    {"state": "Hypothesis State", "owner": "Hypothesis Governance", "writer": "Evidence Validation Candidate", "reader": ["Situation", "Brain", "Learning"]},
+    {"state": "Belief State", "owner": "Belief Governance", "writer": "Validated Pattern Candidate", "reader": ["Expectation", "Brain"]},
+    {"state": "Expectation State", "owner": "Expectation Feedback System", "writer": "Feedback Candidate", "reader": ["Attention", "Brain", "Learning"]},
+    {"state": "Goal State", "owner": "Goal System + Brain Review", "writer": "Goal Governance", "reader": ["Task", "Brain"]},
+    {"state": "Task State", "owner": "Task Continuity System", "writer": "Task Lifecycle", "reader": ["Workspace", "Attention", "Brain"]},
+    {"state": "Capability State", "owner": "Capability Governance", "writer": "Capability Health Pipeline", "reader": ["Attention", "Decision Commitment", "Self"]}
+  ],
+  "required_state_fields": ["Owner", "Writer", "Reader", "Lifecycle", "Provenance", "Unknown"],
+  "findings": [
+    {"state": "Capability Calibration", "status": "partial", "priority": "P1"},
+    {"state": "Runtime Persistence", "status": "partial", "priority": "P1"},
+    {"state": "Runtime Recovery", "status": "partial", "priority": "P1"}
+  ],
+  "rules": {"one_normative_owner": true, "reader_is_not_writer": true, "state_lifecycle_required": true, "unknowns_are_preserved": true}
+}

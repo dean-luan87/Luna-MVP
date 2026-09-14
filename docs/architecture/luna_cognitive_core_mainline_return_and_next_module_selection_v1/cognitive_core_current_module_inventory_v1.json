@@ -1,0 +1,129 @@
+{
+    "artifact": "cognitive_core_current_module_inventory_v1",
+    "phase_id": "Phase-Luna-Cognitive-Core-Mainline-Return-And-Next-Module-Selection-v1-001",
+    "completed_and_frozen": [
+        {
+            "module": "Context Foundation",
+            "status": "CLOSED_FROZEN",
+            "evidence": "docs/architecture/luna_context_foundation_module_closure_v1/phase_contract.json",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Personal Cognitive Network",
+            "status": "CLOSED_FROZEN",
+            "evidence": "docs/architecture/luna_personal_cognitive_network_module_closure_v1/phase_contract.json",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Intent Governance",
+            "status": "GO",
+            "evidence": "docs/architecture/luna_intent_governance_controlled_implementation_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Causal Governance",
+            "status": "GO",
+            "evidence": "docs/architecture/luna_causal_governance_controlled_implementation_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Decision Governance",
+            "status": "GO",
+            "evidence": "docs/architecture/luna_decision_governance_controlled_implementation_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Action Governance",
+            "status": "GO",
+            "evidence": "docs/architecture/luna_action_governance_controlled_implementation_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Runtime Executor",
+            "status": "GO_CONTROLLED",
+            "evidence": "docs/architecture/luna_runtime_executor_controlled_implementation_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Cognitive Execution Chain Controlled Integration",
+            "status": "GO_CONTROLLED",
+            "evidence": "docs/architecture/luna_cognitive_execution_chain_controlled_integration_v1/",
+            "runtime_dependency": false
+        },
+        {
+            "module": "Cognitive Execution Chain Closure and Readiness Audit",
+            "status": "GO",
+            "evidence": "docs/architecture/luna_cognitive_execution_chain_closure_and_readiness_audit_v1/",
+            "runtime_dependency": false
+        }
+    ],
+    "major_open_modules": [
+        {
+            "module": "Field State / Field Cognition Mainline",
+            "status": "DRYRUN_GO_BUT_RUNTIME_NOT_IMPLEMENTED",
+            "evidence": [
+                "docs/architecture/luna_field_state_reducer_controlled_dryrun_v1/field_state_reducer_controlled_dryrun_summary_v1.json",
+                "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_dryrun_v1/field_state_reducer_behavior_policy_controlled_dryrun_summary_v1.json"
+            ]
+        },
+        {
+            "module": "Context -> PCN -> Intent Pre-Cognitive Mainline",
+            "status": "CHAIN_ASSETS_READY_IN_CANDIDATE_FORM",
+            "evidence": [
+                "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+                "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json",
+                "capabilities/midplatform/core/intent_governance/"
+            ]
+        },
+        {
+            "module": "Attention/Hypothesis/Current World State Chain",
+            "status": "ARCHITECTURE_ONLY",
+            "evidence": [
+                "docs/architecture/cognitive_hypothesis_belief_architecture_v1/",
+                "docs/architecture/cognitive_global_state_representation_v1/"
+            ]
+        },
+        {
+            "module": "Learning / Experience Return Loop",
+            "status": "ARCHITECTURE_ONLY",
+            "evidence": "docs/architecture/cognitive_learning_system_v1/"
+        },
+        {
+            "module": "Dynamic Cognitive Function Model",
+            "status": "ARCHITECTURE_ONLY",
+            "evidence": [
+                "docs/architecture/luna_cognitive_dynamic_function_architecture_v1/summary.json",
+                "docs/architecture/luna_cognitive_dynamic_function_self_adaptive_integration_architecture_v1/summary.json"
+            ]
+        },
+        {
+            "module": "Cognitive State Vector / Self Regulation",
+            "status": "ARCHITECTURE_ONLY",
+            "evidence": [
+                "docs/architecture/luna_cognitive_state_machine_architecture_v1/summary.json",
+                "docs/architecture/luna_cognitive_self_regulation_architecture_v1/"
+            ]
+        },
+        {
+            "module": "Memory/Experience Formal Integration",
+            "status": "ARCHITECTURE_ONLY",
+            "evidence": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/summary.json"
+        },
+        {
+            "module": "Task Manager Formal Integration",
+            "status": "MULTI_DOC_FOUNDATION_CONSOLIDATION_PENDING",
+            "evidence": [
+                "docs/architecture/midplatform/LUNA_TASK_MANAGER_CONTRACT_V1.md",
+                "capabilities/midplatform/core/task_manager/module/"
+            ]
+        },
+        {
+            "module": "Diagnostics / Maintenance Formal Integration",
+            "status": "BOUNDARY_DEFINED_BUT_NOT_INTEGRATED_AS_CORE_MODULE",
+            "evidence": [
+                "docs/architecture/luna_cognitive_execution_chain_integration_planning_v1/cognitive_execution_chain_diagnostics_maintenance_boundary_v1.json",
+                "docs/architecture/system_health/LUNA_SYSTEM_HEALTH_CENTER_GOVERNANCE_V0.md"
+            ]
+        }
+    ]
+}

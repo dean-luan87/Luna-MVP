@@ -1,0 +1,11 @@
+{
+  "title": "Cognitive Closed Loop Failure Scenario Matrix v1",
+  "owner": "Cognitive OS Governance",
+  "scenarios": [
+    {"case":"Capability Error","path":["Evidence Error","Belief Conflict","Unknown Preserve","Re-evaluation"],"output":"Re-evaluation Candidate"},
+    {"case":"Action Failure","path":["Outcome Difference","Learning Signal","Strategy Candidate"],"output":"Adaptation Candidate"},
+    {"case":"Role Conflict","path":["Role Conflict","Emotion Context","Brain Evaluation","Decision"],"output":"Decision Candidate"},
+    {"case":"Emotion Context Increase","path":["Emotion Context Increase","Attention Shift Candidate","Brain Review"],"output":"Attention Candidate"}
+  ],
+  "rules": {"unknown_preserved": true, "failure_not_silent": true, "re_evaluation_supported": true, "automatic_learning_disabled": true}
+}

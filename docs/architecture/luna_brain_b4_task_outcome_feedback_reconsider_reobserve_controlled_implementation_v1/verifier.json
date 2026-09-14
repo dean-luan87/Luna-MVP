@@ -1,0 +1,5 @@
+{
+  "verifier":"verify_b4_task_outcome_feedback_reconsider_reobserve_controlled_implementation_v1.py",
+  "checks":["28 B4 cases","synthetic regression asset presence","exact source/doc sets","canonical owner boundaries","fixture-only runtime result","candidate-only outcome","Task Manager lifecycle handoff","Cognitive Flow reconsideration","FPO reobserve handoff","no execution/retry/learning/memory/compression","lineage preservation"],
+  "generated_artifacts_excluded":true
+}

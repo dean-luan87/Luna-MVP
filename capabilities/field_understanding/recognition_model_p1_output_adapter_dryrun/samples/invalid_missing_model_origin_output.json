@@ -1,0 +1,16 @@
+{
+  "model_id": "mock_p1_depth_invalid_c",
+  "model_family": "depth_spatial_hint_family",
+  "model_version_ref": "mock_midas_small_v1_0_0",
+  "license_ref": "mit_or_apache_2_0_per_model_license",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_p1_0001",
+  "output_schema_ref": "depth_spatial_hint_output_schema_v1",
+  "confidence": 0.71,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "spatial_hint_candidate",
+  "allowed_use": "auxiliary_spatial_hint_candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "fallback_plan": "fallback_to_no_depth_hint",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain"
+}

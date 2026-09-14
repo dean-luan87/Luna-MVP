@@ -1,0 +1,28 @@
+{
+  "title": "Brain Conflict Evaluation Contract v1",
+  "contract_type": "Conflict Evaluation Candidate",
+  "conflict_types": ["Intent Conflict", "Goal Conflict", "Role Conflict", "Value Conflict", "Field Conflict", "Resource Conflict"],
+  "input": {
+    "global_cognitive_state": {},
+    "conflicts": [],
+    "options": [],
+    "value_constraints": [],
+    "risk": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "conflict_evaluation_candidate": {},
+    "tradeoffs": [],
+    "priority_candidate": {},
+    "more_information_request": null,
+    "defer_candidate": null
+  },
+  "boundary": {
+    "conflict_is_not_automatically_resolved": true,
+    "conflict_does_not_make_decision": true,
+    "conflict_does_not_modify_value": true,
+    "conflict_does_not_modify_goal": true,
+    "unknowns_are_preserved": true
+  }
+}

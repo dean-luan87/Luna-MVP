@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Memory Interface Contract",
+  "memory_inputs": ["experience_candidate", "attention_weight_candidate", "field_context", "outcome_feedback"],
+  "memory_output": "attention_prior_candidate",
+  "weight_components": ["attention_weight", "emotion_weight_placeholder", "survival_weight", "meaning_weight_placeholder"],
+  "validation_required": true,
+  "time_decay_required": true,
+  "memory_directly_controls_attention": false,
+  "memory_modifies_reality": false,
+  "online_learning": false,
+  "raw_recording": false
+}

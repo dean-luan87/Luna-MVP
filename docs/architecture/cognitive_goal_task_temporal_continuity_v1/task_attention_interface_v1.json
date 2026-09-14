@@ -1,0 +1,16 @@
+{
+  "interface_name": "Task Attention Interface v1",
+  "task_reference": "task-example",
+  "attention_request_candidate": {"reason": "pending information", "priority": "candidate"},
+  "attention_resource_candidate": {"requested": null, "cost": null, "information_value": null},
+  "suspension_candidate": null,
+  "resume_candidate": null,
+  "maintenance_candidate": null,
+  "task_does_not_control_attention": true,
+  "attention_does_not_modify_goal": true,
+  "attention_does_not_decide_task": true,
+  "attention_does_not_execute_action": true,
+  "allocation_is_candidate_only": true,
+  "resource_cost_is_explicit": true,
+  "unknowns_are_preserved": true
+}

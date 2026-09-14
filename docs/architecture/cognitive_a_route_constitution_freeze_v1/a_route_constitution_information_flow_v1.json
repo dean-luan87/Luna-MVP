@@ -1,0 +1,30 @@
+{
+  "contract_name": "A Route Constitution Information Flow v1",
+  "mandatory_flow": [
+    "External World",
+    "Evidence Gateway",
+    "Reality Workspace",
+    "Reality Field",
+    "Cognitive Field",
+    "Attention",
+    "Situation",
+    "Option",
+    "Decision Candidate",
+    "Brain Review",
+    "Action Boundary",
+    "External Change",
+    "Outcome Evidence",
+    "Experience Candidate"
+  ],
+  "evidence_is_not_fact": true,
+  "fact_is_not_situation": true,
+  "situation_is_not_decision": true,
+  "experience_does_not_replace_reality": true,
+  "unknowns_are_preserved": true,
+  "reality_update_requires_evidence_gateway": true,
+  "reducer_is_sole_state_mutation_authority": true,
+  "forbidden_shortcuts": ["Model → Brain", "Provider → Decision", "Capability → Goal", "Experience → Reality", "Action → direct Reality"],
+  "no_direct_reality_mutation": true,
+  "no_direct_goal_mutation": true,
+  "no_direct_decision_mutation": true
+}

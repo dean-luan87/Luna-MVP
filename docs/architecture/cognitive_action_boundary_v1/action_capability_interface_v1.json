@@ -1,0 +1,29 @@
+{
+  "title": "Action Capability Interface v1",
+  "contract_type": "Action to Capability Governance Interface",
+  "request": {
+    "action_intent": "required",
+    "required_capability": "required",
+    "resource_requirement": {},
+    "authorization_level": "required",
+    "constraints": {},
+    "provenance": []
+  },
+  "capability_flow": [
+    "Decision",
+    "Action Intent",
+    "Capability Requirement",
+    "Capability Governance",
+    "Provider Candidate",
+    "Execution Boundary"
+  ],
+  "rules": {
+    "action_does_not_directly_call_model": true,
+    "capability_governance_required": true,
+    "provider_is_not_decision_authority": true,
+    "provider_is_not_action_authority": true,
+    "hardware_control_is_out_of_scope": true,
+    "execution_is_out_of_scope": true,
+    "capability_failure_returns_candidate": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+    "manifest_id": "pcn_controlled_skeleton_change_manifest_v1",
+    "phase": "Phase-Luna-Personal-Cognitive-Network-Controlled-Skeleton-Implementation-v1-001",
+    "status": "CONTROLLED_SKELETON_CANDIDATE",
+    "created_code_files": [
+        "capabilities/midplatform/core/personal_cognitive_network/__init__.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_projection_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_resource_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_trace_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_error_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_protocol_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_skeleton_v1.py"
+    ],
+    "created_documentation_files": [
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/personal_cognitive_network_controlled_skeleton_implementation_v1.md",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_controlled_skeleton_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_skeleton_clarification_inheritance_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_controlled_skeleton_change_manifest_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/verify_personal_cognitive_network_controlled_skeleton_v1.py"
+    ],
+    "modified_existing_files": [],
+    "runtime_files_changed": [],
+    "active_schema_changed": false,
+    "active_contract_changed": false,
+    "owner_metadata_changed": false,
+    "real_pcn_runtime_created": false,
+    "deleted_files": [],
+    "moved_files": [],
+    "renamed_files": []
+}

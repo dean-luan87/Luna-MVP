@@ -1,0 +1,21 @@
+{
+  "title": "Duplicate Asset Resolution Map v1",
+  "duplicate_groups": [
+    {"duplicate_group": "cognitive_field_brain_interface_v1", "canonical_asset": "cognitive_field_brain_interface_v1", "legacy_assets": ["cognitive_field_architecture_v1/cognitive_field_brain_interface_v1.json", "cognitive_field_governance_and_orchestration_v1/cognitive_field_brain_interface_v1.json"], "decision": "keep_parallel"},
+    {"duplicate_group": "cognitive_field_a_route_interface_v1", "canonical_asset": "cognitive_field_a_route_interface_v1", "legacy_assets": ["cognitive_field_architecture_v1/cognitive_field_a_route_interface_v1.json", "cognitive_field_governance_and_orchestration_v1/cognitive_field_a_route_interface_v1.json"], "decision": "alias"},
+    {"duplicate_group": "capability_attention_interface_v1", "canonical_asset": "capability_attention_interface_v1", "legacy_assets": ["cognitive_self_capability_awareness_v1/capability_attention_interface_v1.json", "cognitive_self_capability_profile_v1/capability_attention_interface_v1.json", "cognitive_capability_runtime_contract_v1/capability_attention_interface_v1.json"], "decision": "alias"},
+    {"duplicate_group": "decision_revision_contract_v1", "canonical_asset": "decision_revision_contract_v1", "legacy_assets": ["cognitive_decision_integration_v1/decision_revision_contract_v1.json", "cognitive_decision_commitment_architecture_v1/decision_revision_contract_v1.json"], "decision": "alias"},
+    {"duplicate_group": "attention_capability_feedback_contract_v1", "canonical_asset": "attention_capability_feedback_contract_v1", "legacy_assets": ["cognitive_attention_adaptation_stability_v1/attention_capability_feedback_contract_v1.json", "cognitive_attention_experience_adaptation_stability_v1/attention_capability_feedback_contract_v1.json"], "decision": "historical"},
+    {"duplicate_group": "relationship_context_schema_v1", "canonical_asset": "relationship_context_schema_v1", "legacy_assets": ["cognitive_social_field_architecture_v1/relationship_context_schema_v1.json", "cognitive_role_relationship_system_v1/relationship_context_schema_v1.json"], "decision": "alias"},
+    {"duplicate_group": "capability_admission_contract_v1", "canonical_asset": "capability_admission_contract_v1", "legacy_assets": ["cognitive_flow/capability_admission_contract_v1.json", "cognitive_capability_runtime_contract_v1/capability_admission_contract_v1.json"], "decision": "historical"}
+  ],
+  "decision_values": ["merge", "alias", "historical", "keep_parallel"],
+  "resolution_rules": {
+    "no_delete": true,
+    "no_overwrite": true,
+    "canonical_registry_binding_required": true,
+    "semantic_review_required_before_merge": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

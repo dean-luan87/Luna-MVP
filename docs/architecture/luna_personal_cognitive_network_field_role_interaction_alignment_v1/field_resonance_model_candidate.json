@@ -1,0 +1,26 @@
+{
+  "artifact_id": "field_resonance_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cognitive Interaction Governance",
+  "definition": "Resonance is candidate structural similarity between a current interaction pattern and historical or adjacent Field projections; it is not identity equality or causal proof.",
+  "similarity_basis": [
+    "role_structure",
+    "relationship_structure",
+    "task_structure",
+    "benefit_cost_structure",
+    "historical_experience_structure",
+    "context_similarity"
+  ],
+  "non_basis": ["same_name_only", "same_type_only", "embedding_similarity_as_fact"],
+  "outputs": ["RESONANCE_CANDIDATE", "RELATED_HISTORICAL_PROJECTION", "ACTIVATION_CANDIDATE"],
+  "forbidden_outputs": ["CAUSAL_FACT", "CURRENT_REALITY_FACT", "EMOTION_CONCLUSION", "DECISION"],
+  "rules": {
+    "structural_similarity_required": true,
+    "same_name_or_type_is_sufficient": false,
+    "source_objects_are_read_only": true,
+    "unknown_and_counterevidence_preserved": true
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

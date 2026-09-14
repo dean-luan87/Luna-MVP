@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Controlled DryRun Contract",
+    "synthetic_fixture_only": true,
+    "admitted_event_only_for_positive_cases": true,
+    "negative_case_mutation_uses_copy_only": true,
+    "real_reduction_allowed": false,
+    "active_state_creation_allowed": false,
+    "state_mutation_allowed": false,
+    "database_access_allowed": false,
+    "provider_recall_allowed": false,
+    "external_lookup_allowed": false,
+    "model_call_allowed": false,
+    "action_trigger_allowed": false,
+    "runtime_loop_allowed": false,
+    "deterministic_replay_required": true,
+    "input_fixture_mutation_allowed": false,
+    "placeholder_result_required": true
+}

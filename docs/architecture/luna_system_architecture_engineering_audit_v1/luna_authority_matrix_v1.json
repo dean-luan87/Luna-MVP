@@ -1,0 +1,22 @@
+{
+  "title": "Luna Authority Matrix v1",
+  "rows": [
+    {"module": "Brain", "authority": "Decision Candidate / final judgment", "not_allowed": ["Reality write", "Attention allocation", "Action execution"]},
+    {"module": "Attention", "authority": "Resource Allocation / Competition / Arbitration", "not_allowed": ["Goal creation", "Decision override"]},
+    {"module": "Memory", "authority": "Relevant Retrieval / selected storage", "not_allowed": ["Reality override", "Decision ownership"]},
+    {"module": "Learning", "authority": "Candidate Generation", "not_allowed": ["Automatic strategy/value/goal mutation", "Reality write"]},
+    {"module": "Value", "authority": "Constraint", "not_allowed": ["Direct action", "Provider selection authority"]},
+    {"module": "Reflex", "authority": "Emergency Response Candidate", "not_allowed": ["Goal mutation", "Identity mutation"]},
+    {"module": "Capability", "authority": "Evidence / capability state candidate", "not_allowed": ["Brain direct access", "Goal creation"]},
+    {"module": "Action Boundary", "authority": "Execution Gate / Permission / Risk", "not_allowed": ["Decision creation", "Reality direct write"]},
+    {"module": "Reducer", "authority": "Reality accepted transition", "not_allowed": ["Goal creation", "Action execution"]}
+  ],
+  "rules": {
+    "owner_writer_reader_are_distinct": true,
+    "reader_does_not_gain_write": true,
+    "no_circular_authority": true,
+    "no_reverse_dependency": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

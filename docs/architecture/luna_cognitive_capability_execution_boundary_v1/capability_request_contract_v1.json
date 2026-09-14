@@ -1,0 +1,8 @@
+{
+  "title": "Capability Request Contract v1",
+  "owner": "L2 Cognitive Core Governance",
+  "schema": ["request_id", "source_module", "capability_need", "context", "priority", "constraint", "deadline", "confidence_requirement", "trace_id"],
+  "forbidden_fields": ["model", "provider", "direct_action", "goal_mutation"],
+  "lifecycle": ["Created", "Validated", "Admitted", "Selected", "Completed", "Failed", "Archived"],
+  "rules": {"need_not_provider": true, "owner_required": true, "governance_admission_required": true, "no_direct_model_selection": true}
+}

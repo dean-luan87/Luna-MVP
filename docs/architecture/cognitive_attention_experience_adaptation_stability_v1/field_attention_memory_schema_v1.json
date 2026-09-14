@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Field Attention Memory Schema",
+  "field_context": {
+    "field_id": "required",
+    "field_type": "required",
+    "time_reference": "required",
+    "space_reference": "candidate",
+    "self_capability_reference": "required"
+  },
+  "condition": "required candidate",
+  "observed_pattern": "required candidate",
+  "attention_requirement": "required candidate",
+  "outcome_feedback": "candidate",
+  "supporting_experience": [],
+  "validation_confidence": "required",
+  "pattern_scope": "required",
+  "time_decay": "required",
+  "exceptions": [],
+  "memory_is_not_raw_log": true,
+  "memory_does_not_override_reality": true
+}

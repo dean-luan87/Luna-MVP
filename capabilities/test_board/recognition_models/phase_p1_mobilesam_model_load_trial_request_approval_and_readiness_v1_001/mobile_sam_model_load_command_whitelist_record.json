@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_command_whitelist_record",
+  "mobile_sam_model_load_command_whitelist_record": {
+    "record_id": "mobile_sam_model_load_command_whitelist_v1",
+    "controlled_python_executable": ".venv_model_load_trial/bin/python",
+    "controlled_env_path": ".venv_model_load_trial",
+    "source_code_path_ref": "_tmp_eval_out/p1_controlled_source_install_execution_retry_and_post_review_v1_smoke_v0/source_retry_code_install_execution_records_v1.json",
+    "weight_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "import_target": "mobile_sam",
+    "checkpoint_load_target": "mobile_sam.pt",
+    "command_template": ".venv_model_load_trial/bin/python -c \"import importlib; m = importlib.import_module('mobile_sam'); from mobile_sam import sam_model_registry; model = sam_model_registry['vit_t'](checkpoint='capabilities/model_weights/p1/mobile_sam/mobile_sam.pt'); print('model_object_constructed', type(model).__name__)\"",
+    "no_inference_command_allowed": true,
+    "no_image_input_allowed": true,
+    "no_segmentation_prediction_call_allowed": true,
+    "no_runtime_server_allowed": true,
+    "command_template_only": true,
+    "command_not_executed": true,
+    "model_load_command_template_success_not_model_load_execution": true
+  }
+}

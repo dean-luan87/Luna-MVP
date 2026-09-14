@@ -1,0 +1,33 @@
+{
+  "backend_id": "hydra_mock_v1",
+  "backend_family": "scene_graph_slam",
+  "output_type": "dynamic scene graph / places / objects / agents / rooms",
+  "source_chain": ["hydra_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.76,
+  "backend_origin": "hydra_like_scene_graph_slam_export_mock",
+  "license_ref": "BSD-3-Clause",
+  "license_boundary": "open_verified",
+  "allowed_use": "observation_and_adapter_replay_dryrun",
+  "commercial_use_status": "unknown_until_license_verified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "places": [
+    {"id": "place0", "place_label": "corridor", "position": [1.0, 0.0, 0.0]},
+    {"id": "place1", "place_label": "lobby", "position": [3.0, 0.5, 0.0]}
+  ],
+  "rooms": [
+    {"id": "room0", "room_label": "office", "position": [2.0, 1.0, 0.0]}
+  ],
+  "objects": [
+    {"id": "obj0", "semantic_label": "door", "position": [1.5, 0.0, 0.0]}
+  ],
+  "agents": [
+    {"id": "agent0", "agent_label": "person", "position": [2.5, 0.3, 0.0]}
+  ],
+  "relations": [
+    {"id": "rel0", "subject_ref": "obj0", "object_ref": "room0", "relation": "leads_to"},
+    {"id": "rel1", "subject_ref": "room0", "object_ref": "place1", "relation": "connected_to"}
+  ],
+  "edges": [
+    {"id": "edge0", "from": "place0", "to": "place1", "edge_type": "traversable_hint"}
+  ]
+}

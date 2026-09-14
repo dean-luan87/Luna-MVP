@@ -1,0 +1,41 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "mobile_sam_weight_exclusion_plan_record",
+  "mobile_sam_weight_exclusion_planning_record": {
+    "asset_id": "mobile_sam",
+    "mobile_sam_weight_excluding_checkout_required": true,
+    "full_clone_may_include_committed_checkpoint_weight": true,
+    "weight_files_must_be_excluded_from_checkout_or_blocked": true,
+    "checkpoint_files_must_be_excluded_from_checkout_or_blocked": true,
+    "large_binary_files_must_be_detected_before_checkout": true,
+    "git_lfs_must_be_blocked_or_explicitly_scoped": true,
+    "sparse_checkout_or_archive_filtering_required_if_supported": true,
+    "allowed_file_patterns_must_be_defined_before_execution": true,
+    "blocked_file_patterns_must_include_weight_checkpoint_extensions": true,
+    "blocked_file_patterns": [
+      "*.pth",
+      "*.pt",
+      "*.ckpt",
+      "*.safetensors",
+      "*.onnx",
+      "*.bin",
+      "*.h5",
+      "*.pb"
+    ],
+    "weight_excluding_checkout_plan_required_before_retry": true,
+    "weight_excluding_checkout_plan_success_not_weight_download_approval": true,
+    "weight_download_allowed": false
+  }
+}

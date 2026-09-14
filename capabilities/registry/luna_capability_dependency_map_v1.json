@@ -1,0 +1,356 @@
+{
+    "map_version": "v1",
+    "last_updated": "2026-07-17",
+    "dependency_edges": [
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "depends_on": "luna.task_manager",
+            "dependency_type": "task_context_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_local_task_context",
+            "unavailable_behavior": "mark_task_context_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "field_state_context",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_api_v1.py",
+            "fallback_behavior": "use_local_field_snapshot",
+            "unavailable_behavior": "mark_field_state_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "vision_request_handoff",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "keep_candidate_only_visual_request",
+            "unavailable_behavior": "block_visual_handoff_candidate",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "depends_on": "luna.model_manager",
+            "dependency_type": "provider_selection",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_no_eligible_model_candidate",
+            "unavailable_behavior": "mark_provider_resolution_unavailable",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "depends_on": "luna.observation_manager",
+            "dependency_type": "observation_request_handoff",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "fallback_behavior": "keep_result_link_contract_only",
+            "unavailable_behavior": "mark_observation_handoff_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_state_read_model",
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "contract_dependency",
+            "required": true,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+            "fallback_behavior": "return_state_unavailable_candidate_only",
+            "unavailable_behavior": "block_controlled_read_runtime",
+            "confidence": "governed"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "visual_navigation_evidence",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "consume_ocr_or_map_hints",
+            "unavailable_behavior": "degrade_visual_assessment",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.task_manager",
+            "dependency_type": "task_handoff_contract",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "fallback_behavior": "emit_local_task_progress_candidate",
+            "unavailable_behavior": "keep_navigation_local_progress_only",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.observation_manager",
+            "dependency_type": "observation_candidate_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "fallback_behavior": "consume_route_and_map_evidence_only",
+            "unavailable_behavior": "degrade_to_non_observation_navigation_evidence",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "state_projection_context",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_api_v1.py",
+            "fallback_behavior": "use_navigation_local_context",
+            "unavailable_behavior": "mark_state_projection_unavailable",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "ocr_navigation_evidence",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "fallback_behavior": "consume_visual_or_map_hints",
+            "unavailable_behavior": "degrade_text_assessment",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "candidate_only_local_gate",
+            "unavailable_behavior": "block_fact_transition",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.protocol_manager",
+            "dependency_type": "protocol_contract_validation",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "fallback_behavior": "use_local_contract_assumption",
+            "unavailable_behavior": "mark_protocol_check_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "observation_signal",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "use_existing_observation_candidates",
+            "unavailable_behavior": "degrade_to_non_visual_observation_path",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "depends_on": "luna.task_manager",
+            "dependency_type": "task_context_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_minimal_observation_context",
+            "unavailable_behavior": "emit_context_incomplete",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "text_evidence_signal",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "fallback_behavior": "degrade_to_vision_only_observation_path",
+            "unavailable_behavior": "emit_evidence_partial",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "admission_gate_handoff",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "emit_handoff_candidate_for_later_admission",
+            "unavailable_behavior": "block_fact_transition",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "depends_on": "luna.protocol_manager",
+            "dependency_type": "protocol_contract_validation",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "fallback_behavior": "use_local_contract_assumption",
+            "unavailable_behavior": "mark_protocol_check_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "depends_on": "luna.speech_manager",
+            "dependency_type": "speech_handoff_consumer",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "fallback_behavior": "keep_text_guidance_only",
+            "unavailable_behavior": "mute_runtime_speech_path",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.model_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_admission_v1.py",
+            "fallback_behavior": "apply_local_admission_policy",
+            "unavailable_behavior": "degrade_to_internal_policy_only",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.model_manager",
+            "depends_on": "luna.system_diagnostics",
+            "dependency_type": "diagnostics_contract",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py",
+            "fallback_behavior": "emit_module_local_diagnostics",
+            "unavailable_behavior": "keep_minimal_health_summary",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "depends_on": "luna.model_manager",
+            "dependency_type": "capability_routing",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_capability_router_v1.py",
+            "fallback_behavior": "fallback_candidate_or_human_review",
+            "unavailable_behavior": "block_requested_capability_route",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.vision_manager",
+            "depends_on": "luna.model_manager",
+            "dependency_type": "provider_selection",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "fallback_behavior": "use_fixed_provider_candidate",
+            "unavailable_behavior": "degrade_to_single_provider_path",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.vision_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py",
+            "fallback_behavior": "apply_local_admission_policy",
+            "unavailable_behavior": "degrade_to_local_gate_only",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.vision_manager",
+            "depends_on": "luna.system_diagnostics",
+            "dependency_type": "diagnostics_contract",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py",
+            "fallback_behavior": "emit_module_local_diagnostics",
+            "unavailable_behavior": "keep_minimal_diagnostics",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.ocr_manager",
+            "depends_on": "luna.model_manager",
+            "dependency_type": "provider_selection",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "fallback_behavior": "use_fixed_ocr_provider_candidate",
+            "unavailable_behavior": "degrade_to_local_ocr_only",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.ocr_manager",
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "roi_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "run_ocr_with_direct_input_when_available",
+            "unavailable_behavior": "skip_roi_bridged_ocr_path",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.ocr_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_request_governance_v1.py",
+            "fallback_behavior": "apply_local_request_governance",
+            "unavailable_behavior": "keep_candidate_only_gate",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "evidence_consume",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "fallback_behavior": "fallback_to_non_ocr_observation_path",
+            "unavailable_behavior": "mark_ocr_evidence_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.field_state_reducer",
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "admitted_event_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_api_v1.py",
+            "fallback_behavior": "reduce_without_ocr_derived_event",
+            "unavailable_behavior": "keep_non_ocr_admitted_event_path",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.speech_manager",
+            "depends_on": "luna.model_manager",
+            "dependency_type": "provider_selection",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "fallback_behavior": "use_default_tts_provider_candidate",
+            "unavailable_behavior": "degrade_to_cached_or_local_tts",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "state_context_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_facade_v1.py",
+            "fallback_behavior": "continue_with_context_snapshot",
+            "unavailable_behavior": "mark_unresolved_context_item",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "depends_on": "luna.protocol_manager",
+            "dependency_type": "protocol_contract_validation",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "fallback_behavior": "use_local_protocol_contract_assumption",
+            "unavailable_behavior": "defer_protocol_sensitive_route_decision",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.protocol_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "degrade_to_local_protocol_admission_policy",
+            "unavailable_behavior": "mark_protocol_admission_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "apply_task_local_admission_policy",
+            "unavailable_behavior": "defer_task_execution_candidate",
+            "confidence": "inferred"
+        }
+    ]
+}

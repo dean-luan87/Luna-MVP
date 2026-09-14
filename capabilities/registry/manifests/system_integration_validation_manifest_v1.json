@@ -1,0 +1,92 @@
+{
+    "capability_id": "luna.system_integration_validation",
+    "capability_name": "System Integration Validation",
+    "domain": "midplatform.system_validation",
+    "owner_layer": "midplatform",
+    "responsibility": "Validate the controlled main-chain handoff across Task Manager, Field Perception Orchestrator, Vision Manager, Model Manager, Observation Manager, and Field State Reducer using candidate-only contracts.",
+    "lifecycle_status": "functional_module_ready",
+    "module_version": "v1",
+    "api_version": "v1",
+    "input_contract": {
+        "summary": "Controlled synthetic system-chain scenarios and handoff assertions.",
+        "refs": [
+            "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+        ]
+    },
+    "output_contract": {
+        "summary": "System integration validation report with per-case handoff refs, boundary confirmation, deterministic replay, and pass/fail summary.",
+        "refs": [
+            "_tmp_eval_out/system_integration_validation_v1_smoke_v0/system_integration_validation_v1.json"
+        ]
+    },
+    "dependencies": [],
+    "dependents": [],
+    "module_api": {
+        "path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+        "exists": true
+    },
+    "implementation_path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+    "integration_runner": {
+        "path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+        "exists": true,
+        "runner_type": "smoke"
+    },
+    "diagnostics_support": {
+        "supported": true,
+        "refs": [
+            "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+        ]
+    },
+    "trace_support": {
+        "supported": true,
+        "refs": [
+            "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+        ]
+    },
+    "replay_support": {
+        "supported": true,
+        "refs": [
+            "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+        ]
+    },
+    "persistence_authority": false,
+    "fact_admission_authority": false,
+    "action_execution_authority": false,
+    "runtime_authority": false,
+    "replacement_policy": "planned_replacement",
+    "upgrade_policy": "evidence_gated",
+    "deprecation_policy": "announce_and_freeze_dependents",
+    "known_limitations": [
+        "candidate-only validation boundary",
+        "no real model execution",
+        "no real visual evidence generation",
+        "no real field state write",
+        "no runtime loop activation"
+    ],
+    "ready_evidence": {
+        "total_cases": 6,
+        "passed_cases": 6,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "boundary_preserved": true,
+        "evidence_ref": "_tmp_eval_out/system_integration_validation_v1_smoke_v0/system_integration_validation_v1.json",
+        "integration_pass": true,
+        "scenario_count": 6,
+        "unhandled_exceptions": 0,
+        "scenarios": [
+            "normal_handoff",
+            "degraded_budget",
+            "no_eligible_model",
+            "observation_blocked",
+            "invalid_task",
+            "deterministic_replay"
+        ],
+        "candidate_only": true,
+        "no_real_model_execution": true,
+        "no_real_field_state_write": true
+    },
+    "internal_components": [],
+    "last_updated": "2026-07-17"
+}

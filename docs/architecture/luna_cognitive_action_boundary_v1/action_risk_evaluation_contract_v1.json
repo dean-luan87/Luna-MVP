@@ -1,0 +1,8 @@
+{
+  "title": "Action Risk Evaluation Contract v1",
+  "owner": "Action Boundary Governance",
+  "dimensions": ["Physical Risk", "Social Risk", "Privacy Risk", "Resource Risk"],
+  "schema": ["risk_level", "risk_reason", "required_confirmation", "dimension_scores", "uncertainty", "trace_id"],
+  "risk_levels": ["Low", "Medium", "High", "Critical", "Unknown"],
+  "rules": {"risk_required_before_permission": true, "unknown_escalates": true, "high_risk_confirmation_required": true, "risk_not_decision": true}
+}

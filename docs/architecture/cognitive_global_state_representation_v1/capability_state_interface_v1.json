@@ -1,0 +1,26 @@
+{
+  "title": "Global State Capability State Interface v1",
+  "contract_type": "Capability State Projection",
+  "input": {
+    "capability_references": [],
+    "capability_states": [],
+    "confidence": {},
+    "hardware_state_reference": null,
+    "capability_version": "candidate",
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "capability_state": {},
+    "availability": "candidate",
+    "degradation": [],
+    "confidence_summary": {}
+  },
+  "boundary": {
+    "global_state_does_not_invoke_capability": true,
+    "global_state_does_not_select_provider": true,
+    "capability_owner_retains_authority": true,
+    "capability_state_is_reference_only": true,
+    "unknowns_are_preserved": true
+  }
+}

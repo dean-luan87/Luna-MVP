@@ -1,0 +1,12 @@
+{
+  "control_id": "invalid_unlicensed_model_enabled_001",
+  "policy_id": "model_enable",
+  "model_family": "object_detection_completion_family",
+  "license_ref": "license:unknown_unverified",
+  "allowed_use": "candidate_only",
+  "availability_state": "contract_only",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "enable_confidence_policy_v1",
+  "fallback_plan": "fallback_to_disabled_state_with_record",
+  "unlicensed_model_enabled": true
+}

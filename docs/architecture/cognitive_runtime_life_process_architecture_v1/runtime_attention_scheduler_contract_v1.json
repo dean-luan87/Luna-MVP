@@ -1,0 +1,12 @@
+{
+  "contract_name": "Runtime Attention Scheduler Contract v1",
+  "attention_request": {},
+  "attention_allocation_candidate": {},
+  "resource_constraint": {},
+  "field_context": {},
+  "task_context": {},
+  "risk": {},
+  "attention_governance_owns_policy": true,
+  "runtime_does_not_allocate_attention_directly": true,
+  "unknowns_are_preserved": true
+}

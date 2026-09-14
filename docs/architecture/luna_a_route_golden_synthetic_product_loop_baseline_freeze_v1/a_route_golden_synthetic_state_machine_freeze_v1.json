@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "states":["IDLE","INPUT_RECEIVED","OBSERVATION_REQUIRED","OBSERVING","OBSERVATION_READY","WORLD_CONTEXT_READY","COGNITION_READY","DECISION_READY","TASK_READY","ACTION_READY","EXECUTION_PENDING","EXECUTING","RESULT_READY","EVALUATING","REOBSERVATION_REQUIRED","RECONSIDERING","NEXT_CYCLE_READY","COMPLETED","DEFERRED","FAILED","ABORTED"],
+  "terminal_states":["COMPLETED","FAILED","ABORTED"],
+  "transition_semantics_ref":"docs/architecture/luna_a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_state_contract_v1.json",
+  "frozen_guards":["no_hidden_retry","completed_cycle_immutable","aborted_cycle_immutable","bounded_reconsideration","bounded_re_observation"],
+  "redesign_allowed_during_replacement":false
+}

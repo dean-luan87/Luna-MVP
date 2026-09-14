@@ -1,0 +1,17 @@
+{
+    "artifact": "decision_reversibility_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "reversibility_levels": [
+        "REVERSIBLE",
+        "PARTIALLY_REVERSIBLE",
+        "IRREVERSIBLE",
+        "UNKNOWN_REVERSIBILITY"
+    ],
+    "irreversible_escalation_rules": {
+        "confirmation_requirement_stronger": true,
+        "evidence_requirement_stronger": true,
+        "safety_permission_gate_stronger": true,
+        "uncertainty_tolerance_lower": true
+    },
+    "planning_note": "Algorithmic thresholding is intentionally unfrozen in planning."
+}

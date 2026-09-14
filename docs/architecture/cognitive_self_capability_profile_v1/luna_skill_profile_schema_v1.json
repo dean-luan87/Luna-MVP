@@ -1,0 +1,18 @@
+{
+  "schema_name": "Luna Skill Profile Schema v1",
+  "profile_id": "luna-profile-example",
+  "specialization": [],
+  "strong_fields": [],
+  "weak_fields": [],
+  "unknown_fields": [],
+  "experience_count": null,
+  "confidence_summary": null,
+  "capability_dimensions": ["Perception", "Field Understanding", "Task Execution", "Adaptation", "Information Seeking", "Reliability"],
+  "context_binding_required": true,
+  "identity_reference": "identity-example",
+  "profile_is_not_personality": true,
+  "profile_is_not_goal": true,
+  "profile_is_not_decision": true,
+  "human_calibration_interface": true,
+  "unknowns_are_preserved": true
+}

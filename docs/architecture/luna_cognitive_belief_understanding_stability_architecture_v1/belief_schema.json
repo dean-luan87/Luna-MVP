@@ -1,0 +1,11 @@
+{
+  "schema_id": "belief_object_v1",
+  "owner": "Belief Layer",
+  "fields": ["belief_id", "content", "source_evidence", "supporting_evidence", "contradicting_evidence", "confidence", "validity_range", "context", "field_ref", "related_schema", "related_memory", "uncertainty", "provenance"],
+  "required_binding": ["source_evidence", "supporting_evidence", "contradicting_evidence", "confidence", "validity_range", "context", "field_ref", "related_schema", "related_memory", "uncertainty", "provenance"],
+  "belief_is_reality": false,
+  "belief_is_knowledge": false,
+  "belief_is_memory": false,
+  "candidate_only": true,
+  "field_bound": true
+}

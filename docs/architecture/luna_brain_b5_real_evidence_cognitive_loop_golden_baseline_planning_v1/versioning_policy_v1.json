@@ -1,0 +1,6 @@
+{
+  "version_components":["brain_golden_baseline_version","owner_matrix_version","contract_set_version","regression_index_version","negative_guard_version","trace_contract_version"],
+  "rule":"components remain independently traceable; no opaque single model_version",
+  "incompatible_semantics":"new contract/baseline version required",
+  "old_baseline":"remains auditable for replay and comparison"
+}

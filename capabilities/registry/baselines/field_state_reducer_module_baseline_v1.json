@@ -1,0 +1,108 @@
+{
+    "capability_id": "luna.field_state_reducer",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/core/field_state_reducer/module/"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_output_builder_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_diagnostics_v1.py",
+            "tools/evaluation/midplatform/run_field_state_reducer_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/core/field_state_reducer/module/",
+        "entrypoint": "module package entrypoints",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Reduce admitted field events to field state candidate under policy/governance boundaries",
+        "Produce projection candidate, diagnostics, trace, replay key"
+    ],
+    "forbidden_authorities": [
+        "persistence_authority",
+        "fact_admission_authority",
+        "action_execution_authority",
+        "runtime_authority"
+    ],
+    "reused_assets": [
+        "capabilities/midplatform/core/field_state_reducer/",
+        "docs/architecture/luna_field_state_reducer_technical_planning_v1/field_state_type_registry_v1.json"
+    ],
+    "extended_assets": [],
+    "internal_components": [
+        "policy_evaluation",
+        "policy_selection",
+        "state_reduction",
+        "trace_builder",
+        "replay_builder"
+    ],
+    "legacy_assets": [
+        "_tmp_eval_out/_latest_module_integration_report.json"
+    ],
+    "duplicate_risks": [
+        "Do not promote internal reducer components to top-level capability"
+    ],
+    "dependency_contracts": [],
+    "input_contract_ref": [
+        "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+        "docs/architecture/luna_field_state_reducer_technical_planning_v1/field_state_type_registry_v1.json"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+        "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_output_builder_v1.py"
+    ],
+    "lifecycle_contract_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_reducer/field_state_reducer_trace_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/state_reduction/state_reduction_provenance_replay_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "total_cases": 16,
+        "passed_cases": 16,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "boundary_preserved": true,
+        "evidence_ref": "_tmp_eval_out/_latest_module_integration_report.json"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline only in anomaly diagnostic workflow",
+            "Compare module API and formal mainline with registry/manifest",
+            "Verify contract refs and ready evidence links",
+            "If mismatch remains, open REBASELINE workflow"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

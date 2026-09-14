@@ -1,0 +1,14 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-Planning-v1-001",
+    "planning_completed": true,
+    "probe_execution_allowed": false,
+    "import_allowed": false,
+    "pip_allowed": false,
+    "subprocess_allowed": false,
+    "runtime_allowed": false,
+    "candidate_only": true,
+    "not_fact": true,
+    "blocker_count": 0,
+    "final_decision": "EXPLICIT_DEPENDENCY_PROBE_PLANNING_GO",
+    "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-DryRun-v1-001"
+}

@@ -1,0 +1,13 @@
+{
+  "capability_requirement": "VISION_DETECTION",
+  "model_manager_reference": "existing Field Perception model requirement and Model Manager binding adapters",
+  "provider_candidate_reference_required": true,
+  "model_candidate_reference_required": true,
+  "model_admission_reference_required": true,
+  "model_availability_is_execution_authority": false,
+  "provider_candidate_is_invocation": false,
+  "local_model_only": true,
+  "network_download_allowed": false,
+  "no_admission": "PROVIDER_NOT_ADMITTED",
+  "missing_model": "MODEL_NOT_AVAILABLE"
+}

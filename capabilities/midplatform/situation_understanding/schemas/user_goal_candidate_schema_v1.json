@@ -1,0 +1,19 @@
+{
+  "schema_id": "UserGoalCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["goal_type", "confidence", "source", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "goal_text_optional": { "type": "string" },
+    "goal_type": {
+      "enum": ["read", "navigate", "find", "avoid", "identify", "understand", "monitor", "unknown"]
+    },
+    "confidence": { "type": "number" },
+    "source": { "enum": ["user_command", "task_context", "inferred", "unknown"] },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

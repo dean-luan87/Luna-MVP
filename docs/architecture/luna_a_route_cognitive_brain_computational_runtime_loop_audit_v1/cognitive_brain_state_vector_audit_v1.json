@@ -1,0 +1,21 @@
+{
+  "artifact":"cognitive_brain_state_vector_audit_v1",
+  "canonical_type":"capabilities/midplatform/core/cognitive_state_formation/cognitive_state_vector_types_v1.py:CognitiveStateVectorCandidateV1",
+  "classification":"B_STRUCTURED_SEMANTIC_STATE_CANDIDATE_NOT_NUMERICAL_VECTOR",
+  "fields":["attention_distribution_refs","hypothesis_state_refs","uncertainty_level_candidate","conflict_level_candidate","world_stability_candidate","intent_pressure_candidate","resource_pressure_candidate","current_world_ref","trace_ref","provenance_refs"],
+  "dimensions":"named semantic fields; exact numerical dimensions absent",
+  "ranges":"ABSENT for current code type",
+  "units":"ABSENT",
+  "normalization":"ABSENT",
+  "initialization":"constructed by controlled state formation engine from synthetic request/scenario",
+  "update_function":"ABSENT; engine builds a new candidate, no x(t+1) transition function",
+  "temporal_evolution":"refs only; no numerical time step/decay",
+  "coupling":"refs between attention/hypothesis/world/intent, no cross-variable equation",
+  "missing_value":"unknown/uncertainty refs, not numerical missing-value semantics",
+  "uncertainty":"string candidate level and refs",
+  "user_specific_parameters":"ABSENT executable",
+  "environment_specific_parameters":"ABSENT executable",
+  "planning_reference":"docs/architecture/cognitive_brain_architecture_v1/cognitive_state_vector_model.md proposes bounded continuous components but explicitly remains architecture-only",
+  "maturity":"M4_CONTROLLED_SKELETON",
+  "finding":"Do not call current object a mathematical vector or dynamic state model."
+}

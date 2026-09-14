@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "provider_autonomous_continuous_execution":false,
+  "forbidden_autonomy_triggers":["camera frames exist","audio frames exist","provider/model availability","previous detection succeeded","previous OCR succeeded","previous SLAM succeeded","Observation Gateway admitted evidence"],
+  "required_control_chain":["Information Need","Observation Demand","Attention / Scope","Capability Requirement","Admission","Bounded Provider Session","Evidence Sufficiency","Continue / Redirect / Switch / Stop"],
+  "safety_exception":"Only an explicit, bounded, policy-governed, resource-governed, traceable and revocable exception may be added later.",
+  "source_contract_ref":"docs/architecture/luna_a_route_active_observation_controlled_integration_v1/provider_autonomy_contract_v1.json",
+  "regression_critical":true
+}

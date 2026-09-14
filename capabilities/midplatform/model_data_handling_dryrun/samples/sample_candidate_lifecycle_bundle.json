@@ -1,0 +1,25 @@
+{
+  "handling_id": "candidate_lifecycle_001",
+  "policy_id": "candidate_lifecycle",
+  "candidate_refs": [
+    "candidate_state:accepted:obj_001",
+    "candidate_state:normalized:reg_001",
+    "candidate_state:conflicted:label_chair_vs_stool",
+    "candidate_state:uncertain:track_lowconf_001",
+    "candidate_state:degraded:depth_spatial_hint_family",
+    "candidate_state:expired:old_frame_candidate_001",
+    "candidate_state:blocked:untrusted_candidate_001"
+  ],
+  "model_family_refs": ["object_detection_completion_family", "segmentation_family", "tracking_family", "depth_spatial_hint_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "lifecycle_confidence_policy_v1",
+  "fallback_plan": "fallback_to_safe_blocked_state_with_record",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "boundaries": [
+    "blocked_candidate_must_not_be_revived_without_governance",
+    "expired_candidate_must_not_affect_current_field_task_guidance_path"
+  ]
+}

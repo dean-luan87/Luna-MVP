@@ -1,0 +1,29 @@
+{
+    "artifact": "cognitive_flow_trace_provenance_contract_v1",
+    "required_fields": [
+        "root_cycle_trace_id",
+        "cycle_id",
+        "previous_cycle_id",
+        "context_refs",
+        "pcn_refs",
+        "intent_refs",
+        "attention_refs",
+        "hypothesis_refs",
+        "current_world_ref",
+        "cognitive_state_vector_ref",
+        "regulation_candidate_ref",
+        "field_refs",
+        "causal_refs",
+        "transition_trace",
+        "interrupt_trace",
+        "reconsideration_trace",
+        "provenance_refs",
+        "version"
+    ],
+    "rules": {
+        "owner_traces_immutable": true,
+        "flow_trace_links_only": true,
+        "previous_cycle_link_optional_but_structured": true,
+        "reverse_lookup_supported": true
+    }
+}

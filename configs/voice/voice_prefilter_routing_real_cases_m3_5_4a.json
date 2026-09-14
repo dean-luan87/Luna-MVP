@@ -1,0 +1,31 @@
+{
+  "version": "m3-5-4a",
+  "description": "M3.5.4a mixed 边界专项验证：仅包含 C1_mixed_nav 与 C7_mixed_sleep_park_nav（不改 prefilter 规则）。",
+  "cases": [
+    {
+      "id": "C1_mixed_nav",
+      "bucket": "complex",
+      "text": "我有点焦虑，想去安静的书店，帮我导航过去。",
+      "mixed_keywords": [
+        "焦虑"
+      ],
+      "heuristic": {
+        "unsupported_risk": false,
+        "expect_min_plan_steps": null
+      }
+    },
+    {
+      "id": "C7_mixed_sleep_park_nav",
+      "bucket": "complex",
+      "text": "最近睡眠不太好，想去公园走走散心，帮我导航到附近适合散步的城市公园。",
+      "mixed_keywords": [
+        "睡眠"
+      ],
+      "heuristic": {
+        "unsupported_risk": false,
+        "expect_min_plan_steps": null
+      }
+    }
+  ]
+}
+

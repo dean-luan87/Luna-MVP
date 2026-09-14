@@ -1,0 +1,42 @@
+{
+  "title": "Intent Governance Contract v1",
+  "contract_type": "Intent Admission and Authority Governance",
+  "admission_checks": [
+    "source permission", "field binding", "role and relationship context",
+    "self capability and state", "situation compatibility",
+    "goal/task compatibility", "drive/value constraints", "risk", "unknown",
+    "provenance", "expiry"
+  ],
+  "authority": {
+    "source": "may propose Intent Candidate",
+    "intent_layer": "may qualify and bind candidate",
+    "attention": "owns resource allocation",
+    "goal_owner": "owns Goal admission and continuity",
+    "task_owner": "owns Task continuity",
+    "brain": "owns interpretation, goal review, value review, and final Decision authority",
+    "provider": "may output Evidence only",
+    "model": "may output Evidence Candidate only"
+  },
+  "boundary": {
+    "no_automatic_goal_generation": true,
+    "no_autonomous_will": true,
+    "no_personality_driven_intent": true,
+    "no_emotion_decision": true,
+    "no_action": true,
+    "no_action_runtime": true,
+    "no_model_invocation": true,
+    "no_hardware_invocation": true,
+    "no_reality_mutation": true,
+    "no_provider_created_intent": true,
+    "no_silent_unknown_completion": true,
+    "no_automatic_conflict_resolution": true,
+    "b_route_is_placeholder_only": true,
+    "unknowns_are_preserved": true
+  },
+  "change_control": {
+    "constitution_review_required": true,
+    "protocol_version_required": true,
+    "brain_boundary_review_required": true,
+    "governance_change_is_candidate_based": true
+  }
+}

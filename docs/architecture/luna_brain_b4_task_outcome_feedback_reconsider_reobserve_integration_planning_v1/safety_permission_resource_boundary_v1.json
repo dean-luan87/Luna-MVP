@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_safety_permission_resource_boundary_v1",
+  "rules":["previous success does not authorize re-execution", "Outcome does not bypass safety", "Outcome does not bypass permission", "resource exhaustion may defer/block", "runtime readiness remains separate", "Task lifecycle remains canonical"],
+  "safety":"Action/Runtime gates remain authoritative.",
+  "permission":"Action/Runtime recheck remains required; feedback is not authorization.",
+  "resource":"Task/Action/Runtime constraints remain references and candidate blockers.",
+  "mutation":false
+}

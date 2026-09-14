@@ -1,0 +1,26 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S1-Real-User-Input-Controlled-Replacement-v1-001",
+  "owner_decision": "REUSE_A_ROUTE_ORCHESTRATION_GOVERNANCE",
+  "canonical_product_input_contract": "ProductLoopInputV1",
+  "canonical_owner": "A Route Orchestration Governance",
+  "new_semantic_owner": false,
+  "assets": [
+    {"classification": "A", "asset": "ProductLoopInputV1", "location": "capabilities/midplatform/core/a_route_orchestration/integration/a_route_product_loop_integration_core_types_v1.py", "decision": "direct reuse"},
+    {"classification": "A", "asset": "A Route Product Loop Integration Engine", "location": "capabilities/midplatform/core/a_route_orchestration/integration/a_route_product_loop_integration_engine_v1.py", "decision": "unchanged downstream consumer"},
+    {"classification": "A", "asset": "S0 synthetic fixtures and controlled Runner", "location": "capabilities/midplatform/core/a_route_orchestration/integration/a_route_product_loop_integration_fixture_v1.py", "decision": "retained as golden regression"},
+    {"classification": "B", "asset": "ASR final text event contract", "location": "capabilities/voice/input/asr_final_text_event_contract_v0.py", "decision": "future channel adapter reference; no ASR execution"},
+    {"classification": "B", "asset": "Voice input bridge adapter", "location": "capabilities/voice/bridge/voice_input_bridge_adapter.py", "decision": "channel-specific adapter reference; not ProductLoopInput owner"},
+    {"classification": "C", "asset": "Voice semantic/runtime paths that route or interpret outside A Route", "location": "capabilities/voice/", "decision": "do not promote to canonical S1 ingress"},
+    {"classification": "D", "asset": "Microphone, ASR model, camera, provider, UI and TTS execution", "location": "capabilities/voice/ and capabilities/vision/", "decision": "S2+ or deferred"}
+  ],
+  "untouched_assets": [
+    "S0 freeze package",
+    "A Route Product Loop Integration Engine",
+    "A Route Product Loop Integration Fixture",
+    "A Route Product Loop Integration Runner",
+    "all existing semantic owners"
+  ],
+  "historical_bypass_risk": "channel-specific voice bridges and semantic converters must not bypass ProductLoopInputV1",
+  "s1_real_definition": "an externally supplied text argument is accepted by the adapter; downstream components remain controlled synthetic",
+  "provenance_grants_authority": false
+}

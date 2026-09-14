@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Negative Guards",
+  "guards":[
+    {"guard":"no_field_runtime","forbidden":"Field Runtime implementation","status":"frozen"},
+    {"guard":"no_world_model","forbidden":"World Model implementation","status":"frozen"},
+    {"guard":"no_emotion_runtime","forbidden":"Emotion Runtime","status":"frozen"},
+    {"guard":"no_role_runtime","forbidden":"Role Runtime","status":"frozen"},
+    {"guard":"no_memory_consolidation","forbidden":"Memory Consolidation","status":"frozen"},
+    {"guard":"no_learning","forbidden":"Learning implementation","status":"frozen"},
+    {"guard":"no_b_simulation","forbidden":"B Route simulation engine","status":"frozen"},
+    {"guard":"no_action","forbidden":"Action execution","status":"frozen"},
+    {"guard":"no_provider_authority","forbidden":"Provider direct Field write","status":"frozen"}
+  ],
+  "rules":{"no_runtime_activation":true,"no_external_side_effect":true,"no_check_weakening":true}
+}

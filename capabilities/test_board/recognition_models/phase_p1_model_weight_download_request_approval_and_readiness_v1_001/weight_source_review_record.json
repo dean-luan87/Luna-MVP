@@ -1,0 +1,42 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_source_review_record",
+  "weight_source_review_records": [
+    {
+      "asset_id": "mobile_sam",
+      "weight_source_known": true,
+      "weight_source_ref": "weights/mobile_sam.pt at pinned MobileSAM commit f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "weight_source_review_completed": true,
+      "expected_size_bytes": 40728226,
+      "hash_currently_known": false,
+      "hash_must_be_computed_after_download": true,
+      "source_license_ref": "Apache-2.0 repository license",
+      "weight_download_ready_candidate": true,
+      "requires_separate_weight_source_resolution": false
+    },
+    {
+      "asset_id": "byte_track",
+      "weight_source_known": false,
+      "weight_source_ref": null,
+      "weight_source_review_completed": false,
+      "expected_size_bytes": 0,
+      "hash_currently_known": false,
+      "hash_must_be_computed_after_download": true,
+      "source_license_ref": "MIT repository license",
+      "weight_download_ready_candidate": false,
+      "requires_separate_weight_source_resolution": true
+    }
+  ]
+}

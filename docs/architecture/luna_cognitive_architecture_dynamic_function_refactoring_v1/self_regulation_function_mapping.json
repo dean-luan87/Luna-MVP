@@ -1,0 +1,15 @@
+{
+  "mapping_id": "self_regulation_function_mapping_v1",
+  "parent_function": "Self Regulation Function",
+  "subfunctions": ["Rhythm Controller", "Resource Budget", "Risk Boundary", "Evolution Permission"],
+  "inputs": ["Self State", "Resource State", "Capability Health", "Self Rhythm", "Constitution"],
+  "outputs": ["Attention Budget Candidate", "Exploration Budget Candidate", "Compute Budget Candidate", "Risk Threshold Candidate", "Learning Permission Candidate"],
+  "self_rhythm_is_subfunction": true,
+  "outputs_are_hints": true,
+  "does_not_select_decision_alone": true,
+  "does_not_switch_model": true,
+  "does_not_control_hardware": true,
+  "does_not_modify_identity": true,
+  "does_not_modify_constitution": true,
+  "candidate_only": true
+}

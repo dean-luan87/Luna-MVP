@@ -1,0 +1,24 @@
+{
+    "artifact": "causal_memory_prior_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "memory_owner": "Memory Governance",
+    "prior_roles": [
+        "historical_pattern_reference",
+        "prior_likelihood_candidate",
+        "context_match_reference",
+        "disconfirming_history_reference"
+    ],
+    "allowed_effects": [
+        "support_hypothesis_candidate",
+        "oppose_hypothesis_candidate",
+        "introduce_alternative_candidate",
+        "raise_confounder_candidate"
+    ],
+    "forbidden": [
+        "memory_prior_equals_causal_fact",
+        "causal_mutates_memory",
+        "memory_creates_causal_result_directly"
+    ],
+    "cross_write": false
+}

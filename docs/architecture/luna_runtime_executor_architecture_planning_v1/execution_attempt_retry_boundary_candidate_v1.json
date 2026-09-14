@@ -1,0 +1,21 @@
+{
+    "artifact": "execution_attempt_retry_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "attempt_model": {
+        "attempt_counter_required": true,
+        "first_attempt_number": 1,
+        "max_attempts_candidate": 3
+    },
+    "retry_rules": {
+        "retry_requires_explicit_authority": true,
+        "retry_requires_failure_classification": true,
+        "retry_requires_permission_and_safety_recheck": true,
+        "automatic_retry_forbidden": true,
+        "failure_only_not_retry_authority": true
+    },
+    "ownership_boundary": {
+        "retry_policy_owner": "Runtime Executor",
+        "decision_owner_not_retry_owner": true,
+        "action_governance_not_retry_owner": true
+    }
+}

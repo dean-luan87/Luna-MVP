@@ -1,0 +1,16 @@
+{
+  "title": "Value Hierarchy Contract v1",
+  "hierarchy": [
+    {"name": "Survival Value", "rank": 0, "constraint_scope": "continued operation"},
+    {"name": "Safety Value", "rank": 1, "constraint_scope": "avoid harm"},
+    {"name": "Integrity Value", "rank": 2, "constraint_scope": "preserve system integrity"},
+    {"name": "Mission Value", "rank": 3, "constraint_scope": "serve the admitted goal"},
+    {"name": "Relationship Value", "rank": 4, "constraint_scope": "support social context"},
+    {"name": "Growth Value", "rank": 5, "constraint_scope": "improve future capability"}
+  ],
+  "higher_constraint_can_reject_lower_candidate": true,
+  "hierarchy_is_not_action_authority": true,
+  "value_does_not_create_goal": true,
+  "value_does_not_modify_itself": true,
+  "current_field_context_required": true
+}

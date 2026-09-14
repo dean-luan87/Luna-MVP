@@ -1,0 +1,24 @@
+{
+  "handling_id": "candidate_normalization_001",
+  "policy_id": "candidate_normalization",
+  "candidate_refs": [
+    "object_evidence_candidate:obj_001",
+    "region_evidence_candidate:reg_001",
+    "track_evidence_candidate:track_001",
+    "spatial_hint_candidate:sh_001"
+  ],
+  "model_family_refs": ["object_detection_completion_family", "segmentation_family", "tracking_family", "depth_spatial_hint_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "normalization_confidence_policy_v1",
+  "fallback_plan": "fallback_to_raw_candidate_without_normalized_envelope",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "normalized_envelope_fields": [
+    "candidate_id", "candidate_type", "source_model_family", "source_chain", "confidence",
+    "confidence_policy_ref", "origin_ref", "adapter_mapping_ref", "timestamp_or_frame_ref",
+    "candidate_status", "allowed_use", "commercial_use_status", "fallback_plan", "unavailable_record_policy"
+  ],
+  "boundaries": ["normalization_does_not_change_candidate_into_fact"]
+}

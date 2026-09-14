@@ -1,0 +1,9 @@
+{
+  "phase": "Phase-Luna-A-Route-Orchestration-Backbone-Controlled-Integration-v1-001",
+  "new_code_directory": "capabilities/midplatform/core/a_route_orchestration/",
+  "new_documentation_directory": "docs/architecture/luna_a_route_orchestration_backbone_controlled_integration_v1/",
+  "new_code_files": ["__init__.py", "a_route_orchestration_error_types_v1.py", "a_route_orchestration_core_types_v1.py", "a_route_orchestration_trace_types_v1.py", "a_route_orchestration_protocol_v1.py", "a_route_orchestration_ownership_guard_v1.py", "a_route_orchestration_static_validators_v1.py", "a_route_orchestration_engine_v1.py", "a_route_orchestration_fixture_v1.py", "run_a_route_orchestration_controlled_integration_v1.py"],
+  "existing_files_modified": [],
+  "scenario_ids": ["A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08", "A09", "A10", "A11", "A12", "A13", "A14", "A15", "A16", "A17", "A18", "A19", "A20", "A21", "A22", "A23", "A24", "A25", "A26", "A27", "A28", "A29", "A30", "A31", "A32", "A33", "A34", "A35", "A36", "A37", "A38", "A39"],
+  "side_effects": {"runtime_execution": false, "database_write": false, "model_call": false, "device_control": false, "source_owner_mutation": false}
+}

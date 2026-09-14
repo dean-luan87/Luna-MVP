@@ -1,0 +1,8 @@
+{
+  "title": "Cognitive Cycle Lifecycle v1",
+  "owner": "Cognitive OS Governance",
+  "states": ["Created", "Activated", "Processing", "Decision Pending", "Action Pending", "Feedback Waiting", "Learning", "Completed", "Archived"],
+  "schema": ["cycle_id", "start_time", "current_stage", "active_modules", "trace_id", "snapshot_version"],
+  "transitions": ["Created→Activated", "Activated→Processing", "Processing→Decision Pending", "Decision Pending→Action Pending", "Action Pending→Feedback Waiting", "Feedback Waiting→Learning", "Learning→Completed", "Completed→Archived"],
+  "rules": {"state_owner_required": true, "interruptible": true, "cycle_not_runtime": true, "archived_trace_retained": true}
+}

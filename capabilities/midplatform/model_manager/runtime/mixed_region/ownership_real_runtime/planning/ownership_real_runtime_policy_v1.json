@@ -1,0 +1,49 @@
+{
+  "schema_id": "OwnershipRealRuntimeIntegrationPlanningPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Real-Runtime-Integration-Planning-v1-001",
+  "layer_id": "Region_Intelligence_Ownership_Real_Runtime",
+  "planning_only": true,
+  "principle": "Ownership 只处理 Attention-Gated 高价值区域，先载体后 OCR",
+  "core_question": "这个区域里有哪些信息载体，信息属于谁，哪些值得继续理解？",
+  "pipeline": [
+    "attention_gated_region_input",
+    "slot_ownership_discovery",
+    "ownership_candidate",
+    "slot_occlusion_reasoning",
+    "slot_text_owner_assignment",
+    "per_entity_channel_activation",
+    "evidence_package",
+    "validation"
+  ],
+  "runtime_slots": [
+    "slot_ownership_discovery",
+    "slot_occlusion_reasoning",
+    "slot_text_owner_assignment"
+  ],
+  "verify_dimensions": [
+    {"id": "attention_gated_only", "description": "低价值区域不进入 Ownership Runtime"},
+    {"id": "carrier_before_ocr", "description": "先发现 paper_A/paper_B，再 per-owner OCR"},
+    {"id": "text_owner_binding", "description": "文字绑定 owner_candidate，禁止孤立文本"},
+    {"id": "occlusion_graph", "description": "遮挡 reason=occluded，非不存在"},
+    {"id": "no_silent_fallback", "description": "Runtime 故障不静默全图 OCR"}
+  ],
+  "forbidden": [
+    "full_image_ocr_first",
+    "flat_text_merge_without_owner",
+    "blocked_region_ownership",
+    "assume_occluded_absent",
+    "silent_all_model_fallback",
+    "isolated_text_list"
+  ],
+  "boundary_flags": {
+    "planning_only": true,
+    "attention_gated_input": true,
+    "ownership_discovery_first": true,
+    "text_owner_assignment_required": true,
+    "occlusion_graph_required": true,
+    "no_silent_fallback": true,
+    "deterministic_fixture_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Real-Runtime-Integration-DryRun-v1-001"
+}

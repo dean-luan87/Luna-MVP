@@ -1,0 +1,159 @@
+{
+    "artifact": "cognitive_learning_planning_to_code_mapping_v1",
+    "mappings": [
+        {
+            "planning": "cognitive_learning_owner_boundary_v1.json",
+            "code": [
+                "cognitive_learning_registry_v1.py",
+                "cognitive_learning_ownership_guard_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_evidence_candidate_schema_v1.json",
+            "code": [
+                "learning_evidence_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_candidate_schema_v1.json",
+            "code": [
+                "learning_candidate_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "parameter_update_candidate_schema_v1.json",
+            "code": [
+                "parameter_update_candidate_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_learning_taxonomy_v1.json",
+            "code": [
+                "cognitive_learning_registry_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_admission_state_model_v1.json",
+            "code": [
+                "learning_admission_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_generalization_governance_v1.json",
+            "code": [
+                "learning_generalization_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_confidence_evidence_model_v1.json",
+            "code": [
+                "learning_evidence_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_contradiction_counterexample_model_v1.json",
+            "code": [
+                "learning_contradiction_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_revision_revocation_model_v1.json",
+            "code": [
+                "learning_lifecycle_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_memory_experience_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_dynamic_regulation_boundary_v1.json",
+            "code": [
+                "parameter_update_candidate_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_intent_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_state_formation_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_causal_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_self_personality_emotion_boundary_v1.json",
+            "code": [
+                "learning_influence_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_privacy_transfer_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "learning_semantic_compression_deferred_boundary_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_learning_trace_provenance_contract_v1.json",
+            "code": [
+                "cognitive_learning_trace_types_v1.py",
+                "cognitive_learning_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_learning_idempotency_contract_v1.json",
+            "code": [
+                "cognitive_learning_fixture_v1.py",
+                "run_cognitive_learning_controlled_implementation_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_learning_negative_guards_v1.json",
+            "code": [
+                "cognitive_learning_io_types_v1.py",
+                "cognitive_learning_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_learning_minimum_scenario_suite_v1.json",
+            "code": [
+                "cognitive_learning_fixture_v1.py",
+                "run_cognitive_learning_controlled_implementation_v1.py"
+            ]
+        }
+    ]
+}

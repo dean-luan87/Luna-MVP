@@ -1,0 +1,15 @@
+{
+  "contract_id": "controlled_architecture_alignment_migration_v1",
+  "inputs": ["Architecture v2 Candidate", "Existing Asset Mapping", "Canonical Owner Registry", "Module Baseline", "Compatibility Contract", "Rollback Plan", "Migration Authorization"],
+  "outputs": ["Migration Record Candidate", "Compatibility Evidence Candidate", "Blocked Migration Record", "Rollback Candidate", "Integrity Validation Handoff"],
+  "flow": ["Resolve Asset", "Resolve Owner", "Select Migration Type", "Define Compatibility", "Define Rollback", "Authorize Separately", "Execute in Authorized Phase", "Collect Evidence", "Integrity Validation Handoff"],
+  "mapping_before_migration": true,
+  "owner_before_migration": true,
+  "compatibility_before_mutation": true,
+  "rollback_before_mutation": true,
+  "one_asset_slice_per_phase": true,
+  "parallel_mainline_forbidden": true,
+  "current_phase_executes_migration": false,
+  "runtime": false,
+  "candidate_only": true
+}

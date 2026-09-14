@@ -1,0 +1,8 @@
+{
+  "contract_name": "Cognitive Core Information Flow Contract v1",
+  "flow": ["Reality Change", "Field Update", "Role Projection", "Relationship Context", "Workspace Update", "Attention Arbitration", "Drive / Value Influence", "Brain Input Package", "Decision Candidate", "Action Boundary", "Experience Record", "Learning Candidate", "Future Adaptation"],
+  "allowed_edges": ["Reality→Field", "Field→Role", "Role→Workspace", "Attention→Workspace", "Workspace→Brain", "Brain→Decision Candidate", "Action Boundary→Experience", "Experience→Learning", "Learning→Attention Candidate"],
+  "forbidden_edges": ["Model→Decision", "Emotion→Decision", "Learning→automatic strategy", "Reflex→automatic Action", "Workspace→Reality Write"],
+  "unknowns_are_preserved": true,
+  "provenance_is_preserved": true
+}

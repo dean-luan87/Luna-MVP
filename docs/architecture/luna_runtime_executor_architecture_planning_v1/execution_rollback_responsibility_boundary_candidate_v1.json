@@ -1,0 +1,16 @@
+{
+    "artifact": "execution_rollback_responsibility_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "rollback_owner": "Runtime Executor",
+    "rollback_inputs": [
+        "execution_result_candidate",
+        "failure_candidate",
+        "rollback_policy_ref"
+    ],
+    "rules": {
+        "rollback_trigger_requires_explicit_condition": true,
+        "rollback_not_action_governance_responsibility": true,
+        "rollback_not_decision_responsibility": true,
+        "rollback_plan_not_rollback_execution_claim": true
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Limitation Awareness Contract v1",
+  "owner": "Self Evolution / Limitation Awareness",
+  "inputs": ["Failure Pattern", "Low Confidence", "Unknown", "Boundary", "Capability Boundary", "Condition"],
+  "output": "Limitation Awareness Candidate",
+  "schema": ["limitation_id", "capability", "context", "condition", "evidence", "confidence", "boundary", "unknown", "review_status"],
+  "rules": {
+    "uncertainty_is_explicit": true,
+    "limitation_not_identity": true,
+    "limitation_not_permanent_by_default": true,
+    "no_overclaim": true,
+    "attention_adjustment_candidate_only": true,
+    "review_required": true
+  }
+}

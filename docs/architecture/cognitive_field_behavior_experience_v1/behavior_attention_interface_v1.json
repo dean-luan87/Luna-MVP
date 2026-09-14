@@ -1,0 +1,19 @@
+{
+  "interface_name": "Behavior Attention Interface v1",
+  "behavior_reference": "behavior-example",
+  "field_reference": "field-example",
+  "preference_reference": "preference-example",
+  "attention_bias_candidate": {"targets": [], "priority": null},
+  "information_value": null,
+  "resource_cost": null,
+  "risk_context": null,
+  "persistence": "candidate",
+  "release_candidate": null,
+  "attention_does_not_modify_behavior": true,
+  "behavior_does_not_modify_attention_directly": true,
+  "attention_does_not_modify_goal": true,
+  "attention_does_not_modify_decision": true,
+  "attention_does_not_execute_action": true,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

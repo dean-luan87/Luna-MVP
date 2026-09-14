@@ -1,0 +1,116 @@
+{
+    "model_id": "personal_cognitive_network_object_model_candidate_v1",
+    "phase": "Phase-Luna-Personal-Cognitive-Network-Planning-v1-001",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "pcn_is_not": [
+        "Memory",
+        "Knowledge Graph",
+        "Causal Engine",
+        "User Profile",
+        "World State",
+        "Emotion Engine",
+        "Decision Engine"
+    ],
+    "pcn_core_position": "dynamic connection, activation, and context projection network across user cognitive object references",
+    "source_object_reference_model": {
+        "reference_only": true,
+        "source_owner_precedence": true,
+        "supported_reference_types": [
+            "Field Reference",
+            "Role Reference",
+            "Relationship Reference",
+            "Memory Reference",
+            "Experience Reference",
+            "Emotion State Reference",
+            "Self Reference",
+            "Event Reference",
+            "State Reference"
+        ],
+        "required_reference_fields": [
+            "reference_id",
+            "source_owner",
+            "source_object_type",
+            "source_object_pointer",
+            "temporal_validity",
+            "provenance",
+            "confidence",
+            "uncertainty",
+            "unknown",
+            "trace_reference"
+        ],
+        "forbidden_behaviors": [
+            "source_object_body_copy",
+            "source_object_ownership_transfer",
+            "source_object_persistence",
+            "source_object_mutation"
+        ]
+    },
+    "cognitive_link_model": {
+        "description": "A personal relatedness candidate across two or more source references.",
+        "link_cardinality": "many_to_many",
+        "relation_semantics": "subjective_relatedness_not_objective_truth",
+        "required_fields": [
+            "link_id",
+            "source_refs",
+            "relation_type",
+            "activation_state",
+            "strength_state",
+            "formation_source",
+            "context_refs",
+            "temporal_validity",
+            "provenance",
+            "confidence",
+            "uncertainty",
+            "status"
+        ]
+    },
+    "activation_state_model": {
+        "description": "Whether a reference or link currently participates in cognition.",
+        "states": [
+            "ACTIVE",
+            "WEAK",
+            "DORMANT",
+            "REACTIVATED"
+        ],
+        "constraints": [
+            "context_relevance",
+            "current_task_or_need",
+            "resource_budget",
+            "activation_strength",
+            "temporal_validity",
+            "uncertainty"
+        ]
+    },
+    "projection_model": {
+        "description": "Current context bounded cognitive subnetwork exposed to downstream consumers.",
+        "projection_only": true,
+        "not_full_network_dump": true,
+        "required_fields": [
+            "active_reference_set",
+            "active_link_set",
+            "related_context_refs",
+            "unresolved_links",
+            "activation_trace",
+            "confidence",
+            "uncertainty",
+            "resource_constraint_reference"
+        ]
+    },
+    "candidate_fact_boundary": {
+        "candidate_only": true,
+        "not_fact": true,
+        "forbidden_outputs": [
+            "Intent",
+            "Causal Result",
+            "Decision",
+            "Action"
+        ]
+    },
+    "runtime_and_implementation": {
+        "runtime_started": false,
+        "implementation_started": false,
+        "skeleton_started": false
+    }
+}

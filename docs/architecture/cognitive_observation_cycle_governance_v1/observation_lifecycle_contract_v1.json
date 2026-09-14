@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Observation Lifecycle Contract",
+  "states": [
+    "Created",
+    "Qualified",
+    "Allocated",
+    "Executing Candidate",
+    "Evidence Received",
+    "Evaluated",
+    "Completed",
+    "Suspended"
+  ],
+  "transitions": {
+    "Created": ["Qualified", "Suspended"],
+    "Qualified": ["Allocated", "Suspended"],
+    "Allocated": ["Executing Candidate", "Suspended"],
+    "Executing Candidate": ["Evidence Received", "Suspended"],
+    "Evidence Received": ["Evaluated"],
+    "Evaluated": ["Completed", "Suspended"]
+  },
+  "observation_requirement_is_not_observation_execution": true,
+  "direct_field_mutation": false,
+  "direct_decision": false,
+  "direct_action": false,
+  "reducer_authority": "Reducer remains the sole State mutation authority"
+}

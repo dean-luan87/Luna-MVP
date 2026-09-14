@@ -1,0 +1,104 @@
+{
+  "flow_id": "LunaObservationLensInteractionFlowV1",
+  "version": "v1",
+  "default_user_journey": [
+    {
+      "step": 1,
+      "action": "select_file",
+      "label": "选择图片或视频",
+      "user_visible": true,
+      "engineering_steps_hidden": ["asset_register"]
+    },
+    {
+      "step": 2,
+      "action": "select_capability",
+      "label": "选择能力",
+      "user_visible": true
+    },
+    {
+      "step": 3,
+      "action": "start_observation",
+      "label": "开始观察",
+      "user_visible": true,
+      "internal_auto_steps": [
+        "check_service_8787",
+        "register_asset",
+        "create_job",
+        "run_job",
+        "load_envelope"
+      ]
+    },
+    {
+      "step": 4,
+      "action": "view_robot_hud",
+      "label": "查看机器人视角 HUD",
+      "default_view_mode": "robot_vision_hud",
+      "user_visible": true
+    },
+    {
+      "step": 5,
+      "action": "read_luna_explanation",
+      "label": "查看 Luna 解释",
+      "panel": "right_luna_explanation_panel",
+      "user_visible": true
+    },
+    {
+      "step": 6,
+      "action": "optional_expand",
+      "label": "展开指标或开发者信息",
+      "optional": true,
+      "tabs": ["evaluation_metrics", "advanced_workflow", "developer_info"]
+    }
+  ],
+  "forbidden_default_user_actions": [
+    "manual_generate_manifest",
+    "manual_create_job_request",
+    "manual_create_runner_bridge",
+    "manual_register_asset_ui",
+    "manual_create_job_ui",
+    "manual_load_envelope_ui"
+  ],
+  "view_mode_switch": {
+    "default": "robot_vision_hud",
+    "modes": ["original", "compare", "robot_vision_hud"]
+  },
+  "mode_presets": {
+    "simple_observation": { "hud": true, "advanced": false, "developer": false },
+    "metrics_view": { "bottom_tab": "evaluation_metrics" },
+    "advanced_workflow": { "bottom_tab": "advanced_workflow" },
+    "developer": { "bottom_tab": "developer_info" }
+  },
+  "homepage_first_paint": {
+    "must_show": [
+      "central_empty_observation_canvas",
+      "right_explanation_placeholder",
+      "left_capability_cards",
+      "top_file_and_start"
+    ],
+    "must_not_show_first": [
+      "manifest_form",
+      "job_form",
+      "runner_bridge_form",
+      "raw_json",
+      "engineering_panel_list"
+    ]
+  },
+  "information_architecture": {
+    "levels": [
+      { "level": 1, "id": "start_observation", "title": "开始观察" },
+      { "level": 2, "id": "observation_canvas", "title": "观察画面" },
+      { "level": 3, "id": "luna_explanation", "title": "Luna 解释" },
+      { "level": 4, "id": "evaluation_results", "title": "评估结果" },
+      { "level": 5, "id": "advanced_developer", "title": "高级 / 开发者" }
+    ]
+  },
+  "governance": {
+    "ui_must_not_execute_model": true,
+    "model_execution_via": "127.0.0.1:8787_local_runner_bridge_only",
+    "ui_must_not_write_fact": true,
+    "ui_must_not_write_semantic": true,
+    "ui_must_not_trigger_navigation_action_speech": true,
+    "ui_must_not_call_output_adapter": true,
+    "ui_must_not_mutate_registry": true
+  }
+}

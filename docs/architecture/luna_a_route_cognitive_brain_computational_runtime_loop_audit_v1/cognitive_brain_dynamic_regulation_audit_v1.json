@@ -1,0 +1,12 @@
+{
+  "artifact":"cognitive_brain_dynamic_regulation_audit_v1",
+  "maturity":"M5_DETERMINISTIC_CONTROLLED_ALGORITHM",
+  "actual_level":"Regulation Candidate and bounded Parameter Modulation Candidate; no behavioral mutation",
+  "parameters_audited":{"attention_threshold":"candidate/reference only","observation_persistence":"candidate/reference only","confidence_threshold":"candidate/reference only","exploration_exploitation":"influence candidate only","reconsideration_threshold":"influence candidate only","resource_allocation":"candidate bounded evaluation","provider_budget":"reference only","decision_threshold":"ABSENT executable integration","memory_retrieval_weight":"reference only","risk_sensitivity":"candidate bounded evaluation"},
+  "update_function":"_evaluate_bounds only evaluates requested parameter values against frozen bounds, approvals, confirmation and expiry",
+  "future_behavior_change":"false",
+  "parameter_mutation":"false",
+  "genome_activation":"false",
+  "runtime_effect":"false",
+  "evidence_refs":["capabilities/midplatform/core/dynamic_cognitive_regulation/dynamic_cognitive_regulation_engine_v1.py","capabilities/midplatform/core/dynamic_cognitive_regulation/dynamic_regulation_candidate_types_v1.py"]
+}

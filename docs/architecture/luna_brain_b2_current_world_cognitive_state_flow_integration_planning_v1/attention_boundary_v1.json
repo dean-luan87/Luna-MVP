@@ -1,0 +1,10 @@
+{
+  "boundary_id": "b2_attention_boundary_v1",
+  "layers": [
+    {"layer": "cognitive attention", "owner": "Attention System / Cognitive State Formation", "outputs": "AttentionCandidateV1 and AttentionSelectionCandidateV1", "authority": "candidate relevance and focus only"},
+    {"layer": "observation attention/control", "owner": "Field Perception Orchestrator Active Observation Control", "outputs": "ObservationDemandCandidateV1, ObservationRequestCandidateV1, control decision", "authority": "provider-facing bounded observation control"}
+  ],
+  "relationship": "B1 CurrentWorld may influence cognitive attention candidates through read-only refs; it may not directly authorize provider execution or replace observation attention control.",
+  "preserve": ["alternatives", "uncertainty", "risk override", "conflicting focus", "trace", "provenance"],
+  "guards": ["attention_priority_is_not_truth", "gateway_admission_is_not_provider_continuation", "no_provider_invocation_in_cognitive_state"]
+}

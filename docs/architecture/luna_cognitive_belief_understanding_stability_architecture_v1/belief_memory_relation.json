@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_memory_relation_v1",
+  "owner": "Memory",
+  "inputs": ["memory_context", "prior_experience", "current_field", "current_reality"],
+  "outputs": ["prior_experience_context", "belief_candidate_support", "uncertainty"],
+  "flow": ["Memory", "Prior Experience", "Belief Candidate", "Reality Validation"],
+  "memory_direct_belief_override": false,
+  "memory_replaces_reality": false,
+  "current_reality_precedence": true,
+  "candidate_only": true
+}

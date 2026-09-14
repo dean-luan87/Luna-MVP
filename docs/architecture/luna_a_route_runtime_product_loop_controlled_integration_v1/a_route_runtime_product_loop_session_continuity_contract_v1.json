@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "scope":"session-local controlled continuity",
+  "fields":["cycle_id","cycle_revision","current_stage","previous_stage","pending_handoff","observation_need_refs","decision_ref","task_ref","action_ref","execution_result_ref","outcome_evaluation_ref","reconsideration_depth","reobservation_depth","failure_signatures","correction_refs","trace_ref"],
+  "persistence_execution":false,
+  "database_write":false,
+  "resume_reference":"previous_cycle_id",
+  "completed_cycle_immutable":true,
+  "aborted_cycle_immutable":true
+}

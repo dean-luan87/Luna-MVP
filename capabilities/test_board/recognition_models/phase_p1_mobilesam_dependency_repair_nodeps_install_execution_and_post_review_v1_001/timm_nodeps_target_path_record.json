@@ -1,0 +1,36 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:24:51.632602+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "no_deps_required": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_nodeps_target_path_record",
+  "timm_nodeps_target_path_record": {
+    "record_id": "timm_nodeps_target_path_record_v1",
+    "target_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_timm_repair_workspace/install_target",
+    "target_path_exists": true,
+    "target_path_file_count": 315,
+    "target_path_size_bytes": 9178923,
+    "installed_dist_info_dirs": [
+      "timm-1.0.27.dist-info"
+    ],
+    "installed_top_level_dirs": [
+      "timm"
+    ],
+    "timm_package_dir_exists": true,
+    "unexpected_large_files_detected": false,
+    "torch_files_installed_in_target": false,
+    "torchvision_files_installed_in_target": false,
+    "no_transitive_dependencies_installed": true
+  }
+}

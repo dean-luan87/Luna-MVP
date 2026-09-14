@@ -1,0 +1,17 @@
+{
+    "artifact": "learning_memory_experience_boundary_v1",
+    "allowed_inputs": [
+        "ExperienceCandidate refs",
+        "MemoryCandidate refs",
+        "future admitted memory refs"
+    ],
+    "forbidden": [
+        "mutate_memory",
+        "create_memory_facts",
+        "revise_memory_directly",
+        "delete_memory",
+        "change_retention_decay_directly",
+        "write_persistent_memory"
+    ],
+    "owner_preserved": "Cognitive Memory & Experience Governance"
+}

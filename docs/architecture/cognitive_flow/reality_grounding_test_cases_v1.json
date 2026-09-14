@@ -1,0 +1,33 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_logic_validation",
+  "scope": "Evidence_to_Situation_Candidate_only",
+  "cases": [
+    {
+      "case_id": "person_rapidly_approaching",
+      "world_evidence": {
+        "observed_fact": "a_person_is_moving_rapidly_toward_the_user",
+        "intent_evidence": "absent"
+      },
+      "self_state": {
+        "situated_position": "nearby",
+        "capability_context": "observation_available"
+      },
+      "goal_context": {
+        "purpose": "understand_immediate_interaction_context"
+      },
+      "expected_situation_candidate": {
+        "fact": "rapid_approach_observed",
+        "hypothesis_candidate": "interaction_need_possible",
+        "risk_or_observation_candidate": "further_observation_relevant"
+      },
+      "expected_unknowns": ["person_intent"],
+      "forbidden_outputs": ["attack_intent_confirmed", "threat_as_fact"]
+    }
+  ],
+  "assertions": {
+    "fact_hypothesis_and_risk_are_separated": true,
+    "evidence_does_not_directly_become_reality_truth": true,
+    "decision_and_action_excluded": true
+  }
+}

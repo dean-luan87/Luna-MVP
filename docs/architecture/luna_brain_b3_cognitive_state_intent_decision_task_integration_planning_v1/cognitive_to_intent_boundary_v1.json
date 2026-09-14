@@ -1,0 +1,20 @@
+{
+  "artifact": "b3_cognitive_to_intent_boundary_v1",
+  "selected_route": [
+    "B2 CognitiveStateCandidate and CognitiveFlowTransitionCandidate",
+    "read-only SourceRefV1 influence/reference adapter",
+    "IntentGovernanceInputV1.source_refs plus existing context_refs/pcn_refs and allowed influence refs",
+    "Intent Governance qualification",
+    "PotentialIntentCandidateV1 / IntentCandidateV1 / interaction and lifecycle candidates"
+  ],
+  "route_reason": "IntentGovernanceInputV1 already accepts typed source/context/PCN references and the existing owner preserves uncertainty, alternatives, lifecycle, coexistence, carryover and provenance.",
+  "new_owner_required": false,
+  "canonical_type_extension": "Not currently required; first use existing source_refs with explicit owner/ref_type. Revisit only if a lossless Cognitive State/Flow reference cannot be represented.",
+  "influence_semantics": {"cognitive_influence": "reference-only input", "potential_intent": "candidate qualification", "active_intent": "Intent Governance lifecycle state", "dominant_intent": "temporary interaction candidate, not a final Decision", "priority": "candidate ranking signal, not authorization"},
+  "promotion_rule": "No automatic promotion outside the existing Intent Governance lifecycle and admission rules.",
+  "rejected_routes": [
+    {"route": "Cognitive State directly mutates Intent", "reason": "violates sole Intent owner"},
+    {"route": "Current World directly creates Intent", "reason": "bypasses cognitive influence and Intent qualification"},
+    {"route": "Attention/Observation Need directly creates Intent", "reason": "observation purpose is not subject-level Intent"}
+  ]
+}

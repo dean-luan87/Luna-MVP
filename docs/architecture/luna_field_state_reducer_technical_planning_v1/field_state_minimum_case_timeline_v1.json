@@ -1,0 +1,118 @@
+{
+    "version": "1.0",
+    "name": "Field State Minimum Case Timeline",
+    "case_id": "xiaobeimen_construction_closure",
+    "timeline_steps": [
+        {
+            "step": 1,
+            "event": "baseline_road_access_event",
+            "temporal_status": "active",
+            "reducer_decision": "state_created",
+            "state_before": "none",
+            "state_after": "road_access_open_active",
+            "conflict_handling": "none",
+            "provenance_change": "create_state_from_baseline_events"
+        },
+        {
+            "step": 2,
+            "event": "construction_notice_event",
+            "temporal_status": "active",
+            "reducer_decision": "state_degraded",
+            "state_before": "road_access_open_active",
+            "state_after": "road_access_provisional_closure",
+            "conflict_handling": "preserve_conflict_pending_visual_confirmation",
+            "provenance_change": "append_notice_event"
+        },
+        {
+            "step": 3,
+            "event": "fence_visual_event",
+            "temporal_status": "active",
+            "reducer_decision": "support_closure_state",
+            "state_before": "road_access_provisional_closure",
+            "state_after": "road_access_closure_candidate",
+            "conflict_handling": "none",
+            "provenance_change": "append_visual_support_event"
+        },
+        {
+            "step": 4,
+            "event": "road_closure_event",
+            "temporal_status": "active",
+            "reducer_decision": "state_active",
+            "state_before": "road_access_closure_candidate",
+            "state_after": "road_access_closed_active",
+            "conflict_handling": "resolved_by_multi_event_consensus",
+            "provenance_change": "promote_candidate_to_active_state"
+        },
+        {
+            "step": 5,
+            "event": "temporary_passage_event",
+            "temporal_status": "active",
+            "reducer_decision": "create_temporary_overlay_state",
+            "state_before": "road_access_closed_active",
+            "state_after": "temporary_overlay_detour_active",
+            "conflict_handling": "overlay_separated_from_substrate",
+            "provenance_change": "append_overlay_event"
+        },
+        {
+            "step": 6,
+            "event": "contradictory_open_event",
+            "temporal_status": "active",
+            "reducer_decision": "preserve_conflict",
+            "state_before": "temporary_overlay_detour_active",
+            "state_after": "conflicted_state_open_vs_closed",
+            "conflict_handling": "state_status_conflicted",
+            "provenance_change": "append_opposing_event_and_conflict_ref"
+        },
+        {
+            "step": 7,
+            "event": "closure_state_confirmation_event",
+            "temporal_status": "active",
+            "reducer_decision": "resolve_conflict_to_closed",
+            "state_before": "conflicted_state_open_vs_closed",
+            "state_after": "road_access_closed_active",
+            "conflict_handling": "conflict_resolution_matrix_applied",
+            "provenance_change": "record_resolution_decision"
+        },
+        {
+            "step": 8,
+            "event": "overlay_expired_event",
+            "temporal_status": "expired",
+            "reducer_decision": "expire_overlay_only",
+            "state_before": "road_access_closed_active",
+            "state_after": "road_access_closed_active",
+            "conflict_handling": "none",
+            "provenance_change": "mark_overlay_expired"
+        },
+        {
+            "step": 9,
+            "event": "refresh_evidence_event",
+            "temporal_status": "active",
+            "reducer_decision": "re_evaluate_substrate",
+            "state_before": "road_access_closed_active",
+            "state_after": "road_access_closed_provisional",
+            "conflict_handling": "none",
+            "provenance_change": "append_refresh_evidence"
+        },
+        {
+            "step": 10,
+            "event": "road_reopen_event",
+            "temporal_status": "active",
+            "reducer_decision": "supersede_old_state",
+            "state_before": "road_access_closed_provisional",
+            "state_after": "road_access_open_active",
+            "conflict_handling": "resolved",
+            "provenance_change": "link_superseded_state"
+        },
+        {
+            "step": 11,
+            "event": "replay_verification_event",
+            "temporal_status": "active",
+            "reducer_decision": "deterministic_replay_confirmed",
+            "state_before": "road_access_open_active",
+            "state_after": "road_access_open_active",
+            "conflict_handling": "none",
+            "provenance_change": "record_replay_key_consistency"
+        }
+    ],
+    "xiaobeimen_timeline_complete": true
+}

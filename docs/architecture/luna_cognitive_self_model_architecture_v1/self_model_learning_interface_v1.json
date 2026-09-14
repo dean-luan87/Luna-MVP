@@ -1,0 +1,14 @@
+{
+  "title": "Self Model Learning Interface v1",
+  "owner": "Learning System",
+  "inputs": ["Learning Signal", "Capability Growth Candidate", "Limitation Candidate", "Expectation Difference", "Validation Result"],
+  "outputs": ["Self Model Update Candidate", "Capability Awareness Update Candidate", "Limitation Awareness Update Candidate"],
+  "rules": {
+    "learning_is_candidate_source": true,
+    "no_automatic_update": true,
+    "model_training_forbidden": true,
+    "parameter_update_forbidden": true,
+    "evidence_and_review_required": true,
+    "unknown_preserved": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "luna.current_world_representation_integration.v1",
+  "module": "current_world_representation_integration",
+  "execution_scope": "fixed_fixture_contract_integration_only",
+  "runtime_executed": false,
+  "simulation_only": true,
+  "objects": {
+    "CurrentWorldRepresentationEnvelopeV1": {
+      "required": ["schema_version", "representation_id", "field_ref", "field_identity_ref", "field_structure_refs", "current_state_refs", "state_version_refs", "history_projection_ref", "snapshot_ref", "context_refs", "active_context_ref", "source_event_refs", "source_evidence_refs", "temporal_scope", "representation_status", "incomplete_reason_codes", "provenance", "trace"],
+      "read_only": true
+    },
+    "CurrentWorldRepresentationIntegrationDryRunResultV1": {
+      "required": ["schema_version", "dryrun_id", "case_id", "case_name", "execution_scope", "runtime_executed", "simulation_only", "input_refs", "admitted_event_ref", "reducer_output_ref", "field_state_ref", "state_version_refs", "transition_record_refs", "history_projection_ref", "snapshot_ref", "read_model_result_ref", "context_refs", "active_context_ref", "envelope_ref", "reference_chain_valid", "version_chain_valid", "mutation_authority_valid", "readonly_boundary_valid", "unknown_preservation_valid", "context_isolation_valid", "cognitive_writeback_absent", "analysis_boundary_admission", "failure_codes", "warning_codes", "provenance", "trace"]
+    }
+  },
+  "representation_status": ["complete", "incomplete", "stale", "unavailable", "permission_restricted", "unknown"],
+  "failure_codes": ["state_version_chain_incomplete", "temporal_order_unknown", "context_stale", "context_insufficient", "evidence_revoked"],
+  "warning_codes": ["unknown_time_preserved", "context_v1_refresh_required", "refresh_required"],
+  "case_ids": ["case_01_complete", "case_02_unknown_time", "case_03_snapshot_refresh", "case_04_multi_context", "case_05_context_insufficient", "case_06_evidence_revoked"],
+  "forbidden": ["state_mutation", "hypothesis_output", "decision_output", "experience_write", "network", "database", "model_execution"]
+}

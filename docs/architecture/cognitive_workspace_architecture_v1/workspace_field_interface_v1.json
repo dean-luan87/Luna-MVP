@@ -1,0 +1,13 @@
+{
+  "interface_name": "Workspace Field Interface v1",
+  "field_reference": {},
+  "active_field_context": {},
+  "field_state": {},
+  "field_provenance": [],
+  "field_unknowns": [],
+  "workspace_references_field_only": true,
+  "workspace_does_not_create_field": true,
+  "workspace_does_not_close_field": true,
+  "field_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

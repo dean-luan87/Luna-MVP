@@ -1,0 +1,30 @@
+{
+    "artifact": "learning_candidate_schema_v1",
+    "entity": "LearningCandidateV1",
+    "fields": [
+        "learning_candidate_id",
+        "learning_evidence_refs",
+        "learning_kind",
+        "candidate_statement",
+        "scope",
+        "confidence_candidate",
+        "generalization_level_candidate",
+        "transferability_candidate",
+        "reversibility_candidate",
+        "uncertainty_refs",
+        "counterexample_refs",
+        "contradiction_refs",
+        "temporal_validity_candidate",
+        "revision_of_ref",
+        "supersedes_ref",
+        "revoked_ref",
+        "provenance_refs",
+        "trace_ref",
+        "candidate_only",
+        "truth_declared"
+    ],
+    "defaults": {
+        "candidate_only": true,
+        "truth_declared": false
+    }
+}

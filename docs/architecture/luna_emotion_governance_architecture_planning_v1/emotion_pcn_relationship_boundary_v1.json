@@ -1,0 +1,16 @@
+{
+  "artifact": "emotion_pcn_relationship_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "pcn_owner": "Personal Cognitive Network Governance",
+  "allowed_interfaces": ["RelationshipEmotionContextCandidate", "PCNEmotionContextCandidate", "EmotionRelationshipEvidenceCandidate"],
+  "frozen_rules": {
+    "relationship_context_is_emotion_evidence_context": true,
+    "emotion_cannot_rewrite_relationships": true,
+    "emotion_cannot_rewrite_roles": true,
+    "emotion_cannot_rewrite_identity_links": true,
+    "emotion_cannot_declare_pcn_truth": true,
+    "social_judgment": false,
+    "candidate_only": true
+  },
+  "forbidden": ["relationship_mutation", "role_mutation", "identity_link_mutation", "pcn_truth_creation", "social_judgment"]
+}

@@ -1,0 +1,14 @@
+{
+  "contract_id": "b_route_state_boundary_v1",
+  "a_state": "current_reality_processing_state",
+  "b_state": "future_simulation_state",
+  "b_route_status": "future_interface_only",
+  "b_route_runtime": false,
+  "b_route_cannot_override_a_state": true,
+  "b_route_cannot_override_reality": true,
+  "b_route_cannot_directly_modify_self": true,
+  "b_route_cannot_directly_modify_learning": true,
+  "b_route_cannot_execute_action": true,
+  "cross_route_return": "Simulation Candidate to A Route Governance",
+  "route_mixing": false
+}

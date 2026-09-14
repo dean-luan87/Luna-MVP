@@ -1,0 +1,20 @@
+{
+  "input": "ObservationCandidateV1 and canonical evidence references",
+  "engine": "ContextWorldStateControlledIntegrationEngineV1",
+  "outputs": [
+    "ObservationContextHandoffCandidateV1",
+    "ContextWorldAssemblyCandidateV1",
+    "CurrentWorldCandidateV1"
+  ],
+  "context_semantics": {
+    "reference_only": true,
+    "context_mutation": false,
+    "truth_declared": false,
+    "candidate_only": true
+  },
+  "world_semantics": {
+    "candidate_only": true,
+    "current_world_truth_declared": false,
+    "direct_current_world_mutation": false
+  }
+}

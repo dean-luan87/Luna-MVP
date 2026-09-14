@@ -1,0 +1,43 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_download_boundary_record",
+  "weight_license_usage_boundary_record": {
+    "record_id": "weight_license_usage_boundary_v1",
+    "weight_download_approval_does_not_approve_commercial_runtime": true,
+    "weight_download_approval_does_not_approve_model_load": true,
+    "weight_download_approval_does_not_approve_inference": true,
+    "weight_download_approval_does_not_approve_runtime": true,
+    "weight_license_must_be_bound_to_source_asset": true,
+    "usage_boundary_internal_p1_evaluation_only": true,
+    "redistribution_not_approved": true,
+    "commercial_deployment_not_approved": true,
+    "per_asset_license": {
+      "mobile_sam": "Apache-2.0",
+      "byte_track": "MIT"
+    }
+  },
+  "weight_download_rollback_deletion_policy": {
+    "policy_id": "weight_download_rollback_deletion_policy_v1",
+    "pre_download_snapshot_required": true,
+    "rollback_required": true,
+    "rollback_deletes_downloaded_weight_if_failed": true,
+    "rollback_preserves_test_board": true,
+    "rollback_preserves_registry": true,
+    "rollback_preserves_review_artifacts": true,
+    "failed_hash_mismatch_deletes_file_or_quarantines": true,
+    "partial_download_cleanup_required": true,
+    "deletion_must_be_recorded": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fixture_name": "Field Role Workspace Trace Fixture v1",
+  "case": "Office → Transit",
+  "field_transition": {"from": "Office Field", "to": "Transit Field"},
+  "role_transition": {"from": "Employee", "to": "Navigation Assistant"},
+  "role_stack": ["Employee", "Organizer", "Friend"],
+  "workspace_refresh": true,
+  "attention_shift": true,
+  "identity_continuity": true,
+  "action_boundary_only": true,
+  "unknowns_are_preserved": true
+}

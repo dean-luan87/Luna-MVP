@@ -1,0 +1,26 @@
+{
+  "contract": "dynamic_cognitive_loop_contract_v1",
+  "owner": "Cognitive Flow Governance",
+  "route": "Goal -> Provisional Plan -> Current Minimum Need -> Capability Requirement -> Governed Capability Candidate -> Evidence/Outcome -> State Version -> Sufficiency/Reconsideration -> Next Step",
+  "semantic_freezes": [
+    "Thought is not execution commitment",
+    "Plan is not execution queue",
+    "Plan completeness is not execution completeness",
+    "Need is not Action",
+    "Capability Requirement is not Invocation",
+    "Invocation Candidate is not guaranteed execution",
+    "Remaining plan candidates are non-binding",
+    "New evidence may invalidate or supersede remaining candidates",
+    "Only the current minimum necessary Need may become downstream demand",
+    "Goal sufficiency may terminate the remaining path",
+    "STOP_SUFFICIENT is successful cognitive termination",
+    "skipped or not-required calls are not capability failures",
+    "capability failure does not imply task failure",
+    "requirements are reassessed against their generating state version",
+    "stale requirements cannot force invocation",
+    "safety priority cannot bypass scope, authority, or sufficiency governance"
+  ],
+  "dispositions": ["STOP_SUFFICIENT", "CONTINUE", "REPLAN", "DEFER", "REQUEST_MORE_EVIDENCE"],
+  "candidate_only": true,
+  "execution": false
+}

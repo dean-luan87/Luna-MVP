@@ -1,0 +1,94 @@
+{
+  "audit_id": "luna_dynamic_cognitive_architecture_owner_consistency_audit_v1",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "records": [
+    {
+      "object": "Field State",
+      "owner": "Field State Reducer",
+      "write_authority": "Admitted Field State reduction only; Field State Read Model remains read-only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"]
+    },
+    {
+      "object": "Observation",
+      "owner": "Observation Manager",
+      "write_authority": "Observation request lifecycle, modality coordination, evidence provenance, and admission-handoff candidates only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json"]
+    },
+    {
+      "object": "Memory",
+      "owner": "Memory System",
+      "write_authority": "Memory admission, persistence, consolidation, activation, retrieval, and historical influence state.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json"]
+    },
+    {
+      "object": "Personal Cognitive Network",
+      "owner": "Personal Cognitive Network Governance",
+      "write_authority": "Typed connection, activation, and read-only context-projection candidate state only; future architecture reference, not active implementation.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json"]
+    },
+    {
+      "object": "Intent",
+      "owner": "Intent Governance",
+      "write_authority": "Context-bound Intent Candidate lifecycle only; no Goal, Task, Decision, or Action ownership.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json"]
+    },
+    {
+      "object": "Causal",
+      "owner": "Causal Reasoning Governance",
+      "write_authority": "Evidence-bound, revisable causal and alternative-explanation candidate state only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json"]
+    },
+    {
+      "object": "Experience",
+      "owner": "Experience Governance",
+      "write_authority": "Experience compression and Memory-admission candidate state only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/experience_memory_projection_contract_candidate.json"]
+    },
+    {
+      "object": "A/B Route",
+      "owner": "A/B Route Boundary Governance",
+      "write_authority": "Current-Reality and possible-future route separation and simulation-candidate boundaries only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"]
+    },
+    {
+      "object": "Decision",
+      "owner": "Decision Arbitration",
+      "write_authority": "Decision Candidate filtering, comparison, selection, rejection, trace, and reconsideration only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/decision_input_contract_candidate.json"]
+    },
+    {
+      "object": "Task",
+      "owner": "Task Manager",
+      "write_authority": "Approved task lifecycle, dependency, interruption, routing candidates, and result aggregation only.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"]
+    },
+    {
+      "object": "Runtime",
+      "owner": "Legacy A3 Runtime Governance",
+      "write_authority": "Existing authorized lifecycle, tick, transport, trace, and legacy handoff state only; no Dynamic Cognitive Architecture v2 cognitive ownership.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json"]
+    },
+    {
+      "object": "Model",
+      "owner": "Capability Governance",
+      "write_authority": "Model Manager governs model identity, admission, health, selection candidates, lifecycle, fallback, diagnostics, and trace under Capability Governance.",
+      "conflict": false,
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json"]
+    }
+  ],
+  "duplicate_object_owners": [],
+  "duplicate_write_authorities": [],
+  "owner_drift": [],
+  "blocker_count": 0
+}

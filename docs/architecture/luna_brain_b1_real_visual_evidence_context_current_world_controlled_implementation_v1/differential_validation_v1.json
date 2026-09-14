@@ -1,0 +1,16 @@
+{
+  "comparison": "synthetic evidence -> Context/World versus real YOLO11n evidence reference -> Context/World",
+  "invariant_dimensions": [
+    "contract shape",
+    "Gateway admission behavior",
+    "trace/provenance",
+    "Context ownership",
+    "Current World candidate formation",
+    "negative guards",
+    "Field mutation boundary",
+    "unrelated module behavior"
+  ],
+  "ignored_natural_differences": ["class labels", "bbox", "confidence", "detection count"],
+  "provider_invocation_in_b1": false,
+  "semantic_compression": false
+}

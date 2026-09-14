@@ -1,0 +1,47 @@
+{
+    "artifact": "cognitive_parameter_classification_v1",
+    "classes": [
+        {
+            "class_id": "A",
+            "name": "immutable_constitutional_parameters",
+            "auto_modify_allowed": false,
+            "bounded_modulation_allowed": false,
+            "owner_approval_required": true,
+            "human_confirmation_required": true
+        },
+        {
+            "class_id": "B",
+            "name": "governance_controlled_parameters",
+            "auto_modify_allowed": false,
+            "bounded_modulation_allowed": true,
+            "owner_approval_required": true,
+            "human_confirmation_required": true
+        },
+        {
+            "class_id": "C",
+            "name": "adaptive_bounded_parameters",
+            "auto_modify_allowed": false,
+            "bounded_modulation_allowed": true,
+            "owner_approval_required": true,
+            "human_confirmation_required": false
+        },
+        {
+            "class_id": "D",
+            "name": "session_context_temporary_parameters",
+            "auto_modify_allowed": true,
+            "bounded_modulation_allowed": true,
+            "owner_approval_required": false,
+            "human_confirmation_required": false,
+            "expiry_required": true
+        },
+        {
+            "class_id": "E",
+            "name": "learned_candidate_parameters",
+            "auto_modify_allowed": false,
+            "bounded_modulation_allowed": false,
+            "owner_approval_required": true,
+            "human_confirmation_required": true,
+            "candidate_only": true
+        }
+    ]
+}

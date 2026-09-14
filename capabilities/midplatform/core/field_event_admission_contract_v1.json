@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna.field_event_admission_temporal_validity.v1",
+    "title": "Field Event Admission and Temporal Validity Module Contract v1",
+    "type": "object",
+    "$defs": {
+        "event_candidate": {
+            "type": "object",
+            "required": [
+                "event_id", "event_type", "field_ref", "occurred_at",
+                "observed_at", "received_at", "source_chain",
+                "evidence_refs", "payload", "trace_ref"
+            ],
+            "properties": {
+                "event_id": {"type": "string", "minLength": 1},
+                "event_type": {"type": "string", "minLength": 1},
+                "field_ref": {"type": "string", "minLength": 1},
+                "occurred_at": {"type": ["string", "null"], "format": "date-time"},
+                "observed_at": {"type": ["string", "null"], "format": "date-time"},
+                "received_at": {"type": ["string", "null"], "format": "date-time"},
+                "source_chain": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+                "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+                "payload": {"type": "object"},
+                "trace_ref": {"type": "string", "minLength": 1}
+            }
+        },
+        "admission_result": {
+            "type": "object",
+            "required": [
+                "admission_status", "reason_code", "event_ref", "field_ref",
+                "temporal_assessment", "evidence_refs", "source_chain",
+                "trace_ref", "evaluated_at", "reducer_eligible"
+            ],
+            "properties": {
+                "admission_status": {
+                    "enum": [
+                        "admitted_event", "rejected_event", "deferred_event",
+                        "duplicate_event", "expired_event", "out_of_order_event"
+                    ]
+                },
+                "reason_code": {"type": "string", "minLength": 1},
+                "event_ref": {"type": "string"},
+                "field_ref": {"type": "string"},
+                "temporal_assessment": {"type": "object"},
+                "evidence_refs": {"type": "array", "items": {"type": "string"}},
+                "source_chain": {"type": "array", "items": {"type": "string"}},
+                "trace_ref": {"type": "string"},
+                "evaluated_at": {"type": "string", "format": "date-time"},
+                "reducer_eligible": {"type": "boolean"}
+            }
+        }
+    },
+    "properties": {
+        "input": {"$ref": "#/$defs/event_candidate"},
+        "output": {"$ref": "#/$defs/admission_result"}
+    },
+    "boundary": {
+        "candidate_only": true,
+        "admission_is_not_fact_admission": true,
+        "reducer_is_only_mutation_authority": true,
+        "external_io_allowed": false
+    }
+}

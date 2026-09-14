@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Capability Interface Contract",
+  "attention_input": "observation_requirement_candidate",
+  "capability_output": "evidence_candidate",
+  "governance_path": ["capability_registry", "model_manager", "provider", "evidence_gateway"],
+  "capability_is_not_cognition": true,
+  "attention_selects_provider": false,
+  "provider_direct_reality_update": false,
+  "hardware_direct_control": false,
+  "model_runtime": false
+}

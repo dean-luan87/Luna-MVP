@@ -1,0 +1,12 @@
+{
+  "artifact": "b3_minimum_implementation_scope_v1",
+  "required_future_modules": [
+    {"module": "B2-to-Intent influence adapter", "owner": "Intent Governance integration", "responsibility": "build read-only SourceRefV1 values from validated Cognitive State/Flow refs"},
+    {"module": "Intent-to-Decision input adapter", "owner": "Decision Governance integration", "responsibility": "map Intent candidates/interactions plus cognitive/context/evidence refs to DecisionGovernanceInputV1"},
+    {"module": "Decision-to-Task candidate adapter", "owner": "Task Manager integration", "responsibility": "consume DecisionToActionTaskHandoffCandidateV1 and create only Task Manager readiness/candidate inputs"},
+    {"module": "B3 controlled fixture/runner/verifier", "owner": "phase integration", "responsibility": "real B2 input plus preserved synthetic baseline and differential checks"}
+  ],
+  "not_required_now": ["new Intent type", "new Decision engine", "new Task owner", "Action implementation", "Runtime integration", "scheduler", "provider invocation", "semantic compression", "dynamic cognitive function"],
+  "expected_existing_modification": ["Intent Governance integration surface only if source_refs cannot carry B2 refs", "Decision Governance integration surface for typed input mapping", "Task Manager integration surface for candidate/readiness handoff"],
+  "stop_point": "TaskCandidate and TaskReadinessCandidate remain candidate-only; no Action Candidate execution or Runtime handoff execution."
+}

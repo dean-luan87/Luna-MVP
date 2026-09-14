@@ -1,0 +1,23 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_transition_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "space_transition_office_to_transit",
+      "reality_change": {"location": "office_to_transit_station", "objects_changed": true},
+      "prior_field": {"field_id": "office_field", "state": "Active"},
+      "expected_field": {"field_id": "transit_field", "state": "Active", "prior_state": "office_field:Suspended"},
+      "stable_invariants": ["identity", "core_capability", "survival_constitution"],
+      "decision_output": false
+    },
+    {
+      "case_id": "reality_disturbance_fire_alarm",
+      "reality_change": {"event": "fire_alarm_candidate", "confidence": "high"},
+      "prior_field": {"field_id": "office_work_field", "state": "Active"},
+      "expected_field": {"field_id": "safety_response_field", "state": "Active", "prior_state": "office_work_field:Suspended_or_Transformed"},
+      "expected_boundary": "field_change_only_no_action",
+      "decision_output": false
+    }
+  ]
+}

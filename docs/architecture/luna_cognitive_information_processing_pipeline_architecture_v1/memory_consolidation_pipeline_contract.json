@@ -1,0 +1,13 @@
+{
+  "contract_id": "memory_consolidation_pipeline_v1",
+  "owner": "Memory Governance",
+  "input": "experience_candidate",
+  "stages": ["value_filter", "temporal_decay", "reinforcement", "folding", "compression"],
+  "outputs": ["pattern_candidate", "memory_candidate"],
+  "governance_required": true,
+  "automatic_consolidation": false,
+  "runtime_implementation": false,
+  "reality_write": false,
+  "self_write": false,
+  "social_self_write": false
+}

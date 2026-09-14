@@ -1,0 +1,16 @@
+vision:
+  signboard_detector: true
+  hazard_detector: true
+  crowd_detector: true
+navigation:
+  path_evaluator: true
+  doorplate_inference: true
+memory:
+  memory_store: true
+  memory_caller: true
+communication:
+  tts: true
+  whisper: true
+  wakeup: true
+other:
+  debug_mode: false

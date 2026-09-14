@@ -1,0 +1,8 @@
+{
+  "type":"ControlledRuntimeResultCandidateV1",
+  "canonical_inner_type":"ExecutionResultCandidateV1",
+  "allowed_statuses":["SUCCEEDED_CANDIDATE","FAILED_CANDIDATE","PARTIAL_CANDIDATE","TIMEOUT_CANDIDATE","CANCELLED_CANDIDATE","REJECTED_CANDIDATE"],
+  "required":["controlled_fixture","real_runtime_execution=false","device_side_effect=false","scheduler_execution=false","candidate_only=true","planning_only=true"],
+  "runtime_executor_invoked":false,
+  "external_result_claim":false
+}

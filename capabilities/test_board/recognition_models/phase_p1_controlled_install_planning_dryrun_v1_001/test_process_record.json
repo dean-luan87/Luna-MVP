@@ -1,0 +1,192 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Planning-DryRun-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-29T05:39:39.583338+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "p1_controlled_install_planning_dryrun_v1",
+  "steps_executed": [
+    "this_phase_is_controlled_install_planning_dry_run_only",
+    "no_pip_install_is_allowed",
+    "no_dependency_install_is_allowed",
+    "no_model_download_is_allowed",
+    "no_weight_download_is_allowed",
+    "no_dataset_download_is_allowed",
+    "no_real_inference_is_allowed",
+    "install_command_templates_must_not_be_executed",
+    "only_install_required_assets_may_enter_install_candidate_selection",
+    "blocked_by_license_assets_must_not_enter_install_candidate_selection",
+    "deferred_resource_heavy_assets_must_not_enter_install_candidate_selection",
+    "reserved_only_assets_must_not_enter_install_candidate_selection",
+    "environment_isolation_plan_is_required",
+    "version_pin_plan_is_required",
+    "weight_acquisition_plan_is_required_where_applicable",
+    "license_install_boundary_check_is_required",
+    "rollback_plan_is_required",
+    "future_install_execution_requires_separate_approval",
+    "install_planning_success_is_not_install_execution_approval",
+    "install_planning_success_is_not_runtime_approval",
+    "install_planning_success_is_not_real_output_adapter_approval",
+    "commercial_runtime_is_not_approved",
+    "candidate_only_boundary_is_preserved",
+    "semantic_promotion_is_not_allowed",
+    "guidance_support_is_not_navigation_runtime",
+    "speech_gate_does_not_trigger_tts",
+    "action_safety_does_not_trigger_action",
+    "vla_action_chain_is_excluded",
+    "test_board_record_is_required",
+    "test_process_record_is_required",
+    "test_conclusion_record_is_required",
+    "test_artifacts_are_protected",
+    "test_records_are_non_deletable",
+    "cleanup_must_not_delete_test_board_artifacts",
+    "all_virtual_and_real_test_artifacts_must_be_written_to_the_test_board",
+    "test_process_records_must_be_preserved",
+    "test_conclusions_must_be_preserved",
+    "test_board_artifacts_are_protected_and_must_not_be_deleted",
+    "cleanup_scripts_must_not_remove_protected_test_board_artifacts",
+    "any_test_artifact_deletion_requires_explicit_governance_approval"
+  ],
+  "passed_check_count": 109,
+  "failed_check_count": 0,
+  "stage_refs": [
+    {
+      "stage_index": 1,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-P1-Probe-Reconciliation-Post-Review-v1-001",
+      "expected_go": "MIDPLATFORM_REGISTRY_P1_PROBE_RECONCILIATION_POST_REVIEW_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 2,
+      "phase_ref": "Phase-TestBoard-Planning-Mode-Protocol-Patch-v1-001",
+      "expected_go": "TEST_BOARD_PLANNING_MODE_PROTOCOL_PATCH_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 3,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-Planning-v1-001",
+      "expected_go": "MIDPLATFORM_MODEL_VERSION_DEPENDENCY_REGISTRY_PLANNING_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 4,
+      "phase_ref": "Phase-P1-Real-Install-Local-Availability-DryRun-v1-001",
+      "expected_go": "P1_REAL_INSTALL_LOCAL_AVAILABILITY_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 5,
+      "phase_ref": "Phase-P1-Execution-Trace-Streaming-DryRun-Post-Review-v1-001",
+      "expected_go": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_POST_REVIEW_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 6,
+      "phase_ref": "Phase-P1-Execution-Trace-Streaming-DryRun-v1-001",
+      "expected_go": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 7,
+      "phase_ref": "Phase-P1-Execution-DryRun-Foundation-v1-001",
+      "expected_go": "P1_EXECUTION_DRYRUN_FOUNDATION_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 8,
+      "phase_ref": "Phase-Recognition-Model-P1-Download-License-Planning-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P1_DOWNLOAD_LICENSE_PLANNING_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 9,
+      "phase_ref": "Phase-Model-Governance-Runtime-Trial-Planning-v1-001",
+      "expected_go": "MODEL_GOVERNANCE_RUNTIME_TRIAL_PLANNING_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 10,
+      "phase_ref": "Phase-Recognition-Midplatform-Model-Governance-Integrated-Closure-Post-Review-v1-001",
+      "expected_go": "RECOGNITION_MIDPLATFORM_MODEL_GOVERNANCE_INTEGRATED_CLOSURE_POST_REVIEW_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 11,
+      "phase_ref": "Phase-Recognition-Midplatform-Model-Governance-Integrated-Closure-v1-001",
+      "expected_go": "RECOGNITION_MIDPLATFORM_MODEL_GOVERNANCE_INTEGRATED_CLOSURE_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 12,
+      "phase_ref": "Phase-Midplatform-Model-Control-DryRun-v1-001",
+      "expected_go": "MIDPLATFORM_MODEL_CONTROL_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 13,
+      "phase_ref": "Phase-Midplatform-Model-Data-Handling-DryRun-v1-001",
+      "expected_go": "MIDPLATFORM_MODEL_DATA_HANDLING_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 14,
+      "phase_ref": "Phase-Recognition-Model-P1-Output-Adapter-DryRun-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P1_OUTPUT_ADAPTER_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 15,
+      "phase_ref": "Phase-Recognition-Model-P0-Integration-Closure-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P0_INTEGRATION_CLOSURE_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 16,
+      "phase_ref": "Phase-Test-Board-Protected-Artifact-Rule-v1-001",
+      "expected_go": "TEST_BOARD_PROTECTED_ARTIFACT_RULE_GO",
+      "gated": true,
+      "go_verified": true
+    }
+  ],
+  "upstream_sealed_phase_review": {
+    "registry_probe_reconciliation_post_review_go_verified": true,
+    "test_board_planning_mode_protocol_patch_go_verified": true,
+    "model_version_dependency_registry_planning_go_verified": true,
+    "p1_real_install_local_availability_dryrun_go_verified": true,
+    "p1_streaming_post_review_go_verified": true,
+    "p1_streaming_dryrun_go_verified": true,
+    "p1_execution_dryrun_foundation_go_verified": true,
+    "p1_download_license_planning_go_verified": true,
+    "runtime_trial_planning_go_verified": true,
+    "integrated_closure_post_review_go_verified": true,
+    "integrated_closure_go_verified": true,
+    "model_control_dryrun_go_verified": true,
+    "model_data_handling_dryrun_go_verified": true,
+    "p1_output_adapter_dryrun_go_verified": true,
+    "p0_integration_closure_go_verified": true,
+    "test_board_protocol_go_verified": true,
+    "controlled_trial_template_ref_ok": true
+  }
+}

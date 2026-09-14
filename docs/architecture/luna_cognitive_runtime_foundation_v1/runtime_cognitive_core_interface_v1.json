@@ -1,0 +1,8 @@
+{
+  "title": "Runtime to Cognitive Core Interface Contract v1",
+  "owner": "Cognitive OS Governance",
+  "allowed_requests": ["Attention Refresh Candidate", "Workspace Update Candidate", "Brain Input Package Request", "Outcome Feedback Routing"],
+  "core_outputs": ["Flow Candidate", "State Proposal", "Decision Boundary Reference", "Experience Candidate"],
+  "runtime_does_not_own": ["Decision", "Goal", "Value", "Reality", "Memory Content"],
+  "rules": {"candidate_interface_only": true, "brain_authority_preserved": true, "state_owner_validation_required": true}
+}

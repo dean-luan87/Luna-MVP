@@ -1,0 +1,16 @@
+{
+  "schema_version": "v1",
+  "schema_type": "world_state",
+  "required_fields": ["state_id", "entities", "events", "relations", "states", "unknowns", "validity", "provenance", "updated_at"],
+  "objects": {
+    "entity": ["entity_id", "type_candidate", "attributes", "confidence", "validity", "provenance"],
+    "event": ["event_id", "event_type_candidate", "time_window", "participants", "confidence", "provenance"],
+    "relation": ["relation_id", "subject", "predicate_candidate", "object", "confidence", "provenance"],
+    "state": ["state_id", "subject_reference", "property_candidate", "value_candidate", "validity", "confidence", "provenance"],
+    "unknown": ["unknown_id", "scope", "reason", "impact_candidate", "observed_at"]
+  },
+  "reality_status": "current_most_credible_state",
+  "absolute_truth_claim": false,
+  "decision_authority": false,
+  "action_authority": false
+}

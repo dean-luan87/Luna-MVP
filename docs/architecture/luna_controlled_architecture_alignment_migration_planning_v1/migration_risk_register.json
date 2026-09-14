@@ -1,0 +1,141 @@
+{
+  "register_id": "luna_controlled_architecture_alignment_migration_risk_register_v1",
+  "risk_levels": ["LOW", "MEDIUM", "HIGH", "CRITICAL"],
+  "risks": [
+    {
+      "risk_id": "RISK_DUAL_ARCHITECTURE_MAINLINE",
+      "risk": "双轨架构风险",
+      "cause": "New v2 names are implemented as parallel cores instead of aligning existing owners and contracts.",
+      "impact": "Two competing cognitive mainlines and inconsistent state semantics.",
+      "risk_level": "CRITICAL",
+      "detection": ["duplicate canonical owner", "parallel reducer or intent engine path", "new Runtime entrypoint before freeze"],
+      "mitigation": ["adapter-first planning", "single canonical owner", "one bounded migration slice", "P3 integrity validation"],
+      "stop_condition": "Any second formal mainline or duplicate Owner is detected.",
+      "owner": "Architecture Governance"
+    },
+    {
+      "risk_id": "RISK_OWNER_CONFLICT",
+      "risk": "Owner 冲突风险",
+      "cause": "A projection or adapter is treated as ownership transfer.",
+      "impact": "Unclear write authority and cross-module state mutation.",
+      "risk_level": "CRITICAL",
+      "detection": ["one responsibility has multiple writers", "TBD or unassigned owner", "source-owner precedence missing"],
+      "mitigation": ["ownership matrix", "owner metadata before contract change", "block unresolved assets"],
+      "stop_condition": "Canonical Owner cannot be resolved uniquely.",
+      "owner": "Architecture Governance"
+    },
+    {
+      "risk_id": "RISK_MEMORY_NETWORK_CONFUSION",
+      "risk": "Memory/Cognitive Network 混淆风险",
+      "cause": "Personal Cognitive Network is implemented as a second Memory store or direct writer.",
+      "impact": "Persistence duplication, conflicting truth, and uncontrolled cognitive mutation.",
+      "risk_level": "CRITICAL",
+      "detection": ["network persistence API", "direct memory write", "memory source object copied without admission"],
+      "mitigation": ["Memory owner preserved", "reference and projection only", "admission and trace required"],
+      "stop_condition": "Network gains Memory persistence, consolidation, retention, or retrieval ownership.",
+      "owner": "Memory Governance and Personal Cognitive Network Governance"
+    },
+    {
+      "risk_id": "RISK_TASK_MANAGER_BOUNDARY_DRIFT",
+      "risk": "Task Manager 边界漂移风险",
+      "cause": "Task orchestration is reclassified as causal judgment, final Decision, Runtime dispatch, or Action execution.",
+      "impact": "Decision/Action separation is broken and existing Task API semantics drift.",
+      "risk_level": "CRITICAL",
+      "detection": ["causal evaluation in Task Manager", "action command emission", "production Runtime dispatch"],
+      "mitigation": ["KEEP migration type", "baseline API regression", "forbidden-responsibility checks"],
+      "stop_condition": "Task Manager emits a final decision or executes an action.",
+      "owner": "Task Manager and Action Governance"
+    },
+    {
+      "risk_id": "RISK_MODEL_MANAGER_AUTHORITY_EXPANSION",
+      "risk": "Model Manager 权责扩大风险",
+      "cause": "Model routing or provider output is treated as cognitive understanding, fact, or Decision authority.",
+      "impact": "Capability Governance bypasses the Cognitive Core and candidate/fact admission.",
+      "risk_level": "CRITICAL",
+      "detection": ["cognitive conclusion output", "fact admission", "goal or decision fields owned by Model Manager"],
+      "mitigation": ["KEEP Capability Governance owner", "candidate-only model output", "admission boundary regression"],
+      "stop_condition": "Model Manager gains cognitive conclusion, fact, Goal, Intent, Decision, or Action authority.",
+      "owner": "Capability Governance"
+    },
+    {
+      "risk_id": "RISK_FIELD_NETWORK_MERGE",
+      "risk": "Field State 与 Personal Cognitive Network 混合风险",
+      "cause": "A new network context manager replaces the active Field State Reducer or mutates Field directly.",
+      "impact": "Field continuity, deterministic reduction, trace, and replay are broken.",
+      "risk_level": "CRITICAL",
+      "detection": ["parallel Field reducer", "network-to-Field write", "missing reducer trace/replay"],
+      "mitigation": ["Field first dependency", "projection adapter boundary", "active reducer baseline preserved"],
+      "stop_condition": "The Field State Reducer is bypassed or replaced.",
+      "owner": "Field System"
+    },
+    {
+      "risk_id": "RISK_DOCUMENT_CODE_DIVERGENCE",
+      "risk": "文档与代码不一致风险",
+      "cause": "Owner or contract documentation is updated without matching active API and baseline evidence.",
+      "impact": "Architecture claims capabilities or boundaries the engineering mainline does not provide.",
+      "risk_level": "HIGH",
+      "detection": ["documented owner differs from baseline", "contract references missing path", "API schema mismatch"],
+      "mitigation": ["M0 before M1", "baseline reference per asset", "P3 documentation-code consistency check"],
+      "stop_condition": "A changed document cannot be reconciled to an existing asset or explicit future candidate.",
+      "owner": "Architecture Governance and Module Owner"
+    },
+    {
+      "risk_id": "RISK_OBSERVATION_ATTENTION_COLLISION",
+      "risk": "感知注意与认知注意 Owner 混淆风险",
+      "cause": "Observation Manager attention coordination is promoted to Cognitive Attention ownership.",
+      "impact": "Perceptual request coordination can control cognitive priorities.",
+      "risk_level": "HIGH",
+      "detection": ["Observation Manager owns cognitive budget", "Attention Governance omitted", "Intent or Causal priority modified in perception layer"],
+      "mitigation": ["semantic split contract", "separate owners and outputs", "boundary regression"],
+      "stop_condition": "Perceptual attention gains cognitive resource-allocation authority.",
+      "owner": "Observation Manager and Attention Governance"
+    },
+    {
+      "risk_id": "RISK_AB_ROUTE_REALITY_OVERRIDE",
+      "risk": "B Route 覆盖 A Route 现实风险",
+      "cause": "Simulation candidates are treated as current facts or live-state updates.",
+      "impact": "Luna decisions become detached from validated reality.",
+      "risk_level": "CRITICAL",
+      "detection": ["B Route writes A state", "future branch promoted to fact", "simulation overrides current decision"],
+      "mitigation": ["route boundary contract", "candidate-only handoff", "Reality precedence invariant"],
+      "stop_condition": "A simulation candidate mutates current Reality, Field, Self, or Decision.",
+      "owner": "A/B Route Boundary Governance"
+    },
+    {
+      "risk_id": "RISK_LEGACY_RUNTIME_INFERENCE",
+      "risk": "旧 Runtime 名称被误判为新架构实现风险",
+      "cause": "Legacy intent or decision fields in runtime/ are assumed to implement Dynamic Cognitive Architecture v2.",
+      "impact": "Unreviewed Runtime receives new authority by documentation inference.",
+      "risk_level": "HIGH",
+      "detection": ["legacy Runtime mapped as v2 without contract", "existing field name treated as canonical owner"],
+      "mitigation": ["Root A3 Runtime marked KEEP and out of scope", "no implicit equivalence", "future explicit interface review"],
+      "stop_condition": "Runtime authority is changed without a separate authorized phase.",
+      "owner": "Runtime Governance"
+    },
+    {
+      "risk_id": "RISK_CHECK_OR_BASELINE_WEAKENING",
+      "risk": "验证或 baseline 弱化风险",
+      "cause": "Migration is made to pass by deleting checks, editing baselines, or hardcoding success.",
+      "impact": "Integrity evidence becomes unreliable.",
+      "risk_level": "CRITICAL",
+      "detection": ["check count reduced", "baseline changed during validation", "hardcoded pass", "excluded mandatory regression"],
+      "mitigation": ["immutable pre-migration baselines", "original verifier rerun", "V2 user terminal and V3 audit"],
+      "stop_condition": "Any required check or baseline is weakened to hide migration failure.",
+      "owner": "Engineering Verification Governance"
+    }
+  ],
+  "required_risks_covered": [
+    "双轨架构风险",
+    "Owner 冲突风险",
+    "Memory/Cognitive Network 混淆风险",
+    "Task Manager 边界漂移风险",
+    "Model Manager 权责扩大风险",
+    "Field State 与 Personal Cognitive Network 混合风险",
+    "文档与代码不一致风险"
+  ],
+  "all_risks_have_owner": true,
+  "all_risks_have_stop_condition": true,
+  "risk_acceptance_is_not_migration_authority": true,
+  "runtime_modified": false,
+  "migration_executed": false
+}

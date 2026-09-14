@@ -1,0 +1,82 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_download_request_record",
+  "weight_download_request_record": {
+    "request_id": "weight_download_request_v1",
+    "requested_assets": [
+      "mobile_sam",
+      "byte_track"
+    ],
+    "mobile_sam_weight_request_included": true,
+    "byte_track_weight_request_included_as_unresolved_candidate": true,
+    "request_package_created": true,
+    "request_package_is_not_download_execution": true,
+    "request_package_is_not_model_load_approval": true,
+    "request_package_is_not_inference_approval": true,
+    "request_package_is_not_runtime_approval": true
+  },
+  "weight_download_candidate_records": [
+    {
+      "asset_id": "mobile_sam",
+      "weight_type": "checkpoint",
+      "weight_source_known": true,
+      "source_repository": "https://github.com/ChaoningZhang/MobileSAM",
+      "source_commit": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "download_source_candidate": "repository_committed_weight_blob_or_release_if_verified",
+      "known_committed_weight_file": "weights/mobile_sam.pt",
+      "known_size_bytes": 40728226,
+      "hash_required": true,
+      "storage_required": true,
+      "download_execution_allowed_next": true
+    },
+    {
+      "asset_id": "byte_track",
+      "weight_type": "detector_or_tracker_weight_to_be_determined",
+      "weight_source_known": false,
+      "source_repository": "https://github.com/FoundationVision/ByteTrack",
+      "source_commit": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "download_source_candidate": "unresolved",
+      "known_committed_weight_file": null,
+      "known_size_bytes": 0,
+      "hash_required": true,
+      "storage_required": true,
+      "download_execution_allowed_next": false
+    }
+  ],
+  "code_only_registry_overlay_audit": {
+    "audit_id": "code_only_registry_overlay_audit_v1",
+    "overlay_file_ref": "capabilities/midplatform/model_registry/code_only_source_install_registry_overlay_v1.json",
+    "overlay_exists": true,
+    "byte_track_checks": {
+      "readiness_level==code_only_ready": true,
+      "model_weight_status==not_downloaded": true,
+      "model_ready==False": true,
+      "inference_ready==False": true,
+      "runtime_ready==False": true
+    },
+    "mobile_sam_checks": {
+      "readiness_level==code_only_ready": true,
+      "model_weight_status==not_downloaded": true,
+      "checkpoint_weight_status==not_downloaded": true,
+      "committed_weight_file==weights/mobile_sam.pt": true,
+      "committed_weight_file_downloaded==False": true,
+      "model_ready==False": true,
+      "inference_ready==False": true,
+      "runtime_ready==False": true
+    },
+    "code_only_registry_patch_go_verified": true,
+    "overlay_audit_passed": true
+  }
+}

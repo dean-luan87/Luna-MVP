@@ -1,0 +1,96 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "RunnerRouteAdmissionPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-Planning-v1-001",
+    "description": "Runner task candidate 队列准入。P0/P1 默认可入队；P2/P3 manual_only；禁止自动执行。",
+    "planning_only": true,
+    "default_trigger_mode": "manual_only",
+    "auto_runner_trigger_allowed": false,
+    "priority_admission": {
+      "P0_immediate_attention": {
+        "queue_admission": "auto_eligible",
+        "max_tasks_per_region": 3
+      },
+      "P1_high_attention": {
+        "queue_admission": "auto_eligible",
+        "max_tasks_per_region": 2
+      },
+      "P2_medium_attention": {
+        "queue_admission": "manual_only",
+        "max_tasks_per_region": 1
+      },
+      "P3_low_attention": {
+        "queue_admission": "manual_only",
+        "max_tasks_per_region": 1
+      },
+      "ignore_for_now": {
+        "queue_admission": "rejected",
+        "max_tasks_per_region": 0
+      }
+    },
+    "correction_boost_rules": {
+      "description": "Human correction 仅 priority signal，非 ground truth",
+      "may_upgrade_queue_admission_to": "auto_eligible",
+      "forbidden": [
+        "treat_as_ground_truth",
+        "skip_admission_policy",
+        "auto_execute_runner"
+      ]
+    },
+    "frame_context_rules": {
+      "single_frame": {
+        "tracking_default_trigger_mode": "manual_only",
+        "forbidden_motion_outputs": [
+          "confirmed_dynamic"
+        ]
+      }
+    },
+    "queue_limits": {
+      "max_auto_eligible_per_frame": 8,
+      "max_total_candidates_per_frame": 24,
+      "dedupe_key": [
+        "source_region_id",
+        "target_model_id"
+      ]
+    },
+    "visual_expression_preservation": {
+      "no_canvas_execution_status": true,
+      "no_boundary_mutation": true,
+      "no_attention_secondary_box": true,
+      "canvas_frozen": true
+    },
+    "admission_pipeline": [
+      "expand_recommended_followup_models",
+      "apply_model_routing_rules",
+      "apply_priority_admission",
+      "apply_correction_boost",
+      "apply_frame_context_guards",
+      "dedupe_queue",
+      "emit_runner_task_candidates"
+    ],
+    "forbidden_operations": [
+      "auto_runner_trigger",
+      "runner_execution",
+      "model_call",
+      "fact_write",
+      "navigation_decision",
+      "visual_expression_mutation"
+    ],
+    "boundary_flags": {
+      "runner_task_candidate_only": true,
+      "not_runner_execution": true,
+      "not_fact_write": true,
+      "not_auto_runner_trigger": true,
+      "planning_only": true
+    },
+    "recommended_next_execution": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-UI-Queue-Execution-And-Post-Review-v1-001"
+  }
+}

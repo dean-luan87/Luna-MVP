@@ -1,0 +1,11 @@
+{
+  "attention_owner": "Field Perception Orchestrator / existing Attention contracts",
+  "region_scope_input": "Observation Request target_region_candidate",
+  "provider_receives": ["region scope candidate", "semantic scope candidate", "expected evidence", "bounded session"],
+  "full_frame_limitation": "If the reused provider cannot consume a pixel ROI, execution must be recorded as bounded frame-scope execution; it must not be described as region-level execution.",
+  "region_scope_enforced": false,
+  "region_scope_limitation_recorded": true,
+  "full_frame_continuous_execution": false,
+  "region_scope_authority": false,
+  "provider_does_not_choose_attention": true
+}

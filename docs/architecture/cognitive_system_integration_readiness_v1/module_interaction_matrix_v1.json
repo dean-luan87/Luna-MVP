@@ -1,0 +1,20 @@
+{
+  "contract_name": "Module Interaction Matrix v1",
+  "modules": [
+    {"module": "Reality Workspace", "owns": ["facts", "provenance", "Unknown", "temporal validity"], "receives": ["Evidence"], "emits": ["Reality Update Candidate"], "cannot": ["Decision", "Goal", "Action"]},
+    {"module": "Cognitive Field", "owns": ["relevant context", "Field lifecycle", "Field continuity"], "receives": ["Reality Update", "Self State", "Goal", "Rule"], "emits": ["Field Update Candidate"], "cannot": ["Decision", "Action", "Reality Write"]},
+    {"module": "Attention", "owns": ["global resource allocation candidates", "arbitration", "preemption", "release"], "receives": ["Reality Observation", "Field Update", "Task", "Brain Escalation", "Capability Usage"], "emits": ["Attention Allocation Candidate", "Observation Requirement"], "cannot": ["Goal Mutation", "Decision Mutation"]},
+    {"module": "Situation", "owns": ["Situation Candidate"], "receives": ["Field", "Self Capability", "Self State", "Goal", "constraints", "Unknown"], "emits": ["Situation Candidate"], "cannot": ["Action"]},
+    {"module": "Goal / Task", "owns": ["Goal hierarchy", "Task continuity", "pending information"], "receives": ["Brain Goal", "Field", "Attention", "Outcome"], "emits": ["Goal / Task Check"], "cannot": ["final Decision"]},
+    {"module": "A Route", "owns": ["Option", "Evaluation Candidate", "Decision Candidate"], "receives": ["Situation", "Goal", "Task", "Capability", "Unknown"], "emits": ["Decision Candidate"], "cannot": ["Action execution"]},
+    {"module": "Brain", "owns": ["Goal", "Intent", "final Judgment"], "receives": ["Decision Candidate", "Conflict Candidate", "Resource Constraint", "Escalation"], "emits": ["Brain Review"], "cannot": ["Reality Reducer mutation", "Capability registry management"]},
+    {"module": "Capability Governance", "owns": ["Capability Requirement", "admission", "provider boundary"], "receives": ["Need", "Attention", "Hardware State"], "emits": ["Model / Hardware options", "Evidence"], "cannot": ["Goal", "Decision"]},
+    {"module": "Experience", "owns": ["Experience Candidate", "Pattern Candidate"], "receives": ["Outcome", "Cause Attribution"], "emits": ["Future Adaptation Candidate"], "cannot": ["direct Reality overwrite"]},
+    {"module": "Governance", "owns": ["Protocol", "Authority", "Admission", "Resource", "Runtime", "Diagnostics"], "receives": ["lifecycle transition", "change proposal"], "emits": ["governance candidate"], "cannot": ["cognitive judgment"]}
+  ],
+  "reality_reducer_is_sole_reality_mutation_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "provider_cannot_create_field": true,
+  "model_cannot_modify_goal": true,
+  "unknowns_are_preserved": true
+}

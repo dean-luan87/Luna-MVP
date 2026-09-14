@@ -1,0 +1,14 @@
+{
+  "interface_name": "Social Field Self Interface v1",
+  "social_field_reference": "social-field-example",
+  "self_reference": "self-example",
+  "role_context": null,
+  "social_position_candidate": null,
+  "attention_candidate": null,
+  "behavior_candidate": null,
+  "goal_context_candidate": null,
+  "identity_continuity_required": true,
+  "role_does_not_modify_identity": true,
+  "social_field_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

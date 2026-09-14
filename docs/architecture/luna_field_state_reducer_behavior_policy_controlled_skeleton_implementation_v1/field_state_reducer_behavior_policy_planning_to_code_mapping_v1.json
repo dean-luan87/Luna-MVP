@@ -1,0 +1,108 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Planning To Code Mapping",
+    "mappings": [
+        {
+            "planning_asset": "field_state_reducer_behavior_policy_registry_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_registry_skeleton_v1.py",
+            "mapping_type": "registry",
+            "reused_fields": [
+                "policy_id",
+                "policy_version",
+                "eligible_state_types",
+                "precedence_class",
+                "composable_with",
+                "mutually_exclusive_with"
+            ],
+            "deferred_runtime_behavior": "real_policy_selection_and_execution",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_policy_eligibility_matrix_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_eligibility_skeleton_v1.py",
+            "mapping_type": "eligibility",
+            "reused_fields": [
+                "policy_id",
+                "admitted_only"
+            ],
+            "deferred_runtime_behavior": "real_eligibility_judgment",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_policy_precedence_matrix_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_precedence_skeleton_v1.py",
+            "mapping_type": "precedence",
+            "reused_fields": [
+                "higher_policy",
+                "lower_policy",
+                "condition"
+            ],
+            "deferred_runtime_behavior": "real_precedence_winner_resolution",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_policy_composition_contract_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_composition_skeleton_v1.py",
+            "mapping_type": "composition",
+            "reused_fields": [
+                "maximum_composition_depth",
+                "policy_side_effect_allowed",
+                "state_write_during_composition_allowed",
+                "action_trigger_during_composition_allowed"
+            ],
+            "deferred_runtime_behavior": "real_feed_forward_composition",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_policy_decision_schema_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_decision_skeleton_v1.py",
+            "mapping_type": "decision_schema",
+            "reused_fields": [
+                "candidate_policy_ids",
+                "eligible_policy_ids",
+                "rejected_policy_ids",
+                "selected_policy_ids",
+                "precedence_steps",
+                "composition_sequence",
+                "deterministic_replay_key"
+            ],
+            "deferred_runtime_behavior": "real_policy_decision_and_state_commit",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_policy_replay_contract_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_trace_types_v1.py",
+            "mapping_type": "replay",
+            "reused_fields": [
+                "policy_registry_snapshot_required",
+                "eligibility_matrix_snapshot_required",
+                "precedence_matrix_snapshot_required",
+                "composition_contract_snapshot_required"
+            ],
+            "deferred_runtime_behavior": "runtime_dependent_replay_computation",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        },
+        {
+            "planning_asset": "field_state_reducer_behavior_policy_negative_guards_v1.json",
+            "code_asset": "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_static_validators_v1.py",
+            "mapping_type": "negative_guards",
+            "reused_fields": [
+                "no_provider_recall",
+                "no_external_lookup",
+                "no_model_call",
+                "no_action_trigger",
+                "no_state_write"
+            ],
+            "deferred_runtime_behavior": "none",
+            "planning_asset_modified": false,
+            "rewrite_required": false
+        }
+    ],
+    "mapping_complete": true
+}

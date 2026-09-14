@@ -1,0 +1,52 @@
+{
+  "requirements_id": "PerceptionHudModelAdapterRequirementsV1",
+  "version": "v1",
+  "all_adapters_read_only": true,
+  "all_adapters_candidate_only": true,
+  "model_categories": {
+    "segmentation": {
+      "model_ids": ["mobile_sam"],
+      "hud_must_show": ["segmentation_mask", "boundary", "prompt_label", "confidence", "uncertainty_boundary", "candidate_only_notice"],
+      "hud_must_not": ["upgrade_prompt_label_to_fact"],
+      "followup_runners": ["detection", "ocr", "depth"],
+      "status": "planned_mobile_sam_adapter"
+    },
+    "detection_tracking": {
+      "hud_must_show": ["bounding_box", "class_label", "confidence", "object_count", "missed_object_warning", "confidence_threshold"],
+      "status": "reserved"
+    },
+    "ocr": {
+      "hud_must_show": ["text_box", "recognized_text", "reading_order", "confidence", "unclear_text_warning"],
+      "status": "reserved"
+    },
+    "slam_vio": {
+      "hud_must_show": ["video_frame", "keypoints", "tracking_state", "trajectory_minimap", "drift_warning", "lost_tracking_warning"],
+      "also_preserve": ["error_curve", "drift_heatmap", "failure_timeline"],
+      "status": "reserved"
+    },
+    "depth_world": {
+      "hud_must_show": ["depth_heatmap", "near_far_legend", "depth_uncertainty"],
+      "status": "reserved"
+    },
+    "asr": {
+      "hud_must_show": ["waveform", "transcript", "word_confidence", "uncertain_words"],
+      "status": "reserved"
+    },
+    "tts": {
+      "hud_must_show": ["waveform", "prompt_text", "duration_notes"],
+      "status": "reserved"
+    },
+    "speaker": {
+      "hud_must_show": ["speaker_timeline", "segment_labels", "overlap_warning"],
+      "status": "reserved"
+    },
+    "face_expression_gesture": {
+      "hud_must_show": ["face_box", "landmarks", "expression_candidate", "gesture_candidate", "consent_warning"],
+      "status": "reserved"
+    },
+    "multimodal_vlm": {
+      "hud_must_show": ["referenced_regions", "answer_text", "hallucination_warning", "missing_evidence_warning"],
+      "status": "reserved"
+    }
+  }
+}

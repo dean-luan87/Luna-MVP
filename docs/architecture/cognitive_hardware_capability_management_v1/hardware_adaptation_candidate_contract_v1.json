@@ -1,0 +1,17 @@
+{
+  "contract_name": "Hardware Adaptation Candidate Contract v1",
+  "hardware_reference": "hardware-example",
+  "trigger": "low_battery | thermal_pressure | memory_pressure | sensor_degradation | network_loss | unknown",
+  "adaptation_candidate": ["lower_observation_frequency", "smaller_model_requirement", "defer_background_work", "alternative_evidence_source"],
+  "resource_context": {},
+  "capability_confidence_context": {},
+  "attention_adjustment_candidate": null,
+  "runtime_adjustment_candidate": null,
+  "model_requirement_candidate": null,
+  "hardware_manager_does_not_decide": true,
+  "adaptation_is_candidate_only": true,
+  "adaptation_does_not_modify_goal": true,
+  "adaptation_does_not_modify_decision": true,
+  "adaptation_does_not_execute": true,
+  "unknowns_are_preserved": true
+}

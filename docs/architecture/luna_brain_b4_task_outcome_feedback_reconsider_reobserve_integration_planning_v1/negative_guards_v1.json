@@ -1,0 +1,5 @@
+{
+  "artifact":"b4_negative_guards_v1",
+  "false":["real_action_execution", "runtime_execution", "device_control", "scheduler_execution", "automatic_retry", "hidden_retry_loop", "task_autonomous_reexecution", "provider_invocation", "camera_activation", "ocr_execution", "slam_execution", "vio_execution", "vlm_execution", "field_state_mutation", "current_world_direct_mutation", "intent_mutation", "decision_mutation", "task_direct_mutation_outside_task_manager", "pcn_mutation", "memory_write", "experience_learning", "online_learning", "semantic_compression", "dynamic_cognitive_function_execution", "emotion_engine_execution", "b_route_execution", "database_write", "vector_store_write", "embedding_execution"],
+  "candidate_invariants":["Outcome truth_declared=false", "reconsideration executes_reconsideration=false", "observation_need provider_invocation=false", "learning_executed=false", "provenance_grants_authority=false"]
+}

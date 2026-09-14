@@ -1,0 +1,48 @@
+{
+  "schema_id": "ModelNoopRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "未激活模型的 no-op 记录 — 必须有理由，不是 fact。",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "model_name",
+    "noop_reason",
+    "scene_profile_ref",
+    "task_intent_ref",
+    "candidate_only",
+    "not_fact"
+  ],
+  "field_definitions": {
+    "model_name": {
+      "type": "string",
+      "enum": [
+        "ocr_text_detector",
+        "ocr_recognizer",
+        "detection",
+        "depth",
+        "tracking",
+        "slam",
+        "vlm_route_enhancer",
+        "mobile_sam_region_proposal"
+      ]
+    },
+    "noop_reason": { "type": "string" },
+    "scene_profile_ref": { "type": "string" },
+    "task_intent_ref": { "type": "string" },
+    "policy_ref": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "example": {
+    "model_name": "slam",
+    "noop_reason": "task_intent=read_text_only; no spatial continuity required",
+    "policy_ref": "no_slam_for_text_activation_policy_v1"
+  },
+  "boundary_flags": {
+    "noop_record_required_for_inactive_models": true,
+    "inactive_model_must_not_generate_task": true,
+    "planning_only": true
+  }
+}

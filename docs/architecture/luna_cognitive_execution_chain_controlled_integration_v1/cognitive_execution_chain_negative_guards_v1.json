@@ -1,0 +1,18 @@
+{
+    "artifact": "cognitive_execution_chain_negative_guards_v1",
+    "status": "CONTROLLED_INTEGRATION_CANDIDATE",
+    "guards": {
+        "integration_has_no_owner": true,
+        "source_mutation": false,
+        "runtime_side_effect": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "field_mutation": false,
+        "memory_mutation": false,
+        "silent_retry": false,
+        "owner_bypass": false,
+        "runtime_bypass": false
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_id": "TeacherEvidenceCandidateSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "evidence_id",
+    "teacher_role",
+    "provider_id",
+    "task_type",
+    "output_type",
+    "confidence",
+    "candidate_only",
+    "not_fact",
+    "requires_policy_review"
+  ],
+  "forbidden_fields_as_fact": ["confirmed_scene", "selected_plan", "executed_tool"]
+}

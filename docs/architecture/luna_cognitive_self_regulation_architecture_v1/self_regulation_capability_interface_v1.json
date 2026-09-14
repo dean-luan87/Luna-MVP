@@ -1,0 +1,7 @@
+{
+  "title": "Self Regulation Capability Interface v1",
+  "owner": "Capability Governance",
+  "inputs": ["Capability Regulation Candidate", "Capability Requirement", "Resource Constraint", "Admission Policy", "Calibration Evidence"],
+  "outputs": ["Admitted Capability Option Candidate", "Capability Health Update Candidate", "Capability Fallback Candidate", "Capability Denial"],
+  "rules": {"capability_governance_owns_admission":true,"self_regulation_proposes":true,"model_manager_provides_options":true,"provider_not_directly_called":true,"no_goal_ownership":true,"no_brain_override":true}
+}

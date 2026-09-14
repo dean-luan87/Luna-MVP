@@ -1,0 +1,10 @@
+{
+  "schema_id": "uncertainty_candidate_v1",
+  "owner": "Cognitive Kernel",
+  "fields": ["uncertainty_id", "type", "field_ref", "situation_ref", "source_evidence", "impact_context", "confidence", "unknowns", "provenance", "lifecycle_state"],
+  "type_values": ["Perception Uncertainty", "Semantic Uncertainty", "Field Uncertainty", "Causal Uncertainty", "Decision Uncertainty", "Capability Uncertainty"],
+  "candidate_only": true,
+  "direct_action": false,
+  "forced_resolution": false,
+  "reality_replacement": false
+}

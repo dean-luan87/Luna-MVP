@@ -1,0 +1,18 @@
+{
+  "schema_name": "Interaction Pattern Model v1",
+  "pattern_id": "interaction-pattern-example",
+  "participants": [],
+  "field_context": "meeting-field-example",
+  "observed_sequence": [],
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "history": [],
+  "provenance": [],
+  "pattern_is_historical_observation": true,
+  "pattern_is_not_prediction": true,
+  "pattern_does_not_make_decision": true,
+  "pattern_does_not_infer_emotion": true,
+  "pattern_does_not_confirm_identity": true,
+  "unknowns_are_preserved": true
+}

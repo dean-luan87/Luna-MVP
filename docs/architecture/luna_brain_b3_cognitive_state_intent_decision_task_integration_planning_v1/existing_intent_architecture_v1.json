@@ -1,0 +1,10 @@
+{
+  "artifact": "b3_existing_intent_architecture_v1",
+  "canonical_owner": "Intent Governance",
+  "reusable_types": ["PotentialIntentCandidateV1", "IntentCandidateV1", "IntentInteractionCandidateV1", "IntentStateTransitionCandidateV1", "IntentGovernanceInputV1", "IntentGovernanceOutputV1", "IntentToCausalHandoffCandidateV1"],
+  "input_semantics": {"context_refs": "read-only", "pcn_refs": "read-only", "source_refs": "read-only typed references", "candidate_only": true, "synthetic_only_default": true},
+  "lifecycle": ["UNKNOWN", "POTENTIAL", "FORMING", "ACTIVE_CANDIDATE", "SUPPRESSED", "DORMANT", "REACTIVATED", "RESOLVED_CANDIDATE", "ABANDONED_CANDIDATE"],
+  "interaction_semantics": ["COEXISTENCE", "COMPETITION", "CONFLICT", "SUPPRESSION", "AMPLIFICATION", "INHIBITION", "TEMPORARY_DOMINANCE", "REACTIVATION"],
+  "resource_rules": ["resource pressure may create degradation candidates", "resource pressure does not force a winner", "resource pressure does not delete dormant candidates", "resource pressure does not mutate truth status"],
+  "forbidden": ["Cognitive State directly creates Intent", "Intent candidate becomes fact automatically", "Intent Governance creates Decision/Task/Action", "provider/model output directly creates Intent", "semantic compression into natural-language Intent"]
+}

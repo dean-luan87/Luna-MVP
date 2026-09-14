@@ -1,0 +1,11 @@
+{
+  "contract_id": "stable_core_boundary_v1",
+  "stable_core": ["Reality Priority", "Constitution", "Identity", "Safety Boundary", "Ownership Boundary", "Unknown Preservation", "Unique State Owner"],
+  "protected_from": ["Memory", "Experience", "Learning", "Knowledge", "Hive", "B Route", "Parameter Optimization", "Emotion"],
+  "change_requires": ["Constitution Governance", "Self Review", "Evidence", "Impact Analysis", "Explicit Change Control"],
+  "automatic_change": false,
+  "direct_learning_change": false,
+  "direct_hive_change": false,
+  "direct_b_route_change": false,
+  "candidate_only": true
+}

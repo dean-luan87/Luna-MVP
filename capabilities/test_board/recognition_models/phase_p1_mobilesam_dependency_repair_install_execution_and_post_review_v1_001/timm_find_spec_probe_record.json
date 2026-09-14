@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T08:52:29.597968+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_find_spec_probe_record",
+  "timm_find_spec_probe_record": {
+    "record_id": "timm_find_spec_probe_v1",
+    "probe_method": "importlib.util.find_spec only",
+    "probe_target": "timm",
+    "find_spec_result": false,
+    "found_origin": "",
+    "real_import_used": false,
+    "model_load_used": false,
+    "inference_used": false,
+    "runtime_used": false
+  }
+}

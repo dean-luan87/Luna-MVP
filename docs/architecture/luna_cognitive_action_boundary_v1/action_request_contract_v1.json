@@ -1,0 +1,9 @@
+{
+  "title": "Action Request Contract v1",
+  "owner": "Cognitive Core Governance",
+  "schema": ["action_request_id", "source_decision", "intent", "target", "context", "confidence", "risk_level", "expected_outcome", "trace_id"],
+  "source_required": "Decision Commitment",
+  "forbidden_sources": ["Raw Provider Output", "Emotion Direct", "Capability Direct", "Brain Direct Hardware Call"],
+  "lifecycle": ["Created", "Validated", "Approved Candidate", "Rejected", "Executed Future", "Outcome Recorded"],
+  "rules": {"decision_not_execution": true, "request_is_candidate": true, "brain_direct_executor_forbidden": true}
+}

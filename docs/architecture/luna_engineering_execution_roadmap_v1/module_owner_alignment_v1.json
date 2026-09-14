@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Luna Module Owner Alignment",
+  "alignment":[
+    {"module":"Self Model","baseline_owner":"Self Governance","engineering_owner":"Self Governance","aligned":true,"action":"retain mapping"},
+    {"module":"Self Regulation","baseline_owner":"Self Regulation","engineering_owner":"Self Regulation","aligned":true,"action":"retain mapping"},
+    {"module":"Self Evolution","baseline_owner":"Self Evolution","engineering_owner":"Self Evolution","aligned":true,"action":"candidate-only future implementation"},
+    {"module":"Role","baseline_owner":"Social Self Governance","engineering_owner":"Social Self Governance","aligned":true,"action":"keep boundary-only"},
+    {"module":"Relationship","baseline_owner":"Social Self Governance","engineering_owner":"Social Self Governance","aligned":true,"action":"keep boundary-only"},
+    {"module":"Capability Governance","baseline_owner":"Capability Governance","engineering_owner":"Capability Governance","aligned":true,"action":"do not merge into Model Manager"},
+    {"module":"Model Manager","baseline_owner":"Capability Governance","engineering_owner":"Capability Governance","aligned":true,"action":"model asset scope only"},
+    {"module":"Cognitive Runtime","baseline_owner":"Cognitive Runtime Governance","engineering_owner":"Cognitive Runtime Governance","aligned":true,"action":"P0 readiness planning"},
+    {"module":"Action Boundary","baseline_owner":"Action Governance","engineering_owner":"Action Governance","aligned":true,"action":"execution gate only"}
+  ],
+  "rules":{"canonical_owner_unique":true,"capability_not_model_manager":true,"social_not_self_identity":true,"alignment_is_mapping_only":true}
+}

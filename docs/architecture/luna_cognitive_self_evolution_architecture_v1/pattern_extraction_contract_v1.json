@@ -1,0 +1,15 @@
+{
+  "title": "Pattern Extraction Contract v1",
+  "owner": "Self Evolution / Pattern Extraction",
+  "inputs": ["Experience Candidate", "Repeated Evidence", "Field Context", "Task Context", "Failure Attribution"],
+  "output": "Pattern Candidate",
+  "schema": ["pattern_id", "source_experiences", "context", "observed_repetition", "supporting_evidence", "contradicting_evidence", "confidence", "unknown", "lifecycle_state"],
+  "rules": {
+    "repeated_evidence_required": true,
+    "single_episode_not_sufficient": true,
+    "pattern_is_not_rule": true,
+    "cross_field_transfer_forbidden_by_default": true,
+    "candidate_only": true,
+    "contradiction_recorded": true
+  }
+}

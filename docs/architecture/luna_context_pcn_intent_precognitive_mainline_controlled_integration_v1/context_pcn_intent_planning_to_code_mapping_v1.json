@@ -1,0 +1,38 @@
+{
+    "artifact": "context_pcn_intent_planning_to_code_mapping_v1",
+    "phase": "Phase-Luna-Context-PCN-Intent-PreCognitive-Mainline-Controlled-Integration-v1-001",
+    "mapping": [
+        {
+            "planning_requirement": "Context->PCN explicit mapping",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_to_pcn_mapping_v1.py"
+        },
+        {
+            "planning_requirement": "PCN->Intent explicit mapping",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/pcn_to_intent_mapping_v1.py"
+        },
+        {
+            "planning_requirement": "compatibility validation",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_pcn_intent_compatibility_v1.py"
+        },
+        {
+            "planning_requirement": "idempotency guard",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_pcn_intent_idempotency_v1.py"
+        },
+        {
+            "planning_requirement": "owner/boundary validators",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_pcn_intent_static_validators_v1.py"
+        },
+        {
+            "planning_requirement": "minimum synthetic scenarios",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_pcn_intent_fixture_v1.py"
+        },
+        {
+            "planning_requirement": "forward chain orchestration",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/context_pcn_intent_engine_v1.py"
+        },
+        {
+            "planning_requirement": "user-terminal controlled runner",
+            "code": "capabilities/midplatform/core/context_pcn_intent_mainline/run_context_pcn_intent_controlled_integration_v1.py"
+        }
+    ]
+}

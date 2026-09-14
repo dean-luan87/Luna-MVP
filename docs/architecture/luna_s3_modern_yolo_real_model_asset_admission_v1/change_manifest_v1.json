@@ -1,0 +1,15 @@
+{
+  "canonical_owner_reused": "Model Manager / Model Governance",
+  "existing_files_modified": [],
+  "new_integration_files": [
+    "capabilities/midplatform/model_manager/model_contract_repository/real_model_asset_admission/__init__.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/real_model_asset_admission/real_model_asset_admission_types_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/real_model_asset_admission/real_model_asset_admission_fixture_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/real_model_asset_admission/run_real_model_asset_admission_v1.py"
+  ],
+  "s0_s1_s2_modified": false,
+  "s3_observation_control_modified": false,
+  "s3_evidence_semantics_modified": false,
+  "model_downloaded": false,
+  "provider_invocation_executed": false
+}

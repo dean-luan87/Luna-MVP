@@ -1,0 +1,12 @@
+{
+  "s1_status": "VALID_NARROW_HUMAN_LANGUAGE_INGRESS",
+  "real_component": "USER_INPUT",
+  "path": ["External human text", "Real User Input Adapter", "ProductLoopInputV1"],
+  "why_valid": "semantic formulation originates from the human user, not a Luna sensor summarizer",
+  "does_not_prove": ["semantic compression", "sensor interpretation", "world understanding", "fact formation"],
+  "truth_declared": false,
+  "field_mutation": false,
+  "semantic_interpretation_performed": false,
+  "sensor_payload_conversion": false,
+  "s0_baseline_untouched": true
+}

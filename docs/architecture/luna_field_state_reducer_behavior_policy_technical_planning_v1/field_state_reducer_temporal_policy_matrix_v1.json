@@ -1,0 +1,103 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Temporal Policy Matrix",
+    "temporal_statuses": {
+        "not_yet_valid": {
+            "support_eligible": false,
+            "policy_selection_allowed": false,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": false,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "active": {
+            "support_eligible": true,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": true,
+            "active_state_support_allowed": true,
+            "degradation_required": false,
+            "refresh_required": false,
+            "reactivation_allowed": false,
+            "new_event_required": false,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "expiring": {
+            "support_eligible": true,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": true,
+            "active_state_support_allowed": true,
+            "degradation_required": true,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": false,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "expired": {
+            "support_eligible": false,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": true,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "suspended": {
+            "support_eligible": false,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": true,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "revoked": {
+            "support_eligible": false,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": true,
+            "refresh_required": false,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "superseded": {
+            "support_eligible": false,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": true,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        },
+        "unknown": {
+            "support_eligible": false,
+            "policy_selection_allowed": true,
+            "confidence_contribution_allowed": false,
+            "active_state_support_allowed": false,
+            "degradation_required": false,
+            "refresh_required": true,
+            "reactivation_allowed": false,
+            "new_event_required": true,
+            "conflict_preservation_required": true,
+            "fact_promotion_allowed": false
+        }
+    },
+    "temporal_policy_matrix_complete": true
+}

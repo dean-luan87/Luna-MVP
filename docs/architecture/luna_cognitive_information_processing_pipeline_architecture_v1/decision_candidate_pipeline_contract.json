@@ -1,0 +1,13 @@
+{
+  "contract_id": "decision_candidate_pipeline_v1",
+  "owner": "Brain",
+  "inputs": ["current_understanding_candidate", "intent", "goal", "task", "value_constraints", "drive_state", "self_state", "social_self_context", "risk", "unknowns"],
+  "outputs": ["decision_options", "decision_candidate", "decision_trace", "confidence", "reasoning_reference", "unknowns"],
+  "candidate_only": true,
+  "action_separate": true,
+  "action_execution": false,
+  "reality_write": false,
+  "memory_write": false,
+  "identity_write": false,
+  "constraint_reviewers": ["Self Regulation", "Capability Governance", "Runtime", "Action Boundary"]
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Decision Memory Interface v1",
+  "contract_type": "Decision Transition Memory Reference",
+  "input": {
+    "commitment_reference": "commitment-example",
+    "decision_outcome": {},
+    "outcome_evidence": [],
+    "field_context": {},
+    "task_context": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "decision_transition_record": {},
+    "experience_candidate": {},
+    "memory_admission_candidate": "candidate"
+  },
+  "boundary": {
+    "memory_stores_selected_decision_transitions": true,
+    "memory_does_not_store_all_decisions": true,
+    "memory_does_not_modify_commitment": true,
+    "memory_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

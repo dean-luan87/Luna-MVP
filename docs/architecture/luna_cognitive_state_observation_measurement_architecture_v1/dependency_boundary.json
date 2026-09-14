@@ -1,0 +1,16 @@
+{
+  "contract_id": "state_measurement_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "State -> Observation", "Observation -> Metrics", "Metrics -> State Quality", "Outcome -> Quality", "Quality -> Self Calibration Candidate", "State Vector -> Hive Comparison", "Transition Trace -> Transition Quality", "State Quality -> B Route Evaluation", "Self Stability -> Self Review", "Resource Efficiency -> Calibration Candidate"
+  ],
+  "forbidden_dependencies": [
+    "Observation -> State Write", "Metric -> Direct Decision", "Metric -> Direct Action", "Quality -> Automatic Parameter Update", "Fitness -> Identity Change", "Fitness -> Constitution Change", "Memory Utility -> Reality Override", "Hive -> Direct State Modification", "Hive -> Direct Parameter Update", "Self Calibration -> Automatic Calibration", "B Route -> Actual Quality Claim", "B Route -> Virtual Outcome as Experience", "B Route -> Update State", "Runtime -> Metric Authority", "Emotion -> Metric Override"
+  ],
+  "no_runtime": true,
+  "no_automatic_scoring_action": true,
+  "no_automatic_optimization": true,
+  "no_hive_connection": true,
+  "no_b_route_runtime": true,
+  "no_parameter_update": true,
+  "no_self_modification": true
+}

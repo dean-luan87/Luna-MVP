@@ -1,0 +1,14 @@
+{
+  "candidate_type": "text_evidence_candidate",
+  "derived_from_artifact": "real_ocr_output.json",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "model_origin": "external_open_source_ocr_model",
+  "license_ref": "apache_2_0",
+  "confidence": 0.994,
+  "text": "EXIT",
+  "bbox_or_polygon": [30, 30, 290, 95],
+  "language": "en",
+  "orientation": "horizontal",
+  "boundary": "ocr_output_is_not_fact",
+  "candidate_only": true
+}

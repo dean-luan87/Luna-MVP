@@ -1,0 +1,17 @@
+{
+  "interface_name": "Behavior Task Interface v1",
+  "behavior_reference": "behavior-example",
+  "task_reference": "task-example",
+  "field_reference": "field-example",
+  "goal_reference": "goal-example",
+  "task_state": "Active | Background | Suspended | Resumed",
+  "task_constraint_candidates": [],
+  "behavior_constraint_candidate": null,
+  "task_does_not_execute_behavior": true,
+  "behavior_does_not_modify_task_identity": true,
+  "behavior_does_not_modify_goal": true,
+  "behavior_does_not_modify_decision": true,
+  "field_binding_required": true,
+  "a_route_review_required": true,
+  "unknowns_are_preserved": true
+}

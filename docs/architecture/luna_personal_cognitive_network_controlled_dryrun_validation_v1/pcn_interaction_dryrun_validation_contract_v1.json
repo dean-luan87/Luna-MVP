@@ -1,0 +1,18 @@
+{
+    "artifact_id": "pcn_interaction_dryrun_validation_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "required_interaction_types": [
+        "RESONANCE",
+        "COMPETITION",
+        "TEMPORARY_OCCUPATION",
+        "OVERLAP",
+        "COEXISTENCE",
+        "FUSION_CANDIDATE",
+        "HISTORICAL_REACTIVATION"
+    ],
+    "pcn_interaction_boundary": {
+        "pcn_consumes_or_forwards_reference_only": true,
+        "interaction_kernel_executed": false,
+        "interaction_kernel_owned_by_pcn": false
+    }
+}

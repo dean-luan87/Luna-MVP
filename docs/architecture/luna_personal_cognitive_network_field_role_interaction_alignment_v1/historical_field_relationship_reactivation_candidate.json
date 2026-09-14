@@ -1,0 +1,21 @@
+{
+  "artifact_id": "historical_field_relationship_reactivation_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "PCN Activation Governance",
+  "eligible_source_states": ["HISTORICAL", "DORMANT", "REACTIVATABLE"],
+  "reactivation_triggers": ["structure_similarity", "object_overlap", "relationship_trigger"],
+  "required_context": ["current_reality_reference", "field_reference", "role_reference", "relationship_reference", "resource_scope", "uncertainty"],
+  "outputs": ["ACTIVATION_CANDIDATE", "HISTORICAL_FIELD_PROJECTION", "HISTORICAL_ROLE_PROJECTION", "HISTORICAL_RELATIONSHIP_PROJECTION"],
+  "forbidden_outputs": ["EMOTION_CONCLUSION", "CAUSAL_FACT", "DECISION", "CURRENT_REALITY_REPLACEMENT", "SOURCE_OBJECT_MUTATION"],
+  "rules": {
+    "historical_projection_is_current_reality": false,
+    "relationship_end_means_delete": false,
+    "reactivation_requires_current_context": true,
+    "reactivation_is_candidate_only": true,
+    "source_lifecycle_unchanged": true,
+    "memory_is_not_reality": true
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

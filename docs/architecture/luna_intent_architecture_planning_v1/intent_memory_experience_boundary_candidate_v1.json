@@ -1,0 +1,35 @@
+{
+  "artifact": "intent_memory_experience_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "intent_owner": "Intent Governance",
+  "memory_owner": "Memory Governance",
+  "experience_owner": "Experience Governance",
+  "memory_reference_roles": [
+    "historical support",
+    "recurrence reference",
+    "unfinished-state continuity reference",
+    "context-match reference",
+    "past outcome reference"
+  ],
+  "experience_reference_roles": [
+    "recent interaction evidence",
+    "observed action-outcome pattern reference",
+    "formation or revision support",
+    "carryover support"
+  ],
+  "allowed_intent_feedback_candidates": [
+    "Intent trace reference for future Experience extraction",
+    "resolved or abandoned candidate reference",
+    "Intent-outcome comparison reference"
+  ],
+  "forbidden": [
+    "Memory recall equals Intent",
+    "Experience pattern equals Intent",
+    "Memory creates or promotes Intent",
+    "Intent writes Memory",
+    "Intent writes Experience",
+    "single repeated pattern proves long-term Intent",
+    "automatic consolidation or persistence"
+  ],
+  "rule": "Memory and Experience remain historical inputs; they influence Intent qualification through references and retain independent owners."
+}

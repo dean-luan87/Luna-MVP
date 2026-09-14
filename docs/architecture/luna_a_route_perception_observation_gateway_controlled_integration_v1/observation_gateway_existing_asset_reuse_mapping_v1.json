@@ -1,0 +1,30 @@
+{
+  "classifications": {
+    "A": [
+      {"asset":"capabilities/midplatform/core/field_event_admission_api_v1.py","reuse":"field event temporal admission and reducer-eligible candidate boundary; not used as generic Observation owner"},
+      {"asset":"capabilities/midplatform/core/cognitive_state_formation/attention_types_v1.py","reuse":"observation/risk/salience candidate references only"},
+      {"asset":"capabilities/cognitive_flow/current_cognitive_context/observation_planning_dryrun","reuse":"observation candidate/non-fact planning semantics"},
+      {"asset":"capabilities/cognitive_flow/cognitive_analysis/evidence_adapter","reuse":"reference-only evidence normalization/adaptation boundary"},
+      {"asset":"capabilities/midplatform/core/a_route_orchestration","reuse":"typed A Route ingress reference; no orchestration mutation"},
+      {"asset":"capabilities/midplatform/core/field_state_reducer","reuse":"Field owner retains field admission/reduction authority"}
+    ],
+    "B": [
+      {"asset":"docs/architecture/cognitive_flow/cognitive_perception_adapter_architecture_plan_v1.md","reason":"perception adapter architecture requires this controlled gateway adapter"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_provider_evidence_contract_v1.md","reason":"provider evidence boundary adapted into typed evidence"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_observation_attention_selection_architecture_plan_v1.md","reason":"attention remains downstream owner"},
+      {"asset":"docs/architecture/LUNA_MACOS_VISION_OCR_BOUNDARY_REGISTER_V0.md","reason":"legacy OCR/vision boundary reference, no provider execution"},
+      {"asset":"docs/architecture/LUNA_MAP_ANCHOR_EVIDENCE_SCHEMA_V0.md","reason":"spatial evidence reference, no SLAM execution"},
+      {"asset":"docs/architecture/voice","reason":"user input/correction interaction references"}
+    ],
+    "C": [
+      {"asset":"legacy provider/model assets treated as semantic truth","reason":"conflicts with candidate-only Observation Gateway boundary"},
+      {"asset":"historical OCR/vision/SLAM owners that mutate Field or Context directly","reason":"violates current owner authority"}
+    ],
+    "D": [
+      {"asset":"real camera, OCR, SLAM, audio provider execution","reason":"deferred provider/runtime work"},
+      {"asset":"world truth, semantic fusion, persistence, Emotion Engine, B Route, semantic compression","reason":"outside this module"}
+    ]
+  },
+  "canonical_owner_found_before_phase": false,
+  "existing_files_modified": []
+}

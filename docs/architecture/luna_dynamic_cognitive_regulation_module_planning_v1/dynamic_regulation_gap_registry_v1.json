@@ -1,0 +1,29 @@
+{
+    "artifact": "dynamic_regulation_gap_registry_v1",
+    "gap_groups": [
+        {
+            "gap_id": "A",
+            "name": "in-phase schema and contract closure",
+            "description": "Can be resolved within this planning phase by defining missing contracts and boundaries.",
+            "status": "planned_to_resolve_in_phase"
+        },
+        {
+            "gap_id": "B",
+            "name": "cross-module contract change requirement",
+            "description": "Requires changing already passed module contract to proceed.",
+            "status": "none_detected"
+        },
+        {
+            "gap_id": "C",
+            "name": "structural blocker",
+            "description": "Canonical owner or architecture contradiction blocks safe progression.",
+            "status": "none_detected"
+        },
+        {
+            "gap_id": "D",
+            "name": "deferred items",
+            "description": "Runtime adapter and learning integration are intentionally deferred.",
+            "status": "deferred_by_scope"
+        }
+    ]
+}

@@ -1,0 +1,457 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_v2_m0_module_responsibility_alignment",
+  "purpose": "Align module responsibility language without transferring ownership or changing implementation behavior.",
+  "objects": [
+    {
+      "module": "Field State System",
+      "canonical_owner": "Field System",
+      "documentation_position": "Engineering plane / reality-facing Field state foundation",
+      "responsibility": [
+        "maintain governed real-world and Field state candidates",
+        "reduce admitted evidence into traceable Field state transitions",
+        "provide current Field state and read projections to cognitive consumers"
+      ],
+      "not_responsible_for": [
+        "user psychological understanding",
+        "Memory ownership",
+        "Intent generation",
+        "causal judgment",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+        "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Observation Manager",
+      "canonical_owner": "Observation Manager / Reality Evidence Pipeline",
+      "documentation_position": "Engineering plane / governed evidence intake and observation coordination",
+      "responsibility": [
+        "coordinate observation requests and perceptual evidence candidates",
+        "manage observation resource and modality coordination",
+        "preserve evidence provenance, temporal context, trace, and replay"
+      ],
+      "not_responsible_for": [
+        "final cognition",
+        "final fact declaration",
+        "Cognitive Attention ownership",
+        "Understanding ownership",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/observation_manager_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Task Manager",
+      "canonical_owner": "Task Manager",
+      "documentation_position": "Engineering plane / approved task lifecycle and orchestration boundary",
+      "responsibility": [
+        "manage task lifecycle, dependencies, interruption, and aggregation",
+        "route approved task candidates to governed capabilities",
+        "produce traceable task-state candidates"
+      ],
+      "not_responsible_for": [
+        "Intent generation",
+        "Goal ownership",
+        "causal judgment",
+        "final Decision selection",
+        "Runtime dispatch authority",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/task_manager_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Model Manager",
+      "canonical_owner": "Capability Governance / Model Manager",
+      "documentation_position": "Engineering plane / governed model capability asset and invocation support",
+      "responsibility": [
+        "manage model identity, admission, matching, lifecycle, and diagnostics",
+        "provide governed model routing and fallback candidates",
+        "preserve model invocation trace and replay evidence"
+      ],
+      "not_responsible_for": [
+        "cognitive subject",
+        "cognitive conclusion generation",
+        "Reality ownership",
+        "Goal or Intent generation",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/model_manager_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Memory System",
+      "canonical_owner": "Memory System",
+      "documentation_position": "Cognitive architecture plane / historical and experience influence source",
+      "responsibility": [
+        "govern historical information and experience persistence",
+        "govern admission, consolidation, activation, and retrieval candidates",
+        "provide context-bound historical influence to current cognition"
+      ],
+      "not_responsible_for": [
+        "full cognition",
+        "Reality override",
+        "direct Cognitive Core mutation",
+        "Self or Identity mutation",
+        "Personal Cognitive Network ownership",
+        "Decision selection"
+      ],
+      "engineering_status": "ARCHITECTURE_AND_CONTROLLED_SKELETON",
+      "source_refs": [
+        "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/memory_cognitive_architecture.md",
+        "docs/runtime/luna_cognitive_memory_runtime_integration_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Personal Cognitive Network",
+      "canonical_owner": "Personal Cognitive Network Governance",
+      "documentation_position": "Cognitive architecture plane / future cross-object projection capability",
+      "responsibility": [
+        "connect governed references across cognitive objects",
+        "produce context-bound activation candidates",
+        "produce read-only cognitive context projections"
+      ],
+      "not_responsible_for": [
+        "Self ownership",
+        "Role ownership",
+        "Relationship ownership",
+        "Memory ownership",
+        "Emotion ownership",
+        "Value ownership",
+        "source-object persistence",
+        "direct source-object mutation"
+      ],
+      "engineering_status": "FUTURE_CORE_CAPABILITY",
+      "source_refs": [
+        "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/personal_cognitive_network_boundary.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Field State Read Model",
+      "canonical_owner": "Field System / Read Model",
+      "documentation_position": "Engineering plane / read-only Field projection",
+      "responsibility": [
+        "provide read-only Field state projections",
+        "preserve reducer mutation authority separation"
+      ],
+      "not_responsible_for": [
+        "Field mutation authority",
+        "cognitive interpretation",
+        "Memory ownership",
+        "Decision selection"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Protocol Manager",
+      "canonical_owner": "Cognitive OS Governance / Protocol Manager",
+      "documentation_position": "Engineering plane / protocol governance support",
+      "responsibility": [
+        "manage governed protocol candidates and protocol lifecycle metadata",
+        "support compatible module communication boundaries"
+      ],
+      "not_responsible_for": [
+        "cognitive judgment",
+        "Reality ownership",
+        "Runtime decision authority",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "OCR and Vision Capabilities",
+      "canonical_owner": "Capability Governance / Perception Capabilities",
+      "documentation_position": "Engineering plane / evidence-producing capability chain",
+      "responsibility": [
+        "produce structured OCR and visual evidence candidates",
+        "preserve evidence provenance, confidence, trace, and replay"
+      ],
+      "not_responsible_for": [
+        "fact declaration",
+        "Field ownership",
+        "Memory write authority",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "ENGINEERING_BASELINE_ACTIVE",
+      "source_refs": [
+        "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+        "capabilities/registry/baselines/vision_manager_module_baseline_v1.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Self System",
+      "canonical_owner": "Self Governance",
+      "documentation_position": "Cognitive architecture plane / identity, capability, resource, and boundary governance",
+      "responsibility": [
+        "own Self identity and continuity boundaries",
+        "govern Self capability and resource reality",
+        "review regulated growth and adaptation candidates"
+      ],
+      "not_responsible_for": [
+        "Role ownership",
+        "Relationship ownership",
+        "Memory ownership",
+        "direct Runtime execution"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/luna_self_social_self_architecture_refactoring_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Role System",
+      "canonical_owner": "Social Self / Role System",
+      "documentation_position": "Cognitive architecture plane / Field-bound participation identity",
+      "responsibility": [
+        "govern Role candidates, activation, lifecycle, and boundaries",
+        "provide Role context candidates to current cognition"
+      ],
+      "not_responsible_for": [
+        "Self Identity mutation",
+        "Relationship ownership",
+        "Task Manager replacement",
+        "Action execution"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/luna_role_architecture_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Relationship System",
+      "canonical_owner": "Social Self / Relationship System",
+      "documentation_position": "Cognitive architecture plane / social relationship context",
+      "responsibility": [
+        "govern relationship state and relationship-context candidates",
+        "provide evidence-, time-, and Field-bound social context"
+      ],
+      "not_responsible_for": [
+        "Self Identity mutation",
+        "Role ownership",
+        "Emotion ownership",
+        "Decision selection"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/cognitive_role_relationship_system_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Emotion Context",
+      "canonical_owner": "Cognitive Integration",
+      "documentation_position": "Cognitive architecture plane / future adaptive and attachment signal boundary",
+      "responsibility": [
+        "represent future Self-Social interaction signals",
+        "provide governed adaptive weighting candidates"
+      ],
+      "not_responsible_for": [
+        "Self ownership",
+        "Value ownership",
+        "Intent generation",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "FUTURE_BOUNDARY_ONLY",
+      "source_refs": [
+        "docs/architecture/cognitive_emotion_context_boundary_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Value Utility",
+      "canonical_owner": "Value Utility Governance",
+      "documentation_position": "Cognitive architecture plane / governed value and utility evaluation",
+      "responsibility": [
+        "evaluate value, utility, cost, and risk candidates",
+        "provide ranking evidence to Goal and Decision governance"
+      ],
+      "not_responsible_for": [
+        "Goal creation",
+        "Intent creation",
+        "Decision selection",
+        "Action execution",
+        "Value rewrite by Emotion or PCN"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/luna_cognitive_value_utility_architecture_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Intent Governance",
+      "canonical_owner": "Intent Governance",
+      "documentation_position": "Cognitive architecture plane / Intent Candidate formation and governance",
+      "responsibility": [
+        "form and govern context-bound Intent Candidates",
+        "preserve Intent-to-Goal, Decision, and Task boundaries"
+      ],
+      "not_responsible_for": [
+        "Goal ownership",
+        "Task lifecycle",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/cognitive_intent_architecture_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Causal Reasoning",
+      "canonical_owner": "Causal Reasoning Governance",
+      "documentation_position": "Cognitive architecture plane / typed causal candidate reasoning",
+      "responsibility": [
+        "produce evidence- and counter-evidence-bound causal candidates",
+        "preserve temporal validity and uncertainty"
+      ],
+      "not_responsible_for": [
+        "Reality declaration",
+        "Intent ownership",
+        "Decision selection",
+        "Action execution"
+      ],
+      "engineering_status": "PLANNING_ONLY",
+      "source_refs": [
+        "docs/architecture/cognitive_flow/cognitive_causality_model_architecture_plan_v1.md"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Experience Compression",
+      "canonical_owner": "Experience Governance",
+      "documentation_position": "Cognitive architecture plane / experience representation and guidance candidates",
+      "responsibility": [
+        "compress validated outcomes into experience candidates",
+        "propose guidance, Memory admission, and network-evolution candidates"
+      ],
+      "not_responsible_for": [
+        "direct Memory write",
+        "direct Schema mutation",
+        "direct PCN mutation",
+        "automatic learning"
+      ],
+      "engineering_status": "PLANNING_ONLY",
+      "source_refs": [
+        "docs/architecture/cognitive_flow/cognitive_experience_compression_architecture_plan_v1.md"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "A/B Route Boundary",
+      "canonical_owner": "A/B Route Boundary Governance",
+      "documentation_position": "Cognitive architecture plane / present-reality and future-simulation separation",
+      "responsibility": [
+        "preserve A Route current-reality authority",
+        "govern candidate-only handoff to future B Route simulation"
+      ],
+      "not_responsible_for": [
+        "B Route Runtime",
+        "Reality override",
+        "current Goal override",
+        "Decision selection"
+      ],
+      "engineering_status": "FUTURE_BOUNDARY_ONLY",
+      "source_refs": [
+        "docs/architecture/luna_cognitive_a_route_integration_architecture_v1/a_route_b_route_boundary.json"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Decision Arbitration",
+      "canonical_owner": "Decision Arbitration",
+      "documentation_position": "Cognitive architecture plane / governed candidate selection",
+      "responsibility": [
+        "filter and rank Decision Candidates under hard constraints",
+        "select a governed Decision Candidate and preserve reconsideration"
+      ],
+      "not_responsible_for": [
+        "Brain candidate generation",
+        "Task orchestration",
+        "Action execution",
+        "Runtime dispatch"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Action Governance",
+      "canonical_owner": "Action Governance / Action Runtime",
+      "documentation_position": "Cognitive architecture plane / governed execution boundary",
+      "responsibility": [
+        "define the only governed path from approved decision to future execution",
+        "preserve trace, safety, and execution authorization boundaries"
+      ],
+      "not_responsible_for": [
+        "Goal generation",
+        "Decision selection",
+        "Reality rewrite",
+        "automatic Runtime activation"
+      ],
+      "engineering_status": "ARCHITECTURE_VALIDATED",
+      "source_refs": [
+        "docs/architecture/luna_cognitive_action_boundary_v1/"
+      ],
+      "owner_preserved": true
+    },
+    {
+      "module": "Root A3 Runtime",
+      "canonical_owner": "Legacy A3 Runtime Governance",
+      "documentation_position": "Existing engineering plane / unaligned Runtime surface",
+      "responsibility": [
+        "preserve the existing authorized A3 Runtime surface",
+        "remain isolated from unimplemented Dynamic Cognitive Architecture v2 semantics"
+      ],
+      "not_responsible_for": [
+        "Dynamic Cognitive Architecture v2 Runtime",
+        "PCN Runtime",
+        "Causal Runtime",
+        "B Route Runtime"
+      ],
+      "engineering_status": "LEGACY_RUNTIME_UNALIGNED",
+      "source_refs": [
+        "runtime/"
+      ],
+      "owner_preserved": true
+    }
+  ],
+  "unique_owner_required": true,
+  "all_owners_preserved": true,
+  "runtime_behavior_changed": false,
+  "contract_or_schema_changed": false
+}

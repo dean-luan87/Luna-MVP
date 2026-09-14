@@ -1,0 +1,14 @@
+{
+  "placeholder_name": "Relationship Emotion Context Placeholder v1",
+  "participant_a": {},
+  "participant_b": {},
+  "relationship_reference": {},
+  "relationship_context": {},
+  "time": {},
+  "boundary": {},
+  "emotion_context_candidate": {},
+  "relationship_emotion_context_candidate": true,
+  "relationship_calculation": false,
+  "relationship_judgment": false,
+  "unknowns_are_preserved": true
+}

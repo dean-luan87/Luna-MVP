@@ -1,0 +1,36 @@
+{
+  "result_id": "option_b_dryrun_preflight_boundary_results_v1",
+  "phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Preflight-Anchor-Based-v1-001",
+  "input_anchor_ref": "handoff_anchor_v1.json",
+  "boundary_status": "frozen",
+  "checks": {
+    "controlled_execution_allowed": false,
+    "option_b_execution_allowed": false,
+    "segmentation_execution_allowed": false,
+    "image_content_read_allowed": false,
+    "active_model_selected": false,
+    "active_skill_selected": false,
+    "active_registry_update_allowed": false,
+    "runtime_activation_allowed": false,
+    "protocol_compliance_check": "required"
+  },
+  "input_boundary": {
+    "controlled_registry_only": true,
+    "no_arbitrary_path": true,
+    "no_production_image": true,
+    "no_network_image": true,
+    "no_user_directory_scan": true,
+    "image_content_read_allowed": false
+  },
+  "output_boundary": {
+    "allowed_output_root": "capabilities/midplatform/model_manager/runtime/document_surface/option_b_controlled_execution_dryrun_preflight/",
+    "production_registry_write": false,
+    "active_registry_write": false,
+    "runtime_registry_update": false,
+    "model_artifact_write": false,
+    "training_data_write": false,
+    "fact_store_write": false
+  },
+  "compliance": true,
+  "status": "PASS"
+}

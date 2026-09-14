@@ -1,0 +1,9 @@
+{
+  "title": "Capability Resource Governance Contract v1",
+  "owner": "Cognitive OS Resource Governance",
+  "resource_types": ["CPU", "GPU", "Memory", "Battery", "Network", "Latency"],
+  "budget_schema": ["capability", "max_latency", "resource_limit", "priority", "trace_id"],
+  "inputs": ["Capability Request", "Priority", "Current Resource State", "Capability Profile"],
+  "outputs": ["Resource Admission Candidate", "Resource Denied Candidate", "Degraded Candidate"],
+  "rules": {"capability_uses_resource": true, "capability_does_not_control_resource": true, "budget_required": true, "resource_not_decision": true}
+}

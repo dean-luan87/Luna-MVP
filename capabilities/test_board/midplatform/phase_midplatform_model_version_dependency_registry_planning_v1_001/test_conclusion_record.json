@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-Midplatform-Model-Version-Dependency-Registry-Planning-v1-001",
+  "module": "midplatform",
+  "test_mode": "virtual_test",
+  "recorded_at_utc": "2026-06-29T03:30:39.136766+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "model_version_dependency_registry_planning_status": "midplatform_model_version_dependency_registry_established_planning_only_no_install_no_download_no_inference_no_runtime",
+    "downstream_consumer_ref": "Phase-P1-Real-Install-Local-Availability-DryRun-v1-001",
+    "transition_note": "Midplatform now owns a lightweight model version & dependency registry for all 17 P1/P2 assets: identity, version, package dependency, import-name binding, weight version, runtime backend, environment constraints, hardware requirements, license dependency binding, probe policy, compatibility constraints, dependency risk — plus dependency groups, fallback compatibility, version-lock policies. This is registry/planning/governance only: no install, no pip install, no model/weight/dataset download, no inference, no runtime, no live camera/sensor. Unknown model version is allowed for planning but blocks runtime and real inference; package visibility is not runtime approval; weight visibility is not inference approval; runtime backend unknown blocks runtime; AGPL/unknown/research-only licenses do not become commercial runtime; reserved-only and deferred families are not runtime eligible; dependency and schema drift require review. Protected, non-deletable records are written to the test board. Next: re-enter P1 Real Install / Local Availability DryRun with THIS registry as its new upstream so later local-visibility probes are no longer scattered but registry-driven."
+  },
+  "final_decision": "MIDPLATFORM_MODEL_VERSION_DEPENDENCY_REGISTRY_PLANNING_GO"
+}

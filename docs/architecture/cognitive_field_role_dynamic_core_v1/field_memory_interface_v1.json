@@ -1,0 +1,14 @@
+{
+  "interface_name": "Field Memory Interface v1",
+  "field_state_reference": "field-state-example",
+  "role_stack_reference": "role-stack-example",
+  "relationship_layer_reference": "relationship-stack-example",
+  "task_reference": "task-example",
+  "outcome_reference": "outcome-example",
+  "experience_reference": "experience-example",
+  "field_memory_candidate": null,
+  "memory_stores_integrated_state": true,
+  "memory_does_not_override_reality": true,
+  "memory_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

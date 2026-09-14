@@ -1,0 +1,29 @@
+{
+  "required_true": [
+    "candidate_only",
+    "real_input_remains_reference_only",
+    "current_world_read_only",
+    "plan_candidates_non_binding",
+    "only_current_need_materialized",
+    "requirement_bounded",
+    "scope_before_invocation",
+    "stale_requirement_not_eligible",
+    "stop_sufficient_not_failure",
+    "capability_failure_not_task_failure",
+    "no_runtime_execution",
+    "no_provider_invocation",
+    "no_camera_activation",
+    "no_action_execution",
+    "no_learning_or_memory_mutation"
+  ],
+  "required_false": [
+    "provider invocation",
+    "model/runtime execution",
+    "camera activation",
+    "action execution",
+    "memory mutation",
+    "automatic acquisition",
+    "scope bypass",
+    "world truth authority escalation"
+  ]
+}

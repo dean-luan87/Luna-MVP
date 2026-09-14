@@ -1,0 +1,26 @@
+# Cognitive Layer Charter Template v1
+
+- Layer ID:
+- Layer Name:
+- Purpose:
+- Inputs:
+- Input Admission:
+- Processing Boundary:
+- Allowed Responsibilities:
+- Prohibited Responsibilities:
+- Interpretation Ownership:
+- Outputs:
+- Candidate Types:
+- Evidence Requirements:
+- Allowed Providers:
+- Model / Skill Admission Requirement:
+- Runtime Boundary:
+- Negative Guards:
+- Verifier Set:
+- Human Correction Route:
+- Trace Requirements:
+- Cross-Layer Handoff:
+- Abstain Conditions:
+- Stop Conditions:
+- Rollback / Revocation:
+- Memory Write Permission:

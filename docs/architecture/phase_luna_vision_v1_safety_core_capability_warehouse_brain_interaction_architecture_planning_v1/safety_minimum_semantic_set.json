@@ -1,0 +1,18 @@
+{
+  "contract_id": "luna-safety-vision-minimum-semantic-set-v1",
+  "status": "PLANNING_ONLY",
+  "purpose": "Safety-Relevant Semantic Sufficiency",
+  "minimum_domains": [
+    "vehicle_presence_and_approach_candidate",
+    "pedestrian_or_agent_presence_candidate",
+    "obstacle_and_basic_passability_candidate",
+    "stairs_drop_edge_or_fall_hazard_candidate",
+    "entrance_exit_candidate",
+    "directional_arrow_candidate",
+    "warning_prohibition_or_danger_sign_candidate"
+  ],
+  "not_exhaustive_object_recognition": true,
+  "evidence_only": true,
+  "world_truth_authority": false,
+  "thresholds": "DEFERRED_TO_GOVERNED_SAFETY_BENCHMARK"
+}

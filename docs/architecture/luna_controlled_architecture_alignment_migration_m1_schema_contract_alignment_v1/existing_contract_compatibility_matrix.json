@@ -1,0 +1,207 @@
+{
+    "matrix_id": "luna_controlled_architecture_alignment_m1_existing_contract_compatibility_matrix_v1",
+    "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M1-Schema-Contract-Alignment-v1-001",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "compatibility_scope": "existing_contracts_preserved_candidate_contracts_additive_only",
+    "modules": [
+        {
+            "module": "Field State Reducer",
+            "baseline_ref": "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+            "owner": "Field State Reducer",
+            "existing_contract_refs": [
+                "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+                "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_output_builder_v1.py"
+            ],
+            "candidate_contracts": [
+                "field_context_projection_contract_candidate.json"
+            ],
+            "compatibility_status": "ADDITIVE_COMPATIBLE_WITH_PROJECTION_ALIAS",
+            "compatibility_alias": "field_state_projection_alias",
+            "preserved_boundaries": [
+                "single reducer writer preserved",
+                "trace and replay preserved",
+                "candidate/fact boundary preserved"
+            ],
+            "gaps_or_constraints": [
+                "No active schema mutation allowed",
+                "No second reducer or network writer allowed"
+            ]
+        },
+        {
+            "module": "Field Read Model",
+            "baseline_ref": "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+            "owner": "Field System / Read Model",
+            "existing_contract_refs": [
+                "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+                "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json"
+            ],
+            "candidate_contracts": [
+                "field_context_projection_contract_candidate.json"
+            ],
+            "compatibility_status": "READ_ONLY_COMPATIBLE_ALIAS_REQUIRED",
+            "compatibility_alias": "field_read_projection_alias",
+            "preserved_boundaries": [
+                "read-only access preserved",
+                "state mutation remains forbidden",
+                "trace and replay preserved"
+            ],
+            "gaps_or_constraints": [
+                "Projection is candidate-only and cannot replace existing read result schema"
+            ]
+        },
+        {
+            "module": "Observation Manager",
+            "baseline_ref": "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+            "owner": "Observation Manager / Reality Evidence Pipeline",
+            "existing_contract_refs": [
+                "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py",
+                "capabilities/midplatform/observation_manager/module/observation_manager_admission_handoff_v1.py"
+            ],
+            "candidate_contracts": [
+                "observation_cognitive_handoff_contract_candidate.json"
+            ],
+            "compatibility_status": "COMPATIBLE_WITH_HANDOFF_ALIAS",
+            "compatibility_alias": "observation_admission_handoff_alias",
+            "preserved_boundaries": [
+                "observation remains candidate-only",
+                "fact admission remains external",
+                "decision prohibition preserved"
+            ],
+            "gaps_or_constraints": [
+                "No direct cognitive fact emission"
+            ]
+        },
+        {
+            "module": "Task Manager",
+            "baseline_ref": "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+            "owner": "Task Manager",
+            "existing_contract_refs": [
+                "capabilities/midplatform/task_manager_contract_v1.py",
+                "capabilities/midplatform/core/task_manager/module/task_manager_result_aggregator_v1.py"
+            ],
+            "candidate_contracts": [
+                "decision_input_contract_candidate.json"
+            ],
+            "compatibility_status": "DOWNSTREAM_REFERENCE_COMPATIBLE",
+            "compatibility_alias": "task_handoff_reference_alias",
+            "preserved_boundaries": [
+                "task lifecycle ownership preserved",
+                "runtime dispatch remains forbidden",
+                "intent ownership remains forbidden"
+            ],
+            "gaps_or_constraints": [
+                "Task Manager consumes approved references only"
+            ]
+        },
+        {
+            "module": "Model Manager",
+            "baseline_ref": "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+            "owner": "Capability Governance / Model Manager",
+            "existing_contract_refs": [
+                "capabilities/midplatform/model_manager/module/model_manager_module_output_builder_v1.py",
+                "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py"
+            ],
+            "candidate_contracts": [
+                "decision_input_contract_candidate.json"
+            ],
+            "compatibility_status": "CAPABILITY_REFERENCE_COMPATIBLE",
+            "compatibility_alias": "model_capability_reference_alias",
+            "preserved_boundaries": [
+                "capability routing remains candidate-only",
+                "cognitive fact authority remains forbidden",
+                "trace and replay preserved"
+            ],
+            "gaps_or_constraints": [
+                "No model output can be treated as cognitive fact"
+            ]
+        },
+        {
+            "module": "Protocol Manager",
+            "baseline_ref": "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+            "owner": "Cognitive OS Governance / Protocol Manager",
+            "existing_contract_refs": [
+                "capabilities/midplatform/protocol_manager/module/protocol_manager_module_output_builder_v1.py",
+                "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py"
+            ],
+            "candidate_contracts": [
+                "decision_input_contract_candidate.json"
+            ],
+            "compatibility_status": "PROTOCOL_REFERENCE_COMPATIBLE",
+            "compatibility_alias": "protocol_reference_alias",
+            "preserved_boundaries": [
+                "protocol governance remains candidate-only",
+                "no registry writes introduced",
+                "no cognitive authority added"
+            ],
+            "gaps_or_constraints": [
+                "Protocol references constrain downstream compatibility only"
+            ]
+        },
+        {
+            "module": "OCR Manager",
+            "baseline_ref": "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+            "owner": "Capability Governance / OCR Capability",
+            "existing_contract_refs": [
+                "capabilities/midplatform/ocr_manager/module/ocr_manager_evidence_envelope_builder_v1.py",
+                "capabilities/midplatform/ocr_manager/module/ocr_manager_diagnostics_v1.py"
+            ],
+            "candidate_contracts": [
+                "observation_cognitive_handoff_contract_candidate.json"
+            ],
+            "compatibility_status": "EVIDENCE_PRODUCER_COMPATIBLE",
+            "compatibility_alias": "ocr_evidence_handoff_alias",
+            "preserved_boundaries": [
+                "evidence envelope remains candidate-only",
+                "memory write remains forbidden",
+                "fact admission remains forbidden"
+            ],
+            "gaps_or_constraints": [
+                "OCR output must remain evidence and cannot bypass observation boundary"
+            ]
+        },
+        {
+            "module": "Vision Manager",
+            "baseline_ref": "capabilities/registry/baselines/vision_manager_module_baseline_v1.json",
+            "owner": "Capability Governance / Vision Capability",
+            "existing_contract_refs": [
+                "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py"
+            ],
+            "candidate_contracts": [
+                "observation_cognitive_handoff_contract_candidate.json"
+            ],
+            "compatibility_status": "EVIDENCE_PRODUCER_COMPATIBLE",
+            "compatibility_alias": "vision_evidence_handoff_alias",
+            "preserved_boundaries": [
+                "model handoff remains candidate-only",
+                "worldmodel write remains forbidden",
+                "trace and replay preserved"
+            ],
+            "gaps_or_constraints": [
+                "Vision output cannot be promoted to cognitive fact"
+            ]
+        },
+        {
+            "module": "Memory",
+            "baseline_ref": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/memory_cognitive_architecture.md",
+            "owner": "Memory System",
+            "existing_contract_refs": [
+                "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/memory_cognitive_architecture.md"
+            ],
+            "candidate_contracts": [
+                "memory_context_projection_contract_candidate.json",
+                "experience_memory_projection_contract_candidate.json"
+            ],
+            "compatibility_status": "PROJECTION_ONLY_COMPATIBLE",
+            "compatibility_alias": "memory_projection_alias",
+            "preserved_boundaries": [
+                "persistence ownership preserved",
+                "reality override remains forbidden",
+                "source mutation remains forbidden"
+            ],
+            "gaps_or_constraints": [
+                "No direct write path from experience or PCN candidates to memory persistence"
+            ]
+        }
+    ]
+}

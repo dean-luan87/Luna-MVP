@@ -1,0 +1,84 @@
+{
+  "contract_id": "luna_context_foundation_planning_phase_contract_v1",
+  "phase": "Phase-Luna-Context-Foundation-v1-001",
+  "stage": "Context Foundation Planning",
+  "execution_mode": "Planning Only",
+  "current_work_description": {
+    "in_scope": ["Context responsibility boundary", "source projection inputs", "candidate schema and contracts", "lifecycle", "complexity", "scenario validation", "boundary risk planning"],
+    "out_of_scope": ["Context implementation", "PCN", "Intent", "Causal", "Decision", "Memory restructuring", "Emotion Engine", "Runtime"]
+  },
+  "previous_phase": "Phase-Luna-Dynamic-Cognitive-Architecture-Development-Roadmap-Freeze-v1-001",
+  "previous_phase_decision": "LUNA_DYNAMIC_COGNITIVE_ARCHITECTURE_DEVELOPMENT_ROADMAP_READY",
+  "verified_predecessor_readiness": "LUNA_DYNAMIC_COGNITIVE_ARCHITECTURE_DEVELOPMENT_ROADMAP_FREEZE_READY",
+  "decision_alias_resolution": "The phase instruction token is retained as the roadmap decision alias; verified_predecessor_readiness records the exact prior V2/V3 readiness token.",
+  "input_assets": [
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/",
+    "docs/architecture/luna_cognitive_field_architecture_v1/",
+    "docs/architecture/cognitive_observation_cycle_governance_v1/",
+    "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/",
+    "docs/architecture/cognitive_emotion_context_boundary_v1/",
+    "docs/architecture/cognitive_role_relationship_system_v1/",
+    "docs/architecture/luna_cognitive_self_world_boundary_architecture_v1/"
+  ],
+  "required_pre_read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/integration_audit_summary.md",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/architecture_flow_integrity_matrix.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/cognitive_boundary_audit.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/causal_chain_alignment_review.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/luna_dynamic_cognitive_architecture_development_roadmap_v1.md",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/development_phase_registry_v1.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/context_foundation_entry_contract_v1.json"
+  ],
+  "target_directory": "docs/architecture/luna_context_foundation_planning_v1/",
+  "scope": ["planning documents", "candidate schema", "candidate contracts", "boundary definitions", "scenario validation model", "read-only final verifier"],
+  "out_of_scope": ["any implementation", "Runtime or Runner", "database, network, model, provider, or device access", "active Schema or Contract", "next phase entry"],
+  "required_final_files": [
+    "docs/architecture/luna_context_foundation_planning_v1/context_foundation_architecture_plan.md",
+    "docs/architecture/luna_context_foundation_planning_v1/context_projection_schema_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_input_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_output_boundary_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_lifecycle_model_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_complexity_evaluation_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_foundation_scenario_validation.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_boundary_risk_registry.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_foundation_summary.md",
+    "docs/architecture/luna_context_foundation_planning_v1/context_foundation_change_manifest.json",
+    "docs/architecture/luna_context_foundation_planning_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_planning_v1/verify_context_foundation_planning_v1.py"
+  ],
+  "implementation_principles": ["Context is background, not conclusion", "read-only source projections", "source-owner precedence", "one candidate write scope", "minimum sufficient Context", "minimal change"],
+  "required_checks": {
+    "V0": ["required files", "JSON parse", "AST parse", "reference validation", "boundary fields", "scenario and risk coverage", "side-effect manifest"],
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "negative_guards": ["no check weakening", "no hardcoded pass", "no Runtime", "no Runner", "no implementation", "no Intent", "no Causal", "no Decision", "no Memory or Field mutation", "no final verifier by Agent"],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": ["JSON parsing", "AST parsing", "py_compile when non-mutating output is controlled", "reference validation", "manifest consistency"],
+  "allowed_agent_execution": ["create planning assets in target directory", "create read-only verifier", "run V0 static checks"],
+  "prohibited_agent_execution": ["run final phase verifier", "run Runtime or Runner", "invoke model or provider", "access database or device", "modify files outside target directory", "enter Context Skeleton Implementation or PCN"],
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 docs/architecture/luna_context_foundation_planning_v1/verify_context_foundation_planning_v1.py"
+  ],
+  "expected_success_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "All required planning assets and V0 checks complete; stop before V2.",
+  "blocker_conditions": ["Context gains Intent, Causal, Decision, Memory, Field, PCN, or Runtime authority", "source Owner conflict", "missing provenance or Unknown semantics", "side effect outside target directory"],
+  "completion_report_format": ["read files", "created files", "modified files", "Context boundary result", "input/output ownership", "scenario coverage", "risk findings", "static checks", "user terminal command", "current status"],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "implementation": false,
+  "runtime_change": false,
+  "next_phase_auto_entry": false,
+  "status": "PLANNING_CANDIDATE"
+}

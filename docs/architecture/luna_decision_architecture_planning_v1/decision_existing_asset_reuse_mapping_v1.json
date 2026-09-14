@@ -1,0 +1,83 @@
+{
+    "artifact": "decision_existing_asset_reuse_mapping_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Decision Governance",
+    "reuse_mappings": [
+        {
+            "existing_asset": "docs/architecture/luna_intent_architecture_planning_v1/intent_owner_boundary_candidate_v1.json",
+            "reused_concept": "single canonical owner boundary pattern",
+            "decision_planning_usage": "owner uniqueness and reference-only input semantics",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_intent_architecture_planning_v1/intent_to_causal_handoff_contract_candidate_v1.json",
+            "reused_concept": "candidate-only handoff discipline",
+            "decision_planning_usage": "decision-to-action/task candidate-only handoff structure",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_causal_architecture_planning_v1/causal_owner_boundary_candidate_v1.json",
+            "reused_concept": "legacy alias non-authority pattern",
+            "decision_planning_usage": "Decision Arbitration as legacy alias without mutation authority",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_causal_architecture_planning_v1/causal_hypothesis_schema_candidate_v1.json",
+            "reused_concept": "uncertainty and provenance visibility",
+            "decision_planning_usage": "decision provenance and uncertainty fields",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_causal_architecture_planning_v1/causal_to_decision_handoff_contract_candidate_v1.json",
+            "reused_concept": "causal-to-decision interface",
+            "decision_planning_usage": "decision required causal_refs and unresolved alternatives",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_cognitive_action_boundary_v1/action_permission_check_v1.json",
+            "reused_concept": "permission and constitution checks",
+            "decision_planning_usage": "permission/safety consumed as gating inputs not executable authority",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_cognitive_action_boundary_v1/human_override_boundary_v1.json",
+            "reused_concept": "explicit human override record",
+            "decision_planning_usage": "human confirmation boundary and no fabricated confirmation",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/cognitive_decision_commitment_architecture_v1/decision_governance_contract_v1.json",
+            "reused_concept": "decision not action execution",
+            "decision_planning_usage": "preserve no execution/no hardware/no model boundary",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/cognitive_decision_commitment_architecture_v1/decision_action_boundary_interface_v1.json",
+            "reused_concept": "action boundary retains execution authority",
+            "decision_planning_usage": "handoff candidate only, no direct command",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        },
+        {
+            "existing_asset": "docs/architecture/midplatform/LUNA_TASK_MANAGER_CONTRACT_V1.md",
+            "reused_concept": "task manager lifecycle ownership",
+            "decision_planning_usage": "decision layer cannot create tasks directly",
+            "owner_preserved": true,
+            "mutation_allowed": false
+        }
+    ],
+    "do_not_duplicate": [
+        "parallel Decision owner",
+        "parallel action executor inside decision layer",
+        "parallel task creator inside decision layer"
+    ],
+    "existing_assets_modified": false
+}

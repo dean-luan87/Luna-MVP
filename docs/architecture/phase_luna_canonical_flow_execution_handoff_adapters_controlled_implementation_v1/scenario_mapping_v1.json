@@ -1,0 +1,17 @@
+{
+  "phase": "Phase-Luna-Canonical-Flow-Execution-Handoff-Adapters-Controlled-Implementation-v1-001",
+  "synthetic_only": true,
+  "scenario_count": 48,
+  "groups": {
+    "a_attention": 8,
+    "runtime_observation": 10,
+    "decision_action": 9,
+    "task_action": 7,
+    "action_result_returns": 8,
+    "authority_observability": 6
+  },
+  "runtime_execution": false,
+  "observation_execution": false,
+  "action_execution": false,
+  "provider_invocation": false
+}

@@ -1,0 +1,76 @@
+{
+    "contract_id": "personal_cognitive_network_reference_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "producer": "Personal Cognitive Network Governance",
+    "consumer": [
+        "Intent Governance",
+        "Causal Reasoning Governance",
+        "Decision Arbitration"
+    ],
+    "candidate_fact": "typed_link_and_context_projection_candidate_only",
+    "unknown": {
+        "allowed": true,
+        "representation": "unresolved_source_reference_or_activation_gap",
+        "behavior": "preserve_unknown_without_source_mutation"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "source_object_refs",
+            "evidence_refs",
+            "counter_evidence_refs"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "reference_and_activation_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "source_owner_admitted_refs_only"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "topology_revision_candidate"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "link_or_projection_revoked_when_source_invalidates"
+    },
+    "failure_behavior": {
+        "on_missing_source_owner": "reject_reference_candidate",
+        "on_field_scope_gap": "emit_context_projection_unavailable",
+        "on_boundary_violation": "block_candidate_and_record_trace"
+    },
+    "write_authority": "Personal Cognitive Network Governance",
+    "allowed_payload_fields": [
+        "connection",
+        "activation",
+        "context_projection"
+    ],
+    "forbidden_payload_fields": [
+        "source_ownership",
+        "source_persistence",
+        "source_mutation"
+    ],
+    "pcn_boundary": {
+        "allowed_responsibilities": [
+            "Connection",
+            "Activation",
+            "Context Projection"
+        ],
+        "forbidden_ownership": [
+            "Self",
+            "Role",
+            "Relationship",
+            "Memory",
+            "Emotion",
+            "Value",
+            "Belief"
+        ],
+        "source_owner_precedence": true
+    },
+    "compatibility_alias": "pcn_reference_projection_alias"
+}

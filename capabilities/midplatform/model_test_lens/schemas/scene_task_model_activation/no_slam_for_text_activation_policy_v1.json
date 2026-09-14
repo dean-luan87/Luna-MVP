@@ -1,0 +1,35 @@
+{
+  "schema_id": "NoSlamForTextActivationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "文字任务场景下 SLAM 必须 no-op 的激活策略。",
+  "planning_only": true,
+  "extends": "no_slam_for_text_policy_v1",
+  "rules": [
+    {
+      "rule_id": "text_only_no_slam",
+      "when": "task_intent in read_text, locate_place and scene is text-primary",
+      "then": "slam noop",
+      "noop_reason_template": "task_intent={task}; no spatial continuity required"
+    },
+    {
+      "rule_id": "shopfront_sign_no_slam",
+      "when": "scene_profile = shopfront_sign or text_signage_scene",
+      "then": "slam noop unless spatial_continuity explicitly requested"
+    },
+    {
+      "rule_id": "subway_direction_no_slam_default",
+      "when": "scene_profile = subway_platform and task = read_text or find_direction",
+      "then": "slam noop unless navigation_context requested"
+    }
+  ],
+  "boundary_flags": {
+    "no_slam_for_text_task": true,
+    "no_slam_text_detection": true,
+    "no_slam_ocr_route_direct_generation": true,
+    "text_only_scene_activates_ocr_not_slam": true,
+    "shopfront_sign_noops_slam": true,
+    "subway_direction_sign_noops_slam_unless_navigation": true,
+    "planning_only": true
+  }
+}

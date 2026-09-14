@@ -1,0 +1,19 @@
+{
+  "contract_name": "Working Memory Contract v1",
+  "memory_class": "Working Memory",
+  "current_field_reference": "field-example",
+  "current_goal_reference": "goal-example",
+  "current_task_reference": "task-example",
+  "attention_reference": "attention-example",
+  "active_context": [],
+  "pending_information": [],
+  "unknowns": [],
+  "short_lifecycle": true,
+  "field_scoped": true,
+  "task_scoped": true,
+  "does_not_become_reality": true,
+  "does_not_make_decision": true,
+  "does_not_execute_action": true,
+  "release_candidate_required": true,
+  "unknowns_are_preserved": true
+}

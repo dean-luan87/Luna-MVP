@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Attention Field Interface",
+  "input": {
+    "field_state": "required",
+    "self_state": "required",
+    "goal_reference": "candidate",
+    "risk_candidate": "candidate",
+    "resource_state": "required",
+    "attention_requests": "candidate list"
+  },
+  "output": {
+    "attention_competition": "candidate",
+    "arbitration_candidate": "candidate",
+    "attention_allocation_candidate": "candidate",
+    "observation_requirement": "candidate"
+  },
+  "field_update": "candidate only",
+  "direct_reality_mutation": false,
+  "direct_decision": false,
+  "direct_action": false,
+  "role_runtime": false,
+  "emotion_runtime": false
+}

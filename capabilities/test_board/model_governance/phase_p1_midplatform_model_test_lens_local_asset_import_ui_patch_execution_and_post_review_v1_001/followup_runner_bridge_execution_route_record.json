@@ -1,0 +1,23 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-UI-Patch-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T03:12:12.131971+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record": {
+    "record_id": "followup_runner_bridge_execution_route_v1",
+    "recommended_next_phase": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+    "route_note": "UI patch registers assets and generates requests in-browser. Next: Local Runner Bridge Service at 127.0.0.1:8787 for actual runner execution.",
+    "page_submits_job_runner_executes_separately": true
+  }
+}

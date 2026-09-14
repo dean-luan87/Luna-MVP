@@ -1,0 +1,27 @@
+{
+  "title": "Luna Module Inventory v1",
+  "inventory_scope": ["capabilities/", "docs/architecture/", "tools/"],
+  "status_values": ["Active", "Skeleton", "Deprecated", "Duplicate", "Orphan", "Planning Only"],
+  "observed_counts": {"capabilities_files": 8939, "capabilities_python": 3372, "tools_files": 2359, "tools_python": 2280, "architecture_files": 5878, "architecture_python": 115},
+  "phase_directory_status": {"active": 54, "verification_only": 46, "missing_asset_candidate": 0, "basis": "read-only immediate-child scan of docs/architecture/cognitive_*"},
+  "module_domains": [
+    {"domain": "Cognitive Core", "source": "docs/architecture", "status": "Active"},
+    {"domain": "Governance", "source": "capabilities/governance and docs/architecture/governance", "status": "Active"},
+    {"domain": "Capability", "source": "capabilities/vision, voice, model_integration, midplatform", "status": "Active"},
+    {"domain": "Runtime", "source": "capabilities/*/runtime", "status": "Skeleton"},
+    {"domain": "Social / Emotion", "source": "docs/architecture", "status": "Planning Only"}
+  ],
+  "classification_rules": {
+    "Active": "has an owned contract or implementation surface and is referenced by an active domain",
+    "Skeleton": "interface or controlled stub without real runtime authority",
+    "Deprecated": "explicitly superseded or historical",
+    "Duplicate": "same canonical stem appears in multiple ownership locations",
+    "Orphan": "code or asset has no registered consumer/owner candidate",
+    "Planning Only": "architecture/interface only with execution prohibited"
+  },
+  "known_findings": [
+    {"module": "cognitive_flow", "status": "Orphan", "priority": "P1", "basis": "missing canonical architecture md/verifier surface"},
+    {"module": "Social / Emotion Runtime", "status": "Planning Only", "priority": "P2", "basis": "boundary-only architecture"}
+  ],
+  "inventory_rules": {"no_delete": true, "historical_assets_retained": true, "unknowns_are_preserved": true, "provenance_is_preserved": true}
+}

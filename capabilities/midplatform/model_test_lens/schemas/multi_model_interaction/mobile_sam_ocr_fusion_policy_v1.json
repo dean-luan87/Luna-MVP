@@ -1,0 +1,65 @@
+{
+  "schema_id": "MobileSamOcrFusionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+  "description": "MobileSAM + OCR 中台融合策略。本阶段仅规划，不产生融合结果。",
+  "planning_only": true,
+  "model_contributions": {
+    "mobile_sam": [
+      "region_geometry",
+      "mask_ref",
+      "region_boundary_candidate"
+    ],
+    "ocr": [
+      "text_candidate",
+      "text_region_candidate",
+      "confidence"
+    ]
+  },
+  "fusion_outputs": {
+    "multimodal_evidence_candidate": true,
+    "text_on_region_candidate": true,
+    "needs_fact_admission": true
+  },
+  "forbidden_fusion_outputs": [
+    "direct_fact",
+    "confirmed_sign_label",
+    "navigation_decision",
+    "overwrite_mobilesam_geometry",
+    "overwrite_ocr_text_candidate"
+  ],
+  "human_correction_dual_model_attributions": [
+    {
+      "attribution_id": "ocr_model_error",
+      "exit": "ocr_training_candidate_pending_review"
+    },
+    {
+      "attribution_id": "mobilesam_region_selection_error",
+      "exit": "mobile_sam_rerun_candidate"
+    },
+    {
+      "attribution_id": "ocr_route_strategy_error",
+      "exit": "ocr_route_policy_update_candidate"
+    },
+    {
+      "attribution_id": "attention_priority_error",
+      "exit": "priority_update_signal"
+    },
+    {
+      "attribution_id": "user_preference",
+      "exit": "preference_memory_candidate"
+    }
+  ],
+  "forbidden_correction_shortcuts": [
+    "direct_train_ocr",
+    "modify_ocr_result",
+    "modify_mobilesam_mask",
+    "user_input_as_ocr_truth"
+  ],
+  "boundary_flags": {
+    "fusion_candidate_not_fact": true,
+    "no_visual_expression_mutation": true,
+    "no_boundary_clone": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "deferred":[
+    {"name":"Emotion Engine","reason":"outside first A Route loop"},
+    {"name":"advanced Emotion Governance runtime","reason":"outside first A Route loop"},
+    {"name":"B Route","reason":"blocked until A Route product completion"},
+    {"name":"semantic compression","reason":"deferred semantic synthesis"},
+    {"name":"affective memory compression","reason":"deferred to appropriate future owner"},
+    {"name":"emotion-memory summary generation","reason":"deferred cross-owner synthesis"},
+    {"name":"personality-memory semantic fusion","reason":"deferred cross-owner synthesis"},
+    {"name":"cross-user transfer","reason":"privacy and scope boundary"},
+    {"name":"online model training / weight mutation","reason":"not required for deterministic first loop"},
+    {"name":"automatic personality activation","reason":"Personality Governance freeze"},
+    {"name":"Bayesian/predictive cognition and numerical dynamic function","reason":"P2 research, not first-loop prerequisite"}
+  ]
+}

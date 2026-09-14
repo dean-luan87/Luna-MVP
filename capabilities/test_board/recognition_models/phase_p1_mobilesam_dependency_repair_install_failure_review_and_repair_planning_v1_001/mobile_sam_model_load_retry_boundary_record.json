@@ -1,0 +1,40 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.475242+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_retry_boundary_record",
+  "mobile_sam_model_load_retry_boundary_after_timm_repair": {
+    "record_id": "mobile_sam_model_load_retry_boundary_after_timm_repair_v1",
+    "existing_torch_reuse_allowed": true,
+    "existing_torch_version_expected": "2.8.0",
+    "existing_torch_reuse_does_not_allow_global_mutation": true,
+    "existing_torch_reuse_does_not_allow_reinstall": true,
+    "torchvision_status_check_required": true,
+    "torch_compatibility_must_be_observed_after_model_load_retry": true,
+    "if_timm_requires_missing_lightweight_dependency_enter_next_repair_loop": true,
+    "mobile_sam_weight_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f"
+  },
+  "timm_second_repair_risk_record": {
+    "record_id": "timm_second_repair_risk_v1",
+    "no_deps_install_missing_transitive_dependency_risk": true,
+    "timm_version_latest_drift_risk": true,
+    "torch_timm_compatibility_risk": true,
+    "torchvision_reuse_risk": false,
+    "hidden_import_chain_risk": true,
+    "repeated_repair_loop_risk": true,
+    "model_load_retry_failure_risk": true,
+    "global_env_contamination_risk": true,
+    "inference_boundary_violation_risk": true,
+    "runtime_boundary_violation_risk": true
+  }
+}

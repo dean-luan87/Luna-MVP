@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:58:26.961554+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "execution_status": "go",
+    "inference_attempted": true,
+    "prompt_success_count": 5,
+    "prompt_failure_count": 0,
+    "candidate_masks_written": true,
+    "registry_mutated_this_phase": false,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+    "transition_note": "REAL EXECUTION on user-supplied scoped local street scene. 5 planned prompts, candidate masks only. NO runtime/semantic/fact."
+  },
+  "final_decision": "P1_MOBILE_SAM_REAL_LOCAL_IMAGE_INFERENCE_TRIAL_EXECUTION_GO"
+}

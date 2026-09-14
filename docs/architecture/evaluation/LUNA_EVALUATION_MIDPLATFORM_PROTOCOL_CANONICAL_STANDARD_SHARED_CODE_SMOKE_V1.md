@@ -1,0 +1,10 @@
+# Luna Evaluation — Protocol Canonical Standard Shared Code Smoke v1
+
+```bash
+python3 tools/evaluation/midplatform/run_midplatform_protocol_canonical_standard_shared_code_smoke_v1.py
+python3 tools/evaluation/midplatform/verify_midplatform_protocol_canonical_standard_shared_code_smoke_v1.py
+```
+
+Output: `_tmp_eval_out/midplatform_protocol_canonical_standard_shared_code_smoke_v1_smoke_v0/`
+
+Final Decision: `MIDPLATFORM_PROTOCOL_CANONICAL_STANDARD_SHARED_CODE_SMOKE_READY_FOR_TASK_MANAGER_OWNER_APPROVAL_DRYRUN`

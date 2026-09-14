@@ -1,0 +1,8 @@
+{
+  "candidate_type": "visual_symbol_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "confidence": 0.85,
+  "symbol_type": "directional_marker",
+  "direction": "right",
+  "direct_navigation_requested": true
+}

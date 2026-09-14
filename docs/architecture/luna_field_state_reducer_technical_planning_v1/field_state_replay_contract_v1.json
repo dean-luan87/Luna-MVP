@@ -1,0 +1,11 @@
+{
+    "version": "1.0",
+    "name": "Field State Replay Contract",
+    "deterministic_replay": true,
+    "provider_recall_during_replay": false,
+    "action_trigger_during_replay": false,
+    "external_lookup_during_replay": false,
+    "current_runtime_state_dependency": false,
+    "replay_requires_version_snapshot": true,
+    "replay_requires_event_order_snapshot": true
+}

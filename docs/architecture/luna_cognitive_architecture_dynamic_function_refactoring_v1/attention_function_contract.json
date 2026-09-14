@@ -1,0 +1,13 @@
+{
+  "contract_id": "attention_function_v1",
+  "function_role": "Resource Allocation Function",
+  "inputs": ["Cognitive State Vector", "Self State", "Field State", "Goal Activation", "Risk", "Resource Budget"],
+  "parameters": ["risk_sensitivity", "novelty_sensitivity", "task_sensitivity"],
+  "outputs": ["Attention Allocation Candidate", "Resource Distribution Candidate", "Priority Threshold Candidate"],
+  "attention_is_not_state_owner": true,
+  "attention_does_not_execute": true,
+  "attention_does_not_write_memory": true,
+  "attention_does_not_change_goal": true,
+  "automatic_allocation": false,
+  "candidate_only": true
+}

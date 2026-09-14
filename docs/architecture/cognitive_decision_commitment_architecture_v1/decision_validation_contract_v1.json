@@ -1,0 +1,37 @@
+{
+  "title": "Decision Validation Contract v1",
+  "contract_type": "Decision Commitment Validation",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "current_reality": {},
+    "supporting_evidence": [],
+    "field_context": {},
+    "intent_context": {},
+    "task_context": {},
+    "capability_state": {},
+    "value_constraints": [],
+    "risk": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "checks": [
+    "Reality Freshness Check",
+    "Evidence Sufficiency Check",
+    "Constraint Check",
+    "Intent Alignment Check",
+    "Capability Availability Check"
+  ],
+  "output": {
+    "validation_status": "Pass | Fail | More Evidence Required | Deferred | Invalidated",
+    "decision_commitment_candidate": {},
+    "validation_requirement": {},
+    "review_trace": {}
+  },
+  "boundary": {
+    "validation_does_not_invoke_capability": true,
+    "validation_does_not_execute_action": true,
+    "validation_does_not_modify_reality": true,
+    "evidence_has_priority": true,
+    "unknowns_are_preserved": true
+  }
+}

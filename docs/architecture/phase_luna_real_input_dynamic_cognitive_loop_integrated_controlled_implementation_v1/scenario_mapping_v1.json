@@ -1,0 +1,13 @@
+{
+  "scenario_count": 28,
+  "groups": {
+    "input_and_lineage": ["I01", "I02", "I03", "I04"],
+    "minimum_need_and_plan": ["I05", "I06", "I07", "I08"],
+    "sufficiency_termination": ["I09", "I10", "I11", "I12"],
+    "state_change_and_replan": ["I13", "I14", "I15", "I16"],
+    "capability_boundaries": ["I17", "I18", "I19", "I20"],
+    "outcome_separation": ["I21", "I22", "I23", "I24"],
+    "B4_and_trace_guards": ["I25", "I26", "I27", "I28"]
+  },
+  "core_fixture": "B1-shaped real visual Current World plus controlled synthetic alternatives"
+}

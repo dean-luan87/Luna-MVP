@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Neural Interface Contract",
+  "neural_inputs": ["resource_state", "fast_stimulus", "interrupt_candidate", "health_state"],
+  "neural_output": "fast_attention_candidate",
+  "attention_resource_constraint": true,
+  "neural_makes_decision": false,
+  "neural_changes_goal": false,
+  "neural_modifies_reality": false,
+  "automatic_frequency_adjustment": false,
+  "hardware_runtime": false
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Luna Dependency Boundary v1",
+  "allowed": [
+    {"source": "L0", "target": "L1", "mode": "constraint"},
+    {"source": "L1", "target": "L2", "mode": "lifecycle/state/contract substrate"},
+    {"source": "L1", "target": "L3", "mode": "lifecycle/state/contract substrate"},
+    {"source": "L1", "target": "L4", "mode": "admission/resource/contract substrate"},
+    {"source": "L2", "target": "L3", "mode": "context interface"},
+    {"source": "L2", "target": "L4", "mode": "capability requirement/evidence consumption"},
+    {"source": "L3", "target": "L2", "mode": "context candidate only"},
+    {"source": "L4", "target": "L2", "mode": "evidence/capability candidate only"}
+  ],
+  "forbidden": [
+    {"source": "Capability Provider", "target": "Brain", "reason": "provider cannot control cognition"},
+    {"source": "Model", "target": "Decision", "reason": "model emits evidence candidate only"},
+    {"source": "Hardware", "target": "Goal", "reason": "hardware reports state/resource only"},
+    {"source": "Provider", "target": "Reality", "reason": "Reducer accepts evidence through gateway"},
+    {"source": "Emotion", "target": "Reality", "reason": "emotion is context only"},
+    {"source": "Emotion", "target": "Decision Override", "reason": "no authority override"},
+    {"source": "Learning", "target": "Constitution", "reason": "learning produces candidates only"},
+    {"source": "L4", "target": "Brain Control", "reason": "capability/execution isolation"}
+  ],
+  "rules": {"evidence_gateway_required": true, "reality_reducer_required": true, "candidate_not_authority": true, "no_reverse_layer_dependency": true, "no_direct_action": true}
+}

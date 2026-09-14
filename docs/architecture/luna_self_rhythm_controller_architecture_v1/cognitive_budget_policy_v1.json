@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Budget Policy",
+  "owner":"Self Rhythm Controller",
+  "mode_profiles":[
+    {"mode":"active","attention_budget":"normal","memory_query":"relevant","brain_intensity":"normal"},
+    {"mode":"focus","attention_budget":"elevated_candidate","memory_query":"expanded_candidate","brain_intensity":"elevated_candidate"},
+    {"mode":"observe","attention_budget":"low_frequency","memory_query":"minimal","brain_intensity":"none_or_deferred"},
+    {"mode":"maintain","attention_budget":"reserved","memory_query":"maintenance_only","brain_intensity":"none_or_deferred"},
+    {"mode":"recovery","attention_budget":"restricted","memory_query":"recovery_relevant","brain_intensity":"conservative"},
+    {"mode":"low_power","attention_budget":"minimal","memory_query":"minimal","brain_intensity":"deferred"}
+  ],
+  "effects_are":["candidate","hint","constraint_input"],
+  "effects_are_not":["brain_rule_change","decision_override","goal_change","automatic_memory_consolidation","learning_execution"],
+  "rules":{"brain_logic_unchanged":true,"runtime_acceptance_required":true,"unknown_preserved":true}
+}

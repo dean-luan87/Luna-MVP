@@ -1,0 +1,79 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.960922+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "model_test_lens": true,
+  "not_whitebox_product_page": true,
+  "runtime_allowed": false,
+  "model_execution_allowed": false,
+  "candidate_output_only": true,
+  "record_type": "model_test_lens_page_structure_record",
+  "record": {
+    "record_id": "model_test_lens_page_structure_v1",
+    "layout_regions": [
+      "left_model_list_and_test_type",
+      "center_input_preview",
+      "right_output_visualization",
+      "bottom_trace_metrics_failure_testboard"
+    ],
+    "page_modules": [
+      {
+        "module_id": "model_selector",
+        "role": "select_model_category_and_panel"
+      },
+      {
+        "module_id": "test_case_importer",
+        "role": "import_local_manifest_tmp_eval_out_testboard"
+      },
+      {
+        "module_id": "input_preview_panel",
+        "role": "preview_image_video_audio_text_trajectory"
+      },
+      {
+        "module_id": "process_trace_panel",
+        "role": "show_execution_trace_prompt_recheck_memory"
+      },
+      {
+        "module_id": "result_visualization_panel",
+        "role": "model_specific_candidate_visualization"
+      },
+      {
+        "module_id": "metrics_panel",
+        "role": "scores_iou_area_ratio_wer_drift_id_switch"
+      },
+      {
+        "module_id": "failure_mode_panel",
+        "role": "risk_labels_failure_modes_requires_review"
+      },
+      {
+        "module_id": "testboard_refs_panel",
+        "role": "test_process_conclusion_artifact_refs_protected"
+      },
+      {
+        "module_id": "boundary_panel",
+        "role": "candidate_only_readiness_false_exclusions"
+      }
+    ],
+    "read_sources": [
+      "_tmp_eval_out/",
+      "capabilities/test_board/",
+      "capabilities/test_assets/",
+      "capabilities/midplatform/model_test_lens/schemas/"
+    ],
+    "forbidden_inputs": [
+      "external_url_import",
+      "live_camera",
+      "realtime_microphone",
+      "runtime_server",
+      "automatic_dataset_download",
+      "direct_model_inference_from_page"
+    ],
+    "static_site_root_rel": "capabilities/midplatform/model_test_lens/static_site"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Architecture Summary",
+  "canonical_definition":"subject-bound continuous understanding space formed from Reality, Evidence, Knowledge, Memory, Self, Social Self, Role, Task, and feedback",
+  "primary_owner":"Cognitive Field System",
+  "current_route":"A Route",
+  "future_route_interface":"B Route Simulation Field",
+  "component_count":12,
+  "status":"architecture_only",
+  "next_dependencies":["Field Runtime future phase","Memory Field refinement","Role growth architecture","Emotion Engine future boundary"],
+  "rules":{"reality_precedence":true,"unknown_preservation":true,"no_runtime_in_phase":true}
+}

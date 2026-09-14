@@ -1,0 +1,18 @@
+{
+  "version":"1.0",
+  "name":"Self Runtime Mode Transition Matrix",
+  "owner":"Self Rhythm Controller",
+  "transitions":[
+    {"from":"active","to":"focus","trigger":"complex_task","exit_condition":"task_boundary_or_timeout","constraint":"resource_and_safety_check"},
+    {"from":"active","to":"observe","trigger":"low_external_demand","exit_condition":"new_event","constraint":"safety_monitor_remains"},
+    {"from":"active","to":"maintain","trigger":"maintenance_window","exit_condition":"maintenance_complete","constraint":"no_priority_event"},
+    {"from":"active","to":"recovery","trigger":"health_warning","exit_condition":"validated_recovery","constraint":"Self Regulation approval"},
+    {"from":"active","to":"low_power","trigger":"battery_low_or_resource_shortage","exit_condition":"resource_restored_or_priority_event","constraint":"stability_first"},
+    {"from":"focus","to":"active","trigger":"focus_complete","exit_condition":"none","constraint":"safety_check"},
+    {"from":"observe","to":"active","trigger":"new_event","exit_condition":"none","constraint":"event_admission"},
+    {"from":"maintain","to":"active","trigger":"maintenance_complete","exit_condition":"none","constraint":"no_active_failure"},
+    {"from":"recovery","to":"active","trigger":"recovery_validated","exit_condition":"none","constraint":"Self Regulation approval"},
+    {"from":"low_power","to":"active","trigger":"resource_restored_or_priority_event","exit_condition":"none","constraint":"Runtime acceptance"}
+  ],
+  "rules":{"duplicate_transition_forbidden":true,"every_transition_has_trigger":true,"every_transition_has_constraint":true,"candidate_only":true}
+}

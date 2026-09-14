@@ -1,0 +1,25 @@
+{
+  "guard_set_id": "information_processing_pipeline_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": [
+    "runtime_implementation",
+    "model_or_provider_calls",
+    "hardware_calls",
+    "action_execution",
+    "automatic_learning",
+    "automatic_memory_consolidation",
+    "automatic_growth_mutation",
+    "b_route_simulation_runtime",
+    "emotion_runtime",
+    "role_runtime",
+    "social_runtime",
+    "world_model_creation",
+    "reality_mutation",
+    "provider_meaning_authority",
+    "brain_direct_action"
+  ],
+  "unknown_must_be_preserved": true,
+  "decision_must_remain_candidate": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

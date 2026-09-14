@@ -1,0 +1,32 @@
+{
+  "schema_id": "LocalModelAdmissionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Local-Model-Integration-Planning-v1-001",
+  "principle": "本地模型不是安装就能用；须经环境与运行时兼容性检查。",
+  "admission_pipeline": [
+    {"stage": "model_discovery", "description": "发现本地模型候选"},
+    {"stage": "model_candidate", "description": "注册为 candidate"},
+    {"stage": "environment_check", "description": "CUDA/VRAM/驱动检查"},
+    {"stage": "runtime_compatibility_check", "description": "运行时兼容性"},
+    {"stage": "benchmark", "description": "能力与延迟基准"},
+    {"stage": "admission_decision", "description": "准入决策"},
+    {"stage": "active", "description": "进入 routing eligible 池"}
+  ],
+  "failure_paths": [
+    {"condition": "gpu_insufficient", "result": "blocked"},
+    {"condition": "runtime_incompatible", "result": "blocked"},
+    {"condition": "benchmark_failed", "result": "candidate"}
+  ],
+  "rules": [
+    {"rule_id": "no_install_equals_active", "description": "安装不等于 active"},
+    {"rule_id": "environment_check_required", "description": "必须通过环境检查"},
+    {"rule_id": "no_auto_admission", "description": "禁止自动准入"},
+    {"rule_id": "blocked_not_routing", "description": "blocked 不参与路由"}
+  ],
+  "boundary_flags": {
+    "no_install_equals_active": true,
+    "environment_check_required": true,
+    "no_auto_admission": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_id": "TeacherUsageProfileCandidateSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "profile_id",
+    "scene_type",
+    "teacher_provider",
+    "recommended_usage",
+    "reason",
+    "candidate_only",
+    "not_fact",
+    "review_status"
+  ],
+  "recommended_usage_enum": ["low", "medium", "high"],
+  "review_status_enum": ["pending_policy_review", "approved", "rejected"]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_name": "Model Resource Profile Schema v1",
+  "model_reference": "model-example",
+  "hardware_compatibility_reference": "hardware-example",
+  "gpu_cpu": {"minimum": null, "recommended": null},
+  "memory": {"minimum": null, "recommended": null},
+  "latency": {"budget": null},
+  "energy": {"budget": null},
+  "network": {"required": false, "bandwidth": null},
+  "storage": {"required": null},
+  "performance_profile": {"quality": null, "throughput": null},
+  "resource_cost": null,
+  "admission_resource_check_required": true,
+  "resource_profile_does_not_select_goal": true,
+  "resource_profile_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

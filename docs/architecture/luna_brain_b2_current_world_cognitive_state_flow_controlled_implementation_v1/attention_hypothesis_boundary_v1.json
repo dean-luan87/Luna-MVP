@@ -1,0 +1,6 @@
+{
+  "attention": {"owner": "Cognitive State Formation / Attention System", "candidate_only": true, "provider_execution": false, "truth_probability": false},
+  "hypothesis": {"owner": "Cognitive Interpretation Contracts / Cognitive State Formation", "candidate_only": true, "fact": false, "alternatives_preserved": true, "unknowns_preserved": true, "conflicts_preserved": true},
+  "provider_confidence": "not reused as cognitive confidence",
+  "natural_language_conclusion": false
+}

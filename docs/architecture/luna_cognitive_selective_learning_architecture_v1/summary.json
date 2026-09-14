@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-Cognitive-Selective-Learning-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_SELECTIVE_LEARNING_ARCHITECTURE_READY",
+  "canonical_flow": ["Reality", "Experience", "Pattern Detection", "Learning Candidate", "Utility Evaluation", "Self Approval", "Schema Update", "Capability Growth"],
+  "sources": ["Experience Learning", "Knowledge Assimilation", "Social Learning", "Self Reflection Learning"],
+  "levels": ["Level 0 Temporary Information", "Level 1 Experience Pattern", "Level 2 Capability Improvement", "Level 3 Self Evolution Candidate"],
+  "reusable_assets": ["cognitive_learning_system_v1", "luna_cognitive_self_evolution_architecture_v1", "luna_knowledge_memory_boundary_architecture_v1", "luna_cognitive_information_lifecycle_v1", "luna_cognitive_value_utility_architecture_v1", "luna_cognitive_self_world_boundary_architecture_v1", "luna_cognitive_action_outcome_evaluation_architecture_v1"],
+  "parallel_risks": ["Learning vs Memory duplication", "Learning vs Self Evolution ownership drift", "Knowledge injection mistaken for learning", "Schema update mistaken for capability growth"],
+  "migration_mapping": ["existing Cognitive Learning System to selective candidate adapter", "Growth Candidate to Self Evolution admission", "Knowledge→Experience transition to contextual assimilation", "Value Utility to Learning Utility candidate"],
+  "runtime": false,
+  "learning_runtime": false,
+  "automatic_learning": false,
+  "model_training": false,
+  "parameter_update": false,
+  "automatic_memory_write": false,
+  "automatic_schema_update": false,
+  "emotion_runtime": false,
+  "b_route_runtime": false
+}

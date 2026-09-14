@@ -1,0 +1,41 @@
+{
+    "artifact": "action_existing_asset_reuse_mapping_v1",
+    "status": "PLANNING_CANDIDATE",
+    "mapping": [
+        {
+            "existing_asset": "docs/architecture/luna_action_module_role_boundary_v2.md",
+            "reused_for": "legacy owner naming and boundary phrases",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_module_permission_and_safety_recheck_standard_v1.md",
+            "reused_for": "permission/safety must re-check semantics",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_module_dependency_relationship_rewrite_standard_v1.md",
+            "reused_for": "dependency relationship candidate boundaries",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_module_human_override_and_final_confirmation_boundary_v1.md",
+            "reused_for": "human confirmation and non-fabrication constraints",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_decision_action_interface_contract_v1.md",
+            "reused_for": "decision-action influence boundary",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_task_manager_module_contract_v1.md",
+            "reused_for": "task manager ownership boundary",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_executor_boundary_v1.md",
+            "reused_for": "executor handoff boundary",
+            "modification": false
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Cognitive Core Architecture Conflict Registry",
+  "conflicts": [
+    {"conflict_id": "C-001", "category": "duplicate_owner", "topic": "Decision", "canonical_owner": "Brain", "resolution": "Brain is the only decision candidate generator; commitment and execution remain separate.", "status": "resolved_by_contract"},
+    {"conflict_id": "C-002", "category": "duplicate_owner", "topic": "Long-term Memory", "canonical_owner": "Memory System", "resolution": "Workspace owns working context only; all long-term admission is centralized.", "status": "resolved_by_contract"},
+    {"conflict_id": "C-003", "category": "permission_penetration", "topic": "Provider Output", "canonical_owner": "Evidence Gateway", "resolution": "Provider output cannot directly enter Brain, Reality, Memory, or Goal.", "status": "resolved_by_contract"},
+    {"conflict_id": "C-004", "category": "learning_boundary", "topic": "Automatic Change", "canonical_owner": "Governance + Brain Review", "resolution": "Learning emits candidates; no automatic rule, value, goal, or model change.", "status": "resolved_by_contract"},
+    {"conflict_id": "C-005", "category": "self_boundary", "topic": "Self Regulation vs Self Evolution", "canonical_owner": "Separate candidate authorities", "resolution": "Regulation preserves current stability; Evolution proposes long-term growth.", "status": "resolved_by_contract"},
+    {"conflict_id": "C-006", "category": "future_extension", "topic": "Emotion", "canonical_owner": "Emotion Context Boundary", "resolution": "Emotion remains interface-only until separately admitted.", "status": "deferred_future_extension"}
+  ],
+  "rules": {"all_conflicts_have_owner": true, "no_unresolved_core_conflict": true, "future_extensions_not_core_blockers": true, "no_scope_expansion": true}
+}

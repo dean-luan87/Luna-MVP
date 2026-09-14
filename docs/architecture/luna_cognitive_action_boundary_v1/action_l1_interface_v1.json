@@ -1,0 +1,8 @@
+{
+  "title": "Action Boundary to L1 Interface v1",
+  "owner": "Cognitive OS Governance",
+  "inputs": ["Lifecycle Contract", "Trace Contract", "Event Contract", "Recovery Contract", "Authority Registry"],
+  "outputs": ["Action Lifecycle Candidate", "Action Trace Reference", "Action Failure Event", "Recovery Candidate"],
+  "l1_not_modified": ["Constitution", "Runtime Rules", "Governance Authority"],
+  "rules": {"l1_owns_lifecycle": true, "trace_required": true, "action_does_not_modify_runtime": true, "interface_only": true}
+}

@@ -1,0 +1,20 @@
+{
+    "artifact": "execution_idempotency_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "idempotency_fields": [
+        "idempotency_key",
+        "action_candidate_ref",
+        "target_ref",
+        "execution_window_ref"
+    ],
+    "rules": {
+        "same_key_same_scope_reuse_previous_result_candidate": true,
+        "same_key_different_scope_reject": true,
+        "missing_key_allows_non_idempotent_candidate_only": true,
+        "idempotency_not_retry_policy": true
+    },
+    "forbidden": [
+        "implicit_duplicate_execution_claim",
+        "cross_action_key_reuse"
+    ]
+}

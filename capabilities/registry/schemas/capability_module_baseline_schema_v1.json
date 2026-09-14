@@ -1,0 +1,277 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Luna Capability Module Baseline Schema v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "capability_id",
+        "module_version",
+        "baseline_version",
+        "baseline_status",
+        "formal_mainline",
+        "module_api",
+        "owned_responsibilities",
+        "forbidden_authorities",
+        "reused_assets",
+        "extended_assets",
+        "internal_components",
+        "legacy_assets",
+        "duplicate_risks",
+        "dependency_contracts",
+        "input_contract_ref",
+        "output_contract_ref",
+        "lifecycle_contract_ref",
+        "diagnostic_contract",
+        "trace_replay_contract",
+        "ready_evidence",
+        "calibration_triggers",
+        "calibration_procedure",
+        "baseline_created_at",
+        "last_baseline_review",
+        "baseline_update_required"
+    ],
+    "properties": {
+        "capability_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "module_version": {
+            "type": "string",
+            "minLength": 1
+        },
+        "baseline_version": {
+            "type": "string",
+            "minLength": 1
+        },
+        "baseline_status": {
+            "type": "string",
+            "enum": [
+                "draft",
+                "active",
+                "deprecated",
+                "superseded"
+            ]
+        },
+        "formal_mainline": {
+            "type": "object",
+            "required": [
+                "entrypoints",
+                "mainline_assets"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "entrypoints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "mainline_assets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "module_api": {
+            "type": "object",
+            "required": [
+                "path",
+                "entrypoint",
+                "exists"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "path": {
+                    "type": "string"
+                },
+                "entrypoint": {
+                    "type": "string"
+                },
+                "exists": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "owned_responsibilities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "forbidden_authorities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "reused_assets": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "extended_assets": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "internal_components": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "legacy_assets": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "duplicate_risks": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "dependency_contracts": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "depends_on",
+                    "dependency_type",
+                    "required",
+                    "interface_ref",
+                    "fallback_behavior",
+                    "unavailable_behavior"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "depends_on": {
+                        "type": "string"
+                    },
+                    "dependency_type": {
+                        "type": "string"
+                    },
+                    "required": {
+                        "type": "boolean"
+                    },
+                    "interface_ref": {
+                        "type": "string"
+                    },
+                    "fallback_behavior": {
+                        "type": "string"
+                    },
+                    "unavailable_behavior": {
+                        "type": "string"
+                    },
+                    "confidence": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "input_contract_ref": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "output_contract_ref": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "lifecycle_contract_ref": {
+            "type": "string"
+        },
+        "diagnostic_contract": {
+            "type": "object",
+            "required": [
+                "supported",
+                "refs"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "supported": {
+                    "type": "boolean"
+                },
+                "refs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "trace_replay_contract": {
+            "type": "object",
+            "required": [
+                "trace_supported",
+                "replay_supported",
+                "refs"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "trace_supported": {
+                    "type": "boolean"
+                },
+                "replay_supported": {
+                    "type": "boolean"
+                },
+                "refs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "ready_evidence": {
+            "type": [
+                "object",
+                "null"
+            ]
+        },
+        "calibration_triggers": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "calibration_procedure": {
+            "type": "object",
+            "required": [
+                "standard_ref",
+                "steps"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "standard_ref": {
+                    "type": "string"
+                },
+                "steps": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "baseline_created_at": {
+            "type": "string",
+            "format": "date"
+        },
+        "last_baseline_review": {
+            "type": "string",
+            "format": "date"
+        },
+        "baseline_update_required": {
+            "type": "boolean"
+        }
+    }
+}

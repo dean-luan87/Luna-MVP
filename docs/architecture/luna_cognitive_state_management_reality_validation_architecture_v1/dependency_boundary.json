@@ -1,0 +1,29 @@
+{
+  "boundary_id": "cognitive_state_reality_validation_dependency_v1",
+  "allowed_dependencies": [
+    "Self Regulation -> Cognitive State Candidate",
+    "Self Rhythm -> Cognitive State Context",
+    "Field -> State and Validation Context",
+    "Attention -> State-aware Attention Candidate",
+    "Hypothesis -> Validation Loop",
+    "Understanding -> Validation Loop",
+    "Reality Feedback -> Validation Loop",
+    "Validation Loop -> Understanding Adjustment Candidate",
+    "Brain -> Decision Candidate",
+    "Runtime -> future admitted execution"
+  ],
+  "forbidden_dependencies": [
+    "Cognitive State -> Model Switch",
+    "Cognitive State -> Hardware Control",
+    "Cognitive State -> Runtime Direct Control",
+    "Validation -> Memory Direct Mutation",
+    "Validation -> Self Direct Mutation",
+    "Validation -> Identity Rewrite",
+    "Validation -> Goal Rewrite",
+    "Hypothesis -> Action Execution",
+    "Emotion -> Cognitive State Runtime",
+    "Provider -> Understanding Direct Write"
+  ],
+  "dependency_cycle_resolution": "Brain_or_Governance_review",
+  "architecture_only": true
+}

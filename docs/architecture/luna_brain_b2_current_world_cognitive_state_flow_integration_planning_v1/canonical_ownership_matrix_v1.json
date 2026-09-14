@@ -1,0 +1,19 @@
+{
+  "matrix_id": "b2_canonical_ownership_matrix_v1",
+  "rows": [
+    {"concept": "Visual evidence", "owner": "Field Perception Orchestrator / Vision Provider Integration", "writer": "Provider adapter and evidence mapping boundary", "b2_access": "read-only candidate reference"},
+    {"concept": "Evidence admission", "owner": "Observation Gateway / Observation Manager", "writer": "Gateway admission boundary", "b2_access": "consume admitted candidate reference"},
+    {"concept": "Context", "owner": "Context Foundation", "writer": "Context Foundation candidate assembly", "b2_access": "read-only source projection"},
+    {"concept": "Field/Event", "owner": "Field System / Field Event Admission", "writer": "Field Event Admission", "b2_access": "candidate/ref only"},
+    {"concept": "Field State", "owner": "Field State Reducer", "writer": "Field State Reducer only", "b2_access": "read-only projection; no mutation"},
+    {"concept": "Current World candidate", "owner": "Cognitive State Formation / Current World representation", "writer": "candidate formation only in B2", "b2_access": "consume B1 candidate and preserve provenance"},
+    {"concept": "Cognitive State", "owner": "Cognitive State Formation Governance", "writer": "Cognitive State Formation engine", "b2_access": "candidate formation"},
+    {"concept": "Attention", "owner": "Attention System for cognitive attention; Field Perception Orchestrator for observation control", "writer": "respective owner only", "b2_access": "candidate/reference separation"},
+    {"concept": "Hypothesis", "owner": "Cognitive Interpretation Contracts / Cognitive State Formation", "writer": "hypothesis candidate lifecycle", "b2_access": "candidate only; alternatives retained"},
+    {"concept": "Observation Need", "owner": "Field Perception Orchestrator Active Observation Control", "writer": "observation control decision boundary", "b2_access": "request candidate only"},
+    {"concept": "Cognitive Flow", "owner": "Cognitive Flow Governance", "writer": "cycle transition candidate builder", "b2_access": "lifecycle/handoff only"},
+    {"concept": "Intent", "owner": "Intent Governance", "writer": "Intent Governance", "b2_access": "intent refs only"},
+    {"concept": "Decision", "owner": "Decision Governance / Decision Arbitration", "writer": "decision boundary", "b2_access": "future handoff candidate only"}
+  ],
+  "rules": ["reader_has_no_implicit_write", "one_mutation_authority_per_state", "provider_does_not_own_brain", "brain_does_not_own_reality", "unknowns_and_provenance_preserved"]
+}

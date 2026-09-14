@@ -1,0 +1,22 @@
+{
+  "schema_version": "luna_simulation_lab_minimal_harness_v0",
+  "phase": "Phase-Luna-Simulation-Lab-Minimal-Harness-001",
+  "title": "Simulation Lab minimal harness (developer_full + crash_recovery only)",
+  "profiles_config_ref": "configs/evaluation/simulation/luna_simulation_lab_profiles_v0.example.json",
+  "allowed_profile_ids": ["developer_full", "crash_recovery"],
+  "output_root_base": "_eval_out/simulation_lab_minimal_harness_v0",
+  "default_run_model": false,
+  "manual_trigger_only": true,
+  "forbidden_defaults": [
+    "ci_auto_run",
+    "default_heavy_provider_run",
+    "runtime_routing_change"
+  ],
+  "child_run_hints": {
+    "crash_recovery": {
+      "suggested_tool": "tools/evaluation/ocr/run_paddleocr_labeled_set_batch_recovery_v0.py",
+      "suggested_batch_sizes": [5, 1],
+      "requires_explicit_flag": "--execute-child"
+    }
+  }
+}

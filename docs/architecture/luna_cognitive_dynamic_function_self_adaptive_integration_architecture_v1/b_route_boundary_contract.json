@@ -1,0 +1,13 @@
+{
+  "contract_id": "b_route_boundary_v1",
+  "b_route_status": "future_interface_only",
+  "b_route_cannot_modify_a_function": true,
+  "b_route_cannot_modify_self": true,
+  "b_route_cannot_directly_update_parameter": true,
+  "b_route_cannot_turn_virtual_outcome_into_experience": true,
+  "b_route_cannot_override_reality": true,
+  "b_route_cannot_override_decision": true,
+  "b_route_runtime": false,
+  "cross_route_output": "Simulation Candidate to A Route Governance",
+  "route_mixing": false
+}

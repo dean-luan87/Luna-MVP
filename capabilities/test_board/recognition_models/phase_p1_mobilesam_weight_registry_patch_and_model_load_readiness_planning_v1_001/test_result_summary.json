@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Weight-Registry-Patch-And-Model-Load-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:54:15.985926+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_WEIGHT_REGISTRY_PATCH_AND_MODEL_LOAD_READINESS_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_weight_registry_patch_model_load_readiness_planning_profile_count": 1,
+    "stage_ref_count": 16,
+    "mobile_sam_weight_download_audit_count": 1,
+    "mobile_sam_weight_registry_patch_planning_record_count": 1,
+    "mobile_sam_weight_readiness_record_count": 1,
+    "mobile_sam_model_load_trial_readiness_planning_record_count": 1,
+    "mobile_sam_model_load_boundary_record_count": 1,
+    "mobile_sam_inference_runtime_boundary_record_count": 1,
+    "mobile_sam_followup_model_load_trial_route_count": 1,
+    "negative_guard_count": 15,
+    "blocker_count": 0
+  }
+}

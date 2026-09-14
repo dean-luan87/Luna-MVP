@@ -1,0 +1,25 @@
+{
+    "artifact": "action_task_manager_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "task_relation": {
+        "task_not_action": true,
+        "task_manager_owns_task_lifecycle": true,
+        "action_governance_owns_action_eligibility": true,
+        "action_governance_not_task_manager": true,
+        "action_governance_no_real_task_creation": true
+    },
+    "task_handoff": {
+        "reference_only": true,
+        "allowed_payload": [
+            "action_candidate_ref",
+            "task_reference_context",
+            "dependency_refs",
+            "provenance"
+        ],
+        "forbidden_payload": [
+            "real_task_create_command",
+            "scheduler_operation",
+            "task_runtime_mutation"
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "name":"Runtime Cognitive Flow Mapping",
+  "stages":[
+    {"order":1,"stage":"Runtime Tick","input":"Runtime Event","output":"event context","owner":"Cognitive Runtime"},
+    {"order":2,"stage":"Context Assembly","input":"Global/Self/Capability/Runtime State + Event","output":"Context Package","owner":"Context Assembler"},
+    {"order":3,"stage":"Workspace Integration","input":"Context Package","output":"Workspace Context","owner":"Workspace Runtime Adapter"},
+    {"order":4,"stage":"Attention Selection","input":"Context + Workspace","output":"Attention Candidate","owner":"Attention Interface"},
+    {"order":5,"stage":"Brain Invocation","input":"Context + Attention Candidate","output":"Decision Candidate","owner":"Brain Boundary"},
+    {"order":6,"stage":"Trace","input":"all cognitive stages","output":"Cognitive Trace","owner":"Cognitive Trace Extension"},
+    {"order":7,"stage":"State Update","input":"Decision Candidate","output":"Runtime Candidate State","owner":"State Update Boundary"},
+    {"order":8,"stage":"Feedback Placeholder","input":"Decision Candidate","output":"future feedback contract","owner":"Feedback Placeholder"}
+  ],
+  "rules":{"ordered":true,"brain_candidate_only":true,"action_separate":true,"reality_immutable":true,"no_external_integration":true}
+}

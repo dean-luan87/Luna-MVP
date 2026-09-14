@@ -1,0 +1,5 @@
+{
+  "deferred":["semantic_compression","dynamic_cognitive_function","cognitive_parameter_genome","self_regulation","memory_write","experience_learning","online_learning","emotion_engine","b_route"],
+  "must_remain_false":["database_write","vector_store_write","embedding_execution","model_weight_update","PCN_update","cognitive_parameter_update"],
+  "activation_policy":"each deferred capability requires a separate governed phase and regression impact record"
+}

@@ -1,0 +1,9 @@
+{
+  "metric_id": "adaptation_efficiency_v1",
+  "inputs": ["Initial State", "Adapted State", "Outcome Improvement", "Resource Cost", "Time", "Risk", "Reversibility"],
+  "outputs": ["Adaptation Efficiency Candidate", "Gain per Cost Candidate", "Time to Stable Candidate", "Risk Adjusted Gain Candidate"],
+  "dimensions": ["improvement_gain", "resource_efficiency", "time_efficiency", "stability_after_adaptation", "risk_adjustment"],
+  "automatic_adaptation": false,
+  "metric_does_not_update_parameter": true,
+  "candidate_only": true
+}

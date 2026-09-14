@@ -1,0 +1,10 @@
+{
+  "contract_id": "attention_schema_relation_v1",
+  "owner": "Schema",
+  "flow": ["Schema", "Attention Prior", "Current Evidence", "Attention Update"],
+  "schema_provides_prior": true,
+  "schema_determines_attention": false,
+  "schema_overrides_reality": false,
+  "current_evidence_precedence": true,
+  "candidate_only": true
+}

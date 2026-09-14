@@ -1,0 +1,21 @@
+{
+    "artifact": "decision_revision_suspension_revocation_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "supports": [
+        "revision",
+        "suspension",
+        "revocation"
+    ],
+    "required_transition_refs": [
+        "prior_candidate_ref",
+        "new_candidate_ref",
+        "revision_reason_ref",
+        "state_transition_ref",
+        "provenance_ref"
+    ],
+    "guards": {
+        "silent_overwrite_forbidden": true,
+        "revocation_requires_trace": true,
+        "suspension_not_equal_deletion": true
+    }
+}

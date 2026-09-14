@@ -1,0 +1,588 @@
+{
+    "modules": [
+        {
+            "module_id": "M1",
+            "module_name": "Situation Understanding",
+            "current_domain": "situation_understanding",
+            "logical_owner_domain": "cognition/field_understanding",
+            "logical_owner_layer": "L1",
+            "secondary_domains": [
+                "evaluation"
+            ],
+            "interpretation_owner": "field_understanding",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens",
+                "verifier"
+            ],
+            "provider_dependencies": [
+                "vision",
+                "ocr"
+            ],
+            "reuse_status": "reuse",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Map to L1 for field-level semantics."
+        },
+        {
+            "module_id": "M2",
+            "module_name": "Observation Attention",
+            "current_domain": "attention_layers",
+            "logical_owner_domain": "cognition/attention",
+            "logical_owner_layer": "L4",
+            "secondary_domains": [
+                "providers"
+            ],
+            "interpretation_owner": "attention",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens"
+            ],
+            "provider_dependencies": [
+                "vision"
+            ],
+            "reuse_status": "reuse",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Align attention logic to L4."
+        },
+        {
+            "module_id": "M3",
+            "module_name": "Region Intelligence",
+            "current_domain": "region_intelligence",
+            "logical_owner_domain": "cognition/region_intelligence",
+            "logical_owner_layer": "L5",
+            "secondary_domains": [
+                "providers"
+            ],
+            "interpretation_owner": "region_intelligence",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "evaluation_dependencies": [
+                "verifier"
+            ],
+            "provider_dependencies": [
+                "vision",
+                "ocr"
+            ],
+            "reuse_status": "reuse",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain as region intelligence layer."
+        },
+        {
+            "module_id": "M4",
+            "module_name": "Ownership Understanding",
+            "current_domain": "ownership_understanding",
+            "logical_owner_domain": "cognition/role_relation_inference",
+            "logical_owner_layer": "L6",
+            "secondary_domains": [
+                "governance"
+            ],
+            "interpretation_owner": "role_relation_inference",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "candidate_fact_admission"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens"
+            ],
+            "provider_dependencies": [
+                "network"
+            ],
+            "reuse_status": "adapt",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_1",
+            "priority": "P1",
+            "notes": "Adapt ownership reasoning into role inference."
+        },
+        {
+            "module_id": "M5",
+            "module_name": "Field-Centric Object Role",
+            "current_domain": "field_centric_object_role",
+            "logical_owner_domain": "cognition/role_relation_inference",
+            "logical_owner_layer": "L6",
+            "secondary_domains": [
+                "evaluation"
+            ],
+            "interpretation_owner": "role_relation_inference",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens"
+            ],
+            "provider_dependencies": [
+                "vision",
+                "ocr"
+            ],
+            "reuse_status": "reuse",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Bind to L6 for role inference."
+        },
+        {
+            "module_id": "M6",
+            "module_name": "Model Manager",
+            "current_domain": "model_manager",
+            "logical_owner_domain": "governance/model_skill_admission",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [
+                "evaluation"
+            ],
+            "interpretation_owner": "model_manager",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "model_skill_admission",
+                "runtime_boundary"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens"
+            ],
+            "provider_dependencies": [
+                "external_models"
+            ],
+            "reuse_status": "reuse",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Governance responsibilities mapped to governance domain."
+        },
+        {
+            "module_id": "M7",
+            "module_name": "Model Test Lens",
+            "current_domain": "evaluation/model_test_lens",
+            "logical_owner_domain": "evaluation/model_test_lens",
+            "logical_owner_layer": "cross_layer",
+            "secondary_domains": [],
+            "interpretation_owner": "evaluation",
+            "execution_owner": "n/a",
+            "governance_dependencies": [
+                "verifier"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain as shared evaluation asset."
+        },
+        {
+            "module_id": "M8",
+            "module_name": "Human Correction Layer",
+            "current_domain": "evaluation/human_correction",
+            "logical_owner_domain": "evaluation/human_correction",
+            "logical_owner_layer": "cross_layer",
+            "secondary_domains": [],
+            "interpretation_owner": "human_correction",
+            "execution_owner": "n/a",
+            "governance_dependencies": [
+                "permission_owner_approval"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain for manual correction routes."
+        },
+        {
+            "module_id": "M9",
+            "module_name": "Followup Runner",
+            "current_domain": "runtime/followup_runner",
+            "logical_owner_domain": "runtime/controlled_execution",
+            "logical_owner_layer": "runtime",
+            "secondary_domains": [
+                "governance"
+            ],
+            "interpretation_owner": "followup_runner",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "runtime_boundary"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "adapt",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_1",
+            "priority": "P1",
+            "notes": "Adapter-first for execution semantics."
+        },
+        {
+            "module_id": "M10",
+            "module_name": "Controlled Runner Execution",
+            "current_domain": "runtime/controlled_execution",
+            "logical_owner_domain": "runtime/controlled_execution",
+            "logical_owner_layer": "runtime",
+            "secondary_domains": [],
+            "interpretation_owner": "controlled_runner",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "runtime_boundary",
+                "execution_trace"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain runtime execution domain."
+        },
+        {
+            "module_id": "M11",
+            "module_name": "OCR Evidence",
+            "current_domain": "providers/ocr",
+            "logical_owner_domain": "providers/ocr",
+            "logical_owner_layer": "providers",
+            "secondary_domains": [],
+            "interpretation_owner": "providers/ocr",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Provider evidence source."
+        },
+        {
+            "module_id": "M12",
+            "module_name": "Vision Evidence",
+            "current_domain": "providers/vision",
+            "logical_owner_domain": "providers/vision",
+            "logical_owner_layer": "providers",
+            "secondary_domains": [],
+            "interpretation_owner": "providers/vision",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Provider evidence source."
+        },
+        {
+            "module_id": "M13",
+            "module_name": "Network-Assisted Situation Learning",
+            "current_domain": "providers/network",
+            "logical_owner_domain": "providers/network",
+            "logical_owner_layer": "providers",
+            "secondary_domains": [
+                "cognition"
+            ],
+            "interpretation_owner": "providers/network",
+            "execution_owner": "n/a",
+            "governance_dependencies": [
+                "permission_owner_approval"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [
+                "network"
+            ],
+            "reuse_status": "adapt",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_1",
+            "priority": "P1",
+            "notes": "Adapter-first for network integration."
+        },
+        {
+            "module_id": "M14",
+            "module_name": "Document Surface Detector",
+            "current_domain": "runtime/document_surface",
+            "logical_owner_domain": "cognition/region_intelligence",
+            "logical_owner_layer": "L5",
+            "secondary_domains": [
+                "runtime"
+            ],
+            "interpretation_owner": "region_intelligence",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "model_skill_admission",
+                "runtime_boundary"
+            ],
+            "evaluation_dependencies": [
+                "model_test_lens"
+            ],
+            "provider_dependencies": [
+                "vision",
+                "ocr"
+            ],
+            "reuse_status": "defer",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_2",
+            "priority": "P2",
+            "notes": "Option B deferred route; freeze reference."
+        },
+        {
+            "module_id": "M15",
+            "module_name": "Option A baseline",
+            "current_domain": "option_a_baseline",
+            "logical_owner_domain": "runtime/admission_runtime",
+            "logical_owner_layer": "runtime",
+            "secondary_domains": [],
+            "interpretation_owner": "option_a",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "candidate_fact_admission"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "freeze",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_0",
+            "priority": "P1",
+            "notes": "Retain baseline as frozen reference."
+        },
+        {
+            "module_id": "M16",
+            "module_name": "Option B deferred route",
+            "current_domain": "option_b_controlled_execution_dryrun",
+            "logical_owner_domain": "governance/model_skill_admission",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "option_b",
+            "execution_owner": "n/a",
+            "governance_dependencies": [
+                "model_skill_admission"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "freeze",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_0",
+            "priority": "P2",
+            "notes": "Freeze; do not activate."
+        },
+        {
+            "module_id": "M17",
+            "module_name": "Task Manager",
+            "current_domain": "task_management",
+            "logical_owner_domain": "cognition/decision",
+            "logical_owner_layer": "L8",
+            "secondary_domains": [],
+            "interpretation_owner": "decision",
+            "execution_owner": "runtime/controlled_execution",
+            "governance_dependencies": [
+                "change_control"
+            ],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "adapt",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": true,
+            "migration_wave": "wave_1",
+            "priority": "P1",
+            "notes": "Map task manager to decision layer."
+        },
+        {
+            "module_id": "M18",
+            "module_name": "Protocol Governance",
+            "current_domain": "governance/protocols",
+            "logical_owner_domain": "governance/cross_layer_protocols",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "protocols",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain protocol governance as horizontal."
+        },
+        {
+            "module_id": "M19",
+            "module_name": "Evidence Chain",
+            "current_domain": "governance/evidence_chain",
+            "logical_owner_domain": "governance/evidence_chain",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "evidence_chain",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain evidence chain as shared backbone."
+        },
+        {
+            "module_id": "M20",
+            "module_name": "Runtime Boundary",
+            "current_domain": "governance/runtime_boundary",
+            "logical_owner_domain": "governance/runtime_boundary",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "runtime_boundary",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain runtime boundary."
+        },
+        {
+            "module_id": "M21",
+            "module_name": "Model / Skill Admission",
+            "current_domain": "governance/model_skill_admission",
+            "logical_owner_domain": "governance/model_skill_admission",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "model_skill_admission",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain admission gateway."
+        },
+        {
+            "module_id": "M22",
+            "module_name": "Candidate / Fact Admission",
+            "current_domain": "governance/candidate_fact_admission",
+            "logical_owner_domain": "governance/candidate_fact_admission",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "candidate_fact_admission",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain fact admission."
+        },
+        {
+            "module_id": "M23",
+            "module_name": "Change Control",
+            "current_domain": "governance/change_control",
+            "logical_owner_domain": "governance/change_control",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "change_control",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain change control."
+        },
+        {
+            "module_id": "M24",
+            "module_name": "Permission / Owner Approval",
+            "current_domain": "governance/permission_owner_approval",
+            "logical_owner_domain": "governance/permission_owner_approval",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "permission_owner_approval",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "required",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Owner approval required for migration."
+        },
+        {
+            "module_id": "M25",
+            "module_name": "Diagnostics",
+            "current_domain": "evaluation/diagnostics",
+            "logical_owner_domain": "evaluation/diagnostics",
+            "logical_owner_layer": "cross_layer",
+            "secondary_domains": [],
+            "interpretation_owner": "diagnostics",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain diagnostics."
+        },
+        {
+            "module_id": "M26",
+            "module_name": "Post-Review / Freeze",
+            "current_domain": "governance/post_review_freeze",
+            "logical_owner_domain": "governance/post_review_freeze",
+            "logical_owner_layer": "governance",
+            "secondary_domains": [],
+            "interpretation_owner": "post_review_freeze",
+            "execution_owner": "n/a",
+            "governance_dependencies": [],
+            "evaluation_dependencies": [],
+            "provider_dependencies": [],
+            "reuse_status": "retain",
+            "physical_move_allowed": false,
+            "compatibility_adapter_required": false,
+            "migration_wave": "wave_1",
+            "priority": "P0",
+            "notes": "Retain post-review freeze."
+        }
+    ]
+}

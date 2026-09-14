@@ -1,0 +1,22 @@
+{
+  "title": "Capability Execution Dependency Boundary v1",
+  "allowed": [
+    {"source":"L2 Cognitive Core","target":"Capability Request","mode":"need expression"},
+    {"source":"Capability Request","target":"L1 Admission","mode":"admission input"},
+    {"source":"L1 Admission","target":"L4 Capability System","mode":"governed candidate"},
+    {"source":"L4 Capability System","target":"Evidence Gateway","mode":"evidence return"},
+    {"source":"Evidence Gateway","target":"L2 Cognitive Core","mode":"evidence candidate"},
+    {"source":"L4 Capability System","target":"L1 Runtime Foundation","mode":"health/failure/trace event"}
+  ],
+  "forbidden": [
+    "Provider → Brain Control",
+    "Capability → Goal Creation",
+    "Capability → Decision Ownership",
+    "Capability → Reality Modification",
+    "Model → Decision",
+    "Hardware → Goal",
+    "Emotion → Capability Direct Control",
+    "Provider → Action"
+  ],
+  "rules": {"evidence_gateway_required": true, "admission_required": true, "provider_isolation": true, "no_runtime_execution": true, "no_model_calls": true, "no_hardware_calls": true}
+}

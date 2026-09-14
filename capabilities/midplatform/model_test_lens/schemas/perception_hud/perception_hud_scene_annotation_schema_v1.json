@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "perception_hud_scene_annotation_schema_v1",
+  "title": "Perception HUD Scene Annotation V1",
+  "description": "Read-only scene annotation derived from model_test_result_envelope. Candidate-only; not fact.",
+  "type": "object",
+  "required": [
+    "annotation_id",
+    "source_envelope_ref",
+    "source_image_ref",
+    "model_id",
+    "model_category",
+    "task_context",
+    "entities",
+    "candidate_only"
+  ],
+  "properties": {
+    "annotation_id": { "type": "string" },
+    "source_envelope_ref": { "type": "string" },
+    "source_image_ref": { "type": "string" },
+    "model_id": { "type": "string" },
+    "model_category": { "type": "string" },
+    "task_context": {
+      "type": "object",
+      "required": ["task_name", "task_goal", "test_mode"],
+      "properties": {
+        "task_name": { "type": "string" },
+        "task_goal": { "type": "string" },
+        "task_context_type": {
+          "type": "string",
+          "enum": [
+            "general_scene_understanding",
+            "street_navigation_test",
+            "crossing_road_test",
+            "find_object_test",
+            "find_text_test",
+            "indoor_navigation_test",
+            "model_quality_review"
+          ]
+        },
+        "test_mode": { "type": "boolean", "const": true }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "display_name",
+          "entity_type",
+          "geometry_type",
+          "label",
+          "candidate_only"
+        ],
+        "properties": {
+          "entity_id": { "type": "string" },
+          "display_name": { "type": "string" },
+          "entity_type": {
+            "type": "string",
+            "enum": [
+              "object", "region", "text", "motion", "landmark",
+              "road_structure", "person", "vehicle", "unknown"
+            ]
+          },
+          "geometry_type": {
+            "type": "string",
+            "enum": ["box", "mask", "polygon", "point", "polyline"]
+          },
+          "geometry_ref": { "type": "string" },
+          "label": { "type": "string" },
+          "label_source": {
+            "type": "string",
+            "enum": ["prompt_label", "detection_class", "ocr_text", "inferred_candidate", "unknown"]
+          },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "spatial_relation": {
+            "type": "string",
+            "enum": ["left", "right", "center", "front", "near", "far", "on_path", "off_path", "unknown"]
+          },
+          "task_relevance": {
+            "type": "string",
+            "enum": ["relevant", "possible_risk", "background", "needs_confirmation", "unknown"]
+          },
+          "uncertainty_tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "low_confidence", "boundary_uncertain", "occluded", "missing_depth",
+                "missing_tracking", "missing_ocr", "need_next_frame"
+              ]
+            }
+          },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } },
+          "candidate_only": { "type": "boolean", "const": true }
+        }
+      }
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  }
+}

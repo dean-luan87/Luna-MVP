@@ -1,0 +1,1 @@
+{"_comment":"Rollback: use PHASE3_PRODUCTION_RECIPE_v1 (tag phase3_production_recipe_v1)","version":"1.0","description":"回滚到 v1.0 配方","freeze_date":"2026-02","rollback_to":"PHASE3_PRODUCTION_RECIPE_v1.json","tag":"phase3_production_recipe_v1"}

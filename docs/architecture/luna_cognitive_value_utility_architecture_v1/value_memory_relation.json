@@ -1,0 +1,10 @@
+{
+  "title": "Value Memory Relation v1",
+  "memory_provides": ["Historical Outcome", "Experience Context", "Capability Reliability", "Past Cost Context"],
+  "flow": ["Memory Context", "Probability Candidate", "Benefit/Cost Context", "Utility Candidate"],
+  "memory_creates_value_automatically": false,
+  "memory_overrides_current_reality": false,
+  "current_evidence_precedence": true,
+  "memory_does_not_rank_directly": true,
+  "candidate_only": true
+}

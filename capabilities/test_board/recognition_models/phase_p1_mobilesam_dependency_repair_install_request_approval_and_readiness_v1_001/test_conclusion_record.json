@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T08:10:39.402185+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "dependency_repair_request_approval_readiness_status": "timm_install_requested_approved_for_preparation_and_execution_next_no_install_no_load_no_inference",
+    "target_dependency": "timm",
+    "timm_installed_this_phase": false,
+    "imported_this_phase": false,
+    "model_load_retry_allowed_now": false,
+    "version_status": "unresolved_or_candidate",
+    "timm_local_available_candidate": false,
+    "current_torch_version_observed": "2.8.0",
+    "can_enter_timm_install_execution_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_only_controlled_dependency_repair",
+    "suggested_retry_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+    "transition_note": "PLANNING / APPROVAL ONLY (mobile_sam_only, target=timm). Upstream failure-repair-planning GO was audited and confirms failure_category=dependency_gap, missing_dependency=timm, error_class=ModuleNotFoundError, weight/checkpoint integrity unrelated, install requires a separate request, and model-load retry not allowed now. A timm install request, a package/version review (version left unresolved_or_candidate — NOT falsely pinned), a license/dependency review (pending — NOT falsely completed), a torch-compatibility review (observed torch 2.8.0 via metadata, NO torch import), a NARROW owner approval (install preparation + execution-next only), a TEMPLATE-ONLY install command whitelist (never executed; no global install; find_spec-only probe), a rollback plan, a readiness review, and a model-load retry gate were produced. NOTHING was pip-installed / imported / model-loaded / inferred / run; the registry was NOT mutated and nothing was downloaded. timm install approval is NOT model-load-retry / inference / runtime / commercial-runtime approval. Next: Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001 (real controlled timm install + find_spec probe; still no model load). After install execution GO + find_spec verified, retry via Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001."
+  },
+  "final_decision": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_REQUEST_APPROVAL_AND_READINESS_GO"
+}

@@ -1,0 +1,16 @@
+{
+  "required": {
+    "max_real_provider_invocations": 1,
+    "single_frame": true,
+    "second_real_invocation_allowed": false,
+    "continuous_camera_allowed": false,
+    "model_download_allowed": false,
+    "provider_semantic_authority": false,
+    "world_truth_authority": false,
+    "action_execution": false,
+    "learning_execution": false,
+    "memory_mutation": false,
+    "candidate_only": true
+  },
+  "forbidden": ["automatic acquisition", "second observation", "provider identity chosen directly by Brain", "World Truth promotion", "Action execution", "Learning", "Memory mutation"]
+}

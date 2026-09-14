@@ -1,0 +1,31 @@
+{
+  "artifact": "self_governance_negative_guards_v1",
+  "guards": {
+    "self_can_mutate_pcn": false,
+    "self_can_mutate_memory": false,
+    "self_can_execute_learning": false,
+    "self_can_mutate_intent": false,
+    "self_can_mutate_attention": false,
+    "self_can_mutate_hypothesis": false,
+    "self_can_mutate_current_world": false,
+    "self_can_mutate_state_vector": false,
+    "self_can_mutate_regulation_parameter": false,
+    "self_can_activate_parameter_genome": false,
+    "self_can_mutate_personality": false,
+    "self_can_mutate_emotion": false,
+    "self_can_create_task": false,
+    "self_can_control_device": false,
+    "self_can_run_scheduler": false,
+    "self_can_call_model": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "runtime_execution": false,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false,
+    "semantic_compression_execution": false,
+    "real_side_effect": false,
+    "synthetic_only": true,
+    "candidate_only": true
+  }
+}

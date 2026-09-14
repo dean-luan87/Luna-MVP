@@ -1,0 +1,28 @@
+{
+  "title": "Brain State Interpretation Contract v1",
+  "contract_type": "State Interpretation",
+  "input": {
+    "global_cognitive_state": {},
+    "relevant_evidence": [],
+    "hypothesis_candidates": [],
+    "belief_candidates": [],
+    "expectation_feedback": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "current_cognitive_interpretation_candidate": {},
+    "field_summary": {},
+    "self_summary": {},
+    "task_summary": {},
+    "risk_summary": {},
+    "unknown_summary": {}
+  },
+  "boundary": {
+    "interpretation_does_not_modify_reality": true,
+    "interpretation_does_not_modify_field": true,
+    "interpretation_does_not_modify_self": true,
+    "interpretation_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

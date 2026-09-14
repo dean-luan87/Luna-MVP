@@ -1,0 +1,14 @@
+{
+  "title": "Goal Type Registry v1",
+  "types": [
+    {"name": "Existence Goal", "level": 0, "owner_context": "Self", "example": "keep system running"},
+    {"name": "Capability Goal", "level": 1, "owner_context": "Self", "example": "maintain healthy capability"},
+    {"name": "Social Goal", "level": 2, "owner_context": "Social Self", "example": "support the user"},
+    {"name": "Task Goal", "level": 3, "owner_context": "Goal Layer", "example": "complete navigation direction"}
+  ],
+  "candidate_required": true,
+  "automatic_generation": false,
+  "automatic_level_promotion": false,
+  "goal_is_not_task": true,
+  "goal_is_not_desire": true
+}

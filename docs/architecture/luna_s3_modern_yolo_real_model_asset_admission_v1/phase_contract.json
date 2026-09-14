@@ -1,0 +1,18 @@
+{
+  "phase": "Phase-Luna-A-Route-S3-Modern-YOLO-Real-Model-Asset-Admission-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION_STATIC_INSPECTION_ONLY",
+  "canonical_owner": "Model Manager / Model Governance",
+  "target_model": "YOLO11n",
+  "target_route_role": "STABILITY_COMPARATOR",
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "network_access": false,
+  "automatic_model_download": false,
+  "automatic_package_download": false,
+  "best_fit_declared": false,
+  "production_approved": false,
+  "s0_s1_s2_modified": false,
+  "s3_observation_control_modified": false,
+  "s3_evidence_semantics_modified": false,
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Runtime Foundation Layer Definition v1",
+  "layer": "L1 Runtime Foundation",
+  "parent": "L1 Cognitive Operating System",
+  "children": ["Runtime Loop", "Tick System", "Wake-up System", "Event Processing", "State Synchronization", "Snapshot Management", "Runtime Trace", "Failure Recovery", "Persistence Boundary", "OS Interface", "Cognitive Core Interface"],
+  "owners": {"lifecycle":"Cognitive OS Governance","state":"State Owners and Reducers","trace":"Cognitive OS Governance","recovery":"Cognitive OS Governance"},
+  "not_authority": ["Decision ownership", "Reality modification", "Action execution", "Goal mutation", "Value mutation"],
+  "rules": {"contract_only": true, "runtime_not_activated": true, "scheduler_not_implemented": true, "single_state_writer": true}
+}

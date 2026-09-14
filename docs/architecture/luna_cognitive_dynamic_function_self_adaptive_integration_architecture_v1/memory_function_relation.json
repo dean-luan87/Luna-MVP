@@ -1,0 +1,12 @@
+{
+  "relation_id": "memory_function_relation_v1",
+  "function_role": "Historical Influence Function",
+  "inputs": ["Current Field", "Memory Layers", "Context Match", "Temporal Decay", "Reinforcement", "Reliability"],
+  "outputs": ["Activation Candidate", "Influence Weight Candidate", "Context Dependency Candidate"],
+  "memory_is_not_database_only": true,
+  "memory_is_not_reality": true,
+  "memory_is_not_decision_authority": true,
+  "memory_does_not_override_current_field": true,
+  "automatic_memory_write": false,
+  "candidate_only": true
+}

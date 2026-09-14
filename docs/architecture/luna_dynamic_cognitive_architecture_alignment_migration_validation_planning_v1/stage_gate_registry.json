@@ -1,0 +1,17 @@
+{
+  "registry_id": "dynamic_cognitive_architecture_stage_gates_v1",
+  "stages": [
+    {"stage": "P0", "name": "Dynamic Cognitive Architecture v2 Planning", "exit_gate": "architecture candidate complete", "next": "P1"},
+    {"stage": "P1", "name": "Existing Asset Mapping", "exit_gate": "all in-scope assets mapped and owners resolved", "next": "P2"},
+    {"stage": "P2", "name": "Controlled Architecture Alignment Migration", "exit_gate": "authorized migration records complete with compatibility evidence", "next": "P3"},
+    {"stage": "P3", "name": "Migration Integrity Validation", "exit_gate": "architecture, ownership, boundary, chain, and regression checks passed", "next": "P4"},
+    {"stage": "P4", "name": "Architecture Freeze Decision", "exit_gate": "freeze candidate receives user V2 and ChatGPT V3 decision", "next": "P5"},
+    {"stage": "P5", "name": "Intent Processing and Evaluation Gate Planning", "exit_gate": "future phase-defined", "next": "P6"},
+    {"stage": "P6", "name": "Personal Cognitive Network Skeleton", "exit_gate": "future phase-defined", "next": "P7"},
+    {"stage": "P7", "name": "Causal Reasoning Skeleton", "exit_gate": "future phase-defined", "next": "N/A"}
+  ],
+  "no_stage_skip": true,
+  "p3_mandatory": true,
+  "p4_mandatory": true,
+  "next_stage_not_automatic": true
+}

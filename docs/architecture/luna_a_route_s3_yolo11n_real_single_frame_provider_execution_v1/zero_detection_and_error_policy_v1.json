@@ -1,0 +1,8 @@
+{
+  "zero_detection_status": "SUCCESS_ZERO_DETECTIONS",
+  "zero_detection_is_provider_failure": false,
+  "failure_status": "FAILED_WITH_DIAGNOSTIC",
+  "diagnostic_fields": ["provider_error_stage", "provider_error_type", "provider_error_detail"],
+  "raw_exception_is_swallowed": false,
+  "downstream_truth_on_failure": false
+}

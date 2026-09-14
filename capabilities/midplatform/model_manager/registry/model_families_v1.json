@@ -1,0 +1,47 @@
+{
+  "schema_id": "LunaModelFamiliesV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Provider-Registry-v1-001",
+  "description": "Model Family 管理 — family → version → runtime",
+  "families": [
+    {
+      "family_id": "qwen_vl",
+      "family_label": "Qwen Vision-Language",
+      "versions": [
+        {"version_id": "qwen_vl_v1", "model_id": "qwen_vl", "lifecycle_state": "active"},
+        {"version_id": "qwen_vl_v2", "model_id": "qwen_vl_v2", "lifecycle_state": "candidate"}
+      ],
+      "active_version": "qwen_vl_v1",
+      "execution_modes": ["external_api"]
+    },
+    {
+      "family_id": "internvl",
+      "family_label": "InternVL Local VLM",
+      "versions": [
+        {"version_id": "internvl2_5_v1", "model_id": "internvl2_5", "lifecycle_state": "active"},
+        {"version_id": "internvl2_5_v2", "model_id": "internvl2_5_v2", "lifecycle_state": "candidate"}
+      ],
+      "active_version": "internvl2_5_v1",
+      "execution_modes": ["local_runtime"]
+    },
+    {
+      "family_id": "gemini_vision",
+      "family_label": "Gemini Vision",
+      "versions": [
+        {"version_id": "gemini_vision_v1", "model_id": "gemini_vision", "lifecycle_state": "active"}
+      ],
+      "active_version": "gemini_vision_v1",
+      "execution_modes": ["external_api"]
+    },
+    {
+      "family_id": "ocr",
+      "family_label": "OCR Tools",
+      "versions": [
+        {"version_id": "ocr_v1", "model_id": "ocr_v1", "lifecycle_state": "active"},
+        {"version_id": "paddleocr_v1", "model_id": "paddleocr_v1", "lifecycle_state": "candidate"}
+      ],
+      "active_version": "ocr_v1",
+      "execution_modes": ["tool_os", "local_runtime"]
+    }
+  ]
+}

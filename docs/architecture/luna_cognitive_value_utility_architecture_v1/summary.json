@@ -1,0 +1,21 @@
+{
+  "phase": "Phase-Luna-Cognitive-Value-Utility-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_VALUE_UTILITY_ARCHITECTURE_READY",
+  "canonical_flow": ["Understanding", "Goal Candidate", "Value Evaluation", "Utility Calculation", "Priority Ranking", "Decision Arbitration", "Action Candidate"],
+  "value_hierarchy": ["Survival Value", "Safety Value", "Integrity Value", "Mission Value", "Relationship Value", "Growth Value"],
+  "utility_formula": "(Expected Benefit × Importance × Probability) - (Resource Cost × Risk Factor)",
+  "exploration_formula": "Expected Information Gain - Exploration Cost",
+  "reusable_assets": ["cognitive_drive_and_value_core_v1", "value_constitution_v1", "luna_cognitive_goal_architecture_v1", "luna_cognitive_uncertainty_exploration_governance_architecture_v1", "luna_cognitive_self_model_architecture_v1", "cognitive_brain_architecture_v1", "luna_cognitive_attention_resource_allocation_architecture_v1"],
+  "parallel_risks": ["parallel Value Manager", "parallel Utility Engine", "Value vs Constitution ownership drift", "Utility vs Brain decision authority drift"],
+  "owner_conflicts": ["legacy Value Constitution vs canonical Value Layer", "Self resource context vs Value evaluation authority", "future Decision Arbitration vs current Brain judgment"],
+  "migration_mapping": ["legacy Value Constitution to canonical hierarchy adapter", "Goal Priority to Utility/Ranking candidate adapter", "Exploration Impact to Exploration Utility candidate adapter", "Brain Value Constraint to constraint package adapter"],
+  "runtime": false,
+  "utility_runtime": false,
+  "automatic_scoring": false,
+  "automatic_priority_ranking": false,
+  "goal_adjustment": false,
+  "decision_execution": false,
+  "emotion_integration": false,
+  "learning": false
+}

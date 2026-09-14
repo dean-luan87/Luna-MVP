@@ -1,0 +1,53 @@
+{
+  "artifact": "emotion_governance_owner_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "owner_required": true,
+  "equivalent_existing_owner": false,
+  "owner_selection_rationale": [
+    "Current emotion assets are placeholders or future references, not an active canonical owner.",
+    "A narrow owner is required to govern emotional evidence, appraisal, state candidates, temporal lifecycle, conflict, uncertainty, and trace.",
+    "Cross-owner semantic synthesis and runtime remain outside this owner."
+  ],
+  "owns": [
+    "Emotion Evidence Candidate",
+    "Emotion Appraisal Candidate",
+    "Emotion State Candidate",
+    "emotion state taxonomy and lifecycle",
+    "temporal accumulation, decay, refresh, and recovery candidates",
+    "mixed, competing, contradictory, and unresolved emotion governance",
+    "emotion revision, supersession, revocation, expiration, and source correction references",
+    "emotion privacy/sensitivity, idempotency, trace, and provenance",
+    "typed influence/reference candidate interfaces"
+  ],
+  "must_not_own": [
+    "Self identity or Self mutation",
+    "Personality traits or Personality activation",
+    "Memory/Experience meaning or persistence",
+    "Learning execution or model training",
+    "Intent authority",
+    "Attention ownership",
+    "Dynamic Regulation parameter or genome activation",
+    "PCN relationships, roles, or identity links",
+    "External Reality",
+    "Action, Task, Scheduler, Device, Runtime, TTS, or Model execution",
+    "semantic compression or cross-owner semantic fusion"
+  ],
+  "allowed_outputs": [
+    "EmotionEvidenceToSelfCandidate",
+    "EmotionToPersonalityEvidenceCandidate",
+    "EmotionToMemoryObservationCandidate",
+    "EmotionExperienceCandidate",
+    "EmotionToIntentInfluenceCandidate",
+    "EmotionToAttentionSalienceCandidate",
+    "EmotionToRegulationInfluenceCandidate",
+    "EmotionContextCandidate"
+  ],
+  "mutation_rule": "All outputs are candidate-only references and cannot mutate source owners or grant authority to downstream owners.",
+  "parallel_owner_forbidden": [
+    "emotion_engine_governance",
+    "affect_governance",
+    "mood_governance",
+    "emotion_runtime_governance",
+    "emotion_personality_governance"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "handling_id": "full_midplatform_model_data_handling_001",
+  "policy_id": "full_midplatform_model_data_handling_bundle",
+  "candidate_refs": [
+    "multi_model_interaction_bundle_candidate:mmi_001",
+    "normalized_model_candidate_bundle:nmc_001",
+    "aggregated_source_chain_record:asc_001",
+    "aggregated_confidence_policy_candidate:acp_001",
+    "midplatform_conflict_record:mcr_001",
+    "midplatform_uncertainty_record:mur_001",
+    "model_availability_state_record:mas_001",
+    "reserved_family_state_record:rfs_001",
+    "midplatform_model_evidence_bundle:mmeb_001",
+    "candidate_lifecycle_record:clr_001"
+  ],
+  "model_family_refs": [
+    "ocr_model_family", "object_detection_completion_family", "segmentation_family", "tracking_family",
+    "depth_spatial_hint_family", "visual_symbol_model_family", "scene_relation_vlm_family",
+    "audio_speech_family", "emotion_multimodal_bridge_family"
+  ],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "full_bundle_confidence_policy_v1",
+  "fallback_plan": "fallback_to_available_handling_outputs_with_records",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "reserved_only_families": ["audio_speech_family", "emotion_multimodal_bridge_family"],
+  "boundaries": [
+    "candidate_only_preserved",
+    "no_fact_admission",
+    "no_action_speech_navigation",
+    "luna_emotion_multimodal_brain_first_preserved"
+  ]
+}

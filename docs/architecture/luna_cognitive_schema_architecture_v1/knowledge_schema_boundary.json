@@ -1,0 +1,12 @@
+{
+  "boundary_id": "knowledge_schema_boundary_v1",
+  "owner": "Knowledge / Schema Boundary",
+  "knowledge_is": "external_information",
+  "schema_is": "internal_understanding_organization",
+  "required_flow": ["Knowledge", "Practice", "Experience", "Memory", "Pattern", "Schema Candidate"],
+  "knowledge_direct_schema": false,
+  "knowledge_auto_injection": false,
+  "practice_required": true,
+  "admission_required": true,
+  "candidate_only": true
+}

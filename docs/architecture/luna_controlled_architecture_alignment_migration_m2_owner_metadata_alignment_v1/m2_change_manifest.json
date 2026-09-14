@@ -1,0 +1,32 @@
+{
+  "manifest_id": "luna_controlled_architecture_alignment_m2_change_manifest_v1",
+  "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M2-Owner-Metadata-Alignment-v1-001",
+  "planning_status": "PLANNING_CANDIDATE",
+  "created_files": [
+    "owner_alignment_registry_candidate.json",
+    "responsibility_boundary_matrix_candidate.json",
+    "capability_registry_alignment_candidate.json",
+    "owner_conflict_review.json",
+    "owner_metadata_alignment_plan.md",
+    "m2_change_manifest.json",
+    "phase_contract.json",
+    "verify_controlled_architecture_alignment_m2_owner_metadata_alignment_v1.py"
+  ],
+  "modified_existing_files": [],
+  "deleted_files": [],
+  "moved_files": [],
+  "renamed_files": [],
+  "code_files_changed": [],
+  "runtime_files_changed": [],
+  "baseline_files_changed": [],
+  "active_schema_files_changed": [],
+  "active_contract_files_changed": [],
+  "registry_baseline_files_changed": [],
+  "active_metadata_changed": [],
+  "capability_implementation_changed": [],
+  "migration_executed": false,
+  "runtime_activated": false,
+  "owner_transfer_executed": false,
+  "m3_started": false,
+  "planning_candidate_only": true
+}

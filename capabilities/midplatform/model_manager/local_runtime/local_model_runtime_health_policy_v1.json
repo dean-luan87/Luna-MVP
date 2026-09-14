@@ -1,0 +1,21 @@
+{
+  "schema_id": "LocalModelRuntimeHealthPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Local-Model-Integration-Planning-v1-001",
+  "health_checks": [
+    {"check_id": "cuda_available", "description": "CUDA 可用"},
+    {"check_id": "vram_sufficient", "description": "VRAM 满足模型需求"},
+    {"check_id": "runtime_responsive", "description": "推理运行时响应"},
+    {"check_id": "temperature_within_limit", "description": "温度在限制内"},
+    {"check_id": "concurrent_slot_available", "description": "并发槽位可用"}
+  ],
+  "thresholds": {
+    "max_temperature_celsius": 85,
+    "max_cpu_load_percent": 90,
+    "min_vram_headroom_gb": 1.0
+  },
+  "boundary_flags": {
+    "health_check_before_routing": true,
+    "planning_only": true
+  }
+}

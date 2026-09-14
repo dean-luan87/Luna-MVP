@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Admission Contract",
+  "owner":"Knowledge Library Governance",
+  "pipeline":["External Knowledge Candidate","Source and Provenance Review","Scope and Permission Review","Evidence/Limitations Review","Admission Candidate","Local Knowledge Boundary"],
+  "required_checks":["source","provenance","version","scope","limitations","confidence","conflict","permission"],
+  "admission_statuses":["candidate","reviewed","admitted","rejected","deprecated","quarantined"],
+  "rules":{"no_direct_external_mutation":true,"admission_required":true,"unknown_preserved":true,"current_reality_precedes":true}
+}

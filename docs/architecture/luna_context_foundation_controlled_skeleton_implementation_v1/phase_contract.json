@@ -1,0 +1,175 @@
+{
+  "contract_id": "luna_context_foundation_controlled_skeleton_implementation_phase_contract_v1",
+  "phase": "Phase-Luna-Context-Foundation-Controlled-Skeleton-Implementation-v1-001",
+  "stage": "Controlled Skeleton Implementation",
+  "execution_mode": "Controlled Skeleton Implementation",
+  "current_work_description": {
+    "in_scope": [
+      "reference-only Context types",
+      "pure protocol",
+      "controlled assembly skeleton",
+      "trace types",
+      "static validators",
+      "synthetic fixtures",
+      "controlled runner asset",
+      "documentation and verifier"
+    ],
+    "out_of_scope": [
+      "real Context generation",
+      "Runtime",
+      "Memory or source access",
+      "Emotion calculation",
+      "Intent",
+      "Causal",
+      "Decision",
+      "Action",
+      "PCN"
+    ]
+  },
+  "previous_phase": "Phase-Luna-Context-Foundation-Planning-Alignment-Update-v1-001",
+  "previous_phase_decision": "LUNA_CONTEXT_FOUNDATION_PLANNING_ALIGNMENT_UPDATE_READY",
+  "input_assets": [
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/"
+  ],
+  "required_pre_read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_context_foundation_planning_v1/context_projection_schema_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_input_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_v1/context_output_boundary_contract_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/mental_field_continuity_schema_candidate.json",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_carryover_projection_contract_candidate.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/cognitive_boundary_audit.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/architecture_flow_integrity_matrix.json"
+  ],
+  "target_directory": "capabilities/midplatform/core/context_foundation/",
+  "documentation_directory": "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/",
+  "scope": [
+    "new Context Foundation skeleton files only",
+    "standard-library implementation",
+    "synthetic fixtures only",
+    "V0 static checks"
+  ],
+  "out_of_scope": [
+    "modification of passed planning assets",
+    "modification of existing Core modules",
+    "Runtime integration",
+    "active Schema or Contract",
+    "database, network, model, provider, or device access",
+    "next phase entry"
+  ],
+  "required_final_files": [
+    "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_projection_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_carryover_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_protocol_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_trace_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py",
+    "capabilities/midplatform/core/context_foundation/run_context_foundation_controlled_skeleton_v1.py",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_controlled_skeleton_implementation_v1.md",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_planning_to_code_mapping_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_skeleton_contract_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_controlled_skeleton_change_manifest_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/verify_context_foundation_controlled_skeleton_v1.py"
+  ],
+  "implementation_principles": [
+    "Context is background not conclusion",
+    "reference-only source projections",
+    "source-owner precedence",
+    "immutable candidate outputs",
+    "unknown preservation",
+    "minimal change"
+  ],
+  "required_checks": {
+    "V0": [
+      "required file existence",
+      "JSON parse",
+      "AST parse",
+      "py_compile",
+      "standard-library and local import boundary",
+      "field and contract checks",
+      "side-effect manifest"
+    ],
+    "V1": "NOT_AUTHORIZED_FOR_AGENT_BY_PHASE_INSTRUCTION",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "negative_guards": [
+    "no check weakening",
+    "no hardcoded pass",
+    "no Runner execution by Agent",
+    "no Final Phase Verifier execution by Agent",
+    "no Runtime",
+    "no source mutation",
+    "no real Context generation",
+    "no Intent, Causal, Decision, or Action output"
+  ],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED_FOR_AGENT_BY_PHASE_INSTRUCTION",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": [
+    "file existence",
+    "JSON parsing",
+    "AST parsing",
+    "py_compile with temporary cache",
+    "import-boundary static analysis",
+    "manifest consistency"
+  ],
+  "allowed_agent_execution": [
+    "create in-scope skeleton and documentation files",
+    "run V0 static checks"
+  ],
+  "prohibited_agent_execution": [
+    "run Controlled Runner",
+    "run Final Phase Verifier",
+    "execute Runtime",
+    "invoke model or provider",
+    "access database, network, production data, or device",
+    "modify passed planning, alignment, baseline, schema, contract, or Runtime assets",
+    "enter PCN, Intent, Causal, Emotion Engine, Decision, or Runtime Integration"
+  ],
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/verify_context_foundation_controlled_skeleton_v1.py"
+  ],
+  "expected_success_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_SKELETON_IMPLEMENTATION_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_SKELETON_IMPLEMENTATION_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "All required skeleton assets and V0 checks are complete; stop before Runner or V2 execution.",
+  "blocker_conditions": [
+    "existing passed asset modified",
+    "source payload or source Writer authority copied into Context",
+    "Runtime, database, model, network, provider, or device access introduced",
+    "Intent, Causal, Decision, Action, Emotion calculation, or mutation introduced",
+    "static check failure"
+  ],
+  "completion_report_format": [
+    "Pre-read findings",
+    "Created files",
+    "Modified files",
+    "Context Envelope design",
+    "Projection boundary",
+    "Mental Field Carryover handling",
+    "Static checks",
+    "Side-effect boundary",
+    "Known blockers",
+    "Terminal command",
+    "Current status"
+  ],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "implementation_status": "CONTROLLED_SKELETON_CANDIDATE",
+  "runtime_executed": false,
+  "controlled_runner_executed_by_agent": false,
+  "state_mutation_executed": false,
+  "next_phase_auto_entry": false,
+  "status": "CONTROLLED_SKELETON_CANDIDATE"
+}
+

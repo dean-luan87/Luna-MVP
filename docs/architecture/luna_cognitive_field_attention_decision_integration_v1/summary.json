@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Decision Integration Summary",
+  "canonical_chain":["Reality","Field","Attention","Context","Hypothesis","Current Understanding","Decision Candidate","Action Boundary","Experience","Memory"],
+  "primary_owner":"Cognitive Core Governance",
+  "status":"architecture_only",
+  "field_inputs":["Self","Social Self","Role","Memory","Knowledge","Task","Emotion Context"],
+  "future_extensions":["Emotion causal mechanism","Learning Runtime","B Route simulation"],
+  "rules":{"decision_is_candidate":true,"action_is_separate":true,"world_model_not_active":true}
+}

@@ -1,0 +1,41 @@
+{
+  "artifact": "personality_governance_existing_asset_inventory_v1",
+  "classification_key": {
+    "A": "current canonical asset directly reusable in Personality planning",
+    "B": "high-value reference requiring a future typed-contract adaptation",
+    "C": "historical asset or owner naming conflicting with current canonical architecture",
+    "D": "deliberately deferred capability or runtime"
+  },
+  "equivalent_current_canonical_personality_owner_found": false,
+  "canonical_owner_decision": "Personality Governance",
+  "assets": [
+    {"classification":"A","path":"capabilities/midplatform/core/self_governance/","reuse":"read-only Self evidence and self reference inputs","reason":"Existing Self Governance already freezes Self attribution, continuity, provenance, and no personality mutation."},
+    {"classification":"A","path":"capabilities/midplatform/core/cognitive_memory_experience/","reuse":"behavior, interaction, preference, social, task, emotional-experience, and outcome references","reason":"Memory/Experience emits candidate-only evidence and explicitly forbids direct personality mutation."},
+    {"classification":"A","path":"capabilities/midplatform/core/cognitive_learning/","reuse":"learning evidence, generalization, contradiction, and counterexample references","reason":"Learning already models cross-context caution and candidate-only pattern evidence."},
+    {"classification":"A","path":"capabilities/midplatform/core/dynamic_cognitive_regulation/","reuse":"long-term regulation-pattern references only","reason":"Regulation exposes bounded candidates and keeps parameter/genome ownership separate."},
+    {"classification":"A","path":"capabilities/midplatform/core/personal_cognitive_network/","reuse":"relationship, role, interaction, and social-context references","reason":"PCN links are candidate-only contextual relationships, not personality truth."},
+    {"classification":"A","path":"capabilities/midplatform/core/intent_governance/","reuse":"intent context references only","reason":"Intent remains the canonical owner of intent semantics."},
+    {"classification":"A","path":"docs/architecture/luna_self_governance_architecture_planning_v1/self_personality_boundary_v1.json","reuse":"Self-to-Personality future evidence boundary","reason":"Directly states that Self Governance must not become Personality Governance."},
+    {"classification":"A","path":"docs/architecture/luna_cognitive_learning_governance_planning_v1/learning_self_personality_emotion_boundary_v1.json","reuse":"learning evidence-only handoff","reason":"Freezes personality mutation and trait activation as false."},
+    {"classification":"A","path":"docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/memory_personality_self_boundary_v1.json","reuse":"memory evidence-only handoff","reason":"Forbids one-event personality change and automatic trait rewriting."},
+    {"classification":"A","path":"docs/architecture/luna_dynamic_cognitive_regulation_module_planning_v1/dynamic_cognitive_regulation_owner_boundary_v1.json","reuse":"regulation owner preservation","reason":"Keeps parameter and regulation mutation authority out of Personality."},
+    {"classification":"A","path":"docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/","reuse":"Planning Only authority and user-terminal V2 boundary","reason":"Defines agent static-only work, no GO declaration, and stop status."},
+    {"classification":"B","path":"docs/personality_fingerprint_v05.md","reuse":"statistical trace fingerprint as future evidence input","reason":"Read-only statistical summary is useful, but its historical name and generation route need typed Personality Evidence adaptation."},
+    {"classification":"B","path":"tools/personality_fingerprint_v05.py","reuse":"non-semantic behavior aggregate reference","reason":"Useful source shape only; runtime use, persistence, and semantic interpretation are prohibited here."},
+    {"classification":"B","path":"docs/architecture/cognitive_flow/cognitive_attention_personality_formation_interface_v1.md","reuse":"attention-pattern evidence interface","reason":"Useful warning that attention pattern is not personality, but it needs the current Personality owner vocabulary."},
+    {"classification":"B","path":"docs/architecture/cognitive_emotion_engine_v1/cognitive_emotion_engine_architecture_v1.md","reuse":"emotion context and candidate boundary reference","reason":"Useful future interface constraints; Emotion Engine remains outside this phase."},
+    {"classification":"B","path":"docs/architecture/luna_self_governance_architecture_planning_v1/self_personality_boundary_v1.json","reuse":"future Self personality evidence route","reason":"Requires adaptation from future placeholder to explicit Personality evidence contract."},
+    {"classification":"B","path":"docs/architecture/luna_cognitive_learning_governance_planning_v1/learning_generalization_governance_v1.json","reuse":"generalization and counterexample policy","reason":"Directly informs cross-context and contradiction preservation, but Personality admission thresholds remain new."},
+    {"classification":"B","path":"docs/architecture/luna_personal_cognitive_network_planning_v1/","reuse":"relationship/role/context projection vocabulary","reason":"High-value context references require Personality-specific evidence adapters."},
+    {"classification":"C","path":"docs/architecture/luna_self_social_self_architecture_refactoring_v1/","reuse":"historical boundary review only","reason":"Self Layer and Social Self Layer are historical owners that conflict with the current single narrow Personality Governance owner."},
+    {"classification":"C","path":"configs/personality/","reuse":"none","reason":"Production recipes are runtime/tuning assets and cannot define candidate-only Personality semantics."},
+    {"classification":"C","path":"tools/monitor_personality_health.py","reuse":"none","reason":"Runtime health monitoring and production reports are outside Planning Only and may imply activation/persistence."},
+    {"classification":"C","path":"tools/monitor_personality_regression.py","reuse":"none","reason":"Executes regression/tournament behavior and is outside the phase authority."},
+    {"classification":"C","path":"docs/D1_MILITARY_GRADE_ARCHITECTURE.md","reuse":"none","reason":"Historical champion/personality output semantics conflict with candidate-only governance and no runtime."},
+    {"classification":"D","path":"Emotion Engine implementation","reuse":"future nullable evidence interfaces only","reason":"Explicitly deferred; no Emotion Engine is implemented."},
+    {"classification":"D","path":"personality trait activation","reuse":"none","reason":"Activation is prohibited; all traits remain candidates."},
+    {"classification":"D","path":"personality-memory semantic fusion","reuse":"nullable future refs only","reason":"Semantic compression is deferred to Emotion Engine."},
+    {"classification":"D","path":"persistent Personality profile database/vector store","reuse":"none","reason":"No persistence, database, vector store, embedding, or runtime is allowed."},
+    {"classification":"D","path":"cross-user Personality transfer","reuse":"none","reason":"Frozen as false for privacy and provenance reasons."}
+  ]
+}

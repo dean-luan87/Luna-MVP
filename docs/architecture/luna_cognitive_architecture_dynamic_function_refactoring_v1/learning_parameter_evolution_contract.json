@@ -1,0 +1,15 @@
+{
+  "contract_id": "learning_parameter_evolution_v1",
+  "function_role": "Parameter Evolution Function",
+  "inputs": ["Validated Experience", "Pattern/Schema Candidate", "Outcome Evidence", "Learning Utility", "Capability Gap", "Self Review"],
+  "targets": ["Schema Candidate", "Parameter Adjustment Candidate", "Threshold Candidate", "Weight Candidate", "Capability Growth Candidate"],
+  "outputs": ["Parameter Evolution Candidate", "No Change Candidate", "Defer Candidate", "Reject Candidate"],
+  "self_review_required": true,
+  "constitution_review_required": true,
+  "automatic_learning": false,
+  "automatic_parameter_update": false,
+  "automatic_schema_update": false,
+  "model_training": false,
+  "identity_change": false,
+  "candidate_only": true
+}

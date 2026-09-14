@@ -1,0 +1,174 @@
+{
+  "contract_id": "luna_context_foundation_controlled_dryrun_validation_phase_contract_v1",
+  "phase": "Phase-Luna-Context-Foundation-Controlled-DryRun-And-Contract-Validation-v1-001",
+  "stage": "Controlled DryRun And Contract Validation",
+  "execution_mode": "Planning Only",
+  "execution_profile": "Controlled Validation Only",
+  "execution_mode_normalization_reason": "Controlled Validation Only is not a registered repository mode; the authorized actions are planning-candidate creation and V0 static validation only, so Planning Only is the governing mode.",
+  "current_work_description": {
+    "in_scope": [
+      "DryRun contract candidate",
+      "evidence-bounded Context expansion governance",
+      "resource-bounded expansion model",
+      "Unknown resolution policy",
+      "synthetic scenario specification",
+      "trace validation",
+      "nested constraint relationship candidate",
+      "read-only final verifier"
+    ],
+    "out_of_scope": [
+      "modifying or executing Context Skeleton",
+      "Runtime",
+      "model or provider",
+      "PCN",
+      "Intent",
+      "Causal Engine",
+      "Decision",
+      "active Schema or Contract"
+    ]
+  },
+  "previous_phase": "Phase-Luna-Context-Foundation-Controlled-Skeleton-Implementation-v1-001",
+  "previous_phase_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_SKELETON_IMPLEMENTATION_READY",
+  "input_assets": [
+    "capabilities/midplatform/core/context_foundation/",
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/"
+  ],
+  "required_pre_read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py",
+    "docs/architecture/luna_context_foundation_planning_v1/",
+    "docs/architecture/luna_context_foundation_planning_alignment_update_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/"
+  ],
+  "target_directory": "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/",
+  "scope": [
+    "validation candidate assets in target directory only",
+    "static verification",
+    "protected Skeleton hash validation",
+    "no existing file modification"
+  ],
+  "out_of_scope": [
+    "business or Skeleton Runner execution by Agent",
+    "Runtime or state mutation",
+    "Context code modification",
+    "fixed expansion limits",
+    "unsupported information creation",
+    "Fact, Intent, Causal, Decision, or Action generation",
+    "next phase entry"
+  ],
+  "required_final_files": [
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_foundation_dryrun_contract_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_expansion_governance_candidate.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/resource_bounded_context_expansion_candidate.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/unknown_resolution_policy_candidate.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_foundation_dryrun_scenarios.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_foundation_dryrun_trace_validation.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/nested_constraint_relationship_candidate.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_foundation_dryrun_validation_summary.md",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/context_foundation_dryrun_change_manifest.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/verify_context_foundation_dryrun_validation_v1.py"
+  ],
+  "implementation_principles": [
+    "constraint-driven dynamic cognition",
+    "Context provides candidates under constraints",
+    "evidence-bounded expansion",
+    "resource-bounded degradation",
+    "Unknown remains candidate",
+    "source-owner precedence",
+    "minimal change"
+  ],
+  "required_checks": {
+    "V0": [
+      "required files",
+      "JSON parse",
+      "AST and py_compile",
+      "reference validation",
+      "candidate and boundary fields",
+      "resource policy has no static numeric expansion limit",
+      "protected Skeleton hashes"
+    ],
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "negative_guards": [
+    "no check weakening",
+    "no hardcoded pass",
+    "no Agent Runner execution",
+    "no Agent Final Phase Verifier execution",
+    "no Runtime, database, model, provider, migration, or mutation",
+    "no Context Skeleton modification",
+    "no Fact, Intent, Causal, Decision, or Action generation"
+  ],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": [
+    "JSON parsing",
+    "AST parsing",
+    "py_compile with temporary cache",
+    "reference validation",
+    "manifest consistency",
+    "protected Skeleton SHA-256 comparison"
+  ],
+  "allowed_agent_execution": [
+    "create validation assets in target directory",
+    "run V0 static checks"
+  ],
+  "prohibited_agent_execution": [
+    "run Context Skeleton Runner",
+    "run Final Phase Verifier",
+    "execute Runtime",
+    "invoke model or provider",
+    "access database, network, production data, or device",
+    "modify existing Context code, Planning, Alignment, Schema, Contract, Owner Metadata, or Runtime",
+    "enter PCN, Intent, Causal, Emotion, Decision, or Runtime development"
+  ],
+  "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 docs/architecture/luna_context_foundation_controlled_dryrun_validation_v1/verify_context_foundation_dryrun_validation_v1.py"
+  ],
+  "expected_success_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_DRYRUN_VALIDATION_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "LUNA_CONTEXT_FOUNDATION_CONTROLLED_DRYRUN_VALIDATION_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "All validation candidate assets and V0 checks are complete; stop before Runner or V2 execution.",
+  "blocker_conditions": [
+    "protected Context Skeleton hash changed",
+    "existing asset modification",
+    "unsupported expansion source",
+    "static numeric expansion limit",
+    "Fact, Intent, Causal, Decision, Action, Runtime, model, database, or mutation behavior introduced",
+    "V0 static check failure"
+  ],
+  "completion_report_format": [
+    "Read files",
+    "Created files",
+    "Modified files",
+    "Expansion boundary",
+    "Resource constraint handling",
+    "Unknown handling",
+    "Carryover handling",
+    "Nested constraint result",
+    "Static checks",
+    "Terminal command",
+    "Current status"
+  ],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "runtime_changed": false,
+  "schema_changed": false,
+  "contract_changed": false,
+  "implementation_changed": false,
+  "dryrun_executed_by_agent": false,
+  "next_phase_auto_entry": false,
+  "status": "VALIDATION_CANDIDATE"
+}

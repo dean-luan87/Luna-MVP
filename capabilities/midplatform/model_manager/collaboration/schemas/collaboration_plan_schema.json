@@ -1,0 +1,49 @@
+{
+  "schema_id": "CollaborationPlanV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Model-Collaboration-Planning-v1-001",
+  "description": "多能力协作计划 — 编排多个 Provider 共同完成任务",
+  "required_fields": [
+    "plan_id",
+    "collaboration_mode",
+    "capability_requirements",
+    "provider_sequence",
+    "collaboration_plan_candidate"
+  ],
+  "collaboration_modes": ["pipeline", "parallel_evidence", "challenge"],
+  "properties": {
+    "plan_id": {"type": "string"},
+    "goal_type": {"type": "string"},
+    "collaboration_mode": {"type": "string", "enum": ["pipeline", "parallel_evidence", "challenge"]},
+    "capability_requirements": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "provider_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["step", "capability_id", "provider_role", "model_id"],
+        "properties": {
+          "step": {"type": "integer"},
+          "capability_id": {"type": "string"},
+          "provider_role": {"type": "string"},
+          "model_id": {"type": "string"},
+          "execution_mode": {"type": "string"},
+          "depends_on": {"type": "array", "items": {"type": "integer"}}
+        }
+      }
+    },
+    "parallel_strategy": {
+      "type": "object",
+      "properties": {
+        "providers": {"type": "array"},
+        "evidence_collection_plan": {"type": "boolean"}
+      }
+    },
+    "collaboration_plan_candidate": {"type": "boolean", "const": true},
+    "not_executed": {"type": "boolean", "const": true},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

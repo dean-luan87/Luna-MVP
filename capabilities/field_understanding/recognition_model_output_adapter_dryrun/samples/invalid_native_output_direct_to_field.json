@@ -1,0 +1,16 @@
+{
+  "model_id": "mock_object_detection_v1",
+  "model_family": "object_detection_model_family",
+  "model_version_ref": "mock_det_v1_0_0",
+  "model_origin": "external_open_source_detection_model",
+  "license_ref": "agpl_or_per_model_license_check_required",
+  "source_chain": "recognition_model_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_0001",
+  "output_schema_ref": "object_detection_output_schema_v1",
+  "confidence": 0.79,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "field_synthesis_v1_direct",
+  "allowed_use": "test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "native_output_direct_to_field": true
+}

@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-Dynamic-Cognitive-Flow-Minimum-Actionable-Loop-Controlled-Implementation-v1-001",
+  "change_class": "ADDITIVE_CANDIDATE_ONLY",
+  "created": [
+    "capabilities/midplatform/core/cognitive_flow/cognitive_dynamic_loop_types_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/cognitive_dynamic_loop_engine_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/cognitive_dynamic_loop_fixture_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/run_dynamic_cognitive_flow_controlled_implementation_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/verify_dynamic_cognitive_flow_controlled_implementation_v1.py",
+    "docs/architecture/phase_luna_dynamic_cognitive_flow_minimum_actionable_loop_controlled_implementation_v1/"
+  ],
+  "modified": [
+    "capabilities/midplatform/core/cognitive_flow/__init__.py"
+  ],
+  "canonical_types_changed": false,
+  "owner_changed": false,
+  "runtime_wiring_changed": false,
+  "existing_scope_resolution_bridge_changed": false,
+  "existing_experience_governance_changed": false
+}

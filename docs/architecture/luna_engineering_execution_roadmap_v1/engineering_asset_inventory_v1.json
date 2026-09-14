@@ -1,0 +1,23 @@
+{
+  "version":"1.0",
+  "name":"Luna Engineering Asset Inventory",
+  "scan_scope":["capabilities/","tools/","docs/architecture/"],
+  "read_only":true,
+  "scan_summary":{"capabilities_python_files":3372,"tools_python_files":2275,"architecture_directories":151,"python_ast_files_checked":5652,"python_ast_errors":0},
+  "asset_groups":[
+    {"group":"Capability Python Modules","root":"capabilities/","count":3372,"owner":"Capability Governance","status":"Partial","description":"Capability, governance, flow, adapter, fixture, and validation assets."},
+    {"group":"Engineering Tools","root":"tools/","count":2275,"owner":"Cognitive OS Governance","status":"Partial","description":"Verification, audit, migration planning, and maintenance tools."},
+    {"group":"Architecture Assets","root":"docs/architecture/","count":151,"owner":"Cognitive OS Governance","status":"Implemented","description":"Phase contracts, schemas, whiteboxes, and verifiers."}
+  ],
+  "representative_assets":[
+    {"path":"capabilities/registry/luna_capability_registry_v1.json","type":"registry","owner":"Capability Governance","status":"Implemented"},
+    {"path":"capabilities/registry/manifests/model_manager_manifest_v1.json","type":"manifest","owner":"Capability Governance","status":"Implemented"},
+    {"path":"capabilities/registry/baselines/model_manager_module_baseline_v1.json","type":"baseline","owner":"Capability Governance","status":"Implemented"},
+    {"path":"capabilities/ocr_runtime/ocr_provider_adapter_contract_v0.py","type":"provider_contract","owner":"Capability Runtime","status":"Skeleton"},
+    {"path":"capabilities/vision_runtime/vision_provider_adapter_contract_v0.py","type":"provider_contract","owner":"Capability Runtime","status":"Skeleton"},
+    {"path":"docs/architecture/luna_cognitive_runtime_foundation_v1/","type":"architecture_phase","owner":"Cognitive Runtime Governance","status":"Implemented"},
+    {"path":"docs/architecture/luna_capability_governance_architecture_v1/","type":"architecture_phase","owner":"Capability Governance","status":"Implemented"},
+    {"path":"tools/write_freeze_manifest.py","type":"governance_tool","owner":"Cognitive OS Governance","status":"Implemented"}
+  ],
+  "rules":{"all_scopes_read_only":true,"asset_status_required":true,"representatives_not_exhaustive":true,"no_delete_move_rename":true}
+}

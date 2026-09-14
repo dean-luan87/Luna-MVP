@@ -1,0 +1,15 @@
+{
+  "frame_seq": 5,
+  "current_ts": 0.0,
+  "trace_anchor_id": "real_R5_ctx",
+  "focus_object_label": "bottle",
+  "object_search_flow_type": "container_check_flow",
+  "search_subtask_state": "waiting_user",
+  "visual_audit_objects_main": [
+    {"label": "bottle", "bbox": [10, 10, 50, 80]},
+    {"label": "box", "bbox": [0, 0, 60, 60]}
+  ],
+  "confirmation_input_raw_text": "我已经看过了",
+  "confirmation_input_type": null
+}
+

@@ -1,0 +1,18 @@
+{
+  "title": "Luna Architecture Canonical Registry v1",
+  "entries": [
+    {"canonical": "l0_constitution_layer", "aliases": ["constitution", "safety_constitution"], "status": "active", "owner": "Constitution"},
+    {"canonical": "l1_cognitive_operating_system", "aliases": ["cognitive_runtime", "governance_plane", "runtime_governance"], "status": "active", "owner": "Cognitive OS Governance"},
+    {"canonical": "l2_cognitive_core", "aliases": ["cognitive_life_core", "a_route_core"], "status": "active", "owner": "Cognitive Core Governance"},
+    {"canonical": "l3_social_emotion_intelligence", "aliases": ["social_field", "emotion_context", "emotion_engine"], "status": "active", "owner": "Social-Emotion Boundary Governance"},
+    {"canonical": "l4_capability_execution_system", "aliases": ["capability_plane", "capability_runtime", "execution_system"], "status": "active", "owner": "Capability Governance"},
+    {"canonical": "field_brain_interface_v1", "aliases": ["cognitive_field_brain_interface_v1"], "status": "alias", "owner": "Cognitive Core Governance"},
+    {"canonical": "field_a_route_interface_v1", "aliases": ["cognitive_field_a_route_interface_v1"], "status": "alias", "owner": "Cognitive Core Governance"},
+    {"canonical": "capability_attention_interface_v1", "aliases": ["capability_attention_interface_v1_legacy"], "status": "alias", "owner": "Capability Governance"},
+    {"canonical": "decision_commitment_contract_v1", "aliases": ["decision_revision_contract_v1"], "status": "active", "owner": "Cognitive Core Governance"},
+    {"canonical": "relationship_context_contract_v1", "aliases": ["relationship_context_schema_v1"], "status": "alias", "owner": "Social-Emotion Boundary Governance"},
+    {"canonical": "capability_admission_contract_v1", "aliases": ["capability_admission_contract_v1_legacy"], "status": "active", "owner": "Capability Governance"}
+  ],
+  "statuses": ["active", "alias", "deprecated", "historical"],
+  "rules": {"canonical_unique": true, "aliases_retained": true, "no_delete": true, "semantic_review_before_merge": true}
+}

@@ -1,0 +1,17 @@
+{
+  "phase": "Phase-Luna-A-Route-Active-Observation-Controlled-Integration-v1-001",
+  "new_files": [
+    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_types_v1.py",
+    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_error_types_v1.py",
+    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_engine_v1.py",
+    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_fixture_v1.py",
+    "capabilities/midplatform/field_perception_orchestrator/integration/run_field_perception_active_observation_controlled_integration_v1.py"
+  ],
+  "existing_files_modified": [],
+  "existing_owner_files_modified": [],
+  "new_top_level_owner_created": false,
+  "semantic_owner_reused": "Field Perception Orchestrator",
+  "observation_gateway_modified": false,
+  "a_route_orchestration_modified": false,
+  "runtime_provider_execution_added": false
+}

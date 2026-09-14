@@ -1,0 +1,18 @@
+{
+  "provider_id": "paddleocr_ppocrv5_v0",
+  "provider_family": "paddleocr",
+  "language": ["zh", "en", "mixed"],
+  "det_model_dir": "ocr/paddleocr_ppocrv5/det",
+  "rec_model_dir": "ocr/paddleocr_ppocrv5/rec",
+  "cls_model_dir": "ocr/paddleocr_ppocrv5/cls",
+  "model_files_manifest": "configs/models/ocr/paddleocr_ppocrv5_model_files_manifest_v0.json",
+  "model_version": "unknown",
+  "device": "cpu",
+  "offline_only": true,
+  "network_required": false,
+  "sha256_required": true,
+  "runtime_default_enabled": false,
+  "mainline_provider": false,
+  "evaluation_candidate": true,
+  "notes": "Phase-PaddleOCR-Readiness-001 planning manifest; RapidOCR remains mainline. Do not enable as default provider."
+}

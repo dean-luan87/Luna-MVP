@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>B2 Trace Viewer (Minimal)</title>
+  <style>
+    :root { --bg:#0b0f14; --fg:#e6edf3; --muted:#9aa4ad; --card:#121823; --line:#223044;
+            --red:#ff5c5c; --yellow:#ffd65c; --green:#4ade80; --blue:#60a5fa; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"PingFang SC","Microsoft Yahei";
+         background:var(--bg);color:var(--fg)}
+    header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    header .title{font-weight:700}
+    header .hint{color:var(--muted);font-size:12px}
+    .wrap{display:grid;grid-template-columns: 420px 1fr; height: calc(100vh - 140px);}
+    #dashboard{padding:12px 16px;border-bottom:1px solid var(--line);
+      display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:rgba(255,255,255,0.01)}
+    #dashboard .chip{cursor:pointer;transition:opacity 0.2s}
+    #dashboard .chip:hover{opacity:0.8}
+    #dashboard .chip:active{opacity:0.6}
+    .pane{border-right:1px solid var(--line);overflow:auto}
+    .pane:last-child{border-right:none}
+    .controls{padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,0.02);position:sticky;top:0;z-index:5}
+    .controls .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}
+    label{font-size:12px;color:var(--muted)}
+    input[type="text"], select{
+      background:var(--card); border:1px solid var(--line); color:var(--fg);
+      padding:8px 10px; border-radius:10px; outline:none; min-width:160px;
+    }
+    input[type="file"]{color:var(--muted)}
+    button{
+      background:var(--card); border:1px solid var(--line); color:var(--fg);
+      padding:8px 10px; border-radius:10px; cursor:pointer;
+    }
+    button:hover{border-color:#2b3f60}
+    .stats{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:12px}
+    .chip{padding:3px 8px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,0.02)}
+    .list{padding:8px}
+    .item{
+      border:1px solid var(--line); background:var(--card); border-radius:14px;
+      padding:10px 10px; margin:8px 0; cursor:pointer;
+    }
+    .item:hover{border-color:#2b3f60}
+    .item.active{outline:2px solid rgba(96,165,250,0.6)}
+    .item.red-locked{
+      background:rgba(255,92,92,0.15);
+      border-color:rgba(255,92,92,0.6);
+      border-width:2px;
+    }
+    .item.red-locked:hover{border-color:rgba(255,92,92,0.8)}
+    .topline{display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono"; font-size:12px}
+    .small{font-size:12px;color:var(--muted)}
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .badge{font-size:11px;padding:2px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+    .b-red{border-color:rgba(255,92,92,0.5); color:var(--red)}
+    .b-yellow{border-color:rgba(255,214,92,0.5); color:var(--yellow)}
+    .b-green{border-color:rgba(74,222,128,0.5); color:var(--green)}
+    .b-blue{border-color:rgba(96,165,250,0.5); color:var(--blue)}
+    .detail{padding:16px}
+    pre{
+      margin:0; padding:14px; border:1px solid var(--line); background:var(--card);
+      border-radius:14px; overflow:auto; max-height: calc(100vh - 170px);
+    }
+    .kv{display:grid;grid-template-columns: 160px 1fr; gap:10px; margin:12px 0}
+    .kv div{padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,0.02)}
+    .kv .k{color:var(--muted)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr; gap:10px}
+    .warn{color:var(--yellow)}
+    .err{color:var(--red)}
+    .ok{color:var(--green)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="title">B2 Trace Viewer (Minimal)</div>
+  <div class="hint">本地打开即可。选择 trace JSONL 文件后渲染时间轴与单条详情。</div>
+</header>
+
+<div id="dashboard">
+  <div class="chip b-green" onclick="dashFilter('dcs','GREEN')">
+    🟢 DCS GREEN: <span id="dcs_green">0</span>
+  </div>
+  <div class="chip b-yellow" onclick="dashFilter('dcs','YELLOW')">
+    🟡 DCS YELLOW: <span id="dcs_yellow">0</span>
+  </div>
+  <div class="chip b-red" onclick="dashFilter('dcs','RED')">
+    🔴 DCS RED: <span id="dcs_red">0</span>
+  </div>
+
+  <div style="width:1px;height:20px;background:var(--line)"></div>
+
+  <div class="chip b-green" onclick="dashFilter('gate','ACTIVE')">
+    Gate ACTIVE: <span id="gate_active">0</span>
+  </div>
+  <div class="chip b-yellow" onclick="dashFilter('gate','READ_ONLY')">
+    Gate READ_ONLY: <span id="gate_readonly">0</span>
+  </div>
+  <div class="chip b-red" onclick="dashFilter('gate','SUSPENDED')">
+    Gate SUSPENDED: <span id="gate_suspended">0</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- Left: list -->
+  <div class="pane">
+    <div class="controls">
+      <div class="row">
+        <label>Trace JSONL</label>
+        <input id="file" type="file" accept=".jsonl,.txt,application/jsonl,text/plain" />
+        <button id="clear">清空</button>
+      </div>
+
+      <div class="row">
+        <label>搜索</label>
+        <input id="q" type="text" placeholder="human_time / t_str / reason / blocked_by..." />
+      </div>
+
+      <div class="row">
+        <label>Gate</label>
+        <select id="gateMode">
+          <option value="">(All)</option>
+          <option value="ACTIVE">ACTIVE</option>
+          <option value="READ_ONLY">READ_ONLY</option>
+          <option value="SUSPENDED">SUSPENDED</option>
+        </select>
+
+        <label>Impact</label>
+        <select id="impact">
+          <option value="">(All)</option>
+          <option value="NO_OP">NO_OP</option>
+          <option value="NEED_SLOW_DOWN">NEED_SLOW_DOWN</option>
+          <option value="PATH_UNCERTAIN">PATH_UNCERTAIN</option>
+          <option value="NEED_DETOUR">NEED_DETOUR</option>
+          <option value="NEED_STOP">NEED_STOP</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label><input id="onlyToC" type="checkbox" /> 只看 to_c.send=true</label>
+        <label><input id="onlyTimeline" type="checkbox" /> 只看 writeback.timeline=true</label>
+      </div>
+
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="list" id="list"></div>
+  </div>
+
+  <!-- Right: detail -->
+  <div class="pane">
+    <div class="detail">
+      <div class="kv">
+        <div class="k">选择文件后点击左侧某条记录</div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div id="summary" class="mono">等待加载…</div>
+          <button onclick="jumpTo()">跳转到该时刻</button>
+        </div>
+      </div>
+
+      <div class="kv">
+        <div class="k">⚠️ 风险解释</div>
+        <div id="d_risk" class="mono"></div>
+      </div>
+
+      <div class="grid2">
+        <div class="kv">
+          <div class="k">Gate</div><div id="d_gate" class="mono"></div>
+          <div class="k">Impact</div><div id="d_impact" class="mono"></div>
+          <div class="k">To C</div><div id="d_toc" class="mono"></div>
+          <div class="k">Writeback</div><div id="d_wb" class="mono"></div>
+        </div>
+
+        <div class="kv">
+          <div class="k">DCS</div><div id="d_dcs" class="mono"></div>
+          <div class="k">Factors</div><div id="d_factors" class="mono"></div>
+          <div class="k">时间</div><div id="d_time" class="mono"></div>
+          <div class="k">Schema</div><div id="d_schema" class="mono"></div>
+        </div>
+      </div>
+
+      <pre id="json"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  // -----------------------------
+  // Minimal Trace Viewer (JSONL)
+  // -----------------------------
+  let ALL = [];
+  let FILTERED = [];
+  let ACTIVE_INDEX = -1;
+
+  const $ = (id) => document.getElementById(id);
+
+  function safeGet(obj, path, fallback=null){
+    try{
+      return path.split('.').reduce((o,k)=> (o && o[k]!==undefined) ? o[k] : undefined, obj) ?? fallback;
+    }catch(e){ return fallback; }
+  }
+
+  function badgeClass(type, value){
+    // type: gate/impact/dcs
+    if(type === "gate"){
+      if(value === "SUSPENDED") return "b-red";
+      if(value === "READ_ONLY") return "b-yellow";
+      if(value === "ACTIVE") return "b-green";
+      return "";
+    }
+    if(type === "impact"){
+      if(value === "NEED_STOP") return "b-red";
+      if(value === "NEED_DETOUR" || value === "PATH_UNCERTAIN") return "b-yellow";
+      if(value === "NEED_SLOW_DOWN") return "b-blue";
+      if(value === "NO_OP") return "";
+      return "";
+    }
+    if(type === "dcs"){
+      if(value === "RED") return "b-red";
+      if(value === "YELLOW") return "b-yellow";
+      if(value === "GREEN") return "b-green";
+      return "";
+    }
+    return "";
+  }
+
+  function fmt(obj){
+    return JSON.stringify(obj, null, 2);
+  }
+
+  function parseJSONL(text){
+    const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+    const rows = [];
+    for(let i=0;i<lines.length;i++){
+      try{ rows.push(JSON.parse(lines[i])); }
+      catch(e){
+        console.warn("JSON parse error at line", i+1, e);
+      }
+    }
+    return rows;
+  }
+
+  function normalizeRow(r, idx){
+    // common fields (robust to versions)
+    const schema = r.schema_version ?? r.schema ?? "";
+    const t_str = safeGet(r, "time.t_str", safeGet(r,"time.human_time",""));
+    const t_video_s = safeGet(r, "time.t_video_s", safeGet(r,"time.ts", null));
+    const frame_id = safeGet(r, "time.frame_id", safeGet(r,"time.frame_id", idx));
+    const gate_mode = safeGet(r, "gate.mode", safeGet(r,"gate_eval.mode", safeGet(r,"gate_eval_dict.mode","")));
+    const gate_blocked = safeGet(r, "gate.blocked_by", safeGet(r,"gate_eval.blocked_by",""));
+    const gate_reason = safeGet(r, "gate.reason", safeGet(r,"gate_eval.human_readable", safeGet(r,"gate.human_readable","")));
+    const impact = safeGet(r, "impact.impact", safeGet(r,"impact", safeGet(r,"summary.impact","")));
+    const advisory = safeGet(r, "impact.advisory_only", true);
+    const to_c_send = safeGet(r, "to_c.send", safeGet(r,"to_c_message.sent", false));
+    const wb_timeline = safeGet(r, "writeback.timeline", safeGet(r,"writeback.timeline_written", false));
+    const dcs_grade = safeGet(r, "dcs.grade", safeGet(r,"dcs", ""));
+    const main_factor = safeGet(r, "impact.main_factor", safeGet(r,"main_factor", safeGet(r,"summary.main_factor", "")));
+
+    return {
+      _idx: idx,
+      _raw: r,
+      schema, t_str, t_video_s, frame_id,
+      gate_mode, gate_blocked, gate_reason,
+      impact, advisory, to_c_send, wb_timeline,
+      dcs_grade, main_factor
+    };
+  }
+
+  function applyFilters(){
+    const q = $("q").value.trim().toLowerCase();
+    const gateMode = $("gateMode").value;
+    const impact = $("impact").value;
+    const onlyToC = $("onlyToC").checked;
+    const onlyTimeline = $("onlyTimeline").checked;
+
+    // 法务级规则：RED 记录永远不能被过滤掉
+    const redRows = ALL.filter(row => row.dcs_grade === "RED");
+    const otherRows = ALL.filter(row => row.dcs_grade !== "RED");
+
+    FILTERED = [...redRows]; // RED 记录永远显示
+
+    // 其他记录正常过滤
+    const filteredOthers = otherRows.filter(row => {
+      if(gateMode && row.gate_mode !== gateMode) return false;
+      if(impact && row.impact !== impact) return false;
+      if(onlyToC && !row.to_c_send) return false;
+      if(onlyTimeline && !row.wb_timeline) return false;
+
+      // DCS filter (from dashboard click)
+      if(q.includes('"dcs":{"grade":"')){
+        const dcsGrade = q.match(/"dcs":{"grade":"([^"]+)"/)?.[1];
+        if(dcsGrade && row.dcs_grade !== dcsGrade) return false;
+      }
+
+      if(q && !q.includes('"dcs":{"grade":"')){
+        const hay = [
+          row.t_str, String(row.t_video_s ?? ""), String(row.frame_id ?? ""),
+          row.gate_reason, row.gate_blocked, row.impact, row.dcs_grade, row.main_factor,
+          JSON.stringify(row._raw)
+        ].join(" ").toLowerCase();
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    FILTERED = [...redRows, ...filteredOthers]; // RED 置顶
+
+    renderStats();
+    renderList();
+    if(FILTERED.length > 0){
+      selectByFilteredIndex(0);
+    } else {
+      renderDetail(null);
+    }
+  }
+
+  function renderDashboard(){
+    const dcsCount = {GREEN:0, YELLOW:0, RED:0};
+    const gateCount = {ACTIVE:0, READ_ONLY:0, SUSPENDED:0};
+
+    for(const r of ALL){
+      if(r.dcs_grade && dcsCount[r.dcs_grade] !== undefined){
+        dcsCount[r.dcs_grade]++;
+      }
+      if(r.gate_mode && gateCount[r.gate_mode] !== undefined){
+        gateCount[r.gate_mode]++;
+      }
+    }
+
+    $("dcs_green").textContent = dcsCount.GREEN;
+    $("dcs_yellow").textContent = dcsCount.YELLOW;
+    $("dcs_red").textContent = dcsCount.RED;
+
+    $("gate_active").textContent = gateCount.ACTIVE;
+    $("gate_readonly").textContent = gateCount.READ_ONLY;
+    $("gate_suspended").textContent = gateCount.SUSPENDED;
+  }
+
+  function dashFilter(type, value){
+    if(type === "dcs"){
+      $("q").value = `"dcs":{"grade":"${value}"}`;
+    }
+    if(type === "gate"){
+      $("gateMode").value = value;
+    }
+    applyFilters();
+  }
+
+  function jumpTo(){
+    if(ACTIVE_INDEX < 0 || FILTERED.length === 0) return;
+    const r = FILTERED[ACTIVE_INDEX];
+    const frame = r.frame_id;
+    const time = r.t_video_s || r.t_str;
+    const fps = safeGet(r._raw, "time.fps", 30.0);
+    
+    const jumpRequest = {
+      video_time: time,
+      frame_id: frame,
+      fps: fps,
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log("JUMP TO:", jumpRequest);
+    
+    // 为视频播放器预留接口
+    if(window.videoPlayer && typeof window.videoPlayer.seek === 'function'){
+      window.videoPlayer.seek(time);
+    } else {
+      // 第一阶段：alert / console.log
+      alert(`Jump requested:\nframe=${frame}\ntime=${time}\nfps=${fps}\n\n(为视频联动预留接口)`);
+    }
+  }
+
+  function renderStats(){
+    const total = ALL.length;
+    const shown = FILTERED.length;
+
+    const gateCounts = {ACTIVE:0, READ_ONLY:0, SUSPENDED:0, OTHER:0};
+    const impactCounts = {};
+    for(const r of FILTERED){
+      (gateCounts[r.gate_mode] ??= 0);
+      if(gateCounts[r.gate_mode] !== undefined) gateCounts[r.gate_mode]++; else gateCounts.OTHER++;
+      impactCounts[r.impact] = (impactCounts[r.impact] ?? 0) + 1;
+    }
+
+    const chips = [];
+    chips.push(`<span class="chip">Total: ${total}</span>`);
+    chips.push(`<span class="chip">Shown: ${shown}</span>`);
+    chips.push(`<span class="chip">Gate A/R/S: ${gateCounts.ACTIVE}/${gateCounts.READ_ONLY}/${gateCounts.SUSPENDED}</span>`);
+
+    const topImpacts = Object.entries(impactCounts).sort((a,b)=>b[1]-a[1]).slice(0,4);
+    if(topImpacts.length){
+      chips.push(`<span class="chip">Top impacts: ${topImpacts.map(x=>`${x[0]}(${x[1]})`).join(", ")}</span>`);
+    }
+
+    $("stats").innerHTML = chips.join("");
+  }
+
+  function renderList(){
+    const el = $("list");
+    el.innerHTML = "";
+
+    FILTERED.forEach((row, i) => {
+      const div = document.createElement("div");
+      const isRed = row.dcs_grade === "RED";
+      const isActive = i === ACTIVE_INDEX;
+      div.className = "item" + (isActive ? " active" : "") + (isRed ? " red-locked" : "");
+      const t = (row.t_str || (row.t_video_s != null ? `${row.t_video_s.toFixed(2)}s` : `#${row.frame_id}`));
+
+      // RED 记录强制显示 violation 原因
+      const violations = safeGet(row._raw, "dcs.violations", []);
+      const violationText = violations.length > 0 ? `⚠️ ${violations.join(", ")}` : "";
+
+      div.innerHTML = `
+        <div class="topline">
+          <div class="mono">${t}${isRed ? " 🔴 LOCKED" : ""}</div>
+          <div class="small mono">f=${row.frame_id ?? ""}</div>
+        </div>
+        <div class="badges">
+          <span class="badge ${badgeClass("gate", row.gate_mode)}">G:${row.gate_mode || "?"}</span>
+          <span class="badge ${badgeClass("impact", row.impact)}">I:${row.impact || "?"}</span>
+          ${row.to_c_send ? `<span class="badge b-blue">toC</span>` : ``}
+          ${row.wb_timeline ? `<span class="badge b-green">timeline</span>` : ``}
+          ${row.dcs_grade ? `<span class="badge ${badgeClass("dcs", row.dcs_grade)}">DCS:${row.dcs_grade}</span>` : ``}
+        </div>
+        ${violationText ? `<div class="small err">${violationText}</div>` : ""}
+        <div class="small">${(row.gate_reason || row.gate_blocked || "").slice(0, 80)}</div>
+      `;
+
+      div.addEventListener("click", () => selectByFilteredIndex(i));
+      el.appendChild(div);
+    });
+  }
+
+  function selectByFilteredIndex(i){
+    ACTIVE_INDEX = i;
+    renderList();
+    const row = FILTERED[i];
+    renderDetail(row ? row._raw : null);
+  }
+
+  function renderDetail(raw){
+    if(!raw){
+      $("summary").textContent = "无数据（过滤后为空）";
+      $("d_gate").textContent = "";
+      $("d_impact").textContent = "";
+      $("d_toc").textContent = "";
+      $("d_wb").textContent = "";
+      $("d_dcs").textContent = "";
+      $("d_factors").textContent = "";
+      $("d_time").textContent = "";
+      $("d_schema").textContent = "";
+      $("json").textContent = "";
+      return;
+    }
+
+    const schema = raw.schema_version ?? raw.schema ?? "";
+    const time = raw.time ?? {};
+    const gate = raw.gate ?? raw.gate_eval ?? raw.gate_eval_dict ?? {};
+    const impact = raw.impact ?? {};
+    const to_c = raw.to_c ?? raw.to_c_message ?? {};
+    const wb = raw.writeback ?? {};
+    const dcs = raw.dcs ?? {};
+    const factors = raw.factors ?? {};
+
+    const t_str = time.t_str || time.human_time || "";
+    const t_video_s = (time.t_video_s != null) ? `${Number(time.t_video_s).toFixed(2)}s` : (time.ts != null ? `${Number(time.ts).toFixed(2)}s` : "");
+    const frame_id = (time.frame_id != null) ? time.frame_id : "";
+
+    $("summary").textContent = `${t_str || t_video_s || ""}  frame=${frame_id}  schema=${schema || "?"}`;
+
+    $("d_gate").textContent = fmt({
+      mode: gate.mode,
+      blocked_by: gate.blocked_by,
+      reason: gate.reason || gate.human_readable
+    });
+
+    $("d_impact").textContent = fmt({
+      impact: impact.impact,
+      advisory_only: impact.advisory_only,
+      main_factor: impact.main_factor,
+      decision_level: impact.decision_level,
+      intervention_level: impact.intervention_level
+    });
+
+    $("d_toc").textContent = fmt({
+      send: to_c.send ?? to_c.sent,
+      channel: to_c.channel,
+      message: to_c.message,
+      reason: to_c.reason
+    });
+
+    $("d_wb").textContent = fmt(wb);
+
+    $("d_dcs").textContent = fmt(dcs);
+    $("d_factors").textContent = fmt(factors);
+    $("d_time").textContent = fmt(time);
+    $("d_schema").textContent = schema || "(empty)";
+
+    // 风险解释（RED 记录强制显示 violations）
+    const violations = dcs.violations || [];
+    const riskExplain = {
+      gate: gate.reason || gate.human_readable || gate.blocked_by || "",
+      impact: impact.impact || "",
+      advisory_only: impact.advisory_only !== undefined ? impact.advisory_only : true,
+      dcs: dcs.grade || "N/A",
+      violations: violations.length > 0 ? violations : (dcs.grade === "RED" ? ["未知违规"] : []),
+      note:
+        dcs.grade === "RED"
+          ? "🔴 存在越权 / 过度预测风险 - 此记录已被锁定，无法隐藏"
+          : dcs.grade === "YELLOW"
+          ? "🟡 提醒性质，不构成确认"
+          : dcs.grade === "GREEN"
+          ? "🟢 合规行为"
+          : "⚪ 无 DCS 判定（历史版本）"
+    };
+
+    $("d_risk").textContent = fmt(riskExplain);
+    
+    // RED 记录强制高亮风险解释区
+    if(dcs.grade === "RED"){
+      $("d_risk").style.borderColor = "rgba(255,92,92,0.6)";
+      $("d_risk").style.borderWidth = "2px";
+      $("d_risk").style.background = "rgba(255,92,92,0.1)";
+    } else {
+      $("d_risk").style.borderColor = "";
+      $("d_risk").style.borderWidth = "";
+      $("d_risk").style.background = "";
+    }
+
+    $("json").textContent = fmt(raw);
+  }
+
+  // -----------------------------
+  // Events
+  // -----------------------------
+  $("file").addEventListener("change", async (e) => {
+    const f = e.target.files?.[0];
+    if(!f) return;
+    const text = await f.text();
+    const rows = parseJSONL(text);
+    ALL = rows.map((r, idx) => normalizeRow(r, idx));
+    ACTIVE_INDEX = -1;
+    renderDashboard();
+    applyFilters();
+  });
+
+  ["q","gateMode","impact","onlyToC","onlyTimeline"].forEach(id=>{
+    $(id).addEventListener("input", applyFilters);
+    $(id).addEventListener("change", applyFilters);
+  });
+
+  $("clear").addEventListener("click", ()=>{
+    ALL = [];
+    FILTERED = [];
+    ACTIVE_INDEX = -1;
+    $("file").value = "";
+    $("q").value = "";
+    $("gateMode").value = "";
+    $("impact").value = "";
+    $("onlyToC").checked = false;
+    $("onlyTimeline").checked = false;
+    renderDashboard();
+    renderStats();
+    renderList();
+    renderDetail(null);
+  });
+
+  // init
+  renderDashboard();
+  renderStats();
+  renderList();
+  renderDetail(null);
+</script>
+</body>
+</html>

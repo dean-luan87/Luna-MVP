@@ -1,0 +1,24 @@
+{
+  "schema_id": "SceneProfileCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["scene_type", "confidence", "evidence_refs", "case_refs", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "scene_type": {
+      "enum": ["shopfront_sign", "subway_platform", "street_crossing", "corridor",
+        "indoor_store", "home", "office", "restaurant", "hospital", "shopping_mall",
+        "unknown_scene", "custom"]
+    },
+    "confidence": { "type": "number" },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "case_refs": { "type": "array", "items": { "type": "string" } },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "scene_profile_owned_by_situation_layer": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1", "scene_profile_owned_by_situation_layer"]
+}

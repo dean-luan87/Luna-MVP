@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Context Binding Contract",
+  "pattern_reference": "required",
+  "field_context": "required",
+  "condition": "required",
+  "self_capability": "required",
+  "goal_context": "candidate",
+  "reality_reference": "required",
+  "valid_scope": "required",
+  "expiry_or_review": "required",
+  "pattern_is_context_bound": true,
+  "cross_context_default_transfer": false,
+  "direct_attention_control": false,
+  "identity_mutation": false
+}

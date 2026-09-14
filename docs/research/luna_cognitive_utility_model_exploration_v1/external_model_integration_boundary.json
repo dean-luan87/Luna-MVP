@@ -1,0 +1,15 @@
+{
+  "title": "External Utility Model Integration Boundary v1",
+  "status": "research_only",
+  "allowed_external_role": ["provide numerical calculation", "provide MCDA method implementation", "provide information-theoretic estimate", "provide sensitivity analysis"],
+  "adapter_required": true,
+  "external_algorithm_receives": ["sanitized candidate dimensions", "explicit constraints", "synthetic fixture inputs"],
+  "external_algorithm_does_not_receive": ["direct Reality write access", "direct Goal mutation access", "direct Self mutation access", "direct Memory mutation access", "Action execution access", "Constitution write access"],
+  "external_output_is": "Calculation Candidate",
+  "external_output_is_not": ["Decision", "Goal", "Value authority", "Action command", "Reality fact"],
+  "candidate_libraries": ["pyDecision", "scikit-criteria", "pomdp_py"],
+  "installation": false,
+  "runtime_integration": false,
+  "model_training": false,
+  "provider_authority": false
+}

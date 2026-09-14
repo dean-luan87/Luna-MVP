@@ -1,0 +1,31 @@
+{
+  "model_family": "audio_speech_family",
+  "candidate_models": ["SenseVoice", "pyannote"],
+  "planned_target_candidates": [
+    "audio_text_candidate",
+    "speaker_turn_candidate",
+    "speaker_identity_candidate",
+    "emotion_audio_hint_candidate"
+  ],
+  "package_or_module_refs": ["funasr_sensevoice(reserved)", "pyannote_audio(reserved)"],
+  "command_refs": [],
+  "local_resource_refs": ["reserved_no_local_resource_probe_executed"],
+  "license_ref": "per_model_license_and_identity_consent_required",
+  "model_origin": "external_open_source_audio_speech_model_reserved",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "audio_speech.reserved_only_contract_v1",
+  "output_schema_ref": "audio_speech_output_schema_reserved_v1",
+  "adapter_mapping_ref": "audio_text_candidate",
+  "fallback_plan": "reserved_only_no_execution_fallback_to_no_audio_evidence",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "allowed_use": "reserved_only_no_execution_in_current_scope",
+  "commercial_use_status": "not_evaluated_reserved",
+  "availability_probe_mode": "reserved_only_contract",
+  "availability_status": "reserved_only",
+  "consent_identity_boundary": "audio_identity_requires_consent_and_confirmation",
+  "boundaries": [
+    "audio_evidence_is_candidate_only",
+    "identity_requires_consent_or_confirmation",
+    "not_part_of_current_visual_recognition_expansion_execution"
+  ]
+}

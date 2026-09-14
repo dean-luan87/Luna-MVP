@@ -1,0 +1,2 @@
+# Luna-Core 运行时依赖（voice 等模块使用 HTTP 客户端）
+requests>=2.28.0

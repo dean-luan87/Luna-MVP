@@ -1,0 +1,19 @@
+{
+  "contract_name": "Attention Global Bus Contract v1",
+  "bus_role": "global finite cognitive resource allocation",
+  "sources": ["Reality Observation", "Field Update", "Task", "Brain Escalation", "Capability Usage", "Self State", "Experience"],
+  "candidate_outputs": ["Attention Allocation Candidate", "Observation Requirement", "Brain Escalation Candidate", "Resource Reallocation Candidate"],
+  "required_context": ["source", "Field", "Goal", "Task", "risk", "information value", "uncertainty", "resource cost", "provenance"],
+  "integrates_reality_observation": true,
+  "integrates_field_update": true,
+  "integrates_task": true,
+  "integrates_brain_escalation": true,
+  "integrates_capability_usage": true,
+  "attention_does_not_own_goal": true,
+  "attention_does_not_own_decision": true,
+  "attention_does_not_mutate_reality": true,
+  "attention_does_not_execute_action": true,
+  "preemption_requires_arbitration": true,
+  "release_requires_lifecycle_evidence": true,
+  "unknowns_are_preserved": true
+}

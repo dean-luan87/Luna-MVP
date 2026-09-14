@@ -1,0 +1,15 @@
+{
+  "registry_id": "cognitive_state_validation_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Cognitive State Candidate", "owner": "Cognitive State Management", "writer": "State Candidate Governance", "readers": ["Cognitive Kernel", "Brain", "Runtime Boundary"]},
+    {"object": "Rhythm Hint", "owner": "Self Rhythm Controller", "writer": "Self Rhythm Controller", "readers": ["Cognitive State Management", "Runtime Boundary"]},
+    {"object": "Self Stability Constraint", "owner": "Self Regulation", "writer": "Self Regulation", "readers": ["Cognitive State Management", "Brain", "Capability Governance"]},
+    {"object": "Field Complexity Context", "owner": "Cognitive Field", "writer": "Field Update Governance", "readers": ["Cognitive State Management", "Attention", "Reality Validation Loop"]},
+    {"object": "Validation Event", "owner": "Reality Validation Loop", "writer": "Validation Governance", "readers": ["Hypothesis", "Understanding", "Brain", "Learning Boundary"]},
+    {"object": "Understanding Adjustment Candidate", "owner": "Understanding System", "writer": "Reality Validation Loop", "readers": ["Brain", "Learning Boundary"]},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain", "readers": ["Action Boundary", "Experience System", "Reality Validation Loop"]},
+    {"object": "Runtime Execution", "owner": "Runtime", "writer": "Runtime Governance", "readers": ["Cognitive State Management", "Self Rhythm Controller"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "candidate_writes_only": true, "runtime_is_future_executor": true}
+}

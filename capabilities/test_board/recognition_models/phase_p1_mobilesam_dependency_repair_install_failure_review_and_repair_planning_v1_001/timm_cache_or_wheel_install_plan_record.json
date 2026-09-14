@@ -1,0 +1,35 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.475242+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_cache_or_wheel_install_plan_record",
+  "timm_cache_wheel_install_plan_record": {
+    "record_id": "timm_cache_wheel_install_plan_v1",
+    "route_id": "timm_wheel_cache_or_offline_install",
+    "priority": "P1",
+    "selected": false,
+    "rationale": "reduce_network_instability_and_repeat_downloads",
+    "requires_wheel_source_review": true,
+    "requires_hash_record": true,
+    "fallback_only": true
+  },
+  "timm_timeout_extension_plan_record": {
+    "record_id": "timm_timeout_extension_plan_v1",
+    "route_id": "extended_timeout_full_isolated_install",
+    "priority": "P2",
+    "selected": false,
+    "rationale": "full_isolation_but_high_cost_not_preferred",
+    "timeout_seconds_candidate": 3600,
+    "fallback_only": true
+  }
+}

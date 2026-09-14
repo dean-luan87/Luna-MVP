@@ -1,0 +1,18 @@
+{
+  "artifact": "emotion_personality_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "downstream_owner": "Personality Governance",
+  "personality_baseline_status": "FROZEN_V1",
+  "allowed_interfaces": ["EmotionToPersonalityEvidenceCandidate", "PersonalityToEmotionContextCandidate"],
+  "frozen_rules": {
+    "emotion_state_is_not_personality_trait": true,
+    "repeated_emotion_is_not_stable_personality": true,
+    "emotion_cannot_activate_personality_trait_candidate": true,
+    "emotion_intensity_is_not_trait_intensity": true,
+    "personality_governance_remains_frozen": true,
+    "candidate_only": true,
+    "personality_mutation": false,
+    "trait_activation": false
+  },
+  "forbidden": ["trait_activation", "personality_profile_mutation", "personality_truth_declaration", "emotion_personality_owner_merge"]
+}

@@ -1,0 +1,135 @@
+{
+  "schema_id": "ScenePromptSetSubwayPlatformV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Aware-Segmentation-Prompt-Policy-Planning-v1-001",
+  "description": "地铁站台 prompt set。禁止街景 road_sign/front_vehicle/crosswalk 默认 prompt。",
+  "scene_type_candidate": "subway_platform",
+  "candidate_only": true,
+  "not_fact": true,
+  "prompt_is_not_fact": true,
+  "forbidden_legacy_outdoor_prompts": [
+    "road_sign",
+    "left_building",
+    "center_advertisement_screen",
+    "front_vehicle",
+    "crosswalk_or_road_region"
+  ],
+  "smoke_image_ref": "capabilities/test_assets/p1/ocr/ocr_real_image_subway_platform_jiahuihu_v1_001.png",
+  "smoke_expectations": {
+    "station_direction_sign_covers_jiahuihu_text": true,
+    "people_region_not_labeled_as_road_sign": true,
+    "no_legacy_street_prompts": true
+  },
+  "prompts": [
+    {
+      "segmentation_prompt_id": "station_direction_sign",
+      "source_prompt_hint": "station_direction_sign_prompt",
+      "display_task_semantic": "P0 文字候选区",
+      "default_followup_models": ["ocr"],
+      "default_priority": "P0_immediate_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "station_direction_sign",
+      "ocr_route_candidate": true,
+      "smoke_target_text_hint": "开往 嘉会湖 / To Jiahuihu"
+    },
+    {
+      "segmentation_prompt_id": "station_name_board",
+      "source_prompt_hint": "station_name_board_prompt",
+      "display_task_semantic": "P0 文字候选区",
+      "default_followup_models": ["ocr"],
+      "default_priority": "P0_immediate_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "station_name_board",
+      "ocr_route_candidate": true
+    },
+    {
+      "segmentation_prompt_id": "route_map_or_line_info",
+      "source_prompt_hint": "route_map_or_line_info_prompt",
+      "display_task_semantic": "P0 文字候选区",
+      "default_followup_models": ["ocr"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "route_map_or_line_info",
+      "ocr_route_candidate": true
+    },
+    {
+      "segmentation_prompt_id": "platform_screen_door",
+      "source_prompt_hint": "platform_screen_door_prompt",
+      "display_task_semantic": "P1 屏幕/标识候选",
+      "default_followup_models": ["ocr", "detection", "safety"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "platform_screen_door"
+    },
+    {
+      "segmentation_prompt_id": "train_door_area",
+      "source_prompt_hint": "train_door_area_prompt",
+      "display_task_semantic": "P1 动态目标候选",
+      "default_followup_models": ["detection", "safety"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "train_door_area"
+    },
+    {
+      "segmentation_prompt_id": "advertisement_panel",
+      "source_prompt_hint": "advertisement_panel_prompt",
+      "display_task_semantic": "P1 屏幕/标识候选",
+      "default_followup_models": ["ocr", "detection"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "advertisement_panel",
+      "ocr_route_candidate": true
+    },
+    {
+      "segmentation_prompt_id": "warning_line_or_platform_edge",
+      "source_prompt_hint": "warning_line_or_platform_edge_prompt",
+      "display_task_semantic": "P0 通行结构区",
+      "default_followup_models": ["depth", "walkable_area_review"],
+      "default_priority": "P0_immediate_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "warning_line_or_platform_edge"
+    },
+    {
+      "segmentation_prompt_id": "floor_walkable_area",
+      "source_prompt_hint": "floor_walkable_area_prompt",
+      "display_task_semantic": "P0 通行结构区",
+      "default_followup_models": ["depth", "slam"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "floor_walkable_area"
+    },
+    {
+      "segmentation_prompt_id": "people_region",
+      "source_prompt_hint": "people_region_prompt",
+      "display_task_semantic": "P1 动态目标候选",
+      "default_followup_models": ["detection", "tracking"],
+      "default_priority": "P1_high_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "people_region",
+      "forbidden_display_labels": ["路牌", "前方车辆", "广告屏"]
+    },
+    {
+      "segmentation_prompt_id": "large_static_structure",
+      "source_prompt_hint": "large_static_structure_prompt",
+      "display_task_semantic": "P2 大型结构候选",
+      "default_followup_models": ["detection", "slam_reference"],
+      "default_priority": "P2_medium_attention",
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "large_static_structure"
+    }
+  ],
+  "ocr_route_prompt_ids": [
+    "station_direction_sign",
+    "station_name_board",
+    "route_map_or_line_info",
+    "advertisement_panel"
+  ],
+  "boundary_flags": {
+    "no_prompt_label_fact_upgrade": true,
+    "mobilesam_region_not_semantic_fact": true,
+    "no_fixed_outdoor_prompt_for_subway_profile": true,
+    "subway_profile_uses_station_prompt_set": true,
+    "people_region_not_road_sign_label": true,
+    "planning_only": true
+  }
+}

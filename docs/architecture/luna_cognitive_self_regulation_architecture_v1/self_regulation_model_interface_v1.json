@@ -1,0 +1,7 @@
+{
+  "title": "Self Regulation Model Interface v1",
+  "owner": "Model Manager",
+  "inputs": ["Model Selection Candidate", "Resource Constraint", "Capability Requirement", "Model Health", "Version Registry"],
+  "outputs": ["Model Option Candidate", "Version Recovery Candidate", "Model Health Evidence", "Resource Profile"],
+  "rules": {"model_manager_is_provider_of_options":true,"no_self_regulation_authority":true,"no_automatic_switch":true,"admission_required":true,"calibration_required":true,"no_brain_access":true}
+}

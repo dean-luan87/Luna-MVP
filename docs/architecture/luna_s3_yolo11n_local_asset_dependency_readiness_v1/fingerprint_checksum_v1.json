@@ -1,0 +1,16 @@
+{
+  "checksum_states": [
+    "DECLARED_CHECKSUM",
+    "OBSERVED_CHECKSUM",
+    "CHECKSUM_VERIFIED",
+    "CHECKSUM_MISMATCH",
+    "CHECKSUM_UNAVAILABLE"
+  ],
+  "agent_computes_checksum": false,
+  "user_terminal_may_supply_observed_checksum": true,
+  "declared_and_observed_equal": "CHECKSUM_VERIFIED",
+  "declared_and_observed_different": "CHECKSUM_MISMATCH",
+  "checksum_mismatch_blocks": true,
+  "checksum_unavailable_is_not_verified": true,
+  "physical_file_is_not_contract_proof": true
+}

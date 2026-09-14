@@ -1,0 +1,17 @@
+{
+  "contract_name": "Emotion Input Contract v1",
+  "field_context": {},
+  "role_context": {},
+  "relationship_context": {},
+  "expectation": {},
+  "reality_feedback": {},
+  "memory": {},
+  "self_state": {},
+  "evidence": [],
+  "provenance": [],
+  "confidence": null,
+  "unknowns": [],
+  "stimulus_alone_is_insufficient": true,
+  "emotion_input_is_candidate": true,
+  "unknowns_are_preserved": true
+}

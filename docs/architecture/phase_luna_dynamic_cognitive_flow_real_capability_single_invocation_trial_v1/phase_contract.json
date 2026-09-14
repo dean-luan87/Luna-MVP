@@ -1,0 +1,11 @@
+{
+  "phase": "Phase-Luna-Dynamic-Cognitive-Flow-Real-Capability-Single-Invocation-Trial-v1-001",
+  "canonical_owner": "Existing Cognitive Flow integration boundary",
+  "mode": "ONE_REAL_PROVIDER_INVOCATION_PLUS_CONTROLLED_DOWNSTREAM_CASES",
+  "scenario_count": 22,
+  "real_invocation_limit": 1,
+  "frame_limit": 1,
+  "provider": "existing YOLO11n single-frame provider path",
+  "no_acquisition": true,
+  "no_continuous_camera": true
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Duplicate Module Resolution v1",
+  "groups": [
+    {"group_id":"capability_management","canonical":"capability_governance","aliases":["capability_manager_legacy","capability_registry_legacy"],"status":"canonical_plus_alias","decision":"alias","preserve_history":true},
+    {"group_id":"self_capability","canonical":"cognitive_self_model","aliases":["self_capability_awareness_legacy","self_capability_profile_legacy"],"status":"canonical_plus_historical","decision":"historical","preserve_history":true},
+    {"group_id":"field_state","canonical":"cognitive_field","aliases":["field_state_legacy","field_dynamics_legacy"],"status":"canonical_plus_alias","decision":"alias","preserve_history":true},
+    {"group_id":"action_execution","canonical":"action_boundary","aliases":["action_request_legacy","action_runtime_boundary_legacy"],"status":"canonical_plus_historical","decision":"keep_parallel","preserve_history":true},
+    {"group_id":"verification_assets","canonical":"architecture_freeze_verifier","aliases":["historical_phase_verifiers"],"status":"verification_only","decision":"verification_only","preserve_history":true}
+  ],
+  "allowed_decisions": ["merge", "alias", "deprecated", "historical", "keep_parallel", "verification_only"],
+  "rules": {"no_delete":true,"no_overwrite":true,"canonical_reference_required_for_new_assets":true,"history_preserved":true}
+}

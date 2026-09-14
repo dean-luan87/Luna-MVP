@@ -1,0 +1,58 @@
+{
+  "schema_id": "OcrLocalRunnerBridgeContractV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "description": "OCR runtime 接入 8787 local runner bridge 的规划契约。本阶段不实现 endpoint。",
+  "planning_only": true,
+  "bridge_base_url": "http://127.0.0.1:8787",
+  "sandbox_only_entry": true,
+  "endpoint": {
+    "method": "POST",
+    "path": "/api/v1/controlled-execution/ocr/run",
+    "caller_allowed": ["ocr_runner_sandbox"],
+    "caller_forbidden": ["ui", "mobile_sam_runner", "ocr_task_candidate", "human_correction_layer"]
+  },
+  "request_payload": {
+    "required_fields": [
+      "ocr_execution_id",
+      "ocr_adapter_input",
+      "source_ocr_execution_candidate_id",
+      "trace_chain"
+    ],
+    "ocr_adapter_input_schema_ref": "schemas/multi_model_interaction/ocr_adapter_input_schema_v1.json",
+    "timeout_ms": 30000
+  },
+  "response_payload": {
+    "success_envelope_type": "ocr_result_envelope",
+    "success_schema_ref": "schemas/multi_model_interaction/ocr_result_envelope_schema_v1.json",
+    "error_envelope_type": "ocr_runner_error_candidate",
+    "error_schema_ref": "schemas/multi_model_interaction/ocr_runner_error_candidate_schema_v1.json"
+  },
+  "error_response": {
+    "http_status_codes": [400, 408, 422, 503],
+    "error_mapping": {
+      "408": "timeout",
+      "503": "runner_unavailable",
+      "422": "invalid_output_schema",
+      "400": "invalid_crop"
+    }
+  },
+  "validation": {
+    "request_schema_validation": true,
+    "response_schema_validation": true,
+    "trace_chain_required": true
+  },
+  "forbidden_operations": [
+    "ui_direct_post",
+    "mobile_sam_runner_invoke_ocr",
+    "ocr_runner_direct_result_layer_write",
+    "ocr_runner_direct_fact_write",
+    "bypass_sandbox"
+  ],
+  "boundary_flags": {
+    "no_ui_direct_ocr_runner_call": true,
+    "no_mobile_sam_direct_to_ocr_runner": true,
+    "sandbox_only_entry": true,
+    "planning_only": true
+  }
+}

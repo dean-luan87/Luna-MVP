@@ -1,0 +1,15 @@
+{
+  "owner": "Model Manager / Model Governance",
+  "new_code_files": [
+    "capabilities/midplatform/model_manager/model_contract_repository/__init__.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_types_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_registry_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_resolver_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_fixture_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/run_model_contract_repository_multi_version_baseline_v1.py"
+  ],
+  "existing_files_modified": [],
+  "existing_owner_extended": true,
+  "parallel_semantic_owner": false,
+  "s0_s1_s2_s3_modified": false
+}

@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Hypothesis Generation Contract",
+  "owner":"Cognitive Understanding",
+  "inputs":["assembled context","evidence","field rules","memory candidates","knowledge context","unknowns"],
+  "outputs":["hypothesis candidate","supporting evidence","contradicting evidence","confidence","validation requirement"],
+  "permissions":{"generate_candidate":true,"resolve_conflict_automatically":false,"write_reality":false,"create_decision":false},
+  "rules":{"multiple_candidates_allowed":true,"unknown_required":true,"evidence_required":true,"prediction_not_implemented":true}
+}

@@ -1,0 +1,18 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Skeleton Contract",
+    "skeleton_only": true,
+    "controlled_execution_only": true,
+    "real_reduction_allowed": false,
+    "state_mutation_allowed": false,
+    "resulting_active_state_allowed": false,
+    "provider_recall_allowed": false,
+    "external_lookup_allowed": false,
+    "action_trigger_allowed": false,
+    "database_access_allowed": false,
+    "scheduler_access_allowed": false,
+    "model_call_allowed": false,
+    "production_data_allowed": false,
+    "synthetic_fixture_only": true,
+    "deterministic_placeholder_required": true
+}

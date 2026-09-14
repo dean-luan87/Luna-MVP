@@ -1,0 +1,168 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "planning_source": "docs/architecture/luna_causal_architecture_planning_v1",
+    "all_code_assets": [
+        "capabilities/midplatform/core/causal_governance/__init__.py",
+        "capabilities/midplatform/core/causal_governance/causal_error_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_core_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_state_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_evidence_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_confounder_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_counterfactual_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_trace_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_handoff_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_io_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_registry_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_ownership_guard_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_protocol_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_static_validators_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_fixture_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_engine_v1.py",
+        "capabilities/midplatform/core/causal_governance/run_causal_governance_controlled_implementation_v1.py"
+    ],
+    "mappings": [
+        {
+            "planning_asset": "causal_owner_boundary_candidate_v1.json",
+            "code_assets": [
+                "causal_registry_v1.py",
+                "causal_ownership_guard_v1.py"
+            ],
+            "coverage": "canonical owner uniqueness and legacy alias non-authority"
+        },
+        {
+            "planning_asset": "causal_concept_boundary_matrix_v1.json",
+            "code_assets": [
+                "causal_registry_v1.py",
+                "causal_governance_engine_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "negative guard enforcement and candidate-only concept separation"
+        },
+        {
+            "planning_asset": "causal_hypothesis_schema_candidate_v1.json",
+            "code_assets": [
+                "causal_core_types_v1.py",
+                "causal_governance_engine_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "hypothesis fields, uncertainty, provenance, non-authority outputs"
+        },
+        {
+            "planning_asset": "causal_state_model_candidate_v1.json",
+            "code_assets": [
+                "causal_state_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "state candidates and deterministic transition metadata"
+        },
+        {
+            "planning_asset": "causal_formation_contract_candidate_v1.json",
+            "code_assets": [
+                "causal_io_types_v1.py",
+                "causal_governance_engine_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "source-owned input admission and candidate-only formation flow"
+        },
+        {
+            "planning_asset": "causal_evidence_support_opposition_model_candidate_v1.json",
+            "code_assets": [
+                "causal_evidence_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "support/opposition relation modeling"
+        },
+        {
+            "planning_asset": "causal_multi_hypothesis_coexistence_model_candidate_v1.json",
+            "code_assets": [
+                "causal_governance_engine_v1.py",
+                "causal_governance_fixture_v1.py"
+            ],
+            "coverage": "parallel hypotheses and unresolved conflict preservation"
+        },
+        {
+            "planning_asset": "causal_competition_alternative_explanation_model_candidate_v1.json",
+            "code_assets": [
+                "causal_governance_engine_v1.py",
+                "causal_trace_types_v1.py"
+            ],
+            "coverage": "competition and alternative explanation traces"
+        },
+        {
+            "planning_asset": "causal_confounder_model_candidate_v1.json",
+            "code_assets": [
+                "causal_confounder_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "confounder candidates and hypothesis contest behavior"
+        },
+        {
+            "planning_asset": "causal_temporal_ordering_boundary_candidate_v1.json",
+            "code_assets": [
+                "causal_governance_engine_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "temporal precedence guard and insufficient-evidence branch"
+        },
+        {
+            "planning_asset": "causal_counterfactual_candidate_model_v1.json",
+            "code_assets": [
+                "causal_counterfactual_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "counterfactual candidate-only behavior"
+        },
+        {
+            "planning_asset": "causal_uncertainty_confidence_boundary_candidate_v1.json",
+            "code_assets": [
+                "causal_core_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "uncertainty/confidence envelope with confidence_not_truth"
+        },
+        {
+            "planning_asset": "causal_provenance_trace_schema_candidate_v1.json",
+            "code_assets": [
+                "causal_trace_types_v1.py",
+                "causal_governance_engine_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "trace completeness and parent/revision/handoff lineage"
+        },
+        {
+            "planning_asset": "causal_revision_suspension_revocation_model_candidate_v1.json",
+            "code_assets": [
+                "causal_state_types_v1.py",
+                "causal_governance_engine_v1.py"
+            ],
+            "coverage": "revision and revocation transitions with trace refs"
+        },
+        {
+            "planning_asset": "causal_to_decision_handoff_contract_candidate_v1.json",
+            "code_assets": [
+                "causal_handoff_types_v1.py",
+                "causal_ownership_guard_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "candidate-only handoff payload and no Decision/Action/Task"
+        },
+        {
+            "planning_asset": "causal_negative_guards_v1.json",
+            "code_assets": [
+                "causal_registry_v1.py",
+                "causal_static_validators_v1.py"
+            ],
+            "coverage": "centralized guard flags and checks"
+        },
+        {
+            "planning_asset": "causal_minimum_scenario_suite_v1.json",
+            "code_assets": [
+                "causal_governance_fixture_v1.py",
+                "run_causal_governance_controlled_implementation_v1.py"
+            ],
+            "coverage": "12 executable synthetic scenario fixtures"
+        }
+    ],
+    "planning_assets_modified": false,
+    "parallel_implementation_created": false
+}

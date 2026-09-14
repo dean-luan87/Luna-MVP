@@ -1,0 +1,21 @@
+{
+  "title": "Global State Snapshot Lifecycle v1",
+  "contract_type": "Immutable State Snapshot and Transition",
+  "states": ["Created", "Composed", "Published", "Superseded", "Archived"],
+  "transitions": [
+    "Created → Composed",
+    "Composed → Published",
+    "Published → Superseded",
+    "Superseded → Archived"
+  ],
+  "snapshot_rules": {
+    "snapshot_is_immutable": true,
+    "new_composition_creates_new_snapshot": true,
+    "source_versions_are_preserved": true,
+    "state_transition_candidate_is_separate": true,
+    "memory_stores_selected_state_transitions_only": true,
+    "snapshot_does_not_make_decision": true,
+    "snapshot_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

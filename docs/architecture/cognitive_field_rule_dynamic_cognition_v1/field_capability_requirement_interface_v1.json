@@ -1,0 +1,20 @@
+{
+  "interface_name": "Field Capability Requirement Interface v1",
+  "field_reference": "field-example",
+  "task_reference": "task-example",
+  "rule_context": [],
+  "dynamic_context": [],
+  "unknown_context": [],
+  "capability_requirement_candidate": {"evidence_type": "OCR | spatial | human-flow | user-confirmation", "priority": null},
+  "reason": "Field + Task + Unknown",
+  "information_value": null,
+  "resource_cost": null,
+  "risk": null,
+  "provenance": [],
+  "model_is_not_requirement_authority": true,
+  "provider_is_not_requirement_authority": true,
+  "field_does_not_select_model": true,
+  "capability_governance_required": true,
+  "unknowns_are_preserved": true,
+  "candidate_only": true
+}

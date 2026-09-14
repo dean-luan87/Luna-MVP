@@ -1,0 +1,22 @@
+{
+  "title": "Action Runtime Foundation Dependency Boundary v1",
+  "allowed": [
+    {"source":"Action Boundary","target":"Action Runtime Foundation","mode":"approved candidate"},
+    {"source":"L1 Cognitive OS","target":"Action Runtime Foundation","mode":"lifecycle/event/state/recovery"},
+    {"source":"Action Runtime Foundation","target":"Execution Adapter","mode":"future execution candidate"},
+    {"source":"Execution Adapter","target":"Outcome Collector","mode":"raw outcome"},
+    {"source":"Outcome Collector","target":"Action Verification","mode":"verification input"},
+    {"source":"Action Verification","target":"L2 Experience/Learning","mode":"outcome feedback"}
+  ],
+  "forbidden": [
+    "Action Runtime → Goal Ownership",
+    "Action Runtime → Decision Ownership",
+    "Action Runtime → Value Modification",
+    "Action Runtime → Constitution Modification",
+    "Executor → Direct Cognitive Control",
+    "Executor → Direct Reality Write",
+    "Adapter → Unapproved External Side Effect",
+    "Monitor → Decision Override"
+  ],
+  "rules": {"approved_candidate_required": true, "outcome_feedback_required": true, "execution_disabled": true, "no_external_side_effect": true, "no_device_control": true}
+}

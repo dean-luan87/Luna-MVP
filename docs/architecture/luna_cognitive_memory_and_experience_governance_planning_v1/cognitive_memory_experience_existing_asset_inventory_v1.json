@@ -1,0 +1,83 @@
+{
+    "artifact": "cognitive_memory_experience_existing_asset_inventory_v1",
+    "classifications": {
+        "A": "reusable current canonical asset",
+        "B": "reusable historical architecture/reference",
+        "C": "conflicting/deprecated ownership model",
+        "D": "deferred implementation/runtime asset"
+    },
+    "assets": [
+        {
+            "path": "capabilities/midplatform/core/cognitive_flow",
+            "classification": "A",
+            "reason": "Provides cycle-level future memory and learning insertion boundaries without owning memory semantics."
+        },
+        {
+            "path": "capabilities/midplatform/core/context_foundation",
+            "classification": "A",
+            "reason": "Already exposes memory projections as read-only context inputs."
+        },
+        {
+            "path": "capabilities/midplatform/core/personal_cognitive_network",
+            "classification": "A",
+            "reason": "May consume memory references later but does not own memory semantics."
+        },
+        {
+            "path": "capabilities/midplatform/core/intent_governance",
+            "classification": "A",
+            "reason": "Already accepts memory and experience refs as influences only."
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_state_formation",
+            "classification": "A",
+            "reason": "Already consumes memory refs as optional influences in state formation."
+        },
+        {
+            "path": "capabilities/midplatform/core/dynamic_cognitive_regulation",
+            "classification": "A",
+            "reason": "Already separates historical experience refs from parameter mutation authority."
+        },
+        {
+            "path": "capabilities/midplatform/core/causal_governance",
+            "classification": "A",
+            "reason": "Already models memory priors as influence-only, not truth authority."
+        },
+        {
+            "path": "capabilities/midplatform/core/field_state_reducer",
+            "classification": "A",
+            "reason": "Canonical field owner; memory must not override or mutate field."
+        },
+        {
+            "path": "capabilities/midplatform/core/context_pcn_intent_mainline",
+            "classification": "A",
+            "reason": "Shows upstream modules already pass memory refs through candidate-only envelopes."
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_execution_chain",
+            "classification": "A",
+            "reason": "Shows experience and memory refs appear in downstream bridges without owner mutation."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1",
+            "classification": "B",
+            "reason": "Rich historical reference for memory schemas, hierarchy, consolidation, and guards."
+        },
+        {
+            "path": "docs/architecture/cognitive_learning_system_v1",
+            "classification": "B",
+            "reason": "Reference for future Memory -> Learning boundary, not current implementation scope."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/ownership_registry.json",
+            "classification": "C",
+            "reason": "Historical split owner model (Experience Layer vs Memory System) conflicts with current preference for one canonical semantic owner."
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/summary.json",
+            "classification": "D",
+            "reason": "References existing memory runtime/store capabilities that are deferred and out of scope."
+        }
+    ],
+    "equivalent_current_canonical_memory_owner_found": false,
+    "recommended_semantic_owner_unification": true
+}

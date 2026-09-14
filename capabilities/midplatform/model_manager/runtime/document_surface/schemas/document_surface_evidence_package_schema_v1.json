@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "DocumentSurfaceEvidencePackageSchemaV1",
+  "type": "object",
+  "required": ["source_region_id", "attention_gate_status", "candidate_only", "not_fact"],
+  "properties": {
+    "package_id": {"type": "string"},
+    "source_region_id": {"type": "string"},
+    "attention_gate_status": {"type": "string"},
+    "document_surface_candidates": {"type": "array"},
+    "relation_hint_candidates": {"type": "array"},
+    "text_owner_assignment_candidates": {"type": "array"},
+    "next_slot_suggestion": {"type": "string"},
+    "validation_status_candidate": {"type": "string"},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

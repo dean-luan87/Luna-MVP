@@ -1,0 +1,6 @@
+{
+  "reverse_trace": ["Provider Invocation Candidate", "Admission", "Compatibility", "Local Source Package Contract", "Loader Contract", "Model Asset", "Original Manifest / Asset"],
+  "required_refs": ["local_source_package_id", "loader_contract_id", "model_asset_id", "provenance_ref"],
+  "provenance_grants_authority": false,
+  "source_package_grants_execution_authority": false
+}

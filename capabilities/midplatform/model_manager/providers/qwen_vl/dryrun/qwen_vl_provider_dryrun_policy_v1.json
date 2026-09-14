@@ -1,0 +1,42 @@
+{
+  "schema_id": "QwenVLProviderDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-QwenVL-Real-Provider-Integration-DryRun-v1-001",
+  "layer_id": "Model_Manager_Provider_QwenVL_DryRun",
+  "dryrun_only": true,
+  "principle": "验证 Model Manager 接管真实 Provider 后架构不变：模型只是能力组件。",
+  "chain": [
+    "model_registry",
+    "lifecycle_state",
+    "capability_match",
+    "routing_candidate",
+    "qwen_vl_provider",
+    "evidence_candidate",
+    "validation",
+    "evaluation_record"
+  ],
+  "rules": [
+    {"rule_id": "full_chain_closed_loop", "description": "Registry→Lifecycle→Routing→Provider→Evidence→Validation→Evaluation"},
+    {"rule_id": "model_manager_no_goal_ownership", "description": "MM 不拥有目标，L2 拥有"},
+    {"rule_id": "provider_no_internal_state", "description": "禁止向 Provider 发送 Memory/Fact/Policy"},
+    {"rule_id": "provider_output_not_fact", "description": "Provider 输出经 Validation 才可能 admission"},
+    {"rule_id": "capability_mismatch_noop", "description": "能力不匹配时 Qwen noop"},
+    {"rule_id": "provider_error_no_silent_switch", "description": "故障不偷偷换其他模型"},
+    {"rule_id": "unsupported_claim_governance", "description": "真实 API 输出仍经 normalizer+validation"},
+    {"rule_id": "lifecycle_version_upper_unchanged", "description": "版本切换 L1/L2 无变化"},
+    {"rule_id": "usage_metrics_to_evaluation", "description": "Usage metrics 进入 Evaluation Engine"}
+  ],
+  "boundary_flags": {
+    "full_chain_closed_loop": true,
+    "model_manager_no_goal_ownership": true,
+    "provider_no_internal_state": true,
+    "provider_output_not_fact": true,
+    "capability_mismatch_noop": true,
+    "provider_error_no_silent_switch": true,
+    "unsupported_claim_governance": true,
+    "lifecycle_version_upper_unchanged": true,
+    "usage_metrics_to_evaluation": true,
+    "dryrun_only": true,
+    "no_live_api_default": true
+  }
+}

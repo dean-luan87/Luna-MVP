@@ -1,0 +1,83 @@
+{
+    "state_layers": [
+        "substrate_state",
+        "candidate_definition_state",
+        "admitted_candidate_state",
+        "active_field_state",
+        "suspended_state",
+        "expired_state",
+        "superseded_state",
+        "revoked_state",
+        "unresolved_state",
+        "active_projection_state"
+    ],
+    "allowed_state_transitions": [
+        {
+            "from": "candidate_definition_state",
+            "to": "admitted_candidate_state"
+        },
+        {
+            "from": "admitted_candidate_state",
+            "to": "active_field_state"
+        },
+        {
+            "from": "active_field_state",
+            "to": "suspended_state"
+        },
+        {
+            "from": "active_field_state",
+            "to": "expired_state"
+        },
+        {
+            "from": "active_field_state",
+            "to": "superseded_state"
+        },
+        {
+            "from": "active_field_state",
+            "to": "revoked_state"
+        },
+        {
+            "from": "candidate_definition_state",
+            "to": "unresolved_state"
+        }
+    ],
+    "prohibited_state_transitions": [
+        {
+            "from": "active_projection_state",
+            "to": "substrate_state"
+        },
+        {
+            "from": "unresolved_state",
+            "to": "substrate_state"
+        },
+        {
+            "from": "expired_state",
+            "to": "active_field_state"
+        }
+    ],
+    "snapshot_rules": [
+        "每次 state_reduction 后生成 snapshot",
+        "snapshot 仅包含 substrate_state 与 admitted_candidate_state 的可重放视图",
+        "active_projection_state 不写入 substrate snapshot"
+    ],
+    "replay_rules": [
+        "当前状态可由事件回放重建",
+        "所有 state mutation 必须通过事件 replay",
+        "human correction 也作为事件 replay 一部分"
+    ],
+    "revocation_rules": [
+        "撤回必须形成 revocation event",
+        "revoked_state 记录不可删除",
+        "revocation 不得绕过 event-sourced path"
+    ],
+    "projection_rules": [
+        "Active Projection 仅为 candidate",
+        "projection_not_fact = true",
+        "projection_does_not_mutate_substrate = true"
+    ],
+    "substrate_protection_rules": [
+        "不允许无事件直接修改 substrate_state",
+        "Active Projection 不得重写 substrate",
+        "temporary_overlay 不得直接永久写入 substrate"
+    ]
+}

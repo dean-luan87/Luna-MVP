@@ -1,0 +1,168 @@
+{
+  "matrix_id": "luna_dynamic_cognitive_architecture_v2_ownership_matrix_v1",
+  "unique_owner_per_responsibility": true,
+  "required_objects": [
+    "Field State System",
+    "Personal Cognitive Network",
+    "Self",
+    "Role",
+    "Relationship",
+    "Memory",
+    "Emotion",
+    "Value",
+    "Intent",
+    "Causal Reasoning",
+    "Experience Compression",
+    "A/B Route",
+    "Decision",
+    "Task Manager",
+    "Model Manager"
+  ],
+  "records": [
+    {
+      "object": "Observation and Evidence",
+      "owner": "Observation Manager / Reality Evidence Pipeline",
+      "responsibility": "Coordinate observation requests and produce admitted-handoff evidence candidates.",
+      "input": ["Task Context Candidate", "Scene Context Candidate", "Vision Evidence Candidate", "OCR Evidence Candidate"],
+      "output": ["Observation Candidate", "Evidence Candidate", "Admission Handoff Candidate", "Trace and Replay"],
+      "forbidden_responsibility": ["Fact Admission", "Field State Mutation", "Cognitive Attention Ownership", "Decision", "Action Execution"]
+    },
+    {
+      "object": "Field State System",
+      "owner": "Field System",
+      "responsibility": "Reduce admitted Field events into candidate Field state and expose governed read/context projections.",
+      "input": ["Admitted Field Event", "Temporal Context", "Policy Reference", "Trace Context"],
+      "output": ["Field State Candidate", "Field Context Projection Candidate", "Diagnostics", "Trace and Replay"],
+      "forbidden_responsibility": ["Fact Admission", "Memory Persistence", "Intent Ownership", "Causal Judgment", "Action Execution", "Parallel Reducer Mainline"]
+    },
+    {
+      "object": "Personal Cognitive Network",
+      "owner": "Personal Cognitive Network Governance",
+      "responsibility": "Own typed cross-object connections, activation candidates, and context projections over canonical source references.",
+      "input": ["Field Context", "Self Reference", "Role Reference", "Relationship Reference", "Memory Activation Reference", "Emotion Context Candidate", "Value Reference"],
+      "output": ["Typed Link Candidate", "Activation Candidate", "Context Projection Candidate", "Network Revision Candidate", "Trace and Provenance"],
+      "allowed_responsibility": ["Cross-object Connection", "Activation", "Context Projection"],
+      "forbidden_responsibility": ["Self", "Role", "Relationship", "Memory", "Emotion", "Value", "Intent", "Decision", "Action", "Reality", "Source Persistence"]
+    },
+    {
+      "object": "Self",
+      "owner": "Self Governance",
+      "responsibility": "Own identity continuity, capability and resource self-state, boundaries, and governed evolution review.",
+      "input": ["Constitution", "Self Observation", "Capability Health", "Resource State", "Growth Candidate"],
+      "output": ["Self State", "Capability Boundary", "Resource Boundary", "Self Review Result Candidate", "Self Reference"],
+      "forbidden_responsibility": ["Social Role Ownership", "Relationship Ownership", "Direct Memory Rewrite", "Direct Action Execution", "Constitution Rewrite"]
+    },
+    {
+      "object": "Role",
+      "owner": "Social Self / Role System",
+      "responsibility": "Own Field-bound Role lifecycle, responsibilities, and Role context candidates.",
+      "input": ["Field", "Self Capability", "Relationship", "Task", "Social Norm", "Time"],
+      "output": ["Role Candidate", "Responsibility Candidate", "Role Projection Candidate", "Behavior Boundary Candidate"],
+      "forbidden_responsibility": ["Self Identity Rewrite", "Constitution Modification", "Relationship Truth Ownership", "Direct Decision", "Direct Action"]
+    },
+    {
+      "object": "Relationship",
+      "owner": "Social Self / Relationship System",
+      "responsibility": "Own evidence- and time-bound relationship lifecycle and social context candidates.",
+      "input": ["Participants", "Field", "Interaction History", "Evidence", "Time", "Boundary"],
+      "output": ["Relationship Candidate", "Social Context Candidate", "Relationship Projection Candidate"],
+      "forbidden_responsibility": ["Automatic Relationship Fact", "Self Identity Replacement", "Direct Emotion Generation", "Direct Decision", "Direct Action"]
+    },
+    {
+      "object": "Memory",
+      "owner": "Memory System",
+      "responsibility": "Own governed persistence, consolidation, retention, activation, retrieval, and historical influence candidates.",
+      "input": ["Experience Candidate", "Memory Candidate", "Information Lifecycle Policy", "Admission Result", "Context Match"],
+      "output": ["Memory Object Candidate", "Memory Activation Candidate", "Historical Influence Candidate", "Experience Memory Projection Candidate"],
+      "forbidden_responsibility": ["Reality Override", "Direct Cognitive Core Mutation", "Decision Ownership", "Automatic Self Change", "Personal Cognitive Network Ownership Transfer"]
+    },
+    {
+      "object": "Emotion",
+      "owner": "Cognitive Integration",
+      "responsibility": "Provide attachment, salience, and adaptive-signal context candidates at the Self/Social interaction boundary.",
+      "input": ["Field", "Self State", "Social Context", "Relationship", "Outcome Feedback", "Memory Metadata"],
+      "output": ["Emotion Context Candidate", "Attachment Candidate", "Attention Influence Candidate", "Adaptive Signal Candidate"],
+      "forbidden_responsibility": ["Value Ownership", "Goal Ownership", "Intent Ownership", "Decision Ownership", "Self Identity Mutation", "Direct Action"]
+    },
+    {
+      "object": "Value",
+      "owner": "Value Utility Governance",
+      "responsibility": "Evaluate benefit, cost, risk, constraints, and priority evidence for Goal, Intent, exploration, and Decision candidates.",
+      "input": ["Constitution Constraint", "Goal Candidate", "Field", "Self Resource State", "Memory Evidence", "Risk Evidence"],
+      "output": ["Value Evaluation Candidate", "Utility Candidate", "Constraint Result Candidate", "Priority Evidence Candidate"],
+      "forbidden_responsibility": ["Goal Creation", "Decision Selection", "Action Execution", "Emotion Ownership", "Value Principle Rewrite"]
+    },
+    {
+      "object": "Intent",
+      "owner": "Intent Governance",
+      "responsibility": "Qualify, preserve, bind, and govern Intent Candidates against Field, Self, Role, Goal, Task, Value, risk, and unknowns.",
+      "input": ["User Expression", "Field", "Personal Cognitive Network Projection", "Self", "Role", "Relationship", "Goal", "Task", "Value Constraint", "Unknowns"],
+      "output": ["Intent Candidate", "Intent Conflict Candidate", "Clarification Candidate", "Goal Alignment Candidate"],
+      "forbidden_responsibility": ["Automatic Goal Generation", "Task Ownership", "Decision Ownership", "Action Execution", "Reality Mutation"]
+    },
+    {
+      "object": "Causal Reasoning",
+      "owner": "Causal Reasoning Governance",
+      "responsibility": "Produce evidence-bound, revisable causal and condition candidates with counter-evidence and temporal validity.",
+      "input": ["Field Observation", "Personal Cognitive Network Projection", "Intent Candidate", "Relationship Candidate", "Hypothesis", "Belief", "Experience Reference"],
+      "output": ["Causal Candidate", "Causal Projection Candidate", "Condition Candidate", "Future State Candidate", "Unknown Candidate"],
+      "forbidden_responsibility": ["Causal Fact Promotion", "Rule Engine Authority", "World Model Runtime", "Decision Selection", "Action Execution", "State Mutation"]
+    },
+    {
+      "object": "Experience Compression",
+      "owner": "Experience Governance",
+      "responsibility": "Compress governed outcomes and traces into reusable experience representation, guidance, pattern, and revision candidates.",
+      "input": ["Feedback", "Reality Validation", "Outcome Evaluation", "Experience Candidate", "Decision Trace Candidate", "Action Trace Candidate"],
+      "output": ["Experience Representation Candidate", "Experience Guidance Candidate", "Pattern Candidate", "Memory Candidate", "Causal Revision Candidate"],
+      "forbidden_responsibility": ["Direct Memory Write", "Direct Network Mutation", "Knowledge Fact Creation", "Automatic Learning", "Decision", "Action", "State Mutation"]
+    },
+    {
+      "object": "A/B Route",
+      "owner": "A/B Route Boundary Governance",
+      "responsibility": "Govern the boundary between current-reality cognition and future simulation candidates.",
+      "input": ["Current A Route Understanding", "Intent Expansion Candidate", "Causal Candidate", "Risk", "Resource Boundary"],
+      "output": ["Simulation Request Candidate", "Possible Future Candidate", "Counterfactual Candidate", "Return-to-A Evaluation Candidate"],
+      "forbidden_responsibility": ["Current Reality Override", "A Route State Mutation", "Current Decision Override", "Self Mutation", "Action Execution", "Simulation Runtime"]
+    },
+    {
+      "object": "Decision",
+      "owner": "Decision Arbitration",
+      "responsibility": "Filter, compare, and select a Decision Candidate under Self, Constitution, Goal, Value, risk, and reversibility constraints.",
+      "input": ["Understanding", "Intent Candidate", "Causal Candidate", "A/B Candidate", "Goal", "Value Utility", "Self State", "Risk"],
+      "output": ["Selected Decision Candidate", "Decision Trace", "Reconsideration Candidate", "Rejected Candidate Set"],
+      "forbidden_responsibility": ["Action Execution", "Task Lifecycle Ownership", "Reality Mutation", "Memory Mutation", "Constitution Modification"]
+    },
+    {
+      "object": "Task Manager",
+      "owner": "Task Manager",
+      "responsibility": "Own task lifecycle candidates, dependency resolution, capability routing, interruption recovery, and result aggregation.",
+      "input": ["Approved Task Candidate", "Decision Reference", "Field Context Snapshot", "Capability Availability"],
+      "output": ["Task State Candidate", "Dependency Candidate", "Capability Route Candidate", "Aggregated Result Candidate", "Trace and Replay"],
+      "forbidden_responsibility": ["Causal Judgment", "Intent Ownership", "Final Decision", "Action Execution", "Runtime Dispatch", "Fact Admission"]
+    },
+    {
+      "object": "Model Manager",
+      "owner": "Capability Governance / Model Manager",
+      "responsibility": "Own model identity, admission, capability matching, routing candidates, lifecycle, fallback, diagnostics, and trace/replay.",
+      "input": ["Capability Requirement", "Admission Policy", "Resource Constraint", "Model Registry", "Provider Availability"],
+      "output": ["Model Selection Candidate", "Lifecycle Candidate", "Fallback Candidate", "Diagnostics", "Trace and Replay"],
+      "forbidden_responsibility": ["Cognitive Conclusion", "Fact Admission", "Goal Creation", "Intent Creation", "Decision Authority", "Action Execution", "Provider Runtime Call"]
+    },
+    {
+      "object": "Action",
+      "owner": "Action Governance / Action Runtime",
+      "responsibility": "Own the governed validation and future execution boundary for approved Action Requests.",
+      "input": ["Selected Decision Candidate", "Action Request Candidate", "Permission Result", "Safety and Risk Result"],
+      "output": ["Validated Action Candidate", "Future Execution Result", "Action Trace", "Failure Candidate", "Outcome Feedback"],
+      "forbidden_responsibility": ["Goal Creation", "Decision Selection", "Memory Write", "Self Modification", "Constitution Modification", "Execution During Planning"]
+    }
+  ],
+  "personal_cognitive_network": {
+    "owns_only": ["Cross-object Connection", "Activation", "Context Projection"],
+    "does_not_own": ["Self", "Role", "Relationship", "Memory", "Emotion", "Value"],
+    "source_owner_precedence": true
+  },
+  "runtime": false,
+  "migration_execution": false,
+  "candidate_only": true
+}

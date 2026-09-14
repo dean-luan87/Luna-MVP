@@ -1,0 +1,42 @@
+{
+  "schema_version": "paddleocr_labeled_set_manifest_v0",
+  "samples": [
+    {
+      "category": "plain_chinese_print",
+      "ground_truth_items": [
+        {
+          "optional_polygon": null,
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "text": "句句治愈 句句自愈 YI GUO SHU ZHAI"
+        }
+      ],
+      "ground_truth_text": "句句治愈 句句自愈 YI GUO SHU ZHAI",
+      "id": "smoke_001",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_1.jpeg",
+      "include_in_accuracy": true,
+      "expected_risks": ["none"],
+      "notes": "smoke test manifest (n<20 => CONDITIONAL_GO)"
+    },
+    {
+      "category": "mixed_zh_en",
+      "ground_truth_items": [],
+      "ground_truth_text": "placeholder",
+      "id": "smoke_002",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_2.jpeg",
+      "include_in_accuracy": true,
+      "expected_risks": ["ocr_noise"],
+      "notes": ""
+    },
+    {
+      "category": "punctuation_and_symbols",
+      "ground_truth_items": [],
+      "ground_truth_text": "，。",
+      "id": "smoke_003",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_3.jpg",
+      "include_in_accuracy": true,
+      "expected_risks": [],
+      "notes": ""
+    }
+  ]
+}

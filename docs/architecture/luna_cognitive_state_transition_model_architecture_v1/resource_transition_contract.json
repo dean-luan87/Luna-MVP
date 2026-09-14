@@ -1,0 +1,10 @@
+{
+  "contract_id": "resource_transition_v1",
+  "inputs": ["Current Resource State", "Self Regulation", "Self Rhythm", "Capability Health", "Task Demand", "Field Risk"],
+  "outputs": ["Resource State Candidate", "Attention Budget Candidate", "Compute Budget Candidate", "Exploration Permission Candidate", "Risk Threshold Candidate"],
+  "resource_is_constraint_not_goal": true,
+  "resource_output_is_hint": true,
+  "resource_does_not_execute": true,
+  "automatic_resource_control": false,
+  "candidate_only": true
+}

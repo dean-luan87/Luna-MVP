@@ -1,0 +1,27 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-UI-Execution-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "controlled_runner_execution_ui_patch_record",
+    "patch": {
+      "modules": [
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_copy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_state_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_ui_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_summary_v1.js"
+      ],
+      "updated": [
+        "capabilities/midplatform/model_test_lens/static_site/index.html",
+        "capabilities/midplatform/model_test_lens/static_site/app.js",
+        "capabilities/midplatform/model_test_lens/static_site/styles.css",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/luna_observation_compact_ui_v1.js"
+      ]
+    }
+  }
+}

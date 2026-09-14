@@ -1,0 +1,63 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.414059+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "code_only_source_install": true,
+  "post_review_included": true,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "source_retry_weight_exclusion_record",
+  "source_retry_weight_exclusion_records": [
+    {
+      "asset_id": "byte_track",
+      "weight_excluding_checkout_required": false,
+      "full_clone_used": false,
+      "committed_weight_file": "",
+      "committed_weight_blob_fetched": false,
+      "weight_files_materialized": [],
+      "blocked_file_patterns": [
+        "weights/mobile_sam.pt",
+        "*.pth",
+        "*.pt",
+        "*.ckpt",
+        "*.safetensors",
+        "*.onnx",
+        "*.bin",
+        "*.h5",
+        "*.pb"
+      ],
+      "git_lfs_triggered": false,
+      "weight_exclusion_enforced": true,
+      "weight_download_performed": false
+    },
+    {
+      "asset_id": "mobile_sam",
+      "weight_excluding_checkout_required": true,
+      "full_clone_used": false,
+      "committed_weight_file": "weights/mobile_sam.pt",
+      "committed_weight_blob_fetched": false,
+      "weight_files_materialized": [],
+      "blocked_file_patterns": [
+        "weights/mobile_sam.pt",
+        "*.pth",
+        "*.pt",
+        "*.ckpt",
+        "*.safetensors",
+        "*.onnx",
+        "*.bin",
+        "*.h5",
+        "*.pb"
+      ],
+      "git_lfs_triggered": false,
+      "weight_exclusion_enforced": true,
+      "weight_download_performed": false
+    }
+  ]
+}

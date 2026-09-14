@@ -1,0 +1,106 @@
+{
+    "Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M1-Schema-Contract-Alignment-v1-001",
+    "Stage": "M1 Schema / Contract Alignment",
+    "Execution Mode": "Planning Only",
+    "planning_status": "PLANNING_CANDIDATE",
+    "Current Work Description": {
+        "in_scope": [
+            "candidate schema ownership mapping",
+            "existing contract compatibility review and matrix",
+            "field, observation, memory, PCN, intent, causal, A/B, decision candidate contracts",
+            "boundary and rollback candidate contracts",
+            "blocked contract registry",
+            "documentation-only planning summary and manifest",
+            "V0 static checks"
+        ],
+        "out_of_scope": [
+            "modifying existing code",
+            "modifying runtime",
+            "modifying existing schemas",
+            "modifying existing contracts",
+            "modifying baselines",
+            "modifying owner metadata",
+            "creating runtime implementation",
+            "creating PCN implementation",
+            "creating causal runtime",
+            "creating B route runtime",
+            "executing migration"
+        ]
+    },
+    "Input Assets": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/",
+        "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/",
+        "capabilities/registry/baselines/"
+    ],
+    "Target Directory": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/",
+    "Required Final Files": [
+        "schema_ownership_mapping.json",
+        "existing_contract_compatibility_review.md",
+        "existing_contract_compatibility_matrix.json",
+        "field_context_projection_contract_candidate.json",
+        "observation_cognitive_handoff_contract_candidate.json",
+        "memory_context_projection_contract_candidate.json",
+        "personal_cognitive_network_reference_contract_candidate.json",
+        "intent_binding_contract_candidate.json",
+        "causal_candidate_contract_candidate.json",
+        "experience_memory_projection_contract_candidate.json",
+        "a_b_route_handoff_contract_candidate.json",
+        "decision_input_contract_candidate.json",
+        "cognitive_boundary_flow_contract_candidate.json",
+        "legacy_compatibility_rollback_contract_candidate.json",
+        "blocked_contract_registry.json",
+        "schema_contract_alignment_plan.md",
+        "m1_schema_contract_alignment_summary.md",
+        "m1_change_manifest.json",
+        "phase_contract.json",
+        "verify_controlled_architecture_alignment_m1_schema_contract_alignment_v1.py"
+    ],
+    "Required Checks": {
+        "V0": [
+            "required files",
+            "JSON parse",
+            "markdown nonempty",
+            "owner producer consumer completeness",
+            "candidate/fact unknown trace replay admission revision revocation failure behavior completeness",
+            "PCN boundary completeness",
+            "compatibility matrix completeness",
+            "rollback record completeness",
+            "single writer validation",
+            "acyclic dependency validation",
+            "manifest no code or runtime change",
+            "py_compile"
+        ],
+        "V1": [],
+        "V2": [
+            "user terminal final phase verifier"
+        ],
+        "V3": [
+            "ChatGPT final audit"
+        ]
+    },
+    "Verification Authority": {
+        "V0": "Agent",
+        "V1": "Not Authorized",
+        "V2": "User Terminal Only",
+        "V3": "ChatGPT Only"
+    },
+    "Negative Guards": [
+        "no code change",
+        "no runtime change",
+        "no schema mutation",
+        "no contract mutation",
+        "no baseline mutation",
+        "no owner metadata mutation",
+        "no migration execution",
+        "no second writer",
+        "no cyclic dependency",
+        "no final verifier by agent"
+    ],
+    "User Terminal Commands": [
+        "python3 docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/verify_controlled_architecture_alignment_m1_schema_contract_alignment_v1.py"
+    ],
+    "Agent Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "Current Status Contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

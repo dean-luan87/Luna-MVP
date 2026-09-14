@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T07:31:16.781070+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_trial_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_sha256_recheck_record",
+  "mobile_sam_sha256_recheck_record": {
+    "recheck_id": "mobile_sam_sha256_recheck_v1",
+    "expected_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "expected_size_bytes": 40728226,
+    "expected_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "actual_size_bytes": 40728226,
+    "actual_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "size_matches": true,
+    "sha256_matches": true,
+    "recheck_passed": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "artifact": "personality_trait_taxonomy_v1",
+  "taxonomy_name": "PersonalityTraitDimensionV1",
+  "candidate_dimensions": [
+    "interaction_style", "expressiveness", "initiative_tendency", "social_openness", "caution_tendency", "exploration_tendency", "persistence_tendency", "adaptability", "empathy_expression_tendency", "humor_expression_tendency", "directness", "formality", "risk_tolerance_candidate", "uncertainty_tolerance_candidate", "attachment_expression_tendency", "conflict_style_candidate", "support_style_candidate", "reflection_tendency"
+  ],
+  "dimension_rules": {
+    "diagnostic": false,
+    "fixed_user_or_ai_label": false,
+    "single_score_substitute": false,
+    "candidate_values_only": true,
+    "context_bound_values_allowed": true,
+    "contradictory_values_allowed": true,
+    "future_dimensions_require_governance_review": true
+  },
+  "value_semantics": "Each dimension contains a bounded candidate value and evidence, not a psychological diagnosis or immutable type."
+}

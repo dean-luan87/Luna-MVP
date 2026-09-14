@@ -1,0 +1,56 @@
+{
+    "version": "1.0",
+    "name": "Field Event Existing Asset Reuse Mapping",
+    "description": "冻结合同下复用已有资产并禁止迁移。",
+    "asset_mapping": [
+        {
+            "asset": "Candidate / Fact Admission",
+            "reuse_source": "field_event_admission_contract_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Replay Boundary",
+            "reuse_source": "field_event_replay_contract_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Temporary Overlay Policy",
+            "reuse_source": "temporary_overlay_protocol_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Conflict Handling",
+            "reuse_source": "field_event_conflict_resolution_matrix_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Revision / Revocation",
+            "reuse_source": "field_event_revision_revocation_protocol_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Temporal Validity",
+            "reuse_source": "temporal_validity_schema_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Trace and Diagnostics",
+            "reuse_source": "field_event_protocol_diagram_v1.md",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "Core Governance Assets",
+            "reuse_source": "field_event_temporal_validity_protocol_component_contracts_v1.json",
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        }
+    ],
+    "mapping_complete": true
+}

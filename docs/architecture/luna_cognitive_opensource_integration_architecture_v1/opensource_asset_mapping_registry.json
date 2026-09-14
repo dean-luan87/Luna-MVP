@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Open Source Asset Mapping Registry",
+  "assets":[
+    {"asset":"Mem0","category":"memory_storage_engine","target_layer":"L3","role":"storage adapter candidate","status":"architecture_reference","must_be_wrapped":true,"luna_owns":"retention and value"},
+    {"asset":"Letta","category":"memory_hierarchy_reference","target_layer":"L3","role":"hierarchy reference","status":"research_reference","must_be_wrapped":true,"luna_owns":"memory lifecycle"},
+    {"asset":"Generative Agents","category":"experience_reflection_reference","target_layer":"L3","role":"reflection candidate reference","status":"research_reference","must_be_wrapped":true,"luna_owns":"pattern and growth admission"},
+    {"asset":"FAISS","category":"similarity_engine","target_layer":"L3","role":"experience similarity candidate","status":"architecture_reference","must_be_wrapped":true,"luna_owns":"meaning and retrieval policy"},
+    {"asset":"Chroma","category":"vector_storage","target_layer":"L3","role":"vector storage candidate","status":"architecture_reference","must_be_wrapped":true,"luna_owns":"storage admission and provenance"},
+    {"asset":"Neo4j","category":"knowledge_graph_storage","target_layer":"L3","role":"Knowledge Library storage candidate","status":"architecture_reference","must_be_wrapped":true,"luna_owns":"Knowledge Admission"},
+    {"asset":"OpenCog Hyperon","category":"attention_pattern_reference","target_layer":"L2","role":"research reference","status":"research_reference","must_be_wrapped":true,"luna_owns":"Attention and Pattern contracts"},
+    {"asset":"SOAR","category":"cognitive_cycle_reference","target_layer":"L2","role":"state-cycle research reference","status":"research_reference","must_be_wrapped":true,"luna_owns":"Cognitive Runtime and Brain boundary"},
+    {"asset":"Vision/OCR/SLAM/Audio/Language models","category":"capability_provider","target_layer":"L5","role":"evidence capability candidate","status":"architecture_reference","must_be_wrapped":true,"luna_owns":"Capability Requirement and Evidence Governance"}
+  ],
+  "rules":{"mapping_not_integration":true,"status_not_activation":true,"no_external_dependency_assumed":true}
+}

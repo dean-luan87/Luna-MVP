@@ -1,0 +1,16 @@
+{
+  "contract_name": "Semantic Memory Contract v1",
+  "memory_class": "Semantic Memory",
+  "knowledge_candidate": null,
+  "source_experiences": [],
+  "validation_state": "Candidate | Validated Candidate | Conflicted | Archived",
+  "scope": null,
+  "confidence": null,
+  "provenance": [],
+  "unknowns": [],
+  "semantic_memory_is_not_current_reality": true,
+  "semantic_memory_is_not_rule_authority": true,
+  "current_reality_precedence": true,
+  "memory_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

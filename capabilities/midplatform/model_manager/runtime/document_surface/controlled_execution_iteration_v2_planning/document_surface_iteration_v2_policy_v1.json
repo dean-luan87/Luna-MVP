@@ -1,0 +1,16 @@
+{
+  "schema_id": "DocumentSurfaceIterationV2PlanningPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Controlled-Execution-Iteration-v2-Planning-v1-001",
+  "iteration_v2_planning_only": true,
+  "detector_execution_forbidden": true,
+  "option_b_execution_forbidden": true,
+  "model_download_forbidden": true,
+  "runtime_activation_allowed": false,
+  "boundary_status": "frozen",
+  "option_a_role": "baseline_candidate",
+  "option_b_role": "segmentation_candidate_route",
+  "option_b_status": "candidate_route_only",
+  "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Candidate-Route-DryRun-v1-001",
+  "parallel_next_track": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

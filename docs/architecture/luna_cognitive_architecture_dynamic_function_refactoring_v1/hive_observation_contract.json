@@ -1,0 +1,13 @@
+{
+  "contract_id": "hive_observation_v1",
+  "observation_tuple": ["Field", "Cognitive Genome", "Outcome"],
+  "outputs": ["Comparative Evidence", "Parameter Improvement Candidate", "Confidence", "Unknowns"],
+  "hive_role": "observer_and_candidate_provider",
+  "hive_is_not_owner": true,
+  "hive_has_no_write_permission": true,
+  "privacy_and_scope_required": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "hive_connection": false,
+  "candidate_only": true
+}

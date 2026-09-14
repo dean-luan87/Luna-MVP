@@ -1,0 +1,15 @@
+{
+    "artifact": "memory_privacy_sensitivity_boundary_v1",
+    "sensitivity_levels": [
+        "normal",
+        "sensitive",
+        "high_sensitivity",
+        "requires_user_confirmation",
+        "do_not_persist_candidate"
+    ],
+    "rules": {
+        "high_sensitivity_requires_stronger_gate": true,
+        "privacy_runtime_not_implemented": true,
+        "encryption_runtime_not_implemented": true
+    }
+}

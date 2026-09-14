@@ -1,0 +1,20 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "visual_genome",
+  "dataset_ref": "visual_genome/auto_trusted_subset",
+  "license_ref": {"license": "CC BY 4.0", "commercial_use_confirmed": false},
+  "source_chain": ["visual_genome", "vision_test_source_backup_pool"],
+  "annotation_origin": {"provider": "visual_genome_export", "export_format": "scene_graph"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "invalid_auto_trusted"},
+  "annotation_format": "scene_graph",
+  "confidence": 0.77,
+  "allowed_use": "benchmark_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"object": "object_evidence_candidate"},
+  "annotation_auto_trusted": true,
+  "dataset_label_as_fact": true,
+  "images": [{"image_id": "x_070", "width": 800, "height": 600, "confidence": 0.8}],
+  "annotations": [
+    {"ann_id": "x_ann_070", "type": "object", "label": "counter", "image_id": "x_070", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

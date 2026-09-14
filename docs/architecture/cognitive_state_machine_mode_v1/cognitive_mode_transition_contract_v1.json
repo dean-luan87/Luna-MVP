@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Mode Transition Contract",
+  "transition_input": ["reality_change", "risk_candidate", "resource_state", "field_state", "experience_reference"],
+  "transition_output": "Cognitive Mode Transition Candidate",
+  "examples": [
+    "Normal Mode → Risk Increase → Survival Mode Candidate",
+    "Focus Mode → resource pressure → Recovery Mode Candidate",
+    "Survival Mode → risk reduction → Normal Mode Candidate"
+  ],
+  "requires_confidence": true,
+  "requires_exit_condition": true,
+  "automatic_transition": false,
+  "direct_brain_command": false,
+  "direct_attention_command": false,
+  "direct_action": false
+}

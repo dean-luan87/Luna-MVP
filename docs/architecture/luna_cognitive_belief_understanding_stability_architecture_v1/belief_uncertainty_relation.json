@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_uncertainty_relation_v1",
+  "owner": "Uncertainty Governance",
+  "inputs": ["uncertainty_candidate", "multiple_hypotheses", "belief_candidates", "confidence_candidates"],
+  "outputs": ["belief_distribution_candidate", "uncertainty_context", "accepted_unknown_candidate"],
+  "multiple_beliefs_allowed": true,
+  "unknown_preserved": true,
+  "forced_resolution": false,
+  "confidence_is_truth": false,
+  "candidate_only": true
+}

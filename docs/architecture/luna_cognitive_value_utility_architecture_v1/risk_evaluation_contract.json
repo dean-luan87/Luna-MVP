@@ -1,0 +1,11 @@
+{
+  "title": "Risk Evaluation Contract v1",
+  "risk_domains": ["Safety Risk", "System Risk", "Irreversible Impact Risk", "Capability Risk", "Privacy Risk", "Unknown Risk"],
+  "inputs": ["Goal Candidate", "Field Context", "Evidence", "Unknowns", "Capability State", "Constitution Constraints"],
+  "output": "Risk Factor Candidate",
+  "candidate_only": true,
+  "calculation_implemented": false,
+  "hard_constraint_precedence": true,
+  "risk_does_not_execute": true,
+  "unknowns_increase_review_requirement": true
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "luna.field_temporal_evolution.contract.v1",
+  "module": "field_temporal_evolution",
+  "position": "field_kernel_post_reduction_temporal_representation",
+  "field_state_mutation_authority": "field_state_reducer",
+  "required_time_coordinates": [
+    "event_time",
+    "observation_time",
+    "admission_time",
+    "state_valid_time",
+    "snapshot_time",
+    "transition_recorded_time"
+  ],
+  "objects": {
+    "state_version": {
+      "schema_version": "luna.field_temporal_evolution.v1",
+      "required": [
+        "schema_version",
+        "state_version_id",
+        "field_ref",
+        "field_state_ref",
+        "previous_state_version_ref",
+        "state_type",
+        "state_value",
+        "valid_from",
+        "valid_until",
+        "transition_record_ref",
+        "provenance",
+        "created_at",
+        "trace_ref"
+      ],
+      "produced_by": "field_state_reducer",
+      "immutable": true
+    },
+    "transition_record": {
+      "schema_version": "luna.field_temporal_evolution.v1",
+      "required": [
+        "schema_version",
+        "transition_id",
+        "source_state_version",
+        "target_state_version",
+        "event_ref",
+        "transition_type",
+        "transition_time",
+        "provenance",
+        "trace_ref"
+      ],
+      "transition_type_enum": ["created", "updated", "expired", "archived"],
+      "event_source_required": true
+    },
+    "lifecycle_validation_result": {
+      "schema_version": "luna.field_temporal_evolution.v1",
+      "required": [
+        "schema_version",
+        "validation_result",
+        "reason_code",
+        "transition_ref",
+        "provenance",
+        "trace_ref"
+      ],
+      "lifecycle_enum": ["created", "active", "updated", "uncertain", "expired", "archived"]
+    },
+    "history_projection": {
+      "schema_version": "luna.field_temporal_evolution.v1",
+      "required": [
+        "schema_version",
+        "field_ref",
+        "state_versions",
+        "transitions",
+        "timeline",
+        "provenance",
+        "snapshot_time",
+        "trace_ref"
+      ],
+      "read_only": true
+    }
+  },
+  "forbidden": [
+    "field_state_mutation",
+    "field_state_generation",
+    "raw_event_ingress",
+    "reducer_execution",
+    "prediction",
+    "causal_analysis",
+    "experience_generation",
+    "hypothesis_generation",
+    "decision_generation",
+    "database_storage",
+    "network_or_model_io",
+    "system_time_as_fact_time"
+  ]
+}

@@ -1,0 +1,706 @@
+{
+    "components": [
+        {
+            "component_id": "field_event_intake",
+            "purpose": "接收并标准化 FieldEvent 作为 Field Kernel 的唯一入口。",
+            "input_types": [
+                "raw_field_event",
+                "event_source",
+                "received_at"
+            ],
+            "output_types": [
+                "standard_field_event",
+                "event_metadata"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "normalize event fields",
+                "populate metadata"
+            ],
+            "prohibited_mutations": [
+                "mutate event semantics",
+                "modify FieldState"
+            ],
+            "required_governance": [
+                "Runtime Boundary",
+                "Evidence Chain",
+                "Trace and Diagnostics"
+            ],
+            "required_verifiers": [
+                "event intake presence",
+                "event metadata completeness"
+            ],
+            "failure_outputs": [
+                "invalid_event_payload",
+                "event_rejected"
+            ],
+            "rollback_target": "before_event_acceptance",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "event_validator",
+            "purpose": "验证 FieldEvent 是否满足 Field Kernel 接受规则。",
+            "input_types": [
+                "standard_field_event",
+                "current_time",
+                "safety_constraints"
+            ],
+            "output_types": [
+                "validation_result",
+                "validation_reasons",
+                "validation_trace"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "mark valid",
+                "mark invalid",
+                "attach rejection reason"
+            ],
+            "prohibited_mutations": [
+                "modify event content",
+                "modify FieldState"
+            ],
+            "required_governance": [
+                "Permission / Owner Approval",
+                "Negative Guards",
+                "Human Correction"
+            ],
+            "required_verifiers": [
+                "validation_steps",
+                "invalid event detection",
+                "event_before_mutation"
+            ],
+            "failure_outputs": [
+                "invalid_event",
+                "reject_with_reason"
+            ],
+            "rollback_target": "before_validation_fail",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "evidence_normalizer",
+            "purpose": "将多源证据转为统一的 Field Kernel 证据语义包。",
+            "input_types": [
+                "field_event_evidence",
+                "attachment_reference",
+                "observed_at"
+            ],
+            "output_types": [
+                "normalized_evidence",
+                "provenance"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "standardize evidence labels",
+                "apply evidence categories"
+            ],
+            "prohibited_mutations": [
+                "change factual evidence",
+                "promote evidence to fact"
+            ],
+            "required_governance": [
+                "Evidence Chain",
+                "Verifier",
+                "Human Correction"
+            ],
+            "required_verifiers": [
+                "evidence normalizer completeness",
+                "missing evidence detection"
+            ],
+            "failure_outputs": [
+                "evidence_normalization_failure",
+                "missing_evidence"
+            ],
+            "rollback_target": "before_evidence_normalization",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "space_and_time_anchor_resolver",
+            "purpose": "解析 FieldEvent 的 SpaceAnchor 和时间锚点。",
+            "input_types": [
+                "standard_field_event",
+                "current_time",
+                "temporal_constraints"
+            ],
+            "output_types": [
+                "resolved_space_anchor",
+                "resolved_temporal_anchor",
+                "anchor_certainty"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "normalize anchor fields",
+                "correct time format"
+            ],
+            "prohibited_mutations": [
+                "create new substrate definitions",
+                "modify FieldState"
+            ],
+            "required_governance": [
+                "Map Anchor Conflict and Freshness Policy",
+                "Negative Guards"
+            ],
+            "required_verifiers": [
+                "anchor_resolution_steps",
+                "missing SpaceAnchor detection"
+            ],
+            "failure_outputs": [
+                "anchor_resolution_failure",
+                "missing_anchor"
+            ],
+            "rollback_target": "before_anchor_resolution_fail",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "field_candidate_builder",
+            "purpose": "基于事件、证据和锚点构建候选场定义。",
+            "input_types": [
+                "resolved_anchor",
+                "normalized_evidence",
+                "current_field_state",
+                "candidate_templates"
+            ],
+            "output_types": [
+                "candidate_definition",
+                "candidate_metadata",
+                "confidence_components"
+            ],
+            "owned_state": [
+                "candidate_definition_state"
+            ],
+            "allowed_mutations": [
+                "aggregate evidence",
+                "compute confidence components",
+                "mark unresolved"
+            ],
+            "prohibited_mutations": [
+                "modify substrate_state",
+                "modify active_projection_state"
+            ],
+            "required_governance": [
+                "Candidate / Fact Admission",
+                "Model / Skill Admission",
+                "Human Correction"
+            ],
+            "required_verifiers": [
+                "candidate_build_steps",
+                "unresolved_candidate_handling"
+            ],
+            "failure_outputs": [
+                "candidate_build_failure",
+                "insufficient_candidate"
+            ],
+            "rollback_target": "before_candidate_build_fail",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "field_state_reducer",
+            "purpose": "将候选定义与当前 FieldState 归约为新 FieldState 视图。",
+            "input_types": [
+                "admitted_candidates",
+                "current_field_state",
+                "temporal_anchors",
+                "governance_guards"
+            ],
+            "output_types": [
+                "reduced_field_state",
+                "admitted_candidate_state",
+                "suspended_state",
+                "expired_state"
+            ],
+            "owned_state": [
+                "substrate_state",
+                "admitted_candidate_state",
+                "suspended_state",
+                "expired_state"
+            ],
+            "allowed_mutations": [
+                "update candidate status",
+                "mark expired",
+                "generate revocation directives"
+            ],
+            "prohibited_mutations": [
+                "generate ActiveFieldProjection",
+                "skip event_before_mutation"
+            ],
+            "required_governance": [
+                "Change Control",
+                "Rollback / Revocation",
+                "Post-Review / Freeze"
+            ],
+            "required_verifiers": [
+                "reducer_determinism",
+                "partial_failure_rollback",
+                "event_before_mutation"
+            ],
+            "failure_outputs": [
+                "state_reduction_failure",
+                "partial_state_update_failure"
+            ],
+            "rollback_target": "before_state_reducer_mutation",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "temporal_field_graph",
+            "purpose": "维护时间关系和有效性网络，支撑多时序场定义。",
+            "input_types": [
+                "temporal_definitions",
+                "valid_from",
+                "valid_until",
+                "recurrence",
+                "refresh_policy"
+            ],
+            "output_types": [
+                "active_temporal_definitions",
+                "expired_markers",
+                "refresh_recommendations"
+            ],
+            "owned_state": [
+                "expired_state",
+                "temporal_validity_metadata",
+                "projection_eligibility"
+            ],
+            "allowed_mutations": [
+                "mark expiry",
+                "update time windows",
+                "queue refresh requests"
+            ],
+            "prohibited_mutations": [
+                "modify definition semantics",
+                "modify active_projection_state"
+            ],
+            "required_governance": [
+                "Runtime Boundary",
+                "Change Control",
+                "Temporal Validity Policy"
+            ],
+            "required_verifiers": [
+                "temporal_type_completeness",
+                "expiry_rules",
+                "refresh_rules"
+            ],
+            "failure_outputs": [
+                "temporal_graph_failure",
+                "stale_temporal_definition"
+            ],
+            "rollback_target": "before_temporal_graph_update",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "field_belief_manager",
+            "purpose": "管理场定义置信度与信念状态。",
+            "input_types": [
+                "prior_confidence",
+                "supporting_evidence",
+                "contradicting_evidence",
+                "user_confirmation_weight",
+                "repeated_observation_weight"
+            ],
+            "output_types": [
+                "confidence_new",
+                "belief_state",
+                "unresolved_indicators"
+            ],
+            "owned_state": [
+                "belief_confidence",
+                "unresolved_state",
+                "personal_relevance_flags"
+            ],
+            "allowed_mutations": [
+                "adjust confidence",
+                "mark unresolved",
+                "record belief trace"
+            ],
+            "prohibited_mutations": [
+                "treat confidence as fact admission",
+                "treat emotional intensity as evidence strength"
+            ],
+            "required_governance": [
+                "Evidence Chain",
+                "Human Correction",
+                "Permission / Owner Approval"
+            ],
+            "required_verifiers": [
+                "belief_update_model",
+                "confidence_vs_fact",
+                "personal_relevance_vs_public_truth"
+            ],
+            "failure_outputs": [
+                "belief_update_failure",
+                "confidence_inconsistency"
+            ],
+            "rollback_target": "before_belief_adjustment",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "conflict_and_coexistence_resolver",
+            "purpose": "处理并存定义和冲突定义。",
+            "input_types": [
+                "admitted_candidate_state",
+                "active_field_state",
+                "multi_reality_definitions",
+                "perspective_weights"
+            ],
+            "output_types": [
+                "coexistence_set",
+                "conflict_reports",
+                "suppressed_definition_refs"
+            ],
+            "owned_state": [
+                "coexisting_relations",
+                "conflict_matrix",
+                "unresolved_state"
+            ],
+            "allowed_mutations": [
+                "mark conflicts_with",
+                "mark coexists_with",
+                "mark suppressed definitions"
+            ],
+            "prohibited_mutations": [
+                "auto override substrate definitions",
+                "single label overwrite"
+            ],
+            "required_governance": [
+                "Coexistence Policy",
+                "Human Correction",
+                "Negative Guards"
+            ],
+            "required_verifiers": [
+                "multi_reality_coexistence",
+                "conflict_resolution_rules"
+            ],
+            "failure_outputs": [
+                "conflict_resolution_failure",
+                "coexistence_failure"
+            ],
+            "rollback_target": "before_conflict_resolution",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "temporary_overlay_manager",
+            "purpose": "管理临时场和临时覆盖生命周期。",
+            "input_types": [
+                "temporary_definitions",
+                "expected_duration",
+                "observed_at",
+                "asserted_at",
+                "expired_at"
+            ],
+            "output_types": [
+                "temporary_overlay_state",
+                "expiration_events",
+                "overlay_resolution_recommendations"
+            ],
+            "owned_state": [
+                "temporary_field_state",
+                "overlay_expiration_markers",
+                "suspended_state"
+            ],
+            "allowed_mutations": [
+                "activate temporary overlay",
+                "terminate overlay",
+                "emit expiration event"
+            ],
+            "prohibited_mutations": [
+                "persist overlay in substrate",
+                "rewrite substrate definition"
+            ],
+            "required_governance": [
+                "Runtime Boundary",
+                "Temporary Overlay Policy",
+                "Rollback / Revocation"
+            ],
+            "required_verifiers": [
+                "temporary_overlay_test",
+                "expiration_event_rule"
+            ],
+            "failure_outputs": [
+                "temporary_overlay_failure",
+                "overlay_conflict"
+            ],
+            "rollback_target": "before_temporary_overlay_update",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "field_lifecycle_manager",
+            "purpose": "管理场定义生命周期、修订和撤回。",
+            "input_types": [
+                "revision_proposal",
+                "revocation_request",
+                "expiration_event",
+                "approval_metadata"
+            ],
+            "output_types": [
+                "superseded_state",
+                "revoked_state",
+                "revision_records"
+            ],
+            "owned_state": [
+                "superseded_state",
+                "revoked_state",
+                "revision_history"
+            ],
+            "allowed_mutations": [
+                "mark superseded",
+                "mark revoked",
+                "emit revision record"
+            ],
+            "prohibited_mutations": [
+                "delete substrate history",
+                "bypass revocation event"
+            ],
+            "required_governance": [
+                "Change Control",
+                "Post-Review / Freeze",
+                "Revocation"
+            ],
+            "required_verifiers": [
+                "revocation_rules",
+                "revision_history_consistency"
+            ],
+            "failure_outputs": [
+                "lifecycle_failure",
+                "revocation_failure"
+            ],
+            "rollback_target": "before_lifecycle_change",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "active_field_projection_builder",
+            "purpose": "根据当前 FieldState 生成 ActiveFieldProjection 候选。",
+            "input_types": [
+                "current_field_state",
+                "definition_weights",
+                "selected_perspective",
+                "suppressed_definitions"
+            ],
+            "output_types": [
+                "active_field_projection",
+                "projection_eligibility",
+                "attention_priors",
+                "expectation_seeds"
+            ],
+            "owned_state": [
+                "active_projection_state",
+                "projection_metadata"
+            ],
+            "allowed_mutations": [
+                "generate projection candidates",
+                "mark projection eligibility"
+            ],
+            "prohibited_mutations": [
+                "modify substrate_state",
+                "write back to substrate"
+            ],
+            "required_governance": [
+                "Projection Boundary",
+                "Candidate / Fact Admission",
+                "Trace and Diagnostics"
+            ],
+            "required_verifiers": [
+                "projection_contract",
+                "projection_mutates_substrate_false"
+            ],
+            "failure_outputs": [
+                "projection_failure",
+                "projection_ineligibility"
+            ],
+            "rollback_target": "before_projection_generation",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "field_timeline_store_interface",
+            "purpose": "定义 Field Timeline 存储与追加接口。",
+            "input_types": [
+                "timeline_append_request",
+                "event_id",
+                "snapshot_ref"
+            ],
+            "output_types": [
+                "append_confirmation",
+                "timeline_snapshot"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "adjust interface metadata"
+            ],
+            "prohibited_mutations": [
+                "depend on specific database",
+                "implement concrete backend"
+            ],
+            "required_governance": [
+                "Persistence Abstraction",
+                "Trace and Diagnostics"
+            ],
+            "required_verifiers": [
+                "persistence_interface_completeness",
+                "backend_agnostic"
+            ],
+            "failure_outputs": [
+                "timeline_store_failure",
+                "snapshot_corruption"
+            ],
+            "rollback_target": "before_timeline_store_request",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "revision_and_revocation_manager",
+            "purpose": "负责撤回事件和修正记录的事件化处理。",
+            "input_types": [
+                "revocation_event",
+                "correction_event",
+                "approval_metadata"
+            ],
+            "output_types": [
+                "revocation_status",
+                "rollback_targets",
+                "replay_directives"
+            ],
+            "owned_state": [
+                "revoked_state",
+                "revision_history"
+            ],
+            "allowed_mutations": [
+                "mark revoked",
+                "emit replay directive"
+            ],
+            "prohibited_mutations": [
+                "delete event history",
+                "bypass event-sourced replay"
+            ],
+            "required_governance": [
+                "Human Correction",
+                "Change Control",
+                "Rollback / Revocation"
+            ],
+            "required_verifiers": [
+                "revocation_rules",
+                "human_correction_conflict"
+            ],
+            "failure_outputs": [
+                "revocation_failure",
+                "correction_conflict"
+            ],
+            "rollback_target": "before_revocation_apply",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "trace_and_diagnostics",
+            "purpose": "记录事件流、状态变化和故障诊断。",
+            "input_types": [
+                "event_trace",
+                "state_transition_log",
+                "projection_trace"
+            ],
+            "output_types": [
+                "trace_records",
+                "failure_reports",
+                "replay_clues"
+            ],
+            "owned_state": [
+                "trace_store_metadata",
+                "diagnostics_index"
+            ],
+            "allowed_mutations": [
+                "append trace records",
+                "emit diagnostic events"
+            ],
+            "prohibited_mutations": [
+                "modify FieldState",
+                "modify projection semantics"
+            ],
+            "required_governance": [
+                "Trace and Diagnostics",
+                "Model Test Lens",
+                "Post-Review / Freeze"
+            ],
+            "required_verifiers": [
+                "trace_steps",
+                "diagnostics_consistency"
+            ],
+            "failure_outputs": [
+                "trace_failure",
+                "diagnostics_inconsistency"
+            ],
+            "rollback_target": "before_trace_commit",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "human_correction_adapter",
+            "purpose": "将人工更正建模为事件并纳入 Field Kernel。",
+            "input_types": [
+                "correction_input",
+                "user_identity",
+                "current_field_state",
+                "affected_definitions"
+            ],
+            "output_types": [
+                "correction_field_event",
+                "validation_result",
+                "replay_requirements"
+            ],
+            "owned_state": [],
+            "allowed_mutations": [
+                "normalize correction event",
+                "encapsulate provenance"
+            ],
+            "prohibited_mutations": [
+                "modify FieldState directly",
+                "bypass event-sourced path"
+            ],
+            "required_governance": [
+                "Human Correction",
+                "Permission / Owner Approval"
+            ],
+            "required_verifiers": [
+                "human_correction_event_form",
+                "conflict_detection"
+            ],
+            "failure_outputs": [
+                "human_correction_failure",
+                "invalid_correction"
+            ],
+            "rollback_target": "before_correction_event_generation",
+            "runtime_status": "planning_only"
+        },
+        {
+            "component_id": "governance_gate",
+            "purpose": "在 FieldState 更新和投影前应用治理检查。",
+            "input_types": [
+                "candidate_proposals",
+                "projection_candidates",
+                "policy_exceptions"
+            ],
+            "output_types": [
+                "governance_approval",
+                "reject_signal",
+                "audit_tags"
+            ],
+            "owned_state": [
+                "governance_gate_metadata"
+            ],
+            "allowed_mutations": [
+                "mark governance result"
+            ],
+            "prohibited_mutations": [
+                "modify candidate semantics",
+                "modify FieldState"
+            ],
+            "required_governance": [
+                "Permission / Owner Approval",
+                "Negative Guards",
+                "Post-Review / Freeze"
+            ],
+            "required_verifiers": [
+                "governance_gate_completeness",
+                "policy_coverage"
+            ],
+            "failure_outputs": [
+                "governance_reject",
+                "missing_approval"
+            ],
+            "rollback_target": "before_governance_reject",
+            "runtime_status": "planning_only"
+        }
+    ]
+}

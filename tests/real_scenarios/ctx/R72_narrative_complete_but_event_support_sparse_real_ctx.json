@@ -1,0 +1,28 @@
+{
+  "frame_seq": 72,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R72_narrative_complete_but_event_support_sparse_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.21,
+  "narrative_complete_but_event_support_sparse_observed": true,
+  "summary_looks_ok_but_requires_backfill_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "总结读起来像闭环故事，但可核对的关键事件点偏少",
+  "object_search_flow_type": "narrative_dense_event_sparse_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "narrative_dense_event_sparse_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 19, 80, 90], "conf": 0.87 },
+    { "label": "box", "bbox": [150, 46, 230, 118], "conf": 0.53 }
+  ]
+}

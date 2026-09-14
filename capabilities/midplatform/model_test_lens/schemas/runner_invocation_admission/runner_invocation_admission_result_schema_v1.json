@@ -1,0 +1,51 @@
+{
+  "schema_id": "RunnerInvocationAdmissionResultSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Runner-Invocation-Admission-Execution-And-Post-Review-v1-001",
+  "description": "Runner invocation 准入结果。admitted 不等于 executed；本阶段不触发 runner。",
+  "required_fields": [
+    "admission_result_id",
+    "invocation_request_id",
+    "admission_decision",
+    "execution_status",
+    "trace_verified",
+    "route_match_verified",
+    "not_fact",
+    "not_navigation_decision",
+    "candidate_only",
+    "evaluated_at"
+  ],
+  "field_definitions": {
+    "admission_result_id": { "type": "string", "pattern": "^riar_[a-z0-9_]+$" },
+    "invocation_request_id": { "type": "string" },
+    "admission_decision": {
+      "type": "string",
+      "enum": ["admitted", "rejected", "pending", "cancelled"]
+    },
+    "admission_reason": { "type": "string" },
+    "rejection_reason": { "type": "string" },
+    "policy_refs": { "type": "array", "items": { "type": "string" } },
+    "trace_verified": { "type": "boolean" },
+    "route_match_verified": { "type": "boolean" },
+    "execution_status": { "type": "string", "enum": ["not_executed"], "const": "not_executed" },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_navigation_decision": { "type": "boolean", "const": true },
+    "candidate_only": { "type": "boolean", "const": true },
+    "admission_result_not_runner_output": { "type": "boolean", "const": true },
+    "evaluated_at": { "type": "string", "format": "date-time" }
+  },
+  "boundary_flags": {
+    "planning_and_gate_only": true,
+    "admitted_does_not_execute_runner": true,
+    "not_runner_execution": true,
+    "not_fact": true,
+    "execution_status_not_executed_only": true
+  },
+  "forbidden_interpretations": [
+    "runner_execution",
+    "model_output",
+    "fact_write",
+    "navigation_command",
+    "admitted_means_executed"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "artifact": "b3_canonical_ownership_matrix_v1",
+  "rows": [
+    {"concept": "Intent creation/qualification", "owner": "Intent Governance", "B3_role": "consume Cognitive State/Flow as read-only influence references"},
+    {"concept": "Intent mutation and lifecycle", "owner": "Intent Governance", "B3_role": "no direct mutation; preserve potential/forming/active-candidate/suppressed/dormant/reactivated states"},
+    {"concept": "Intent prioritization and interactions", "owner": "Intent Governance", "B3_role": "preserve coexistence, competition, conflict, suppression, amplification, inhibition, temporary dominance"},
+    {"concept": "Decision formation", "owner": "Brain / Decision Governance", "B3_role": "consume Intent and cognitive references to form DecisionCandidate"},
+    {"concept": "Decision arbitration/lifecycle", "owner": "Decision Governance / Decision Arbitration", "B3_role": "reuse selection, defer, abstain, contest, reconsideration candidates"},
+    {"concept": "Task creation/lifecycle/cancellation", "owner": "Task Manager", "B3_role": "receive candidate handoff and produce TaskCandidate/readiness only"},
+    {"concept": "Action Candidate", "owner": "Action Governance", "B3_role": "preserve reference only; do not create or execute action"},
+    {"concept": "Action execution", "owner": "Runtime Executor after Action Governance", "B3_role": "out of scope"},
+    {"concept": "Outcome/evaluation", "owner": "Outcome/Experience Governance", "B3_role": "out of scope; preserve future handoff boundary"},
+    {"concept": "Resource admission", "owner": "Decision, Task, Action and capability-specific governance", "B3_role": "carry references; no policy mutation"},
+    {"concept": "Safety override/interruption", "owner": "Safety/Permission governance and downstream lifecycle owners", "B3_role": "consume veto/block/cancel references; do not invent policy"}
+  ],
+  "owner_invariants": ["one canonical owner per semantic layer", "source refs are read-only", "candidate handoffs do not grant downstream authority", "no B3 adapter writes Intent, Decision, Task, Action, Runtime, Field, or Current World"]
+}

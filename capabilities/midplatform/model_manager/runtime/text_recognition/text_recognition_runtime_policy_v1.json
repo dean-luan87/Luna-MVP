@@ -1,0 +1,58 @@
+{
+  "schema_id": "TextRecognitionRuntimePolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-OCR-Recognition-Runtime-Integration-Planning-v1-001",
+  "layer_id": "Model_Manager_Text_Recognition_Runtime",
+  "planning_only": true,
+  "principle": "OCR Recognition 是 text_region_candidate 的解释器，不是全图读字",
+  "slot_binding": {
+    "slot_id": "slot_2",
+    "capability": "text_recognition",
+    "role": "text_recognizer",
+    "primary_provider": "paddleocr_recognizer_v1",
+    "fallback_provider": "ocr_v1",
+    "input_type": "text_region_candidate",
+    "output_type": "ocr_text_candidate"
+  },
+  "chain_position": "second_runtime_after_text_detection",
+  "upstream_slot": {
+    "slot_id": "slot_1",
+    "capability": "text_detection",
+    "output_type": "text_region_candidate"
+  },
+  "deferred_providers": ["qwen_vl", "sam_target_discovery", "paddleocr_detector_v1"],
+  "runtime_roadmap": [
+    {"phase": 1, "runtime": "text_detection", "status": "go"},
+    {"phase": 2, "runtime": "ocr_recognition", "status": "current"},
+    {"phase": 3, "runtime": "qwen_context", "status": "deferred"}
+  ],
+  "rules": [
+    {"rule_id": "recognition_requires_region", "description": "OCR 必须有 text_region 支撑，无 region → unsupported_ocr_claim"},
+    {"rule_id": "recognition_not_full_image", "description": "禁止全图 OCR，只识别上游 region"},
+    {"rule_id": "ocr_not_location_fact", "description": "输出 ocr_text_candidate，禁止 location/station_name fact"},
+    {"rule_id": "low_confidence_no_qwen", "description": "低置信度 → request_more_evidence，禁止 Qwen 自动补全"},
+    {"rule_id": "runtime_error_replan", "description": "Runtime 故障 → ocr_runtime_error_candidate + L2 replan"},
+    {"rule_id": "no_bundled_detection", "description": "只接 Recognition，不把 Detection 带回来"}
+  ],
+  "forbidden": [
+    "full_image_ocr",
+    "auto_trigger_qwen_on_low_confidence",
+    "location_fact_output",
+    "current_station_fact",
+    "ocr_without_region_support",
+    "bundled_detection_recognition"
+  ],
+  "boundary_flags": {
+    "single_runtime_integration": true,
+    "recognition_only_not_detection": true,
+    "paddleocr_recognizer_primary": true,
+    "evidence_normalizer_required": true,
+    "collaboration_slot_driven": true,
+    "region_interpreter_not_answerer": true,
+    "ocr_runtime_metrics": true,
+    "ocr_is_text_branch_only": true,
+    "mixed_region_understanding_core": true
+  },
+  "mixed_region_ref": "runtime/mixed_region/mixed_region_understanding_policy_v1.json",
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Mixed-Region-Understanding-Planning-v1-001"
+}

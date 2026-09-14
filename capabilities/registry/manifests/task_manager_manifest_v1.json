@@ -1,0 +1,50 @@
+{
+    "capability_id": "luna.task_manager",
+    "capability_name": "Luna Task Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "entrypoint": "run_task_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/core/task_manager/module/task_manager_module_facade_v1.py",
+            "entrypoint": "TaskManagerModuleV1.handle"
+        },
+        "core_reused": [
+            "capabilities/midplatform/core/task_manager_types_v1.py",
+            "capabilities/midplatform/core/task_manager_skeleton_v1.py",
+            "capabilities/midplatform/core/task_manager_static_validators_v1.py",
+            "capabilities/midplatform/task_manager_core_orchestration_contracts_v1.py",
+            "capabilities/midplatform/task_manager_core_orchestration_builders_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_task_manager_module_integration_v1.py",
+            "scenarios": 18
+        },
+        "ready_evidence": {
+            "total_cases": 18,
+            "passed_cases": 18,
+            "failed_cases": [],
+            "cancel_case_status": "cancelled",
+            "completion_case_status": "completed",
+            "partial_case_status": "partially_completed",
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_task_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_action_execution": true,
+        "no_direct_model_call": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    }
+}

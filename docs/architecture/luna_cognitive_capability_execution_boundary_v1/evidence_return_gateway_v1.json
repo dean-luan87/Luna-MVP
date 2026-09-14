@@ -1,0 +1,8 @@
+{
+  "title": "Evidence Return Gateway v1",
+  "owner": "Capability Governance",
+  "pipeline": ["Provider Output", "Evidence Validation", "Context Binding", "Cognitive Processing", "Reality Reducer Candidate"],
+  "evidence_schema": ["source", "content", "confidence", "timestamp", "context", "limitation", "provenance", "trace_id"],
+  "validation": ["shape", "source", "confidence", "timestamp", "context", "limitation", "provenance"],
+  "rules": {"provider_output_is_not_fact": true, "gateway_required": true, "unknown_preserved": true, "brain_direct_path_forbidden": true}
+}

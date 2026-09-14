@@ -1,0 +1,12 @@
+{
+  "fixture_name": "Emotion Context Boundary Fixture v1",
+  "field": "Historically Significant Field",
+  "role": "Companion",
+  "relationship": "Family Context",
+  "memory_metadata": {"event": "Important Event", "emotion_metadata": "Placeholder"},
+  "emotion_context_candidate": true,
+  "decision_change": false,
+  "emotion_computation": false,
+  "emotion_expression": false,
+  "unknowns_are_preserved": true
+}

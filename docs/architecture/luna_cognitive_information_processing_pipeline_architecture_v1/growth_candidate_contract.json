@@ -1,0 +1,13 @@
+{
+  "contract_id": "growth_candidate_v1",
+  "owner": "Self / Social Self Integration Governance",
+  "inputs": ["memory_candidate", "pattern_candidate", "stable_evidence", "role_context", "capability_context"],
+  "outputs": ["role_growth_candidate", "social_self_growth_candidate", "capability_growth_candidate"],
+  "candidate_only": true,
+  "review_required": ["Brain", "Constitution Governance"],
+  "direct_mutation": false,
+  "identity_write": false,
+  "value_write": false,
+  "goal_write": false,
+  "constitution_write": false
+}

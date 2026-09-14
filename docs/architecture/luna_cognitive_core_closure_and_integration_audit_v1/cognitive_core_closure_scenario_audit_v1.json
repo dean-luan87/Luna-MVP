@@ -1,0 +1,198 @@
+{
+    "artifact": "cognitive_core_closure_scenario_audit_v1",
+    "scenario_count": 32,
+    "scenarios": [
+        {
+            "scenario_id": "C01",
+            "dimension": "Forward closure",
+            "title": "Context -> PCN",
+            "coverage": "COVERED_WITH_ADAPTER"
+        },
+        {
+            "scenario_id": "C02",
+            "dimension": "Forward closure",
+            "title": "PCN -> Intent",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C03",
+            "dimension": "Forward closure",
+            "title": "Intent -> State Formation",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C04",
+            "dimension": "Forward closure",
+            "title": "State Formation -> Regulation",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C05",
+            "dimension": "Forward closure",
+            "title": "Regulation -> Flow",
+            "coverage": "COVERED_WITH_ADAPTER"
+        },
+        {
+            "scenario_id": "C06",
+            "dimension": "Forward closure",
+            "title": "Flow -> Experience",
+            "coverage": "COVERED_WITH_ADAPTER"
+        },
+        {
+            "scenario_id": "C07",
+            "dimension": "Forward closure",
+            "title": "Experience -> Memory",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C08",
+            "dimension": "Forward closure",
+            "title": "Memory / Experience -> Learning",
+            "coverage": "COVERED_WITH_ADAPTER"
+        },
+        {
+            "scenario_id": "C09",
+            "dimension": "Ownership",
+            "title": "Flow cannot own semantic cognitive content",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C10",
+            "dimension": "Ownership",
+            "title": "Memory cannot become fact owner",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C11",
+            "dimension": "Ownership",
+            "title": "Learning cannot own Dynamic Regulation parameters",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C12",
+            "dimension": "Ownership",
+            "title": "Current World cannot become Field owner",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C13",
+            "dimension": "Ownership",
+            "title": "Hypothesis cannot become Causal owner",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C14",
+            "dimension": "Feedback",
+            "title": "Learning -> parameter update candidate",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C15",
+            "dimension": "Feedback",
+            "title": "parameter update cannot activate automatically",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C16",
+            "dimension": "Feedback",
+            "title": "repeated evidence loop guard",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C17",
+            "dimension": "Feedback",
+            "title": "contradiction loop guard",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C18",
+            "dimension": "Feedback",
+            "title": "counterexample loop guard",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C19",
+            "dimension": "Feedback",
+            "title": "revocation breaks stale learning path",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C20",
+            "dimension": "Feedback",
+            "title": "duplicate update candidate blocked",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C21",
+            "dimension": "Trace / provenance",
+            "title": "complete reverse lookup from learning to source context",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C22",
+            "dimension": "Trace / provenance",
+            "title": "revision lineage intact",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C23",
+            "dimension": "Trace / provenance",
+            "title": "revocation lineage intact",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C24",
+            "dimension": "Trace / provenance",
+            "title": "cycle inheritance trace intact",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C25",
+            "dimension": "Memory / Learning",
+            "title": "Memory candidate not persisted fact",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C26",
+            "dimension": "Memory / Learning",
+            "title": "Memory retrieval does not overwrite Context",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C27",
+            "dimension": "Memory / Learning",
+            "title": "Learning does not mutate Memory",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C28",
+            "dimension": "Memory / Learning",
+            "title": "semantic compression deferred",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C29",
+            "dimension": "Boundary / safety",
+            "title": "no database write",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C30",
+            "dimension": "Boundary / safety",
+            "title": "no vector store write",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C31",
+            "dimension": "Boundary / safety",
+            "title": "no model call",
+            "coverage": "COVERED"
+        },
+        {
+            "scenario_id": "C32",
+            "dimension": "Boundary / safety",
+            "title": "no scheduler/task/device/runtime side effects",
+            "coverage": "COVERED"
+        }
+    ]
+}

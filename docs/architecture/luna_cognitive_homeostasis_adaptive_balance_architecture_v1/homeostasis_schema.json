@@ -1,0 +1,13 @@
+{
+  "schema_id": "cognitive_homeostasis_v1",
+  "status": "architecture_only",
+  "is_constraint_layer": true,
+  "is_eighth_state": false,
+  "inputs": ["Core State Vector", "State Quality", "Resource State", "Risk", "Cognitive Invariants", "Field Scope"],
+  "outputs": ["Homeostasis Check Candidate", "Range Adjustment Candidate", "Stability Candidate", "Defer Candidate"],
+  "required_fields": ["homeostasis_id", "state_ref", "range_refs", "quality_ref", "risk", "resource", "field_scope", "timestamp", "confidence", "unknowns", "trace_ref"],
+  "stable_core_protected": true,
+  "automatic_control": false,
+  "candidate_only": true,
+  "runtime": false
+}

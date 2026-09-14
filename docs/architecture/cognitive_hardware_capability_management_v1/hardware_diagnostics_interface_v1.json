@@ -1,0 +1,16 @@
+{
+  "interface_name": "Hardware Diagnostics Interface v1",
+  "hardware_reference": "hardware-example",
+  "issue_class": "blocked_sensor | thermal | power | memory | calibration | connectivity | unknown",
+  "diagnostic_candidate": {"description": null, "severity": null, "confidence": null},
+  "hardware_state_candidate": null,
+  "capability_confidence_candidate": null,
+  "self_capability_update_candidate": null,
+  "attention_reallocation_candidate": null,
+  "resource_adaptation_candidate": null,
+  "diagnostics_does_not_control_hardware": true,
+  "diagnostics_does_not_modify_reality": true,
+  "diagnostics_does_not_modify_goal": true,
+  "diagnostics_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

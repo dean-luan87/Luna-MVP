@@ -1,0 +1,68 @@
+{
+  "artifact": "personality_governance_frozen_deferred_registry_v1",
+  "phase": "Phase-Luna-Personality-Governance-Baseline-Freeze-v1-001",
+  "freeze_status": "FROZEN_V1",
+  "classification": "D",
+  "rule": "Deferred means deliberately outside Personality Governance scope, not an incomplete Personality implementation.",
+  "deferred_items": [
+    {
+      "item": "semantic compression",
+      "status": "DEFERRED",
+      "future_owner": "Emotion Engine",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "affective memory compression",
+      "status": "DEFERRED",
+      "future_owner": "Emotion Engine / Memory Experience typed contract",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "emotion memory summary",
+      "status": "DEFERRED",
+      "future_owner": "Emotion Engine",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "personality-memory semantic fusion",
+      "status": "DEFERRED",
+      "future_owner": "Emotion Engine and Memory Experience typed contracts",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "trait activation",
+      "status": "DEFERRED",
+      "future_owner": "Explicit future Personality activation governance phase",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "real persistence/runtime",
+      "status": "DEFERRED",
+      "future_owner": "Persistence and Runtime owners",
+      "personality_implementation_forbidden": true
+    },
+    {
+      "item": "cross-user transfer",
+      "status": "DEFERRED_AND_FORBIDDEN",
+      "future_owner": "Privacy/Identity governance only",
+      "personality_implementation_forbidden": true
+    }
+  ],
+  "nullable_future_refs_allowed": [
+    "semantic_compression_ref",
+    "affective_memory_summary_ref",
+    "emotion_memory_summary_ref",
+    "personality_memory_fusion_ref"
+  ],
+  "frozen_flags": {
+    "semantic_compression_status": "DEFERRED_TO_EMOTION_ENGINE",
+    "semantic_compression_execution": false,
+    "affective_memory_compression": false,
+    "emotion_memory_summary_generation": false,
+    "personality_memory_semantic_fusion": false,
+    "trait_activation": false,
+    "database_write": false,
+    "runtime_execution": false,
+    "cross_user_transfer": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Self Context Awareness Contract v1",
+  "owner": "Cognitive Self Model / Context Awareness",
+  "inputs": ["Field", "Workspace", "Intent", "Goal", "Task", "Role Context"],
+  "output": "Current Self Context",
+  "schema": ["context_id", "field_ref", "workspace_ref", "intent_ref", "goal_ref", "task_ref", "role_context_ref", "relevance", "unknown"],
+  "rules": {
+    "references_external_context": true,
+    "does_not_create_field": true,
+    "does_not_create_goal": true,
+    "role_context_only": true,
+    "brain_context_input": true
+  }
+}

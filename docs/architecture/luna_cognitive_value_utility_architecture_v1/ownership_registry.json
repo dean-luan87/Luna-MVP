@@ -1,0 +1,16 @@
+{
+  "title": "Cognitive Value Utility Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Constitution", "owner": "Constitution", "writer": "Constitution Governance", "reader": ["Value Layer", "Self Layer", "Brain"]},
+    {"module": "Value Layer", "owner": "Value Layer", "writer": "Value Governance", "reader": ["Goal Layer", "Exploration Governance", "Brain"]},
+    {"module": "Self Layer", "owner": "Self Layer", "writer": "Self Regulation", "reader": ["Value Layer", "Runtime"]},
+    {"module": "Goal Layer", "owner": "Goal Layer", "writer": "Goal Governance", "reader": ["Value Layer", "Brain", "Task Manager"]},
+    {"module": "Exploration Governance", "owner": "Exploration Governance", "writer": "Exploration Governance Controller", "reader": ["Value Layer", "Self Layer", "Brain"]},
+    {"module": "Brain", "owner": "Brain", "writer": "Brain Judgment Boundary", "reader": ["Decision Arbitration", "Action Boundary"]},
+    {"module": "Decision Arbitration", "owner": "Decision Arbitration", "writer": "Future Decision Arbitration", "reader": ["Brain", "Runtime"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Value Layer", "Brain"]},
+    {"module": "Schema", "owner": "Schema", "writer": "Schema Governance", "reader": ["Value Layer", "Brain"]},
+    {"module": "Field", "owner": "Field", "writer": "Field State Owner", "reader": ["Value Layer", "Goal Layer", "Brain"]}
+  ]
+}

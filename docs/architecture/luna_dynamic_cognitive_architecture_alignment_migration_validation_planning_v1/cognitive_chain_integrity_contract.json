@@ -1,0 +1,13 @@
+{
+  "contract_id": "post_migration_cognitive_chain_integrity_v1",
+  "required_chain": ["Input", "Environment Understanding", "Field", "Intent", "Context Retrieval / Personal Cognitive Network Projection", "A/B Route Boundary", "Decision", "Action", "Feedback", "Experience"],
+  "required_edge_fields": ["edge_id", "producer", "consumer", "contract_ref", "input_schema_ref", "output_schema_ref", "candidate_fact_semantics", "failure_behavior", "trace_ref", "compatibility_result"],
+  "all_edges_required": true,
+  "producer_consumer_required": true,
+  "candidate_fact_semantics_required": true,
+  "failure_behavior_required": true,
+  "trace_required": true,
+  "broken_edge_blocks_freeze": true,
+  "a_b_route_is_boundary_not_runtime": true,
+  "action_requires_action_boundary": true
+}

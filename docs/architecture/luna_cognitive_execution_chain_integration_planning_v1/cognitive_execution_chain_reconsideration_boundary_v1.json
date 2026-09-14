@@ -1,0 +1,41 @@
+{
+    "artifact": "cognitive_execution_chain_reconsideration_boundary_v1",
+    "status": "PLANNING_CANDIDATE",
+    "allowed_paths": [
+        {
+            "from": "Runtime Executor failure/result",
+            "to": "Action reconsideration candidate",
+            "kind": "reconsideration_request",
+            "state_mutation": false
+        },
+        {
+            "from": "Action blocked/cancelled",
+            "to": "Decision reconsideration candidate",
+            "kind": "reconsideration_request",
+            "state_mutation": false
+        },
+        {
+            "from": "Decision reconsideration",
+            "to": "Causal re-evaluation request candidate",
+            "kind": "reconsideration_request",
+            "state_mutation": false
+        },
+        {
+            "from": "Causal unresolved/conflict",
+            "to": "Intent influence update candidate",
+            "kind": "reconsideration_request",
+            "state_mutation": false
+        }
+    ],
+    "forbidden_paths": [
+        "runtime_result_direct_decision_mutation",
+        "runtime_result_direct_intent_mutation",
+        "runtime_result_direct_causal_fact_write",
+        "runtime_result_direct_field_fact_write",
+        "runtime_result_direct_memory_fact_write"
+    ],
+    "equivalence_guards": {
+        "reconsideration_request_not_state_mutation": true,
+        "candidate_not_fact": true
+    }
+}

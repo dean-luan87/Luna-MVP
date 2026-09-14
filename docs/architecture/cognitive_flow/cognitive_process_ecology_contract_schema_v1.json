@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cognitive Process Ecology Contract v1",
+  "type": "object",
+  "required": ["process_id", "process_type", "lifecycle_candidate", "resource_profile", "attention_relation", "capability_requirement", "feedback_channel", "constraints", "trace"],
+  "properties": {
+    "process_id": {"type": "string", "minLength": 1},
+    "process_type": {"enum": ["reflex", "background", "active_assembly"]},
+    "lifecycle_candidate": {"enum": ["dormant", "triggered", "active", "maintained", "reduced", "suspended", "closed"]},
+    "resource_profile": {"enum": ["high", "medium", "low", "background", "dormant"]},
+    "attention_relation": {"type": "string"},
+    "capability_requirement": {"type": "array"},
+    "feedback_channel": {"type": "string"},
+    "constraints": {"type": "array", "contains": {"const": "candidate_only"}},
+    "trace": {"type": "array"}
+  },
+  "not": {"required": ["goal_authority", "memory_authority", "truth_authority", "decision_authority", "action_authority", "state_mutation_authority"]}
+}

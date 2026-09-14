@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Engineering Migration Risk Registry",
+  "risks": [
+    {"risk_id": "R-001", "risk": "Duplicate ownership", "impact": "Conflicting writers", "mitigation": "Owner registry update before implementation", "priority": "P0"},
+    {"risk_id": "R-002", "risk": "Code and architecture drift", "impact": "Contracts no longer describe assets", "mitigation": "Impact inventory and validation gate", "priority": "P1"},
+    {"risk_id": "R-003", "risk": "Role/Relationship remain inside Self", "impact": "Identity contamination", "mitigation": "Social Self ownership mapping", "priority": "P1"},
+    {"risk_id": "R-004", "risk": "Emotion becomes runtime authority", "impact": "Uncontrolled decision/value changes", "mitigation": "Integration boundary placeholder", "priority": "P0"},
+    {"risk_id": "R-005", "risk": "Runtime reads mixed state", "impact": "Invalid context or ownership bypass", "mitigation": "Runtime impact review and state contract", "priority": "P1"},
+    {"risk_id": "R-006", "risk": "Premature file movement", "impact": "Compatibility break and historical loss", "mitigation": "No Move First; mapping first", "priority": "P0"},
+    {"risk_id": "R-007", "risk": "New module bypasses governance", "impact": "Untracked architecture growth", "mitigation": "Future development workflow and registry gate", "priority": "P1"}
+  ],
+  "rules": {"p0_requires_resolution_before_implementation": true, "risk_registry_required": true, "no_silent_migration": true, "historical_assets_preserved": true}
+}

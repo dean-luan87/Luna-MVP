@@ -1,0 +1,17 @@
+{
+  "contract_id": "dynamic_cognitive_function_negative_guards_v1",
+  "forbidden": [
+    "runtime", "automatic_tuning", "hive_connection", "parameter_learning", "automatic_self_modification", "emotion_runtime", "b_route_runtime", "model_integration", "hardware_control", "dynamic_function_reality_mutation", "dynamic_function_decision_commit", "dynamic_function_execute_action", "self_regulation_switch_model", "self_regulation_hardware_control", "self_regulation_approve_learning", "parameter_space_identity_change", "genome_decision_authority", "genome_constitution_change", "hive_direct_luna_modification", "hive_parameter_write", "hive_self_modification", "adaptive_automatic_tuning", "adaptive_model_parameter_update", "parameter_automatic_self_modification", "parameter_identity_change", "parameter_constitution_change", "parameter_safety_boundary_change", "b_route_direct_parameter_adoption", "runtime_parameter_governance", "emotion_direct_parameter_adoption", "provider_parameter_authority", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "vector_is_bounded": true,
+    "function_is_candidate_only": true,
+    "self_regulation_is_resource_governance": true,
+    "parameter_space_is_auditable": true,
+    "genome_is_not_identity": true,
+    "hive_is_observer_not_authority": true,
+    "self_review_required": true,
+    "protected_targets_preserved": true,
+    "unknowns_preserved": true
+  }
+}

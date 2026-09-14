@@ -1,0 +1,13 @@
+{
+  "title": "Self Model Memory Interface v1",
+  "owner": "Memory System",
+  "inputs": ["Current Task", "Current Context", "Attention Query", "Self History Request"],
+  "outputs": ["Relevant Self History Reference", "Capability History Reference", "State Transition Reference"],
+  "rules": {
+    "memory_owns_records": true,
+    "self_model_reads_relevant_subset": true,
+    "memory_not_overwritten": true,
+    "history_not_current_fact": true,
+    "provenance_required": true
+  }
+}

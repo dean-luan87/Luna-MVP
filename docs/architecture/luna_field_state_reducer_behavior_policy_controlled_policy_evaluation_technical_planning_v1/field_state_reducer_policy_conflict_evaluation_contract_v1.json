@@ -1,0 +1,107 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Conflict Evaluation Contract",
+    "conflict_types": [
+        {
+            "conflict_type": "positive_vs_negative",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "active_vs_revoked",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "permanent_vs_temporary",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "direct_vs_inferred",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": false,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "high_confidence_vs_low_confidence",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": false,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "newer_vs_older",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": false,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "owner_correction_vs_machine_candidate",
+            "evaluation_status_when_unresolved": "governance_review_required",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "same_priority_contradiction",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": false,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "mutually_exclusive_states",
+            "evaluation_status_when_unresolved": "unresolved_conflict",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "conflict_type": "overlay_substrate_conflict",
+            "evaluation_status_when_unresolved": "blocked",
+            "policy_eligibility_allowed": false,
+            "preserve_conflict": true,
+            "winner_fabrication_allowed": false,
+            "provisional_candidate_allowed": true,
+            "governance_review_required": true,
+            "fact_promotion_allowed": false
+        }
+    ],
+    "conflict_contract_complete": true
+}

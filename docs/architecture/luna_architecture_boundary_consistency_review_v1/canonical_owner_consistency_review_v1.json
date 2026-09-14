@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "name": "Canonical Owner Consistency Review",
+  "owners": [
+    {"object": "Self Identity", "canonical_owner": "Self Layer", "legacy_candidates": ["Self Model"], "status": "consistent"},
+    {"object": "Self Capability", "canonical_owner": "Self Layer", "legacy_candidates": ["Self Model", "Capability Awareness"], "status": "consistent"},
+    {"object": "Self Regulation", "canonical_owner": "Self Layer", "legacy_candidates": ["Self Regulation"], "status": "consistent"},
+    {"object": "Self Evolution", "canonical_owner": "Self Layer", "legacy_candidates": ["Self Evolution"], "status": "consistent"},
+    {"object": "Role", "canonical_owner": "Social Self Layer", "legacy_candidates": ["Self Model", "Field/Role"], "status": "consistent"},
+    {"object": "Relationship", "canonical_owner": "Social Self Layer", "legacy_candidates": ["Social Field"], "status": "consistent"},
+    {"object": "Social Identity", "canonical_owner": "Social Self Layer", "legacy_candidates": ["Social Boundary"], "status": "consistent"},
+    {"object": "Emotion Context", "canonical_owner": "Integration Layer", "legacy_candidates": ["Emotion Context Boundary"], "status": "consistent"},
+    {"object": "Constitution", "canonical_owner": "L0 System Constitution", "legacy_candidates": ["Self Layer top-level constraint"], "status": "consistent"},
+    {"object": "Capability Governance", "canonical_owner": "Capability Governance", "legacy_candidates": ["Self Capability interface"], "status": "independent"},
+    {"object": "Decision", "canonical_owner": "Brain", "legacy_candidates": ["Cognitive Core"], "status": "consistent"}
+  ],
+  "duplicate_owner_candidates": [],
+  "rules": {"canonical_owner_unique": true, "legacy_is_not_owner": true, "constitution_not_self_owned": true, "capability_governance_independent": true, "owner_conflict_is_blocker": true}
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Self Capability Profile v1",
+  "owner": "Self / Capability Profile",
+  "dimensions": ["Perception", "Field Understanding", "Task Execution", "Adaptation", "Information Seeking", "Reliability"],
+  "schema": ["capability", "context", "condition", "experience_count", "success_rate", "confidence", "limitation", "growth_direction", "unknown", "evidence_refs"],
+  "profile_rules": {
+    "context_bound": true,
+    "multi_dimensional": true,
+    "no_single_global_score": true,
+    "evidence_backed": true,
+    "limitation_first_class": true,
+    "unknown_first_class": true,
+    "identity_separate": true,
+    "provider_does_not_define_profile": true
+  },
+  "update_source": "Admitted Capability Growth Candidate",
+  "growth_history_required": true
+}

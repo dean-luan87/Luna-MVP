@@ -1,0 +1,17 @@
+{
+  "schema_name": "Field Network Schema v1",
+  "network_id": "field-network-example",
+  "nodes": [],
+  "edges": [],
+  "field_types": ["Physical Field", "Social Field", "Virtual Field", "Task Generated Field", "Relationship Field"],
+  "nested_fields": [],
+  "associated_fields": [],
+  "active_fields": [],
+  "background_fields": [],
+  "suspended_fields": [],
+  "closed_fields": [],
+  "archived_fields": [],
+  "transferred_fields": [],
+  "field_network_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

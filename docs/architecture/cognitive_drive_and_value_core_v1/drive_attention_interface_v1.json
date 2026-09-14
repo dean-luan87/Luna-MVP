@@ -1,0 +1,17 @@
+{
+  "interface_name": "Drive Attention Interface v1",
+  "drive_reference": "drive-example",
+  "field_reference": "field-example",
+  "attention_candidate": null,
+  "priority_candidate": null,
+  "salience_candidate": null,
+  "resource_cost": null,
+  "risk_context": null,
+  "information_value": null,
+  "attention_reallocation_candidate": null,
+  "drive_provides_attention_candidate": true,
+  "drive_does_not_allocate_attention_directly": true,
+  "drive_does_not_modify_goal": true,
+  "drive_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

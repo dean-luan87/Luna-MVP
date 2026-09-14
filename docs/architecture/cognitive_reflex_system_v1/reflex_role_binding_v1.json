@@ -1,0 +1,13 @@
+{
+  "interface_name": "Reflex Role Binding v1",
+  "role_reference": {},
+  "active_role": {},
+  "field_context": {},
+  "responsibility": {},
+  "permission_boundary": {},
+  "safety_constraint": {},
+  "role_changes_response_candidate": true,
+  "role_does_not_modify_identity": true,
+  "personality_switching": false,
+  "unknowns_are_preserved": true
+}

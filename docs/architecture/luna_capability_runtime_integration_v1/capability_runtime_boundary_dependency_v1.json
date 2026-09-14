@@ -1,0 +1,22 @@
+{
+  "title": "Capability Runtime Boundary Dependency v1",
+  "allowed": [
+    {"source":"Capability Execution Boundary","target":"Capability Runtime","mode":"admitted request"},
+    {"source":"L1 Cognitive OS","target":"Capability Runtime","mode":"lifecycle/event/state/resource contracts"},
+    {"source":"Capability Runtime","target":"Provider Adapter","mode":"invocation candidate only"},
+    {"source":"Provider Adapter","target":"Result Collector","mode":"raw result"},
+    {"source":"Result Collector","target":"Evidence Gateway","mode":"validation input"},
+    {"source":"Capability Runtime","target":"L2 Cognitive Core","mode":"evidence/health/failure candidates"}
+  ],
+  "forbidden": [
+    "Provider → Brain",
+    "Capability Runtime → Goal",
+    "Capability Runtime → Decision",
+    "Capability Runtime → Reality",
+    "Capability Runtime → Constitution",
+    "Provider → Action",
+    "Hardware → Goal",
+    "Model → Decision"
+  ],
+  "rules": {"evidence_gateway_required": true, "provider_isolated": true, "runtime_execution_disabled": true, "no_model_calls": true, "no_hardware_calls": true, "no_action_execution": true}
+}

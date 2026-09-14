@@ -1,0 +1,107 @@
+{
+  "schema_id": "SegmentationPromptPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Aware-Segmentation-Prompt-Policy-Planning-v1-001",
+  "description": "根据 scene_profile_candidate 选择 MobileSAM prompt set。本阶段终点 artifact。",
+  "planning_only": true,
+  "planning_endpoint": "segmentation_prompt_policy",
+  "entry_requirement": {
+    "requires_scene_profile_candidate": true,
+    "scene_profile_must_be_candidate_only": true
+  },
+  "policy_selection": [
+    {
+      "scene_type_candidate": "outdoor_street",
+      "prompt_set_ref": "scene_prompt_set_outdoor_street_v1.json",
+      "max_prompts": 5,
+      "selection_reason": "outdoor_navigation_observation_profile"
+    },
+    {
+      "scene_type_candidate": "subway_platform",
+      "prompt_set_ref": "scene_prompt_set_subway_platform_v1.json",
+      "max_prompts": 10,
+      "selection_reason": "subway_station_observation_profile",
+      "forbidden_legacy_prompts": [
+        "road_sign",
+        "left_building",
+        "center_advertisement_screen",
+        "front_vehicle",
+        "crosswalk_or_road_region"
+      ]
+    },
+    {
+      "scene_type_candidate": "indoor_station",
+      "prompt_set_ref": "scene_prompt_set_subway_platform_v1.json",
+      "max_prompts": 10,
+      "selection_reason": "indoor_transit_reuses_subway_prompt_set_v1"
+    },
+    {
+      "scene_type_candidate": "indoor_mall",
+      "prompt_set_ref": "scene_prompt_set_outdoor_street_v1.json",
+      "max_prompts": 5,
+      "selection_reason": "fallback_until_mall_prompt_set_v1"
+    },
+    {
+      "scene_type_candidate": "corridor",
+      "prompt_set_ref": "scene_prompt_set_outdoor_street_v1.json",
+      "max_prompts": 5,
+      "selection_reason": "fallback_until_corridor_prompt_set_v1"
+    },
+    {
+      "scene_type_candidate": "store_front",
+      "prompt_set_ref": "scene_prompt_set_outdoor_street_v1.json",
+      "max_prompts": 5,
+      "selection_reason": "fallback_until_store_front_prompt_set_v1"
+    },
+    {
+      "scene_type_candidate": "unknown_scene",
+      "prompt_set_ref": "scene_prompt_set_outdoor_street_v1.json",
+      "max_prompts": 5,
+      "selection_reason": "conservative_default_neutral_region_candidates"
+    }
+  ],
+  "output_contract": {
+    "artifact_type": "segmentation_prompt_policy",
+    "fields": [
+      "policy_id",
+      "scene_profile_id",
+      "scene_type_candidate",
+      "prompt_set_ref",
+      "prompt_ids",
+      "source_prompt_hints",
+      "candidate_only",
+      "not_fact",
+      "prompt_is_not_fact"
+    ]
+  },
+  "prompt_label_downgrade": {
+    "required_fields": [
+      "segmentation_prompt_id",
+      "source_prompt_hint",
+      "candidate_only",
+      "prompt_is_not_fact"
+    ],
+    "forbidden_fields": [
+      "semantic_fact_label",
+      "display_fact_label",
+      "confirmed_object_type"
+    ]
+  },
+  "boundary_flags": {
+    "no_prompt_label_fact_upgrade": true,
+    "mobilesam_region_not_semantic_fact": true,
+    "no_fixed_outdoor_prompt_for_subway_profile": true,
+    "subway_profile_uses_station_prompt_set": true,
+    "scene_profile_candidate_not_fact": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "no_runner_architecture_mutation": true,
+    "planning_only": true
+  },
+  "downstream_chain": [
+    "mobilesam_prompt_set",
+    "region_candidate",
+    "observation_attention",
+    "followup_route_candidate"
+  ]
+}

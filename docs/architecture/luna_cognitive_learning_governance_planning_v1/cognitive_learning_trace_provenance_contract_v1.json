@@ -1,0 +1,28 @@
+{
+    "artifact": "cognitive_learning_trace_provenance_contract_v1",
+    "required_fields": [
+        "root_cycle_trace_id",
+        "learning_trace_id",
+        "learning_evidence_id",
+        "learning_candidate_id",
+        "parameter_update_candidate_id",
+        "source_experience_refs",
+        "source_memory_refs",
+        "outcome_refs",
+        "feedback_refs",
+        "contradiction_refs",
+        "counterexample_refs",
+        "regulation_refs",
+        "revision_refs",
+        "provenance_refs",
+        "schema_version",
+        "contract_version"
+    ],
+    "reverse_route": [
+        "ParameterUpdateCandidate -> LearningCandidate",
+        "LearningCandidate -> LearningEvidenceCandidate",
+        "LearningEvidenceCandidate -> Memory / Experience",
+        "Memory / Experience -> Cognitive Cycle",
+        "Cognitive Cycle -> source evidence/reference chain"
+    ]
+}

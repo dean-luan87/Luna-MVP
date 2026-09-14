@@ -1,0 +1,12 @@
+{
+  "scenario_count": 16,
+  "scenario_ids": [
+    "Y11R-01", "Y11R-02", "Y11R-03", "Y11R-04",
+    "Y11R-05", "Y11R-06", "Y11R-07", "Y11R-08",
+    "Y11R-09", "Y11R-10", "Y11R-11", "Y11R-12",
+    "Y11R-13", "Y11R-14", "Y11R-15", "Y11R-16"
+  ],
+  "scope": "physical asset, checksum, dependency readiness, technical admission, license separation",
+  "inference_cases": 0,
+  "download_cases": 0
+}

@@ -1,0 +1,33 @@
+{
+    "artifact": "cognitive_flow_owner_boundary_v1",
+    "owner_required": true,
+    "canonical_owner_candidate": "Cognitive Flow Governance",
+    "justification": [
+        "Existing module owners safely own domain semantics but not full cycle lifecycle governance.",
+        "A narrow flow owner is needed for transition governance, handoff sequencing, reconsideration routing, suspend/resume, and cycle trace linkage.",
+        "This owner must not own cognitive facts or rewrite upstream/downstream candidate outputs."
+    ],
+    "owner_authority": [
+        "cycle lifecycle governance",
+        "transition governance",
+        "handoff sequencing",
+        "reconsideration routing",
+        "suspend_resume_state",
+        "cycle_trace_linkage"
+    ],
+    "owner_forbidden": [
+        "context ownership",
+        "intent ownership",
+        "attention ownership",
+        "hypothesis ownership",
+        "current_world ownership",
+        "dynamic_regulation ownership",
+        "field ownership",
+        "causal ownership",
+        "memory ownership",
+        "learning ownership",
+        "fact creation",
+        "owner_output_rewrite"
+    ],
+    "super_owner": false
+}

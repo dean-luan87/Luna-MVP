@@ -1,0 +1,16 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Canvas-First-Collapsible-Layout-Patch-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T09:32:23.359509+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {},
+  "final_decision": "P1_MIDPLATFORM_MODEL_TEST_LENS_OBSERVATION_CANVAS_FIRST_COLLAPSIBLE_LAYOUT_PATCH_GO"
+}

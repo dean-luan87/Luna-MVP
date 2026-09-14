@@ -1,0 +1,59 @@
+{
+  "manifest_version": "v0",
+  "model_config_id": "deepseek_ocr2_candidate_v0",
+  "model_family": "deepseek_ocr",
+  "model_name": "DeepSeek-OCR",
+  "model_variant": "ocr2",
+  "model_task": "ocr_raw_text_candidates",
+  "candidate_tier": "comparison_only",
+  "provider_kind": "unavailable",
+  "weights_source": "manual_download_required",
+  "weights_paths": {
+    "det_model_path": null,
+    "rec_model_path": null,
+    "cls_model_path": null,
+    "tokenizer_path": null,
+    "other_assets": []
+  },
+  "weights_sha256": {},
+  "weights_file_size_bytes": {},
+  "dependency_profile_id": "deepseek_ocr2_vllm_gpu_heavy_v0",
+  "python_version": null,
+  "paddleocr_version": null,
+  "paddlepaddle_version": null,
+  "opencv_version": null,
+  "numpy_version": null,
+  "pillow_version": null,
+  "platform": null,
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "supports_chinese": "unknown",
+  "supports_english": "unknown",
+  "supports_digits": "unknown",
+  "supports_bbox": "unknown",
+  "supports_confidence": "unknown",
+  "supports_orientation": true,
+  "supports_layout": true,
+  "supports_video_frame_input": true,
+  "expected_input_format": "image/document",
+  "expected_output_format": "raw_text_candidates(text,bbox,confidence,frame_id,model_config_id,line_order,raw_text_joined)",
+  "raw_text_only": true,
+  "semantic_interpretation_enabled": false,
+  "allows_execute_now": false,
+  "real_tts_invoked": false,
+  "created_at": null,
+  "verified_at": null,
+  "verification_status": "pending",
+  "fallback_policy": {
+    "fallback_model_config_id": "paddleocr_ppocrv5_lightweight_zh_en_v0",
+    "notes": "comparison-only candidate; GPU heavy; not first source"
+  },
+  "risks": [
+    "gpu_and_dependency_heavy",
+    "generation_style_output_may_require_strict_raw_text_extraction"
+  ],
+  "notes": "Candidate-only manifest; do not download weights in ModelOCR-003."
+}
+

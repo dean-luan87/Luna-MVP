@@ -1,0 +1,22 @@
+{
+  "schema_id": "ToolOSHandoffCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "should_handoff",
+    "handoff_reason",
+    "required_tool_os_checks",
+    "runner_admission_required",
+    "fact_admission_required_after_result",
+    "candidate_only",
+    "not_fact"
+  ],
+  "boundary_flags": {
+    "tool_os_handoff_required": true,
+    "runner_admission_required": true,
+    "fact_admission_required_after_result": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

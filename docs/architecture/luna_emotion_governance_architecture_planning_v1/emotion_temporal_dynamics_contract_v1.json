@@ -1,0 +1,23 @@
+{
+  "artifact": "emotion_temporal_dynamics_contract_v1",
+  "candidate_only": true,
+  "temporal_operations": {
+    "accumulation": "combine separately referenced evidence while retaining source, context, contradiction, and uncertainty",
+    "decay": "reduce candidate influence or confidence over validity time; never rewrite source truth",
+    "persistence_candidate": "propose temporal persistence only when evidence and validity support it; never create permanent state",
+    "recovery": "represent movement toward lower activation or restored baseline as a candidate transition",
+    "refresh": "new evidence may extend or revise temporal validity with lineage",
+    "repeated_stimulus": "repetition may strengthen evidence but cannot alone create permanent emotion or personality",
+    "temporal_validity": "every evidence/appraisal/state candidate carries valid-from/valid-until or explicit unknown",
+    "stale_expiration": "expired validity produces EXPIRED or historical reference and retains reverse trace"
+  },
+  "invariants": {
+    "no_hidden_permanent_emotion_state": true,
+    "no_background_scheduler": true,
+    "no_runtime_clock_mutation": true,
+    "decay_is_candidate_transition": true,
+    "recovery_is_candidate_transition": true,
+    "temporal_context_does_not_grant_authority": true
+  },
+  "required_refs": ["temporal_valid_from", "temporal_valid_until", "refresh_parent_ref", "trace_ref", "provenance_refs"]
+}

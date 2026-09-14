@@ -1,0 +1,103 @@
+{
+    "artifact": "cognitive_flow_planning_to_code_mapping_v1",
+    "mappings": [
+        {
+            "planning": "cognitive_flow_owner_boundary_v1.json",
+            "code": [
+                "cognitive_flow_registry_v1.py",
+                "cognitive_flow_ownership_guard_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_cycle_definition_v1.json",
+            "code": [
+                "cognitive_cycle_core_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_cycle_state_model_v1.json",
+            "code": [
+                "cognitive_cycle_state_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_cycle_transition_contract_v1.json",
+            "code": [
+                "cognitive_cycle_transition_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_module_interaction_matrix_v1.json",
+            "code": [
+                "cognitive_flow_handoff_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_serial_parallel_feedback_model_v1.json",
+            "code": [
+                "cognitive_flow_registry_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_interrupt_suspend_resume_contract_v1.json",
+            "code": [
+                "cognitive_cycle_interrupt_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_cycle_inheritance_contract_v1.json",
+            "code": [
+                "cognitive_cycle_inheritance_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_memory_insertion_boundary_v1.json",
+            "code": [
+                "cognitive_cycle_inheritance_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_learning_insertion_boundary_v1.json",
+            "code": [
+                "cognitive_cycle_inheritance_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_trace_provenance_contract_v1.json",
+            "code": [
+                "cognitive_flow_trace_types_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_idempotency_contract_v1.json",
+            "code": [
+                "cognitive_flow_fixture_v1.py",
+                "cognitive_flow_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_negative_guards_v1.json",
+            "code": [
+                "cognitive_flow_registry_v1.py",
+                "cognitive_flow_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_flow_minimum_scenario_suite_v1.json",
+            "code": [
+                "cognitive_flow_fixture_v1.py",
+                "run_cognitive_flow_controlled_implementation_v1.py"
+            ]
+        }
+    ]
+}

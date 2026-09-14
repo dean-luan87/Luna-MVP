@@ -1,0 +1,187 @@
+{
+    "phase": "Phase-Luna-Decision-Architecture-Planning-v1-001",
+    "stage": "Decision Architecture Planning",
+    "execution_mode": "Planning Only",
+    "current_work_description": {
+        "in_scope": [
+            "decision planning assets",
+            "schema and contract candidates",
+            "boundary definitions",
+            "minimum scenarios",
+            "reuse mapping",
+            "read-only final phase verifier"
+        ],
+        "out_of_scope": [
+            "decision runtime implementation",
+            "action execution",
+            "task creation",
+            "model or provider invocation",
+            "database write",
+            "existing asset mutation"
+        ]
+    },
+    "previous_phase": "Phase-Luna-Causal-Governance-Controlled-Implementation-v1-001",
+    "previous_phase_decision": "GO",
+    "input_assets": [
+        "docs/architecture/luna_intent_architecture_planning_v1/",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/",
+        "docs/architecture/luna_causal_architecture_planning_v1/",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/"
+    ],
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_state_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_to_causal_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_negative_guards_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_hypothesis_schema_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_state_model_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_to_decision_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_negative_guards_v1.json"
+    ],
+    "target_directory": "docs/architecture/luna_decision_architecture_planning_v1/",
+    "scope": [
+        "planning assets only",
+        "json and markdown contracts",
+        "read-only verifier"
+    ],
+    "out_of_scope": [
+        "capabilities runtime edits",
+        "python runner execution by agent",
+        "schema activation",
+        "owner metadata mutation"
+    ],
+    "required_final_files": [
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_architecture_plan_v1.md",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_concept_boundary_matrix_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_candidate_schema_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_state_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_formation_contract_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_option_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_multi_candidate_coexistence_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_selection_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_risk_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_utility_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_constraint_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_permission_safety_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_role_influence_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_intent_influence_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_causal_influence_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_defer_abstain_evidence_request_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_reversibility_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_human_confirmation_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_resource_constraint_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_provenance_trace_schema_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_revision_suspension_revocation_model_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_to_action_task_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_negative_guards_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_existing_asset_reuse_mapping_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_minimum_scenario_suite_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_open_questions_registry_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_planning_change_manifest_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_architecture_planning_summary_v1.md",
+        "docs/architecture/luna_decision_architecture_planning_v1/phase_contract.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/verify_decision_architecture_planning_v1.py"
+    ],
+    "implementation_principles": [
+        "single canonical owner",
+        "source-owner precedence",
+        "candidate-only semantics",
+        "hard constraints before soft preferences",
+        "no forced selection",
+        "minimal change and no upstream mutation"
+    ],
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "verifier ast parse",
+            "boundary rule checks",
+            "manifest side-effect checks"
+        ],
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "negative_guards": [
+        "intent != decision",
+        "causal != decision",
+        "decision != action",
+        "decision != task",
+        "no runtime execution by agent",
+        "no checker weakening",
+        "no parallel decision owner"
+    ],
+    "verification_authority": {
+        "V0": "AGENT_STATIC_ONLY",
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "allowed_agent_checks": [
+        "file existence",
+        "json parsing",
+        "ast parsing",
+        "editor diagnostics"
+    ],
+    "allowed_agent_execution": [
+        "read files",
+        "create new phase files",
+        "modify phase-local files"
+    ],
+    "prohibited_agent_execution": [
+        "python",
+        "python3",
+        "pytest",
+        "runner",
+        "verifier",
+        "shell validation",
+        "runtime execution",
+        "network or database operations"
+    ],
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "cd /Users/luanlei/Desktop/Luna-Core && python3 docs/architecture/luna_decision_architecture_planning_v1/verify_decision_architecture_planning_v1.py"
+    ],
+    "expected_success_decision": "LUNA_DECISION_ARCHITECTURE_PLANNING_READY",
+    "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+    "expected_failure_decision": "LUNA_DECISION_ARCHITECTURE_PLANNING_REMEDIATION_REQUIRED",
+    "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+    "stop_condition": "All planning files and V0 static checks are complete; agent stops before any V2 execution.",
+    "blocker_conditions": [
+        "duplicate canonical decision owner detected",
+        "required planning asset missing",
+        "boundary guard missing",
+        "unauthorized existing asset mutation detected"
+    ],
+    "completion_report_format": [
+        "pre-read findings",
+        "created files",
+        "modified files",
+        "reuse assets",
+        "owner decision",
+        "concept boundaries",
+        "state model",
+        "risk utility constraint separation",
+        "defer abstain request-more-evidence",
+        "reversibility and confirmation",
+        "handoff boundary",
+        "minimum scenarios",
+        "negative guards",
+        "blockers",
+        "user terminal command",
+        "current status"
+    ],
+    "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "planning_only": true,
+    "runtime_executed": false,
+    "decision_execution": false,
+    "action_triggered": false,
+    "task_created": false,
+    "database_write": false,
+    "model_call": false,
+    "source_mutation": false,
+    "status": "PLANNING_CANDIDATE"
+}

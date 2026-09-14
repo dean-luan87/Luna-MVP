@@ -1,0 +1,11 @@
+{
+  "schema_version": "v1",
+  "registry_type": "Hardware Registry",
+  "purpose": "body structure, health, capability, and lifecycle description",
+  "required_fields": ["hardware_id", "sensor_or_actuator_type", "capability_reference", "physical_profile", "health_state", "resource_state", "limitations", "lifecycle", "provenance"],
+  "examples": ["front_camera", "audio_sensor", "battery_resource", "mobility_actuator"],
+  "health_states": ["normal", "degraded", "unavailable", "unknown"],
+  "hardware_manager_responsibilities": ["registration", "state", "health", "capability_description", "lifecycle"],
+  "hardware_manager_direct_control": false,
+  "hardware_manager_decision_authority": false
+}

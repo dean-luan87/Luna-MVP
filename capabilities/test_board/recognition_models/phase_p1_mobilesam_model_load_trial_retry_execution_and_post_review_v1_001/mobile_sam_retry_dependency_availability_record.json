@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:31:44.844313+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_retry_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_retry_dependency_availability_record",
+  "mobile_sam_retry_dependency_availability_record": {
+    "record_id": "mobile_sam_retry_dependency_availability_v1",
+    "probe_method": "find_spec_only",
+    "timm_find_spec_result": true,
+    "mobile_sam_find_spec_result": true,
+    "timm_target_path_used": true,
+    "mobile_sam_code_path_used": true,
+    "real_import_used_for_probe": false
+  }
+}

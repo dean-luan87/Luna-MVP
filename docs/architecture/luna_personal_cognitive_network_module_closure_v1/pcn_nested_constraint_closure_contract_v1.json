@@ -1,0 +1,30 @@
+{
+    "artifact_id": "pcn_nested_constraint_closure_contract_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "relations": [
+        "Context<->PCN",
+        "Field<->Role",
+        "Role<->Relationship",
+        "MemoryReference<->PCN",
+        "Resource<->PCN",
+        "Interaction<->PCN",
+        "ObservationAxisReference<->Interaction"
+    ],
+    "relation_semantics": {
+        "nested_constraint": true,
+        "feedback_reference": true,
+        "projection": true,
+        "activation": true,
+        "inhibition_or_amplification_candidate": true,
+        "cross_owner_mutation": false
+    },
+    "owner_boundary_rules": {
+        "source_owner_precedence": true,
+        "constraint_not_mutation": true,
+        "feedback_not_mutation": true,
+        "activation_not_mutation": true,
+        "inhibition_amplification_not_mutation": true
+    },
+    "owner_independence_not_equal_cognitive_isolation": true,
+    "runtime_nested_controller_created": false
+}

@@ -1,0 +1,33 @@
+{
+    "artifact": "runtime_executor_negative_guards_v1",
+    "status": "PLANNING_CANDIDATE",
+    "forbidden_events": [
+        "action_candidate_equals_execution_request",
+        "execution_readiness_equals_execution",
+        "executor_overrides_decision_governance",
+        "executor_overrides_action_governance",
+        "executor_overrides_task_manager",
+        "executor_overrides_scheduler",
+        "permission_bypass",
+        "safety_bypass",
+        "final_gate_skip",
+        "automatic_retry",
+        "retry_without_authority",
+        "timeout_without_trace",
+        "cancellation_without_trace",
+        "partial_result_marked_success_without_followup",
+        "rollback_execution_claim_without_trigger",
+        "adapter_direct_side_effect_claim",
+        "diagnostics_claim_as_decision",
+        "result_handoff_as_owner_transfer"
+    ],
+    "forbidden_flags": {
+        "planning_only_false": true,
+        "runtime_executed_true": true,
+        "device_control_true": true,
+        "database_write_true": true,
+        "scheduler_execution_true": true,
+        "task_lifecycle_mutation_true": true,
+        "source_mutation_true": true
+    }
+}

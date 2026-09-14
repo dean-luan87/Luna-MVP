@@ -1,0 +1,53 @@
+{
+  "schema_id": "MidplatformTargetSelectionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+  "description": "中台融合 region_proposal + text_region + semantic_target，生成 task candidate 建议。",
+  "planning_only": true,
+  "fusion_inputs": [
+    "region_proposal_candidate",
+    "text_region_candidate",
+    "semantic_target_candidate"
+  ],
+  "selection_rules": [
+    {
+      "rule_id": "text_high_confidence_boost_ocr",
+      "when": "text_region confidence >= 0.7 and text_likelihood >= 0.65",
+      "then": "ocr_task_candidate",
+      "priority_signal": "boost"
+    },
+    {
+      "rule_id": "sam_text_misalignment",
+      "when": "text_region exists and region_overlap < 0.15",
+      "then": "alignment_conflict_review",
+      "priority_signal": "block_auto_admission"
+    },
+    {
+      "rule_id": "no_text_low_auto_ocr",
+      "when": "text_candidates empty or max_confidence < 0.4",
+      "then": "manual_review or no_followup",
+      "priority_signal": "downgrade"
+    },
+    {
+      "rule_id": "semantic_without_text",
+      "when": "semantic_target suggests ocr but no text_region",
+      "then": "low_confidence_ocr_candidate",
+      "priority_signal": "downgrade"
+    }
+  ],
+  "sam_association_role": "spatial_reference_only_not_text_discovery",
+  "forbidden_operations": [
+    "selection_writes_fact",
+    "selection_confirms_text_content",
+    "selection_triggers_ocr_runner",
+    "sam_region_overrides_text_region_without_review"
+  ],
+  "boundary_flags": {
+    "sam_not_primary_text_detector": true,
+    "target_proposal_comparison_not_fact": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "candidate_only_preserved": true,
+    "planning_only": true
+  }
+}

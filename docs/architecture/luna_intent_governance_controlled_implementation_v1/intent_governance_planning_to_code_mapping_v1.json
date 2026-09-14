@@ -1,0 +1,108 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "planning_source": "docs/architecture/luna_intent_architecture_planning_v1",
+    "all_code_assets": [
+        "capabilities/midplatform/core/intent_governance/__init__.py",
+        "capabilities/midplatform/core/intent_governance/intent_error_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_core_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_io_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_lifecycle_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_interaction_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_carryover_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_resource_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_trace_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_handoff_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_registry_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_protocol_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_ownership_guard_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_static_validators_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_fixture_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_skeleton_v1.py",
+        "capabilities/midplatform/core/intent_governance/run_intent_governance_controlled_implementation_v1.py"
+    ],
+    "mappings": [
+        {
+            "planning_asset": "potential_intent_schema_candidate_v1.json",
+            "code_assets": [
+                "intent_core_types_v1.py",
+                "intent_static_validators_v1.py"
+            ],
+            "coverage": "PotentialIntentCandidate fields and candidate guards"
+        },
+        {
+            "planning_asset": "intent_candidate_schema_v1.json",
+            "code_assets": [
+                "intent_core_types_v1.py",
+                "intent_static_validators_v1.py"
+            ],
+            "coverage": "IntentCandidate fields and non-decision boundary"
+        },
+        {
+            "planning_asset": "intent_state_model_candidate_v1.json",
+            "code_assets": [
+                "intent_lifecycle_types_v1.py",
+                "intent_governance_skeleton_v1.py"
+            ],
+            "coverage": "state candidates and controlled transition derivation"
+        },
+        {
+            "planning_asset": "intent_competition_coexistence_model_candidate_v1.json",
+            "code_assets": [
+                "intent_interaction_types_v1.py",
+                "intent_governance_skeleton_v1.py"
+            ],
+            "coverage": "coexistence/conflict/suppression/reactivation candidates"
+        },
+        {
+            "planning_asset": "intent_temporary_dominance_model_candidate_v1.json",
+            "code_assets": [
+                "intent_interaction_types_v1.py",
+                "intent_governance_skeleton_v1.py",
+                "intent_handoff_types_v1.py"
+            ],
+            "coverage": "temporary dominance represented as candidate-only interaction"
+        },
+        {
+            "planning_asset": "intent_carryover_model_candidate_v1.json",
+            "code_assets": [
+                "intent_carryover_types_v1.py",
+                "intent_governance_skeleton_v1.py"
+            ],
+            "coverage": "cross-context carryover candidate semantics"
+        },
+        {
+            "planning_asset": "intent_resource_constraint_model_candidate_v1.json",
+            "code_assets": [
+                "intent_resource_types_v1.py",
+                "intent_governance_skeleton_v1.py"
+            ],
+            "coverage": "resource degradation without truth mutation"
+        },
+        {
+            "planning_asset": "intent_to_causal_handoff_contract_candidate_v1.json",
+            "code_assets": [
+                "intent_handoff_types_v1.py",
+                "intent_static_validators_v1.py"
+            ],
+            "coverage": "candidate-only handoff payload and forbidden outputs"
+        },
+        {
+            "planning_asset": "intent_owner_boundary_candidate_v1.json",
+            "code_assets": [
+                "intent_ownership_guard_v1.py",
+                "intent_registry_v1.py"
+            ],
+            "coverage": "single owner and cross-owner mutation guard"
+        },
+        {
+            "planning_asset": "intent_minimum_scenario_suite_v1.json",
+            "code_assets": [
+                "intent_governance_fixture_v1.py",
+                "run_intent_governance_controlled_implementation_v1.py"
+            ],
+            "coverage": "12-case synthetic scenario coverage"
+        }
+    ],
+    "planning_assets_modified": false,
+    "parallel_implementation_created": false
+}

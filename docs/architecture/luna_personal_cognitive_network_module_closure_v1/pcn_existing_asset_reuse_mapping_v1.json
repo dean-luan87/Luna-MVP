@@ -1,0 +1,61 @@
+{
+    "artifact_id": "pcn_existing_asset_reuse_mapping_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "existing_asset_reuse": {
+        "planning_assets": [
+            "docs/architecture/luna_personal_cognitive_network_planning_v1/",
+            "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/",
+            "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/"
+        ],
+        "implementation_assets": [
+            "capabilities/midplatform/core/personal_cognitive_network/",
+            "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/",
+            "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/"
+        ],
+        "context_dependency_assets": [
+            "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+            "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_module_baseline_v1.json"
+        ],
+        "roadmap_freeze_assets": [
+            "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/development_phase_registry_v1.json",
+            "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/development_dependency_graph_v1.json",
+            "docs/architecture/luna_dynamic_cognitive_architecture_development_roadmap_freeze_v1/phase_gate_contract_v1.json"
+        ],
+        "dryrun_evidence_assets": [
+            "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_result_v1.json",
+            "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_case_results_v1.json",
+            "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_trace_v1.json"
+        ]
+    },
+    "closure_assets": [
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/personal_cognitive_network_module_closure_v1.md",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_module_baseline_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_owner_and_mutation_authority_closure_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_input_output_closure_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_nested_constraint_closure_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_field_role_interaction_closure_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_resource_boundary_closure_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_subjective_cognition_closure_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_clarification_closure_registry_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_existing_asset_reuse_mapping_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_module_closure_change_manifest_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/phase_contract.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/verify_personal_cognitive_network_module_closure_v1.py"
+    ],
+    "future_extension_points": [
+        "intent_candidate_binding_and_revision",
+        "causal_candidate_generation_and_counter_evidence",
+        "experience_admission_and_structural_change_review",
+        "resource_budget_translation_profiles",
+        "interaction_kernel_local_math_model"
+    ],
+    "open_clarifications": [
+        "CLAR-001-LINK-MULTI-RELATION",
+        "CLAR-002-ACTIVATION-DISTINCTION",
+        "CLAR-003-GROWTH-NON-AUTO-STRUCTURAL",
+        "CLAR-004-NESTED-AXIS-KERNEL-FEEDBACK",
+        "CLAR-005-SCENARIO-EXTENSION-TO-12"
+    ],
+    "structural_blockers": []
+}

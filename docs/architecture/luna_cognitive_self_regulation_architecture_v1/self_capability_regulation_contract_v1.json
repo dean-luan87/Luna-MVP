@@ -1,0 +1,8 @@
+{
+  "title": "Self Capability Regulation Contract v1",
+  "owner": "Self Regulation / Capability Regulation",
+  "inputs": ["Self Observation Event", "Health State", "Current Task", "Risk", "Resource State", "Capability Profile"],
+  "outputs": ["Capability Regulation Candidate", "Capability Constraint Candidate", "Capability Selection Request"],
+  "schema": ["regulation_id", "capability", "current_state", "candidate_adjustment", "task_context", "risk", "resource_constraint", "confidence", "unknown", "review_status", "trace_id"],
+  "rules": {"proposes_not_admits":true,"capability_governance_admission_required":true,"context_bound":true,"candidate_only":true,"no_direct_provider_call":true,"no_goal_change":true}
+}

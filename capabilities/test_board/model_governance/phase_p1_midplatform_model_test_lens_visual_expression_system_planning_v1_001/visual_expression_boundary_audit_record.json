@@ -1,0 +1,35 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "planning_only": true,
+    "forbidden_operations": [
+      "output_confirmed_dynamic_on_canvas_single_frame",
+      "icon_only_marker_without_readable_text",
+      "swap_boundary_rendering_mode_on_select",
+      "stack_multiple_model_boundary_systems",
+      "draw_secondary_box",
+      "hide_segmentation_on_attention_select",
+      "draw_attention_boundary",
+      "trigger_navigation_from_interaction",
+      "execute_followup_route_from_canvas_click",
+      "execute_runner_from_canvas_click",
+      "draw_secondary_boundary_from_attention",
+      "write_fact_from_canvas_interaction",
+      "clone_segmentation_box_for_priority",
+      "upgrade_prompt_label_to_fact_on_canvas",
+      "icon_only_default_canvas_expression",
+      "replace_boundary_with_priority_box",
+      "treat_correction_as_ground_truth_on_canvas",
+      "hide_segmentation_boundary_on_select",
+      "toggle_segmentation_layer_off_on_focus",
+      "create_attention_boundary_clone"
+    ],
+    "failed_checks": []
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Action Outcome Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["outcome_id", "action_ref", "expected_outcome", "actual_outcome", "outcome_type", "difference", "impact", "evidence", "field_ref", "provenance", "unknowns"],
+  "properties": {
+    "outcome_id": {"type": "string"},
+    "action_ref": {"type": "string"},
+    "expected_outcome": {"type": "object"},
+    "actual_outcome": {"type": "object"},
+    "outcome_type": {"type": "string"},
+    "difference": {"type": "object"},
+    "impact": {"type": "object"},
+    "evidence": {"type": "array"},
+    "field_ref": {"type": ["string", "null"]},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"}
+  },
+  "action_is_not_outcome": true,
+  "outcome_is_not_experience": true,
+  "actual_outcome_requires_reality_evidence": true,
+  "candidate_only": true,
+  "direct_reality_mutation": false,
+  "automatic_memory_write": false
+}

@@ -1,0 +1,120 @@
+{
+  "review_id": "luna_controlled_architecture_alignment_m2_owner_conflict_review_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "review_scope": ["duplicate owner", "duplicate writer", "owner drift", "permission conflict"],
+  "reviews": [
+    {
+      "asset": "Field State Reducer",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Active reducer remains the only Field state writer; Field System is an architecture domain label only.",
+      "blocker": false
+    },
+    {
+      "asset": "Field State Read Model",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Read Model writes projection candidates only and retains no Field mutation authority.",
+      "blocker": false
+    },
+    {
+      "asset": "Observation Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Observation owns evidence collection candidates but not Cognitive Attention, cognition, or Decision.",
+      "blocker": false
+    },
+    {
+      "asset": "Task Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Task lifecycle ownership remains distinct from Intent, Causal Reasoning, Decision, Runtime dispatch, and Action.",
+      "blocker": false
+    },
+    {
+      "asset": "Model Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Model capability ownership remains separate from cognitive conclusion and Decision authority.",
+      "blocker": false
+    },
+    {
+      "asset": "Protocol Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Cognitive OS is the governance domain; Protocol Manager remains the active module owner.",
+      "blocker": false
+    },
+    {
+      "asset": "OCR Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "OCR remains an evidence producer without fact, Memory, Decision, or Action authority.",
+      "blocker": false
+    },
+    {
+      "asset": "Vision Manager",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Vision remains an evidence producer without world-state, Decision, or Action authority.",
+      "blocker": false
+    },
+    {
+      "asset": "Memory",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Memory remains the sole historical persistence and retrieval owner; PCN consumes references only.",
+      "blocker": false
+    },
+    {
+      "asset": "Personal Cognitive Network",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "PCN owns typed connection, activation, and projection candidates only and cannot own or mutate source objects.",
+      "blocker": false
+    },
+    {
+      "asset": "Intent Architecture",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Intent Candidate governance remains distinct from Goal, Task, Decision, and Action ownership.",
+      "blocker": false
+    },
+    {
+      "asset": "Causal Reasoning",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Causal outputs remain revisable candidates and gain no fact, Decision, or Action authority.",
+      "blocker": false
+    },
+    {
+      "asset": "Experience Compression",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Experience outputs remain candidates and cannot directly write Memory, Schema, or PCN.",
+      "blocker": false
+    },
+    {
+      "asset": "A/B Route",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "B Route remains future-simulation candidate space and cannot override A Route Reality or Decision.",
+      "blocker": false
+    },
+    {
+      "asset": "Decision Arbitration",
+      "conflict": false,
+      "conflict_type": "",
+      "resolution": "Decision Arbitration selects candidates only and remains separate from Task lifecycle and Action execution.",
+      "blocker": false
+    }
+  ],
+  "conflicts": [],
+  "blocker_count": 0,
+  "duplicate_owner_detected": false,
+  "duplicate_writer_detected": false,
+  "owner_drift_detected": false,
+  "permission_conflict_detected": false,
+  "active_metadata_modified": false,
+  "migration_executed": false
+}

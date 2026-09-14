@@ -1,0 +1,11 @@
+{
+  "field_state_owner": "Field State Reducer",
+  "current_world_owner": "Cognitive State Formation",
+  "field_state_reducer_is_single_mutation_authority": true,
+  "current_world_may_reference": ["Field State", "Context", "Observation", "PCN", "Intent", "Hypothesis"],
+  "current_world_cannot": ["mutate Field State", "create Field entity", "change Field confidence", "execute Field Event admission", "execute reducer transition", "declare Field truth"],
+  "semantic_inequalities": ["Current World != Field State", "Current World Candidate != Field Truth", "Field Event != Field State"],
+  "contradiction_preserved": true,
+  "unknown_preserved": true,
+  "candidate_only": true
+}

@@ -1,0 +1,38 @@
+{
+  "schema_id": "DocumentSurfaceRealRuntimeAdmissionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Implementation-Planning-v1-001",
+  "runtime_id": "document_surface_detector_v1",
+  "implementation_planning_only": true,
+  "first_real_implementation_candidate": "option_a_classical_cv_boundary",
+  "deferred_candidates": [
+    "option_b_lightweight_segmentation",
+    "option_c_layout_document_ai",
+    "option_d_vlm_teacher_assisted"
+  ],
+  "real_execution_enabled": false,
+  "admission_gates": {
+    "implementation_dryrun_required": true,
+    "attention_gate_required": true,
+    "candidate_only_required": true,
+    "no_direct_real_execution": true
+  },
+  "negative_guards": [
+    "no_real_model_execution",
+    "no_image_segmentation_execution",
+    "no_ocr_execution",
+    "no_vlm_call",
+    "no_layout_parser_execution",
+    "no_document_fact_output",
+    "no_implementation_without_attention_gate",
+    "no_global_ocr",
+    "no_full_scene_segmentation_by_default",
+    "no_candidate_to_fact_promotion",
+    "no_silent_fallback",
+    "no_accuracy_only_benchmark",
+    "no_test_image_requirement_in_planning",
+    "no_direct_real_execution_next_phase"
+  ],
+  "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Implementation-Post-Review-v1-001",
+  "parallel_next_track": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

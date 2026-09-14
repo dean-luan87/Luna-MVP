@@ -1,0 +1,11 @@
+{
+  "schema_id": "attention_allocation_candidate_v1",
+  "owner": "Attention Layer",
+  "fields": ["attention_id", "target", "attention_type", "priority_candidate", "resource_request", "reason", "field_ref", "task_ref", "risk_ref", "unknowns", "provenance"],
+  "candidate_only": true,
+  "self_approval_required": true,
+  "active_attention_is_admitted": false,
+  "direct_understanding": false,
+  "direct_action": false,
+  "unlimited_resource": false
+}

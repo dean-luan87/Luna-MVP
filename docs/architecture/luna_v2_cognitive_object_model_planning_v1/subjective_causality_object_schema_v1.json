@@ -1,0 +1,288 @@
+{
+    "schema_id": "subjective_causality_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Subjective causality schemas for Luna V2.",
+    "objects": {
+        "physical_causal_candidate": {
+            "object_type": "relation",
+            "parent_type": "relation",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "unstable_physical_fact_promotion"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "institutional_causal_candidate": {
+            "object_type": "relation",
+            "parent_type": "relation",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "institutional_belief_as_fact"
+            ],
+            "governance_refs": [
+                "Institutional Rule Candidate",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "social_causal_candidate": {
+            "object_type": "relation",
+            "parent_type": "relation",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "social_causality_as_public_fact"
+            ],
+            "governance_refs": [
+                "Social Convention Candidate",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "subjective_causal_belief": {
+            "object_type": "belief",
+            "parent_type": "belief",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "subjective_belief_as_objective_fact"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "emotional_association": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "emotion_as_public_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "narrative_explanation": {
+            "object_type": "belief",
+            "parent_type": "belief",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "cause_refs",
+                "effect_refs",
+                "emotion_influence",
+                "evidence_refs",
+                "counter_evidence_refs",
+                "behavioral_influence_allowed",
+                "fact_admission_allowed",
+                "revision_required",
+                "revocation_required"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "narrative_as_objective_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    },
+    "rules": [
+        "subjective_causal_belief.fact_admission_allowed = false",
+        "emotional_association.fact_admission_allowed = false",
+        "narrative_explanation.fact_admission_allowed = false"
+    ]
+}

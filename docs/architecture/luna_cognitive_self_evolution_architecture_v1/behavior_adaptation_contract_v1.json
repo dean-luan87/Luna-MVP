@@ -1,0 +1,15 @@
+{
+  "title": "Behavior Adaptation Contract v1",
+  "owner": "Self Evolution / Behavior Adaptation",
+  "inputs": ["Strategy Candidate", "Pattern Candidate", "Field Context", "Role Context", "Task Context", "Capability Profile"],
+  "output": "Behavior Adaptation Candidate",
+  "schema": ["adaptation_id", "trigger_context", "previous_strategy", "candidate_strategy", "expected_benefit", "constraint", "confidence", "unknown", "review_status"],
+  "rules": {
+    "strategy_not_action": true,
+    "candidate_only": true,
+    "role_context_reference_only": true,
+    "personality_change_forbidden": true,
+    "value_change_forbidden": true,
+    "action_runtime_not_invoked": true
+  }
+}

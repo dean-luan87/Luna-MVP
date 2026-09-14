@@ -1,0 +1,15 @@
+{
+  "capability_contract": {
+    "id": "capability:object-detection:v1",
+    "kind": "OBJECT_DETECTION",
+    "properties": ["full_frame", "ROI", "fixed_class", "bounded_session"]
+  },
+  "canonical_evidence_contract": {
+    "id": "evidence:visual-detection-candidate:v1",
+    "schema": "VisualDetectionEvidenceCandidateV1",
+    "candidate_only": true,
+    "truth_declared": false,
+    "fact_admitted": false
+  },
+  "provider_native_to_canonical": true
+}

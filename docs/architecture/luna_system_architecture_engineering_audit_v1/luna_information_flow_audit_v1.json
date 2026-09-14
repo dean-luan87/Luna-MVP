@@ -1,0 +1,39 @@
+{
+  "title": "Luna Information Flow Audit v1",
+  "canonical_flow": [
+    "Observation",
+    "Evidence",
+    "Reality Update Candidate",
+    "Field",
+    "Situation",
+    "Global Cognitive State",
+    "Brain",
+    "Decision Candidate",
+    "Decision Commitment",
+    "Action Boundary",
+    "Feedback",
+    "Learning"
+  ],
+  "allowed_flows": [
+    {"source": "Observation", "target": "Evidence", "permission": "candidate output"},
+    {"source": "Evidence", "target": "Reality Update Candidate", "permission": "update candidate"},
+    {"source": "Reality", "target": "Field", "permission": "provide context"},
+    {"source": "Field", "target": "Situation", "permission": "provide context"},
+    {"source": "Situation", "target": "Global Cognitive State", "permission": "compose state"},
+    {"source": "Global Cognitive State", "target": "Brain", "permission": "read context"},
+    {"source": "Brain", "target": "Decision Candidate", "permission": "candidate generation"},
+    {"source": "Decision Candidate", "target": "Decision Commitment", "permission": "candidate review"},
+    {"source": "Decision Commitment", "target": "Action Boundary", "permission": "request candidate"},
+    {"source": "Feedback", "target": "Learning", "permission": "candidate input"}
+  ],
+  "black_holes": [
+    {"module": "Capability Health", "status": "partial", "required_consumer": "Self Capability / Attention"},
+    {"module": "Runtime Recovery", "status": "partial", "required_consumer": "Cognitive Runtime"}
+  ],
+  "isolated_or_unclassified_candidates": [
+    {"module": "cognitive_flow", "reason": "architecture directory lacks canonical md/verifier surface", "priority": "P1"}
+  ],
+  "forbidden_flows": ["Capability → Brain", "Model → Goal", "Provider → Reality", "Learning → Reality", "Emotion → Decision Override"],
+  "unknowns_are_preserved": true,
+  "provenance_is_preserved": true
+}

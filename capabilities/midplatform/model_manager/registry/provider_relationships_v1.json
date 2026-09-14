@@ -1,0 +1,42 @@
+{
+  "schema_id": "LunaProviderRelationshipsV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Provider-Registry-v1-001",
+  "description": "Provider 关系 — alternative / fallback / replacement",
+  "relationships": [
+    {
+      "provider": "internvl2_5",
+      "relations": [
+        {"type": "alternative", "target": "qwen_vl", "reason": "cloud_backup"},
+        {"type": "fallback", "target": "qwen_vl", "reason": "local_runtime_unavailable"}
+      ]
+    },
+    {
+      "provider": "internvl2_5_v2",
+      "relations": [
+        {"type": "replacement", "target": "internvl2_5", "reason": "version_upgrade"},
+        {"type": "fallback", "target": "qwen_vl", "reason": "local_runtime_unavailable"}
+      ]
+    },
+    {
+      "provider": "qwen_vl_v2",
+      "relations": [
+        {"type": "replacement", "target": "qwen_vl", "reason": "version_upgrade"},
+        {"type": "alternative", "target": "gemini_vision", "reason": "cloud_alternative"}
+      ]
+    },
+    {
+      "provider": "ocr_v1",
+      "relations": [
+        {"type": "replacement", "target": "paddleocr_v1", "reason": "ocr_v2_upgrade", "status": "planned"}
+      ]
+    },
+    {
+      "provider": "gemini_vision",
+      "relations": [
+        {"type": "alternative", "target": "qwen_vl", "reason": "cost_downgrade"},
+        {"type": "fallback", "target": "internvl2_5", "reason": "offline_local_fallback"}
+      ]
+    }
+  ]
+}

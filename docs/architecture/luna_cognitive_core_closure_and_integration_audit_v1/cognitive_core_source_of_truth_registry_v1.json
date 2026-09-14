@@ -1,0 +1,253 @@
+{
+    "artifact": "cognitive_core_source_of_truth_registry_v1",
+    "phase_id": "Phase-Luna-Cognitive-Core-Closure-And-Integration-Audit-v1-001",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "audit_only": true,
+    "planning_only": true,
+    "core_chain": [
+        "Context Foundation",
+        "Personal Cognitive Network",
+        "Intent Governance",
+        "Cognitive State Formation",
+        "Dynamic Cognitive Regulation",
+        "Cognitive Flow Governance",
+        "Cognitive Memory & Experience Governance",
+        "Cognitive Learning Governance"
+    ],
+    "modules": [
+        {
+            "module_id": "context_foundation",
+            "canonical_owner": "Context Foundation",
+            "semantic_objects": [
+                "Context Envelope Candidate",
+                "Context Projection Candidate",
+                "Context Trace Candidate"
+            ],
+            "primary_inputs": [
+                "Field refs",
+                "Observation refs",
+                "Role/relationship/self projections"
+            ],
+            "primary_outputs": [
+                "Context candidate",
+                "Context trace"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_module_baseline_v1.json",
+                "docs/architecture/luna_context_foundation_module_closure_v1/context_foundation_io_closure_contract.json",
+                "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json"
+            ]
+        },
+        {
+            "module_id": "personal_cognitive_network",
+            "canonical_owner": "Personal Cognitive Network Governance",
+            "semantic_objects": [
+                "PCN projection candidate",
+                "PCN activation candidate",
+                "PCN link candidate",
+                "PCN trace candidate"
+            ],
+            "primary_inputs": [
+                "Context-linked refs",
+                "Memory projection refs",
+                "Field/role/relationship refs"
+            ],
+            "primary_outputs": [
+                "PCN snapshot/projection candidate",
+                "PCN->Intent handoff candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_owner_and_mutation_authority_closure_v1.json",
+                "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_input_output_closure_contract_v1.json",
+                "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json"
+            ]
+        },
+        {
+            "module_id": "intent_governance",
+            "canonical_owner": "Intent Governance",
+            "semantic_objects": [
+                "Potential Intent Candidate",
+                "Intent Candidate",
+                "Intent State Candidate",
+                "Intent Trace Candidate"
+            ],
+            "primary_inputs": [
+                "Context refs",
+                "PCN refs",
+                "Field refs",
+                "Memory/experience refs"
+            ],
+            "primary_outputs": [
+                "Intent candidate",
+                "Intent handoff candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_intent_architecture_planning_v1/intent_owner_boundary_candidate_v1.json",
+                "docs/architecture/luna_intent_governance_controlled_implementation_v1/phase_contract.json",
+                "capabilities/midplatform/core/intent_governance/intent_registry_v1.py"
+            ]
+        },
+        {
+            "module_id": "cognitive_state_formation",
+            "canonical_owner": "Cognitive State Formation Governance",
+            "semantic_objects": [
+                "Attention Candidate",
+                "Cognitive Hypothesis Candidate",
+                "Current World Candidate",
+                "Cognitive State Vector Candidate"
+            ],
+            "primary_inputs": [
+                "Context refs",
+                "PCN refs",
+                "Intent refs",
+                "Field refs",
+                "Observation refs"
+            ],
+            "primary_outputs": [
+                "Attention/Hypothesis/Current World/State Vector candidates",
+                "Causal handoff candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_formation_owner_boundary_v1.json",
+                "docs/architecture/luna_cognitive_state_formation_controlled_implementation_v1/cognitive_state_formation_controlled_execution_contract_v1.json",
+                "docs/architecture/luna_cognitive_state_formation_controlled_implementation_v1/cognitive_state_formation_planning_to_code_mapping_v1.json"
+            ]
+        },
+        {
+            "module_id": "dynamic_cognitive_regulation",
+            "canonical_owner": "Dynamic Cognitive Regulation Governance",
+            "semantic_objects": [
+                "Dynamic Regulation Candidate",
+                "Regulation Influence Candidate",
+                "Parameter Update Admission Boundary"
+            ],
+            "primary_inputs": [
+                "Cognitive State Vector Candidate",
+                "Context refs",
+                "Intent refs",
+                "Hypothesis refs",
+                "Policy and bounds refs",
+                "Learning update candidate refs"
+            ],
+            "primary_outputs": [
+                "Regulation candidate",
+                "Influence handoff candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_dynamic_cognitive_regulation_controlled_implementation_v1/dynamic_cognitive_regulation_controlled_execution_contract_v1.json",
+                "docs/architecture/luna_dynamic_cognitive_regulation_controlled_implementation_v1/dynamic_cognitive_regulation_planning_to_code_mapping_v1.json",
+                "capabilities/midplatform/core/dynamic_cognitive_regulation/dynamic_cognitive_regulation_registry_v1.py"
+            ]
+        },
+        {
+            "module_id": "cognitive_flow",
+            "canonical_owner": "Cognitive Flow Governance",
+            "semantic_objects": [
+                "Cycle lifecycle candidate",
+                "Transition candidate",
+                "Reconsideration candidate",
+                "Memory observation candidate",
+                "Future learning handoff candidate"
+            ],
+            "primary_inputs": [
+                "Context refs",
+                "PCN refs",
+                "Intent refs",
+                "State Formation refs",
+                "Regulation candidate ref",
+                "Field refs",
+                "Causal refs"
+            ],
+            "primary_outputs": [
+                "Cycle state candidate",
+                "Lifecycle and handoff candidates"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/cognitive_flow_owner_boundary_v1.json",
+                "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/cognitive_flow_module_interaction_matrix_v1.json",
+                "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/cognitive_flow_trace_provenance_contract_v1.json"
+            ]
+        },
+        {
+            "module_id": "cognitive_memory_experience",
+            "canonical_owner": "Cognitive Memory & Experience Governance",
+            "semantic_objects": [
+                "Experience Candidate",
+                "Memory Candidate",
+                "Learning Evidence Candidate",
+                "Memory lifecycle candidates"
+            ],
+            "primary_inputs": [
+                "Cycle refs",
+                "Context/field/PCN/intent/attention/hypothesis refs",
+                "Current world ref",
+                "State vector ref",
+                "Regulation ref",
+                "User feedback refs"
+            ],
+            "primary_outputs": [
+                "Experience candidate",
+                "Memory candidate",
+                "Learning evidence candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/cognitive_memory_experience_owner_boundary_v1.json",
+                "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/experience_to_memory_formation_contract_v1.json",
+                "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/memory_trace_provenance_contract_v1.json"
+            ]
+        },
+        {
+            "module_id": "cognitive_learning",
+            "canonical_owner": "Cognitive Learning Governance",
+            "semantic_objects": [
+                "Learning Evidence Candidate",
+                "Learning Candidate",
+                "Parameter Update Candidate",
+                "Learning lifecycle candidates"
+            ],
+            "primary_inputs": [
+                "Experience refs",
+                "Memory refs",
+                "Outcome refs",
+                "Feedback refs",
+                "Contradiction/counterexample refs",
+                "Context/intent/hypothesis/current-world/state-vector/regulation refs"
+            ],
+            "primary_outputs": [
+                "Learning candidate",
+                "Parameter update candidate"
+            ],
+            "source_of_truth_assets": [
+                "docs/architecture/luna_cognitive_learning_governance_planning_v1/cognitive_learning_owner_boundary_v1.json",
+                "docs/architecture/luna_cognitive_learning_governance_planning_v1/cognitive_learning_trace_provenance_contract_v1.json",
+                "docs/architecture/luna_cognitive_learning_controlled_implementation_v1/cognitive_learning_planning_to_code_mapping_v1.json"
+            ]
+        }
+    ],
+    "integration_bridges": [
+        {
+            "bridge_id": "context_pcn_intent_mainline",
+            "role": "preserve H01-H02 owner boundaries without creating integration ownership",
+            "source_of_truth_assets": [
+                "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_controlled_execution_contract_v1.json",
+                "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_gap_registry_v1.json"
+            ]
+        },
+        {
+            "bridge_id": "field_state_reducer",
+            "role": "preserve field-state single-writer authority external to Current World",
+            "source_of_truth_assets": [
+                "capabilities/midplatform/core/field_state_reducer/field_state_reducer_static_validators_v1.py",
+                "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_boundary_risk_matrix_v1.json"
+            ]
+        },
+        {
+            "bridge_id": "causal_governance",
+            "role": "preserve Hypothesis vs Causal semantic inequality and downstream causal ownership",
+            "source_of_truth_assets": [
+                "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_formation_causal_handoff_v1.json",
+                "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_controlled_execution_contract_v1.json"
+            ]
+        }
+    ]
+}

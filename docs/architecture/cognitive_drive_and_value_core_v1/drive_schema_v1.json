@@ -1,0 +1,21 @@
+{
+  "schema_name": "Cognitive Drive Schema v1",
+  "drive_id": "drive-example",
+  "drive_type": "Survival | Task | Self Continuity | Exploration | Social",
+  "source_reality": [],
+  "self_state_reference": "self-state-example",
+  "field_reference": "field-example",
+  "goal_reference": "goal-example",
+  "outcome_reference": "outcome-example",
+  "intensity_candidate": null,
+  "trigger_evidence": [],
+  "scope": null,
+  "duration": null,
+  "confidence": null,
+  "unknowns": [],
+  "provenance": [],
+  "lifecycle_state": "Detected | Elevated | Sustained | Decaying | Released | Archived Candidate",
+  "drive_is_not_emotion": true,
+  "drive_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

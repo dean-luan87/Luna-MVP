@@ -1,0 +1,8 @@
+{
+  "title": "Action Outcome Feedback v1",
+  "owner": "Action Boundary Governance",
+  "pipeline": ["Action Future", "Outcome", "Outcome Evidence", "Experience", "Learning"],
+  "schema": ["outcome_id", "action_request_id", "execution_reference", "outcome_state", "evidence", "expected_vs_actual", "trace_id"],
+  "outcome_states": ["Success", "Failure", "Partial Success", "Unexpected Outcome", "Unknown"],
+  "rules": {"outcome_reenters_cognition": true, "outcome_not_decision": true, "expected_difference_preserved": true, "no_direct_reality_write": true}
+}

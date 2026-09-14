@@ -1,0 +1,9 @@
+{
+  "title": "Runtime State Synchronization Contract v1",
+  "owner": "Cognitive OS Governance",
+  "pipeline": ["Module Output", "State Proposal", "Owner Validation", "Reducer", "New State"],
+  "schema": ["sync_id", "state_id", "source_module", "owner", "writer", "proposal", "validation", "trace_id"],
+  "runtime_owns": ["lifecycle", "synchronization", "snapshot reference"],
+  "runtime_does_not_own": ["Field State", "Brain State", "Memory", "Value", "Reality"],
+  "rules": {"owner_validation_required": true, "reducer_required": true, "direct_runtime_write": false, "single_writer": true}
+}

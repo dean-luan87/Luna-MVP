@@ -1,0 +1,12 @@
+{
+  "relation_id": "decision_function_relation_v1",
+  "function_role": "Decision Function",
+  "equation": "Decision=f(Understanding,Goal,Value,Self)",
+  "inputs": ["Understanding", "Goal", "Value", "Self", "Risk", "Resource"],
+  "outputs": ["Decision Candidate", "Priority Candidate", "Reconsideration Candidate"],
+  "decision_is_not_action": true,
+  "self_has_veto_context": true,
+  "hard_constraints_precede_selection": true,
+  "automatic_decision": false,
+  "candidate_only": true
+}

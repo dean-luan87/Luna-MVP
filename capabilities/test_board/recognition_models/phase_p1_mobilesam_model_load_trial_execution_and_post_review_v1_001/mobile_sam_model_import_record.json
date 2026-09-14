@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T07:31:16.781070+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_trial_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_model_import_record",
+  "mobile_sam_model_import_execution_record": {
+    "record_id": "mobile_sam_model_import_record_v1",
+    "import_target": "mobile_sam",
+    "code_path_added": "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_source_retry_workspace/install_target/mobile_sam",
+    "import_attempted": true,
+    "import_success": false,
+    "import_error": "ModuleNotFoundError:No module named 'timm'",
+    "imported_module_file": ""
+  }
+}

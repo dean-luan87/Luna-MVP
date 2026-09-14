@@ -1,0 +1,12 @@
+{
+  "mapping_id": "b_route_stability_evaluation_v1",
+  "inputs": ["Future State Trajectory", "Outcome Quality Candidate", "Cognitive Fitness Candidate", "Stability Function", "Drift Function", "Unknowns"],
+  "outputs": ["Stable Trajectory Candidate", "High Drift Candidate", "Homeostasis Risk Candidate", "Alternative Trajectory Candidate"],
+  "b_route_is_simulation_only": true,
+  "future_stability_is_candidate": true,
+  "b_route_does_not_update_a_state": true,
+  "b_route_does_not_modify_self": true,
+  "b_route_does_not_update_genome": true,
+  "b_route_runtime": false,
+  "candidate_only": true
+}

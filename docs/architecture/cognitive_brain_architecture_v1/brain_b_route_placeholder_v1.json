@@ -1,0 +1,23 @@
+{
+  "title": "Brain B Route Placeholder v1",
+  "contract_type": "Alternative Evaluation Interface Placeholder",
+  "input": {
+    "global_cognitive_state_snapshot": "snapshot-example",
+    "decision_candidate": null,
+    "alternative_variable_candidate": {},
+    "provenance": []
+  },
+  "output": {
+    "alternative_evaluation_candidate": {},
+    "simulation_state_reference": null,
+    "comparison_candidate": {}
+  },
+  "boundary": {
+    "b_route_is_interface_placeholder": true,
+    "no_b_simulation_runtime": true,
+    "placeholder_does_not_mutate_live_state": true,
+    "placeholder_does_not_make_decision": true,
+    "placeholder_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

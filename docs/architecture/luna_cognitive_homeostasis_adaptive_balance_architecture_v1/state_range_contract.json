@@ -1,0 +1,11 @@
+{
+  "contract_id": "state_range_constraint_v1",
+  "range_fields": ["minimum", "preferred", "maximum", "unit", "field_scope", "time_window", "evidence_ref", "version", "rollback_ref"],
+  "inputs": ["State Variable", "Current Value", "Field Context", "Role Context", "Task Context", "Resource State", "Risk"],
+  "outputs": ["Range Status Candidate", "Range Violation Candidate", "Preferred Band Candidate", "Recovery Candidate"],
+  "minimum_preferred_maximum_required": true,
+  "field_scoped": true,
+  "universal_threshold_forbidden": true,
+  "out_of_range_is_not_automatic_command": true,
+  "candidate_only": true
+}

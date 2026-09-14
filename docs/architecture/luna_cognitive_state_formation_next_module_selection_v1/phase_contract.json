@@ -1,0 +1,48 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-State-Formation-Next-Module-Selection-v1-001",
+    "phase_type": "LUNA_MAINLINE_SELECTION",
+    "execution_mode": "Audit",
+    "status": "SELECTION_CANDIDATE",
+    "previous_phase": "Phase-Luna-Context-PCN-Intent-PreCognitive-Mainline-Controlled-Integration-v1-001",
+    "previous_phase_decision": "GO",
+    "scope": {
+        "in_scope": [
+            "read-only inventory for candidates A/B/C",
+            "boundary risk assessment",
+            "single next-module selection",
+            "phase-local verifier"
+        ],
+        "out_of_scope": [
+            "module implementation",
+            "existing module changes",
+            "runtime execution"
+        ]
+    },
+    "boundaries": {
+        "audit_only": true,
+        "planning_only": true,
+        "runtime_executed": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "source_module_mutation": false,
+        "model_call": false
+    },
+    "verification": {
+        "agent_v0_allowed": true,
+        "agent_v1_allowed": false,
+        "agent_final_verifier_allowed": false,
+        "user_v2_final_verifier_required": true,
+        "chatgpt_v3_final_decision_required": true,
+        "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+    },
+    "required_final_files": [
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_current_inventory_v1.json",
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_candidate_modules_v1.json",
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_boundary_risk_matrix_v1.json",
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/cognitive_state_formation_next_module_selection_v1.json",
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/phase_contract.json",
+        "docs/architecture/luna_cognitive_state_formation_next_module_selection_v1/verify_cognitive_state_formation_next_module_selection_v1.py"
+    ]
+}

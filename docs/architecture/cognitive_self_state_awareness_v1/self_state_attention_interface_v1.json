@@ -1,0 +1,32 @@
+{
+  "title": "Self State Attention Interface v1",
+  "contract_type": "Self State to Attention Interface",
+  "inputs": {
+    "self_state": "current Self State",
+    "resource_state": "compute, memory, time, battery, network",
+    "cognitive_load": "current load and active Field count",
+    "capability_state": "Self Capability Awareness reference",
+    "provenance": []
+  },
+  "outputs": {
+    "attention_adjustment_candidate": "candidate",
+    "resource_protection_candidate": "candidate",
+    "observation_scope_reduction_candidate": "candidate",
+    "alternative_observation_candidate": "candidate",
+    "attention_recovery_candidate": "candidate"
+  },
+  "examples": {
+    "low_battery": "reduce low-value observation candidate",
+    "high_load": "reduce background process candidate",
+    "high_risk": "increase monitoring candidate",
+    "state_recovery": "restore capacity candidate"
+  },
+  "boundary": {
+    "attention_does_not_modify_self_state": true,
+    "self_state_does_not_select_goal": true,
+    "self_state_does_not_select_decision": true,
+    "no_automatic_frequency_adjustment": true,
+    "no_hardware_control": true,
+    "candidate_only": true
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.474188+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "failure_category": "dependency_install_timeout",
+    "root_cause_candidate": "transitive_dependency_download_install_too_heavy_under_isolated_target",
+    "selected_route": "timm_no_deps_controlled_install",
+    "same_full_isolated_install_retry_not_recommended": true,
+    "model_load_retry_allowed_now": false,
+    "timm_installed_this_phase": false,
+    "imported_this_phase": false,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+    "suggested_retry_phase_after_no_deps_go": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+    "transition_note": "PLANNING ONLY (mobile_sam_only, target=timm). Upstream timm controlled-install FAILED_NO_BOUNDARY_VIOLATION was audited: timeout after 1200s (return_code=-1), target_path=0B, no global contamination. Root cause is dependency install strategy timeout (full isolated --target attempted to re-download torch/torchvision), NOT timm corruption / MobileSAM code / MobileSAM weight / torch missing. Route A timm --no-deps controlled install is SELECTED (P0): reuse existing torch 2.8.0 / torchvision, install only timm import root to isolated target. Route B wheel/cache is P1 fallback; Route C extended timeout is P2 fallback-only; Route D global reuse is REJECTED. NOTHING was pip-installed / imported / model-loaded / inferred / run; registry NOT mutated. no-deps planning is NOT install approval or install success. model-load retry NOT allowed now. Next: Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001."
+  },
+  "final_decision": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO"
+}

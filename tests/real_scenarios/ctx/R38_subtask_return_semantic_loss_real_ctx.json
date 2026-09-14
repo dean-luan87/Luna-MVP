@@ -1,0 +1,31 @@
+{
+  "frame_seq": 38,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R38_subtask_return_semantic_loss_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "subtask_return_semantic_loss_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "不是这个（子任务回来了，但语义丢失：我在找A不是B）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 10, 74, 66], "conf": 0.92 },
+    { "label": "box", "bbox": [140, 120, 190, 170], "conf": 0.62 }
+  ]
+}
+

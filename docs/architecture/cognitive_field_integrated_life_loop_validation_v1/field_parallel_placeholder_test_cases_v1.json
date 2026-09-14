@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_parallel_placeholder_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "parallel_field_placeholder",
+      "fields": [
+        {"field_id": "navigation_field", "state": "Active"},
+        {"field_id": "self_maintenance_field", "state": "Background"}
+      ],
+      "parallel_structure_only": true,
+      "mutual_contamination": false,
+      "multi_a_coordination": false,
+      "decision_competition": false
+    }
+  ]
+}

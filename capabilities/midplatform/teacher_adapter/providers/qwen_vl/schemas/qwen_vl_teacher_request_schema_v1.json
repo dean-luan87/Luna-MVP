@@ -1,0 +1,36 @@
+{
+  "schema_id": "QwenVLTeacherRequestSchemaV1",
+  "version": "v1",
+  "provider_id": "qwen_vl",
+  "teacher_role": "perception_teacher",
+  "required_fields": [
+    "teacher_role",
+    "required_output_type",
+    "policy_context",
+    "candidate_only",
+    "not_fact"
+  ],
+  "allowed_input_fields": [
+    "image_ref",
+    "image_reference",
+    "observation_candidate",
+    "situation_candidate",
+    "plan_candidate",
+    "missing_information",
+    "input_evidence",
+    "policy_context"
+  ],
+  "forbidden_input_fields": [
+    "internal_state",
+    "fact_database",
+    "private_memory",
+    "policy_hidden_rules"
+  ],
+  "allowed_teacher_roles": ["perception_teacher"],
+  "allowed_required_output_types": [
+    "teacher_evidence_candidate",
+    "scene_hypothesis_candidate",
+    "visual_attention_candidate",
+    "task_clue_candidate"
+  ]
+}

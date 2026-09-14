@@ -1,0 +1,15 @@
+{
+  "contract_id": "a_route_learning_boundary_v1",
+  "learning_requires": ["Validated Experience", "Pattern Evidence", "Learning Utility", "Capability Gap or Improvement Context", "Self Review"],
+  "learning_can_change": ["Schema Candidate", "Strategy Candidate", "Capability Growth Candidate", "Capability Confidence Candidate", "Role Adaptation Candidate"],
+  "learning_cannot_change": ["Reality", "Constitution", "Identity", "Safety Boundary", "Core Brain Rules", "Current Goal Directly"],
+  "knowledge_reading_is_not_learning": true,
+  "memory_is_not_learning": true,
+  "learning_is_not_runtime": true,
+  "automatic_schema_update": false,
+  "automatic_memory_write": false,
+  "model_training": false,
+  "parameter_update": false,
+  "b_route_direct_modification": false,
+  "candidate_only": true
+}

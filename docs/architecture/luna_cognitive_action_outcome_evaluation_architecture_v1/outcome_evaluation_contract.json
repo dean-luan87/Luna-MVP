@@ -1,0 +1,13 @@
+{
+  "title": "Outcome Evaluation Contract v1",
+  "inputs": ["Outcome", "Goal", "Expected Outcome", "Actual Outcome", "Outcome Difference", "Evidence", "Self State", "Field Context"],
+  "dimensions": ["Goal Achievement", "Safety Result", "Resource Efficiency", "Prediction Accuracy", "User Impact"],
+  "output": ["Outcome Quality Candidate", "Learning Signal Candidate", "Experience Candidate", "Failure Classification Candidate"],
+  "quality_model": "Goal Achievement + Safety Result + Resource Efficiency + Prediction Accuracy + User Impact",
+  "calculation_implemented": false,
+  "candidate_only": true,
+  "failure_is_information": true,
+  "evaluation_does_not_modify_reality": true,
+  "evaluation_does_not_execute_action": true,
+  "automatic_learning": false
+}

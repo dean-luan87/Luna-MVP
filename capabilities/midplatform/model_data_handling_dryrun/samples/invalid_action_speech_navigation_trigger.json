@@ -1,0 +1,16 @@
+{
+  "handling_id": "invalid_action_speech_navigation_trigger_001",
+  "policy_id": "field_task_guidance_support_bundle",
+  "candidate_refs": ["guidance_support_bundle_candidate:gsb_001"],
+  "model_family_refs": ["object_detection_completion_family", "tracking_family", "depth_spatial_hint_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "support_bundle_confidence_policy_v1",
+  "fallback_plan": "fallback_to_no_support_bundle_candidate",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "action_requested": true,
+  "speech_requested": true,
+  "navigation_requested": true
+}

@@ -1,0 +1,111 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "multi_model_interaction_planning": true,
+  "record": {
+    "schema_id": "OcrResultEnvelopeSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+    "description": "OCR 结果 envelope。runner 输出须经此 envelope；completed 不等于 fact。",
+    "planning_only": true,
+    "envelope_type": "ocr_result_envelope",
+    "required_fields": [
+      "ocr_result_envelope_id",
+      "source_ocr_execution_id",
+      "source_ocr_execution_candidate_id",
+      "source_region_id",
+      "source_image_ref",
+      "text_candidate_list",
+      "confidence",
+      "model_name",
+      "model_version",
+      "output_payload_ref",
+      "candidate_only",
+      "not_fact",
+      "needs_fact_admission",
+      "trace_chain"
+    ],
+    "field_definitions": {
+      "ocr_result_envelope_id": {
+        "type": "string",
+        "pattern": "^orenv_ocr_[a-z0-9_]+$"
+      },
+      "source_ocr_execution_id": {
+        "type": "string"
+      },
+      "source_ocr_execution_candidate_id": {
+        "type": "string"
+      },
+      "source_region_id": {
+        "type": "string"
+      },
+      "source_image_ref": {
+        "type": "string"
+      },
+      "text_candidate_list": {
+        "type": "array",
+        "description": "文字候选列表，非 fact text"
+      },
+      "text_region_candidate": {
+        "type": "object"
+      },
+      "reading_order_candidate": {
+        "type": "array"
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "model_name": {
+        "type": "string"
+      },
+      "model_version": {
+        "type": "string"
+      },
+      "output_payload_ref": {
+        "type": "string"
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "needs_fact_admission": {
+        "type": "boolean",
+        "const": true
+      },
+      "trace_chain": {
+        "type": "array"
+      }
+    },
+    "forbidden_fields": [
+      "fact_text",
+      "confirmed_text",
+      "confirmed_sign",
+      "navigation_instruction"
+    ],
+    "forbidden_operations": [
+      "ocr_output_direct_to_fact",
+      "ocr_text_as_fact",
+      "ocr_output_to_navigation",
+      "overwrite_mobilesam_result",
+      "overwrite_observation_attention_record"
+    ],
+    "boundary_flags": {
+      "ocr_result_requires_envelope": true,
+      "ocr_result_requires_fact_admission": true,
+      "ocr_output_not_fact": true,
+      "ocr_completed_not_fact": true,
+      "runner_output_not_fact": true,
+      "planning_only": true
+    }
+  }
+}

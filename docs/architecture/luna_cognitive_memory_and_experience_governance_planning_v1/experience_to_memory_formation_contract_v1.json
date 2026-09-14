@@ -1,0 +1,20 @@
+{
+    "artifact": "experience_to_memory_formation_contract_v1",
+    "chain": [
+        "Cognitive Cycle",
+        "Experience Candidate",
+        "Experience Evaluation",
+        "Memory Candidate",
+        "Admission Decision Candidate",
+        "Future Persistence Handoff Candidate"
+    ],
+    "ownership": {
+        "cognitive_cycle_output": "Cognitive Flow Governance (reference source only)",
+        "experience_candidate": "Cognitive Memory & Experience Governance",
+        "experience_evaluation": "Cognitive Memory & Experience Governance",
+        "memory_candidate": "Cognitive Memory & Experience Governance",
+        "admission_decision_candidate": "Cognitive Memory & Experience Governance",
+        "future_persistence_handoff_candidate": "Future storage/runtime boundary only"
+    },
+    "persistence_out_of_scope": true
+}

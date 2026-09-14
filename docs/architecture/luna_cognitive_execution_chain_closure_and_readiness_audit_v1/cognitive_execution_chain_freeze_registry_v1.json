@@ -1,0 +1,65 @@
+{
+    "artifact": "cognitive_execution_chain_freeze_registry_v1",
+    "freeze_items": [
+        {
+            "freeze_scope": "owner definitions",
+            "freeze_reason": "prevent parallel owner drift",
+            "change_requires": "governance review and new phase",
+            "allowed_future_extension": "add explicit non-authority aliases only"
+        },
+        {
+            "freeze_scope": "five-layer concept boundaries",
+            "freeze_reason": "preserve canonical layer responsibilities",
+            "change_requires": "architecture phase with boundary approval",
+            "allowed_future_extension": "boundary documentation clarifications"
+        },
+        {
+            "freeze_scope": "candidate-only handoffs",
+            "freeze_reason": "controlled integration is synthetic-only",
+            "change_requires": "runtime authorization phase",
+            "allowed_future_extension": "candidate metadata enrichment"
+        },
+        {
+            "freeze_scope": "no direct upstream mutation",
+            "freeze_reason": "integration is not a source owner",
+            "change_requires": "owner governance contract change",
+            "allowed_future_extension": "none"
+        },
+        {
+            "freeze_scope": "trace linkage model",
+            "freeze_reason": "trace continuity contract stabilized",
+            "change_requires": "trace contract version upgrade",
+            "allowed_future_extension": "distributed trace backend adapter"
+        },
+        {
+            "freeze_scope": "provenance linkage model",
+            "freeze_reason": "reverse locatability must remain deterministic",
+            "change_requires": "provenance contract upgrade",
+            "allowed_future_extension": "additional provenance refs"
+        },
+        {
+            "freeze_scope": "retry authority boundary",
+            "freeze_reason": "error propagation must not imply retry authority",
+            "change_requires": "runtime and decision governance co-approval",
+            "allowed_future_extension": "explicit retry policy registry"
+        },
+        {
+            "freeze_scope": "runtime side-effect boundary",
+            "freeze_reason": "no real execution in controlled integration",
+            "change_requires": "production-readiness program approval",
+            "allowed_future_extension": "none"
+        },
+        {
+            "freeze_scope": "Task no-bypass boundary",
+            "freeze_reason": "integration may pass references only",
+            "change_requires": "Task runtime integration phase",
+            "allowed_future_extension": "task reference schema refinement"
+        },
+        {
+            "freeze_scope": "Field/Memory candidate-only boundary",
+            "freeze_reason": "no writeback authority in this chain",
+            "change_requires": "Field/Memory governance phase",
+            "allowed_future_extension": "evidence return path hardening"
+        }
+    ]
+}

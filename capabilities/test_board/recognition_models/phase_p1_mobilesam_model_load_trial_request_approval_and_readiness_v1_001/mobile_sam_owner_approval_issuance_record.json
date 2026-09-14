@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_owner_approval_issuance_record",
+  "mobile_sam_owner_approval_issuance_record": {
+    "approval_id": "mobile_sam_model_load_owner_approval_issuance_v1",
+    "owner_approval_granted_for_model_load_preparation": true,
+    "owner_approval_granted_for_model_load_execution_next": true,
+    "inference_not_approved": true,
+    "runtime_not_approved": true,
+    "output_adapter_not_approved": true,
+    "semantic_layer_not_approved": true,
+    "commercial_runtime_not_approved": true,
+    "registry_mutation_not_approved": true,
+    "additional_weight_download_not_approved": true,
+    "model_load_approval_success_not_inference_approval": true,
+    "model_load_approval_success_not_runtime_approval": true,
+    "model_load_approval_success_not_output_adapter_approval": true,
+    "model_load_approval_success_not_semantic_layer_approval": true,
+    "model_load_approval_success_not_commercial_runtime_approval": true
+  }
+}

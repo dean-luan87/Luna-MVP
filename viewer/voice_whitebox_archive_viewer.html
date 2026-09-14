@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Voice Whitebox Archive Viewer</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121823; --line:#223044; --fg:#e6edf3; --muted:#9aa4ad;
+      --ok:#4ade80; --warn:#facc15; --err:#f87171; --blue:#60a5fa;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"PingFang SC","Microsoft Yahei"}
+    header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .title{font-weight:700}
+    .hint{color:var(--muted);font-size:12px}
+    .toolbar{padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,0.01);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    input,select,button{
+      background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:8px 10px
+    }
+    button{cursor:pointer}
+    button:hover{border-color:#35527a}
+    .grid{display:grid;grid-template-columns:420px 1fr;height:calc(100vh - 120px)}
+    .left,.right{overflow:auto}
+    .left{border-right:1px solid var(--line)}
+    .stats{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;gap:10px;flex-wrap:wrap}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:2px 8px;font-size:12px;color:var(--muted)}
+    .list{padding:10px}
+    .item{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:10px;margin-bottom:8px;cursor:pointer}
+    .item:hover{border-color:#35527a}
+    .item.active{outline:2px solid rgba(96,165,250,.6)}
+    .row{display:flex;justify-content:space-between;gap:8px}
+    .small{font-size:12px;color:var(--muted)}
+    .badge{padding:2px 8px;border-radius:999px;font-size:11px;border:1px solid var(--line)}
+    .b-ok{color:var(--ok);border-color:rgba(74,222,128,.6)}
+    .b-warn{color:var(--warn);border-color:rgba(250,204,21,.6)}
+    .b-err{color:var(--err);border-color:rgba(248,113,113,.6)}
+    .b-blue{color:var(--blue);border-color:rgba(96,165,250,.6)}
+    .detail{padding:16px}
+    .kv{display:grid;grid-template-columns:180px 1fr;gap:10px;margin-bottom:10px}
+    .kv > div{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,0.02)}
+    .k{color:var(--muted)}
+    pre{margin:10px 0 0;padding:12px;border:1px solid var(--line);background:var(--panel);border-radius:10px;overflow:auto;max-height:40vh}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">Voice Whitebox Archive Viewer</div>
+    <div class="hint">简洁模式 + 专业模式（本地归档版）</div>
+  </header>
+
+  <div class="toolbar">
+    <label>归档日期目录（相对当前站点）</label>
+    <input id="basePath" value="/voice/2026-03-27" style="min-width:260px" />
+    <button id="loadBtn">加载</button>
+    <label>类型</label>
+    <select id="chainType">
+      <option value="">全部</option>
+      <option value="success_chain">success_chain</option>
+      <option value="provider_fallback_chain">provider_fallback_chain</option>
+      <option value="legacy_rollback_chain">legacy_rollback_chain</option>
+      <option value="failed_chain">failed_chain</option>
+      <option value="suppressed_chain">suppressed_chain</option>
+    </select>
+    <label>Provider</label>
+    <input id="provider" placeholder="如 piper" />
+  </div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="stats" id="stats"></div>
+      <div class="list" id="list"></div>
+    </div>
+    <div class="right">
+      <div class="detail">
+        <h3 style="margin-top:0">请求详情</h3>
+        <div id="overview"></div>
+        <h4>Stages</h4>
+        <pre id="stages"></pre>
+        <h4>Errors</h4>
+        <pre id="errors"></pre>
+        <h4>Raw Chain JSON</h4>
+        <pre id="raw"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let CHAINS = [];
+    let FILTERED = [];
+    let ACTIVE = -1;
+
+    const $ = (id) => document.getElementById(id);
+
+    function sevClass(chain){
+      if (chain.status === "ok" && chain.chain_type === "success_chain") return "b-ok";
+      if (chain.chain_type === "provider_fallback_chain" || chain.chain_type === "legacy_rollback_chain") return "b-warn";
+      if (chain.status === "failed" || chain.chain_type === "failed_chain") return "b-err";
+      return "b-blue";
+    }
+
+    function renderStats(){
+      const total = FILTERED.length;
+      const succ = FILTERED.filter(c => c.chain_type === "success_chain").length;
+      const fb = FILTERED.filter(c => c.chain_type === "provider_fallback_chain").length;
+      const rb = FILTERED.filter(c => c.chain_type === "legacy_rollback_chain").length;
+      const fail = FILTERED.filter(c => c.chain_type === "failed_chain" || c.status === "failed").length;
+      $("stats").innerHTML = `
+        <span class="chip">总数: ${total}</span>
+        <span class="chip">success: ${succ}</span>
+        <span class="chip">fallback: ${fb}</span>
+        <span class="chip">rollback: ${rb}</span>
+        <span class="chip">failed: ${fail}</span>
+      `;
+    }
+
+    function applyFilter(){
+      const t = $("chainType").value;
+      const p = $("provider").value.trim().toLowerCase();
+      FILTERED = CHAINS.filter(c => {
+        if (t && c.chain_type !== t) return false;
+        if (p && String(c.provider_name || "").toLowerCase() !== p) return false;
+        return true;
+      });
+      ACTIVE = FILTERED.length ? 0 : -1;
+      renderList();
+      renderStats();
+      renderDetail();
+    }
+
+    function renderList(){
+      const el = $("list");
+      if (!FILTERED.length) {
+        el.innerHTML = `<div class="small">无匹配链</div>`;
+        return;
+      }
+      el.innerHTML = FILTERED.map((c, i) => `
+        <div class="item ${i===ACTIVE ? "active" : ""}" data-i="${i}">
+          <div class="row">
+            <div><strong>${c.request_id}</strong></div>
+            <span class="badge ${sevClass(c)}">${c.chain_type}</span>
+          </div>
+          <div class="small">provider=${c.provider_name || "-"} | mode=${c.final_execution_mode || "-"} | status=${c.status}</div>
+        </div>
+      `).join("");
+      [...el.querySelectorAll(".item")].forEach(node => {
+        node.addEventListener("click", () => {
+          ACTIVE = Number(node.getAttribute("data-i"));
+          renderList();
+          renderDetail();
+        });
+      });
+    }
+
+    function renderDetail(){
+      const c = ACTIVE >= 0 ? FILTERED[ACTIVE] : null;
+      if (!c){
+        $("overview").innerHTML = `<div class="small">请选择左侧请求</div>`;
+        $("stages").textContent = "";
+        $("errors").textContent = "";
+        $("raw").textContent = "";
+        return;
+      }
+      $("overview").innerHTML = `
+        <div class="kv"><div class="k">request_id</div><div>${c.request_id}</div></div>
+        <div class="kv"><div class="k">trace_id</div><div>${c.trace_id || "-"}</div></div>
+        <div class="kv"><div class="k">chain_type</div><div>${c.chain_type}</div></div>
+        <div class="kv"><div class="k">provider_name</div><div>${c.provider_name || "-"}</div></div>
+        <div class="kv"><div class="k">final_execution_mode</div><div>${c.final_execution_mode || "-"}</div></div>
+        <div class="kv"><div class="k">status</div><div>${c.status}</div></div>
+      `;
+      $("stages").textContent = JSON.stringify(c.stages || [], null, 2);
+      $("errors").textContent = JSON.stringify(c.errors || [], null, 2);
+      $("raw").textContent = JSON.stringify(c, null, 2);
+    }
+
+    async function loadArchive(){
+      const base = $("basePath").value.trim().replace(/\/$/, "");
+      const manifestUrl = `${base}/manifests/manifest.json`;
+      const manifestRes = await fetch(manifestUrl);
+      if (!manifestRes.ok) throw new Error(`manifest 读取失败: ${manifestRes.status}`);
+      const manifest = await manifestRes.json();
+      const ids = Array.isArray(manifest.chain_ids) ? manifest.chain_ids : [];
+
+      const chains = [];
+      for (const id of ids){
+        const url = `${base}/chains/${id}.json`;
+        const r = await fetch(url);
+        if (!r.ok) continue;
+        chains.push(await r.json());
+      }
+      CHAINS = chains;
+      applyFilter();
+    }
+
+    $("loadBtn").addEventListener("click", async () => {
+      try { await loadArchive(); }
+      catch (e) { alert(String(e.message || e)); }
+    });
+    $("chainType").addEventListener("change", applyFilter);
+    $("provider").addEventListener("input", applyFilter);
+  </script>
+</body>
+</html>
+

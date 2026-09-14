@@ -1,0 +1,21 @@
+{
+  "title": "Experience Lifecycle v1",
+  "owner": "Experience / Self Evolution",
+  "states": ["Observed", "Candidate", "Evaluated", "Retained", "Pattern Linked", "Contradicted", "Deprecated", "Archived"],
+  "schema": ["experience_id", "state", "created_at", "updated_at", "source_trace", "owner", "confidence", "retention_reason"],
+  "transitions": [
+    {"from": "Observed", "to": "Candidate", "condition": "outcome and feedback available"},
+    {"from": "Candidate", "to": "Evaluated", "condition": "value and reliability assessed"},
+    {"from": "Evaluated", "to": "Retained", "condition": "admission review accepts reference value"},
+    {"from": "Retained", "to": "Pattern Linked", "condition": "repeated evidence supports a pattern"},
+    {"from": "Retained", "to": "Contradicted", "condition": "new evidence conflicts"},
+    {"from": "Contradicted", "to": "Deprecated", "condition": "review withdraws reference value"},
+    {"from": "Deprecated", "to": "Archived", "condition": "lifecycle closure"}
+  ],
+  "rules": {
+    "state_owner_required": true,
+    "current_reality_can_contradict": true,
+    "unconfirmed_not_retained_as_fact": true,
+    "history_preserved": true
+  }
+}

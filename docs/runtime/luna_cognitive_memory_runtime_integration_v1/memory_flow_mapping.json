@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Memory Runtime Flow Mapping",
+  "stages":[
+    {"order":1,"stage":"Experience Record","input":"cognitive outcome and context","output":"Self or Social Experience Record","owner":"Memory Runtime"},
+    {"order":2,"stage":"Memory Candidate","input":"Experience Record + Self Rhythm hint","output":"unvalidated Memory Candidate","owner":"Memory Runtime"},
+    {"order":3,"stage":"Memory Governance","input":"candidate provenance, scope, value, and explicit review","output":"validated or rejected candidate","owner":"Memory Governance"},
+    {"order":4,"stage":"Memory Storage","input":"validated candidate","output":"separate Self or Social entry","owner":"Memory Store"},
+    {"order":5,"stage":"Context Retrieval","input":"current scope, field, task, and terms","output":"relevant memory candidates","owner":"Memory Retrieval"},
+    {"order":6,"stage":"Cognitive Context","input":"retrieved candidates","output":"context support only","owner":"Cognitive Loop"}
+  ],
+  "rules":{"ordered":true,"self_social_separated":true,"no_store_before_validation":true,"reality_over_memory":true,"memory_not_decision":true,"rhythm_is_advisory":true}
+}

@@ -1,0 +1,22 @@
+{
+  "contract_name": "Field Preference Contract v1",
+  "preference_id": "preference-example",
+  "field_reference": "field-example",
+  "preference_candidate": "quiet area",
+  "condition": "current Field context",
+  "supporting_experience": [],
+  "supporting_reality": [],
+  "confidence": null,
+  "provenance": [],
+  "validity": "candidate",
+  "unknowns": [],
+  "preference_is_not_emotion": true,
+  "preference_is_not_personality": true,
+  "preference_is_not_role": true,
+  "preference_is_not_goal": true,
+  "preference_is_not_decision": true,
+  "preference_is_not_action": true,
+  "current_reality_validation_required": true,
+  "attention_bias_candidate_only": true,
+  "unknowns_are_preserved": true
+}

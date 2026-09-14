@@ -1,0 +1,14 @@
+{
+  "interface_name": "Drive Reflex Interface v1",
+  "drive_reference": "drive-example",
+  "reflex_candidate": null,
+  "reflex_type": "Innate Reflex Placeholder | Learned Reflex Placeholder",
+  "safety_context": null,
+  "experience_reference": "experience-example",
+  "governance_reference": "governance-example",
+  "candidate_only": true,
+  "reflex_does_not_execute_action": true,
+  "reflex_does_not_make_decision": true,
+  "reflex_does_not_modify_goal": true,
+  "unknowns_are_preserved": true
+}

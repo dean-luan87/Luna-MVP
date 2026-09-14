@@ -1,0 +1,17 @@
+{
+  "title": "Luna Runtime Readiness Check v1",
+  "runtime_active": false,
+  "readiness_dimensions": [
+    {"dimension": "State", "status": "partial", "evidence": "state schemas and ownership maps exist", "priority": "P1"},
+    {"dimension": "Event", "status": "partial", "evidence": "candidate/update contracts exist; one integrated event bus is not activated", "priority": "P1"},
+    {"dimension": "Trace", "status": "partial", "evidence": "decision and evidence traces exist; unified Input→Decision→Output→Feedback trace remains candidate", "priority": "P1"},
+    {"dimension": "Failure", "status": "present", "evidence": "failure and diagnostics contracts exist", "priority": "P2"},
+    {"dimension": "Retry", "status": "partial", "evidence": "provider/capability candidates exist", "priority": "P2"},
+    {"dimension": "Degrade", "status": "present", "evidence": "capability and hardware degradation contracts exist", "priority": "P2"},
+    {"dimension": "Recovery", "status": "partial", "evidence": "recovery is a governance candidate, not activated Runtime", "priority": "P1"},
+    {"dimension": "Scheduler Policy", "status": "partial", "evidence": "tick/wake-up contracts exist; no production scheduler is authorized", "priority": "P1"},
+    {"dimension": "State Persistence", "status": "partial", "evidence": "Memory/Temporal contracts exist; persistence runtime is not activated", "priority": "P1"}
+  ],
+  "required_future_interfaces": ["State Persistence", "Recovery", "Scheduler Policy", "Unified Trace"],
+  "boundary": {"no_runtime_execution": true, "no_model_calls": true, "no_hardware_calls": true, "no_action_execution": true, "unknowns_are_preserved": true}
+}

@@ -1,0 +1,7 @@
+{
+  "expected":"ExpectedOutcomeInputV1 from B3 Decision/Task/Action references and existing completion criteria",
+  "actual":"ActualResultInputV1 from controlled Runtime Result candidate only",
+  "source_distinction":"controlled fixture != external runtime result",
+  "natural_language_compression":false,
+  "truth_declared":false
+}

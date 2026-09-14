@@ -1,0 +1,11 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-Viewport-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "planning_only": true,
+  "record": {
+    "plan_id": "luna_observation_information_compression_rules_plan_v1",
+    "rules_ref": "capabilities/midplatform/model_test_lens/ui_redesign/luna_observation_information_compression_rules_v1.md"
+  }
+}

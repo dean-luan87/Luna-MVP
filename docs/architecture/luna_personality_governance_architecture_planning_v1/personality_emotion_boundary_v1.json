@@ -1,0 +1,16 @@
+{
+  "artifact": "personality_emotion_boundary_v1",
+  "emotion_owner_preserved": "Emotion Governance (future owner; not implemented in this phase)",
+  "future_interfaces": ["EmotionToPersonalityEvidenceCandidate", "PersonalityToEmotionContextCandidate"],
+  "frozen_assertions": {
+    "Emotion State != Personality Trait": true,
+    "Repeated Emotion != Personality Trait": true,
+    "Emotion Intensity != Personality Intensity": true,
+    "Temporary Mood != Stable Personality": true,
+    "emotion_can_influence_expression_context": true,
+    "emotion_can_unauthorized_mutate_personality": false,
+    "personality_can_mutate_emotion_state": false,
+    "emotion_engine_implemented": false
+  },
+  "admission_rules": ["Emotion is evidence/reference only.", "Emotion intensity and duration are not trait stability.", "A repeated emotional pattern remains a candidate requiring cross-context and cross-time governance.", "No affective semantic compression is executed."]
+}

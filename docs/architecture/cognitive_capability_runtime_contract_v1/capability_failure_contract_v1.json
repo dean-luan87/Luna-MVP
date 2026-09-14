@@ -1,0 +1,18 @@
+{
+  "contract_name": "Capability Failure Contract v1",
+  "failure_classes": ["unavailable", "timeout", "low_confidence", "invalid_output", "resource_denied", "protocol_error", "provider_error"],
+  "request_reference": "capability-request-example",
+  "provider_reference": null,
+  "diagnostics_candidate": {"class": null, "provenance": [], "confidence": null},
+  "capability_state_update_candidate": null,
+  "self_capability_update_candidate": null,
+  "attention_adjustment_candidate": null,
+  "alternative_capability_candidate": null,
+  "failure_is_not_decision_failure": true,
+  "failure_does_not_modify_reality": true,
+  "failure_does_not_modify_goal": true,
+  "failure_does_not_modify_decision": true,
+  "failure_does_not_modify_identity": true,
+  "unknowns_are_preserved": true,
+  "reducer_is_sole_state_mutation_authority": true
+}

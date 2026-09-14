@@ -1,0 +1,17 @@
+{
+    "artifact": "memory_idempotency_contract_v1",
+    "guards": [
+        "duplicate_experience_candidate_guard",
+        "duplicate_memory_admission_guard",
+        "revision_lineage",
+        "supersession_lineage",
+        "revocation",
+        "expiration",
+        "refresh"
+    ],
+    "rules": {
+        "same_cycle_output_no_duplicate_permanent_memory": true,
+        "same_input_same_candidate_identity": true,
+        "silent_duplicate_consolidation_forbidden": true
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "artifact": "cognitive_state_formation_output_contract_v1",
+    "output_mode": "CANDIDATE_ONLY",
+    "primary_outputs": [
+        "attention_candidates",
+        "attention_selection_candidate",
+        "cognitive_hypothesis_candidates",
+        "current_world_candidate",
+        "downstream_handoff_candidates"
+    ],
+    "must_preserve": [
+        "uncertainty",
+        "conflict",
+        "alternative_hypotheses",
+        "provenance",
+        "trace"
+    ],
+    "forbidden_outputs": [
+        "field_truth_write",
+        "field_confidence_mutation",
+        "causal_truth",
+        "decision",
+        "action",
+        "task",
+        "runtime_command"
+    ],
+    "downstream_target_refs": [
+        "causal_candidate_input_ref",
+        "decision_context_reference_candidate"
+    ]
+}

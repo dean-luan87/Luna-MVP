@@ -1,0 +1,61 @@
+{
+    "capability_id": "luna.observation_manager",
+    "capability_name": "Luna Observation Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "entrypoint": "run_observation_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py",
+            "entrypoint": "run_observation_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "capabilities/midplatform/real_observation_candidate_ingestion_core_v1.py",
+            "capabilities/vision_runtime/vision_recognition_evidence_pack_v0.py",
+            "capabilities/vision_runtime/vision_roi_to_ocr_request_bridge_v0.py",
+            "capabilities/ocr_runtime/ocr_request_contract_v0.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py",
+            "scenarios": 20
+        },
+        "ready_evidence": {
+            "total_cases": 20,
+            "passed_cases": 20,
+            "failed_cases": [],
+            "observation_candidate_present_when_expected": true,
+            "attention_plan_present_when_expected": true,
+            "vision_request_candidate_present_when_expected": true,
+            "ocr_request_candidate_present_when_expected": true,
+            "crossmodal_association_present_when_expected": true,
+            "admission_handoff_present_when_expected": true,
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "unhandled_exceptions": 0,
+            "evidence_ref": "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_fact_admission_execution": true,
+        "no_field_state_write_execution": true,
+        "no_action_execution": true,
+        "no_provider_runtime_execution": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "observation_ingestion_manager",
+        "observation_candidate_organizer"
+    ]
+}

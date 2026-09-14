@@ -1,0 +1,20 @@
+{
+  "backend_id": "neural_gaussian_mock_v1",
+  "backend_family": "neural_gaussian_slam",
+  "output_type": "camera trajectory / sparse dense map / gaussian map metadata",
+  "source_chain": ["neural_gaussian_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.7,
+  "backend_origin": "neural_gaussian_slam_like_export_mock",
+  "license_ref": "research_license_unverified",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "observation_only",
+  "commercial_use_status": "non_commercial_or_unverified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "camera_trajectory": [
+    {"id": "c0", "timestamp_ms": 4000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]},
+    {"id": "c1", "timestamp_ms": 4200, "pose": [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]}
+  ],
+  "gaussian_map_metadata": {"id": "gmap0", "gaussian_count": 250000, "map_extent": [10.0, 8.0, 3.0]},
+  "local_map_summary": {"id": "lmap0", "voxel_count": 50000, "coverage_hint": 0.6},
+  "uncertainty_hint": {"id": "unc0", "map_uncertainty": 0.35, "pose_uncertainty": 0.22}
+}

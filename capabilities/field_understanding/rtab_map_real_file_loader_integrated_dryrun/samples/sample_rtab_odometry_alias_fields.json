@@ -1,0 +1,42 @@
+{
+  "format_ref": "rtab_map_odometry_export_file",
+  "export_session_id": "rtab_int_odom_session_alias_0001",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_odometry_int_alias_0001.txt",
+    "map_ref": "rtab_map_demo_room_v1"
+  },
+  "source_chain": ["rtab_map_odometry_export", "rtab_int_odom_session_alias_0001"],
+  "records": [
+    {
+      "id": "iodom_a1",
+      "stamp": 3.0,
+      "tx": 0.0, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.92,
+      "tracking_status": "tracked",
+      "quality": 0.86,
+      "source_chain": ["rtab_map_odometry_export", "rtab_int_odom_session_alias_0001", "iodom_a1"]
+    },
+    {
+      "vertex_id": "iodom_a2",
+      "timestamp_sec": 3.1,
+      "tx": 0.05, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.01, "qw": 0.99995,
+      "confidence": 0.89,
+      "state": "good",
+      "odom_quality": 0.84,
+      "source_chain": ["rtab_map_odometry_export", "rtab_int_odom_session_alias_0001", "iodom_a2"]
+    },
+    {
+      "id": "iodom_a3",
+      "time": 3.2,
+      "tx": 0.10, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.02, "qw": 0.9998,
+      "confidence": 0.55,
+      "odom_state": "low_confidence",
+      "odom_quality": 0.38,
+      "source_chain": ["rtab_map_odometry_export", "rtab_int_odom_session_alias_0001", "iodom_a3"]
+    }
+  ]
+}

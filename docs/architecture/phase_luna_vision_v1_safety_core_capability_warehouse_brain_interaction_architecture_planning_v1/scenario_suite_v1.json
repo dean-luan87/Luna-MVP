@@ -1,0 +1,33 @@
+{
+  "suite_id": "luna-vision-v1-safety-warehouse-brain-interaction-planning",
+  "scenario_count": 26,
+  "execution": "NOT_EXECUTED",
+  "cases": [
+    {"id":"V1-01","title":"fast approaching vehicle","expected":"safety evidence and priority escalation candidate; no truth"},
+    {"id":"V1-02","title":"unknown exit sign plus arrow","expected":"task sufficient and STOP; no formal sign expansion"},
+    {"id":"V1-03","title":"task-irrelevant unknown sign","expected":"preserve unknown; no learning need"},
+    {"id":"V1-04","title":"task-blocking unknown sign","expected":"Learning Need candidate only"},
+    {"id":"V1-05","title":"enhanced OCR not installed","expected":"capability unavailable"},
+    {"id":"V1-06","title":"face recognition uninstall","expected":"optional capability uninstall permitted"},
+    {"id":"V1-07","title":"mandatory safety uninstall","expected":"transition rejected"},
+    {"id":"V1-08","title":"safety provider failure","expected":"DEGRADED and rollback candidate"},
+    {"id":"V1-09","title":"below minimum safety baseline","expected":"DEGRADED"},
+    {"id":"V1-10","title":"safety evidence boundary","expected":"not World Truth"},
+    {"id":"V1-11","title":"stop after semantic sufficiency","expected":"task observation stops"},
+    {"id":"V1-12","title":"richer recognition available","expected":"not invoked when sufficient"},
+    {"id":"V1-13","title":"safety channel without ordinary demand","expected":"bounded safety exception with Gateway retained"},
+    {"id":"V1-14","title":"optional registration","expected":"registration does not install or activate"},
+    {"id":"V1-15","title":"safety provider replacement","expected":"Model Manager approval, compatibility, rollback, and license gates"},
+    {"id":"V1-16","title":"unknown state task sufficient","expected":"preserve partial-known and stop"},
+    {"id":"V1-17","title":"prohibition sign norm prior","expected":"SNSP prior only; no effective-rule declaration"},
+    {"id":"V1-18","title":"old prohibition with valid passage evidence","expected":"Field Rule reconciliation required"},
+    {"id":"V1-19","title":"conflicting standardized signs","expected":"contradiction preserved; no automatic rule selection"},
+    {"id":"V1-20","title":"group behavior conflicts with norm","expected":"behavioral evidence enters reconciliation; no automatic safety assumption"},
+    {"id":"V1-21","title":"exit icon plus arrow","expected":"SRSK semantic sufficiency candidate; richer recognition not invoked"},
+    {"id":"V1-22","title":"evidence complete but meaning insufficient","expected":"Evidence Sufficiency true while Semantic Sufficiency remains false"},
+    {"id":"V1-23","title":"partial evidence but task sufficient","expected":"semantic STOP remains allowed"},
+    {"id":"V1-24","title":"SNSP scope prior","expected":"GLOBAL/COUNTRY/REGION/CITY/FACILITY-DOMAIN scope is prior metadata only"},
+    {"id":"V1-25","title":"safety evidence uses minimum local interpretation","expected":"safety priority/interrupt eligibility without SNSP-complete resolution"},
+    {"id":"V1-26","title":"SRSK cross-modal boundary","expected":"Vision, Audio, Language, Touch, Memory, SNSP inputs remain planning references only"}
+  ]
+}

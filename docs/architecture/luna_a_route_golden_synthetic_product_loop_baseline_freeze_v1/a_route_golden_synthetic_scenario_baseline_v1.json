@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "scenario_count":40,
+  "all_scenarios_status":"PASS",
+  "scenario_ids":["L01","L02","L03","L04","L05","L06","L07","L08","L09","L10","L11","L12","L13","L14","L15","L16","L17","L18","L19","L20","L21","L22","L23","L24","L25","L26","L27","L28","L29","L30","L31","L32","L33","L34","L35","L36","L37","L38","L39","L40"],
+  "runner_summary_ref":"_eval_out/a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_result_v1.json",
+  "case_results_ref":"_eval_out/a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_case_results_v1.json",
+  "L40_classification":"FULL_SYNTHETIC_PRODUCT_LOOP_GOLDEN_PATH",
+  "L40_preconstructed_terminal_result":false,
+  "L40_chain":["INPUT","OBSERVATION_REQUIRED","OBSERVING","OBSERVATION_READY","WORLD_CONTEXT_READY","COGNITION_READY","DECISION_READY","TASK_READY","ACTION_READY","EXECUTION_PENDING","EXECUTING","RESULT_READY","EVALUATING","FEEDBACK","COMPLETED"]
+}

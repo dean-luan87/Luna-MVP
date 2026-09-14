@@ -1,0 +1,20 @@
+{
+  "frame_seq": 14,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R14_task_chain_shift_complex_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.92,
+  "task_chain_shift_expected": true,
+  "object_search_flow_type": "rechecking",
+  "object_search_resolution_path": ["container_check_flow", "rechecking", "fallback"],
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [12, 8, 90, 110], "conf": 0.74 },
+    { "label": "bottle", "bbox": [36, 40, 70, 95], "conf": 0.80 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "我切换位置再看一下"
+}

@@ -1,0 +1,17 @@
+{
+  "contract_id": "a_route_negative_guards_v1",
+  "forbidden": [
+    "runtime_integration", "module_invocation", "automatic_cognitive_flow", "learning_runtime", "action_execution", "model_integration", "provider_integration", "hardware_integration", "emotion_runtime", "social_runtime", "b_route_runtime", "evidence_meaning_authority", "memory_override_reality", "memory_direct_decision", "field_direct_action", "attention_direct_action", "goal_direct_action", "value_commit_decision", "decision_execute_action", "outcome_direct_self_modification", "single_outcome_schema_update", "experience_direct_identity_change", "learning_direct_memory_write", "learning_direct_schema_update", "learning_direct_identity_change", "learning_direct_constitution_change", "learning_model_training", "learning_parameter_update", "b_route_override_a_route", "b_route_direct_self_modification", "runtime_learning_authority", "emotion_direct_decision_override", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "reality_precedence": true,
+    "candidate_boundaries_preserved": true,
+    "field_drives_attention": true,
+    "memory_is_context_not_reality": true,
+    "outcome_is_not_experience": true,
+    "learning_requires_self_review": true,
+    "self_protects_identity_and_constitution": true,
+    "a_route_b_route_separation": true,
+    "unknowns_preserved": true
+  }
+}

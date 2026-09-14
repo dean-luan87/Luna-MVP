@@ -1,0 +1,14 @@
+{
+  "title": "Goal Hierarchy Contract v1",
+  "levels": [
+    {"level": 0, "name": "Existence Goal", "constrains": ["Capability Goal", "Social Goal", "Task Goal"]},
+    {"level": 1, "name": "Capability Goal", "constrains": ["Social Goal", "Task Goal"]},
+    {"level": 2, "name": "Social Goal", "constrains": ["Task Goal"]},
+    {"level": 3, "name": "Task Goal", "constrains": []}
+  ],
+  "lower_level_cannot_violate_higher_level": true,
+  "task_goal_connects_task_manager": true,
+  "task_manager_is_not_goal_owner": true,
+  "goal_does_not_execute": true,
+  "b_route_is_placeholder_only": true
+}

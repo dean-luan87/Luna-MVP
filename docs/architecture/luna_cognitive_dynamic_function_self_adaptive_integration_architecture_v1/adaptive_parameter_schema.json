@@ -1,0 +1,13 @@
+{
+  "schema_id": "adaptive_parameter_v1",
+  "status": "architecture_only",
+  "parameter_classes": ["Constitution Parameter", "Adaptive Parameter", "Learned Parameter"],
+  "required_fields": ["parameter_id", "class", "name", "value", "range", "unit", "field_scope", "provenance", "evidence", "risk", "validation_metric", "version", "rollback_ref"],
+  "constitution_parameter_mutable": false,
+  "adaptive_parameter_requires_review": true,
+  "learned_parameter_is_candidate": true,
+  "identity_parameter_protected": true,
+  "safety_parameter_protected": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

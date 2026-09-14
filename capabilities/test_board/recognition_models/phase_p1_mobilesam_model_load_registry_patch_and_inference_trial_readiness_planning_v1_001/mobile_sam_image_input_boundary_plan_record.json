@@ -1,0 +1,38 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-And-Inference-Trial-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:37:53.508998+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_image_input_boundary_plan_record",
+  "mobile_sam_image_input_boundary_plan_record": {
+    "record_id": "mobile_sam_image_input_boundary_plan_v1",
+    "allowed_candidates": [
+      "synthetic_test_image",
+      "tiny_static_local_test_image",
+      "explicitly_scoped_local_test_asset"
+    ],
+    "forbidden_sources": [
+      "live_camera",
+      "user_personal_image",
+      "external_url_image",
+      "uncontrolled_dataset",
+      "navigation_runtime_frame",
+      "semantic_fact_input_frame"
+    ],
+    "image_input_must_be_local": true,
+    "image_input_must_be_test_asset": true,
+    "image_input_must_have_manifest": true,
+    "image_input_must_not_contain_personal_data": true,
+    "image_input_must_not_enter_fact_layer": true,
+    "image_input_must_not_enter_navigation_runtime": true
+  }
+}

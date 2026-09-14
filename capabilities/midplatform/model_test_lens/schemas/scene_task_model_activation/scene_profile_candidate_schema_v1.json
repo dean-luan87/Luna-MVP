@@ -1,0 +1,38 @@
+{
+  "schema_id": "SceneProfileCandidateActivationSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "场景候选 — 用于模型激活决策，不是 fact。",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "scene_profile_id",
+    "scene_type_candidate",
+    "confidence",
+    "candidate_only",
+    "not_fact"
+  ],
+  "scene_type_enum": [
+    "text_signage_scene",
+    "subway_platform",
+    "shopfront_sign",
+    "outdoor_street_crossing",
+    "indoor_navigation",
+    "corridor",
+    "unknown_scene"
+  ],
+  "field_definitions": {
+    "scene_profile_id": { "type": "string" },
+    "scene_type_candidate": { "type": "string" },
+    "confidence": { "type": "number" },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "scene_profile_candidate_not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "scene_profile_candidate_not_fact": true,
+    "planning_only": true
+  }
+}

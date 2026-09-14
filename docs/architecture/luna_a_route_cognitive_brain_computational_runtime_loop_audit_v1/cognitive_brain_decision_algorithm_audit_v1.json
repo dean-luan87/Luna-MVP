@@ -1,0 +1,19 @@
+{
+  "artifact":"cognitive_brain_decision_algorithm_audit_v1",
+  "owner":"Decision Governance",
+  "maturity":"M5_DETERMINISTIC_CONTROLLED_ALGORITHM",
+  "candidate_generation":"one DecisionCandidateV1 per option",
+  "ranking":"eligible candidates sorted by utility_score_candidate - 4*risk_score_candidate, then lower risk and option id",
+  "utility":"expected_benefit + 3*intent_alignment + preference boost; resource pressure subtracts cost*5 or cost*8",
+  "risk":"severity * likelihood",
+  "constraints":"hard constraint, permission, safety, role and evidence vetoes",
+  "uncertainty":"unknown labels and explicit defer/contest/abstain states",
+  "reversibility":"irreversible requires confirmation",
+  "expected_outcome":"utility candidate only; no expectation object emitted",
+  "execution":"execution_eligibility_candidate only; action/task/runtime flags false",
+  "algorithm_class":"WEIGHTED_SCORE",
+  "runtime_called":"controlled execution chain only",
+  "real_data_tested":false,
+  "limitations":["fixed source constants","no learned utility","no calibrated probability","no real task/action commitment"],
+  "evidence_refs":["capabilities/midplatform/core/decision_governance/decision_governance_engine_v1.py","capabilities/midplatform/core/decision_governance/decision_io_types_v1.py"]
+}

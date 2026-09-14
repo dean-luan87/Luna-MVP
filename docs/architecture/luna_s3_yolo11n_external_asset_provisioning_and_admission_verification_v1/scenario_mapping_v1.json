@@ -1,0 +1,11 @@
+{
+  "scenario_count": 16,
+  "scenario_ids": [
+    "Y11P-01", "Y11P-02", "Y11P-03", "Y11P-04",
+    "Y11P-05", "Y11P-06", "Y11P-07", "Y11P-08",
+    "Y11P-09", "Y11P-10", "Y11P-11", "Y11P-12",
+    "Y11P-13", "Y11P-14", "Y11P-15", "Y11P-16"
+  ],
+  "inference_executed": false,
+  "copy_executed": false
+}

@@ -1,0 +1,11 @@
+{
+  "guard_set_id": "uncertainty_exploration_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["runtime", "exploration_engine", "scheduler", "automatic_exploration", "automatic_knowledge_call", "automatic_learning", "model_calls", "database_access", "uncertainty_direct_action", "exploration_direct_self_modification", "knowledge_retrieval_automatic_exploration", "exploration_unlimited_resource_usage", "unknown_forced_resolution", "memory_override_reality", "exploration_model_switch", "exploration_hardware_control", "exploration_b_route_runtime", "emotion_runtime"],
+  "unknown_is_not_exploration": true,
+  "accept_unknown_allowed": true,
+  "self_approval_required": true,
+  "candidate_only": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

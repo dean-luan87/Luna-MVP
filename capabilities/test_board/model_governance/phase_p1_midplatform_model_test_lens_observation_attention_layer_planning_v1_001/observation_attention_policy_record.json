@@ -1,0 +1,427 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "ObservationAttentionPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+    "description": "任务上下文驱动的观察注意力策略。仅生成 attention / priority / route 候选。",
+    "pipeline": [
+      "region_segmentation",
+      "static_dynamic_candidate_judgment",
+      "observation_priority",
+      "followup_model_route"
+    ],
+    "static_dynamic_policy_ref": "schemas/observation_attention/static_dynamic_observation_policy_v1.json",
+    "motion_state_schema_ref": "schemas/observation_attention/observation_target_motion_state_schema_v1.json",
+    "task_contexts": [
+      "general_scene_understanding",
+      "street_navigation_test",
+      "crossing_road_test",
+      "find_object_test",
+      "find_text_test",
+      "indoor_navigation_test",
+      "model_quality_review"
+    ],
+    "policies": {
+      "general_scene_understanding": {
+        "label_zh": "通用场景理解",
+        "priority_order": [
+          "high_confidence_large_region",
+          "uncertain_region",
+          "low_confidence_region",
+          "human_marked_error"
+        ],
+        "default_followup": [
+          "human_review"
+        ]
+      },
+      "street_navigation_test": {
+        "label_zh": "街景导航测试",
+        "priority_regions": [
+          "road_or_crosswalk",
+          "vehicle_candidate",
+          "pedestrian_candidate",
+          "obstacle_candidate",
+          "sign_or_advertisement"
+        ],
+        "followup_models": [
+          "detection",
+          "depth",
+          "slam",
+          "ocr"
+        ],
+        "region_rules": [
+          {
+            "region_pattern": "vehicle",
+            "priority_level": "P0_immediate_attention",
+            "priority_reasons": [
+              "possible_risk",
+              "needs_detection_review"
+            ],
+            "followup": [
+              {
+                "model": "detection",
+                "route_priority": "P0",
+                "route_reason": "confirm_object_category"
+              }
+            ]
+          },
+          {
+            "region_pattern": "road|crosswalk",
+            "priority_level": "P0_immediate_attention",
+            "priority_reasons": [
+              "navigation_relevant",
+              "verify_walkable_area"
+            ],
+            "followup": [
+              {
+                "model": "depth",
+                "route_priority": "P0",
+                "route_reason": "verify_walkable_area"
+              },
+              {
+                "model": "slam",
+                "route_priority": "P1",
+                "route_reason": "verify_walkable_area"
+              }
+            ]
+          },
+          {
+            "region_pattern": "sign|advertisement|text",
+            "priority_level": "P1_high_attention",
+            "priority_reasons": [
+              "text_relevant",
+              "needs_ocr_review"
+            ],
+            "followup": [
+              {
+                "model": "ocr",
+                "route_priority": "P1",
+                "route_reason": "read_text"
+              }
+            ]
+          },
+          {
+            "region_pattern": "building|structure",
+            "priority_level": "P3_low_attention",
+            "priority_reasons": [
+              "stable_background_reference"
+            ],
+            "followup": [
+              {
+                "model": "no_followup_required",
+                "route_priority": "P3",
+                "route_reason": "background_reference_only"
+              }
+            ]
+          }
+        ]
+      },
+      "crossing_road_test": {
+        "label_zh": "过马路测试",
+        "priority_regions": [
+          "vehicle",
+          "pedestrian",
+          "traffic_light",
+          "sign",
+          "crosswalk",
+          "road_boundary"
+        ],
+        "followup_models": [
+          "detection",
+          "depth",
+          "ocr",
+          "slam"
+        ],
+        "route_priority_defaults": {
+          "detection": "P0",
+          "depth": "P0",
+          "ocr": "P1",
+          "slam": "P1"
+        }
+      },
+      "find_text_test": {
+        "label_zh": "找文字测试",
+        "priority_regions": [
+          "sign",
+          "advertisement",
+          "text_box",
+          "ocr_related"
+        ],
+        "followup_models": [
+          "ocr",
+          "detection"
+        ],
+        "route_priority_defaults": {
+          "ocr": "P0",
+          "detection": "P1"
+        }
+      },
+      "find_object_test": {
+        "label_zh": "找物体测试",
+        "priority_regions": [
+          "object_candidate",
+          "vehicle",
+          "pedestrian"
+        ],
+        "followup_models": [
+          "detection",
+          "vlm"
+        ]
+      },
+      "indoor_navigation_test": {
+        "label_zh": "室内导航测试",
+        "priority_regions": [
+          "door",
+          "obstacle",
+          "walkable_plane"
+        ],
+        "followup_models": [
+          "depth",
+          "slam",
+          "detection"
+        ]
+      },
+      "model_quality_review": {
+        "label_zh": "模型质量复核",
+        "priority_regions": [
+          "low_confidence",
+          "human_correction",
+          "boundary_inaccurate",
+          "failure_mode"
+        ],
+        "followup_models": [
+          "human_review",
+          "detection",
+          "ocr"
+        ],
+        "special_routes": [
+          {
+            "route_reason": "regression_test_candidate"
+          },
+          {
+            "route_reason": "hard_case_candidate"
+          }
+        ]
+      }
+    },
+    "mobile_sam_region_strategy": {
+      "description": "MobileSAM 仅提供区域边界候选；prompt_label 不得升级为事实类别。",
+      "prompt_label_is_candidate_only": true,
+      "strategies": [
+        {
+          "region_type": "vehicle_candidate",
+          "label_patterns": [
+            "vehicle",
+            "car",
+            "bus",
+            "dynamic_object"
+          ],
+          "priority_level": "P0_immediate_attention",
+          "priority_reasons": [
+            "possible_risk",
+            "needs_detection_review"
+          ],
+          "followup": [
+            {
+              "model": "detection",
+              "route_priority": "P0",
+              "route_reason": "confirm_object_category"
+            }
+          ]
+        },
+        {
+          "region_type": "road_crosswalk_candidate",
+          "label_patterns": [
+            "road",
+            "crosswalk",
+            "plane",
+            "walkable"
+          ],
+          "priority_level": "P1_high_attention",
+          "priority_reasons": [
+            "navigation_relevant",
+            "verify_walkable_area"
+          ],
+          "followup": [
+            {
+              "model": "depth",
+              "route_priority": "P0",
+              "route_reason": "verify_walkable_area"
+            },
+            {
+              "model": "slam",
+              "route_priority": "P1",
+              "route_reason": "verify_walkable_area"
+            }
+          ]
+        },
+        {
+          "region_type": "sign_ad_candidate",
+          "label_patterns": [
+            "sign",
+            "advertisement",
+            "screen",
+            "text"
+          ],
+          "priority_level": "P1_high_attention",
+          "priority_reasons": [
+            "text_relevant",
+            "needs_ocr_review"
+          ],
+          "followup": [
+            {
+              "model": "ocr",
+              "route_priority": "P1",
+              "route_reason": "read_text"
+            }
+          ]
+        },
+        {
+          "region_type": "building_structure_candidate",
+          "label_patterns": [
+            "building",
+            "structure",
+            "large_structure"
+          ],
+          "priority_level": "P3_low_attention",
+          "priority_reasons": [
+            "stable_background_reference"
+          ],
+          "followup": [
+            {
+              "model": "no_followup_required",
+              "route_priority": "P3",
+              "route_reason": "background_reference_only"
+            }
+          ]
+        },
+        {
+          "region_type": "street_facility_candidate",
+          "label_patterns": [
+            "pole",
+            "facility",
+            "edge_object",
+            "street_facility"
+          ],
+          "priority_level": "P2_medium_attention",
+          "priority_reasons": [
+            "possible_risk",
+            "needs_detection_review"
+          ],
+          "followup": [
+            {
+              "model": "detection",
+              "route_priority": "P1",
+              "route_reason": "confirm_object_category"
+            },
+            {
+              "model": "depth",
+              "route_priority": "P2",
+              "route_reason": "estimate_distance"
+            }
+          ]
+        }
+      ]
+    },
+    "human_correction_linkage": {
+      "description": "Human Correction 记录影响 priority signal，不得成为 ground truth。",
+      "rules": [
+        {
+          "correction_type": "false_negative",
+          "priority_boost": "P0_immediate_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "needs_detection_review"
+          ],
+          "followup": [
+            "human_review",
+            "detection",
+            "ocr",
+            "depth"
+          ]
+        },
+        {
+          "correction_type": "boundary_inaccurate",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "boundary_uncertain",
+            "human_marked_error"
+          ],
+          "followup": [
+            "detection",
+            "depth"
+          ]
+        },
+        {
+          "correction_type": "wrong_label",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "needs_detection_review"
+          ],
+          "followup": [
+            "detection",
+            "vlm",
+            "human_review"
+          ]
+        },
+        {
+          "correction_type": "risk_assessment_error",
+          "priority_boost": "P0_immediate_attention",
+          "priority_reasons": [
+            "human_marked_error",
+            "possible_risk"
+          ],
+          "followup": [
+            "human_review"
+          ]
+        },
+        {
+          "correction_type": "recommendation_error",
+          "priority_boost": "P1_high_attention",
+          "priority_reasons": [
+            "human_marked_error"
+          ],
+          "followup": [
+            "human_review"
+          ]
+        }
+      ],
+      "correction_is_priority_signal_only": true,
+      "not_ground_truth": true
+    },
+    "hud_display_plan": {
+      "object_chip_sort": "P0/P1 first, ignore_for_now last or collapsed",
+      "color_semantics": {
+        "task_target": "green",
+        "risk": "red",
+        "uncertain": "yellow",
+        "environment": "blue",
+        "ocr": "purple",
+        "background": "gray"
+      },
+      "right_panel_sections": [
+        "priority_regions",
+        "why_observe",
+        "recommended_followup_models"
+      ],
+      "bottom_summary": [
+        "priority_watch_list",
+        "suggested_followup_models"
+      ],
+      "ui_execution_deferred": true
+    },
+    "boundary_flags": {
+      "observation_attention_candidate_only": true,
+      "must_not_execute_models": true,
+      "must_not_call_runner": true
+    }
+  }
+}

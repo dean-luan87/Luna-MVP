@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Information Self Social Impact Contract",
+  "owner":"Self/Social Integration",
+  "impact_targets":["Self capability and limitation","Self stability","Role capability","Social relationship context","Social norm context"],
+  "required_conditions":["validated information","scope match","time stability","multi-context support","Constitution compatibility","Brain/Governance review"],
+  "outputs":["Self impact candidate","Role growth candidate","Social adaptation candidate","no_update"],
+  "forbidden_effects":["automatic identity rewrite","automatic role rewrite","automatic value rewrite","automatic social judgment","direct decision override"],
+  "rules":{"candidate_only":true,"self_owner_preserved":true,"social_owner_preserved":true,"emotion_weight_not_implemented":true}
+}

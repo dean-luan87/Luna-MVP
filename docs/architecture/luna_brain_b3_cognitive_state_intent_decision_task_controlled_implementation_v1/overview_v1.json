@@ -1,0 +1,8 @@
+{
+  "phase": "Phase-Luna-Brain-B3-Cognitive-State-Intent-Decision-Task-Controlled-Implementation-v1-001",
+  "objective": "Replace the synthetic Cognitive State/Flow influence boundary with validated B2 references and stop at candidate-only Task readiness.",
+  "real_component": "REAL_B2_COGNITIVE_STATE_FLOW_INPUT",
+  "route": ["validated B2 reference", "Intent Governance", "Decision Governance", "Task Manager"],
+  "out_of_scope": ["Action", "Runtime", "scheduler", "device control", "provider invocation", "semantic compression", "dynamic cognitive functions"],
+  "owner": "Intent Governance -> Decision Governance -> Task Manager"
+}

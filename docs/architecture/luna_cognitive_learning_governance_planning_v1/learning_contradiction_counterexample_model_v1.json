@@ -1,0 +1,15 @@
+{
+    "artifact": "learning_contradiction_counterexample_model_v1",
+    "preserve": [
+        "contradiction_refs",
+        "counterexample_refs",
+        "negative_evidence_refs",
+        "unresolved_pattern_refs"
+    ],
+    "rules": {
+        "contradiction_blocks_silent_generalization": true,
+        "counterexample_can_reduce_or_reject_learning_candidate": true,
+        "multiple_conflicting_learning_candidates_allowed": true,
+        "forced_single_truth_forbidden": true
+    }
+}

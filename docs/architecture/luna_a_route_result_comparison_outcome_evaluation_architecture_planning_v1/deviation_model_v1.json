@@ -1,0 +1,10 @@
+{
+  "artifact":"deviation_model_v1",
+  "candidate_only":true,
+  "dimensions":["semantic_mismatch","state_mismatch","value_mismatch","temporal_mismatch","spatial_mismatch","completion_mismatch","safety_mismatch","confidence_uncertainty_mismatch","missing_expected_effect","unexpected_side_effect","partial_completion"],
+  "statuses":["MATCH","PARTIAL_MATCH","MISMATCH","UNKNOWN","CONTESTED"],
+  "required_fields":["deviation_id","expectation_ref","actual_result_ref","comparability_ref","dimension_statuses","comparison_basis_refs","magnitude_candidate","uncertainty_refs","contradiction_refs","counterevidence_refs","temporal_refs","trace_ref","provenance_refs","revision_parent_ref","supersedes_ref","revocation_ref"],
+  "no_single_score":true,
+  "confidence_boundary":"confidence/quality is a dimension/input and does not equal correctness",
+  "no_mutation":true
+}

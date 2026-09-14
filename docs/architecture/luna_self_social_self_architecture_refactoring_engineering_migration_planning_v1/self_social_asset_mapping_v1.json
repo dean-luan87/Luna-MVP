@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Self Social Asset Mapping",
+  "source_phase": "docs/architecture/luna_self_social_self_architecture_refactoring_v1/",
+  "asset_classes": [
+    {"class": "Self Layer", "assets": ["self_layer_definition_v1.json", "self_model_architecture", "self_regulation_architecture", "self_evolution_architecture"], "owner": "Self Layer"},
+    {"class": "Social Self Layer", "assets": ["social_self_layer_definition_v1.json", "role_system", "relationship_system", "social_field_architecture"], "owner": "Social Self Layer"},
+    {"class": "Integration Layer", "assets": ["self_social_integration_contract_v1.json", "emotion_boundary_reclassification_v1.json", "emotion_context_boundary"], "owner": "Cognitive Integration Layer"},
+    {"class": "Governance", "assets": ["constitution_self_mapping_v1.json", "architecture_change_governance_v1.json"], "owner": "L0/L1 Governance"}
+  ],
+  "mapping_only": true,
+  "rules": {"no_move": true, "no_delete": true, "no_rename": true, "reference_existing_assets": true, "new_owner_explicit": true}
+}

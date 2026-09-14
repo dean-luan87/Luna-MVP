@@ -1,0 +1,9 @@
+{
+  "artifact":"b4_runtime_executor_analysis_v1",
+  "owner":"Runtime Executor",
+  "contracts":["RuntimeExecutorInputV1", "RuntimeExecutorOutputV1", "ExecutionResultCandidateV1", "ExecutionFailureCandidateV1", "PartialExecutionResultCandidateV1", "RetryRequestCandidateV1", "CancellationCandidateV1", "TimeoutCandidateV1"],
+  "controlled_statuses":["ADMITTED_CANDIDATE", "REJECTED_CANDIDATE", "SUCCEEDED_CANDIDATE", "FAILED_CANDIDATE", "TIMEOUT_CANDIDATE", "PARTIAL_RESULT_CANDIDATE", "CANCELLED_CANDIDATE"],
+  "decision":"B4 uses controlled Runtime Result candidates/fixtures only; RuntimeExecutorEngine is not invoked for real execution.",
+  "preserved_gates":["readiness", "permission", "safety", "confirmation", "scope", "time window", "idempotency", "retry authority"],
+  "runtime_execution":false
+}

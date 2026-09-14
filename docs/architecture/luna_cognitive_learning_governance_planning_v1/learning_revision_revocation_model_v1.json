@@ -1,0 +1,18 @@
+{
+    "artifact": "learning_revision_revocation_model_v1",
+    "supports": [
+        "revision_lineage",
+        "supersession_lineage",
+        "contradiction_lineage",
+        "revocation_lineage",
+        "expiration",
+        "refresh"
+    ],
+    "states": [
+        "REVISED",
+        "SUPERSEDED",
+        "REVOKED",
+        "EXPIRED",
+        "REJECTED"
+    ]
+}

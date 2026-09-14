@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "DocumentSurfaceCandidateSchemaV1",
+  "type": "object",
+  "required": ["surface_id", "source_region_id", "visibility_status_candidate", "candidate_only", "not_fact"],
+  "properties": {
+    "surface_id": {"type": "string"},
+    "source_region_id": {"type": "string"},
+    "bbox_candidate": {"type": "array", "items": {"type": "number"}},
+    "polygon_candidate": {"type": "array"},
+    "boundary_confidence_candidate": {"type": "number"},
+    "visibility_status_candidate": {
+      "enum": ["visible", "partial", "occluded", "uncertain"]
+    },
+    "surface_orientation_candidate": {"type": "string"},
+    "owner_entity_candidate_ref": {"type": "string"},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_pollution_boundary_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "work_context_isolated_from_home_reality",
+      "source_field": "office_field",
+      "source_state": "work_pressure_candidate",
+      "target_field": "home_field",
+      "expected": "no_reality_state_pollution",
+      "experience_candidate_allowed": true,
+      "identity_changed": false
+    },
+    {
+      "case_id": "unknown_person_persists",
+      "field": "home_field",
+      "initial_unknown": "person_identity",
+      "after_24h": "person_identity",
+      "auto_resolved": false,
+      "invented_relationship": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "uncertainty_knowledge_relation_v1",
+  "owner": "Knowledge",
+  "inputs": ["semantic_uncertainty", "knowledge_gap", "field_context", "role_context", "task_context"],
+  "outputs": ["knowledge_exploration_candidate", "knowledge_admission_candidate", "context_enhancement_candidate"],
+  "knowledge_auto_call": false,
+  "knowledge_auto_injection": false,
+  "field_role_context_required": true,
+  "self_approval_required": true,
+  "candidate_only": true
+}

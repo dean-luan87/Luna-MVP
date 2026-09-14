@@ -1,0 +1,67 @@
+{
+  "schema_id": "TeacherUsagePolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Teacher-QwenVL-Integration-DryRun-v1-001",
+  "principle": "Teacher 不是主动观察者；Luna 决定何时请求帮助，Teacher 回答后由 Luna 判断是否采纳。",
+  "provider_scope": ["qwen_vl"],
+  "teacher_role_scope": ["perception_teacher"],
+  "admission_matrix": [
+    {
+      "condition_id": "uncertainty_high",
+      "description": "高不确定性时允许请求 Teacher",
+      "request_teacher": true,
+      "priority": 10
+    },
+    {
+      "condition_id": "policy_conflict",
+      "description": "策略冲突时允许请求 Teacher 第二意见",
+      "request_teacher": true,
+      "priority": 20
+    },
+    {
+      "condition_id": "unknown_scene",
+      "description": "unknown_scene 允许 Perception Teacher",
+      "request_teacher": true,
+      "priority": 30
+    },
+    {
+      "condition_id": "plan_challenge_requested",
+      "description": "L2.5 后显式 plan challenge 允许请求 Teacher",
+      "request_teacher": true,
+      "priority": 40
+    },
+    {
+      "condition_id": "high_risk_decision",
+      "description": "高风险决策允许请求 Teacher",
+      "request_teacher": true,
+      "priority": 50
+    },
+    {
+      "condition_id": "routine_case",
+      "description": "常规已解决案例不请求 Teacher",
+      "request_teacher": false,
+      "priority": 100
+    },
+    {
+      "condition_id": "already_solved_by_tool",
+      "description": "专业工具已覆盖需求时不滥用 Teacher",
+      "request_teacher": false,
+      "priority": 110
+    }
+  ],
+  "routine_case_criteria": {
+    "scene_types": ["shopfront_sign"],
+    "goal_types": ["read_text", "identify_place"],
+    "required_tools": ["ocr"],
+    "validation_status": "validated_candidate",
+    "noop_reason": "current plan sufficient"
+  },
+  "boundary_flags": {
+    "luna_controls_teacher_invocation": true,
+    "teacher_not_proactive_observer": true,
+    "validation_required_after_teacher": true,
+    "no_auto_scene_override": true,
+    "no_auto_plan_override": true,
+    "no_auto_tool_execution": true
+  }
+}

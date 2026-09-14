@@ -1,0 +1,17 @@
+{
+  "contract_id": "a-route-s1-real-user-input-controlled-execution-v1",
+  "canonical_owner": "A Route Orchestration Governance",
+  "adapter_owner": "A Route Orchestration Governance / Real User Input Adapter",
+  "input": "External User Text / Payload",
+  "output": "ProductLoopInputV1",
+  "real_component": "USER_INPUT",
+  "overall_loop_mode": "HYBRID_S1",
+  "normalization": ["supported text value", "whitespace normalization", "empty-input rejection", "bounded length validation", "stable input identity", "trace/provenance attachment"],
+  "not_performed": ["semantic interpretation", "intent inference", "fact extraction", "entity resolution", "task creation", "Field mutation", "model call"],
+  "compatibility_ingress_kinds": ["USER_INPUT", "USER_CORRECTION", "SYSTEM_EVENT", "TASK_CONTINUATION", "OBSERVATION_FEEDBACK"],
+  "real_adapter_ingress_kinds": ["USER_INPUT", "USER_CORRECTION"],
+  "downstream_components": "SYNTHETIC_CONTROLLED_S0",
+  "candidate_only": true,
+  "truth_declared": false,
+  "provenance_grants_authority": false
+}

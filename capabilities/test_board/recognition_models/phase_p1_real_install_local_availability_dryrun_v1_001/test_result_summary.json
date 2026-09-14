@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Real-Install-Local-Availability-DryRun-v1-001",
+  "module": "recognition_models",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T03:30:47.885892+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_REAL_INSTALL_LOCAL_AVAILABILITY_DRYRUN_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "local_availability_profile_count": 1,
+    "stage_ref_count": 13,
+    "model_asset_count": 17,
+    "local_package_probe_count": 17,
+    "import_spec_probe_count": 17,
+    "local_weight_path_probe_count": 12,
+    "dependency_gap_record_count": 17,
+    "license_runtime_alignment_check_count": 17,
+    "install_readiness_record_count": 17,
+    "model_asset_availability_matrix_count": 17,
+    "fallback_readiness_record_count": 8,
+    "blocked_deferred_reason_count": 11,
+    "negative_guard_count": 15,
+    "blocker_count": 0
+  }
+}

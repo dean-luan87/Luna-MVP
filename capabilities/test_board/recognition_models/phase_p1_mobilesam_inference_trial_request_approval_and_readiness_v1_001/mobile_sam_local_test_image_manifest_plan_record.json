@@ -1,0 +1,57 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.530878+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_local_test_image_manifest_plan_record",
+  "mobile_sam_local_test_image_manifest_plan_record": {
+    "record_id": "mobile_sam_local_test_image_manifest_plan_v1",
+    "allowed_future_sources": [
+      "synthetic_test_image",
+      "tiny_static_local_test_image",
+      "explicitly_scoped_local_test_asset"
+    ],
+    "forbidden_sources": [
+      "live_camera",
+      "user_personal_image",
+      "external_url_image",
+      "uncontrolled_dataset",
+      "navigation_runtime_frame",
+      "semantic_fact_input_frame"
+    ],
+    "planned_manifest_entries": [
+      {
+        "test_image_id": "mobile_sam_tiny_static_test_image_v1",
+        "local_path": "capabilities/test_assets/p1/mobile_sam/planned_tiny_static_test_image_v1.png",
+        "sha256": "pending_verification_in_execution_phase",
+        "width": 0,
+        "height": 0,
+        "file_size_bytes": 0,
+        "source_type": "tiny_static_local_test_image",
+        "personal_data_absent": true,
+        "live_camera_frame": false,
+        "external_url_source": false,
+        "dataset_source": false,
+        "navigation_runtime_frame": false,
+        "fact_layer_source": false,
+        "semantic_layer_source": false,
+        "allowed_for_single_inference_trial": true,
+        "must_not_enter_fact_layer": true,
+        "must_not_enter_navigation_runtime": true,
+        "manifest_status": "planned_not_created"
+      }
+    ],
+    "image_created_this_phase": false,
+    "image_read_this_phase": false
+  }
+}

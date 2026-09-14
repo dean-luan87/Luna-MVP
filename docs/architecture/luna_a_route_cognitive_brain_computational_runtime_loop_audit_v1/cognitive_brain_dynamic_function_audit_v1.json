@@ -1,0 +1,18 @@
+{
+  "artifact":"cognitive_brain_dynamic_function_audit_v1",
+  "reference_equations":["C(t+1) = F(C(t), Field(t), Self(t), Goal(t))","R(t) = f(Self, Resource, Constitution)"],
+  "equation_status":"interface_only; no executable F or f found",
+  "inputs_defined":"contractually named only",
+  "outputs_defined":"candidate vector update/attention/threshold/reconsideration only",
+  "transition_equations":"ABSENT",
+  "parameters":"conceptual parameter space/genome contracts; inactive in runtime",
+  "temporal_step_semantics":"ABSENT executable",
+  "bounded_update":"ABSENT for cognitive state; bounds exist only for regulation parameter candidates",
+  "feedback":"contracts reference outcome/feedback but no connected comparator/update function",
+  "stability_constraints":"planning language only; no convergence/oscillation computation",
+  "runtime_callable":"false",
+  "real_data_validated":"false",
+  "maturity":"M3_GOVERNANCE_CONTRACT",
+  "exact_missing_layers":["numeric state representation","F implementation","state update timing","parameter estimation","feedback comparison producer","stability analysis","runtime caller"],
+  "evidence_refs":["docs/architecture/luna_cognitive_dynamic_function_architecture_v1/dynamic_cognitive_function_architecture_v1.json","docs/architecture/luna_cognitive_dynamic_function_architecture_v1/dynamic_cognitive_function_architecture_v1.md"]
+}

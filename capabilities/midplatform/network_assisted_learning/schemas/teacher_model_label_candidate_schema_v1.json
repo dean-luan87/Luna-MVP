@@ -1,0 +1,50 @@
+{
+  "schema_id": "TeacherModelLabelCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "teacher_label_id",
+    "teacher_model_name",
+    "input_ref",
+    "scene_profile_candidate",
+    "task_clue_candidates",
+    "model_need_hints",
+    "noop_model_hints",
+    "confidence",
+    "candidate_only",
+    "not_fact",
+    "requires_policy_review",
+    "provenance_ref"
+  ],
+  "field_definitions": {
+    "teacher_label_id": { "type": "string" },
+    "teacher_model_name": { "type": "string" },
+    "teacher_model_version_optional": { "type": "string" },
+    "input_ref": { "type": "string" },
+    "scene_profile_candidate": { "type": "string" },
+    "task_clue_candidates": { "type": "array" },
+    "attention_target_hints": { "type": "array" },
+    "model_need_hints": { "type": "array" },
+    "noop_model_hints": { "type": "array" },
+    "reasoning_summary": { "type": "string" },
+    "confidence": { "type": "number" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "requires_policy_review": { "type": "boolean", "const": true },
+    "requires_human_review": { "type": "boolean" },
+    "provenance_ref": { "type": "string" }
+  },
+  "forbidden_operations": [
+    "direct_fact_write",
+    "direct_training_dataset_entry",
+    "direct_weight_update"
+  ],
+  "boundary_flags": {
+    "teacher_output_candidate_only": true,
+    "no_direct_teacher_weight_update": true,
+    "planning_only": true
+  }
+}

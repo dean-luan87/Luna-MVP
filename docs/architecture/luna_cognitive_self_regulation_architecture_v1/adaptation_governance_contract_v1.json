@@ -1,0 +1,9 @@
+{
+  "title": "Adaptation Governance Contract v1",
+  "owner": "Self Regulation / Adaptation Governance",
+  "adoption_pipeline": ["Observation", "Assessment", "Candidate", "Evidence", "Review", "Admission", "Apply Candidate", "Monitor"],
+  "allowed_targets": ["Capability Selection Candidate", "Resource Budget Candidate", "Degraded Capability Profile", "Recovery Candidate", "Attention Adjustment Candidate"],
+  "forbidden_targets": ["Constitution", "Value", "Identity", "Goal", "Brain Core Rules", "Emotion Runtime", "Social Identity", "Model Parameters", "Source Code"],
+  "schema": ["governance_id", "candidate_ref", "risk_review", "authority_review", "evidence_refs", "confidence", "rollback", "review_status", "trace_id"],
+  "rules": {"admission_required":true,"review_required":true,"rollback_required":true,"automatic_adaptation_forbidden":true,"trace_required":true,"unknown_preserved":true}
+}

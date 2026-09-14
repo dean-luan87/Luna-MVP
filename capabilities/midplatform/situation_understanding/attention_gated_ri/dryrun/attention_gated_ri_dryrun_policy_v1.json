@@ -1,0 +1,44 @@
+{
+  "schema_id": "AttentionGatedRegionIntelligenceDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Situation-Understanding-Attention-Gated-Region-Intelligence-DryRun-v1-001",
+  "layer_id": "L1_Attention_Gated_Region_Intelligence",
+  "dryrun_only": true,
+  "principle": "Attention 是 Region Intelligence 的资源闸门，不是标签系统",
+  "core_question": "现在应该看什么？Attention 能否真正控制模型激活？",
+  "pipeline": [
+    "l0_observation_scan",
+    "situation_goal_binding",
+    "attention_budget",
+    "attention_gate",
+    "region_selection",
+    "gated_ownership_channel_activation",
+    "scene_graph_merge",
+    "information_efficiency",
+    "evidence_package",
+    "validation"
+  ],
+  "verify_dimensions": [
+    {"id": "attention_gate_controls_activation", "description": "低价值区域 blocked_capabilities，不触发 RI"},
+    {"id": "goal_drives_attention", "description": "同图不同 Goal → 不同 budget"},
+    {"id": "observation_priority_graph", "description": "Attention Graph：现在值得关注谁"},
+    {"id": "scene_graph_merge", "description": "Ownership + Attention 合并 Scene Graph"},
+    {"id": "information_efficiency", "description": "information_value / compute_cost"}
+  ],
+  "forbidden": [
+    "attention_label_only",
+    "all_region_intelligence_execute",
+    "image_alone_decides_attention",
+    "see_text_then_ocr_all",
+    "attention_output_ignored_by_ri"
+  ],
+  "boundary_flags": {
+    "attention_gates_region_intelligence": true,
+    "observation_priority_graph": true,
+    "scene_graph_ownership_plus_attention": true,
+    "information_efficiency_score": true,
+    "goal_plus_situation_drives_attention": true,
+    "deterministic_fixture_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Real-Runtime-Integration-Planning-v1-001"
+}

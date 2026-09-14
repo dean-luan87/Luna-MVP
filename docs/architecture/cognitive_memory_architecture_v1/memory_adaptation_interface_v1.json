@@ -1,0 +1,16 @@
+{
+  "interface_name": "Memory Adaptation Interface v1",
+  "memory_reference": "memory-example",
+  "pattern_candidate": null,
+  "attention_adjustment_candidate": null,
+  "behavior_adjustment_candidate": null,
+  "self_capability_adjustment_candidate": null,
+  "field_context_reference": "field-example",
+  "validation_required": true,
+  "adaptation_is_candidate_only": true,
+  "memory_does_not_directly_modify_action": true,
+  "memory_does_not_modify_goal": true,
+  "memory_does_not_modify_decision": true,
+  "memory_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

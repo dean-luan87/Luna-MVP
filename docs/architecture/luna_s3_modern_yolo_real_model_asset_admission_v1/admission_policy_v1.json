@@ -1,0 +1,11 @@
+{
+  "admission_statuses": ["ADMISSION_READY_CANDIDATE", "ADMISSION_BLOCKED_ASSET_MISSING", "ADMISSION_BLOCKED_IDENTITY", "ADMISSION_BLOCKED_CONTRACT", "ADMISSION_BLOCKED_DEPENDENCY", "ADMISSION_BLOCKED_LOADER", "ADMISSION_BLOCKED_PROVIDER"],
+  "fail_closed": true,
+  "asset_missing": "ADMISSION_BLOCKED_ASSET_MISSING",
+  "identity_failure": "ADMISSION_BLOCKED_IDENTITY",
+  "loader_failure": "ADMISSION_BLOCKED_LOADER",
+  "provider_failure": "ADMISSION_BLOCKED_PROVIDER",
+  "dependency_failure": "ADMISSION_BLOCKED_DEPENDENCY",
+  "ready_candidate_means_inference": false,
+  "ready_candidate_means_production_approval": false
+}

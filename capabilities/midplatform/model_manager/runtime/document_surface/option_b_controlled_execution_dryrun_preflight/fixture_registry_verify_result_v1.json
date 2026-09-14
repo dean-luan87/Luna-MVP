@@ -1,0 +1,25 @@
+{
+  "phase_id": "Phase-P1-OptionB-CE-DryRun-Preflight-Fixture-Registry-Write-v1-001",
+  "input_mode": "manual_trusted_fixture_registry_handoff",
+  "history_scan_performed": false,
+  "fixture_registry_file_read": false,
+  "image_content_read": false,
+  "fixture_expected_count": 8,
+  "fixture_valid_count": 8,
+  "fixture_missing_count": 0,
+  "invalid_fixture_count": 0,
+  "image_content_read_rate": 0,
+  "fixture_ids": [
+    "overlapping_receipts_clear_two_surfaces",
+    "high_overlap_with_visible_corners",
+    "receipt_attached_clear",
+    "receipt_attached_uncertain",
+    "low_contrast_single_paper",
+    "texture_false_positive_no_document",
+    "true_screen_document_fixture",
+    "single_clear_boundary_baseline"
+  ],
+  "registry_valid": true,
+  "blocker_count": 0,
+  "final_decision": "FIXTURE_REGISTRY_VERIFY_GO"
+}

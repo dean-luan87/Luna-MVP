@@ -1,0 +1,46 @@
+{
+    "artifact": "self_regulation_state_model_v1",
+    "states": [
+        "OBSERVED",
+        "ASSESSED",
+        "CANDIDATE",
+        "UNDER_REVIEW",
+        "DEFERRED",
+        "REVISED",
+        "REVOKED"
+    ],
+    "transitions": [
+        {
+            "from": "OBSERVED",
+            "to": "ASSESSED",
+            "rule": "input_contract_valid"
+        },
+        {
+            "from": "ASSESSED",
+            "to": "CANDIDATE",
+            "rule": "bounded_modulation_available"
+        },
+        {
+            "from": "CANDIDATE",
+            "to": "UNDER_REVIEW",
+            "rule": "trace_and_provenance_present"
+        },
+        {
+            "from": "UNDER_REVIEW",
+            "to": "DEFERRED",
+            "rule": "approval_missing_or_state_vector_stale"
+        },
+        {
+            "from": "UNDER_REVIEW",
+            "to": "REVISED",
+            "rule": "new_evidence_or_conflict"
+        },
+        {
+            "from": "UNDER_REVIEW",
+            "to": "REVOKED",
+            "rule": "boundary_violation_or_source_revoked"
+        }
+    ],
+    "runtime_activation": false,
+    "candidate_only": true
+}

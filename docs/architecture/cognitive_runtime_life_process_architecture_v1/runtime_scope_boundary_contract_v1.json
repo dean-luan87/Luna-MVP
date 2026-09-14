@@ -1,0 +1,14 @@
+{
+  "contract_name": "Runtime Scope Boundary Contract v1",
+  "real_scheduler": false,
+  "runtime_loop": false,
+  "model_call": false,
+  "hardware_runtime": false,
+  "action_runtime": false,
+  "b_simulation": false,
+  "automatic_learning_execution": false,
+  "runtime_does_not_modify_goal": true,
+  "runtime_does_not_modify_decision": true,
+  "runtime_does_not_modify_reality": true,
+  "unknowns_are_preserved": true
+}

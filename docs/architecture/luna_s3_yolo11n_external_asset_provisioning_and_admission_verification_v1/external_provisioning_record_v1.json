@@ -1,0 +1,19 @@
+{
+  "fields": [
+    "source_file_ref",
+    "target_model_asset_id",
+    "target_governed_path",
+    "provisioning_source_type",
+    "expected_filename",
+    "expected_family",
+    "expected_model_name",
+    "provenance_ref",
+    "copy_required",
+    "copy_executed",
+    "registration_required",
+    "candidate_only"
+  ],
+  "candidate_only": true,
+  "agent_copy_move": false,
+  "filename_is_semantic_identity": false
+}

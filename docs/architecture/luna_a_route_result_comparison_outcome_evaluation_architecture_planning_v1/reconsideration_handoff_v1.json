@@ -1,0 +1,10 @@
+{
+  "artifact":"reconsideration_handoff_v1",
+  "producer":"Outcome Evaluation Governance (future narrow owner)",
+  "consumer":"A Route Orchestration / Cognitive Flow",
+  "candidate_only":true,
+  "recommendations":["NO_ACTION","REOBSERVE","RECONSIDER_HYPOTHESIS","RECONSIDER_DECISION","REPLAN_TASK","RETRY_EXECUTION","REQUEST_USER_CONFIRMATION","DEFER","FAIL_CYCLE","START_NEXT_CYCLE"],
+  "required_fields":["reconsideration_id","evaluation_ref","recommendation","reason_refs","expected_refs","actual_refs","attribution_refs","budget_state","reconsideration_depth_candidate","max_depth_ref","trace_ref","provenance_refs"],
+  "rules":["recommendation is not execution","must respect existing A Route depth/loop guards","must not mutate Intent/Decision/Task/Action","no direct provider invocation","no hidden retry"],
+  "existing_reuse":["cognitive_execution_chain_reconsideration_v1.py","a_route_orchestration lifecycle and guard contracts"]
+}

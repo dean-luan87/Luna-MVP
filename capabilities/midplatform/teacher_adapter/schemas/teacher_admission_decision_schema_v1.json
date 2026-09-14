@@ -1,0 +1,12 @@
+{
+  "schema_id": "TeacherAdmissionDecisionSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "should_request_teacher",
+    "admission_status",
+    "teacher_role",
+    "candidate_only",
+    "not_fact"
+  ],
+  "admission_status_enum": ["admitted", "noop", "rejected"]
+}

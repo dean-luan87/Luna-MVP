@@ -1,0 +1,107 @@
+{
+  "schema_id": "FollowupRunnerTaskCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-Planning-v1-001",
+  "description": "Runner 任务候选。由 Observation Attention followup route 准入后生成，不是 runner 执行命令。",
+  "required_fields": [
+    "runner_task_candidate_id",
+    "source_attention_record_id",
+    "source_region_id",
+    "source_envelope_ref",
+    "target_model_id",
+    "task_priority",
+    "queue_admission",
+    "route_reason",
+    "motion_state_candidate",
+    "trigger_mode",
+    "runner_task_candidate_only",
+    "not_runner_execution",
+    "not_fact",
+    "candidate_only"
+  ],
+  "field_definitions": {
+    "runner_task_candidate_id": {
+      "type": "string",
+      "pattern": "^rtc_[a-z0-9_]+$",
+      "description": "任务候选唯一 ID"
+    },
+    "source_attention_record_id": { "type": "string" },
+    "source_region_id": { "type": "string" },
+    "source_envelope_ref": { "type": "string" },
+    "source_followup_route_ref": { "type": "string" },
+    "target_model_id": {
+      "type": "string",
+      "enum": [
+        "detection", "ocr", "tracking", "depth", "slam", "slam_reference",
+        "motion_analysis", "walkable_area_review", "vio", "vlm",
+        "human_review", "no_followup_required"
+      ]
+    },
+    "task_priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+    "queue_admission": {
+      "type": "string",
+      "enum": ["auto_eligible", "manual_only", "rejected"]
+    },
+    "route_reason": { "type": "string" },
+    "motion_state_candidate": {
+      "type": "string",
+      "enum": [
+        "static_candidate", "dynamic_candidate", "scene_structure_candidate",
+        "unknown_motion_state", "needs_tracking_review"
+      ]
+    },
+    "priority_level_source": {
+      "type": "string",
+      "enum": [
+        "P0_immediate_attention", "P1_high_attention", "P2_medium_attention",
+        "P3_low_attention", "ignore_for_now"
+      ]
+    },
+    "ocr_required": { "type": "boolean" },
+    "tracking_required": { "type": "boolean" },
+    "depth_required": { "type": "boolean" },
+    "detection_required": { "type": "boolean" },
+    "correction_boosted": {
+      "type": "boolean",
+      "description": "Human correction priority signal only, not ground truth"
+    },
+    "prompt_label_candidate": { "type": "string" },
+    "video_or_single_frame_context": {
+      "type": "string",
+      "enum": ["single_frame", "video", "sequence"]
+    },
+    "trigger_mode": {
+      "type": "string",
+      "enum": ["manual_only", "scheduler_candidate"],
+      "default": "manual_only"
+    },
+    "runner_task_candidate_only": { "type": "boolean", "const": true },
+    "not_runner_execution": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_navigation_instruction": { "type": "boolean", "const": true },
+    "not_runtime_output": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "runner_task_candidate_only": true,
+    "not_runner_execution": true,
+    "not_fact": true,
+    "candidate_only": true,
+    "not_navigation_instruction": true,
+    "not_auto_runner_trigger": true,
+    "planning_only": true
+  },
+  "forbidden_interpretations": [
+    "immediate_runner_execution",
+    "automatic_model_invocation",
+    "auto_runner_trigger",
+    "fact_write",
+    "navigation_command",
+    "prompt_label_as_ground_truth",
+    "human_correction_as_ground_truth",
+    "confirmed_dynamic_from_single_frame"
+  ],
+  "upstream_schema_refs": [
+    "capabilities/midplatform/model_test_lens/schemas/observation_attention/followup_model_route_schema_v1.json"
+  ]
+}

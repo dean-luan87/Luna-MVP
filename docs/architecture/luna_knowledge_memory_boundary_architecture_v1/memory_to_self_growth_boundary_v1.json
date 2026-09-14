@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Memory to Self and Social Growth Boundary",
+  "source":"Memory System",
+  "targets":["Self Layer","Social Self Layer","Cognitive Core"],
+  "required_conditions":["stable_over_time","multi_context_validation","reliable_provenance","constitution_compatibility","brain_review","governance_admission"],
+  "outputs":["self_growth_candidate","social_growth_candidate","world_pattern_candidate","no_update"],
+  "forbidden_direct_updates":["identity","constitution","value","goal","brain_rules","role_identity","reality"],
+  "rules":{"candidate_only":true,"self_write_forbidden":true,"social_write_forbidden":true,"memory_not_authority":true}
+}

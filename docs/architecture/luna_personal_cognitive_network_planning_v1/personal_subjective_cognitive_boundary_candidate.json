@@ -1,0 +1,27 @@
+{
+    "boundary_id": "personal_subjective_cognitive_boundary_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "subjective_cognition_allowed": [
+        "subjective",
+        "bias",
+        "self_interest",
+        "non_rational",
+        "logically_incomplete",
+        "internally_contradictory",
+        "emotion_driven"
+    ],
+    "pcn_responsibility": "represent personal relatedness and activation, not truth correction",
+    "truth_correction_by_system_rule_forbidden": true,
+    "example": {
+        "statement": "My failures are caused by my parents.",
+        "pcn_behavior": "may keep a strong personal association candidate if traceable in personal cognition",
+        "forced_weakening_forbidden": true
+    },
+    "social_rule_position": "independent constraint source, not direct PCN truth corrector",
+    "forbidden": [
+        "delete_subjective_link_only_due_to_external_disagreement",
+        "force_objective_truth_rewrite_inside_pcn"
+    ]
+}

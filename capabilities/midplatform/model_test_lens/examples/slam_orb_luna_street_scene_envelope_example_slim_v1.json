@@ -1,0 +1,2530 @@
+{
+  "envelope_id": "slam_orb_luna_street_scene_envelope_example_slim_v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MUEP-SLAM-Adapter-v1-001",
+  "test_case_id": "slam_luna_street_scene_v1_orb_slam_v1",
+  "model_id": "orb_slam",
+  "model_category": "slam_vio",
+  "model_version_or_registry_ref": "capabilities/midplatform/model_test_lens/standards/slam/slam_metric_spec_v1.json",
+  "input_asset_refs": [
+    "capabilities/test_assets/p1/slam/luna_street_scene_v1/sequence_manifest_v1.json"
+  ],
+  "muep": {
+    "protocol_version": "muep_v1",
+    "input": {
+      "model_type": "slam",
+      "input": {
+        "data": "sequence",
+        "metadata": {
+          "dataset": "luna_street_scene_v1",
+          "imu": "optional",
+          "camera_intrinsics_ref": ""
+        }
+      },
+      "task": {
+        "prompt": "",
+        "mode": "stream"
+      }
+    },
+    "output": {
+      "prediction": {
+        "trajectory": [
+          [
+            0.0,
+            0.005,
+            0.0
+          ],
+          [
+            0.2298,
+            0.024,
+            0.0
+          ],
+          [
+            0.4537,
+            0.0419,
+            0.0
+          ],
+          [
+            0.6703,
+            0.0578,
+            0.0
+          ],
+          [
+            0.8836,
+            0.0705,
+            0.0
+          ],
+          [
+            1.1002,
+            0.0796,
+            0.0
+          ],
+          [
+            1.3243,
+            0.0843,
+            0.0
+          ],
+          [
+            1.5542,
+            0.0845,
+            0.0
+          ],
+          [
+            1.7839,
+            0.0802,
+            0.0
+          ],
+          [
+            2.0077,
+            0.0715,
+            0.0
+          ],
+          [
+            2.2241,
+            0.059,
+            0.0
+          ],
+          [
+            2.4374,
+            0.0435,
+            0.0
+          ],
+          [
+            2.6542,
+            0.0257,
+            0.0
+          ],
+          [
+            2.8784,
+            0.0067,
+            0.0
+          ],
+          [
+            3.1083,
+            -0.0123,
+            0.0
+          ],
+          [
+            3.338,
+            -0.0304,
+            0.0
+          ],
+          [
+            3.5617,
+            -0.0464,
+            0.0
+          ],
+          [
+            3.778,
+            -0.0595,
+            0.0
+          ],
+          [
+            3.9913,
+            -0.0689,
+            0.0
+          ],
+          [
+            4.2082,
+            -0.0741,
+            0.0
+          ]
+        ],
+        "map": {
+          "point_count_candidate": 18420,
+          "loop_edges_candidate": 3
+        },
+        "keyframes": [
+          0,
+          30,
+          60,
+          90,
+          115
+        ],
+        "tracking_state": "OK"
+      },
+      "intermediate": {
+        "aligned_trajectory_preview": [
+          [
+            -0.00296,
+            -0.003103,
+            0.0
+          ],
+          [
+            0.033502,
+            -3e-06,
+            0.0
+          ],
+          [
+            0.069964,
+            0.003097,
+            0.0
+          ],
+          [
+            0.106237,
+            0.006196,
+            0.0
+          ],
+          [
+            0.142509,
+            0.009201,
+            0.0
+          ]
+        ],
+        "covariance": []
+      },
+      "metrics": {
+        "layer_a_task": {
+          "primary_metric_name": "ATE_rmse_m",
+          "primary_metric_value": 0.008215,
+          "primary_metric_score_normalized": 0.98357
+        },
+        "layer_b_robustness": {
+          "motion_blur_sensitivity": 0.19,
+          "low_light_degradation": 0.14,
+          "loop_closure_stability": 0.91,
+          "robustness_score_normalized": 0.8574999999999999
+        },
+        "layer_c_structural": {
+          "structural_quality_score_normalized": 0.9473694495838028,
+          "notes": [
+            "trajectory_smoothness=0.998",
+            "map_consistency=0.870",
+            "loop_closure_correct=True"
+          ]
+        },
+        "final_score": 0.9466224174375705,
+        "scoring_weights": {
+          "task": 0.6,
+          "robustness": 0.25,
+          "structural": 0.15
+        }
+      },
+      "failure_modes": [
+        "loop_closure_failure",
+        "short_term_drift"
+      ],
+      "confidence": 0.9527
+    }
+  },
+  "candidate_outputs": [
+    {
+      "artifact_type": "trajectory_candidate",
+      "frame_count": 120,
+      "candidate_only": true
+    }
+  ],
+  "visualization_layers": [
+    {
+      "layer_id": "trajectory_xy_overlay",
+      "layer_type": "trajectory",
+      "display_name": "estimated vs ground_truth (XY)",
+      "model_id": "orb_slam",
+      "candidate_only": true,
+      "trajectory_estimated": [
+        [
+          -0.00296,
+          -0.003103,
+          0.0
+        ],
+        [
+          0.214675,
+          0.015304,
+          0.0
+        ],
+        [
+          0.426723,
+          0.032658,
+          0.0
+        ],
+        [
+          0.63186,
+          0.048104,
+          0.0
+        ],
+        [
+          0.833877,
+          0.060514,
+          0.0
+        ],
+        [
+          1.039026,
+          0.069519,
+          0.0
+        ],
+        [
+          1.251287,
+          0.074371,
+          0.0
+        ],
+        [
+          1.46905,
+          0.07497,
+          0.0
+        ],
+        [
+          1.686632,
+          0.071306,
+          0.0
+        ],
+        [
+          1.898633,
+          0.063464,
+          0.0
+        ],
+        [
+          2.103631,
+          0.05201,
+          0.0
+        ],
+        [
+          2.305698,
+          0.037708,
+          0.0
+        ],
+        [
+          2.511085,
+          0.021234,
+          0.0
+        ],
+        [
+          2.723483,
+          0.003636,
+          0.0
+        ],
+        [
+          2.94128,
+          -0.013951,
+          0.0
+        ],
+        [
+          3.158886,
+          -0.030686,
+          0.0
+        ],
+        [
+          3.370805,
+          -0.045443,
+          0.0
+        ],
+        [
+          3.575709,
+          -0.057466,
+          0.0
+        ],
+        [
+          3.777766,
+          -0.06599,
+          0.0
+        ],
+        [
+          3.983224,
+          -0.070529,
+          0.0
+        ]
+      ],
+      "trajectory_ground_truth": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.21,
+          0.019,
+          0.0
+        ],
+        [
+          0.42,
+          0.0369,
+          0.0
+        ],
+        [
+          0.63,
+          0.0528,
+          0.0
+        ],
+        [
+          0.84,
+          0.0655,
+          0.0
+        ],
+        [
+          1.05,
+          0.0746,
+          0.0
+        ],
+        [
+          1.26,
+          0.0793,
+          0.0
+        ],
+        [
+          1.47,
+          0.0795,
+          0.0
+        ],
+        [
+          1.68,
+          0.0752,
+          0.0
+        ],
+        [
+          1.89,
+          0.0665,
+          0.0
+        ],
+        [
+          2.1,
+          0.054,
+          0.0
+        ],
+        [
+          2.31,
+          0.0385,
+          0.0
+        ],
+        [
+          2.52,
+          0.0207,
+          0.0
+        ],
+        [
+          2.73,
+          0.0017,
+          0.0
+        ],
+        [
+          2.94,
+          -0.0173,
+          0.0
+        ],
+        [
+          3.15,
+          -0.0354,
+          0.0
+        ],
+        [
+          3.36,
+          -0.0514,
+          0.0
+        ],
+        [
+          3.57,
+          -0.0645,
+          0.0
+        ],
+        [
+          3.78,
+          -0.0739,
+          0.0
+        ],
+        [
+          3.99,
+          -0.0791,
+          0.0
+        ]
+      ],
+      "trajectory_raw_estimated": [
+        [
+          0.0,
+          0.005,
+          0.0
+        ],
+        [
+          0.2298,
+          0.024,
+          0.0
+        ],
+        [
+          0.4537,
+          0.0419,
+          0.0
+        ],
+        [
+          0.6703,
+          0.0578,
+          0.0
+        ],
+        [
+          0.8836,
+          0.0705,
+          0.0
+        ],
+        [
+          1.1002,
+          0.0796,
+          0.0
+        ],
+        [
+          1.3243,
+          0.0843,
+          0.0
+        ],
+        [
+          1.5542,
+          0.0845,
+          0.0
+        ],
+        [
+          1.7839,
+          0.0802,
+          0.0
+        ],
+        [
+          2.0077,
+          0.0715,
+          0.0
+        ],
+        [
+          2.2241,
+          0.059,
+          0.0
+        ],
+        [
+          2.4374,
+          0.0435,
+          0.0
+        ],
+        [
+          2.6542,
+          0.0257,
+          0.0
+        ],
+        [
+          2.8784,
+          0.0067,
+          0.0
+        ],
+        [
+          3.1083,
+          -0.0123,
+          0.0
+        ],
+        [
+          3.338,
+          -0.0304,
+          0.0
+        ],
+        [
+          3.5617,
+          -0.0464,
+          0.0
+        ],
+        [
+          3.778,
+          -0.0595,
+          0.0
+        ],
+        [
+          3.9913,
+          -0.0689,
+          0.0
+        ],
+        [
+          4.2082,
+          -0.0741,
+          0.0
+        ]
+      ]
+    },
+    {
+      "layer_id": "error_curve_panel",
+      "layer_type": "error_curve",
+      "display_name": "Frame-level error curve",
+      "model_id": "orb_slam",
+      "candidate_only": true,
+      "error_curve": [
+        {
+          "frame": 0,
+          "t": 0.0,
+          "error": 0.004288
+        },
+        {
+          "frame": 6,
+          "t": 6.0,
+          "error": 0.00596
+        },
+        {
+          "frame": 12,
+          "t": 12.0,
+          "error": 0.007949
+        },
+        {
+          "frame": 18,
+          "t": 18.0,
+          "error": 0.005051
+        },
+        {
+          "frame": 24,
+          "t": 24.0,
+          "error": 0.007896
+        },
+        {
+          "frame": 30,
+          "t": 30.0,
+          "error": 0.012093
+        },
+        {
+          "frame": 36,
+          "t": 36.0,
+          "error": 0.010011
+        },
+        {
+          "frame": 42,
+          "t": 42.0,
+          "error": 0.004629
+        },
+        {
+          "frame": 48,
+          "t": 48.0,
+          "error": 0.007691
+        },
+        {
+          "frame": 54,
+          "t": 54.0,
+          "error": 0.009151
+        },
+        {
+          "frame": 60,
+          "t": 60.0,
+          "error": 0.004141
+        },
+        {
+          "frame": 66,
+          "t": 66.0,
+          "error": 0.004374
+        },
+        {
+          "frame": 72,
+          "t": 72.0,
+          "error": 0.008931
+        },
+        {
+          "frame": 78,
+          "t": 78.0,
+          "error": 0.006798
+        },
+        {
+          "frame": 84,
+          "t": 84.0,
+          "error": 0.003585
+        },
+        {
+          "frame": 90,
+          "t": 90.0,
+          "error": 0.010059
+        },
+        {
+          "frame": 96,
+          "t": 96.0,
+          "error": 0.012338
+        },
+        {
+          "frame": 102,
+          "t": 102.0,
+          "error": 0.009059
+        },
+        {
+          "frame": 108,
+          "t": 108.0,
+          "error": 0.008219
+        },
+        {
+          "frame": 114,
+          "t": 114.0,
+          "error": 0.010926
+        }
+      ]
+    },
+    {
+      "layer_id": "drift_heatmap_panel",
+      "layer_type": "drift_heatmap",
+      "display_name": "Drift heatmap by segment",
+      "model_id": "orb_slam",
+      "candidate_only": true,
+      "drift_heatmap": [
+        {
+          "segment_index": 0,
+          "frame_start": 0,
+          "frame_end": 5,
+          "t_start": 0.0,
+          "t_end": 5.0,
+          "mean_error": 0.004035,
+          "max_error": 0.005153,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.035,
+              0.0032
+            ],
+            [
+              0.07,
+              0.0064
+            ],
+            [
+              0.105,
+              0.0096
+            ],
+            [
+              0.14,
+              0.0127
+            ],
+            [
+              0.175,
+              0.0159
+            ]
+          ]
+        },
+        {
+          "segment_index": 1,
+          "frame_start": 6,
+          "frame_end": 11,
+          "t_start": 6.0,
+          "t_end": 11.0,
+          "mean_error": 0.007322,
+          "max_error": 0.008114,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              0.21,
+              0.019
+            ],
+            [
+              0.245,
+              0.0221
+            ],
+            [
+              0.28,
+              0.0252
+            ],
+            [
+              0.315,
+              0.0282
+            ],
+            [
+              0.35,
+              0.0312
+            ],
+            [
+              0.385,
+              0.0341
+            ]
+          ]
+        },
+        {
+          "segment_index": 2,
+          "frame_start": 12,
+          "frame_end": 17,
+          "t_start": 12.0,
+          "t_end": 17.0,
+          "mean_error": 0.006896,
+          "max_error": 0.007949,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              0.42,
+              0.0369
+            ],
+            [
+              0.455,
+              0.0398
+            ],
+            [
+              0.49,
+              0.0425
+            ],
+            [
+              0.525,
+              0.0452
+            ],
+            [
+              0.56,
+              0.0478
+            ],
+            [
+              0.595,
+              0.0503
+            ]
+          ]
+        },
+        {
+          "segment_index": 3,
+          "frame_start": 18,
+          "frame_end": 23,
+          "t_start": 18.0,
+          "t_end": 23.0,
+          "mean_error": 0.005506,
+          "max_error": 0.006922,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              0.63,
+              0.0528
+            ],
+            [
+              0.665,
+              0.0551
+            ],
+            [
+              0.7,
+              0.0574
+            ],
+            [
+              0.735,
+              0.0596
+            ],
+            [
+              0.77,
+              0.0617
+            ],
+            [
+              0.805,
+              0.0636
+            ]
+          ]
+        },
+        {
+          "segment_index": 4,
+          "frame_start": 24,
+          "frame_end": 29,
+          "t_start": 24.0,
+          "t_end": 29.0,
+          "mean_error": 0.01003,
+          "max_error": 0.011788,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              0.84,
+              0.0655
+            ],
+            [
+              0.875,
+              0.0673
+            ],
+            [
+              0.91,
+              0.069
+            ],
+            [
+              0.945,
+              0.0706
+            ],
+            [
+              0.98,
+              0.072
+            ],
+            [
+              1.015,
+              0.0733
+            ]
+          ]
+        },
+        {
+          "segment_index": 5,
+          "frame_start": 30,
+          "frame_end": 35,
+          "t_start": 30.0,
+          "t_end": 35.0,
+          "mean_error": 0.011774,
+          "max_error": 0.012221,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              1.05,
+              0.0746
+            ],
+            [
+              1.085,
+              0.0757
+            ],
+            [
+              1.12,
+              0.0766
+            ],
+            [
+              1.155,
+              0.0775
+            ],
+            [
+              1.19,
+              0.0782
+            ],
+            [
+              1.225,
+              0.0788
+            ]
+          ]
+        },
+        {
+          "segment_index": 6,
+          "frame_start": 36,
+          "frame_end": 41,
+          "t_start": 36.0,
+          "t_end": 41.0,
+          "mean_error": 0.007611,
+          "max_error": 0.010011,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.26,
+              0.0793
+            ],
+            [
+              1.295,
+              0.0797
+            ],
+            [
+              1.33,
+              0.0799
+            ],
+            [
+              1.365,
+              0.08
+            ],
+            [
+              1.4,
+              0.08
+            ],
+            [
+              1.435,
+              0.0798
+            ]
+          ]
+        },
+        {
+          "segment_index": 7,
+          "frame_start": 42,
+          "frame_end": 47,
+          "t_start": 42.0,
+          "t_end": 47.0,
+          "mean_error": 0.005376,
+          "max_error": 0.00692,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              1.47,
+              0.0795
+            ],
+            [
+              1.505,
+              0.0791
+            ],
+            [
+              1.54,
+              0.0786
+            ],
+            [
+              1.575,
+              0.0779
+            ],
+            [
+              1.61,
+              0.0771
+            ],
+            [
+              1.645,
+              0.0762
+            ]
+          ]
+        },
+        {
+          "segment_index": 8,
+          "frame_start": 48,
+          "frame_end": 53,
+          "t_start": 48.0,
+          "t_end": 53.0,
+          "mean_error": 0.008859,
+          "max_error": 0.009431,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.68,
+              0.0752
+            ],
+            [
+              1.715,
+              0.074
+            ],
+            [
+              1.75,
+              0.0727
+            ],
+            [
+              1.785,
+              0.0714
+            ],
+            [
+              1.82,
+              0.0699
+            ],
+            [
+              1.855,
+              0.0682
+            ]
+          ]
+        },
+        {
+          "segment_index": 9,
+          "frame_start": 54,
+          "frame_end": 59,
+          "t_start": 54.0,
+          "t_end": 59.0,
+          "mean_error": 0.007481,
+          "max_error": 0.009151,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.89,
+              0.0665
+            ],
+            [
+              1.925,
+              0.0647
+            ],
+            [
+              1.96,
+              0.0627
+            ],
+            [
+              1.995,
+              0.0607
+            ],
+            [
+              2.03,
+              0.0586
+            ],
+            [
+              2.065,
+              0.0564
+            ]
+          ]
+        },
+        {
+          "segment_index": 10,
+          "frame_start": 60,
+          "frame_end": 65,
+          "t_start": 60.0,
+          "t_end": 65.0,
+          "mean_error": 0.002615,
+          "max_error": 0.004141,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.1,
+              0.054
+            ],
+            [
+              2.135,
+              0.0516
+            ],
+            [
+              2.17,
+              0.0491
+            ],
+            [
+              2.205,
+              0.0466
+            ],
+            [
+              2.24,
+              0.0439
+            ],
+            [
+              2.275,
+              0.0412
+            ]
+          ]
+        },
+        {
+          "segment_index": 11,
+          "frame_start": 66,
+          "frame_end": 71,
+          "t_start": 66.0,
+          "t_end": 71.0,
+          "mean_error": 0.006734,
+          "max_error": 0.008594,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              2.31,
+              0.0385
+            ],
+            [
+              2.345,
+              0.0356
+            ],
+            [
+              2.38,
+              0.0327
+            ],
+            [
+              2.415,
+              0.0298
+            ],
+            [
+              2.45,
+              0.0268
+            ],
+            [
+              2.485,
+              0.0238
+            ]
+          ]
+        },
+        {
+          "segment_index": 12,
+          "frame_start": 72,
+          "frame_end": 77,
+          "t_start": 72.0,
+          "t_end": 77.0,
+          "mean_error": 0.008602,
+          "max_error": 0.009085,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              2.52,
+              0.0207
+            ],
+            [
+              2.555,
+              0.0176
+            ],
+            [
+              2.59,
+              0.0144
+            ],
+            [
+              2.625,
+              0.0113
+            ],
+            [
+              2.66,
+              0.0081
+            ],
+            [
+              2.695,
+              0.0049
+            ]
+          ]
+        },
+        {
+          "segment_index": 13,
+          "frame_start": 78,
+          "frame_end": 83,
+          "t_start": 78.0,
+          "t_end": 83.0,
+          "mean_error": 0.004675,
+          "max_error": 0.006798,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.73,
+              0.0017
+            ],
+            [
+              2.765,
+              -0.0015
+            ],
+            [
+              2.8,
+              -0.0047
+            ],
+            [
+              2.835,
+              -0.0079
+            ],
+            [
+              2.87,
+              -0.011
+            ],
+            [
+              2.905,
+              -0.0142
+            ]
+          ]
+        },
+        {
+          "segment_index": 14,
+          "frame_start": 84,
+          "frame_end": 89,
+          "t_start": 84.0,
+          "t_end": 89.0,
+          "mean_error": 0.006302,
+          "max_error": 0.009159,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.94,
+              -0.0173
+            ],
+            [
+              2.975,
+              -0.0204
+            ],
+            [
+              3.01,
+              -0.0235
+            ],
+            [
+              3.045,
+              -0.0266
+            ],
+            [
+              3.08,
+              -0.0296
+            ],
+            [
+              3.115,
+              -0.0325
+            ]
+          ]
+        },
+        {
+          "segment_index": 15,
+          "frame_start": 90,
+          "frame_end": 95,
+          "t_start": 90.0,
+          "t_end": 95.0,
+          "mean_error": 0.011525,
+          "max_error": 0.012366,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.15,
+              -0.0354
+            ],
+            [
+              3.185,
+              -0.0382
+            ],
+            [
+              3.22,
+              -0.041
+            ],
+            [
+              3.255,
+              -0.0437
+            ],
+            [
+              3.29,
+              -0.0464
+            ],
+            [
+              3.325,
+              -0.0489
+            ]
+          ]
+        },
+        {
+          "segment_index": 16,
+          "frame_start": 96,
+          "frame_end": 101,
+          "t_start": 96.0,
+          "t_end": 101.0,
+          "mean_error": 0.011214,
+          "max_error": 0.012338,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.36,
+              -0.0514
+            ],
+            [
+              3.395,
+              -0.0538
+            ],
+            [
+              3.43,
+              -0.0562
+            ],
+            [
+              3.465,
+              -0.0584
+            ],
+            [
+              3.5,
+              -0.0605
+            ],
+            [
+              3.535,
+              -0.0626
+            ]
+          ]
+        },
+        {
+          "segment_index": 17,
+          "frame_start": 102,
+          "frame_end": 107,
+          "t_start": 102.0,
+          "t_end": 107.0,
+          "mean_error": 0.00811,
+          "max_error": 0.009059,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              3.57,
+              -0.0645
+            ],
+            [
+              3.605,
+              -0.0664
+            ],
+            [
+              3.64,
+              -0.0681
+            ],
+            [
+              3.675,
+              -0.0697
+            ],
+            [
+              3.71,
+              -0.0712
+            ],
+            [
+              3.745,
+              -0.0726
+            ]
+          ]
+        },
+        {
+          "segment_index": 18,
+          "frame_start": 108,
+          "frame_end": 113,
+          "t_start": 108.0,
+          "t_end": 113.0,
+          "mean_error": 0.009511,
+          "max_error": 0.010704,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.78,
+              -0.0739
+            ],
+            [
+              3.815,
+              -0.0751
+            ],
+            [
+              3.85,
+              -0.0761
+            ],
+            [
+              3.885,
+              -0.0771
+            ],
+            [
+              3.92,
+              -0.0778
+            ],
+            [
+              3.955,
+              -0.0785
+            ]
+          ]
+        },
+        {
+          "segment_index": 19,
+          "frame_start": 114,
+          "frame_end": 119,
+          "t_start": 114.0,
+          "t_end": 119.0,
+          "mean_error": 0.010837,
+          "max_error": 0.011082,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.99,
+              -0.0791
+            ],
+            [
+              4.025,
+              -0.0795
+            ],
+            [
+              4.06,
+              -0.0798
+            ],
+            [
+              4.095,
+              -0.08
+            ],
+            [
+              4.13,
+              -0.08
+            ],
+            [
+              4.165,
+              -0.0799
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "layer_id": "failure_timeline_panel",
+      "layer_type": "failure_timeline",
+      "display_name": "Failure timeline",
+      "model_id": "orb_slam",
+      "candidate_only": true,
+      "failure_timeline": [
+        {
+          "t": 0.0,
+          "frame": 0,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 30.0,
+          "frame": 30,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 60.0,
+          "frame": 60,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 90.0,
+          "frame": 90,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 90.0,
+          "frame": 90,
+          "event_type": "loop_closure_failure",
+          "label": "loop closure failure",
+          "severity": "high"
+        },
+        {
+          "t": 115.0,
+          "frame": 115,
+          "event_type": "tracking_lost",
+          "label": "tracking lost",
+          "severity": "critical"
+        },
+        {
+          "t": 115.0,
+          "frame": 115,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        }
+      ]
+    },
+    {
+      "layer_id": "drift_metrics_panel",
+      "layer_type": "drift_metrics",
+      "display_name": "ATE / drift / stability",
+      "model_id": "orb_slam",
+      "candidate_only": true,
+      "metrics_ref": "metrics.slam"
+    }
+  ],
+  "diagnostics": {
+    "engine_version": "slam_diagnostic_engine_v1",
+    "alignment": {
+      "method": "procrustes_sim3",
+      "scale": 0.94721,
+      "translation": [
+        -0.002951,
+        -0.007839,
+        0.0
+      ],
+      "rotation_matrix": [
+        [
+          0.9999982306720094,
+          -0.0018811307371756972,
+          0.0
+        ],
+        [
+          0.0018811307371756972,
+          0.9999982306720094,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "residual_rmse_m": 0.008215,
+      "aligned_trajectory": [
+        [
+          -0.00296,
+          -0.003103,
+          0.0
+        ],
+        [
+          0.214675,
+          0.015304,
+          0.0
+        ],
+        [
+          0.426723,
+          0.032658,
+          0.0
+        ],
+        [
+          0.63186,
+          0.048104,
+          0.0
+        ],
+        [
+          0.833877,
+          0.060514,
+          0.0
+        ],
+        [
+          1.039026,
+          0.069519,
+          0.0
+        ],
+        [
+          1.251287,
+          0.074371,
+          0.0
+        ],
+        [
+          1.46905,
+          0.07497,
+          0.0
+        ],
+        [
+          1.686632,
+          0.071306,
+          0.0
+        ],
+        [
+          1.898633,
+          0.063464,
+          0.0
+        ],
+        [
+          2.103631,
+          0.05201,
+          0.0
+        ],
+        [
+          2.305698,
+          0.037708,
+          0.0
+        ],
+        [
+          2.511085,
+          0.021234,
+          0.0
+        ],
+        [
+          2.723483,
+          0.003636,
+          0.0
+        ],
+        [
+          2.94128,
+          -0.013951,
+          0.0
+        ],
+        [
+          3.158886,
+          -0.030686,
+          0.0
+        ],
+        [
+          3.370805,
+          -0.045443,
+          0.0
+        ],
+        [
+          3.575709,
+          -0.057466,
+          0.0
+        ],
+        [
+          3.777766,
+          -0.06599,
+          0.0
+        ],
+        [
+          3.983224,
+          -0.070529,
+          0.0
+        ]
+      ]
+    },
+    "metrics": {
+      "ATE": 0.008215,
+      "RPE": 0.001001,
+      "drift_rate": 0.001968,
+      "tracking_stability": 0.9583,
+      "slam_score_v2": 0.9261,
+      "diagnostic_penalty_score": 0.7445
+    },
+    "diagnostics": {
+      "error_curve": [
+        {
+          "frame": 0,
+          "t": 0.0,
+          "error": 0.004288
+        },
+        {
+          "frame": 6,
+          "t": 6.0,
+          "error": 0.00596
+        },
+        {
+          "frame": 12,
+          "t": 12.0,
+          "error": 0.007949
+        },
+        {
+          "frame": 18,
+          "t": 18.0,
+          "error": 0.005051
+        },
+        {
+          "frame": 24,
+          "t": 24.0,
+          "error": 0.007896
+        },
+        {
+          "frame": 30,
+          "t": 30.0,
+          "error": 0.012093
+        },
+        {
+          "frame": 36,
+          "t": 36.0,
+          "error": 0.010011
+        },
+        {
+          "frame": 42,
+          "t": 42.0,
+          "error": 0.004629
+        },
+        {
+          "frame": 48,
+          "t": 48.0,
+          "error": 0.007691
+        },
+        {
+          "frame": 54,
+          "t": 54.0,
+          "error": 0.009151
+        },
+        {
+          "frame": 60,
+          "t": 60.0,
+          "error": 0.004141
+        },
+        {
+          "frame": 66,
+          "t": 66.0,
+          "error": 0.004374
+        },
+        {
+          "frame": 72,
+          "t": 72.0,
+          "error": 0.008931
+        },
+        {
+          "frame": 78,
+          "t": 78.0,
+          "error": 0.006798
+        },
+        {
+          "frame": 84,
+          "t": 84.0,
+          "error": 0.003585
+        },
+        {
+          "frame": 90,
+          "t": 90.0,
+          "error": 0.010059
+        },
+        {
+          "frame": 96,
+          "t": 96.0,
+          "error": 0.012338
+        },
+        {
+          "frame": 102,
+          "t": 102.0,
+          "error": 0.009059
+        },
+        {
+          "frame": 108,
+          "t": 108.0,
+          "error": 0.008219
+        },
+        {
+          "frame": 114,
+          "t": 114.0,
+          "error": 0.010926
+        }
+      ],
+      "drift_heatmap": [
+        {
+          "segment_index": 0,
+          "frame_start": 0,
+          "frame_end": 5,
+          "t_start": 0.0,
+          "t_end": 5.0,
+          "mean_error": 0.004035,
+          "max_error": 0.005153,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.035,
+              0.0032
+            ],
+            [
+              0.07,
+              0.0064
+            ],
+            [
+              0.105,
+              0.0096
+            ],
+            [
+              0.14,
+              0.0127
+            ],
+            [
+              0.175,
+              0.0159
+            ]
+          ]
+        },
+        {
+          "segment_index": 1,
+          "frame_start": 6,
+          "frame_end": 11,
+          "t_start": 6.0,
+          "t_end": 11.0,
+          "mean_error": 0.007322,
+          "max_error": 0.008114,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              0.21,
+              0.019
+            ],
+            [
+              0.245,
+              0.0221
+            ],
+            [
+              0.28,
+              0.0252
+            ],
+            [
+              0.315,
+              0.0282
+            ],
+            [
+              0.35,
+              0.0312
+            ],
+            [
+              0.385,
+              0.0341
+            ]
+          ]
+        },
+        {
+          "segment_index": 2,
+          "frame_start": 12,
+          "frame_end": 17,
+          "t_start": 12.0,
+          "t_end": 17.0,
+          "mean_error": 0.006896,
+          "max_error": 0.007949,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              0.42,
+              0.0369
+            ],
+            [
+              0.455,
+              0.0398
+            ],
+            [
+              0.49,
+              0.0425
+            ],
+            [
+              0.525,
+              0.0452
+            ],
+            [
+              0.56,
+              0.0478
+            ],
+            [
+              0.595,
+              0.0503
+            ]
+          ]
+        },
+        {
+          "segment_index": 3,
+          "frame_start": 18,
+          "frame_end": 23,
+          "t_start": 18.0,
+          "t_end": 23.0,
+          "mean_error": 0.005506,
+          "max_error": 0.006922,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              0.63,
+              0.0528
+            ],
+            [
+              0.665,
+              0.0551
+            ],
+            [
+              0.7,
+              0.0574
+            ],
+            [
+              0.735,
+              0.0596
+            ],
+            [
+              0.77,
+              0.0617
+            ],
+            [
+              0.805,
+              0.0636
+            ]
+          ]
+        },
+        {
+          "segment_index": 4,
+          "frame_start": 24,
+          "frame_end": 29,
+          "t_start": 24.0,
+          "t_end": 29.0,
+          "mean_error": 0.01003,
+          "max_error": 0.011788,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              0.84,
+              0.0655
+            ],
+            [
+              0.875,
+              0.0673
+            ],
+            [
+              0.91,
+              0.069
+            ],
+            [
+              0.945,
+              0.0706
+            ],
+            [
+              0.98,
+              0.072
+            ],
+            [
+              1.015,
+              0.0733
+            ]
+          ]
+        },
+        {
+          "segment_index": 5,
+          "frame_start": 30,
+          "frame_end": 35,
+          "t_start": 30.0,
+          "t_end": 35.0,
+          "mean_error": 0.011774,
+          "max_error": 0.012221,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              1.05,
+              0.0746
+            ],
+            [
+              1.085,
+              0.0757
+            ],
+            [
+              1.12,
+              0.0766
+            ],
+            [
+              1.155,
+              0.0775
+            ],
+            [
+              1.19,
+              0.0782
+            ],
+            [
+              1.225,
+              0.0788
+            ]
+          ]
+        },
+        {
+          "segment_index": 6,
+          "frame_start": 36,
+          "frame_end": 41,
+          "t_start": 36.0,
+          "t_end": 41.0,
+          "mean_error": 0.007611,
+          "max_error": 0.010011,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.26,
+              0.0793
+            ],
+            [
+              1.295,
+              0.0797
+            ],
+            [
+              1.33,
+              0.0799
+            ],
+            [
+              1.365,
+              0.08
+            ],
+            [
+              1.4,
+              0.08
+            ],
+            [
+              1.435,
+              0.0798
+            ]
+          ]
+        },
+        {
+          "segment_index": 7,
+          "frame_start": 42,
+          "frame_end": 47,
+          "t_start": 42.0,
+          "t_end": 47.0,
+          "mean_error": 0.005376,
+          "max_error": 0.00692,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              1.47,
+              0.0795
+            ],
+            [
+              1.505,
+              0.0791
+            ],
+            [
+              1.54,
+              0.0786
+            ],
+            [
+              1.575,
+              0.0779
+            ],
+            [
+              1.61,
+              0.0771
+            ],
+            [
+              1.645,
+              0.0762
+            ]
+          ]
+        },
+        {
+          "segment_index": 8,
+          "frame_start": 48,
+          "frame_end": 53,
+          "t_start": 48.0,
+          "t_end": 53.0,
+          "mean_error": 0.008859,
+          "max_error": 0.009431,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.68,
+              0.0752
+            ],
+            [
+              1.715,
+              0.074
+            ],
+            [
+              1.75,
+              0.0727
+            ],
+            [
+              1.785,
+              0.0714
+            ],
+            [
+              1.82,
+              0.0699
+            ],
+            [
+              1.855,
+              0.0682
+            ]
+          ]
+        },
+        {
+          "segment_index": 9,
+          "frame_start": 54,
+          "frame_end": 59,
+          "t_start": 54.0,
+          "t_end": 59.0,
+          "mean_error": 0.007481,
+          "max_error": 0.009151,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              1.89,
+              0.0665
+            ],
+            [
+              1.925,
+              0.0647
+            ],
+            [
+              1.96,
+              0.0627
+            ],
+            [
+              1.995,
+              0.0607
+            ],
+            [
+              2.03,
+              0.0586
+            ],
+            [
+              2.065,
+              0.0564
+            ]
+          ]
+        },
+        {
+          "segment_index": 10,
+          "frame_start": 60,
+          "frame_end": 65,
+          "t_start": 60.0,
+          "t_end": 65.0,
+          "mean_error": 0.002615,
+          "max_error": 0.004141,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.1,
+              0.054
+            ],
+            [
+              2.135,
+              0.0516
+            ],
+            [
+              2.17,
+              0.0491
+            ],
+            [
+              2.205,
+              0.0466
+            ],
+            [
+              2.24,
+              0.0439
+            ],
+            [
+              2.275,
+              0.0412
+            ]
+          ]
+        },
+        {
+          "segment_index": 11,
+          "frame_start": 66,
+          "frame_end": 71,
+          "t_start": 66.0,
+          "t_end": 71.0,
+          "mean_error": 0.006734,
+          "max_error": 0.008594,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              2.31,
+              0.0385
+            ],
+            [
+              2.345,
+              0.0356
+            ],
+            [
+              2.38,
+              0.0327
+            ],
+            [
+              2.415,
+              0.0298
+            ],
+            [
+              2.45,
+              0.0268
+            ],
+            [
+              2.485,
+              0.0238
+            ]
+          ]
+        },
+        {
+          "segment_index": 12,
+          "frame_start": 72,
+          "frame_end": 77,
+          "t_start": 72.0,
+          "t_end": 77.0,
+          "mean_error": 0.008602,
+          "max_error": 0.009085,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              2.52,
+              0.0207
+            ],
+            [
+              2.555,
+              0.0176
+            ],
+            [
+              2.59,
+              0.0144
+            ],
+            [
+              2.625,
+              0.0113
+            ],
+            [
+              2.66,
+              0.0081
+            ],
+            [
+              2.695,
+              0.0049
+            ]
+          ]
+        },
+        {
+          "segment_index": 13,
+          "frame_start": 78,
+          "frame_end": 83,
+          "t_start": 78.0,
+          "t_end": 83.0,
+          "mean_error": 0.004675,
+          "max_error": 0.006798,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.73,
+              0.0017
+            ],
+            [
+              2.765,
+              -0.0015
+            ],
+            [
+              2.8,
+              -0.0047
+            ],
+            [
+              2.835,
+              -0.0079
+            ],
+            [
+              2.87,
+              -0.011
+            ],
+            [
+              2.905,
+              -0.0142
+            ]
+          ]
+        },
+        {
+          "segment_index": 14,
+          "frame_start": 84,
+          "frame_end": 89,
+          "t_start": 84.0,
+          "t_end": 89.0,
+          "mean_error": 0.006302,
+          "max_error": 0.009159,
+          "color_class": "low",
+          "trajectory_segment": [
+            [
+              2.94,
+              -0.0173
+            ],
+            [
+              2.975,
+              -0.0204
+            ],
+            [
+              3.01,
+              -0.0235
+            ],
+            [
+              3.045,
+              -0.0266
+            ],
+            [
+              3.08,
+              -0.0296
+            ],
+            [
+              3.115,
+              -0.0325
+            ]
+          ]
+        },
+        {
+          "segment_index": 15,
+          "frame_start": 90,
+          "frame_end": 95,
+          "t_start": 90.0,
+          "t_end": 95.0,
+          "mean_error": 0.011525,
+          "max_error": 0.012366,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.15,
+              -0.0354
+            ],
+            [
+              3.185,
+              -0.0382
+            ],
+            [
+              3.22,
+              -0.041
+            ],
+            [
+              3.255,
+              -0.0437
+            ],
+            [
+              3.29,
+              -0.0464
+            ],
+            [
+              3.325,
+              -0.0489
+            ]
+          ]
+        },
+        {
+          "segment_index": 16,
+          "frame_start": 96,
+          "frame_end": 101,
+          "t_start": 96.0,
+          "t_end": 101.0,
+          "mean_error": 0.011214,
+          "max_error": 0.012338,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.36,
+              -0.0514
+            ],
+            [
+              3.395,
+              -0.0538
+            ],
+            [
+              3.43,
+              -0.0562
+            ],
+            [
+              3.465,
+              -0.0584
+            ],
+            [
+              3.5,
+              -0.0605
+            ],
+            [
+              3.535,
+              -0.0626
+            ]
+          ]
+        },
+        {
+          "segment_index": 17,
+          "frame_start": 102,
+          "frame_end": 107,
+          "t_start": 102.0,
+          "t_end": 107.0,
+          "mean_error": 0.00811,
+          "max_error": 0.009059,
+          "color_class": "mid",
+          "trajectory_segment": [
+            [
+              3.57,
+              -0.0645
+            ],
+            [
+              3.605,
+              -0.0664
+            ],
+            [
+              3.64,
+              -0.0681
+            ],
+            [
+              3.675,
+              -0.0697
+            ],
+            [
+              3.71,
+              -0.0712
+            ],
+            [
+              3.745,
+              -0.0726
+            ]
+          ]
+        },
+        {
+          "segment_index": 18,
+          "frame_start": 108,
+          "frame_end": 113,
+          "t_start": 108.0,
+          "t_end": 113.0,
+          "mean_error": 0.009511,
+          "max_error": 0.010704,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.78,
+              -0.0739
+            ],
+            [
+              3.815,
+              -0.0751
+            ],
+            [
+              3.85,
+              -0.0761
+            ],
+            [
+              3.885,
+              -0.0771
+            ],
+            [
+              3.92,
+              -0.0778
+            ],
+            [
+              3.955,
+              -0.0785
+            ]
+          ]
+        },
+        {
+          "segment_index": 19,
+          "frame_start": 114,
+          "frame_end": 119,
+          "t_start": 114.0,
+          "t_end": 119.0,
+          "mean_error": 0.010837,
+          "max_error": 0.011082,
+          "color_class": "high",
+          "trajectory_segment": [
+            [
+              3.99,
+              -0.0791
+            ],
+            [
+              4.025,
+              -0.0795
+            ],
+            [
+              4.06,
+              -0.0798
+            ],
+            [
+              4.095,
+              -0.08
+            ],
+            [
+              4.13,
+              -0.08
+            ],
+            [
+              4.165,
+              -0.0799
+            ]
+          ]
+        }
+      ],
+      "failure_timeline": [
+        {
+          "t": 0.0,
+          "frame": 0,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 30.0,
+          "frame": 30,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 60.0,
+          "frame": 60,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 90.0,
+          "frame": 90,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        },
+        {
+          "t": 90.0,
+          "frame": 90,
+          "event_type": "loop_closure_failure",
+          "label": "loop closure failure",
+          "severity": "high"
+        },
+        {
+          "t": 115.0,
+          "frame": 115,
+          "event_type": "tracking_lost",
+          "label": "tracking lost",
+          "severity": "critical"
+        },
+        {
+          "t": 115.0,
+          "frame": 115,
+          "event_type": "keyframe",
+          "label": "keyframe",
+          "severity": "info"
+        }
+      ]
+    },
+    "failure_modes": [
+      "loop_closure_failure",
+      "short_term_drift"
+    ],
+    "metadata": {
+      "dataset": "luna_street_scene_v1",
+      "model": "orb_slam"
+    },
+    "scoring_weights": {
+      "ate_score": 0.4,
+      "stability": 0.2,
+      "drift_penalty": 0.2,
+      "diagnostic_penalty": 0.2
+    }
+  },
+  "metrics": {
+    "muep_final_score": 0.9466224174375705,
+    "slam": {
+      "ate_rmse_m": 0.0082,
+      "rpe_rmse_m": 0.001,
+      "drift_rate": 0.001968,
+      "tracking_stability": 0.9583,
+      "slam_score": 0.9261,
+      "slam_score_v1": 0.9703,
+      "diagnostic_penalty_score": 0.7445,
+      "path_length_m": 4.174,
+      "tracked_frames": 115,
+      "total_frames": 120,
+      "structural": {
+        "map_consistency_score": 0.87,
+        "trajectory_smoothness": 0.9984,
+        "loop_closure_correctness": 1.0
+      },
+      "robustness": {
+        "motion_blur_sensitivity": 0.19,
+        "low_light_degradation": 0.14,
+        "loop_closure_stability": 0.91,
+        "robustness_score_normalized": 0.8574999999999999
+      },
+      "scoring_weights": {
+        "ate_score": 0.4,
+        "stability": 0.2,
+        "drift_penalty": 0.2,
+        "diagnostic_penalty": 0.2
+      }
+    }
+  },
+  "failure_modes": [
+    "loop_closure_failure",
+    "short_term_drift"
+  ],
+  "quality_summary": {
+    "human_review_required": true,
+    "suitable_for_runtime_admission": false,
+    "not_semantic_fact": true,
+    "aggregate_note": "SLAM Diagnostic V1 — ATE=0.008m RPE=0.001m drift=0.0020 stability=95.83% score_v2=0.926"
+  },
+  "test_board_refs": [],
+  "protected_artifact_refs": [],
+  "boundary_flags": {
+    "candidate_only": true,
+    "not_fact": true,
+    "not_runtime_output": true,
+    "not_output_adapter_output": true,
+    "not_semantic_output": true,
+    "not_navigation_action_speech": true
+  },
+  "readiness_effect": {
+    "runtime_ready": false,
+    "output_adapter_ready": false,
+    "semantic_layer_ready": false,
+    "fact_write_ready": false,
+    "navigation_action_speech_ready": false
+  },
+  "testboard_protection": {
+    "protected": true,
+    "non_deletable": true,
+    "deletion_forbidden": true
+  }
+}

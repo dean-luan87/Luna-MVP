@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:27:52.380460+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "real_inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "multi_real_image_memory_timeout_boundary_record",
+  "record": {
+    "record_id": "multi_real_image_memory_timeout_boundary_v1",
+    "memory_limit_mb": 4096,
+    "timeout_seconds": 600,
+    "timeout_rationale": "multiple_image_prompt_execution_four_images_five_prompts_each",
+    "oom_handling_required": true,
+    "no_persistent_runtime_process_allowed": true
+  }
+}

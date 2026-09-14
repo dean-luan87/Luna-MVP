@@ -1,0 +1,10 @@
+{
+  "schema_id": "NoopToolPlanCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["capability_type", "noop_reason", "policy_ref", "candidate_only", "not_fact"],
+  "boundary_flags": { "noop_plan_required": true },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1", "noop_plan_required"]
+}

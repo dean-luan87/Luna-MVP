@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Capability Governance Scope Review",
+  "owner": "Capability Governance",
+  "relation_to_self": "Self Layer observes capability and requests health/adjustment candidates",
+  "relation_to_social_self": "Social Self may provide context requirements but cannot own Capability Governance",
+  "manages": ["Capability Definition", "Capability Registry", "Capability Lifecycle", "Admission", "Calibration", "Health", "Model/Provider Options"],
+  "self_knows": ["Capability Profile", "Limitations", "Self Capability State"],
+  "forbidden": ["Capability Governance → Self Identity", "Capability Governance → Goal", "Capability Governance → Brain Decision", "Capability Governance → Direct Action", "Self → Capability Governance Ownership"],
+  "rules": {"governance_independent": true, "self_is_interface_not_owner": true, "capability_not_swallowed_by_self": true, "admission_retained": true}
+}

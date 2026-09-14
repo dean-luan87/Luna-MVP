@@ -1,0 +1,11 @@
+{
+  "contract_id": "exploration_budget_v1",
+  "owner": "Self Layer",
+  "inputs": ["compute", "energy", "time", "user_attention", "self_rhythm_hint", "cognitive_state"],
+  "outputs": ["resource_budget_candidate", "depth_candidate", "duration_candidate", "allowed_activity_candidate"],
+  "budget_is_advisory": true,
+  "unlimited_usage": false,
+  "self_governance_required": true,
+  "runtime_control": false,
+  "hardware_control": false
+}

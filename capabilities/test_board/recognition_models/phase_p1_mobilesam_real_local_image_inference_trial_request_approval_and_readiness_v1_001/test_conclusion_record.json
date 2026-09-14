@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:45:11.724310+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "real_local_image_request_approval_readiness_status": "go",
+    "inference_executed_this_phase": false,
+    "image_read_this_phase": false,
+    "imported_this_phase": false,
+    "model_loaded_this_phase": false,
+    "registry_mutated_this_phase": false,
+    "source_image_registered": true,
+    "can_enter_real_local_image_inference_trial_execution_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_single_user_supplied_local_image_candidate_only",
+    "transition_note": "PLANNING / APPROVAL ONLY (mobile_sam_only). User-supplied night urban street scene registered as scoped local test asset. Image manifest, prompt plan, candidate-only output boundary, command whitelist, memory/timeout, rollback/cleanup, readiness review produced. Narrow owner approval issued for execution-next. NO inference, NO image input, NO import/load, NO runtime/output/semantic/fact/navigation. Next: Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001 (manifest image read, planned prompts, candidate masks only)."
+  },
+  "final_decision": "P1_MOBILE_SAM_REAL_LOCAL_IMAGE_INFERENCE_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO"
+}

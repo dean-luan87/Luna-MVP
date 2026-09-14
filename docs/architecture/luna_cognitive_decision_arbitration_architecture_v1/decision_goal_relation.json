@@ -1,0 +1,11 @@
+{
+  "title": "Decision Goal Relation v1",
+  "flow": ["Goal", "Decision Candidate Set", "Decision Arbitration", "Selected Decision Candidate"],
+  "goal_role": "provide direction and desired state",
+  "decision_role": "select among candidate responses for the current Goal",
+  "decision_creates_goal": false,
+  "decision_modifies_goal": false,
+  "goal_overrides_constitution": false,
+  "goal_reference_required": true,
+  "candidate_only": true
+}

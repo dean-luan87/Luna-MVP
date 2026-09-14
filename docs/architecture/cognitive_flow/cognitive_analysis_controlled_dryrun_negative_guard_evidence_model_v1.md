@@ -1,0 +1,3 @@
+# A3 Negative Guard Evidence Model v1
+
+Each frozen guard requires `Guard ID + Static Evidence + Runtime Evidence + Failure Condition`. Static evidence is AST/import/immutable type proof; runtime evidence is fixture/result flag, serialized comparison, or verifier output; failure is any conflicting import, call, flag, reference, or mutation. This applies to all 24 guards: execution/runtime/adapter absence, time/random/UUID absence, Fact/dominant/unknown protections, observation/decision/state/context/snapshot/event protections, fixture immutability, and historical-result preservation. Any missing proof becomes a regression-review finding.

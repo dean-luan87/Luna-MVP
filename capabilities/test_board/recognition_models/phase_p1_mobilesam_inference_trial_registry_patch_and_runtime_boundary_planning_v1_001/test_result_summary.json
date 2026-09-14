@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Registry-Patch-And-Runtime-Boundary-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T02:09:01.654678+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_INFERENCE_TRIAL_REGISTRY_PATCH_AND_RUNTIME_BOUNDARY_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_inference_registry_patch_runtime_boundary_planning_profile_count": 1,
+    "stage_ref_count": 16,
+    "mobile_sam_inference_success_audit_count": 1,
+    "mobile_sam_inference_registry_patch_plan_count": 1,
+    "mobile_sam_candidate_output_registry_plan_count": 1,
+    "mobile_sam_runtime_boundary_plan_count": 1,
+    "mobile_sam_output_adapter_boundary_plan_count": 1,
+    "mobile_sam_semantic_fact_navigation_exclusion_count": 1,
+    "mobile_sam_commercial_runtime_exclusion_count": 1,
+    "mobile_sam_followup_inference_registry_patch_execution_route_count": 1,
+    "negative_guard_count": 18,
+    "blocker_count": 0
+  }
+}

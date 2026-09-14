@@ -1,0 +1,47 @@
+{
+  "schema_id": "OwnershipRuntimeDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Real-Runtime-Integration-DryRun-v1-001",
+  "layer_id": "Region_Intelligence_Ownership_Runtime",
+  "dryrun_only": true,
+  "principle": "先验证三个 Ownership slot 的治理链路，再处理模型效果",
+  "pipeline": [
+    "attention_gated_region",
+    "ownership_slot_binding",
+    "slot_ownership_discovery",
+    "slot_occlusion_reasoning",
+    "slot_text_owner_assignment",
+    "ownership_evidence_package",
+    "per_entity_channel_activation_candidate",
+    "validation"
+  ],
+  "negative_guards": [
+    "no_global_ocr",
+    "no_all_model_activation",
+    "attention_gate_required",
+    "owner_required_for_text",
+    "occlusion_not_absence",
+    "reflection_not_real_sign",
+    "runtime_error_no_silent_fallback",
+    "candidate_only_not_fact"
+  ],
+  "forbidden": [
+    "global_ocr_fallback",
+    "all_model_activation",
+    "blocked_region_ownership",
+    "isolated_text_without_owner",
+    "assume_occluded_absent",
+    "reflection_as_real_sign",
+    "silent_runtime_fallback"
+  ],
+  "boundary_flags": {
+    "dryrun_only": true,
+    "attention_gate_required": true,
+    "three_slot_sequence": true,
+    "owner_required_for_text": true,
+    "occlusion_not_absence": true,
+    "no_silent_fallback": true,
+    "deterministic_fixture_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Lightweight-Vision-Runtime-Planning-v1-001"
+}

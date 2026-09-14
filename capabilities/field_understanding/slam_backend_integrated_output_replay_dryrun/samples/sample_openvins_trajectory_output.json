@@ -1,0 +1,19 @@
+{
+  "backend_id": "openvins_mock_v1",
+  "backend_family": "vio",
+  "output_type": "trajectory / imu_visual_odometry",
+  "source_chain": ["openvins_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.82,
+  "backend_origin": "openvins_like_vio_export_mock",
+  "license_ref": "GPL-3.0",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "adapter_replay_dryrun_only",
+  "commercial_use_status": "non_commercial_or_unverified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "poses": [
+    {"id": "p0", "timestamp_ms": 1000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [0.0, 0.0, 0.0], "tracking_state": "ok", "confidence": 0.85},
+    {"id": "p1", "timestamp_ms": 1100, "pose": [0.10, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [1.0, 0.0, 0.0], "tracking_state": "ok", "confidence": 0.84},
+    {"id": "p2", "timestamp_ms": 1200, "pose": [0.20, 0.02, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [1.0, 0.2, 0.0], "tracking_state": "degraded", "confidence": 0.55},
+    {"id": "p3", "timestamp_ms": 1300, "pose": [0.20, 0.02, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [0.0, 0.0, 0.0], "tracking_state": "lost", "confidence": 0.20}
+  ]
+}

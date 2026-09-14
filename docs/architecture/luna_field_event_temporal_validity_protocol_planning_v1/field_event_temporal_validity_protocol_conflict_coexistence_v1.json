@@ -1,0 +1,28 @@
+{
+    "version": "1.0",
+    "name": "Field Event Conflict and Coexistence Protocol",
+    "description": "定义冲突类型、共存策略与投影选取标准",
+    "conflict_types": [
+        "evidence_conflict",
+        "temporal_conflict",
+        "perspective_conflict",
+        "owner_conflict",
+        "institutional_social_conflict",
+        "personal_public_conflict",
+        "duplicate_assertion",
+        "incompatible_overlay"
+    ],
+    "resolution_outcomes": [
+        "coexist",
+        "prioritize_for_projection",
+        "suppress_for_task",
+        "unresolved",
+        "request_more_evidence",
+        "human_review",
+        "revoke_candidate"
+    ],
+    "principles": {
+        "no_single_label": "不得强制压缩成唯一标签。",
+        "projection_selection": "基于 governance、temporal status 与 evidence confidence 选择投影。"
+    }
+}

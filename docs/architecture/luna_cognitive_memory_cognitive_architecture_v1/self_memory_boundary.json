@@ -1,0 +1,12 @@
+{
+  "boundary_id": "self_memory_boundary_v1",
+  "owner": "Self Layer",
+  "memory_scope": "Self Memory",
+  "content": ["capability_boundary", "survival_experience", "core_constraint_context", "self_cognition_candidate"],
+  "output": "self_growth_candidate",
+  "governance_required": true,
+  "direct_self_modification": false,
+  "identity_write": false,
+  "value_write": false,
+  "goal_write": false
+}

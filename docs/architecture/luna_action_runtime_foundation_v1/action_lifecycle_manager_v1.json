@@ -1,0 +1,8 @@
+{
+  "title": "Action Lifecycle Manager v1",
+  "owner": "Action Runtime Governance",
+  "states": ["Requested", "Validated", "Approved", "Ready", "Executing", "Completed", "Verified", "Archived", "Rejected", "Failed", "Interrupted", "Cancelled", "Recovered"],
+  "normal_path": ["Requested", "Validated", "Approved", "Ready", "Executing", "Completed", "Verified", "Archived"],
+  "exception_states": ["Rejected", "Failed", "Interrupted", "Cancelled", "Recovered"],
+  "rules": {"lifecycle_required": true, "approval_before_ready": true, "verification_before_archive": true, "trigger_is_not_disappear": true}
+}

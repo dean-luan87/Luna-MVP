@@ -1,0 +1,12 @@
+{
+  "version":"1.0",
+  "name":"Role Registry",
+  "owner":"Social Self Governance",
+  "role_types":[
+    {"role_type":"companion","example":"陪伴者","field_examples":["family","care"],"status":"candidate_allowed"},
+    {"role_type":"learning_assistant","example":"教育辅助者","field_examples":["study","classroom"],"status":"candidate_allowed"},
+    {"role_type":"environment_assistant","example":"环境辅助者","field_examples":["public_space","travel"],"status":"candidate_allowed"}
+  ],
+  "registry_fields":["role_type","canonical_responsibility","field_constraints","permission_boundary","evidence_refs","lifecycle_state"],
+  "rules":{"registry_is_not_activation":true,"role_instance_requires_field":true,"no_automatic_role_generation":true}
+}

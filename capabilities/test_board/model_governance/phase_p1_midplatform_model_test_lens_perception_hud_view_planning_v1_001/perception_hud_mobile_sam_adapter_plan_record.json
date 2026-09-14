@@ -1,0 +1,40 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:21:11.426693+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "hud_is_read_only": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "perception_hud_mobile_sam_adapter_plan_v1",
+    "model_id": "mobile_sam",
+    "provides": [
+      "segmentation_mask",
+      "prompt_label",
+      "confidence_score"
+    ],
+    "does_not_provide": [
+      "semantic_detection",
+      "object_class_proof",
+      "motion_direction"
+    ],
+    "label_source": "prompt_label",
+    "prompt_label_candidate_only": true,
+    "followup_runners": [
+      "detection",
+      "ocr",
+      "depth"
+    ],
+    "example_observations": [
+      "建筑区域：较稳定",
+      "道路区域：边界需复核",
+      "车辆候选：置信较低，需 detection 复核",
+      "路牌候选：需 OCR/detection 辅助"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "artifact": "personality_governance_negative_guards_v1",
+  "canonical_owner": "Personality Governance",
+  "guards": {
+    "personality_can_mutate_self": false,
+    "personality_can_mutate_memory": false,
+    "personality_can_execute_learning": false,
+    "personality_can_mutate_intent": false,
+    "personality_can_mutate_pcn": false,
+    "personality_can_mutate_emotion": false,
+    "personality_can_mutate_regulation_parameters": false,
+    "personality_can_activate_parameter_genome": false,
+    "personality_can_create_task": false,
+    "personality_can_control_device": false,
+    "personality_can_run_scheduler": false,
+    "personality_can_call_model": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "runtime_execution": false,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false,
+    "semantic_compression_execution": false,
+    "affective_memory_compression": false,
+    "emotion_memory_summary_generation": false,
+    "personality_memory_semantic_fusion": false,
+    "real_side_effect": false,
+    "trait_activation": false,
+    "synthetic_only": true,
+    "candidate_only": true
+  },
+  "forbidden_shortcuts": ["hardcoded success", "check weakening", "hidden global mutable state", "single personality score", "drop contradiction/counterexample refs", "automatic trait activation", "source-owner mutation", "semantic compression execution"]
+}

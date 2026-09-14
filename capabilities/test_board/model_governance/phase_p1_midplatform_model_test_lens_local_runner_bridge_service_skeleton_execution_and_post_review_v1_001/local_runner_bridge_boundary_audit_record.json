@@ -1,0 +1,18 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Skeleton-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "record": {
+    "binds_localhost_only": true,
+    "rejects_external_host": true,
+    "no_registry_mutation": true,
+    "no_runtime": true,
+    "no_output_adapter": true,
+    "no_fact_semantic_navigation": true,
+    "no_external_network": true,
+    "no_live_camera_microphone": true,
+    "no_dataset_download": true,
+    "forbidden_pattern_scan_passed": true
+  }
+}

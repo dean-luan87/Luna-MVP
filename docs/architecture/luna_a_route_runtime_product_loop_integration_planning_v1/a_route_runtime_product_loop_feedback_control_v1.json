@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0",
+  "outcomes":[
+    {"condition":"sufficient success","route_action":"COMPLETE or NEXT_CYCLE","authority":"A Route Orchestration"},
+    {"condition":"insufficient evidence","route_action":"ObservationNeedCandidate","consumer":"Field Perception Orchestrator","authority":"observation control"},
+    {"condition":"contradictory outcome","route_action":"ReconsiderationCandidate","consumer":"Cognitive Flow/A Route","authority":"orchestration guard"},
+    {"condition":"execution failure","route_action":"bounded retry/provider switch/task reconsideration candidate","authority":"route policy and owner contracts"},
+    {"condition":"user correction","route_action":"preserve lineage and re-evaluate","authority":"human correction/admission"},
+    {"condition":"learning signal","route_action":"LearningSignalCandidate","consumer":"Cognitive Learning","authority":"learning admission"}
+  ],
+  "mutation_forbidden":["decision","task","action","memory","learning","self","personality","dynamic_regulation","provider"],
+  "hidden_retry":false
+}

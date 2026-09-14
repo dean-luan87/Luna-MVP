@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Luna Runtime Activation Dependency Graph",
+  "nodes":["Constitution Ready","Architecture Baseline Ready","State Ownership Ready","Runtime Foundation Ready","Capability Governance Ready","Capability Runtime Authorization","External Model Admission"],
+  "edges":[["Constitution Ready","Architecture Baseline Ready"],["Architecture Baseline Ready","State Ownership Ready"],["State Ownership Ready","Runtime Foundation Ready"],["Runtime Foundation Ready","Capability Governance Ready"],["Capability Governance Ready","Capability Runtime Authorization"],["Capability Runtime Authorization","External Model Admission"]],
+  "blocked_shortcuts":[["Capability Governance Ready","External Model Admission"],["Architecture Baseline Ready","External Model Admission"]],
+  "rules":{"acyclic":true,"capability_before_model":true,"user_authorization_required":true,"no_activation_in_this_phase":true}
+}

@@ -1,0 +1,6 @@
+{
+  "policy_ref": "invalid_missing_source_chain_policy",
+  "sample_file": "sample_tum_valid_trajectory.txt",
+  "source_format": "tum_trajectory_file",
+  "note": "intentionally missing source_chain and file_origin metadata to exercise admission rejection"
+}

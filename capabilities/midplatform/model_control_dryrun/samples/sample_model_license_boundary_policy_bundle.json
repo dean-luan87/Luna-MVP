@@ -1,0 +1,15 @@
+{
+  "control_id": "model_license_boundary_001",
+  "policy_id": "model_license_boundary",
+  "model_family": "object_detection_completion_family",
+  "model_id": "yolo_agpl_v1",
+  "license_ref": "license:agpl_3_0_test_only",
+  "allowed_use": "test_only_candidate",
+  "availability_state": "test_only",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "license_boundary_confidence_policy_v1",
+  "fallback_plan": "fallback_to_commercial_runtime_block_record",
+  "commercial_use_status": "commercial_uncleared",
+  "commercial_runtime_approved": false,
+  "boundaries": ["commercial_runtime_approved_remains_false_unless_governance_approved"]
+}

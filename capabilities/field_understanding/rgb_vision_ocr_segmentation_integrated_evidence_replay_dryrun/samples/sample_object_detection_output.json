@@ -1,0 +1,25 @@
+{
+  "format_ref": "object_detection_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_frame_001.jpg"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "yolo_open_vocabulary_detection",
+    "model_id": "yolo_openvocab_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "object_detection_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "objects": [
+    {"object_id": "obj_entrance_1", "label": "entrance", "bbox": [120, 80, 260, 360], "confidence": 0.88},
+    {"object_id": "obj_sign_1", "label": "sign", "bbox": [300, 40, 380, 110], "confidence": 0.81},
+    {"object_id": "obj_counter_1", "label": "counter", "bbox": [420, 200, 600, 360], "confidence": 0.76},
+    {"object_id": "obj_obstacle_1", "label": "obstacle", "bbox": [40, 300, 110, 420], "confidence": 0.7},
+    {"object_id": "obj_person_1", "label": "person", "bbox": [200, 180, 260, 400], "confidence": 0.91}
+  ]
+}

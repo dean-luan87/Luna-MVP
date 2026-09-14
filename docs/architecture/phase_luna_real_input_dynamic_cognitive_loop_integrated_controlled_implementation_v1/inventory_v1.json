@@ -1,0 +1,14 @@
+{
+  "reused_assets": {
+    "B1": "b1_real_visual_evidence_context_world_controlled and B1-shaped CurrentWorldCandidateV1",
+    "B2": "b2_current_world_cognitive_state_flow_controlled.run_b2_case",
+    "dynamic_flow": "DynamicCognitiveFlowEngineV1 and existing candidate-only loop types",
+    "capability_bridge": "form_capability_requirement and reassess_requirement_against_state",
+    "capability_resolution": "resolve_scoped_capability_requirement and build_scoped_invocation_candidate",
+    "capability_experience": "build_capability_usage_record and assess_capability_outcome",
+    "B4": "ReconsiderationCandidateV1 and controlled reobserve references",
+    "baseline": "Brain Golden Baseline planning artifacts and owner/guard boundary"
+  },
+  "new_owners": [],
+  "untouched_owners": ["Intent Governance", "Decision Governance", "Task Manager", "Capability Registry", "Observation Gateway", "FPO / Active Observation Control"]
+}

@@ -1,0 +1,24 @@
+{
+  "backend_id": "orb_slam3_mock_v1",
+  "backend_family": "visual_slam",
+  "output_type": "keyframe trajectory / camera trajectory / map point summary",
+  "source_chain": ["orb_slam3_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.8,
+  "backend_origin": "orb_slam3_like_visual_slam_export_mock",
+  "license_ref": "GPL-3.0",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "adapter_replay_dryrun_only",
+  "commercial_use_status": "non_commercial_or_unverified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "camera_poses": [
+    {"id": "kf0", "timestamp_ms": 2000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.83},
+    {"id": "kf1", "timestamp_ms": 2200, "pose": [0.30, 0.05, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.81}
+  ],
+  "keyframes": [
+    {"id": "kf0", "landmark_count": 142},
+    {"id": "kf1", "landmark_count": 137}
+  ],
+  "map_points_summary": {"total_map_points": 5120, "stable_map_points": 4800},
+  "loop_closure_hint": {"id": "lc0", "from_kf": "kf1", "to_kf": "kf0", "score": 0.91, "is_loop_closure": true},
+  "drift_estimate": {"id": "drift0", "map_inconsistency": 0.07, "tracking_drift": 0.04}
+}

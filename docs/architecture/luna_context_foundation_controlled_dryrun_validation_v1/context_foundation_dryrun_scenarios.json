@@ -1,0 +1,94 @@
+{
+  "scenario_set_id": "luna_context_foundation_controlled_dryrun_scenarios_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "scenarios": [
+    {
+      "case_id": "DRYRUN-CF-01-WORK-TO-HOME",
+      "name": "工作到家庭跨场连续性",
+      "inputs": [
+        "Field Projection Reference",
+        "Emotion Reference",
+        "Carryover Reference"
+      ],
+      "resource_condition": "Resource Budget Reference available",
+      "expected_candidates": [
+        "Home Field Context Reference",
+        "Mental Field Continuity Reference",
+        "Residual Emotion Reference"
+      ],
+      "forbidden_conclusions": [
+        "用户讨厌工作",
+        "work is the confirmed cause",
+        "Intent",
+        "Decision"
+      ],
+      "source_owner_precedence": true,
+      "passes_boundary": true
+    },
+    {
+      "case_id": "DRYRUN-CF-02-COMPLEX-PLANNING",
+      "name": "换工作复杂规划的资源约束",
+      "inputs": [
+        "Field Projection Reference",
+        "Role Projection Reference",
+        "Relationship Projection Reference",
+        "Memory Projection Reference",
+        "Emotion Projection Reference",
+        "Resource Budget Reference"
+      ],
+      "resource_outcomes": {
+        "sufficient_budget": "Broader eligible Context reference set candidate",
+        "limited_budget": "Reduced eligible Context reference set candidate with required references and Unknown preserved"
+      },
+      "insufficient_resource_is_failure": false,
+      "forbidden_conclusions": [
+        "recommend quitting",
+        "recommend staying",
+        "Intent",
+        "Causal Explanation",
+        "Decision"
+      ],
+      "passes_boundary": true
+    },
+    {
+      "case_id": "DRYRUN-CF-03-UNKNOWN-COMPLETION",
+      "name": "朋友未回复的候选补全",
+      "inputs": [
+        "Unknown Relationship Context Reference",
+        "Historical Experience Reference"
+      ],
+      "allowed_candidate_completion": "朋友可能在忙",
+      "candidate_status": "UNKNOWN_COMPLETION_CANDIDATE",
+      "confidence_required": true,
+      "forbidden_facts": [
+        "朋友生气",
+        "friend is intentionally ignoring the user"
+      ],
+      "fact_promotion_forbidden": true,
+      "passes_boundary": true
+    },
+    {
+      "case_id": "DRYRUN-CF-04-WEATHER-MINIMAL",
+      "name": "天气简单查询",
+      "inputs": [
+        "Field Projection Reference",
+        "Temporal Reference",
+        "Observation Projection Reference"
+      ],
+      "expected_candidate": "Minimal Context Envelope Candidate",
+      "unnecessary_expansion_forbidden": [
+        "Memory Projection",
+        "Relationship Projection",
+        "Emotion Projection",
+        "PCN Activation"
+      ],
+      "passes_boundary": true
+    }
+  ],
+  "scenario_count": 4,
+  "synthetic_only": true,
+  "runtime_executed": false,
+  "model_called": false,
+  "state_mutation": false
+}
+

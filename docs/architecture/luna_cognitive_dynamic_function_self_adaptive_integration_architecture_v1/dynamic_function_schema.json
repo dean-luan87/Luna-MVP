@@ -1,0 +1,12 @@
+{
+  "schema_id": "dynamic_function_self_adaptive_v1",
+  "status": "architecture_only",
+  "layers": ["Self Constitution", "Self Regulation Function", "Dynamic Cognitive Function", "Cognitive Capability Modules", "Self Calibration Function", "Adaptive Parameter Candidate", "Self Review"],
+  "required_fields": ["function_id", "owner", "inputs", "parameters", "outputs", "field_scope", "trace_ref", "unknowns"],
+  "outputs_are_candidates": true,
+  "function_is_not_runtime": true,
+  "function_is_not_action": true,
+  "function_is_not_decision_authority": true,
+  "self_review_required": true,
+  "runtime": false
+}

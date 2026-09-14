@@ -1,0 +1,19 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-And-Runner-Bridge-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T02:51:10.106488+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "page_must_not_execute_model": true,
+  "candidate_output_only": true,
+  "record": {
+    "schema_id": "runner_bridge_request_schema_v1",
+    "schema_rel": "capabilities/midplatform/model_test_lens/schemas/local_asset_import/runner_bridge_request_schema_v1.json",
+    "lens_may_not_execute_runner": true,
+    "adapter_target_envelope": "model_test_result_envelope_v1"
+  }
+}

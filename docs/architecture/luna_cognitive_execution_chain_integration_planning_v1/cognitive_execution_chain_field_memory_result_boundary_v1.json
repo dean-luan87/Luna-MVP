@@ -1,0 +1,21 @@
+{
+    "artifact": "cognitive_execution_chain_field_memory_result_boundary_v1",
+    "status": "PLANNING_CANDIDATE",
+    "runtime_result_allowed_forms": [
+        "candidate_evidence",
+        "observation_candidate",
+        "experience_candidate"
+    ],
+    "runtime_result_forbidden_forms": [
+        "field_fact",
+        "memory_fact",
+        "intent_state",
+        "decision_state"
+    ],
+    "owner_contracts": {
+        "field_owner_reference": "Field System/Cognitive Field",
+        "memory_owner_reference": "Memory Governance/Memory System",
+        "integration_cross_write": false
+    },
+    "gap_policy": "missing owner interfaces recorded as future integration gap"
+}

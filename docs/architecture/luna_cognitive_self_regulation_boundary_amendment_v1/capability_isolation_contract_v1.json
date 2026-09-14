@@ -1,0 +1,8 @@
+{
+  "title": "Capability Failure Isolation Contract v1",
+  "owner": "Self Regulation / Capability Isolation",
+  "inputs": ["Failure Event", "Capability Registry", "Dependency Graph", "Capability Health", "Self State"],
+  "outputs": ["Capability Impact Analysis", "Affected Capability Update Candidate", "Unaffected Capability Preservation Record", "System Operational Status Candidate"],
+  "schema": ["isolation_id", "capability_id", "failure_domain", "affected_capabilities", "unaffected_capabilities", "degradation_policy", "evidence_refs", "confidence", "unknown", "trace_id"],
+  "rules": {"failure_domain_required":true,"blast_radius_bounded":true,"unaffected_preserved":true,"system_not_collapsed_by_local_failure":true,"candidate_only":true,"provenance_required":true}
+}

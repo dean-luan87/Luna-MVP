@@ -1,0 +1,17 @@
+{
+  "schema_name": "Role Conflict Candidate Schema v1",
+  "conflict_id": "role-conflict-example",
+  "role_candidates": ["Employee Candidate", "Friend Candidate", "Parent Candidate"],
+  "field_context": "meeting-field-example",
+  "responsibility_conflict": [],
+  "permission_conflict": [],
+  "expectation_conflict": [],
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "conflict_is_candidate": true,
+  "automatic_resolution": false,
+  "does_not_modify_identity": true,
+  "does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

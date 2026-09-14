@@ -1,0 +1,17 @@
+{
+  "version":"1.0",
+  "name":"Information State Registry",
+  "owner":"Information Lifecycle Governance",
+  "states":[
+    {"state":"observed","meaning":"received from observation or source","influence":"not yet admitted"},
+    {"state":"candidate","meaning":"candidate information awaiting evaluation","influence":"provisional"},
+    {"state":"admitted","meaning":"accepted into Cognitive Field scope","influence":"eligible"},
+    {"state":"active","meaning":"currently participating in cognition","influence":"current"},
+    {"state":"reinforced","meaning":"supported by repetition or confirmation","influence":"increased"},
+    {"state":"compressed","meaning":"folded into a pattern or principle","influence":"abstracted"},
+    {"state":"dormant","meaning":"temporarily low activation","influence":"reduced"},
+    {"state":"archived","meaning":"retained long-term but not active","influence":"retrieval dependent"},
+    {"state":"removed","meaning":"no longer affects current cognition","influence":"none; not deletion"}
+  ],
+  "rules":{"removed_not_deleted":true,"unknown_preserved":true,"state_owner_unique":true,"same_vocabulary_all_information":true}
+}

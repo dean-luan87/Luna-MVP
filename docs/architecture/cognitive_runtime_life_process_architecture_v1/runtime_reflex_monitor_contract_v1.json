@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Reflex Monitor Contract v1",
+  "reflex_signal": {},
+  "safety_candidate": {},
+  "attention_boost_candidate": {},
+  "brain_escalation_candidate": {},
+  "monitor_class": "High Frequency",
+  "reflex_monitor_does_not_execute_action": true,
+  "reflex_monitor_does_not_modify_safety_rules": true,
+  "unknowns_are_preserved": true
+}

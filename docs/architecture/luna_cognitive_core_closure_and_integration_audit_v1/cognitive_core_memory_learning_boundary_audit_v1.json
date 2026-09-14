@@ -1,0 +1,33 @@
+{
+    "artifact": "cognitive_core_memory_learning_boundary_audit_v1",
+    "overall_status": "CLOSED",
+    "preserved_boundaries": {
+        "memory_does_not_execute_learning": true,
+        "learning_does_not_mutate_memory": true,
+        "learning_does_not_write_persistent_memory": true,
+        "memory_retrieval_does_not_overwrite_context": true,
+        "memory_does_not_declare_current_world_truth": true,
+        "memory_candidate_not_fact": true,
+        "memory_candidate_not_persisted_memory": true,
+        "learning_evidence_not_truth": true,
+        "learning_candidate_not_truth": true,
+        "parameter_update_not_activation": true
+    },
+    "semantic_compression": {
+        "status": "DEFERRED_TO_EMOTION_ENGINE",
+        "execution_allowed": false,
+        "covered_items": [
+            "memory semantic compression",
+            "experience semantic compression",
+            "affective memory compression",
+            "emotion memory synthesis",
+            "embedding pipeline",
+            "summary model"
+        ]
+    },
+    "bridge_status": {
+        "memory_to_learning": "candidate_only_bridge",
+        "flow_to_memory": "candidate_only_observation_bridge",
+        "flow_to_learning": "candidate_only_future_route"
+    }
+}

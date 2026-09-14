@@ -1,0 +1,8 @@
+{
+  "title": "Action Runtime Trace Contract v1",
+  "owner": "Cognitive OS Governance",
+  "chain": ["Observation", "Context", "Role/Emotion Context", "Decision", "Action Request", "Validation", "Execution", "Outcome", "Learning"],
+  "fields": ["trace_id", "observation_reference", "context_reference", "decision_reference", "action_request_reference", "validation_reference", "execution_reference", "outcome_reference", "learning_reference", "timestamp"],
+  "readers": ["Diagnostics", "Safety Review", "Learning Candidate Review", "Governance Audit"],
+  "rules": {"provenance_required": true, "trace_not_authority": true, "execution_reference_future_only": true}
+}

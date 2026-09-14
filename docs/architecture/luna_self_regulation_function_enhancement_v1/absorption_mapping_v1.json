@@ -1,0 +1,16 @@
+{
+  "mapping_id": "self_regulation_function_absorption_v1",
+  "canonical_owner": "Self Regulation Function",
+  "mappings": [
+    {"source": "luna_cognitive_homeostasis_adaptive_balance_architecture_v1", "target": "Homeostasis Regulation and Adaptive Regulation", "migration": "mapping_only", "file_move": false, "activation": false},
+    {"source": "luna_cognitive_state_observation_measurement_architecture_v1", "target": "Calibration Regulation inputs", "migration": "mapping_only", "file_move": false, "activation": false},
+    {"source": "luna_cognitive_state_transition_model_architecture_v1", "target": "Cognitive Balance Regulation context", "migration": "mapping_only", "file_move": false, "activation": false},
+    {"source": "luna_cognitive_dynamic_function_self_adaptive_integration_architecture_v1", "target": "Self Regulation Function envelope", "migration": "mapping_only", "file_move": false, "activation": false}
+  ],
+  "new_homeostasis_owner_created": false,
+  "new_calibration_owner_created": false,
+  "new_adaptation_owner_created": false,
+  "duplicate_owner_resolution": "Self Regulation Function remains canonical",
+  "code_change": false,
+  "runtime_activation": false
+}

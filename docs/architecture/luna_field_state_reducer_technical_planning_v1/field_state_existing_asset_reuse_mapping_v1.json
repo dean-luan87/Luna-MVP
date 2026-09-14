@@ -1,0 +1,87 @@
+{
+    "version": "1.0",
+    "name": "Field State Existing Asset Reuse Mapping",
+    "mappings": [
+        {
+            "asset": "field_event_envelope_schema_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_type_registry_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "temporal_validity_schema_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "temporal_status_transition_matrix_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_admission_contract_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_replay_contract_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_conflict_resolution_matrix_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_revision_revocation_protocol_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "temporary_overlay_protocol_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        },
+        {
+            "asset": "field_event_minimum_case_timeline_v1.json",
+            "reused_as_is": true,
+            "referenced_only": false,
+            "extended_by_new_contract": true,
+            "rewrite_required": false,
+            "physical_move_allowed": false
+        }
+    ],
+    "existing_asset_mapping_complete": true
+}

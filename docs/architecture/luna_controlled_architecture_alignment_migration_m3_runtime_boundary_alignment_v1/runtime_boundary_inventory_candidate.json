@@ -1,0 +1,247 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m3_runtime_boundary_inventory_candidate_v1",
+  "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M3-Runtime-Boundary-Alignment-v1-001",
+  "planning_status": "PLANNING_CANDIDATE",
+  "candidate_only": true,
+  "records": [
+    {
+      "runtime_component": "Runtime Foundation",
+      "current_owner": "Legacy A3 Runtime Governance",
+      "current_role": "Existing root A3 runtime surface for tick progression, observation timing, runtime context, gates, trace, snapshot/heartbeat wiring, and previously authorized legacy execution-intent handoff.",
+      "architecture_position": "Existing engineering plane / legacy A3 runtime surface; not Dynamic Cognitive Architecture v2 Runtime",
+      "runtime_status": "ACTIVE_EXISTING",
+      "allowed_responsibility": [
+        "tick scheduling within the existing A3 surface",
+        "runtime lifecycle and stop control",
+        "observation frame transport and sampling gate",
+        "runtime context transport",
+        "trace and existing snapshot/heartbeat wiring",
+        "previously authorized legacy execution-intent handoff"
+      ],
+      "forbidden_responsibility": [
+        "Dynamic Cognitive Architecture v2 ownership",
+        "Intent generation",
+        "Causal Reasoning",
+        "Memory mutation",
+        "Reality interpretation",
+        "Value judgment",
+        "Personal Cognitive Network Runtime",
+        "A/B Simulation Runtime"
+      ],
+      "source_refs": [
+        "runtime/a3_runtime.py",
+        "runtime/main_loop.py",
+        "runtime/context.py",
+        "runtime/observation_loop.py",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md"
+      ]
+    },
+    {
+      "runtime_component": "Task Runtime",
+      "current_owner": "Task Manager",
+      "current_role": "Functional task-lifecycle module plus historical dry-run evidence; no production scheduler, Runtime dispatch, or Action execution authority is established.",
+      "architecture_position": "Task Execution Orchestration Boundary / future governed Runtime handoff",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "task lifecycle candidates",
+        "dependency candidates",
+        "capability route candidates",
+        "task result aggregation candidates",
+        "future approved task-lifecycle handoff reference"
+      ],
+      "forbidden_responsibility": [
+        "Intent generation",
+        "Causal Reasoning",
+        "final Decision ownership",
+        "Runtime dispatch",
+        "Action execution",
+        "production scheduler"
+      ],
+      "source_refs": [
+        "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"
+      ]
+    },
+    {
+      "runtime_component": "Capability Runtime",
+      "current_owner": "Capability Governance",
+      "current_role": "Architecture-level reference for future governed capability invocation; no single unified production Capability Runtime is proven by the inspected active baselines.",
+      "architecture_position": "Capability Governance / future approved invocation boundary",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "capability availability reference",
+        "approved invocation request candidate",
+        "resource and health context reference",
+        "capability result evidence handoff candidate"
+      ],
+      "forbidden_responsibility": [
+        "cognitive conclusion",
+        "Reality interpretation",
+        "Intent generation",
+        "Decision ownership",
+        "ungoverned provider invocation",
+        "direct state mutation"
+      ],
+      "source_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/capability_registry_alignment_candidate.json",
+        "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+        "capabilities/registry/baselines/observation_manager_module_baseline_v1.json"
+      ]
+    },
+    {
+      "runtime_component": "Model Runtime",
+      "current_owner": "Capability Governance / Model Manager",
+      "current_role": "Model identity, admission, matching, routing, lifecycle, fallback, resource, health, trace, and replay candidates; real load, inference, provider call, and production dispatch remain forbidden.",
+      "architecture_position": "Capability Governance / future model invocation support boundary",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "model selection candidate",
+        "model lifecycle candidate",
+        "fallback candidate",
+        "resource profile reference",
+        "health diagnostics"
+      ],
+      "forbidden_responsibility": [
+        "real model inference",
+        "real model load or unload",
+        "provider Runtime call",
+        "cognitive conclusion",
+        "Intent generation",
+        "Decision ownership",
+        "production Runtime dispatch"
+      ],
+      "source_refs": [
+        "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"
+      ]
+    },
+    {
+      "runtime_component": "Protocol Runtime",
+      "current_owner": "Protocol Manager",
+      "current_role": "Protocol registry lookup, lifecycle, version, compatibility, admission, change-control, diagnostics, trace, and replay candidates; Runtime protocol loading is not active.",
+      "architecture_position": "Cognitive OS Governance / future Runtime compatibility support boundary",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "protocol governance candidate",
+        "compatibility candidate",
+        "admission candidate",
+        "protocol diagnostics",
+        "future protocol reference validation"
+      ],
+      "forbidden_responsibility": [
+        "Runtime protocol loading",
+        "dynamic binding execution",
+        "protocol registry mutation",
+        "cognitive judgment",
+        "state mutation",
+        "Decision ownership",
+        "Action execution"
+      ],
+      "source_refs": [
+        "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"
+      ]
+    },
+    {
+      "runtime_component": "Cognitive Layer Reference",
+      "current_owner": "Architecture Governance",
+      "current_role": "Planning-only reference for future governed exchange of context, approved execution requests, outcome evidence, and trace references.",
+      "architecture_position": "Dynamic Cognitive Architecture v2 / cognitive side of future Runtime boundary",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "consume governed Field and evidence references",
+        "produce candidate-only cognitive outputs",
+        "produce future approved execution request candidate",
+        "consume Runtime outcome evidence and trace references"
+      ],
+      "forbidden_responsibility": [
+        "direct Runtime mutation",
+        "Runtime scheduling",
+        "Runtime resource control",
+        "Field State bypass",
+        "Action execution",
+        "claim of current Runtime implementation"
+      ],
+      "source_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md"
+      ]
+    },
+    {
+      "runtime_component": "PCN Reference",
+      "current_owner": "Personal Cognitive Network Governance",
+      "current_role": "Future reference for typed cross-object links, activation candidates, and read-only context projections only.",
+      "architecture_position": "Dynamic Cognitive Architecture v2 / future cross-object projection capability",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "typed link candidate",
+        "activation candidate",
+        "read-only context projection candidate"
+      ],
+      "forbidden_responsibility": [
+        "PCN Runtime activation",
+        "direct Runtime invocation",
+        "source-object ownership",
+        "source-object mutation",
+        "source-object persistence"
+      ],
+      "source_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"
+      ]
+    },
+    {
+      "runtime_component": "Causal Reference",
+      "current_owner": "Causal Reasoning Governance",
+      "current_role": "Future reference for evidence-bound, revisable causal and condition candidates without fact promotion or Runtime execution.",
+      "architecture_position": "Dynamic Cognitive Architecture v2 / future causal candidate governance",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "causal candidate",
+        "condition candidate",
+        "alternative explanation candidate",
+        "unknown candidate"
+      ],
+      "forbidden_responsibility": [
+        "Causal Runtime activation",
+        "causal fact promotion",
+        "Runtime state mutation",
+        "Decision ownership",
+        "Action execution"
+      ],
+      "source_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"
+      ]
+    },
+    {
+      "runtime_component": "Intent Reference",
+      "current_owner": "Intent Governance",
+      "current_role": "Future reference for context-bound Intent Candidates and governance without Task, Decision, or Runtime authority.",
+      "architecture_position": "Dynamic Cognitive Architecture v2 / future Intent Candidate governance",
+      "runtime_status": "PLANNING_REFERENCE",
+      "allowed_responsibility": [
+        "Intent Candidate",
+        "Intent conflict candidate",
+        "clarification candidate",
+        "Goal alignment candidate"
+      ],
+      "forbidden_responsibility": [
+        "Intent Runtime activation",
+        "Task lifecycle ownership",
+        "Decision selection",
+        "Runtime dispatch",
+        "Action execution",
+        "Reality mutation"
+      ],
+      "source_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"
+      ]
+    }
+  ],
+  "required_active_existing_count": 1,
+  "required_planning_reference_count": 8,
+  "runtime_modified": false,
+  "migration_executed": false
+}

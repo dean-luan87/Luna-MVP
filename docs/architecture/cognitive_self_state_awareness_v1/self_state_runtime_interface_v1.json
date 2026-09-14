@@ -1,0 +1,27 @@
+{
+  "title": "Self State Runtime Interface v1",
+  "contract_type": "Runtime to Self State Interface",
+  "runtime_inputs": [
+    "tick_context",
+    "health_evidence",
+    "resource_evidence",
+    "capability_state_reference",
+    "field_load_reference",
+    "attention_load_reference"
+  ],
+  "runtime_outputs": {
+    "Self State Update Candidate": "candidate only",
+    "diagnostic_candidate": "candidate only",
+    "recovery_candidate": "candidate only",
+    "escalation_candidate": "candidate only"
+  },
+  "rules": {
+    "runtime_does_not_modify_state_directly": true,
+    "reducer_is_sole_state_mutation_authority": true,
+    "runtime_does_not_replace_brain": true,
+    "runtime_does_not_execute_action": true,
+    "runtime_does_not_control_hardware": true,
+    "no_scheduler_implementation": true,
+    "no_runtime_execution": true
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Situation Attention Interface v1",
+  "contract_type": "Situation to Attention Interface",
+  "inputs": {
+    "situation_candidate": "current interpretation candidate",
+    "unknown_context": [],
+    "risk_context": {},
+    "confidence": {},
+    "field_context": {},
+    "goal_context": {}
+  },
+  "outputs": {
+    "attention_relevance_candidate": "candidate",
+    "observation_requirement_candidate": "candidate",
+    "uncertainty_reduction_candidate": "candidate",
+    "reassessment_attention_candidate": "candidate"
+  },
+  "examples": {
+    "unknown_increase": "increase exploration observation candidate",
+    "risk_candidate": "increase safety monitoring candidate",
+    "stable_situation": "release low-value attention candidate",
+    "confidence_decline": "request additional evidence candidate"
+  },
+  "boundary": {
+    "situation_does_not_modify_attention_directly": true,
+    "attention_does_not_modify_situation_directly": true,
+    "attention_does_not_select_goal": true,
+    "attention_does_not_select_decision": true,
+    "candidate_only": true,
+    "unknown_is_preserved": true
+  }
+}

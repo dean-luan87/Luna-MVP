@@ -1,0 +1,47 @@
+{
+  "title": "Belief Governance Contract v1",
+  "contract_type": "Belief Candidate Admission and Governance",
+  "admission_checks": [
+    "validated pattern",
+    "supporting evidence",
+    "contradicting evidence",
+    "confidence calibration",
+    "Field compatibility",
+    "Situation compatibility",
+    "uncertainty",
+    "risk",
+    "provenance",
+    "decay and expiry"
+  ],
+  "authority": {
+    "hypothesis": "may propose explanation candidate",
+    "learning": "may propose pattern candidate",
+    "memory": "stores reference and provenance",
+    "governance": "admits, suspends, revokes, or archives belief candidate",
+    "attention": "allocates validation resources",
+    "brain": "retains final judgment authority",
+    "reality": "overrides belief candidate",
+    "evidence": "overrides stale belief candidate"
+  },
+  "boundary": {
+    "no_automatic_belief_solidification": true,
+    "no_reality_mutation": true,
+    "no_evidence_override": true,
+    "no_automatic_decision": true,
+    "no_action_runtime": true,
+    "no_prediction_runtime": true,
+    "no_world_model": true,
+    "no_b_simulation_runtime": true,
+    "no_model_training": true,
+    "no_hardware_execution": true,
+    "no_silent_unknown_completion": true,
+    "no_forced_conflict_resolution": true,
+    "unknowns_are_preserved": true
+  },
+  "change_control": {
+    "constitution_review_required": true,
+    "protocol_version_required": true,
+    "field_scope_review_required": true,
+    "brain_boundary_review_required": true
+  }
+}

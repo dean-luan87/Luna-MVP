@@ -1,0 +1,34 @@
+{
+  "schema_id": "DocumentSurfaceOptionBDependencyAdmissionPolicyV1",
+  "version": "v1",
+  "planning_only": true,
+  "install_allowed": false,
+  "download_allowed": false,
+  "network_access_allowed": false,
+  "execution_allowed": false,
+  "no_silent_install": true,
+  "no_silent_download": true,
+  "allowed_phase": "dependency_admission_review_only",
+  "failure_output": "dependency_not_admitted_candidate",
+  "dependency_types": [
+    "python_package",
+    "model_weight",
+    "runtime_binary",
+    "hardware_requirement"
+  ],
+  "admission_fields": [
+    "dependency_name",
+    "dependency_type",
+    "admission_status_candidate",
+    "install_allowed",
+    "download_allowed",
+    "network_access_allowed",
+    "execution_allowed",
+    "allowed_phase",
+    "failure_output",
+    "no_silent_install",
+    "no_silent_download"
+  ],
+  "candidate_only": true,
+  "not_fact": true
+}

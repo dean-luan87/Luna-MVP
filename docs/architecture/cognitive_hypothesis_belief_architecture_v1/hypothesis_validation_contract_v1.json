@@ -1,0 +1,29 @@
+{
+  "title": "Hypothesis Validation Contract v1",
+  "contract_type": "Hypothesis Validation Requirement and Result",
+  "input": {
+    "hypothesis_reference": "hypothesis-example",
+    "discriminating_observations": ["signage", "crowd direction", "door structure"],
+    "field_reference": "field-example",
+    "situation_reference": "situation-example",
+    "unknowns": [],
+    "provenance": []
+  },
+  "validation_requirement": {
+    "attention_request": "candidate",
+    "capability_requirement": "candidate",
+    "evidence_expectation": "candidate",
+    "resource_cost": "candidate"
+  },
+  "validation_result": {
+    "status": "Supported | Weakened | Contradicted | Inconclusive | Unknown",
+    "evidence_references": [],
+    "experience_candidate": null,
+    "belief_admission_candidate": null,
+    "provenance": []
+  },
+  "attention_only_validates": true,
+  "validation_does_not_make_decision": true,
+  "validation_does_not_modify_reality": true,
+  "unknowns_are_preserved": true
+}

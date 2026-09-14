@@ -1,0 +1,26 @@
+{
+  "title": "Global State Memory Context Interface v1",
+  "contract_type": "Relevant Memory Context Projection",
+  "input": {
+    "memory_query_reference": "candidate",
+    "current_field": "field-example",
+    "current_situation": "situation-example",
+    "current_task": "task-example",
+    "attention_context": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "memory_context": {},
+    "relevant_memory_candidates": [],
+    "state_transition_records": [],
+    "memory_conflicts": []
+  },
+  "boundary": {
+    "global_state_does_not_store_all_memory": true,
+    "memory_context_is_retrieval_candidate": true,
+    "memory_does_not_override_reality": true,
+    "global_state_does_not_modify_memory": true,
+    "unknowns_are_preserved": true
+  }
+}

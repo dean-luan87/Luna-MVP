@@ -1,0 +1,80 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T11:00:00.553130+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "multi_real_image_aggregate_quality_summary_record",
+  "record": {
+    "record_id": "multi_real_image_aggregate_quality_summary_v1",
+    "image_count": 4,
+    "expected_prompt_trial_count": 20,
+    "prompt_attempt_count": 20,
+    "prompt_success_count": 20,
+    "prompt_failure_count": 0,
+    "skipped_prompt_count": 0,
+    "overall_success_rate": 1.0,
+    "per_category_success_rate": {
+      "building_or_large_structure": 1.0,
+      "road_or_crosswalk_or_large_plane": 1.0,
+      "sign_or_advertisement_screen": 1.0,
+      "vehicle_or_small_dynamic_object": 1.0,
+      "street_facility_or_pole_or_edge_object": 1.0
+    },
+    "per_category_average_score": {
+      "building_or_large_structure": 0.9323,
+      "road_or_crosswalk_or_large_plane": 0.9141,
+      "sign_or_advertisement_screen": 0.8112,
+      "vehicle_or_small_dynamic_object": 0.8555,
+      "street_facility_or_pole_or_edge_object": 0.7521
+    },
+    "recurring_failure_modes": [],
+    "stable_categories": [
+      "building_or_large_structure",
+      "road_or_crosswalk_or_large_plane",
+      "sign_or_advertisement_screen",
+      "vehicle_or_small_dynamic_object",
+      "street_facility_or_pole_or_edge_object"
+    ],
+    "unstable_categories": [],
+    "prompt_strategy_implications": [
+      "building_or_large_structure: box_prompt_preferred_across_scenes",
+      "road_or_crosswalk_or_large_plane: negative_point_or_multi_point_recommended",
+      "sign_or_advertisement_screen: detector_or_ocr_assisted_box_future",
+      "vehicle_or_small_dynamic_object: detector_or_tracker_assisted_box_future",
+      "street_facility_or_pole_or_edge_object: thin_object_fragmentation_risk"
+    ],
+    "detector_ocr_tracker_prompt_need_update": true,
+    "human_review_required": true,
+    "suitable_for_runtime_admission": false,
+    "suitable_for_quality_observation": true,
+    "not_semantic_fact": true,
+    "per_category_area_ratio_stats": {
+      "building_or_large_structure": {
+        "mean": 0.093842
+      },
+      "road_or_crosswalk_or_large_plane": {
+        "mean": 0.102357
+      },
+      "sign_or_advertisement_screen": {
+        "mean": 0.037354
+      },
+      "vehicle_or_small_dynamic_object": {
+        "mean": 0.043792
+      },
+      "street_facility_or_pole_or_edge_object": {
+        "mean": 0.031045
+      }
+    }
+  }
+}

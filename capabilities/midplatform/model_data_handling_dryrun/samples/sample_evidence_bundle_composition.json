@@ -1,0 +1,20 @@
+{
+  "handling_id": "evidence_bundle_composition_001",
+  "policy_id": "evidence_bundle_composition",
+  "candidate_refs": [
+    "normalized_model_candidate_bundle:nmc_001",
+    "source_lineage_index:sli_001",
+    "aggregated_confidence_policy_candidate:acp_001",
+    "midplatform_conflict_record:mcr_001",
+    "midplatform_uncertainty_record:mur_001"
+  ],
+  "model_family_refs": ["object_detection_completion_family", "segmentation_family", "tracking_family", "depth_spatial_hint_family", "scene_relation_vlm_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "evidence_bundle_confidence_policy_v1",
+  "fallback_plan": "fallback_to_partial_evidence_bundle_with_records",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "boundaries": ["evidence_bundle_is_not_fact_bundle", "support_bundle_does_not_directly_activate_guidance_runtime"]
+}

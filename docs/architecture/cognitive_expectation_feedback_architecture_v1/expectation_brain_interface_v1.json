@@ -1,0 +1,31 @@
+{
+  "title": "Expectation Brain Interface v1",
+  "contract_type": "Expectation Package for Brain",
+  "input": {
+    "current_understanding": {},
+    "expectation_candidates": [],
+    "supporting_evidence": [],
+    "feedback_status": [],
+    "expectation_difference": [],
+    "unknown": [],
+    "risk": [],
+    "conflict": [],
+    "field_context": {},
+    "situation_context": {},
+    "provenance": []
+  },
+  "brain_evaluation": {
+    "accept_feedback": "candidate",
+    "request_more_observation": "candidate",
+    "keep_expectations_separate": "candidate",
+    "request_clarification": "candidate",
+    "final_judgment": "Brain retains final judgment authority"
+  },
+  "boundary": {
+    "brain_receives_expectation_package": true,
+    "expectation_does_not_make_decision": true,
+    "brain_retains_final_decision_authority": true,
+    "brain_does_not_receive_prediction_runtime": true,
+    "unknowns_are_preserved": true
+  }
+}

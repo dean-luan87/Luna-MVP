@@ -1,0 +1,20 @@
+{
+  "schema_name": "Social Field Schema v1",
+  "social_field_id": "social-field-example",
+  "physical_field_reference": "physical-field-example",
+  "participants": [],
+  "roles": [],
+  "relationships": [],
+  "social_rules": [],
+  "interaction_patterns": [],
+  "social_position_candidate": null,
+  "field_context": null,
+  "timestamp": null,
+  "confidence": null,
+  "unknowns": [],
+  "provenance": [],
+  "identity_continuity_required": true,
+  "social_field_does_not_make_decision": true,
+  "social_field_does_not_modify_reality": true,
+  "unknowns_are_preserved": true
+}

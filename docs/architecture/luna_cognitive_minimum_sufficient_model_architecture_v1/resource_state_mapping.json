@@ -1,0 +1,12 @@
+{
+  "mapping_id": "resource_state_mapping_v1",
+  "core_state": "Resource",
+  "components": ["compute", "time", "energy", "attention", "network", "storage"],
+  "source_modules": ["Self Regulation", "Self Rhythm", "Capability Governance", "Runtime Health", "Resource Governance"],
+  "outputs": ["Resource Budget Candidate", "Capability Budget Candidate", "Attention Budget Candidate", "Risk Threshold Candidate"],
+  "resource_is_constraint_not_goal": true,
+  "resource_output_is_hint": true,
+  "resource_does_not_execute": true,
+  "automatic_resource_control": false,
+  "candidate_only": true
+}

@@ -1,0 +1,49 @@
+{
+    "contract_id": "causal_candidate_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Causal Reasoning Governance",
+    "producer": "Causal Reasoning Governance",
+    "consumer": [
+        "A/B Route Boundary Governance",
+        "Decision Arbitration",
+        "Intent Governance"
+    ],
+    "candidate_fact": "revisable_causal_candidate_only_not_fact",
+    "unknown": {
+        "allowed": true,
+        "representation": "unresolved_cause_or_counter_evidence",
+        "behavior": "preserve_unknown_candidate"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "evidence_refs",
+            "counter_evidence_refs",
+            "temporal_validity"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "causal_reasoning_reference_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "evidence_bound_candidate_admission_only"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "counter_evidence_or_time_update"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "revoke_candidate_when_evidence_invalidates"
+    },
+    "failure_behavior": {
+        "on_missing_evidence": "emit_unknown_candidate",
+        "on_counter_evidence_conflict": "emit_reconsideration_candidate",
+        "on_boundary_violation": "block_causal_candidate"
+    },
+    "write_authority": "Causal Reasoning Governance",
+    "compatibility_alias": "causal_projection_alias"
+}

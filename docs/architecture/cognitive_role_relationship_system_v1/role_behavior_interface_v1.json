@@ -1,0 +1,16 @@
+{
+  "interface_name": "Role Behavior Interface v1",
+  "role_reference": "role-example",
+  "field_context": "field-example",
+  "behavior_boundary": [],
+  "expected_behavior": [],
+  "behavior_candidate": null,
+  "responsibility": [],
+  "permission": [],
+  "unknowns": [],
+  "behavior_is_candidate": true,
+  "role_does_not_execute_action": true,
+  "role_does_not_make_decision": true,
+  "role_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

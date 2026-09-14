@@ -1,0 +1,14 @@
+{
+  "artifact": "personality_dynamic_regulation_boundary_v1",
+  "regulation_owner_preserved": "Dynamic Cognitive Regulation Governance",
+  "allowed_inputs": ["long-term regulation pattern evidence", "bounded regulation outcome refs", "parameter history refs", "adaptation outcome refs"],
+  "forbidden": ["Regulation Parameter = Personality Trait", "Parameter Genome = Personality Genome", "Adaptive Regulation = Personality Evolution", "automatic parameter-to-trait admission", "personality parameter write"],
+  "rules": {
+    "regulation_is_evidence_only": true,
+    "temporary_regulation_pattern_not_trait": true,
+    "parameter_store_owner_transfer": false,
+    "parameter_genome_activation": false,
+    "personality_mutates_regulation_parameters": false,
+    "long_term_pattern_requires_separate_admission": true
+  }
+}

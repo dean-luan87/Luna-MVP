@@ -1,0 +1,19 @@
+{
+  "interaction_id": "audio_emotion_reserved_bridge",
+  "interaction_type": "reserved_only_multimodal_bridge",
+  "source_model_families": ["audio_speech_family", "emotion_multimodal_bridge_family"],
+  "candidate_refs": ["audio_text_candidate:at_001", "speaker_turn_candidate:st_001", "emotion_audio_hint_candidate:eah_001", "affective_scene_hint_candidate:ash_001", "user_state_hint_candidate:ush_001"],
+  "source_chain": "recognition_model_multi_model_interaction_dryrun_v1",
+  "confidence_policy_ref": "reserved_low_confidence_policy_v1",
+  "alignment_policy_ref": "reserved_audio_emotion_bridge_alignment_policy_v1",
+  "conflict_policy_ref": "reserved_bridge_conflict_to_candidate_policy_v1",
+  "uncertainty_policy_ref": "reserved_bridge_uncertainty_propagation_policy_v1",
+  "adapter_mapping_refs": ["multimodal_affective_bridge_candidate", "reserved_emotion_context_candidate"],
+  "fallback_plan": "reserved_only_no_execution_fallback_to_no_bridge_candidate",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "allowed_use": "reserved_only_no_execution_in_current_scope",
+  "commercial_use_status": "not_evaluated_reserved",
+  "reserved_only": true,
+  "consent_boundary": "identity_requires_consent_and_confirmation",
+  "boundaries": ["identity_requires_consent", "no_psychological_fact_write", "no_behavior_manipulation", "reserved_only_not_execution"]
+}

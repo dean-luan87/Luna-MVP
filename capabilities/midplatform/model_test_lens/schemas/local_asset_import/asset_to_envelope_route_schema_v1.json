@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "asset_to_envelope_route_schema_v1",
+  "title": "Asset to Envelope Route V1",
+  "description": "Routes local asset import through runner and adapter to MUEP envelope display.",
+  "type": "object",
+  "required": ["route_id", "asset_type", "stages", "candidate_only", "adapter_required"],
+  "properties": {
+    "route_id": { "type": "string" },
+    "asset_type": {
+      "type": "string",
+      "enum": ["image", "video", "frame_sequence", "audio", "text"]
+    },
+    "stages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 5
+    },
+    "candidate_only": { "const": true },
+    "adapter_required": { "const": true },
+    "ground_truth_required_for_full_metrics": { "type": "boolean" },
+    "limited_diagnostics_without_gt": { "type": "array", "items": { "type": "string" } }
+  }
+}

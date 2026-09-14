@@ -1,0 +1,141 @@
+{
+    "schema_id": "world_object_lifecycle_and_revision_v1",
+    "schema_version": "1.0.0",
+    "description": "Lifecycle and revision rules for Luna V2 cognitive objects.",
+    "lifecycle_states": [
+        "proposed",
+        "observed",
+        "admitted_candidate",
+        "active_candidate",
+        "suspended",
+        "expired",
+        "superseded",
+        "revoked",
+        "archived"
+    ],
+    "allowed_transitions": [
+        {
+            "from": "proposed",
+            "to": "observed",
+            "requires_evidence": false,
+            "requires_owner_approval": false
+        },
+        {
+            "from": "observed",
+            "to": "admitted_candidate",
+            "requires_evidence": true,
+            "requires_owner_approval": false
+        },
+        {
+            "from": "admitted_candidate",
+            "to": "active_candidate",
+            "requires_evidence": true,
+            "requires_owner_approval": false
+        },
+        {
+            "from": "active_candidate",
+            "to": "suspended",
+            "requires_evidence": true,
+            "requires_owner_approval": true
+        },
+        {
+            "from": "active_candidate",
+            "to": "expired",
+            "requires_evidence": false,
+            "requires_owner_approval": false
+        },
+        {
+            "from": "active_candidate",
+            "to": "superseded",
+            "requires_evidence": true,
+            "requires_owner_approval": true
+        },
+        {
+            "from": "active_candidate",
+            "to": "revoked",
+            "requires_evidence": true,
+            "requires_owner_approval": true
+        },
+        {
+            "from": "suspended",
+            "to": "active_candidate",
+            "requires_evidence": true,
+            "requires_owner_approval": true
+        },
+        {
+            "from": "expired",
+            "to": "admitted_candidate",
+            "requires_evidence": true,
+            "requires_owner_approval": true
+        },
+        {
+            "from": "superseded",
+            "to": "archived",
+            "requires_evidence": true,
+            "requires_owner_approval": false
+        }
+    ],
+    "prohibited_transitions": [
+        {
+            "from": "proposed",
+            "to": "active_candidate",
+            "reason": "candidate must be admitted before activation"
+        },
+        {
+            "from": "revoked",
+            "to": "active_candidate",
+            "reason": "revoked objects may not participate in runtime"
+        },
+        {
+            "from": "expired",
+            "to": "active_candidate",
+            "reason": "expired objects require re-evidence and approval"
+        },
+        {
+            "from": "superseded",
+            "to": "active_candidate",
+            "reason": "superseded objects remain historical"
+        }
+    ],
+    "evidence_requirements": [
+        "observed->admitted_candidate requires evidence",
+        "admitted_candidate->active_candidate requires evidence",
+        "active_candidate->suspended requires evidence",
+        "active_candidate->superseded requires evidence",
+        "active_candidate->revoked requires evidence"
+    ],
+    "owner_approval_requirements": [
+        "active_candidate->suspended requires owner approval",
+        "active_candidate->superseded requires owner approval",
+        "active_candidate->revoked requires owner approval",
+        "expired->admitted_candidate requires owner approval"
+    ],
+    "expiry_rules": [
+        "expired objects require new evidence before reactivation",
+        "expired objects may not participate in active projection"
+    ],
+    "supersession_rules": [
+        "superseded objects remain historical and do not serve as current state",
+        "superseded objects may be archived"
+    ],
+    "revocation_rules": [
+        "revoked objects do not participate in projection or runtime",
+        "revoked objects require explicit revocation_reason"
+    ],
+    "archive_rules": [
+        "archived objects are retained for audit and historical reference",
+        "archived objects may not re-enter active runtime without admission"
+    ],
+    "memory_write_rules": [
+        "suspended, expired, superseded, revoked objects are prohibited from direct long-term memory write without separate archival candidate process",
+        "personal definitions revoked from active use may not continue to drive active interaction"
+    ],
+    "active_projection_eligibility": [
+        "active_candidate may participate in projection",
+        "admitted_candidate may not participate in active projection without explicit activation"
+    ],
+    "runtime_eligibility": [
+        "active_candidate is eligible for controlled runtime participation",
+        "suspended, expired, superseded, revoked, archived are not runtime eligible"
+    ]
+}

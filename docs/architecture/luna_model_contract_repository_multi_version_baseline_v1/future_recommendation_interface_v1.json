@@ -1,0 +1,7 @@
+{
+  "reserved_taxonomy": ["CURRENT", "COMPATIBLE", "SUPPORTED", "PREFERRED", "BEST_FIT", "RECOMMENDED_UPGRADE", "KEEP_CURRENT", "DEPRECATED", "BLOCKED"],
+  "future_inputs": ["task", "device", "SLA", "capability_need", "benchmark", "cost", "stability", "license"],
+  "implemented": false,
+  "recommendation_algorithm": false,
+  "customer_recommendation_engine": false
+}

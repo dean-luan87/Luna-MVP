@@ -1,0 +1,18 @@
+{
+  "title": "Selective Learning Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Experience", "owner": "Experience", "writer": "Experience Governance", "reader": ["Learning", "Memory", "Schema"]},
+    {"module": "Knowledge", "owner": "Knowledge", "writer": "Knowledge Admission Governance", "reader": ["Field", "Role", "Learning"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Learning", "Self Evolution", "Brain"]},
+    {"module": "Schema", "owner": "Schema", "writer": "Schema Governance", "reader": ["Learning", "Self Evolution", "Brain"]},
+    {"module": "Learning", "owner": "Learning", "writer": "Learning Governance", "reader": ["Self", "Capability Governance", "Self Evolution"]},
+    {"module": "Self", "owner": "Self", "writer": "Self Governance", "reader": ["Learning", "Self Evolution"]},
+    {"module": "Self Evolution", "owner": "Self Evolution", "writer": "Self Evolution Governance", "reader": ["Self", "Capability Governance"]},
+    {"module": "Capability Governance", "owner": "Capability Governance", "writer": "Capability Admission", "reader": ["Self", "Learning", "Self Evolution"]},
+    {"module": "Value Utility", "owner": "Value Utility", "writer": "Value Governance", "reader": ["Learning", "Self", "Brain"]},
+    {"module": "Constitution", "owner": "Constitution", "writer": "Constitution Governance", "reader": ["Learning", "Self", "Capability Governance"]},
+    {"module": "Field", "owner": "Field", "writer": "Field State Owner", "reader": ["Learning", "Knowledge", "Experience"]},
+    {"module": "Social Self", "owner": "Social Self", "writer": "Social Self Governance", "reader": ["Learning", "Experience"]}
+  ]
+}

@@ -1,0 +1,455 @@
+{
+    "schema_id": "living_field_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Schema definitions for living field objects in the Luna V2 cognitive model.",
+    "objects": {
+        "SpaceAnchor": {
+            "object_type": "entity",
+            "parent_type": "entity",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "location",
+                "anchor_type",
+                "applicability_scope"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "adjacent_to",
+                "overlaps",
+                "perceived_by",
+                "supported_by"
+            ],
+            "prohibited_outputs": [
+                "fact_promotion_without_evidence"
+            ],
+            "lifecycle_rules": [
+                "proposed -> observed -> admitted_candidate"
+            ],
+            "governance_refs": [
+                "Runtime Boundary",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldDefinition": {
+            "object_type": "entity",
+            "parent_type": "entity",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "field_name",
+                "field_category",
+                "macro_field",
+                "allowed_relations"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "adjacent_to",
+                "overlaps",
+                "inherits_rules_from",
+                "derived_from"
+            ],
+            "prohibited_outputs": [
+                "runtime_write_without_admission"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Field-Centric Cognitive Constitution",
+                "Negative Guards"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldInstance": {
+            "object_type": "entity",
+            "parent_type": "FieldDefinition",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "field_definition_ref",
+                "instance_state"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "contains",
+                "perceived_by",
+                "temporarily_overrides"
+            ],
+            "prohibited_outputs": [
+                "field_flattening"
+            ],
+            "lifecycle_rules": [
+                "observed -> active_candidate -> suspended"
+            ],
+            "governance_refs": [
+                "Field-Centric Cognitive Constitution",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldState": {
+            "object_type": "state",
+            "parent_type": "state",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "state_value",
+                "field_instance_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "perceived_by",
+                "triggered_by"
+            ],
+            "prohibited_outputs": [
+                "state_mutation_without_event"
+            ],
+            "lifecycle_rules": [
+                "observed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Runtime Boundary"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldRelation": {
+            "object_type": "relation",
+            "parent_type": "relation",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "source_ref",
+                "target_ref",
+                "relation_type"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "adjacent_to",
+                "belongs_to",
+                "derived_from"
+            ],
+            "prohibited_outputs": [
+                "untyped_relation"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldEvent": {
+            "object_type": "event",
+            "parent_type": "event",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "event_type",
+                "field_instance_ref",
+                "triggered_by_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "triggered_by",
+                "supports",
+                "supersedes",
+                "derived_from"
+            ],
+            "prohibited_outputs": [
+                "event_to_state_without_projection"
+            ],
+            "lifecycle_rules": [
+                "observed -> active_candidate -> superseded"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Runtime Boundary"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FieldTimeline": {
+            "object_type": "projection",
+            "parent_type": "projection",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "timeline_entries",
+                "field_instance_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "transitions_to",
+                "derived_from"
+            ],
+            "prohibited_outputs": [
+                "timeline_facts"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "TemporalValidity": {
+            "object_type": "state",
+            "parent_type": "state",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "valid_from",
+                "valid_until",
+                "expected_duration",
+                "recurrence",
+                "refresh_policy"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "supports",
+                "triggered_by"
+            ],
+            "prohibited_outputs": [
+                "temporal_absence"
+            ],
+            "lifecycle_rules": [
+                "observed -> active_candidate -> expired"
+            ],
+            "governance_refs": [
+                "Temporal Validity Policy",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ActiveFieldProjection": {
+            "object_type": "projection",
+            "parent_type": "projection",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "projection_type",
+                "projection_source_ref",
+                "projection_scope"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "derived_from",
+                "perceived_by",
+                "supported_by"
+            ],
+            "prohibited_outputs": [
+                "substrate_rewrite"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Runtime Boundary",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    }
+}

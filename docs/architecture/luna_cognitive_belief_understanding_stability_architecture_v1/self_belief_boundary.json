@@ -1,0 +1,12 @@
+{
+  "boundary_id": "self_belief_boundary_v1",
+  "owner": "Self",
+  "inputs": ["capability_state", "self_memory", "self_regulation", "capability_uncertainty"],
+  "outputs": ["self_belief_candidate", "capability_boundary_context", "self_growth_candidate"],
+  "direct_self_modification": false,
+  "identity_write": false,
+  "value_write": false,
+  "goal_write": false,
+  "candidate_only": true,
+  "governance_required": true
+}

@@ -1,0 +1,25 @@
+{
+  "model_id": "mock_visual_symbol_v1",
+  "model_family": "visual_symbol_model_family",
+  "model_version_ref": "mock_symbol_v1_0_0",
+  "model_origin": "luna_internal_rule_and_extraction",
+  "license_ref": "luna_internal_license",
+  "source_chain": "recognition_model_output_adapter_dryrun_v1",
+  "input_ref": "mock_region_0001",
+  "output_schema_ref": "visual_symbol_output_schema_v1",
+  "confidence": 0.81,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "visual_symbol_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "symbols": [
+    {
+      "color": "green",
+      "shape": "arrow",
+      "symbol_type": "directional_arrow",
+      "direction": "right",
+      "region_ref": "mock_region_0001",
+      "confidence": 0.81
+    }
+  ]
+}

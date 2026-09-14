@@ -1,0 +1,42 @@
+{
+    "artifact": "causal_formation_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "input_mode": "SOURCE_OWNED_REFERENCE_ONLY",
+    "required_inputs": [
+        "observation_evidence_refs",
+        "context_refs",
+        "prior_refs",
+        "intent_refs_or_explicit_absence",
+        "temporal_order_refs",
+        "provenance"
+    ],
+    "formation_steps": [
+        "admit source-owned references only",
+        "separate temporal precedence and correlation from causality",
+        "form one or more causal hypothesis candidates",
+        "attach support and opposition evidence references",
+        "attach confounder candidates",
+        "preserve uncertainty and alternatives",
+        "emit candidate-only causal outputs"
+    ],
+    "prohibited_auto_promotion": [
+        "temporal_precedence_to_causality",
+        "correlation_to_causality",
+        "model_output_to_causal_fact",
+        "memory_prior_to_causal_fact",
+        "intent_preference_to_causal_conclusion"
+    ],
+    "output_candidates": [
+        "Causal Hypothesis Candidate",
+        "Causal State Candidate",
+        "Causal Conflict Candidate",
+        "Causal Trace Candidate",
+        "Causal-to-Decision Handoff Candidate"
+    ],
+    "decision_authority": false,
+    "action_authority": false,
+    "task_authority": false,
+    "runtime_behavior": false,
+    "active_contract": false
+}

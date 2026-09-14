@@ -1,0 +1,19 @@
+{
+    "artifact_id": "pcn_resource_degradation_dryrun_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "resource_scope_rule": "resource_affects_activation_scope_only",
+    "required_behavior": {
+        "high_resource_wider_than_low_resource": true,
+        "resource_affects_truth": false,
+        "resource_deletes_source": false,
+        "resource_deletes_dormant_link": false,
+        "resource_modifies_core_field": false
+    },
+    "forbidden_architecture_constants": [
+        "max_nodes",
+        "max_links",
+        "max_depth",
+        "fixed_retention_days"
+    ],
+    "candidate_only": true
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Role Emotion Action Integration Boundary v1",
+  "owner": "Social-Emotion Boundary Governance",
+  "pipeline": ["Field Event", "Role Activation", "Emotion Context", "Brain Evaluation", "Decision", "Action Boundary", "Outcome", "Emotion Update Candidate"],
+  "allowed": ["Role → Context Candidate", "Emotion → Attention/Action Priority Candidate", "Relationship → Risk Context Candidate"],
+  "forbidden": ["Emotion → Direct Action", "Role → Permission Bypass", "Emotion → Decision Override", "Social Field → Execution"],
+  "rules": {"context_only": true, "priority_candidate_only": true, "no_direct_action": true, "identity_continuity": true}
+}

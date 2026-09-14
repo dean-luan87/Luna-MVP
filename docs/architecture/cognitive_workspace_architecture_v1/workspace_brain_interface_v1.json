@@ -1,0 +1,22 @@
+{
+  "interface_name": "Workspace Brain Interface v1",
+  "cognitive_workspace_package": {
+    "field_context": {},
+    "role_context": {},
+    "relationship_context": {},
+    "task_context": {},
+    "goal_context": {},
+    "attention_state": {},
+    "unknowns": [],
+    "risks": [],
+    "memory_candidates": [],
+    "drive_state": {},
+    "value_constraints": {}
+  },
+  "brain_receives_workspace_package": true,
+  "brain_retains_reasoning_authority": true,
+  "brain_retains_goal_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "workspace_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

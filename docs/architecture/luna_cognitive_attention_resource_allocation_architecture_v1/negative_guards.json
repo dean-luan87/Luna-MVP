@@ -1,0 +1,13 @@
+{
+  "guard_set_id": "cognitive_attention_resource_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["attention_runtime", "scheduler", "model_attention_modification", "automatic_resource_allocation", "runtime_integration", "action_execution", "attention_direct_action", "attention_modify_reality", "memory_force_attention", "schema_override_reality", "model_attention_replace_cognitive_attention", "attention_unlimited_resource_usage", "attention_model_switch", "attention_hardware_control", "attention_scheduler_modification", "parallel_attention_controller", "model_attention_replacement"],
+  "attention_is_not_perception": true,
+  "attention_is_not_understanding": true,
+  "attention_is_not_decision": true,
+  "self_final_resource_governance": true,
+  "candidate_only": true,
+  "finite_resource_required": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

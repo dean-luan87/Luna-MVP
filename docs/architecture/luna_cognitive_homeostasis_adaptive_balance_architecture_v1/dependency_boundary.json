@@ -1,0 +1,17 @@
+{
+  "contract_id": "homeostasis_balance_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Constitution -> Homeostasis", "Homeostasis -> State Range", "State Range -> Adaptive Balance", "Measurement -> Homeostasis Check", "Drift -> Self Review", "Stable Core -> All Governance", "Adaptive Layer -> Controlled Growth", "Experimental Layer -> Isolated Evaluation", "Cognitive Fitness -> Balance", "Hive -> Stability Candidate", "Emotion -> Adaptive Signal Candidate", "B Route -> Future Stability Candidate"
+  ],
+  "forbidden_dependencies": [
+    "Homeostasis -> Direct Action", "State Range -> Automatic Control", "Adaptive Balance -> Automatic Optimization", "Drift -> Direct Identity Change", "Drift -> Direct Constitution Change", "Adaptive Layer -> Stable Core Change", "Experimental Layer -> Core Activation", "Genome -> Automatic Update", "Hive -> Direct State Modification", "Hive -> Direct Genome Update", "Emotion -> Direct Decision", "Emotion -> Direct Identity Change", "B Route -> Override A Route", "B Route -> Update State", "B Route -> Update Genome", "Runtime -> Homeostasis Authority", "Quality -> Direct Action"
+  ],
+  "no_runtime": true,
+  "no_automatic_control": true,
+  "no_automatic_optimization": true,
+  "no_hive_runtime": true,
+  "no_b_route_runtime": true,
+  "no_emotion_runtime": true,
+  "no_identity_change": true,
+  "no_constitution_change": true
+}

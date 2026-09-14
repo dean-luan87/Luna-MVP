@@ -1,0 +1,24 @@
+{
+    "artifact": "decision_selection_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "selection_outputs": [
+        "preferred_decision_candidate_ref",
+        "selected_candidate_ref",
+        "selection_reason_candidate",
+        "rejected_candidate_refs",
+        "defer_or_abstain_reason_candidate"
+    ],
+    "selection_guards": {
+        "selected_candidate_not_executed": true,
+        "selected_candidate_not_action": true,
+        "selected_candidate_not_task": true,
+        "selection_requires_permission_and_safety_context": true,
+        "selection_may_be_none": true
+    },
+    "eligibility_logic_contract": {
+        "hard_constraints_can_veto": true,
+        "permission_can_veto": true,
+        "safety_can_block": true,
+        "high_utility_cannot_override_hard_constraints": true
+    }
+}

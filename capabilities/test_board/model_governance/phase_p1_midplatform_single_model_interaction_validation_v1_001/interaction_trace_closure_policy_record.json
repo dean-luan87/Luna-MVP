@@ -1,0 +1,53 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "interaction_validation_planning": true,
+  "record": {
+    "schema_id": "InteractionTraceClosurePolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+    "description": "单模型互动验证 trace 闭环策略。",
+    "required_trace_stages": [
+      "image_input",
+      "segmentation_region",
+      "execution_candidate",
+      "runner_execution",
+      "segmentation_result_envelope",
+      "result_candidate",
+      "observation_update_candidate",
+      "followup_model_route_candidate",
+      "new_task_candidate"
+    ],
+    "trace_closure_chain": [
+      "Image",
+      "Segmentation Region",
+      "Execution Candidate",
+      "Runner Execution",
+      "Result Envelope",
+      "Observation Update",
+      "New Task Candidate"
+    ],
+    "human_correction_loop": {
+      "allowed": [
+        "correction_signal",
+        "priority_update",
+        "new_task_candidate",
+        "mobile_sam_rerun_candidate"
+      ],
+      "forbidden": [
+        "modify_mask",
+        "modify_segmentation_result",
+        "write_fact_from_correction"
+      ]
+    },
+    "boundary_flags": {
+      "trace_closure_required": true,
+      "human_correction_must_not_modify_mask": true,
+      "human_correction_priority_signal_only": true
+    }
+  }
+}

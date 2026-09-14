@@ -1,0 +1,18 @@
+{
+    "artifact": "cognitive_learning_idempotency_contract_v1",
+    "guards": [
+        "duplicate_learning_evidence",
+        "duplicate_candidate_formation",
+        "duplicate_parameter_update_candidate",
+        "repeated_same_source_evidence",
+        "repeated_feedback",
+        "revision_replay",
+        "supersession_replay",
+        "revocation_replay",
+        "expiration_replay"
+    ],
+    "rules": {
+        "no_hidden_mutable_global_state": true,
+        "same_input_same_candidate_identity": true
+    }
+}

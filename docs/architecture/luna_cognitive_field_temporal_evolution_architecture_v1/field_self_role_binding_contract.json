@@ -1,0 +1,12 @@
+{
+  "contract_id": "field_self_role_binding_v1",
+  "owner": "Field Temporal Evolution",
+  "inputs": ["self_state", "self_capability_boundary", "active_role", "role_responsibility", "task_context"],
+  "outputs": ["self_boundary_context_candidate", "role_continuity_context_candidate", "task_continuity_context_candidate"],
+  "self_owns_field": false,
+  "role_owns_field": false,
+  "field_assigns_identity": false,
+  "candidate_only": true,
+  "direct_self_mutation": false,
+  "direct_role_mutation": false
+}

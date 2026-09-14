@@ -1,0 +1,11 @@
+{
+  "contract_id": "memory_transition_v1",
+  "equation": "Memory(t+1)=f(Memory(t),Experience,Value)",
+  "inputs": ["Current Memory State", "Validated Experience", "Value State", "Reinforcement", "Temporal Decay", "Context Scope"],
+  "outputs": ["Memory Update Candidate", "Pattern Candidate", "Compression Candidate", "Dormancy Candidate"],
+  "memory_is_historical_influence": true,
+  "memory_is_not_reality": true,
+  "experience_validation_required": true,
+  "automatic_memory_write": false,
+  "candidate_only": true
+}

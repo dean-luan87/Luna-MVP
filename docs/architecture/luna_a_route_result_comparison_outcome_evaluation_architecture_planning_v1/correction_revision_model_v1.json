@@ -1,0 +1,9 @@
+{
+  "artifact":"correction_revision_model_v1",
+  "candidate_only":true,
+  "events":["USER_CORRECTION","CORRECTED_ACTUAL_RESULT","CORRECTED_EXPECTATION_REFERENCE","REVISED_COMPARISON","SUPERSEDED_EVALUATION","REVOKED_EVALUATION","ATTRIBUTION_REVISION"],
+  "precedence":"explicit user correction is high-priority evidence for subsequent comparison, but does not erase prior lineage",
+  "required_fields":["correction_id","source_owner","source_ref","prior_ref","corrected_ref","correction_reason","effective_temporal_scope","supersedes_ref","revokes_ref","revision_lineage","trace_ref","provenance_refs"],
+  "rules":["never silently overwrite","replayed correction is idempotently guarded","old evaluations remain reverse-locatable","correction changes future candidate evaluation, not historical provenance"],
+  "mutation_authority":false
+}

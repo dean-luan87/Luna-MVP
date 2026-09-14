@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Role Relation",
+  "owner":"Attention and Role Systems",
+  "inputs":["Active Role","Role responsibility","Role attention requirement","Task","risk"],
+  "outputs":["role attention priority candidate","responsibility context","role-relevant observation candidate"],
+  "permissions":{"use_role_context":true,"activate_role":false,"rewrite_role":false,"create_decision":false},
+  "rules":{"role_field_bound":true,"role_is_context":true,"brain_retains_judgment":true}
+}

@@ -1,0 +1,110 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Library/Developer/CommandLineTools/usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/luanlei/Desktop/Luna-2/luna_badge_v1_2/tests/qa_1_4_1
+configfile: pytest.ini
+plugins: anyio-4.11.0, typeguard-4.4.4
+collecting ... collected 42 items
+
+tests/qa_1_4_1/test_auto_recovery.py::TestAutoRecovery::test_ar_01_normal_recovery 
+-------------------------------- live log setup --------------------------------
+2025-12-04 10:58:55 [INFO] Loaded default config from /Users/luanlei/Desktop/Luna-2/luna_badge_v1_2/config/default.yaml
+2025-12-04 10:58:55 [INFO] Loaded env config from /Users/luanlei/Desktop/Luna-2/luna_badge_v1_2/config/dev.yaml
+2025-12-04 10:58:55 [INFO] ConfigCenter initialized with env=dev
+PASSED                                                                   [  2%]
+tests/qa_1_4_1/test_auto_recovery.py::TestAutoRecovery::test_ar_02_recovery_reset PASSED [  4%]
+tests/qa_1_4_1/test_auto_recovery.py::TestAutoRecovery::test_ar_03_disabled_recovery PASSED [  7%]
+tests/qa_1_4_1/test_config.py::TestConfig::test_cfg_01_stable_duration_config PASSED [  9%]
+tests/qa_1_4_1/test_config.py::TestConfig::test_cfg_02_auto_restart_enabled PASSED [ 11%]
+tests/qa_1_4_1/test_degraded_hooks.py::TestDegradedHooks::test_dg_01_model_force_degrade PASSED [ 14%]
+tests/qa_1_4_1/test_degraded_hooks.py::TestDegradedHooks::test_dg_02_ocr_pause PASSED [ 16%]
+tests/qa_1_4_1/test_degraded_hooks.py::TestDegradedHooks::test_dg_03_restore PASSED [ 19%]
+tests/qa_1_4_1/test_emergency_voice.py::TestEmergencyVoice::test_ev_01_emergency_auto_playback PASSED [ 21%]
+tests/qa_1_4_1/test_emergency_voice.py::TestEmergencyVoice::test_ev_02_playback_throttle PASSED [ 23%]
+tests/qa_1_4_1/test_emergency_voice.py::TestEmergencyVoice::test_ev_03_tts_not_available PASSED [ 26%]
+tests/qa_1_4_1/test_emergency_voice_tts.py::test_emergency_voice_single_play PASSED [ 28%]
+tests/qa_1_4_1/test_emergency_voice_tts.py::test_emergency_voice_throttle PASSED [ 30%]
+tests/qa_1_4_1/test_emergency_voice_tts.py::test_emergency_voice_no_tts_manager PASSED [ 33%]
+tests/qa_1_4_1/test_entry.py::test_camera_stale_emergency PASSED         [ 35%]
+tests/qa_1_4_1/test_entry.py::test_high_cpu_degraded PASSED              [ 38%]
+tests/qa_1_4_1/test_entry.py::test_emergency_voice_throttle PASSED       [ 40%]
+tests/qa_1_4_1/test_entry.py::test_auto_recovery PASSED                  [ 42%]
+tests/qa_1_4_1/test_entry.py::test_recovery_resets_when_new_error PASSED [ 45%]
+tests/qa_1_4_1/test_fail_safe_manager.py::TestFailSafeManager::test_fsm_01_emergency_mode_trigger PASSED [ 47%]
+tests/qa_1_4_1/test_fail_safe_manager.py::TestFailSafeManager::test_fsm_02_degraded_mode_trigger PASSED [ 50%]
+tests/qa_1_4_1/test_fail_safe_manager.py::TestFailSafeManager::test_fsm_03_repeat_trigger_throttle PASSED [ 52%]
+tests/qa_1_4_1/test_fail_safe_manager.py::TestFailSafeManager::test_fsm_04_recovery PASSED [ 54%]
+tests/qa_1_4_1/test_health_monitor.py::TestHealthMonitor::test_hm_01_normal_heartbeat PASSED [ 57%]
+tests/qa_1_4_1/test_health_monitor.py::TestHealthMonitor::test_hm_02_camera_stale_detection PASSED [ 59%]
+tests/qa_1_4_1/test_health_monitor.py::TestHealthMonitor::test_hm_03_infer_stale_detection PASSED [ 61%]
+tests/qa_1_4_1/test_health_monitor.py::TestHealthMonitor::test_hm_04_cpu_mem_high_pressure PASSED [ 64%]
+tests/qa_1_4_1/test_hooks.py::test_degraded_hooks_switch_model PASSED    [ 66%]
+tests/qa_1_4_1/test_hooks.py::test_degraded_hooks_restore PASSED         [ 69%]
+tests/qa_1_4_1/test_integration_stress.py::TestIntegrationStress::test_it_01_rapid_event_injection PASSED [ 71%]
+tests/qa_1_4_1/test_integration_stress.py::TestIntegrationStress::test_it_02_long_running PASSED [ 73%]
+tests/qa_1_4_1/test_memory_leak.py::test_memory_leak_trend PASSED        [ 76%]
+tests/qa_1_4_1/test_scenarios.py::TestScenarios::test_sc_01_normal_to_emergency_to_recovery_flow FAILED [ 78%]
+tests/qa_1_4_1/test_scenarios.py::TestScenarios::test_sc_02_chain_anomalies PASSED [ 80%]
+tests/qa_1_4_1/test_soft_restart_boundary.py::test_auto_restart_flag_default_false PASSED [ 83%]
+tests/qa_1_4_1/test_soft_restart_boundary.py::test_soft_restart_no_effect_for_now PASSED [ 85%]
+tests/qa_1_4_1/test_speed_engine.py::TestSpeedEngine::test_se_01_camera_worker_normal PASSED [ 88%]
+tests/qa_1_4_1/test_speed_engine.py::TestSpeedEngine::test_se_02_vision_infer_worker_normal PASSED [ 90%]
+tests/qa_1_4_1/test_speed_engine.py::TestSpeedEngine::test_se_03_worker_timeout_simulation PASSED [ 92%]
+tests/qa_1_4_1/test_speed_engine.py::TestSpeedEngine::test_se_04_multithread_competition PASSED [ 95%]
+tests/qa_1_4_1/test_stress_longrun.py::test_stress_random_events_30s PASSED [ 97%]
+tests/qa_1_4_1/test_stress_longrun.py::test_longrun_state_stability PASSED [100%]
+
+=================================== FAILURES ===================================
+________ TestScenarios.test_sc_01_normal_to_emergency_to_recovery_flow _________
+tests/qa_1_4_1/test_scenarios.py:49: in test_sc_01_normal_to_emergency_to_recovery_flow
+    assert SpeedContext.get_mode() == "normal", "初始状态应该是 normal"
+E   AssertionError: 初始状态应该是 normal
+E   assert 'safe' == 'normal'
+E     
+E     - normal
+E     + safe
+---------------------------- Captured stderr setup -----------------------------
+[2025-12-04 11:03:13] [WARNING] [core.config.config_center] ConfigCenter already initialized, skipping
+[2025-12-04 11:03:13] [WARNING] [root] LogManager already initialized, skipping
+------------------------------ Captured log setup ------------------------------
+WARNING  core.config.config_center:config_center.py:32 ConfigCenter already initialized, skipping
+WARNING  root:log_manager.py:27 LogManager already initialized, skipping
+----------------------------- Captured stderr call -----------------------------
+[2025-12-04 11:03:13] [DEBUG] [HealthMonitor] Event callback set
+[2025-12-04 11:03:13] [INFO] [FailSafeManager] [FailSafeManager] attached to HealthMonitor
+[2025-12-04 11:03:13] [DEBUG] [HealthMonitor] [HealthMonitor] run loop started
+[2025-12-04 11:03:13] [INFO] [HealthMonitor] [HealthMonitor] started
+[2025-12-04 11:03:13] [WARNING] [FailSafeManager] [FailSafeManager] Receive event: infer_stale
+[2025-12-04 11:03:13] [DEBUG] [AutoRecoveryManager] [AutoRecovery] run loop started
+[2025-12-04 11:03:13] [INFO] [AutoRecoveryManager] [AutoRecovery] started (stable_duration=2.0s, check_interval=0.5s)
+[2025-12-04 11:03:13] [ERROR] [FailSafeManager] [FailSafeManager] Enter EMERGENCY mode, reason=infer_stale
+[2025-12-04 11:03:13] [DEBUG] [AutoRecoveryManager] [AutoRecovery] Not stable enough (0.0s < 2.0s)
+[2025-12-04 11:03:13] [WARNING] [EmergencyVoiceLayer] [EmergencyVoice] 当前视觉系统异常，请原地停下并注意安全。
+------------------------------ Captured log call -------------------------------
+DEBUG    HealthMonitor:health_monitor.py:89 Event callback set
+INFO     FailSafeManager:fail_safe_manager.py:68 [FailSafeManager] attached to HealthMonitor
+DEBUG    HealthMonitor:health_monitor.py:133 [HealthMonitor] run loop started
+INFO     HealthMonitor:health_monitor.py:97 [HealthMonitor] started
+WARNING  FailSafeManager:fail_safe_manager.py:87 [FailSafeManager] Receive event: infer_stale
+DEBUG    AutoRecoveryManager:auto_recovery.py:78 [AutoRecovery] run loop started
+INFO     AutoRecoveryManager:auto_recovery.py:61 [AutoRecovery] started (stable_duration=2.0s, check_interval=0.5s)
+ERROR    FailSafeManager:fail_safe_manager.py:121 [FailSafeManager] Enter EMERGENCY mode, reason=infer_stale
+DEBUG    AutoRecoveryManager:auto_recovery.py:124 [AutoRecovery] Not stable enough (0.0s < 2.0s)
+--------------------------- Captured stderr teardown ---------------------------
+[2025-12-04 11:03:13] [INFO] [EmergencyVoiceLayer] [EmergencyVoice] TTSManager not available, using log only
+[2025-12-04 11:03:13] [WARNING] [DegradedHooks] [DegradedHooks] Applying degraded behaviour
+[2025-12-04 11:03:13] [WARNING] [DegradedHooks] [DegradedHooks] VisionInferWorker not available, cannot force model switch
+[2025-12-04 11:03:13] [DEBUG] [DegradedHooks] [DegradedHooks] OCRManager not available, skipping OCR pause
+[2025-12-04 11:03:13] [WARNING] [HealthMonitor] [HealthMonitor] Event: infer_stale
+[2025-12-04 11:03:13] [WARNING] [ThreadController] [ThreadController] Stopping all speed workers...
+[2025-12-04 11:03:13] [INFO] [SpeedThreadPool] Stopping 0 workers...
+---------------------------- Captured log teardown -----------------------------
+WARNING  ThreadController:thread_controller.py:44 [ThreadController] Stopping all speed workers...
+INFO     SpeedThreadPool:speed_thread_pool.py:43 Stopping 0 workers...
+=========================== short test summary info ============================
+FAILED tests/qa_1_4_1/test_scenarios.py::TestScenarios::test_sc_01_normal_to_emergency_to_recovery_flow - AssertionError: 初始状态应该是 normal
+assert 'safe' == 'normal'
+  
+  - normal
+  + safe
+=================== 1 failed, 41 passed in 361.95s (0:06:01) ===================

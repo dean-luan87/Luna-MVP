@@ -1,0 +1,12 @@
+{
+    "artifact": "learning_intent_boundary_v1",
+    "allowed": [
+        "historical_influence_references_only"
+    ],
+    "forbidden": [
+        "intent_creation",
+        "intent_activation",
+        "intent_reprioritization",
+        "intent_revocation"
+    ]
+}

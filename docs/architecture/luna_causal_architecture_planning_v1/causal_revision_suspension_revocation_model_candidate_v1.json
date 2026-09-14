@@ -1,0 +1,38 @@
+{
+    "artifact": "causal_revision_suspension_revocation_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "revision_triggers": [
+        "new_supporting_evidence",
+        "new_opposing_evidence",
+        "confounder_identified",
+        "temporal_conflict_identified",
+        "intent_or_context_change_reference"
+    ],
+    "suspension_triggers": [
+        "insufficient_evidence",
+        "high_conflict_unresolved",
+        "critical_trace_gap"
+    ],
+    "revocation_triggers": [
+        "evidence_revoked",
+        "source_invalidated",
+        "trace_integrity_failure"
+    ],
+    "required_fields": [
+        "change_id",
+        "hypothesis_ref",
+        "change_type",
+        "reason_candidate",
+        "supporting_refs",
+        "opposing_refs",
+        "provenance",
+        "trace_ref"
+    ],
+    "guards": {
+        "silent_overwrite_forbidden": true,
+        "delete_without_trace_forbidden": true,
+        "revision_is_decision": false,
+        "revocation_is_action": false
+    }
+}

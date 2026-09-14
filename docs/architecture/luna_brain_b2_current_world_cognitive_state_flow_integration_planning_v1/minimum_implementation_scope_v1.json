@@ -1,0 +1,14 @@
+{
+  "scope_id": "b2_minimum_implementation_scope_v1",
+  "phase_status": "PLANNING_ONLY",
+  "required_later": [
+    "read-only B1 CurrentWorld artifact/reference consumer",
+    "narrow adapter into the existing Cognitive State Formation input boundary",
+    "mapping from Cognitive State Formation output into existing Cognitive Flow input/snapshot",
+    "controlled observation-need/reconsideration handoff adapter if current output contracts require it",
+    "B2 runner and verifier using existing synthetic Cognitive State/Cognitive Flow fixtures"
+  ],
+  "not_required": ["new cognitive owner", "new Current World store", "new hypothesis ontology", "new attention owner", "provider integration", "Gateway rebuild", "Field Reducer change", "Decision/Task/Action execution"],
+  "canonical_types_preferred": ["CurrentWorldCandidateV1", "CognitiveStateFormationInputV1", "CognitiveStateFormationOutputV1", "CognitiveFlowInputV1", "CognitiveCycleSnapshotV1", "CognitiveFlowOutputV1"],
+  "contract_decision_before_code": "Resolve whether CurrentWorldCandidate needs a versioned first-class input field in CognitiveStateFormationInputV1; do not silently overload an unrelated reference field."
+}

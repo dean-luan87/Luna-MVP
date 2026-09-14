@@ -1,0 +1,30 @@
+{
+  "schema_id": "CaseMobileSamToOcrRouteValidationV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "case_id": "Case-1-MobileSAM-to-OCR-Route-Candidate",
+  "description": "第一轮闭环：MobileSAM 结果 → 中台再评估 → OCR task candidate（不跑 OCR）",
+  "input_fixture": {
+    "image_ref": "capabilities/test_assets/p1/mobile_sam/mobile_sam_real_local_image_street_scene_v1.png",
+    "task_context": "street_navigation_test",
+    "sample_regions": ["region_001", "region_002", "region_003"]
+  },
+  "expected_flow": [
+    "mobilesam_produces_segmentation_result_envelope",
+    "result_enters_midplatform_processing",
+    "observation_update_candidate_created",
+    "ocr_route_candidate_for_text_likely_region",
+    "ocr_task_candidate_created",
+    "no_ocr_runner_execution"
+  ],
+  "assertions": {
+    "mobilesam_does_not_say_this_is_sign": true,
+    "midplatform_decides_ocr_worthiness": true,
+    "attention_record_not_overwritten": true,
+    "ocr_runner_not_called": true
+  },
+  "boundary_flags": {
+    "case_1_only": true,
+    "planning_validation": true
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Module Lifecycle System v1",
+  "owner": "Cognitive OS Governance",
+  "states": ["Proposed", "Registered", "Validated", "Admitted", "Active", "Suspended", "Recovered", "Deprecated", "Archived"],
+  "required_record": ["module_id", "owner", "layer", "version", "contract", "dependency", "state"],
+  "transitions": [
+    {"from":"Proposed","to":"Registered","guard":"identity present"},
+    {"from":"Registered","to":"Validated","guard":"schema and contract check"},
+    {"from":"Validated","to":"Admitted","guard":"permission health dependency checks"},
+    {"from":"Admitted","to":"Active","guard":"explicit activation authority"},
+    {"from":"Active","to":"Suspended","guard":"failure or governance request"},
+    {"from":"Suspended","to":"Recovered","guard":"health and state recovery"},
+    {"from":"Recovered","to":"Active","guard":"resume authority"},
+    {"from":"Active","to":"Deprecated","guard":"replacement or governance decision"},
+    {"from":"Deprecated","to":"Archived","guard":"retention policy"}
+  ],
+  "rules": {"bypass_forbidden": true, "single_owner": true, "historical_retained": true, "runtime_activation_out_of_scope": true}
+}

@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Self Social Relation Contract",
+  "owner":"Cognitive Field Integration",
+  "inputs":{"self":["identity boundary","capability state","resource state","stability state"],"social_self":["role context","relationship context","responsibility","social norm"]},
+  "outputs":["subject constraint candidate","social position candidate","behavior context candidate"],
+  "permissions":{"self_can_constrain":true,"social_self_can_contextualize":true,"self_can_rewrite_role":false,"social_self_can_rewrite_identity":false},
+  "rules":{"identity_continuity":true,"role_field_bound":true,"relationship_candidate_only":true,"field_composes_not_overwrites":true}
+}

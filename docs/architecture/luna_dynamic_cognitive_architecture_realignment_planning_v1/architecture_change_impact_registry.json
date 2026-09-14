@@ -1,0 +1,19 @@
+{
+  "registry_id": "dynamic_cognitive_architecture_change_impact_v1",
+  "impacts": [
+    {"area": "Architecture Baseline v2", "impact": "requires later canonical baseline update", "current_phase_action": "record candidate only", "risk": "baseline drift"},
+    {"area": "Field documentation", "impact": "add Field Context Management positioning", "current_phase_action": "plan amendment", "risk": "parallel field owner"},
+    {"area": "Observation/Attention documentation", "impact": "separate perceptual and cognitive attention", "current_phase_action": "plan contract alignment", "risk": "attention authority collision"},
+    {"area": "Memory documentation", "impact": "connect compression and network projection candidates", "current_phase_action": "plan adapter", "risk": "second memory store"},
+    {"area": "Emotion documentation", "impact": "project emotion context without Value ownership", "current_phase_action": "plan boundary note", "risk": "value authority leak"},
+    {"area": "Decision documentation", "impact": "consume intent/gate/causal context", "current_phase_action": "plan input alignment", "risk": "gate becoming decision owner"},
+    {"area": "Intent architecture", "impact": "align existing candidate contracts to processing/gate", "current_phase_action": "reuse", "risk": "duplicate engine"},
+    {"area": "Causality architecture", "impact": "promote plans into typed network contract candidate", "current_phase_action": "reuse and extend", "risk": "causal belief promoted to fact"},
+    {"area": "Experience compression", "impact": "connect to memory/network evolution candidates", "current_phase_action": "reuse and align", "risk": "automatic learning"},
+    {"area": "Task Manager", "impact": "clarify downstream orchestration position", "current_phase_action": "no code change", "risk": "action authority leak"},
+    {"area": "Model Manager", "impact": "retain capability-layer position", "current_phase_action": "no change", "risk": "cognitive authority leak"}
+  ],
+  "existing_documents_modified": false,
+  "existing_code_modified": false,
+  "future_change_control_required": true
+}

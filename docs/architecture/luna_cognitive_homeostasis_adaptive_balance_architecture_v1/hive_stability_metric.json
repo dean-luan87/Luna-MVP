@@ -1,0 +1,13 @@
+{
+  "metric_id": "hive_stability_metric_v1",
+  "comparison_tuple": ["Outcome Quality", "Cognitive Fitness", "Stability"],
+  "inputs": ["State Quality", "Cognitive Fitness", "Self Stability", "Drift", "Range Compliance", "Recovery Quality"],
+  "outputs": ["Stability Comparison Candidate", "Balanced Fitness Candidate", "Drift Risk Candidate", "Unknowns"],
+  "hive_is_observer_only": true,
+  "hive_has_no_write_permission": true,
+  "field_scope_required": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "hive_runtime": false,
+  "candidate_only": true
+}

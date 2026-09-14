@@ -1,0 +1,40 @@
+{
+  "title": "Brain Global State Package Contract v1",
+  "contract_type": "Global Cognitive State Package for Brain",
+  "input": {
+    "global_cognitive_state_snapshot": "snapshot-example",
+    "reality_state": {},
+    "field_state": {},
+    "self_state": {},
+    "role_state": {},
+    "relationship_state": {},
+    "situation_state": {},
+    "intent_state": {},
+    "goal_state": {},
+    "task_state": {},
+    "workspace_state": {},
+    "attention_state": {},
+    "drive_state": {},
+    "value_state": {},
+    "hypothesis_state": {},
+    "belief_state": {},
+    "expectation_state": {},
+    "memory_context": {},
+    "learning_context": {},
+    "capability_state": {},
+    "unknown_state": {},
+    "risk": [],
+    "conflicts": [],
+    "confidence": {},
+    "provenance": []
+  },
+  "brain_boundary": {
+    "brain_receives_global_cognitive_state_package": true,
+    "brain_retains_reasoning_authority": true,
+    "brain_retains_goal_authority": true,
+    "brain_retains_final_decision_authority": true,
+    "global_state_is_not_decision": true,
+    "global_state_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

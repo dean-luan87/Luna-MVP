@@ -1,0 +1,22 @@
+{
+    "artifact": "cognitive_execution_chain_task_manager_boundary_v1",
+    "status": "PLANNING_CANDIDATE",
+    "task_manager_position": "orchestration_and_task_lifecycle_dependency_coordination",
+    "task_manager_is_not": [
+        "intent_owner",
+        "decision_owner",
+        "action_owner",
+        "runtime_executor_owner"
+    ],
+    "required_flows": [
+        "task_to_decision_or_action_refs",
+        "action_to_task_reference_handoff",
+        "execution_result_to_task_result_reference"
+    ],
+    "forbidden_flows": [
+        "task_manager_direct_runtime_executor_bypass",
+        "task_manager_direct_action_execution",
+        "task_manager_direct_decision_selection"
+    ],
+    "known_gap_policy": "if existing contract implies bypass, record as integration gap/blocker only"
+}

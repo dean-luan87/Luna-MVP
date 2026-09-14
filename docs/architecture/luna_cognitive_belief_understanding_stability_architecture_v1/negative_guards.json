@@ -1,0 +1,12 @@
+{
+  "guard_set_id": "belief_understanding_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["belief_runtime", "confidence_engine", "automatic_reasoning", "model_calls", "knowledge_retrieval", "memory_modification", "decision_execution", "belief_reality_replacement", "memory_direct_belief_override", "schema_forced_conclusion", "confidence_truth_assertion", "understanding_direct_action", "parallel_belief_store", "independent_knowledge_judgment", "brain_runtime_modification", "decision_runtime_modification", "automatic_belief_update"],
+  "reality_highest_priority": true,
+  "belief_is_best_current_explanation": true,
+  "unknown_preserved": true,
+  "candidate_only": true,
+  "provenance_required": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

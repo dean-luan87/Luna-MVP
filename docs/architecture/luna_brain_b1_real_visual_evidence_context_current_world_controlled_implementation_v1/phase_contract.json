@@ -1,0 +1,18 @@
+{
+  "phase": "Phase-Luna-Brain-B1-Real-Visual-Evidence-Context-Current-World-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION",
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "input": "previously validated real YOLO11n structured evidence reference",
+  "route": [
+    "Observation Gateway controlled evidence admission",
+    "Context World State Controlled Integration",
+    "Context Foundation candidate",
+    "optional Field Event Admission",
+    "Field State Reducer eligibility only",
+    "CurrentWorldCandidateV1"
+  ],
+  "stop_before": ["B2 Cognitive State / Cognitive Flow", "Field State mutation", "provider invocation"],
+  "no_new_semantic_owner": true,
+  "candidate_only": true,
+  "provenance_grants_authority": false
+}

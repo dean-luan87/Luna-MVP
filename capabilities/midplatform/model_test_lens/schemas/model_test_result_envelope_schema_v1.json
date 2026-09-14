@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "model_test_result_envelope_schema_v1",
+  "title": "Model Test Result Envelope V1",
+  "description": "Unified envelope for all model types in Model Test Lens. Candidate-only; not fact.",
+  "type": "object",
+  "required": [
+    "envelope_id",
+    "test_case_id",
+    "model_id",
+    "model_category",
+    "input_asset_refs",
+    "candidate_outputs",
+    "visualization_layers",
+    "metrics",
+    "failure_modes",
+    "quality_summary",
+    "test_board_refs",
+    "boundary_flags",
+    "readiness_effect"
+  ],
+  "properties": {
+    "envelope_id": { "type": "string" },
+    "phase_ref": { "type": "string" },
+    "test_case_id": { "type": "string" },
+    "model_id": { "type": "string" },
+    "model_category": { "type": "string" },
+    "model_version_or_registry_ref": { "type": "string" },
+    "input_asset_refs": { "type": "array", "items": { "type": "string" } },
+    "test_manifest_ref": { "type": "string" },
+    "execution_trace_ref": { "type": "string" },
+    "candidate_outputs": { "type": "array", "items": { "type": "object" } },
+    "visualization_layers": { "type": "array", "items": { "$ref": "#/definitions/visualization_layer" } },
+    "metrics": { "type": "object" },
+    "failure_modes": { "type": "array", "items": { "type": "string" } },
+    "quality_summary": { "type": "object" },
+    "test_board_refs": { "type": "array", "items": { "type": "string" } },
+    "protected_artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "boundary_flags": {
+      "type": "object",
+      "required": [
+        "candidate_only", "not_fact", "not_runtime_output",
+        "not_output_adapter_output", "not_semantic_output", "not_navigation_action_speech"
+      ],
+      "properties": {
+        "candidate_only": { "type": "boolean", "const": true },
+        "not_fact": { "type": "boolean", "const": true },
+        "not_runtime_output": { "type": "boolean", "const": true },
+        "not_output_adapter_output": { "type": "boolean", "const": true },
+        "not_semantic_output": { "type": "boolean", "const": true },
+        "not_navigation_action_speech": { "type": "boolean", "const": true }
+      }
+    },
+    "readiness_effect": {
+      "type": "object",
+      "properties": {
+        "runtime_ready": { "type": "boolean", "const": false },
+        "output_adapter_ready": { "type": "boolean", "const": false },
+        "semantic_layer_ready": { "type": "boolean", "const": false },
+        "fact_write_ready": { "type": "boolean", "const": false },
+        "navigation_action_speech_ready": { "type": "boolean", "const": false }
+      }
+    }
+  },
+  "definitions": {
+    "visualization_layer": {
+      "type": "object",
+      "required": ["layer_id", "layer_type", "candidate_only"],
+      "properties": {
+        "layer_id": { "type": "string" },
+        "layer_type": {
+          "type": "string",
+          "enum": [
+            "image_overlay", "mask", "bbox", "polyline", "trajectory", "heatmap",
+            "waveform", "transcript", "table", "timeline"
+          ]
+        },
+        "source_artifact_ref": { "type": "string" },
+        "display_name": { "type": "string" },
+        "model_id": { "type": "string" },
+        "candidate_only": { "type": "boolean" },
+        "opacity": { "type": "number" },
+        "color_class": { "type": "string" },
+        "metrics_ref": { "type": "string" },
+        "failure_mode_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "additionalProperties": true
+}

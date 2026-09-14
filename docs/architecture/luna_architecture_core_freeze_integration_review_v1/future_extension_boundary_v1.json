@@ -1,0 +1,10 @@
+{
+  "title": "Future Extension Boundary v1",
+  "extensions": [
+    {"extension":"Emotion","layer":"L3","entry":"Emotion Context Boundary","allowed":["Context","Attention Candidate","Preference Candidate"],"forbidden":["Direct Action","Constitution","Decision Override"],"status":"interface_only"},
+    {"extension":"Social","layer":"L3","entry":"Social Field Boundary","allowed":["Role Context","Relationship Context","Interaction Evidence"],"forbidden":["Identity Rewrite","Direct Action","Decision Authority"],"status":"interface_only"},
+    {"extension":"Provider / Model","layer":"L5","entry":"Capability Boundary","allowed":["Evidence Candidate","Health Candidate","Performance Evidence"],"forbidden":["Brain Replacement","Goal Ownership","Reality Authority","Memory Authority"],"status":"future_admission"},
+    {"extension":"Hardware","layer":"L5","entry":"Hardware Capability Boundary","allowed":["Resource State","Capability Constraint","Health Candidate"],"forbidden":["Decision","Goal","Identity Rewrite"],"status":"future_admission"}
+  ],
+  "rules": {"admission_required":true,"constitution_check_required":true,"core_owner_unchanged":true,"no_direct_authority_transfer":true}
+}

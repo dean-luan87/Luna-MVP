@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Luna Migration Candidate Registry",
+  "candidates":[
+    {"asset":"capabilities/registry/luna_capability_registry_v1.json","current_state":"existing capability registry","target_owner":"Capability Governance","migration_priority":"P1","risk":"medium","compatibility_strategy":"adapter and alias mapping","validation_gate":"Capability Governance V2"},
+    {"asset":"capabilities/registry/manifests/model_manager_manifest_v1.json","current_state":"existing model manifest","target_owner":"Capability Governance / Model Manager","migration_priority":"P1","risk":"medium","compatibility_strategy":"read-only mapping first","validation_gate":"Model admission boundary review"},
+    {"asset":"capabilities/ocr_runtime/","current_state":"provider and evidence skeletons","target_owner":"Capability Runtime","migration_priority":"P1","risk":"high","compatibility_strategy":"controlled provider adapter","validation_gate":"Evidence Gateway validation"},
+    {"asset":"capabilities/vision_runtime/","current_state":"vision adapter and evidence skeletons","target_owner":"Capability Runtime","migration_priority":"P1","risk":"high","compatibility_strategy":"capability-scoped adapter","validation_gate":"Provider isolation validation"},
+    {"asset":"docs/architecture/luna_cognitive_runtime_foundation_v1/","current_state":"runtime contracts","target_owner":"Cognitive Runtime Governance","migration_priority":"P0","risk":"high","compatibility_strategy":"state/event/trace implementation plan","validation_gate":"Runtime Foundation phase"},
+    {"asset":"capabilities/voice/runtime/voice_final_text_dispatcher.py","current_state":"5161-line active code asset","target_owner":"Capability Runtime","migration_priority":"P2","risk":"high","compatibility_strategy":"future seam inventory; no split now","validation_gate":"large-file governance review"}
+  ],
+  "rules":{"risk_required":true,"validation_gate_required":true,"mapping_before_move":true,"no_automatic_migration":true,"no_delete":true}
+}

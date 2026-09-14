@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Planning-DryRun-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-29T05:39:39.583338+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_controlled_install_planning_dryrun_status": "controlled_install_plan_generated_template_only_no_install_no_download_no_inference_no_runtime",
+    "next_step_ref": "Phase-P1-Controlled-Install-Planning-DryRun-Post-Review-v1-001",
+    "transition_note": "Auditable controlled-install PLAN for the 5 INSTALL_REQUIRED P1 assets (supervision, byte_track, deep_sort, midas, mobile_sam). 12 assets are explicitly excluded (BLOCKED_BY_LICENSE / DEFERRED_RESOURCE_HEAVY / RESERVED_ONLY / non-INSTALL_REQUIRED). Install order, dependency-resolution plan, package install templates (template_only, never executed), weight-acquisition plan (no download; hash/source/license gated before future inference), a shared environment-isolation plan (CPU/MPS, no CUDA assumption, snapshot + rollback required), version-pin plan, license install boundary check, and rollback plan are produced for every candidate. Nothing is installed/downloaded/executed; no pip subprocess. Future install execution requires separate owner approval. Install planning success is NOT install-execution / runtime / real-output-adapter / commercial approval; runtime-trial and real-output-adapter eligibility remain false for all assets. Protected records are written to the test board in planning mode. Next: P1 Controlled Install Planning DryRun Post-Review before any real controlled install execution planning."
+  },
+  "final_decision": "P1_CONTROLLED_INSTALL_PLANNING_DRYRUN_GO"
+}

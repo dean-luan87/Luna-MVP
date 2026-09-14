@@ -1,0 +1,63 @@
+{
+    "artifact": "causal_existing_asset_reuse_mapping_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "reuse_targets": [
+        {
+            "asset": "docs/architecture/luna_intent_architecture_planning_v1/intent_to_causal_handoff_contract_candidate_v1.json",
+            "reuse": "upstream_handoff_contract",
+            "inherited_fields": [
+                "consumer_owner",
+                "required_payload",
+                "forbidden_output"
+            ]
+        },
+        {
+            "asset": "docs/architecture/luna_intent_architecture_planning_v1/intent_state_model_candidate_v1.json",
+            "reuse": "state_model_style_reference",
+            "inherited_principles": [
+                "candidate_state_not_truth",
+                "multi_candidate_allowed"
+            ]
+        },
+        {
+            "asset": "docs/architecture/luna_intent_architecture_planning_v1/intent_owner_boundary_candidate_v1.json",
+            "reuse": "single_owner_boundary_pattern",
+            "inherited_principles": [
+                "unique_owner",
+                "reference_only_inputs",
+                "no_cross_write"
+            ]
+        },
+        {
+            "asset": "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_negative_guards_v1.json",
+            "reuse": "negative_guard_pattern",
+            "inherited_principles": [
+                "no_runtime_side_effect",
+                "no_parallel_owner",
+                "no_check_weaken"
+            ]
+        },
+        {
+            "asset": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json",
+            "reuse": "legacy_schema_reference",
+            "notes": "legacy naming Causal Reasoning Governance mapped to canonical Causal Governance alias"
+        },
+        {
+            "asset": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/causal_network_boundary.json",
+            "reuse": "causal_boundary_reference",
+            "notes": "reuse conceptual boundary; no direct active schema adoption"
+        },
+        {
+            "asset": "capabilities/midplatform/core/intent_governance/intent_registry_v1.py",
+            "reuse": "owner_name_alignment",
+            "notes": "CAUSAL_OWNER constant currently Causal Governance"
+        }
+    ],
+    "do_not_duplicate": [
+        "second_causal_owner",
+        "parallel_causal_runtime_engine",
+        "parallel_handoff_schema_with_same_purpose"
+    ],
+    "existing_assets_modified": false
+}

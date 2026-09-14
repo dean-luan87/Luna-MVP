@@ -1,0 +1,11 @@
+{
+  "schema_id": "field_identity_candidate_v1",
+  "owner": "Field Temporal Evolution",
+  "fields": ["identity_candidate_id", "prior_field_ref", "current_field_ref", "spatial_continuity", "temporal_continuity", "entity_continuity", "task_continuity", "role_continuity", "supporting_evidence", "confidence", "unknowns", "provenance"],
+  "continuity_dimensions": ["Spatial Continuity", "Temporal Continuity", "Entity Continuity", "Task Continuity", "Role Continuity"],
+  "candidate_only": true,
+  "is_reality": false,
+  "world_model": false,
+  "identity_confirmation": false,
+  "unknown_preserved": true
+}

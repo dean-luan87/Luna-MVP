@@ -1,0 +1,43 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:58:26.963477+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "real_local_image_quality_summary_record",
+  "record": {
+    "record_id": "real_local_image_quality_summary_v1",
+    "overall_inference_success": true,
+    "prompt_success_count": 5,
+    "prompt_failure_count": 0,
+    "observed_failure_modes": [],
+    "likely_quality_risks": [
+      "night_scene_low_light",
+      "reflection_or_glare",
+      "small_distant_objects",
+      "glass_building_repeated_patterns",
+      "road_marking_large_flat_region"
+    ],
+    "human_review_required": true,
+    "suitable_for_runtime_admission": false,
+    "suitable_for_quality_observation": true,
+    "not_semantic_fact": true,
+    "per_prompt_quality_note": {
+      "road_sign": "area_ratio=0.027107; score=0.8008540868759155",
+      "left_building": "area_ratio=0.087516; score=0.9612717628479004",
+      "center_advertisement_screen": "area_ratio=0.045588; score=0.8126455545425415",
+      "front_vehicle": "area_ratio=0.014382; score=0.7033083438873291",
+      "crosswalk_or_road_region": "area_ratio=0.113117; score=0.9273806810379028"
+    }
+  }
+}

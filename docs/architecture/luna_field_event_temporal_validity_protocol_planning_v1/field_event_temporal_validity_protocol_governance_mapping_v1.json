@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field Event and Temporal Validity Governance Mapping",
+    "description": "映射协议中使用的治理控制点与现有治理范式",
+    "governance_refs": [
+        "Candidate / Fact Admission",
+        "Evidence Chain",
+        "Runtime Boundary",
+        "Permission / Owner Approval",
+        "Human Correction",
+        "Negative Guards",
+        "Trace and Diagnostics",
+        "Change Control",
+        "Post-Review / Freeze",
+        "Rollback / Revocation",
+        "Input / Output Symmetry"
+    ],
+    "mapping_notes": [
+        "所有事件类型须映射到至少一个治理控制点。",
+        "时间有效性评估需引用 Trace and Diagnostics。",
+        "临时覆盖与撤回必须遵循 Change Control。"
+    ]
+}

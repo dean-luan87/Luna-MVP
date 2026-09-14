@@ -1,0 +1,51 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T04:38:21.787250+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "model_runtime_boundary_record",
+  "source_model_runtime_boundary_records": [
+    {
+      "asset_id": "byte_track",
+      "code_only_ready_not_model_ready": true,
+      "model_ready_requires_weight_available": true,
+      "model_ready_requires_weight_hash_verified": true,
+      "model_ready_requires_model_load_review": true,
+      "inference_ready_requires_separate_inference_trial": true,
+      "runtime_ready_requires_runtime_trial": true,
+      "output_adapter_ready_requires_output_adapter_review": true,
+      "semantic_layer_ready_requires_separate_promotion": true,
+      "commercial_runtime_not_approved": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "code_only_ready_not_model_ready": true,
+      "model_ready_requires_weight_available": true,
+      "model_ready_requires_weight_hash_verified": true,
+      "model_ready_requires_model_load_review": true,
+      "inference_ready_requires_separate_inference_trial": true,
+      "runtime_ready_requires_runtime_trial": true,
+      "output_adapter_ready_requires_output_adapter_review": true,
+      "semantic_layer_ready_requires_separate_promotion": true,
+      "commercial_runtime_not_approved": true
+    }
+  ],
+  "registry_patch_requirement_record": {
+    "requirement_id": "registry_patch_requirement_v1",
+    "registry_patch_required_before_weight_download_request": "recommended",
+    "registry_patch_required_before_inference": true,
+    "registry_patch_required_before_runtime": true,
+    "registry_patch_review_required": true,
+    "registry_patch_execution_requires_separate_phase": true,
+    "registry_patch_planning_success_not_registry_mutation": true
+  }
+}

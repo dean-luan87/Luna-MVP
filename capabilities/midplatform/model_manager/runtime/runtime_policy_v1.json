@@ -1,0 +1,23 @@
+{
+  "schema_id": "ModelRuntimePolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Local-Model-Integration-Planning-v1-001",
+  "principle": "Model Manager 不关心模型在哪里运行，只关心 execution_mode + resource availability。",
+  "execution_modes": [
+    {"mode": "external_api", "adapter": "external_provider_adapter", "resource_focus": ["cost", "latency", "quota"]},
+    {"mode": "local_runtime", "adapter": "local_vlm_adapter", "resource_focus": ["gpu_memory", "cpu_load", "temperature", "concurrent_jobs"]}
+  ],
+  "routing_rules": [
+    {"rule_id": "capability_first", "description": "能力匹配优先"},
+    {"rule_id": "resource_availability_second", "description": "运行环境可用性次之"},
+    {"rule_id": "provider_fallback_candidate", "description": "不可用产生 fallback candidate，非静默替换"},
+    {"rule_id": "no_separate_api_local_logic", "description": "禁止 API/Local 两套路由逻辑"}
+  ],
+  "boundary_flags": {
+    "unified_model_abstraction": true,
+    "resource_aware_routing": true,
+    "provider_fallback_explicit": true,
+    "no_separate_api_local_logic": true,
+    "planning_only": true
+  }
+}

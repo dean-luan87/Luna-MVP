@@ -1,0 +1,11 @@
+{
+  "title": "Experience Learning Relation v1",
+  "flow": ["Reality Outcome", "Experience", "Pattern Detection", "Learning Candidate", "Utility Evaluation", "Self Approval"],
+  "experience_is_learning": false,
+  "experience_is_source": true,
+  "repetition_or_impact_required": true,
+  "outcome_evidence_required": true,
+  "single_event_auto_learning": false,
+  "candidate_only": true,
+  "automatic_learning": false
+}

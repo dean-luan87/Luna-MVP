@@ -1,0 +1,16 @@
+{
+    "version": "1.0",
+    "name": "Field State Event Ordering Contract",
+    "ordering_rules": [
+        "validity",
+        "revocation_status",
+        "event_effective_time",
+        "event_sequence",
+        "source_reliability_class",
+        "event_confidence",
+        "admission_timestamp",
+        "stable_event_id_tie_breaker"
+    ],
+    "deterministic_tie_breaker": "stable_event_id_tie_breaker",
+    "stable_tie_breaker_defined": true
+}

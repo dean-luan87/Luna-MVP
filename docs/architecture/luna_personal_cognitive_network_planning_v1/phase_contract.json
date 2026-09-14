@@ -1,0 +1,57 @@
+{
+    "Phase": "Phase-Luna-Personal-Cognitive-Network-Planning-v1-001",
+    "Stage": "Personal Cognitive Network Architecture Planning",
+    "Execution Mode": "Planning Only",
+    "Previous Phase": "Phase-Luna-Context-Foundation-Module-Closure-v1-001",
+    "Previous Decision": "LUNA_CONTEXT_FOUNDATION_MODULE_CLOSURE_READY",
+    "planning_status": "PLANNING_CANDIDATE",
+    "in_scope": [
+        "PCN object/link/growth/activation/dormancy/subjective boundary planning",
+        "PCN-context-memory-causal boundary candidate contracts",
+        "resource and nested constraint planning",
+        "minimum scenario simulation planning",
+        "risk review and planning summary",
+        "V0 static check readiness"
+    ],
+    "out_of_scope": [
+        "runtime implementation",
+        "skeleton implementation",
+        "active schema mutation",
+        "active contract mutation",
+        "owner metadata mutation",
+        "migration execution",
+        "model or runtime invocation"
+    ],
+    "required_final_files": [
+        "personal_cognitive_network_object_model_candidate.json",
+        "personal_cognitive_link_schema_candidate.json",
+        "personal_cognitive_network_growth_model_candidate.json",
+        "personal_cognitive_network_activation_model_candidate.json",
+        "personal_cognitive_network_dormancy_reactivation_candidate.json",
+        "personal_subjective_cognitive_boundary_candidate.json",
+        "pcn_causal_boundary_contract_candidate.json",
+        "pcn_memory_boundary_contract_candidate.json",
+        "context_pcn_activation_contract_candidate.json",
+        "pcn_context_projection_contract_candidate.json",
+        "pcn_resource_constraint_model_candidate.json",
+        "pcn_nested_constraint_model_candidate.json",
+        "pcn_minimum_scenario_simulation_candidate.json",
+        "pcn_architecture_risk_review.md",
+        "personal_cognitive_network_planning_summary.md",
+        "pcn_planning_change_manifest.json",
+        "phase_contract.json",
+        "verify_personal_cognitive_network_planning_v1.py"
+    ],
+    "verification_authority": {
+        "V0": "Agent",
+        "V1": "Not Authorized",
+        "V2": "User Terminal Only",
+        "V3": "ChatGPT Only"
+    },
+    "implementation_started": false,
+    "runtime_started": false,
+    "skeleton_started": false,
+    "next_phase_not_authorized": true,
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_command": "python3 docs/architecture/luna_personal_cognitive_network_planning_v1/verify_personal_cognitive_network_planning_v1.py"
+}

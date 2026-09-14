@@ -1,0 +1,27 @@
+{
+    "artifact": "causal_confounder_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "definition": "A confounder candidate is a third-variable or hidden-condition reference that may explain observed association or temporal pattern.",
+    "required_fields": [
+        "confounder_id",
+        "related_hypothesis_refs",
+        "confounder_ref",
+        "plausibility_candidate",
+        "supporting_refs",
+        "opposing_refs",
+        "uncertainty",
+        "provenance"
+    ],
+    "allowed_behavior": [
+        "introduce alternative explanation",
+        "downgrade naive causality claim",
+        "keep unresolved confounder state"
+    ],
+    "forbidden_behavior": [
+        "drop confounder without trace",
+        "force single hypothesis truth",
+        "auto-reject all hypotheses"
+    ],
+    "active_contract": false
+}

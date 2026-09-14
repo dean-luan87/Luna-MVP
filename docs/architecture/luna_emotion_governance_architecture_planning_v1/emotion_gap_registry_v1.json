@@ -1,0 +1,25 @@
+{
+  "artifact": "emotion_gap_registry_v1",
+  "classification_rules": {
+    "A": "resolvable inside Emotion Governance planning",
+    "B": "requires future typed adapter or contract extension in another owner",
+    "C": "conflicts with current canonical architecture and must not be adopted",
+    "D": "deliberately deferred"
+  },
+  "gaps": [
+    {"gap_id":"A01","classification":"A","title":"Emotion Evidence/Appraisal/State semantic separation","blocker":false},
+    {"gap_id":"A02","classification":"A","title":"lifecycle, temporal, mixed-state, revision, privacy, trace, and idempotency contracts","blocker":false},
+    {"gap_id":"B01","classification":"B","title":"Self emotion evidence typed adapter","owner_dependency":"Self Governance","blocker":false},
+    {"gap_id":"B02","classification":"B","title":"Memory/Experience affective observation and persistence adapter","owner_dependency":"Cognitive Memory & Experience Governance","blocker":false},
+    {"gap_id":"B03","classification":"B","title":"Learning emotion outcome candidate adapter","owner_dependency":"Cognitive Learning Governance","blocker":false},
+    {"gap_id":"B04","classification":"B","title":"Intent, Attention, Regulation, PCN, and Cognitive Flow influence adapters","owner_dependency":"downstream canonical owners","blocker":false},
+    {"gap_id":"B05","classification":"B","title":"future cross-owner semantic synthesis contract","owner_dependency":"future integration governance","blocker":false},
+    {"gap_id":"C01","classification":"C","title":"Emotion / Integration Governance as an assumed current owner","conflict":"no current canonical module and scope is semantically over-broad","blocker":false},
+    {"gap_id":"C02","classification":"C","title":"historical Emotion Engine runtime as current semantic authority","conflict":"runtime/model assumptions violate planning-only boundary","blocker":false},
+    {"gap_id":"C03","classification":"C","title":"Emotion direct Intent/Attention/Regulation mutation","conflict":"downstream owner authority is frozen","blocker":false},
+    {"gap_id":"D01","classification":"D","title":"Emotion Engine runtime and model inference","blocker":false},
+    {"gap_id":"D02","classification":"D","title":"persistence, TTS expression, device/runtime action, and cross-user transfer","blocker":false},
+    {"gap_id":"D03","classification":"D","title":"semantic compression, affective memory compression, emotion-memory summary, and personality-memory fusion execution","blocker":false}
+  ],
+  "c_gap_rule": "C-class gaps are registered only; no existing owner is modified in this phase."
+}

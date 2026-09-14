@@ -1,0 +1,22 @@
+{
+  "contract_name": "Governance Lifecycle Contract v1",
+  "governed_objects": ["Protocol", "Model", "Capability", "Hardware", "Field", "Authority"],
+  "lifecycle": ["Draft", "Review", "Admission", "Active", "Deprecated", "Archived"],
+  "draft_requires_owner": true,
+  "review_requires_constitution_check": true,
+  "admission_requires_protocol_compatibility": true,
+  "active_requires_admission": true,
+  "deprecated_requires_replacement_or_migration": true,
+  "archived_is_not_runtime_active": true,
+  "protocol_manager_owns_versioning": true,
+  "registry_plane_owns_inventory": true,
+  "admission_owns_entry_review": true,
+  "authority_governance_owns_permission": true,
+  "diagnostics_emits_candidates": true,
+  "resource_governance_emits_allocation_candidates": true,
+  "runtime_governance_owns_mechanics_only": true,
+  "lifecycle_does_not_execute": true,
+  "lifecycle_does_not_modify_reality": true,
+  "reducer_is_sole_state_mutation_authority": true,
+  "unknowns_are_preserved": true
+}

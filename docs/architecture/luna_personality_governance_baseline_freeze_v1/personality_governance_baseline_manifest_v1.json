@@ -1,0 +1,73 @@
+{
+  "artifact": "personality_governance_baseline_manifest_v1",
+  "phase": "Phase-Luna-Personality-Governance-Baseline-Freeze-v1-001",
+  "freeze_status": "FROZEN_V1",
+  "freeze_kind": "BASELINE_CLOSURE",
+  "canonical_owner": "Personality Governance",
+  "scope_rule": "Freeze and closure only; no new Personality capability is introduced.",
+  "owner_invariants": {
+    "single_canonical_owner": true,
+    "parallel_personality_owners_forbidden": [
+      "trait_governance",
+      "persona_governance",
+      "temperament_governance",
+      "character_governance"
+    ],
+    "existing_owner_modules_modified": false
+  },
+  "contract_invariants": {
+    "personality_trait_not_self": true,
+    "personality_trait_not_emotion": true,
+    "personality_trait_not_memory": true,
+    "personality_candidate_not_personality_truth": true,
+    "candidate_only": true,
+    "trait_activation": false,
+    "fact_admission": false,
+    "profile_single_score": false,
+    "profile_direct_action_control": false
+  },
+  "boundary_invariants": {
+    "negative_guard_source": "docs/architecture/luna_personality_governance_controlled_implementation_v1/personality_governance_negative_guards_v1.json",
+    "all_runtime_and_owner_mutation_guards_remain_false": true,
+    "cross_user_transfer": false,
+    "semantic_compression_execution": false
+  },
+  "deferred_invariants": {
+    "deferred_registry": "personality_governance_frozen_deferred_registry_v1.json",
+    "deferred_items_are_not_partial_implementation": true,
+    "personality_must_not_self_implement_deferred_items": true
+  },
+  "verification_baseline": {
+    "scenario_count": 36,
+    "scenario_id_range": "P01-P36",
+    "runner_artifacts": [
+      "personality_governance_result_v1.json",
+      "personality_governance_case_results_v1.json",
+      "personality_governance_trace_v1.json"
+    ],
+    "terminal_verification_evidence": {
+      "source": "user_terminal_verification_report",
+      "runner_scenario_count": 36,
+      "runner_all_cases_passed": true,
+      "verifier_passed_check_count": 22,
+      "verifier_failed_check_count": 0,
+      "verifier_blocker_count": 0
+    },
+    "freeze_verifier_reexecutes_runner": false,
+    "freeze_verifier_reexecutes_prior_verifier": false,
+    "regression_rule": "Any future owner integration that breaks P01-P36 or the 22-check controlled baseline is a regression requiring explicit remediation."
+  },
+  "change_scope": {
+    "implementation_files_modified": [],
+    "planning_assets_modified": [],
+    "existing_owner_modules_modified": [],
+    "freeze_assets_added": [
+      "personality_governance_baseline_manifest_v1.json",
+      "personality_governance_frozen_boundary_registry_v1.json",
+      "personality_governance_frozen_deferred_registry_v1.json",
+      "personality_governance_baseline_closure_summary_v1.md",
+      "phase_contract.json",
+      "verify_personality_governance_baseline_freeze_v1.py"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "contract_id": "self_regulation_function_v1",
+  "equation": "R(t) = f(Self, Resource, Constitution)",
+  "inputs": ["Self State", "Capability Health", "Resource State", "Self Rhythm", "Constitution"],
+  "outputs": ["Attention Budget Candidate", "Exploration Budget Candidate", "Compute Budget Candidate", "Risk Threshold Candidate", "Learning Permission Candidate"],
+  "self_protective_precedence": true,
+  "resource_output_is_hint": true,
+  "does_not_generate_reality": true,
+  "does_not_override_understanding": true,
+  "does_not_select_decision_alone": true,
+  "does_not_switch_model": true,
+  "does_not_control_hardware": true,
+  "does_not_approve_learning_alone": true,
+  "does_not_modify_identity": true,
+  "does_not_modify_constitution": true,
+  "candidate_only": true,
+  "runtime": false
+}

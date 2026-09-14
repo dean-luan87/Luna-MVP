@@ -1,0 +1,45 @@
+{
+  "schema_id": "TextDetectionRuntimePolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-Text-Detection-Runtime-Integration-Planning-v1-001",
+  "layer_id": "Model_Manager_Text_Detection_Runtime",
+  "planning_only": true,
+  "principle": "一次一个真实 Runtime — 第一个视觉器官：文字区域发现",
+  "slot_binding": {
+    "slot_id": "slot_1",
+    "capability": "text_detection",
+    "role": "text_detector",
+    "primary_provider": "paddleocr_detector_v1",
+    "fallback_provider": "detection_v1",
+    "output_type": "text_region_candidate"
+  },
+  "chain_position": "first_real_runtime_in_shopfront_chain",
+  "deferred_providers": ["grounding_dino", "sam_target_discovery", "ocr_v1", "qwen_vl"],
+  "runtime_roadmap": [
+    {"phase": 1, "runtime": "text_detection", "status": "current"},
+    {"phase": 2, "runtime": "ocr_recognition", "status": "deferred"},
+    {"phase": 3, "runtime": "qwen_context", "status": "deferred"}
+  ],
+  "rules": [
+    {"rule_id": "detector_not_task_aware", "description": "Detector 输出 text_region_candidate，不是店招/站名判断"},
+    {"rule_id": "detector_not_auto_ocr", "description": "Detector 不触发 OCR，由 Collaboration Engine 决定下一 Slot"},
+    {"rule_id": "l2_plan_unchanged", "description": "Detector 不改变 L2 identify_place 目标"},
+    {"rule_id": "no_station_name_fact", "description": "地铁场景输出 direction_text_region_candidate，非 station_name_fact"},
+    {"rule_id": "no_text_no_forced_ocr", "description": "无文字输出 no_text_candidate，不强制 OCR"},
+    {"rule_id": "low_confidence_to_validation", "description": "低置信度进入 Validation，不直接 OCR"}
+  ],
+  "forbidden": [
+    "auto_trigger_ocr",
+    "semantic_place_identification",
+    "modify_l2_goal",
+    "grounding_dino_as_text_detector",
+    "three_runtime_simultaneous"
+  ],
+  "boundary_flags": {
+    "single_runtime_integration": true,
+    "text_detection_first": true,
+    "paddleocr_detector_primary": true,
+    "evidence_normalizer_required": true,
+    "collaboration_slot_driven": true
+  }
+}

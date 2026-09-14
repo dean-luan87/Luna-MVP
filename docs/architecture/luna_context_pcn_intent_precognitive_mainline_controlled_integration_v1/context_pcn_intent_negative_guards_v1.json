@@ -1,0 +1,17 @@
+{
+    "artifact": "context_pcn_intent_negative_guards_v1",
+    "negative_guards": {
+        "integration_has_no_owner": true,
+        "context_mutation": false,
+        "pcn_mutation": false,
+        "intent_direct_mutation": false,
+        "context_bypass_to_intent": false,
+        "pcn_bypass_intent_governance": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "runtime_side_effect": false,
+        "model_call": false
+    }
+}

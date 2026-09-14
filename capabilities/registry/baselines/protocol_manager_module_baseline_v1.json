@@ -1,0 +1,158 @@
+{
+    "capability_id": "luna.protocol_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_types_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_input_adapter_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_registry_adapter_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_lifecycle_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_version_resolver_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_compatibility_checker_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_admission_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_change_control_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_boundary_checker_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_error_namespace_governance_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_impact_analysis_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_trace_replay_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_output_builder_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_facade_v1.py",
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+        "entrypoint": "run_protocol_manager_module_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Assemble candidate-only protocol governance chain including registry lookup, lifecycle, compatibility, admission, change control, and impact analysis",
+        "Preserve boundary constraints with no runtime protocol loading, no registry writes, and no fact admission",
+        "Provide deterministic trace/replay output and module-level integration evidence"
+    ],
+    "forbidden_authorities": [
+        "protocol_registry_write",
+        "runtime_protocol_load",
+        "dynamic_binding_execution",
+        "direct_state_mutation",
+        "fact_admission",
+        "action_execution",
+        "production_runtime_dispatch"
+    ],
+    "reused_assets": [
+        "capabilities/midplatform/protocols/protocol_types_v1.py",
+        "capabilities/midplatform/protocols/protocol_registry_v1.py",
+        "capabilities/midplatform/protocols/protocol_checker_v1.py",
+        "capabilities/midplatform/protocols/protocol_error_codes_v1.py",
+        "capabilities/midplatform/protocols/protocol_health_monitor_contract_v1.py",
+        "capabilities/midplatform/protocols/protocol_whitebox_binding_v1.py"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_types_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_input_adapter_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_registry_adapter_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_lifecycle_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_version_resolver_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_compatibility_checker_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_admission_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_change_control_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_boundary_checker_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_error_namespace_governance_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_impact_analysis_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_trace_replay_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_facade_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py"
+    ],
+    "internal_components": [
+        "input_adapter",
+        "registry_lookup",
+        "lifecycle",
+        "version_resolver",
+        "compatibility_checker",
+        "admission",
+        "change_control",
+        "boundary_checker",
+        "error_namespace_governance",
+        "impact_analysis",
+        "diagnostics",
+        "trace_replay",
+        "module_output_builder"
+    ],
+    "legacy_assets": [
+        "capabilities/midplatform/protocol_canonical_standard_shared_code_dryrun_v1.py",
+        "tools/evaluation/midplatform/run_midplatform_protocol_canonical_standard_shared_code_dryrun_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not register protocol helper/checker modules as separate top-level capabilities",
+        "Do not create parallel protocol manager roots outside capabilities/midplatform/protocol_manager/module"
+    ],
+    "dependency_contracts": [],
+    "input_contract_ref": [
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_input_adapter_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_lifecycle_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/protocol_manager/module/protocol_manager_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 18,
+        "passed_cases": 18,
+        "failed_cases": [],
+        "diagnostics_present_all": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "deterministic_replay": true,
+        "boundary_preserved": true,
+        "evidence_ref": "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

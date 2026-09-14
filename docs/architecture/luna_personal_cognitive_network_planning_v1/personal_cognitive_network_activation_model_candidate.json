@@ -1,0 +1,34 @@
+{
+    "model_id": "personal_cognitive_network_activation_model_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "activation_flow": [
+        "context_input",
+        "activate_related_field_role_relationship_memory_state_refs",
+        "bounded_association_propagation",
+        "active_cognitive_projection_candidate"
+    ],
+    "full_network_loading_forbidden": true,
+    "propagation_control": {
+        "fixed_propagation_depth_forbidden": true,
+        "constraints": [
+            "context_relevance",
+            "current_task_or_need",
+            "resource_budget",
+            "activation_strength",
+            "temporal_validity",
+            "uncertainty"
+        ]
+    },
+    "degradation_behavior": {
+        "on_resource_pressure": "shrink_active_projection",
+        "network_delete_forbidden": true
+    },
+    "forbidden_outputs": [
+        "Intent",
+        "Causal Result",
+        "Decision",
+        "Action"
+    ]
+}

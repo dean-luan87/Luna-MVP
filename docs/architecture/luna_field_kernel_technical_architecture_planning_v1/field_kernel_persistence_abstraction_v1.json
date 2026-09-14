@@ -1,0 +1,94 @@
+{
+    "interfaces": [
+        {
+            "interface_id": "EventStoreInterface",
+            "required_operations": [
+                "append_event",
+                "fetch_events",
+                "fetch_events_by_anchor",
+                "fetch_events_since"
+            ],
+            "prohibited_operations": [
+                "directly query database-specific features",
+                "depend on concrete backend"
+            ],
+            "transaction_expectation": "support append transaction semantics or atomic batch append.",
+            "replay_support": true,
+            "versioning_support": true,
+            "backend_agnostic": true,
+            "current_implementation_status": "not_selected"
+        },
+        {
+            "interface_id": "FieldSnapshotStoreInterface",
+            "required_operations": [
+                "save_snapshot",
+                "load_snapshot",
+                "list_snapshots",
+                "prune_snapshots"
+            ],
+            "prohibited_operations": [
+                "embed storage-specific APIs",
+                "assume backend indexing semantics"
+            ],
+            "transaction_expectation": "support snapshot consistency with event append or replay.",
+            "replay_support": true,
+            "versioning_support": true,
+            "backend_agnostic": true,
+            "current_implementation_status": "not_selected"
+        },
+        {
+            "interface_id": "TemporalGraphInterface",
+            "required_operations": [
+                "store_temporal_edge",
+                "query_temporal_window",
+                "expire_temporal_node",
+                "refresh_temporal_node"
+            ],
+            "prohibited_operations": [
+                "depend on graph database traversal APIs",
+                "use storage-specific graph constructs"
+            ],
+            "transaction_expectation": "support consistent temporal graph updates.",
+            "replay_support": true,
+            "versioning_support": true,
+            "backend_agnostic": true,
+            "current_implementation_status": "not_selected"
+        },
+        {
+            "interface_id": "AttachmentStoreInterface",
+            "required_operations": [
+                "store_attachment",
+                "retrieve_attachment",
+                "list_attachments",
+                "delete_attachment"
+            ],
+            "prohibited_operations": [
+                "embed object store vendor details",
+                "assume backend event semantics"
+            ],
+            "transaction_expectation": "support attachment provenance references without storage-specific coupling.",
+            "replay_support": false,
+            "versioning_support": true,
+            "backend_agnostic": true,
+            "current_implementation_status": "not_selected"
+        },
+        {
+            "interface_id": "TraceStoreInterface",
+            "required_operations": [
+                "append_trace_record",
+                "query_trace",
+                "export_trace",
+                "prune_trace"
+            ],
+            "prohibited_operations": [
+                "depend on vendor trace APIs",
+                "assume specific storage indices"
+            ],
+            "transaction_expectation": "support trace append consistency with timeline updates.",
+            "replay_support": true,
+            "versioning_support": true,
+            "backend_agnostic": true,
+            "current_implementation_status": "not_selected"
+        }
+    ]
+}

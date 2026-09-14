@@ -1,0 +1,32 @@
+{
+  "audit_id": "luna_dynamic_cognitive_architecture_integration_finding_registry_v1",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "findings": [
+    {
+      "finding_id": "AUDIT-INFO-001",
+      "category": "FLOW_SEMANTICS",
+      "severity": "INFO",
+      "description": "The frozen linear view compresses a bidirectional Field/Observation relation. Future implementation must keep evidence ingress (Reality -> Observation/Evidence -> Field reduction) distinct from Field-guided observation feedback.",
+      "requires_change": false
+    },
+    {
+      "finding_id": "AUDIT-INFO-002",
+      "category": "PARTIAL_ORDER_SEMANTICS",
+      "severity": "INFO",
+      "description": "Intent and Causal Reasoning participate through typed context and candidate dependencies. Diagram ordering must not be interpreted as unconditional ownership transfer or a fixed Runtime call sequence.",
+      "requires_change": false
+    },
+    {
+      "finding_id": "AUDIT-INFO-003",
+      "category": "TEMPORAL_CONTINUITY",
+      "severity": "INFO",
+      "description": "Emotional and short-term contextual carryover already remain source-owned and temporally governed. Future implementation contracts should keep reset triggers explicit and must not treat a physical Field switch as an automatic mental-state reset.",
+      "requires_change": false
+    }
+  ],
+  "info_count": 3,
+  "warning_count": 0,
+  "blocker_count": 0,
+  "requires_architecture_change": false,
+  "automatic_remediation_allowed": false
+}

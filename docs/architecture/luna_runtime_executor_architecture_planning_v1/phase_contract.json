@@ -1,0 +1,200 @@
+{
+    "phase": "Phase-Luna-Runtime-Executor-Architecture-Planning-v1-001",
+    "stage": "Runtime Executor Architecture Planning",
+    "execution_mode": "Planning Only",
+    "current_work_description": {
+        "in_scope": [
+            "planning assets",
+            "schema and contract candidates",
+            "boundary definitions",
+            "minimum scenarios",
+            "reuse mapping",
+            "read-only final phase verifier"
+        ],
+        "out_of_scope": [
+            "runtime executor implementation",
+            "runner execution",
+            "verifier execution by agent",
+            "scheduler mutation",
+            "task mutation",
+            "device/provider command execution",
+            "database write",
+            "existing asset mutation"
+        ]
+    },
+    "previous_phase": "Phase-Luna-Action-Governance-Controlled-Implementation-v1-001",
+    "previous_phase_decision": "GO",
+    "input_assets": [
+        "docs/architecture/luna_action_architecture_planning_v1/",
+        "docs/architecture/luna_action_governance_controlled_implementation_v1/",
+        "docs/architecture/luna_action_runtime_foundation_v1/",
+        "docs/architecture/luna_decision_architecture_planning_v1/",
+        "docs/architecture/luna_decision_governance_controlled_implementation_v1/"
+    ],
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_action_architecture_planning_v1/action_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_execution_readiness_model_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_permission_safety_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_human_confirmation_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_reversibility_model_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_resource_constraint_model_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_cancellation_suspension_model_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_rollback_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_failure_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_runtime_executor_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_task_manager_boundary_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_provenance_trace_schema_candidate_v1.json",
+        "docs/architecture/luna_action_architecture_planning_v1/action_negative_guards_v1.json",
+        "docs/architecture/luna_action_governance_controlled_implementation_v1/action_governance_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_decision_architecture_planning_v1/decision_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_decision_governance_controlled_implementation_v1/decision_governance_negative_guards_v1.json",
+        "docs/architecture/luna_action_runtime_foundation_v1/action_executor_contract_v1.json",
+        "docs/architecture/luna_action_runtime_foundation_v1/action_execution_adapter_boundary_v1.json",
+        "docs/architecture/luna_action_runtime_foundation_v1/action_scheduler_boundary_v1.json"
+    ],
+    "target_directory": "docs/architecture/luna_runtime_executor_architecture_planning_v1/",
+    "scope": [
+        "planning assets only",
+        "json and markdown contracts",
+        "read-only verifier"
+    ],
+    "out_of_scope": [
+        "capabilities runtime edits",
+        "python runner execution by agent",
+        "verifier execution by agent",
+        "schema activation",
+        "owner metadata mutation"
+    ],
+    "required_final_files": [
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_architecture_plan_v1.md",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_concept_boundary_matrix_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_request_schema_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_state_model_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_admission_contract_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_permission_safety_final_gate_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_idempotency_model_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_attempt_retry_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_timeout_cancellation_model_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_partial_result_model_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_failure_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_rollback_responsibility_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_scheduler_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_task_manager_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_adapter_device_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_result_schema_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_result_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_diagnostics_maintenance_boundary_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_provenance_trace_schema_candidate_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_negative_guards_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_existing_asset_reuse_mapping_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_minimum_scenario_suite_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_open_questions_registry_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_planning_change_manifest_v1.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/runtime_executor_architecture_planning_summary_v1.md",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/phase_contract.json",
+        "docs/architecture/luna_runtime_executor_architecture_planning_v1/verify_runtime_executor_architecture_planning_v1.py"
+    ],
+    "implementation_principles": [
+        "single canonical owner",
+        "candidate-only semantics",
+        "final gate before execution semantics",
+        "retry must be explicit authority",
+        "no runtime side-effect claims in planning",
+        "minimal change and no upstream mutation"
+    ],
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "verifier ast parse",
+            "boundary semantic checks",
+            "manifest side-effect checks"
+        ],
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "negative_guards": [
+        "Action Candidate != Execution Request",
+        "Execution Readiness != Execution",
+        "Executor != Decision Governance",
+        "Executor != Action Governance",
+        "Executor != Task Manager",
+        "Executor != Scheduler",
+        "no permission bypass",
+        "no safety bypass",
+        "no checker weakening",
+        "no parallel runtime executor owner"
+    ],
+    "verification_authority": {
+        "V0": "AGENT_STATIC_ONLY",
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "allowed_agent_checks": [
+        "file existence",
+        "json parsing",
+        "ast parsing",
+        "editor diagnostics"
+    ],
+    "allowed_agent_execution": [
+        "read files",
+        "create new phase files",
+        "modify phase-local files"
+    ],
+    "prohibited_agent_execution": [
+        "python",
+        "python3",
+        "pytest",
+        "runner",
+        "verifier",
+        "shell validation",
+        "runtime execution"
+    ],
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "cd /Users/luanlei/Desktop/Luna-Core && python3 docs/architecture/luna_runtime_executor_architecture_planning_v1/verify_runtime_executor_architecture_planning_v1.py"
+    ],
+    "expected_success_decision": "LUNA_RUNTIME_EXECUTOR_ARCHITECTURE_PLANNING_READY",
+    "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+    "expected_failure_decision": "LUNA_RUNTIME_EXECUTOR_ARCHITECTURE_PLANNING_REMEDIATION_REQUIRED",
+    "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+    "stop_condition": "All planning files and V0 static checks are complete; agent stops before any V2 execution.",
+    "blocker_conditions": [
+        "duplicate canonical runtime executor owner detected",
+        "required planning asset missing",
+        "boundary guard missing",
+        "unauthorized existing asset mutation detected"
+    ],
+    "completion_report_format": [
+        "pre-read findings",
+        "created files",
+        "modified files",
+        "reuse assets",
+        "owner decision",
+        "concept boundaries",
+        "execution request and state model",
+        "admission and final gate",
+        "retry timeout cancellation",
+        "partial failure rollback",
+        "scheduler task adapter boundaries",
+        "result handoff diagnostics provenance",
+        "minimum scenarios",
+        "negative guards",
+        "blockers",
+        "user terminal command",
+        "current status"
+    ],
+    "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "planning_only": true,
+    "runtime_executed": false,
+    "scheduler_execution": false,
+    "task_lifecycle_mutation": false,
+    "device_control": false,
+    "database_write": false,
+    "source_mutation": false,
+    "status": "PLANNING_CANDIDATE"
+}

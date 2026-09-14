@@ -1,0 +1,8 @@
+{
+  "title": "Capability to Cognitive Core Interface v1",
+  "owner": "Cognitive Core Governance",
+  "core_inputs": ["Capability Requirement", "Observation Requirement", "Context", "Priority", "Constraint"],
+  "capability_outputs": ["Evidence Candidate", "Capability Health Candidate", "Performance Evidence", "Failure Candidate"],
+  "core_not_modified": ["Brain Judgment", "Goal", "Decision", "Belief", "Reality", "Memory Content"],
+  "rules": {"request_origin_is_core": true, "evidence_return_is_gateway_bound": true, "provider_not_direct_core": true, "candidate_only": true}
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "precondition":"S0 baseline remains PASS",
+  "protocol":["retain Synthetic_X","replace only X with Real_X","run equivalent contract scenarios","compare outputs","compare trace/provenance","compare state transitions","compare negative guards","verify no unrelated owner behavior changes","freeze only after differential evidence"],
+  "differential_compare_fields":["contract outputs","trace/provenance","state transitions","negative guards","unrelated module behavior"],
+  "synthetic_reference_must_remain_available":true,
+  "failure_domain_default":["X","X Adapter","adjacent handoff"],
+  "multi_component_replacement_same_phase":false,
+  "runtime_or_provider_activation_in_freeze_phase":false
+}

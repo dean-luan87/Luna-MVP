@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Decision Candidate Contract",
+  "owner":"Brain",
+  "inputs":["Current World Understanding Candidate","Intent","Goal","Task","Value","Drive","Self boundary","Social responsibility","Risk","Unknowns"],
+  "output_fields":["decision_candidate_id","field_ref","option_ref","reasoning_ref","confidence","unknowns","constraints","trace_ref"],
+  "permissions":{"generate_candidate":true,"commit_decision":false,"execute_action":false,"write_reality":false,"rewrite_identity":false},
+  "rules":{"action_separate":true,"brain_review_required":true,"unknowns_preserved":true,"candidate_only":true}
+}

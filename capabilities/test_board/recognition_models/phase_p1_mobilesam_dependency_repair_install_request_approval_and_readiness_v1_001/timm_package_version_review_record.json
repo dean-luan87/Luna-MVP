@@ -1,0 +1,43 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T08:10:39.403551+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_package_version_review_record",
+  "timm_package_version_review_record": {
+    "record_id": "timm_package_version_review_v1",
+    "package_name_candidate": "timm",
+    "import_root_candidate": "timm",
+    "clean_pypi_candidate": true,
+    "version_status": "unresolved_or_candidate",
+    "version_resolution_required": true,
+    "version_pin_required": true,
+    "version_pinned_value": "",
+    "version_falsely_pinned": false,
+    "package_source_review_required": true,
+    "hash_or_lockfile_recommended": true,
+    "dependency_conflict_review_required": true,
+    "transitive_dependency_review_required": true,
+    "license_review_required": true,
+    "local_available_candidate": false
+  },
+  "timm_license_dependency_review_record": {
+    "record_id": "timm_license_dependency_review_v1",
+    "license_review_required": true,
+    "license_review_status": "pending_required_before_install_execution",
+    "license_candidate": "apache-2.0_candidate_unverified",
+    "dependency_review_required": true,
+    "dependency_review_status": "pending_required_before_install_execution",
+    "transitive_dependency_review_status": "pending_required_before_install_execution",
+    "review_falsely_marked_completed": false
+  }
+}

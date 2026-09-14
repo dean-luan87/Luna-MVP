@@ -1,0 +1,9 @@
+{
+  "model_asset": "model-asset:yolo26n:weights-v1",
+  "route_role": "PRIMARY_CANDIDATE",
+  "admission_architecture_reused": true,
+  "second_admission_owner_created": false,
+  "executed": false,
+  "best_fit_declared": false,
+  "benchmarked_against_yolo11": false
+}

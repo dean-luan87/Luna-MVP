@@ -1,0 +1,12 @@
+{
+  "schema_version": "v1",
+  "mode": "Reality Mode",
+  "status": "allowed_current_mode",
+  "inputs": ["current_reality_field", "current_self_state", "current_evidence", "current_constraints"],
+  "authority": "A Route and Brain consume governed Reality Context",
+  "facts_are_current": true,
+  "hypothesis_modification": false,
+  "reality_state_write": "Reducer only",
+  "simulation_runtime": false,
+  "decision_authority": false
+}

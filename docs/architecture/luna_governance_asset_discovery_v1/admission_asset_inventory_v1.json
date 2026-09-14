@@ -1,0 +1,15 @@
+{
+  "title": "Admission Asset Inventory v1",
+  "status": "present_distributed",
+  "admission_classes": ["Model Admission", "Capability Admission", "Provider Admission", "Runtime Admission"],
+  "entries": [
+    {"asset_id":"admission.model.governance","path":"capabilities/midplatform/model_admission_governance/","type":"model_admission_module","class":"Model Admission","layer_candidate":"L4 Model Governance","current_owner":"Model Admission Governance","description":"Cases, registry, static validators, types and review runner.","status":"Active Asset"},
+    {"asset_id":"admission.model.policy","path":"capabilities/midplatform/model_manager/governance/model_admission_policy_v1.json","type":"model_admission_policy","class":"Model Admission","layer_candidate":"L4 Model Governance","current_owner":"Model Manager Governance","description":"Model candidate to available-pool admission pipeline.","status":"Active Asset"},
+    {"asset_id":"admission.capability.lifecycle","path":"capabilities/registry/luna_capability_lifecycle_registry_v1.json","type":"capability_lifecycle_admission","class":"Capability Admission","layer_candidate":"L4 Capability Governance","current_owner":"Capability Lifecycle Governance","description":"Capability lifecycle statuses and production gating.","status":"Active Asset"},
+    {"asset_id":"admission.spatial.provider","path":"capabilities/field_understanding/spatial_evidence_provider_admission/","type":"provider_admission_module","class":"Provider Admission","layer_candidate":"L4 Provider Governance","current_owner":"Spatial Evidence Provider Admission","description":"Provider admission cases, registry, validators and dry-run review.","status":"Active Asset"},
+    {"asset_id":"admission.recognition.model","path":"capabilities/field_understanding/recognition_model_system_admission_and_invocation_planning/","type":"model_admission_planning","class":"Model Admission","layer_candidate":"L4 Model Governance","current_owner":"Recognition Model Admission Planning","description":"Recognition model system admission and invocation planning.","status":"Historical Asset"},
+    {"asset_id":"admission.runtime.cognitive","path":"capabilities/cognitive_flow/cognitive_analysis/runtime_admission_dryrun/","type":"runtime_admission_dryrun","class":"Runtime Admission","layer_candidate":"L2/L3 Runtime Foundation","current_owner":"Cognitive Analysis Runtime Admission","description":"Runtime admission dry-run runner and verifier; not evidence of production runtime activation.","status":"Verification Only"},
+    {"asset_id":"admission.capability.contract","path":"docs/architecture/cognitive_capability_runtime_contract_v1/capability_admission_contract_v1.json","type":"architecture_contract","class":"Capability Admission","layer_candidate":"L4 Capability Governance","current_owner":"Capability Runtime Contract","description":"Capability request admission contract.","status":"Active Asset"}
+  ],
+  "mapping_rule": "Do not collapse admission classes without a separate approved consolidation phase."
+}

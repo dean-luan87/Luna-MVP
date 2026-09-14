@@ -1,0 +1,10 @@
+{
+  "schema_id": "validation_event_v1",
+  "owner": "Reality Validation Loop",
+  "fields": ["validation_event_id", "hypothesis_ref", "understanding_ref", "decision_candidate_ref", "reality_feedback_ref", "field_ref", "source", "observed_at", "confidence_before", "confidence_after", "result", "unknowns", "provenance"],
+  "result_values": ["Confirmed", "Supported", "Contradicted", "Unknown", "Expired"],
+  "original_hypothesis_preserved": true,
+  "field_required": true,
+  "time_required": true,
+  "candidate_only": true
+}

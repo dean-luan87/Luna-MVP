@@ -1,0 +1,130 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T01:34:15.396432+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "model_test_lens_model_panel_skeleton_record",
+  "record": {
+    "record_id": "model_test_lens_model_panel_skeleton_v1",
+    "panels": [
+      {
+        "panel_id": "segmentation",
+        "label": "Segmentation / MobileSAM",
+        "status": "active_example_available",
+        "current_example": "mobile_sam_multi_real_image",
+        "supported_layers": [
+          "mask",
+          "image_overlay",
+          "table",
+          "metrics"
+        ]
+      },
+      {
+        "panel_id": "ocr",
+        "label": "OCR",
+        "status": "placeholder",
+        "supported_layers": [
+          "bbox",
+          "transcript",
+          "reading_order",
+          "confidence_table"
+        ]
+      },
+      {
+        "panel_id": "slam_vio",
+        "label": "SLAM / VIO",
+        "status": "placeholder",
+        "supported_layers": [
+          "trajectory",
+          "keyframes",
+          "map_candidate",
+          "drift_metrics"
+        ]
+      },
+      {
+        "panel_id": "depth_world",
+        "label": "Depth / World",
+        "status": "placeholder",
+        "supported_layers": [
+          "heatmap",
+          "walkable_area_candidate",
+          "uncertainty"
+        ]
+      },
+      {
+        "panel_id": "detection_tracking",
+        "label": "Detection / Tracking",
+        "status": "placeholder",
+        "supported_layers": [
+          "bbox",
+          "track_id",
+          "timeline",
+          "id_switch"
+        ]
+      },
+      {
+        "panel_id": "asr",
+        "label": "ASR",
+        "status": "placeholder",
+        "supported_layers": [
+          "transcript",
+          "timeline",
+          "word_confidence"
+        ]
+      },
+      {
+        "panel_id": "tts",
+        "label": "TTS",
+        "status": "placeholder",
+        "supported_layers": [
+          "waveform",
+          "audio_ref",
+          "duration",
+          "pause_markers"
+        ]
+      },
+      {
+        "panel_id": "speaker",
+        "label": "Speaker",
+        "status": "placeholder",
+        "supported_layers": [
+          "speaker_segments",
+          "timeline",
+          "confidence"
+        ]
+      },
+      {
+        "panel_id": "face_expression_gesture",
+        "label": "Face / Expression / Gesture",
+        "status": "placeholder",
+        "supported_layers": [
+          "landmarks",
+          "expression_candidate",
+          "gesture_candidate"
+        ]
+      },
+      {
+        "panel_id": "multimodal_vlm",
+        "label": "Multimodal / VLM",
+        "status": "placeholder",
+        "supported_layers": [
+          "answer_candidate",
+          "evidence_refs",
+          "hallucination_risk"
+        ]
+      }
+    ],
+    "model_panel_count": 10,
+    "segmentation_active_example": true
+  }
+}

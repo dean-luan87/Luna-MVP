@@ -1,0 +1,18 @@
+{
+  "interaction_id": "tracking_depth_dynamic_risk",
+  "interaction_type": "cross_model_risk_fusion",
+  "source_model_families": ["tracking_family", "depth_spatial_hint_family"],
+  "candidate_refs": ["track_evidence_candidate:track_001", "spatial_hint_candidate:sh_001"],
+  "source_chain": "recognition_model_multi_model_interaction_dryrun_v1",
+  "confidence_policy_ref": "min_of_member_confidence_policy_v1",
+  "alignment_policy_ref": "motion_distance_fusion_policy_v1",
+  "conflict_policy_ref": "risk_conflict_to_candidate_policy_v1",
+  "uncertainty_policy_ref": "distance_uncertainty_propagation_policy_v1",
+  "adapter_mapping_refs": ["motion_distance_risk_candidate"],
+  "fallback_plan": "fallback_to_track_candidate_only",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "direct_action_requested": true,
+  "direct_speech_requested": true
+}

@@ -1,0 +1,34 @@
+{
+  "spec_id": "PerceptionHudDefaultLayoutSpecV1",
+  "version": "v1",
+  "layouts": [
+    {
+      "layout_id": "desktop_three_column",
+      "priority": 1,
+      "columns": [
+        { "panel": "original_input", "title": "原图", "width_ratio": 0.28 },
+        { "panel": "hud_canvas", "title": "机器人视觉 HUD", "width_ratio": 0.44 },
+        { "panel": "reasoning_panel", "title": "系统观察 / 推理 / 建议", "width_ratio": 0.28 }
+      ]
+    },
+    {
+      "layout_id": "desktop_two_column",
+      "priority": 2,
+      "columns": [
+        { "panel": "original_input", "title": "原图", "width_ratio": 0.4 },
+        { "panel": "hud_with_floating_reasoning", "title": "HUD + 推理面板", "width_ratio": 0.6 }
+      ]
+    },
+    {
+      "layout_id": "mobile_stacked",
+      "priority": 3,
+      "breakpoint_max_px": 800,
+      "rows": [
+        { "panel": "hud_canvas", "title": "机器人视觉 HUD" },
+        { "panel": "reasoning_panel", "title": "系统观察 / 推理 / 建议" }
+      ]
+    }
+  ],
+  "view_mode_toggle": ["compare", "robot_hud"],
+  "default_view_mode": "robot_hud_when_image_available"
+}

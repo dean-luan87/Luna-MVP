@@ -1,0 +1,57 @@
+{
+  "review_id": "luna_controlled_architecture_alignment_m4_rollback_readiness_review_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "records": [
+    {
+      "rollback_item": "Preserve active engineering Baseline",
+      "available": true,
+      "scope": "Keep all existing baseline files, module APIs, and active engineering ownership authoritative; M0-M4 introduce no replacement baseline.",
+      "risk": "A future migration could become irreversible if a candidate is promoted by overwriting the active baseline instead of using admission and versioning."
+    },
+    {
+      "rollback_item": "Withdraw candidate mappings and contracts",
+      "available": true,
+      "scope": "Remove or supersede only candidate mappings, aliases, and planning references before activation; active Runtime and contracts remain untouched.",
+      "risk": "Rollback would be harder if a later phase activates a candidate without recording its admission version and reverse mapping."
+    },
+    {
+      "rollback_item": "Preserve historical architecture documents",
+      "available": true,
+      "scope": "Retain prior architecture and planning assets as historical evidence while changing only canonical status in a separately authorized freeze or migration phase.",
+      "risk": "Deleting or rewriting historical documents would remove provenance needed to distinguish legacy intent from current authority."
+    },
+    {
+      "rollback_item": "Restore and preserve Owner boundaries",
+      "available": true,
+      "scope": "Use M2 source-owner precedence and single-writer records to reject or reverse any future owner transfer that lacks explicit admission.",
+      "risk": "A future metadata update without a recorded previous owner could create an ambiguous writer during rollback."
+    },
+    {
+      "rollback_item": "Preserve legacy A3 Runtime",
+      "available": true,
+      "scope": "Keep the root A3 Runtime as the existing engineering surface; future cognitive Runtime and adapter candidates can be withheld without modifying it.",
+      "risk": "Directly embedding cognitive ownership into the legacy Runtime would couple rollback to active execution behavior."
+    },
+    {
+      "rollback_item": "Withhold future Runtime adapters",
+      "available": true,
+      "scope": "All M3 adapters remain FUTURE_CANDIDATE with implementation_created=false, so the safe rollback is to leave them unimplemented or withdraw their candidate references.",
+      "risk": "An adapter implemented without an admission version, feature gate, and reverse path could create an untracked second mainline."
+    },
+    {
+      "rollback_item": "Retain Field State and Reality precedence",
+      "available": true,
+      "scope": "Preserve Field State Reducer and Field State Read Model as the governed world-state path; cognitive projections remain non-factual candidates.",
+      "risk": "A future bypass could contaminate current Reality and make state restoration non-deterministic."
+    },
+    {
+      "rollback_item": "No current migration rollback required",
+      "available": true,
+      "scope": "M0-M4 perform planning and validation only; migration_executed remains false, so no active engineering state needs restoration in this phase.",
+      "risk": "Treating this review as proof of an executed migration would produce a false rollback record."
+    }
+  ],
+  "rollback_gaps": [],
+  "rollback_ready_for_future_controlled_migration_planning": true,
+  "migration_executed": false
+}

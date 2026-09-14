@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "owner":"A Route Orchestration Governance",
+  "controlled_integration_only":true,
+  "synthetic_only":true,
+  "real_runtime_execution":false,
+  "provider_invocation":false,
+  "model_call":false,
+  "candidate_to_runtime_authorization":false,
+  "runtime_result_to_outcome_evaluation_candidate":true,
+  "source_owner_mutation":false,
+  "persistence_execution":false,
+  "user_delivery_executed":false
+}

@@ -1,0 +1,12 @@
+{
+  "artifact": "b3_implementation_mapping_v1",
+  "files": [
+    {"file": "b3_cognitive_state_intent_decision_task_types_v1.py", "role": "validated B2 reference and run envelopes"},
+    {"file": "b3_cognitive_state_intent_decision_task_adapter_v1.py", "role": "read-only B2 -> Intent/Decision/Task mapping"},
+    {"file": "b3_cognitive_state_intent_decision_task_fixture_v1.py", "role": "real/synthetic controlled inputs"},
+    {"file": "run_b3_cognitive_state_intent_decision_task_controlled_implementation_v1.py", "role": "user-terminal runner and artifact writer"},
+    {"file": "verify_b3_cognitive_state_intent_decision_task_controlled_implementation_v1.py", "role": "static and post-run verifier"}
+  ],
+  "canonical_reuse": ["IntentGovernanceSkeletonV1", "DecisionGovernanceEngineV1", "Task Manager readiness/candidate helpers", "TaskManagerModuleV1 for cancellation boundary"],
+  "legacy_decision_center": "not directly imported or used as a Decision owner by B3; the reused legacy Task Manager helper retains a pre-existing transitive compatibility import, which is not used for Decision formation"
+}

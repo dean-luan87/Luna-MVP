@@ -1,0 +1,13 @@
+{
+  "contract_id": "uncertainty_exploration_function_v1",
+  "function_role": "Exploration Drive Function",
+  "inputs": ["Unknown State", "Uncertainty", "Expected Information Gain", "Exploration Cost", "Risk", "Goal Relevance", "Self Regulation Budget"],
+  "parameters": ["uncertainty_tolerance", "information_gain_sensitivity", "exploration_cost_threshold"],
+  "outputs": ["Exploration Priority Candidate", "Observation Request Candidate", "Defer Exploration Candidate"],
+  "exploration_is_not_action": true,
+  "exploration_is_not_learning": true,
+  "exploration_does_not_resolve_unknown_automatically": true,
+  "hard_safety_constraint": true,
+  "automatic_exploration": false,
+  "candidate_only": true
+}

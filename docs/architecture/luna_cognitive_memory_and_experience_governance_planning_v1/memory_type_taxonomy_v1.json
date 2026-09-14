@@ -1,0 +1,93 @@
+{
+    "artifact": "memory_type_taxonomy_v1",
+    "types": [
+        {
+            "type": "EPISODIC",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        },
+        {
+            "type": "SEMANTIC",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        },
+        {
+            "type": "RELATIONAL",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": true
+        },
+        {
+            "type": "SELF_RELATED",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": true
+        },
+        {
+            "type": "PREFERENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": true
+        },
+        {
+            "type": "PROCEDURAL_REFERENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        },
+        {
+            "type": "ENVIRONMENTAL_CONTEXT",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": true,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        },
+        {
+            "type": "TASK_EXPERIENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        },
+        {
+            "type": "SOCIAL_EXPERIENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": true
+        },
+        {
+            "type": "EMOTIONAL_EXPERIENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": true,
+            "temporary_only": false,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": true
+        },
+        {
+            "type": "UNRESOLVED_EXPERIENCE",
+            "candidate_only": true,
+            "eligible_for_future_persistence": false,
+            "temporary_only": true,
+            "automatic_consolidation_forbidden": true,
+            "high_sensitivity_gate": false
+        }
+    ]
+}

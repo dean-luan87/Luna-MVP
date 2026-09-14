@@ -1,0 +1,32 @@
+{
+    "contract_id": "pcn_context_projection_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "projection_output_position": "current_cognitive_projection_not_full_pcn",
+    "required_output_fields": [
+        "active_reference_set",
+        "active_link_set",
+        "related_context_refs",
+        "unresolved_links",
+        "activation_trace",
+        "confidence",
+        "uncertainty",
+        "resource_constraint_reference"
+    ],
+    "forbidden_output_fields": [
+        "full_network_dump",
+        "source_object_body",
+        "source_ownership",
+        "source_mutation_command"
+    ],
+    "downstream_consumers": [
+        "Intent Governance",
+        "Causal Reasoning Governance",
+        "Decision Arbitration"
+    ],
+    "trace_replay": {
+        "trace_required": true,
+        "replay_required": true
+    }
+}

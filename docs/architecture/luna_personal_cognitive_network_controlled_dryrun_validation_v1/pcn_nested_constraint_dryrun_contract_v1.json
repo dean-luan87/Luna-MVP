@@ -1,0 +1,57 @@
+{
+    "artifact_id": "pcn_nested_constraint_dryrun_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "relations": [
+        {
+            "relation": "Context <-> PCN",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Field <-> Role",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Role <-> Relationship",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Memory Reference <-> PCN",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Resource <-> PCN",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Interaction <-> PCN",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        },
+        {
+            "relation": "Observation Axis Reference <-> Interaction",
+            "constraint_seen": true,
+            "feedback_reference_seen": true,
+            "projection_reference_seen": true,
+            "source_mutation": false
+        }
+    ],
+    "bidirectional_not_equal_dual_writer": true,
+    "candidate_only": true
+}

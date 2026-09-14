@@ -1,0 +1,46 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.998195+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "scoped_network_lookup_allowed": true,
+  "git_clone_allowed": false,
+  "source_checkout_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "mobile_sam_weight_exclusion_feasibility_record",
+  "mobile_sam_weight_exclusion_feasibility_review": {
+    "asset_id": "mobile_sam",
+    "mobile_sam_weight_excluding_checkout_required": true,
+    "committed_weight_files_detected": true,
+    "committed_weight_files": [
+      "weights/mobile_sam.pt"
+    ],
+    "committed_weight_total_bytes": 40728226,
+    "git_lfs_detected": false,
+    "blocked_file_patterns": [
+      "*.pth",
+      "*.pt",
+      "*.ckpt",
+      "*.safetensors",
+      "*.onnx",
+      "*.bin",
+      "*.h5",
+      "*.pb"
+    ],
+    "sparse_checkout_feasible": true,
+    "archive_filtering_feasible": true,
+    "code_only_checkout_feasible": true,
+    "full_clone_allowed_for_mobile_sam_next_execution": false,
+    "mobile_sam_weight_exclusion_review_completed": true,
+    "mobile_sam_weight_exclusion_failure_reason": null,
+    "feasibility_rationale": "weights/mobile_sam.pt (~40MB) is a committed regular blob (not git-lfs; no .gitattributes). A plain full clone WOULD pull the checkpoint (== weight download) and is therefore blocked. Code-only checkout is feasible via git sparse-checkout excluding weights/ and *.pt (cone or non-cone), or via a filtered archive/tarball that drops weights/*. The blocked file patterns (*.pth,*.pt,*.ckpt,*.safetensors,*.onnx,*.bin,*.h5,*.pb) must be enforced before any retry. This feasibility review is NOT weight-download approval.",
+    "weight_file_evidence_ref": "mobile_sam_weight_exclusion_feasibility_v1.json",
+    "feasibility_is_not_weight_download_approval": true
+  },
+  "mobile_sam_full_clone_blocked_if_weight_risk": true
+}

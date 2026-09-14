@@ -1,0 +1,28 @@
+{
+  "title": "Core Architecture Mapping Candidate v1",
+  "target_tree": [
+    "L0 Constitution",
+    "L1 Cognitive OS Governance",
+    "L2 Cognitive Core",
+    "L4 Capability Governance",
+    "L4 Model Management",
+    "L4 Admission",
+    "L4 Calibration",
+    "L4 Provider Adapter",
+    "L4 Capability Runtime",
+    "L5 Hardware / External Implementation"
+  ],
+  "mappings": [
+    {"asset":"capabilities/registry/","current_location":"Capability registry plane","target_owner":"L4 Capability Governance / Capability Registry","migration_needed":false,"reason":"Existing root registry and lifecycle/manifests align."},
+    {"asset":"capabilities/midplatform/model_manager/","current_location":"Midplatform Model Manager","target_owner":"L4 Model Management","migration_needed":false,"reason":"Existing Model Manager is the primary implementation candidate."},
+    {"asset":"capabilities/midplatform/model_admission_governance/","current_location":"Midplatform Model Admission","target_owner":"L4 Admission / Model Admission","migration_needed":false,"reason":"Dedicated admission module exists."},
+    {"asset":"capabilities/midplatform/model_manager/lifecycle/","current_location":"Model Manager lifecycle","target_owner":"L4 Model Lifecycle / Calibration","migration_needed":false,"reason":"Lifecycle and benchmark records are present."},
+    {"asset":"capabilities/midplatform/model_manager/providers/","current_location":"Model Manager provider family","target_owner":"L4 Provider Adapter / L5 external implementation","migration_needed":true,"reason":"Boundary and admission references should be canonicalized before runtime activation."},
+    {"asset":"capabilities/evaluation/ocr/","current_location":"OCR evaluation","target_owner":"L4 Calibration / Provider Evidence","migration_needed":true,"reason":"Evaluation evidence must be linked to capability and model admission without moving code."},
+    {"asset":"docs/architecture/model_governance/","current_location":"Model governance docs","target_owner":"L1/L4 governance documentation","migration_needed":true,"reason":"Parallel with model platform docs; ownership review required."},
+    {"asset":"docs/architecture/model_platform/","current_location":"Model platform docs","target_owner":"L4 Model Management documentation","migration_needed":true,"reason":"Potential duplicate documentation ownership."},
+    {"asset":"docs/architecture/capability_registry/","current_location":"Capability registry docs","target_owner":"L4 Capability Governance documentation","migration_needed":false,"reason":"Direct target match."},
+    {"asset":"capabilities/field_understanding/spatial_evidence_provider_admission/","current_location":"Field provider admission","target_owner":"L4 Provider Admission","migration_needed":true,"reason":"Target class is clear; canonical owner link is missing."}
+  ],
+  "rules": {"mapping_is_candidate":true,"candidate_only":true,"no_directory_change":true,"no_asset_merge":true,"target_owner_review_required":true}
+}

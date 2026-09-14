@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Ownership Registry",
+  "ownership":[
+    {"object":"Cognitive Field Lifecycle","owner":"Cognitive Field System","writer":"Field Update Governance","readers":["Workspace","Brain","Memory"]},
+    {"object":"Temporal Field State","owner":"Cognitive Field System","writer":"Field Update Governance","readers":["Memory","Brain"]},
+    {"object":"Spatial and Environment State","owner":"Cognitive Field System","writer":"Evidence/Field Pipeline","readers":["Attention","Workspace","Brain"]},
+    {"object":"Relationship and Role Context","owner":"Social Self","writer":"Role/Relationship System","readers":["Field","Workspace","Brain"]},
+    {"object":"Self Constraint Context","owner":"Self Model","writer":"Self Regulation / Self Model","readers":["Field","Brain","Capability Governance"]},
+    {"object":"Knowledge Context","owner":"Knowledge Library Boundary","writer":"Knowledge Admission","readers":["Field","Cognitive Processing"]},
+    {"object":"Emotion Tendency Context","owner":"Integration Layer","writer":"Emotion Context Boundary","readers":["Field","Brain"]},
+    {"object":"Field Update Candidate","owner":"Cognitive Field System","writer":"Field Update Governance","readers":["Brain","Learning Candidate"]}
+  ],
+  "rules":{"unique_owner":true,"writer_declared":true,"provider_not_owner":true,"field_not_reality_owner":true}
+}

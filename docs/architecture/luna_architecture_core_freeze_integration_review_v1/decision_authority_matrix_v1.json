@@ -1,0 +1,16 @@
+{
+  "title": "Decision Authority Matrix v1",
+  "decision_owner": "Brain",
+  "rows": [
+    {"module":"Brain","can_generate_decision_candidate":true,"can_review":true,"can_execute":false,"notes":"Judgment authority only"},
+    {"module":"Attention System","can_generate_decision_candidate":false,"can_review":false,"can_execute":false,"notes":"Resource allocation only"},
+    {"module":"Memory System","can_generate_decision_candidate":false,"can_review":false,"can_execute":false,"notes":"Retrieval and record authority"},
+    {"module":"Learning System","can_generate_decision_candidate":false,"can_review":false,"can_execute":false,"notes":"Learning candidates only"},
+    {"module":"Capability Runtime","can_generate_decision_candidate":false,"can_review":false,"can_execute":false,"notes":"Evidence and health candidates only"},
+    {"module":"Emotion Context Boundary","can_generate_decision_candidate":false,"can_review":false,"can_execute":false,"notes":"Context metadata only"},
+    {"module":"Action Boundary","can_generate_decision_candidate":false,"can_review":true,"can_execute":false,"notes":"Execution gate, not judgment owner"},
+    {"module":"Action Runtime","can_generate_decision_candidate":false,"can_review":false,"can_execute":true,"notes":"Only admitted action execution"}
+  ],
+  "forbidden": ["Capability → Decision","Memory → Decision","Emotion → Decision Override","Provider → Brain Replacement"],
+  "rules": {"single_decision_owner":true,"brain_judgment_preserved":true,"execution_separate":true}
+}

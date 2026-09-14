@@ -1,0 +1,20 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "coco",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "export_format": "coco"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export"],
+  "images": [
+    {"image_id": "img_060", "file_name": "x_060.jpg", "width": 640, "height": 480, "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_060", "type": "bbox", "label": "sign", "image_id": "img_060", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "artifact":"b4_cognitive_feedback_route_v1",
+  "route":["OutcomeEvaluationCandidateV1", "Cognitive Flow reconsideration/transition candidate", "Observation Need or reobserve candidate", "Active Observation Control / FPO"],
+  "cognitive_effects":["continue", "reconsider", "revise hypothesis candidate", "request more evidence", "reobserve", "defer", "abort candidate"],
+  "owner_boundary":"Cognitive Flow receives candidate feedback and expresses re-entry; it does not execute Action, Runtime, or Provider.",
+  "provider_invocation":false
+}

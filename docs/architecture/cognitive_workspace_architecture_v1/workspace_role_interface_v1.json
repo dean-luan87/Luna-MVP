@@ -1,0 +1,13 @@
+{
+  "interface_name": "Workspace Role Interface v1",
+  "role_reference": {},
+  "active_role_context": {},
+  "supporting_role_context": [],
+  "role_stack_reference": {},
+  "role_provenance": [],
+  "workspace_stores_role_reference_only": true,
+  "workspace_does_not_define_role": true,
+  "workspace_does_not_modify_identity": true,
+  "role_conflicts_are_preserved": true,
+  "unknowns_are_preserved": true
+}

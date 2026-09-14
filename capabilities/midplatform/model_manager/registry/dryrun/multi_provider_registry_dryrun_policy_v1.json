@@ -1,0 +1,41 @@
+{
+  "schema_id": "MultiProviderRegistryDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Provider-Registry-v1-001",
+  "layer_id": "Model_Manager_Multi_Provider_Registry",
+  "dryrun_only": true,
+  "principle": "Capability Marketplace — 发现能力 → 注册 → 评估 → 生命周期 → 能力池",
+  "chain": [
+    "L1_Situation",
+    "L2_Agent_Planning",
+    "L2_5_Validation",
+    "Capability_Registry_Lookup",
+    "Provider_Registry_Match",
+    "Multi_Factor_Competition",
+    "Provider_Selection_Candidate",
+    "Validation",
+    "Evaluation_Engine"
+  ],
+  "rules": [
+    {"rule_id": "capability_first_not_model_first", "description": "按能力需求路由，不按模型名调用"},
+    {"rule_id": "provider_competition_not_voting", "description": "多因子竞争，非投票融合"},
+    {"rule_id": "selection_not_execution", "description": "Registry 阶段只产出 selection candidate"},
+    {"rule_id": "provider_conflict_validation", "description": "Provider 冲突交 Validation，不自动消解"},
+    {"rule_id": "deprecated_auto_removed", "description": "deprecated provider 自动从路由移除"},
+    {"rule_id": "family_version_lifecycle", "description": "family → version → runtime 生命周期"},
+    {"rule_id": "no_multi_model_inference", "description": "不做多模型同时推理"},
+    {"rule_id": "no_answer_fusion", "description": "不做答案融合"},
+    {"rule_id": "no_auto_training", "description": "不做自动训练"},
+    {"rule_id": "no_auto_weight_update", "description": "不做自动权重更新"}
+  ],
+  "boundary_flags": {
+    "capability_first_routing": true,
+    "provider_competition_not_voting": true,
+    "no_multi_model_inference": true,
+    "no_answer_fusion": true,
+    "registry_not_collaboration_layer": true,
+    "provider_selection_candidate_only": true,
+    "runtime_not_task_decider": true,
+    "local_model_not_fact_owner": true
+  }
+}

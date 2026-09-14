@@ -1,0 +1,10 @@
+{
+  "metric_id": "self_stability_v1",
+  "inputs": ["Self State", "Identity Reference", "Constitution", "Safety Boundary", "Outcome Sequence", "State Difference", "Recovery Trace"],
+  "outputs": ["Self Stability Candidate", "Continuity Candidate", "Boundary Preservation Candidate", "Recovery Candidate"],
+  "dimensions": ["identity_continuity", "boundary_preservation", "invariant_compliance", "recovery_quality"],
+  "short_term_failure_does_not_define_identity": true,
+  "stable_core_protected": true,
+  "metric_does_not_modify_self": true,
+  "candidate_only": true
+}

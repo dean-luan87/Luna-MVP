@@ -1,0 +1,27 @@
+{
+  "result_id": "option_b_dryrun_preflight_candidate_scope_results_v1",
+  "phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Preflight-Anchor-Based-v1-001",
+  "input_anchor_ref": "handoff_anchor_v1.json",
+  "allowed_execution_candidates": [
+    "A1_classical_helper_ok_candidate",
+    "C1_document_specific_surface_model_ok_for_preflight"
+  ],
+  "blocked_references": [
+    "A2_uncontrolled_binary",
+    "B1_weight_missing",
+    "B2_license_unknown",
+    "B3_caption_text",
+    "C2_document_type_fact",
+    "D1_hardware_missing"
+  ],
+  "checks": {
+    "only_a1_c1_in_dryrun_preflight_scope": true,
+    "blocked_references_excluded": true,
+    "active_model_selected": false,
+    "active_skill_selected": false,
+    "dryrun_preflight_candidate_count": 2,
+    "blocked_reference_count": 6
+  },
+  "compliance": true,
+  "status": "PASS"
+}

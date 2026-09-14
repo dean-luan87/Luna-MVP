@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Emotion Boundary Review",
+  "status": "boundary_only",
+  "future_influences": ["Attention", "Context", "Relationship", "Preference"],
+  "cannot": ["Decision", "Action", "Value", "Identity", "Constitution", "Brain Rule Override"],
+  "interfaces": ["Emotion Context Candidate", "Field Attachment Placeholder", "Role/Relationship Context Placeholder", "Memory Emotion Metadata"],
+  "rules": {"no_emotion_runtime": true, "interface_only": true, "no_direct_decision": true, "no_direct_action": true, "future_admission_required": true}
+}

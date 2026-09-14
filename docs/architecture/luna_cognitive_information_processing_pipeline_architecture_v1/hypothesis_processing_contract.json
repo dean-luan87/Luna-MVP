@@ -1,0 +1,11 @@
+{
+  "contract_id": "hypothesis_processing_v1",
+  "owner": "Cognitive Understanding / Hypothesis System",
+  "inputs": ["evidence", "current_field", "field_rules", "context_package", "knowledge_context", "unknowns"],
+  "outputs": ["hypothesis_candidates", "confidence", "supporting_evidence", "contradicting_evidence", "validation_requirements", "unknowns"],
+  "multiple_candidates_allowed": true,
+  "unknown_preserved": true,
+  "evidence_required": true,
+  "automatic_resolution": false,
+  "prediction_runtime": false
+}

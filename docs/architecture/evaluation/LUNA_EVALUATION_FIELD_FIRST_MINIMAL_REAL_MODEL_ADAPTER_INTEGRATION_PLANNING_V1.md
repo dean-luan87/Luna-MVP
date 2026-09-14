@@ -1,0 +1,10 @@
+# Luna Evaluation — Minimal Real Model Adapter Integration Planning v1
+
+```bash
+python3 tools/evaluation/midplatform/run_field_first_minimal_real_model_adapter_integration_planning_v1.py
+python3 tools/evaluation/midplatform/verify_field_first_minimal_real_model_adapter_integration_planning_v1.py
+```
+
+## Final Decision
+
+`MIDPLATFORM_FIELD_FIRST_MINIMAL_REAL_MODEL_ADAPTER_INTEGRATION_PLANNING_READY_FOR_REAL_OBSERVATION_CANDIDATE_INGESTION_SKELETON`

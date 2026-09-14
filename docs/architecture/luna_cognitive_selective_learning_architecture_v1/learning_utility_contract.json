@@ -1,0 +1,12 @@
+{
+  "title": "Learning Utility Contract v1",
+  "inputs": ["Expected Capability Gain", "Future Decision Improvement", "Learning Cost", "Risk", "Evidence Quality", "Reversibility", "Unknowns"],
+  "formula": "Expected Capability Gain + Future Decision Improvement - Learning Cost - Risk",
+  "outputs": ["Learning Utility Candidate", "Priority Candidate", "Defer Candidate", "Reject Candidate"],
+  "hard_constraint_check_required": true,
+  "calculation_implemented": false,
+  "candidate_only": true,
+  "utility_does_not_admit_learning": true,
+  "utility_does_not_modify_capability": true,
+  "unknowns_preserved": true
+}

@@ -1,0 +1,5 @@
+{
+  "invariants":["Visual Evidence != Fact","CurrentWorldCandidate != World Truth","Hypothesis != Fact","Intent Candidate != guaranteed Intent execution","Decision Candidate != Action","TaskCandidate != Runtime","ActionCandidate != Runtime execution","Controlled Runtime Result != real execution","Outcome Candidate != World Truth","Task success candidate != verified external success"],
+  "authority_flags":["candidate_only=true","truth_declared=false","fact_admitted=false","provider_semantic_authority=false","external_success_verified=false"],
+  "natural_language_conclusion":false
+}

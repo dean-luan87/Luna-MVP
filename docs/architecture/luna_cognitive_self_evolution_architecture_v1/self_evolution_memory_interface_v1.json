@@ -1,0 +1,15 @@
+{
+  "title": "Self Evolution Memory Interface v1",
+  "owner": "Self Evolution",
+  "inputs": ["Retained Experience", "Field Memory", "Episodic Memory", "Self Memory", "Memory Retrieval Context"],
+  "outputs": ["Pattern Candidate", "Growth History Reference", "Experience Link Candidate"],
+  "reads": ["Memory Records", "Experience Provenance", "Contradiction History"],
+  "writes": ["Candidate Link Metadata", "Growth History Candidate"],
+  "rules": {
+    "memory_remains_owner_of_records": true,
+    "self_evolution_does_not_rewrite_memory": true,
+    "current_reality_priority": true,
+    "candidate_only": true,
+    "provenance_required": true
+  }
+}

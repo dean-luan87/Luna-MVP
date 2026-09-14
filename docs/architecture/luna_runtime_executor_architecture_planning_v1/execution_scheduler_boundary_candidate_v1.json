@@ -1,0 +1,19 @@
+{
+    "artifact": "execution_scheduler_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "relation": {
+        "executor_not_scheduler": true,
+        "scheduler_not_executor": true,
+        "scheduler_consumed_as_reference": true
+    },
+    "allowed_payload": [
+        "priority_candidate",
+        "window_candidate",
+        "resource_snapshot_ref"
+    ],
+    "forbidden_payload": [
+        "scheduler_policy_mutation",
+        "scheduler_runtime_control",
+        "forced_execute"
+    ]
+}

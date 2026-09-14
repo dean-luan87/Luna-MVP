@@ -1,0 +1,16 @@
+{
+  "artifact": "personality_learning_boundary_v1",
+  "learning_owner_preserved": "Cognitive Learning Governance",
+  "allowed_learning_inputs": ["PersonalityEvolutionEvidenceCandidate", "behavior pattern candidate", "interaction pattern candidate", "long-term tendency candidate", "contradiction candidate", "counterexample candidate"],
+  "allowed_outputs": ["Personality Evidence Candidate", "Personality Evolution Evidence Candidate", "revision proposal candidate"],
+  "frozen_assertions": {
+    "Learning != Personality Governance": true,
+    "Learning Candidate != Trait Activation": true,
+    "learning_direct_personality_mutation": false,
+    "personality_direct_learning_execution": false,
+    "generalization_without_context_diversity": false,
+    "counterexamples_preserved": true,
+    "contradictions_preserved": true
+  },
+  "rules": ["Learning patterns are evidence, not activated traits.", "Learning remains the owner of learning semantics.", "Personality admission must separately evaluate evidence and sensitivity."]
+}

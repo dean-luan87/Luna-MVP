@@ -1,0 +1,14 @@
+{
+  "schema_id": "cognitive_genome_v1",
+  "status": "architecture_only",
+  "genome_components": ["perception_tendencies", "cognitive_tendencies", "memory_tendencies", "decision_tendencies", "resource_risk_tendencies"],
+  "required_fields": ["genome_id", "version", "parameter_refs", "field_scope", "provenance", "validation_history", "risk_profile", "rollback_ref"],
+  "genome_is_parameter_bundle": true,
+  "genome_is_not_biological": true,
+  "genome_is_not_identity": true,
+  "genome_is_not_personality_authority": true,
+  "genome_has_no_decision_authority": true,
+  "self_review_required_for_change": true,
+  "automatic_evolution": false,
+  "candidate_only": true
+}

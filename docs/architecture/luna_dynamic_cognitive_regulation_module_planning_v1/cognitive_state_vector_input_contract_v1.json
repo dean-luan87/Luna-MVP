@@ -1,0 +1,30 @@
+{
+    "artifact": "cognitive_state_vector_input_contract_v1",
+    "input_mode": "REFERENCE_AND_CANDIDATE_ONLY",
+    "upstream_module": "Cognitive State Formation Module",
+    "required_fields": [
+        "state_vector_id",
+        "attention_distribution_refs",
+        "hypothesis_state_refs",
+        "uncertainty_level_candidate",
+        "conflict_level_candidate",
+        "world_stability_candidate",
+        "intent_pressure_candidate",
+        "resource_pressure_candidate",
+        "trace_ref",
+        "provenance_refs"
+    ],
+    "state_vector_invariants": {
+        "candidate_only": true,
+        "state_vector_not_parameter_store": true,
+        "state_vector_not_model_weight": true,
+        "state_vector_not_long_term_memory": true,
+        "state_vector_not_learning_result": true
+    },
+    "required_refs": [
+        "context_refs",
+        "resource_refs",
+        "regulation_policy_refs",
+        "parameter_bounds_refs"
+    ]
+}

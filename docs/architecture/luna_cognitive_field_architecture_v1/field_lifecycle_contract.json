@@ -1,0 +1,18 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Lifecycle Contract",
+  "owner":"Cognitive Field System",
+  "states":["candidate","created","active","updated","background","suspended","closed","archived"],
+  "transitions":[
+    {"from":"candidate","to":"created","trigger":"admitted observation context"},
+    {"from":"created","to":"active","trigger":"current attention/context binding"},
+    {"from":"active","to":"updated","trigger":"new evidence or interpretation"},
+    {"from":"updated","to":"active","trigger":"accepted current context"},
+    {"from":"active","to":"background","trigger":"attention transfer"},
+    {"from":"background","to":"active","trigger":"field reactivation"},
+    {"from":"active","to":"suspended","trigger":"temporary context loss"},
+    {"from":"active","to":"closed","trigger":"field purpose ended"},
+    {"from":"closed","to":"archived","trigger":"retention governance"}
+  ],
+  "rules":{"transition_owner":"Cognitive Field","current_reality_recheck_required":true,"memory_not_field_writer":true,"b_not_field_writer":true}
+}

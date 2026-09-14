@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "model_test_job_request_schema_v1",
+  "title": "Model Test Job Request V1",
+  "type": "object",
+  "required": [
+    "job_request_id",
+    "created_by_lens",
+    "asset_manifest_ref",
+    "requested_model_category",
+    "candidate_output_only",
+    "requires_runner_execution",
+    "requires_owner_approval",
+    "requires_test_board_record",
+    "runtime_allowed"
+  ],
+  "properties": {
+    "job_request_id": { "type": "string" },
+    "created_by_lens": { "const": true },
+    "asset_manifest_ref": { "type": "string" },
+    "requested_model_category": {
+      "type": "string",
+      "enum": [
+        "segmentation",
+        "ocr",
+        "slam_vio",
+        "depth_world",
+        "detection_tracking",
+        "asr",
+        "tts",
+        "speaker",
+        "face_expression_gesture",
+        "multimodal_vlm"
+      ]
+    },
+    "requested_model_id": { "type": "string" },
+    "requested_test_profile": { "type": "string" },
+    "prompt_plan_ref": { "type": "string" },
+    "expected_adapter": { "type": "string" },
+    "expected_envelope_schema": { "type": "string" },
+    "candidate_output_only": { "const": true },
+    "requires_runner_execution": { "const": true },
+    "requires_owner_approval": { "const": true },
+    "requires_test_board_record": { "const": true },
+    "runtime_allowed": { "const": false },
+    "output_adapter_allowed": { "const": false },
+    "semantic_layer_allowed": { "const": false },
+    "fact_write_allowed": { "const": false },
+    "navigation_action_speech_allowed": { "const": false }
+  }
+}

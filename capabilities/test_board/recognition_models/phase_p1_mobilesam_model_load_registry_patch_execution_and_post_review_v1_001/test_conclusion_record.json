@@ -1,0 +1,41 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:42:38.532508+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "registry_patch_applied": true,
+    "readiness_level_written": "model_load_verified",
+    "changed_field_names": [
+      "checkpoint_load_verified",
+      "dependency_gap_resolved",
+      "dependency_repair_applied",
+      "dependency_repair_dependency",
+      "dependency_repair_dependency_version",
+      "dependency_repair_method",
+      "model_load_elapsed_seconds",
+      "model_load_peak_memory_mb",
+      "model_load_trial_phase_ref",
+      "model_load_trial_result",
+      "model_load_verified",
+      "model_type_name",
+      "readiness_level",
+      "torch_version_observed",
+      "torchvision_version_observed"
+    ],
+    "byte_track_unchanged": true,
+    "write_error": "",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+    "no_boundary_violation": true,
+    "transition_note": "REAL registry patch for mobile_sam only. readiness_level=model_load_verified. NO inference/image/runtime. Decision=P1_MOBILE_SAM_MODEL_LOAD_REGISTRY_PATCH_EXECUTION_GO"
+  },
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_REGISTRY_PATCH_EXECUTION_GO"
+}

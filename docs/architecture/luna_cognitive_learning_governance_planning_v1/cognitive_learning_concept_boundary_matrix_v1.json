@@ -1,0 +1,19 @@
+{
+    "artifact": "cognitive_learning_concept_boundary_matrix_v1",
+    "inequalities": [
+        "Experience != Learning",
+        "Memory != Learning",
+        "Learning Evidence != Learning Result",
+        "Learning Candidate != Truth",
+        "Learning Candidate != Fact",
+        "Learning Candidate != Parameter Mutation",
+        "Parameter Update Candidate != Parameter Activation",
+        "Learning Confidence != Permission",
+        "Repeated Experience != Universal Rule",
+        "Repeated Retrieval != Evidence Strength By Itself",
+        "Correlation != Causation",
+        "User Feedback != Automatic Global Rule",
+        "Single Success != General Policy",
+        "Single Failure != Permanent Avoidance Rule"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+  "interface_name": "Memory Learning Interface v1",
+  "memory_reference": {},
+  "experience_record": {},
+  "pattern_extraction_candidate": {},
+  "retrieval_context": {},
+  "retention_evidence": [],
+  "provenance": [],
+  "learning_extracts_does_not_rewrite_memory": true,
+  "memory_does_not_become_reality": true,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

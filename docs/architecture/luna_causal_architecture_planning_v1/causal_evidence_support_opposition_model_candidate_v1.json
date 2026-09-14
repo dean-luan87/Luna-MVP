@@ -1,0 +1,38 @@
+{
+    "artifact": "causal_evidence_support_opposition_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "evidence_relations": [
+        {
+            "relation": "SUPPORT",
+            "meaning": "Evidence reference increases support for a specific hypothesis candidate.",
+            "weight_is_candidate": true
+        },
+        {
+            "relation": "OPPOSITION",
+            "meaning": "Evidence reference decreases support or introduces contradiction.",
+            "weight_is_candidate": true
+        },
+        {
+            "relation": "NEUTRAL",
+            "meaning": "Evidence is relevant but not discriminative under current scope.",
+            "weight_is_candidate": true
+        }
+    ],
+    "required_relation_fields": [
+        "relation_id",
+        "hypothesis_ref",
+        "evidence_ref",
+        "relation_type",
+        "confidence_candidate",
+        "temporal_validity_ref",
+        "provenance"
+    ],
+    "guards": {
+        "single_evidence_auto_proves_cause": false,
+        "opposition_evidence_deletion_allowed": false,
+        "support_without_provenance_allowed": false,
+        "source_mutation_allowed": false
+    },
+    "active_contract": false
+}

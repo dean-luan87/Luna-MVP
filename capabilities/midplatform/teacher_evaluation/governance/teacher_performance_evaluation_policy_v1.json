@@ -1,0 +1,25 @@
+{
+  "schema_id": "TeacherPerformanceEvaluationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Teacher-Performance-Evaluation-v1-001",
+  "principle": "Teacher Performance Evaluation 统计表现并生成 policy improvement candidate；不得影响当前决策。",
+  "rules": [
+    {"rule_id": "does_not_affect_current_decision", "description": "评估结果不得改变当前 admission/plan/scene"},
+    {"rule_id": "no_auto_policy_update", "description": "禁止自动更新 teacher_usage_policy"},
+    {"rule_id": "no_auto_permission_escalation", "description": "禁止因表现好自动提高 Teacher 权限"},
+    {"rule_id": "evaluation_after_validation", "description": "必须在 Teacher Validation Review 之后评估"},
+    {"rule_id": "usage_profile_candidate_only", "description": "usage profile 仅为 candidate"},
+    {"rule_id": "policy_update_requires_review", "description": "policy update 需人工/规则审核"},
+    {"rule_id": "no_fact_write", "description": "评估不写 fact"},
+    {"rule_id": "future_multi_teacher_ready", "description": "预留多 Teacher 比较维度"}
+  ],
+  "boundary_flags": {
+    "evaluation_only": true,
+    "does_not_affect_current_decision": true,
+    "no_auto_policy_update": true,
+    "no_auto_permission_escalation": true,
+    "no_fact_write": true,
+    "no_runner_invocation": true,
+    "future_multi_teacher_ready": true
+  }
+}

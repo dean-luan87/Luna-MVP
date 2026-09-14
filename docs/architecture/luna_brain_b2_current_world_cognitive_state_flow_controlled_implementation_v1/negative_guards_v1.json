@@ -1,0 +1,4 @@
+{
+  "false": ["world_truth_promotion", "hypothesis_as_fact", "provider_semantic_authority", "provider_confidence_as_cognitive_confidence", "automatic_fact_admission", "field_state_mutation", "current_world_direct_mutation", "pcn_mutation", "intent_mutation", "decision_mutation", "task_mutation", "action_execution", "provider_invocation", "camera_activation", "ocr_execution", "slam_execution", "vio_execution", "vlm_execution", "semantic_compression", "online_learning", "emotion_engine_execution", "b_route_execution", "database_write", "vector_store_write", "embedding_execution", "scheduler_execution", "hidden_cognitive_loop", "dynamic_cognitive_function_execution"],
+  "preserve": ["candidate_only", "trace", "provenance", "temporal", "uncertainty", "contradiction", "alternative_hypotheses"]
+}

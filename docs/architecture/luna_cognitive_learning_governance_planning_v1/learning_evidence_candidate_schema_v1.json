@@ -1,0 +1,35 @@
+{
+    "artifact": "learning_evidence_candidate_schema_v1",
+    "entity": "LearningEvidenceCandidateV1",
+    "fields": [
+        "learning_evidence_id",
+        "source_experience_refs",
+        "source_memory_refs",
+        "outcome_refs",
+        "feedback_refs",
+        "contradiction_refs",
+        "counterexample_refs",
+        "context_refs",
+        "intent_refs",
+        "hypothesis_refs",
+        "current_world_refs",
+        "cognitive_state_vector_refs",
+        "regulation_refs",
+        "causal_refs",
+        "evidence_strength_candidate",
+        "repetition_count_candidate",
+        "novelty_candidate",
+        "consistency_candidate",
+        "contradiction_level_candidate",
+        "temporal_span_candidate",
+        "scope_candidate",
+        "provenance_refs",
+        "trace_ref",
+        "candidate_only",
+        "fact_admitted"
+    ],
+    "defaults": {
+        "candidate_only": true,
+        "fact_admitted": false
+    }
+}

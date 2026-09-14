@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "integration_planning": true,
+  "record": {
+    "plan_ref": "capabilities/midplatform/model_test_lens/mobile_sam_single_model_execution_integration/mobile_sam_single_model_execution_integration_plan_v1.md"
+  }
+}

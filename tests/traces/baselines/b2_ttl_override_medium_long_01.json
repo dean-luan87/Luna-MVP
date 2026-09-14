@@ -1,0 +1,16 @@
+{
+  "label": "b2_ttl_override_medium_long_01",
+  "description": "B2 TTL override 回归锚：medium_long_01 跑 suite 后 analyze 指标不可退化",
+  "constraints": {
+    "b2_ttl_used_mean_min": 1.0,
+    "b2_ttl_used_mean_max": 2.5,
+    "b2_ttl_used_p95_max": 3.5,
+    "ttl_expire_density_per_sec_max": 0.05,
+    "advisory_suppressed_density_per_sec_max": 0.2,
+    "b2_cache_hit_rate_total_min": 0.05
+  },
+  "soft": {
+    "cache_hit_rate_min": 0.05,
+    "comment": "Soft 护栏：低于仅 warning 不 fail；门禁优先读 constraints.b2_cache_hit_rate_total_min"
+  }
+}

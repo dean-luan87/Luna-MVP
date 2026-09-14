@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-UI-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T07:12:39.522996+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "real_execution_phase": true,
+  "ui_must_not_execute_model": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record": {
+    "record_id": "information_compression_record_v1",
+    "metrics_in_drawer": true,
+    "advanced_in_drawer": true,
+    "developer_json_in_drawer": true,
+    "reasoning_on_right_panel": true
+  }
+}

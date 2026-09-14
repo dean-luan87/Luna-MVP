@@ -1,0 +1,20 @@
+{
+    "artifact": "dynamic_regulation_revision_revocation_model_v1",
+    "revision_rules": [
+        "new_evidence_revises_candidate",
+        "conflict_reconciles_with_alternative_candidates",
+        "bound_change_revises_modulation_strength"
+    ],
+    "revocation_rules": [
+        "source_revoked",
+        "trace_missing",
+        "provenance_missing",
+        "immutable_parameter_mutation_requested",
+        "out_of_bound_unclamped_request"
+    ],
+    "lineage_required": {
+        "revision_lineage": true,
+        "revocation_lineage": true,
+        "source_version_lineage": true
+    }
+}

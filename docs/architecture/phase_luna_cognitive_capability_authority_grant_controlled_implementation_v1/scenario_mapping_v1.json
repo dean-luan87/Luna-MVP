@@ -1,0 +1,22 @@
+{
+  "phase": "Phase-Luna-Candidate-Only-Authority-Grant-And-Mechanical-Command-Adapter-v1-001",
+  "scenario_count": 36,
+  "groups": {
+    "A_GRANT": ["AG-01", "AG-02", "AG-03", "AG-04", "AG-05", "AG-06", "AG-07", "AG-08", "AG-09"],
+    "MECHANICAL_COMMAND": ["MC-01", "MC-02", "MC-03", "MC-04", "MC-05", "MC-06", "MC-07", "MC-08", "MC-09"],
+    "DERIVED_B_GRANT": ["BG-01", "BG-02", "BG-03", "BG-04", "BG-05", "BG-06", "BG-07", "BG-08"],
+    "RESPONSIBILITY": ["RB-01", "RB-02", "RB-03", "RB-04", "RB-05"],
+    "ISOLATION": ["IS-01", "IS-02", "IS-03"],
+    "NEGATIVE_GUARDS": ["NG-01", "NG-02"]
+  },
+  "coverage": {
+    "valid_a_grant": ["AG-01"],
+    "scope_state_revocation_expiry": ["AG-02", "AG-06", "AG-07", "AG-08"],
+    "capability_boundary": ["AG-04", "AG-05", "MC-02", "BG-03", "BG-04", "BG-06"],
+    "mechanical_commands": ["MC-01", "MC-03", "MC-04", "MC-05", "MC-06", "MC-07", "MC-08", "MC-09"],
+    "derived_b_scope": ["BG-01", "BG-02", "BG-05", "BG-07", "BG-08"],
+    "responsibility_binding": ["AG-09", "RB-01", "RB-02", "RB-03", "RB-04", "RB-05"],
+    "cross_scope_isolation": ["IS-01", "IS-02", "IS-03"],
+    "negative_runtime_guards": ["NG-01", "NG-02"]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:58:26.963477+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "real_local_image_runtime_semantic_fact_exclusion_record",
+  "record": {
+    "record_id": "real_local_image_runtime_semantic_fact_exclusion_v1",
+    "runtime_ready": false,
+    "output_adapter_ready": false,
+    "semantic_layer_ready": false,
+    "fact_write_ready": false,
+    "navigation_action_speech_ready": false,
+    "commercial_runtime_ready": false,
+    "real_image_trial_success_not_runtime_approval": true,
+    "real_image_trial_success_not_output_adapter_approval": true,
+    "real_image_trial_success_not_semantic_layer_approval": true,
+    "real_image_trial_success_not_fact_write_approval": true,
+    "real_image_trial_success_not_navigation_action_speech_approval": true,
+    "real_image_trial_success_not_commercial_runtime_approval": true
+  }
+}

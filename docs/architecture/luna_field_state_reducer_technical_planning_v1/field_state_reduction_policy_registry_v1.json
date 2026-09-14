@@ -1,0 +1,52 @@
+{
+    "version": "1.0",
+    "name": "Field State Reduction Policy Registry",
+    "policies": [
+        {
+            "policy": "latest_valid_event",
+            "global_default": false
+        },
+        {
+            "policy": "highest_confidence_valid_event",
+            "global_default": false
+        },
+        {
+            "policy": "multi_event_consensus",
+            "global_default": false
+        },
+        {
+            "policy": "negative_event_override",
+            "global_default": false
+        },
+        {
+            "policy": "revocation_override",
+            "global_default": false
+        },
+        {
+            "policy": "expiration_degrade",
+            "global_default": false
+        },
+        {
+            "policy": "temporary_overlay_separation",
+            "global_default": false
+        },
+        {
+            "policy": "conflict_preservation",
+            "global_default": false
+        },
+        {
+            "policy": "insufficient_evidence_unresolved",
+            "global_default": false
+        },
+        {
+            "policy": "explicit_owner_override_candidate",
+            "global_default": false
+        },
+        {
+            "policy": "no_state_change",
+            "global_default": false
+        }
+    ],
+    "latest_event_wins_global_default": false,
+    "policy_registry_complete": true
+}

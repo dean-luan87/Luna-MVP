@@ -1,0 +1,21 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "coco",
+  "dataset_ref": "coco/bad_flags_subset",
+  "license_ref": {"license": "CC BY 4.0", "commercial_use_confirmed": false},
+  "source_chain": ["coco", "vision_test_source_backup_pool"],
+  "annotation_origin": {"provider": "coco_export", "export_format": "coco_instances"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "invalid_bad_flags"},
+  "annotation_format": "coco",
+  "confidence": 0.8,
+  "allowed_use": "benchmark_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"bbox": "object_evidence_candidate"},
+  "direct_fact_write": true,
+  "route_activation": true,
+  "direct_action": true,
+  "images": [{"image_id": "x_090", "width": 640, "height": 480, "confidence": 0.8}],
+  "annotations": [
+    {"ann_id": "x_ann_090", "type": "bbox", "label": "person", "image_id": "x_090", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

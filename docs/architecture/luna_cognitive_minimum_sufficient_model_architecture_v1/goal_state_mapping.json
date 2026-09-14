@@ -1,0 +1,11 @@
+{
+  "mapping_id": "goal_state_mapping_v1",
+  "core_state": "Goal",
+  "components": ["intent", "task", "priority", "activation"],
+  "source_modules": ["Intent", "Goal", "Task", "Goal Activation Function", "Value Utility"],
+  "outputs": ["Goal Activation Candidate", "Goal Priority Candidate", "Goal Suppression Candidate", "Task Direction Candidate"],
+  "goal_is_not_action": true,
+  "goal_is_not_created_by_state_mapping": true,
+  "self_constraint_required": true,
+  "candidate_only": true
+}

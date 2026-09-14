@@ -1,0 +1,11 @@
+{
+  "title": "Benefit Evaluation Contract v1",
+  "benefit_sources": ["Safety Improvement", "Task Completion", "Knowledge Gain", "Capability Gain", "Relationship Support", "System Stability"],
+  "inputs": ["Goal Candidate", "Field Context", "Evidence", "Belief", "Capability State", "Experience Context"],
+  "output": "Expected Benefit Candidate",
+  "candidate_only": true,
+  "calculation_implemented": false,
+  "benefit_is_not_fact": true,
+  "benefit_does_not_create_goal": true,
+  "unknowns_preserved": true
+}

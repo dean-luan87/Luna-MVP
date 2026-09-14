@@ -1,0 +1,7 @@
+{
+  "scenario_count": 24,
+  "scenario_ids": ["MCR-01", "MCR-02", "MCR-03", "MCR-04", "MCR-05", "MCR-06", "MCR-07", "MCR-08", "MCR-09", "MCR-10", "MCR-11", "MCR-12", "MCR-13", "MCR-14", "MCR-15", "MCR-16", "MCR-17", "MCR-18", "MCR-19", "MCR-20", "MCR-21", "MCR-22", "MCR-23", "MCR-24"],
+  "execution_mode": "deterministic_contract_only",
+  "inference": false,
+  "download": false
+}

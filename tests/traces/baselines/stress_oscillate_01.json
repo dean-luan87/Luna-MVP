@@ -1,0 +1,15 @@
+{
+  "label": "stress_oscillate_01",
+  "video": "video-6m14s.mp4",
+  "description": "6m14s 压力样本（段内抖动），用于验证去抖治理；不与稳定锚点混用",
+  "pre_governance_baseline": {
+    "short_caution_run_ratio": 0.8974,
+    "switch_per_min": 12.5,
+    "caution_runs_short": 35,
+    "caution_runs_total": 39
+  },
+  "constraints": {
+    "short_caution_run_ratio_max": 0.5,
+    "switch_per_min_max": 10
+  }
+}

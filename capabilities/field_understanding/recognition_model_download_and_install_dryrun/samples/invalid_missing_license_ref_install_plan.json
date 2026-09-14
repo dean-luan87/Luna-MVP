@@ -1,0 +1,20 @@
+{
+  "model_id": "rapidocr_onnxruntime",
+  "model_family": "ocr_model_family",
+  "install_target": "rapidocr_p0",
+  "download_source": "pypi:rapidocr_onnxruntime",
+  "package_name": "rapidocr_onnxruntime",
+  "model_resource_ref": "bundled_onnx_det_rec_cls_models",
+  "allowed_use": "test_only",
+  "commercial_use_status": "commercial_allowed_under_apache_2_0_pending_verification",
+  "dependency_list": ["onnxruntime", "opencv-python", "numpy"],
+  "local_runtime_requirement": "cpu_python3",
+  "gpu_required": false,
+  "offline_supported": true,
+  "expected_import_module": "rapidocr_onnxruntime",
+  "expected_version_check": "rapidocr_onnxruntime.__version__",
+  "local_resource_check": "verify_bundled_onnx_models_present",
+  "fallback_plan": "degrade_to_no_text_evidence_candidate",
+  "source_chain": "recognition_model_download_and_install_dryrun_v1",
+  "inference_allowed": false
+}

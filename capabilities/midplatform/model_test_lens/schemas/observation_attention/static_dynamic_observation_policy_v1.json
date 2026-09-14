@@ -1,0 +1,190 @@
+{
+  "schema_id": "StaticDynamicObservationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "patch_ref": "Static-Dynamic-Observation-Routing-Patch-v1",
+  "description": "静态 / 动态 / 场景结构观察路线策略。所有 motion_state 均为 candidate_only。",
+  "pipeline": [
+    "region_segmentation",
+    "static_dynamic_candidate_judgment",
+    "observation_priority",
+    "followup_model_route"
+  ],
+  "static_observation_routes": {
+    "motion_state_candidate": "static_candidate",
+    "priority_reasons": [
+      "text_relevant",
+      "stable_reference",
+      "scene_context",
+      "location_reference",
+      "needs_ocr_review",
+      "needs_detection_review"
+    ],
+    "recommended_followup_model_priority": [
+      "ocr",
+      "detection",
+      "vlm",
+      "slam_reference",
+      "human_review"
+    ],
+    "rules": [
+      {
+        "region_pattern": "sign|advertisement|facade|text",
+        "followup": [{"model": "ocr", "route_priority": "P0"}, {"model": "detection", "route_priority": "P1"}],
+        "route_reason": "confirm_static_text"
+      },
+      {
+        "region_pattern": "building|fixed_facility",
+        "followup": [{"model": "slam_reference", "route_priority": "P2"}],
+        "route_reason": "use_as_slam_reference"
+      },
+      {
+        "region_pattern": "uncertain_static",
+        "followup": [{"model": "detection", "route_priority": "P1"}],
+        "route_reason": "distinguish_static_vs_dynamic"
+      }
+    ]
+  },
+  "dynamic_observation_routes": {
+    "motion_state_candidate": "dynamic_candidate",
+    "priority_reasons": [
+      "possible_risk",
+      "motion_relevant",
+      "needs_tracking_review",
+      "needs_detection_review",
+      "needs_depth_review",
+      "collision_risk_candidate",
+      "crossing_path_candidate"
+    ],
+    "recommended_followup_model_priority": [
+      "tracking",
+      "detection",
+      "depth",
+      "motion_analysis",
+      "human_review"
+    ],
+    "rules": [
+      {
+        "region_pattern": "vehicle|pedestrian|cyclist",
+        "followup": [
+          {"model": "tracking", "route_priority": "P0"},
+          {"model": "detection", "route_priority": "P0"}
+        ],
+        "route_reason": "track_dynamic_object",
+        "video_required_for_stronger_candidate": false,
+        "single_frame_fallback": "needs_tracking_review"
+      },
+      {
+        "region_pattern": "near_dynamic_target",
+        "followup": [{"model": "depth", "route_priority": "P0"}],
+        "route_reason": "estimate_distance"
+      },
+      {
+        "region_pattern": "uncertain_dynamic",
+        "followup": [{"model": "detection", "route_priority": "P0"}],
+        "route_reason": "verify_motion"
+      }
+    ],
+    "multi_frame_rule": "当 video_multi_frame 可用时，tracking route 必须提升至 P0/P1"
+  },
+  "scene_structure_routes": {
+    "motion_state_candidate": "scene_structure_candidate",
+    "priority_reasons": [
+      "navigation_relevant",
+      "walkable_area_candidate",
+      "obstacle_boundary_candidate",
+      "scene_layout_reference",
+      "needs_depth_review",
+      "needs_slam_review"
+    ],
+    "recommended_followup_model_priority": [
+      "depth",
+      "slam",
+      "vio",
+      "walkable_area_review",
+      "detection",
+      "human_review"
+    ],
+    "rules": [
+      {
+        "region_pattern": "road|crosswalk|ground",
+        "followup": [
+          {"model": "depth", "route_priority": "P0"},
+          {"model": "slam", "route_priority": "P1"}
+        ],
+        "route_reason": "verify_walkable_structure"
+      },
+      {
+        "region_pattern": "passage|stair|doorway",
+        "followup": [{"model": "depth", "route_priority": "P0"}],
+        "route_reason": "verify_walkable_structure"
+      },
+      {
+        "region_pattern": "large_spatial_structure",
+        "followup": [{"model": "slam", "route_priority": "P1"}],
+        "route_reason": "use_as_slam_reference"
+      }
+    ]
+  },
+  "unknown_motion_routes": {
+    "motion_state_candidate": "unknown_motion_state",
+    "recommended_followup_model_priority": ["detection", "tracking", "human_review"],
+    "rules": [
+      {
+        "context": "single_frame",
+        "followup": [{"model": "detection", "route_priority": "P0"}, {"model": "human_review", "route_priority": "P1"}]
+      },
+      {
+        "context": "video_multi_frame",
+        "followup": [{"model": "tracking", "route_priority": "P0"}, {"model": "detection", "route_priority": "P1"}]
+      }
+    ]
+  },
+  "single_frame_limitation": {
+    "mobile_sam_single_frame_must_not_confirm_dynamic": true,
+    "allowed_single_frame_labels": {
+      "vehicle": "dynamic_candidate_by_label",
+      "pedestrian": "dynamic_candidate_by_label",
+      "road": "static_or_structure_candidate",
+      "building": "static_or_structure_candidate",
+      "sign": "static_or_structure_candidate"
+    },
+    "all_motion_state_candidate_only": true
+  },
+  "human_correction_motion_linkage": {
+    "description": "Human Correction 影响 motion_state_candidate，不得成为 motion ground truth",
+    "rules": [
+      {
+        "user_signal": "这个目标会动",
+        "motion_state_boost": "dynamic_candidate",
+        "followup": ["tracking", "detection", "depth"]
+      },
+      {
+        "user_signal": "这个目标不会动",
+        "motion_state_boost": "static_candidate",
+        "followup": ["ocr", "detection", "slam_reference"]
+      },
+      {
+        "user_signal": "漏了一个移动目标",
+        "motion_state_boost": "dynamic_candidate",
+        "followup": ["tracking", "detection", "human_review"]
+      },
+      {
+        "user_signal": "这个文字区域应该读",
+        "motion_state_boost": "static_candidate",
+        "followup": ["ocr", "human_review"]
+      },
+      {
+        "user_signal": "这个目标不是风险",
+        "motion_state_adjust": "downgrade_risk_priority",
+        "followup": ["human_review"]
+      }
+    ],
+    "correction_is_priority_signal_only": true,
+    "not_motion_ground_truth": true
+  },
+  "boundary_flags": {
+    "static_dynamic_candidate_only": true,
+    "must_not_confirm_motion_from_single_frame": true
+  }
+}

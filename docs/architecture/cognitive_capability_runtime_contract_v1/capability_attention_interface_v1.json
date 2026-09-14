@@ -1,0 +1,20 @@
+{
+  "interface_name": "Capability Attention Interface v1",
+  "observation_requirement_reference": "observation-example",
+  "capability_request_reference": "capability-request-example",
+  "attention_priority_candidate": {"priority": null, "reason": null},
+  "information_value": null,
+  "uncertainty_reduction": null,
+  "risk_context": null,
+  "resource_cost": null,
+  "persistence": "Transient | Persistent | Background",
+  "release_candidate": null,
+  "retry_candidate": null,
+  "alternative_capability_candidate": null,
+  "attention_does_not_execute_model": true,
+  "attention_does_not_modify_goal": true,
+  "attention_does_not_modify_decision": true,
+  "attention_does_not_directly_call_provider": true,
+  "allocation_is_candidate_only": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "local_runner_status_schema_v1",
+  "title": "Local Runner Job Status V1",
+  "type": "object",
+  "required": [
+    "job_id",
+    "status",
+    "status_reason",
+    "updated_at",
+    "phase_ref",
+    "test_board_ref",
+    "candidate_output_only"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "created",
+        "asset_registered",
+        "awaiting_approval",
+        "ready_to_run",
+        "running",
+        "adapter_processing",
+        "completed",
+        "failed_no_boundary_violation",
+        "blocked"
+      ]
+    },
+    "status_reason": { "type": "string" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "phase_ref": { "type": "string" },
+    "test_board_ref": { "type": "string" },
+    "runner_type": { "type": "string" },
+    "progress_percent": { "type": "number", "minimum": 0, "maximum": 100 },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "candidate_output_only": { "const": true },
+    "not_runtime": { "const": true },
+    "import_envelope_when_ready": { "type": "boolean" }
+  }
+}

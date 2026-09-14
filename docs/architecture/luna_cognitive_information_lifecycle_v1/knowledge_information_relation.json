@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Information Relation",
+  "owner":"Knowledge Library Boundary",
+  "inputs":["admitted knowledge","source","version","scope","limitations"],
+  "outputs":["Field contextual knowledge","Knowledge usage candidate","Experience candidate after practice"],
+  "rules":{"knowledge_admission_required":true,"knowledge_external_lineage_preserved":true,"knowledge_not_experience_without_practice":true,"knowledge_not_memory":true}
+}

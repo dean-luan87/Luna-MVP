@@ -1,0 +1,355 @@
+{
+  "schema_id": "LunaProviderRegistryV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Provider-Registry-v1-001",
+  "description": "统一 Provider 注册表 — 能力属于模型，资源属于 Runtime",
+  "providers": [
+    {
+      "model_id": "qwen_vl",
+      "model_label": "Qwen-VL",
+      "provider_type": "teacher",
+      "execution_mode": "external_api",
+      "model_family": "qwen_vl",
+      "family_version": "qwen_vl_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_reasoning"
+      ],
+      "weaknesses": [
+        "precise_ocr",
+        "real_time_detection",
+        "read_small_text"
+      ],
+      "reliability_profile": "qwen_vl_default",
+      "routing_profile": {
+        "unknown_scene_reasoning": {
+          "capability_score": 0.82,
+          "reliability": 0.90,
+          "latency_ms": 3000,
+          "cost_tier": "medium"
+        },
+        "precise_ocr": {
+          "capability_score": 0.35,
+          "reliability": 0.70,
+          "latency_ms": 3000,
+          "cost_tier": "medium",
+          "excluded": true
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "qwen_vl_v2",
+      "model_label": "Qwen-VL v2",
+      "provider_type": "teacher",
+      "execution_mode": "external_api",
+      "model_family": "qwen_vl",
+      "family_version": "qwen_vl_v2",
+      "lifecycle_state": "candidate",
+      "admission_status": "pending",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_reasoning"
+      ],
+      "weaknesses": [
+        "precise_ocr"
+      ],
+      "reliability_profile": "qwen_vl_v2_default",
+      "routing_profile": {
+        "unknown_scene_reasoning": {
+          "capability_score": 0.88,
+          "reliability": 0.92,
+          "latency_ms": 2500,
+          "cost_tier": "medium"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "internvl2_5",
+      "model_label": "InternVL 2.5",
+      "provider_type": "local_vlm",
+      "execution_mode": "local_runtime",
+      "model_family": "internvl",
+      "family_version": "internvl2_5_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_reasoning"
+      ],
+      "reliability_profile": "internvl_default",
+      "routing_profile": {
+        "unknown_scene_reasoning": {
+          "capability_score": 0.80,
+          "reliability": 0.85,
+          "latency_ms": 2000,
+          "cost_tier": "low"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "internvl2_5_v2",
+      "model_label": "InternVL 2.5 v2",
+      "provider_type": "local_vlm",
+      "execution_mode": "local_runtime",
+      "model_family": "internvl",
+      "family_version": "internvl2_5_v2",
+      "lifecycle_state": "candidate",
+      "admission_status": "pending",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_reasoning"
+      ],
+      "reliability_profile": "internvl_v2_default",
+      "routing_profile": {
+        "unknown_scene_reasoning": {
+          "capability_score": 0.86,
+          "reliability": 0.88,
+          "latency_ms": 1800,
+          "cost_tier": "low"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "gemini_vision",
+      "model_label": "Gemini Vision",
+      "provider_type": "teacher",
+      "execution_mode": "external_api",
+      "model_family": "gemini_vision",
+      "family_version": "gemini_vision_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_reasoning"
+      ],
+      "reliability_profile": "gemini_default",
+      "routing_profile": {
+        "unknown_scene_reasoning": {
+          "capability_score": 0.86,
+          "reliability": 0.75,
+          "latency_ms": 500,
+          "cost_tier": "high"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "ocr_v1",
+      "model_label": "OCR Tool v1",
+      "provider_type": "tool",
+      "execution_mode": "tool_os",
+      "model_family": "ocr",
+      "family_version": "ocr_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "text_recognition",
+        "precise_ocr",
+        "shopfront_text"
+      ],
+      "reliability_profile": "ocr_v1_default",
+      "routing_profile": {
+        "precise_ocr": {
+          "capability_score": 0.95,
+          "reliability": 0.95,
+          "latency_ms": 800,
+          "cost_tier": "low"
+        },
+        "text_recognition": {
+          "capability_score": 0.92,
+          "reliability": 0.95,
+          "latency_ms": 800,
+          "cost_tier": "low"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "detection_v1",
+      "model_label": "Detection Tool v1",
+      "provider_type": "tool",
+      "execution_mode": "tool_os",
+      "model_family": "detection",
+      "family_version": "detection_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "object_detection",
+        "entrance_detection"
+      ],
+      "weaknesses": [
+        "precise_ocr"
+      ],
+      "reliability_profile": "detection_v1_default",
+      "routing_profile": {
+        "object_detection": {
+          "capability_score": 0.93,
+          "reliability": 0.94,
+          "latency_ms": 700,
+          "cost_tier": "low"
+        },
+        "entrance_detection": {
+          "capability_score": 0.90,
+          "reliability": 0.92,
+          "latency_ms": 700,
+          "cost_tier": "low"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "slam_v1",
+      "model_label": "SLAM Tool v1",
+      "provider_type": "tool",
+      "execution_mode": "tool_os",
+      "model_family": "slam",
+      "family_version": "slam_v1",
+      "lifecycle_state": "active",
+      "admission_status": "admitted",
+      "capabilities": [
+        "spatial_mapping"
+      ],
+      "weaknesses": [
+        "text_recognition"
+      ],
+      "reliability_profile": "slam_v1_default",
+      "routing_profile": {
+        "spatial_mapping": {
+          "capability_score": 0.91,
+          "reliability": 0.90,
+          "latency_ms": 900,
+          "cost_tier": "medium"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "paddleocr_v1",
+      "model_label": "PaddleOCR v1",
+      "provider_type": "tool",
+      "execution_mode": "tool_os",
+      "model_family": "ocr",
+      "family_version": "paddleocr_v1",
+      "lifecycle_state": "candidate",
+      "admission_status": "pending",
+      "capabilities": [
+        "text_recognition",
+        "precise_ocr"
+      ],
+      "reliability_profile": "paddleocr_default",
+      "routing_profile": {
+        "precise_ocr": {
+          "capability_score": 0.90,
+          "reliability": 0.90,
+          "latency_ms": 600,
+          "cost_tier": "low"
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "model_id": "yolo11n",
+      "provider_id": "provider:yolo:local:v1",
+      "provider_label": "YOLO Local Visual Evidence Provider",
+      "owner": "Provider Governance",
+      "provider_type": "tool",
+      "execution_mode": "local_runtime",
+      "model_family": "yolo",
+      "provider_family": "yolo",
+      "family_version": "yolo_v1",
+      "provider_contract_ref": "provider-contract:yolo:visual-evidence:v1",
+      "provider_contract_version": "v1",
+      "provider_adapter_ref": "adapter:yolo:visual-evidence:v1",
+      "provider_contract": {
+        "contract_ref": "provider-contract:yolo:visual-evidence:v1",
+        "contract_version": "v1",
+        "input_contract_ref": "RawFrameReferenceV1",
+        "output_contract_ref": "evidence:visual-detection-candidate:v1",
+        "adapter_ref": "adapter:yolo:visual-evidence:v1",
+        "lifecycle_state": "candidate",
+        "provenance_refs": ["provider-governance:yolo-provider-contract:v1"],
+        "candidate_only": true
+      },
+      "supported_model_asset_ids": ["model-asset:yolo11n:weights-v1"],
+      "supported_loader_contract_refs": ["loader:ultralytics:yolo:v1"],
+      "capabilities": ["object_detection"],
+      "lifecycle_state": "candidate",
+      "admission_status": "pending",
+      "source_version_refs": ["provider-registry:v1", "provider-contract:yolo:visual-evidence:v1"],
+      "provenance_refs": ["provider-governance:yolo-local-provider:v1"],
+      "candidate_only": true
+    },
+    {
+      "model_id": "roboflow_vision_poc",
+      "provider_id": "provider:roboflow:vision:poc:v1",
+      "provider_label": "Roboflow External Vision Provider PoC",
+      "owner": "Provider Governance",
+      "provider_type": "external_vision_provider",
+      "execution_mode": "external_api",
+      "remote_execution": true,
+      "local_execution": false,
+      "provider_family": "roboflow",
+      "family_version": "roboflow_api_contract_v1",
+      "provider_contract_ref": "provider-contract:roboflow:vision-evidence:v1",
+      "provider_contract_version": "v1",
+      "provider_adapter_ref": "adapter:roboflow:vision-evidence:v1",
+      "provider_contract": {
+        "contract_ref": "provider-contract:roboflow:vision-evidence:v1",
+        "contract_version": "v1",
+        "input_contract_ref": "RawFrameReferenceV1",
+        "output_contract_ref": "evidence:visual-detection-candidate:v1",
+        "adapter_ref": "adapter:roboflow:vision-evidence:v1",
+        "lifecycle_state": "candidate",
+        "provenance_refs": ["provider-governance:roboflow-vision-evidence-contract:v1"],
+        "candidate_only": true
+      },
+      "workflow_ref": "workflow:roboflow:lei-luan:custom-workflow:v1",
+      "workspace_ref": "workspace:roboflow:lei-luan:v1",
+      "workflow_id": "custom-workflow",
+      "workflow_binding_lifecycle_owner": "Provider Governance",
+      "workflow_execution_endpoint_class": "serverless_cloud_api",
+      "transport_ref": "transport:inference_sdk:InferenceHTTPClient:v1",
+      "workflow_input_contract_refs": ["input:image:v1"],
+      "workflow_output_mapping": {"detections": "$[0].model_output_3.predictions"},
+      "workflow_capabilities": ["object_detection"],
+      "supported_model_refs": ["model-asset:rf-detr-small:roboflow-v1"],
+      "supported_model_asset_ids": ["model-asset:rf-detr-small:roboflow-v1"],
+      "supported_capabilities": ["object_detection"],
+      "dependency_declaration_refs": [
+        "dependency:inference-sdk",
+        "dependency:roboflow:external-api-contract:v1"
+      ],
+      "runtime_requirement_refs": [
+        "runtime:external-network-approved",
+        "runtime:roboflow-api-key-present"
+      ],
+      "lifecycle_state": "candidate",
+      "admission_status": "pending",
+      "source_version_refs": [
+        "provider-registry:v1",
+        "provider-contract:roboflow:vision-evidence:v1"
+      ],
+      "provenance_refs": [
+        "provider-governance:roboflow-vision-poc-declaration:v1"
+      ],
+      "invalidation_refs": [],
+      "candidate_only": true,
+      "provider_admission_implied": false,
+      "provider_invocation_implied": false,
+      "model_loading_implied": false,
+      "capability_owner": false,
+      "model_owner": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Capability Duplicate Mapping",
+  "source": "luna_governance_asset_discovery_v1",
+  "groups": [
+    {"group": "Capability Registry", "canonical_owner": "Capability Registry", "existing_assets": ["docs/architecture/capability_registry", "docs/architecture/luna_governance_asset_discovery_v1/capability_governance_asset_inventory_v1.json"], "decision": "map_existing_assets", "delete": false},
+    {"group": "Model Manager", "canonical_owner": "Model Manager", "existing_assets": ["docs/architecture/cognitive_model_manager_runtime_boundary_v1", "docs/architecture/luna_governance_asset_discovery_v1/model_management_asset_inventory_v1.json"], "decision": "map_existing_assets", "delete": false},
+    {"group": "Capability Admission", "canonical_owner": "Capability Admission", "existing_assets": ["docs/architecture/cognitive_capability_runtime_contract_v1/capability_admission_contract_v1.json", "docs/architecture/cognitive_model_manager_runtime_boundary_v1/model_admission_contract_v1.json"], "decision": "capability_primary_model_subordinate", "delete": false},
+    {"group": "Provider Boundary", "canonical_owner": "Provider Governance", "existing_assets": ["docs/architecture/luna_capability_runtime_integration_v1/provider_adapter_contract_v1.json", "docs/architecture/cognitive_capability_runtime_contract_v1/provider_isolation_contract_v1.md"], "decision": "map_existing_assets", "delete": false},
+    {"group": "Calibration / Health", "canonical_owner": "Capability Calibration", "existing_assets": ["docs/architecture/luna_governance_asset_discovery_v1/calibration_asset_inventory_v1.json", "docs/architecture/luna_capability_runtime_integration_v1/capability_health_manager_v1.json"], "decision": "map_existing_assets", "delete": false}
+  ],
+  "rules": {"no_delete": true, "historical_assets_preserved": true, "canonical_mapping_only": true, "no_duplicate_runtime": true}
+}

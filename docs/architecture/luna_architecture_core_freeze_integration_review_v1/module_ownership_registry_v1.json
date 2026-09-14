@@ -1,0 +1,16 @@
+{
+  "title": "Module Ownership Registry v1",
+  "entries": [
+    {"concept":"Reality State","owner":"Reality Workspace","writer":"Reality Reducer","readers":["Field","Situation","Global Cognitive State"]},
+    {"concept":"Field State","owner":"Cognitive Field","writer":"Field State Reducer","readers":["Attention","Workspace","Brain"]},
+    {"concept":"Attention State","owner":"Attention System","writer":"Attention Arbitration","readers":["Workspace","Runtime Governance","Brain"]},
+    {"concept":"Workspace State","owner":"Cognitive Workspace","writer":"Workspace Composer","readers":["Brain","Trace"]},
+    {"concept":"Self State","owner":"Cognitive Self Model","writer":"Self Model Update Boundary","readers":["Brain","Action Boundary","Workspace"]},
+    {"concept":"Memory State","owner":"Memory System","writer":"Memory Admission","readers":["Workspace","Learning","Self Evolution"]},
+    {"concept":"Capability State","owner":"Capability Runtime","writer":"Capability Health Boundary","readers":["Self Model","Attention","Capability Governance"]},
+    {"concept":"Decision Candidate","owner":"Brain","writer":"Brain Evaluation","readers":["Decision Commitment","Action Boundary","Trace"]},
+    {"concept":"Action State","owner":"Action Runtime Foundation","writer":"Action Runtime Adapter","readers":["Outcome","Trace","Learning"]},
+    {"concept":"Growth Candidate","owner":"Self Evolution","writer":"Evolution Governance Boundary","readers":["Self Model","Capability Profile","Governance"]}
+  ],
+  "rules": {"single_owner_per_concept":true,"writer_must_be_explicit":true,"readers_cannot_write_by_read":true}
+}

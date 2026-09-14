@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "registry_name": "Cognitive Attention Source Registry",
+  "sources": [
+    {"source_id": "survival", "name": "Survival Attention", "class": "Mandatory Attention"},
+    {"source_id": "goal", "name": "Goal Attention", "class": "Competitive Attention"},
+    {"source_id": "field", "name": "Field Attention", "class": "Competitive Attention"},
+    {"source_id": "maintenance", "name": "Maintenance Attention", "class": "Mandatory Attention"},
+    {"source_id": "exploration", "name": "Exploration Attention", "class": "Opportunistic Attention"},
+    {"source_id": "external", "name": "External Demand Attention", "class": "Competitive Attention"}
+  ],
+  "source_is_not_decision": true,
+  "source_is_not_action": true,
+  "role_runtime": false,
+  "emotion_runtime": false
+}

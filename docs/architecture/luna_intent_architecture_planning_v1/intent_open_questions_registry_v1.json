@@ -1,0 +1,21 @@
+{
+  "artifact": "intent_open_questions_registry_v1",
+  "status": "PLANNING_CANDIDATE",
+  "blocking_question_count": 0,
+  "questions": [
+    {"question_id": "IQ01", "topic": "formation algorithm", "question": "Which evidence-combination method should qualify Potential Intent without collapsing Unknown?", "disposition": "DEFER_TO_CONTROLLED_IMPLEMENTATION_PLANNING", "blocking": false},
+    {"question_id": "IQ02", "topic": "numeric representation", "question": "Should strength, confidence, and priority use bounded numeric values, ordered categories, or mixed evidence objects?", "disposition": "DEFER_NUMERIC_FREEZE", "blocking": false},
+    {"question_id": "IQ03", "topic": "lifecycle timing", "question": "Which temporal evidence supports dormant, recurring, resolved, or abandoned candidates?", "disposition": "DEFER_RUNTIME_AND_DATA_EVIDENCE", "blocking": false},
+    {"question_id": "IQ04", "topic": "persistence", "question": "Which candidate and trace fields may later be persisted, and under which privacy and retention governance?", "disposition": "DEFER_PERSISTENCE_ARCHITECTURE", "blocking": false},
+    {"question_id": "IQ05", "topic": "competition model", "question": "How should coexistence, suppression, amplification, inhibition, and dominance be represented mathematically?", "disposition": "DEFER_MODEL_EXPLORATION", "blocking": false},
+    {"question_id": "IQ06", "topic": "resource policy", "question": "How should active projection breadth degrade under real resource conditions without losing provenance?", "disposition": "DEFER_RUNTIME_BOUNDARY_PLANNING", "blocking": false},
+    {"question_id": "IQ07", "topic": "emotion", "question": "Which future Emotion influence candidates are admissible without creating cross-write authority?", "disposition": "DEFER_EMOTION_ARCHITECTURE", "blocking": false},
+    {"question_id": "IQ08", "topic": "self feedback", "question": "When can repeated Intent patterns become a Growth or Self Evolution review candidate?", "disposition": "DEFER_SELF_EVOLUTION_GOVERNANCE", "blocking": false},
+    {"question_id": "IQ09", "topic": "long-term continuity", "question": "How should long-term Intent continuity be evaluated without becoming Identity?", "disposition": "DEFER_LONGITUDINAL_VALIDATION", "blocking": false},
+    {"question_id": "IQ10", "topic": "causal handoff", "question": "Which minimum candidate bundle is sufficient for future causal analysis under different Field conditions?", "disposition": "DEFER_CAUSAL_ARCHITECTURE_PLANNING", "blocking": false},
+    {"question_id": "IQ11", "topic": "legacy vocabulary", "question": "Where should Cognitive Intent Signal, Attention Intent, and Action Intent be renamed or explicitly disambiguated in future documentation alignment?", "disposition": "DEFER_DOCUMENT_ALIGNMENT", "blocking": false},
+    {"question_id": "IQ12", "topic": "validation corpus", "question": "Which additional longitudinal and multi-role scenarios are needed before controlled skeleton implementation?", "disposition": "DEFER_SCENARIO_EXPANSION", "blocking": false}
+  ],
+  "escalation_rule": "Any future discovery requiring a second Intent owner, a source-owned object to create final Intent, or Planning assets to activate Runtime becomes BLOCKED_BY_EXISTING_ARCHITECTURE_CONFLICT and requires explicit governance review.",
+  "planning_conclusion": "Open questions concern implementation detail and empirical validation; none blocks the current candidate architecture."
+}

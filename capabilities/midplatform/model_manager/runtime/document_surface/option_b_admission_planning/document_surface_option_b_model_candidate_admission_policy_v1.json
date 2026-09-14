@@ -1,0 +1,28 @@
+{
+  "schema_id": "DocumentSurfaceOptionBModelCandidateAdmissionPolicyV1",
+  "version": "v1",
+  "planning_only": true,
+  "active_model_selection_allowed": false,
+  "model_download_allowed": false,
+  "training_allowed": false,
+  "execution_allowed": false,
+  "active_registry_update_allowed": false,
+  "admission_status_values": [
+    "pending_admission_review",
+    "admitted_candidate_only",
+    "blocked_or_requires_wrapper",
+    "blocked_license",
+    "blocked_weight",
+    "blocked_dependency",
+    "rejected"
+  ],
+  "wrapper_required_when": [
+    "produces_caption_by_default",
+    "produces_semantic_fact_by_default",
+    "cannot_disable_text_generation",
+    "cannot_disable_ocr_like_output"
+  ],
+  "raw_output_not_allowed_downstream": true,
+  "candidate_only": true,
+  "not_fact": true
+}

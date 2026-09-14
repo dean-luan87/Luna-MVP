@@ -1,0 +1,31 @@
+{
+  "title": "Cognitive Architecture Migration Map v1",
+  "migration_type": "candidate_based_architecture_consolidation",
+  "source_assets": [
+    "Field / Role / Relationship phases",
+    "Self / Attention / Workspace phases",
+    "Situation / Hypothesis / Expectation phases",
+    "Intent / Goal / Task phases",
+    "Brain / Decision Commitment phases",
+    "Memory / Learning / Reflex phases",
+    "Constitution / Governance / Capability phases"
+  ],
+  "canonical_targets": [
+    {"legacy_scope": "separate Field assets", "canonical_target": "Field Network + Field System", "migration_status": "candidate"},
+    {"legacy_scope": "separate state contracts", "canonical_target": "Global Cognitive State + State Ownership Map", "migration_status": "candidate"},
+    {"legacy_scope": "separate decision contracts", "canonical_target": "Brain → Decision Candidate → Decision Commitment", "migration_status": "candidate"},
+    {"legacy_scope": "separate capability interfaces", "canonical_target": "Capability Plane isolated from Cognitive Core", "migration_status": "candidate"},
+    {"legacy_scope": "separate learning feedback", "canonical_target": "Experience / Learning Candidate Loop", "migration_status": "candidate"}
+  ],
+  "migration_rules": {
+    "no_automatic_migration": true,
+    "no_asset_deletion": true,
+    "no_rename_to_hide_failure": true,
+    "preserve_provenance": true,
+    "preserve_unknowns": true,
+    "compatibility_review_required": true,
+    "governance_approval_required": true,
+    "runtime_changes_out_of_scope": true
+  },
+  "future_work": ["interface alias review", "duplicate schema review", "authority drift review", "Capability Runtime integration review"]
+}

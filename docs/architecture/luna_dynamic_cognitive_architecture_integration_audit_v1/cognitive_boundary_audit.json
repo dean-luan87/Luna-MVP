@@ -1,0 +1,92 @@
+{
+  "audit_id": "luna_dynamic_cognitive_architecture_cognitive_boundary_audit_v1",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "records": [
+    {
+      "boundary": "Field -> Context",
+      "expectation": "ALLOWED",
+      "status": "PASS",
+      "reason": "Context may consume admitted read-only Field State projections with provenance.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"]
+    },
+    {
+      "boundary": "Memory -> Projection",
+      "expectation": "ALLOWED",
+      "status": "PASS",
+      "reason": "Memory may supply historical context projection candidates while current Reality retains precedence.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/memory_context_projection_contract_candidate.json"]
+    },
+    {
+      "boundary": "Personal Cognitive Network -> Activation",
+      "expectation": "ALLOWED",
+      "status": "PASS",
+      "reason": "PCN owns typed activation candidates but not the source objects being activated.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json"]
+    },
+    {
+      "boundary": "Causal Reasoning -> Candidate Reasoning",
+      "expectation": "ALLOWED",
+      "status": "PASS",
+      "reason": "Causal output remains evidence-bound, counter-evidence-aware, revisable, and candidate-only.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json"]
+    },
+    {
+      "boundary": "Decision -> Task",
+      "expectation": "ALLOWED",
+      "status": "PASS",
+      "reason": "A selected Decision reference may enter task lifecycle without transferring Decision authority.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"]
+    },
+    {
+      "boundary": "Observation -> Fact",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Observation produces evidence and admission-handoff candidates, never authoritative Fact directly.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/future_development_boundary_rules.json"]
+    },
+    {
+      "boundary": "Memory -> Reality Override",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Historical influence cannot replace current admitted Reality.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"]
+    },
+    {
+      "boundary": "Runtime -> Cognition",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Runtime transports and executes governed requests but owns no Intent, Causal, Value, Memory, Reality interpretation, Decision, PCN, or B Route state.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json"]
+    },
+    {
+      "boundary": "Model -> Decision",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Model output remains governed computation or evidence and never becomes Decision authority.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/future_development_boundary_rules.json"]
+    },
+    {
+      "boundary": "Task -> Intent",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Task lifecycle is downstream of Intent and Decision governance.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"]
+    },
+    {
+      "boundary": "Causal Reasoning -> Action",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "Causal Reasoning produces Decision-support candidates only and cannot select or execute Action.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json"]
+    },
+    {
+      "boundary": "Personal Cognitive Network -> Source Object Ownership",
+      "expectation": "FORBIDDEN",
+      "status": "PASS",
+      "reason": "PCN cannot own, persist, or mutate Self, Role, Relationship, Memory, Emotion, Value, Belief, Schema, or other sources.",
+      "evidence_refs": ["docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/future_development_boundary_rules.json"]
+    }
+  ],
+  "failed_boundaries": [],
+  "blocker_count": 0
+}

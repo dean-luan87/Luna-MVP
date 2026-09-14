@@ -1,0 +1,7 @@
+{
+  "title": "Capability to L3 Boundary v1",
+  "owner": "Social-Emotion Boundary Governance",
+  "allowed": ["Emotion Context → Capability Priority Candidate", "Social Context → Capability Requirement Context", "Role Context → Capability Constraint Context"],
+  "forbidden": ["Emotion → Direct Capability Control", "Social Field → Provider Invocation", "Role → Model Selection Authority", "Emotion → Decision Override"],
+  "rules": {"context_candidate_only": true, "priority_is_candidate": true, "direct_invocation_forbidden": true, "boundary_only": true}
+}

@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Weight-Registry-Patch-And-Model-Load-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:54:15.985926+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "planning_status": "mobile_sam_code_and_weight_ready_planned_registry_patch_and_model_load_trial_planned_no_mutation_no_load",
+    "readiness_level_planned": "code_and_weight_ready",
+    "mobile_sam_weight_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "mobile_sam_weight_size_bytes": 40728226,
+    "mobile_sam_weight_storage_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "registry_patched_this_phase": false,
+    "model_loaded_this_phase": false,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_only",
+    "subsequent_model_load_trial_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001",
+    "transition_note": "PLANNING ONLY (mobile_sam_only). The real download evidence was audited: GO, blocker_count=0, scope=mobile_sam_only, mobile_sam.pt present, size==40728226 (exact), sha256==6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f, storage verified, byte_track not downloaded, no model load / import / inference / runtime / registry mutation. A registry-patch PLAN (readiness_level=code_and_weight_ready; model_load/model/inference/runtime/output_adapter/semantic all false) and a model-load-trial readiness PLAN were produced, but NOTHING was written to the registry and NO model was loaded. code_and_weight_ready is explicitly NOT model-loaded / model-ready / inference-ready / runtime-ready. Next: Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001 (actually writes the overlay, still no model load), then Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001 (separate request + owner approval before any model load; still no inference/runtime). byte_track stays out of scope (Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001)."
+  },
+  "final_decision": "P1_MOBILE_SAM_WEIGHT_REGISTRY_PATCH_AND_MODEL_LOAD_READINESS_PLANNING_GO"
+}

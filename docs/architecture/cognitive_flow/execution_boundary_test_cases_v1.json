@@ -1,0 +1,58 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_execution_outcome_validation",
+  "scope": "Decision_Candidate_to_Outcome_Interpretation_only",
+  "cases": [
+    {
+      "case_id": "decision_reasonable_environment_sudden_change",
+      "situation_reference": {
+        "road_state": "normal",
+        "weather_state": "stable"
+      },
+      "decision_candidate": {
+        "selected_option": "use_normal_route",
+        "past_available_context": "supports_route"
+      },
+      "execution_boundary": {
+        "status_candidate": "prepared",
+        "real_action_execution": false
+      },
+      "outcome_evidence": {
+        "weather_change": "sudden_heavy_rain",
+        "road_state": "flooded"
+      },
+      "expected_difference": "environment_condition_changed",
+      "expected_cause_attribution": ["Environment Change"],
+      "forbidden_attribution": ["Decision Failure"],
+      "assertions": {
+        "decision_and_outcome_separated": true,
+        "past_available_context_respected": true,
+        "real_action_runtime_excluded": true
+      }
+    },
+    {
+      "case_id": "execution_deviation_left_detour_not_realized",
+      "situation_reference": {
+        "hazard_area": "ahead"
+      },
+      "decision_candidate": {
+        "selected_option": "detour_left"
+      },
+      "execution_boundary": {
+        "execution_request_candidate": "left_detour_requested",
+        "execution_status_candidate": "not_realized",
+        "real_action_execution": false
+      },
+      "outcome_evidence": {
+        "goal_progress": "not_reached"
+      },
+      "expected_cause_attribution": ["Execution Gap"],
+      "forbidden_attribution": ["automatic_decision_policy_change"],
+      "assertions": {
+        "decision_execution_separated": true,
+        "execution_gap_visible": true,
+        "decision_not_rewritten": true
+      }
+    }
+  ]
+}

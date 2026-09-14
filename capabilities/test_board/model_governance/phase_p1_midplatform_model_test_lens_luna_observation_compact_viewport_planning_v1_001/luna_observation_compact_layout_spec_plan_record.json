@@ -1,0 +1,130 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-Viewport-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "planning_only": true,
+  "record": {
+    "plan_id": "luna_observation_compact_layout_spec_plan_v1",
+    "spec": {
+      "spec_id": "LunaObservationCompactLayoutSpecV1",
+      "version": "v1",
+      "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-Viewport-Planning-v1-001",
+      "layout_type": "single_screen_dashboard",
+      "max_primary_scroll_depth_viewport_units": 1.5,
+      "target_primary_scroll_depth_viewport_units": 1.0,
+      "viewport_height_model": "100vh_minus_top_and_bottom_chrome",
+      "regions": [
+        {
+          "region_id": "top_task_bar",
+          "position": "fixed_top",
+          "height_px": {
+            "min": 64,
+            "max": 88
+          },
+          "must_be_single_row": true,
+          "contains": [
+            "product_title",
+            "candidate_only_chip",
+            "file_picker",
+            "start_observation",
+            "view_mode_toggle",
+            "advanced_button",
+            "developer_button"
+          ]
+        },
+        {
+          "region_id": "main_dashboard_row",
+          "position": "fill_remaining_above_bottom_dock",
+          "display": "flex_row",
+          "children": [
+            {
+              "region_id": "left_capability_rail",
+              "width_px": {
+                "min": 220,
+                "max": 260
+              },
+              "contains": [
+                "file_summary",
+                "capability_cards",
+                "more_capabilities_collapsed"
+              ]
+            },
+            {
+              "region_id": "central_observation_canvas",
+              "width_percent": {
+                "min": 55,
+                "max": 65
+              },
+              "flex_grow": 1,
+              "default_view": "robot_vision_hud",
+              "view_modes": [
+                "original",
+                "compare",
+                "robot_vision_hud"
+              ],
+              "image_fit": "aspect_fit_no_distortion"
+            },
+            {
+              "region_id": "right_luna_explanation_panel",
+              "width_px": {
+                "min": 300,
+                "max": 380
+              },
+              "internal_scroll_allowed": true,
+              "max_items_per_section": 3,
+              "sections": [
+                "current_task",
+                "what_i_see",
+                "what_i_am_uncertain",
+                "what_may_be_missing",
+                "recommended_next_test"
+              ]
+            }
+          ]
+        },
+        {
+          "region_id": "bottom_metrics_dock",
+          "position": "fixed_or_sticky_bottom",
+          "height_px": {
+            "min": 72,
+            "max": 120
+          },
+          "default_collapsed_tabs": true,
+          "summary_line_template": "综合分 {score} · {success_label} · 主要风险：{risk_summary} · 结果仅供模型评估",
+          "tabs": [
+            {
+              "tab_id": "metrics_detail",
+              "title": "指标详情"
+            },
+            {
+              "tab_id": "advanced_workflow",
+              "title": "高级流程"
+            },
+            {
+              "tab_id": "developer_json",
+              "title": "开发者 JSON"
+            },
+            {
+              "tab_id": "whitebox_slot",
+              "title": "白盒链路"
+            },
+            {
+              "tab_id": "testboard",
+              "title": "TestBoard"
+            }
+          ]
+        }
+      ],
+      "forbidden_layout_patterns": [
+        "vertical_report_stream_five_screens",
+        "metrics_bar_chart_full_screen_default",
+        "compare_and_hud_as_separate_vertical_sections",
+        "empty_right_panel_with_long_center_scroll",
+        "raw_json_default_visible",
+        "manifest_job_bridge_default_visible"
+      ],
+      "merges_with_execution_phase": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-UI-Execution-And-Post-Review-v1-001"
+    }
+  }
+}

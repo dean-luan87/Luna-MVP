@@ -1,0 +1,58 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S3-Real-Vision-YOLO-Evidence-Controlled-Replacement-v1-001",
+  "canonical_owner_decision": "REUSE_FIELD_PERCEPTION_ORCHESTRATOR",
+  "new_semantic_owner": false,
+  "assets": [
+    {
+      "classification": "A",
+      "asset": "Field Perception Orchestrator active observation control",
+      "location": "capabilities/midplatform/field_perception_orchestrator/integration/",
+      "reuse": "demand/request/capability/session/sufficiency/control contracts"
+    },
+    {
+      "classification": "A",
+      "asset": "Observation Gateway",
+      "location": "capabilities/midplatform/core/observation_gateway/",
+      "reuse": "downstream evidence and observation admission boundary"
+    },
+    {
+      "classification": "B",
+      "asset": "yolo_candidate_adapter_v0",
+      "location": "capabilities/vision_runtime/yolo_candidate_adapter_v0.py",
+      "reuse": "local-only YOLO execution, provider-native detection shape, detection-to-evidence mapping"
+    },
+    {
+      "classification": "B",
+      "asset": "vision provider adapter/input/registry contracts",
+      "location": "capabilities/vision_runtime/",
+      "reuse": "provider vocabulary and evidence schema alignment"
+    },
+    {
+      "classification": "B",
+      "asset": "Field Perception model requirement and Model Manager binding adapters",
+      "location": "capabilities/midplatform/field_perception_orchestrator/integration/",
+      "reuse": "capability requirement and admission references"
+    },
+    {
+      "classification": "C",
+      "asset": "direct camera-to-provider/runtime and legacy guarded trial paths",
+      "location": "capabilities/guarded_trial/, legacy tools and older YOLO routes",
+      "reuse": "not promoted; bypass or direct-execution risk"
+    },
+    {
+      "classification": "D",
+      "asset": "OCR, SLAM/VIO, VLM, scene interpretation and semantic compression",
+      "location": "future S4+ workstreams",
+      "reuse": "deferred"
+    }
+  ],
+  "current_yolo_implementation": "yolo_candidate_adapter_v0",
+  "provider_status": "existing evaluation-candidate adapter; S3 wraps it narrowly and does not create a second YOLO stack",
+  "preferred_model_hint": "yolov8n.pt",
+  "model_manager_admission_path_exists": true,
+  "detection_result_schema_exists": true,
+  "historical_direct_frame_arrival_execution_risk": true,
+  "historical_truth_promotion_risk": true,
+  "region_scope_assets_exist": true,
+  "new_semantic_owner_required": false
+}

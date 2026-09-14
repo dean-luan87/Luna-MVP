@@ -1,0 +1,17 @@
+{
+  "exclude": [
+    "outputs",
+    "library_store",
+    "patches",
+    "patches_extreme",
+    "simulation",
+    "core_snapshot",
+    "annotations",
+    "artifacts",
+    "library",
+    "venv",
+    "**/__pycache__",
+    "**/sim_out",
+    "**/.git"
+  ]
+}

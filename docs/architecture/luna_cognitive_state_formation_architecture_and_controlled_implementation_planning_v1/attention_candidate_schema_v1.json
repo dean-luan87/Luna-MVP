@@ -1,0 +1,25 @@
+{
+    "artifact": "attention_candidate_schema_v1",
+    "entity": "attention_candidate",
+    "fields": {
+        "attention_id": "string",
+        "subject_ref": "string",
+        "source_refs": "string[]",
+        "reason_refs": "string[]",
+        "relevance_score_candidate": "number",
+        "salience_score_candidate": "number",
+        "risk_score_candidate": "number",
+        "urgency_score_candidate": "number",
+        "uncertainty_score_candidate": "number",
+        "intent_alignment_candidate": "number",
+        "attention_state": "PROPOSED|ACTIVE_CANDIDATE|DEFERRED|SUPPRESSED",
+        "trace_ref": "string",
+        "provenance_refs": "string[]"
+    },
+    "score_semantics": "all scores are candidate/heuristic, not facts",
+    "boundary": {
+        "attention_not_decision_priority": true,
+        "attention_not_action_priority": true,
+        "attention_does_not_mutate_intent": true
+    }
+}

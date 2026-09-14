@@ -1,0 +1,12 @@
+{
+  "scenario_ids": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19", "R20", "R21", "R22", "R23", "R24", "R25", "R26", "R27", "R28", "R29", "R30", "R31", "R32", "R33", "R34", "R35", "R36"],
+  "groups": {
+    "demand_and_autonomy": ["R01", "R02", "R06", "R08", "R11"],
+    "capability_and_modality": ["R03", "R05", "R28", "R30"],
+    "sufficiency_and_control": ["R04", "R09", "R16", "R17", "R18", "R23", "R29", "R31", "R32"],
+    "failure_budget_idempotency": ["R13", "R14", "R15", "R19", "R20", "R21", "R22", "R24", "R27", "R33", "R34"],
+    "trace_and_next_cycle": ["R07", "R10", "R25", "R26", "R35", "R36"],
+    "historical_baseline": ["R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09", "R10", "R11", "R12"]
+  },
+  "fixture_source": "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_fixture_v1.py"
+}

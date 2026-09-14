@@ -1,0 +1,60 @@
+{
+  "envelope_id": "mobile_sam_multi_real_image_example_envelope_v1",
+  "phase_ref": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "test_case_id": "mobile_sam_multi_real_image_street_scenes_v1",
+  "model_id": "mobile_sam",
+  "model_category": "segmentation",
+  "model_version_or_registry_ref": "capabilities/midplatform/model_registry/code_only_source_install_registry_overlay_v1.json",
+  "input_asset_refs": [
+    "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_001.png",
+    "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_002.png",
+    "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_003.png",
+    "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_004.png"
+  ],
+  "test_manifest_ref": "_tmp_eval_out/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_v1_smoke_v0/mobile_sam_multi_real_image_manifest_v1.json",
+  "execution_trace_ref": "_tmp_eval_out/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_v1_smoke_v0/multi_real_image_prompt_execution_record_v1.json",
+  "candidate_outputs": [],
+  "visualization_layers": [
+    {
+      "layer_id": "mask_overlay_building_001",
+      "layer_type": "mask",
+      "source_artifact_ref": "_tmp_eval_out/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/mobile_sam_multi_real_image_street_scene_v1_001_building_or_large_structure_candidate_mask.png",
+      "display_name": "building_or_large_structure",
+      "model_id": "mobile_sam",
+      "candidate_only": true,
+      "opacity": 0.55,
+      "color_class": "seg-building"
+    }
+  ],
+  "metrics": {
+    "image_count": 4,
+    "prompt_attempt_count": 20,
+    "prompt_success_count": 20,
+    "overall_success_rate": 1.0
+  },
+  "failure_modes": [],
+  "quality_summary": {
+    "human_review_required": true,
+    "suitable_for_runtime_admission": false,
+    "not_semantic_fact": true
+  },
+  "test_board_refs": [
+    "capabilities/test_board/recognition_models/phase_p1_mobilesam_multi_real_image_inference_trial_execution_and_post_review_v1_001/"
+  ],
+  "protected_artifact_refs": [],
+  "boundary_flags": {
+    "candidate_only": true,
+    "not_fact": true,
+    "not_runtime_output": true,
+    "not_output_adapter_output": true,
+    "not_semantic_output": true,
+    "not_navigation_action_speech": true
+  },
+  "readiness_effect": {
+    "runtime_ready": false,
+    "output_adapter_ready": false,
+    "semantic_layer_ready": false,
+    "fact_write_ready": false,
+    "navigation_action_speech_ready": false
+  }
+}

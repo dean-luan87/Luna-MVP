@@ -1,0 +1,16 @@
+{
+  "interface_name": "Drive Learning Interface v1",
+  "drive_reference": "drive-example",
+  "experience_reference": "experience-example",
+  "pattern_candidate": null,
+  "strategy_candidate": null,
+  "feedback_reference": "feedback-example",
+  "drive_adjustment_candidate": null,
+  "validation_required": true,
+  "candidate_only": true,
+  "automatic_learning": false,
+  "model_training": false,
+  "drive_does_not_modify_model_parameters": true,
+  "drive_does_not_modify_goal": true,
+  "unknowns_are_preserved": true
+}

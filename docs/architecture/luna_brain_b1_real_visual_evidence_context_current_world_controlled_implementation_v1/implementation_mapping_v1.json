@@ -1,0 +1,19 @@
+{
+  "phase": "Phase-Luna-Brain-B1-Real-Visual-Evidence-Context-Current-World-Controlled-Implementation-v1-001",
+  "canonical_owners": {
+    "visual_evidence": "Field Perception Orchestrator / Vision Provider Integration",
+    "gateway": "Observation Gateway",
+    "observation_metadata": "Observation Manager",
+    "context": "Context Foundation",
+    "field_event": "Field Event Admission",
+    "field_mutation": "Field State Reducer",
+    "current_world_candidate": "Cognitive State Formation"
+  },
+  "new_integration_surfaces": [
+    "capabilities/midplatform/core/observation_gateway/integration/real_visual_evidence_gateway_adapter_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/b1_real_visual_evidence_context_world_controlled/"
+  ],
+  "existing_engine_reused": "ContextWorldStateControlledIntegrationEngineV1",
+  "provider_invocation_in_b1": false,
+  "new_semantic_owner": false
+}

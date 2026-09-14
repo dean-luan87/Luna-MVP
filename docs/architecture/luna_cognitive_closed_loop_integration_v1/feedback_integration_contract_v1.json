@@ -1,0 +1,8 @@
+{
+  "title": "Feedback Integration Contract v1",
+  "owner": "Cognitive Core Governance",
+  "feedback_types": ["External Feedback", "Social Feedback", "Internal Feedback"],
+  "schema": ["feedback_id", "feedback_type", "source", "content", "confidence", "context", "trace_id"],
+  "consumers": ["Learning", "Memory", "Role Evolution Candidate"],
+  "rules": {"feedback_not_fact_without_validation": true, "unknown_preserved": true, "learning_candidate_only": true, "role_evolution_candidate_only": true}
+}

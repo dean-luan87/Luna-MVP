@@ -1,0 +1,14 @@
+{
+  "semantic_compression_status": "DEFERRED",
+  "execution": false,
+  "deferred_capabilities": [
+    "semantic summarization layer",
+    "world-summary generation",
+    "affective memory compression",
+    "emotion-memory summary",
+    "personality-memory fusion",
+    "automatic evidence-to-conclusion compression"
+  ],
+  "activation_rule": "requires a later dedicated phase explicitly opening this workstream",
+  "current_real_replacement_phases_may_activate": false
+}

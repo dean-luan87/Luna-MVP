@@ -1,0 +1,17 @@
+{
+  "mapping_id": "state_vector_mapping_v1",
+  "source": "Cognitive State Machine and A Route Flow",
+  "vector_components": ["observation_activation", "understanding_confidence", "risk_attention", "exploration_drive", "memory_activation", "decision_pressure"],
+  "mapping": [
+    {"state": "Observation", "components": ["observation_activation", "risk_attention", "exploration_drive"]},
+    {"state": "Understanding", "components": ["understanding_confidence", "memory_activation"]},
+    {"state": "Decision", "components": ["decision_pressure", "risk_attention", "understanding_confidence"]},
+    {"state": "Action", "components": ["decision_pressure", "risk_attention"]},
+    {"state": "Reflection", "components": ["understanding_confidence", "memory_activation"]},
+    {"state": "Learning", "components": ["exploration_drive", "memory_activation", "understanding_confidence"]}
+  ],
+  "legacy_state_machine_preserved": true,
+  "vector_is_not_runtime_state": true,
+  "mapping_is_architecture_only": true,
+  "candidate_only": true
+}

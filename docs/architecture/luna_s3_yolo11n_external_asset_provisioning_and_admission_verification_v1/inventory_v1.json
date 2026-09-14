@@ -1,0 +1,19 @@
+{
+  "canonical_owner": "Model Manager / Model Governance",
+  "reused_integration": "yolo11n_readiness",
+  "target_model": "YOLO11n",
+  "target_model_asset_id": "model-asset:yolo11n:weights-v1",
+  "target_governed_path": "vision/detection/yolo/yolo11n.pt",
+  "current_physical_asset_status": "ASSET_NOT_PRESENT",
+  "current_checksum_status": "CHECKSUM_UNAVAILABLE",
+  "current_dependency_status": "PYTHON_DEPENDENCY_UNRESOLVED",
+  "new_owner_required": false,
+  "agent_copy_or_move_executed": false,
+  "terminal_observation": {
+    "source_file_present": true,
+    "model_file_present": true,
+    "dependency_probe_aggregate": "PYTHON_DEPENDENCY_VERIFIED",
+    "provenance": "explicit user-terminal observation",
+    "promoted_to_canonical_runtime_health": false
+  }
+}

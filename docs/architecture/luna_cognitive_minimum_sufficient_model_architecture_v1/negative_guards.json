@@ -1,0 +1,17 @@
+{
+  "contract_id": "luna_minimum_sufficient_negative_guards_v1",
+  "forbidden": [
+    "runtime", "state_machine_runtime", "hive_runtime", "b_route_runtime", "automatic_learning", "automatic_parameter_update", "identity_change", "constitution_change", "memory_override_reality", "memory_direct_identity_change", "experience_direct_self_modification", "learning_direct_constitution_change", "learning_direct_identity_change", "hive_direct_state_modification", "hive_direct_parameter_update", "b_route_override_a_route", "b_route_direct_self_modification", "b_route_virtual_outcome_experience", "value_execute_action", "goal_execute_action", "decision_direct_reality_mutation", "resource_direct_hardware_control", "module_second_core_vector", "emotion_direct_invariant_change", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "seven_core_states": true,
+    "single_core_vector": true,
+    "stable_core_protected": true,
+    "adaptive_layer_requires_governance": true,
+    "reality_precedence": true,
+    "unique_state_owner": true,
+    "hive_observer_only": true,
+    "b_route_candidate_only": true,
+    "unknowns_preserved": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Goal Self Governance Contract v1",
+  "owner": "Self",
+  "controller": "Self Goal Governance",
+  "review": ["reasonability", "capability boundary", "resource cost", "system stability", "Constitution compliance"],
+  "outputs": ["Approved Goal", "Rejected Goal", "Deferred Goal", "Revised Goal Candidate"],
+  "allowed": ["review_goal_candidate", "approve_goal_candidate", "reject_goal_candidate", "defer_goal_candidate", "request_revision_candidate"],
+  "forbidden": ["modify_identity", "modify_value", "modify_constitution", "rewrite_brain_rules", "modify_reality", "direct_action", "automatic_goal_generation", "automatic_goal_adjustment"],
+  "candidate_only": true,
+  "self_boundary_is_mandatory": true,
+  "runtime_execution": false
+}

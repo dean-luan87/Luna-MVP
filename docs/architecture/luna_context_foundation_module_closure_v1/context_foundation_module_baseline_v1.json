@@ -1,0 +1,55 @@
+{
+  "baseline_id": "luna_context_foundation_module_baseline_v1",
+  "module_id": "context_foundation",
+  "module_status": "BASELINE_READY",
+  "owner": "Context_Foundation",
+  "owner_count": 1,
+  "responsibilities": [
+    "Context Envelope Candidate assembly",
+    "Projection Reference Management",
+    "Context Trace Candidate management",
+    "Unknown, provenance, temporal validity, and source-owner preservation",
+    "Resource-bounded Context scope candidate formation"
+  ],
+  "forbidden_responsibilities": [
+    "Reality ownership or Field State mutation",
+    "Memory admission, persistence, consolidation, retrieval, or mutation",
+    "Emotion calculation, classification, ownership, or mutation",
+    "Intent generation or ownership",
+    "Causal explanation or causal result generation",
+    "Fact promotion",
+    "Decision selection",
+    "Action generation or execution",
+    "Runtime, hardware, model, provider, or resource control",
+    "Source-object ownership transfer or mutation"
+  ],
+  "input_sources": [
+    "Field State System",
+    "Observation Manager",
+    "Memory System",
+    "Self System",
+    "Role System / Social Self",
+    "Relationship System / Social Self",
+    "Emotion Context Boundary / Integration Layer",
+    "Resource Budget Owners",
+    "Mental Field Continuity source owners"
+  ],
+  "output_types": [
+    "Context Envelope Candidate",
+    "Context Trace Candidate",
+    "Degraded Context Scope Candidate",
+    "Unknown Completion Candidate Reference"
+  ],
+  "dependencies": [
+    "Source-owned read-only Projection References",
+    "Temporal validity and revocation references",
+    "Provenance and trace references",
+    "Current-Reality precedence",
+    "Source-owned Resource Budget Reference"
+  ],
+  "implementation_level": "CONTROLLED_SKELETON_ONLY",
+  "runtime_activated": false,
+  "active_schema": false,
+  "active_contract": false,
+  "status": "FROZEN"
+}

@@ -1,0 +1,19 @@
+{
+  "artifact_id": "pcn_open_questions_registry_v1",
+  "status": "PLANNING_CANDIDATE",
+  "allowed_classifications": ["DEFERRED_IMPLEMENTATION_DETAIL", "BLOCKER"],
+  "questions": [
+    {"question_id": "OQ-01", "topic": "final_graph_structure", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Adjacency, hyperedge, property graph, or custom representation does not change the frozen reference-only object model.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-02", "topic": "interaction_kernel_mathematical_model", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "The current phase freezes only local interaction inputs, outputs, and ownership.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-03", "topic": "persistence_backend", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Persistence is explicitly outside PCN planning closure and remains separately governed.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-04", "topic": "activation_algorithm", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Traversal and activation mechanics may vary while Context, resource, temporal, uncertainty, and provenance constraints remain fixed.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-05", "topic": "strength_parameterization", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Numeric or ordinal parameterization does not change Strength-not-Truth semantics.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-06", "topic": "future_emotional_tension_model", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Emotion remains a future independently owned projection and is not implemented here.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-07", "topic": "resource_budget_translation", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Future engineering may map governed budgets to scope without freezing global object counts.", "owner_or_boundary_change": false},
+    {"question_id": "OQ-08", "topic": "structural_change_admission_mechanics", "classification": "DEFERRED_IMPLEMENTATION_DETAIL", "reason": "Structural Change Candidate already requires later source-owner, Experience, and governance review.", "owner_or_boundary_change": false}
+  ],
+  "classification_rule": "Any unresolved issue that changes Owner, Object Model, Core Boundary, or Source Mutation authority must be classified BLOCKER.",
+  "deferred_count": 8,
+  "blocker_count": 0,
+  "candidate_only": true
+}

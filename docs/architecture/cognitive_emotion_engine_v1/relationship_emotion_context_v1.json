@@ -1,0 +1,14 @@
+{
+  "interface_name": "Relationship Emotion Context v1",
+  "participant_a": {},
+  "participant_b": {},
+  "relationship_reference": {},
+  "field_context": {},
+  "relationship_history": {},
+  "boundary": {},
+  "confidence": null,
+  "emotion_state_candidate": {},
+  "relationship_emotion_is_not_judgment": true,
+  "social_judgment": false,
+  "unknowns_are_preserved": true
+}

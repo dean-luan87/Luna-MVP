@@ -1,0 +1,34 @@
+{
+  "title": "Expectation Feedback Contract v1",
+  "contract_type": "Expectation to Reality Feedback",
+  "input": {
+    "expectation_reference": "expectation-example",
+    "expected_state": {},
+    "expected_evidence": [],
+    "reality_observation": {},
+    "evidence_references": [],
+    "field_context": {},
+    "situation_context": {},
+    "time_context": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "comparison": {
+    "status": "Confirmed | Partially Confirmed | Contradicted | Unknown | Expired",
+    "expectation_difference": "candidate",
+    "comparison_basis": {},
+    "confidence_update_candidate": {}
+  },
+  "feedback_candidate": {
+    "experience_record": null,
+    "learning_candidate": null,
+    "brain_review_reference": null
+  },
+  "boundary": {
+    "feedback_has_priority_over_stale_belief": true,
+    "feedback_does_not_modify_reality": true,
+    "feedback_does_not_modify_belief_automatically": true,
+    "feedback_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

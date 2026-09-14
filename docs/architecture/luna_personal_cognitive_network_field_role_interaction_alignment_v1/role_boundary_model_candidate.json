@@ -1,0 +1,34 @@
+{
+  "artifact_id": "pcn_role_boundary_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Social Self Role Governance",
+  "projection_tiers": [
+    {"tier": "ROLE_CORE", "meaning": "The source-owned responsibility and permission core of an admitted role."},
+    {"tier": "STRONG_PROJECTION", "meaning": "A strongly active role projection supported by the current Field and relationship context."},
+    {"tier": "FUZZY_PROJECTION", "meaning": "A partial role projection whose relevance is contextual and uncertain."},
+    {"tier": "CANDIDATE_PROJECTION", "meaning": "A not-yet-admitted role projection retained for evaluation."}
+  ],
+  "activation_constraints": [
+    "context_relevance",
+    "field_relevance",
+    "relationship_relevance",
+    "task_or_need_reference",
+    "self_capability_and_permission",
+    "resource_constraint",
+    "evidence_and_uncertainty"
+  ],
+  "multiplicity": {
+    "same_person_multiple_active_role_projections_allowed": true,
+    "simultaneous_roles_imply_conflict": false,
+    "single_role_overwrite_allowed": false
+  },
+  "authority": {
+    "role_definition_owner": "Social Self Role Governance",
+    "pcn_authority": "link_activation_and_context_projection_only",
+    "interaction_kernel_authority": "local_interaction_candidate_only",
+    "winner_selection_owner": "future_decision_arbitration_subject_to_self_boundary"
+  },
+  "candidate_only": true,
+  "active_schema": false,
+  "runtime_implemented": false
+}

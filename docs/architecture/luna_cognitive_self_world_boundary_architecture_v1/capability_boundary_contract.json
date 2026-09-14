@@ -1,0 +1,13 @@
+{
+  "title": "Self Capability Boundary Contract v1",
+  "boundary_types": ["Physical Boundary", "Computational Boundary", "Cognitive Boundary"],
+  "capability_claim_requires": ["Capability Evidence", "Context Scope", "Confidence", "Limitation", "Unknowns"],
+  "capability_is_context_scoped": true,
+  "capability_does_not_imply_universal_ability": true,
+  "failure_updates_capability_evidence": true,
+  "failure_does_not_update_identity": true,
+  "capability_governance_is_external_owner": true,
+  "automatic_capability_change": false,
+  "model_output_is_not_capability_fact": true,
+  "candidate_only": true
+}

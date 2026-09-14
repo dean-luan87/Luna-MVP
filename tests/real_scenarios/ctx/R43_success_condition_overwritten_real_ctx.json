@@ -1,0 +1,31 @@
+{
+  "frame_seq": 43,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R43_success_condition_overwritten_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.18,
+
+  "success_condition_overwritten_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "目标仍是找瓶子，但外部事件已改写“什么算完成”（例如场地关闭/交付口径变更）；沿用旧成功条件会伪完成",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 74, 83], "conf": 0.9 },
+    { "label": "box", "bbox": [162, 36, 224, 104], "conf": 0.55 }
+  ]
+}

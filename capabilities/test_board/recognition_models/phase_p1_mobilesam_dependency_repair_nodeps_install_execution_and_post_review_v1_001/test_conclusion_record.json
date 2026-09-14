@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:24:51.631661+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "install_execution_status": "go",
+    "timm_install_success": true,
+    "timm_installed_version": "1.0.27",
+    "find_spec_timm": true,
+    "elapsed_seconds": 1.6243,
+    "no_global_env_contamination": true,
+    "no_transitive_dependency_install_violation": true,
+    "can_enter_model_load_retry_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+    "transition_note": "REAL no-deps EXECUTION. pip install timm --no-deps --target completed: return_code=0, success=True, version=1.0.27, find_spec=True, elapsed=1.6243s. No global contamination=True, torch/torchvision in target=False. Decision=P1_MOBILE_SAM_DEPENDENCY_REPAIR_NODEPS_INSTALL_EXECUTION_GO. NO import/load/inference. Next: Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001."
+  },
+  "final_decision": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_NODEPS_INSTALL_EXECUTION_GO"
+}

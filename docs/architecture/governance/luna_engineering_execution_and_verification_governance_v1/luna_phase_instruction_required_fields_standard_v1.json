@@ -1,0 +1,152 @@
+{
+    "version": "1.0",
+    "name": "Luna Phase Instruction Required Fields Standard",
+    "required_fields": {
+        "Phase": {
+            "required": true,
+            "description": "Unique phase identifier.",
+            "validation_rule": "Non-empty string; matches Phase-* naming."
+        },
+        "Stage": {
+            "required": true,
+            "description": "Current stage label.",
+            "validation_rule": "Non-empty string."
+        },
+        "Execution Mode": {
+            "required": true,
+            "description": "Mode controlling agent authority.",
+            "validation_rule": "Must exist in luna_execution_mode_verification_authority_matrix_v1.json"
+        },
+        "Current Work Description": {
+            "required": true,
+            "description": "Exact scope for current stage.",
+            "validation_rule": "Must include in-scope and explicit non-goals."
+        },
+        "Previous Phase": {
+            "required": true,
+            "description": "Immediate previous phase id.",
+            "validation_rule": "Non-empty string or explicit N/A with reason."
+        },
+        "Previous Phase Decision": {
+            "required": true,
+            "description": "Decision inherited from previous phase.",
+            "validation_rule": "Must be explicit decision token."
+        },
+        "Input Assets": {
+            "required": true,
+            "description": "Asset list required for current phase.",
+            "validation_rule": "Must include repository-relative paths."
+        },
+        "Required Pre-Read": {
+            "required": true,
+            "description": "Files/directories that must be read before edit.",
+            "validation_rule": "Must be actionable and repository-relative."
+        },
+        "Target Directory": {
+            "required": true,
+            "description": "Primary output directory.",
+            "validation_rule": "Must be repository-relative path."
+        },
+        "Scope": {
+            "required": true,
+            "description": "Allowed work boundaries.",
+            "validation_rule": "Must be explicit and testable."
+        },
+        "Out Of Scope": {
+            "required": true,
+            "description": "Disallowed work boundaries.",
+            "validation_rule": "Must list forbidden changes/actions."
+        },
+        "Required Final Files": {
+            "required": true,
+            "description": "Deliverable file list.",
+            "validation_rule": "Every file path must be unique and repository-relative."
+        },
+        "Implementation Principles": {
+            "required": true,
+            "description": "Engineering principles for this phase.",
+            "validation_rule": "Must include boundary and minimal-change principles."
+        },
+        "Required Checks": {
+            "required": true,
+            "description": "Checks required before stopping.",
+            "validation_rule": "Must distinguish V0/V1/V2/V3 as applicable."
+        },
+        "Negative Guards": {
+            "required": true,
+            "description": "Forbidden shortcuts and violations.",
+            "validation_rule": "Must include no-check-weaken and no-hardcoded-pass."
+        },
+        "Verification Authority": {
+            "required": true,
+            "description": "Authority ownership for each verification level.",
+            "validation_rule": "Must include V0/V1/V2/V3 executor definitions."
+        },
+        "Allowed Agent Checks": {
+            "required": true,
+            "description": "Agent-permitted checks.",
+            "validation_rule": "Must be subset of mode matrix authority."
+        },
+        "Allowed Agent Execution": {
+            "required": true,
+            "description": "Agent-permitted execution actions.",
+            "validation_rule": "Must be mode-consistent and explicit."
+        },
+        "Prohibited Agent Execution": {
+            "required": true,
+            "description": "Agent-forbidden execution actions.",
+            "validation_rule": "Must include final phase verifier prohibition unless overridden by governance update."
+        },
+        "Agent Stop Point": {
+            "required": true,
+            "description": "Exact status where agent must stop.",
+            "validation_rule": "Must name canonical status from verification status registry."
+        },
+        "User Terminal Commands": {
+            "required": true,
+            "description": "Commands user must run.",
+            "validation_rule": "Must include exact executable commands when V2 is required."
+        },
+        "Expected Success Decision": {
+            "required": true,
+            "description": "Expected success decision token.",
+            "validation_rule": "Must be explicit string."
+        },
+        "Expected Next": {
+            "required": true,
+            "description": "Expected next phase token/path.",
+            "validation_rule": "Must be explicit string."
+        },
+        "Expected Failure Decision": {
+            "required": true,
+            "description": "Expected failure decision token.",
+            "validation_rule": "Must be explicit string."
+        },
+        "Expected Failure Next": {
+            "required": true,
+            "description": "Expected remediation phase token/path.",
+            "validation_rule": "Must be explicit string."
+        },
+        "Stop Condition": {
+            "required": true,
+            "description": "When agent must stop and report.",
+            "validation_rule": "Must be deterministic and mode-consistent."
+        },
+        "Blocker Conditions": {
+            "required": true,
+            "description": "Conditions that force blocked status.",
+            "validation_rule": "Must map to status registry blocked states."
+        },
+        "Completion Report Format": {
+            "required": true,
+            "description": "Required report sections and keys.",
+            "validation_rule": "Must include status and user command sections."
+        },
+        "Current Status Contract": {
+            "required": true,
+            "description": "Required terminal status after agent stop.",
+            "validation_rule": "Must use canonical status tokens only."
+        }
+    },
+    "required_fields_complete": true
+}

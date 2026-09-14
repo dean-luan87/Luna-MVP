@@ -1,0 +1,10 @@
+{
+  "mapping_id": "state_quality_balance_v1",
+  "inputs": ["Outcome Quality", "Cognitive Fitness", "Resource Cost", "Risk", "Self Stability", "Drift", "Homeostasis Status"],
+  "outputs": ["Balanced Quality Candidate", "Optimization Candidate", "Stability Priority Candidate", "Reject Candidate"],
+  "dimensions": ["performance", "stability", "resource_efficiency", "adaptation", "drift", "safety"],
+  "stability_is_not_secondary": true,
+  "high_quality_high_drift_requires_review": true,
+  "automatic_optimization": false,
+  "candidate_only": true
+}

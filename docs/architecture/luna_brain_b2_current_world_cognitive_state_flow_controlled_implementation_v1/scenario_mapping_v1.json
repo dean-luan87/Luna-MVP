@@ -1,0 +1,6 @@
+{
+  "scenario_count": 24,
+  "cases": ["B2-01", "B2-02", "B2-03", "B2-04", "B2-05", "B2-06", "B2-07", "B2-08", "B2-09", "B2-10", "B2-11", "B2-12", "B2-13", "B2-14", "B2-15", "B2-16", "B2-17", "B2-18", "B2-19", "B2-20", "B2-21", "B2-22", "B2-23", "B2-24"],
+  "real_cases": "REAL_B1_CURRENT_WORLD_INPUT cases use a structured B1 candidate reference and do not invoke YOLO.",
+  "synthetic_cases": "B2-11, B2-12, and B2-22 retain controlled synthetic coverage."
+}

@@ -1,0 +1,25 @@
+{
+  "format_ref": "scene_relation_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_frame_001.jpg"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "scene_graph_relation_extractor",
+    "model_id": "scene_relation_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "scene_relation_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "relations": [
+    {"relation_id": "rel_1", "relation": "sign_above_door", "relation_refs": ["obj_sign_1", "reg_doorway_1"], "confidence": 0.8},
+    {"relation_id": "rel_2", "relation": "person_near_counter", "relation_refs": ["obj_person_1", "obj_counter_1"], "confidence": 0.76},
+    {"relation_id": "rel_3", "relation": "queue_in_front_of_gate", "relation_refs": ["reg_queue_1", "txt_gate_1"], "confidence": 0.72},
+    {"relation_id": "rel_4", "relation": "obstacle_on_path", "relation_refs": ["obj_obstacle_1", "reg_walkable_1"], "confidence": 0.7},
+    {"relation_id": "rel_5", "relation": "entrance_next_to_shop", "relation_refs": ["obj_entrance_1", "obj_counter_1"], "confidence": 0.68}
+  ]
+}

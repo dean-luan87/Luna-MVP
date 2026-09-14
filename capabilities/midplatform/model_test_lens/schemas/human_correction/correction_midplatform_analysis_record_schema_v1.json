@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "CorrectionMidplatformAnalysisRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "title": "Correction Midplatform Analysis Record",
+  "description": "中台对原始纠错的分析/分类/归因结果。净化后才可进入训练管线。",
+  "type": "object",
+  "required": [
+    "analysis_id",
+    "correction_ref",
+    "attribution_id",
+    "attribution_label_zh",
+    "routing_destinations",
+    "impact",
+    "training_candidate",
+    "candidate_only",
+    "not_fact",
+    "not_ground_truth",
+    "not_auto_training_data",
+    "analyzed_at"
+  ],
+  "properties": {
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^cma_[a-z0-9_]+$"
+    },
+    "correction_ref": { "type": "string" },
+    "source_model_id": { "type": "string" },
+    "target_region_id": { "type": "string" },
+    "attribution_id": {
+      "type": "string",
+      "enum": [
+        "model_error",
+        "task_strategy_error",
+        "attention_priority_error",
+        "user_preference",
+        "environment_limitation"
+      ]
+    },
+    "attribution_label_zh": { "type": "string" },
+    "attribution_reason": { "type": "string" },
+    "routing_destinations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "impact": {
+      "type": "string",
+      "enum": [
+        "priority_signal",
+        "task_routing_signal",
+        "preference_signal",
+        "context_signal",
+        "training_signal_pending_review"
+      ]
+    },
+    "training_candidate": {
+      "type": "string",
+      "enum": ["pending_review", "rejected", "not_applicable"]
+    },
+    "model_rerun_candidate": { "type": "boolean" },
+    "new_task_candidate_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "purified_training_signal": {
+      "type": "object",
+      "description": "仅当 attribution=model_error 且 training_candidate=pending_review 时生成"
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_ground_truth": { "type": "boolean", "const": true },
+    "not_auto_training_data": { "type": "boolean", "const": true },
+    "must_not_modify_model_output": { "type": "boolean", "const": true },
+    "analyzed_at": { "type": "string", "format": "date-time" }
+  },
+  "forbidden_operations": [
+    "direct_training_pipeline_entry",
+    "modify_segmentation_mask",
+    "write_fact",
+    "auto_model_finetune"
+  ],
+  "example": {
+    "analysis_id": "cma_correction_mobile_sam_street_001_04",
+    "correction_ref": "correction_mobile_sam_street_001_04",
+    "source_model_id": "mobile_sam",
+    "target_region_id": "region_002",
+    "attribution_id": "model_error",
+    "attribution_label_zh": "模型问题",
+    "attribution_reason": "boundary_inaccurate on segmentation mask",
+    "routing_destinations": [
+      "model_training_data_candidate",
+      "model_rerun_candidate"
+    ],
+    "impact": "training_signal_pending_review",
+    "training_candidate": "pending_review",
+    "model_rerun_candidate": true,
+    "new_task_candidate_refs": [],
+    "candidate_only": true,
+    "not_fact": true,
+    "not_ground_truth": true,
+    "not_auto_training_data": true,
+    "must_not_modify_model_output": true,
+    "analyzed_at": "2026-07-07T03:00:00Z"
+  }
+}

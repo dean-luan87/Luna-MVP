@@ -1,0 +1,27 @@
+{
+  "title": "Global State Attention State Interface v1",
+  "contract_type": "Attention State Projection",
+  "input": {
+    "attention_state": {},
+    "allocation_reference": "candidate",
+    "resource_state": {},
+    "attention_version": "candidate",
+    "risk": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "attention_state_reference": "candidate",
+    "current_allocations": [],
+    "competition_state": {},
+    "preemption_state": {},
+    "resource_summary": {}
+  },
+  "boundary": {
+    "global_state_does_not_allocate_attention": true,
+    "global_state_does_not_preempt_attention": true,
+    "attention_owner_retains_authority": true,
+    "attention_state_is_reference_only": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "interface_name": "Hardware Runtime Interface v1",
+  "hardware_reference": "hardware-example",
+  "runtime_request_candidate": null,
+  "state_observation_candidate": null,
+  "resource_status_candidate": null,
+  "runtime_owns_execution_mechanics": true,
+  "hardware_manager_owns_body_state": true,
+  "hardware_manager_does_not_control_hardware": true,
+  "hardware_manager_does_not_close_task": true,
+  "hardware_manager_does_not_modify_goal": true,
+  "hardware_manager_does_not_modify_decision": true,
+  "no_runtime_implementation_in_this_phase": true,
+  "unknowns_are_preserved": true
+}

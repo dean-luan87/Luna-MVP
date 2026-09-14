@@ -1,0 +1,141 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:42:38.532508+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "p1_mobile_sam_model_load_registry_patch_execution_and_post_review",
+  "steps_executed": [],
+  "passed_check_count": 66,
+  "failed_check_count": 0,
+  "stage_refs": [
+    {
+      "stage_index": 1,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-And-Inference-Trial-Readiness-Planning-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_REGISTRY_PATCH_AND_INFERENCE_TRIAL_READINESS_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 2,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_RETRY_EXECUTION_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 3,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_NODEPS_INSTALL_EXECUTION_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 4,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_NODEPS_INSTALL_REQUEST_APPROVAL_AND_READINESS_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 5,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 6,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 7,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 8,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 9,
+      "phase_ref": "Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_WEIGHT_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 10,
+      "phase_ref": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MODEL_WEIGHT_DOWNLOAD_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 11,
+      "phase_ref": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_SOURCE_CODE_ONLY_INSTALL_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "sealed_ref_fallback",
+      "go_verified": true
+    },
+    {
+      "stage_index": 12,
+      "phase_ref": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+      "expected_go": "P1_CONTROLLED_SOURCE_INSTALL_EXECUTION_RETRY_CODE_ONLY_GO",
+      "gated": true,
+      "artifact_read_mode": "sealed_ref_fallback",
+      "go_verified": true
+    },
+    {
+      "stage_index": 13,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-Planning-v1-001",
+      "expected_go": "MIDPLATFORM_MODEL_VERSION_DEPENDENCY_REGISTRY_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 14,
+      "phase_ref": "Phase-Test-Board-Protected-Artifact-Rule-v1-001",
+      "expected_go": "TEST_BOARD_PROTECTED_ARTIFACT_RULE_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 15,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-P1-Probe-Reconciliation-Post-Review-v1-001",
+      "expected_go": null,
+      "gated": false,
+      "artifact_read_mode": "reference_only",
+      "go_verified": true
+    }
+  ],
+  "upstream_sealed_phase_review": {}
+}

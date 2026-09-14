@@ -1,0 +1,42 @@
+{
+  "artifact": "dynamic_cognitive_regulation_negative_guards_v1",
+  "canonical_owner": "Dynamic Cognitive Regulation Governance",
+  "guard_flags": {
+    "integration_has_no_parallel_owner": true,
+    "source_mutation": false,
+    "intent_mutation": false,
+    "attention_mutation": false,
+    "hypothesis_mutation": false,
+    "causal_mutation": false,
+    "emotion_mutation": false,
+    "learning_direct_activation": false,
+    "database_write": false,
+    "device_control": false,
+    "scheduler_execution": false,
+    "task_mutation": false,
+    "runtime_side_effect": false,
+    "model_call": false,
+    "parameter_bounds_bypass": false,
+    "parameter_genome_auto_activation": false,
+    "cross_user_genome_propagation": false,
+    "silent_parameter_coercion": false
+  },
+  "forbidden_parallel_owners": [
+    "Dynamic Function Governance",
+    "Self Regulation Governance",
+    "Parameter Governance",
+    "Parameter Genome Governance"
+  ],
+  "forbidden_shortcuts": [
+    "hardcoded_pass",
+    "check_weakening",
+    "fixture_reinterpretation",
+    "hidden_runtime_call",
+    "implicit_value_cast",
+    "unbounded_parameter_drift",
+    "source_object_cross_write",
+    "learned_parameter_auto_apply",
+    "genome_identity_equivalence"
+  ],
+  "document_guard": "All outputs remain synthetic candidate artifacts; influence and trace continuity never grant owner mutation or execution authority."
+}

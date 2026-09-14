@@ -1,0 +1,17 @@
+{
+  "schema_name": "Learning Signal Schema v1",
+  "signal_id": "learning-signal-example",
+  "signal_type": "Prediction Error",
+  "expectation": {},
+  "reality": {},
+  "difference": {},
+  "learning_signal": {},
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "attention_candidate": {},
+  "field_observation_candidate": {},
+  "signal_does_not_make_prediction": true,
+  "signal_does_not_change_strategy_directly": true,
+  "unknowns_are_preserved": true
+}

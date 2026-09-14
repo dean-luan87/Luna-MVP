@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Conflict Candidate Schema",
+  "field_context": "required",
+  "active_patterns": [],
+  "pattern_scopes": [],
+  "conflict_type": "candidate",
+  "conflict_reason": "candidate",
+  "resource_constraint": "candidate",
+  "unknowns": [],
+  "provenance": [],
+  "resolution": "Brain Evaluation candidate",
+  "automatic_resolution": false,
+  "automatic_override": false,
+  "decision_authority": false,
+  "action_authority": false
+}

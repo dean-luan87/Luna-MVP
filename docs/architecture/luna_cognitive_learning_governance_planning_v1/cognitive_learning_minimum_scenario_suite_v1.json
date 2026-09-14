@@ -1,0 +1,134 @@
+{
+    "artifact": "cognitive_learning_minimum_scenario_suite_v1",
+    "scenario_count": 32,
+    "scenarios": [
+        {
+            "id": "L01",
+            "name": "single_success_instance_only_learning_candidate"
+        },
+        {
+            "id": "L02",
+            "name": "repeated_success_same_source_no_fake_evidence_multiplication"
+        },
+        {
+            "id": "L03",
+            "name": "repeated_success_diverse_contexts_stronger_generalization_candidate"
+        },
+        {
+            "id": "L04",
+            "name": "single_failure_no_permanent_avoidance_rule"
+        },
+        {
+            "id": "L05",
+            "name": "repeated_failure_failure_pattern_candidate"
+        },
+        {
+            "id": "L06",
+            "name": "contradictory_success_failure_contested"
+        },
+        {
+            "id": "L07",
+            "name": "explicit_user_positive_feedback"
+        },
+        {
+            "id": "L08",
+            "name": "explicit_user_negative_feedback"
+        },
+        {
+            "id": "L09",
+            "name": "stale_feedback"
+        },
+        {
+            "id": "L10",
+            "name": "revoked_source_memory"
+        },
+        {
+            "id": "L11",
+            "name": "superseded_experience"
+        },
+        {
+            "id": "L12",
+            "name": "high_salience_weak_evidence"
+        },
+        {
+            "id": "L13",
+            "name": "low_salience_repeated_evidence"
+        },
+        {
+            "id": "L14",
+            "name": "preference_pattern"
+        },
+        {
+            "id": "L15",
+            "name": "relationship_specific_pattern"
+        },
+        {
+            "id": "L16",
+            "name": "role_specific_pattern"
+        },
+        {
+            "id": "L17",
+            "name": "context_specific_pattern"
+        },
+        {
+            "id": "L18",
+            "name": "resource_constrained_regulation_outcome"
+        },
+        {
+            "id": "L19",
+            "name": "attention_pattern_evidence"
+        },
+        {
+            "id": "L20",
+            "name": "hypothesis_resolution_evidence"
+        },
+        {
+            "id": "L21",
+            "name": "unresolved_hypothesis_unresolved_learning_candidate"
+        },
+        {
+            "id": "L22",
+            "name": "causal_support_reference_present"
+        },
+        {
+            "id": "L23",
+            "name": "causal_support_absent_no_causal_claim"
+        },
+        {
+            "id": "L24",
+            "name": "parameter_update_candidate_creation"
+        },
+        {
+            "id": "L25",
+            "name": "parameter_bounds_prevent_proposed_update"
+        },
+        {
+            "id": "L26",
+            "name": "genome_activation_forbidden"
+        },
+        {
+            "id": "L27",
+            "name": "privacy_sensitive_learning_confirmation_do_not_generalize"
+        },
+        {
+            "id": "L28",
+            "name": "semantic_compression_ref_missing_learning_still_proceeds"
+        },
+        {
+            "id": "L29",
+            "name": "duplicate_learning_evidence"
+        },
+        {
+            "id": "L30",
+            "name": "duplicate_parameter_update_candidate"
+        },
+        {
+            "id": "L31",
+            "name": "revision_supersession"
+        },
+        {
+            "id": "L32",
+            "name": "revocation_expiration"
+        }
+    ]
+}

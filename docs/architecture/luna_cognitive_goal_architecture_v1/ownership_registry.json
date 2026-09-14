@@ -1,0 +1,15 @@
+{
+  "title": "Cognitive Goal Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Self", "owner": "Self", "writer": "Self Goal Governance", "reader": ["Goal Layer", "Brain"]},
+    {"module": "Goal Layer", "owner": "Goal Layer", "writer": "Goal Candidate Organizer", "reader": ["Self", "Task Manager", "Brain"]},
+    {"module": "Value Layer", "owner": "Value Layer", "writer": "Value Governance (future)", "reader": ["Goal Layer", "Brain"]},
+    {"module": "Task Manager", "owner": "Task Manager", "writer": "Task Lifecycle Owner", "reader": ["Goal Layer", "Brain", "Runtime"]},
+    {"module": "Brain", "owner": "Brain", "writer": "Brain Decision Candidate Boundary", "reader": ["Runtime", "Action Boundary"]},
+    {"module": "Runtime", "owner": "Runtime", "writer": "Future Runtime Admission", "reader": ["Action Boundary"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Goal Layer", "Brain"]},
+    {"module": "Schema", "owner": "Schema", "writer": "Schema Governance", "reader": ["Goal Layer", "Brain"]},
+    {"module": "Field", "owner": "Field", "writer": "Field State Owner", "reader": ["Goal Layer", "Brain", "Attention"]}
+  ]
+}

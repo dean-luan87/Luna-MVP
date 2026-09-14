@@ -1,0 +1,11 @@
+{
+  "contract_id": "uncertainty_memory_relation_v1",
+  "owner": "Memory",
+  "inputs": ["exploration_result", "remaining_unknown", "information_lifecycle", "experience_evaluation"],
+  "outputs": ["memory_candidate", "unknown_memory_candidate", "schema_candidate"],
+  "flow": ["Exploration Result", "Information Lifecycle", "Experience Evaluation", "Memory Candidate", "Schema Candidate"],
+  "unresolved_unknown_can_be_retained": true,
+  "automatic_memory": false,
+  "memory_overrides_reality": false,
+  "candidate_only": true
+}

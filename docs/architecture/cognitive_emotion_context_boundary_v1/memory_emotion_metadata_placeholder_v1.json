@@ -1,0 +1,15 @@
+{
+  "placeholder_name": "Memory Emotion Metadata Placeholder v1",
+  "event_fact_reference": {},
+  "experience_reference": {},
+  "emotion_metadata": {},
+  "field_reference": {},
+  "role_reference": {},
+  "relationship_reference": {},
+  "provenance": [],
+  "unknowns": [],
+  "metadata_is_separate_from_fact": true,
+  "memory_is_not_rewritten": true,
+  "does_not_compute_emotion": true,
+  "unknowns_are_preserved": true
+}

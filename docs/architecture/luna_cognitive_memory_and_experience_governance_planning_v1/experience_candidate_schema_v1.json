@@ -1,0 +1,36 @@
+{
+    "artifact": "experience_candidate_schema_v1",
+    "entity": "ExperienceCandidateV1",
+    "fields": [
+        "experience_candidate_id",
+        "cycle_id",
+        "root_cycle_trace_id",
+        "timestamp_or_temporal_ref",
+        "context_refs",
+        "field_refs",
+        "pcn_refs",
+        "intent_refs",
+        "attention_refs",
+        "hypothesis_refs",
+        "current_world_ref",
+        "cognitive_state_vector_ref",
+        "regulation_candidate_ref",
+        "causal_refs",
+        "decision_refs_optional",
+        "action_refs_optional",
+        "execution_result_refs_optional",
+        "salience_candidate",
+        "uncertainty_refs",
+        "contradiction_refs",
+        "user_feedback_refs",
+        "source_evidence_refs",
+        "provenance_refs",
+        "schema_version",
+        "contract_version"
+    ],
+    "flags": {
+        "candidate_only": true,
+        "fact_admitted": false,
+        "persisted": false
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "artifact": "causal_temporal_ordering_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "temporal_roles": [
+        "before_after_relation",
+        "time_window_overlap",
+        "latency_plausibility_candidate",
+        "ordering_conflict_candidate"
+    ],
+    "hard_rules": [
+        "temporal_precedence_not_equal_causality",
+        "missing_temporal_info_preserve_unknown",
+        "ordering_conflict_blocks_causal_promotion"
+    ],
+    "required_fields": [
+        "temporal_order_id",
+        "event_refs",
+        "ordering_relation",
+        "clock_or_sequence_reference",
+        "uncertainty",
+        "provenance"
+    ],
+    "forbidden": [
+        "auto_upgrade_ordering_to_cause",
+        "drop_conflicting_timestamps",
+        "temporal_rule_overrides_evidence_owner"
+    ],
+    "active_contract": false
+}

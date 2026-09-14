@@ -1,0 +1,7 @@
+{
+  "candidate_type": "visual_symbol_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "confidence": 0.85,
+  "direction": "right",
+  "direct_action_requested": true
+}

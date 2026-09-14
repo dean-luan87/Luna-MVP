@@ -1,0 +1,27 @@
+{
+  "synthetic_path_id": "C01-C36_CONTEXT_WORLD_STATE_CONTROLLED_INTEGRATION",
+  "source": "admitted observation/evidence references",
+  "stages": [
+    "ObservationContextHandoffCandidateV1",
+    "FieldEventHandoffCandidateV1 when field_relevant",
+    "Field Event Admission",
+    "ContextFoundationSkeletonV1 reference-only assembly",
+    "ContextWorldAssemblyCandidateV1",
+    "CurrentWorldCandidateV1",
+    "ContextWorldTraceV1"
+  ],
+  "synthetic_fixture": "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_fixture_v1.py",
+  "synthetic_engine": "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_engine_v1.py",
+  "important_behaviors": [
+    "observation does not directly mutate Field",
+    "field event requires admission before reducer eligibility",
+    "Field State Reducer remains sole mutation authority",
+    "Context references Field State read-only",
+    "Current World references Context and Field State",
+    "Current World is not Field State",
+    "stale/expired/revoked/superseded evidence is preserved or excluded by temporal status",
+    "contradiction and provenance lineage are preserved"
+  ],
+  "reducer_invoked_by_current_synthetic_engine": false,
+  "interpretation": "This is the closest reusable B1 brain-side path; it is a controlled candidate integration, not proof of real runtime state mutation."
+}

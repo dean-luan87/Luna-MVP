@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Failure Escalation Contract v1",
+  "failure_flow": ["Failure", "Diagnostics", "Fallback Candidate", "Escalation"],
+  "failure_types": ["Capability Failure", "Stale State", "Resource Denial", "Malformed Context", "Process Starvation"],
+  "diagnostic_candidate": {},
+  "fallback_candidate": {},
+  "escalation_candidate": {},
+  "failure_does_not_execute_action": true,
+  "failure_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,53 @@
+{
+  "artifact": "intent_temporary_dominance_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Intent Governance",
+  "definition": "A reversible candidate relation in which one Intent candidate has stronger current projection without becoming a Decision or deleting alternatives.",
+  "dominance_candidate_fields": [
+    "dominance_candidate_id",
+    "dominant_candidate_ref",
+    "suppressed_candidate_refs",
+    "source_refs",
+    "context_refs",
+    "field_refs",
+    "role_refs",
+    "resource_ref",
+    "reason_candidate",
+    "uncertainty",
+    "entered_at",
+    "release_condition_candidates",
+    "provenance"
+  ],
+  "entry_influences": [
+    "safety relevance",
+    "unfinished-state continuity",
+    "Role obligation",
+    "relationship importance",
+    "resource constraint",
+    "current Context relevance",
+    "new Evidence",
+    "explicit user request reference"
+  ],
+  "release_candidates": [
+    "supporting condition no longer holds",
+    "Context changes materially",
+    "resource constraint changes",
+    "candidate is contradicted",
+    "outcome or reality feedback changes support",
+    "downstream governance requests reconsideration"
+  ],
+  "preserved_information": [
+    "all competing candidate refs",
+    "suppression reason",
+    "uncertainty",
+    "provenance",
+    "release conditions"
+  ],
+  "guards": {
+    "decision_authority": false,
+    "action_authority": false,
+    "candidate_deletion": false,
+    "truth_override": false,
+    "permanent_winner": false
+  }
+}

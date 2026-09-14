@@ -1,0 +1,28 @@
+{
+    "model_id": "pcn_resource_constraint_model_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Resource Governance with PCN consumption boundary",
+    "candidate_only": true,
+    "resource_controls": [
+        "active_reference_budget",
+        "propagation_scope_budget",
+        "active_state_retention_budget",
+        "association_exploration_budget"
+    ],
+    "control_source": "system_resource_governance",
+    "fixed_constant_controls_forbidden": {
+        "fixed_max_nodes": true,
+        "fixed_max_links": true,
+        "fixed_propagation_depth": true,
+        "fixed_retention_duration": true
+    },
+    "degradation_behavior": {
+        "resource_insufficient": "shrink_active_projection",
+        "network_delete_forbidden": true,
+        "source_mutation_forbidden": true
+    },
+    "traceability": {
+        "resource_constraint_reference_required": true,
+        "budget_decision_trace_required": true
+    }
+}

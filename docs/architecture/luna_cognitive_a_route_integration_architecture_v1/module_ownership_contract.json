@@ -1,0 +1,24 @@
+{
+  "contract_id": "a_route_module_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Reality", "owner": "Reality Boundary", "writer": "Reality Update Pipeline", "reader": "Evidence, Field, Validation"},
+    {"module": "Evidence", "owner": "Evidence Gateway", "writer": "Capability Evidence Adapter", "reader": "Field, Hypothesis, Validation"},
+    {"module": "Cognitive Field", "owner": "Cognitive Field", "writer": "Field Update Candidate Governance", "reader": "Attention, Context, Brain"},
+    {"module": "Attention", "owner": "Attention System", "writer": "Attention Candidate Governance", "reader": "Context, Brain"},
+    {"module": "Context", "owner": "Context Assembly", "writer": "Context Candidate Governance", "reader": "Hypothesis, Brain"},
+    {"module": "Hypothesis/Belief", "owner": "Understanding System", "writer": "Evidence-validated Candidate Flow", "reader": "Understanding, Brain"},
+    {"module": "Understanding", "owner": "Cognitive Brain", "writer": "Brain Candidate Generation", "reader": "Goal, Value, Decision"},
+    {"module": "Goal", "owner": "Goal Governance", "writer": "Goal Candidate + Self Review", "reader": "Value, Decision, Task"},
+    {"module": "Value Utility", "owner": "Value Utility System", "writer": "Utility Candidate Evaluation", "reader": "Decision Arbitration"},
+    {"module": "Decision Arbitration", "owner": "Decision Arbitration", "writer": "Arbitration Candidate Governance", "reader": "Action Boundary, Trace"},
+    {"module": "Action", "owner": "Action Boundary", "writer": "Approved Action Request", "reader": "Outcome Evaluation"},
+    {"module": "Outcome", "owner": "Outcome Evaluation", "writer": "Reality Validation", "reader": "Experience, Belief"},
+    {"module": "Experience", "owner": "Experience System", "writer": "Outcome Evaluation Candidate", "reader": "Memory, Learning"},
+    {"module": "Memory/Schema", "owner": "Memory and Schema Governance", "writer": "Validated Consolidation Candidate", "reader": "Context, Learning"},
+    {"module": "Selective Learning", "owner": "Selective Learning Governance", "writer": "Learning Candidate Review", "reader": "Self Evolution"},
+    {"module": "Self Review", "owner": "Self Governance", "writer": "Constitution and Self Boundary Review", "reader": "Growth Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "All approved candidates"},
+    {"module": "B Route", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route context only"}
+  ]
+}

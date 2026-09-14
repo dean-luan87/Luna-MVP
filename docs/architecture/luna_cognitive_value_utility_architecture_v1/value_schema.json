@@ -1,0 +1,23 @@
+{
+  "title": "Cognitive Value Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["value_id", "value_type", "field_ref", "goal_ref", "importance_candidate", "provenance", "unknowns"],
+  "properties": {
+    "value_id": {"type": "string"},
+    "value_type": {"type": "string"},
+    "field_ref": {"type": ["string", "null"]},
+    "goal_ref": {"type": ["string", "null"]},
+    "importance_candidate": {"type": "number"},
+    "constraint_context": {"type": "array"},
+    "utility_candidate": {"type": "object"},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"}
+  },
+  "candidate_only": true,
+  "value_is_not_decision": true,
+  "value_is_not_goal_authority": true,
+  "value_does_not_execute": true,
+  "automatic_scoring": false,
+  "value_self_modification": false
+}

@@ -1,0 +1,19 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T06:31:53.738073+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "hud_is_read_only": true,
+  "model_execution_allowed": false,
+  "record": {
+    "record_id": "perception_hud_mobile_sam_adapter_record_v1",
+    "model_id": "mobile_sam",
+    "label_source": "prompt_label",
+    "candidate_only": true
+  }
+}

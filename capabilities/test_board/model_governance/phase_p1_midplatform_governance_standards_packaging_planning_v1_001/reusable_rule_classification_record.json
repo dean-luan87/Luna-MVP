@@ -1,0 +1,83 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "reusable_rule_classification_record",
+  "reusable_rule_classification_record": {
+    "record_id": "reusable_rule_classification_v1",
+    "categories": [
+      "model_onboarding",
+      "runtime_boundary",
+      "registry_patch",
+      "test_board",
+      "approval_gates",
+      "negative_guards",
+      "rollback",
+      "failure_semantics",
+      "templates",
+      "case_mappings"
+    ],
+    "classification": {
+      "model_onboarding": [
+        "install_lifecycle",
+        "weight_governance",
+        "dependency_repair",
+        "model_load_trial",
+        "inference_trial"
+      ],
+      "runtime_boundary": [
+        "runtime_admission_gate",
+        "runtime_execution_prohibition"
+      ],
+      "registry_patch": [
+        "snapshot_diff_post_review",
+        "scoped_asset_mutation"
+      ],
+      "test_board": [
+        "protected_artifact",
+        "non_deletable_policy"
+      ],
+      "approval_gates": [
+        "install_request_gate",
+        "owner_approval_gate",
+        "execution_readiness_gate",
+        "execution_gate",
+        "post_review_gate"
+      ],
+      "negative_guards": [
+        "blocked_conditions",
+        "failed_no_boundary_distinction"
+      ],
+      "rollback": [
+        "pre_snapshot",
+        "rollback_readiness",
+        "cleanup_forbidden_scope"
+      ],
+      "failure_semantics": [
+        "GO",
+        "FAILED_NO_BOUNDARY_VIOLATION",
+        "BLOCKED"
+      ],
+      "templates": [
+        "planning",
+        "request_approval_readiness",
+        "execution_post_review"
+      ],
+      "case_mappings": [
+        "mobile_sam",
+        "future_models"
+      ]
+    }
+  }
+}

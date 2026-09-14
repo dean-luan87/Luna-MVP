@@ -1,0 +1,8 @@
+{
+  "future_capabilities":["OCR","SLAM/VIO","segmentation","tracking","Grounded SAM","VLM"],
+  "required_route":"provider -> canonical evidence contract -> Observation Gateway -> existing brain boundary",
+  "provider_to_brain_shortcut":false,
+  "automatic_capability_activation":false,
+  "semantic_compression":false,
+  "activation_requires":"new governed capability/evidence contract, admission, trace and targeted/full regression according to impact matrix"
+}

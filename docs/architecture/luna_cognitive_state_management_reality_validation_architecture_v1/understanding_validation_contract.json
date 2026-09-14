@@ -1,0 +1,12 @@
+{
+  "contract_id": "understanding_validation_v1",
+  "owner": "Reality Validation Loop",
+  "inputs": ["hypothesis", "current_understanding", "decision_candidate", "reality_feedback", "field_context"],
+  "outputs": ["validation_event", "validation_result", "understanding_adjustment_candidate"],
+  "reality_precedence": true,
+  "understanding_adjustment_is_candidate": true,
+  "automatic_understanding_mutation": false,
+  "automatic_memory_mutation": false,
+  "automatic_self_mutation": false,
+  "brain_review_required": true
+}

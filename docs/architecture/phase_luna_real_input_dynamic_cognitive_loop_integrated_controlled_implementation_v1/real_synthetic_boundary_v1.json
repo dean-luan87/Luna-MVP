@@ -1,0 +1,12 @@
+{
+  "real_input": {
+    "representation": "already-produced B1-shaped YOLO11n evidence/Current World candidate reference",
+    "allowed": ["read-only handoff", "trace and provenance preservation"],
+    "forbidden": ["model invocation", "provider invocation", "camera activation", "truth promotion", "field mutation"]
+  },
+  "controlled_result": {
+    "representation": "Capability Experience fixture assessment",
+    "allowed": ["SUCCESS", "FAILURE", "DEGRADED", "SATISFIED", "UNSATISFIED", "task contribution candidate"],
+    "forbidden": ["external effect claim", "runtime execution", "automatic retry", "learning", "memory write"]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "contract_name": "Runtime Process Lifecycle v1",
+  "lifecycle": ["Created", "Activated", "Running", "Background", "Suspended", "Completed", "Archived"],
+  "process_classes": ["Survival", "Foreground", "Background", "Maintenance"],
+  "transition_requires": ["process reference", "Field reference", "Goal reference", "Task reference", "resource candidate", "authority reference", "provenance"],
+  "created_to_activated": "admission candidate",
+  "activated_to_running": "runtime wake-up candidate",
+  "running_to_background": "attention/resource reallocation candidate",
+  "background_to_suspended": "resource or context boundary candidate",
+  "suspended_to_running": "resume candidate",
+  "running_to_completed": "completion condition candidate",
+  "completed_to_archived": "retention boundary",
+  "runtime_kernel_owns_tick": true,
+  "runtime_kernel_does_not_reason": true,
+  "runtime_kernel_does_not_decide": true,
+  "not_a_scheduler": true,
+  "no_scheduler_implementation": true,
+  "no_runtime_implementation": true,
+  "no_automatic_execution": true,
+  "unknowns_are_preserved": true
+}

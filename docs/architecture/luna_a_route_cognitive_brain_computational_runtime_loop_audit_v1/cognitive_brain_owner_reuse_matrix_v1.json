@@ -1,0 +1,18 @@
+{
+  "artifact":"cognitive_brain_owner_reuse_matrix_v1",
+  "decisions":[
+    {"capability":"Context","canonical_owner":"Context Foundation","reuse":"A_DIRECT_REUSE","reason":"existing candidate assembly and context/world integration"},
+    {"capability":"Current World/Cognitive State","canonical_owner":"Cognitive State Formation Governance","reuse":"A_DIRECT_REUSE","reason":"existing candidate types and controlled engine"},
+    {"capability":"Attention","canonical_owner":"existing Attention contracts plus Cognitive State Formation substrate","reuse":"B_ADAPTER_REQUIRED","reason":"do not create parallel attention owner; runtime allocator missing"},
+    {"capability":"Observation Need","canonical_owner":"Field Perception Orchestrator / Active Observation Control","reuse":"A_DIRECT_REUSE","reason":"previous audit explicitly selected existing owner"},
+    {"capability":"Intent","canonical_owner":"Intent Governance","reuse":"A_DIRECT_REUSE","reason":"intent skeleton and candidate boundary exist"},
+    {"capability":"Regulation","canonical_owner":"Dynamic Cognitive Regulation Governance","reuse":"A_DIRECT_REUSE","reason":"bounded candidate evaluator exists"},
+    {"capability":"Decision","canonical_owner":"Decision Governance","reuse":"A_DIRECT_REUSE","reason":"deterministic weighted candidate engine exists"},
+    {"capability":"Task/Action/Execution","canonical_owner":"Task Manager / Action Governance / Runtime Executor","reuse":"B_ADAPTER_REQUIRED","reason":"controlled chain exists; real product runtime does not"},
+    {"capability":"Result Comparison","canonical_owner":"not proven","reuse":"C_OWNER_GAP_REQUIRES_SEPARATE_DECISION","reason":"existing contracts are not an executable owner; audit does not create one"},
+    {"capability":"Learning","canonical_owner":"Cognitive Learning","reuse":"A_DIRECT_REUSE","reason":"candidate learning admission exists but consumes upstream refs"},
+    {"capability":"Self/Personality","canonical_owner":"Self Governance / Personality Governance","reuse":"A_DIRECT_REUSE","reason":"frozen candidate/reference boundaries"},
+    {"capability":"Emotion","canonical_owner":"Emotion Governance planning only","reuse":"D_DEFERRED","reason":"implementation explicitly deferred"}
+  ],
+  "owner_decision":"No new cognitive owner is created in this audit. A genuine Result Comparison owner gap is recorded as P0 for a future decision."
+}

@@ -1,0 +1,29 @@
+{
+  "frame_seq": 76,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R76_task_resume_ok_locally_but_global_goal_still_drifting_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.25,
+  "task_resume_ok_locally_but_global_goal_still_drifting_observed": true,
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "局部恢复动作说得通，但全局目标边界仍在缓慢漂移",
+  "object_search_flow_type": "resume_ok_goal_drift_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "resume_ok_goal_drift_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 79, 91], "conf": 0.83 },
+    { "label": "bag", "bbox": [156, 44, 224, 116], "conf": 0.6 }
+  ]
+}

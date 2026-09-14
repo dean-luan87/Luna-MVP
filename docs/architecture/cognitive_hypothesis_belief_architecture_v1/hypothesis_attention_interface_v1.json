@@ -1,0 +1,26 @@
+{
+  "title": "Hypothesis Attention Interface v1",
+  "contract_type": "Hypothesis Validation Attention Request",
+  "input": {
+    "hypothesis_reference": "hypothesis-example",
+    "validation_requirement": {},
+    "discriminating_observations": [],
+    "risk": [],
+    "unknowns": [],
+    "field_context": {},
+    "provenance": []
+  },
+  "output": {
+    "attention_request": "candidate",
+    "observation_targets": [],
+    "priority_candidate": {},
+    "resource_cost_candidate": {}
+  },
+  "boundary": {
+    "hypothesis_produces_validation_requirement": true,
+    "hypothesis_does_not_allocate_attention": true,
+    "attention_owns_resource_allocation": true,
+    "attention_only_validates": true,
+    "unknowns_are_preserved": true
+  }
+}

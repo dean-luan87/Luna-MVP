@@ -1,0 +1,96 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_development_phase_registry_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "planning_only": true,
+  "phases": [
+    {
+      "sequence": 0,
+      "phase_id": "Phase-Luna-Context-Foundation-v1-001",
+      "name": "Context Foundation",
+      "objective": "Define a unified current-context envelope from independently owned Field, Self, Role, Relationship, Temporal, Emotion, and Memory projections.",
+      "internal_milestones": [
+        "CF0_TYPED_CONTEXT_PRIMITIVES_AND_ENVELOPE",
+        "CF1_EXISTING_MEMORY_READ_ONLY_PROJECTION_INTEGRATION"
+      ],
+      "coordination_owner_candidate": "Context Foundation Governance Candidate",
+      "source_owner_precedence": true,
+      "entry_gate": "ROADMAP_FREEZE_V2_V3_COMPLETE_AND_SEPARATE_PHASE_AUTHORIZED",
+      "exit_gate": "CONTEXT_CONTRACTS_AND_OWNER_BOUNDARIES_VERIFIED_WITHOUT_INTENT_GENERATION",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    },
+    {
+      "sequence": 1,
+      "phase_id": "Phase-Luna-Personal-Cognitive-Network-v1-001",
+      "name": "Personal Cognitive Network",
+      "objective": "Build typed cross-object connection, activation, and read-only context-projection capabilities without source-object ownership.",
+      "internal_milestones": [
+        "PCN_SKELETON",
+        "PCN_ACTIVATION_MECHANISM"
+      ],
+      "coordination_owner_candidate": "Personal Cognitive Network Governance",
+      "source_owner_precedence": true,
+      "entry_gate": "CONTEXT_FOUNDATION_EXIT_GATE_VERIFIED",
+      "exit_gate": "PCN_CONNECTION_ACTIVATION_PROJECTION_BOUNDARIES_VERIFIED",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    },
+    {
+      "sequence": 2,
+      "phase_id": "Phase-Luna-Intent-Architecture-v1-001",
+      "name": "Intent Architecture",
+      "objective": "Produce governed, revisable Intent Candidates from admitted Context and PCN projections.",
+      "internal_milestones": ["INTENT_CANDIDATE_CONTRACT", "INTENT_CANDIDATE_CONTROLLED_SKELETON"],
+      "coordination_owner_candidate": "Intent Governance",
+      "source_owner_precedence": true,
+      "entry_gate": "PCN_EXIT_GATE_VERIFIED",
+      "exit_gate": "INTENT_CANDIDATE_BOUNDARY_AND_UNKNOWN_HANDLING_VERIFIED",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    },
+    {
+      "sequence": 3,
+      "phase_id": "Phase-Luna-Causal-Reasoning-Engine-v1-001",
+      "name": "Causal Reasoning Engine",
+      "objective": "Produce evidence-bound Causal Candidates and Alternative Explanations with multiple observation axes, confidence, counter-evidence, and temporal validity.",
+      "internal_milestones": ["CAUSAL_CANDIDATE_CONTRACT", "CAUSAL_REASONING_CONTROLLED_SKELETON"],
+      "coordination_owner_candidate": "Causal Reasoning Governance",
+      "source_owner_precedence": true,
+      "entry_gate": "INTENT_EXIT_GATE_VERIFIED",
+      "exit_gate": "CAUSAL_CANDIDATE_NO_FACT_NO_ACTION_BOUNDARY_VERIFIED",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    },
+    {
+      "sequence": 4,
+      "phase_id": "Phase-Luna-AB-Simulation-Decision-Support-v1-001",
+      "name": "A/B Simulation & Decision Support",
+      "objective": "Separate current-Reality optimization from possible-future simulation and provide governed Decision-support candidates.",
+      "internal_milestones": ["A_ROUTE_CURRENT_REALITY_SUPPORT", "B_ROUTE_SIMULATION_CANDIDATE", "DECISION_SUPPORT_INTEGRATION"],
+      "coordination_owner_candidate": "A/B Route Boundary Governance",
+      "source_owner_precedence": true,
+      "entry_gate": "CAUSAL_EXIT_GATE_VERIFIED",
+      "exit_gate": "REALITY_SIMULATION_AND_DECISION_ACTION_BOUNDARIES_VERIFIED",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    },
+    {
+      "sequence": 5,
+      "phase_id": "Phase-Luna-Experience-Compression-Cognitive-Evolution-v1-001",
+      "name": "Experience Compression & Cognitive Evolution",
+      "objective": "Convert validated outcomes into Experience, Memory-admission, Pattern, and Growth Candidates under Memory and Self governance.",
+      "internal_milestones": ["EXPERIENCE_COMPRESSION_CANDIDATE", "MEMORY_ADMISSION_HANDOFF", "GROWTH_CANDIDATE_SELF_REVIEW"],
+      "coordination_owner_candidate": "Experience Governance",
+      "source_owner_precedence": true,
+      "entry_gate": "AB_DECISION_SUPPORT_EXIT_GATE_VERIFIED",
+      "exit_gate": "EXPERIENCE_MEMORY_GROWTH_CANDIDATE_BOUNDARIES_VERIFIED",
+      "implementation_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+      "next_phase_auto_entry": false
+    }
+  ],
+  "phase_count": 6,
+  "order_frozen": true,
+  "parallel_mainline_allowed": false,
+  "implementation_authorized": false,
+  "phase_zero_auto_started": false
+}

@@ -1,0 +1,21 @@
+{
+  "schema_name": "Field Rule Schema v1",
+  "rule_id": "rule-example",
+  "field_reference": "field-example",
+  "rule_type": "Physical | Functional | Social | Legal | Temporary",
+  "statement_candidate": "possible queue convention",
+  "supporting_evidence": [],
+  "confidence": null,
+  "provenance": [],
+  "validity_interval": {"start": null, "end": null},
+  "scope": null,
+  "unknowns": [],
+  "observed_reality_reference": null,
+  "rule_is_not_fact": true,
+  "rule_is_not_situation": true,
+  "rule_is_not_decision": true,
+  "rule_does_not_modify_reality": true,
+  "rule_does_not_modify_goal": true,
+  "rule_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

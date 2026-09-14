@@ -1,0 +1,19 @@
+{
+  "title": "Self Regulation Dependency Mapping v1",
+  "nodes": ["Self Model", "Self Regulation", "Self Observation", "Self Health", "Capability Isolation", "Capability Homeostasis", "Self Preservation", "Recovery", "Adaptation Governance", "Capability Governance", "Model Manager", "Calibration", "Provider", "Runtime"],
+  "edges": [
+    {"from":"Self Model","to":"Self Regulation","kind":"extension"},
+    {"from":"Self Observation","to":"Self Health","kind":"required"},
+    {"from":"Self Health","to":"Capability Isolation","kind":"assessment"},
+    {"from":"Capability Isolation","to":"Capability Homeostasis","kind":"constraint"},
+    {"from":"Capability Homeostasis","to":"Self Preservation","kind":"stability_review"},
+    {"from":"Self Preservation","to":"Adaptation Governance","kind":"governance"},
+    {"from":"Adaptation Governance","to":"Capability Governance","kind":"admission_request"},
+    {"from":"Capability Governance","to":"Model Manager","kind":"option_request"},
+    {"from":"Model Manager","to":"Calibration","kind":"evidence_request"},
+    {"from":"Capability Governance","to":"Provider","kind":"controlled_boundary"},
+    {"from":"Self Regulation","to":"Runtime","kind":"read_only_observation"}
+  ],
+  "forbidden_edges": ["Self Regulation → Capability Governance Ownership", "Self Regulation → Model Manager Ownership", "Self Regulation → Provider Direct Call", "Self Regulation → Hardware Action", "Self Regulation → Brain Rule Rewrite", "Self Regulation → Value Rewrite", "Self Regulation → Identity Rewrite", "Self Regulation → Goal Rewrite"],
+  "rules": {"acyclic_control_graph":true,"capability_governance_retains_admission":true,"model_manager_is_option_source":true,"provider_is_boundary":true,"runtime_read_only":true,"no_runtime_implementation":true}
+}

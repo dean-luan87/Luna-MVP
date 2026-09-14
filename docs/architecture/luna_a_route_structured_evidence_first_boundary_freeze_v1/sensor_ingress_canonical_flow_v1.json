@@ -1,0 +1,23 @@
+{
+  "flow_id": "sensor-ingress-structured-evidence-first-v1",
+  "canonical_flow": [
+    "Raw Sensor Data",
+    "Provider-Native Evidence",
+    "Perception Evidence",
+    "Observation Candidate",
+    "Context / Current World / Field references",
+    "Cognitive Processing"
+  ],
+  "forbidden_flow": [
+    "Raw Sensor Data",
+    "AI Summary",
+    "Conclusion-Level Natural Language",
+    "Cognitive Brain"
+  ],
+  "provider_native_payloads_preserved": true,
+  "opaque_conclusion_conversion": false,
+  "automatic_fact_admission": false,
+  "automatic_field_mutation": false,
+  "automatic_current_world_truth_declaration": false,
+  "observation_gateway_role": "evidence normalization, observation candidate formation and controlled admission; not semantic truth authority"
+}

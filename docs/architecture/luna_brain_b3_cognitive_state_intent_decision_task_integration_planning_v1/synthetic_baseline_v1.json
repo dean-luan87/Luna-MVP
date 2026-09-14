@@ -1,0 +1,12 @@
+{
+  "artifact": "b3_synthetic_baseline_v1",
+  "canonical_reusable": [
+    {"asset": "Intent Governance fixture/runner", "path": "capabilities/midplatform/core/intent_governance/intent_governance_fixture_v1.py", "use": "synthetic source/context/PCN to Potential/Intent/Interaction candidates"},
+    {"asset": "Decision Governance fixture/runner", "path": "capabilities/midplatform/core/decision_governance/decision_governance_fixture_v1.py", "use": "synthetic Intent/Causal/Context/permission/safety/options to Decision and arbitration candidates"},
+    {"asset": "Task Manager candidate builders", "path": "capabilities/midplatform/core/task_manager_skeleton_v1.py and task_manager/module/", "use": "synthetic readiness, TaskCandidate, plan/step/handoff and lifecycle checks"},
+    {"asset": "Action Governance fixture/validators", "path": "capabilities/midplatform/core/action_governance/", "use": "downstream candidate-only boundary reference"}
+  ],
+  "adapter_status": {"intent": "B - narrow B2 source-ref adapter", "decision": "B - narrow Intent/B2 input adapter", "task": "B - narrow Decision handoff to Task Manager input/readiness", "action_runtime": "D - deferred"},
+  "parallel_or_legacy": [{"asset": "decision_center_*", "classification": "C", "reason": "legacy task-facing Decision types; do not establish a second Decision owner"}],
+  "replacement_boundary": "Replace only the synthetic Cognitive State/Flow input with validated real B2-shaped references; retain all downstream synthetic fixtures and governance expectations."
+}

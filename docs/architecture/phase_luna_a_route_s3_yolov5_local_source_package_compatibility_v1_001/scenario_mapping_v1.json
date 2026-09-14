@@ -1,0 +1,6 @@
+{
+  "scenario_count": 12,
+  "scenario_ids": ["YSP-01", "YSP-02", "YSP-03", "YSP-04", "YSP-05", "YSP-06", "YSP-07", "YSP-08", "YSP-09", "YSP-10", "YSP-11", "YSP-12"],
+  "execution_mode": "contract_only",
+  "agent_inference_execution": false
+}

@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Luna Role Architecture Summary",
+  "definition":"dynamic Field-bound participation identity formed from Self capability, Social Self expectation, Task, Relationship, and governance",
+  "owner":"Social Self Governance",
+  "role_is_not":["label","personality","permanent_identity","automatic_decision"],
+  "role_growth_chain":["Role","Capability Gap","Selective Knowledge Match","Field Application","Experience","Role Memory","Role Growth Candidate"],
+  "status":"architecture_only",
+  "rules":{"field_required":true,"identity_continuity":true,"knowledge_practice_required":true,"b_activation_forbidden":true}
+}

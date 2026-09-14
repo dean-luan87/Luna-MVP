@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Constitution Scope Review",
+  "owner": "L0 System Constitution",
+  "applies_to": ["Self Layer", "Social Self Layer", "Integration Layer", "Cognitive Core", "Capability Governance", "Execution"],
+  "is_owned_by_self": false,
+  "is_owned_by_social_self": false,
+  "constraints": ["System Stability", "Evidence First", "Boundary Respect", "Unknown Preservation", "State Ownership", "Human Interaction Safety"],
+  "rules": {"l0_top_level": true, "self_constrained": true, "social_self_constrained": true, "integration_constrained": true, "not_self_member": true, "not_social_self_member": true}
+}

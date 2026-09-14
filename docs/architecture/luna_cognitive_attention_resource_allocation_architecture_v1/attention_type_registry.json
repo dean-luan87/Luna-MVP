@@ -1,0 +1,10 @@
+{
+  "registry_id": "cognitive_attention_type_registry_v1",
+  "owner": "Attention Layer",
+  "types": ["Perceptual Attention", "Semantic Attention", "Context Attention", "Decision Attention", "Self Attention"],
+  "self_attention_is_neural_attention": false,
+  "model_attention_is_cognitive_attention": false,
+  "candidate_required": true,
+  "automatic_allocation": false,
+  "direct_action": false
+}

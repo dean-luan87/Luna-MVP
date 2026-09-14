@@ -1,0 +1,58 @@
+{
+    "artifact": "cognitive_execution_chain_open_questions_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "questions": [
+        {
+            "question_id": "Q-001",
+            "title": "Action readiness representation unification path",
+            "related_gaps": [
+                "GAP-IO-004",
+                "GAP-VERSION-003"
+            ],
+            "blocking": true,
+            "required_owner_alignment": [
+                "Action Governance",
+                "Runtime Executor"
+            ]
+        },
+        {
+            "question_id": "Q-002",
+            "title": "Decision uncertainty scalarization from causal uncertainty refs",
+            "related_gaps": [
+                "GAP-IO-002",
+                "GAP-ENUM-001"
+            ],
+            "blocking": false,
+            "required_owner_alignment": [
+                "Causal Governance",
+                "Decision Governance"
+            ]
+        },
+        {
+            "question_id": "Q-003",
+            "title": "Task Manager result feedback minimum payload",
+            "related_gaps": [
+                "GAP-MISSING-REF-001"
+            ],
+            "blocking": false,
+            "required_owner_alignment": [
+                "Task Manager",
+                "Action Governance",
+                "Decision Governance"
+            ]
+        },
+        {
+            "question_id": "Q-004",
+            "title": "Legacy alias normalization timeline",
+            "related_gaps": [
+                "GAP-LEGACY-ALIAS-001",
+                "GAP-LEGACY-ALIAS-002"
+            ],
+            "blocking": false,
+            "required_owner_alignment": [
+                "Decision Governance",
+                "Action Governance"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "model_id": "qwen-vl-plus",
+  "usage": {"input_tokens": 420, "output_tokens": 180, "total_tokens": 600},
+  "raw_response": {
+    "output": {
+      "choices": [
+        {
+          "message": {
+            "content": [
+              {
+                "text": "{\"scene_hypothesis_candidates\":[{\"scene_type\":\"indoor_public_space\",\"confidence_candidate\":0.42,\"candidate_only\":true,\"not_fact\":true},{\"scene_type\":\"subway_entrance_candidate\",\"confidence_candidate\":0.35,\"candidate_only\":true,\"not_fact\":true}],\"visual_attention_candidates\":[],\"task_clue_candidates\":[],\"tools_suggested\":[],\"named_entity_claims\":[],\"supporting_reason\":\"enclosed public area layout with signage\",\"uncertainty\":0.4,\"candidate_only\":true,\"not_fact\":true}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "request_id": "recorded-unknown-scene-001"
+  }
+}

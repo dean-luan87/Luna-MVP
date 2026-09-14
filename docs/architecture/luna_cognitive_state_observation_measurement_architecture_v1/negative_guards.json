@@ -1,0 +1,17 @@
+{
+  "contract_id": "state_measurement_negative_guards_v1",
+  "forbidden": [
+    "runtime", "automatic_scoring_action", "automatic_optimization", "hive_connection", "b_route_runtime", "parameter_update", "self_modification", "observation_state_write", "metric_direct_decision", "metric_direct_action", "quality_automatic_parameter_update", "fitness_identity_change", "fitness_constitution_change", "memory_utility_reality_override", "hive_direct_state_modification", "hive_direct_parameter_update", "self_calibration_automatic_calibration", "b_route_actual_quality_claim", "b_route_virtual_outcome_experience", "b_route_update_state", "runtime_metric_authority", "emotion_metric_override", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "observation_is_read_only": true,
+    "metrics_are_candidates": true,
+    "quality_is_not_decision": true,
+    "self_stability_protected": true,
+    "fitness_is_field_specific": true,
+    "hive_observer_only": true,
+    "b_route_prediction_is_not_actual": true,
+    "calibration_requires_review": true,
+    "unknowns_preserved": true
+  }
+}

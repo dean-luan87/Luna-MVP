@@ -1,0 +1,10 @@
+{
+  "title": "Value Decision Relation v1",
+  "flow": ["Value Evaluation", "Utility Calculation Candidate", "Priority Ranking Candidate", "Brain / Decision Arbitration Review"],
+  "value_provides": ["constraint package", "utility candidate", "priority candidate", "tradeoff candidate"],
+  "value_is_not_decision_authority": true,
+  "brain_retains_judgment": true,
+  "decision_arbitration_future_only": true,
+  "action_execution": false,
+  "candidate_only": true
+}

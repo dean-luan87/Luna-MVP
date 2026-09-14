@@ -1,0 +1,23 @@
+{
+  "model_id": "yolo_lightweight_nano",
+  "model_role": "object_detection",
+  "model_family": "object_detection_model_family",
+  "tier": "P0",
+  "download_allowed": true,
+  "download_source": "pypi:ultralytics+weights:yolo_nano",
+  "model_weight_required": true,
+  "license_ref": "agpl_3_0",
+  "license_allows_current_use": true,
+  "commercial_use_status": "test_only_now_requires_enterprise_license_for_commercial_runtime",
+  "size_estimate": "small_about_6mb_nano_weights",
+  "dependencies": ["ultralytics", "torch_cpu", "opencv-python"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": false,
+  "offline_supported": true,
+  "output_format_stable": true,
+  "output_schema_ref": "object_detection_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_object_evidence_candidate",
+  "adapter_mapping_ref": "object_evidence_candidate",
+  "notes": "agpl_means_commercial_runtime_blocked_until_license_resolved_test_only_for_now"
+}

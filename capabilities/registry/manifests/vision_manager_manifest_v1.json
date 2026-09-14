@@ -1,0 +1,46 @@
+{
+    "capability_id": "luna.vision_manager",
+    "capability_name": "Luna Vision Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "entrypoint": "run_vision_manager_module_api_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py",
+            "entrypoint": "run_vision_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/vision/schemas/vision_event.py",
+            "capabilities/midplatform/vision_recognition_evidence_readonly_ingest_candidate_v0.py",
+            "capabilities/vision/visual_ocr_map_task_feedback_dryrun_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_vision_manager_module_integration_v1.py",
+            "scenarios": 18
+        },
+        "ready_evidence": {
+            "total_cases": 18,
+            "passed_cases": 18,
+            "failed_cases": [],
+            "required_fields_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_vision_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_action_execution": true,
+        "no_direct_provider_runtime_call": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": []
+}

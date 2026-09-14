@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-And-Inference-Trial-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:37:53.508998+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_inference_owner_approval_plan_record",
+  "mobile_sam_inference_owner_approval_plan_record": {
+    "record_id": "mobile_sam_inference_owner_approval_plan_v1",
+    "owner_approval_required_for_inference_trial": true,
+    "owner_approval_granted_now": false,
+    "inference_trial_execution_requires_separate_request_or_issuance": true,
+    "inference_trial_execution_requires_separate_phase": true,
+    "runtime_approved": false,
+    "output_adapter_approved": false,
+    "semantic_layer_approved": false,
+    "commercial_runtime_approved": false,
+    "fact_write_approved": false,
+    "navigation_action_speech_approved": false
+  }
+}

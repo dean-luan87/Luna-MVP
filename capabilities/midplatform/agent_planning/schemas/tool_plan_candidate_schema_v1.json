@@ -1,0 +1,18 @@
+{
+  "schema_id": "ToolPlanCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["tool_plan_id", "capability_type", "execution_mode", "priority", "candidate_only", "not_fact"],
+  "boundary_flags": {
+    "no_tool_execution": true,
+    "tool_os_handoff_required": true
+  },
+  "field_definitions": {
+    "execution_mode": {
+      "enum": ["not_executed", "request_tool_os_admission", "manual_review_required"]
+    }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

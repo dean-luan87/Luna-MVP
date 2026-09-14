@@ -1,0 +1,11 @@
+{
+  "contract_id": "role_schema_binding_v1",
+  "owner": "Role",
+  "inputs": ["active_role", "responsibility", "role_memory_context", "task_context", "role_schema_candidate"],
+  "outputs": ["role_schema_context_candidate", "responsibility_context", "unknowns"],
+  "role_owns_schema": false,
+  "schema_creates_role": false,
+  "schema_activates_role": false,
+  "candidate_only": true,
+  "decision_authority": false
+}

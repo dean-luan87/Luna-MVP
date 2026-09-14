@@ -1,0 +1,18 @@
+{
+    "version": "1.0",
+    "name": "Field State Status Registry",
+    "statuses": [
+        "candidate",
+        "provisional",
+        "active",
+        "degraded",
+        "uncertain",
+        "conflicted",
+        "suspended",
+        "expired",
+        "revoked",
+        "superseded",
+        "unresolved"
+    ],
+    "status_count": 11
+}

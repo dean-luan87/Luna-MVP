@@ -1,0 +1,20 @@
+{
+  "artifact": "emotion_self_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "source_owner": "Self Governance",
+  "allowed_interfaces": [
+    "SelfContextToEmotionCandidate",
+    "EmotionEvidenceToSelfCandidate",
+    "self_reference_for_emotion_context"
+  ],
+  "frozen_rules": {
+    "emotion_evidence_is_not_self_mutation": true,
+    "emotion_state_candidate_is_not_self_identity": true,
+    "emotion_cannot_rewrite_self_governance": true,
+    "self_cannot_become_emotion_owner": true,
+    "candidate_only": true,
+    "source_owner_mutation": false
+  },
+  "allowed_outputs": ["EmotionEvidenceToSelfCandidate", "SelfContextToEmotionCandidate"],
+  "forbidden": ["direct_self_mutation", "identity_rewrite", "self_fact_creation", "emotion_to_self_activation"]
+}

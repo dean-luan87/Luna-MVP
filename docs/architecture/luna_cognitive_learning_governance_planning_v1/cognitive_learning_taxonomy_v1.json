@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_learning_taxonomy_v1",
+    "learning_kinds": [
+        "SUCCESS_PATTERN",
+        "FAILURE_PATTERN",
+        "PREFERENCE_PATTERN",
+        "CONTEXT_DEPENDENT_PATTERN",
+        "INTERACTION_PATTERN",
+        "RESOURCE_PATTERN",
+        "ATTENTION_PATTERN",
+        "HYPOTHESIS_RESOLUTION_PATTERN",
+        "REGULATION_EFFECT_PATTERN",
+        "TASK_EXPERIENCE_PATTERN",
+        "SOCIAL_PATTERN",
+        "TEMPORAL_PATTERN",
+        "CONTRADICTION_PATTERN",
+        "USER_FEEDBACK_PATTERN",
+        "UNCERTAINTY_PATTERN",
+        "NEGATIVE_EVIDENCE_PATTERN",
+        "UNRESOLVED_PATTERN"
+    ],
+    "taxonomy_implies_truth": false,
+    "taxonomy_implies_permanence": false
+}

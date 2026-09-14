@@ -1,0 +1,115 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "RegionPrioritySchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+    "description": "区域观察优先级分类。priority candidate only，不是事实或导航决策。",
+    "priority_levels": [
+      {
+        "priority_level": "P0_immediate_attention",
+        "label_zh": "立即关注",
+        "label_en": "Immediate Attention",
+        "sort_order": 0,
+        "description": "当前任务下必须优先观察，可能直接影响通行或安全判断"
+      },
+      {
+        "priority_level": "P1_high_attention",
+        "label_zh": "高优先级",
+        "label_en": "High Attention",
+        "sort_order": 1,
+        "description": "与当前任务强相关，建议尽快安排后续模型复核"
+      },
+      {
+        "priority_level": "P2_medium_attention",
+        "label_zh": "中优先级",
+        "label_en": "Medium Attention",
+        "sort_order": 2,
+        "description": "有一定观察价值，可在高优先级区域处理后复核"
+      },
+      {
+        "priority_level": "P3_low_attention",
+        "label_zh": "低优先级",
+        "label_en": "Low Attention",
+        "sort_order": 3,
+        "description": "可作为背景参考，当前不需要优先处理"
+      },
+      {
+        "priority_level": "ignore_for_now",
+        "label_zh": "暂时忽略",
+        "label_en": "Ignore For Now",
+        "sort_order": 4,
+        "description": "与当前任务弱相关，默认折叠或后置展示"
+      }
+    ],
+    "priority_reasons": [
+      {
+        "reason_id": "task_target",
+        "label_zh": "任务目标"
+      },
+      {
+        "reason_id": "possible_risk",
+        "label_zh": "可能风险"
+      },
+      {
+        "reason_id": "navigation_relevant",
+        "label_zh": "导航相关"
+      },
+      {
+        "reason_id": "text_relevant",
+        "label_zh": "文字相关"
+      },
+      {
+        "reason_id": "object_candidate",
+        "label_zh": "物体候选"
+      },
+      {
+        "reason_id": "low_confidence",
+        "label_zh": "低置信度"
+      },
+      {
+        "reason_id": "boundary_uncertain",
+        "label_zh": "边界不确定"
+      },
+      {
+        "reason_id": "human_marked_error",
+        "label_zh": "人工指错"
+      },
+      {
+        "reason_id": "needs_detection_review",
+        "label_zh": "需检测复核"
+      },
+      {
+        "reason_id": "needs_ocr_review",
+        "label_zh": "需 OCR 复核"
+      },
+      {
+        "reason_id": "needs_depth_review",
+        "label_zh": "需深度复核"
+      },
+      {
+        "reason_id": "needs_slam_review",
+        "label_zh": "需 SLAM 复核"
+      },
+      {
+        "reason_id": "stable_background_reference",
+        "label_zh": "稳定背景参考"
+      },
+      {
+        "reason_id": "weak_background",
+        "label_zh": "弱相关背景"
+      }
+    ],
+    "boundary_flags": {
+      "region_priority_candidate_only": true,
+      "not_fact": true,
+      "not_navigation_instruction": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "extensions":[
+    {"extension":"Knowledge Library Runtime","owner":"Knowledge Library","status":"future","gates":["Constitution","Knowledge Admission","Evidence Boundary","Core Integration"]},
+    {"extension":"Network Knowledge Source","owner":"Knowledge Library Governance","status":"future","gates":["Source Admission","Permission","Provenance","Runtime Authorization"]},
+    {"extension":"RAG Retrieval","owner":"Cognitive Capability Governance","status":"future","gates":["Capability Admission","Evidence Gateway","Context Boundary"]},
+    {"extension":"Knowledge-driven Emotion","owner":"Integration Layer","status":"future","gates":["Emotion Boundary Review","Memory Validation","Governance"]}
+  ],
+  "rules":{"future_not_active":true,"no_external_source_now":true,"no_rag_now":true,"no_emotion_runtime_now":true}
+}

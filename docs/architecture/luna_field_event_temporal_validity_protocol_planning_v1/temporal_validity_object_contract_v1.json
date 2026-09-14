@@ -1,0 +1,102 @@
+{
+    "version": "1.0",
+    "name": "Temporal Validity Object Contract",
+    "description": "定义 temporal_validity 对象的结构、状态和字段含义",
+    "fields": [
+        {
+            "name": "temporal_type",
+            "type": "string",
+            "description": "时间有效性类型。"
+        },
+        {
+            "name": "valid_from",
+            "type": "timestamp",
+            "description": "时间窗口开始。"
+        },
+        {
+            "name": "valid_until",
+            "type": "timestamp",
+            "description": "时间窗口结束。"
+        },
+        {
+            "name": "recurrence_pattern",
+            "type": "string",
+            "description": "周期性有效性的表达。"
+        },
+        {
+            "name": "recurrence_timezone",
+            "type": "string",
+            "description": "周期时间的时区。"
+        },
+        {
+            "name": "expected_duration",
+            "type": "duration",
+            "description": "临时定义的预期持续时间。"
+        },
+        {
+            "name": "refresh_at",
+            "type": "timestamp",
+            "description": "建议刷新证据的时间。"
+        },
+        {
+            "name": "refresh_policy",
+            "type": "string",
+            "description": "刷新策略类型。"
+        },
+        {
+            "name": "temporal_confidence",
+            "type": "number",
+            "description": "时间有效性的置信度评分。"
+        },
+        {
+            "name": "decay_policy",
+            "type": "string",
+            "description": "有效性随时间衰减的规则。"
+        },
+        {
+            "name": "inherited_from_ref",
+            "type": "string",
+            "description": "继承自其他定义的引用。"
+        },
+        {
+            "name": "until_revoked",
+            "type": "boolean",
+            "description": "是否持续有效直到撤回。"
+        },
+        {
+            "name": "grace_period",
+            "type": "duration",
+            "description": "过期前的宽限期。"
+        },
+        {
+            "name": "stale_after",
+            "type": "duration",
+            "description": "定义变 stale 的阈值。"
+        },
+        {
+            "name": "expired_at",
+            "type": "timestamp",
+            "description": "实际过期时间。"
+        },
+        {
+            "name": "current_temporal_status",
+            "type": "string",
+            "allowed_values": [
+                "pending",
+                "active",
+                "inactive",
+                "stale",
+                "expired",
+                "suspended",
+                "revoked",
+                "unknown"
+            ],
+            "description": "当前时间状态标签。"
+        }
+    ],
+    "rules": {
+        "active_requires_window": "active 状态必须具备有效时间窗口或 until_revoked。",
+        "expired_ineligible": "已过期的定义不得参与当前 projection。",
+        "refresh_if_stale": "如果 stale_after 到期，则请求 refresh。"
+    }
+}

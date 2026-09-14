@@ -1,0 +1,11 @@
+{
+  "contract_id": "memory_importance_evaluation_v1",
+  "owner": "Memory Governance",
+  "inputs": ["field_impact", "self_impact", "social_impact", "role_impact", "frequency", "validation_result", "future_utility"],
+  "output": "memory_value_candidate",
+  "evaluation_dimensions": ["Field Impact", "Self Impact", "Social Impact", "Role Impact", "Frequency", "Validation Result", "Future Utility"],
+  "candidate_only": true,
+  "automatic_admission": false,
+  "unknown_preserved": true,
+  "decision_authority": false
+}

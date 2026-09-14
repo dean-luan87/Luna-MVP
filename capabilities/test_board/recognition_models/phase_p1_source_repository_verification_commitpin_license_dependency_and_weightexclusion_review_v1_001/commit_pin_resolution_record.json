@@ -1,0 +1,44 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.998195+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "scoped_network_lookup_allowed": true,
+  "git_clone_allowed": false,
+  "source_checkout_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "commit_pin_resolution_record",
+  "source_commit_pin_resolution_evidence": [
+    {
+      "asset_id": "byte_track",
+      "repository_url_ref": "https://github.com/FoundationVision/ByteTrack",
+      "branch_or_tag_candidate": "main",
+      "commit_hash_resolved": true,
+      "commit_hash": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "commit_metadata_evidence_ref": "commit_pin_resolution_evidence_v1.json",
+      "commit_pin_confidence": "high",
+      "commit_pin_rationale": "Latest commit on FoundationVision/ByteTrack default branch main resolved via api.github.com/repos/.../commits?sha=main&per_page=1.",
+      "commit_pin_completed": true,
+      "commit_pin_failure_reason": null,
+      "commit_drift_check_required_before_execution": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "repository_url_ref": "https://github.com/ChaoningZhang/MobileSAM",
+      "branch_or_tag_candidate": "master",
+      "commit_hash_resolved": true,
+      "commit_hash": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+      "commit_metadata_evidence_ref": "commit_pin_resolution_evidence_v1.json",
+      "commit_pin_confidence": "high",
+      "commit_pin_rationale": "Latest commit on ChaoningZhang/MobileSAM default branch master resolved via api.github.com/repos/.../commits?sha=master&per_page=1.",
+      "commit_pin_completed": true,
+      "commit_pin_failure_reason": null,
+      "commit_drift_check_required_before_execution": true
+    }
+  ]
+}

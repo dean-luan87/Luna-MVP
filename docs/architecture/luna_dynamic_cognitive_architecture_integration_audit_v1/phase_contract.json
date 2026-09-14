@@ -1,0 +1,42 @@
+{
+  "contract_id": "luna_dynamic_cognitive_architecture_integration_audit_phase_contract_v1",
+  "phase": "Phase-Luna-Dynamic-Cognitive-Architecture-Integration-Audit-v1-001",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "execution_mode": "Audit",
+  "execution_profile": "Validation Planning Only",
+  "execution_mode_normalization_reason": "Validation Planning Only is used as the audit profile; Audit is the repository-governed execution mode for read-only evidence collection and audit reporting.",
+  "architecture_change": false,
+  "migration": false,
+  "implementation": false,
+  "runtime_change": false,
+  "schema_change": false,
+  "contract_change": false,
+  "owner_metadata_change": false,
+  "automatic_remediation": false,
+  "allowed_actions": [
+    "read M0 through M5 architecture evidence",
+    "create audit-only Markdown and JSON candidate assets",
+    "create a read-only phase verifier",
+    "perform V0 JSON and AST static checks"
+  ],
+  "forbidden_actions": [
+    "modify existing architecture assets",
+    "modify source code or Runtime",
+    "execute migration",
+    "activate candidate Schema or Contract",
+    "implement Personal Cognitive Network",
+    "implement Intent or Causal Engine",
+    "implement A/B Route or Decision Runtime",
+    "invoke models or providers",
+    "automatically remediate findings",
+    "run the final phase verifier as Agent"
+  ],
+  "verification_authority": {
+    "V0": "Agent",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "stop_condition": "V0 static checks complete; wait for user-terminal V2 verification.",
+  "next_phase_auto_entry": false
+}

@@ -1,0 +1,17 @@
+{
+  "model_family": "scene_relation_model_family",
+  "callable_interface_ref": "scene_relation.callable.extract_relation_stub_v1",
+  "input_format_ref": "object_region_placeholder_ref_v1",
+  "output_schema_ref": "scene_relation_output_schema_v1",
+  "runtime_requirement_ref": "gpu_optional_runtime_v1",
+  "model_origin": "external_scene_graph_or_vlm_model",
+  "license_ref": "per_model_license_check_required",
+  "dependency_boundary_ref": "scene_relation_dependency_boundary_v1",
+  "resource_requirement_ref": "gpu_optional_v1",
+  "offline_or_online_mode": "offline",
+  "adapter_mapping_target": "scene_relation_candidate",
+  "source_chain": "recognition_model_invocation_feasibility_dryrun_v1",
+  "confidence_policy_ref": "scene_relation_confidence_policy_v1",
+  "invocation_mode": "contract_check",
+  "expected_output_fields": ["subject", "relation", "object", "region_ref", "confidence"]
+}

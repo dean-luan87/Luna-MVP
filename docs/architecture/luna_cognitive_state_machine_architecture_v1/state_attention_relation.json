@@ -1,0 +1,18 @@
+{
+  "relation_id": "cognitive_state_attention_v1",
+  "mapping": {
+    "Observation": ["environment_change", "evidence", "unknowns"],
+    "Understanding": ["hypothesis", "belief", "validation"],
+    "Decision": ["goal", "utility", "risk", "candidate_difference"],
+    "Action": ["execution_status", "expected_outcome", "safety"],
+    "Reflection": ["outcome", "difference", "failure_classification"],
+    "Learning": ["pattern", "schema", "capability_gap", "growth_evidence"]
+  },
+  "state_provides_attention_policy_candidate": true,
+  "attention_does_not_own_state": true,
+  "attention_does_not_switch_state": true,
+  "attention_does_not_execute_action": true,
+  "attention_does_not_write_memory": true,
+  "self_rhythm_is_resource_hint": true,
+  "candidate_only": true
+}

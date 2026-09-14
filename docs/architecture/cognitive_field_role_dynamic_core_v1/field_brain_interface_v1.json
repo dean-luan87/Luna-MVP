@@ -1,0 +1,14 @@
+{
+  "interface_name": "Field Brain Interface v1",
+  "field_state": null,
+  "role_stack": [],
+  "relationship_layer": [],
+  "field_conflict_candidate": [],
+  "goal_reference": "goal-example",
+  "decision_candidate_reference": "decision-example",
+  "brain_review_required": true,
+  "brain_retains_goal_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "field_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

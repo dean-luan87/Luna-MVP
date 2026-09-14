@@ -1,0 +1,14 @@
+{
+  "schema_id": "cognitive_state_vector_v1",
+  "status": "architecture_only",
+  "components": ["observation_activation", "understanding_confidence", "risk_attention", "exploration_drive", "memory_activation", "decision_pressure"],
+  "component_range": [0.0, 1.0],
+  "required_fields": ["vector_id", "field_ref", "flow_ref", "timestamp", "components", "source_evidence", "confidence", "unknowns", "parameter_profile_ref"],
+  "vector_is_not_reality": true,
+  "vector_is_not_decision": true,
+  "vector_is_not_action": true,
+  "vector_is_not_memory": true,
+  "bounded_values_required": true,
+  "candidate_only": true,
+  "runtime": false
+}

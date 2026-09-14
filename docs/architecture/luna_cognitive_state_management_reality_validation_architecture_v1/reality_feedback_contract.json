@@ -1,0 +1,13 @@
+{
+  "contract_id": "reality_feedback_v1",
+  "owner": "Reality / Evidence Boundary",
+  "inputs": ["observed_outcome", "new_evidence", "field_context", "action_or_interaction_outcome"],
+  "outputs": ["reality_feedback_candidate", "evidence_refs", "provenance", "unknowns"],
+  "feedback_is_reality": false,
+  "feedback_requires_evidence": true,
+  "current_reality_precedence": true,
+  "validation_consumer": "Reality Validation Loop",
+  "memory_write": false,
+  "self_write": false,
+  "goal_write": false
+}

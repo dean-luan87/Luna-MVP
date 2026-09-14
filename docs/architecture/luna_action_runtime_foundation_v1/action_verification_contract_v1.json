@@ -1,0 +1,8 @@
+{
+  "title": "Action Verification Contract v1",
+  "owner": "Action Runtime Governance",
+  "pipeline": ["Expected Outcome", "Actual Outcome", "Difference", "Feedback Signal"],
+  "verification_states": ["Confirmed", "Partial Success", "Failed", "Unexpected", "Unknown"],
+  "schema": ["verification_id", "outcome_id", "expected", "actual", "difference", "verification_state", "confidence", "trace_id"],
+  "rules": {"expectation_feedback_bound": true, "partial_success_supported": true, "unknown_supported": true, "verification_not_decision": true}
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Brain Processing Flow v1",
+  "contract_type": "Brain Cognitive Flow",
+  "stages": [
+    "State Understanding",
+    "Situation Evaluation",
+    "Intent Alignment",
+    "Option Evaluation",
+    "Conflict Analysis",
+    "Decision Candidate",
+    "Decision Trace"
+  ],
+  "stage_outputs": {
+    "State Understanding": "Current Cognitive Interpretation Candidate",
+    "Situation Evaluation": "Situation Evaluation Candidate",
+    "Intent Alignment": "Intent Alignment Candidate",
+    "Option Evaluation": "Option Evaluation Candidate",
+    "Conflict Analysis": "Conflict Evaluation Candidate",
+    "Decision Candidate": "Decision Candidate",
+    "Decision Trace": "Decision Trace"
+  },
+  "candidate_based": true,
+  "unknowns_are_preserved": true,
+  "flow_does_not_execute_action": true,
+  "flow_does_not_make_reality": true
+}

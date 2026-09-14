@@ -1,0 +1,26 @@
+{
+    "artifact": "cognitive_state_formation_causal_handoff_v1",
+    "handoff_type": "CANDIDATE_REFERENCE_ONLY",
+    "producer_owner": "Cognitive State Formation Governance",
+    "consumer_owner": "Causal Governance",
+    "allowed_payload": [
+        "attention_refs",
+        "active_hypothesis_refs",
+        "alternative_hypothesis_refs",
+        "context_refs",
+        "field_state_refs",
+        "observation_refs",
+        "uncertainty_refs",
+        "conflict_refs",
+        "trace_ref",
+        "provenance_refs"
+    ],
+    "forbidden_payload": [
+        "causal_truth",
+        "decision",
+        "action",
+        "task",
+        "runtime_command"
+    ],
+    "semantic_rule": "Cognitive Hypothesis != Causal Hypothesis; causal ownership remains in Causal Governance"
+}

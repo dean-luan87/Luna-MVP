@@ -1,0 +1,20 @@
+{
+  "format_ref": "rtab_map_odometry_export_file",
+  "export_session_id": "rtab_odom_export_session_invalid_0002",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_odometry_invalid_0002.txt"
+  },
+  "source_chain": ["rtab_map_odometry_export", "rtab_odom_export_session_invalid_0002"],
+  "records": [
+    {
+      "node_id": "odom_bad2",
+      "timestamp_ms": 6100,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 0.0,
+      "confidence": 0.90,
+      "tracking_state": "ok",
+      "source_chain": ["rtab_map_odometry_export", "rtab_odom_export_session_invalid_0002", "odom_bad2"]
+    }
+  ]
+}

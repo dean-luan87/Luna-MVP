@@ -1,0 +1,70 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m3_runtime_boundary_risk_register_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "records": [
+    {
+      "risk_id": "RUNTIME_ABSORBS_COGNITIVE_LAYER",
+      "risk": "Runtime scheduling, lifecycle, or execution infrastructure is treated as the Owner of Intent, Causal Reasoning, Value, Understanding, or Decision.",
+      "trigger": "A Runtime API or document claims cognitive output authority or promotes transported data into cognitive facts.",
+      "impact": "Dynamic Cognitive Architecture v2 collapses into an execution engine and loses cognitive ownership separation.",
+      "mitigation": "Keep cognitive outputs candidate-only, preserve cognitive Owners, require Action admission before Runtime handoff, and block any Runtime cognitive-owner claim.",
+      "owner": "Architecture Governance / Runtime Boundary Governance",
+      "status": "CONTROLLED_BY_BOUNDARY_CANDIDATE",
+      "blocker_if_detected": true
+    },
+    {
+      "risk_id": "TASK_MANAGER_BECOMES_DECISION_OWNER",
+      "risk": "Task Manager expands from task lifecycle into Intent generation, Decision selection, Runtime dispatch, or Action execution.",
+      "trigger": "Task output is accepted without a governed Decision reference or Task Manager directly dispatches Runtime work.",
+      "impact": "Task orchestration bypasses Goal, Value, Decision Arbitration, and Action Governance.",
+      "mitigation": "Require approved task candidates and Decision references; preserve Task Manager runtime_dispatch and real_action_execution prohibitions.",
+      "owner": "Task Manager / Decision Arbitration / Action Governance",
+      "status": "CONTROLLED_BY_ACTIVE_BASELINE_AND_BOUNDARY_CANDIDATE",
+      "blocker_if_detected": true
+    },
+    {
+      "risk_id": "MODEL_MANAGER_BECOMES_COGNITION_OWNER",
+      "risk": "Model selection or provider output is treated as Reality, Understanding, Intent, or Decision.",
+      "trigger": "Model Manager output bypasses evidence admission or a provider call is initiated under Model Manager cognitive authority.",
+      "impact": "External model behavior becomes the cognitive subject and defeats Luna governance.",
+      "mitigation": "Keep Model Manager candidate-only, retain provider Runtime call prohibition, and route model outputs through evidence and cognitive admission boundaries.",
+      "owner": "Capability Governance / Model Manager",
+      "status": "CONTROLLED_BY_ACTIVE_BASELINE_AND_BOUNDARY_CANDIDATE",
+      "blocker_if_detected": true
+    },
+    {
+      "risk_id": "RUNTIME_MUTATES_FACT_STATE",
+      "risk": "Runtime context, execution result, or trace directly mutates Field facts, Memory, Self, or Reality interpretation.",
+      "trigger": "A Runtime path writes state without Field reduction, Reality Validation, Memory admission, or Self Review.",
+      "impact": "Reality and historical state lose provenance, single-Owner authority, and replay integrity.",
+      "mitigation": "Restrict Runtime outputs to evidence and candidates; preserve Field State Reducer, Memory System, and Self Governance write boundaries.",
+      "owner": "Field State Reducer / Memory System / Self Governance",
+      "status": "CONTROLLED_BY_SINGLE_WRITER_BOUNDARIES",
+      "blocker_if_detected": true
+    },
+    {
+      "risk_id": "COGNITIVE_LAYER_BYPASSES_FIELD_STATE",
+      "risk": "Cognitive Layer or a future adapter constructs Reality context without admitted Field State provenance.",
+      "trigger": "Runtime Context accepts unadmitted cognitive interpretation as current world state.",
+      "impact": "Memory, model output, or hypothesis may overwrite current Reality.",
+      "mitigation": "Require Field State Read Model references for world-state context and mark cognitive projections as non-factual candidates.",
+      "owner": "Field State Reducer / Field State Read Model",
+      "status": "CONTROLLED_BY_FIELD_PRECEDENCE_BOUNDARY",
+      "blocker_if_detected": true
+    },
+    {
+      "risk_id": "PREMATURE_FUTURE_RUNTIME_IMPLEMENTATION",
+      "risk": "PCN, Intent, Causal, A/B Simulation, Experience Learning, or an Adapter is implemented before a separately authorized phase proves Runtime necessity.",
+      "trigger": "Implementation files, Runtime APIs, provider calls, or activation flags appear during planning or before admission dependencies are frozen.",
+      "impact": "A second Runtime mainline and dual architecture emerge before ownership and validation are stable.",
+      "mitigation": "Keep all gaps runtime_required=false, all adapters FUTURE_CANDIDATE, and require a new phase instruction plus V2/V3 approval before implementation.",
+      "owner": "Architecture Governance",
+      "status": "CONTROLLED_BY_PHASE_STOP_BOUNDARY",
+      "blocker_if_detected": true
+    }
+  ],
+  "active_conflicts": [],
+  "blocker_count": 0,
+  "runtime_change_required": false,
+  "migration_executed": false
+}

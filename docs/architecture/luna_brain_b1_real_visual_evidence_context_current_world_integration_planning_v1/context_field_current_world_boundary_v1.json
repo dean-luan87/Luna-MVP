@@ -1,0 +1,23 @@
+{
+  "context": {
+    "role": "reference-only assembly surface",
+    "input": "admitted observation/evidence references and read-only projections",
+    "output": "ContextWorldAssemblyCandidateV1 / Context Envelope Candidate",
+    "mutation": false,
+    "truth_declaration": false
+  },
+  "field_event": {
+    "role": "candidate event boundary for field-relevant observations",
+    "input": "observation/evidence refs plus explicit field scope and temporal fields",
+    "admission": "Field Event Admission is required",
+    "mutation": false
+  },
+  "current_world": {
+    "role": "derived candidate representation for Cognitive State Formation",
+    "input": "Context candidate plus Field State references and observation lineage",
+    "mutation": false,
+    "is_field_truth": false,
+    "direct_provider_ingress": false
+  },
+  "boundary_rule": "Context must not become a second Field State writer, and Current World must not bypass Field Event Admission or Field State Reducer."
+}

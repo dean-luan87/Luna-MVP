@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.261944+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "weight_download_request_approval_readiness_status": "mobile_sam_ready_for_weight_download_execution_byte_track_unresolved_no_download_no_inference_no_runtime",
+    "ready_assets": [
+      "mobile_sam"
+    ],
+    "unresolved_assets": [
+      "byte_track"
+    ],
+    "mobile_sam_can_enter_weight_download_execution_next": true,
+    "byte_track_can_enter_weight_download_execution_next": false,
+    "recommended_next_phase": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_only",
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001",
+    "transition_note": "COMPRESSED PLANNING/APPROVAL ONLY — NOTHING was downloaded. The code-only registry overlay was verified (both assets code_only_ready, weights not_downloaded, no readiness true). A weight-download request package, owner approval issuance (PREPARATION only), weight source review, license/usage boundary, sha256 hash + storage plan (capabilities/model_weights/p1/...), TEMPLATE-ONLY download command whitelist (never executed), rollback/deletion policy, and readiness review were produced. mobile_sam's weight source is KNOWN (weights/mobile_sam.pt at the pinned MobileSAM commit, 40728226 bytes, Apache-2.0) -> READY for the next download-execution phase. byte_track's weight source is UNRESOLVED -> NOT approved for download execution (no fabricated URL) and routed to source resolution. Weight approval is NOT model load / inference / runtime / output adapter / semantic / commercial-runtime approval; even after download, NONE of those are allowed. Next phase: Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001 with scope=ready_only (recommended mobile_sam_only); byte_track should go through Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001 first. Download still requires the pre-download snapshot + hash verification + rollback policy from this plan."
+  },
+  "final_decision": "P1_MODEL_WEIGHT_DOWNLOAD_REQUEST_APPROVAL_AND_READINESS_GO"
+}

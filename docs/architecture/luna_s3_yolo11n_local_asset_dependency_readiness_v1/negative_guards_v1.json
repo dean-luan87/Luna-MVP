@@ -1,0 +1,21 @@
+{
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "network_access": false,
+  "automatic_model_download": false,
+  "automatic_package_download": false,
+  "automatic_dependency_install": false,
+  "human_contract_selection_required_normal_path": false,
+  "loader_guessing": false,
+  "best_fit_declared": false,
+  "production_approved": false,
+  "provider_semantic_authority": false,
+  "truth_declared": false,
+  "fact_admitted": false,
+  "field_mutation": false,
+  "current_world_truth_declaration": false,
+  "ocr_execution": false,
+  "slam_execution": false,
+  "vlm_execution": false,
+  "semantic_compression": false
+}

@@ -1,0 +1,29 @@
+{
+    "artifact": "cognitive_execution_chain_negative_guards_v1",
+    "status": "PLANNING_CANDIDATE",
+    "guards": [
+        "no_new_cognitive_owner",
+        "integration_not_runtime_executor",
+        "integration_no_state_mutation_authority",
+        "no_direct_intent_mutation",
+        "no_direct_causal_mutation",
+        "no_direct_decision_mutation",
+        "no_direct_action_mutation",
+        "no_direct_execution_mutation",
+        "no_field_fact_write",
+        "no_memory_fact_write",
+        "no_scheduler_execution",
+        "no_device_control",
+        "no_database_write",
+        "no_model_call",
+        "no_real_runtime_dispatch",
+        "no_runtime_bypass_via_task_manager",
+        "no_trace_rewrite",
+        "no_provenance_fabrication",
+        "no_silent_version_coercion",
+        "no_incompatible_handoff",
+        "no_unbounded_feedback_loop",
+        "no_retry_without_authority",
+        "no_existing_module_modification"
+    ]
+}

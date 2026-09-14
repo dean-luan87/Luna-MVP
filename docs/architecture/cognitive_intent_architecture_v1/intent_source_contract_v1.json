@@ -1,0 +1,34 @@
+{
+  "title": "Intent Source Contract v1",
+  "contract_type": "Intent Source Governance",
+  "allowed_sources": [
+    "User Intent",
+    "Self Intent",
+    "Survival Intent",
+    "Task Intent",
+    "Field Requirement"
+  ],
+  "source_record": {
+    "source_id": "source-example",
+    "source_type": "User Intent",
+    "evidence": [],
+    "provenance": [],
+    "field_reference": "field-example",
+    "confidence": "candidate",
+    "unknowns": []
+  },
+  "source_boundaries": {
+    "User Intent": "user-provided or user-confirmed purpose candidate",
+    "Self Intent": "self-continuity candidate, not autonomous will",
+    "Survival Intent": "Constitution/Reflex safety candidate",
+    "Task Intent": "inherited from an existing Goal/Task process",
+    "Field Requirement": "context-derived information or safety requirement candidate"
+  },
+  "provider_cannot_create_intent": true,
+  "model_cannot_create_intent": true,
+  "source_does_not_create_goal": true,
+  "source_does_not_create_task": true,
+  "source_does_not_make_decision": true,
+  "unknowns_are_preserved": true,
+  "conflicting_sources_create_intent_conflict_candidate": true
+}

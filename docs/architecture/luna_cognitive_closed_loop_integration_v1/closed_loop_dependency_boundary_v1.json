@@ -1,0 +1,21 @@
+{
+  "title": "Closed Loop Dependency Boundary v1",
+  "allowed": [
+    {"source":"Runtime Foundation","target":"Cognitive Cycle","mode":"tick/wakeup/process"},
+    {"source":"Capability","target":"Cognitive Cycle","mode":"evidence candidate"},
+    {"source":"Cognitive Cycle","target":"Capability","mode":"capability requirement"},
+    {"source":"Cognitive Cycle","target":"Action Boundary","mode":"decision/action candidate"},
+    {"source":"Action Outcome","target":"Cognitive Cycle","mode":"feedback evidence"},
+    {"source":"Learning","target":"Memory","mode":"candidate consolidation"}
+  ],
+  "forbidden": [
+    "Closed Loop → Constitution Modification",
+    "Closed Loop → Direct Reality Modification",
+    "Capability → Cognitive Loop Ownership",
+    "Emotion → Direct Action",
+    "Learning → Automatic Value Rewrite",
+    "Provider → Brain Control",
+    "Action Runtime → Goal Ownership"
+  ],
+  "rules": {"loop_is_coordination_not_authority": true, "feedback_reentry_required": true, "no_runtime_execution": true, "no_model_calls": true, "no_hardware_calls": true}
+}

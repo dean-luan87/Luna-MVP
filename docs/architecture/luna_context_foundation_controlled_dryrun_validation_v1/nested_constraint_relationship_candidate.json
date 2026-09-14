@@ -1,0 +1,50 @@
+{
+  "model_id": "luna_context_foundation_nested_constraint_relationship_candidate_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "system_model": "Constraint-driven Dynamic Cognitive System",
+  "relationships": [
+    {
+      "relationship_id": "CONTEXT_RESOURCE",
+      "objects": ["Context", "Resource"],
+      "context_constraint": "Context expansion must consume an admitted Resource Budget Reference",
+      "feedback_constraint": "Context trace exposes requested and degraded scope candidates without changing Resource state"
+    },
+    {
+      "relationship_id": "CONTEXT_EMOTION",
+      "objects": ["Context", "Emotion"],
+      "context_constraint": "Context accepts source-owned Emotion and carryover references only",
+      "feedback_constraint": "Field and temporal Context constrain where an Emotion reference remains applicable without calculating emotion"
+    },
+    {
+      "relationship_id": "CONTEXT_MEMORY",
+      "objects": ["Context", "Memory"],
+      "context_constraint": "Memory may influence Context through admitted historical Projection References",
+      "feedback_constraint": "Current Context may expose future Memory-admission relevance candidates but cannot write Memory"
+    },
+    {
+      "relationship_id": "CONTEXT_FIELD",
+      "objects": ["Context", "Field"],
+      "context_constraint": "Current admitted Field constrains Context and retains Reality precedence",
+      "feedback_constraint": "Context may expose missing Field evidence candidates but cannot mutate Field State"
+    },
+    {
+      "relationship_id": "CONTEXT_CAUSAL_FUTURE_DEPENDENCY",
+      "objects": ["Context", "Causal Future Dependency"],
+      "context_constraint": "Future Causal Reasoning must remain bounded by the current Context Envelope",
+      "feedback_constraint": "Future Causal relevance candidates may request association activation, but Context cannot produce a causal conclusion"
+    }
+  ],
+  "required_relationship_ids": [
+    "CONTEXT_RESOURCE",
+    "CONTEXT_EMOTION",
+    "CONTEXT_MEMORY",
+    "CONTEXT_FIELD",
+    "CONTEXT_CAUSAL_FUTURE_DEPENDENCY"
+  ],
+  "relationship_count": 5,
+  "feedback_is_candidate_only": true,
+  "loop_runtime_implemented": false,
+  "source_mutation_allowed": false,
+  "active_model": false
+}
+

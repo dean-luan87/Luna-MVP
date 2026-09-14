@@ -1,0 +1,48 @@
+{
+  "schema_version": "luna.field_kernel.contract.v1",
+  "module": "field_kernel",
+  "position": "current_world_representation_core",
+  "not_a": ["world_model", "knowledge_base", "database", "reasoning_engine", "decision_engine"],
+  "admission_guard": {
+    "accepted_event_status": "admitted_event",
+    "reducer_eligible_required": true,
+    "field_state_mutation_authority": "field_state_reducer"
+  },
+  "objects": {
+    "field_identity": {
+      "schema_version": "luna.field_kernel.v1",
+      "required": ["schema_version", "field_id", "field_type", "parent_field_ref", "physical_context", "social_context", "task_context", "provenance"]
+    },
+    "field_unit": {
+      "schema_version": "luna.field_kernel.v1",
+      "required": ["schema_version", "unit_id", "unit_type", "parent_field", "attributes", "relation_refs", "provenance"]
+    },
+    "field_relation": {
+      "schema_version": "luna.field_kernel.v1",
+      "required": ["schema_version", "relation_id", "subject_ref", "predicate", "object_ref", "provenance"],
+      "predicate_enum": ["contains", "belongs_to", "connected_to", "near"]
+    },
+    "field_state": {
+      "schema_version": "luna.field_kernel.v1",
+      "required": ["schema_version", "state_id", "target_ref", "state_type", "value", "valid_time", "evidence_refs", "source_chain", "trace_ref", "provenance"],
+      "produced_by": "field_state_reducer"
+    },
+    "field_snapshot": {
+      "schema_version": "luna.field_kernel.v1",
+      "required": ["schema_version", "snapshot_id", "field_ref", "units", "relations", "states", "generated_at", "provenance"],
+      "derived_only": true,
+      "state_store": false
+    }
+  },
+  "forbidden": [
+    "raw_observation_to_field_state",
+    "evidence_to_field_state",
+    "model_output_to_field_state",
+    "field_kernel_state_mutation",
+    "snapshot_state_store",
+    "hypothesis_generation",
+    "decision_generation",
+    "experience_generation",
+    "external_io"
+  ]
+}

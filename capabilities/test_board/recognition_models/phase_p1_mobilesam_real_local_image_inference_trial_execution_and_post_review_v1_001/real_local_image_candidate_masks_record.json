@@ -1,0 +1,232 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:58:26.963477+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "real_local_image_candidate_masks_record",
+  "record": {
+    "record_id": "real_local_image_candidate_masks_v1",
+    "candidate_masks_written": true,
+    "mask_output_dir": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks",
+    "prompt_mask_summaries": [
+      {
+        "prompt_id": "road_sign",
+        "prompt_target_label": "road_sign",
+        "prompt_label_is_test_description": true,
+        "semantic_fact_assertion": false,
+        "prompt_type_preferred": "box",
+        "normalized_box_or_point": [
+          0.62,
+          0.42,
+          0.88,
+          0.63
+        ],
+        "pixel_box_or_point": [
+          476,
+          430,
+          675,
+          645
+        ],
+        "inference_attempted": true,
+        "inference_success": true,
+        "mask_count": 3,
+        "selected_mask_index": 2,
+        "mask_shape": [
+          1024,
+          767
+        ],
+        "mask_area_pixels": 21290,
+        "mask_area_ratio": 0.027107,
+        "score_or_iou_if_available": 0.8008540868759155,
+        "candidate_mask_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/road_sign_candidate_mask.png",
+        "candidate_only": true,
+        "not_fact": true,
+        "not_runtime_output": true,
+        "not_output_adapter_output": true,
+        "not_semantic_output": true,
+        "not_navigation_action_speech": true,
+        "post_review_required": true,
+        "fallback_from_box_to_point": false,
+        "fallback_reason": "",
+        "prompt_type_used": "box"
+      },
+      {
+        "prompt_id": "left_building",
+        "prompt_target_label": "left_building",
+        "prompt_label_is_test_description": true,
+        "semantic_fact_assertion": false,
+        "prompt_type_preferred": "box",
+        "normalized_box_or_point": [
+          0.03,
+          0.05,
+          0.34,
+          0.78
+        ],
+        "pixel_box_or_point": [
+          23,
+          51,
+          261,
+          799
+        ],
+        "inference_attempted": true,
+        "inference_success": true,
+        "mask_count": 3,
+        "selected_mask_index": 1,
+        "mask_shape": [
+          1024,
+          767
+        ],
+        "mask_area_pixels": 68736,
+        "mask_area_ratio": 0.087516,
+        "score_or_iou_if_available": 0.9612717628479004,
+        "candidate_mask_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/left_building_candidate_mask.png",
+        "candidate_only": true,
+        "not_fact": true,
+        "not_runtime_output": true,
+        "not_output_adapter_output": true,
+        "not_semantic_output": true,
+        "not_navigation_action_speech": true,
+        "post_review_required": true,
+        "fallback_from_box_to_point": false,
+        "fallback_reason": "",
+        "prompt_type_used": "box"
+      },
+      {
+        "prompt_id": "center_advertisement_screen",
+        "prompt_target_label": "center_advertisement_screen",
+        "prompt_label_is_test_description": true,
+        "semantic_fact_assertion": false,
+        "prompt_type_preferred": "box",
+        "normalized_box_or_point": [
+          0.31,
+          0.43,
+          0.55,
+          0.68
+        ],
+        "pixel_box_or_point": [
+          238,
+          440,
+          422,
+          696
+        ],
+        "inference_attempted": true,
+        "inference_success": true,
+        "mask_count": 3,
+        "selected_mask_index": 2,
+        "mask_shape": [
+          1024,
+          767
+        ],
+        "mask_area_pixels": 35805,
+        "mask_area_ratio": 0.045588,
+        "score_or_iou_if_available": 0.8126455545425415,
+        "candidate_mask_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/center_advertisement_screen_candidate_mask.png",
+        "candidate_only": true,
+        "not_fact": true,
+        "not_runtime_output": true,
+        "not_output_adapter_output": true,
+        "not_semantic_output": true,
+        "not_navigation_action_speech": true,
+        "post_review_required": true,
+        "fallback_from_box_to_point": false,
+        "fallback_reason": "",
+        "prompt_type_used": "box"
+      },
+      {
+        "prompt_id": "front_vehicle",
+        "prompt_target_label": "front_vehicle",
+        "prompt_label_is_test_description": true,
+        "semantic_fact_assertion": false,
+        "prompt_type_preferred": "box",
+        "normalized_box_or_point": [
+          0.37,
+          0.7,
+          0.51,
+          0.79
+        ],
+        "pixel_box_or_point": [
+          284,
+          717,
+          391,
+          809
+        ],
+        "inference_attempted": true,
+        "inference_success": true,
+        "mask_count": 3,
+        "selected_mask_index": 2,
+        "mask_shape": [
+          1024,
+          767
+        ],
+        "mask_area_pixels": 11296,
+        "mask_area_ratio": 0.014382,
+        "score_or_iou_if_available": 0.7033083438873291,
+        "candidate_mask_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/front_vehicle_candidate_mask.png",
+        "candidate_only": true,
+        "not_fact": true,
+        "not_runtime_output": true,
+        "not_output_adapter_output": true,
+        "not_semantic_output": true,
+        "not_navigation_action_speech": true,
+        "post_review_required": true,
+        "fallback_from_box_to_point": false,
+        "fallback_reason": "",
+        "prompt_type_used": "box"
+      },
+      {
+        "prompt_id": "crosswalk_or_road_region",
+        "prompt_target_label": "crosswalk_or_road_region",
+        "prompt_label_is_test_description": true,
+        "semantic_fact_assertion": false,
+        "prompt_type_preferred": "box",
+        "normalized_box_or_point": [
+          0.48,
+          0.75,
+          0.98,
+          0.98
+        ],
+        "pixel_box_or_point": [
+          368,
+          768,
+          752,
+          1004
+        ],
+        "inference_attempted": true,
+        "inference_success": true,
+        "mask_count": 3,
+        "selected_mask_index": 2,
+        "mask_shape": [
+          1024,
+          767
+        ],
+        "mask_area_pixels": 88843,
+        "mask_area_ratio": 0.113117,
+        "score_or_iou_if_available": 0.9273806810379028,
+        "candidate_mask_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_real_local_image_inference_trial_execution_and_post_review_v1_smoke_v0/candidate_masks/crosswalk_or_road_region_candidate_mask.png",
+        "candidate_only": true,
+        "not_fact": true,
+        "not_runtime_output": true,
+        "not_output_adapter_output": true,
+        "not_semantic_output": true,
+        "not_navigation_action_speech": true,
+        "post_review_required": true,
+        "fallback_from_box_to_point": false,
+        "fallback_reason": "",
+        "prompt_type_used": "box"
+      }
+    ],
+    "candidate_only": true,
+    "not_fact": true
+  }
+}

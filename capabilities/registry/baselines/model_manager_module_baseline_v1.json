@@ -1,0 +1,176 @@
+{
+    "capability_id": "luna.model_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/model_manager/module/model_manager_module_types_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_input_adapter_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_identity_registry_adapter_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_admission_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_capability_matcher_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_resource_evaluator_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_ownership_resolver_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_routing_candidate_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_lifecycle_planner_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_fallback_planner_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_trace_replay_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_output_builder_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_facade_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+        "entrypoint": "run_model_manager_module_api_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Coordinate capability-first model selection candidates under admission/ownership/resource constraints",
+        "Produce lifecycle and fallback planning candidates with diagnostics",
+        "Produce deterministic trace/replay identifiers under candidate-only boundary"
+    ],
+    "forbidden_authorities": [
+        "real_model_inference",
+        "real_model_load",
+        "real_model_unload",
+        "model_download",
+        "model_training",
+        "provider_runtime_call",
+        "state_mutation",
+        "fact_admission",
+        "action_execution",
+        "production_runtime_dispatch"
+    ],
+    "reused_assets": [
+        "capabilities/midplatform/model_manager/luna_model_manager_processor_v1.py",
+        "capabilities/midplatform/model_manager/engines/model_routing_engine_v1.py",
+        "capabilities/midplatform/model_manager/registry/provider_registry_loader_v1.py",
+        "capabilities/midplatform/model_manager/registry/multi_provider_selection_v1.py",
+        "capabilities/midplatform/model_manager/model_manager_dryrun/capability_matching_processor_v1.py",
+        "capabilities/midplatform/model_manager/runtime/runtime_resource_profile_v1.py",
+        "capabilities/midplatform/model_manager/runtime/runtime_health_checker_v1.py"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/model_manager/module/model_manager_module_types_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_module_input_adapter_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_identity_registry_adapter_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_admission_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_capability_matcher_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_resource_evaluator_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_ownership_resolver_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_routing_candidate_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_lifecycle_planner_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_fallback_planner_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_trace_replay_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_module_facade_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py"
+    ],
+    "internal_components": [
+        "identity_registry_adapter",
+        "admission",
+        "capability_matcher",
+        "resource_evaluator",
+        "ownership_resolver",
+        "routing_candidate",
+        "lifecycle_planner",
+        "fallback_planner",
+        "health_diagnostics",
+        "trace_replay",
+        "module_output_builder"
+    ],
+    "legacy_assets": [
+        "tools/evaluation/midplatform/run_model_adapter_priority_sequence_planning_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not create parallel top-level model management core outside capabilities/midplatform/model_manager",
+        "Do not register luna.model_controller as a second active formal capability"
+    ],
+    "dependency_contracts": [
+        {
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_admission_v1.py",
+            "fallback_behavior": "apply_local_admission_policy",
+            "unavailable_behavior": "degrade_to_internal_policy_only",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.system_diagnostics",
+            "dependency_type": "diagnostics_contract",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py",
+            "fallback_behavior": "emit_module_local_diagnostics",
+            "unavailable_behavior": "keep_minimal_health_summary",
+            "confidence": "inferred"
+        }
+    ],
+    "input_contract_ref": [
+        "capabilities/midplatform/model_manager/module/model_manager_module_input_adapter_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/model_manager/module/model_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/model_manager/module/model_manager_lifecycle_planner_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/model_manager/module/model_manager_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 16,
+        "passed_cases": 16,
+        "failed_cases": [],
+        "diagnostics_present_all": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "deterministic_replay": true,
+        "boundary_preserved": true,
+        "evidence_ref": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

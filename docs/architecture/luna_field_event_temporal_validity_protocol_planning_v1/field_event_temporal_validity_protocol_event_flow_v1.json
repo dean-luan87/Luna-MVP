@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "name": "Field Event and Temporal Validity Protocol Event Flow",
+    "description": "事件流从 Intake 到 Admission，再到 Temporal Validity 与 Overlay 管理",
+    "flow": [
+        "raw_event_received",
+        "field_event_intake",
+        "event_validator",
+        "evidence_normalizer",
+        "anchor_resolver",
+        "candidate_builder",
+        "event_admission",
+        "temporal_validity_evaluation",
+        "overlay_evaluation",
+        "revision_and_revocation_check",
+        "yield_admitted_candidate",
+        "projection_eligibility_evaluation"
+    ],
+    "notes": [
+        "event_admission 不等于 fact admission",
+        "temporal evaluation 需要 replayable historical context",
+        "overlay evaluation 不能改变 substrate definition"
+    ]
+}

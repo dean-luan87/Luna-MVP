@@ -1,0 +1,17 @@
+{
+  "registry_id": "information_processing_pipeline_ownership_v1",
+  "unique_owner_required": true,
+  "objects": [
+    {"object": "Evidence", "owner": "Evidence Gateway", "writer": "Capability Governance"},
+    {"object": "Structured Information", "owner": "Information Structuring", "writer": "Cognitive Kernel"},
+    {"object": "Cognitive Field", "owner": "Field System", "writer": "Field Governance"},
+    {"object": "Attention Candidate", "owner": "Attention System", "writer": "Attention Arbitration"},
+    {"object": "Context Package", "owner": "Context Assembly", "writer": "Cognitive Kernel"},
+    {"object": "Hypothesis Candidate", "owner": "Hypothesis System", "writer": "Cognitive Understanding"},
+    {"object": "Current Understanding", "owner": "Understanding System", "writer": "Cognitive Understanding"},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain"},
+    {"object": "Experience Candidate", "owner": "Experience System", "writer": "Experience Governance"},
+    {"object": "Memory Candidate", "owner": "Memory Governance", "writer": "Memory Consolidation"},
+    {"object": "Growth Candidate", "owner": "Self / Social Self Integration", "writer": "Growth Governance"}
+  ]
+}

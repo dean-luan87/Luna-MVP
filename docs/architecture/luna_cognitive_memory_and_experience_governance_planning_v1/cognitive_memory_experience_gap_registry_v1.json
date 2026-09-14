@@ -1,0 +1,56 @@
+{
+    "artifact": "cognitive_memory_experience_gap_registry_v1",
+    "gaps": [
+        {
+            "gap_id": "A",
+            "classification": "resolvable_in_new_module",
+            "items": [
+                "experience schema",
+                "memory candidate admission model",
+                "memory taxonomy",
+                "boundary contracts",
+                "trace and idempotency"
+            ],
+            "blocker": false
+        },
+        {
+            "gap_id": "B",
+            "classification": "requires_extension_of_existing_owner_contract",
+            "items": [
+                {
+                    "affected_owner": "Context Foundation",
+                    "affected_contract": "future memory retrieval candidate admission",
+                    "reason": "context currently accepts memory projection references but future typed retrieval candidate contract is not yet canonical",
+                    "proposed_future_remediation": "add retrieval candidate adapter in future implementation phase",
+                    "blocker": false
+                },
+                {
+                    "affected_owner": "Future storage/runtime capability",
+                    "affected_contract": "persistence handoff contract",
+                    "reason": "semantic memory governance is separated from actual persistence runtime",
+                    "proposed_future_remediation": "define storage adapter boundary later",
+                    "blocker": false
+                }
+            ]
+        },
+        {
+            "gap_id": "C",
+            "classification": "conflicts_with_current_canonical_architecture",
+            "items": [],
+            "blocker": false
+        },
+        {
+            "gap_id": "D",
+            "classification": "deferred_runtime_storage_learning_personality_capability",
+            "items": [
+                "persistent storage",
+                "vector DB",
+                "embedding execution",
+                "retrieval runtime",
+                "learning execution",
+                "personality governance implementation"
+            ],
+            "blocker": false
+        }
+    ]
+}

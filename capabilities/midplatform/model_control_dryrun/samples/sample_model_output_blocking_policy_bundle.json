@@ -1,0 +1,14 @@
+{
+  "control_id": "model_output_blocking_001",
+  "policy_id": "model_output_blocking",
+  "model_family": "object_detection_completion_family",
+  "model_id": "yolo_unsafe_output_v0",
+  "license_ref": "license:agpl_3_0_test_only",
+  "allowed_use": "candidate_only",
+  "availability_state": "available",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "output_blocking_confidence_policy_v1",
+  "fallback_plan": "fallback_to_gate_rejection_record",
+  "blocked_output_types": ["unsafe_output", "fact_write_attempt", "direct_action_attempt", "navigation_activation_attempt", "field_bypass_attempt"],
+  "boundaries": ["blocked_output_cannot_enter_field_task_guidance"]
+}

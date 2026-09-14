@@ -1,0 +1,36 @@
+{
+  "format_ref": "rtab_map_trajectory_export_file",
+  "export_session_id": "rtab_export_session_alias_0002",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_trajectory_alias_0002.txt",
+    "map_ref": "rtab_map_demo_room_v1"
+  },
+  "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_alias_0002"],
+  "records": [
+    {
+      "id": 11,
+      "stamp": 0.0,
+      "tx": 0.0, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.88,
+      "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_alias_0002", "node_11"]
+    },
+    {
+      "vertex_id": 12,
+      "timestamp_sec": 0.1,
+      "tx": 0.04, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.01, "qw": 0.9999,
+      "confidence": 0.87,
+      "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_alias_0002", "node_12"]
+    },
+    {
+      "id": 13,
+      "time": 0.2,
+      "tx": 0.09, "ty": 0.0, "tz": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.02, "qw": 0.9998,
+      "confidence": 0.89,
+      "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_alias_0002", "node_13"]
+    }
+  ]
+}

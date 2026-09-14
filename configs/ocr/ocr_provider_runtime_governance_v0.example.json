@@ -1,0 +1,204 @@
+{
+  "cache_policy": {
+    "cache_hit_skips_model": true,
+    "enable_cache": true,
+    "requires_roi_fingerprint": true,
+    "requires_ttl": true,
+    "stale_evidence_requires_revalidation": true
+  },
+  "evidence_policy": {
+    "direct_midplatform_write_allowed": false,
+    "direct_world_model_write_allowed": false,
+    "must_emit_ocr_evidence": true,
+    "must_pass_ocr_bridge": true,
+    "provider_output_is_fact": false
+  },
+  "forbidden_actions": {
+    "bypass_ocr_bridge": true,
+    "business_module_direct_ocr_provider_call": true,
+    "change_routing_from_evaluation": true,
+    "evaluation_provider_to_production_route": true,
+    "ocr_provider_direct_midplatform_write": true,
+    "ocr_provider_direct_world_model_write": true,
+    "ocr_provider_mutates_runtime_routing": true,
+    "replace_runtime_provider_without_release_gate": true,
+    "set_paddleocr_as_default_runtime_provider": true,
+    "write_world_model_directly": true
+  },
+  "ocr_dispatch_decision_contract_v0": {
+    "decision_enum": [
+      "run_ocr",
+      "reuse_cache",
+      "defer",
+      "reject",
+      "escalate"
+    ],
+    "description": "Scheduling output is an auditable OCRDispatchDecision / OCRExecutionPlan, not a bare provider string.",
+    "required_fields": [
+      "decision",
+      "selected_level",
+      "selected_provider",
+      "input_strategy",
+      "sync_allowed",
+      "max_roi_count",
+      "fallback_provider",
+      "reason_codes",
+      "estimated_latency_ms",
+      "budget_impact",
+      "evidence_required"
+    ]
+  },
+  "ocr_request_contract_v0": {
+    "description": "All OCR intent MUST be submitted as OCRRequest; business modules MUST NOT call OCR providers directly.",
+    "required_fields": [
+      "request_id",
+      "task_context",
+      "scene_context",
+      "urgency",
+      "input_type",
+      "image_ref",
+      "roi_refs",
+      "expected_output",
+      "privacy_level",
+      "latency_budget_ms",
+      "allow_remote",
+      "allow_heavy_ocr",
+      "cache_policy",
+      "source_task_id"
+    ]
+  },
+  "orchestration_policy": {
+    "business_modules_submit_ocr_request_only": true,
+    "ocr_runtime_controller_aliases": [
+      "OCR Orchestrator",
+      "OCR Runtime Controller"
+    ],
+    "only_gateway_selects_provider": true,
+    "orchestrator_control_points": [
+      "receive_ocr_request",
+      "need_ocr_gate",
+      "select_level",
+      "sync_vs_async",
+      "roi_count_cap",
+      "cache_lookup",
+      "provider_selection",
+      "evidence_collection",
+      "bridge_handoff",
+      "scene_delta_candidate_only",
+      "ttl_stale_refresh",
+      "block_direct_midplatform_world_model"
+    ]
+  },
+  "provider_admission_matrix_v0": {
+    "required_declarations_per_provider": [
+      "provider_name",
+      "provider_level",
+      "supported_input_type",
+      "supported_output_depth",
+      "latency_class",
+      "memory_class",
+      "offline_capability",
+      "remote_dependency",
+      "privacy_risk",
+      "fallback_policy",
+      "evidence_contract_supported",
+      "bridge_pack_supported"
+    ]
+  },
+  "provider_level_response_requirements_v0": {
+    "level_0": {
+      "evidence_depth": "cached_or_stale_candidate",
+      "forbidden": [
+        "fabricate_new_observation",
+        "pretend_model_ran"
+      ],
+      "latency_class": "milliseconds_no_model",
+      "output": "cached_ocr_evidence_or_stale_flag"
+    },
+    "level_1": {
+      "evidence_depth": "minimal_text_items_scores_boxes",
+      "forbidden": [
+        "layout_semantic_fact",
+        "midplatform_write"
+      ],
+      "latency_class": "low_ms_local",
+      "output": "text_items_score_basic_box"
+    },
+    "level_2": {
+      "evidence_depth": "rich_local_polygon_reading_order_candidate",
+      "forbidden": [
+        "default_per_frame",
+        "default_full_image_realtime_hot_path",
+        "block_navigation_critical_path_sync"
+      ],
+      "latency_class": "heavy_async_or_very_low_hz",
+      "output": "rich_text_geometry_reading_order_candidate"
+    },
+    "level_3": {
+      "evidence_depth": "layout_structure_semantic_hints_remote",
+      "forbidden": [
+        "write_fact_directly",
+        "bypass_bridge",
+        "remote_without_consent"
+      ],
+      "latency_class": "network_or_vlm_budgeted",
+      "output": "layout_evidence_structure_candidate_semantic_hint"
+    }
+  },
+  "provider_levels": {
+    "level_0": {
+      "description": "Reuse cached OCR evidence without running OCR",
+      "name": "cache_reuse",
+      "runs_model": false
+    },
+    "level_1": {
+      "default_use": "small_roi_plain_text",
+      "description": "Low-cost local OCR for plain horizontal text in small ROI",
+      "name": "light_local_ocr",
+      "runs_model": true
+    },
+    "level_2": {
+      "default_use": "high_value_low_frequency_complex_text",
+      "description": "Heavy local OCR (e.g. PaddleOCR-class) for high-value, low-frequency, complex text",
+      "name": "heavy_local_ocr",
+      "runs_model": true
+    },
+    "level_3": {
+      "default_use": "complex_layout_or_low_confidence_escalation",
+      "description": "Remote or VLM OCR under privacy, network, cost, and permission constraints",
+      "name": "remote_or_vlm_ocr",
+      "runs_model": true
+    }
+  },
+  "roi_policy": {
+    "crop_before_ocr": true,
+    "max_roi_count_default": 3,
+    "max_roi_count_high_priority": 8,
+    "min_roi_confidence": 0.5
+  },
+  "runtime_budget": {
+    "degrade_on_high_cpu": true,
+    "degrade_on_low_battery": true,
+    "heavy_provider_async_only": true,
+    "max_heavy_ocr_frequency_hz": 0.2,
+    "max_sync_latency_ms": 800
+  },
+  "runtime_selection_policy_v0": {
+    "description": "Heuristics overridable by live state (CPU, battery, privacy, cache, confidence).",
+    "rules": [
+      "high_urgency_small_roi -> prefer_level_1",
+      "high_value_low_confidence_after_level_1 -> level_2_with_roi_budget",
+      "complex_layout_artistic_or_mixed_media_with_consent -> escalate_level_3",
+      "cache_hit_fresh_ttl -> level_0",
+      "high_cpu_or_low_battery -> disable_level_3_limit_level_2_prefer_level_0_1",
+      "privacy_restricted_or_allow_remote_false -> forbid_level_3_reject_or_defer"
+    ]
+  },
+  "schema_version": "ocr_provider_runtime_governance_v0",
+  "trigger_policy": {
+    "default_frame_wise_ocr_allowed": false,
+    "full_image_realtime_ocr_allowed": false,
+    "requires_task_or_scene_value": true,
+    "roi_first": true
+  }
+}

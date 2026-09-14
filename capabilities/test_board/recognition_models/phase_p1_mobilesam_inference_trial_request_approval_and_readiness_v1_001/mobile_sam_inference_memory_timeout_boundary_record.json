@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.530878+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_inference_memory_timeout_boundary_record",
+  "mobile_sam_inference_memory_timeout_boundary_record": {
+    "record_id": "mobile_sam_inference_memory_timeout_boundary_v1",
+    "memory_limit_mb": 4096,
+    "timeout_seconds": 300,
+    "oom_handling_required": true,
+    "timeout_failure_records_required": true,
+    "candidate_output_cleanup_required": true,
+    "no_persistent_runtime_process_allowed": true
+  }
+}

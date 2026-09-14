@@ -1,0 +1,30 @@
+{
+    "artifact": "memory_trace_provenance_contract_v1",
+    "required_fields": [
+        "root_cycle_trace_id",
+        "cycle_id",
+        "experience_candidate_id",
+        "memory_candidate_id",
+        "source_context_refs",
+        "source_field_refs",
+        "source_intent_refs",
+        "source_hypothesis_refs",
+        "current_world_ref",
+        "regulation_ref",
+        "decision_action_execution_refs_optional",
+        "user_feedback_refs",
+        "contradiction_refs",
+        "revision_parent_ref",
+        "superseded_ref",
+        "revocation_ref",
+        "provenance_refs",
+        "admission_trace",
+        "schema_version",
+        "contract_version"
+    ],
+    "reverse_locatability": [
+        "Memory Candidate -> Experience Candidate",
+        "Experience Candidate -> Cognitive Cycle",
+        "Cognitive Cycle -> original evidence/reference chain"
+    ]
+}

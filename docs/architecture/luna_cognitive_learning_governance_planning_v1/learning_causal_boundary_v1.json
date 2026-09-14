@@ -1,0 +1,9 @@
+{
+    "artifact": "learning_causal_boundary_v1",
+    "rules": {
+        "learning_patterns_are_not_causal_truth": true,
+        "causal_governance_remains_causal_owner": true,
+        "causal_support_ref_optional": true,
+        "causal_support_absent_no_causal_claim": true
+    }
+}

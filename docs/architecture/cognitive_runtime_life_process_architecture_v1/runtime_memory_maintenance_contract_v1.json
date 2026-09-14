@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Memory Maintenance Contract v1",
+  "maintenance_request": {},
+  "retrieval_candidate": {},
+  "consolidation_candidate": {},
+  "decay_review_candidate": {},
+  "memory_reference": {},
+  "maintenance_does_not_rewrite_memory": true,
+  "maintenance_does_not_override_reality": true,
+  "unknowns_are_preserved": true
+}

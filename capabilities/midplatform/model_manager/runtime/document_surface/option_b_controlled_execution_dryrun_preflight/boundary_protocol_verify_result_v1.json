@@ -1,0 +1,58 @@
+{
+  "phase_id": "Phase-P1-OptionB-CE-DryRun-Preflight-Boundary-Protocol-Write-v1-001",
+  "input_mode": "manual_trusted_protocol_boundary_handoff",
+  "history_scan_performed": false,
+  "protocol_files_read": false,
+  "boundary_valid": true,
+  "protocol_refs_valid": true,
+  "trace_schema_minimal_valid": true,
+  "abort_keys_valid": true,
+  "boundaries": {
+    "controlled_execution_allowed": false,
+    "option_b_execution_allowed": false,
+    "segmentation_execution_allowed": false,
+    "image_content_read_allowed": false,
+    "active_model_selected": false,
+    "active_skill_selected": false,
+    "active_registry_update_allowed": false,
+    "runtime_activation_allowed": false
+  },
+  "protocol_refs": [
+    "LUNA-PROTO-L1-MODEL-SKILL-ADMISSION-CONTRACT-V1",
+    "Runtime Boundary Contract",
+    "Candidate / Fact Admission Contract",
+    "Evidence Chain Contract",
+    "Model Manager Registry Contract",
+    "Change Control / Review / Freeze",
+    "Permission / Admission Contract",
+    "Input / Output Symmetry Contract"
+  ],
+  "trace_schema_minimal_fields": [
+    "dryrun_preflight_id",
+    "execution_candidate_id",
+    "model_candidate_id",
+    "protocol_refs",
+    "input_registry_ref",
+    "execution_allowed_for_dryrun",
+    "image_read_allowed_for_dryrun",
+    "segmentation_performed",
+    "active_model_selected",
+    "active_registry_updated",
+    "runtime_activation",
+    "candidate_only",
+    "not_fact"
+  ],
+  "abort_keys": [
+    "input_registry_missing",
+    "input_boundary_violation",
+    "output_boundary_violation",
+    "image_read_not_allowed",
+    "model_execution_not_allowed",
+    "fallback_attempt_detected",
+    "protocol_compliance_failed",
+    "active_registry_write_attempted",
+    "runtime_activation_attempted"
+  ],
+  "blocker_count": 0,
+  "final_decision": "BOUNDARY_PROTOCOL_VERIFY_GO"
+}

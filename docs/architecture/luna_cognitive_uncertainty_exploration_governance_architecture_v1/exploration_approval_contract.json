@@ -1,0 +1,13 @@
+{
+  "contract_id": "self_exploration_approval_v1",
+  "owner": "Self Layer",
+  "controller": "Exploration Governance Controller",
+  "inputs": ["exploration_candidate", "priority_candidate", "resource_budget_candidate", "self_state", "self_rhythm_hint", "cognitive_state"],
+  "outputs": ["Approved", "Rejected", "Deferred"],
+  "permissions": ["priority_approval", "resource_budget", "exploration_depth", "stop_decision"],
+  "direct_execution": false,
+  "self_modification": false,
+  "scheduler_modification": false,
+  "model_switching": false,
+  "candidate_only": true
+}

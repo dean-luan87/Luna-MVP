@@ -1,0 +1,133 @@
+{
+  "request_id": "fixture_piper_ok_001",
+  "trace_id": "trace_fixture_001",
+  "session_id": null,
+  "task_context_id": null,
+  "chain_type": "success_chain",
+  "final_execution_mode": "provider_chain",
+  "provider_name": "piper",
+  "started_at": 1700000000.0,
+  "ended_at": 1700000001.0,
+  "status": "ok",
+  "stages": [
+    {
+      "stage_name": "request_ingress",
+      "status": "ok",
+      "timestamp": 1700000001.0,
+      "key_fields": {
+        "request_id": "fixture_piper_ok_001",
+        "cutover_enabled": true,
+        "cutover_mode": "provider_chain_first"
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "message_preparation",
+      "status": "not_connected",
+      "timestamp": null,
+      "key_fields": {
+        "note": "SpeechRequest 未在日志行中持久化；需主链显式落盘"
+      },
+      "source_observation_type": "SpeechRequest",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "request_runtime",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "RequestRuntimeObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "submit_invoked",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "OutputSubmitObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "playback_result",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "PlaybackRuntimeObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "bridge_or_routing_decision",
+      "status": "ok",
+      "timestamp": 1700000001.0,
+      "key_fields": {
+        "selector_hit": true
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "core_or_policy_handling",
+      "status": "reserved",
+      "timestamp": null,
+      "key_fields": {
+        "note": "policy 结构化观测未接；非 not_connected 即 reserved"
+      },
+      "source_observation_type": "",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "provider_selection",
+      "status": "ok",
+      "timestamp": 1700000000.0,
+      "key_fields": {
+        "chosen_provider": "piper",
+        "provider_order": [
+          "piper"
+        ],
+        "selection_reason": "active_provider",
+        "preset_name": "calm_female_v1"
+      },
+      "source_observation_type": "ProviderSelectionObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "provider_execution",
+      "status": "ok",
+      "timestamp": 1700000001.0,
+      "key_fields": {
+        "provider_chain_ok": true,
+        "selected_provider": "piper",
+        "provider_name": "piper"
+      },
+      "source_observation_type": "TTSProviderResult",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "fallback_or_rollback",
+      "status": "skipped",
+      "timestamp": null,
+      "key_fields": {
+        "note": "无 fallback / rollback 观测"
+      },
+      "source_observation_type": "",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "playback_result",
+      "status": "ok",
+      "timestamp": 1700000001.0,
+      "key_fields": {
+        "final_execution_mode": "provider_chain",
+        "final_executor": "legacy_main_chain_execution_base"
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    }
+  ],
+  "errors": [],
+  "notes": [],
+  "raw_observation_refs": [
+    "docs/architecture/voice/fixtures/min_trace_samples.jsonl:1"
+  ]
+}

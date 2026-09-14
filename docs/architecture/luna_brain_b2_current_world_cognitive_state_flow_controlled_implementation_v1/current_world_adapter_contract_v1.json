@@ -1,0 +1,9 @@
+{
+  "contract": "B2CurrentWorldReadOnlyAdapterV1",
+  "input": "CurrentWorldCandidateV1",
+  "preserved": ["current_world_id", "context_refs", "field_state_refs", "pcn_refs", "intent_refs", "observation_refs", "uncertainty_refs", "conflict_refs", "temporal_refs", "trace_ref", "provenance_refs", "candidate_only"],
+  "output": "CognitiveStateFormationInputV1.current_world_ref plus source-owned read-only refs",
+  "mutation": false,
+  "context_reconstruction": false,
+  "truth_promotion": false
+}

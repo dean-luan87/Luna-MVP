@@ -1,0 +1,22 @@
+{
+  "native_output_contract": "detections_xyxy_conf_cls",
+  "canonical_output_contract": "evidence:visual-detection-candidate:v1",
+  "required_fields": [
+    "provider_ref",
+    "model_asset_ref",
+    "frame_ref",
+    "detection_id",
+    "class_candidate",
+    "bbox",
+    "confidence",
+    "temporal_ref",
+    "trace_ref",
+    "provenance_refs"
+  ],
+  "candidate_only": true,
+  "truth_declared": false,
+  "fact_admitted": false,
+  "provider_semantic_authority": false,
+  "natural_language_conclusion_generated": false,
+  "gateway_output": "ObservationGatewayEvidenceHandoffCandidateV1"
+}

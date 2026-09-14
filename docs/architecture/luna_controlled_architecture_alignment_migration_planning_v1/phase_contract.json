@@ -1,0 +1,175 @@
+{
+  "Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-Planning-v1-001",
+  "Stage": "Controlled Architecture Alignment Migration Planning",
+  "Execution Mode": "Planning Only",
+  "Current Work Description": {
+    "in_scope": [
+      "baseline-first targeted read-only asset inventory",
+      "canonical owner alignment",
+      "migration dependency planning",
+      "controlled migration sequence planning",
+      "migration risk registration",
+      "V0 static verification assets"
+    ],
+    "out_of_scope": [
+      "migration execution",
+      "existing code modification",
+      "Runtime modification",
+      "new implementation module",
+      "directory restructuring",
+      "asset deletion",
+      "parallel architecture implementation",
+      "final phase verifier execution"
+    ]
+  },
+  "Previous Phase": "Phase-Luna-Dynamic-Cognitive-Architecture-Alignment-Migration-Validation-Planning-v1-001",
+  "Previous Phase Decision": "LUNA_DYNAMIC_COGNITIVE_ARCHITECTURE_ALIGNMENT_MIGRATION_VALIDATION_PLAN_READY",
+  "Input Assets": [
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/architecture_v2.md",
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/existing_asset_mapping.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/module_boundary_update.md",
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/migration_plan.md",
+    "docs/architecture/luna_dynamic_cognitive_architecture_alignment_migration_validation_planning_v1/",
+    "capabilities/registry/baselines/",
+    "capabilities/",
+    "docs/architecture/",
+    "docs/runtime/",
+    "runtime/",
+    "tools/"
+  ],
+  "Required Pre-Read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_alignment_migration_validation_planning_v1/",
+    "capabilities/registry/baselines/"
+  ],
+  "Target Directory": "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/",
+  "Scope": [
+    "planning documents",
+    "read-only inventory",
+    "ownership matrix",
+    "dependency graph",
+    "risk register",
+    "V0 static checks"
+  ],
+  "Out Of Scope": [
+    "code changes",
+    "Runtime changes",
+    "migration execution",
+    "file move rename or delete",
+    "implementation skeleton",
+    "regression execution",
+    "architecture freeze activation",
+    "next phase entry"
+  ],
+  "Required Final Files": [
+    "controlled_migration_sequence.md",
+    "migration_planning_summary.md",
+    "existing_asset_migration_inventory.json",
+    "cognitive_asset_ownership_matrix.json",
+    "migration_dependency_graph.json",
+    "migration_risk_register.json",
+    "phase_contract.json",
+    "verify_controlled_architecture_alignment_migration_planning_v1.py"
+  ],
+  "Implementation Principles": [
+    "alignment not replacement",
+    "baseline first",
+    "mapping before mutation",
+    "owner before implementation",
+    "contract before adapter",
+    "one bounded slice per future migration phase",
+    "preserve passed assets",
+    "no parallel mainline"
+  ],
+  "Required Checks": {
+    "V0": [
+      "required file existence",
+      "JSON parse",
+      "Markdown nonempty",
+      "owner completeness",
+      "forbidden responsibility completeness",
+      "migration sequence completeness",
+      "dependency graph completeness",
+      "AST and py_compile",
+      "no Runtime or migration execution imports"
+    ],
+    "V1": [],
+    "V2": ["user terminal final phase verifier"],
+    "V3": ["ChatGPT final audit"]
+  },
+  "Negative Guards": [
+    "no-check-weaken",
+    "no-hardcoded-pass",
+    "no final verifier by Agent",
+    "no migration execution",
+    "no Runtime modification",
+    "no existing asset mutation",
+    "no unassigned owner",
+    "no Personal Cognitive Network source ownership",
+    "no second architecture mainline"
+  ],
+  "Verification Authority": {
+    "V0": "Agent",
+    "V1": "Not Authorized",
+    "V2": "User Terminal Only",
+    "V3": "ChatGPT Only"
+  },
+  "Allowed Agent Checks": [
+    "file existence",
+    "JSON parse",
+    "Markdown nonempty",
+    "AST",
+    "py_compile",
+    "static owner and dependency consistency",
+    "import boundary"
+  ],
+  "Allowed Agent Execution": [
+    "create current planning assets",
+    "perform targeted read-only asset discovery",
+    "run V0 static checks",
+    "prepare exact user terminal command"
+  ],
+  "Prohibited Agent Execution": [
+    "run final phase verifier",
+    "execute migration",
+    "modify existing code",
+    "modify Runtime",
+    "create implementation module",
+    "move rename or delete assets",
+    "run regression or business runner",
+    "activate architecture freeze",
+    "enter next phase"
+  ],
+  "Agent Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "User Terminal Commands": [
+    "python3 docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/verify_controlled_architecture_alignment_migration_planning_v1.py"
+  ],
+  "Expected Success Decision": "V2_FINAL_VERIFICATION_PASSED",
+  "Expected Next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "Expected Failure Decision": "BLOCKED_BY_VERIFIER_FAILURE",
+  "Expected Failure Next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "Stop Condition": "All planning assets and authorized V0 checks are complete; stop before V2 and before any migration execution.",
+  "Blocker Conditions": [
+    "missing required asset",
+    "unresolved canonical owner",
+    "missing forbidden responsibility",
+    "dependency cycle",
+    "missing M0-M5 stage",
+    "Runtime or migration side effect",
+    "verifier syntax or import failure"
+  ],
+  "Completion Report Format": [
+    "Pre-read findings",
+    "Created files",
+    "Modified files",
+    "Inventory coverage",
+    "Ownership coverage",
+    "Static checks",
+    "Boundary confirmation",
+    "Known blockers",
+    "User terminal command",
+    "Current status"
+  ],
+  "Current Status Contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

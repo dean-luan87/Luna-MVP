@@ -1,0 +1,18 @@
+{
+  "matrix_id": "universal-slot-conformance-owner-mutation-matrix-v1",
+  "status": "AUDIT_ONLY",
+  "records": [
+    {"concept":"Capability Registry","owner":"Capability Registry","read_only_consumers":["Capability Self","Brain","System Maintenance"],"mutation_authority":"Capability identity/schema/lifecycle governance","admission_authority":"Capability Admission","lifecycle_authority":"Capability Governance"},
+    {"concept":"Capability Module Admission","owner":"Capability Admission Governance","read_only_consumers":["Model Manager","Provider Governance","Capability Self"],"mutation_authority":"Admission decision/candidate boundary","admission_authority":"Capability Admission","lifecycle_authority":"Capability Governance"},
+    {"concept":"Universal Slot Identity","owner":"Future additive Capability Registry/Governance extension","read_only_consumers":["Capability Self","Brain","System Maintenance"],"mutation_authority":"Future Slot lifecycle governance only","admission_authority":"Capability Admission","lifecycle_authority":"Capability Governance"},
+    {"concept":"Model","owner":"Model Manager","read_only_consumers":["Capability Admission","Capability Self","System Maintenance"],"mutation_authority":"Model asset governance","admission_authority":"Model qualification","lifecycle_authority":"Model Manager"},
+    {"concept":"Provider","owner":"Provider Governance","read_only_consumers":["Capability Admission","Model Manager","Evidence Gateway"],"mutation_authority":"Provider governance","admission_authority":"Provider admission","lifecycle_authority":"Provider Governance"},
+    {"concept":"Health/Degradation","owner":"Capability Calibration / System Maintenance","read_only_consumers":["Capability Self","Brain","Capability Governance"],"mutation_authority":"Existing state reduction path","admission_authority":"Health evidence review","lifecycle_authority":"Capability Governance"},
+    {"concept":"Resources","owner":"Resource Governance / Model Manager","read_only_consumers":["Brain","Capability Admission","System Maintenance"],"mutation_authority":"Existing resource governance","admission_authority":"Resource readiness review","lifecycle_authority":"Resource Governance"},
+    {"concept":"Permissions/Safety","owner":"System Constitution / Permission Governance","read_only_consumers":["Brain","Capability Governance","User Management"],"mutation_authority":"Constitutional governance only","admission_authority":"Permission and safety review","lifecycle_authority":"Safety Governance"},
+    {"concept":"Capability Self","owner":"Cognitive Self Model / Capability Awareness","read_only_consumers":["Brain","Cognitive State Formation","Task Governance"],"mutation_authority":"Existing Self/Memory reduction path","admission_authority":"None","lifecycle_authority":"Self representation governance"},
+    {"concept":"Brain Capability Regulation","owner":"Brain / Cognitive Core","read_only_consumers":["Capability Governance","Safety Governance"],"mutation_authority":"None; candidate generation only","admission_authority":"None","lifecycle_authority":"None"},
+    {"concept":"Maintenance/Recovery","owner":"System Maintenance Manager","read_only_consumers":["Capability Governance","Capability Self","Brain"],"mutation_authority":"Maintenance candidate/recovery governance","admission_authority":"Maintenance review","lifecycle_authority":"System Maintenance plus Capability Governance"}
+  ],
+  "invariants":{"new_registry":false,"new_model_manager":false,"new_self_owner":false,"brain_direct_mutation":false,"slot_is_module":false}
+}

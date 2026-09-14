@@ -1,0 +1,23 @@
+{
+  "model_id": "opencv_rule_based_visual_symbol",
+  "model_role": "visual_symbol",
+  "model_family": "visual_symbol_model_family",
+  "tier": "P0",
+  "download_allowed": true,
+  "download_source": "pypi:opencv-python",
+  "model_weight_required": false,
+  "license_ref": "apache_2_0_opencv",
+  "license_allows_current_use": true,
+  "commercial_use_status": "commercial_allowed_under_apache_2_0",
+  "size_estimate": "small_library_no_model_weights",
+  "dependencies": ["opencv-python", "numpy"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": false,
+  "offline_supported": true,
+  "output_format_stable": true,
+  "output_schema_ref": "visual_symbol_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_visual_symbol_candidate",
+  "adapter_mapping_ref": "visual_symbol_candidate",
+  "notes": "rule_based_color_shape_arrow_extraction_no_weights_lowest_risk_p0"
+}

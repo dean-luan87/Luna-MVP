@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Neural Fast Path Contract",
+  "path": ["Stimulus", "Neural Response Candidate", "Feedback"],
+  "examples": ["rapid risk signal", "health anomaly", "resource protection"],
+  "brain_required_for_fast_path": false,
+  "fast_path_is_decision": false,
+  "fast_path_is_action": false,
+  "neural_changes_goal": false,
+  "neural_modifies_reality": false,
+  "hardware_runtime": false,
+  "action_runtime": false
+}

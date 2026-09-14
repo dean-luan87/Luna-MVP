@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Negative Guards",
+    "guards": {
+        "no_direct_state_write": true,
+        "no_event_mutation": true,
+        "no_raw_observation_consumption": true,
+        "no_provider_recall": true,
+        "no_external_lookup": true,
+        "no_action_trigger": true,
+        "no_fact_promotion": true,
+        "no_memory_write": true,
+        "no_navigation_write": true,
+        "no_physical_delete": true,
+        "no_runtime_scheduler": true,
+        "no_database_creation": true,
+        "no_training": true,
+        "no_production_execution": true,
+        "no_migration": true,
+        "no_overlay_substrate_mutation": true,
+        "no_revoked_reactivation": true,
+        "no_expired_reactivation_without_new_event": true
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "contract_name": "Task Resume Contract v1",
+  "task_id": "task-example",
+  "prior_state": "Suspended",
+  "resume_candidate": "candidate",
+  "resume_time": null,
+  "preserved_goal_reference": "goal-example",
+  "preserved_constraints": [],
+  "pending_information": [],
+  "unknowns": [],
+  "current_reality_confirmation_required": true,
+  "current_field_confirmation_required": true,
+  "self_state_reassessment_required": true,
+  "attention_allocation_candidate_required": true,
+  "resume_does_not_execute_action": true,
+  "resume_does_not_modify_goal": true,
+  "resume_does_not_modify_reality": true,
+  "reality_over_experience": true,
+  "reducer_is_sole_state_mutation_authority": true
+}

@@ -1,0 +1,52 @@
+{
+    "phase": "Phase-Luna-Personal-Cognitive-Network-Controlled-DryRun-And-Integrated-Contract-Validation-v1-001",
+    "stage": "PCN Controlled DryRun And Integrated Contract Validation",
+    "execution_mode": "Controlled Validation",
+    "previous_phase": "Phase-Luna-Personal-Cognitive-Network-Controlled-Skeleton-Implementation-v1-001",
+    "previous_decision": "LUNA_PERSONAL_COGNITIVE_NETWORK_CONTROLLED_SKELETON_IMPLEMENTATION_READY",
+    "target_code_directory": "capabilities/midplatform/core/personal_cognitive_network/",
+    "target_documentation_directory": "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/",
+    "agent_execution_allowed": false,
+    "runner_execution_authority": "USER_TERMINAL_ONLY",
+    "verifier_execution_authority": "USER_TERMINAL_ONLY",
+    "runtime_integration": false,
+    "pcn_runtime": false,
+    "next_phase_not_authorized": true,
+    "allowed_agent_actions": [
+        "read_files",
+        "create_phase_files",
+        "modify_phase_new_files",
+        "static_diagnostics",
+        "ast_import_reference_review"
+    ],
+    "forbidden_agent_actions": [
+        "py_compile_execution",
+        "python_script_execution",
+        "runner_execution",
+        "verifier_execution",
+        "pytest_execution",
+        "shell_validation_execution"
+    ],
+    "required_final_files": [
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_dryrun_v1.py",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_dryrun_scenario_expectation_registry_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_input_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_output_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_nested_constraint_dryrun_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_interaction_dryrun_validation_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_resource_degradation_dryrun_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_subjective_cognition_dryrun_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_dryrun_clarification_inheritance_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_result_schema_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/verify_personal_cognitive_network_controlled_dryrun_validation_v1.py",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/personal_cognitive_network_controlled_dryrun_validation_v1.md",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_skeleton_to_dryrun_mapping_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_change_manifest_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/phase_contract.json"
+    ],
+    "user_terminal_commands": [
+        "python3 capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_dryrun_v1.py",
+        "python3 docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/verify_personal_cognitive_network_controlled_dryrun_validation_v1.py"
+    ],
+    "agent_stop_status": "WAITING_FOR_USER_TERMINAL_EXECUTION"
+}

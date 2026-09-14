@@ -1,0 +1,25 @@
+{
+    "artifact": "causal_uncertainty_confidence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "required_dimensions": [
+        "unknowns",
+        "confidence_candidate",
+        "confidence_basis_refs",
+        "confidence_not_truth",
+        "unresolved_conflicts",
+        "insufficient_evidence_flag"
+    ],
+    "rules": [
+        "confidence_not_truth",
+        "uncertainty_must_be_visible",
+        "insufficient_evidence_allows_unresolved",
+        "conflict_without_forced_resolution_allowed"
+    ],
+    "forbidden": [
+        "confidence_implies_fact",
+        "hide_unknowns_for_clean_output",
+        "replace_uncertainty_with_decision"
+    ],
+    "active_contract": false
+}

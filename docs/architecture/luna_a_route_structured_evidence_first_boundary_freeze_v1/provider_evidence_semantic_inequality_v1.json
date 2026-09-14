@@ -1,0 +1,25 @@
+{
+  "inequalities": [
+    "Raw Sensor Data != Observation Candidate",
+    "Provider Evidence != Fact",
+    "Vision Detection != Fact",
+    "OCR Text != Fact",
+    "SLAM Geometry != Semantic World Truth",
+    "Observation Candidate != Current World Truth",
+    "Context Candidate != Field Truth",
+    "Structured Evidence != Semantic Compression",
+    "Semantic Compression != Observation Admission",
+    "Semantic Compression != Fact Admission"
+  ],
+  "evidence_shapes": {
+    "visual": ["object/region candidate", "barrier candidate", "detection confidence", "region reference", "uncertainty", "temporal reference"],
+    "ocr": ["raw text evidence", "region reference", "OCR confidence", "candidate correction", "temporal reference"],
+    "slam_vio": ["pose", "geometry", "traversability candidate", "obstacle geometry candidate", "spatial relation candidate"],
+    "audio": ["signal candidate", "speaker candidate", "event evidence candidate"]
+  },
+  "authority": {
+    "provider_evidence_is_authority": false,
+    "observation_admission_grants_world_truth": false,
+    "provenance_grants_authority": false
+  }
+}

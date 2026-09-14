@@ -1,0 +1,29 @@
+{
+  "frame_seq": 84,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R84_recovery_chain_repeated_and_global_goal_not_advanced_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.24,
+  "task_resume_target": "resume_after_multi_recovery_attempt",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "恢复链走了多次，局部都解释得通，但主目标仍停在原地",
+  "object_search_flow_type": "multi_recovery_stress_flow",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "multi_recovery_stress_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 78, 90], "conf": 0.83 },
+    { "label": "cup", "bbox": [160, 38, 230, 105], "conf": 0.62 }
+  ]
+}

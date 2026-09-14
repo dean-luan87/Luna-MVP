@@ -1,0 +1,27 @@
+{
+  "model_family": "depth_spatial_hint_family",
+  "candidate_models": ["MiDaS_small", "DepthAnything_small", "ZoeDepth_small"],
+  "planned_target_candidates": [
+    "spatial_hint_candidate",
+    "distance_uncertainty_candidate",
+    "depth_consistency_candidate"
+  ],
+  "package_or_module_refs": ["torch_hub_midas", "depth_anything", "zoedepth"],
+  "command_refs": [],
+  "local_resource_refs": ["models/depth/midas_small.pt(planned)", "models/depth/depth_anything_small.pt(planned)"],
+  "license_ref": "mit_or_apache_2_0_per_model_license",
+  "model_origin": "external_open_source_monocular_depth_model",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "depth.callable.estimate_depth_contract_v1",
+  "output_schema_ref": "depth_spatial_hint_output_schema_v1",
+  "adapter_mapping_ref": "spatial_hint_candidate",
+  "fallback_plan": "fallback_to_no_depth_hint_and_distance_unknown_candidate",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "auxiliary_spatial_hint_candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "availability_probe_mode": "local_resource_visibility",
+  "availability_status": "deferred_due_to_resource",
+  "cpu_gpu_requirement": "gpu_recommended_cpu_slow",
+  "output_schema_stability": "stable_relative_depth_unstable_absolute_scale",
+  "boundaries": ["depth_is_auxiliary_only", "no_navigation_activation"]
+}

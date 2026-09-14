@@ -1,0 +1,9 @@
+{
+  "fixture_name": "Attention Learning Trace Fixture v1",
+  "first_visit": {"field": "Metro Field", "unknown": "Exit direction", "attention": "High"},
+  "repeat_visit": {"field": "Metro Field", "pattern": "Exit sign location", "learning_candidate": "Field Pattern"},
+  "future_candidate": {"attention_candidate": "Prioritize exit signage", "validation": "Pending"},
+  "learning_does_not_auto_update": true,
+  "reality_priority": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,18 @@
+{
+  "registry_id": "cognitive_state_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Cognitive State", "owner": "Cognitive State Governance", "writer": "State Transition Candidate Flow", "reader": "Attention, Brain, Runtime Boundary"},
+    {"module": "Observation State", "owner": "Evidence and Field Governance", "writer": "Observation Candidate Flow", "reader": "Understanding State"},
+    {"module": "Understanding State", "owner": "Cognitive Understanding Governance", "writer": "Understanding Candidate Flow", "reader": "Decision State"},
+    {"module": "Decision State", "owner": "Decision Arbitration", "writer": "Decision Candidate Flow", "reader": "Action Boundary"},
+    {"module": "Action State", "owner": "Action Boundary", "writer": "Approved Action Request Flow", "reader": "Reflection State"},
+    {"module": "Reflection State", "owner": "Outcome Evaluation", "writer": "Outcome Validation Candidate Flow", "reader": "Learning State"},
+    {"module": "Learning State", "owner": "Selective Learning Governance", "writer": "Learning Candidate Flow", "reader": "Self Review"},
+    {"module": "Attention", "owner": "Attention System", "writer": "Attention Policy Candidate Flow", "reader": "All Cognitive States"},
+    {"module": "Self Rhythm", "owner": "Self Rhythm Controller", "writer": "Rhythm Hint Candidate Flow", "reader": "Runtime Boundary, Cognitive State"},
+    {"module": "Self", "owner": "Self Governance", "writer": "Self Review and Constraint Flow", "reader": "Cognitive State Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved State Candidates"},
+    {"module": "B Route", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route State Context"}
+  ]
+}

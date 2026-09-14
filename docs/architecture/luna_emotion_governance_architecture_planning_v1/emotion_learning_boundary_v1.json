@@ -1,0 +1,17 @@
+{
+  "artifact": "emotion_learning_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "learning_owner": "Cognitive Learning Governance",
+  "allowed_interfaces": ["EmotionExperienceCandidate", "EmotionOutcomePatternCandidate", "EmotionLearningEvidenceCandidate"],
+  "frozen_rules": {
+    "learning_may_observe_emotion_outcomes": true,
+    "learning_may_observe_emotion_patterns": true,
+    "emotion_does_not_execute_learning": true,
+    "emotion_does_not_mutate_learning": true,
+    "learning_does_not_directly_mutate_emotion_state": true,
+    "parameter_activation": false,
+    "model_training": false,
+    "candidate_only": true
+  },
+  "forbidden": ["emotion_auto_learning", "emotion_strategy_write", "emotion_parameter_update", "learning_direct_state_mutation"]
+}

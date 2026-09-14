@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Luna Open Source Layer Registry",
+  "layers":[
+    {"layer":"L0","name":"Constitution","external_assets_allowed":false,"owner":"Constitution"},
+    {"layer":"L1","name":"Self","external_assets_allowed":false,"owner":"Self Governance"},
+    {"layer":"L2","name":"Cognitive Kernel","external_assets_allowed":false,"owner":"Cognitive Core Governance"},
+    {"layer":"L3","name":"Experience / Memory / Knowledge Growth","external_assets_allowed":true,"owner":"Growth Governance","adapter_required":true},
+    {"layer":"L4","name":"Social Self / Role / Interaction","external_assets_allowed":true,"owner":"Social Self Governance","adapter_required":true},
+    {"layer":"L5","name":"Capability Layer","external_assets_allowed":true,"owner":"Capability Governance","adapter_required":true}
+  ],
+  "rules":{"kernel_protected":true,"external_asset_not_intelligence":true,"owner_unique":true,"admission_required":true}
+}

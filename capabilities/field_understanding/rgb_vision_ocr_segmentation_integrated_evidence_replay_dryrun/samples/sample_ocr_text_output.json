@@ -1,0 +1,24 @@
+{
+  "format_ref": "ocr_text_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_frame_001.jpg"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "ocr_provider",
+    "model_id": "ocr_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "ocr_text_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "texts": [
+    {"text_id": "txt_entrance_1", "text": "ENTRANCE", "text_span": [300, 45, 378, 105], "bbox": [300, 40, 380, 110], "confidence": 0.9},
+    {"text_id": "txt_floor_1", "text": "FLOOR 2", "text_span": [310, 120, 372, 160], "bbox": [305, 115, 380, 165], "confidence": 0.84},
+    {"text_id": "txt_gate_1", "text": "TICKET GATE A", "text_span": [120, 90, 256, 130], "bbox": [120, 85, 260, 135], "confidence": 0.8},
+    {"text_id": "txt_price_1", "text": "ADULT 20", "text_span": [430, 210, 590, 250], "bbox": [425, 205, 600, 255], "confidence": 0.77}
+  ]
+}

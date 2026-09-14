@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.475242+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_retry_gate_record",
+  "timm_second_install_retry_gate_record": {
+    "record_id": "timm_second_install_retry_gate_v1",
+    "model_load_retry_allowed_now": false,
+    "model_load_retry_requires_no_deps_timm_install_go": true,
+    "model_load_retry_requires_timm_find_spec_verified": true,
+    "model_load_retry_requires_mobile_sam_weight_sha256_recheck": true,
+    "model_load_retry_requires_code_and_weight_ready_still_valid": true,
+    "model_load_retry_requires_no_extra_dependency_gap_or_repair_loop": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001"
+  }
+}

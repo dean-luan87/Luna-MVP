@@ -1,0 +1,11 @@
+{
+  "contract_id": "adaptive_layer_boundary_v1",
+  "adaptive_layer": ["Capability", "Strategy", "Cognitive Parameters", "Schema", "Knowledge", "Thresholds", "Weights"],
+  "allowed_change_sources": ["Validated Experience", "Outcome Evaluation", "Selective Learning", "Self Calibration", "Approved Optimization Candidate"],
+  "change_requires": ["Field Scope", "Evidence", "Utility", "Risk", "Reversibility", "Self Review", "Versioning", "Rollback"],
+  "protected_targets": ["Constitution", "Identity", "Safety Boundary", "Reality", "Core Brain Rules"],
+  "automatic_change": false,
+  "model_training": false,
+  "parameter_update": false,
+  "candidate_only": true
+}

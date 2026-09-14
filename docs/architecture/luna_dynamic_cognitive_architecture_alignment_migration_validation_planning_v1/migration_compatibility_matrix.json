@@ -1,0 +1,21 @@
+{
+  "matrix_id": "architecture_alignment_migration_compatibility_v1",
+  "rows": [
+    {"asset": "Field State Reducer", "migration_type": "adapter", "new_position": "Field Context input", "owner_preserved": true, "required_checks": ["module API", "candidate semantics", "trace/replay", "no parallel reducer"]},
+    {"asset": "Observation Manager", "migration_type": "keep", "new_position": "Environment Understanding", "owner_preserved": true, "required_checks": ["observation API", "evidence semantics", "perceptual attention boundary"]},
+    {"asset": "Cognitive Attention", "migration_type": "boundary_update", "new_position": "Cognitive Projection Support consumer", "owner_preserved": true, "required_checks": ["attention owner", "resource boundary", "intent/causal input candidate"]},
+    {"asset": "Memory System", "migration_type": "adapter", "new_position": "Experience Memory source", "owner_preserved": true, "required_checks": ["storage owner", "activation API", "admission", "no direct network mutation"]},
+    {"asset": "Role System", "migration_type": "boundary_update", "new_position": "Role Causal Projection source", "owner_preserved": true, "required_checks": ["role lifecycle", "field binding", "social owner"]},
+    {"asset": "Relationship System", "migration_type": "adapter", "new_position": "Relationship projection source", "owner_preserved": true, "required_checks": ["relationship lifecycle", "memory boundary", "source precedence"]},
+    {"asset": "Intent Architecture", "migration_type": "boundary_update", "new_position": "Intent Processing / Gate input", "owner_preserved": true, "required_checks": ["intent candidate", "goal/task separation", "decision separation"]},
+    {"asset": "Causality Architecture", "migration_type": "boundary_update", "new_position": "Causal Network contract", "owner_preserved": true, "required_checks": ["evidence", "counter evidence", "not fact", "no action"]},
+    {"asset": "Task Manager", "migration_type": "keep", "new_position": "Task orchestration", "owner_preserved": true, "required_checks": ["task lifecycle", "routing", "no causal judgment", "no action execution"]},
+    {"asset": "Model Manager", "migration_type": "keep", "new_position": "Capability Layer", "owner_preserved": true, "required_checks": ["admission", "model routing candidate", "no cognitive conclusion"]},
+    {"asset": "OCR / Vision", "migration_type": "keep", "new_position": "Evidence providers", "owner_preserved": true, "required_checks": ["evidence output", "provider isolation", "fact admission"]},
+    {"asset": "Protocol Manager", "migration_type": "keep", "new_position": "L1 Governance", "owner_preserved": true, "required_checks": ["protocol API", "governance boundary", "no cognitive ownership"]}
+  ],
+  "all_owner_preserved": true,
+  "physical_moves_planned": false,
+  "renames_planned": false,
+  "current_phase_changes_assets": false
+}

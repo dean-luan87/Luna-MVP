@@ -1,0 +1,7 @@
+{
+  "canonical_input": "CognitiveStateFormationInputV1",
+  "extension": "optional current_world_ref: SourceRefV1",
+  "reason": "Existing fields cannot explicitly preserve Current World identity without overloading Context/Observation semantics; the smallest backward-compatible read-only field is used.",
+  "outputs": ["AttentionCandidateV1", "CognitiveHypothesisCandidateV1", "HypothesisCompetitionResultV1", "CurrentWorldCandidateV1", "CognitiveStateVectorCandidateV1", "CognitiveToCausalHandoffCandidateV1"],
+  "semantic_guards": ["candidate_only", "single_truth_collapsed_false", "field_mutation_false", "causal_truth_false", "decision_output_false", "action_output_false"]
+}

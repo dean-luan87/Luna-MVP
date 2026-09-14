@@ -1,0 +1,18 @@
+{
+    "artifact_id": "pcn_controlled_dryrun_result_schema_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "required_fields": [
+        "phase",
+        "case_count",
+        "cases",
+        "passed_case_count",
+        "failed_case_count",
+        "boundary_violation_count",
+        "blocker_count",
+        "runtime_executed",
+        "source_mutation_executed",
+        "persistence_executed",
+        "final_status"
+    ],
+    "candidate_only": true
+}

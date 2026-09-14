@@ -1,0 +1,28 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "yolo",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "bad-flags-dataset/1",
+    "dataset_url": "https://universe.roboflow.com/example/bad-flags-dataset"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "export_format": "yolov8"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export"],
+  "direct_fact_write": true,
+  "rewrite_field_fact": true,
+  "route_activation": true,
+  "images": [
+    {"image_id": "img_090", "file_name": "x_090.jpg", "width": 640, "height": 480, "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_090", "type": "bbox", "label": "entrance", "image_id": "img_090", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

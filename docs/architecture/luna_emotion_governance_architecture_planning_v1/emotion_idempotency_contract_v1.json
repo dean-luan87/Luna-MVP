@@ -1,0 +1,28 @@
+{
+  "artifact": "emotion_idempotency_contract_v1",
+  "guards": [
+    "duplicate_emotion_evidence_guard",
+    "duplicate_emotion_appraisal_guard",
+    "duplicate_emotion_state_formation_guard",
+    "duplicate_emotion_refresh_guard",
+    "revision_replay_guard",
+    "revocation_replay_guard",
+    "expiration_replay_guard",
+    "source_correction_precedence_guard",
+    "replayed_temporal_event_guard"
+  ],
+  "identity_keys": {
+    "evidence": ["source_refs", "evidence_kind", "temporal_valid_from", "temporal_valid_until"],
+    "appraisal": ["emotion_evidence_refs", "appraisal_kind", "context_refs"],
+    "state": ["emotion_appraisal_refs", "context_refs", "temporal_validity"],
+    "refresh": ["prior_state_ref", "new_evidence_refs", "refresh_window"],
+    "lineage": ["prior_candidate_ref", "revision_kind", "source_correction_ref"]
+  },
+  "rules": {
+    "no_hidden_global_mutable_state": true,
+    "duplicate_inputs_do_not_create_new_authority": true,
+    "replay_preserves_original_trace": true,
+    "user_or_source_correction_precedes_inference": true,
+    "candidate_only": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "artifact": "self_pcn_boundary_v1",
+    "pcn_owner_preserved": "Personal Cognitive Network Governance",
+    "self_governance_may_reference": [
+        "relationship refs",
+        "identity refs",
+        "role refs",
+        "personal cognitive link refs"
+    ],
+    "forbidden": [
+        "rewrite_pcn_relationships",
+        "create_pcn_links_directly",
+        "own_relationship_truth",
+        "replace_pcn_identity_graph"
+    ],
+    "rule": "PCN owns personal cognitive network semantics; Self Governance may only consume PCN outputs as self-attribution evidence and continuity context."
+}

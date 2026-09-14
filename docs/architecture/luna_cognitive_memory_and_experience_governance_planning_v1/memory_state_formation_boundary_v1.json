@@ -1,0 +1,14 @@
+{
+    "artifact": "memory_state_formation_boundary_v1",
+    "allowed": [
+        "memory_experience_reference_input",
+        "historical_context_reference",
+        "uncertainty_reference"
+    ],
+    "forbidden": [
+        "create_attention",
+        "own_hypothesis",
+        "declare_current_world",
+        "modify_cognitive_state_vector_directly"
+    ]
+}

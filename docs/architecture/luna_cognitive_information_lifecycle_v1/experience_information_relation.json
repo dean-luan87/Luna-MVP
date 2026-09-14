@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Experience Information Relation",
+  "owner":"Experience System",
+  "inputs":["Field interaction","Role","Task","Knowledge used","outcome","feedback"],
+  "flow":["Experience Candidate","Experience Evaluation","Reinforced Candidate","Folding Candidate","Memory Candidate"],
+  "rules":{"situated_context_required":true,"outcome_required":true,"experience_not_knowledge":true,"experience_not_automatic_memory":true}
+}

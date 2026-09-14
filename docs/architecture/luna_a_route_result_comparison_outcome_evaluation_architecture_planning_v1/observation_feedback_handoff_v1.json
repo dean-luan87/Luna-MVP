@@ -1,0 +1,10 @@
+{
+  "artifact":"observation_feedback_handoff_v1",
+  "flow":"Outcome Evaluation -> Observation Need Candidate -> Field Perception Orchestrator -> bounded observation control",
+  "candidate_only":true,
+  "triggers":["INSUFFICIENT_EVIDENCE","NEEDS_CONFIRMATION","CONTESTED","MISSING_EXPECTED_EFFECT","STALE_ACTUAL","NEEDS_ADDITIONAL_OBSERVATION"],
+  "required_fields":["observation_need_id","evaluation_ref","information_gap","expected_evidence_kinds","target_scope","temporal_scope","budget_candidate","stop_conditions","uncertainty_refs","trace_ref","provenance_refs"],
+  "provider_boundary":["Result Comparison does not invoke YOLO","Result Comparison does not invoke OCR","Result Comparison does not invoke SLAM","provider availability != execution authority","frame arrival != execution authority","Observation Gateway admission != continuation authority"],
+  "consumer":"Field Perception Orchestrator / Active Observation Control",
+  "mutation_authority":false
+}

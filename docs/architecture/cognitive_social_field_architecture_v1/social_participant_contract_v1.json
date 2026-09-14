@@ -1,0 +1,18 @@
+{
+  "contract_name": "Social Participant Contract v1",
+  "participant_id": "participant-example",
+  "identity_candidate": null,
+  "observation_evidence": [],
+  "confidence": null,
+  "field_presence": null,
+  "interaction_history": [],
+  "timestamp": null,
+  "provenance": [],
+  "unknowns": [],
+  "identity_is_not_confirmed": true,
+  "human_identity_confirmation": false,
+  "face_recognition_runtime": false,
+  "permanent_individual_tracking": false,
+  "participant_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

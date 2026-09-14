@@ -1,0 +1,44 @@
+{
+    "artifact": "self_attribution_candidate_schema_v1",
+    "schema_version": "self-attribution-schema-v1",
+    "type": "object",
+    "required_fields": [
+        "self_attribution_id",
+        "self_ref",
+        "attribution_domain",
+        "attributed_value_candidate_ref",
+        "source_owner_refs",
+        "evidence_refs",
+        "provenance_refs",
+        "confidence_candidate",
+        "uncertainty_refs",
+        "temporal_validity_candidate",
+        "revision_parent_ref",
+        "revocation_parent_ref",
+        "contradiction_refs",
+        "candidate_only"
+    ],
+    "attribution_domains": [
+        "OWN_INTENT",
+        "OWN_PREFERENCE_CANDIDATE",
+        "OWN_EXPERIENCE",
+        "OWN_MEMORY",
+        "OWN_CAPABILITY",
+        "OWN_LIMITATION",
+        "OWN_ROLE",
+        "OWN_RELATIONSHIP_POSITION",
+        "OWN_REGULATION_TENDENCY",
+        "OWN_LEARNING_PATTERN",
+        "OWN_EMOTIONAL_EVIDENCE",
+        "OWN_PERSONALITY_EVIDENCE",
+        "OWN_ACTION_RESULT_HISTORY"
+    ],
+    "rules": {
+        "candidate_only": true,
+        "observation_not_self_fact": true,
+        "explicit_contradiction_supported": true,
+        "revision_supported": true,
+        "revocation_supported": true,
+        "owner_provenance_immutable": true
+    }
+}

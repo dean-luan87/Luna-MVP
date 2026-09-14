@@ -1,0 +1,45 @@
+{
+  "schema_id": "QwenVLRealProviderPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Teacher-QwenVL-Real-Provider-Integration-v1-001",
+  "provider_id": "qwen_vl",
+  "principle": "Raw Teacher Response 与 teacher_evidence_candidate 必须分离；Luna 保留 scene/plan/fact 所有权。",
+  "allowed": [
+    "real_image_to_qwen_vl",
+    "visual_analysis_result",
+    "teacher_evidence_candidate_generation",
+    "latency_cost_token_metadata",
+    "teacher_usage_metrics"
+  ],
+  "forbidden": [
+    "qwen_modifies_scene",
+    "qwen_modifies_plan",
+    "qwen_invokes_tool_os",
+    "qwen_triggers_ocr",
+    "qwen_writes_fact",
+    "qwen_direct_training",
+    "raw_response_direct_to_luna_decision"
+  ],
+  "pipeline_stages": [
+    "teacher_admission",
+    "qwen_vl_api_call",
+    "raw_teacher_response",
+    "response_parser",
+    "evidence_normalizer",
+    "teacher_validation_review",
+    "case_library_candidate"
+  ],
+  "boundary_flags": {
+    "raw_response_separated": true,
+    "evidence_normalization_required": true,
+    "validation_required": true,
+    "no_scene_override": true,
+    "no_plan_override": true,
+    "no_tool_execution": true,
+    "no_runner_invocation": true,
+    "no_fact_write": true,
+    "no_direct_training": true,
+    "teacher_usage_metrics_required": true,
+    "unsupported_claim_gate": true
+  }
+}

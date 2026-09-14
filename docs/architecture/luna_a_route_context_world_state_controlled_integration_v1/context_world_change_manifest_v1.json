@@ -1,0 +1,16 @@
+{
+  "phase": "Phase-Luna-A-Route-Context-World-State-Controlled-Integration-v1-001",
+  "new_files": [
+    "capabilities/midplatform/core/context_foundation/integration/__init__.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_error_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_engine_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_fixture_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/run_context_world_state_controlled_integration_v1.py"
+  ],
+  "existing_files_modified": [],
+  "existing_owner_files_modified": [],
+  "new_top_level_semantic_owner_created": false,
+  "reused_owners": ["Observation Gateway", "Context Foundation", "Field Event Admission", "Field State Reducer", "Cognitive State Formation", "A Route Orchestration"],
+  "runtime_provider_execution_added": false
+}

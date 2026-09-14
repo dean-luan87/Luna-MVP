@@ -1,0 +1,19 @@
+{
+    "artifact": "learning_confidence_evidence_model_v1",
+    "dimensions": [
+        "evidence_strength",
+        "repetition",
+        "consistency",
+        "diversity_of_context",
+        "counterexample_density",
+        "contradiction_level",
+        "recency",
+        "temporal_span",
+        "user_confirmation",
+        "causal_support_ref"
+    ],
+    "rules": {
+        "same_source_repetition_not_independent_evidence": true,
+        "opaque_single_score_forbidden": true
+    }
+}

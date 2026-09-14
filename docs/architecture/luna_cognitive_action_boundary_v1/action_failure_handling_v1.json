@@ -1,0 +1,8 @@
+{
+  "title": "Action Failure Handling v1",
+  "owner": "Action Boundary Governance",
+  "failure_types": ["Action Rejected", "Execution Failed", "Partial Success", "Unexpected Outcome"],
+  "pipeline": ["Failure", "Record", "Analyze", "Update Context", "Re-evaluate"],
+  "schema": ["failure_id", "action_request_id", "failure_type", "cause_candidate", "outcome_evidence", "context_update_candidate", "trace_id"],
+  "rules": {"failure_not_automatically_decision_error": true, "environment_change_preserved": true, "re_evaluation_required": true, "no_auto_retry": true}
+}

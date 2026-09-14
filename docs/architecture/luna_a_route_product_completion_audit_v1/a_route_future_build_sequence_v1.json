@@ -1,0 +1,14 @@
+{
+  "sequence_basis":"Product/function module sequence; no semantic owner is duplicated.",
+  "modules":[
+    {"order":1,"module":"A Route Product Orchestration / Handoff Backbone","purpose":"Connect canonical owners into one traceable cycle and enforce authority boundaries.","depends_on":[],"exit_condition":"Cycle skeleton traverses typed boundaries without owner mutation."},
+    {"order":2,"module":"Perception + Observation/Evidence Product Gateway","purpose":"Accept one bounded user/synthetic input and admit traceable evidence.","depends_on":[1],"exit_condition":"Input-to-observation handoff is available with source and uncertainty."},
+    {"order":3,"module":"Context / Field / Current World Runtime Integration","purpose":"Assemble read-only context and world candidates from admitted evidence.","depends_on":[1,2],"exit_condition":"Context/world output is consumable by the cognitive brain stages."},
+    {"order":4,"module":"Cognitive Brain Integration Closure","purpose":"Connect attention, hypothesis, intent, cognitive state, regulation, and decision candidates.","depends_on":[1,3],"exit_condition":"The route forms a bounded decision candidate with contradiction and uncertainty retained."},
+    {"order":5,"module":"Task / Action / Execution / Result Loop Closure","purpose":"Admit tasks/actions, pass safety and permission gates, execute through the approved runtime boundary, and collect results.","depends_on":[1,4],"exit_condition":"One permitted action returns a traceable verified result or safe failure."},
+    {"order":6,"module":"Result Verification + Persistence / Experience","purpose":"Compare expectation and result, admit experience, and persist bounded route state.","depends_on":[1,5],"exit_condition":"Outcome comparison and reloadable state continuity work with idempotency."},
+    {"order":7,"module":"Learning Admission + Self/Personality Next-Cycle Continuity","purpose":"Carry verified evidence into bounded learning and frozen Self/Personality references.","depends_on":[1,6],"exit_condition":"Next cycle consumes references without activating traits or mutating owners."},
+    {"order":8,"module":"User Output + Human Correction + Safety/Diagnostics/Resource Hardening","purpose":"Make the loop usable, correctable, observable, degradable, and resource-bounded.","depends_on":[1,5,6,7],"exit_condition":"User receives governed result or safe correction/failure path with route diagnostics."},
+    {"order":9,"module":"A Route Product Readiness Audit","purpose":"Verify the complete product loop, handoffs, persistence, correction, safety, and regression baseline.","depends_on":[1,2,3,4,5,6,7,8],"exit_condition":"Objective A_ROUTE_PRODUCT_COMPLETE_V1 criteria are met."}
+  ]
+}

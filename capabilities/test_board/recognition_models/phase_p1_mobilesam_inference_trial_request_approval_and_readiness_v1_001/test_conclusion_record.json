@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.529711+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "inference_trial_request_approval_readiness_status": "mobile_sam_inference_trial_requested_approved_for_preparation_and_execution_next",
+    "inference_executed_this_phase": false,
+    "image_read_this_phase": false,
+    "image_created_this_phase": false,
+    "imported_this_phase": false,
+    "model_loaded_this_phase": false,
+    "registry_mutated_this_phase": false,
+    "can_enter_inference_trial_execution_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Inference-Trial-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_single_local_test_image_candidate_only",
+    "transition_note": "PLANNING / APPROVAL ONLY (mobile_sam_only). Registry overlay audited: mobile_sam=model_load_verified with verified checkpoint/timm dependency. Inference trial request, narrow owner approval, local test image manifest plan (no image create/read), candidate-only output boundary, command whitelist template, memory/timeout, rollback/cleanup, readiness review, and follow-up route produced. NO inference, NO image input, NO import/load, NO runtime/output/semantic/fact. Next: Phase-P1-MobileSAM-Inference-Trial-Execution-And-Post-Review-v1-001 (single local test image, candidate-only)."
+  },
+  "final_decision": "P1_MOBILE_SAM_INFERENCE_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO"
+}

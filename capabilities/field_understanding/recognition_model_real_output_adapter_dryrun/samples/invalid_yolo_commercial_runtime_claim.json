@@ -1,0 +1,18 @@
+{
+  "model_id": "yolo_lightweight_nano",
+  "model_family": "object_detection_model_family",
+  "model_version_ref": "yolo_real_v1",
+  "model_origin": "external_open_source_detection_model",
+  "license_ref": "agpl_3_0",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "input_ref": "sample_p0_yolo_object_image.png",
+  "output_schema_ref": "object_detection_output_schema_v1",
+  "confidence": 0.78,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "object_evidence_candidate",
+  "allowed_use": "commercial_runtime",
+  "commercial_use_status": "agpl_commercial_runtime_uncleared",
+  "real_output": true,
+  "inference_scope": "p0_controlled_sample_only",
+  "commercial_runtime_ready": true
+}

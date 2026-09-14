@@ -1,0 +1,18 @@
+{
+  "automatic_download": false,
+  "network_access": false,
+  "loader_guessing": false,
+  "manual_source_selection_required_normal_path": false,
+  "source_package_grants_semantic_authority": false,
+  "source_package_grants_execution_authority": false,
+  "model_availability_implies_execution": false,
+  "provider_autonomous_execution": false,
+  "ocr_execution": false,
+  "slam_execution": false,
+  "vlm_execution": false,
+  "semantic_compression": false,
+  "field_mutation": false,
+  "current_world_truth_declaration": false,
+  "model_inference_executed": false,
+  "provider_invocation_executed": false
+}

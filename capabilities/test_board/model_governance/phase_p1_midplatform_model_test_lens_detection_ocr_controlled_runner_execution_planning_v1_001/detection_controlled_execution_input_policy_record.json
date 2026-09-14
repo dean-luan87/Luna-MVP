@@ -1,0 +1,71 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "DetectionControlledExecutionInputPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+    "description": "Detection 受控执行输入边界。输入不含 fact label，不确认 dynamic。",
+    "planning_only": true,
+    "runner_type": "Detection",
+    "allowed_inputs": [
+      "region_crop",
+      "region_geometry_ref",
+      "source_image_ref",
+      "source_frame_ref",
+      "prompt_label_candidate",
+      "envelope_ref",
+      "route_reason"
+    ],
+    "input_field_rules": {
+      "prompt_label_candidate": {
+        "role": "candidate_only",
+        "forbidden_as": [
+          "fact_label",
+          "ground_truth",
+          "detection_ground_truth"
+        ]
+      },
+      "region_crop": {
+        "required_for_execution": true,
+        "derived_from": "source_region_id"
+      },
+      "motion_state": {
+        "allowed": [
+          "dynamic_candidate",
+          "needs_tracking_review",
+          "unknown_motion_state"
+        ],
+        "forbidden": [
+          "confirmed_dynamic"
+        ]
+      }
+    },
+    "forbidden_inputs": [
+      "fact_label",
+      "confirmed_dynamic",
+      "ground_truth_label",
+      "human_correction_as_detection_truth",
+      "prompt_label_as_truth",
+      "navigation_hint",
+      "fact_write_intent"
+    ],
+    "crop_policy": {
+      "mode": "region_bounding_with_padding",
+      "padding_ratio": 0.05,
+      "must_preserve_source_region_id": true,
+      "invalid_crop_error": "invalid_crop"
+    },
+    "boundary_flags": {
+      "detection_input_does_not_contain_fact_label": true,
+      "no_prompt_label_fact_upgrade": true,
+      "no_motion_confirmed_from_single_frame": true,
+      "planning_only": true
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+    "phase_id": "Phase-Luna-Context-PCN-Intent-PreCognitive-Mainline-Controlled-Integration-v1-001",
+    "phase_type": "LUNA_CONTROLLED_INTEGRATION",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "previous_phase": "Phase-Luna-Cognitive-Core-Mainline-Return-And-Next-Module-Selection-v1-001",
+    "previous_phase_decision": "GO",
+    "scope": {
+        "in_scope": [
+            "Context->PCN->Intent controlled integration module",
+            "mapping and compatibility gates",
+            "trace and provenance continuity",
+            "idempotency guards",
+            "phase docs and verifier"
+        ],
+        "out_of_scope": [
+            "Context owner rewrite",
+            "PCN owner rewrite",
+            "Intent owner rewrite",
+            "runtime execution",
+            "next-phase expansion"
+        ]
+    },
+    "boundaries": {
+        "synthetic_only": true,
+        "controlled_integration_only": true,
+        "runtime_executed": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "source_module_mutation": false,
+        "model_call": false
+    },
+    "verification": {
+        "agent_v0_allowed": true,
+        "agent_v1_allowed": false,
+        "agent_final_verifier_allowed": false,
+        "user_v2_final_verifier_required": true,
+        "chatgpt_v3_final_decision_required": true,
+        "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+    },
+    "required_final_files": [
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_controlled_integration_overview_v1.md",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_negative_guards_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_existing_asset_reuse_mapping_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_gap_registry_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_controlled_change_manifest_v1.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/context_pcn_intent_integration_summary_v1.md",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/phase_contract.json",
+        "docs/architecture/luna_context_pcn_intent_precognitive_mainline_controlled_integration_v1/verify_context_pcn_intent_controlled_integration_v1.py"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "adaptive_balance_v1",
+  "inputs": ["Outcome Quality", "Cognitive Fitness", "Resource Cost", "Risk", "Self Stability", "Drift", "State Range"],
+  "outputs": ["Adaptive Candidate", "Stability Candidate", "Growth Candidate", "Reject Candidate", "Defer Candidate"],
+  "constraints": ["Constitution", "Safety", "Identity", "Ownership", "Resource", "Homeostasis"],
+  "quality_is_not_maximization_only": true,
+  "stability_precedes_optimization": true,
+  "drift_penalty_requires_review": true,
+  "automatic_adaptation": false,
+  "candidate_only": true
+}

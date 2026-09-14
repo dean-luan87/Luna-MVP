@@ -1,0 +1,18 @@
+{
+  "contract_id": "dynamic_self_adaptive_negative_guards_v1",
+  "forbidden": [
+    "runtime", "automatic_tuning", "hive_connection", "parameter_update", "automatic_self_modification", "emotion_runtime", "b_route_runtime", "model_integration", "hardware_control", "dynamic_function_runtime", "dynamic_function_direct_action", "dynamic_function_reality_mutation", "self_regulation_switch_model", "self_regulation_hardware_control", "self_calibration_automatic_update", "self_calibration_identity_change", "knowledge_replace_reality", "memory_override_reality", "goal_direct_action", "value_commit_decision", "decision_execute_action", "outcome_direct_self_modification", "learning_automatic_parameter_update", "learning_model_training", "hive_direct_parameter_modification", "hive_direct_self_change", "genome_identity_change", "b_route_modify_a_function", "b_route_direct_parameter_adoption", "b_route_virtual_outcome_experience", "runtime_adaptive_parameter_authority", "emotion_direct_parameter_adoption", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "meta_architecture_only": true,
+    "legacy_modules_preserved": true,
+    "dynamic_functions_are_candidate_producers": true,
+    "self_regulation_controls_resources_and_risk": true,
+    "self_calibration_requires_history": true,
+    "parameter_governance_required": true,
+    "hive_observer_only": true,
+    "genome_not_identity": true,
+    "b_route_separate": true,
+    "unknowns_preserved": true
+  }
+}

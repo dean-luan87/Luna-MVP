@@ -1,0 +1,8 @@
+{
+  "phase":"Phase-Luna-Brain-B4-Task-Outcome-Feedback-Reconsider-Reobserve-Controlled-Implementation-v1-001",
+  "objective":"Connect validated B3 Task input to candidate-only Action, controlled Runtime Result, Outcome, Task feedback, Cognitive Flow reconsideration and Observation Need.",
+  "real_component":"REAL_B3_TASK_DECISION_INPUT",
+  "controlled_components":["Action Governance candidate","CONTROLLED_RUNTIME_RESULT_FIXTURE","Outcome Evaluation","Cognitive Flow handoff","FPO Observation Need handoff"],
+  "stop":"Outcome/Feedback -> Reconsideration/Reobserve candidate",
+  "no_execution":true
+}

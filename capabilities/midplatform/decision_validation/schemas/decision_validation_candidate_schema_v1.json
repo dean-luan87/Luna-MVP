@@ -1,0 +1,21 @@
+{
+  "schema_id": "DecisionValidationCandidateSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "validation_id",
+    "validation_status_candidate",
+    "validation_result",
+    "validation_reason_candidates",
+    "tool_execution_readiness_candidate",
+    "candidate_only",
+    "not_fact",
+    "trace_refs"
+  ],
+  "validation_status_enum": [
+    "validated_candidate",
+    "needs_review",
+    "blocked_candidate",
+    "insufficient_information"
+  ],
+  "ownership": "Agent Planning retains selected_plan ownership"
+}

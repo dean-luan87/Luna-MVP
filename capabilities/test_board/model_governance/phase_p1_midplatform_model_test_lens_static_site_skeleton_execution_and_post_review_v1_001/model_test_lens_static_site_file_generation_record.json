@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T01:34:15.396432+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "model_test_lens_static_site_file_generation_record",
+  "record": {
+    "record_id": "model_test_lens_static_site_file_generation_v1",
+    "static_site_root_rel": "capabilities/midplatform/model_test_lens/static_site",
+    "files_written": [
+      "capabilities/midplatform/model_test_lens/static_site/index.html",
+      "capabilities/midplatform/model_test_lens/static_site/app.js",
+      "capabilities/midplatform/model_test_lens/static_site/styles.css",
+      "capabilities/midplatform/model_test_lens/static_site/README_STATIC_SITE.md",
+      "capabilities/midplatform/model_test_lens/static_site/example_loader_config_v1.json"
+    ],
+    "index_html_written": true,
+    "app_js_written": true,
+    "styles_css_written": true,
+    "readme_written": true,
+    "static_site_files_written": true
+  }
+}

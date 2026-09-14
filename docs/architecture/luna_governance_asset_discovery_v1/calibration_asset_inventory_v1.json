@@ -1,0 +1,14 @@
+{
+  "title": "Calibration Asset Inventory v1",
+  "status": "present_distributed",
+  "entries": [
+    {"asset_id":"calibration.capability.standard","path":"docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md","type":"calibration_standard","layer_candidate":"L4 Calibration Governance","current_owner":"Capability Registry Governance","description":"Capability module calibration standard.","status":"Active Asset"},
+    {"asset_id":"calibration.model.benchmark_schema","path":"capabilities/midplatform/model_manager/lifecycle/model_benchmark_record_schema_v1.json","type":"benchmark_schema","layer_candidate":"L4 Model Calibration","current_owner":"Model Manager Lifecycle","description":"Model benchmark record schema for sandbox evaluation.","status":"Active Asset"},
+    {"asset_id":"calibration.ocr.registry","path":"capabilities/evaluation/ocr/ocr_provider_benchmark_registry_v0.py","type":"provider_benchmark_registry","layer_candidate":"L4 Evaluation / Calibration","current_owner":"OCR Evaluation Surface","description":"OCR provider benchmark registry.","status":"Active Asset"},
+    {"asset_id":"calibration.baselines","path":"capabilities/registry/baselines/","type":"module_baseline_family","layer_candidate":"L1/L4 Governance","current_owner":"Capability Baseline Plane","description":"Module baselines including model manager, permission/admission, protocol and perception managers.","status":"Active Asset"},
+    {"asset_id":"calibration.drift.docs","path":"docs/architecture/cognitive_attention_adaptation_stability_v1/","type":"drift_detection_architecture","layer_candidate":"L2/L4 Calibration","current_owner":"Attention Stability Surface","description":"Attention baseline and drift detection contracts.","status":"Active Asset"},
+    {"asset_id":"calibration.readiness.docs","path":"docs/architecture/LUNA_OCR_MODEL_READINESS_CHECK_POLICY_V0.md","type":"readiness_policy","layer_candidate":"L4 Calibration","current_owner":"OCR Model Readiness Surface","description":"Model readiness check policy.","status":"Historical Asset"},
+    {"asset_id":"calibration.evaluation.tools","path":"tools/evaluation/","type":"evaluation_tool_family","layer_candidate":"Verification Only / Calibration","current_owner":"Evaluation Tooling","description":"Benchmark, smoke, dry-run and result-verification tools.","status":"Verification Only"}
+  ],
+  "finding": "Benchmark, baseline, health and drift evidence exist; ownership is distributed and needs canonical mapping before runtime admission."
+}

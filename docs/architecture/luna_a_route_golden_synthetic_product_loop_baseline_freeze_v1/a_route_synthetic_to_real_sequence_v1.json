@@ -1,0 +1,21 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "default_sequence":[
+    {"step":"S0","component":"Full Synthetic Golden Baseline","status":"FROZEN_BASELINE"},
+    {"step":"S1","component":"Real User Input","replacement_scope":"input adapter only"},
+    {"step":"S2","component":"Real Camera / Input Stream","replacement_scope":"camera/input stream only"},
+    {"step":"S3","component":"Real Vision / YOLO","replacement_scope":"vision provider only"},
+    {"step":"S4","component":"Real OCR","replacement_scope":"OCR provider only"},
+    {"step":"S5","component":"Real SLAM / VIO","replacement_scope":"spatial provider only"},
+    {"step":"S6","component":"Real Context / World inputs","replacement_scope":"context/world adapter only"},
+    {"step":"S7","component":"Real Cognitive Chain","replacement_scope":"cognitive adapter only"},
+    {"step":"S8","component":"Real Task / Action adapters","replacement_scope":"task/action adapters only"},
+    {"step":"S9","component":"Real Runtime","replacement_scope":"runtime adapter only"},
+    {"step":"S10","component":"Real Outcome Feedback","replacement_scope":"outcome feedback adapter only"},
+    {"step":"S11","component":"Real User Output","replacement_scope":"output adapter only"},
+    {"step":"S12","component":"Full Real A Route","replacement_scope":"complete route after prior differential freezes"}
+  ],
+  "architecture_law":false,
+  "order_change_justification_required":true
+}

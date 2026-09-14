@@ -1,0 +1,18 @@
+{
+  "schema_id": "luna_evaluation_world_observation_corpus_registry_v1",
+  "registry_id": "luna-evaluation-world-observation-corpus-registry",
+  "registry_version": "v1",
+  "owner": "Evaluation Governance",
+  "source_of_truth": "evaluation_governance",
+  "evaluation_only": true,
+  "runtime_allowed": false,
+  "foundation_status": "UNREGISTERED_FOUNDATION",
+  "entries": [],
+  "sample_manifests": [],
+  "annotation_refs": [],
+  "benchmark_specs": [],
+  "notes": [
+    "No public, Luna scenario, or future real observation dataset is registered by this phase.",
+    "_tmp_eval_inputs, _tmp_eval_out, _eval_out, TestBoard artifacts, and Roboflow smoke outputs remain evidence/input only."
+  ]
+}

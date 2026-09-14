@@ -1,0 +1,12 @@
+{
+  "layers": ["MODEL_ASSET_READY", "PYTHON_DEPENDENCY_READY", "LOADER_COMPATIBLE", "PROVIDER_ADAPTER_COMPATIBLE", "EXECUTION_ADMITTED"],
+  "unknown_runtime_dependency_state": "PYTHON_DEPENDENCY_UNRESOLVED",
+  "current_yolo11n": {
+    "model_asset_ready": "ASSET_NOT_PRESENT",
+    "python_dependency_ready": "PYTHON_DEPENDENCY_UNRESOLVED",
+    "loader_compatible": "CONTRACT_RESOLVED_NOT_RUNTIME_VERIFIED",
+    "provider_adapter_compatible": "CONTRACT_RESOLVED_NOT_RUNTIME_VERIFIED",
+    "execution_admitted": false
+  },
+  "imports_executed": false
+}

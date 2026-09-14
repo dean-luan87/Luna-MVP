@@ -1,0 +1,61 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/runtime-executor/execution-result-schema/v1",
+    "title": "Execution Result Schema Candidate v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "execution_id",
+        "request_id",
+        "status",
+        "attempt_count",
+        "started_at",
+        "ended_at",
+        "trace_ref",
+        "candidate_only",
+        "planning_only"
+    ],
+    "properties": {
+        "execution_id": {
+            "type": "string"
+        },
+        "request_id": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "SUCCEEDED_CANDIDATE",
+                "FAILED_CANDIDATE",
+                "PARTIAL_RESULT_CANDIDATE",
+                "CANCELLED_CANDIDATE",
+                "TIMEOUT_CANDIDATE"
+            ]
+        },
+        "attempt_count": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "failure_ref": {
+            "type": "string"
+        },
+        "partial_result_ref": {
+            "type": "string"
+        },
+        "started_at": {
+            "type": "string"
+        },
+        "ended_at": {
+            "type": "string"
+        },
+        "trace_ref": {
+            "type": "string"
+        },
+        "candidate_only": {
+            "const": true
+        },
+        "planning_only": {
+            "const": true
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{
+    "artifact": "cognitive_memory_experience_planning_to_code_mapping_v1",
+    "mappings": [
+        {
+            "planning": "cognitive_memory_experience_owner_boundary_v1.json",
+            "code": [
+                "cognitive_memory_experience_registry_v1.py",
+                "cognitive_memory_experience_ownership_guard_v1.py"
+            ]
+        },
+        {
+            "planning": "experience_candidate_schema_v1.json",
+            "code": [
+                "experience_candidate_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_candidate_schema_v1.json",
+            "code": [
+                "memory_candidate_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_type_taxonomy_v1.json",
+            "code": [
+                "cognitive_memory_experience_registry_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_admission_state_model_v1.json",
+            "code": [
+                "memory_admission_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "experience_to_memory_formation_contract_v1.json",
+            "code": [
+                "memory_io_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_salience_retention_decay_model_v1.json",
+            "code": [
+                "memory_candidate_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_contradiction_revision_revocation_model_v1.json",
+            "code": [
+                "memory_lifecycle_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_context_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_pcn_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_intent_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_state_formation_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_dynamic_regulation_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_learning_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_personality_self_boundary_v1.json",
+            "code": [
+                "memory_influence_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_privacy_sensitivity_boundary_v1.json",
+            "code": [
+                "memory_candidate_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_trace_provenance_contract_v1.json",
+            "code": [
+                "memory_trace_types_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "memory_idempotency_contract_v1.json",
+            "code": [
+                "cognitive_memory_experience_fixture_v1.py",
+                "cognitive_memory_experience_engine_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_memory_experience_negative_guards_v1.json",
+            "code": [
+                "memory_io_types_v1.py",
+                "cognitive_memory_experience_static_validators_v1.py"
+            ]
+        },
+        {
+            "planning": "cognitive_memory_experience_minimum_scenario_suite_v1.json",
+            "code": [
+                "cognitive_memory_experience_fixture_v1.py",
+                "run_cognitive_memory_experience_controlled_implementation_v1.py"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_id": "DocumentSurfaceOptionBExecutionAbortRollbackPolicyV1",
+  "version": "v1",
+  "planning_only": true,
+  "controlled_execution_forbidden": true,
+  "abort_conditions": [
+    "preflight_not_completed",
+    "dependency_preflight_failed",
+    "model_weight_preflight_failed",
+    "license_preflight_failed",
+    "input_registry_missing",
+    "input_boundary_violation",
+    "output_boundary_violation",
+    "unsupported_fixture",
+    "image_read_not_allowed",
+    "model_execution_not_allowed",
+    "segmentation_output_schema_invalid",
+    "raw_output_contains_text_or_fact",
+    "caption_output_detected",
+    "excessive_mask_count",
+    "timeout",
+    "memory_limit_exceeded",
+    "fallback_attempt_detected",
+    "protocol_compliance_failed",
+    "active_registry_write_attempted",
+    "runtime_activation_attempted"
+  ],
+  "rollback_policy": {
+    "no_active_registry_update": true,
+    "no_runtime_activation": true,
+    "no_silent_fallback_to_option_a": true,
+    "no_fallback_to_ocr_vlm_layout": true,
+    "retain_trace": true,
+    "return_to": "controlled_execution_planning_or_preflight_closure",
+    "blocked_execution_candidate_remains_non_active": true
+  },
+  "forbidden_workaround": "force_segmentation_or_bypass_dryrun_preflight",
+  "candidate_only": true,
+  "not_fact": true
+}

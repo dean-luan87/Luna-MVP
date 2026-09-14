@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Layer Schema",
+  "owner":"Knowledge Library",
+  "knowledge_types":["world_knowledge","social_rule","moral_framework","skill_knowledge","domain_knowledge","experience_package"],
+  "fields":["knowledge_id","content_ref","source","version","scope","provenance","confidence","admission_status","limitations","unknowns"],
+  "properties":{"shareable":true,"copyable":true,"replaceable":true,"updatable":true,"subject_bound":false},
+  "precedence":"Evidence and Current Reality outrank Knowledge",
+  "forbidden_effects":["direct_reality_write","direct_self_write","direct_social_write","direct_goal_write","direct_decision"]
+}

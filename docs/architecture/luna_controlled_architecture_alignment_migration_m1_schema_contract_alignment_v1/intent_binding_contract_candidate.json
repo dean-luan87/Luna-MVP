@@ -1,0 +1,49 @@
+{
+    "contract_id": "intent_binding_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Intent Governance",
+    "producer": "Intent Governance",
+    "consumer": [
+        "Causal Reasoning Governance",
+        "Decision Arbitration",
+        "Cognitive Routing Governance"
+    ],
+    "candidate_fact": "intent_binding_candidate_only",
+    "unknown": {
+        "allowed": true,
+        "representation": "goal_task_value_or_field_unknowns",
+        "behavior": "emit_clarification_candidate"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "field_context_ref",
+            "pcn_projection_ref",
+            "value_constraint_ref"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "binding_decision_path_reference"
+    },
+    "admission": {
+        "required": true,
+        "mode": "candidate_only_context_binding"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "clarification_or_context_change"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_intent_binding_on_invalid_context"
+    },
+    "failure_behavior": {
+        "on_missing_projection": "emit_context_incomplete_candidate",
+        "on_value_conflict": "emit_goal_alignment_conflict_candidate",
+        "on_boundary_violation": "block_binding_candidate"
+    },
+    "write_authority": "Intent Governance",
+    "compatibility_alias": "intent_context_binding_alias"
+}

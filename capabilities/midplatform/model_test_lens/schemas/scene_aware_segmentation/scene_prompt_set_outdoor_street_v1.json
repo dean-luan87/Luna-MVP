@@ -1,0 +1,66 @@
+{
+  "schema_id": "ScenePromptSetOutdoorStreetV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Aware-Segmentation-Prompt-Policy-Planning-v1-001",
+  "description": "户外街景 prompt set。prompt 仅生成 region_candidate，不输出语义 fact。",
+  "scene_type_candidate": "outdoor_street",
+  "candidate_only": true,
+  "not_fact": true,
+  "prompt_is_not_fact": true,
+  "prompts": [
+    {
+      "segmentation_prompt_id": "road_sign_candidate",
+      "source_prompt_hint": "road_sign_prompt",
+      "display_task_semantic": "P0 文字候选区",
+      "default_followup_models": ["ocr", "detection"],
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "road_sign_candidate",
+      "legacy_prompt_id": "road_sign",
+      "forbidden_display_labels": ["路牌", "指示牌"]
+    },
+    {
+      "segmentation_prompt_id": "crosswalk_or_road_region",
+      "source_prompt_hint": "crosswalk_or_road_region_prompt",
+      "display_task_semantic": "P0 通行结构区",
+      "default_followup_models": ["depth", "slam"],
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "crosswalk_or_road_region"
+    },
+    {
+      "segmentation_prompt_id": "vehicle_candidate",
+      "source_prompt_hint": "front_vehicle_prompt",
+      "display_task_semantic": "P1 动态目标候选",
+      "default_followup_models": ["detection", "tracking"],
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "vehicle_candidate",
+      "legacy_prompt_id": "front_vehicle",
+      "forbidden_display_labels": ["前方车辆", "车辆"]
+    },
+    {
+      "segmentation_prompt_id": "advertisement_panel",
+      "source_prompt_hint": "center_advertisement_screen_prompt",
+      "display_task_semantic": "P1 屏幕/标识候选",
+      "default_followup_models": ["ocr", "detection"],
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "advertisement_panel",
+      "legacy_prompt_id": "center_advertisement_screen",
+      "forbidden_display_labels": ["广告屏"]
+    },
+    {
+      "segmentation_prompt_id": "building_structure",
+      "source_prompt_hint": "left_building_prompt",
+      "display_task_semantic": "P2 大型结构候选",
+      "default_followup_models": ["detection", "slam_reference"],
+      "semantic_label": "candidate_only",
+      "prompt_target_label": "building_structure",
+      "legacy_prompt_id": "left_building",
+      "forbidden_display_labels": ["左侧建筑", "建筑"]
+    }
+  ],
+  "boundary_flags": {
+    "no_prompt_label_fact_upgrade": true,
+    "mobilesam_region_not_semantic_fact": true,
+    "prompt_label_display_not_fact": true,
+    "planning_only": true
+  }
+}

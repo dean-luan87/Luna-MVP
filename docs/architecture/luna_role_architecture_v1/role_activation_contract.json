@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Role Activation Contract",
+  "owner":"Role Governance",
+  "inputs":["active_field","task","relationship_context","social_expectation","self_capability","permission_boundary","evidence"],
+  "flow":["Role Candidate","Field and Owner Review","Permission Review","Brain Candidate Evaluation","Governance Admission","Role Activation Candidate"],
+  "activation_output":["role_id","field_id","responsibility","allowed_behavior","constraints","confidence","activation_reason"],
+  "rules":{"field_required":true,"governance_required":true,"brain_review_required":true,"activation_not_automatic":true,"identity_unchanged":true}
+}

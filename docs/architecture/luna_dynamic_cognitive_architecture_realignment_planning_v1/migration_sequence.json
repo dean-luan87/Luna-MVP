@@ -1,0 +1,15 @@
+{
+  "sequence_id": "dynamic_cognitive_architecture_migration_sequence_v1",
+  "stages": [
+    {"priority": "P0", "name": "Owner and terminology freeze", "deliverables": ["canonical owner graph", "duplicate risk closure", "baseline impact decision"], "implementation": false},
+    {"priority": "P1", "name": "Contract and adapter planning", "deliverables": ["field context projection", "attention semantic split", "intent gate alignment", "causal edge contract", "experience/network candidate interfaces"], "implementation": false},
+    {"priority": "P2", "name": "Personal Cognitive Network technical architecture", "deliverables": ["typed node/edge schemas", "activation model", "revision/revocation", "admission boundary"], "implementation": false},
+    {"priority": "P3", "name": "Controlled skeleton phases", "deliverables": ["candidate-only adapters", "trace/replay", "static and controlled validation"], "implementation": "future_authorized_only"},
+    {"priority": "P4", "name": "Runtime integration candidates", "deliverables": ["one bounded flow per phase", "rollback", "monitoring", "user V2 and ChatGPT V3"], "implementation": "future_authorized_only"}
+  ],
+  "order_fixed": true,
+  "mapping_before_migration": true,
+  "adapter_before_rewrite": true,
+  "owner_before_implementation": true,
+  "current_phase_executes_migration": false
+}

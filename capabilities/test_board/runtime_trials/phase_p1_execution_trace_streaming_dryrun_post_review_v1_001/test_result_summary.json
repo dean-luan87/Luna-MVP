@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Execution-Trace-Streaming-DryRun-Post-Review-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "post_review",
+  "recorded_at_utc": "2026-06-29T03:05:08.930675+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_POST_REVIEW_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "stage_ref_count": 13,
+    "streaming_dryrun_artifact_audit_count": 1,
+    "streaming_trace_count_audit_count": 13,
+    "temporal_consistency_audit_count": 8,
+    "cross_model_agreement_audit_count": 5,
+    "midplatform_stream_governance_audit_count": 10,
+    "candidate_only_boundary_audit_count": 8,
+    "fact_semantic_promotion_audit_count": 6,
+    "runtime_non_execution_audit_count": 16,
+    "test_board_protected_record_audit_count": 7,
+    "test_board_deletion_protection_audit_count": 4,
+    "negative_post_review_guard_count": 16,
+    "blocker_count": 0
+  }
+}

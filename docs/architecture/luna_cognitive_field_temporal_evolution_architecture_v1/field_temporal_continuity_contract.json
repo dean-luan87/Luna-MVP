@@ -1,0 +1,13 @@
+{
+  "contract_id": "field_temporal_continuity_v1",
+  "owner": "Field Temporal Evolution",
+  "continuity_inputs": ["spatial_continuity", "temporal_continuity", "entity_continuity", "task_continuity", "role_continuity"],
+  "continuity_output": "field_identity_candidate",
+  "same_field_is_candidate": true,
+  "time_order_required": true,
+  "evidence_required": true,
+  "prediction": false,
+  "world_model": false,
+  "future_state_inference": false,
+  "unknown_preserved": true
+}

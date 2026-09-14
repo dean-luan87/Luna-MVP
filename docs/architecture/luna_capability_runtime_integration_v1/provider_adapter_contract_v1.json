@@ -1,0 +1,10 @@
+{
+  "title": "Provider Adapter Contract v1",
+  "owner": "Capability Governance",
+  "pipeline": ["Capability", "Adapter", "Provider"],
+  "adapter_input": ["Capability Request", "Execution Context", "Approved Input"],
+  "adapter_output": ["Raw Result", "Provider Failure", "Timeout"],
+  "provider_visibility": ["declared input", "resource limit", "execution id"],
+  "provider_not_visible": ["full cognitive state", "Goal authority", "Brain internals", "Identity authority"],
+  "rules": {"provider_isolated": true, "adapter_required": true, "provider_not_cognitive_owner": true, "no_direct_evidence_write": true}
+}

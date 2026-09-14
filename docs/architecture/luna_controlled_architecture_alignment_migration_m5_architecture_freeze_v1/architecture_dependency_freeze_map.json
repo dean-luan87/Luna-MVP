@@ -1,0 +1,114 @@
+{
+  "map_id": "luna_controlled_architecture_alignment_m5_architecture_dependency_freeze_map_v1",
+  "freeze_status": "ARCHITECTURE_FREEZE_CANDIDATE",
+  "semantics": "frozen_logical_dependency_direction_not_proof_of_active_runtime_call_graph",
+  "allowed_dependencies": [
+    {
+      "from": "Field",
+      "to": "Context",
+      "status": "ALLOWED",
+      "condition": "Context consumes an admitted read-only Field State projection with provenance."
+    },
+    {
+      "from": "Context",
+      "to": "Cognitive",
+      "status": "ALLOWED",
+      "condition": "Cognitive components consume governed context references without source-object mutation."
+    },
+    {
+      "from": "Cognitive",
+      "to": "Decision",
+      "status": "ALLOWED",
+      "condition": "Only candidate inputs with trace, uncertainty, Goal, Value, and boundary references may enter Decision Arbitration."
+    },
+    {
+      "from": "Decision",
+      "to": "Task",
+      "status": "ALLOWED",
+      "condition": "Task Manager receives a governed selected Decision reference and gains no Decision or Action ownership."
+    },
+    {
+      "from": "Task",
+      "to": "Runtime",
+      "status": "ALLOWED",
+      "condition": "A future handoff requires Action Governance and Runtime admission; this map creates no active adapter."
+    },
+    {
+      "from": "Runtime",
+      "to": "Capability / Model",
+      "status": "ALLOWED",
+      "condition": "Only a future admitted invocation request may reach governed capabilities; Model Manager gains no provider-call or cognitive authority."
+    },
+    {
+      "from": "Runtime",
+      "to": "Outcome Evidence",
+      "status": "ALLOWED",
+      "condition": "Runtime returns traceable outcome, failure, resource, and execution evidence without interpretation or Memory mutation."
+    },
+    {
+      "from": "Outcome",
+      "to": "Experience Compression",
+      "status": "ALLOWED",
+      "condition": "Only validated outcomes and traces may produce Experience Candidates."
+    },
+    {
+      "from": "Experience Compression",
+      "to": "Memory",
+      "status": "ALLOWED",
+      "condition": "Experience produces Memory admission candidates; Memory System retains persistence and consolidation authority."
+    }
+  ],
+  "forbidden_dependencies": [
+    {
+      "from": "Runtime",
+      "to": "Cognitive Ownership",
+      "status": "FORBIDDEN",
+      "reason": "Runtime executes and transports evidence but cannot own cognition."
+    },
+    {
+      "from": "Model",
+      "to": "Decision Ownership",
+      "status": "FORBIDDEN",
+      "reason": "Model output is governed capability evidence, not Luna's final Decision authority."
+    },
+    {
+      "from": "Memory",
+      "to": "Reality Override",
+      "status": "FORBIDDEN",
+      "reason": "Historical influence cannot replace current admitted Reality."
+    },
+    {
+      "from": "Observation",
+      "to": "Fact",
+      "status": "FORBIDDEN",
+      "reason": "Observation evidence requires admission and Field reduction."
+    },
+    {
+      "from": "Task Manager",
+      "to": "Intent",
+      "status": "FORBIDDEN",
+      "reason": "Task lifecycle is downstream of Intent and Decision governance."
+    },
+    {
+      "from": "Candidate",
+      "to": "Reality Without Validation",
+      "status": "FORBIDDEN",
+      "reason": "Candidate/Fact separation is mandatory."
+    },
+    {
+      "from": "Personal Cognitive Network",
+      "to": "Source Object Ownership",
+      "status": "FORBIDDEN",
+      "reason": "PCN links and projects independent source objects but cannot own or mutate them."
+    },
+    {
+      "from": "Cognitive Layer",
+      "to": "Field State Bypass",
+      "status": "FORBIDDEN",
+      "reason": "Current-world context requires Field State provenance."
+    }
+  ],
+  "creates_runtime_call_graph": false,
+  "adapter_created": false,
+  "migration_executed": false
+}

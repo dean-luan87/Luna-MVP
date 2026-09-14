@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_b2_input_adapter_contract_v1",
+  "input": "B2CognitiveStateFlowReferenceV1",
+  "required_refs": ["cognitive_state_ref", "cognitive_flow_ref", "current_world_ref", "context_refs", "trace_ref", "provenance_refs", "temporal_refs"],
+  "preserved_refs": ["attention_refs", "hypothesis_refs", "alternative_hypothesis_refs", "observation_need_refs", "uncertainty_refs", "conflict_refs", "field_refs", "pcn_refs"],
+  "guards": {"candidate_only": true, "read_only": true, "source_mutation_executed": false, "provider_invocation": false},
+  "replay_rule": "Only validated structured B2-shaped input is accepted; B3 does not rerun B1 or B2 and does not consume arbitrary evaluation JSON as truth."
+}

@@ -1,0 +1,21 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "roboflow_universe",
+  "dataset_ref": "roboflow/bypass_adapter_subset",
+  "license_ref": {"license": "CC BY 4.0", "commercial_use_confirmed": false},
+  "source_chain": ["roboflow_universe", "vision_test_source_backup_pool"],
+  "annotation_origin": {"provider": "roboflow_export", "export_format": "yolov8"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "invalid_bypass_adapter"},
+  "annotation_format": "yolo",
+  "confidence": 0.8,
+  "allowed_use": "unknown_until_license_verified",
+  "commercial_use_status": "per_dataset_license_required",
+  "candidate_mapping": {"bbox": "object_evidence_candidate"},
+  "bypass_adapter": true,
+  "native_direct_to_field": true,
+  "direct_to_field_task_guidance": true,
+  "images": [{"image_id": "x_100", "width": 640, "height": 480, "confidence": 0.8}],
+  "annotations": [
+    {"ann_id": "x_ann_100", "type": "bbox", "label": "entrance", "image_id": "x_100", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

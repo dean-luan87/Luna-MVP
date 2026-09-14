@@ -1,0 +1,89 @@
+{
+    "model_id": "pcn_nested_constraint_model_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "relationships": [
+        {
+            "relation": "Context <-> PCN",
+            "incoming_constraint": "Context envelope relevance and unknown boundaries constrain activation",
+            "outgoing_constraint": "PCN projection constrains downstream context continuity requests",
+            "source_owner": "Context Foundation",
+            "mutation_authority": "no_mutual_write",
+            "feedback_type": "activation_feedback_and_projection_scope"
+        },
+        {
+            "relation": "Resource <-> PCN",
+            "incoming_constraint": "Resource budget constrains activation size and propagation",
+            "outgoing_constraint": "PCN reports budget pressure and degraded projection",
+            "source_owner": "Resource Budget Owners",
+            "mutation_authority": "resource_owner_only",
+            "feedback_type": "bounded_activation_feedback"
+        },
+        {
+            "relation": "Memory <-> PCN",
+            "incoming_constraint": "Memory projection references constrain historical carry-in",
+            "outgoing_constraint": "PCN relevance requests constrain retrieval focus candidates",
+            "source_owner": "Memory System",
+            "mutation_authority": "memory_owner_only",
+            "feedback_type": "reference_projection_feedback"
+        },
+        {
+            "relation": "Field <-> PCN",
+            "incoming_constraint": "Field context constrains active cognitive scope",
+            "outgoing_constraint": "PCN active links constrain field-related cognitive projection",
+            "source_owner": "Field System",
+            "mutation_authority": "field_owner_only",
+            "feedback_type": "context_activation_feedback"
+        },
+        {
+            "relation": "Role <-> PCN",
+            "incoming_constraint": "Role context constrains role-related activation",
+            "outgoing_constraint": "PCN projection constrains role relevance requests",
+            "source_owner": "Social Self / Role System",
+            "mutation_authority": "role_owner_only",
+            "feedback_type": "role_activation_feedback"
+        },
+        {
+            "relation": "Relationship <-> PCN",
+            "incoming_constraint": "Relationship context and evidence constrain link activation",
+            "outgoing_constraint": "PCN unresolved links constrain relationship clarification requests",
+            "source_owner": "Social Self / Relationship System",
+            "mutation_authority": "relationship_owner_only",
+            "feedback_type": "relationship_relevance_feedback"
+        },
+        {
+            "relation": "Emotion <-> PCN",
+            "incoming_constraint": "Emotion context reference constrains activation salience",
+            "outgoing_constraint": "PCN projection constrains emotion-context follow-up references",
+            "source_owner": "Cognitive Integration",
+            "mutation_authority": "emotion_owner_only",
+            "feedback_type": "salience_feedback"
+        },
+        {
+            "relation": "Intent <-> PCN (Future)",
+            "incoming_constraint": "Intent context needs constrain projection shape requests",
+            "outgoing_constraint": "PCN relatedness constrains intent binding context",
+            "source_owner": "Intent Governance",
+            "mutation_authority": "intent_owner_only",
+            "feedback_type": "context_binding_feedback"
+        },
+        {
+            "relation": "Causal <-> PCN (Future)",
+            "incoming_constraint": "Causal context needs constrain projection requests",
+            "outgoing_constraint": "PCN associations constrain causal exploration scope",
+            "source_owner": "Causal Reasoning Governance",
+            "mutation_authority": "causal_owner_only",
+            "feedback_type": "association_scope_feedback"
+        },
+        {
+            "relation": "Experience <-> PCN (Future)",
+            "incoming_constraint": "Experience admission boundaries constrain link growth candidates",
+            "outgoing_constraint": "PCN activation history constrains experience relevance candidates",
+            "source_owner": "Experience Governance",
+            "mutation_authority": "experience_owner_only",
+            "feedback_type": "growth_relevance_feedback"
+        }
+    ],
+    "mutual_influence_not_equal_mutual_write": true,
+    "second_writer_prohibited": true
+}

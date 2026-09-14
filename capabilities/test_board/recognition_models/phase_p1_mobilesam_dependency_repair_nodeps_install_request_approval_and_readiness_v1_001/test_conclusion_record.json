@@ -1,0 +1,29 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.540952+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "nodeps_install_request_approval_readiness_status": "timm_no_deps_install_requested_approved_for_preparation_and_execution_next_no_install_no_load_no_inference",
+    "target_dependency": "timm",
+    "selected_route": "timm_no_deps_controlled_install",
+    "timm_installed_this_phase": false,
+    "imported_this_phase": false,
+    "model_load_retry_allowed_now": false,
+    "observed_torch_version": "2.8.0",
+    "observed_torchvision_available": true,
+    "can_enter_timm_nodeps_install_execution_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+    "suggested_retry_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+    "transition_note": "PLANNING / APPROVAL ONLY (mobile_sam_only, route=timm_no_deps_controlled_install). Upstream failure-repair-planning GO was audited: failure_category=dependency_install_timeout, Route A selected, same full isolated install retry NOT recommended. A no-deps timm install request, a NARROW owner approval (no-deps install preparation + execution-next only), a torch/torchvision reuse boundary (torch 2.8.0 via metadata, NO import), a TEMPLATE-ONLY `pip install timm --no-deps --target <path>` whitelist (never executed), a find_spec-only probe plan, a rollback plan, a readiness review, and a model-load retry gate were produced. NOTHING was pip-installed / imported / model-loaded / inferred / run; registry NOT mutated. no-deps approval is NOT install execution now, NOT model-load-retry / inference / runtime approval. Next: Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001 (real no-deps install + find_spec probe; still no import/load)."
+  },
+  "final_decision": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_NODEPS_INSTALL_REQUEST_APPROVAL_AND_READINESS_GO"
+}

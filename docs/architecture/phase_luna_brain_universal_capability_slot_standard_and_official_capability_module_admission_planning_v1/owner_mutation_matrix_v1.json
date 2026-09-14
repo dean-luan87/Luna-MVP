@@ -1,0 +1,101 @@
+{
+  "matrix_id": "luna-universal-capability-owner-mutation-matrix-v1",
+  "status": "PLANNING_ONLY",
+  "records": [
+    {
+      "domain": "slot_identity_and_binding_metadata",
+      "owner": "Capability Registry / Capability Governance",
+      "read_only_consumers": ["Capability Self", "Brain Capability Regulation", "System Maintenance"],
+      "admission_authority": "Capability Admission Governance",
+      "mutation_authority": "Canonical capability lifecycle governance",
+      "lifecycle_authority": "Capability Governance"
+    },
+    {
+      "domain": "capability_module_definition",
+      "owner": "Capability Registry / Capability Governance",
+      "read_only_consumers": ["Capability Self", "Brain", "Model Manager", "System Maintenance"],
+      "admission_authority": "Capability Module Admission",
+      "mutation_authority": "Capability Governance",
+      "lifecycle_authority": "Capability Governance"
+    },
+    {
+      "domain": "implementation_and_model_resources",
+      "owner": "Model Manager",
+      "read_only_consumers": ["Capability Admission", "System Maintenance", "Capability Self"],
+      "admission_authority": "Model/implementation admission contracts",
+      "mutation_authority": "Model Manager within approved governance",
+      "lifecycle_authority": "Model Manager for model assets; Capability Governance for capability identity"
+    },
+    {
+      "domain": "provider_admission",
+      "owner": "Provider Governance / existing provider admission boundary",
+      "read_only_consumers": ["Capability Admission", "Model Manager", "Capability Self"],
+      "admission_authority": "Provider admission contract",
+      "mutation_authority": "Provider governance only",
+      "lifecycle_authority": "Provider governance"
+    },
+    {
+      "domain": "slot_module_binding",
+      "owner": "Capability Admission / Capability Governance",
+      "read_only_consumers": ["Capability Self", "Brain", "System Maintenance"],
+      "admission_authority": "Capability Admission",
+      "mutation_authority": "Capability Governance after compatibility, permission, resource, integrity, and safety checks",
+      "lifecycle_authority": "Capability Governance"
+    },
+    {
+      "domain": "capability_health_degradation_and_rollback",
+      "owner": "System Maintenance with Capability Governance and Safety Governance",
+      "read_only_consumers": ["Capability Self", "Brain", "Capability Admission"],
+      "admission_authority": "Maintenance/recovery governance",
+      "mutation_authority": "Approved maintenance/lifecycle path only",
+      "lifecycle_authority": "Capability Governance; Safety Constitution constrains mandatory safety"
+    },
+    {
+      "domain": "safety_minimum_baseline",
+      "owner": "System Constitution / Survival Safety Governance",
+      "read_only_consumers": ["Capability Governance", "Brain", "User Management", "System Maintenance"],
+      "admission_authority": "Constitutional safety admission",
+      "mutation_authority": "No ordinary actor may reduce the baseline",
+      "lifecycle_authority": "Safety governance within constitutional limits"
+    },
+    {
+      "domain": "capability_self_representation",
+      "owner": "Cognitive Self Model / Capability Awareness",
+      "read_only_consumers": ["Brain Capability Regulation", "Cognitive State Formation", "Task Governance"],
+      "admission_authority": "Not an admission owner",
+      "mutation_authority": "Existing Self/Memory governance; no Registry duplication",
+      "lifecycle_authority": "Self representation follows governed capability evidence"
+    },
+    {
+      "domain": "brain_capability_regulation_candidates",
+      "owner": "Brain / Cognitive Core",
+      "read_only_consumers": ["Capability Governance", "System Maintenance", "Safety Governance"],
+      "admission_authority": "None; candidate proposal only",
+      "mutation_authority": "None",
+      "lifecycle_authority": "None; Capability Governance remains lifecycle owner"
+    },
+    {
+      "domain": "capability_history_and_experience",
+      "owner": "Memory / Experience Governance",
+      "read_only_consumers": ["Capability Self", "Brain", "Capability Governance"],
+      "admission_authority": "Memory/Experience governance",
+      "mutation_authority": "Existing Memory/Experience owner",
+      "lifecycle_authority": "Memory/Experience lifecycle governance"
+    },
+    {
+      "domain": "resource_policy_and_admission",
+      "owner": "Existing Resource Governance / Attention Resource Policy",
+      "read_only_consumers": ["Brain", "Capability Admission", "System Maintenance"],
+      "admission_authority": "Resource and permission governance",
+      "mutation_authority": "Existing resource governance",
+      "lifecycle_authority": "Existing resource governance"
+    }
+  ],
+  "invariants": {
+    "new_parallel_capability_registry": false,
+    "registry_is_not_capability_self": true,
+    "brain_is_not_capability_lifecycle_writer": true,
+    "slot_is_not_module_owner": true,
+    "model_manager_is_not_capability_semantic_owner": true
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "boundary_id": "b2_intent_decision_boundary_v1",
+  "intent": {"owner": "Intent Governance", "b2_use": "consume intent_refs or active intent influence refs where canonical input permits", "mutation": false},
+  "decision": {"owner": "Decision Governance / Decision Arbitration", "b2_use": "future candidate handoff reference only", "selection": false, "action": false},
+  "flow": {"owner": "Cognitive Flow Governance", "role": "cycle/lifecycle and handoff candidates", "does_not_own": ["intent", "decision", "task", "action"]},
+  "forbidden": ["hypothesis_to_intent", "context_to_intent_shortcut", "cognitive_state_to_decision_commitment", "decision_to_action_execution"]
+}

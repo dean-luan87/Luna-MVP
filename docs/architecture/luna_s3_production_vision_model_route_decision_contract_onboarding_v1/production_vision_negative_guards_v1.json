@@ -1,0 +1,18 @@
+{
+  "automatic_model_download": false,
+  "automatic_package_download": false,
+  "network_access": false,
+  "latest_model_auto_upgrade": false,
+  "best_fit_declared_without_benchmark": false,
+  "production_approved_without_real_validation": false,
+  "model_change_mutates_cognition": false,
+  "provider_semantic_authority": false,
+  "automatic_capability_activation": false,
+  "ocr_execution": false,
+  "slam_execution": false,
+  "vio_execution": false,
+  "vlm_execution": false,
+  "semantic_compression": false,
+  "real_runtime_execution": false,
+  "model_inference_executed": false
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_context_generation_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "same_space_different_goal",
+      "reality": "same_office",
+      "goal_a": "write_report",
+      "expected_field_a": "work_task_field",
+      "goal_b": "find_colleague",
+      "expected_field_b": "social_interaction_field",
+      "reality_same": true,
+      "field_different": true,
+      "decision_output": false
+    },
+    {
+      "case_id": "field_context_package",
+      "inputs": ["reality_state", "self_state", "goal_context", "rule_reference", "unknown", "provenance"],
+      "output": "cognitive_field_package",
+      "forbidden_output": ["recommendation", "decision", "action"]
+    }
+  ]
+}

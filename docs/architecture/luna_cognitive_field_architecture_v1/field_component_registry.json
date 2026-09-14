@@ -1,0 +1,19 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Component Registry",
+  "components":[
+    {"component":"temporal_state","owner":"Cognitive Field","role":"time continuity and change context"},
+    {"component":"spatial_state","owner":"Cognitive Field","role":"location and spatial relation context"},
+    {"component":"environment_state","owner":"Cognitive Field","role":"environment conditions and dynamics"},
+    {"component":"object_state","owner":"Cognitive Field","role":"observed objects and entities"},
+    {"component":"relationship_state","owner":"Social Self","role":"contextual relationship state"},
+    {"component":"task_state","owner":"Task System","role":"current task context"},
+    {"component":"role_state","owner":"Social Self","role":"active role projection"},
+    {"component":"self_state","owner":"Self Model","role":"subject capability and stability constraints"},
+    {"component":"memory_state","owner":"Memory System","role":"relevant prior Field context"},
+    {"component":"knowledge_state","owner":"Knowledge Library Boundary","role":"admitted contextual knowledge"},
+    {"component":"emotion_context_state","owner":"Integration Layer","role":"future tendency metadata"},
+    {"component":"cognitive_state","owner":"Cognitive Core","role":"current interpretation and unknowns"}
+  ],
+  "rules":{"component_id_unique":true,"owner_declared":true,"field_composes_components":true,"no_component_is_field_authority":true}
+}

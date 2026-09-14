@@ -1,0 +1,52 @@
+{
+  "schema_id": "OcrAdapterInputSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "description": "OCR Runner Sandbox adapter 输入。仅受控裁剪区域与 trace，不含 fact。",
+  "planning_only": true,
+  "adapter_type": "ocr_adapter_input",
+  "entry_requirement": "ocr_controlled_execution_candidate_only",
+  "required_fields": [
+    "source_image_ref",
+    "source_region_id",
+    "region_crop_ref",
+    "region_geometry_ref",
+    "source_ocr_execution_candidate_id",
+    "source_ocr_task_candidate_id",
+    "source_analysis_record_id",
+    "ocr_target_reason",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "source_image_ref": { "type": "string", "description": "原图引用" },
+    "source_region_id": { "type": "string" },
+    "region_crop_ref": { "type": "string", "description": "受控裁剪区域引用" },
+    "region_geometry_ref": { "type": "string" },
+    "source_ocr_execution_candidate_id": { "type": "string", "pattern": "^ocec_ocr_" },
+    "source_ocr_task_candidate_id": { "type": "string" },
+    "source_analysis_record_id": { "type": "string" },
+    "ocr_target_reason": {
+      "type": "string",
+      "description": "中台调度理由：值得文字观察，非文字内容断言"
+    },
+    "trace_chain": { "type": "array", "minItems": 5 },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "forbidden_fields": [
+    "confirmed_text",
+    "fact_label",
+    "confirmed_object_type",
+    "confirmed_sign_type",
+    "human_correction_as_truth",
+    "navigation_decision",
+    "mobilesam_prompt_label_as_fact"
+  ],
+  "boundary_flags": {
+    "ocr_input_does_not_contain_fact_text": true,
+    "ocr_input_does_not_contain_fact_label": true,
+    "no_human_correction_ground_truth": true,
+    "sandbox_only_entry": true,
+    "planning_only": true
+  }
+}

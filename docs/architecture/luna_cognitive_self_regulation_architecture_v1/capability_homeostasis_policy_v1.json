@@ -1,0 +1,9 @@
+{
+  "title": "Capability Homeostasis Policy v1",
+  "owner": "Self Regulation / Capability Homeostasis",
+  "objective": "Maintain task-appropriate capability stability rather than maximize capability unconditionally.",
+  "inputs": ["Task Requirement", "Risk Level", "Resource State", "Capability Health", "Calibration Evidence"],
+  "options": ["Maintain", "Reduce Frequency", "Use Lightweight Option", "Use Alternate Capability", "Request Recovery", "Request Review"],
+  "tradeoffs": ["Accuracy", "Latency", "Energy", "Memory", "Network", "Safety"],
+  "rules": {"candidate_only":true,"admission_required":true,"risk_sensitive":true,"calibration_evidence_required":true,"automatic_model_switch_forbidden":true,"provider_not_authority":true}
+}

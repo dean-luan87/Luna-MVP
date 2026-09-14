@@ -1,0 +1,30 @@
+{
+  "backend_id": "kimera_mock_v1",
+  "backend_family": "metric_semantic_slam",
+  "output_type": "pose graph / semantic mesh / object landmarks",
+  "source_chain": ["kimera_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.78,
+  "backend_origin": "kimera_like_metric_semantic_slam_export_mock",
+  "license_ref": "BSD-2-Clause",
+  "license_boundary": "open_verified",
+  "allowed_use": "observation_and_adapter_replay_dryrun",
+  "commercial_use_status": "unknown_until_license_verified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "pose_graph": {
+    "nodes": [
+      {"id": "n0", "timestamp_ms": 3000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]},
+      {"id": "n1", "timestamp_ms": 3300, "pose": [0.5, 0.1, 0.0, 0.0, 0.0, 0.0, 1.0]}
+    ]
+  },
+  "semantic_mesh_regions": [
+    {"id": "r0", "semantic_label": "floor", "area_hint": 12.5},
+    {"id": "r1", "semantic_label": "wall", "area_hint": 8.0}
+  ],
+  "object_landmarks": [
+    {"id": "obj0", "semantic_label": "chair", "position": [0.4, 0.2, 0.0]},
+    {"id": "obj1", "semantic_label": "table", "position": [0.9, 0.3, 0.0]}
+  ],
+  "room_or_place_hints": [
+    {"id": "place0", "place_label": "meeting_room", "confidence": 0.6}
+  ]
+}

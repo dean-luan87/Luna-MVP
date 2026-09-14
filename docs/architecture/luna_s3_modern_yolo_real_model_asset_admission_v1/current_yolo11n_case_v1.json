@@ -1,0 +1,19 @@
+{
+  "target_model": "YOLO11n",
+  "target_route_role": "STABILITY_COMPARATOR",
+  "declared_asset": true,
+  "physical_asset_status": "ASSET_NOT_PRESENT",
+  "model_identity_status": "MODEL_ASSET_IDENTIFIED_UNIQUE",
+  "model_contract_status": "RESOLVED",
+  "loader_contract_status": "RESOLVED",
+  "provider_adapter_status": "RESOLVED",
+  "capability_contract_status": "RESOLVED",
+  "evidence_contract_status": "RESOLVED",
+  "dependency_status": "PYTHON_DEPENDENCY_UNRESOLVED",
+  "admission_status": "ADMISSION_BLOCKED_ASSET_MISSING",
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "network_access": false,
+  "automatic_model_download": false,
+  "automatic_package_download": false
+}

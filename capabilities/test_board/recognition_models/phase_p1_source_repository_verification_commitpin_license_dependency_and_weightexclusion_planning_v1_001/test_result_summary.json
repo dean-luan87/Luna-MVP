@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.364707+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_SOURCE_REPOSITORY_VERIFICATION_COMMITPIN_LICENSE_DEPENDENCY_WEIGHT_EXCLUSION_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "source_repository_verification_commitpin_planning_profile_count": 1,
+    "stage_ref_count": 12,
+    "source_repository_verification_planning_input_count": 2,
+    "source_repository_candidate_planning_record_count": 2,
+    "source_commit_pin_planning_record_count": 2,
+    "source_license_review_planning_record_count": 2,
+    "source_dependency_review_planning_record_count": 2,
+    "mobile_sam_weight_exclusion_planning_record_count": 1,
+    "source_execution_retry_gate_planning_record_count": 1,
+    "source_execution_retry_readiness_precondition_count": 10,
+    "source_repository_planning_risk_record_count": 2,
+    "negative_guard_count": 19,
+    "blocker_count": 0
+  }
+}

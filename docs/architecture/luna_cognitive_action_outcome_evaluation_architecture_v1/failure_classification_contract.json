@@ -1,0 +1,12 @@
+{
+  "title": "Failure Classification Contract v1",
+  "classes": ["Perception Failure", "Understanding Failure", "Decision Failure", "Execution Failure", "Environment Change"],
+  "inputs": ["Outcome", "Evidence", "Decision Trace", "Action Trace", "Field Evolution", "Unknowns"],
+  "output": "Failure Classification Candidate",
+  "multi_causal": true,
+  "unknown_classification_allowed": true,
+  "single_outcome_schema_update": false,
+  "classification_does_not_modify_self": true,
+  "classification_does_not_modify_personality": true,
+  "candidate_only": true
+}

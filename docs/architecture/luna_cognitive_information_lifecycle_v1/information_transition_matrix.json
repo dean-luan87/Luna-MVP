@@ -1,0 +1,18 @@
+{
+  "version":"1.0",
+  "name":"Information Transition Matrix",
+  "owner":"Information Lifecycle Governance",
+  "transitions":[
+    {"from":"observed","to":"candidate","condition":"source envelope exists"},
+    {"from":"candidate","to":"admitted","condition":"admission and permission pass"},
+    {"from":"admitted","to":"active","condition":"Field/context relevance"},
+    {"from":"active","to":"reinforced","condition":"confirmation or repetition"},
+    {"from":"reinforced","to":"compressed","condition":"pattern/folding review"},
+    {"from":"active","to":"dormant","condition":"context or attention decreases"},
+    {"from":"dormant","to":"active","condition":"context re-match or reinforcement"},
+    {"from":"compressed","to":"archived","condition":"retention policy"},
+    {"from":"dormant","to":"removed","condition":"retention exit"},
+    {"from":"archived","to":"removed","condition":"retention exit or supersession"}
+  ],
+  "rules":{"transition_owner":"Information Lifecycle Governance","automatic_transition_forbidden":true,"unknown_can_remain":true,"current_reality_recheck":true}
+}

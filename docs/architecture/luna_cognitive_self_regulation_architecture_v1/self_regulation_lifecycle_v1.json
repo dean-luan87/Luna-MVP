@@ -1,0 +1,20 @@
+{
+  "title": "Self Regulation Lifecycle v1",
+  "owner": "Self Regulation",
+  "states": ["Observed", "Assessed", "Candidate", "Under Review", "Admitted", "Applied Candidate", "Monitoring", "Recovered", "Degraded", "Rejected", "Revoked", "Archived"],
+  "schema": ["regulation_id", "state", "created_at", "updated_at", "owner", "source_trace", "rollback_ref"],
+  "transitions": [
+    {"from":"Observed","to":"Assessed","condition":"health assessment input complete"},
+    {"from":"Assessed","to":"Candidate","condition":"regulation need identified"},
+    {"from":"Candidate","to":"Under Review","condition":"evidence and risk package ready"},
+    {"from":"Under Review","to":"Admitted","condition":"governance and capability admission pass"},
+    {"from":"Admitted","to":"Applied Candidate","condition":"user/runtime boundary permits candidate application"},
+    {"from":"Applied Candidate","to":"Monitoring","condition":"candidate applied under observation"},
+    {"from":"Monitoring","to":"Recovered","condition":"health validates recovery"},
+    {"from":"Monitoring","to":"Degraded","condition":"health remains degraded"},
+    {"from":"Under Review","to":"Rejected","condition":"evidence or authority fails"},
+    {"from":"Admitted","to":"Revoked","condition":"rollback or boundary violation"},
+    {"from":"Revoked","to":"Archived","condition":"lifecycle closure"}
+  ],
+  "rules": {"state_owner_required":true,"apply_is_candidate":true,"rollback_required":true,"monitoring_required":true,"no_implicit_activation":true}
+}

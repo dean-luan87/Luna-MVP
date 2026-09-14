@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "interface_type": "reality_to_cognition_context_bridge",
+  "input": "Reality Neural Operating Space read projection",
+  "output": "Reality Context Package",
+  "required_sections": ["observable_state", "state_change", "relevant_constraints", "unknowns", "provenance"],
+  "allowed_values": ["current_fact_candidate", "state_change_candidate", "constraint_fact", "unknown_reference"],
+  "forbidden_values": ["recommendation", "judgment", "plan", "prediction", "risk_interpretation", "emotion_interpretation", "decision"],
+  "boundary": {
+    "reads_raw_model_output": false,
+    "reads_entire_reality_database": false,
+    "creates_situation": false,
+    "creates_decision": false,
+    "modifies_reality_state": false,
+    "brain_bypass": false
+  },
+  "unknown_propagation": "preserve_explicitly"
+}

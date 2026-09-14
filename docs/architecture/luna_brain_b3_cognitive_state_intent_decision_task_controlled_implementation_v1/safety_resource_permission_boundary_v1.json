@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_safety_resource_permission_boundary_v1",
+  "rules": ["utility != permission", "preference != authorization", "risk != safety authority", "resource pressure does not force an Intent winner", "model availability != action admission", "TaskCandidate != runtime readiness"],
+  "permission": {"owner": "Permission Governance", "use": "read-only input/veto", "mutation": false},
+  "safety": {"owner": "Safety Governance / Action Boundary", "use": "constraint/veto/block", "mutation": false},
+  "resource": {"owner": "existing Intent/Decision/Task governance layers", "use": "constraint/reference", "mutation": false},
+  "cancellation": "Task Manager lifecycle owns cancel/pause/recovery candidates."
+}

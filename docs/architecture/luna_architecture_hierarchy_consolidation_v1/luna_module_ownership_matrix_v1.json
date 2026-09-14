@@ -1,0 +1,28 @@
+{
+  "title": "Luna Module Ownership Matrix v1",
+  "coverage_source": "luna_module_inventory_v2.json",
+  "records": [
+    {"module":"Constitution","layer":"L0","owner":"Constitution Governance","responsibility":"Highest constraints","allowed_dependency":[],"forbidden_dependency":["Runtime","Brain","Action"]},
+    {"module":"Protocol Manager","layer":"L1","owner":"Cognitive OS Governance","responsibility":"Protocol lifecycle","allowed_dependency":["L0 constraints"],"forbidden_dependency":["Decision ownership","Provider control"]},
+    {"module":"State Management","layer":"L1","owner":"Cognitive OS Governance","responsibility":"State ownership and lifecycle","allowed_dependency":["L0","L2","L3","L4 state contracts"],"forbidden_dependency":["Reality meaning","Action execution"]},
+    {"module":"Event Management","layer":"L1","owner":"Cognitive OS Governance","responsibility":"Event routing and trace","allowed_dependency":["registered module events"],"forbidden_dependency":["Decision override","Goal creation"]},
+    {"module":"Reality Workspace","layer":"L2","owner":"Cognitive Core Governance","responsibility":"Accepted reality representation","allowed_dependency":["Evidence Gateway","Reducer","Field"],"forbidden_dependency":["Provider direct write","Memory override"]},
+    {"module":"Brain","layer":"L2","owner":"Cognitive Core Governance","responsibility":"Understanding and judgment","allowed_dependency":["Global Cognitive State","Value","Goal","Decision Candidate"],"forbidden_dependency":["Capability Provider","Hardware","direct Action"]},
+    {"module":"Attention","layer":"L2","owner":"Cognitive Core Governance","responsibility":"Resource allocation","allowed_dependency":["Field","Risk","Drive","Value","Task"],"forbidden_dependency":["Goal creation","Decision override","Provider direct execution"]},
+    {"module":"Memory","layer":"L2","owner":"Cognitive Core Governance","responsibility":"Relevant retrieval and storage candidates","allowed_dependency":["Experience","Field","Task","Attention"],"forbidden_dependency":["Reality override","Decision ownership"]},
+    {"module":"Learning","layer":"L2","owner":"Cognitive Core Governance","responsibility":"Pattern and adaptation candidates","allowed_dependency":["Outcome","Experience","Expectation Feedback"],"forbidden_dependency":["Reality write","Constitution mutation","automatic strategy activation"]},
+    {"module":"Capability Registry","layer":"L4","owner":"Capability Governance","responsibility":"Capability identity","allowed_dependency":["L1 Admission","Capability Contract"],"forbidden_dependency":["Brain control","Goal creation"]},
+    {"module":"Model Manager","layer":"L4","owner":"Capability Governance","responsibility":"Model asset governance","allowed_dependency":["Capability Requirement","Hardware Profile","Admission"],"forbidden_dependency":["Decision","Goal","Brain direct access"]},
+    {"module":"Provider Boundary","layer":"L4","owner":"Capability Governance","responsibility":"Provider isolation","allowed_dependency":["Capability Request","approved input"],"forbidden_dependency":["Brain","Goal","Reality direct write"]},
+    {"module":"Hardware Capability","layer":"L4","owner":"Capability Governance","responsibility":"Hardware contribution and state","allowed_dependency":["Hardware Registry","Resource Governance"],"forbidden_dependency":["Identity mutation","Goal creation","Brain control"]},
+    {"module":"Action Boundary","layer":"L4","owner":"Capability Governance","responsibility":"Execution permission gate","allowed_dependency":["Decision Commitment","Permission Boundary","Risk"],"forbidden_dependency":["Decision creation","Reality direct write"]}
+  ],
+  "layer_defaults": {
+    "L0": {"owner":"Constitution Governance","allowed_dependency":["constitution references"],"forbidden_dependency":["runtime","cognition","action"]},
+    "L1": {"owner":"Cognitive OS Governance","allowed_dependency":["L0","registered state and contracts"],"forbidden_dependency":["semantic decision","direct action"]},
+    "L2": {"owner":"Cognitive Core Governance","allowed_dependency":["L0","L1","declared L3/L4 interfaces"],"forbidden_dependency":["provider control","hardware control","direct Reality write"]},
+    "L3": {"owner":"Social-Emotion Boundary Governance","allowed_dependency":["L1","L2 context"],"forbidden_dependency":["Reality mutation","Decision override","Identity mutation"]},
+    "L4": {"owner":"Capability Governance","allowed_dependency":["L1 admission/resource","L2 requirements"],"forbidden_dependency":["Brain control","Goal creation","direct Reality write"]}
+  },
+  "rules": {"one_owner_per_module": true, "one_layer_per_module": true, "defaults_do_not_grant_extra_authority": true, "reader_is_not_writer": true}
+}

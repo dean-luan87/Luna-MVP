@@ -1,0 +1,63 @@
+{
+  "inventory_id": "dynamic_cognitive_flow_minimum_actionable_loop_inventory_v1",
+  "canonical_owner": "Cognitive Flow Governance",
+  "owner_reuse": {
+    "cognitive_flow": "capabilities/midplatform/core/cognitive_flow/",
+    "intent_governance": "capabilities/midplatform/core/intent_governance/",
+    "decision_governance": "capabilities/midplatform/core/decision_governance/",
+    "task_manager": "capabilities/midplatform/core/task_manager_types_v1.py and task_manager/module/",
+    "observation": "capabilities/midplatform/field_perception_orchestrator/ and capabilities/midplatform/core/observation_gateway/",
+    "capability": "capabilities/midplatform/model_manager/registries/universal_capability_slot/",
+    "state_formation": "capabilities/midplatform/core/cognitive_state_formation/",
+    "brain_baseline": "capabilities/midplatform/core/brain_golden_baseline/"
+  },
+  "reused_assets": [
+    "CognitiveCycleStateCandidateV1",
+    "CognitiveCycleTransitionCandidateV1",
+    "ReconsiderationCandidateV1",
+    "CognitiveNeedCandidateV1",
+    "CapabilityRequirementV1",
+    "CapabilityRequirementFormationCandidateV1",
+    "CapabilityScopeAssessmentV1",
+    "CapabilityResolutionCandidateV1",
+    "CapabilityInvocationCandidateV1",
+    "CapabilityOutcomeAssessmentV1",
+    "AttentionCandidateV1",
+    "CognitiveHypothesisCandidateV1",
+    "ObservationControlDecisionV1",
+    "ObservationGateway candidate-only ingress/evidence contracts",
+    "B2/B3/B4 phase owner and negative-guard contracts",
+    "Brain Golden Baseline owner/truth/mutation boundaries"
+  ],
+  "additive_types": [
+    "CognitiveGoalCandidateV1",
+    "ProvisionalPlanCandidateV1",
+    "CognitiveStateVersionCandidateV1",
+    "CognitiveEvidenceUpdateCandidateV1",
+    "GoalSufficiencyCandidateV1",
+    "DynamicCognitiveLoopTransitionCandidateV1",
+    "DynamicCognitiveLoopInputV1",
+    "DynamicCognitiveLoopOutputV1"
+  ],
+  "intentionally_not_created": [
+    "Planner owner",
+    "Decision owner",
+    "Intent owner",
+    "Capability owner",
+    "Task owner",
+    "Observation owner",
+    "world state model",
+    "runtime execution engine"
+  ],
+  "existing_assets_untouched": [
+    "Intent Governance core",
+    "Decision Governance core",
+    "Task Manager core",
+    "B2/B3/B4 canonical dataclasses",
+    "Capability Scope / Resolution / Invocation governance",
+    "Capability Experience aggregation",
+    "FPO / Observation Gateway execution boundaries",
+    "Field State Reducer",
+    "Brain Golden Baseline planning artifacts"
+  ]
+}

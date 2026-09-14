@@ -1,0 +1,29 @@
+{
+    "artifact": "cognitive_core_provenance_closure_audit_v1",
+    "overall_status": "CLOSED_WITH_ADAPTER",
+    "reverse_locatability": {
+        "parameter_update_to_learning_candidate": true,
+        "learning_candidate_to_learning_evidence": true,
+        "learning_evidence_to_memory_or_experience": true,
+        "memory_or_experience_to_cognitive_cycle": true,
+        "cognitive_cycle_to_state_formation_refs": true,
+        "state_formation_refs_to_intent_pcn_context": true
+    },
+    "required_lineages": {
+        "revision_lineage": true,
+        "revocation_lineage": true,
+        "supersession_lineage": true,
+        "cycle_inheritance_lineage": true
+    },
+    "version_fields_present": true,
+    "rules": {
+        "provenance_continuity_not_fact_authority": true,
+        "source_owner_mutation": false,
+        "cross_user_transfer": false
+    },
+    "evidence_roots": [
+        "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/cognitive_flow_trace_provenance_contract_v1.json",
+        "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/memory_trace_provenance_contract_v1.json",
+        "docs/architecture/luna_cognitive_learning_governance_planning_v1/cognitive_learning_trace_provenance_contract_v1.json"
+    ]
+}

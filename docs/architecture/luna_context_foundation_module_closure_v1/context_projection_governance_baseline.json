@@ -1,0 +1,38 @@
+{
+  "baseline_id": "luna_context_projection_governance_baseline_v1",
+  "owner": "Context_Foundation",
+  "projection_semantics": "read-only source-owned reference",
+  "required_metadata": [
+    "Source Owner",
+    "Version",
+    "Provenance",
+    "Validity",
+    "Confidence",
+    "Unknown"
+  ],
+  "additional_required_metadata": [
+    "Source Reference",
+    "Projection Kind",
+    "Trace Reference",
+    "Temporal Scope"
+  ],
+  "governance_rules": {
+    "source_owner_required": true,
+    "version_required": true,
+    "provenance_required": true,
+    "validity_required": true,
+    "confidence_required_or_explicit_unknown": true,
+    "unknown_preservation_required": true,
+    "multiple_candidates_allowed": true,
+    "contradiction_preservation_required": true,
+    "current_reality_precedence": true,
+    "read_only": true,
+    "reference_only": true,
+    "source_owner_transfer": false,
+    "source_mutation_allowed": false,
+    "fact_promotion_allowed": false
+  },
+  "invalid_projection_result": "REJECT_OR_PRESERVE_AS_UNKNOWN_CANDIDATE",
+  "active_contract": false,
+  "status": "FROZEN_CLOSURE_BASELINE"
+}

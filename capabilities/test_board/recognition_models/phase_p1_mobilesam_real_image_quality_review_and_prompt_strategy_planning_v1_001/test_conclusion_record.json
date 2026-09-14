@@ -1,0 +1,36 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:07:08.045018+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "quality_review_status": "go",
+    "stable_targets": [
+      "left_building",
+      "crosswalk_or_road_region"
+    ],
+    "weak_targets": [
+      "front_vehicle",
+      "road_sign"
+    ],
+    "recommended_prompt_strategy": "box_for_large_objects_detector_for_small_dynamic_objects",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+    "route_options": {
+      "A": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+      "B": "Phase-P1-MobileSAM-Detector-Assisted-Prompt-Planning-v1-001",
+      "C": "Phase-P1-MobileSAM-Real-Image-Quality-Review-Post-Review-Closure-v1-001"
+    },
+    "inference_executed_this_phase": false,
+    "new_image_read_this_phase": false,
+    "transition_note": "PLANNING ONLY. Reviewed 5 candidate masks from upstream execution. Prompt strategy and failure modes documented. No inference/runtime/semantic/fact."
+  },
+  "final_decision": "P1_MOBILE_SAM_REAL_IMAGE_QUALITY_REVIEW_PROMPT_STRATEGY_PLANNING_GO"
+}

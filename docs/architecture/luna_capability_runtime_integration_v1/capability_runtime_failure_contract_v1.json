@@ -1,0 +1,8 @@
+{
+  "title": "Capability Runtime Failure Contract v1",
+  "owner": "Cognitive OS Governance",
+  "failure_types": ["Provider Failure", "Timeout", "Resource Failure", "Result Invalid"],
+  "pipeline": ["Failure", "Diagnostics", "Degrade", "Alternative Capability", "Unknown"],
+  "schema": ["failure_id", "execution_id", "failure_type", "impact", "diagnostics_reference", "degrade_candidate", "alternative_candidate", "unknown", "trace_id"],
+  "rules": {"unknown_preserved": true, "degrade_before_stop": true, "no_auto_provider_switch": true, "no_direct_decision": true}
+}

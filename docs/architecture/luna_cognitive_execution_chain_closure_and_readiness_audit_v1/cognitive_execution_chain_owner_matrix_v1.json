@@ -1,0 +1,232 @@
+{
+    "artifact": "cognitive_execution_chain_owner_matrix_v1",
+    "owners": [
+        {
+            "owner": "Intent Governance",
+            "owned_state": [
+                "intent_candidates",
+                "intent_interactions",
+                "intent_trace"
+            ],
+            "allowed_mutation": [
+                "intent layer internal candidate lifecycle"
+            ],
+            "forbidden_mutation": [
+                "causal_state",
+                "decision_state",
+                "action_state",
+                "runtime_state"
+            ],
+            "allowed_handoff": [
+                "Intent->Causal"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Causal Governance",
+            "owned_state": [
+                "causal_hypotheses",
+                "causal_evidence_relations",
+                "causal_trace"
+            ],
+            "allowed_mutation": [
+                "causal layer internal candidate lifecycle"
+            ],
+            "forbidden_mutation": [
+                "intent_state",
+                "decision_state",
+                "action_state",
+                "runtime_state"
+            ],
+            "allowed_handoff": [
+                "Causal->Decision"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Decision Governance",
+            "owned_state": [
+                "decision_candidates",
+                "decision_selection",
+                "decision_trace"
+            ],
+            "allowed_mutation": [
+                "decision layer internal candidate lifecycle"
+            ],
+            "forbidden_mutation": [
+                "intent_state",
+                "causal_state",
+                "action_execution",
+                "runtime_execution"
+            ],
+            "allowed_handoff": [
+                "Decision->Action"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Action Governance",
+            "owned_state": [
+                "action_candidates",
+                "action_readiness",
+                "action_trace"
+            ],
+            "allowed_mutation": [
+                "action layer internal candidate lifecycle"
+            ],
+            "forbidden_mutation": [
+                "runtime_execution_state",
+                "task_lifecycle_state"
+            ],
+            "allowed_handoff": [
+                "Action->Runtime",
+                "Action->Task(reference_only)"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Runtime Executor",
+            "owned_state": [
+                "execution_candidate_state",
+                "execution_attempts",
+                "execution_trace"
+            ],
+            "allowed_mutation": [
+                "runtime executor synthetic candidate lifecycle"
+            ],
+            "forbidden_mutation": [
+                "upstream_intent_state",
+                "upstream_causal_state",
+                "upstream_decision_state",
+                "upstream_action_state"
+            ],
+            "allowed_handoff": [
+                "Runtime->Action(result)",
+                "Runtime->Task(result reference)",
+                "Runtime->Diagnostics"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Task Manager",
+            "owned_state": [
+                "task_runtime_state"
+            ],
+            "allowed_mutation": [
+                "task runtime only"
+            ],
+            "forbidden_mutation": [
+                "intent_state",
+                "causal_state",
+                "decision_state",
+                "action_state",
+                "runtime_executor_state"
+            ],
+            "allowed_handoff": [
+                "consume task references"
+            ],
+            "runtime_authority": true,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "System Diagnostics",
+            "owned_state": [
+                "diagnostics_stream",
+                "health_signal_state"
+            ],
+            "allowed_mutation": [
+                "diagnostics records"
+            ],
+            "forbidden_mutation": [
+                "five_layer_business_state"
+            ],
+            "allowed_handoff": [
+                "consume diagnostics candidates"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Maintenance Plane",
+            "owned_state": [
+                "maintenance_workflow_state"
+            ],
+            "allowed_mutation": [
+                "maintenance workflow only"
+            ],
+            "forbidden_mutation": [
+                "five_layer_business_state"
+            ],
+            "allowed_handoff": [
+                "consume maintenance candidates"
+            ],
+            "runtime_authority": true,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Field",
+            "owned_state": [
+                "field_state"
+            ],
+            "allowed_mutation": [
+                "field governance pipeline only"
+            ],
+            "forbidden_mutation": [
+                "by integration adapter"
+            ],
+            "allowed_handoff": [
+                "provide evidence/context refs"
+            ],
+            "runtime_authority": true,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Memory",
+            "owned_state": [
+                "memory_facts",
+                "memory_revisions"
+            ],
+            "allowed_mutation": [
+                "memory governance pipeline only"
+            ],
+            "forbidden_mutation": [
+                "by integration adapter"
+            ],
+            "allowed_handoff": [
+                "provide evidence/context refs"
+            ],
+            "runtime_authority": true,
+            "integration_override_allowed": false
+        },
+        {
+            "owner": "Cognitive Execution Chain Integration",
+            "owned_state": [],
+            "allowed_mutation": [],
+            "forbidden_mutation": [
+                "intent_state",
+                "causal_state",
+                "decision_state",
+                "action_state",
+                "runtime_state",
+                "task_state",
+                "field_state",
+                "memory_state"
+            ],
+            "allowed_handoff": [
+                "adapter mapping only",
+                "compatibility gate",
+                "trace/provenance link"
+            ],
+            "runtime_authority": false,
+            "integration_override_allowed": false,
+            "new_owner": false,
+            "mutation_authority": false
+        }
+    ],
+    "integration_owns_five_layer_business_state": false
+}

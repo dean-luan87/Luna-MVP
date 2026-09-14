@@ -1,0 +1,18 @@
+{
+  "contract_name": "Model Health Monitoring Contract v1",
+  "model_reference": "model-example",
+  "health_state": "Available | Degraded | Limited | Failed | Unknown",
+  "health_evidence": [],
+  "quality_signal": null,
+  "latency_signal": null,
+  "resource_signal": null,
+  "diagnostics_candidate": null,
+  "model_capability_degradation_candidate": null,
+  "fallback_candidate": null,
+  "automatic_model_switching": false,
+  "health_does_not_modify_identity": true,
+  "health_does_not_modify_goal": true,
+  "health_does_not_modify_decision": true,
+  "health_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,23 @@
+{
+  "format_ref": "tracking_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_clip_001.mp4"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "tracking_supervision_adapter",
+    "model_id": "tracking_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "tracking_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "tracks": [
+    {"track_id": "trk_person_1", "label": "moving_person", "trajectory": [[210, 380], [205, 360], [200, 340]], "velocity_hint": {"vx": -2.0, "vy": -4.0}, "confidence": 0.86},
+    {"track_id": "trk_vehicle_1", "label": "vehicle", "trajectory": [[520, 300], [540, 305], [560, 310]], "velocity_hint": {"vx": 4.0, "vy": 1.0}, "confidence": 0.72},
+    {"track_id": "trk_obstacle_1", "label": "dynamic_obstacle", "trajectory": [[80, 320], [82, 330], [84, 340]], "velocity_hint": {"vx": 1.0, "vy": 2.0}, "confidence": 0.69}
+  ]
+}

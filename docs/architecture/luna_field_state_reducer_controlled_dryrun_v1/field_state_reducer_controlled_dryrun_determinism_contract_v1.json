@@ -1,0 +1,29 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Controlled DryRun Determinism Contract",
+    "comparison_fields": [
+        "ordered_event_ids",
+        "reduction_decision",
+        "resulting_state",
+        "state_change_type",
+        "replay_key",
+        "accepted_event_ids",
+        "rejected_event_ids",
+        "ignored_event_ids",
+        "conflict_ids",
+        "state_mutation_executed",
+        "runtime_execution"
+    ],
+    "excluded_or_fixed_fields": [
+        "created_at",
+        "reducer_run_id",
+        "process_id",
+        "memory_address",
+        "wall_clock_duration"
+    ],
+    "same_input_same_snapshot_same_result": true,
+    "input_list_order_not_final_order_authority": true,
+    "stable_event_id_tie_breaker_required": true,
+    "provider_recall_during_replay_allowed": false,
+    "current_runtime_state_dependency_allowed": false
+}

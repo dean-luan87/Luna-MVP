@@ -1,0 +1,8 @@
+{
+  "title": "Degradation Management Contract v1",
+  "owner": "Self Regulation / Degradation Management",
+  "inputs": ["Health State", "Capability Failure", "Resource Constraint", "Self Limitation", "Risk"],
+  "outputs": ["Degraded Capability Profile", "Fallback Candidate", "Unknown Increase Candidate", "Attention Adjustment Candidate"],
+  "schema": ["degradation_id", "affected_capability", "degradation_state", "available_alternatives", "reduced_confidence", "unknown", "risk", "review_status", "trace_id"],
+  "rules": {"graceful_degradation":true,"unknown_increased_explicitly":true,"fallback_candidate_only":true,"reversible":true,"no_silent_failure":true,"no_direct_action":true}
+}

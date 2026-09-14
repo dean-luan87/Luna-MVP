@@ -1,0 +1,14 @@
+{
+  "interface_name": "Field Emotion Binding v1",
+  "field_reference": {},
+  "field_context": {},
+  "field_history": {},
+  "emotion_state_candidate": {},
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "field_emotion_attachment": true,
+  "emotion_is_context_bound": true,
+  "field_does_not_make_emotion_judgment": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,109 @@
+{
+    "record_version": "v1",
+    "capability_id": "luna.field_state_read_model",
+    "module_id": "luna.midplatform.field_state_read_model",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "freeze_candidate": true,
+    "freeze_status": "candidate_only",
+    "production_status": false,
+    "normal_runtime_load_allowed": false,
+    "freeze_scope": [
+        "public read API",
+        "six-state read semantics",
+        "five-state runtime semantics",
+        "read-only authority",
+        "no mutation",
+        "no fact admission",
+        "no synthetic result on rejection",
+        "provenance/trace/version preservation",
+        "input immutability",
+        "candidate-only output",
+        "controlled runtime boundary"
+    ],
+    "included_contracts": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+    ],
+    "included_runtime_behavior": {
+        "read_statuses": [
+            "query_rejected",
+            "state_unavailable",
+            "stale_state",
+            "insufficient_state",
+            "partial_projection",
+            "read_ready"
+        ],
+        "runtime_statuses": [
+            "runtime_completed",
+            "runtime_partial",
+            "runtime_unavailable",
+            "runtime_rejected",
+            "runtime_error_contained"
+        ],
+        "expected_rejection_separate_from_unexpected_exception": true,
+        "rejection_read_api_invoked": false,
+        "rejection_synthetic_business_result_allowed": false,
+        "input_immutability_required": true,
+        "provenance_trace_version_preserved": true
+    },
+    "included_boundary_flags": {
+        "read_only": true,
+        "state_mutation": false,
+        "event_reduction": false,
+        "fact_admission": false,
+        "evidence_fabrication": false,
+        "real_model_execution": false,
+        "action_execution": false,
+        "runtime_loop": false,
+        "real_state_store_connected": false,
+        "candidate_only": true
+    },
+    "included_evidence": [
+        "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json",
+        "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json",
+        "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json",
+        "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+    ],
+    "excluded_capabilities": [
+        "real storage implementation",
+        "async runtime",
+        "batch query",
+        "downstream dispatch",
+        "retry orchestration",
+        "production SLA",
+        "distributed runtime",
+        "model-backed inference"
+    ],
+    "known_limitations": [
+        "no real state store",
+        "no asynchronous runtime",
+        "no downstream dispatch",
+        "no batch query",
+        "no retry orchestration",
+        "no persistence",
+        "no real source adapter"
+    ],
+    "reopen_conditions": [
+        "public read API contract change",
+        "six-state read priority change",
+        "five-state runtime mapping change",
+        "boundary flag drift",
+        "provenance trace or version preservation regression",
+        "dependency contract drift",
+        "module integration evidence regression",
+        "major module version change"
+    ],
+    "promotion_constraints": [
+        "candidate-only freeze; active baseline remains unchanged",
+        "no mutation or fact admission authority",
+        "no real store connection",
+        "no production status",
+        "rebaseline required for major contract or mainline change"
+    ],
+    "next_verification_phase": "user_terminal_promotion_governance_admission_verification",
+    "core_implementation_modified": false,
+    "created_at": "2026-07-20"
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Outcome Memory Relation v1",
+  "flow": ["Outcome", "Evaluation", "Experience Candidate", "Memory Candidate", "Information Lifecycle Consolidation"],
+  "memory_role": "retain validated high-value experience structures",
+  "information_lifecycle_required": true,
+  "memory_candidate_only": true,
+  "automatic_memory_write": false,
+  "single_outcome_is_not_memory": true,
+  "memory_does_not_override_reality": true,
+  "current_reality_precedence": true
+}

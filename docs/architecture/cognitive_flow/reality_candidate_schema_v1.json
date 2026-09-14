@@ -1,0 +1,11 @@
+{
+  "schema_version": "v1",
+  "schema_type": "reality_candidate",
+  "required_fields": ["candidate_id", "candidate_type", "subject_reference", "supporting_evidence", "confidence", "unknowns", "provenance", "temporal_window", "spatial_scope"],
+  "candidate_types": ["entity", "event", "relation", "state"],
+  "optional_fields": ["conflicting_evidence", "withdrawal_reference", "assembly_trace"],
+  "status_values": ["candidate", "conflicted_candidate", "expired_candidate", "withdrawn_candidate"],
+  "not_fact": true,
+  "not_situation": true,
+  "not_decision": true
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Action Outcome Evaluation Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Action Runtime", "owner": "Action Runtime", "writer": "Future Action Execution", "reader": ["Outcome Layer"]},
+    {"module": "Outcome Layer", "owner": "Outcome Layer", "writer": "Outcome Evaluation Governance", "reader": ["Reality Validation", "Experience", "Decision"]},
+    {"module": "Reality Validation", "owner": "Reality Validation", "writer": "Evidence Validation", "reader": ["Outcome Layer", "Belief"]},
+    {"module": "Decision", "owner": "Decision", "writer": "Decision Trace Boundary", "reader": ["Outcome Layer", "Reconsideration"]},
+    {"module": "Experience", "owner": "Experience", "writer": "Experience Governance", "reader": ["Memory", "Schema", "Learning"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Brain", "Field"]},
+    {"module": "Schema", "owner": "Schema", "writer": "Schema Governance", "reader": ["Brain", "Field"]},
+    {"module": "Belief", "owner": "Belief", "writer": "Belief Governance", "reader": ["Understanding", "Decision"]},
+    {"module": "Self", "owner": "Self", "writer": "Self Governance", "reader": ["Outcome Layer", "Capability Governance"]},
+    {"module": "Information Lifecycle", "owner": "Information Lifecycle", "writer": "Information Lifecycle Governance", "reader": ["Experience", "Memory", "Schema"]},
+    {"module": "Learning", "owner": "Learning", "writer": "Learning Governance", "reader": ["Experience", "Self Evolution"]}
+  ]
+}

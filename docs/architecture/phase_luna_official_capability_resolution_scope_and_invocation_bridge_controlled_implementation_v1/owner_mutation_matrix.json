@@ -1,0 +1,8 @@
+{
+  "Capability Registry / Governance": {"owns": ["Module scope", "admission", "resolution candidate"], "mutation": "governed candidate/lifecycle boundary"},
+  "Universal Slot Governance": {"owns": ["Slot binding/readiness projection"], "mutation": "existing governed Slot lifecycle only"},
+  "Model Manager / Provider Governance": {"owns": ["implementation/model/provider dependency admission"], "mutation": "no Module scope authority"},
+  "Cognitive Self / Capability Awareness": {"owns": ["read-only scope visibility"], "mutation": "none"},
+  "Observation Gateway / FPO": {"owns": ["evidence/execution boundary"], "mutation": "provider execution remains outside this phase"},
+  "Brain": {"owns": ["Need/Requirement candidates"], "mutation": "no direct capability mutation"}
+}

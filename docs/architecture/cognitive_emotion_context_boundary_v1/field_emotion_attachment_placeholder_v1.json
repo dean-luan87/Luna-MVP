@@ -1,0 +1,14 @@
+{
+  "placeholder_name": "Field Emotion Attachment Placeholder v1",
+  "field_reference": {},
+  "field_history": {},
+  "emotion_context_candidate": {},
+  "evidence": [],
+  "provenance": [],
+  "confidence": null,
+  "unknowns": [],
+  "field_emotion_attachment_candidate": true,
+  "does_not_calculate_emotion": true,
+  "does_not_make_relationship_judgment": true,
+  "unknowns_are_preserved": true
+}

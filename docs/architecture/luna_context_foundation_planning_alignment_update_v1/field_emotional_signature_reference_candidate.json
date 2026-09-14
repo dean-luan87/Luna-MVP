@@ -1,0 +1,34 @@
+{
+  "candidate_id": "luna_field_emotional_signature_reference_candidate_v1",
+  "field_id": {
+    "type": "reference",
+    "required": true
+  },
+  "field_type": {
+    "type": "string",
+    "required": true
+  },
+  "emotional_signature_reference": [],
+  "activation_context": {
+    "type": "reference",
+    "required": true
+  },
+  "source_owner": "Emotion_or_Field_Owner",
+  "reference_only": true,
+  "calculation_allowed": false,
+  "inference_allowed": false,
+  "mutation_allowed": false,
+  "numeric_emotion_value_allowed": false,
+  "direct_value_definitions": [],
+  "forbidden_direct_definitions": [
+    "happiness",
+    "pain",
+    "stress_value"
+  ],
+  "provenance_required": true,
+  "temporal_validity_required": true,
+  "source_owner_precedence": true,
+  "active_schema": false,
+  "active_contract": false,
+  "status": "PLANNING_CANDIDATE"
+}

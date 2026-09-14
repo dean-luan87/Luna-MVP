@@ -1,0 +1,18 @@
+{
+  "fixture_name": "Brain Input Package Fixture v1",
+  "field_context": {},
+  "role_context": {},
+  "relationship_context": {},
+  "self_context": {},
+  "workspace_context": {},
+  "attention_state": {},
+  "drive_influence": {},
+  "value_constraints": {},
+  "unknowns": [],
+  "risks": [],
+  "memory_candidates": [],
+  "emotion_context_candidate": {},
+  "brain_retains_goal_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "unknowns_are_preserved": true
+}

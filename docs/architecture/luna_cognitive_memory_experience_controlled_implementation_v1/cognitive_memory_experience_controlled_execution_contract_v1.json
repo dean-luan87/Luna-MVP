@@ -1,0 +1,20 @@
+{
+    "artifact": "cognitive_memory_experience_controlled_execution_contract_v1",
+    "phase_id": "Phase-Luna-Cognitive-Memory-And-Experience-Governance-Controlled-Implementation-v1-001",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "module_path": "capabilities/midplatform/core/cognitive_memory_experience",
+    "owner": "Cognitive Memory & Experience Governance",
+    "synthetic_only": true,
+    "candidate_only": true,
+    "no_persistence": true,
+    "runtime_boundary": {
+        "runtime_execution": false,
+        "database_write": false,
+        "vector_store_write": false,
+        "embedding_execution": false,
+        "model_call": false,
+        "source_owner_mutation": false,
+        "learning_execution": false,
+        "personality_mutation": false
+    }
+}

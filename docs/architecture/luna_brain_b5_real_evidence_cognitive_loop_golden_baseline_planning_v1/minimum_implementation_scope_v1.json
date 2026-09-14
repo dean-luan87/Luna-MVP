@@ -1,0 +1,6 @@
+{
+  "b5_assets_only":["authoritative manifest","cross-phase index","owner matrix","route matrix","regression index","change-impact policy","version/compatibility policy","unified guard baseline","trace baseline","baseline verifier/aggregator if later authorized"],
+  "not_required":["new cognitive runtime logic","new provider","real Action","real Runtime","new evidence contract","Memory/Learning","semantic compression"],
+  "canonical_implementation_changes":[],
+  "stop":"manifest and governance indexes prepared; no new cognition behavior"
+}

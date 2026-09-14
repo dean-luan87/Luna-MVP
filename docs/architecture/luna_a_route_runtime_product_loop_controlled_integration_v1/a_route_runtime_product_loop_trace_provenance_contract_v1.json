@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "root":"ProductLoopTraceV1.root_cycle_trace_id",
+  "reverse_route":"Product Output -> Outcome Evaluation -> Runtime Result -> Action -> Task -> Decision -> Cognitive State/Flow -> Context/World -> Observation -> Evidence -> Product Input",
+  "required_refs":["cycle_id","stage_id","trace_ref","provenance_refs","error_refs"],
+  "provenance_grants_authority":false,
+  "source_trace_rewrite":false
+}

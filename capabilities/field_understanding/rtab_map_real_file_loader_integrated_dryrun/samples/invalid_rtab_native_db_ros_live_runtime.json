@@ -1,0 +1,25 @@
+{
+  "format_ref": "rtab_map_graph_export_file",
+  "export_session_id": "rtab_int_native_invalid_0001",
+  "file_origin": {
+    "exporter": "rtabmap-native",
+    "source_file": "rtabmap_native_object.db"
+  },
+  "source_chain": ["rtab_map_graph_export", "rtab_int_native_invalid_0001"],
+  "direct_field_synthesis_write": true,
+  "rtab_db_read": true,
+  "ros_topic_read": true,
+  "live_rtab_runtime": true,
+  "graph_nodes": [
+    {
+      "node_id": "gnode_native",
+      "timestamp_ms": 7400,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.90,
+      "coordinate_scope": "local",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_native_invalid_0001", "gnode_native"]
+    }
+  ],
+  "graph_edges": []
+}

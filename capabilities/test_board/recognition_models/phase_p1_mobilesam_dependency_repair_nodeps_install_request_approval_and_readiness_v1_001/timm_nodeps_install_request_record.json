@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.542206+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "pip_install_allowed": false,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_nodeps_install_request_record",
+  "timm_nodeps_install_request_record": {
+    "request_id": "timm_nodeps_install_request_v1",
+    "asset_id": "mobile_sam",
+    "target_dependency": "timm",
+    "request_scope": "timm_no_deps_dependency_repair_install_preparation",
+    "selected_route": "timm_no_deps_controlled_install",
+    "install_execution_requested_next": true,
+    "command_strategy": "pip_install_timm_no_deps",
+    "controlled_install_scope": "controlled_model_load_env_or_isolated_target",
+    "global_install_requested": false,
+    "request_is_not_install_execution": true,
+    "request_is_not_model_load_retry": true,
+    "request_is_not_inference_approval": true,
+    "request_is_not_runtime_approval": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "paddleocr_ppocrv5_model_files_manifest_v0",
+  "phase": "Phase-PaddleOCR-Weights-001",
+  "notes": "Phase-PaddleOCR-Weights-003: planned weight files; sha256 populated after files on disk + run_paddleocr_weights_snapshot_v0.",
+  "expected_files": [
+    {"role": "det", "relative_path": "ocr/paddleocr_ppocrv5/det/inference.pdiparams", "sha256": null},
+    {"role": "det", "relative_path": "ocr/paddleocr_ppocrv5/det/inference.pdmodel", "sha256": null},
+    {"role": "rec", "relative_path": "ocr/paddleocr_ppocrv5/rec/inference.pdiparams", "sha256": null},
+    {"role": "rec", "relative_path": "ocr/paddleocr_ppocrv5/rec/inference.pdmodel", "sha256": null},
+    {"role": "cls", "relative_path": "ocr/paddleocr_ppocrv5/cls/inference.pdiparams", "sha256": null},
+    {"role": "cls", "relative_path": "ocr/paddleocr_ppocrv5/cls/inference.pdmodel", "sha256": null}
+  ]
+}

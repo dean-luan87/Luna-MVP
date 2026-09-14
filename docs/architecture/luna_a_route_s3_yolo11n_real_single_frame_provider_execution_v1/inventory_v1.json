@@ -1,0 +1,12 @@
+{
+  "canonical_owner": "Field Perception Orchestrator / Vision Provider Integration",
+  "model_manager_owner": "Model Manager / Model Governance",
+  "reused_provider_adapter": "field_perception_real_vision_provider_adapter_v1.py",
+  "reused_runtime_adapter": "capabilities/vision_runtime/yolo_candidate_adapter_v0.py",
+  "target_model_asset_id": "model-asset:yolo11n:weights-v1",
+  "loader_contract_id": "loader:ultralytics:yolo:v1",
+  "provider_adapter_contract_id": "adapter:yolo:visual-evidence:v1",
+  "evidence_contract_id": "evidence:visual-detection-candidate:v1",
+  "new_semantic_owner": false,
+  "single_frame_only": true
+}

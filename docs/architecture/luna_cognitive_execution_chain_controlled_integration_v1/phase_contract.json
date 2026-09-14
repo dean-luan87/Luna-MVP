@@ -1,0 +1,42 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Execution-Chain-Controlled-Integration-v1-001",
+    "phase_type": "LUNA_CONTROLLED_INTEGRATION",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "status": "CONTROLLED_INTEGRATION_CANDIDATE",
+    "previous_phase": "Phase-Luna-Cognitive-Execution-Chain-Integration-Planning-v1-001",
+    "previous_phase_decision": "GO",
+    "scope": {
+        "in_scope": [
+            "synthetic-only five-layer controlled integration",
+            "adapter-level handoff mapping",
+            "compatibility checks",
+            "trace/provenance continuity",
+            "feedback reconsideration routing",
+            "idempotency guards"
+        ],
+        "out_of_scope": [
+            "new owner creation",
+            "production runtime integration",
+            "event bus",
+            "real async orchestration",
+            "field/memory writeback",
+            "task runtime"
+        ]
+    },
+    "constraints": {
+        "integration_no_owner_authority": true,
+        "integration_no_mutation_authority": true,
+        "runtime_side_effect": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false
+    },
+    "verification": {
+        "agent_v0_allowed": true,
+        "agent_v1_allowed": false,
+        "agent_final_verifier_allowed": false,
+        "user_v2_final_verifier_required": true,
+        "chatgpt_v3_final_decision_required": true,
+        "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+    }
+}

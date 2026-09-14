@@ -1,0 +1,35 @@
+{
+  "schema_id": "TextDetectionDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-Text-Detection-Runtime-Integration-DryRun-v1-001",
+  "layer_id": "Model_Manager_Text_Detection_Runtime_DryRun",
+  "dryrun_only": true,
+  "principle": "验证治理闭环，非检测精度 — deterministic fixture，非 PaddleOCR",
+  "chain": [
+    "L1_Situation",
+    "L2_Agent_Planning",
+    "Collaboration_Slot_text_detection",
+    "Model_Manager_Capability_Match",
+    "Text_Detection_Runtime_Fixture",
+    "text_region_candidate",
+    "Collaboration_Next_Slot_Decision",
+    "Decision_Validation"
+  ],
+  "rules": [
+    {"rule_id": "governance_not_accuracy", "description": "验证为什么调用、evidence 边界、Collaboration 决策"},
+    {"rule_id": "detector_no_text_output", "description": "Detector 禁止输出识别文字"},
+    {"rule_id": "collaboration_decides_next", "description": "下一 Slot 由 Collaboration 决定"},
+    {"rule_id": "no_forced_ocr_no_text", "description": "无文字不强制 OCR"},
+    {"rule_id": "low_confidence_needs_review", "description": "低置信度 needs_review，不直接 OCR"},
+    {"rule_id": "runtime_error_l2_replan", "description": "Runtime 故障 → replan，不静默 Qwen/SAM"},
+    {"rule_id": "deterministic_fixture_only", "description": "第一轮不接真实 PaddleOCR"},
+    {"rule_id": "ui_weak_overlay", "description": "UI 弱提示区域，框非主角"}
+  ],
+  "boundary_flags": {
+    "governance_loop_not_ocr_pipeline": true,
+    "deterministic_fixture_only": true,
+    "runtime_usage_metrics": true,
+    "detector_not_task_decider": true,
+    "collaboration_next_slot": true
+  }
+}

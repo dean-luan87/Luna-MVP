@@ -1,0 +1,22 @@
+{
+    "artifact": "execution_timeout_cancellation_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "timeout_fields": [
+        "admission_timeout_ms",
+        "queue_timeout_ms",
+        "execution_timeout_ms"
+    ],
+    "cancellation_triggers": [
+        "user_cancel",
+        "permission_revoked",
+        "safety_revoke",
+        "target_invalidated",
+        "system_abort"
+    ],
+    "rules": {
+        "timeout_not_success": true,
+        "cancellation_not_retry": true,
+        "cancelled_not_suspended": true,
+        "timeout_requires_trace": true
+    }
+}

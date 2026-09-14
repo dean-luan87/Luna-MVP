@@ -1,0 +1,39 @@
+{
+  "derived_from_artifact": "real_visual_symbol_output.json",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "candidates": [
+    {
+      "candidate_type": "color_evidence_candidate",
+      "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+      "confidence": 0.99,
+      "color": "green",
+      "boundary": "color_is_not_fact",
+      "candidate_only": true
+    },
+    {
+      "candidate_type": "shape_evidence_candidate",
+      "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+      "confidence": 0.9,
+      "shape": "polygon",
+      "boundary": "shape_is_not_fact",
+      "candidate_only": true
+    },
+    {
+      "candidate_type": "visual_symbol_candidate",
+      "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+      "confidence": 0.85,
+      "symbol_type": "directional_marker",
+      "direction": "right",
+      "boundary": "symbol_is_not_fact",
+      "candidate_only": true
+    },
+    {
+      "candidate_type": "symbol_meaning_candidate",
+      "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+      "confidence": 0.7,
+      "possible_meaning": "possible_direction_hint",
+      "boundary": "symbol_meaning_requires_context_validation",
+      "candidate_only": true
+    }
+  ]
+}

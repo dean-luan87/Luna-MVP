@@ -1,0 +1,47 @@
+{
+  "schema_id": "TaskIntentCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "任务意图候选 — 决定模型激活方向，不是 fact。",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "task_intent_id",
+    "task_type_candidate",
+    "source",
+    "confidence",
+    "candidate_only",
+    "not_fact"
+  ],
+  "task_type_enum": [
+    "read_text",
+    "find_direction",
+    "identify_object",
+    "assess_walkable_area",
+    "track_dynamic_target",
+    "understand_scene",
+    "locate_place",
+    "manual_review"
+  ],
+  "source_enum": [
+    "user_goal",
+    "scene_policy",
+    "attention_policy",
+    "correction_signal",
+    "default_policy"
+  ],
+  "field_definitions": {
+    "task_intent_id": { "type": "string" },
+    "task_type_candidate": { "type": "string" },
+    "source": { "type": "string" },
+    "confidence": { "type": "number" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "task_intent_candidate_not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "task_intent_candidate_not_fact": true,
+    "planning_only": true
+  }
+}

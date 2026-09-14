@@ -1,0 +1,17 @@
+{
+  "schema_name": "Reflex System Schema v1",
+  "reflex_id": "reflex-example",
+  "reflex_type": "Innate Reflex",
+  "condition": {},
+  "field_context": {},
+  "active_role": {},
+  "risk": {},
+  "safety_constraint": {},
+  "response_candidate": {},
+  "attention_adjustment_candidate": {},
+  "brain_escalation_candidate": {},
+  "candidate_only": true,
+  "does_not_make_decision": true,
+  "does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

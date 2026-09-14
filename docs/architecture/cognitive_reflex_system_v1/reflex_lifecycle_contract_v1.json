@@ -1,0 +1,17 @@
+{
+  "contract_name": "Reflex Lifecycle Contract v1",
+  "states": ["Candidate", "Review", "Active", "Triggered", "Feedback", "Adjusted", "Deprecated"],
+  "transitions": [
+    "Candidate → Review",
+    "Review → Active",
+    "Active → Triggered",
+    "Triggered → Feedback",
+    "Feedback → Adjusted",
+    "Adjusted → Active",
+    "Active → Deprecated"
+  ],
+  "governance_admission_required": true,
+  "learned_reflex_revocable": true,
+  "lifecycle_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

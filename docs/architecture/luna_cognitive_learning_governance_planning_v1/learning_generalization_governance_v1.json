@@ -1,0 +1,18 @@
+{
+    "artifact": "learning_generalization_governance_v1",
+    "levels": [
+        "INSTANCE_ONLY",
+        "LOCAL_CONTEXT",
+        "TEMPORAL_PATTERN",
+        "ROLE_CONTEXT",
+        "RELATIONSHIP_CONTEXT",
+        "DOMAIN_PATTERN",
+        "CROSS_CONTEXT_CANDIDATE"
+    ],
+    "rules": {
+        "single_event_not_cross_context": true,
+        "counterexamples_lower_or_block_generalization": true,
+        "contradiction_preserved_not_averaged": true,
+        "cross_context_requires_stricter_evidence": true
+    }
+}

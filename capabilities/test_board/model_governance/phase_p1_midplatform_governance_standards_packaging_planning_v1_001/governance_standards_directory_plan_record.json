@@ -1,0 +1,42 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standards_directory_plan_record",
+  "governance_standards_directory_plan_record": {
+    "record_id": "governance_standards_directory_plan_v1",
+    "planned_subdirectories": [
+      "index",
+      "model_onboarding",
+      "runtime_boundary",
+      "registry_patch",
+      "test_board",
+      "approval_gates",
+      "negative_guards",
+      "rollback",
+      "failure_semantics",
+      "templates",
+      "case_mappings",
+      "usage_notes",
+      "legacy_rules",
+      "protocol_governance",
+      "file_governance",
+      "input_output_symmetry",
+      "owner_approval",
+      "validation_rules"
+    ],
+    "subdirectory_count": 18,
+    "migration_mode": "planned_only"
+  }
+}

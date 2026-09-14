@@ -1,0 +1,11 @@
+{
+  "contract_id": "attention_processing_v1",
+  "owner": "Attention System",
+  "input": "current_field_candidate",
+  "priority_dimensions": ["risk", "task_relevance", "change", "user_importance", "memory_match"],
+  "outputs": ["attention_candidate", "selection_trace", "observation_request"],
+  "decision_authority": false,
+  "reality_write": false,
+  "brain_override": false,
+  "unknown_preserved": true
+}

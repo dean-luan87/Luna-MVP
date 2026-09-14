@@ -1,0 +1,9 @@
+{
+  "mapping_id": "state_transition_quality_v1",
+  "inputs": ["Previous State", "Next State Candidate", "State Difference", "Transition Function", "Outcome", "Stability Constraint"],
+  "outputs": ["Transition Quality Candidate", "Stability Candidate", "Efficiency Candidate", "Continuity Candidate"],
+  "dimensions": ["directional_improvement", "stability", "resource_cost", "reversibility", "continuity", "outcome_alignment"],
+  "state_difference_required": true,
+  "quality_is_not_automatic_transition": true,
+  "candidate_only": true
+}

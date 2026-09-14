@@ -1,0 +1,18 @@
+{
+    "artifact": "self_deferred_registry_v1",
+    "deferred_items": [
+        "Personality Governance",
+        "Personality trait engine",
+        "Personality evolution",
+        "Emotion Engine",
+        "affective memory compression",
+        "Memory/Experience semantic compression",
+        "emotional semantic compression",
+        "embodied identity runtime",
+        "biometric identity",
+        "persistent self profile database",
+        "cross-user self transfer",
+        "real self adaptation runtime"
+    ],
+    "classification": "D"
+}

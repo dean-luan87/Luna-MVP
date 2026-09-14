@@ -1,0 +1,12 @@
+{
+  "schema_id": "PerceptionTeacherOutputSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "scene_hypothesis_candidates",
+    "visual_evidence_candidates",
+    "uncertainty",
+    "candidate_only",
+    "not_fact"
+  ],
+  "wording": "scene_hypothesis_candidate — evidence supports, not confirmed scene"
+}

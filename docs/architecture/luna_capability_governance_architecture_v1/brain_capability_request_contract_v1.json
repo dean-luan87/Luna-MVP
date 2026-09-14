@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Brain Capability Request Contract",
+  "request_owner": "Brain / Cognitive Core",
+  "request_fields": ["capability_id", "purpose", "task_context", "risk", "evidence_requirement", "confidence", "constraints"],
+  "flow": ["Brain", "Capability Request", "Capability Governance", "Capability Runtime", "Evidence"],
+  "brain_does_not_select": ["Named Model", "Provider Version", "Hardware Driver", "Runtime Scheduler"],
+  "rules": {"capability_not_model_request": true, "governance_admission_required": true, "provider_hidden_from_brain": true, "request_is_not_action": true}
+}

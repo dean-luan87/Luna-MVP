@@ -1,0 +1,81 @@
+{
+  "contract_id": "luna.cognitive_analysis.controlled_skeleton.contract.v1",
+  "version": "1.0",
+  "phase": "Phase-A3-Cognitive-Analysis-Controlled-Skeleton-Implementation-v1-001",
+  "scope": "controlled_skeleton_fixture_only",
+  "object_names": [
+    "CognitiveAnalysisAdmissionResultV1",
+    "CognitiveAnalysisFrameV1",
+    "HypothesisCandidateV1",
+    "CompetingHypothesisSetV1",
+    "AnalysisEvidenceAssessmentV1",
+    "InformationGapRefinementV1",
+    "ObservationRequestCandidateV1",
+    "CognitiveAnalysisSufficiencyResultV1",
+    "CognitiveAnalysisResultV1"
+  ],
+  "required_fields": {
+    "CognitiveAnalysisAdmissionResultV1": ["admission_id", "source_context_ref", "source_context_version", "status", "reason_codes", "blocking_gap_refs", "warning_codes", "permission_allowed", "provenance_complete", "trace_complete", "source_snapshot_traceable", "lifecycle_status", "provenance", "trace_ref"],
+    "CognitiveAnalysisFrameV1": ["analysis_frame_id", "analysis_version", "source_context_ref", "source_context_version", "analysis_subject_ref", "task_ref", "goal_ref", "analysis_scope", "temporal_scope", "selected_evidence_refs", "selected_relation_refs", "known_constraint_refs", "unknown_refs", "admission_ref", "lifecycle_status", "provenance", "trace_ref"],
+    "HypothesisCandidateV1": ["hypothesis_id", "hypothesis_version", "hypothesis_type", "statement", "source_context_ref", "source_analysis_frame_ref", "source_evidence_refs", "supporting_evidence_refs", "contradicting_evidence_refs", "assumption_refs", "uncertainty", "confidence_candidate", "status", "lifecycle_status", "provenance", "trace_ref"],
+    "CompetingHypothesisSetV1": ["competing_set_id", "analysis_question", "source_context_ref", "source_analysis_frame_ref", "hypothesis_refs", "compatibility_records", "dominant_candidate_ref", "unresolved_reason_codes", "evidence_coverage", "status", "lifecycle_status", "provenance", "trace_ref"],
+    "AnalysisEvidenceAssessmentV1": ["assessment_id", "assessment_version", "evidence_ref", "hypothesis_ref", "relation", "strength_candidate", "reliability_candidate", "temporal_relevance", "scope_relevance", "uncertainty", "lifecycle_status", "provenance", "trace_ref"],
+    "InformationGapRefinementV1": ["refinement_id", "source_analysis_frame_ref", "gap_type", "refined_question", "required_information_type", "target_field_refs", "target_relation_refs", "priority_candidate", "blocking_level", "recommended_observation_scope", "resolution_criteria", "lifecycle_status", "provenance", "trace_ref"],
+    "ObservationRequestCandidateV1": ["observation_request_candidate_id", "source_refinement_ref", "source_analysis_frame_ref", "requested_information_type", "requested_scope", "target_refs", "priority_candidate", "permission_requirement_refs", "execution_admitted", "lifecycle_status", "provenance", "trace_ref"],
+    "CognitiveAnalysisSufficiencyResultV1": ["sufficiency_id", "source_context_ref", "source_analysis_frame_ref", "status", "context_sufficiency_ref", "evidence_coverage", "contradiction_level", "unresolved_critical_gap_refs", "temporal_validity", "revoked_evidence_refs", "permission_restriction_refs", "hypothesis_stability", "provenance_complete", "trace_complete", "reason_codes", "warning_codes", "provenance", "trace_ref"],
+    "CognitiveAnalysisResultV1": ["analysis_result_id", "analysis_version", "source_context_ref", "source_context_version", "analysis_frame_ref", "hypothesis_candidate_refs", "competing_hypothesis_set_refs", "evidence_assessment_refs", "information_gap_refinement_refs", "observation_request_candidate_refs", "sufficiency_ref", "result_status", "lifecycle_status", "decision_boundary_admitted", "state_writeback_admitted", "runtime_executed", "simulation_only", "provenance", "trace_ref"]
+  },
+  "enum_values": {
+    "AdmissionStatusV1": ["admitted", "conditionally_admitted", "rejected", "blocked", "unknown"],
+    "HypothesisTypeV1": ["state_interpretation", "relation_interpretation", "change_explanation", "intent_candidate", "risk_explanation", "task_relevance", "causal_candidate", "unknown"],
+    "HypothesisStatusV1": ["proposed", "supported", "contradicted", "underdetermined", "superseded", "rejected", "unknown"],
+    "CompetingHypothesisStatusV1": ["unresolved", "partially_resolved", "provisionally_resolved", "contradicted", "unknown"],
+    "EvidenceRelationV1": ["supports", "contradicts", "neutral", "insufficient", "unavailable", "revoked", "unknown"],
+    "InformationGapTypeV1": ["known_missing", "conflicting_information", "stale_information", "revoked_evidence", "insufficient_resolution", "temporal_unknown", "relation_unknown", "permission_restricted", "unknown"],
+    "AnalysisSufficiencyStatusV1": ["sufficient", "conditionally_sufficient", "insufficient", "blocked", "unknown"],
+    "AnalysisResultStatusV1": ["complete", "provisional", "incomplete", "blocked", "stale", "unknown"],
+    "LifecycleStatusV1": ["active", "stale", "refresh_required", "superseded", "revoked", "unknown"]
+  },
+  "invariants": [
+    "FieldStateReducer is the sole Field State mutation authority",
+    "direct input is CurrentCognitiveContextV1 by reference only",
+    "Hypothesis Candidate is not Fact",
+    "unknown is preserved and cannot be silently completed",
+    "dominant hypothesis is never forced",
+    "revoked evidence cannot remain valid support",
+    "Observation Request Candidate execution_admitted is false",
+    "decision_boundary_admitted is false",
+    "state_writeback_admitted is false",
+    "runtime_executed is false",
+    "simulation_only is true"
+  ],
+  "permission_boundary": {
+    "state_mutation_authority": "FieldStateReducer",
+    "direct_input": "CurrentCognitiveContextV1",
+    "context_writeback": false,
+    "snapshot_writeback": false,
+    "state_writeback": false,
+    "decision_execution": false,
+    "observation_execution": false
+  },
+  "lifecycle_rules": [
+    "A3 objects retain source_context_ref and source_context_version",
+    "stale, refresh_required, superseded, revoked, and unknown are explicit",
+    "Context/Evidence updates create linked later analysis objects rather than overwrite history"
+  ],
+  "failure_semantics": [
+    "context_missing", "context_stale", "context_refresh_required", "context_insufficient", "context_permission_restricted", "source_snapshot_unavailable", "evidence_missing", "evidence_revoked", "evidence_conflict", "temporal_validity_unknown", "hypothesis_underdetermined", "competing_hypotheses_unresolved", "critical_information_gap", "analysis_blocked", "analysis_stale", "provenance_incomplete", "trace_incomplete", "unknown"
+  ],
+  "runtime_boundary": {
+    "runtime_executed": false,
+    "simulation_only": true,
+    "forbidden_capabilities": ["model", "network", "database", "camera", "ocr", "slam", "system_time", "random", "uuid_auto_generation", "action_execution"]
+  },
+  "actual_asset_mapping": {
+    "CurrentCognitiveContextV1": "capabilities/cognitive_flow/current_cognitive_context/current_cognitive_context_v1.py",
+    "context_snapshot_mapping": "A2 snapshot_ref maps to A3 source Context/Snapshot trace reference; no parallel Context type is created",
+    "context_trace_mapping": "A2 trace maps to A3 trace_ref",
+    "selected_refs_mapping": "A2 selected_field_unit_refs, selected_relation_refs, selected_state_refs, selected_history_refs, and selected_evidence_refs remain references only",
+    "field_state_authority": "capabilities/midplatform/core/field_state_reducer/field_state_reducer_types_v1.py"
+  }
+}

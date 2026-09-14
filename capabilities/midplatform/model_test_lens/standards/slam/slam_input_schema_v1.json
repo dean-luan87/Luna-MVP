@@ -1,0 +1,12 @@
+{
+  "schema_id": "slam_input_schema_v1",
+  "type": "slam",
+  "input": {
+    "sequence": "video_frames",
+    "imu": "optional",
+    "camera_intrinsics": {}
+  },
+  "muep_model_type": "slam",
+  "supported_backends": ["orb_slam", "vins", "kimera", "vega_future"],
+  "dataset_examples": ["tum_rgbd", "kitti", "luna_street_scene_v1"]
+}

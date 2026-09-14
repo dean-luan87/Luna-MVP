@@ -1,0 +1,66 @@
+{
+  "validation_set_id": "luna_context_foundation_scenario_validation_v1",
+  "scenarios": [
+    {
+      "scenario_id": "SCENARIO-01-OFFICE-TO-HOME",
+      "name": "办公室到家庭迁移",
+      "input": "用户下班回家，但工作尚未完成，精神状态仍停留在办公室。",
+      "expected_context": {
+        "physical_field": "Home",
+        "active_mental_context": "Office residual state",
+        "role_projection": "Employee role reference remains temporally relevant",
+        "emotion_projection": "Residual stress context candidate",
+        "memory_projection": "Recent project pressure reference",
+        "temporal_scope": "carryover validity and reset condition required"
+      },
+      "validation_focus": ["physical Field changed", "mental context carryover preserved", "source Owner references preserved", "no automatic reset"],
+      "forbidden_results": ["Intent generation", "causal conclusion", "Decision", "Field mutation", "Memory write"],
+      "passes_boundary": true
+    },
+    {
+      "scenario_id": "SCENARIO-02-WEATHER-CHAT",
+      "name": "简单天气聊天",
+      "input": "今天天气怎么样？",
+      "expected_context": {
+        "complexity": "LOW",
+        "required_scope": ["Field Context", "Temporal Context", "Observation Context"],
+        "deep_personal_context": "NOT_REQUIRED"
+      },
+      "validation_focus": ["minimum sufficient Context", "no unnecessary Memory or Relationship expansion"],
+      "forbidden_results": ["deep PCN activation", "Intent generation", "Causal reasoning", "Decision"],
+      "passes_boundary": true
+    },
+    {
+      "scenario_id": "SCENARIO-03-TIRED-EXPRESSION",
+      "name": "情绪表达",
+      "input": "最近很累。",
+      "expected_context": {
+        "complexity": "HIGH",
+        "current_expression_reference": "recent tiredness statement",
+        "emotion_projection": "emotion context candidate if supplied by its Owner",
+        "memory_projection": "relevant recent-history candidate",
+        "unknown": ["cause", "desired response", "duration", "severity"]
+      },
+      "validation_focus": ["Context supplies background", "Unknown preserved", "no cause assumed"],
+      "forbidden_results": ["work pressure declared as Fact", "companion Intent declared", "solution Intent declared", "Causal Explanation", "Decision"],
+      "passes_boundary": true
+    },
+    {
+      "scenario_id": "SCENARIO-04-CHANGE-JOB",
+      "name": "换工作规划",
+      "input": "我要不要换工作？",
+      "expected_context": {
+        "complexity": "HIGH",
+        "required_scope": ["Field Context", "Self Context", "Role Context", "Relationship Context", "Memory Context", "Emotion Context", "Temporal Context"],
+        "context_output": "governed current Context Candidate with confidence, provenance, and unknowns"
+      },
+      "validation_focus": ["role, relationship, history, emotion, and resource references available", "no option ranking"],
+      "forbidden_results": ["recommend quitting", "recommend staying", "Intent generation", "Causal conclusion", "Decision", "Action"],
+      "passes_boundary": true
+    }
+  ],
+  "scenario_count": 4,
+  "all_context_only": true,
+  "implementation_test_executed": false,
+  "status": "PLANNING_CANDIDATE"
+}

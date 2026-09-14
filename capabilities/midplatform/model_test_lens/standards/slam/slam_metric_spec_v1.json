@@ -1,0 +1,29 @@
+{
+  "metric_spec_id": "slam_metric_spec_v1",
+  "version": "1",
+  "task_metrics": {
+    "ate_m": {
+      "description": "Absolute Trajectory Error (meters RMSE after alignment)",
+      "primary": true
+    },
+    "drift_rate": {
+      "description": "error / distance traveled",
+      "formula": "ate_m / total_path_length_m"
+    },
+    "tracking_stability": {
+      "description": "tracked_frames / total_frames",
+      "formula": "stable_ratio"
+    }
+  },
+  "robustness_metrics": {
+    "motion_blur_sensitivity": { "range": [0, 1], "lower_is_better": true },
+    "low_light_degradation": { "range": [0, 1], "lower_is_better": true },
+    "loop_closure_stability": { "range": [0, 1], "higher_is_better": true }
+  },
+  "structural_metrics": {
+    "map_consistency_score": { "range": [0, 1] },
+    "trajectory_smoothness": { "range": [0, 1] },
+    "loop_closure_correctness": { "range": [0, 1] }
+  },
+  "scoring_model_ref": "slam_scoring_model_v1.json"
+}

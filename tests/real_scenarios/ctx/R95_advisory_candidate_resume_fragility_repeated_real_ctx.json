@@ -1,0 +1,29 @@
+{
+  "frame_seq": 95,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R95_advisory_candidate_resume_fragility_repeated_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.24,
+  "task_resume_target": "resume_advisory_positive_m17_repeated_route",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.7-A：多轮 fallback 后仍回到 resume 句，全局主目标仍卡住；summary 与 entry 应对齐为停滞风险",
+  "object_search_flow_type": "advisory_sf1_prime_positive_flow_m17a",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "advisory_sf1_prime_positive_flow_m17a",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [11, 17, 77, 88], "conf": 0.84 },
+    { "label": "cup", "bbox": [158, 36, 228, 104], "conf": 0.61 }
+  ]
+}

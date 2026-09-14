@@ -1,0 +1,21 @@
+{
+  "schema_version": "luna.current_cognitive_context.contract.v1",
+  "module": "current_cognitive_context",
+  "position": "field_snapshot_to_cognitive_analysis_read_interface",
+  "derived_only": true,
+  "read_only": true,
+  "objects": {
+    "SubjectContextV1": {"required": ["schema_version", "subject_ref", "subject_role", "subject_location_ref", "subject_capability_constraints", "subject_permission_scope", "provenance", "trace"]},
+    "TaskContextV1": {"required": ["schema_version", "task_ref", "task_type", "task_stage", "task_priority", "task_constraints", "task_status", "provenance", "trace"]},
+    "GoalContextV1": {"required": ["schema_version", "goal_ref", "primary_goal", "secondary_goal_refs", "success_condition_refs", "stop_condition_refs", "provenance", "trace"]},
+    "AttentionContextV1": {"required": ["schema_version", "attention_scope", "attention_targets", "attention_priority", "excluded_targets", "attention_reason_refs", "provenance", "trace"]},
+    "TemporalContextV1": {"required": ["schema_version", "current_time_reference", "valid_time_scope", "history_window_reference", "temporal_uncertainty", "stale_state_references", "provenance", "trace"]},
+    "ContextInclusionRecordV1": {"required": ["schema_version", "record_id", "source_ref", "selected_object_ref", "inclusion_reason", "relevance_scope", "priority", "supporting_evidence_refs", "provenance", "trace"]},
+    "ContextExclusionRecordV1": {"required": ["schema_version", "record_id", "source_ref", "excluded_object_ref", "exclusion_reason", "excluded_for_current_context_only", "recoverable", "source_snapshot_ref", "provenance", "trace"], "recoverable_required": true},
+    "InformationGapV1": {"required": ["schema_version", "gap_id", "gap_type", "target_ref", "missing_information", "blocking_level", "related_goal_ref", "related_task_ref", "recommended_observation_scope", "evidence_refs", "provenance", "trace"]},
+    "ContextSufficiencyResultV1": {"required": ["schema_version", "sufficiency_status", "reason_codes", "blocking_gap_refs", "condition_refs", "evaluated_context_ref", "provenance", "trace"]},
+    "CurrentCognitiveContextV1": {"required": ["schema_version", "context_id", "context_version", "previous_context_ref", "superseded_by_ref", "lifecycle_status", "field_ref", "snapshot_ref", "subject_context", "task_context", "goal_context", "temporal_context", "attention_context", "schema_refs", "selected_field_unit_refs", "selected_relation_refs", "selected_state_refs", "selected_history_refs", "selected_evidence_refs", "inclusion_records", "exclusion_records", "information_gaps", "sufficiency_result", "context_boundary", "invalidation_reasons", "refresh_required", "provenance", "trace", "created_from_refs"]},
+    "ContextLifecycleValidationResultV1": {"required": ["schema_version", "validation_result", "reason_code", "source_status", "target_status", "provenance", "trace"]}
+  },
+  "forbidden": ["field_state_mutation", "field_state_generation", "raw_observation_fact_promotion", "snapshot_store_bypass", "automatic_selection", "automatic_exclusion", "task_intent_inference", "state_explanation", "hypothesis_generation", "decision_generation", "experience_generation", "model_call", "database", "network", "system_time_as_fact_time", "random_identifier"]
+}

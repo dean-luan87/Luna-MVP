@@ -1,0 +1,124 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "source_execution_retry_gate_record",
+  "source_execution_retry_gate_planning_record": {
+    "gate_id": "source_execution_retry_gate_v1",
+    "source_execution_retry_allowed_now": false,
+    "source_execution_retry_requires_future_readiness": true,
+    "source_execution_retry_not_allowed_until_repository_verification_complete": true,
+    "source_execution_retry_not_allowed_until_commit_pin_complete": true,
+    "source_execution_retry_not_allowed_until_license_review_complete": true,
+    "source_execution_retry_not_allowed_until_dependency_review_complete": true,
+    "mobile_sam_retry_not_allowed_until_weight_excluding_checkout_plan_complete": true,
+    "readiness_precondition_count": 10,
+    "readiness_preconditions_all_unsatisfied_now": true
+  },
+  "source_execution_retry_readiness_preconditions": [
+    {
+      "precondition_id": "retry_precondition_1",
+      "precondition": "repository_url_verified",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_2",
+      "precondition": "commit_hash_pinned",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_3",
+      "precondition": "source_license_review_completed",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_4",
+      "precondition": "dependency_review_completed",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_5",
+      "precondition": "network_boundary_finalized",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_6",
+      "precondition": "command_whitelist_finalized",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_7",
+      "precondition": "source_checkout_strategy_finalized",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_8",
+      "precondition": "rollback_ready",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_9",
+      "precondition": "test_board_ready",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    },
+    {
+      "precondition_id": "retry_precondition_10",
+      "precondition": "mobile_sam_weight_excluding_checkout_plan_completed",
+      "required_before_retry": true,
+      "currently_satisfied": false
+    }
+  ],
+  "source_repository_planning_risk_records": [
+    {
+      "asset_id": "byte_track",
+      "risk_dimensions": [
+        "fabricated_repository_risk",
+        "commit_pin_fabrication_risk",
+        "license_unknown_risk",
+        "dependency_unknown_risk",
+        "network_scope_risk",
+        "source_install_side_effect_risk",
+        "weight_download_contamination_risk",
+        "environment_contamination_risk",
+        "rollback_complexity_risk",
+        "runtime_misreadiness_risk"
+      ],
+      "all_risk_dimensions_recorded": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "risk_dimensions": [
+        "fabricated_repository_risk",
+        "commit_pin_fabrication_risk",
+        "license_unknown_risk",
+        "dependency_unknown_risk",
+        "network_scope_risk",
+        "source_install_side_effect_risk",
+        "weight_download_contamination_risk",
+        "environment_contamination_risk",
+        "rollback_complexity_risk",
+        "runtime_misreadiness_risk"
+      ],
+      "all_risk_dimensions_recorded": true
+    }
+  ]
+}

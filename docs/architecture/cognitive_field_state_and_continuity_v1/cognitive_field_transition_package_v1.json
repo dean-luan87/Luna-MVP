@@ -1,0 +1,12 @@
+{
+  "schema_version": "v1",
+  "contract_type": "field_transition_package",
+  "required_fields": ["package_id", "source_field", "target_field", "leaving_context", "entering_context", "shared_context", "suspended_context", "stable_context_reference", "adaptive_context_reference", "transient_context_reference", "provenance", "unknowns"],
+  "leaving_context": ["open_process_reference", "unresolved_unknowns", "last_validity", "pending_experience_candidate"],
+  "entering_context": ["reality_scope", "observation_scope", "rule_reference", "resource_context"],
+  "shared_context": ["identity_reference", "survival_constitution", "core_capability_reference", "authority_reference"],
+  "suspended_context": ["unfinished_context", "suspension_reason", "resume_condition"],
+  "transition_is_not_identity_change": true,
+  "transition_is_not_decision": true,
+  "transition_is_not_action": true
+}

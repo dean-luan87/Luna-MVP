@@ -1,0 +1,14 @@
+{
+  "phase": "Phase-Luna-A-Owned-Semantic-Decision-To-Loop-Mechanical-Bridge-Controlled-Implementation-v1-001",
+  "scenario_count": 36,
+  "groups": {
+    "NEED": ["ND-01", "ND-02", "ND-03", "ND-04", "ND-05", "ND-06", "ND-07"],
+    "SUFFICIENCY": ["SF-01", "SF-02", "SF-03", "SF-04"],
+    "RECONSIDERATION": ["RC-01", "RC-02", "RC-03", "RC-04"],
+    "NEXT_STEP": ["NS-01", "NS-02", "NS-03", "NS-04", "NS-05", "NS-06", "NS-07"],
+    "COMPATIBILITY": ["CW-01", "CW-02", "CW-03", "CW-04"],
+    "MECHANICAL": ["MC-01", "MC-02", "MC-03", "MC-04", "MC-05"],
+    "ISOLATION": ["IS-01", "IS-02", "IS-03"],
+    "NEGATIVE": ["NG-01", "NG-02"]
+  }
+}

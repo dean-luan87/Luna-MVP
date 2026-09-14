@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.530878+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_followup_inference_execution_route_record",
+  "mobile_sam_followup_inference_execution_route_record": {
+    "route_id": "mobile_sam_followup_inference_execution_route_v1",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Inference-Trial-Execution-And-Post-Review-v1-001",
+    "next_phase_scope": "mobile_sam_single_local_test_image_candidate_only",
+    "next_phase_allows_single_controlled_inference": true,
+    "next_phase_still_no_runtime": true
+  }
+}

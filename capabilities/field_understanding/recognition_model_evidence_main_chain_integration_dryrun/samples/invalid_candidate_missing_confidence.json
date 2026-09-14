@@ -1,0 +1,6 @@
+{
+  "candidate_type": "color_evidence_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "color": "green",
+  "candidate_only": true
+}

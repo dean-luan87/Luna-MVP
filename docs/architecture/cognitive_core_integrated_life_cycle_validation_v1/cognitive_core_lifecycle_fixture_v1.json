@@ -1,0 +1,12 @@
+{
+  "fixture_name": "Cognitive Core Lifecycle Fixture v1",
+  "time_windows": ["24-hour", "7-day", "30-day"],
+  "stages": ["Reality Change", "Field Update", "Role Projection", "Relationship Context", "Workspace Update", "Attention Arbitration", "Drive / Value Influence", "Brain Input Package", "Decision Candidate", "Action Boundary", "Experience Record", "Learning Candidate", "Future Adaptation"],
+  "morning": {"field": "Family Field", "role": "Family Member", "task": "User Reminder"},
+  "day": {"field": "Work Field", "role": "Assistant", "task": "Work Support"},
+  "afternoon": {"field": "Transit Field", "role": "Navigation Assistant", "task": "Support Movement"},
+  "evening": {"field": "Social Field", "role": "Friend", "relationship": "Interaction"},
+  "static_fixture_only": true,
+  "no_runtime": true,
+  "unknowns_are_preserved": true
+}

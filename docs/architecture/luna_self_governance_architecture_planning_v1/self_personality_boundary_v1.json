@@ -1,0 +1,20 @@
+{
+    "artifact": "self_personality_boundary_v1",
+    "future_owner": "Personality Governance",
+    "self_governance_provides": [
+        "self continuity",
+        "attributed preferences",
+        "attributed tendencies",
+        "roles",
+        "capability/limitation refs",
+        "experience-derived self evidence",
+        "learning-derived self evolution evidence"
+    ],
+    "future_personality_governance_decides": [
+        "trait candidates",
+        "trait stability",
+        "trait expression",
+        "personality evolution"
+    ],
+    "rule": "Self Governance must not become Personality Governance."
+}

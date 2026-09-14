@@ -1,0 +1,21 @@
+{
+    "phase_id": "Phase-Luna-Field-Centric-Existing-Module-Logical-Ownership-Mapping-And-Migration-Wave-Decision-v1-001",
+    "logical_mapping_completed": true,
+    "module_mapping_completed": true,
+    "layer_binding_completed": true,
+    "governance_reuse_decision_completed": true,
+    "migration_wave_decision_completed": true,
+    "minimum_vertical_slice_binding_completed": true,
+    "selected_wave": "wave_1_logical_ownership_mapping",
+    "real_directory_migration_allowed": false,
+    "bulk_import_change_allowed": false,
+    "legacy_deletion_allowed": false,
+    "compatibility_adapter_execution_allowed": false,
+    "runtime_activation_allowed": false,
+    "production_activation_allowed": false,
+    "candidate_only": true,
+    "not_fact": true,
+    "blocker_count": 0,
+    "final_decision": "LUNA_FIELD_CENTRIC_LOGICAL_OWNERSHIP_MAPPING_GO",
+    "recommended_next_phase": "Phase-Luna-Field-Centric-Minimum-Vertical-Cognitive-Slice-Roadmap-Decision-v1-001"
+}

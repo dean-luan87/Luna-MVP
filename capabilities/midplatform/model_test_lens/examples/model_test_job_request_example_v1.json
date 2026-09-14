@@ -1,0 +1,23 @@
+{
+  "job_request_id": "job_request_example_v1",
+  "created_by_lens": true,
+  "created_at": "2026-06-30T00:00:00.000Z",
+  "asset_manifest_ref_or_inline": "local_asset_import_example_manifest_v1",
+  "asset_manifest_ref": "local_asset_import_example_manifest_v1",
+  "requested_model_category": "segmentation",
+  "requested_model_id": "mobile_sam",
+  "requested_test_profile": "default_candidate_test_profile_v1",
+  "prompt_plan_ref_or_pending": "pending_user_or_governed_prompt_plan",
+  "expected_adapter": "segmentation_evaluation_adapter_v1",
+  "expected_envelope_schema": "model_test_result_envelope_v1",
+  "candidate_output_only": true,
+  "requires_runner_execution": true,
+  "requires_owner_approval": true,
+  "requires_test_board_record": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "page_must_not_execute_model": true
+}

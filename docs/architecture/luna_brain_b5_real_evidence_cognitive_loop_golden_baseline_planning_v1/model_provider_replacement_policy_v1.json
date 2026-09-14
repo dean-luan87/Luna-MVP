@@ -1,0 +1,9 @@
+{
+  "owner":"Model Manager / Model Governance for asset and contract admission; FPO for provider integration",
+  "replacement_must_preserve":["canonical evidence contract","Observation Gateway admission","candidate-only semantics","trace/provenance","negative guards","bounded provider authority"],
+  "brain_redesign_required":false,
+  "when_evidence_contract_unchanged":"run targeted model/provider and downstream compatibility regressions; cognitive owner interfaces remain stable",
+  "when_evidence_contract_changes":"new evidence contract version and B1-B4 impact review required",
+  "automatic_download":false,
+  "automatic_loader_guessing":false
+}

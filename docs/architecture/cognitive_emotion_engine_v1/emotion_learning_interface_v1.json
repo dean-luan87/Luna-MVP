@@ -1,0 +1,12 @@
+{
+  "interface_name": "Emotion Learning Interface v1",
+  "emotion_experience_candidate": {},
+  "pattern_candidate": {},
+  "attention_change_candidate": {},
+  "strategy_modification": false,
+  "validation_required": true,
+  "revocation_supported": true,
+  "emotion_does_not_directly_modify_strategy": true,
+  "emotion_does_not_auto_learn": true,
+  "unknowns_are_preserved": true
+}

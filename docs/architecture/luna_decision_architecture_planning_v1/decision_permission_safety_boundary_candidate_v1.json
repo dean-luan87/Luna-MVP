@@ -1,0 +1,21 @@
+{
+    "artifact": "decision_permission_safety_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "permission_boundary": {
+        "decision_consumes_permission_context": true,
+        "permission_owner_preserved": true,
+        "permission_can_veto_candidate_eligibility": true,
+        "decision_mutates_permission_policy": false
+    },
+    "safety_boundary": {
+        "decision_consumes_safety_context": true,
+        "safety_owner_preserved": true,
+        "safety_can_constrain_or_block": true,
+        "decision_mutates_safety_policy": false
+    },
+    "shared_guards": {
+        "no_permission_bypass": true,
+        "no_safety_bypass": true,
+        "preferred_not_equal_authorized": true
+    }
+}

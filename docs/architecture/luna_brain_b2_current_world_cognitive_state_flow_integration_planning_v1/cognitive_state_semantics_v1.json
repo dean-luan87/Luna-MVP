@@ -1,0 +1,12 @@
+{
+  "semantics_id": "b2_cognitive_state_semantics_v1",
+  "distinctions": {
+    "world_state_vs_cognitive_state": "Current World is a candidate representation of referenced world/context inputs; Cognitive State is Luna's candidate epistemic, attentional, hypothesis, uncertainty, and conflict state.",
+    "evidence_vs_hypothesis": "Evidence supports or contests a hypothesis candidate; neither is automatically fact.",
+    "provider_confidence_vs_cognitive_confidence": "Provider confidence remains provider metadata; Cognitive State Formation may retain a separate candidate confidence representation.",
+    "attention_priority_vs_truth_probability": "Attention priority expresses candidate relevance/urgency, not truth likelihood.",
+    "hypothesis_vs_fact": "Hypotheses remain revisable, multi-hypothesis candidates with unknown and conflict references."
+  },
+  "existing_behavior": "CognitiveStateFormationEngineV1 emits candidate-only attention, hypotheses, competition, CurrentWorld, vector, and causal handoff outputs with no source mutation or single-truth collapse.",
+  "b2_boundary": "Consume B1 CurrentWorld as read-only evidence-bound candidate input; do not make Cognitive State a second Current World store."
+}

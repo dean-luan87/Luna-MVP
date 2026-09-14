@@ -1,0 +1,19 @@
+{
+  "reused_real_assets": {
+    "S3_Y11_runner": "field_perception_orchestrator/integration/yolo11n_single_frame_execution/run_yolo11n_real_single_frame_provider_execution_v1.py",
+    "provider_adapter": "field_perception_real_vision_provider_adapter_v1.run_authorized_vision_provider_v1",
+    "provider_admission": "field_perception_real_vision_provider_adapter_v1.build_vision_provider_admission_candidate_v1",
+    "model_manager_admission": "yolo11n_external_provisioning_types_v1.resolve_yolo11n_external_provisioning_v1",
+    "model_contract_mapping": "model_contract_repository_resolver_v1.resolve_model_contract_v1",
+    "observation_gateway": "real_visual_evidence_gateway_adapter_v1.admit_real_visual_evidence_v1",
+    "B1": "existing Context World integration engine and Current World candidate",
+    "B2": "b2_current_world_cognitive_state_flow_controlled.run_b2_case",
+    "dynamic_flow": "DynamicCognitiveFlowEngineV1",
+    "capability_bridge": "form_capability_requirement",
+    "capability_scope_resolution": "resolve_scoped_capability_requirement and build_scoped_invocation_candidate",
+    "capability_experience": "build_capability_usage_record and assess_capability_outcome",
+    "baseline": "Brain Golden Baseline owner and negative guard boundaries"
+  },
+  "new_owners": [],
+  "untouched_owners": ["Vision Provider", "Capability Registry", "Model Manager", "Observation Gateway", "Intent Governance", "Task Manager", "Brain Golden Baseline"]
+}

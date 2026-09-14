@@ -1,0 +1,54 @@
+{
+    "artifact_id": "pcn_dryrun_clarification_inheritance_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "source_ref": "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_skeleton_clarification_inheritance_v1.json",
+    "clarifications": [
+        {
+            "clarification_id": "CLAR-001-LINK-MULTI-RELATION",
+            "source_ref": "records[1].area=Link Model",
+            "dryrun_interpretation": "Validate multi-relationship coexistence evidence without source merge in each case result.",
+            "resolved": false,
+            "owner_changed": false,
+            "core_model_changed": false,
+            "mutation_authority_changed": false
+        },
+        {
+            "clarification_id": "CLAR-002-ACTIVATION-DISTINCTION",
+            "source_ref": "records[2].area=Activation",
+            "dryrun_interpretation": "Validate distinction across activation, temporary occupation, resonance, overlap, and historical reactivation candidates.",
+            "resolved": false,
+            "owner_changed": false,
+            "core_model_changed": false,
+            "mutation_authority_changed": false
+        },
+        {
+            "clarification_id": "CLAR-003-GROWTH-NON-AUTO-STRUCTURAL",
+            "source_ref": "records[3].area=Growth",
+            "dryrun_interpretation": "Validate structural change remains candidate-only with no automatic application.",
+            "resolved": false,
+            "owner_changed": false,
+            "core_model_changed": false,
+            "mutation_authority_changed": false
+        },
+        {
+            "clarification_id": "CLAR-004-NESTED-AXIS-KERNEL-FEEDBACK",
+            "source_ref": "records[7].area=Nested Constraints",
+            "dryrun_interpretation": "Validate nested constraint references and interaction boundary while preserving no-mutual-write.",
+            "resolved": false,
+            "owner_changed": false,
+            "core_model_changed": false,
+            "mutation_authority_changed": false
+        },
+        {
+            "clarification_id": "CLAR-005-SCENARIO-EXTENSION-TO-12",
+            "source_ref": "records[8].area=Scenario Model",
+            "dryrun_interpretation": "Validate all 12 dryrun scenarios are executed with case-level evidence and no planning asset mutation.",
+            "resolved": false,
+            "owner_changed": false,
+            "core_model_changed": false,
+            "mutation_authority_changed": false
+        }
+    ],
+    "clarification_count": 5,
+    "none_silently_resolved": true
+}

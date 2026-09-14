@@ -1,0 +1,11 @@
+{
+  "schema_id": "hypothesis_update_candidate_v1",
+  "owner": "Hypothesis System",
+  "fields": ["candidate_id", "original_hypothesis_ref", "validation_event_ref", "field_ref", "supporting_evidence", "contradicting_evidence", "confidence_delta", "proposed_status", "unknowns", "provenance"],
+  "proposed_status_values": ["supported", "partially_supported", "contradicted", "unknown", "expired"],
+  "original_preserved": true,
+  "candidate_only": true,
+  "hypothesis_owner_unchanged": true,
+  "direct_belief_write": false,
+  "direct_memory_write": false
+}

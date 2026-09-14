@@ -1,0 +1,28 @@
+{
+    "artifact_id": "pcn_controlled_dryrun_output_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "required_output_fields": [
+        "case_id",
+        "fixture_id",
+        "candidate_links",
+        "activation_candidates",
+        "active_projection_candidate",
+        "interaction_references",
+        "growth_candidates",
+        "dormancy_candidates",
+        "reactivation_candidates",
+        "resource_constraint_reference",
+        "trace",
+        "boundary_flags"
+    ],
+    "boundary_flags": {
+        "candidate_only": true,
+        "source_mutation_executed": false,
+        "persistence_executed": false,
+        "runtime_integration_executed": false,
+        "causal_reasoning_executed": false,
+        "intent_generation_executed": false,
+        "decision_executed": false,
+        "action_executed": false
+    }
+}

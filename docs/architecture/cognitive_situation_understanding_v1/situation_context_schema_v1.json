@@ -1,0 +1,41 @@
+{
+  "title": "Situation Context Schema v1",
+  "type": "object",
+  "required": [
+    "environment_context",
+    "self_context",
+    "goal_context",
+    "constraint_context",
+    "risk_context",
+    "unknown_context",
+    "evidence_support",
+    "confidence",
+    "provenance"
+  ],
+  "properties": {
+    "environment_context": {"type": "object"},
+    "self_context": {"type": "object"},
+    "goal_context": {"type": "object"},
+    "constraint_context": {"type": "object"},
+    "risk_context": {"type": "object"},
+    "unknown_context": {"type": "array"},
+    "evidence_support": {"type": "array"},
+    "confidence": {"type": "object"},
+    "provenance": {"type": "array"},
+    "situation_candidate": {"type": "object"},
+    "reassessment_candidate": {"type": "object"}
+  },
+  "boundary": {
+    "reality_is_not_situation": true,
+    "situation_is_not_reality": true,
+    "situation_is_not_decision": true,
+    "situation_is_not_action": true,
+    "situation_is_not_prediction": true,
+    "does_not_modify_reality": true,
+    "does_not_modify_goal": true,
+    "does_not_modify_decision": true,
+    "does_not_issue_action": true,
+    "unknown_must_be_preserved": true,
+    "reducer_is_sole_state_mutation_authority": true
+  }
+}

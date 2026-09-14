@@ -1,0 +1,8 @@
+{
+  "title": "Human Override Boundary v1",
+  "owner": "Authority Governance",
+  "schema": ["override_type", "authority", "timestamp", "reason", "scope", "trace_id"],
+  "required_for": ["High Risk", "Critical Risk", "Medical", "Property", "Safety"],
+  "outputs": ["Override Approved Candidate", "Override Rejected Candidate", "Confirmation Required Candidate"],
+  "rules": {"human_authority_explicit": true, "override_is_record": true, "override_not_implicit_action": true, "audit_trace_required": true}
+}

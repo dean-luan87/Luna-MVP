@@ -1,0 +1,7 @@
+{
+  "suite_id": "luna-vision-v1-capability-system-controlled-implementation",
+  "scenario_count": 24,
+  "scenario_ids": ["VCS-01", "VCS-02", "VCS-03", "VCS-04", "VCS-05", "VCS-06", "VCS-07", "VCS-08", "VCS-09", "VCS-10", "VCS-11", "VCS-12", "VCS-13", "VCS-14", "VCS-15", "VCS-16", "VCS-17", "VCS-18", "VCS-19", "VCS-20", "VCS-21", "VCS-22", "VCS-23", "VCS-24"],
+  "execution": "USER_TERMINAL_ONLY",
+  "coverage": ["mandatory safety", "optional warehouse", "registration", "lifecycle", "dual channel", "routing", "degradation", "SNSP/SRSK references", "negative guards"]
+}

@@ -1,0 +1,17 @@
+{
+  "registry_id": "cognitive_schema_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Memory Pattern", "owner": "Memory", "writer": "Memory Governance", "readers": ["Schema Layer", "Brain"]},
+    {"object": "Experience Candidate", "owner": "Experience", "writer": "Experience Governance", "readers": ["Memory", "Schema Layer"]},
+    {"object": "Information Lifecycle Policy", "owner": "Information Lifecycle", "writer": "Lifecycle Governance", "readers": ["Memory", "Schema Layer"]},
+    {"object": "Cognitive Schema", "owner": "Schema Layer", "writer": "Schema Governance", "readers": ["Field", "Role", "Brain", "Understanding"]},
+    {"object": "Knowledge Context", "owner": "Knowledge", "writer": "Knowledge Admission", "readers": ["Field", "Schema Layer", "Experience"]},
+    {"object": "Field Context", "owner": "Field", "writer": "Field Governance", "readers": ["Schema Layer", "Attention", "Brain"]},
+    {"object": "Role Constraint", "owner": "Role", "writer": "Role Governance", "readers": ["Schema Layer", "Brain"]},
+    {"object": "Self Boundary", "owner": "Self", "writer": "Self Regulation", "readers": ["Schema Layer", "Brain"]},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain", "readers": ["Action Boundary", "Experience"]},
+    {"object": "Runtime Execution", "owner": "Runtime", "writer": "Runtime Governance", "readers": ["Schema Layer"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "schema_candidate_writes_only": true, "schema_not_decision_authority": true}
+}

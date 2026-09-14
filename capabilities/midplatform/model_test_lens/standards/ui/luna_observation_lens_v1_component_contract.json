@@ -1,0 +1,55 @@
+{
+  "contract_id": "LunaObservationLensV1ComponentContract",
+  "version": "v1",
+  "frozen": true,
+  "template_standard_ref": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_template_standard.md",
+  "components": {
+    "top_bar": {
+      "required_elements": ["select_file", "start_observation", "view_original", "view_compare", "view_hud", "more_menu", "badge_candidate", "badge_non_runtime", "service_status"],
+      "modules": ["luna_topbar_compact_actions_v1", "simple_mode_ui_v1"],
+      "forbidden_in_main_bar": ["manifest", "job_request", "raw_json", "testboard_refs"]
+    },
+    "left_capability_drawer": {
+      "collapsed_width_px": [56, 72],
+      "expanded_width_px": [220, 260],
+      "trigger": "luna_capability_grid_trigger_v1",
+      "modules": ["luna_left_capability_drawer_v1", "observation_canvas_first_collapsible_layout_v1"],
+      "capability_status_labels": ["可测试", "实验中", "未接入"]
+    },
+    "central_canvas": {
+      "default_view": "hud",
+      "modules": ["perception_hud_view_v1", "perception_hud_renderer_v1", "hud_hidpi_renderer_v1", "hud_visual_policy_v1", "hud_color_semantics_v1", "hud_label_layout_policy_v1"],
+      "alternate_views": ["original", "compare"],
+      "must_be_largest_visual_region": true
+    },
+    "object_chip_bar": {
+      "modules": ["hud_object_chip_bar_v1"],
+      "format": "{number} {short_name} · {percent} · {status_short}",
+      "detail_on_demand": ["hud_selected_object_detail_v1", "hud_external_annotation_panel_v1"],
+      "forbidden_in_main_flow": ["full_object_card_grid"]
+    },
+    "right_reasoning_panel": {
+      "modules": ["hud_reasoning_compression_v1", "luna_observation_compact_ui_v1"],
+      "default_sections": ["current_task", "fact_observations", "risks_uncertainty", "next_steps"],
+      "collapsed_sections": ["reasoning_process", "evidence_chain"],
+      "max_items_per_section_default": 2
+    },
+    "bottom_summary": {
+      "modules": ["luna_bottom_drawer_tabs_v1", "luna_bottom_drawer_state_guard_v1"],
+      "format": "综合分｜成功/尝试｜风险或不确定｜仅模型评估",
+      "max_height_px_collapsed": 88
+    },
+    "bottom_drawers": {
+      "tabs": ["metrics", "objects", "advanced", "developer", "whitebox", "testboard"],
+      "default_collapsed": true,
+      "overlay_position": "fixed",
+      "open_only_on_tab_click": true
+    }
+  },
+  "preserved_modes": ["simple", "developer", "advanced_drawer", "whitebox_slot"],
+  "execution_boundary": {
+    "page_model_execution": false,
+    "local_runner_bridge_port": 8787,
+    "static_site_port": 8765
+  }
+}

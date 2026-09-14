@@ -1,0 +1,29 @@
+{
+  "title": "Cognitive Goal Negative Guards v1",
+  "forbidden": [
+    "goal_direct_action",
+    "task_modify_goal",
+    "memory_automatic_goal",
+    "emotion_modify_goal",
+    "b_route_override_goal",
+    "goal_ignore_self_boundary",
+    "goal_runtime",
+    "automatic_goal_generation",
+    "automatic_goal_adjustment",
+    "task_execution",
+    "action_execution",
+    "emotion_runtime",
+    "b_route",
+    "model_calls",
+    "provider_calls",
+    "hardware_control",
+    "parallel_task_manager",
+    "parallel_goal_manager"
+  ],
+  "goal_is_not_task": true,
+  "goal_is_not_desire": true,
+  "candidate_only": true,
+  "self_governance_required": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

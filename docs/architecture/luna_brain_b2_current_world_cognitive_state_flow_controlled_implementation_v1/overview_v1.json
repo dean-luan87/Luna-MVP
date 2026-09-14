@@ -1,0 +1,8 @@
+{
+  "phase": "Phase-Luna-Brain-B2-Current-World-Cognitive-State-Flow-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION",
+  "real_component": "REAL_B1_CURRENT_WORLD_INPUT",
+  "route": ["B1 CurrentWorldCandidateV1", "read-only adapter", "Cognitive State Formation", "Cognitive Flow", "Observation Need candidate"],
+  "non_goals": ["provider invocation", "Field mutation", "Intent/Decision/Task/Action", "semantic compression", "dynamic cognitive functions"],
+  "candidate_only": true
+}

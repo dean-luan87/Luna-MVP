@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Open Source Integration Architecture Summary",
+  "principle":"Open Source Capability is not Luna Intelligence",
+  "layers":["L0 Constitution","L1 Self","L2 Cognitive Kernel","L3 Experience/Memory/Knowledge","L4 Social Self/Role","L5 Capability"],
+  "external_can_provide":["input processing","computation","storage","similarity","provider evidence candidate"],
+  "external_cannot_provide":["Meaning","Decision","Self Definition","Memory Value","Growth Direction"],
+  "status":"architecture_only",
+  "next_phase":"Cognitive Information Processing Pipeline Architecture",
+  "rules":{"admission_required":true,"adapter_required":true,"replacement_required":true,"kernel_protected":true}
+}

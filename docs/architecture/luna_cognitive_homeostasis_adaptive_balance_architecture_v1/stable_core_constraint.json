@@ -1,0 +1,9 @@
+{
+  "contract_id": "stable_core_constraint_v1",
+  "immutable": ["Safety Principles", "Identity", "Reality Priority", "Constitution", "Ownership Boundary", "Unknown Preservation"],
+  "protected_from": ["Optimization", "Learning", "Memory", "Hive", "B Route", "Emotion", "Experimental Parameter"],
+  "violation_is_non_compensatory": true,
+  "change_requires": ["Explicit Constitution Governance", "Impact Analysis", "Evidence", "Self Review", "Versioning", "Rollback"],
+  "automatic_change": false,
+  "candidate_only": true
+}

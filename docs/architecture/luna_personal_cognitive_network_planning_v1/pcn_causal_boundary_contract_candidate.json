@@ -1,0 +1,40 @@
+{
+    "contract_id": "pcn_causal_boundary_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "pcn_owner": "Personal Cognitive Network Governance",
+    "causal_owner": "Causal Reasoning Governance",
+    "candidate_only": true,
+    "pcn_responsibility": [
+        "Relatedness",
+        "Association",
+        "Activation"
+    ],
+    "causal_responsibility": [
+        "Why",
+        "Cause",
+        "Effect",
+        "Alternative Explanation"
+    ],
+    "allowed_interface": {
+        "pcn_to_causal": [
+            "active_reference_set",
+            "active_link_set",
+            "projection_trace",
+            "uncertainty"
+        ],
+        "causal_to_pcn": [
+            "causal_context_request_candidate",
+            "causal_relevance_feedback_candidate"
+        ]
+    },
+    "forbidden": [
+        "pcn_generates_causal_fact",
+        "pcn_performs_cause_effect_inference",
+        "causal_mutates_pcn_source_objects"
+    ],
+    "example": {
+        "pcn": "Work <-> Boss <-> Stress <-> Family Emotion are highly related.",
+        "causal": "Whether work stress causes family emotion change is analyzed later by Causal."
+    },
+    "second_writer_prohibited": true
+}

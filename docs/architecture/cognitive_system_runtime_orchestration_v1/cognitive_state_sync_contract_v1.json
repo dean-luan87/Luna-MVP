@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive State Synchronization Contract",
+  "change_path": [
+    "Reality Update",
+    "Field Update",
+    "Attention Reallocation",
+    "A Route Re-evaluation",
+    "Brain Awareness Candidate"
+  ],
+  "required_metadata": ["state_version", "source", "provenance", "timestamp", "confidence"],
+  "conflict_handling": "Conflict Candidate",
+  "stale_state_handling": "Stale Candidate",
+  "cross_module_direct_mutation": false,
+  "reducer_authority": "Reducer authority: Reducer remains the sole State mutation authority",
+  "reality_over_experience": true
+}

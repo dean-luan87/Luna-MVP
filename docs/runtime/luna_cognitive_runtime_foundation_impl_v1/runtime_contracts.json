@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Luna Cognitive Runtime Foundation Implementation Contracts",
+  "execution_mode":"Controlled Skeleton Implementation",
+  "scope":"side-effect-free in-memory runtime skeleton",
+  "event_types":["observation","system","capability","failure","lifecycle"],
+  "state_domains":["global","self","capability","runtime"],
+  "lifecycle_states":["created","ready","running","paused","stopped"],
+  "required_invariants":["single state writer","FIFO event intake","trace every intake and tick","snapshot validation before restore","bounded run by explicit tick count"],
+  "forbidden_integrations":["model","provider","hardware","action execution","external I/O","automatic learning"],
+  "side_effect_policy":{"network":false,"filesystem":false,"device":false,"database":false,"subprocess":false},
+  "verification":{"agent":"V0 static and V1 fixture checks only","user_terminal":"V2 final verifier","chatgpt":"V3 audit"}
+}

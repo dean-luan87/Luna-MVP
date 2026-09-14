@@ -1,0 +1,63 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_logic_validation",
+  "scope": "Evidence_to_Situation_Candidate_only",
+  "world_evidence": {
+    "river_width_m": 1.5,
+    "current": "moderate",
+    "riverbed": "unknown",
+    "bridge_present": false
+  },
+  "goal_context": {
+    "purpose": "cross_the_river_safely",
+    "decision_authority": "excluded_from_level_1"
+  },
+  "cases": [
+    {
+      "case_id": "self_world_child",
+      "self_state": {
+        "height_cm": 120,
+        "jump_capability": "low",
+        "risk_tolerance": "low",
+        "experience": "limited"
+      },
+      "expected_situation_candidate": {
+        "direct_crossing_risk": "high",
+        "alternative_path_information_needed": true
+      },
+      "expected_unknowns": ["riverbed_depth", "footing_stability"]
+    },
+    {
+      "case_id": "self_world_adult",
+      "self_state": {
+        "height_cm": 180,
+        "mobility_capability": "normal",
+        "experience": "substantial"
+      },
+      "expected_situation_candidate": {
+        "crossing_feasibility": "possible_with_caution",
+        "footing_information_relevant": true
+      },
+      "expected_unknowns": ["riverbed_depth"]
+    },
+    {
+      "case_id": "self_world_large_animal",
+      "self_state": {
+        "body_size": "large",
+        "stability": "high",
+        "water_tolerance": "high"
+      },
+      "expected_situation_candidate": {
+        "current_impact": "lower_relative_impact",
+        "crossing_feasibility": "possible"
+      },
+      "expected_unknowns": ["riverbed_depth"]
+    }
+  ],
+  "assertions": {
+    "world_state_is_constant": true,
+    "situation_difference_follows_self_difference": true,
+    "universal_action_conclusion_forbidden": true,
+    "decision_and_action_excluded": true
+  }
+}

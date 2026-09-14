@@ -1,0 +1,29 @@
+{
+  "title": "Belief Lifecycle Contract v1",
+  "contract_type": "Belief Candidate Lifecycle",
+  "states": ["Created", "Candidate", "Validated", "Active Reference", "Contradicted", "Deprecated", "Archived"],
+  "transitions": [
+    "Created → Candidate",
+    "Candidate → Validated",
+    "Validated → Active Reference",
+    "Active Reference → Contradicted",
+    "Contradicted → Deprecated",
+    "Deprecated → Archived",
+    "Contradicted → Candidate"
+  ],
+  "admission": {
+    "validated_pattern_required": true,
+    "repeated_or_high_impact_validation": true,
+    "field_compatibility_review": true,
+    "contradiction_review": true,
+    "governance_admission_required": true
+  },
+  "boundary": {
+    "belief_is_not_reality": true,
+    "belief_does_not_override_evidence": true,
+    "belief_is_revocable": true,
+    "contradiction_preserves_history": true,
+    "lifecycle_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "artifact":"b4_implementation_plan_v1",
+  "status":"PLANNING_ONLY",
+  "steps":[
+    {"step":1,"action":"validate B3 TaskCandidate/readiness and Action refs","owner":"B4 integration","effect":"read-only input"},
+    {"step":2,"action":"form ExpectedOutcomeInputV1","owner":"Outcome Evaluation Governance adapter","effect":"candidate expectation only"},
+    {"step":3,"action":"consume controlled ActualResultInputV1 from Runtime Result candidate fixture","owner":"Outcome Evaluation Governance adapter","effect":"no Runtime execution"},
+    {"step":4,"action":"run canonical Outcome Evaluation","owner":"Outcome Evaluation Governance","effect":"comparability/deviation/outcome candidates"},
+    {"step":5,"action":"route candidate feedback","owner":"Task Manager/Cognitive Flow","effect":"lifecycle/reconsideration/reobserve candidates"},
+    {"step":6,"action":"stop before Experience/Learning/Memory and Runtime","owner":"B4 guard","effect":"no side effect"}
+  ],
+  "replay":"Validated structured B3 references only; no B1/B2/B3 rerun."
+}

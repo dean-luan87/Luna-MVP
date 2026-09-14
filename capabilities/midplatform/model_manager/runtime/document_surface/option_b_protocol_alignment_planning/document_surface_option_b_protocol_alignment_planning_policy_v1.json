@@ -1,0 +1,20 @@
+{
+  "policy_id": "document_surface_option_b_protocol_alignment_planning_policy_v1",
+  "planning_only": true,
+  "protocol_alignment_only": true,
+  "segmentation_execution_forbidden": true,
+  "model_download_forbidden": true,
+  "dependency_install_forbidden": true,
+  "preflight_execution_forbidden": true,
+  "controlled_execution_forbidden": true,
+  "runtime_activation_allowed": false,
+  "option_b_execution_allowed": false,
+  "option_b_active_model_selected": false,
+  "active_registry_update_allowed": false,
+  "boundary_status": "frozen",
+  "existing_midplatform_protocol_chain_extension": true,
+  "protocol_patch_not_new_branch": true,
+  "protocol_compliance_check": "required",
+  "candidate_only": true,
+  "not_fact": true
+}

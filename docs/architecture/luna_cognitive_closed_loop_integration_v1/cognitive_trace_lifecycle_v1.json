@@ -1,0 +1,8 @@
+{
+  "title": "Cognitive Trace Lifecycle v1",
+  "owner": "Cognitive OS Governance",
+  "stages": ["Cycle Start", "Evidence", "Context", "Attention", "Belief", "Expectation", "Decision", "Action", "Outcome", "Learning", "Cycle End"],
+  "schema": ["trace_id", "cycle_id", "stage", "reference", "timestamp", "owner", "provenance", "lifecycle_state"],
+  "readers": ["Diagnostics", "Governance Audit", "Learning Review", "Safety Review"],
+  "rules": {"append_only_reference": true, "provenance_required": true, "trace_not_authority": true, "cycle_end_required": true}
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Luna Module Migration Map v1",
+  "migration_is_planning_only": true,
+  "entries": [
+    {"module":"Protocol Manager","current":"Governance Plane","target":"L1 Cognitive Operating System","action":"reclassify","risk":"low","execution":"not executed"},
+    {"module":"Registry Plane","current":"Governance Plane","target":"L1 Cognitive Operating System","action":"reclassify","risk":"low","execution":"not executed"},
+    {"module":"Admission Governance","current":"Governance Plane","target":"L1 Cognitive Operating System","action":"reclassify","risk":"low","execution":"not executed"},
+    {"module":"Cognitive Runtime Kernel","current":"Runtime Architecture","target":"L1 Cognitive Operating System","action":"reclassify","risk":"medium","execution":"not executed"},
+    {"module":"Reality Workspace","current":"Reality / Cognitive Flow","target":"L2 Cognitive Core","action":"canonicalize","risk":"medium","execution":"not executed"},
+    {"module":"Social Field","current":"Social Field Architecture","target":"L3 Social & Emotion Intelligence","action":"boundary_classify","risk":"low","execution":"not executed"},
+    {"module":"Emotion Context","current":"Emotion Context Boundary","target":"L3 Social & Emotion Intelligence","action":"boundary_classify","risk":"low","execution":"not executed"},
+    {"module":"Capability Runtime Contract","current":"Capability Runtime","target":"L4 Capability & Execution System","action":"canonicalize","risk":"medium","execution":"not executed"},
+    {"module":"Model Manager","current":"Model Manager Boundary","target":"L4 Capability & Execution System","action":"canonicalize","risk":"medium","execution":"not executed"},
+    {"module":"Hardware Capability","current":"Hardware Capability Management","target":"L4 Capability & Execution System","action":"canonicalize","risk":"medium","execution":"not executed"},
+    {"module":"cognitive_flow","current":"Unclassified / orphan candidate","target":"L1 Cognitive Operating System","action":"owner_review_required","risk":"high","execution":"not executed"},
+    {"module":"Duplicate contract groups","current":"Parallel historical locations","target":"Canonical Registry aliases","action":"semantic_review_required","risk":"high","execution":"not executed"}
+  ],
+  "actions": ["reclassify", "canonicalize", "boundary_classify", "owner_review_required", "semantic_review_required"],
+  "rules": {"no_file_move": true, "no_delete": true, "no_overwrite": true, "user_governance_review_required": true}
+}

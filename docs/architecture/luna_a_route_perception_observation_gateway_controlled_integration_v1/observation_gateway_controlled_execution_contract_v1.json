@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-A-Route-Perception-Observation-Gateway-Controlled-Integration-v1-001",
+  "canonical_owner": "Observation Gateway Governance",
+  "owner_type": "ingress_evidence_observation_admission_and_routing_governance",
+  "owned_concepts": ["observation ingress contract", "evidence normalization contract", "observation candidate formation", "observation admission state", "provider/source linkage", "routing metadata", "observation lifecycle", "trace/provenance", "idempotency", "correction lineage"],
+  "not_owned": ["visual recognition", "OCR recognition", "SLAM computation", "audio recognition", "world truth", "Field State", "Context", "Attention", "Hypothesis", "Intent", "Decision", "Action", "Memory", "Learning", "Self", "Personality", "Emotion"],
+  "ingress_types": ["USER_INPUT", "VISION", "OCR", "AUDIO", "SLAM_SPATIAL", "FIELD_REFERENCE", "SYSTEM_EVENT", "EXTERNAL_PROVIDER"],
+  "admission_states": ["RECEIVED", "NORMALIZED", "EVIDENCE_READY", "OBSERVATION_CANDIDATE_READY", "NEEDS_CONFIRMATION", "CONTESTED", "ADMITTED_OBSERVATION", "REJECTED", "REVOKED", "EXPIRED", "SUPERSEDED"],
+  "admitted_observation_means": "structurally admissible downstream candidate, not fact or world truth",
+  "candidate_only": true,
+  "truth_declared": false,
+  "runtime_execution": false,
+  "model_call": false,
+  "provider_execution": false
+}

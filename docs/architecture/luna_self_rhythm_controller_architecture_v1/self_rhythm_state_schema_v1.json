@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Self Rhythm State Schema",
+  "owner":"Self Rhythm Controller",
+  "fields":["current_mode","previous_mode","mode_reason","resource_budget_ref","allowed_activity","observations","confidence","unknowns","last_transition_ref"],
+  "state_properties":{"current_mode":"candidate","confidence":"evidence-bound","unknowns":"preserved","mode_reason":"traceable"},
+  "writer":"Self Rhythm Controller candidate pipeline",
+  "readers":["Self Regulation","Cognitive Runtime","Cognitive Loop","Capability Governance"],
+  "forbidden_writers":["Brain","Provider","Model Manager","Emotion","Social Self","Action Runtime"],
+  "lifecycle":["candidate","reviewed","accepted_hint","rejected","superseded"]
+}

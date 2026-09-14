@@ -1,0 +1,13 @@
+{
+  "version":"3.0",
+  "name":"Luna Future Extension Boundary",
+  "extensions":[
+    {"extension":"Emotion Engine","target_layer":"L2_INTEGRATION","target_owner":"Cognitive Integration","status":"future","allowed":"context and metadata interfaces","forbidden":["decision override","action","value rewrite","identity rewrite"]},
+    {"extension":"Role Manager","target_layer":"L2_SOCIAL","target_owner":"Social Self Governance","status":"future","allowed":"role lifecycle and responsibility candidates","forbidden":["self identity rewrite","constitution rewrite","direct action"]},
+    {"extension":"World Model","target_layer":"L2_CORE","target_owner":"Cognitive Core Governance","status":"future","allowed":"validated world representation candidate","forbidden":["reality authority","automatic prediction","direct decision"]},
+    {"extension":"Embodiment","target_layer":"L2_CAPABILITY + L2_ACTION","target_owner":"Capability and Action Governance","status":"future","allowed":"hardware and action boundary interfaces","forbidden":["brain authority","goal creation","constitution edit"]},
+    {"extension":"External LLM","target_layer":"L3_EXTERNAL","target_owner":"Capability Provider","status":"future","allowed":"capability-scoped evidence candidate","forbidden":["Brain direct access","goal creation","reality write","action"]}
+  ],
+  "admission_gates":["Constitution","Governance","Core Integration","Capability Admission","Boundary Verification"],
+  "rules":{"future_not_active":true,"admission_required":true,"no_provider_brain":true,"no_direct_action":true,"no_runtime_activation":true}
+}

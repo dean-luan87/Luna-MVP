@@ -1,0 +1,17 @@
+{
+  "interface_name": "Model Attention Interface v1",
+  "capability_requirement_reference": "capability-requirement-example",
+  "attention_priority_candidate": null,
+  "information_value": null,
+  "risk_context": null,
+  "resource_cost": null,
+  "model_option_candidates": [],
+  "quality_latency_tradeoff": null,
+  "attention_selects_capability_not_model": true,
+  "model_manager_provides_options": true,
+  "model_does_not_trigger_attention": true,
+  "model_does_not_modify_goal": true,
+  "model_does_not_modify_decision": true,
+  "automatic_model_switching": false,
+  "unknowns_are_preserved": true
+}

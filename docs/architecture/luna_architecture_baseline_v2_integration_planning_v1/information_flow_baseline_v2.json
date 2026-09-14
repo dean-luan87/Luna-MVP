@@ -1,0 +1,23 @@
+{
+  "version":"2.0",
+  "name":"Luna Canonical Information Flow Baseline",
+  "external_flow":["External World","Social Self / External Cognition","Evidence","Cognitive Core","Brain","Decision","Action","Feedback","Learning","Self / Social Update"],
+  "internal_flow":["Self State","Self Regulation","Brain","Capability Request","Capability Governance","Capability Runtime","Evidence"],
+  "links":[
+    {"from":"External World","to":"Evidence","object":"observation candidate","permission":"read and validate only","owner":"Reality Evidence Pipeline"},
+    {"from":"Social Self / External Cognition","to":"Evidence","object":"social context evidence","permission":"context candidate","owner":"Social Self"},
+    {"from":"Evidence","to":"Cognitive Core","object":"validated evidence and reality update candidate","permission":"candidate input","owner":"Reality Evidence Pipeline"},
+    {"from":"Cognitive Core","to":"Brain","object":"Global Cognitive State Package","permission":"context input","owner":"Global State"},
+    {"from":"Brain","to":"Decision","object":"Decision Candidate and trace","permission":"candidate generation","owner":"Brain"},
+    {"from":"Decision","to":"Action","object":"committed action request","permission":"execution gate only","owner":"Action Boundary"},
+    {"from":"Action","to":"Feedback","object":"outcome and action trace","permission":"outcome report","owner":"Action Runtime"},
+    {"from":"Feedback","to":"Learning","object":"feedback and expectation difference","permission":"candidate input","owner":"Learning"},
+    {"from":"Learning","to":"Self / Social Update","object":"adaptation candidates","permission":"reviewed candidate only","owner":"Learning"},
+    {"from":"Self State","to":"Self Regulation","object":"health and capability state","permission":"observation input","owner":"Self Model"},
+    {"from":"Self Regulation","to":"Brain","object":"stability and capability candidates","permission":"constraint/context input","owner":"Self Regulation"},
+    {"from":"Brain","to":"Capability Request","object":"capability requirement","permission":"request candidate","owner":"Brain"},
+    {"from":"Capability Governance","to":"Capability Runtime","object":"admitted implementation candidate","permission":"admission only","owner":"Capability Governance"},
+    {"from":"Capability Runtime","to":"Evidence","object":"provider evidence candidate","permission":"gateway output only","owner":"Capability Runtime"}
+  ],
+  "rules":{"flow_closed":true,"evidence_required":true,"social_context_not_identity":true,"feedback_reentry":true,"provider_to_brain_forbidden":true,"provider_to_reality_forbidden":true}
+}

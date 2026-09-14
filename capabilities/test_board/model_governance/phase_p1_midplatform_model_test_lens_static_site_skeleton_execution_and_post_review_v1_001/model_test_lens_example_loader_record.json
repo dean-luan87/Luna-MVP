@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T01:34:15.396432+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "model_test_lens_example_loader_record",
+  "record": {
+    "record_id": "model_test_lens_example_loader_record_v1",
+    "example_envelope_rel": "capabilities/midplatform/model_test_lens/examples/mobile_sam_multi_real_image_envelope_example_v1.json",
+    "local_json_file_input": true,
+    "builtin_example_loader": true,
+    "example_loader_config_rel": "capabilities/midplatform/model_test_lens/static_site/example_loader_config_v1.json",
+    "segmentation_example_available": true,
+    "no_external_url_fetch": true
+  }
+}

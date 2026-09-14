@@ -1,0 +1,33 @@
+{
+  "artifact": "personality_negative_guards_v1",
+  "guards": {
+    "personality_can_mutate_self": false,
+    "personality_can_mutate_memory": false,
+    "personality_can_execute_learning": false,
+    "personality_can_mutate_intent": false,
+    "personality_can_mutate_pcn": false,
+    "personality_can_mutate_emotion": false,
+    "personality_can_mutate_regulation_parameters": false,
+    "personality_can_activate_parameter_genome": false,
+    "personality_can_create_task": false,
+    "personality_can_control_device": false,
+    "personality_can_run_scheduler": false,
+    "personality_can_call_model": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "runtime_execution": false,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false,
+    "semantic_compression_execution": false,
+    "real_side_effect": false,
+    "trait_activation": false,
+    "profile_action_control": false,
+    "profile_intent_control": false,
+    "fact_admission": false,
+    "candidate_only": true,
+    "synthetic_only": true,
+    "planning_only": true
+  },
+  "forbidden_shortcuts": ["delete failed checks", "hardcode success", "flatten profile to one score", "drop contradiction or counterexample refs", "silently overwrite user correction", "rename historical owner into canonical owner", "modify existing owner modules"]
+}

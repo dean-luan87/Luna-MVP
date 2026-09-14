@@ -1,0 +1,21 @@
+{
+  "model_family": "segmentation_family",
+  "candidate_models": ["MobileSAM"],
+  "planned_target_candidates": ["region_evidence_candidate"],
+  "package_or_module_refs": ["mobile_sam"],
+  "command_refs": [],
+  "local_resource_refs": ["models/segmentation/mobile_sam.pt(planned)"],
+  "license_ref": "apache_2_0_or_per_model_license",
+  "model_origin": "external_open_source_segmentation_model",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "segmentation.callable.segment_contract_v1",
+  "output_schema_ref": "segmentation_output_schema_v1",
+  "adapter_mapping_ref": "region_evidence_candidate",
+  "fallback_plan": "fallback_to_unavailable_record",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "research_and_candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "availability_probe_mode": "contract_level_callable_check",
+  "availability_status": "available",
+  "real_inference_requested": true
+}

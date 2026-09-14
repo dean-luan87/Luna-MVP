@@ -1,0 +1,40 @@
+{
+  "title": "Action Outcome Evaluation Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Action Runtime -> Outcome Record (future)",
+    "Reality Validation -> Actual Outcome Evidence",
+    "Decision -> Expected Outcome",
+    "Outcome Layer -> Outcome Evaluation Candidate",
+    "Outcome Evaluation -> Experience Candidate",
+    "Outcome Evaluation -> Failure Classification Candidate",
+    "Experience -> Memory Candidate",
+    "Experience -> Schema Candidate",
+    "Outcome -> Belief Update Candidate",
+    "Outcome Pattern -> Self Capability Candidate",
+    "Information Lifecycle -> Consolidation Governance"
+  ],
+  "forbidden_dependencies": [
+    "Outcome -> Direct Self Modification",
+    "Failure -> Direct Personality Change",
+    "Single Outcome -> Immediate Schema Update",
+    "Memory -> Override Reality",
+    "Outcome Evaluation -> Direct Action",
+    "Outcome Evaluation -> Direct Memory Write",
+    "Outcome Evaluation -> Direct Belief Mutation",
+    "Outcome Evaluation -> Direct Goal Mutation",
+    "Outcome Evaluation -> Direct Value Mutation",
+    "Outcome Evaluation -> Execute Learning",
+    "Action Runtime -> Modify Experience Directly",
+    "Provider -> Create Outcome Fact",
+    "Model -> Override Outcome Evidence",
+    "B Route -> Override Actual Outcome",
+    "Emotion -> Modify Outcome Evaluation"
+  ],
+  "no_action_runtime": true,
+  "no_outcome_collector": true,
+  "no_learning_runtime": true,
+  "no_automatic_memory_write": true,
+  "no_automatic_schema_update": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true
+}

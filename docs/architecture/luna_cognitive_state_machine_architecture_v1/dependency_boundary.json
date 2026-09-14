@@ -1,0 +1,18 @@
+{
+  "contract_id": "cognitive_state_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Field -> Cognitive State Context", "Flow -> Cognitive State Context", "Cognitive State -> Attention Policy Candidate", "Observation State -> Understanding State", "Understanding State -> Decision State", "Decision State -> Action Boundary Candidate", "Action State -> Reflection State", "Reflection State -> Learning State", "Learning State -> Observation State Candidate", "Self Rhythm -> Resource Hint", "Self -> State Constraint", "Constitution -> All State Governance"
+  ],
+  "forbidden_dependencies": [
+    "State -> Scheduler", "State -> Execute Action", "State -> Direct Reality Mutation", "Attention -> Own State", "Attention -> Switch State", "Self Rhythm -> Switch State", "Emotion -> Own State", "Memory -> Switch State", "Learning -> Direct State Mutation", "Learning -> Direct Identity Change", "Learning -> Direct Constitution Change", "Single Outcome -> Schema Update", "B Route -> Override A State", "B Route -> Override Reality", "B Route -> Direct Self Modification", "Runtime -> State Authority", "State -> Learning Runtime", "State -> B Route Runtime", "State -> Model Switching", "State -> Hardware Control"
+  ],
+  "no_state_runtime": true,
+  "no_scheduler": true,
+  "no_automatic_transition": true,
+  "no_action_execution": true,
+  "no_learning_runtime": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true,
+  "no_model_integration": true,
+  "no_hardware_control": true
+}

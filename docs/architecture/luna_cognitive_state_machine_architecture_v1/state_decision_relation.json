@@ -1,0 +1,12 @@
+{
+  "relation_id": "cognitive_state_decision_v1",
+  "flow": ["Understanding State", "Goal Candidate", "Value Utility Candidate", "Decision State", "Decision Arbitration Candidate", "Action State Candidate"],
+  "decision_state_inputs": ["Current Understanding", "Goal", "Value Utility", "Self Constraint", "Risk", "Unknowns"],
+  "brain_generates_candidates": true,
+  "arbitration_selects_candidate": true,
+  "state_does_not_execute": true,
+  "decision_is_not_action": true,
+  "self_has_veto_context": true,
+  "automatic_state_to_action": false,
+  "candidate_only": true
+}

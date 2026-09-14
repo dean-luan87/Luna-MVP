@@ -1,0 +1,78 @@
+{
+  "schema_id": "TeacherRoutingPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Teacher-Routing-Layer-Planning-v1-001",
+  "principle": "Luna 根据 Situation + Task + Missing Information 选择 Teacher 或 Tool，禁止多模型投票。",
+  "routing_rules": [
+    {
+      "rule_id": "shopfront_text_use_ocr_not_teacher",
+      "when": {
+        "scene_type": "shopfront_sign",
+        "missing_info_contains": "text_content",
+        "goal_types": ["identify_place", "read_text"],
+        "tool_available": "ocr"
+      },
+      "route_type": "tool_os",
+      "selected_tool": "ocr",
+      "teacher_request": false,
+      "reason": "OCR tool sufficient for shopfront text; do not abuse Teacher"
+    },
+    {
+      "rule_id": "precise_ocr_not_qwen",
+      "when": {
+        "need_capability": "precise_ocr",
+        "tool_available": "ocr"
+      },
+      "route_type": "tool_os",
+      "selected_tool": "ocr",
+      "teacher_request": false,
+      "exclude_teachers": ["qwen_vl"],
+      "reason": "Qwen weakness: precise_ocr; route to OCR tool"
+    },
+    {
+      "rule_id": "unknown_scene_high_uncertainty_qwen",
+      "when": {
+        "scene_type": "unknown_scene",
+        "uncertainty_high": true
+      },
+      "route_type": "teacher_single",
+      "selected_teacher": "qwen_vl",
+      "teacher_role": "perception_teacher",
+      "teacher_request": true,
+      "reason": "unknown_scene_high_uncertainty"
+    },
+    {
+      "rule_id": "complex_reasoning_multi_candidate",
+      "when": {
+        "goal_types": ["find_best_option", "complex_navigation"],
+        "scene_types": ["indoor_mall", "complex_environment"],
+        "complex_decision": true
+      },
+      "route_type": "teacher_multi_candidate",
+      "teacher_candidates": [
+        {"teacher_id": "qwen_vl", "teacher_role": "perception_teacher", "priority": 1},
+        {"teacher_id": "gpt_vision", "teacher_role": "planning_teacher", "priority": 2}
+      ],
+      "teacher_request": true,
+      "reason": "complex_decision_needs_perception_and_planning_teachers"
+    },
+    {
+      "rule_id": "routine_case_noop",
+      "when": {
+        "routine_case": true,
+        "validation_status": "validated_candidate"
+      },
+      "route_type": "noop",
+      "teacher_request": false,
+      "reason": "current plan sufficient"
+    }
+  ],
+  "boundary_flags": {
+    "no_multi_teacher_voting": true,
+    "router_before_adapter": true,
+    "no_teacher_execution": true,
+    "no_tool_execution": true,
+    "no_fact_write": true,
+    "routing_candidate_only": true
+  }
+}

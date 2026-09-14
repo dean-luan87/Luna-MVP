@@ -1,0 +1,43 @@
+{
+  "title": "Self State Update Contract v1",
+  "contract_type": "Self State Update Candidate",
+  "inputs": [
+    "Runtime Evidence",
+    "Diagnostics Candidate",
+    "Capability State Reference",
+    "Resource Evidence",
+    "Field Load Context",
+    "Temporal Context"
+  ],
+  "candidate": {
+    "state_domain": "Physical State | Cognitive State | Capability State | Resource State",
+    "previous_state": {},
+    "proposed_state": {},
+    "trigger": "required",
+    "confidence": "required",
+    "provenance": [],
+    "uncertainty": [],
+    "validity": {},
+    "recovery_condition": "required",
+    "expiry_condition": "required"
+  },
+  "flow": [
+    "Runtime",
+    "Self State Update Candidate",
+    "Reducer validation",
+    "Self Awareness",
+    "Attention Adjustment Candidate",
+    "Brain Awareness Candidate"
+  ],
+  "rules": {
+    "automatic_state_mutation": false,
+    "reducer_is_sole_state_mutation_authority": true,
+    "does_not_modify_identity": true,
+    "does_not_modify_capability_identity": true,
+    "does_not_modify_reality": true,
+    "does_not_modify_goal": true,
+    "does_not_modify_decision": true,
+    "does_not_trigger_action": true,
+    "does_not_trigger_online_learning": true
+  }
+}

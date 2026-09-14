@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standard_future_execution_route_record",
+  "governance_standard_future_execution_route_record": {
+    "record_id": "governance_standard_future_execution_route_v1",
+    "recommended_next_phase": "Phase-P1-Midplatform-Governance-Standards-Packaging-Execution-And-Post-Review-v1-001",
+    "allows_directory_creation": true,
+    "allows_copy_or_migrate": true,
+    "allows_manifest_and_index_generation": true,
+    "forbids_main_program_mutation": true,
+    "forbids_runtime_execution": true,
+    "forbids_deleting_original_evidence": true
+  }
+}

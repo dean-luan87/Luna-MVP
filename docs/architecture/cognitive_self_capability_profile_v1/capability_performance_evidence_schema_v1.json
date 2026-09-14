@@ -1,0 +1,21 @@
+{
+  "schema_name": "Capability Performance Evidence Schema v1",
+  "evidence_id": "performance-evidence-example",
+  "capability_reference": "capability-example",
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "task_reference": "task-example",
+  "outcome_reference": "outcome-example",
+  "success_signal": null,
+  "failure_signal": null,
+  "failure_attribution": null,
+  "confidence": null,
+  "uncertainty": null,
+  "timestamp": null,
+  "provenance": [],
+  "unknowns": [],
+  "is_model_self_report": false,
+  "evidence_is_not_capability": true,
+  "evidence_requires_assessment": true,
+  "unknowns_are_preserved": true
+}

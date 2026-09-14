@@ -1,0 +1,38 @@
+{
+  "guard_set_id": "universal-slot-conformance-audit-negative-guards-v1",
+  "mode": "AUDIT_ONLY",
+  "guards": {
+    "runtime_execution": false,
+    "provider_invocation": false,
+    "model_inference": false,
+    "download_execution": false,
+    "install_execution": false,
+    "activation_execution": false,
+    "suspension_execution": false,
+    "uninstall_execution": false,
+    "upgrade_execution": false,
+    "rollback_execution": false,
+    "capability_state_mutation": false,
+    "brain_direct_capability_mutation": false,
+    "user_direct_capability_mutation": false,
+    "safety_baseline_bypass": false,
+    "parallel_capability_registry": false,
+    "parallel_model_manager": false,
+    "parallel_capability_self_owner": false,
+    "specialized_universal_slot_types": false,
+    "visual_system_promoted_to_universal_owner": false,
+    "knowledge_implementation": false,
+    "srsk_implementation": false,
+    "learning_execution": false,
+    "memory_mutation": false,
+    "market_capability_implementation": false
+  },
+  "additional_boundaries": {
+    "capability_equals_module": false,
+    "capability_equals_model": false,
+    "capability_equals_provider": false,
+    "capability_equals_knowledge": false,
+    "official_equals_mandatory": false,
+    "engineering_mapping_is_runtime": false
+  }
+}

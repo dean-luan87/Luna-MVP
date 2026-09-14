@@ -1,0 +1,12 @@
+{
+  "title": "Goal Value Boundary v1",
+  "value_owner": "Value Layer",
+  "interface_status": "reserved",
+  "value_role": "provide future preference and ranking context",
+  "value_creates_goal_directly": false,
+  "value_modifies_goal_directly": false,
+  "value_overrides_constitution": false,
+  "value_implementation": false,
+  "candidate_only": true,
+  "emotion_integration": false
+}

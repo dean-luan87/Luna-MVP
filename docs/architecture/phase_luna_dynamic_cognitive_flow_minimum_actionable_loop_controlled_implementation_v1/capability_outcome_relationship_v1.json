@@ -1,0 +1,16 @@
+{
+  "dimensions": [
+    {"dimension": "execution outcome", "owner": "Capability Experience", "examples": ["SUCCESS", "FAILURE", "DEGRADED", "TIMEOUT"]},
+    {"dimension": "requirement satisfaction", "owner": "Capability Experience / Requirement assessment", "examples": ["SATISFIED", "PARTIAL", "UNSATISFIED"]},
+    {"dimension": "task contribution", "owner": "Capability Experience / Task feedback boundary", "examples": ["RESOLVED", "CONTRIBUTED", "NO_CONTRIBUTION", "UNRESOLVED"]},
+    {"dimension": "cognitive sufficiency", "owner": "Cognitive Flow / Goal sufficiency candidate", "examples": ["SUFFICIENT", "INSUFFICIENT"]}
+  ],
+  "non_equivalences": [
+    "execution SUCCESS != requirement SATISFIED",
+    "requirement SATISFIED != goal SUFFICIENT",
+    "goal SUFFICIENT does not require full plan execution",
+    "execution FAILURE != task FAILURE",
+    "skipped/not-required capability call != capability FAILURE"
+  ],
+  "candidate_only": true
+}

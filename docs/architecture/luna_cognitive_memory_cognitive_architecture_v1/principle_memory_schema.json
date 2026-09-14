@@ -1,0 +1,12 @@
+{
+  "schema_id": "principle_memory_v1",
+  "owner": "Memory System",
+  "fields": ["principle_id", "experience_memory_refs", "long_term_validation", "multi_context_evidence", "principle_statement_candidate", "scope", "confidence", "unknowns", "provenance", "governance_status"],
+  "long_term_validation_required": true,
+  "multi_context_validation_required": true,
+  "rare_generation": true,
+  "candidate_only": true,
+  "direct_value_update": false,
+  "direct_identity_update": false,
+  "fact_assertion": false
+}

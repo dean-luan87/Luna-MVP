@@ -1,0 +1,12 @@
+{
+  "title": "Decision Priority Contract v1",
+  "inputs": ["Utility Candidate", "Value Dimensions", "Goal Priority Candidate", "Risk Candidate", "Resource Cost Candidate", "Confidence", "Reversibility"],
+  "outputs": ["Priority Candidate", "Tradeoff Candidate", "Sensitivity Candidate"],
+  "constraint_filter_precedes_priority": true,
+  "priority_is_not_decision": true,
+  "priority_is_not_action": true,
+  "automatic_ranking": false,
+  "utility_is_candidate": true,
+  "brain_review_required": true,
+  "candidate_only": true
+}

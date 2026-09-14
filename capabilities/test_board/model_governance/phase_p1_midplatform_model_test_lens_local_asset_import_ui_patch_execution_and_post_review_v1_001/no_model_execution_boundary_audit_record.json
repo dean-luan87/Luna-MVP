@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-UI-Patch-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T03:12:12.131971+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record": {
+    "record_id": "no_model_execution_boundary_audit_v1",
+    "no_model_execution": true,
+    "no_inference_execution": true,
+    "no_runtime": true,
+    "no_output_adapter": true,
+    "no_semantic_fact_navigation": true,
+    "no_registry_mutation": true,
+    "no_external_url": true,
+    "no_camera_microphone": true,
+    "no_delete_artifact_button": true,
+    "forbidden_pattern_scan_passed": true
+  }
+}

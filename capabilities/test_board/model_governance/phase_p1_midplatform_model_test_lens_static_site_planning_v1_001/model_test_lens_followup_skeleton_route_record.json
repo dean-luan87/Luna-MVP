@@ -1,0 +1,22 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.960922+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "model_test_lens": true,
+  "not_whitebox_product_page": true,
+  "runtime_allowed": false,
+  "model_execution_allowed": false,
+  "candidate_output_only": true,
+  "record_type": "model_test_lens_followup_skeleton_route_record",
+  "record": {
+    "route_id": "model_test_lens_followup_skeleton_route_v1",
+    "recommended_next_phase": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Skeleton-Execution-And-Post-Review-v1-001",
+    "next_phase_scope": "local_static_site_skeleton_json_read_display_only"
+  }
+}

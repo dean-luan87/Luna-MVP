@@ -1,0 +1,13 @@
+{
+  "contract_id": "self_regulation_stability_protection_v1",
+  "owner": "Self Regulation Function",
+  "inputs": ["Stable Core", "Identity", "Constitution", "Safety Boundary", "Ownership Boundary", "Drift Candidate", "Resource Risk", "Experimental Candidate"],
+  "outputs": ["Stability Candidate", "Veto Candidate", "Rollback Candidate", "Review Candidate", "Preserve Candidate"],
+  "protected_dimensions": ["Identity", "Constitution", "Reality Priority", "Safety", "Ownership"],
+  "single_event_is_not_identity_drift": true,
+  "is_internal_mechanism": true,
+  "direct_identity_change": false,
+  "direct_constitution_change": false,
+  "automatic_rollback": false,
+  "candidate_only": true
+}

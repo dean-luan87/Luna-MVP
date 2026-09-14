@@ -1,0 +1,14 @@
+{
+    "phase": "Phase-Luna-Action-Governance-Controlled-Implementation-v1-001",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "canonical_owner": "Action Governance",
+    "planning_precondition": "Phase-Luna-Action-Architecture-Planning-v1-001=GO",
+    "candidate_only": true,
+    "synthetic_fixture_only": true,
+    "runtime_executed": false,
+    "database_write_executed": false,
+    "device_control_executed": false,
+    "scheduler_executed": false,
+    "task_created": false,
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

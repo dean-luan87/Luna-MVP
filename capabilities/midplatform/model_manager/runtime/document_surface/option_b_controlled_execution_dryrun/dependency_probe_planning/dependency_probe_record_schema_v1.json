@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Dependency Probe Record Schema v1",
+    "type": "object",
+    "required": [
+        "candidate_id",
+        "dependency_name",
+        "dependency_expected",
+        "dependency_present",
+        "adapter_name",
+        "adapter_present",
+        "probe_status",
+        "candidate_only",
+        "not_fact"
+    ],
+    "properties": {
+        "candidate_id": {
+            "type": "string"
+        },
+        "dependency_name": {
+            "type": "string"
+        },
+        "dependency_expected": {
+            "type": "boolean"
+        },
+        "dependency_present": {
+            "type": "boolean"
+        },
+        "adapter_name": {
+            "type": "string"
+        },
+        "adapter_present": {
+            "type": "boolean"
+        },
+        "probe_status": {
+            "type": "string"
+        },
+        "candidate_only": {
+            "type": "boolean"
+        },
+        "not_fact": {
+            "type": "boolean"
+        }
+    }
+}

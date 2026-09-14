@@ -1,0 +1,30 @@
+{
+  "title": "Decision Conflict Contract v1",
+  "contract_type": "Decision Commitment Conflict Candidate",
+  "conflict_types": ["Intent Conflict", "Goal Conflict", "Value Conflict", "Role Conflict", "Resource Conflict", "Time Conflict"],
+  "input": {
+    "commitment_candidates": [],
+    "decision_candidates": [],
+    "field_context": {},
+    "intent_context": {},
+    "goal_context": {},
+    "value_constraints": [],
+    "resource_constraints": [],
+    "time_constraints": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "conflict_candidate": {},
+    "brain_review_requirement": {},
+    "human_override_requirement": {},
+    "resolution_status": "Unresolved | Brain Review | Human Review | Deferred | Resolved Candidate"
+  },
+  "boundary": {
+    "conflict_is_preserved": true,
+    "conflict_is_not_silently_resolved": true,
+    "conflict_does_not_make_decision": true,
+    "conflict_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Skeleton-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "record": {
+    "service_files_written": true,
+    "server_entrypoint_written": true,
+    "api_handlers_written": true,
+    "job_store_written": true,
+    "storage_layer_written": true,
+    "files": [
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_server_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_api_handlers_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_service_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_storage_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_job_store_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/runners/mobilesam_image_runner_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/runners/slam_video_limited_runner_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/adapters/mobilesam_runner_to_envelope_adapter_v1.py",
+      "capabilities/midplatform/model_test_lens/local_runner_bridge/adapters/slam_limited_runner_to_envelope_adapter_v1.py"
+    ]
+  }
+}

@@ -1,0 +1,309 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Controlled DryRun Case Registry",
+    "cases": [
+        {
+            "case_id": "registry_loading_case",
+            "category": "positive",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "baseline_placeholder_chain_case",
+            "category": "positive",
+            "fixture_refs": [
+                "latest_valid_candidate",
+                "confidence_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "repeated_identical_input_case",
+            "category": "positive",
+            "fixture_refs": [
+                "confidence_candidate",
+                "consensus_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "reversed_candidate_order_case",
+            "category": "positive",
+            "fixture_refs": [
+                "confidence_candidate",
+                "consensus_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "conflict_preservation_candidate_case",
+            "category": "positive",
+            "fixture_refs": [
+                "conflict_preservation_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "temporary_overlay_candidate_case",
+            "category": "positive",
+            "fixture_refs": [
+                "temporary_overlay_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "owner_correction_candidate_case",
+            "category": "positive",
+            "fixture_refs": [
+                "owner_correction_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "insufficient_evidence_no_state_change_case",
+            "category": "positive",
+            "fixture_refs": [
+                "insufficient_evidence_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "skeleton_policy_decision",
+            "expected_error_code": null,
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "unknown_policy_id_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "unknown_policy_id",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "unknown_state_type_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "unknown_state_type",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_policy_registry_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "missing_policy_registry_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_eligibility_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "missing_eligibility_matrix_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_precedence_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "missing_precedence_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "missing_composition_snapshot_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "missing_composition_snapshot",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "runtime_request_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "runtime_execution_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "direct_state_write_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "direct_state_write_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "fact_promotion_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "fact_promotion_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "action_trigger_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "action_trigger_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "provider_recall_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "provider_recall_forbidden",
+            "blocker_if_failed": true
+        },
+        {
+            "case_id": "external_lookup_rejection_case",
+            "category": "negative",
+            "fixture_refs": [
+                "latest_valid_candidate"
+            ],
+            "mutation_of_fixture_allowed": false,
+            "mutation_of_registry_allowed": false,
+            "real_event_allowed": false,
+            "real_policy_execution_allowed": false,
+            "state_mutation_allowed": false,
+            "expected_outcome": "rejected",
+            "expected_error_code": "external_lookup_forbidden",
+            "blocker_if_failed": true
+        }
+    ]
+}

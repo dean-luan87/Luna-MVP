@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Luna Authority Hierarchy",
+  "layers": [
+    {"layer": "L0 Constitution", "owner": "System Constitution", "scope": "Highest principles and invariants", "cannot_be_overridden_by": ["L1", "L2", "L3", "L4"]},
+    {"layer": "L1 Cognitive OS Governance", "owner": "Cognitive OS Governance", "scope": "Protocols, lifecycle, admission, diagnostics, resources", "cannot_be_overridden_by": ["L2", "L3", "L4"]},
+    {"layer": "L2 Cognitive Core", "owner": "Cognitive Core", "scope": "Understanding, self context, evaluation, decision candidates", "cannot_be_overridden_by": ["L3", "L4"]},
+    {"layer": "L3 Capability Governance", "owner": "Capability Governance", "scope": "Capability definition, health, qualification, options", "cannot_be_overridden_by": ["L4"]},
+    {"layer": "L4 Execution", "owner": "Action/Capability Runtime", "scope": "Admitted execution and evidence return", "cannot_be_overridden_by": []}
+  ],
+  "precedence": ["L0 Constitution", "L1 Cognitive OS Governance", "L2 Cognitive Core", "L3 Capability Governance", "L4 Execution"],
+  "rules": {"l0_immutable": true, "higher_layer_constraints_apply_downward": true, "no_reverse_authority": true, "execution_not_decision": true, "capability_not_goal_owner": true}
+}

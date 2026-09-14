@@ -1,0 +1,10 @@
+{
+  "relation_id": "field_function_relation_v1",
+  "function_role": "Input State Space",
+  "inputs": ["Field State Vector", "Temporal State", "Spatial State", "Environment State", "Relationship State", "Role State", "Task State"],
+  "outputs": ["Dynamic Function Input Candidate", "Field Influence Weight Candidate", "Field Transition Signal Candidate"],
+  "field_is_not_reality": true,
+  "field_does_not_override_self": true,
+  "field_does_not_execute": true,
+  "candidate_only": true
+}

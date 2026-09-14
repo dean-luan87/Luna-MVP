@@ -1,0 +1,204 @@
+{
+    "asset_mappings": [
+        {
+            "existing_asset": "Situation Understanding",
+            "target_kernel_component": "Field Candidate Builder",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Observation Attention",
+            "target_kernel_component": "Active Field Projection Builder",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Region Intelligence",
+            "target_kernel_component": "Space and Time Anchor Resolver",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Ownership Understanding",
+            "target_kernel_component": "Conflict and Coexistence Resolver",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Field-Centric Object Role",
+            "target_kernel_component": "Field State Reducer",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Model Manager",
+            "target_kernel_component": "Governance Gate",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Model Test Lens",
+            "target_kernel_component": "Trace and Diagnostics",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Human Correction",
+            "target_kernel_component": "Human Correction Adapter",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Evidence Chain",
+            "target_kernel_component": "Evidence Normalizer",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Runtime Boundary",
+            "target_kernel_component": "Governance Gate",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Candidate / Fact Admission",
+            "target_kernel_component": "Field State Reducer",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Model / Skill Admission",
+            "target_kernel_component": "Governance Gate",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Task Manager",
+            "target_kernel_component": "Field Projection Interface",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Followup Runner",
+            "target_kernel_component": "Field Timeline Store Interface",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "low"
+        },
+        {
+            "existing_asset": "OCR Evidence",
+            "target_kernel_component": "Evidence Normalizer",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "low"
+        },
+        {
+            "existing_asset": "Vision Evidence",
+            "target_kernel_component": "Evidence Normalizer",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "low"
+        },
+        {
+            "existing_asset": "Network-Assisted Situation Learning",
+            "target_kernel_component": "Field Candidate Builder",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Memory System",
+            "target_kernel_component": "Field Timeline Store Interface",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Emotional Engine",
+            "target_kernel_component": "Field Projection Interface",
+            "reuse_status": "planned",
+            "extension_required": true,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "low"
+        },
+        {
+            "existing_asset": "Interaction Governance",
+            "target_kernel_component": "Governance Gate",
+            "reuse_status": "planned",
+            "extension_required": false,
+            "rewrite_required": false,
+            "adapter_required": true,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+  "guards": {
+    "vision_yolo_execution": "authorized_bounded_real_only",
+    "provider_autonomous_execution": false,
+    "ocr_execution": false,
+    "slam_execution": false,
+    "vio_execution": false,
+    "vlm_execution": false,
+    "semantic_interpretation": false,
+    "semantic_compression": false,
+    "provider_semantic_authority": false,
+    "automatic_fact_admission": false,
+    "field_state_direct_mutation": false,
+    "current_world_truth_declaration": false,
+    "intent_mutation": false,
+    "decision_mutation": false,
+    "task_mutation": false,
+    "real_action_execution": false,
+    "real_runtime_execution": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "scheduler_execution": false,
+    "cross_user_transfer": false,
+    "emotion_engine_execution": false,
+    "b_route_execution": false,
+    "raw_content_persisted": false
+  },
+  "candidate_only": true,
+  "provenance_grants_authority": false
+}

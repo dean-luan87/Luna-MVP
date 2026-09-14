@@ -1,0 +1,16 @@
+{
+  "interface_name": "Capability Attention Interface v1",
+  "capability_profile_reference": "profile-example",
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "attention_adjustment_candidate": null,
+  "observation_adjustment_candidate": null,
+  "review_or_recheck_candidate": null,
+  "known_limitation": null,
+  "unknown": true,
+  "attention_adjustment_is_candidate_only": true,
+  "profile_does_not_directly_allocate_attention": true,
+  "profile_does_not_modify_goal": true,
+  "profile_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,52 @@
+{
+  "file_ref": "sample_odometry_health_trace",
+  "format_ref": "generic_json_spatial_trace",
+  "file_origin": {
+    "source_kind": "local_controlled_sample",
+    "source_path": "capabilities/field_understanding/generic_json_spatial_trace_real_file_replay_dryrun/samples/sample_odometry_health_trace.json",
+    "file_origin_ref": "sample_odometry_health_trace_v1",
+    "converted_from": "rtab_map_odometry_export_converted_json_trace_file"
+  },
+  "trace_items": [
+    {
+      "trace_id": "real_odometry_pose_001",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_odometry_health_trace",
+        "real_odometry_pose_001"
+      ],
+      "timestamp_ms": 1700002000,
+      "confidence": 0.89,
+      "candidate_type": "pose",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "position_m": [2.1, 1.0, 0.0],
+        "orientation_quat": [0.0, 0.0, 0.0, 1.0],
+        "companion_candidate_types": ["motion"],
+        "motion": {
+          "velocity_mps": [0.08, 0.02, 0.0]
+        }
+      },
+      "candidate_only": true
+    },
+    {
+      "trace_id": "real_odometry_health_degraded_002",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_odometry_health_trace",
+        "real_odometry_health_degraded_002"
+      ],
+      "timestamp_ms": 1700002100,
+      "confidence": 0.58,
+      "candidate_type": "health",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "health_status": "degraded",
+        "tracking_quality": 0.52,
+        "degradation_reason": "odometry_jitter",
+        "candidate_risk_only": true
+      },
+      "candidate_only": true
+    }
+  ]
+}

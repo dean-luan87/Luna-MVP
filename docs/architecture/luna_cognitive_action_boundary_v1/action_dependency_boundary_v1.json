@@ -1,0 +1,22 @@
+{
+  "title": "Action Boundary Dependency Boundary v1",
+  "allowed": [
+    {"source":"Decision Commitment","target":"Action Request","mode":"candidate request"},
+    {"source":"Action Request","target":"Risk Evaluation","mode":"risk input"},
+    {"source":"Risk Evaluation","target":"Permission Check","mode":"validation input"},
+    {"source":"Permission Check","target":"Action Validation Gateway","mode":"gate result"},
+    {"source":"Action Validation Gateway","target":"Future Execution System","mode":"approved candidate"},
+    {"source":"Future Execution System","target":"Outcome Evidence","mode":"feedback"}
+  ],
+  "forbidden": [
+    "Brain → Direct Action",
+    "Emotion → Direct Action",
+    "Capability → Action Authority",
+    "Provider → Action Authority",
+    "Action Boundary → Goal Ownership",
+    "Action Boundary → Value Modification",
+    "Action Boundary → Reality Direct Write",
+    "Action Boundary → Runtime Rule Modification"
+  ],
+  "rules": {"validation_required": true, "human_override_supported": true, "execution_future_only": true, "no_external_side_effect": true, "no_action_runtime": true}
+}

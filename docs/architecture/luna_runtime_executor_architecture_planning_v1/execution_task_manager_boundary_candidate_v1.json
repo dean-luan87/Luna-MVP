@@ -1,0 +1,19 @@
+{
+    "artifact": "execution_task_manager_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "relation": {
+        "executor_not_task_manager": true,
+        "task_manager_not_executor": true,
+        "task_manager_reference_only": true
+    },
+    "allowed_payload": [
+        "task_ref",
+        "task_dependency_ref",
+        "task_cancel_ref"
+    ],
+    "forbidden_payload": [
+        "task_lifecycle_mutation",
+        "task_policy_mutation",
+        "task_authority_escalation"
+    ]
+}

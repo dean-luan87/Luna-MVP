@@ -1,0 +1,15 @@
+{
+  "synthetic_provider_retained": true,
+  "s0_s1_s2_s3_regression_retained": true,
+  "one_real_component": "VISION_YOLO11N_PROVIDER",
+  "comparison_dimensions": [
+    "contract compatibility",
+    "trace/provenance",
+    "state transitions",
+    "negative guards",
+    "canonical evidence structure"
+  ],
+  "detection_values_must_match": false,
+  "bbox_class_confidence_must_match": false,
+  "raw_image_copied_to_artifacts": false
+}

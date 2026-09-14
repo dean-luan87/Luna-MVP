@@ -1,0 +1,13 @@
+{
+  "control_id": "invalid_blocked_output_enters_field_task_guidance_001",
+  "policy_id": "model_output_blocking",
+  "model_family": "object_detection_completion_family",
+  "license_ref": "license:agpl_3_0_test_only",
+  "allowed_use": "candidate_only",
+  "availability_state": "available",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "output_blocking_confidence_policy_v1",
+  "fallback_plan": "fallback_to_gate_rejection_record",
+  "blocked_output_enters_field_task_guidance": true,
+  "direct_field_task_guidance_bypass": true
+}

@@ -1,0 +1,17 @@
+{
+  "phase": "Phase-Luna-A-Route-S3-YOLOv5-Local-Source-Package-Compatibility-v1-001",
+  "mode": "INVENTORY_AND_NARROW_LOCAL_SOURCE_PACKAGE_INTEGRATION",
+  "canonical_owner": "Model Manager / Model Governance",
+  "local_only": true,
+  "network_allowed": false,
+  "automatic_download_allowed": false,
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "s3_semantic_contract_modified": false,
+  "s0_s1_s2_modified": false,
+  "semantic_authority_changed": false,
+  "candidate_only": true,
+  "current_yolov5n_expected_admission": "BLOCKED",
+  "current_yolov5n_block_reason": "LOCAL_SOURCE_PACKAGE_NOT_FOUND",
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

@@ -1,0 +1,56 @@
+{
+    "capability_id": "luna.ocr_manager",
+    "capability_name": "Luna OCR Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "entrypoint": "run_ocr_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_facade_v1.py",
+            "entrypoint": "run_ocr_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/ocr_runtime/ocr_request_contract_v0.py",
+            "capabilities/ocr_runtime/ocr_runtime_audit_v0.py",
+            "capabilities/model_ocr/rapidocr_adapter_v0.py",
+            "capabilities/model_ocr/paddleocr_adapter_v0.py",
+            "capabilities/vision_runtime/vision_roi_to_ocr_request_bridge_v0.py",
+            "capabilities/midplatform/ocr_text_adapter_types_v1.py",
+            "capabilities/midplatform/ocr_evidence_readonly_ingest_candidate_v0.py",
+            "capabilities/midplatform/ocr_semantic_candidate_generator_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_ocr_manager_module_integration_v1.py",
+            "scenarios": 18
+        },
+        "ready_evidence": {
+            "total_cases": 18,
+            "passed_cases": 18,
+            "failed_cases": [],
+            "deterministic_replay": true,
+            "evidence_envelope_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "raw_evidence_preserved": true,
+            "boundary_preserved": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_ocr_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_action_execution": true,
+        "no_direct_provider_runtime_call": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "ocr_controller",
+        "ocr_processor",
+        "ocr_service"
+    ]
+}

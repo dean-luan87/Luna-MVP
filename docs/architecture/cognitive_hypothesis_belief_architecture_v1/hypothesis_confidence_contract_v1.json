@@ -1,0 +1,21 @@
+{
+  "title": "Hypothesis Confidence Contract v1",
+  "contract_type": "Hypothesis Confidence Candidate",
+  "hypothesis_reference": "hypothesis-example",
+  "confidence": {
+    "value": 0.6,
+    "basis": ["supporting evidence"],
+    "uncertainty": ["field ambiguity"],
+    "source_reliability": "candidate",
+    "field_validity": "candidate",
+    "calibration_history": []
+  },
+  "supporting_evidence": [],
+  "contradicting_evidence": [],
+  "unknowns": [],
+  "confidence_update": "increase | decrease | suspend | revoke | unchanged",
+  "confidence_is_not_truth": true,
+  "confidence_does_not_override_reality": true,
+  "confidence_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

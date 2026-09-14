@@ -1,0 +1,231 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Minimum Cases",
+    "cases": [
+        {
+            "case_id": "latest_valid_event_eligible_case",
+            "policy_id": "latest_valid_event",
+            "state_type": "path_state",
+            "input_conditions": [
+                "admitted_event",
+                "active_temporal",
+                "provenance_complete"
+            ],
+            "expected_status": "eligible_candidate",
+            "expected_rejection_reasons": [],
+            "selection_candidate_allowed": true,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "latest_valid_event_revoked_block_case",
+            "policy_id": "latest_valid_event",
+            "state_type": "path_state",
+            "input_conditions": [
+                "revoked_support_present"
+            ],
+            "expected_status": "temporally_invalid",
+            "expected_rejection_reasons": [
+                "revoked_support_present"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "highest_confidence_threshold_pass_case",
+            "policy_id": "highest_confidence_valid_event",
+            "state_type": "presence_state",
+            "input_conditions": [
+                "confidence_above_threshold",
+                "source_reliable"
+            ],
+            "expected_status": "eligible_candidate",
+            "expected_rejection_reasons": [],
+            "selection_candidate_allowed": true,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "highest_confidence_threshold_fail_case",
+            "policy_id": "highest_confidence_valid_event",
+            "state_type": "presence_state",
+            "input_conditions": [
+                "confidence_below_threshold"
+            ],
+            "expected_status": "ineligible",
+            "expected_rejection_reasons": [
+                "confidence_below_threshold"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "consensus_source_diversity_pass_case",
+            "policy_id": "multi_event_consensus",
+            "state_type": "service_state",
+            "input_conditions": [
+                "minimum_event_count_met",
+                "source_diversity_met"
+            ],
+            "expected_status": "eligible_candidate",
+            "expected_rejection_reasons": [],
+            "selection_candidate_allowed": true,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "consensus_contradiction_block_case",
+            "policy_id": "multi_event_consensus",
+            "state_type": "service_state",
+            "input_conditions": [
+                "hard_contradiction_unresolved"
+            ],
+            "expected_status": "unresolved_conflict",
+            "expected_rejection_reasons": [
+                "unresolved_conflict_present"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "expired_support_ineligible_case",
+            "policy_id": "expiration_degrade",
+            "state_type": "presence_state",
+            "input_conditions": [
+                "expired_support_present"
+            ],
+            "expected_status": "temporally_invalid",
+            "expected_rejection_reasons": [
+                "expired_support_present"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "suspended_missing_refresh_case",
+            "policy_id": "expiration_degrade",
+            "state_type": "service_state",
+            "input_conditions": [
+                "suspended_support_present",
+                "missing_refresh_evidence"
+            ],
+            "expected_status": "blocked",
+            "expected_rejection_reasons": [
+                "suspended_support_present",
+                "missing_refresh_evidence"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "revoked_support_ineligible_case",
+            "policy_id": "revocation_override",
+            "state_type": "accessibility_state",
+            "input_conditions": [
+                "revoked_support_present"
+            ],
+            "expected_status": "temporally_invalid",
+            "expected_rejection_reasons": [
+                "revoked_support_present"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "unresolved_conflict_case",
+            "policy_id": "conflict_preservation",
+            "state_type": "conflict_state",
+            "input_conditions": [
+                "unresolved_conflict_present"
+            ],
+            "expected_status": "unresolved_conflict",
+            "expected_rejection_reasons": [
+                "unresolved_conflict_present"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "insufficient_evidence_case",
+            "policy_id": "insufficient_evidence_unresolved",
+            "state_type": "uncertainty_state",
+            "input_conditions": [
+                "insufficient_event_count",
+                "missing_required_source"
+            ],
+            "expected_status": "insufficient_evidence",
+            "expected_rejection_reasons": [
+                "insufficient_event_count"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "owner_correction_review_required_case",
+            "policy_id": "explicit_owner_override_candidate",
+            "state_type": "facility_state",
+            "input_conditions": [
+                "owner_review_required"
+            ],
+            "expected_status": "governance_review_required",
+            "expected_rejection_reasons": [
+                "owner_review_required"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "overlay_separate_evaluation_case",
+            "policy_id": "temporary_overlay_separation",
+            "state_type": "temporary_overlay_state",
+            "input_conditions": [
+                "overlay_substrate_separate",
+                "overlay_provenance_complete"
+            ],
+            "expected_status": "eligible_candidate",
+            "expected_rejection_reasons": [],
+            "selection_candidate_allowed": true,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        },
+        {
+            "case_id": "missing_version_snapshot_case",
+            "policy_id": "no_state_change",
+            "state_type": "path_state",
+            "input_conditions": [
+                "missing_version_snapshot"
+            ],
+            "expected_status": "invalid_input",
+            "expected_rejection_reasons": [
+                "missing_version_snapshot"
+            ],
+            "selection_candidate_allowed": false,
+            "policy_selection_executed": false,
+            "policy_execution_executed": false,
+            "state_mutation_executed": false
+        }
+    ],
+    "minimum_cases_complete": true
+}

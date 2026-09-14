@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "name": "Capability Governance Model",
+  "layers": [
+    {"layer": "Capability Definition", "owner": "Capability Registry", "answers": "What capability is being governed", "outputs": ["Capability Identity", "Schema", "Contract"]},
+    {"layer": "Capability Registry", "owner": "Capability Registry", "answers": "What capabilities Luna has", "outputs": ["Registered Capability"]},
+    {"layer": "Capability Lifecycle", "owner": "Capability Governance", "answers": "What state the capability is in", "outputs": ["Lifecycle State"]},
+    {"layer": "Capability Admission", "owner": "Capability Admission", "answers": "Whether a candidate may become active", "outputs": ["Admission Decision"]},
+    {"layer": "Capability Calibration", "owner": "Capability Calibration", "answers": "How healthy and useful the capability is", "outputs": ["Health Evidence", "Health Score"]},
+    {"layer": "Model Management", "owner": "Model Manager", "answers": "Which model assets can implement it", "outputs": ["Model Options"]},
+    {"layer": "Provider Management", "owner": "Provider Governance", "answers": "Which adapters can expose it", "outputs": ["Provider Options"]},
+    {"layer": "Capability Runtime", "owner": "Capability Runtime", "answers": "How an admitted request is executed", "outputs": ["Evidence Candidate"]}
+  ],
+  "canonical_flow": ["Capability Requirement", "Capability Registry", "Capability Admission", "Model/Provider/Runtime Qualification", "Calibration", "Controlled Available", "Capability Runtime", "Evidence"],
+  "rules": {"capability_is_subject": true, "model_is_implementation_resource": true, "capability_owner_unique": true, "admission_required": true, "runtime_not_implemented": true}
+}

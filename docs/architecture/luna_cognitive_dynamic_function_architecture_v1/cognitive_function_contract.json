@@ -1,0 +1,15 @@
+{
+  "contract_id": "dynamic_cognitive_function_v1",
+  "equation": "C(t+1) = F(C(t), Field(t), Self(t), Goal(t))",
+  "inputs": ["Cognitive State Vector", "Field State", "Self State", "Goal State"],
+  "outputs": ["State Vector Update Candidate", "Attention Policy Candidate", "Threshold Candidate", "Reconsideration Candidate"],
+  "function_is_interface_only": true,
+  "continuous_update_runtime": false,
+  "automatic_update": false,
+  "decision_authority": false,
+  "action_execution": false,
+  "reality_mutation": false,
+  "unknowns_preserved": true,
+  "trace_required": true,
+  "candidate_only": true
+}

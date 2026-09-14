@@ -1,0 +1,4 @@
+{
+  "false":["provider_semantic_authority","automatic_fact_admission","direct_field_mutation","current_world_truth_declaration","hypothesis_as_fact","cognitive_state_owns_intent","direct_intent_mutation_outside_intent_governance","decision_as_action","task_as_action","runtime_execution_in_b1_b4","provider_invocation_from_cognitive_feedback","automatic_retry","hidden_cognitive_loop","hidden_decision_loop","hidden_task_loop","memory_write","experience_learning","online_learning","semantic_compression","dynamic_cognitive_function_execution","database_write","vector_store_write","embedding_execution","ocr_execution","slam_execution","vio_execution","vlm_execution","real_action_execution","device_control","scheduler_execution"],
+  "policy":"guard weakening is a full-baseline review and cannot be silent"
+}

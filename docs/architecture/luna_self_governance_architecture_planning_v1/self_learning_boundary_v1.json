@@ -1,0 +1,15 @@
+{
+    "artifact": "self_learning_boundary_v1",
+    "learning_owner_preserved": "Cognitive Learning Governance",
+    "learning_may_produce": [
+        "SelfEvolutionEvidenceCandidate"
+    ],
+    "self_governance_may_consume": [
+        "SelfEvolutionEvidenceCandidate"
+    ],
+    "frozen_assertions": {
+        "learning_evidence_not_self_mutation": true,
+        "self_evolution_evidence_not_self_state_activation": true,
+        "learning_must_not_directly_mutate_self": true
+    }
+}

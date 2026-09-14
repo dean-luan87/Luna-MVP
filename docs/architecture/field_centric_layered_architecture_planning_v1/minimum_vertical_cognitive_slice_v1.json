@@ -1,0 +1,131 @@
+{
+    "slice": [
+        {
+            "step": "field_candidate",
+            "input_type": "observation_candidate",
+            "output_type": "field_candidate",
+            "required_evidence": [
+                "field_signal",
+                "context_signal"
+            ],
+            "required_governance": [
+                "candidate_fact_admission",
+                "runtime_boundary"
+            ],
+            "prohibited_operations": [
+                "production_activation",
+                "irreversible_action"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "expectation_candidate",
+            "input_type": "field_candidate",
+            "output_type": "expectation_candidate",
+            "required_evidence": [
+                "goal_signal",
+                "expectation_signal"
+            ],
+            "required_governance": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "prohibited_operations": [
+                "fact_promotion",
+                "runtime_override"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "attention_candidate",
+            "input_type": "expectation_candidate",
+            "output_type": "attention_candidate",
+            "required_evidence": [
+                "salience_signal"
+            ],
+            "required_governance": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "prohibited_operations": [
+                "autonomous_action",
+                "over_commitment"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "region_evidence_candidate",
+            "input_type": "attention_candidate",
+            "output_type": "region_evidence_candidate",
+            "required_evidence": [
+                "region_signal",
+                "evidence_signal"
+            ],
+            "required_governance": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "prohibited_operations": [
+                "production_execution",
+                "full_world_reconstruction"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "role_candidate",
+            "input_type": "region_evidence_candidate",
+            "output_type": "role_candidate",
+            "required_evidence": [
+                "role_signal"
+            ],
+            "required_governance": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "prohibited_operations": [
+                "irreversible_intervention",
+                "fact_promotion"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "interaction_decision_candidate",
+            "input_type": "role_candidate",
+            "output_type": "interaction_decision_candidate",
+            "required_evidence": [
+                "interaction_signal"
+            ],
+            "required_governance": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "prohibited_operations": [
+                "autonomous_irreversible_action"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "step": "feedback_candidate",
+            "input_type": "interaction_decision_candidate",
+            "output_type": "feedback_candidate",
+            "required_evidence": [
+                "feedback_signal"
+            ],
+            "required_governance": [
+                "evidence_chain",
+                "rollback_revocation"
+            ],
+            "prohibited_operations": [
+                "implicit_fact_promotion"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "model_id": "mock_p1_segmentation_invalid_f",
+  "model_family": "segmentation_family",
+  "model_version_ref": "mock_mobilesam_v1_0_0",
+  "model_origin": "external_open_source_segmentation_model",
+  "license_ref": "apache_2_0_or_per_model_license",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_p1_0001",
+  "output_schema_ref": "segmentation_output_schema_v1",
+  "confidence": 0.84,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "region_evidence_candidate",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "fallback_plan": "fallback_to_unavailable_record",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "route_activation_requested": true
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Field Observation Requirement Contract",
+  "source": "Cognitive Field",
+  "request_type": "Observation Requirement",
+  "field_reference": "field-id-candidate",
+  "intent_reference": "intent-reference-candidate",
+  "purpose": "state what information is needed for situated understanding",
+  "required_evidence": [
+    "spatial_structure",
+    "object_presence",
+    "confidence"
+  ],
+  "unknown_requirement": ["unresolved_obstruction"],
+  "resource_constraints": {
+    "cost_candidate": "bounded",
+    "priority_candidate": "candidate"
+  },
+  "provider_neutral": true,
+  "no_direct_model_call": true,
+  "no_action_authority": true,
+  "no_reality_mutation": true,
+  "admission_required": true
+}

@@ -1,0 +1,109 @@
+{
+  "schema_id": "TeacherCapabilityRegistryV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Teacher-Routing-Layer-Planning-v1-001",
+  "description": "Teacher Pool 能力注册表 — 记录每个 Teacher 会什么、不擅长什么",
+  "teachers": [
+    {
+      "teacher_id": "qwen_vl",
+      "teacher_label": "Qwen-VL Teacher v1",
+      "teacher_roles": ["perception_teacher"],
+      "status": "active",
+      "capabilities": [
+        "scene_understanding",
+        "visual_reasoning",
+        "unknown_scene_analysis",
+        "visual_attention",
+        "task_clue_generation"
+      ],
+      "weaknesses": [
+        "precise_ocr",
+        "real_time_detection",
+        "spatial_slam_mapping"
+      ],
+      "preferred_scenes": ["unknown_scene", "complex_environment"],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "gpt_vision",
+      "teacher_label": "GPT Vision Teacher (stub)",
+      "teacher_roles": ["planning_teacher", "perception_teacher"],
+      "status": "planned",
+      "capabilities": [
+        "complex_reasoning",
+        "planning_alternative",
+        "goal_interpretation",
+        "multi_step_analysis"
+      ],
+      "weaknesses": ["low_latency", "cost_sensitive_routine"],
+      "preferred_scenes": ["indoor_mall", "complex_environment"],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "gemini",
+      "teacher_label": "Gemini Vision Teacher (stub)",
+      "teacher_roles": ["perception_teacher"],
+      "status": "planned",
+      "capabilities": ["scene_understanding", "visual_reasoning"],
+      "weaknesses": ["precise_ocr"],
+      "preferred_scenes": ["unknown_scene"],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "internvl",
+      "teacher_label": "InternVL Learning Teacher (stub)",
+      "teacher_roles": ["learning_teacher"],
+      "status": "planned",
+      "capabilities": ["learning_case_generation"],
+      "weaknesses": ["real_time_perception"],
+      "preferred_scenes": [],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "medical_teacher",
+      "teacher_label": "Medical Domain Teacher (future)",
+      "teacher_roles": ["domain_teacher"],
+      "status": "future",
+      "capabilities": ["medical_scene_interpretation"],
+      "weaknesses": ["general_navigation"],
+      "preferred_scenes": ["medical_environment"],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "legal_teacher",
+      "teacher_label": "Legal Domain Teacher (future)",
+      "teacher_roles": ["domain_teacher"],
+      "status": "future",
+      "capabilities": ["legal_document_interpretation"],
+      "weaknesses": ["visual_spatial"],
+      "preferred_scenes": [],
+      "candidate_only": true
+    },
+    {
+      "teacher_id": "embodied_teacher",
+      "teacher_label": "Embodied Robotics Teacher (future)",
+      "teacher_roles": ["domain_teacher"],
+      "status": "future",
+      "capabilities": ["embodied_navigation_hint"],
+      "weaknesses": ["text_ocr"],
+      "preferred_scenes": ["robotics_environment"],
+      "candidate_only": true
+    }
+  ],
+  "specialized_tools": [
+    {
+      "tool_id": "ocr",
+      "capabilities": ["text_recognition", "precise_ocr", "shopfront_text"],
+      "preferred_when": ["text_content", "place_identity", "precise_text"]
+    },
+    {
+      "tool_id": "detection",
+      "capabilities": ["object_detection", "entrance_detection"]
+    },
+    {
+      "tool_id": "slam",
+      "capabilities": ["spatial_mapping"],
+      "not_for": ["text_recognition", "precise_ocr"]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:24:51.632602+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "no_deps_required": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_nodeps_find_spec_probe_record",
+  "timm_nodeps_find_spec_probe_record": {
+    "record_id": "timm_nodeps_find_spec_probe_v1",
+    "probe_method": "importlib.util.find_spec only",
+    "probe_target": "timm",
+    "find_spec_result": true,
+    "found_origin": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_timm_repair_workspace/install_target/timm/__init__.py",
+    "target_path_used_for_probe": true,
+    "real_import_used": false,
+    "mobile_sam_import_used": false,
+    "model_load_used": false,
+    "inference_used": false,
+    "runtime_used": false
+  }
+}

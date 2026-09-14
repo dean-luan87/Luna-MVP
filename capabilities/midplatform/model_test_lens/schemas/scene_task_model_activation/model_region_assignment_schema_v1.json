@@ -1,0 +1,35 @@
+{
+  "schema_id": "ModelRegionAssignmentSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "激活模型与区域的绑定 — 模型只能处理被分配的区域。",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "assignment_id",
+    "model_name",
+    "assignment_reason",
+    "allowed_runner_type",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "assignment_id": { "type": "string" },
+    "model_name": { "type": "string" },
+    "assigned_region_ids": { "type": "array", "items": { "type": "string" } },
+    "assigned_text_region_ids": { "type": "array", "items": { "type": "string" } },
+    "assignment_reason": { "type": "string" },
+    "input_constraints": { "type": "object" },
+    "allowed_runner_type": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "boundary_flags": {
+    "active_model_requires_region_assignment": true,
+    "active_model_requires_activation_reason": true,
+    "planning_only": true
+  }
+}

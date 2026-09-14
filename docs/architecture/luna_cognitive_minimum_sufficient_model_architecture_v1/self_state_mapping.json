@@ -1,0 +1,12 @@
+{
+  "mapping_id": "self_state_mapping_v1",
+  "core_state": "Self",
+  "components": ["identity", "capability", "boundary", "regulation"],
+  "source_modules": ["Self Model", "Self Regulation", "Self Rhythm", "Self Evolution", "Self World Boundary", "Constitution"],
+  "stable_core": ["Identity", "Constitution", "Safety Boundary", "Ownership Boundary"],
+  "adaptive_layer": ["Capability", "Strategy", "Cognitive Parameters", "Schema", "Knowledge"],
+  "outputs": ["Self Constraint Candidate", "Resource State Candidate", "Growth Review Candidate"],
+  "self_does_not_modify_constitution_automatically": true,
+  "self_does_not_modify_identity_automatically": true,
+  "candidate_only": true
+}

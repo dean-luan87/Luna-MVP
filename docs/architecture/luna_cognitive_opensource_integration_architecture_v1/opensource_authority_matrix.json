@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Open Source Authority Matrix",
+  "rows":[
+    {"object":"Open Source Asset","owner":"Capability Governance","writer":"Asset Admission","readers":["Model Manager","Self Regulation"],"cannot":["Kernel authority","Self rewrite"]},
+    {"object":"Capability Requirement","owner":"Cognitive Core / Brain","writer":"Brain Candidate Pipeline","readers":["Capability Governance"],"cannot":["Provider direct input"]},
+    {"object":"Memory Value","owner":"Memory Governance","writer":"Memory Admission","readers":["Storage Adapter"],"cannot":["External engine decision"]},
+    {"object":"Knowledge Admission","owner":"Knowledge Library Governance","writer":"Knowledge Admission","readers":["Field","Cognitive Processing"],"cannot":["Graph direct authority"]},
+    {"object":"Decision Candidate","owner":"Brain","writer":"Brain","readers":["Action Boundary"],"cannot":["Provider write"]},
+    {"object":"Self Stability","owner":"Self Regulation","writer":"Self Regulation Candidate Pipeline","readers":["Capability Governance","Runtime"],"cannot":["External asset write"]}
+  ],
+  "rules":{"unique_owner":true,"kernel_protected":true,"external_never_final_authority":true}
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Cognitive Goal Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["goal_id", "goal_type", "source", "desired_state", "field_ref", "lifecycle_state", "priority_candidate", "provenance", "unknowns"],
+  "properties": {
+    "goal_id": {"type": "string"},
+    "goal_type": {"enum": ["Existence Goal", "Capability Goal", "Social Goal", "Task Goal"]},
+    "source": {"type": "string"},
+    "desired_state": {"type": "string"},
+    "current_state": {"type": "string"},
+    "field_ref": {"type": ["string", "null"]},
+    "self_constraints": {"type": "array"},
+    "capability_requirements": {"type": "array"},
+    "value_context": {"type": "object"},
+    "task_refs": {"type": "array"},
+    "priority_candidate": {"type": "object"},
+    "lifecycle_state": {"type": "string"},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"}
+  },
+  "goal_is_task": false,
+  "goal_is_desire": false,
+  "candidate_only": true,
+  "self_governance_required": true,
+  "action_execution": false,
+  "automatic_generation": false,
+  "automatic_adjustment": false,
+  "reality_mutation": false
+}

@@ -1,0 +1,13 @@
+{
+  "producer": "Observation Gateway Governance",
+  "consumer": "A Route Orchestration Governance",
+  "adapter_ref_pattern": "a-route-ingress:<scenario_id>",
+  "input": "Admitted Observation Candidate with evidence, trace, provenance, correction, contradiction, and temporal refs",
+  "handoff_status": "CONTROLLED_HANDOFF_READY",
+  "runtime_handoff_ready": false,
+  "route_lifecycle_target": "INGRESS_READY",
+  "mutation_authority": false,
+  "semantic_truth_authority": false,
+  "downstream_routes": ["Field / World State", "Context", "Attention", "Cognitive Flow", "A Route Orchestration"],
+  "routing_is_candidate_metadata": true
+}

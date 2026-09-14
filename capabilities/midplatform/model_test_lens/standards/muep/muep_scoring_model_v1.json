@@ -1,0 +1,19 @@
+{
+  "scoring_model_id": "muep_scoring_model_v1",
+  "version": "1",
+  "description": "Minimal Unified Evaluation Protocol — unified score formula for all models.",
+  "formula": "final_score = 0.6 * task_metric + 0.25 * robustness + 0.15 * structural_quality",
+  "weights": {
+    "task_metric": 0.6,
+    "robustness": 0.25,
+    "structural_quality": 0.15
+  },
+  "layer_definitions": {
+    "layer_a_task": "Task correctness: IoU, ATE, WER, accuracy, recall — primary score",
+    "layer_b_robustness": "Stability under noise, low light, motion blur, scale change",
+    "layer_c_structural": "Output structural quality: smoothness, consistency, hallucination rate"
+  },
+  "normalization": "All layer inputs should be normalized to [0,1] before weighted sum.",
+  "candidate_only": true,
+  "not_runtime_approval": true
+}

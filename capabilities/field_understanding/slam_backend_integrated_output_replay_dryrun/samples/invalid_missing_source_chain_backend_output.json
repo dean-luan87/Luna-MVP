@@ -1,0 +1,15 @@
+{
+  "backend_id": "invalid_missing_source_chain",
+  "backend_family": "vio",
+  "output_type": "trajectory",
+  "confidence": 0.8,
+  "backend_origin": "openvins_like_export_mock",
+  "license_ref": "GPL-3.0",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "adapter_replay_dryrun_only",
+  "commercial_use_status": "non_commercial_or_unverified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "poses": [
+    {"id": "p0", "timestamp_ms": 1000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.8}
+  ]
+}

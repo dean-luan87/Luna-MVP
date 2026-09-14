@@ -1,0 +1,18 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Output Contract",
+    "output_fields": [
+        "resulting_state",
+        "reduction_decision",
+        "applied_event_ids",
+        "rejected_event_ids",
+        "ignored_event_ids",
+        "conflict_ids",
+        "unresolved_conditions",
+        "reducer_trace",
+        "deterministic_replay_key",
+        "state_change_type"
+    ],
+    "mutation_allowed_only_by_reducer": true,
+    "reducer_output_not_fact_admission": true
+}

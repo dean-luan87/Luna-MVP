@@ -1,0 +1,12 @@
+{
+  "title": "Decision Constraint Contract v1",
+  "hard_constraints": ["Constitution", "Safety", "Self Preservation", "Capability Feasibility", "Irreversible Impact Boundary"],
+  "soft_context": ["Goal Value", "Relationship Value", "Growth Value", "Resource Cost", "Time Constraint"],
+  "inputs": ["Self Boundary", "Constitution Constraints", "Risk Candidate", "Capability State", "Unknowns"],
+  "outputs": ["Constraint Pass Candidate", "Constraint Reject Candidate", "Constraint Review Candidate"],
+  "hard_violation_rejects": true,
+  "hard_constraints_are_non_compensatory": true,
+  "self_has_veto_context": true,
+  "constraint_does_not_execute": true,
+  "candidate_only": true
+}

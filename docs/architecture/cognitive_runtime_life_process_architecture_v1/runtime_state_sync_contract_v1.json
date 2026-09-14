@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime State Synchronization Contract v1",
+  "state_domains": ["Field", "Self", "Workspace", "Task", "Attention", "Memory", "Learning", "Reflex", "Emotion Context"],
+  "state_update_candidate": {},
+  "source_provenance": [],
+  "temporal_scope": {},
+  "sync_preserves_boundaries": true,
+  "sync_does_not_modify_identity": true,
+  "sync_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

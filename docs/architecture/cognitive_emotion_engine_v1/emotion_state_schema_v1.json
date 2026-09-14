@@ -1,0 +1,18 @@
+{
+  "schema_name": "Emotion State Schema v1",
+  "emotion_state_id": "emotion-state-example",
+  "valence": null,
+  "arousal": null,
+  "stability": null,
+  "attachment": null,
+  "confidence": null,
+  "intensity": null,
+  "duration": null,
+  "field_context": {},
+  "role_context": {},
+  "relationship_context": {},
+  "unknowns": [],
+  "emotion_state_candidate": true,
+  "does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,15 @@
+{
+  "interaction_id": "object_segmentation_alignment",
+  "interaction_type": "cross_model_alignment",
+  "source_model_families": ["object_detection_completion_family", "segmentation_family"],
+  "candidate_refs": ["object_evidence_candidate:obj_001", "region_evidence_candidate:reg_001"],
+  "confidence_policy_ref": "min_of_member_confidence_policy_v1",
+  "alignment_policy_ref": "bbox_mask_region_iou_alignment_policy_v1",
+  "conflict_policy_ref": "alignment_conflict_to_candidate_policy_v1",
+  "uncertainty_policy_ref": "alignment_uncertainty_propagation_policy_v1",
+  "adapter_mapping_refs": ["object_region_alignment_candidate"],
+  "fallback_plan": "fallback_to_separate_candidates",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required"
+}

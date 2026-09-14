@@ -1,0 +1,10 @@
+{
+  "registry_id": "belief_type_registry_v1",
+  "owner": "Belief Layer",
+  "types": ["Perceptual Belief", "Semantic Belief", "Context Belief", "Social Belief", "Self Belief", "Decision Belief"],
+  "candidate_required": true,
+  "field_context_required": true,
+  "reality_precedence": true,
+  "truth_assertion": false,
+  "decision_authority": false
+}

@@ -1,0 +1,133 @@
+{
+    "artifact": "runtime_executor_planning_to_code_mapping_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "planning_phase": "Phase-Luna-Runtime-Executor-Architecture-Planning-v1-001",
+    "implementation_phase": "Phase-Luna-Runtime-Executor-Controlled-Implementation-v1-001",
+    "all_code_assets": [
+        "capabilities/midplatform/core/runtime_executor/__init__.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_registry_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_error_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_core_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_request_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_state_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/admission_result_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_final_gate_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_idempotency_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_attempt_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_retry_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_timeout_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_cancellation_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_partial_result_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_failure_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_rollback_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_scheduler_reference_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_task_reference_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_adapter_reference_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_result_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_diagnostics_handoff_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/execution_trace_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_handoff_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_io_types_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_protocol_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_ownership_guard_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_static_validators_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_fixture_v1.py",
+        "capabilities/midplatform/core/runtime_executor/runtime_executor_engine_v1.py",
+        "capabilities/midplatform/core/runtime_executor/run_runtime_executor_controlled_implementation_v1.py"
+    ],
+    "scenario_mapping": [
+        {
+            "scenario_id": "R01",
+            "fixture_case_id": "R01",
+            "engine_behavior": "admission_happy_path_candidate_only"
+        },
+        {
+            "scenario_id": "R02",
+            "fixture_case_id": "R02",
+            "engine_behavior": "permission_revoked_before_final_gate"
+        },
+        {
+            "scenario_id": "R03",
+            "fixture_case_id": "R03",
+            "engine_behavior": "safety_veto_before_final_gate"
+        },
+        {
+            "scenario_id": "R04",
+            "fixture_case_id": "R04",
+            "engine_behavior": "confirmation_scope_mismatch"
+        },
+        {
+            "scenario_id": "R05",
+            "fixture_case_id": "R05",
+            "engine_behavior": "resource_degraded_but_admitted_candidate"
+        },
+        {
+            "scenario_id": "R06",
+            "fixture_case_id": "R06",
+            "engine_behavior": "idempotency_same_key_same_scope"
+        },
+        {
+            "scenario_id": "R07",
+            "fixture_case_id": "R07",
+            "engine_behavior": "idempotency_same_key_different_scope"
+        },
+        {
+            "scenario_id": "R08",
+            "fixture_case_id": "R08",
+            "engine_behavior": "retry_requires_explicit_authority"
+        },
+        {
+            "scenario_id": "R09",
+            "fixture_case_id": "R09",
+            "engine_behavior": "automatic_retry_forbidden"
+        },
+        {
+            "scenario_id": "R10",
+            "fixture_case_id": "R10",
+            "engine_behavior": "queue_timeout_to_timeout_candidate"
+        },
+        {
+            "scenario_id": "R11",
+            "fixture_case_id": "R11",
+            "engine_behavior": "running_cancelled_by_user"
+        },
+        {
+            "scenario_id": "R12",
+            "fixture_case_id": "R12",
+            "engine_behavior": "partial_result_requires_followup"
+        },
+        {
+            "scenario_id": "R13",
+            "fixture_case_id": "R13",
+            "engine_behavior": "partial_failure_triggers_rollback_required"
+        },
+        {
+            "scenario_id": "R14",
+            "fixture_case_id": "R14",
+            "engine_behavior": "adapter_failure_surface"
+        },
+        {
+            "scenario_id": "R15",
+            "fixture_case_id": "R15",
+            "engine_behavior": "scheduler_reference_only"
+        },
+        {
+            "scenario_id": "R16",
+            "fixture_case_id": "R16",
+            "engine_behavior": "task_manager_reference_only"
+        },
+        {
+            "scenario_id": "R17",
+            "fixture_case_id": "R17",
+            "engine_behavior": "result_handoff_no_owner_transfer"
+        },
+        {
+            "scenario_id": "R18",
+            "fixture_case_id": "R18",
+            "engine_behavior": "diagnostics_evidence_only"
+        }
+    ],
+    "planning_assets_modified": false,
+    "parallel_implementation_created": false,
+    "phase_boundary_preserved": true
+}

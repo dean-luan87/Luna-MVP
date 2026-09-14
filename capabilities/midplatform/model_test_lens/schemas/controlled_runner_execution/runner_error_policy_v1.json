@@ -1,0 +1,47 @@
+{
+  "schema_id": "RunnerErrorPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+  "description": "Runner 错误隔离策略。错误结果是 runner_error_candidate，不写 fact。",
+  "planning_only": true,
+  "error_types": [
+    "timeout",
+    "runner_unavailable",
+    "invalid_crop",
+    "route_mismatch",
+    "schema_validation_failed",
+    "model_output_invalid",
+    "confidence_too_low",
+    "execution_cancelled"
+  ],
+  "runner_error_candidate_schema": {
+    "required_fields": [
+      "error_id",
+      "error_type",
+      "error_message",
+      "source_execution_candidate_id",
+      "source_invocation_request_id",
+      "recoverable",
+      "not_fact",
+      "needs_fact_admission"
+    ],
+    "forbidden_fields": ["fact_write", "navigation_decision"]
+  },
+  "timeout_policy": {
+    "default_timeout_ms": 30000,
+    "on_timeout": "runner_error_candidate",
+    "error_type": "timeout",
+    "write_fact": false
+  },
+  "error_handling_rules": {
+    "all_errors_produce_runner_error_candidate": true,
+    "no_fact_write_on_error": true,
+    "no_navigation_on_error": true,
+    "preserve_trace_chain": true
+  },
+  "boundary_flags": {
+    "runner_error_does_not_write_fact": true,
+    "not_fact": true,
+    "planning_only": true
+  }
+}

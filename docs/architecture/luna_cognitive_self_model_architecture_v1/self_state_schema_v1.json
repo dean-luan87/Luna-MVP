@@ -1,0 +1,14 @@
+{
+  "title": "Self State Schema v1",
+  "owner": "Cognitive Self Model / Self State",
+  "schema": ["self_state_id", "timestamp", "current_context", "active_task", "runtime_status", "confidence", "active_goal", "unknown", "source_refs"],
+  "runtime_statuses": ["Idle", "Observing", "Processing", "Decision Pending", "Action Pending", "Recovering", "Unknown"],
+  "rules": {
+    "state_is_dynamic": true,
+    "identity_separate": true,
+    "timestamp_required": true,
+    "unknown_preserved": true,
+    "snapshot_not_decision": true,
+    "owner_required": true
+  }
+}

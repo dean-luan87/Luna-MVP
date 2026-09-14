@@ -1,0 +1,152 @@
+{
+  "event_types": {
+    "stcm_anchor_revalidated": {
+      "description": "Spatial anchor revalidated after user movement or frame update.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "anchor_id",
+        "previous_anchor_ref",
+        "new_anchor_ref",
+        "revalidated_at",
+        "spatial_anchor_valid",
+        "drift_risk"
+      ]
+    },
+    "stcm_fallback_decision": {
+      "description": "Mid-platform value/time decision to fallback, cancel, or async.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "fallback_decision",
+        "fallback_provider",
+        "fallback_reason_codes",
+        "cancel_allowed",
+        "async_allowed",
+        "cache_reuse_allowed"
+      ]
+    },
+    "stcm_model_call_completed": {
+      "description": "Model call finished within deadline.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "completed_at",
+        "elapsed_ms",
+        "output_ref",
+        "result_validity",
+        "spatial_anchor_valid",
+        "stale_risk",
+        "drift_risk"
+      ]
+    },
+    "stcm_model_call_requested": {
+      "description": "A model call was proposed with deadline and anchors.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "source_module",
+        "modality",
+        "provider_name",
+        "provider_level",
+        "task_context",
+        "urgency",
+        "requested_at",
+        "deadline_at",
+        "max_latency_ms",
+        "spatial_anchor_ref",
+        "info_value_level",
+        "voice_notice_required"
+      ]
+    },
+    "stcm_model_call_started": {
+      "description": "Model execution actually started.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "started_at",
+        "provider_name",
+        "input_ref",
+        "input_type",
+        "roi_refs",
+        "cache_checked",
+        "cache_hit"
+      ]
+    },
+    "stcm_model_call_timeout": {
+      "description": "Model call exceeded deadline; must notify mid-platform observability plane.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "timeout_at",
+        "elapsed_ms",
+        "deadline_at",
+        "timeout_policy",
+        "notified_midplatform",
+        "voice_notice_required"
+      ]
+    },
+    "stcm_result_discarded": {
+      "description": "Output discarded due to expiry, drift, or low value.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "call_id",
+        "output_ref",
+        "discard_reason",
+        "result_validity",
+        "expired_at",
+        "user_action_affected"
+      ]
+    },
+    "stcm_voice_notice_dropped": {
+      "description": "Voice notice expired or superseded.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "notice_id",
+        "dropped_at",
+        "drop_reason",
+        "stale_notice",
+        "replaced_by"
+      ]
+    },
+    "stcm_voice_notice_requested": {
+      "description": "User-affecting voice notice with hard deadline and expiry.",
+      "required_fields": [
+        "event_id",
+        "event_type",
+        "trace_id",
+        "notice_id",
+        "call_id",
+        "notice_reason",
+        "notice_message_template",
+        "requested_at",
+        "deadline_at",
+        "expires_at",
+        "user_action_affected"
+      ]
+    }
+  },
+  "schema_version": "stcm_event_type_registry_v0",
+  "trace_envelope_common": [
+    "event_id",
+    "event_type",
+    "trace_id",
+    "emitted_at",
+    "schema_version"
+  ]
+}

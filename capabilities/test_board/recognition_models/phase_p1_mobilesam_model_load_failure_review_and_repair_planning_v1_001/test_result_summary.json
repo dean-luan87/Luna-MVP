@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:48:33.644720+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_model_load_failure_repair_planning_profile_count": 1,
+    "stage_ref_count": 11,
+    "mobile_sam_model_load_failure_audit_count": 1,
+    "mobile_sam_dependency_gap_record_count": 1,
+    "mobile_sam_timm_repair_plan_record_count": 1,
+    "mobile_sam_dependency_install_request_route_count": 1,
+    "mobile_sam_model_load_retry_gate_planning_record_count": 1,
+    "mobile_sam_repair_risk_record_count": 1,
+    "mobile_sam_inference_runtime_boundary_record_count": 1,
+    "mobile_sam_repair_followup_route_count": 1,
+    "negative_guard_count": 17,
+    "blocker_count": 0
+  }
+}

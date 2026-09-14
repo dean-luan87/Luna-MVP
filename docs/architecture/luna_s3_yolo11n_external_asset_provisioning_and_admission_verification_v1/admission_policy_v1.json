@@ -1,0 +1,18 @@
+{
+  "technical_admission_requires": [
+    "valid physical asset",
+    "unique model identity",
+    "acceptable checksum state",
+    "model contract resolved",
+    "loader contract resolved",
+    "provider adapter resolved",
+    "capability contract resolved",
+    "evidence contract resolved",
+    "PYTHON_DEPENDENCY_VERIFIED"
+  ],
+  "acceptable_checksum_for_ready_candidate": "CHECKSUM_VERIFIED",
+  "observed_only_checksum_result": "CHECKSUM_REGISTRATION_CANDIDATE",
+  "ready_result": "ADMISSION_READY_CANDIDATE",
+  "provider_invocation": false,
+  "model_inference": false
+}

@@ -1,0 +1,7 @@
+{
+  "runner": "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/run_real_input_dynamic_cognitive_loop_integrated_controlled_implementation_v1.py",
+  "verifier": "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/verify_real_input_dynamic_cognitive_loop_integrated_controlled_implementation_v1.py",
+  "runner_contract": ["JSON summary on direct execution", "non-zero exit when a case fails"],
+  "verifier_contract": ["JSON summary on direct execution", "scenario, negative guard, source set and documentation set checks", "non-zero exit when any check or case fails"],
+  "execution_policy": "User terminal verification only; implementation turn performs no validation execution."
+}

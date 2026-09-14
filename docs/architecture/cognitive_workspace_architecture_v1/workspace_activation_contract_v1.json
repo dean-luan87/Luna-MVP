@@ -1,0 +1,17 @@
+{
+  "contract_name": "Workspace Activation Contract v1",
+  "activation_request": {},
+  "source_field": {},
+  "source_role": {},
+  "source_relationship": {},
+  "source_task": {},
+  "source_goal": {},
+  "attention_admission_candidate": {},
+  "resource_constraints": {},
+  "unknowns": [],
+  "provenance": [],
+  "activation_does_not_create_field": true,
+  "activation_does_not_make_decision": true,
+  "activation_does_not_modify_reality": true,
+  "unknowns_are_preserved": true
+}

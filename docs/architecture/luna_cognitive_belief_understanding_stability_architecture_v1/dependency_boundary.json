@@ -1,0 +1,11 @@
+{
+  "boundary_id": "belief_understanding_dependency_v1",
+  "reusable_assets": ["docs/architecture/cognitive_hypothesis_belief_architecture_v1", "docs/architecture/luna_cognitive_state_management_reality_validation_architecture_v1", "docs/architecture/luna_cognitive_field_attention_decision_integration_v1", "docs/architecture/luna_cognitive_information_processing_pipeline_architecture_v1", "docs/architecture/luna_cognitive_uncertainty_exploration_governance_architecture_v1", "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1", "docs/architecture/luna_cognitive_schema_architecture_v1"],
+  "allowed_dependencies": ["Reality -> Evidence", "Evidence -> Hypothesis", "Hypothesis -> Belief Candidate", "Belief -> Understanding Candidate", "Validation -> Belief Update Candidate", "Memory -> Prior Context", "Schema -> Prior Context", "Understanding -> Brain Decision Candidate"],
+  "forbidden_dependencies": ["Belief -> Reality Replacement", "Memory -> Direct Belief Override", "Schema -> Forced Conclusion", "Confidence -> Truth Assertion", "Understanding -> Direct Action", "Understanding -> Identity Rewrite", "Belief -> Direct Goal Rewrite", "Belief -> Memory Mutation", "Brain Runtime -> Belief Store", "Knowledge -> Direct Belief Authority"],
+  "no_parallel_belief_store": true,
+  "no_independent_knowledge_judgment": true,
+  "brain_runtime_unchanged": true,
+  "decision_runtime_unchanged": true,
+  "runtime": false
+}

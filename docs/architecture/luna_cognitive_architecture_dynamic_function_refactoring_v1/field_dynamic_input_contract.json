@@ -1,0 +1,12 @@
+{
+  "contract_id": "field_dynamic_input_v1",
+  "field_role": "Input State Space",
+  "inputs": ["Field State Vector", "Field Influence Weight", "Field Transition Signal", "Temporal Context", "Spatial Context", "Role Context", "Task Context"],
+  "outputs": ["Cognitive Function Input Candidate", "Field Weight Adjustment Candidate", "Field Transition Candidate"],
+  "field_is_not_reality": true,
+  "field_does_not_execute": true,
+  "field_does_not_modify_self": true,
+  "field_does_not_override_constitution": true,
+  "candidate_only": true,
+  "runtime": false
+}

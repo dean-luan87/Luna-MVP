@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "baseline":"S0_GOLDEN_SYNTHETIC_BASELINE",
+  "reverse_trace":["Product Output","Feedback","Outcome Evaluation","Runtime Result","Action","Task","Decision","Cognitive State / Flow","Context / Current World","Observation","Evidence","Product Input"],
+  "observation_optional_trace_rule":"When observation is not required, trace must still reach Product Input.",
+  "source_trace_ref":"docs/architecture/luna_a_route_runtime_product_loop_controlled_integration_v1/a_route_runtime_product_loop_trace_provenance_contract_v1.json",
+  "provenance_grants_authority":false,
+  "source_trace_rewrite":false,
+  "differential_compare_fields":["trace_ref","provenance_refs","stage_trace_refs","handoff_trace_refs","error_refs","reverse_lookup"]
+}

@@ -1,0 +1,110 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "multi_model_interaction_planning": true,
+  "record": {
+    "schema_id": "OcrRunnerExecutionRecordSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+    "description": "OCR runner 执行记录。completed 仅代表 runner 完成，不代表 text fact。",
+    "planning_only": true,
+    "required_fields": [
+      "ocr_execution_id",
+      "source_ocr_execution_candidate_id",
+      "runner_name",
+      "runner_version",
+      "execution_mode",
+      "status",
+      "input_ref",
+      "trace_chain",
+      "completed_not_fact"
+    ],
+    "field_definitions": {
+      "ocr_execution_id": {
+        "type": "string",
+        "pattern": "^oexec_ocr_[a-z0-9_]+$"
+      },
+      "source_ocr_execution_candidate_id": {
+        "type": "string"
+      },
+      "runner_name": {
+        "type": "string"
+      },
+      "runner_version": {
+        "type": "string"
+      },
+      "execution_mode": {
+        "type": "string",
+        "const": "manual_controlled"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "running",
+          "completed",
+          "failed",
+          "cancelled"
+        ]
+      },
+      "started_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "ended_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "input_ref": {
+        "type": "string",
+        "description": "ocr_adapter_input_schema_v1 引用"
+      },
+      "output_ref": {
+        "type": "string",
+        "description": "ocr_result_envelope 引用；失败时为空"
+      },
+      "error_ref": {
+        "type": "string",
+        "description": "ocr_runner_error_candidate 引用"
+      },
+      "trace_chain": {
+        "type": "array"
+      },
+      "completed_not_fact": {
+        "type": "boolean",
+        "const": true,
+        "description": "status=completed 仍不等于 fact"
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      }
+    },
+    "status_semantics": {
+      "pending": "已 prepare，未调用 runtime",
+      "running": "runtime 执行中",
+      "completed": "runner 完成；输出须进 ocr_result_envelope，非 fact",
+      "failed": "须进 ocr_runner_error_candidate",
+      "cancelled": "用户或策略取消"
+    },
+    "forbidden_operations": [
+      "completed_implies_fact",
+      "direct_result_layer_write",
+      "direct_fact_write",
+      "navigation_decision_from_execution"
+    ],
+    "boundary_flags": {
+      "ocr_completed_not_fact": true,
+      "ocr_runner_requires_execution_candidate": true,
+      "planning_only": true
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "integration_planning": true,
+  "record": {
+    "schema_id": "RunnerSandboxPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-001",
+    "description": "Runner Sandbox 策略。首次允许 runner_execution，但仅限 MobileSAM 与测试环境。",
+    "runner_execution_allowed": true,
+    "allowed_models": [
+      "mobile_sam"
+    ],
+    "allowed_environments": [
+      "test_environment",
+      "localhost_8787"
+    ],
+    "allowed_task_types": [
+      "segmentation"
+    ],
+    "entry_requirements": {
+      "controlled_runner_execution_candidate_required": true,
+      "admission_decision_must_be": "admitted",
+      "execution_candidate_status_allowed": [
+        "planned_only",
+        "ready_for_execution_review"
+      ],
+      "execution_candidate_status_forbidden": [
+        "cancelled",
+        "blocked"
+      ],
+      "trace_chain_min_stages": 7,
+      "adapter_input_schema_ref": "schemas/mobile_sam_single_model_execution/model_adapter_input_schema_v1.json"
+    },
+    "forbidden_entry_paths": [
+      "ui_direct_model_call",
+      "bypass_admission",
+      "bypass_execution_candidate",
+      "simple_mode_uncontrolled_bypass",
+      "orphan_runner_execution"
+    ],
+    "execution_rules": {
+      "runner_execution_id_pattern": "^rex_mobile_sam_",
+      "must_record_source_execution_candidate_id": true,
+      "must_record_trace_chain": true,
+      "output_must_use_envelope": true,
+      "output_envelope_schema_ref": "schemas/mobile_sam_single_model_execution/segmentation_result_envelope_schema_v1.json"
+    },
+    "error_handling": {
+      "error_envelope_type": "runner_error_candidate",
+      "no_fact_write_on_error": true,
+      "error_types": [
+        "timeout",
+        "runner_unavailable",
+        "invalid_crop",
+        "empty_mask_output",
+        "schema_validation_failed",
+        "model_output_invalid",
+        "execution_cancelled",
+        "trace_chain_incomplete",
+        "sandbox_policy_violation"
+      ]
+    },
+    "boundary_flags": {
+      "mobile_sam_only": true,
+      "test_environment_only": true,
+      "execution_candidate_required": true,
+      "no_ui_direct_model_call": true
+    }
+  }
+}

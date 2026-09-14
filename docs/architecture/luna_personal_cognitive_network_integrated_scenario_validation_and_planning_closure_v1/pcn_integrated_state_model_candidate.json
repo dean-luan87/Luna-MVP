@@ -1,0 +1,29 @@
+{
+  "artifact_id": "pcn_integrated_state_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "PCN Integration Planning Governance",
+  "state_groups": {
+    "FIELD_STATE": ["CORE_ACTIVE", "SECONDARY_ACTIVE", "TEMPORARILY_OCCUPIED", "HISTORICAL", "DORMANT_REFERENCE"],
+    "ROLE_STATE": ["PRIMARY_ACTIVE", "SECONDARY_ACTIVE", "WEAK_ACTIVE", "DORMANT", "REACTIVATED"],
+    "RELATIONSHIP_STATE": ["ACTIVE", "HISTORICAL", "DORMANT", "REACTIVATED", "MULTI_RELATION_COEXISTING"],
+    "PCN_LINK_STATE": ["ACTIVE", "WEAK", "DORMANT", "REACTIVATED"],
+    "INTERACTION_STATE": ["RESONANCE", "COMPETITION", "OCCUPATION", "OVERLAP", "COEXISTENCE", "FUSION_CANDIDATE", "HISTORICAL_REACTIVATION"]
+  },
+  "source_lifecycle_qualifiers": {
+    "relationship": ["ENDED", "REACTIVATABLE"],
+    "field": ["EXPIRED", "REPLACED"],
+    "role": ["SUSPENDED", "CLOSED"]
+  },
+  "semantics": {
+    "planning_expression_candidates": true,
+    "fixed_fsm_enforcement": false,
+    "automatic_transition": false,
+    "fixed_time_threshold": false,
+    "state_implies_source_mutation": false,
+    "multiple_states_may_coexist": true,
+    "transition_requires_context_resource_evidence_and_owner_review": true
+  },
+  "candidate_only": true,
+  "active_schema": false,
+  "runtime_implemented": false
+}

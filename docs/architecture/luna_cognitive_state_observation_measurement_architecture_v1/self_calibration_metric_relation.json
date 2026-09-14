@@ -1,0 +1,12 @@
+{
+  "relation_id": "self_calibration_metric_v1",
+  "flow": ["State Observation", "Metric Candidates", "State Quality", "Outcome", "Calibration Candidate", "Self Review"],
+  "inputs": ["State Quality", "Prediction Error", "Capability Performance", "Long Term Pattern", "Self Stability", "Resource Efficiency"],
+  "outputs": ["Calibration Candidate", "Metric Weight Candidate", "Parameter Improvement Candidate", "No Change Candidate"],
+  "repeated_evidence_required": true,
+  "field_scope_required": true,
+  "self_review_required": true,
+  "automatic_calibration": false,
+  "automatic_parameter_update": false,
+  "candidate_only": true
+}

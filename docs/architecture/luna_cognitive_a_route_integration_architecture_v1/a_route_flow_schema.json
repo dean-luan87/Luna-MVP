@@ -1,0 +1,14 @@
+{
+  "schema_id": "a_route_flow_v1",
+  "status": "architecture_only",
+  "canonical_stages": [
+    "Reality", "Evidence", "Cognitive Field", "Attention", "Context", "Hypothesis", "Belief", "Understanding", "Goal", "Value Utility", "Decision Arbitration", "Action Boundary", "Outcome", "Experience", "Memory", "Schema", "Selective Learning", "Growth Candidate", "Self Review"
+  ],
+  "stage_output_is_candidate_by_default": true,
+  "reality_is_external_precedence": true,
+  "required_flow_metadata": ["flow_id", "stage", "field_ref", "provenance", "timestamp", "trace_ref", "unknowns"],
+  "runtime_implemented": false,
+  "action_execution": false,
+  "learning_runtime": false,
+  "b_route": false
+}

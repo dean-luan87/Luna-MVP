@@ -1,0 +1,68 @@
+{
+    "artifact": "cognitive_state_formation_candidate_modules_v1",
+    "candidates": [
+        {
+            "candidate_id": "A",
+            "module_name": "Attention -> Hypothesis -> Current World Cognitive State Formation Module",
+            "current_asset_maturity": "medium",
+            "architecture_only": true,
+            "controlled_implementation_exists": false,
+            "duplicate_implementation_risk": "medium",
+            "relationship_to_context_intent_chain": "direct_upstream_of_intent_quality; can provide higher-quality uncertainty-structured context evidence before intent formation",
+            "relationship_to_intent_causal_decision_chain": "indirect_but_high; improves evidence quality and conflict/unknown packaging for causal input",
+            "runtime_dependency": "low",
+            "differentiation_value": "very_high",
+            "full_module_buildability_now": true,
+            "priority": "P0",
+            "implementation_scope": [
+                "Attention candidate packaging (resource allocation candidate only)",
+                "Hypothesis candidate formation and conflict preservation",
+                "Current World read-only composition snapshot",
+                "Boundary adapters into existing Context->PCN->Intent chain as upstream evidence envelope"
+            ],
+            "stop_condition": "complete module-level candidate contracts plus controlled integration skeleton and verifier without runtime mutation"
+        },
+        {
+            "candidate_id": "B",
+            "module_name": "Memory/Experience -> Learning Cognitive Experience Return Module",
+            "current_asset_maturity": "low_to_medium",
+            "architecture_only": true,
+            "controlled_implementation_exists": false,
+            "duplicate_implementation_risk": "high",
+            "relationship_to_context_intent_chain": "downstream_feedback_loop; not required to keep current forward chain functional",
+            "relationship_to_intent_causal_decision_chain": "post-outcome optimization path",
+            "runtime_dependency": "medium",
+            "differentiation_value": "high",
+            "full_module_buildability_now": false,
+            "priority": "P1",
+            "implementation_scope": [
+                "Experience ingestion candidate pipeline",
+                "Pattern/strategy candidate formation",
+                "Learning governance admission and revocation candidates",
+                "Memory-learning interface adapters"
+            ],
+            "stop_condition": "memory/experience formal integration baseline closed and no parallel memory owner creation"
+        },
+        {
+            "candidate_id": "C",
+            "module_name": "Dynamic Cognitive Function -> Cognitive State Vector -> Self Regulation Module",
+            "current_asset_maturity": "low_to_medium",
+            "architecture_only": true,
+            "controlled_implementation_exists": false,
+            "duplicate_implementation_risk": "high",
+            "relationship_to_context_intent_chain": "depends_on_stable_state_inputs_from_attention_hypothesis_current_world",
+            "relationship_to_intent_causal_decision_chain": "cross-cutting; can alter modulation but must not absorb owner authority",
+            "runtime_dependency": "medium_to_high",
+            "differentiation_value": "very_high",
+            "full_module_buildability_now": false,
+            "priority": "P1",
+            "implementation_scope": [
+                "State vector candidate computation",
+                "Dynamic function candidate mapping",
+                "Self-regulation adaptation governance candidate",
+                "Parameter boundary and review-loop enforcement"
+            ],
+            "stop_condition": "state input completeness and owner-boundary freeze verified before controlled implementation"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Self Rhythm Resource Budget Contract",
+  "owner":"Self Rhythm Controller",
+  "dimensions":["cpu","gpu_npu","memory","battery","storage","network","attention","capability_intensity"],
+  "budget_fields":["requested_level","reason","duration_hint","constraint","confidence"],
+  "semantics":"advisory budget hint, not direct resource control",
+  "runtime_policy":{"runtime_can_reject":true,"runtime_can_clamp":true,"runtime_is_final_scheduler_owner":true},
+  "forbidden_effects":["hardware_control","cpu_gpu_control","scheduler_modification","model_switching","provider_switching","action_execution"],
+  "rules":{"resource_state_observation_only":true,"stability_over_optimization":true,"unknown_preserved":true}
+}

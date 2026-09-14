@@ -1,0 +1,96 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Compact-Viewport-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "planning_only": true,
+  "record": {
+    "plan_id": "luna_observation_responsive_viewport_rules_plan_v1",
+    "spec": {
+      "rules_id": "LunaObservationResponsiveViewportRulesV1",
+      "version": "v1",
+      "max_primary_scroll_depth": 1.5,
+      "breakpoints": [
+        {
+          "breakpoint_id": "desktop_wide",
+          "min_width_px": 1280,
+          "layout": {
+            "left_rail_px": 240,
+            "center_flex": 1,
+            "center_width_percent_target": 60,
+            "right_panel_px": 340,
+            "bottom_dock_height_px": 96,
+            "primary_scroll_max_viewport": 1.0
+          },
+          "scroll_policy": {
+            "page_body_scroll": "forbidden_for_primary_observation",
+            "right_panel_internal_scroll": "allowed",
+            "bottom_drawer_scroll": "allowed_when_expanded"
+          }
+        },
+        {
+          "breakpoint_id": "desktop_medium",
+          "min_width_px": 960,
+          "max_width_px": 1279,
+          "layout": {
+            "left_rail_collapsible": true,
+            "center_percent": 60,
+            "right_panel_percent": 40,
+            "primary_scroll_max_viewport": 1.0
+          }
+        },
+        {
+          "breakpoint_id": "tablet_small",
+          "min_width_px": 600,
+          "max_width_px": 959,
+          "layout": {
+            "stack_order": [
+              "top_bar",
+              "central_hud",
+              "right_panel_as_tabs",
+              "bottom_dock"
+            ],
+            "primary_scroll_max_viewport": 1.25
+          }
+        },
+        {
+          "breakpoint_id": "mobile_narrow",
+          "max_width_px": 599,
+          "layout": {
+            "stack_order": [
+              "top_bar",
+              "central_hud",
+              "reasoning_panel_tab",
+              "bottom_dock"
+            ],
+            "primary_scroll_max_viewport": 1.5
+          },
+          "note": "小屏允许最多 1.5 屏完成主要观察"
+        }
+      ],
+      "whitebox_slot_placement": {
+        "default_expanded": false,
+        "location": "bottom_drawer_tab",
+        "tab_id": "whitebox_slot",
+        "future_content": [
+          "evidence_chain",
+          "trace",
+          "decision_path",
+          "gate_status",
+          "testboard_refs"
+        ],
+        "runtime_connected": false
+      },
+      "right_panel_tabs_small_screen": [
+        {
+          "tab_id": "luna_explanation",
+          "default": true
+        },
+        {
+          "tab_id": "whitebox_slot",
+          "default": false
+        }
+      ]
+    }
+  }
+}

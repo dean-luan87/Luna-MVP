@@ -1,0 +1,14 @@
+{
+  "title": "Self Evolution Capability Interface v1",
+  "owner": "Self Capability Profile",
+  "inputs": ["Performance Evidence", "Capability State", "Hardware Condition", "Provider Provenance"],
+  "outputs": ["Capability Growth Candidate", "Capability Limitation Candidate", "Context Confidence Update Candidate"],
+  "rules": {
+    "capability_is_context_bound": true,
+    "provider_is_evidence_source_only": true,
+    "no_model_parameter_update": true,
+    "no_capability_auto_upgrade": true,
+    "profile_update_requires_admission": true,
+    "identity_is_not_modified": true
+  }
+}

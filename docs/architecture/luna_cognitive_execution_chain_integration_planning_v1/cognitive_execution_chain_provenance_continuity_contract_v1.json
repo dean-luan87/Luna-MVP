@@ -1,0 +1,25 @@
+{
+    "artifact": "cognitive_execution_chain_provenance_continuity_contract_v1",
+    "status": "PLANNING_CANDIDATE",
+    "forward_provenance_path": [
+        "source_observation_or_context_ref",
+        "intent_provenance_ref",
+        "causal_provenance_ref",
+        "decision_provenance_ref",
+        "action_provenance_ref",
+        "execution_result_provenance_ref"
+    ],
+    "reverse_locatability": {
+        "execution_failure_to_action_candidate": true,
+        "execution_failure_to_decision_candidate": true,
+        "execution_failure_to_causal_refs": true,
+        "execution_failure_to_intent_refs": true
+    },
+    "rules": [
+        "provenance_is_reference_only",
+        "integration_does_not_generate_new_fact_conclusions",
+        "provenance_gap_requires_handoff_reject"
+    ],
+    "candidate_only": true,
+    "mutation_allowed": false
+}

@@ -1,0 +1,21 @@
+{
+  "control_id": "model_priority_routing_001",
+  "policy_id": "model_priority_routing",
+  "model_family": "object_detection_completion_family",
+  "candidate_type": "object_evidence",
+  "competing_model_families": [
+    "object_detection_completion_family",
+    "segmentation_family",
+    "ocr_model_family",
+    "scene_relation_vlm_family"
+  ],
+  "competing_candidate_types": ["object_evidence", "region_evidence", "text_hint", "relation_hypothesis"],
+  "license_ref": "license:multi_family_mixed",
+  "allowed_use": "candidate_only",
+  "availability_state": "available",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "priority_routing_confidence_policy_v1",
+  "routing_factors": ["availability", "license", "confidence_policy", "fallback_policy", "reserved_state"],
+  "fallback_plan": "fallback_to_lowest_risk_available_route",
+  "boundaries": ["priority_routing_does_not_bypass_candidate_gate", "routing_does_not_call_model_directly"]
+}

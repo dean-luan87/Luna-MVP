@@ -1,0 +1,11 @@
+{
+  "contract_id": "self_regulation_function_input_v1",
+  "owner": "Self Regulation Function",
+  "required_inputs": ["Self State", "Resource State", "Cognitive State", "Field Scope", "Constitution", "Measurement Evidence", "Outcome/Error Evidence"],
+  "optional_inputs": ["Goal Context", "Capability Health", "Memory Influence", "Emotion Adaptive Signal Candidate", "B Route Stability Candidate"],
+  "input_rules": ["evidence_ref_required", "field_scope_required", "timestamp_required", "unknowns_preserved", "confidence_required"],
+  "emotion_role": "adaptive_signal_only",
+  "b_route_role": "candidate_only",
+  "reality_is_not_overridden": true,
+  "candidate_only": true
+}

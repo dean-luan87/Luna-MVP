@@ -1,0 +1,21 @@
+{
+    "artifact": "cognitive_state_vector_candidate_contract_v1",
+    "purpose": "future dynamic function and self-regulation input interface",
+    "fields": {
+        "state_vector_id": "string",
+        "attention_distribution_refs": "string[]",
+        "hypothesis_state_refs": "string[]",
+        "uncertainty_level_candidate": "number|string",
+        "conflict_level_candidate": "number|string",
+        "world_stability_candidate": "number|string",
+        "intent_pressure_candidate": "number|string",
+        "resource_pressure_candidate": "number|string",
+        "trace_ref": "string",
+        "provenance_refs": "string[]"
+    },
+    "constraints": {
+        "candidate_only": true,
+        "no_adaptive_parameter_mutation_in_this_phase": true,
+        "no_runtime_execution": true
+    }
+}

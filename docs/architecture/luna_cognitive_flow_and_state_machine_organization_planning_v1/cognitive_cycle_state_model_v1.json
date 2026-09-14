@@ -1,0 +1,270 @@
+{
+    "artifact": "cognitive_cycle_state_model_v1",
+    "retained_states": [
+        {
+            "state": "IDLE",
+            "entry_condition": "no_active_cycle",
+            "allowed_source_states": [
+                "COMPLETED",
+                "ABORTED"
+            ],
+            "allowed_next_states": [
+                "INITIALIZING"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance",
+            "required_refs": [],
+            "forbidden_side_effects": [
+                "runtime_execution"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "INITIALIZING",
+            "entry_condition": "cycle_start_candidate_accepted",
+            "allowed_source_states": [
+                "IDLE",
+                "SUSPENDED"
+            ],
+            "allowed_next_states": [
+                "CONTEXT_READY",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance",
+            "required_refs": [
+                "context_refs"
+            ],
+            "forbidden_side_effects": [
+                "owner_mutation"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "CONTEXT_READY",
+            "entry_condition": "context_refs_valid_and_traceable",
+            "allowed_source_states": [
+                "INITIALIZING"
+            ],
+            "allowed_next_states": [
+                "INTENT_READY",
+                "SUSPENDED",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Context Foundation + Cognitive Flow Governance",
+            "required_refs": [
+                "context_refs",
+                "pcn_refs_optional"
+            ],
+            "forbidden_side_effects": [
+                "context_mutation"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "INTENT_READY",
+            "entry_condition": "intent_candidate_available_or_persisted_intent_linked",
+            "allowed_source_states": [
+                "CONTEXT_READY",
+                "RECONSIDERING"
+            ],
+            "allowed_next_states": [
+                "STATE_FORMING",
+                "SUSPENDED",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Intent Governance + Cognitive Flow Governance",
+            "required_refs": [
+                "intent_refs"
+            ],
+            "forbidden_side_effects": [
+                "intent_mutation"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "STATE_FORMING",
+            "entry_condition": "attention_hypothesis_current_world_pipeline_started",
+            "allowed_source_states": [
+                "INTENT_READY",
+                "RECONSIDERING"
+            ],
+            "allowed_next_states": [
+                "STATE_READY",
+                "RECONSIDERING",
+                "SUSPENDED",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Cognitive State Formation Governance",
+            "required_refs": [
+                "context_refs",
+                "intent_refs",
+                "field_refs"
+            ],
+            "forbidden_side_effects": [
+                "field_mutation",
+                "causal_truth_declaration"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "STATE_READY",
+            "entry_condition": "current_world_and_state_vector_candidates_available",
+            "allowed_source_states": [
+                "STATE_FORMING"
+            ],
+            "allowed_next_states": [
+                "REGULATING",
+                "RECONSIDERING",
+                "COMPLETED",
+                "SUSPENDED"
+            ],
+            "transition_authorizer": "Cognitive State Formation Governance + Cognitive Flow Governance",
+            "required_refs": [
+                "current_world_ref",
+                "cognitive_state_vector_ref"
+            ],
+            "forbidden_side_effects": [
+                "state_vector_mutation_as_store"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "REGULATING",
+            "entry_condition": "dynamic_regulation_started_on_state_vector",
+            "allowed_source_states": [
+                "STATE_READY"
+            ],
+            "allowed_next_states": [
+                "REGULATION_READY",
+                "RECONSIDERING",
+                "SUSPENDED",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Dynamic Cognitive Regulation Governance",
+            "required_refs": [
+                "cognitive_state_vector_ref"
+            ],
+            "forbidden_side_effects": [
+                "parameter_auto_activation",
+                "owner_mutation"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "REGULATION_READY",
+            "entry_condition": "regulation_candidate_available_or_no_change_confirmed",
+            "allowed_source_states": [
+                "REGULATING"
+            ],
+            "allowed_next_states": [
+                "COMPLETED",
+                "RECONSIDERING",
+                "SUSPENDED"
+            ],
+            "transition_authorizer": "Dynamic Cognitive Regulation Governance + Cognitive Flow Governance",
+            "required_refs": [
+                "regulation_candidate_ref_optional"
+            ],
+            "forbidden_side_effects": [
+                "runtime_side_effect"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "RECONSIDERING",
+            "entry_condition": "reconsideration_candidate_raised",
+            "allowed_source_states": [
+                "INTENT_READY",
+                "STATE_FORMING",
+                "STATE_READY",
+                "REGULATING",
+                "REGULATION_READY"
+            ],
+            "allowed_next_states": [
+                "INTENT_READY",
+                "STATE_FORMING",
+                "SUSPENDED",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance with source owner reason refs",
+            "required_refs": [
+                "reconsideration_trace"
+            ],
+            "forbidden_side_effects": [
+                "direct_owner_output_rewrite"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "SUSPENDED",
+            "entry_condition": "interrupt_or_resource_or_ref_issue_pending",
+            "allowed_source_states": [
+                "INITIALIZING",
+                "CONTEXT_READY",
+                "INTENT_READY",
+                "STATE_FORMING",
+                "STATE_READY",
+                "REGULATING",
+                "REGULATION_READY",
+                "RECONSIDERING"
+            ],
+            "allowed_next_states": [
+                "INITIALIZING",
+                "ABORTED"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance",
+            "required_refs": [
+                "suspend_candidate_ref",
+                "interrupt_trace"
+            ],
+            "forbidden_side_effects": [
+                "hidden_state_mutation"
+            ],
+            "terminal": false
+        },
+        {
+            "state": "COMPLETED",
+            "entry_condition": "cycle_outputs_frozen_and_inheritance_package_ready",
+            "allowed_source_states": [
+                "STATE_READY",
+                "REGULATION_READY"
+            ],
+            "allowed_next_states": [
+                "IDLE"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance",
+            "required_refs": [
+                "root_cycle_trace_id",
+                "provenance_refs"
+            ],
+            "forbidden_side_effects": [
+                "post_completion_mutation"
+            ],
+            "terminal": true
+        },
+        {
+            "state": "ABORTED",
+            "entry_condition": "invalidated_evidence_or_nonrecoverable_boundary_block",
+            "allowed_source_states": [
+                "INITIALIZING",
+                "CONTEXT_READY",
+                "INTENT_READY",
+                "STATE_FORMING",
+                "REGULATING",
+                "RECONSIDERING",
+                "SUSPENDED"
+            ],
+            "allowed_next_states": [
+                "IDLE"
+            ],
+            "transition_authorizer": "Cognitive Flow Governance",
+            "required_refs": [
+                "abort_candidate_ref",
+                "interrupt_trace"
+            ],
+            "forbidden_side_effects": [
+                "fact_creation"
+            ],
+            "terminal": true
+        }
+    ]
+}

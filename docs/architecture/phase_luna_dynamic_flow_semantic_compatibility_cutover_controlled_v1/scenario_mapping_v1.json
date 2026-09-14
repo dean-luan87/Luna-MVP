@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-Dynamic-Flow-Semantic-Compatibility-Cutover-Controlled-Implementation-v1-001",
+  "scenario_count": 34,
+  "families": {
+    "NEED": ["DC-01", "DC-02", "DC-03", "DC-04"],
+    "SUFFICIENCY": ["DC-05", "DC-06", "DC-07", "DC-08"],
+    "RECONSIDERATION": ["DC-09", "DC-10", "DC-11"],
+    "NEXT_STEP": ["DC-12", "DC-13", "DC-14", "DC-15", "DC-16", "DC-17", "DC-18"],
+    "CALLER_CUTOVER": ["DC-19", "DC-20", "DC-21", "DC-22", "DC-33"],
+    "REAL_CAPABILITY_RESERVATION": ["DC-23", "DC-24", "DC-25"],
+    "LEGACY_COMPATIBILITY": ["DC-26", "DC-27", "DC-28", "DC-34"],
+    "NEGATIVE_GUARD": ["DC-29", "DC-30", "DC-31", "DC-32"]
+  },
+  "boundary": "synthetic candidate-only; no Provider/model/runtime execution"
+}

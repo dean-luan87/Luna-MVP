@@ -1,0 +1,8 @@
+{
+  "title": "Action Runtime to Cognitive Core Interface v1",
+  "owner": "Cognitive Core Governance",
+  "inputs": ["Approved Action", "Intent", "Goal Reference", "Context", "Constraints", "Expectation"],
+  "outputs": ["Outcome Evidence", "Verification Signal", "Failure Candidate", "Re-evaluation Candidate", "Experience Candidate"],
+  "runtime_not_own": ["Goal", "Decision", "Value", "Brain", "Reality", "Learning Policy"],
+  "rules": {"approved_input_required": true, "runtime_not_decision_owner": true, "outcome_feedback_required": true, "interface_only": true}
+}

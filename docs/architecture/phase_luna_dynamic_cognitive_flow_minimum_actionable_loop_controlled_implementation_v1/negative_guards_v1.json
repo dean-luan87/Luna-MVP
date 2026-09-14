@@ -1,0 +1,38 @@
+{
+  "false": [
+    "runtime_execution",
+    "provider_invocation",
+    "camera_activation",
+    "model_invocation",
+    "scheduler_execution",
+    "action_execution",
+    "task_mutation",
+    "intent_mutation",
+    "field_mutation",
+    "world_truth_authority",
+    "memory_mutation",
+    "learning_execution",
+    "semantic_folding",
+    "semantic_expansion",
+    "automatic_capability_acquisition",
+    "automatic_capability_optimization",
+    "capability_scope_bypass",
+    "authority_escalation",
+    "remaining_plan_candidates_binding",
+    "stale_requirement_forces_invocation",
+    "stop_sufficient_is_failure",
+    "capability_failure_is_task_failure",
+    "hidden_cognitive_loop"
+  ],
+  "preserve": [
+    "candidate_only",
+    "trace",
+    "provenance",
+    "state_version_lineage",
+    "evidence_update_lineage",
+    "field/context/hypothesis/attention references",
+    "uncertainty",
+    "contradiction",
+    "alternative hypotheses"
+  ]
+}

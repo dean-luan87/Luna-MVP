@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Role B Route Interface",
+  "a_input":"current Field snapshot and active Role context",
+  "b_operation":"Role Candidate simulation only",
+  "b_output":"candidate comparison and consequence evidence",
+  "return_flow":["B Candidate Result","Brain Evaluation","Governance Review","Role Activation Candidate"],
+  "permissions":{"b_reads_role":true,"b_creates_role":false,"b_switches_role":false,"b_executes_action":false,"b_changes_field":false},
+  "rules":{"simulation_placeholder":true,"activation_outside_b":true,"no_b_runtime":true}
+}

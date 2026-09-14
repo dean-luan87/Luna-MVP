@@ -1,0 +1,115 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/causal/trace-candidate/v1",
+    "title": "Causal Provenance Trace Candidate v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "trace_id",
+        "owner",
+        "hypothesis_refs",
+        "evidence_refs",
+        "provenance",
+        "opposition_refs",
+        "confounder_refs",
+        "temporal_order_refs",
+        "intent_refs",
+        "prior_refs",
+        "context_refs",
+        "uncertainty",
+        "revision_chain_refs",
+        "admission_steps",
+        "candidate_only"
+    ],
+    "properties": {
+        "trace_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "owner": {
+            "const": "Causal Governance"
+        },
+        "hypothesis_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "evidence_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "provenance": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "opposition_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "confounder_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "temporal_order_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "intent_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "prior_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "context_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "uncertainty": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "revision_chain_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "admission_steps": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "candidate_only": {
+            "const": true
+        }
+    },
+    "active_schema": false
+}

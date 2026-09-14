@@ -1,0 +1,19 @@
+{
+  "sequence": [
+    {"step": "B1-0", "name": "freeze contracts and adapter boundary", "status": "planned", "owner": "Architecture / existing owners"},
+    {"step": "B1-1", "name": "map real S3 evidence/handoff into canonical Observation Gateway evidence input", "status": "planned", "owner": "Observation Gateway"},
+    {"step": "B1-2", "name": "exercise gateway admission/routing with real evidence references", "status": "planned", "owner": "Observation Gateway"},
+    {"step": "B1-3", "name": "feed admitted observation into existing Context World State Controlled Integration boundary", "status": "planned", "owner": "Context Foundation integration"},
+    {"step": "B1-4", "name": "preserve optional Field Event Admission and reducer eligibility candidate", "status": "planned", "owner": "Field Event Admission / Field State Reducer"},
+    {"step": "B1-5", "name": "produce read-only Context and CurrentWorldCandidate traces", "status": "planned", "owner": "Context Foundation / Cognitive State Formation"},
+    {"step": "B1-6", "name": "differentially compare synthetic C01-C36 path and real visual evidence path", "status": "planned", "owner": "B1 verification"}
+  ],
+  "gates": [
+    "no gateway admission without required provenance/trace/temporal references",
+    "no field event reducer eligibility without Field Event Admission",
+    "no reducer input from raw provider output",
+    "no Current World direct ingress",
+    "no mutation in B1 candidate path"
+  ],
+  "stop_before": ["production Field State write", "semantic world conclusion", "downstream cognitive mutation", "OCR/SLAM/VLM", "runtime action"]
+}

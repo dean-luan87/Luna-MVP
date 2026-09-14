@@ -1,0 +1,379 @@
+{
+  "queue_id": "model_capability_review_queue_v1",
+  "capability_review_queue_complete": true,
+  "targets": [
+    {
+      "target_id": "sam2_capability_review",
+      "model_project_id": "SAM2",
+      "operation_node_id": "visual_object_segmentation_tracking",
+      "model_room": "visual_perception_room",
+      "requirement_matrix_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_output_candidate": [
+        "MaskObservationCandidate",
+        "TrackObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "await_capability_review",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "grounded_sam2_capability_review",
+      "model_project_id": "Grounded_SAM2",
+      "operation_node_id": "visual_object_segmentation_tracking",
+      "model_room": "visual_perception_room",
+      "requirement_matrix_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_output_candidate": [
+        "ObjectObservationCandidate",
+        "MaskObservationCandidate",
+        "TrackObservationCandidate"
+      ],
+      "review_priority": "P1",
+      "review_reason": "open_vocab_visual",
+      "current_preinstall_action": "near_term_candidate_pending_review",
+      "status": "pending"
+    },
+    {
+      "target_id": "bytetrack_capability_review",
+      "model_project_id": "ByteTrack",
+      "operation_node_id": "visual_object_segmentation_tracking",
+      "model_room": "visual_perception_room",
+      "requirement_matrix_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_output_candidate": [
+        "TrackObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "entity_continuity_reference",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "yolo_lightweight_capability_review",
+      "model_project_id": "YOLO_lightweight",
+      "operation_node_id": "visual_object_segmentation_tracking",
+      "model_room": "visual_perception_room",
+      "requirement_matrix_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_output_candidate": [
+        "ObjectObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "lightweight_detector_placeholder",
+      "current_preinstall_action": "adapter_placeholder_only",
+      "status": "pending"
+    },
+    {
+      "target_id": "paddleocr_capability_review",
+      "model_project_id": "PaddleOCR",
+      "operation_node_id": "ocr_text_perception",
+      "model_room": "ocr_text_perception_room",
+      "requirement_matrix_refs": [
+        "ocr_text_perception"
+      ],
+      "expected_output_candidate": [
+        "TextObservationCandidate",
+        "TextRegionCandidate"
+      ],
+      "review_priority": "P1",
+      "review_reason": "ocr_primary_candidate",
+      "current_preinstall_action": "near_term_candidate_pending_review",
+      "status": "pending"
+    },
+    {
+      "target_id": "rapidocr_capability_review",
+      "model_project_id": "RapidOCR",
+      "operation_node_id": "ocr_text_perception",
+      "model_room": "ocr_text_perception_room",
+      "requirement_matrix_refs": [
+        "ocr_text_perception"
+      ],
+      "expected_output_candidate": [
+        "TextObservationCandidate",
+        "TextRegionCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "lightweight_ocr_alternative",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "whisper_capability_review",
+      "model_project_id": "Whisper",
+      "operation_node_id": "audio_speech_speaker",
+      "model_room": "audio_speech_perception_room",
+      "requirement_matrix_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_output_candidate": [
+        "SpeechObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "asr_reference",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "faster_whisper_capability_review",
+      "model_project_id": "faster_whisper",
+      "operation_node_id": "audio_speech_speaker",
+      "model_room": "audio_speech_perception_room",
+      "requirement_matrix_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_output_candidate": [
+        "SpeechObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "asr_edge_candidate",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "sensevoice_capability_review",
+      "model_project_id": "SenseVoice",
+      "operation_node_id": "audio_speech_speaker",
+      "model_room": "audio_speech_perception_room",
+      "requirement_matrix_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_output_candidate": [
+        "SpeechObservationCandidate",
+        "IntentHintCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "chinese_asr_candidate",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "pyannote_audio_capability_review",
+      "model_project_id": "pyannote_audio",
+      "operation_node_id": "audio_speech_speaker",
+      "model_room": "audio_speech_perception_room",
+      "requirement_matrix_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_output_candidate": [
+        "SpeakerObservationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "speaker_diarization",
+      "current_preinstall_action": "document_review_pending",
+      "status": "pending"
+    },
+    {
+      "target_id": "kimera_capability_review",
+      "model_project_id": "Kimera",
+      "operation_node_id": "spatial_slam_dynamic_scene_graph",
+      "model_room": "spatial_slam_scene_graph_room",
+      "requirement_matrix_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_output_candidate": [
+        "SpatialObservationCandidate",
+        "SceneGraphReferenceCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "structure_reference_not_runtime",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "hydra_capability_review",
+      "model_project_id": "Hydra",
+      "operation_node_id": "spatial_slam_dynamic_scene_graph",
+      "model_room": "spatial_slam_scene_graph_room",
+      "requirement_matrix_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_output_candidate": [
+        "SceneGraphReferenceCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "field_model_structure_reference",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "hov_sg_capability_review",
+      "model_project_id": "HOV_SG",
+      "operation_node_id": "spatial_slam_dynamic_scene_graph",
+      "model_room": "spatial_slam_scene_graph_room",
+      "requirement_matrix_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_output_candidate": [
+        "SceneGraphReferenceCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "long_term_reference",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "open3dsg_capability_review",
+      "model_project_id": "Open3DSG",
+      "operation_node_id": "spatial_slam_dynamic_scene_graph",
+      "model_room": "spatial_slam_scene_graph_room",
+      "requirement_matrix_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_output_candidate": [
+        "SceneRelationCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "long_term_reference",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "esper_capability_review",
+      "model_project_id": "Esper",
+      "operation_node_id": "ecs_entity_component",
+      "model_room": "ecs_entity_component_room",
+      "requirement_matrix_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_output_candidate": [
+        "EntityComponentCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "ecs_reference_dataclass_first",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "flecs_capability_review",
+      "model_project_id": "Flecs",
+      "operation_node_id": "ecs_entity_component",
+      "model_room": "ecs_entity_component_room",
+      "requirement_matrix_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_output_candidate": [
+        "EntityComponentCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "long_term_performance_reference",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "networkx_capability_review",
+      "model_project_id": "NetworkX",
+      "operation_node_id": "lightweight_semantic_event_graph",
+      "model_room": "semantic_event_graph_room",
+      "requirement_matrix_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_output_candidate": [
+        "SemanticEventCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "lightweight_graph_reference",
+      "current_preinstall_action": "directory_only",
+      "status": "pending"
+    },
+    {
+      "target_id": "rdflib_capability_review",
+      "model_project_id": "RDFLib",
+      "operation_node_id": "lightweight_semantic_event_graph",
+      "model_room": "semantic_event_graph_room",
+      "requirement_matrix_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_output_candidate": [
+        "SemanticEventCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "kg_standard_reference",
+      "current_preinstall_action": "reference_only_now",
+      "status": "pending"
+    },
+    {
+      "target_id": "neo4j_capability_review",
+      "model_project_id": "Neo4j",
+      "operation_node_id": "lightweight_semantic_event_graph",
+      "model_room": "semantic_event_graph_room",
+      "requirement_matrix_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_output_candidate": [
+        "SemanticEventCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "no_database_now",
+      "current_preinstall_action": "deferred_due_to_runtime_cost",
+      "status": "pending"
+    },
+    {
+      "target_id": "luna_dataclass_ecs_skeleton_capability_review",
+      "model_project_id": "Luna_dataclass_ECS_skeleton",
+      "operation_node_id": "ecs_entity_component",
+      "model_room": "ecs_entity_component_room",
+      "requirement_matrix_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_output_candidate": [
+        "EntityComponentCandidate",
+        "AttributeStateCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "self_developed_primary",
+      "current_preinstall_action": "adapter_placeholder_only",
+      "status": "pending"
+    },
+    {
+      "target_id": "luna_geometry_simulator_capability_review",
+      "model_project_id": "Luna_geometry_simulator",
+      "operation_node_id": "field_simulation",
+      "model_room": "field_simulation_room",
+      "requirement_matrix_refs": [
+        "field_simulation"
+      ],
+      "expected_output_candidate": [
+        "FieldSimulationResultCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "self_developed_primary",
+      "current_preinstall_action": "adapter_placeholder_only",
+      "status": "pending"
+    },
+    {
+      "target_id": "structured_llm_reasoning_capability_review",
+      "model_project_id": "structured_LLM_reasoning",
+      "operation_node_id": "midplatform_reasoning",
+      "model_room": "midplatform_reasoning_room",
+      "requirement_matrix_refs": [
+        "midplatform_reasoning"
+      ],
+      "expected_output_candidate": [
+        "MidplatformReasoningCandidate"
+      ],
+      "review_priority": "P2",
+      "review_reason": "model_selection_not_allowed",
+      "current_preinstall_action": "blocked_until_download_authorized",
+      "status": "pending"
+    }
+  ],
+  "phase": "Phase-Midplatform-Field-First-Core-Model-Preinstall-Plan-and-Cache-Manifest-Prepare-v1-001",
+  "scope": "field_first_core_model_preinstall_plan_only",
+  "source_chain": "field_first_core_model_preinstall_plan_v1",
+  "governance_constraints_ref": "migration_governance_development_constraints_v1",
+  "foundation_id": "midplatform_task_manager_foundation_v1",
+  "runtime_status": "not_enabled",
+  "field_first_core_model_preinstall_plan_only": true,
+  "midplatform_overall_status": "construction_consolidation",
+  "foundation_consolidation_not_final_midplatform_completion": true,
+  "no_fragmentary_phase_expansion": true,
+  "integration_test_executed": false,
+  "output_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_model_preinstall_plan_v1_smoke_v0",
+  "ideal_operation_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_ideal_operation_mechanism_and_model_requirement_mapping_v1_smoke_v0"
+}

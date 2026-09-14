@@ -1,0 +1,56 @@
+{
+  "columns": ["generation_status", "loader_complexity", "legacy_dependency_burden", "detection_capability", "future_capability_expansion", "edge_deployment_suitability", "cpu_suitability", "gpu_suitability", "export_runtime_flexibility", "canonical_evidence_compatibility", "expected_integration_complexity", "local_asset_availability", "contract_readiness", "license", "luna_role"],
+  "models": {
+    "yolov5n": {
+      "generation_status": "LEGACY",
+      "loader_complexity": "HIGH_LEGACY_LOCAL_SOURCE_REQUIREMENT",
+      "legacy_dependency_burden": "HIGH",
+      "detection_capability": "OBJECT_DETECTION_CONTRACTED",
+      "future_capability_expansion": "UNKNOWN",
+      "edge_deployment_suitability": "UNKNOWN",
+      "cpu_suitability": "UNKNOWN",
+      "gpu_suitability": "UNKNOWN",
+      "export_runtime_flexibility": "UNKNOWN",
+      "canonical_evidence_compatibility": "COMPATIBLE",
+      "expected_integration_complexity": "HIGH",
+      "local_asset_availability": "AVAILABLE_REFERENCE",
+      "contract_readiness": "RESOLVED_BUT_LEGACY_SOURCE_BLOCKED",
+      "license": "GNU-GPL-3.0-or-later-or-upstream-review-required",
+      "luna_role": "LEGACY_REFERENCE"
+    },
+    "yolo11n": {
+      "generation_status": "MODERN_CANDIDATE",
+      "loader_complexity": "ULTRALYTICS_LOCAL_PATH",
+      "legacy_dependency_burden": "UNKNOWN",
+      "detection_capability": "OBJECT_DETECTION_CONTRACTED",
+      "future_capability_expansion": "AVAILABLE_BUT_NOT_ACTIVATED",
+      "edge_deployment_suitability": "UNKNOWN",
+      "cpu_suitability": "UNKNOWN",
+      "gpu_suitability": "UNKNOWN",
+      "export_runtime_flexibility": "UNKNOWN",
+      "canonical_evidence_compatibility": "COMPATIBLE",
+      "expected_integration_complexity": "MEDIUM",
+      "local_asset_availability": "ASSET_NOT_PRESENT",
+      "contract_readiness": "CONTRACT_READY_ASSET_MISSING",
+      "license": "UNKNOWN_REQUIRES_REVIEW",
+      "luna_role": "STABILITY_COMPARATOR"
+    },
+    "yolo26n": {
+      "generation_status": "LATEST_CANDIDATE",
+      "loader_complexity": "ULTRALYTICS_LOCAL_PATH",
+      "legacy_dependency_burden": "UNKNOWN",
+      "detection_capability": "OBJECT_DETECTION_CONTRACTED",
+      "future_capability_expansion": "AVAILABLE_BUT_NOT_ACTIVATED",
+      "edge_deployment_suitability": "UNKNOWN",
+      "cpu_suitability": "UNKNOWN",
+      "gpu_suitability": "UNKNOWN",
+      "export_runtime_flexibility": "UNKNOWN",
+      "canonical_evidence_compatibility": "COMPATIBLE",
+      "expected_integration_complexity": "MEDIUM",
+      "local_asset_availability": "ASSET_NOT_PRESENT",
+      "contract_readiness": "CONTRACT_READY_ASSET_MISSING",
+      "license": "UNKNOWN_REQUIRES_REVIEW",
+      "luna_role": "PRIMARY_CANDIDATE"
+    }
+  }
+}

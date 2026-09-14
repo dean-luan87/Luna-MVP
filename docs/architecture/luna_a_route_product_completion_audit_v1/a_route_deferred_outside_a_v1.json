@@ -1,0 +1,13 @@
+{
+  "deferred": [
+    {"capability":"Emotion Engine implementation","owner_or_future_workstream":"Emotion Engine / future Emotion runtime","reason":"Emotion Governance planning exists, but A Route can use only a minimal nullable reference interface; implementation is explicitly deferred."},
+    {"capability":"Advanced Emotion Governance runtime","owner_or_future_workstream":"Emotion Governance","reason":"Not required to prove the first bounded product loop and must not activate Personality or Memory semantics."},
+    {"capability":"B Route","owner_or_future_workstream":"Future Route B","reason":"B Route cannot begin until A Route is product-complete."},
+    {"capability":"Advanced semantic compression","owner_or_future_workstream":"Future cross-owner semantic synthesis layer","reason":"No current evidence assigns this to A Route; implementation remains deliberately deferred."},
+    {"capability":"Affective memory compression and emotion-memory summary","owner_or_future_workstream":"Memory/Experience plus future cross-owner integration","reason":"Requires ownership and persistence decisions beyond the minimal A Route loop; not an Emotion convenience feature."},
+    {"capability":"Personality-memory semantic fusion","owner_or_future_workstream":"Future cross-owner semantic synthesis layer","reason":"Personality is FROZEN_V1 and cannot be expanded for A Route completion."},
+    {"capability":"Cross-user cognitive or emotion transfer","owner_or_future_workstream":"Future privacy-governed work","reason":"Violates current privacy and transfer boundaries and is unnecessary for A Route."},
+    {"capability":"Model training and weight mutation","owner_or_future_workstream":"Future Learning/Model work","reason":"A Route needs bounded learning admission, not training execution."},
+    {"capability":"Expressive TTS emotion execution and device-specific action expansion","owner_or_future_workstream":"Future capability/runtime work","reason":"Not necessary for the smallest governed product path; current runtime foundations explicitly disable external side effects."}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-Cognitive-Decision-Arbitration-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_DECISION_ARBITRATION_ARCHITECTURE_READY",
+  "canonical_flow": ["Understanding", "Goal", "Value Utility", "Decision Candidate Generation", "Decision Arbitration", "Selected Decision Candidate", "Action Boundary"],
+  "candidate_fields": ["Candidate ID", "Goal Reference", "Expected Outcome", "Utility Score", "Risk", "Confidence", "Required Capability", "Resource Cost", "Reversibility"],
+  "lifecycle": ["Proposed", "Evaluated", "Approved", "Active", "Invalidated", "Reconsidered"],
+  "reusable_assets": ["cognitive_brain_architecture_v1", "brain_decision_candidate_schema_v1", "brain_value_constraint_interface_v1", "luna_cognitive_field_attention_decision_integration_v1", "luna_cognitive_value_utility_architecture_v1", "luna_cognitive_action_boundary_v1", "luna_cognitive_self_model_architecture_v1"],
+  "owner_mapping": ["Brain generates candidates", "Decision Arbitration selects candidate", "Self provides veto context", "Action Boundary gates execution"],
+  "parallel_risks": ["Brain vs Arbitration decision ownership drift", "Decision vs Action conflation", "Planner disguised as arbitration", "B Route overriding A-route decision"],
+  "migration_mapping": ["Brain candidate schema to candidate-set adapter", "Value Utility priority output to arbitration input", "Action Boundary contract to future execution handoff", "Decision revision contract to reconsideration candidate"],
+  "runtime": false,
+  "decision_runtime": false,
+  "action_execution": false,
+  "planner": false,
+  "automatic_execution": false,
+  "emotion_runtime": false,
+  "b_route_runtime": false,
+  "model_integration": false
+}

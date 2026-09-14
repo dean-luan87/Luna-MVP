@@ -1,0 +1,12 @@
+{
+  "title": "Goal Priority Candidate Contract v1",
+  "inputs": ["Safety", "Self Preservation", "User Need", "Capability State", "Resource Cost", "Time Constraint"],
+  "output": "Goal Priority Candidate",
+  "algorithm_implemented": false,
+  "candidate_only": true,
+  "self_review_required": true,
+  "value_interface_reserved": true,
+  "priority_does_not_execute": true,
+  "priority_does_not_modify_goal": true,
+  "stability_precedence": true
+}

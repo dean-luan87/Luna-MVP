@@ -1,0 +1,13 @@
+{
+  "interface_name": "Capability Learning Interface v1",
+  "capability_reference": {},
+  "performance_evidence": [],
+  "failure_attribution": {},
+  "capability_confidence_update_candidate": {},
+  "self_capability_profile_reference": {},
+  "hardware_context": {},
+  "model_training": false,
+  "parameter_modification": false,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

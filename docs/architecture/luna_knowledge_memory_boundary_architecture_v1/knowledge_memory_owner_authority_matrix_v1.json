@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Memory Owner Authority Matrix",
+  "rows":[
+    {"object":"Knowledge Asset","owner":"Knowledge Library","writer":"Knowledge Admission","readers":["Cognitive Processing"],"cannot":["write Reality","write Self","write Memory directly"]},
+    {"object":"Experience Record","owner":"Experience System","writer":"Experience Pipeline","readers":["Memory Governance","Learning Candidate"],"cannot":["write Memory directly","write Self directly"]},
+    {"object":"Self Memory","owner":"Self Layer Memory","writer":"Memory Governance","readers":["Self Regulation","Brain","Cognitive Context"],"cannot":["rewrite Identity","rewrite Constitution"]},
+    {"object":"Social Memory","owner":"Social Self Memory","writer":"Memory Governance","readers":["Social Self","Brain","Cognitive Context"],"cannot":["rewrite Social Identity","make Social Decision"]},
+    {"object":"World Memory","owner":"Cognitive Core Memory","writer":"Memory Governance","readers":["Field","Brain","Attention"],"cannot":["overwrite Current Reality","create Goal"]},
+    {"object":"Growth Candidate","owner":"Self/Social Integration","writer":"Brain and Governance Candidate Pipeline","readers":["Self Evolution","Social Adaptation"],"cannot":["automatic update"]}
+  ],
+  "rules":{"unique_owner":true,"writer_declared":true,"candidate_boundary":true,"constitution_applies_to_all":true}
+}

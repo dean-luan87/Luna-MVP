@@ -1,0 +1,25 @@
+{
+  "title": "Global State Field State Interface v1",
+  "contract_type": "Field State Projection",
+  "input": {
+    "field_reference": "field-example",
+    "field_state": {},
+    "field_version": "candidate",
+    "field_context": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "field_state_reference": "candidate",
+    "active_field_context": {},
+    "field_dynamics": {},
+    "field_unknowns": []
+  },
+  "boundary": {
+    "global_state_references_field_only": true,
+    "global_state_does_not_create_field": true,
+    "global_state_does_not_mutate_field": true,
+    "field_owner_retains_authority": true,
+    "unknowns_are_preserved": true
+  }
+}

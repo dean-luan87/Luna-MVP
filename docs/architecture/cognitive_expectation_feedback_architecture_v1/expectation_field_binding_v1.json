@@ -1,0 +1,23 @@
+{
+  "title": "Expectation Field Binding v1",
+  "contract_type": "Expectation Field Context Binding",
+  "input": {
+    "expectation_reference": "expectation-example",
+    "field_reference": "field-example",
+    "field_state": {},
+    "field_rule_context": {},
+    "situation_reference": "situation-example",
+    "time_context": {"start": null, "end": null},
+    "provenance": [],
+    "unknowns": []
+  },
+  "boundary": {
+    "expectation_is_field_bound": true,
+    "expectation_references_existing_field": true,
+    "binding_does_not_create_field": true,
+    "binding_does_not_mutate_field": true,
+    "expectation_does_not_cross_field_silently": true,
+    "same_state_can_have_different_field_expectation": true,
+    "unknowns_are_preserved": true
+  }
+}

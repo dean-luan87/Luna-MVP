@@ -1,0 +1,11 @@
+{
+  "schema_id": "current_understanding_v1",
+  "owner": "Understanding",
+  "fields": ["understanding_id", "field_ref", "belief_refs", "selected_evidence", "known_state", "unknown_state", "conflict_state", "confidence", "provenance", "time", "decision_relevance", "validation_status"],
+  "required_fields": ["belief_refs", "selected_evidence", "unknown_state", "conflict_state", "confidence", "provenance", "time"],
+  "candidate_only": true,
+  "understanding_is_reality": false,
+  "understanding_is_world_model": false,
+  "current_reality_precedence": true,
+  "decision_authority": false
+}

@@ -1,0 +1,39 @@
+{
+  "schema_id": "FollowupRouteFromResultPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "description": "中台根据结果再评估生成 followup route 与 task candidate。禁止 pipeline 直调下一模型。",
+  "case_1_mobilesam_to_ocr_route": {
+    "trigger_signals": [
+      "text_likely_region_candidate",
+      "vertical_rect_geometry",
+      "sign_like_aspect_ratio",
+      "ocr_required_hint_from_attention"
+    ],
+    "decision_inputs": [
+      "region_geometry",
+      "appearance_candidate",
+      "task_context",
+      "policy_ref"
+    ],
+    "forbidden_decision_inputs": [
+      "mobilesam_fact_label",
+      "confirmed_text",
+      "human_correction_as_ground_truth"
+    ],
+    "output_route_type": "ocr",
+    "output_task_type": "runner_task_candidate",
+    "route_reason_template": "疑似文字区域，建议 OCR 候选复核（中台调度，非 MobileSAM 断言）"
+  },
+  "scheduling_rules": {
+    "midplatform_schedules_not_pipeline": true,
+    "runner_execution_forbidden_for_downstream": ["ocr", "detection"],
+    "task_candidate_only": true,
+    "manual_controlled_default": true
+  },
+  "boundary_flags": {
+    "no_pipeline_bypass_mobilesam_to_ocr": true,
+    "midplatform_secondary_scheduling": true,
+    "new_task_candidate_only": true
+  }
+}

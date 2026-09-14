@@ -1,0 +1,17 @@
+{
+  "matrix_id": "field_transition_matrix_v1",
+  "owner": "Field Temporal Evolution",
+  "allowed_transitions": [
+    {"from": "Stable", "to": ["Changed", "Expanded", "Expired", "Replaced"]},
+    {"from": "Changed", "to": ["Stable", "Expanded", "Merged", "Split", "Expired", "Replaced"]},
+    {"from": "Expanded", "to": ["Stable", "Changed", "Merged", "Split", "Expired"]},
+    {"from": "Merged", "to": ["Stable", "Changed", "Split", "Expired", "Replaced"]},
+    {"from": "Split", "to": ["Stable", "Changed", "Expired", "Replaced"]},
+    {"from": "Expired", "to": ["Replaced"]},
+    {"from": "Replaced", "to": ["Stable", "Changed", "Expanded", "Expired"]}
+  ],
+  "transition_is_candidate": true,
+  "execution": false,
+  "runtime_state_change": false,
+  "review_required": true
+}

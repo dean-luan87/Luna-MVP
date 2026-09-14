@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Execution-Trace-Streaming-DryRun-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T02:55:35.871605+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "stage_ref_count": 12,
+    "streaming_frame_count": 8,
+    "streaming_model_node_trace_count": 80,
+    "temporal_candidate_snapshot_count": 40,
+    "temporal_candidate_evolution_count": 5,
+    "cross_frame_consistency_check_count": 7,
+    "cross_model_temporal_agreement_count": 5,
+    "drift_signal_count": 5,
+    "uncertainty_smoothing_record_count": 5,
+    "conflict_evolution_record_count": 4,
+    "streaming_fallback_event_count": 5,
+    "streaming_control_decision_count": 8,
+    "midplatform_stream_governance_record_count": 10,
+    "negative_guard_count": 14,
+    "blocker_count": 0
+  }
+}

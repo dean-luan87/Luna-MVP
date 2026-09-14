@@ -1,0 +1,23 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "test_board_artifact_standard_record",
+  "test_board_artifact_standard_record": {
+    "record_id": "test_board_artifact_standard_v1",
+    "protected_required": true,
+    "non_deletable_required": true,
+    "deletion_forbidden_required": true,
+    "planning_and_real_test_modes_supported": true
+  }
+}

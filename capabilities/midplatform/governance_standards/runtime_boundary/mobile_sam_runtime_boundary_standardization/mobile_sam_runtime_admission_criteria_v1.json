@@ -1,0 +1,27 @@
+{
+  "criteria_id": "MobileSAMRuntimeAdmissionCriteriaV1",
+  "asset_id": "mobile_sam",
+  "phase_id": "Phase-P1-MobileSAM-Runtime-Boundary-Standardization-Planning-v1-001",
+  "runtime_candidate_admission_possible": true,
+  "runtime_ready_granted_now": false,
+  "runtime_requires_separate_request": true,
+  "runtime_requires_owner_approval": true,
+  "runtime_requires_execution_phase": true,
+  "runtime_requires_post_review": true,
+  "runtime_requires_failure_mode_review": true,
+  "runtime_requires_output_adapter_boundary": true,
+  "runtime_requires_semantic_fact_navigation_boundary": true,
+  "runtime_requires_candidate_output_contract": true,
+  "runtime_requires_latency_memory_budget": true,
+  "runtime_requires_multiple_image_cases_before_runtime": true,
+  "runtime_requires_real_image_trial_suite": true,
+  "minimum_prerequisites": {
+    "inference_trial_verified": true,
+    "model_load_verified": true,
+    "candidate_output_verified": true,
+    "governance_standards_reference_ok": true,
+    "real_image_trial_boundary_defined": true,
+    "candidate_output_schema_defined": true,
+    "no_direct_fact_runtime_output_semantic_navigation": true
+  }
+}

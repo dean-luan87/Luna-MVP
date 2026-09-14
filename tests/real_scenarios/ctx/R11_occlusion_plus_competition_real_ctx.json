@@ -1,0 +1,19 @@
+{
+  "frame_seq": 11,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R11_occlusion_plus_competition_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.95,
+  "continuity_break_expected": true,
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 100, 100], "conf": 0.78 },
+    { "label": "box", "bbox": [20, 20, 120, 120], "conf": 0.72 },
+    { "label": "bottle", "bbox": [10, 15, 210, 60], "conf": 0.83 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "好像在那边但看不清"
+}

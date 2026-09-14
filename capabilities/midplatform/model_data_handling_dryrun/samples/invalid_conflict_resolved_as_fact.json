@@ -1,0 +1,16 @@
+{
+  "handling_id": "invalid_conflict_resolved_as_fact_001",
+  "policy_id": "conflict_handling",
+  "candidate_refs": ["cross_model_conflict_candidate:obj_001(chair)_vs_obj_002(stool)"],
+  "model_family_refs": ["object_detection_completion_family", "segmentation_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "conflict_uncertainty_confidence_policy_v1",
+  "conflict_policy_ref": "conflict_to_candidate_no_fact_policy_v1",
+  "uncertainty_policy_ref": "uncertainty_propagation_to_candidate_policy_v1",
+  "fallback_plan": "fallback_to_uncertainty_candidate",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "conflict_resolved_as_fact": true
+}

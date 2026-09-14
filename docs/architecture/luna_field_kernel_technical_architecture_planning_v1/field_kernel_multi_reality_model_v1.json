@@ -1,0 +1,48 @@
+{
+    "realities": {
+        "physical": {
+            "authority_scope": "基于可观测位置和物理对象的场定义。",
+            "evidence_requirement": "需要物理证据、位置锚点和时间锚点。",
+            "coexistence_allowed": true,
+            "override_allowed": false,
+            "public_fact_eligibility": true,
+            "owner_required": false,
+            "privacy_requirement": "低",
+            "revocation_requirement": "标准 revocation event。",
+            "perspective_weighting_allowed": true
+        },
+        "institutional": {
+            "authority_scope": "基于规则、法规和组织授权的场定义。",
+            "evidence_requirement": "需要制度性来源、审批记录、政策引用。",
+            "coexistence_allowed": true,
+            "override_allowed": false,
+            "public_fact_eligibility": true,
+            "owner_required": true,
+            "privacy_requirement": "中",
+            "revocation_requirement": "需要权威修订或撤回事件。",
+            "perspective_weighting_allowed": true
+        },
+        "social": {
+            "authority_scope": "基于群体活动、习惯和临时共识的场定义。",
+            "evidence_requirement": "需要社交证据、共享观察和时间约束。",
+            "coexistence_allowed": true,
+            "override_allowed": false,
+            "public_fact_eligibility": false,
+            "owner_required": false,
+            "privacy_requirement": "中高",
+            "revocation_requirement": "通过社区信号或监督撤回事件。",
+            "perspective_weighting_allowed": true
+        },
+        "personal": {
+            "authority_scope": "基于个体偏好、身份和个人历史的场定义。",
+            "evidence_requirement": "需要个人声明、历史偏好和私有认知。",
+            "coexistence_allowed": true,
+            "override_allowed": false,
+            "public_fact_eligibility": false,
+            "owner_required": true,
+            "privacy_requirement": "高",
+            "revocation_requirement": "需要本人纠正或授权撤回。",
+            "perspective_weighting_allowed": true
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "version":"2.0",
+  "name":"Luna Authority Baseline",
+  "authorities":[
+    {"authority_id":"rule_authority","authority":"Rule Authority","owner":"Constitution","can":["constrain all layers","define invariants","gate change proposals"],"cannot":["execute actions","be edited by ordinary modules"]},
+    {"authority_id":"cognitive_authority","authority":"Cognitive Authority","owner":"Brain","can":["integrate context","evaluate candidates","generate decision candidates","emit decision trace"],"cannot":["execute actions","edit Constitution","own capabilities","rewrite Identity"]},
+    {"authority_id":"self_authority","authority":"Self Authority","owner":"Self Regulation","can":["assess stability","isolate capability failure","propose degradation and recovery","reject unsafe upgrade candidates"],"cannot":["edit Constitution","rewrite Identity","rewrite Value","rewrite Goal","execute hardware"]},
+    {"authority_id":"capability_authority","authority":"Capability Authority","owner":"Capability Governance","can":["register capabilities","admit implementations","manage model assets","evaluate calibration"],"cannot":["create goals","make decisions","write Brain","execute actions"]},
+    {"authority_id":"execution_authority","authority":"Execution Authority","owner":"Action Runtime","can":["execute admitted action requests","emit outcome and trace"],"cannot":["generate decisions","create goals","edit cognitive state directly"]}
+  ],
+  "rules":{"unique_authority":true,"no_lower_override_higher":true,"execution_not_decision":true,"brain_not_execution":true,"capability_not_cognitive_authority":true}
+}

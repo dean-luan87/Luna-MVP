@@ -1,0 +1,113 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.998195+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "scoped_network_lookup_allowed": true,
+  "git_clone_allowed": false,
+  "source_checkout_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "source_execution_retry_readiness_gate_record",
+  "source_execution_retry_readiness_gate_review": [
+    {
+      "asset_id": "byte_track",
+      "repository_url_verified": true,
+      "commit_hash_pinned": true,
+      "license_review_completed": true,
+      "dependency_review_completed": true,
+      "network_boundary_finalized": true,
+      "command_whitelist_needs_update": true,
+      "source_checkout_strategy_finalized": true,
+      "rollback_ready": true,
+      "test_board_ready": true,
+      "mobile_sam_weight_excluding_checkout_plan_completed": null,
+      "mobile_sam_full_clone_blocked_if_weight_risk": true,
+      "unresolved_blockers": [],
+      "can_enter_source_execution_retry_next": true,
+      "retry_must_not_execute_in_this_phase": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "repository_url_verified": true,
+      "commit_hash_pinned": true,
+      "license_review_completed": true,
+      "dependency_review_completed": true,
+      "network_boundary_finalized": true,
+      "command_whitelist_needs_update": true,
+      "source_checkout_strategy_finalized": true,
+      "rollback_ready": true,
+      "test_board_ready": true,
+      "mobile_sam_weight_excluding_checkout_plan_completed": true,
+      "mobile_sam_full_clone_blocked_if_weight_risk": true,
+      "unresolved_blockers": [],
+      "can_enter_source_execution_retry_next": true,
+      "retry_must_not_execute_in_this_phase": true
+    }
+  ],
+  "source_repository_verification_review_decision_record": {
+    "record_id": "source_repository_verification_review_decision_record_v1",
+    "ready_asset_ids": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "not_ready_asset_ids": [],
+    "both_assets_ready": true,
+    "partial_ready": false,
+    "none_ready": false,
+    "recommended_next_phase": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+    "retry_scope_asset_ids": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "no_weight_download_phase_until_successful_source_execution_post_review": true,
+    "source_execution_retry_not_allowed_without_readiness_gate": true,
+    "retry_not_executed_in_this_phase": true
+  },
+  "source_repository_review_risk_records": [
+    {
+      "asset_id": "byte_track",
+      "risk_dimensions": [
+        "repository_identity_risk",
+        "commit_drift_risk",
+        "license_unknown_or_restrictive_risk",
+        "dependency_unknown_risk",
+        "build_or_compile_risk",
+        "network_scope_risk",
+        "weight_download_contamination_risk",
+        "environment_contamination_risk",
+        "rollback_complexity_risk",
+        "runtime_misreadiness_risk"
+      ],
+      "all_risk_dimensions_recorded": true,
+      "highlighted_risks": [
+        "build_or_compile_risk",
+        "dependency_unknown_risk"
+      ]
+    },
+    {
+      "asset_id": "mobile_sam",
+      "risk_dimensions": [
+        "repository_identity_risk",
+        "commit_drift_risk",
+        "license_unknown_or_restrictive_risk",
+        "dependency_unknown_risk",
+        "build_or_compile_risk",
+        "network_scope_risk",
+        "weight_download_contamination_risk",
+        "environment_contamination_risk",
+        "rollback_complexity_risk",
+        "runtime_misreadiness_risk"
+      ],
+      "all_risk_dimensions_recorded": true,
+      "highlighted_risks": [
+        "dependency_unknown_risk",
+        "weight_download_contamination_risk"
+      ]
+    }
+  ]
+}

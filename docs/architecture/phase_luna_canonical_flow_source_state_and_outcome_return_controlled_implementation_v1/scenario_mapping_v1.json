@@ -1,0 +1,35 @@
+{
+  "schema_version": "phase-luna-canonical-return-scenarios-v1",
+  "synthetic_only": true,
+  "scenario_count": 30,
+  "groups": {
+    "SOURCE_RETURN": [
+      "evidence_current_world", "evidence_field_event", "evidence_both",
+      "evidence_malformed", "evidence_stale", "evidence_missing_provenance",
+      "evidence_version_mismatch", "evidence_cross_concern", "field_event_guard",
+      "current_world_truth_guard"
+    ],
+    "ACTION_RETURN": [
+      "action_success_verified", "action_success_unverified", "action_partial",
+      "action_failed", "action_uncertain", "action_stale"
+    ],
+    "OUTCOME_RETURN": [
+      "outcome_valid", "outcome_partial", "outcome_uncertain", "outcome_stale",
+      "outcome_missing_concern", "outcome_revoked_grant", "outcome_missing_provenance",
+      "brain_candidate_only"
+    ],
+    "OBSERVABILITY": [
+      "observability_owner", "observability_versions", "observability_lineage",
+      "observability_invalidation", "observability_next_target", "observability_no_leakage"
+    ]
+  },
+  "expected_guards": {
+    "source_mutation_count": 0,
+    "brain_mutation_count": 0,
+    "runtime_execution_count": 0,
+    "world_truth_declared": false,
+    "field_reducer_executed": false,
+    "brain_adjudication_executed": false
+  }
+}
+

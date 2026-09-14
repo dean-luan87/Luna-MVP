@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Knowledge Relation Contract",
+  "owner":"Knowledge Library Boundary and Cognitive Field",
+  "flow":["admitted Knowledge","Field Contextualization","current Field Knowledge State","Understanding Candidate"],
+  "context_bindings":["Field","Role","Task","Self capability","time","scope"],
+  "permissions":{"read_reference":true,"contextualize":true,"write_reality":false,"write_identity":false,"write_goal":false},
+  "rules":{"knowledge_admission_required":true,"knowledge_not_reality":true,"knowledge_not_experience_without_interaction":true,"unknown_preserved":true}
+}

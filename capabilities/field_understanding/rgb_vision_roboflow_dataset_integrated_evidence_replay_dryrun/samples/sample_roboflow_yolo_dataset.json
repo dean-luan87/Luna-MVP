@@ -1,0 +1,28 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "yolo",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "indoor-entrance-signs/3",
+    "dataset_url": "https://universe.roboflow.com/example/indoor-entrance-signs"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "annotation_tool": "roboflow_annotate",
+    "export_format": "yolov8"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export", "roboflow_yolo"],
+  "images": [
+    {"image_id": "img_001", "file_name": "concourse_001.jpg", "width": 640, "height": 480, "scene_label_hint": "indoor_concourse", "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_001", "type": "bbox", "label": "entrance", "image_id": "img_001", "bbox": [120, 80, 260, 360], "confidence": 0.88},
+    {"ann_id": "ann_002", "type": "bbox", "label": "sign", "image_id": "img_001", "bbox": [300, 40, 380, 110], "confidence": 0.82},
+    {"ann_id": "ann_003", "type": "bbox", "label": "counter", "image_id": "img_001", "bbox": [420, 200, 600, 360], "confidence": 0.75}
+  ]
+}

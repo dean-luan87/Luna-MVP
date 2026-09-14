@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"A Route Field Processing Flow",
+  "stages":[
+    {"order":1,"stage":"Reality and Evidence","output":"Field reference","owner":"Reality Evidence Pipeline"},
+    {"order":2,"stage":"Cognitive Field","output":"Field state and components","owner":"Cognitive Field"},
+    {"order":3,"stage":"Attention","output":"priority candidate","owner":"Attention"},
+    {"order":4,"stage":"Context Assembly","output":"context package","owner":"Cognitive Core"},
+    {"order":5,"stage":"Hypothesis","output":"explanation candidates","owner":"Cognitive Understanding"},
+    {"order":6,"stage":"Current Understanding","output":"world understanding candidate","owner":"Cognitive Understanding"},
+    {"order":7,"stage":"Decision Candidate","output":"decision candidate","owner":"Brain"},
+    {"order":8,"stage":"Action Boundary","output":"future action request candidate","owner":"Action Governance"},
+    {"order":9,"stage":"Experience and Memory","output":"future feedback and memory candidate","owner":"Experience / Memory"}
+  ],
+  "rules":{"ordered":true,"automatic_decision":false,"action_not_implemented":true,"world_model_not_implemented":true}
+}

@@ -1,0 +1,49 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T06:45:17.757852+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "execution_scope": "mobile_sam_only",
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_pre_download_snapshot_record",
+  "weight_pre_download_snapshot_record": {
+    "snapshot_id": "weight_pre_download_snapshot_v1",
+    "storage_root": "capabilities/model_weights/p1/",
+    "destination_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "existing_file_status": "absent",
+    "existing_file_size": null,
+    "existing_file_sha256": null,
+    "free_disk_space_bytes": 834645803008,
+    "upstream_readiness_ref": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+    "download_command_whitelist_ref": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001:weight_download_command_whitelist_v1:mobile_sam",
+    "rollback_policy_ref": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001:weight_download_rollback_deletion_policy_v1",
+    "timestamp": "2026-06-30T06:45:12.951979+00:00",
+    "test_board_ref": "capabilities/test_board/recognition_models/phase_p1_model_weight_download_execution_and_post_review_v1_001/",
+    "snapshot_succeeded": true
+  },
+  "weight_download_execution_scope": {
+    "scope_id": "weight_download_execution_scope_v1",
+    "execution_scope": "mobile_sam_only",
+    "allowed_asset_ids": [
+      "mobile_sam"
+    ],
+    "forbidden_download_targets": [
+      "byte_track_weight",
+      "any_detector_or_tracker_weight",
+      "any_other_model_weight",
+      "dataset",
+      "example_asset",
+      "code_repository",
+      "non_whitelisted_external_file"
+    ],
+    "byte_track_in_scope": false,
+    "mobile_sam_in_scope": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "protocol_phase_ref": "Phase-Test-Board-Protected-Artifact-Rule-v1-001",
+  "phase_id": "Phase-P1-Execution-Trace-Streaming-DryRun-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "dry_run",
+  "test_board_dir": "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001",
+  "recorded_at_utc": "2026-06-29T02:55:35.871605+00:00",
+  "required_record_types": [
+    "test_process_record",
+    "test_result_summary",
+    "test_conclusion_record",
+    "test_artifact_refs",
+    "protected_marker",
+    "non_deletable_notice"
+  ],
+  "written_records": [
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/test_process_record.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/test_result_summary.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/test_conclusion_record.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/test_artifact_refs.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/protected_marker.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/test_board/runtime_trials/phase_p1_execution_trace_streaming_dryrun_v1_001/non_deletable_notice.json"
+  ],
+  "written_record_count": 6,
+  "required_test_board_fields": {
+    "test_board_record_required": true,
+    "test_process_record_required": true,
+    "test_conclusion_record_required": true,
+    "test_artifact_protected": true,
+    "test_record_non_deletable": true,
+    "test_deletion_forbidden": true
+  },
+  "test_board_governance_rules": [
+    "all_virtual_and_real_test_artifacts_must_be_written_to_the_test_board",
+    "test_process_records_must_be_preserved",
+    "test_conclusions_must_be_preserved",
+    "test_board_artifacts_are_protected_and_must_not_be_deleted",
+    "cleanup_scripts_must_not_remove_protected_test_board_artifacts",
+    "any_test_artifact_deletion_requires_explicit_governance_approval"
+  ],
+  "final_decision": "P1_EXECUTION_TRACE_STREAMING_DRYRUN_GO",
+  "blocker_count": 0,
+  "all_required_records_present": true
+}

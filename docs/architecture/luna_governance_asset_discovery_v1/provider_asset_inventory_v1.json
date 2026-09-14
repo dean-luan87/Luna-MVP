@@ -1,0 +1,14 @@
+{
+  "title": "Provider Asset Inventory v1",
+  "status": "present_distributed",
+  "entries": [
+    {"asset_id":"provider.model.qwen","path":"capabilities/midplatform/model_manager/providers/qwen_vl/","type":"model_provider_adapter_family","layer_candidate":"L5 Provider Boundary","current_owner":"Qwen-VL Provider Boundary","description":"Provider profile, adapter, request builder, parser and dry-run integration.","status":"Active Asset"},
+    {"asset_id":"provider.vision","path":"capabilities/vision_runtime/","type":"vision_provider_family","layer_candidate":"L4/L5 Capability Provider","current_owner":"Vision Runtime Provider Surface","description":"Vision provider registry, adapter contract, selection, input pack and evidence consumers.","status":"Active Asset"},
+    {"asset_id":"provider.ocr","path":"capabilities/ocr_runtime/","type":"ocr_provider_family","layer_candidate":"L4/L5 Capability Provider","current_owner":"OCR Runtime Provider Surface","description":"OCR provider adapters, selection, request contracts and evidence consumers.","status":"Active Asset"},
+    {"asset_id":"provider.voice","path":"capabilities/voice/interfaces/providers.py","type":"provider_interface","layer_candidate":"L3/L4 Boundary","current_owner":"Voice Provider Interface","description":"Voice provider interface surface.","status":"Active Asset"},
+    {"asset_id":"provider.emotion","path":"capabilities/emotion/interfaces/providers.py","type":"future_provider_interface","layer_candidate":"L3 Emotion Boundary","current_owner":"Emotion Interface Boundary","description":"Emotion provider interface only; not Emotion Runtime authorization.","status":"Verification Only"},
+    {"asset_id":"provider.spatial","path":"capabilities/field_understanding/spatial_evidence_provider_admission/","type":"provider_admission_family","layer_candidate":"L4 Provider Admission","current_owner":"Spatial Evidence Provider Admission","description":"Spatial evidence provider admission and review surface.","status":"Active Asset"},
+    {"asset_id":"provider.contract","path":"docs/architecture/cognitive_capability_runtime_contract_v1/provider_isolation_contract_v1.md","type":"architecture_contract","layer_candidate":"L4 Capability Boundary","current_owner":"Capability Runtime Contract","description":"Provider isolation and result boundary.","status":"Active Asset"}
+  ],
+  "boundary_findings": {"provider_to_brain_authority":false,"provider_to_reality_authority":false,"provider_to_memory_authority":false,"requires_future_admission_mapping":true}
+}

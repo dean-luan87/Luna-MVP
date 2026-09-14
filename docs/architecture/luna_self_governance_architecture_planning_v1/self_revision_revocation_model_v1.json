@@ -1,0 +1,26 @@
+{
+    "artifact": "self_revision_revocation_model_v1",
+    "revision_triggers": [
+        "mistaken self attribution",
+        "stale preference",
+        "changed role",
+        "relationship change",
+        "capability change",
+        "contradicting experience",
+        "explicit user correction",
+        "learning counterexample",
+        "identity ambiguity"
+    ],
+    "supported_lineage": {
+        "revision": true,
+        "supersession": true,
+        "revocation": true,
+        "expiration": true
+    },
+    "rules": {
+        "explicit_correction_precedence": true,
+        "identity_not_immutable": true,
+        "single_event_not_permanent_self_fact": true,
+        "original_owner_provenance_preserved": true
+    }
+}

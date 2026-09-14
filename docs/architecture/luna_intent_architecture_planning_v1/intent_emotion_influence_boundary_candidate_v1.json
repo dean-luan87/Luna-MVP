@@ -1,0 +1,29 @@
+{
+  "artifact": "intent_emotion_influence_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "intent_owner": "Intent Governance",
+  "emotion_owner": "Emotion / Integration Governance",
+  "integration_status": "FUTURE_REFERENCE_BOUNDARY_ONLY",
+  "allowed_emotion_influence_candidates": [
+    "direction amplification",
+    "direction inhibition",
+    "strength adjustment candidate",
+    "persistence or carryover influence candidate",
+    "risk or avoidance salience candidate",
+    "uncertainty annotation"
+  ],
+  "allowed_intent_feedback_candidates": [
+    "unresolved direction reference",
+    "suppression conflict reference",
+    "outcome discrepancy reference"
+  ],
+  "forbidden": [
+    "Emotion creates Intent",
+    "Emotion modifies Intent state directly",
+    "Intent modifies Emotion state directly",
+    "Emotion becomes priority truth",
+    "Emotion chooses Decision",
+    "Emotion Runtime activation in this phase"
+  ],
+  "rule": "Emotion and Intent may influence one another only through source-owned candidate references; neither receives cross-write authority."
+}

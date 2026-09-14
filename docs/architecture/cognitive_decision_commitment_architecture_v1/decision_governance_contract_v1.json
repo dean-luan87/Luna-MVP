@@ -1,0 +1,56 @@
+{
+  "title": "Decision Governance Contract v1",
+  "contract_type": "Decision Commitment Admission and Authority Governance",
+  "admission_checks": [
+    "Reality Freshness Check",
+    "Evidence Sufficiency Check",
+    "Constraint Check",
+    "Intent Alignment Check",
+    "Capability Availability Check",
+    "Constitution",
+    "Value",
+    "Safety",
+    "Governance",
+    "Expectation",
+    "Expiration",
+    "Human Override",
+    "Unknown",
+    "Risk",
+    "Provenance"
+  ],
+  "authority": {
+    "brain": "creates Decision Candidate and retains final judgment",
+    "commitment": "qualifies Candidate for preparation only",
+    "attention": "owns resource management and validation observation",
+    "capability": "supplies state only",
+    "expectation": "supplies Expected Outcome and Feedback",
+    "memory": "stores selected Decision Transitions",
+    "learning": "receives outcomes and produces candidates",
+    "action_boundary": "owns permission, risk, authorization, and external execution",
+    "human_review": "reserved override interface"
+  },
+  "boundary": {
+    "commitment_is_not_action": true,
+    "commitment_does_not_execute": true,
+    "no_action_execution": true,
+    "no_hardware_control": true,
+    "no_model_runtime": true,
+    "no_automatic_planning": true,
+    "no_automatic_execution": true,
+    "no_automatic_value_modification": true,
+    "no_automatic_goal_modification": true,
+    "no_b_simulation_runtime": true,
+    "no_prediction_runtime": true,
+    "no_capability_invocation": true,
+    "no_model_calls": true,
+    "no_hardware_calls": true,
+    "no_silent_conflict_resolution": true,
+    "unknowns_are_preserved": true
+  },
+  "change_control": {
+    "constitution_review_required": true,
+    "protocol_version_required": true,
+    "action_boundary_review_required": true,
+    "decision_scope_change_is_candidate_based": true
+  }
+}

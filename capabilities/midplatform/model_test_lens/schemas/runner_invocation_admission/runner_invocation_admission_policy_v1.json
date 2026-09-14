@@ -1,0 +1,69 @@
+{
+  "schema_id": "RunnerInvocationAdmissionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Runner-Invocation-Admission-Execution-And-Post-Review-v1-001",
+  "description": "Runner invocation request 正式准入策略。admitted 仅表示通过执行前检查，不触发 runner。",
+  "planning_only": false,
+  "admission_gate_only": true,
+  "auto_runner_trigger_allowed": false,
+  "admitted_does_not_execute_runner": true,
+  "execution_status_on_admit": "not_executed",
+  "required_trace_stages": [
+    "segmentation_region",
+    "observation_attention_record",
+    "followup_model_route_candidate",
+    "runner_task_candidate",
+    "runner_invocation_request"
+  ],
+  "hard_reject_conditions": [
+    "orphan_request",
+    "trace_chain_incomplete",
+    "source_task_not_pinned",
+    "source_task_excluded",
+    "source_task_blocked_by_policy",
+    "stale_candidate_without_reconfirmation",
+    "route_type_mismatch",
+    "execution_status_not_not_executed",
+    "missing_candidate_boundary_flags",
+    "bypass_runner_task_candidate"
+  ],
+  "pending_conditions": [
+    "insufficient_context_for_auto_admit",
+    "correction_boosted_manual_review_recommended"
+  ],
+  "detection_admission": {
+    "requested_runner_type": "Detection",
+    "source_target_model_id": "detection",
+    "allowed_route_sources": [
+      "object_like_candidate",
+      "label_uncertain",
+      "correction_boosted_priority_signal",
+      "needs_tracking_review_suggest_detection"
+    ],
+    "forbidden": ["confirmed_dynamic", "replace_tracking_with_detection_only"]
+  },
+  "ocr_admission": {
+    "requested_runner_type": "OCR",
+    "source_target_model_id": "ocr",
+    "allowed_route_sources": [
+      "static_candidate",
+      "text_likely_region",
+      "sign_screen_poster_label",
+      "human_correction_read_text_priority_signal"
+    ],
+    "forbidden": ["ocr_on_dynamic_only_region", "confirmed_text_as_fact"]
+  },
+  "forbidden_operations": [
+    "runner_execution",
+    "model_call",
+    "fact_write",
+    "navigation_decision",
+    "auto_runner_trigger",
+    "admission_triggers_execution"
+  ],
+  "boundary_flags": {
+    "admission_result_not_runner_output": true,
+    "not_runner_execution": true,
+    "not_fact_write": true
+  }
+}

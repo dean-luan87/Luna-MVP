@@ -1,0 +1,35 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "followup_weight_download_execution_record",
+  "weight_download_execution_handoff_record": {
+    "handoff_id": "weight_download_execution_handoff_v1",
+    "recommended_next_phase": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+    "allowed_weight_download_execution_scope": "ready_only",
+    "ready_assets": [
+      "mobile_sam"
+    ],
+    "unresolved_assets": [
+      "byte_track"
+    ],
+    "ready_asset_count": 1,
+    "unresolved_asset_count": 1,
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001",
+    "no_model_load_after_download": true,
+    "no_inference_after_download": true,
+    "no_runtime_after_download": true,
+    "no_output_adapter_after_download": true,
+    "no_semantic_layer_after_download": true
+  }
+}

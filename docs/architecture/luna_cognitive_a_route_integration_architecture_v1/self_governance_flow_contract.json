@@ -1,0 +1,12 @@
+{
+  "contract_id": "a_route_self_governance_v1",
+  "self_inputs": ["Constitution", "Identity Boundary", "Capability State", "Resource State", "Self Regulation", "Self Rhythm", "Self World Boundary", "Growth Candidate"],
+  "self_permissions": ["constrain", "veto", "request_reconsideration", "review_growth", "preserve_identity", "preserve_safety_boundary"],
+  "self_protected": ["Constitution", "Identity", "Safety Boundary", "Core Brain Rules"],
+  "self_does_not_generate_all_goals": true,
+  "self_does_not_select_decision_alone": true,
+  "self_does_not_execute_action": true,
+  "self_does_not_auto_adopt_learning": true,
+  "growth_requires_self_review": true,
+  "candidate_only": true
+}

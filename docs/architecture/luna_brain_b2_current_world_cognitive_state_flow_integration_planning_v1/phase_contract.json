@@ -1,0 +1,11 @@
+{
+  "phase": "Phase-Luna-Brain-B2-Current-World-Cognitive-State-Flow-Integration-Planning-v1-001",
+  "mode": "INVENTORY_AND_TECHNICAL_PLANNING_ONLY",
+  "objective": "Determine the canonical existing route from B1 CurrentWorldCandidateV1 to candidate Cognitive State and Cognitive Flow outputs.",
+  "inputs": ["B1 CurrentWorldCandidateV1", "Context/Field/Observation/PCN/Intent read-only references", "existing synthetic Cognitive State Formation fixtures", "existing synthetic Cognitive Flow fixtures"],
+  "outputs": ["planning decisions", "ownership matrix", "minimum implementation boundary", "differential validation plan"],
+  "non_goals": ["implementation", "provider invocation", "YOLO/OCR/SLAM/VLM", "Field mutation", "Intent/Decision/Task/Action", "dynamic cognitive functions", "semantic compression", "online learning"],
+  "acceptance_boundary": ["canonical owners identified", "route selected from existing contracts", "synthetic baselines preserved", "contract gap explicitly recorded", "negative guards frozen"],
+  "status": "PLANNING_CANDIDATE",
+  "runtime_executed": false
+}

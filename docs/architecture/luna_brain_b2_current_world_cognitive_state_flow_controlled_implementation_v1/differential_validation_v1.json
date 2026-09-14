@@ -1,0 +1,6 @@
+{
+  "compare": "Synthetic Current World → Cognitive State/Flow vs Real B1 Current World → Cognitive State/Flow",
+  "invariants": ["contract compatibility", "owner preservation", "transition structure", "candidate-only semantics", "trace/provenance", "uncertainty/conflict boundary", "Observation Need authority", "Intent/Decision/Task guards"],
+  "not_compared": ["hypothesis contents", "attention targets", "confidence values", "hypothesis count"],
+  "provider_invocation": false
+}

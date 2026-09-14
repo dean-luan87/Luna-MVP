@@ -1,0 +1,41 @@
+{
+  "artifact": "self_governance_planning_to_code_mapping_v1",
+  "canonical_owner": "Self Governance",
+  "planning_assets": {
+    "self_governance_architecture_plan_v1.md": ["self_governance_controlled_implementation_overview_v1.md"],
+    "self_governance_existing_asset_inventory_v1.json": ["self_governance_controlled_change_manifest_v1.json"],
+    "self_reference_schema_v1.json": ["self_reference_types_v1.py", "self_governance_engine_v1.py"],
+    "self_attribution_candidate_schema_v1.json": ["self_attribution_types_v1.py", "self_governance_engine_v1.py"],
+    "self_continuity_candidate_schema_v1.json": ["self_continuity_types_v1.py", "self_governance_engine_v1.py"],
+    "self_boundary_classification_v1.json": ["self_boundary_types_v1.py"],
+    "self_stability_mutability_model_v1.json": ["self_stability_types_v1.py", "self_attribution_types_v1.py"],
+    "self_attribution_state_model_v1.json": ["self_governance_registry_v1.py", "self_attribution_types_v1.py"],
+    "self_revision_revocation_model_v1.json": ["self_revision_types_v1.py", "self_governance_engine_v1.py"],
+    "self_pcn_boundary_v1.json": ["self_influence_types_v1.py", "self_governance_ownership_guard_v1.py"],
+    "self_memory_boundary_v1.json": ["self_influence_types_v1.py", "self_governance_engine_v1.py"],
+    "self_learning_boundary_v1.json": ["self_influence_types_v1.py", "self_governance_engine_v1.py"],
+    "self_intent_boundary_v1.json": ["self_io_types_v1.py", "self_trace_types_v1.py"],
+    "self_dynamic_regulation_boundary_v1.json": ["self_influence_types_v1.py", "self_governance_ownership_guard_v1.py"],
+    "self_personality_boundary_v1.json": ["self_influence_types_v1.py", "self_stability_types_v1.py"],
+    "self_emotion_boundary_v1.json": ["self_influence_types_v1.py", "self_governance_engine_v1.py"],
+    "self_privacy_sensitivity_boundary_v1.json": ["self_governance_registry_v1.py", "self_reference_types_v1.py", "self_attribution_types_v1.py"],
+    "self_trace_provenance_contract_v1.json": ["self_trace_types_v1.py", "self_governance_engine_v1.py"],
+    "self_idempotency_contract_v1.json": ["self_governance_engine_v1.py", "self_governance_static_validators_v1.py"],
+    "self_negative_guards_v1.json": ["self_governance_registry_v1.py", "self_governance_static_validators_v1.py"],
+    "self_minimum_scenario_suite_v1.json": ["self_governance_fixture_v1.py", "run_self_governance_controlled_implementation_v1.py"],
+    "self_deferred_registry_v1.json": ["self_influence_types_v1.py", "self_stability_types_v1.py"],
+    "self_gap_registry_v1.json": ["self_governance_controlled_change_manifest_v1.json"],
+    "verify_self_governance_architecture_planning_v1.py": ["verify_self_governance_controlled_implementation_v1.py"],
+    "self_governance_owner_boundary_v1.json": ["self_governance_registry_v1.py", "self_governance_ownership_guard_v1.py"],
+    "self_concept_boundary_matrix_v1.json": ["self_reference_types_v1.py", "self_governance_static_validators_v1.py"],
+    "phase_contract.json": ["self_governance_protocol_v1.py", "self_governance_controlled_execution_contract_v1.json"]
+  },
+  "implementation_rules": {
+    "all_planning_assets_mapped": true,
+    "single_owner": true,
+    "parallel_owner_files": [],
+    "existing_owner_modules_modified": false,
+    "runtime_code": false,
+    "semantic_compression": false
+  }
+}

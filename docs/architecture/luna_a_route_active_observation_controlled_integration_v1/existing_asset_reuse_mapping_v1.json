@@ -1,0 +1,26 @@
+{
+  "canonical_owner": "Field Perception Orchestrator",
+  "existing_files_modified": [],
+  "A_direct_reuse": [
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_information_gap_detector_v1.py","role":"information gap substrate"},
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_capability_planner_v1.py","role":"capability requirement substrate"},
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_region_planner_v1.py","role":"target region substrate"},
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_resource_budget_v1.py","role":"resource budget substrate"},
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_stop_condition_v1.py","role":"stop candidate substrate"},
+    {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_reobservation_policy_v1.py","role":"re-observation substrate"},
+    {"asset":"capabilities/midplatform/observation_manager","role":"request/attention/evidence-quality candidate references"},
+    {"asset":"capabilities/midplatform/core/observation_gateway","role":"evidence to Observation Candidate and A Route ingress"},
+    {"asset":"capabilities/midplatform/core/a_route_orchestration","role":"lifecycle and next-cycle handoff target"},
+    {"asset":"capabilities/midplatform/model_manager","role":"capability/model admission, routing, resource and fallback candidates"}
+  ],
+  "B_adapter_reuse": [
+    {"asset":"capabilities/midplatform/task_observation_request_contract_v1.py","role":"request field/reference semantics; legacy execution roots not reused"},
+    {"asset":"capabilities/field_understanding/spatial_evidence_provider_manager","role":"SLAM admission/health/fallback references"},
+    {"asset":"docs/architecture/ocr/LUNA_OCR_PROVIDER_ADMISSION_CHECKLIST_V0.md","role":"OCR ROI/budget/admission boundary"},
+    {"asset":"capabilities/midplatform/core/cognitive_state_formation/attention_types_v1.py","role":"attention candidate input only"}
+  ],
+  "C_not_promoted": ["provider-driven continuous execution", "provider direct mutation", "routing candidate treated as invocation authority", "legacy external workspace path defaults"],
+  "D_deferred": ["real provider execution", "Emotion Engine", "B Route", "semantic compression", "persistence", "cross-user transfer"],
+  "duplicate_owner_risk": false,
+  "existing_owner_change_blocker": false
+}

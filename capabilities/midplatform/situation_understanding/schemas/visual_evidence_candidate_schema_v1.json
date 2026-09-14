@@ -1,0 +1,31 @@
+{
+  "schema_id": "VisualEvidenceCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "evidence_id", "source", "evidence_type", "value", "confidence",
+    "source_trace_ref", "candidate_only", "not_fact"
+  ],
+  "field_definitions": {
+    "evidence_id": { "type": "string" },
+    "source": {
+      "enum": ["metadata", "sam", "text_detector", "detection", "ocr", "vlm",
+        "human_correction", "test_trace", "case_library", "runner_scene_hint", "teacher_label"]
+    },
+    "evidence_type": {
+      "enum": ["region", "text_density", "object_hint", "scene_hint", "motion_hint",
+        "spatial_hint", "risk_hint", "user_signal"]
+    },
+    "value": { "type": "string" },
+    "confidence": { "type": "number" },
+    "source_trace_ref": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "runner_scene_hint_candidate_only": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1", "runner_scene_hint_candidate_only"]
+}

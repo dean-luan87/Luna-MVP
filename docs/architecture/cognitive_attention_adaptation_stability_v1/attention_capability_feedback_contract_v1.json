@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Capability Feedback Contract",
+  "input": {
+    "capability_change": "candidate",
+    "self_capability_context": "required",
+    "field_context": "required",
+    "current_requirement": "candidate"
+  },
+  "example": "visual capability decline may require more audio observation",
+  "output": "Attention Requirement Adjustment Candidate",
+  "compensation_candidate": "alternative observation modality",
+  "automatic_requirement_change": false,
+  "automatic_strategy_change": false,
+  "self_model_mutation": false,
+  "decision_authority": false
+}

@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_change_manifest_v1",
+  "created_implementation": ["capabilities/midplatform/core/intent_governance/integration/b3_cognitive_state_intent_decision_task_controlled/"],
+  "created_documentation": ["docs/architecture/luna_brain_b3_cognitive_state_intent_decision_task_controlled_implementation_v1/"],
+  "modified_existing_owners": [],
+  "protected": ["B1", "B2", "Intent Governance core", "Decision Governance core", "Task Manager core", "Observation Gateway", "Field State Reducer", "Action Governance", "Runtime Executor", "legacy decision_center semantics"],
+  "business_logic_change": "additive controlled integration only"
+}

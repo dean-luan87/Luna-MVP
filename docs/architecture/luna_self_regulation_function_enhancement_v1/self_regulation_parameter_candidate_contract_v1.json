@@ -1,0 +1,14 @@
+{
+  "contract_id": "self_regulation_parameter_candidate_v1",
+  "owner": "Self Regulation Function",
+  "classes": ["Immutable", "Adaptive", "Experimental"],
+  "immutable_targets": ["Constitution", "Identity", "Reality Priority", "Safety", "Ownership Boundary"],
+  "adaptive_targets": ["Attention Weight", "Exploration Threshold", "Memory Activation", "Strategy", "Capability Policy", "Schema Influence"],
+  "experimental_targets": ["Prototype Strategy", "Unvalidated Threshold", "Candidate Weight"],
+  "required_evidence": ["Measurement", "Outcome", "Repeated Pattern", "Field Scope", "Utility", "Risk", "Reversibility"],
+  "review_flow": ["Candidate", "Self Review", "Accept", "Reject", "Defer", "Version", "Rollback"],
+  "automatic_update": false,
+  "stable_core_update": false,
+  "model_training": false,
+  "candidate_only": true
+}

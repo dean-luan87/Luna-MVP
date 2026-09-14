@@ -1,0 +1,19 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "mapillary_vistas",
+  "dataset_ref": "mapillary_vistas/street_subset",
+  "license_ref": {"license": "CC BY-NC-SA 4.0", "commercial_use_confirmed": false},
+  "source_chain": ["mapillary_vistas", "vision_test_source_backup_pool"],
+  "annotation_origin": {"provider": "mapillary_export", "export_format": "semantic_segmentation"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "invalid_commercial_ready"},
+  "annotation_format": "semantic_segmentation",
+  "confidence": 0.8,
+  "allowed_use": "commercial_ready",
+  "commercial_use_status": "non_commercial",
+  "candidate_mapping": {"segmentation": "region_evidence_candidate"},
+  "commercial_ready": true,
+  "images": [{"image_id": "x_080", "width": 1024, "height": 768, "confidence": 0.8}],
+  "annotations": [
+    {"ann_id": "x_ann_080", "type": "segmentation", "label": "sidewalk", "image_id": "x_080", "mask_ref": "mask://x_080/sidewalk", "polygon": [[0, 600], [1024, 600], [1024, 768], [0, 768]], "confidence": 0.8}
+  ]
+}

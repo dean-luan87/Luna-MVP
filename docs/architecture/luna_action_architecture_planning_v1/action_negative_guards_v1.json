@@ -1,0 +1,31 @@
+{
+    "artifact": "action_negative_guards_v1",
+    "status": "PLANNING_CANDIDATE",
+    "forbidden_events": [
+        "decision_directly_emits_actuator_command",
+        "action_candidate_implies_runtime_execution",
+        "selected_equals_executed",
+        "eligibility_equals_execution",
+        "readiness_equals_execution",
+        "task_creation_by_action_governance",
+        "scheduler_execution_by_action_governance",
+        "permission_bypass",
+        "safety_bypass",
+        "confirmation_fabrication",
+        "stale_confirmation_reuse",
+        "unknown_precondition_auto_pass",
+        "dependency_unknown_auto_pass",
+        "rollback_execution_by_action_governance",
+        "runtime_feedback_missing_with_executed_claim"
+    ],
+    "forbidden_flags": {
+        "planning_only_false": true,
+        "runtime_executed_true": true,
+        "action_execution_true": true,
+        "task_created_true": true,
+        "database_write_true": true,
+        "device_control_true": true,
+        "scheduler_execution_true": true,
+        "source_mutation_true": true
+    }
+}

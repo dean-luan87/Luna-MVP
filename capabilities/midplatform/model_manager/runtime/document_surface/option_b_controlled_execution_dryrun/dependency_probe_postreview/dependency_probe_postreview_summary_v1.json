@@ -1,0 +1,22 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Dependency-And-Adapter-Probe-PostReview-v1-001",
+    "review_completed": true,
+    "reviewed_candidate_count": 2,
+    "passed_check_count": 25,
+    "failed_check_count": 0,
+    "blocker_count": 0,
+    "real_dependency_probe_performed": false,
+    "real_adapter_probe_performed": false,
+    "import_performed": false,
+    "install_performed": false,
+    "download_performed": false,
+    "image_read_performed": false,
+    "segmentation_executed": false,
+    "runtime_activated": false,
+    "execution_admitted_candidate_count": 0,
+    "candidate_only": true,
+    "not_fact": true,
+    "boundary_status": "frozen",
+    "final_decision": "DEPENDENCY_AND_ADAPTER_PROBE_POSTREVIEW_GO",
+    "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-Planning-v1-001"
+}

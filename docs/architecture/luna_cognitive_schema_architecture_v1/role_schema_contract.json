@@ -1,0 +1,12 @@
+{
+  "contract_id": "role_schema_v1",
+  "owner": "Schema Layer",
+  "schema_type": "Role Schema",
+  "inputs": ["Role Memory", "Experience", "role_context", "responsibility_context", "validated_pattern_candidate"],
+  "outputs": ["role_schema_candidate", "role_context_structure", "unknowns", "provenance"],
+  "role_bound": true,
+  "candidate_only": true,
+  "direct_role_update": false,
+  "direct_role_activation": false,
+  "decision_authority": false
+}

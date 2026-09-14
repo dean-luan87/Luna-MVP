@@ -1,0 +1,76 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_decision_logic_validation",
+  "scope": "Situation_to_Decision_Candidate_only",
+  "cases": [
+    {
+      "case_id": "occluded_area_uncertainty",
+      "situation_reference": {
+        "area_state": "visually_occluded",
+        "obstacle_presence": "unknown"
+      },
+      "self_context": {
+        "visual_capability": "limited_for_occluded_area"
+      },
+      "goal_context": {
+        "purpose": "proceed_safely"
+      },
+      "expected_option_candidates": [
+        "reduce_speed_candidate",
+        "obtain_further_observation_candidate",
+        "request_confirmation_candidate",
+        "seek_alternative_route_candidate"
+      ],
+      "expected_evaluation_visibility": ["uncertainty", "risk", "information_cost", "confidence"],
+      "forbidden_outputs": ["safe_to_proceed_confirmed", "absolutely_cannot_proceed"],
+      "assertions": {
+        "unknown_enters_decision_evaluation": true,
+        "low_confidence_is_visible": true,
+        "decision_and_action_excluded": true
+      }
+    },
+    {
+      "case_id": "environment_change_decision_reconsideration",
+      "initial_situation_reference": {
+        "road_state": "normal"
+      },
+      "initial_decision_candidate": {
+        "selected_option": "continue_forward"
+      },
+      "new_evidence": {
+        "road_state": "closed",
+        "material_change": true
+      },
+      "expected_reconsideration_candidates": [
+        "alternative_route",
+        "pause_or_wait",
+        "request_help_or_confirmation"
+      ],
+      "assertions": {
+        "new_information_regenerates_option_evaluation": true,
+        "old_decision_is_not_immutable": true,
+        "reconsideration_is_not_action": true
+      }
+    },
+    {
+      "case_id": "capability_decline_decision_confidence",
+      "situation_reference": {
+        "visual_confirmation_needed": true
+      },
+      "self_context": {
+        "camera_status": "degraded",
+        "capability_boundary": "visual_evidence_reduced"
+      },
+      "expected_decision_constraints": [
+        "confidence_reduced",
+        "more_information_candidate",
+        "risk_reduction_candidate"
+      ],
+      "assertions": {
+        "capability_decline_changes_confidence": true,
+        "false_confident_decision_forbidden": true,
+        "provider_and_action_excluded": true
+      }
+    }
+  ]
+}

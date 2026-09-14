@@ -1,0 +1,14 @@
+{
+  "title": "Module Responsibility Matrix v1",
+  "columns": ["module_id", "responsibility", "non_responsibility", "primary_output", "authority_level"],
+  "rows": [
+    {"module_id":"brain","responsibility":"Evaluate context and generate Decision Candidate","non_responsibility":"Action execution, Reality mutation, Goal creation","primary_output":"Decision Candidate","authority_level":"judgment"},
+    {"module_id":"memory_system","responsibility":"Retain and retrieve admitted experience","non_responsibility":"Value modification, Decision generation, direct fact creation","primary_output":"Relevant Memory","authority_level":"record"},
+    {"module_id":"learning_system","responsibility":"Generate learning and strategy candidates","non_responsibility":"Automatic rule/value/goal/action changes","primary_output":"Learning Candidate","authority_level":"candidate"},
+    {"module_id":"self_evolution","responsibility":"Translate repeated evidence into growth candidates","non_responsibility":"Identity, Value, Goal, Constitution, parameter changes","primary_output":"Growth Candidate","authority_level":"candidate"},
+    {"module_id":"cognitive_self_model","responsibility":"Represent current self context and constraints","non_responsibility":"Personality, Emotion Runtime, Goal creation, execution","primary_output":"Self Context Package","authority_level":"representation"},
+    {"module_id":"capability_runtime","responsibility":"Invoke admitted capabilities and report evidence","non_responsibility":"Brain override, Goal ownership, Reality authority","primary_output":"Evidence Candidate","authority_level":"capability"},
+    {"module_id":"action_runtime","responsibility":"Execute admitted Action Request","non_responsibility":"Decision, Goal, Memory, Brain ownership","primary_output":"Outcome Evidence","authority_level":"execution"}
+  ],
+  "rules": {"one_primary_responsibility":true,"non_responsibility_required":true,"authority_separated":true}
+}

@@ -1,0 +1,212 @@
+{
+    "governance_capabilities": [
+        {
+            "capability": "candidate_fact_admission",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "model_skill_admission",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "runtime_boundary",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "evidence_chain",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "negative_guards",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "verifier",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "model_test_lens",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "human_correction",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "trace_diagnostics",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "change_control",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "post_review_freeze",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "rollback_revocation",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        },
+        {
+            "capability": "owner_approval",
+            "applies_to": [
+                "L0",
+                "L1",
+                "L2",
+                "L3",
+                "L4",
+                "L5",
+                "L6",
+                "L7",
+                "L8",
+                "L9"
+            ],
+            "value": "required"
+        }
+    ]
+}

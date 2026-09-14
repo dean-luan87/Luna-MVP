@@ -1,0 +1,18 @@
+{
+    "artifact": "causal_negative_guards_v1",
+    "status": "PLANNING_CANDIDATE",
+    "negative_guards": [
+        "do not treat temporal precedence as causality",
+        "do not treat correlation as causality",
+        "do not treat model output as causal fact",
+        "do not treat memory prior as causal fact",
+        "do not treat intent preference as causal conclusion",
+        "do not treat emotional state as causal authority",
+        "do not treat field or context as causal authority",
+        "do not output decision, action, task, or execution request",
+        "do not create parallel causal owner",
+        "do not mutate upstream source-owned objects",
+        "do not run runtime, model, database, or network path",
+        "do not weaken verifier checks or hardcode pass"
+    ]
+}

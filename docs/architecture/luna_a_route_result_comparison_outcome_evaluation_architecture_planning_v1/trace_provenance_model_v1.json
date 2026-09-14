@@ -1,0 +1,14 @@
+{
+  "artifact":"trace_provenance_model_v1",
+  "candidate_only":true,
+  "reverse_routes":[
+    "Outcome Evaluation -> Comparison -> Expected Outcome -> Decision / Task / Action",
+    "Outcome Evaluation -> Actual Result -> Runtime / Observation / Current World / Field -> Evidence -> Provider / User Input",
+    "Outcome Evaluation -> Attribution Candidate -> Reconsideration Candidate -> Learning Signal Candidate"
+  ],
+  "required_refs":["root_cycle_trace_id","evaluation_trace_id","comparison_trace_id","expected_trace_refs","actual_trace_refs","attribution_trace_refs","reconsideration_trace_refs","learning_signal_trace_refs","source_owner_refs","provenance_refs","correction_lineage","contradiction_lineage"],
+  "provenance_authority":false,
+  "trace_authority":false,
+  "reverse_locatable":true,
+  "owner_mutation":false
+}

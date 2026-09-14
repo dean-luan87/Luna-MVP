@@ -1,0 +1,13 @@
+{
+  "contract_id": "field_memory_binding_v1",
+  "owner": "Field Temporal Evolution",
+  "field_input": "current_field_snapshot",
+  "memory_role": "provide_historical_field_context",
+  "outputs": ["memory_activation_candidate", "historical_field_reference", "context_match"],
+  "snapshot_is_memory": false,
+  "memory_is_field_owner": false,
+  "field_forces_memory_mutation": false,
+  "memory_forces_field_mutation": false,
+  "current_reality_precedence": true,
+  "candidate_only": true
+}

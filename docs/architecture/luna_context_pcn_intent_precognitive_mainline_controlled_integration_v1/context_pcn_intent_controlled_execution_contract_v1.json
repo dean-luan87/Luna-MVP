@@ -1,0 +1,37 @@
+{
+    "contract_id": "luna_context_pcn_intent_precognitive_mainline_controlled_execution_contract_v1",
+    "phase_id": "Phase-Luna-Context-PCN-Intent-PreCognitive-Mainline-Controlled-Integration-v1-001",
+    "status": "CONTROLLED_INTEGRATION_CANDIDATE",
+    "synthetic_only": true,
+    "controlled_integration_only": true,
+    "runtime_executed": false,
+    "database_write": false,
+    "device_control": false,
+    "scheduler_execution": false,
+    "task_mutation": false,
+    "source_module_mutation": false,
+    "model_call": false,
+    "owner_preservation": {
+        "context_foundation_owner": "Context Foundation",
+        "pcn_owner": "Personal Cognitive Network Governance",
+        "intent_owner": "Intent Governance",
+        "integration_new_owner": false,
+        "integration_mutation_authority": false
+    },
+    "flow": [
+        "Context synthetic input",
+        "Context Foundation output candidate",
+        "Context->PCN handoff candidate",
+        "PCN processing candidate",
+        "PCN->Intent handoff candidate",
+        "Intent Governance candidate"
+    ],
+    "forbidden": [
+        "Context directly creates Intent",
+        "PCN bypasses Intent Governance",
+        "Integration writes Context state",
+        "Integration writes PCN state",
+        "Integration writes Intent state",
+        "runtime side effects"
+    ]
+}

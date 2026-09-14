@@ -1,0 +1,71 @@
+{
+  "contract_id": "luna_context_foundation_future_entry_contract_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "entry_status": "FUTURE_PHASE_NOT_AUTHORIZED",
+  "objective": "Establish Luna's current-state description capability through a typed context envelope assembled from source-owned projections.",
+  "context_objects": [
+    {
+      "object": "Field Context",
+      "question": "Where am I and what Field is active?",
+      "source_owner": "Field State System",
+      "required_content": ["physical field", "social field", "activity field", "time state", "current-Reality provenance"]
+    },
+    {
+      "object": "Self Context",
+      "question": "Which Self state is currently active?",
+      "source_owner": "Self Layer",
+      "required_content": ["current capability", "current boundary", "current resource and regulation reference", "identity reference without mutation"]
+    },
+    {
+      "object": "Role Context",
+      "question": "In what role am I participating now?",
+      "source_owner": "Role Governance / Social Self",
+      "required_content": ["active role reference", "role responsibility", "role boundary", "role temporal validity"]
+    },
+    {
+      "object": "Relationship Context",
+      "question": "Which relationship is relevant and why?",
+      "source_owner": "Relationship Governance / Social Self",
+      "required_content": ["relationship reference", "relationship strength candidate", "history reference", "current state", "interest linkage candidate"]
+    },
+    {
+      "object": "Temporal Context",
+      "question": "Why is this relevant now?",
+      "source_owner": "Temporal Context Governance using source-owned references",
+      "required_content": ["current-day event window", "recent retained context", "long-term admitted history reference", "validity", "expiry and reset conditions"]
+    }
+  ],
+  "assembly_owner_candidate": "Context Foundation Governance Candidate",
+  "assembly_write_scope": "typed context envelope candidate only",
+  "source_owner_precedence": true,
+  "context_is_not_reality_owner": true,
+  "context_is_not_personal_cognitive_network": true,
+  "intent_generation_allowed": false,
+  "causal_reasoning_allowed": false,
+  "memory_write_allowed": false,
+  "runtime_required_by_default": false,
+  "acceptance_scenario": {
+    "scenario": "User returns home while unfinished work keeps the active mental context attached to the office.",
+    "expected_context_inputs": {
+      "physical_field": "Home",
+      "active_mental_context": "Work residual state",
+      "role_context": "Employee",
+      "emotion_context_reference": "Residual stress",
+      "related_memory_reference": "Recent project pressure"
+    },
+    "downstream_not_phase_zero_output": {
+      "potential_intent": "Need decompression or discussion",
+      "owner": "Intent Governance",
+      "earliest_phase": "Phase 2"
+    }
+  },
+  "required_pre_read": [
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/field_context_projection_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/memory_context_projection_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json",
+    "docs/architecture/luna_dynamic_cognitive_architecture_integration_audit_v1/field_context_time_alignment_review.json"
+  ],
+  "active_contract": false,
+  "implementation_authorized": false
+}

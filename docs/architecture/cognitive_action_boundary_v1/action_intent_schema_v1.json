@@ -1,0 +1,28 @@
+{
+  "title": "Action Intent Schema v1",
+  "type": "object",
+  "required": ["intent_id", "decision_reference", "intent", "target", "constraints", "confidence", "required_capability", "provenance"],
+  "properties": {
+    "intent_id": {"type": "string"},
+    "decision_reference": {"type": "object"},
+    "intent": {"type": "object"},
+    "target": {"type": "object"},
+    "constraints": {"type": "object"},
+    "confidence": {"type": "object"},
+    "required_capability": {"type": "object"},
+    "authorization_level": {"type": "string"},
+    "risk_classification": {"type": "string"},
+    "unknowns": {"type": "array"},
+    "provenance": {"type": "array"}
+  },
+  "boundary": {
+    "action_intent_is_not_decision": true,
+    "action_intent_is_not_action_command": true,
+    "action_intent_is_not_execution": true,
+    "action_intent_does_not_modify_goal": true,
+    "action_intent_does_not_modify_reality": true,
+    "action_intent_does_not_execute": true,
+    "brain_authorization_required": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "name": "Field Event Replay Protocol",
+    "description": "定义 replay 流程、范围和不变原则",
+    "replay_types": [
+        "full_replay",
+        "partial_replay",
+        "replay_from_snapshot",
+        "replay_by_field_scope",
+        "replay_by_time_range",
+        "replay_by_correlation_id",
+        "replay_after_correction",
+        "replay_after_revocation"
+    ],
+    "invariants": {
+        "deterministic": "相同事件序列应产生相同 Field State。",
+        "no_external_provider": "非确定性 Provider 不得在 replay 时重新调用。",
+        "no_action": "replay 不得触发生产动作。",
+        "frozen_evidence": "replay 使用已冻结的 Evidence Candidate。"
+    }
+}

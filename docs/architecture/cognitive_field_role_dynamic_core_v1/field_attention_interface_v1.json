@@ -1,0 +1,14 @@
+{
+  "interface_name": "Field Attention Interface v1",
+  "field_state": null,
+  "role_stack": [],
+  "drive_reference": "drive-example",
+  "value_reference": "value-example",
+  "risk": null,
+  "attention_allocation_candidate": null,
+  "role_attention_requirements": [],
+  "field_does_not_allocate_attention_directly": true,
+  "field_does_not_modify_goal": true,
+  "field_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

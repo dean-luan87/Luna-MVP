@@ -1,0 +1,14 @@
+{
+  "registry_id": "schema_type_registry_v1",
+  "owner": "Schema Layer",
+  "types": [
+    {"type": "Field Schema", "question": "how_this_environment_commonly_operates", "sources": ["Field Evolution", "Field Memory", "Experience Folding"]},
+    {"type": "Role Schema", "question": "how_this_role_handles_responsibility", "sources": ["Role Memory", "Experience"]},
+    {"type": "Social Schema", "question": "how_social_context_commonly_interacts", "sources": ["Social Memory", "Knowledge", "Experience"]},
+    {"type": "Self Schema", "question": "how_luna_understands_capabilities_and_limits", "sources": ["Self Memory", "Capability History", "Self Regulation"]}
+  ],
+  "candidate_required": true,
+  "automatic_generation": false,
+  "model_parameter": false,
+  "decision_authority": false
+}

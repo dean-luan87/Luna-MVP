@@ -1,0 +1,15 @@
+{
+  "title": "Self Resource Awareness Contract v1",
+  "owner": "Cognitive Self Model / Resource Awareness",
+  "resource_domains": ["Compute", "Energy", "Communication", "Perception", "Storage", "Time"],
+  "inputs": ["Resource State", "Hardware Capability State", "Runtime Resource Snapshot"],
+  "output": "Current Resource Awareness",
+  "schema": ["resource", "available", "usage", "constraint", "timestamp", "confidence", "source_ref", "unknown"],
+  "rules": {
+    "read_only_context": true,
+    "resource_state_not_decision": true,
+    "constraint_explicit": true,
+    "degradation_candidate_only": true,
+    "hardware_manager_boundary_preserved": true
+  }
+}

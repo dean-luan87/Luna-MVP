@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "name": "Code Impact Registry",
+  "entries": [
+    {"path": "capabilities/emotion/", "object": "Emotion Context", "impact": "owner/interface labels may need alignment", "priority": "P1", "action": "future contract review", "code_change": false},
+    {"path": "capabilities/registry/luna_capability_registry_v1.json", "object": "Capability ownership", "impact": "Self Layer interface reference", "priority": "P1", "action": "mapping review", "code_change": false},
+    {"path": "capabilities/registry/manifests/model_manager_manifest_v1.json", "object": "Model resource boundary", "impact": "must remain external implementation asset", "priority": "P1", "action": "boundary review", "code_change": false},
+    {"path": "capabilities/ocr_runtime/", "object": "Capability Runtime", "impact": "future context contract consumption", "priority": "P2", "action": "runtime interface review", "code_change": false},
+    {"path": "capabilities/vision_runtime/", "object": "Capability Runtime", "impact": "future Self/Social context consumption", "priority": "P2", "action": "runtime interface review", "code_change": false},
+    {"path": "docs/architecture/luna_cognitive_self_model_architecture_v1/", "object": "Self Model contracts", "impact": "canonical ownership remap", "priority": "P1", "action": "asset cross-reference", "code_change": false},
+    {"path": "docs/architecture/cognitive_role_relationship_system_v1/", "object": "Role/Relationship contracts", "impact": "Social Self ownership remap", "priority": "P1", "action": "asset cross-reference", "code_change": false},
+    {"path": "docs/architecture/cognitive_emotion_context_boundary_v1/", "object": "Emotion boundary", "impact": "Integration Layer mount", "priority": "P1", "action": "boundary cross-reference", "code_change": false},
+    {"path": "docs/architecture/luna_cognitive_runtime_foundation_v1/", "object": "Runtime context", "impact": "Self State/Social State contract review", "priority": "P2", "action": "runtime impact review", "code_change": false},
+    {"path": "tools/", "object": "Verification and governance tools", "impact": "future workflow registration", "priority": "P2", "action": "ownership gate reference", "code_change": false}
+  ],
+  "rules": {"registry_is_plan_only": true, "no_direct_edit": true, "priority_requires_review": true, "future_implementation_separate": true}
+}

@@ -1,0 +1,18 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Dependency Mapping",
+  "dependencies":[
+    {"from":"Reality Evidence","to":"Field","type":"required"},
+    {"from":"Knowledge Boundary","to":"Field","type":"contextual"},
+    {"from":"Memory","to":"Field","type":"temporal_context"},
+    {"from":"Self Layer","to":"Field","type":"subject_constraint"},
+    {"from":"Social Self","to":"Field","type":"social_context"},
+    {"from":"Role","to":"Field","type":"field_projection"},
+    {"from":"Task","to":"Field","type":"task_context"},
+    {"from":"Field","to":"Workspace","type":"required_context"},
+    {"from":"Field","to":"Brain","type":"context_package"},
+    {"from":"Field Snapshot","to":"B Route","type":"future_interface"}
+  ],
+  "forbidden_dependencies":["Provider → Field authority","Memory → Reality overwrite","Emotion → Decision override","B Route → Action","Field → Constitution edit"],
+  "rules":{"no_cycle_in_control_dependencies":true,"future_interface_not_active":true,"field_is_context_owner":true}
+}

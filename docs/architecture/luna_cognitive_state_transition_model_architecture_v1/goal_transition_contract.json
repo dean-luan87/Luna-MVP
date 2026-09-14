@@ -1,0 +1,11 @@
+{
+  "contract_id": "goal_transition_v1",
+  "equation": "Goal(t+1)=f(Goal(t),Understanding,Value)",
+  "inputs": ["Current Goal", "Understanding", "Value State", "Self Constraint", "Resource State", "Task Context"],
+  "outputs": ["Goal Activation Candidate", "Goal Priority Candidate", "Goal Suppression Candidate", "Goal Reconsideration Candidate"],
+  "goal_is_not_action": true,
+  "goal_is_not_created_automatically": true,
+  "self_constraint_required": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

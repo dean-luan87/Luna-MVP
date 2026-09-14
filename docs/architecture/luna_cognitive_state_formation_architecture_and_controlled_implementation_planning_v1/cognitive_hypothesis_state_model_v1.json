@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_hypothesis_state_model_v1",
+    "states": [
+        "PROPOSED",
+        "SUPPORTED",
+        "CONTESTED",
+        "INSUFFICIENT_EVIDENCE",
+        "SUSPENDED",
+        "REVISED",
+        "REJECTED",
+        "REVOKED"
+    ],
+    "state_semantics": {
+        "PROPOSED": "initial candidate with unresolved support",
+        "SUPPORTED": "supporting evidence dominates but not truth",
+        "CONTESTED": "support and opposition coexist",
+        "INSUFFICIENT_EVIDENCE": "not enough support to progress",
+        "SUSPENDED": "temporarily inactive pending evidence",
+        "REVISED": "new revision supersedes parent candidate",
+        "REJECTED": "invalidated by strong opposition",
+        "REVOKED": "source or authority revoked"
+    },
+    "difference_from_causal_state": "cognitive hypothesis models situation explanation space; causal governance models cause relation candidates"
+}

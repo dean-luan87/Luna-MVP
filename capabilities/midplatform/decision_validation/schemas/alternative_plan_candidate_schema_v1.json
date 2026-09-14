@@ -1,0 +1,12 @@
+{
+  "schema_id": "AlternativePlanCandidateSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "plan_goal_type",
+    "strategy_type",
+    "does_not_override_selected_plan",
+    "candidate_only",
+    "not_fact"
+  ],
+  "ownership_note": "alternative_plan_candidate does not change Agent Planning selected_plan"
+}

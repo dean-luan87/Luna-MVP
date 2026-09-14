@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Decision B Route Interface",
+  "a_input":"Field + Attention + Context + Decision Candidate",
+  "b_operation":"future alternative interpretation or decision simulation",
+  "b_output":"simulation candidate and uncertainty",
+  "return_flow":["B Result Candidate","Brain Review","Field Update Candidate"],
+  "permissions":{"b_reads_field":true,"b_reads_attention":true,"b_creates_decision":false,"b_executes_action":false,"b_writes_field":false},
+  "rules":{"simulation_placeholder":true,"a_remains_authoritative":true,"no_b_runtime":true}
+}

@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Open Source Integration Negative Guards",
+  "guards":[
+    {"guard":"no_external_kernel","forbidden":"external framework becomes Cognitive Kernel"},
+    {"guard":"no_direct_memory_write","forbidden":"external asset direct Memory write"},
+    {"guard":"no_direct_decision","forbidden":"external asset direct Decision"},
+    {"guard":"no_self_modification","forbidden":"external asset Self modification"},
+    {"guard":"no_meaning_ownership","forbidden":"external asset owns Meaning"},
+    {"guard":"no_growth_direction","forbidden":"external asset owns Growth Direction"},
+    {"guard":"no_runtime_integration","forbidden":"real open-source integration"},
+    {"guard":"no_network","forbidden":"network or Internet connection"},
+    {"guard":"no_model_hardware","forbidden":"model/hardware activation"}
+  ],
+  "rules":{"architecture_only":true,"no_external_side_effect":true,"no_check_weakening":true}
+}

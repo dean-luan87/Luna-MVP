@@ -1,0 +1,28 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "coco",
+  "license_ref": {
+    "license": "MIT",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "store-aisle-regions/2",
+    "dataset_url": "https://universe.roboflow.com/example/store-aisle-regions"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "annotation_tool": "roboflow_annotate",
+    "export_format": "coco_segmentation"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export", "roboflow_coco"],
+  "images": [
+    {"image_id": "img_010", "file_name": "aisle_010.jpg", "width": 800, "height": 600, "scene_label_hint": "store_aisle", "confidence": 0.81}
+  ],
+  "annotations": [
+    {"ann_id": "ann_010", "type": "bbox", "label": "shelf", "image_id": "img_010", "bbox": [50, 100, 300, 500], "confidence": 0.86},
+    {"ann_id": "ann_011", "type": "segmentation", "label": "walkable_area", "image_id": "img_010", "mask_ref": "mask://img_010/walkable", "polygon": [[0, 520], [800, 520], [800, 600], [0, 600]], "confidence": 0.83},
+    {"ann_id": "ann_012", "type": "segmentation", "label": "price_board_region", "image_id": "img_010", "mask_ref": "mask://img_010/price_board", "polygon": [[320, 120], [420, 120], [420, 180], [320, 180]], "confidence": 0.78}
+  ]
+}

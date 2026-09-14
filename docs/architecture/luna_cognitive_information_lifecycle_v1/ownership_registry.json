@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "name":"Information Lifecycle Ownership Registry",
+  "ownership":[
+    {"object":"Information State","owner":"Information Lifecycle Governance","writer":"Lifecycle Governance","readers":["Field","Experience","Memory","Knowledge"]},
+    {"object":"Information Value Candidate","owner":"Information Lifecycle Governance","writer":"Value Evaluation","readers":["Attention","Field","Memory"]},
+    {"object":"Field Information","owner":"Cognitive Field","writer":"Field Update Governance","readers":["Attention","Context","Brain"]},
+    {"object":"Experience Candidate","owner":"Experience System","writer":"Experience Pipeline","readers":["Memory Governance","Role Growth"]},
+    {"object":"Memory Candidate","owner":"Memory Governance","writer":"Memory Admission","readers":["Self","Social Self","Field"]},
+    {"object":"Knowledge Candidate","owner":"Knowledge Library Governance","writer":"Knowledge Admission","readers":["Field","Cognitive Processing"]},
+    {"object":"Pattern Candidate","owner":"Learning Candidate Boundary","writer":"Folding Review","readers":["Memory Governance","Brain"]},
+    {"object":"Self/Social Impact Candidate","owner":"Self/Social Integration","writer":"Growth Governance","readers":["Self Evolution","Social Adaptation"]}
+  ],
+  "rules":{"unique_owner":true,"writer_declared":true,"candidate_writes_only":true,"provider_not_owner":true}
+}

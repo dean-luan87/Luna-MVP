@@ -1,0 +1,20 @@
+{
+  "title": "Utility Calculation Boundary v1",
+  "status": "research_only",
+  "permitted_calculation_candidates": ["Expected Utility", "MCDA comparison", "Information Gain", "ROI supporting view", "sensitivity analysis"],
+  "inputs": ["Goal Candidate", "Field Context", "Belief Candidate", "Value Dimensions", "Self Resource State", "Risk Context", "Unknowns", "Experience Context"],
+  "outputs": ["Benefit Candidate", "Cost Candidate", "Risk Candidate", "Probability Candidate", "Utility Candidate", "Priority Candidate", "Tradeoff Candidate", "Exploration Utility Candidate"],
+  "formula_candidates": {
+    "expected_utility": "Probability × Outcome Value - Cost",
+    "cognitive_utility": "Goal Value + Safety Value + Growth Value + Information Value - Resource Cost - Risk Cost",
+    "exploration_utility": "Expected Information Gain - Exploration Cost",
+    "roi": "(Value Gain - Cost) / Cost"
+  },
+  "hard_constraint_check_precedes_score": true,
+  "calculation_implemented": false,
+  "automatic_scoring": false,
+  "automatic_ranking": false,
+  "value_is_not_decision": true,
+  "value_does_not_execute": true,
+  "unknowns_preserved": true
+}

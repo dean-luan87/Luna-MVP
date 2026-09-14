@@ -1,0 +1,12 @@
+{
+  "interface_name": "Reflex Attention Interface v1",
+  "reflex_reference": {},
+  "attention_adjustment_candidate": {},
+  "attention_boost_candidate": {},
+  "workspace_update_candidate": {},
+  "field_context": {},
+  "risk": {},
+  "reflex_does_not_allocate_attention": true,
+  "reflex_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

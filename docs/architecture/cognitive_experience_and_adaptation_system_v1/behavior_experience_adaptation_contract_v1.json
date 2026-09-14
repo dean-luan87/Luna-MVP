@@ -1,0 +1,16 @@
+{
+  "contract_name": "Behavior Experience Adaptation Contract v1",
+  "experience_reference": "experience-example",
+  "behavior_pattern_candidate": null,
+  "current_field_validation": "candidate",
+  "goal_context": null,
+  "self_capability_context": null,
+  "constraints": [],
+  "unknowns": [],
+  "behavior_candidate_output": true,
+  "experience_does_not_control_action": true,
+  "experience_does_not_modify_goal": true,
+  "experience_does_not_make_decision": true,
+  "reality_overrides_experience": true,
+  "unknowns_are_preserved": true
+}

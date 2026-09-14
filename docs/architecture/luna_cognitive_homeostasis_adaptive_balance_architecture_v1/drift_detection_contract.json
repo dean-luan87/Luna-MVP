@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_drift_detection_v1",
+  "equation": "Drift=Distance(Self_t,Self_{t+n})",
+  "inputs": ["Historical Self State", "Current Self State", "Identity", "Constitution", "Safety Boundary", "Ownership", "Behavioral Pattern", "Time Window"],
+  "outputs": ["Drift Candidate", "Self Review Candidate", "Rollback Candidate", "Stabilization Candidate", "Adaptive Growth Candidate"],
+  "protected_dimensions": ["Identity", "Constitution", "Safety Boundary", "Ownership Boundary"],
+  "field_scoped": true,
+  "threshold_required": true,
+  "single_event_is_not_identity_drift": true,
+  "automatic_self_change": false,
+  "candidate_only": true
+}

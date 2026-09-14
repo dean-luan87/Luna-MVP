@@ -1,0 +1,53 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.998195+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "scoped_network_lookup_allowed": true,
+  "git_clone_allowed": false,
+  "source_checkout_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "dependency_manifest_review_record",
+  "source_dependency_manifest_review_evidence": [
+    {
+      "asset_id": "byte_track",
+      "dependency_manifest_found": true,
+      "dependency_manifest_refs": [
+        "requirements.txt",
+        "setup.py",
+        "setup.cfg"
+      ],
+      "dependency_review_completed": true,
+      "dependency_risk_summary": "requirements.txt requires numpy, torch>=1.7, torchvision>=0.10.0, opencv_python, plus lap/filterpy/motmetrics/thop/ninja and pinned onnx==1.8.1 / onnxruntime==1.8.0 / onnx-simplifier==0.3.5 (old pins -> conflict risk). HIGH build/compile risk: setup.py imports torch and builds C++ extensions via torch.utils.cpp_extension.CppExtension over yolox/layers/csrc (requires torch + a C++ toolchain at build time); lap typically needs compilation too.",
+      "torch_dependency_detected": true,
+      "opencv_dependency_detected": true,
+      "numpy_scipy_dependency_detected": true,
+      "build_compile_risk_detected": true,
+      "dependency_conflict_risk_detected": true,
+      "dependency_review_failure_reason": null,
+      "dependency_review_is_not_install_approval": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "dependency_manifest_found": true,
+      "dependency_manifest_refs": [
+        "setup.py",
+        "setup.cfg"
+      ],
+      "dependency_review_completed": true,
+      "dependency_risk_summary": "setup.py declares name='mobile_sam' with install_requires=[] (EMPTY) and extras_require['all']=[matplotlib, pycocotools, opencv-python, onnx, onnxruntime]. torch/torchvision are UNDECLARED runtime dependencies (code is segment-anything-derived and requires torch), so a code-only install will import-fail without torch present -> undeclared-dependency risk. No C++ build extensions (pure-python packaging, low build/compile risk).",
+      "torch_dependency_detected": true,
+      "opencv_dependency_detected": true,
+      "numpy_scipy_dependency_detected": true,
+      "build_compile_risk_detected": false,
+      "dependency_conflict_risk_detected": true,
+      "dependency_review_failure_reason": null,
+      "dependency_review_is_not_install_approval": true
+    }
+  ]
+}

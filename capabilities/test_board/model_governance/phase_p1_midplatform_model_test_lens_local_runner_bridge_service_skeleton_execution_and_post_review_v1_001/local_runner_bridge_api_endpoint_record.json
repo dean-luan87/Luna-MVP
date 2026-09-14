@@ -1,0 +1,14 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Skeleton-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "record": {
+    "capabilities_endpoint_present": true,
+    "asset_register_endpoint_present": true,
+    "job_create_endpoint_present": true,
+    "job_run_endpoint_present": true,
+    "job_status_endpoint_present": true,
+    "job_result_endpoint_present": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "registry_id": "luna_context_foundation_boundary_risk_registry_v1",
+  "risks": [
+    {
+      "risk": "Context becomes an Intent Engine",
+      "severity": "HIGH",
+      "mitigation": "Forbid Intent fields and require Intent Governance as a downstream consumer only.",
+      "blocker": false
+    },
+    {
+      "risk": "Context directly accesses or writes Memory",
+      "severity": "HIGH",
+      "mitigation": "Consume only Memory Context Projection Candidates; forbid Raw Memory, database handles, persistence, and mutation.",
+      "blocker": false
+    },
+    {
+      "risk": "Context produces a Causal Explanation",
+      "severity": "HIGH",
+      "mitigation": "Preserve possible causes as Unknown or competing source references; Causal Reasoning remains downstream.",
+      "blocker": false
+    },
+    {
+      "risk": "Context modifies Reality or Field State",
+      "severity": "HIGH",
+      "mitigation": "Field State Reducer remains the sole Reality-facing writer; Context output is read-only and candidate-only.",
+      "blocker": false
+    },
+    {
+      "risk": "Context replaces Personal Cognitive Network",
+      "severity": "HIGH",
+      "mitigation": "Context assembles a bounded envelope only; PCN retains future Connection, Activation, and Context Projection responsibilities.",
+      "blocker": false
+    },
+    {
+      "risk": "Self Context absorbs Role ownership",
+      "severity": "MEDIUM",
+      "mitigation": "Keep self_projection and role_projection separate; Role/Social Self remains the Current Role Owner.",
+      "blocker": false
+    },
+    {
+      "risk": "Emotion Context becomes Decision influence without governance",
+      "severity": "HIGH",
+      "mitigation": "Accept Emotion Context Candidate references only; forbid emotion calculation, Value rewrite, Decision, and Action.",
+      "blocker": false
+    },
+    {
+      "risk": "High-complexity Context expands every query",
+      "severity": "MEDIUM",
+      "mitigation": "Apply minimum-sufficient Context complexity policy and require explicit scope reasons.",
+      "blocker": false
+    }
+  ],
+  "risk_count": 8,
+  "open_blocker_count": 0,
+  "automatic_remediation_allowed": false,
+  "status": "PLANNING_CANDIDATE"
+}

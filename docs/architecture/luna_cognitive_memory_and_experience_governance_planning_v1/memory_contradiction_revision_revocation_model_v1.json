@@ -1,0 +1,21 @@
+{
+    "artifact": "memory_contradiction_revision_revocation_model_v1",
+    "cases": [
+        "conflicting_memories",
+        "new_evidence_contradicts_old_memory",
+        "hypothesis_unresolved_at_cycle_completion",
+        "uncertain_identity_attribution",
+        "uncertain_relationship_attribution",
+        "outdated_world_context",
+        "stale_preference",
+        "conflicting_user_feedback",
+        "source_revocation"
+    ],
+    "rules": {
+        "multiple_candidates_may_coexist": true,
+        "forced_single_truth": false,
+        "revision_lineage_required": true,
+        "supersession_lineage_required": true,
+        "revocation_lineage_required": true
+    }
+}

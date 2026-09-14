@@ -1,0 +1,13 @@
+{
+  "contract_id": "post_migration_regression_check_v1",
+  "inputs": ["Pre-Migration Baseline", "Post-Migration Asset State", "Public API", "Schema Contracts", "Owner Registry", "Trace/Replay Evidence", "Forbidden Authority Set"],
+  "outputs": ["Regression Result Candidate", "Compatibility Difference", "Boundary Violation Candidate", "Rollback Candidate", "Remediation Candidate"],
+  "dimensions": ["availability", "public_api", "schema", "behavior", "owner", "candidate_fact_boundary", "trace_replay", "dependency", "documentation"],
+  "result_statuses": ["passed", "failed", "blocked", "not_run"],
+  "all_mandatory_results_must_be_passed": true,
+  "not_run_blocks_freeze": true,
+  "failed_blocks_freeze": true,
+  "baseline_mutation_forbidden": true,
+  "check_weakening_forbidden": true,
+  "current_phase_executes_checks": false
+}

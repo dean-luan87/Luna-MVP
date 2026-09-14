@@ -1,0 +1,51 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "interaction_validation_planning": true,
+  "record": {
+    "schema_id": "ObservationReEvaluationFromResultPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+    "description": "模型结果触发 Observation 再评估。输出 update candidate，不覆盖原 attention record。",
+    "input": {
+      "result_candidate": "required",
+      "existing_attention_record": "read_only",
+      "human_correction_signals": "priority_only"
+    },
+    "output": {
+      "envelope_type": "observation_update_candidate",
+      "required_fields": [
+        "update_candidate_id",
+        "source_result_candidate_ref",
+        "source_region_id",
+        "source_attention_record_id",
+        "update_type",
+        "new_evidence_refs",
+        "candidate_only",
+        "not_fact",
+        "does_not_overwrite_attention_record"
+      ]
+    },
+    "update_types_allowed": [
+      "text_likely_region_candidate",
+      "object_like_region_candidate",
+      "structure_candidate",
+      "priority_boost_from_correction",
+      "needs_followup_review"
+    ],
+    "forbidden_operations": [
+      "overwrite_observation_attention_record",
+      "upgrade_candidate_to_fact",
+      "replace_segmentation_boundary_owner"
+    ],
+    "boundary_flags": {
+      "result_candidate_does_not_pollute_observation": true,
+      "observation_attention_remains_candidate": true,
+      "result_as_new_evidence_only": true
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+    "module_name": "personal_cognitive_network",
+    "module_version": "v1",
+    "owner": "Personal Cognitive Network Governance",
+    "module_status": "MODULE_CLOSURE_CANDIDATE_BASELINE_FROZEN",
+    "source_stage_chain": [
+        "Phase-Luna-Personal-Cognitive-Network-Planning-v1-001",
+        "Phase-Luna-Personal-Cognitive-Network-Field-Role-Interaction-Alignment-v1-001",
+        "Phase-Luna-Personal-Cognitive-Network-Integrated-Scenario-Validation-And-Planning-Closure-v1-001",
+        "Phase-Luna-Personal-Cognitive-Network-Controlled-Skeleton-Implementation-v1-001",
+        "Phase-Luna-Personal-Cognitive-Network-Controlled-DryRun-And-Integrated-Contract-Validation-v1-001",
+        "Phase-Luna-Personal-Cognitive-Network-Module-Closure-v1-001"
+    ],
+    "code_asset_refs": [
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_projection_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_resource_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_trace_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_error_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_protocol_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_dryrun_v1.py"
+    ],
+    "planning_asset_refs": [
+        "docs/architecture/luna_personal_cognitive_network_planning_v1/",
+        "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/",
+        "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/"
+    ],
+    "dryrun_evidence_refs": [
+        "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_result_v1.json",
+        "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_case_results_v1.json",
+        "_eval_out/personal_cognitive_network_controlled_dryrun_v1/pcn_controlled_dryrun_trace_v1.json",
+        "user_terminal_verifier_result: PASSED_CHECK_COUNT=38 FAILED_CHECK_COUNT=0 BLOCKER_COUNT=0 FINAL_DECISION=PCN_CONTROLLED_DRYRUN_VALIDATION_PASSED"
+    ],
+    "input_contract_refs": [
+        "docs/architecture/luna_personal_cognitive_network_planning_v1/context_pcn_activation_contract_candidate.json",
+        "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_input_contract_v1.json"
+    ],
+    "output_contract_refs": [
+        "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/pcn_controlled_dryrun_output_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_input_output_closure_contract_v1.json"
+    ],
+    "mutation_authority": "pcn_candidate_projection_scope_only",
+    "forbidden_authorities": [
+        "reality_truth_ownership",
+        "context_ownership",
+        "field_ownership",
+        "role_ownership",
+        "relationship_ownership",
+        "memory_ownership",
+        "emotion_ownership",
+        "intent_generation",
+        "causal_reasoning",
+        "decision",
+        "action",
+        "interaction_kernel_computation",
+        "runtime_dispatch",
+        "source_mutation",
+        "persistence_authority"
+    ],
+    "nested_constraint_model": "nested_constraint_feedback_projection_without_cross_owner_mutation",
+    "resource_governance": "hardware_runtime_cognitive_joint_constraint_no_fixed_caps",
+    "subjective_cognition_boundary": "subjective_strength_not_equal_truth",
+    "interaction_boundary": "pcn_consumes_or_forwards_interaction_candidate_reference_only",
+    "future_handoff": "pcn_to_intent_handoff_contract_candidate_only",
+    "open_clarifications": [
+        "CLAR-001-LINK-MULTI-RELATION",
+        "CLAR-002-ACTIVATION-DISTINCTION",
+        "CLAR-003-GROWTH-NON-AUTO-STRUCTURAL",
+        "CLAR-004-NESTED-AXIS-KERNEL-FEEDBACK",
+        "CLAR-005-SCENARIO-EXTENSION-TO-12"
+    ],
+    "future_extension_points": [
+        "activation_algorithm_parameterization",
+        "interaction_kernel_math_model",
+        "intent_binding_and_revision",
+        "causal_candidate_generation",
+        "experience_to_memory_admission_loop"
+    ],
+    "runtime_status": "NOT_ACTIVE_RUNTIME",
+    "active_schema": false,
+    "active_contract": false,
+    "next_phase_auto_authorized": false
+}

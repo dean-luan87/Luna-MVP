@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "name": "Boundary Consistency Conflict Registry",
+  "conflicts": [
+    {"id": "B-001", "topic": "Role legacy Self reference", "finding": "Historical Self reference may remain in old assets", "resolution": "Canonical owner is Social Self; legacy reference is non-authoritative", "status": "contained"},
+    {"id": "B-002", "topic": "Constitution wording", "finding": "Constitution was described as Self-adjacent", "resolution": "L0 constrains Self and Social Self but is not a member of either", "status": "resolved"},
+    {"id": "B-003", "topic": "Capability ownership", "finding": "Self Capability and Capability Governance could be conflated", "resolution": "Self knows capability; Capability Governance manages supply/admission", "status": "resolved"},
+    {"id": "B-004", "topic": "Emotion ownership", "finding": "Emotion Context could be attached to Self or Social Self", "resolution": "Integration-only boundary", "status": "resolved"},
+    {"id": "B-005", "topic": "Flow extension", "finding": "Social Self insertion could bypass Evidence/Brain", "resolution": "New layers are context subflow; Brain remains Decision owner", "status": "resolved"}
+  ],
+  "rules": {"all_conflicts_classified": true, "no_unresolved_owner_conflict": true, "legacy_references_non_authoritative": true, "no_code_change": true}
+}

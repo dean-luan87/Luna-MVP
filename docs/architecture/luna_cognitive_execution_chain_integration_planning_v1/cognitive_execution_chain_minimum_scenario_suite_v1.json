@@ -1,0 +1,207 @@
+{
+    "artifact": "cognitive_execution_chain_minimum_scenario_suite_v1",
+    "status": "PLANNING_CANDIDATE",
+    "minimum_count": 20,
+    "scenarios": [
+        {
+            "scenario_id": "S01",
+            "category": "happy_path",
+            "name": "intent_to_runtime_candidate_happy_path",
+            "covers": [
+                "forward_chain",
+                "trace_continuity",
+                "provenance_continuity"
+            ]
+        },
+        {
+            "scenario_id": "S02",
+            "category": "intent",
+            "name": "intent_uncertainty_high_requires_causal_qualification",
+            "covers": [
+                "intent_to_causal",
+                "error_propagation",
+                "feedback_loop"
+            ]
+        },
+        {
+            "scenario_id": "S03",
+            "category": "causal",
+            "name": "causal_conflict_generates_decision_uncertainty",
+            "covers": [
+                "causal_to_decision",
+                "reconsideration"
+            ]
+        },
+        {
+            "scenario_id": "S04",
+            "category": "decision",
+            "name": "decision_defer_propagates_to_action_no_execution",
+            "covers": [
+                "decision_to_action",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S05",
+            "category": "action",
+            "name": "action_not_ready_blocks_executor_handoff",
+            "covers": [
+                "action_to_execution",
+                "error_propagation"
+            ]
+        },
+        {
+            "scenario_id": "S06",
+            "category": "executor",
+            "name": "executor_admission_reject_feedback_to_action",
+            "covers": [
+                "runtime_error",
+                "reconsideration"
+            ]
+        },
+        {
+            "scenario_id": "S07",
+            "category": "executor",
+            "name": "executor_partial_completion_provenance_traceback",
+            "covers": [
+                "provenance_continuity",
+                "trace_continuity"
+            ]
+        },
+        {
+            "scenario_id": "S08",
+            "category": "version",
+            "name": "version_migration_required_with_mapping",
+            "covers": [
+                "version_compatibility",
+                "io_symmetry"
+            ]
+        },
+        {
+            "scenario_id": "S09",
+            "category": "version",
+            "name": "version_incompatible_hard_block",
+            "covers": [
+                "version_compatibility",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S10",
+            "category": "io_symmetry",
+            "name": "producer_consumer_field_name_mismatch",
+            "covers": [
+                "io_symmetry",
+                "integration_gap_registry"
+            ]
+        },
+        {
+            "scenario_id": "S11",
+            "category": "trace",
+            "name": "missing_trace_ref_hard_block",
+            "covers": [
+                "trace_continuity",
+                "error_propagation"
+            ]
+        },
+        {
+            "scenario_id": "S12",
+            "category": "provenance",
+            "name": "execution_failure_reverse_to_intent",
+            "covers": [
+                "provenance_continuity",
+                "reconsideration"
+            ]
+        },
+        {
+            "scenario_id": "S13",
+            "category": "feedback",
+            "name": "duplicate_failure_signature_stops_loop",
+            "covers": [
+                "feedback_loop",
+                "idempotency"
+            ]
+        },
+        {
+            "scenario_id": "S14",
+            "category": "idempotency",
+            "name": "duplicate_handoff_not_duplicate_consumption",
+            "covers": [
+                "idempotency",
+                "task_manager_boundary"
+            ]
+        },
+        {
+            "scenario_id": "S15",
+            "category": "task_manager",
+            "name": "task_manager_no_runtime_bypass",
+            "covers": [
+                "task_manager_boundary",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S16",
+            "category": "field_memory",
+            "name": "runtime_result_is_candidate_not_field_fact",
+            "covers": [
+                "field_memory_boundary",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S17",
+            "category": "field_memory",
+            "name": "runtime_result_is_candidate_not_memory_fact",
+            "covers": [
+                "field_memory_boundary",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S18",
+            "category": "diagnostics",
+            "name": "runtime_failure_routed_to_diagnostics",
+            "covers": [
+                "diagnostics_boundary",
+                "error_propagation"
+            ]
+        },
+        {
+            "scenario_id": "S19",
+            "category": "maintenance",
+            "name": "maintenance_receives_candidate_only",
+            "covers": [
+                "diagnostics_boundary",
+                "negative_guards"
+            ]
+        },
+        {
+            "scenario_id": "S20",
+            "category": "governance",
+            "name": "owner_preservation_without_new_owner",
+            "covers": [
+                "owner_boundary",
+                "phase_contract"
+            ]
+        },
+        {
+            "scenario_id": "S21",
+            "category": "integration_gap",
+            "name": "legacy_alias_detection_decision_arbitration",
+            "covers": [
+                "integration_gap_registry",
+                "open_questions"
+            ]
+        },
+        {
+            "scenario_id": "S22",
+            "category": "integration_gap",
+            "name": "legacy_alias_detection_action_boundary",
+            "covers": [
+                "integration_gap_registry",
+                "open_questions"
+            ]
+        }
+    ]
+}

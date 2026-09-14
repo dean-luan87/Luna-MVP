@@ -1,0 +1,10 @@
+{
+  "artifact": "b3_decision_governance_analysis_v1",
+  "canonical_owner": "Decision Governance",
+  "inputs": ["intent_refs", "causal_refs", "context_refs", "field_refs", "role_refs", "permission_refs", "safety_refs", "resource_refs", "constraint_refs", "evidence_refs", "options", "uncertainty/competing-hypothesis refs"],
+  "outputs": ["DecisionCandidateV1", "DecisionSelectionCandidateV1", "DecisionStateTransitionCandidateV1", "DecisionTraceCandidateV1", "DecisionToActionTaskHandoffCandidateV1"],
+  "behavior": ["hard constraints/permission/safety/role/evidence can veto eligibility", "risk and utility rank candidates but do not grant permission", "insufficient evidence can produce NEEDS_MORE_EVIDENCE", "uncertainty can produce DEFERRED", "multiple eligible causal hypotheses can produce CONTESTED", "no acceptable option can produce ABSTAINED"],
+  "handoff": {"consumer_owners": ["Action Boundary", "Task Manager"], "candidate_only": true, "decision_executed": false, "action_triggered": false, "task_created": false},
+  "decision_boundary": ["Decision Candidate != Action", "selected candidate != Task", "decision confidence != provider confidence", "arbitration does not execute or call providers"],
+  "B3_use": "Adapt Intent Governance and B2 references into existing DecisionGovernanceInputV1; reuse canonical arbitration rather than create a new engine."
+}

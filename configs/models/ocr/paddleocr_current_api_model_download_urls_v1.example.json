@@ -1,0 +1,29 @@
+{
+  "schema": "paddleocr_current_api_model_download_urls_v1",
+  "phase": "Phase-PaddleOCR-ManifestV1-CachePrepare-001",
+  "download_authorized": false,
+  "notes": "Fill URLs after official source confirmation; use only with explicit --allow-download in a future authorized phase. This file is a template only.",
+  "entries": [
+    {
+      "role": "det",
+      "target_ref": "det",
+      "url": null,
+      "expected_archive_type": "unknown",
+      "notes": ""
+    },
+    {
+      "role": "rec",
+      "target_ref": "rec",
+      "url": null,
+      "expected_archive_type": "unknown",
+      "notes": ""
+    },
+    {
+      "role": "cls",
+      "target_ref": "cls",
+      "url": null,
+      "expected_archive_type": "unknown",
+      "notes": ""
+    }
+  ]
+}

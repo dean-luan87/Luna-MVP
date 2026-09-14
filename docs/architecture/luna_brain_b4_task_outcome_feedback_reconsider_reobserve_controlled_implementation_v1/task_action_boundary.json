@@ -1,0 +1,7 @@
+{
+  "task_owner":"Task Manager",
+  "action_owner":"Action Governance",
+  "route":"TaskCandidate/readiness -> ActionGovernanceInputV1 -> ActionCandidateV1",
+  "rules":["TaskCandidate != ActionCandidate","ActionCandidate != execution","Task Manager does not execute Action"],
+  "gates":["permission","safety","resource","precondition","dependency","confirmation","cancellation","rollback"]
+}

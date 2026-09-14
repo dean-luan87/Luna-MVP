@@ -1,0 +1,59 @@
+{
+  "update_id": "luna_context_foundation_boundary_alignment_update_v1",
+  "allowed_flows": [
+    {
+      "source": "Emotion System / Emotion Context Boundary",
+      "intermediate": "Mental Field Reference Candidate",
+      "target": "Context Foundation",
+      "condition": "reference-only, provenance-bearing, temporally valid, source-owned"
+    },
+    {
+      "source": "Field State System",
+      "intermediate": "Field Projection",
+      "target": "Context Foundation",
+      "condition": "read-only projection with current-Reality precedence"
+    },
+    {
+      "source": "Role or Relationship Owner",
+      "intermediate": "Role Activation or Relationship Residual Reference",
+      "target": "Context Foundation",
+      "condition": "candidate-only reference without ownership transfer"
+    }
+  ],
+  "forbidden_flows": [
+    {
+      "source": "Context Foundation",
+      "target": "Emotion Decision",
+      "reason": "Context describes state and owns no emotion or decision authority."
+    },
+    {
+      "source": "Context Foundation",
+      "target": "Emotion Mutation",
+      "reason": "Emotion/Integration source ownership is retained."
+    },
+    {
+      "source": "Context Foundation",
+      "target": "Causal Explanation",
+      "reason": "Cause analysis belongs to future Causal Reasoning."
+    },
+    {
+      "source": "Context Foundation",
+      "target": "Personal Cognitive Network Activation",
+      "reason": "PCN remains a future independent capability."
+    },
+    {
+      "source": "Context Foundation",
+      "target": "Memory or Field Mutation",
+      "reason": "Source Owners retain all write authority."
+    }
+  ],
+  "context_describes_state_only": true,
+  "context_explains_cause": false,
+  "context_judges_reasonableness": false,
+  "context_initiates_change": false,
+  "owner_metadata_changed": false,
+  "existing_schema_changed": false,
+  "existing_contract_changed": false,
+  "runtime_changed": false,
+  "status": "PLANNING_CANDIDATE"
+}

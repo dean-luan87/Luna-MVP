@@ -1,0 +1,22 @@
+{
+  "title": "Brain Lifecycle Contract v1",
+  "contract_type": "Brain Cognitive Evaluation Lifecycle",
+  "states": ["Created", "Context Loaded", "Evaluation", "Candidate Generated", "Reviewed", "Completed", "Archived"],
+  "transitions": [
+    "Created → Context Loaded",
+    "Context Loaded → Evaluation",
+    "Evaluation → Candidate Generated",
+    "Candidate Generated → Reviewed",
+    "Reviewed → Completed",
+    "Completed → Archived"
+  ],
+  "transition_rules": {
+    "candidate_based": true,
+    "context_package_required": true,
+    "decision_trace_required": true,
+    "provenance_preserved": true,
+    "lifecycle_does_not_execute_action": true,
+    "lifecycle_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

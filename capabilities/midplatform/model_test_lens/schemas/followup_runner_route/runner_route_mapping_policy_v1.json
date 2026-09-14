@@ -1,0 +1,107 @@
+{
+  "schema_id": "RunnerRouteMappingPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-Planning-v1-001",
+  "description": "Observation Attention record → runner task candidate 字段映射与模型路由规则。",
+  "planning_only": true,
+  "source_record_type": "observation_attention_record",
+  "target_record_type": "runner_task_candidate",
+  "field_mapping": {
+    "runner_task_candidate_id": "rtc_{target_model_id}_{region_id}",
+    "source_attention_record_id": "attention_record_id",
+    "source_region_id": "region_id",
+    "source_envelope_ref": "source_envelope_ref",
+    "source_followup_route_ref": "followup_route_refs[i]",
+    "target_model_id": "recommended_followup_model[i]",
+    "task_priority": "map_priority_level(priority_level)",
+    "motion_state_candidate": "motion_state_candidate",
+    "priority_level_source": "priority_level",
+    "ocr_required": "ocr_required",
+    "tracking_required": "tracking_required",
+    "depth_required": "depth_required",
+    "detection_required": "detection_required",
+    "correction_boosted": "_correction_boosted",
+    "prompt_label_candidate": "prompt_label_candidate",
+    "video_or_single_frame_context": "video_or_single_frame_context",
+    "trigger_mode": "manual_only"
+  },
+  "priority_level_map": {
+    "P0_immediate_attention": "P0",
+    "P1_high_attention": "P1",
+    "P2_medium_attention": "P2",
+    "P3_low_attention": "P3",
+    "ignore_for_now": "P3"
+  },
+  "model_routing_rules": {
+    "detection": {
+      "serve": ["object_like_region", "label_uncertain", "correction_boosted"],
+      "admit_when_any": [
+        {"field": "detection_required", "equals": true},
+        {"field": "motion_state_candidate", "in": ["dynamic_candidate", "needs_tracking_review"]},
+        {"field": "_correction_boosted", "equals": true}
+      ],
+      "route_reason_default": "confirm_object_category",
+      "forbidden": ["prompt_label_as_detection_ground_truth"]
+    },
+    "ocr": {
+      "serve": ["static_candidate", "text_likely_region"],
+      "admit_when_all": [
+        {"field": "ocr_required", "equals": true},
+        {"field": "motion_state_candidate", "in": ["static_candidate", "unknown_motion_state"]}
+      ],
+      "label_pattern_any": ["sign", "text", "advertisement", "screen"],
+      "route_reason_default": "read_text",
+      "forbidden": ["ocr_result_as_fact", "confirmed_text_from_single_frame"]
+    },
+    "tracking": {
+      "serve": ["needs_tracking_review", "dynamic_candidate_by_label"],
+      "admit_when_all": [
+        {"field": "tracking_required", "equals": true},
+        {"field": "motion_state_candidate", "in": ["needs_tracking_review", "dynamic_candidate"]}
+      ],
+      "single_frame_override": {"trigger_mode": "manual_only", "annotation": "needs_multi_frame_review"},
+      "route_reason_default": "track_dynamic_object",
+      "forbidden": ["confirmed_dynamic_from_single_frame"]
+    },
+    "depth": {
+      "serve": ["road_candidate", "walkable_candidate", "structure_candidate"],
+      "admit_when_any": [
+        {"field": "depth_required", "equals": true},
+        {"field": "motion_state_candidate", "equals": "scene_structure_candidate"}
+      ],
+      "route_reason_default": "estimate_distance"
+    },
+    "slam": {
+      "serve": ["road_structure", "walkable_structure"],
+      "admit_when_any": [
+        {"field": "recommended_followup_model", "contains": "slam"},
+        {"field": "motion_state_candidate", "equals": "scene_structure_candidate"}
+      ],
+      "label_pattern_any": ["road", "crosswalk", "walkable", "plane"],
+      "route_reason_default": "verify_walkable_structure"
+    },
+    "slam_reference": {
+      "serve": ["building_reference", "stable_structure"],
+      "admit_when_any": [
+        {"field": "recommended_followup_model", "contains": "slam_reference"}
+      ],
+      "label_pattern_any": ["building", "structure", "facility"],
+      "route_reason_default": "use_as_slam_reference"
+    }
+  },
+  "expansion_rule": {
+    "one_task_per_model_id_per_region": true,
+    "dedupe_by": ["source_region_id", "target_model_id"]
+  },
+  "forbidden_operations": [
+    "execute_runner", "auto_runner_trigger", "write_fact", "navigation_decision",
+    "mutate_visual_expression_system", "upgrade_prompt_label_to_fact",
+    "treat_human_correction_as_ground_truth", "output_confirmed_dynamic_single_frame"
+  ],
+  "boundary_flags": {
+    "mapping_candidate_only": true,
+    "not_runner_execution": true,
+    "not_fact_write": true,
+    "planning_only": true
+  }
+}

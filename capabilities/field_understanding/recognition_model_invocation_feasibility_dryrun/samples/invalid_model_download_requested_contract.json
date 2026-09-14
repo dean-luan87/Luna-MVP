@@ -1,0 +1,18 @@
+{
+  "model_family": "segmentation_model_family",
+  "callable_interface_ref": "segmentation.callable.segment_stub_v1",
+  "input_format_ref": "rgb_image_placeholder_ref_v1",
+  "output_schema_ref": "segmentation_output_schema_v1",
+  "runtime_requirement_ref": "gpu_recommended_runtime_v1",
+  "model_origin": "external_open_source_segmentation_model",
+  "license_ref": "apache_2_0_or_per_model_license",
+  "dependency_boundary_ref": "segmentation_dependency_boundary_v1",
+  "resource_requirement_ref": "gpu_recommended_v1",
+  "offline_or_online_mode": "offline",
+  "adapter_mapping_target": "region_evidence_candidate",
+  "source_chain": "recognition_model_invocation_feasibility_dryrun_v1",
+  "confidence_policy_ref": "segmentation_confidence_policy_v1",
+  "invocation_mode": "contract_check",
+  "model_download_requested": true,
+  "model_repo_clone_requested": true
+}

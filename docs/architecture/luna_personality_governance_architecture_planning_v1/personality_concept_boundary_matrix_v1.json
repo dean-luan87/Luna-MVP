@@ -1,0 +1,43 @@
+{
+  "artifact": "personality_concept_boundary_matrix_v1",
+  "assertions": [
+    "Personality != Self",
+    "Personality != Emotion",
+    "Personality != Preference",
+    "Personality != Memory",
+    "Personality != Learning Pattern",
+    "Personality != Dynamic Regulation Parameter",
+    "Personality Trait Candidate != Activated Trait",
+    "Repeated Behavior != Personality Truth",
+    "Repeated Emotion != Personality Trait",
+    "Temporary Regulation Pattern != Personality Trait",
+    "User Correction > Inferred Personality Candidate",
+    "Personality Evolution Evidence != Personality Mutation",
+    "Self Attribution != Personality Trait",
+    "Self Continuity != Personality Stability",
+    "Self Preference Evidence != Personality Truth",
+    "Relationship != Personality",
+    "Role != Personality",
+    "Profile != Immutable Identity",
+    "Profile != Single Personality Score",
+    "Profile != Action Policy"
+  ],
+  "concepts": {
+    "Personality": "governed candidate-level pattern of trait dimensions across bounded evidence, contexts, and time",
+    "Trait Candidate": "one dimension/value proposal with evidence, uncertainty, contradiction, counterexample, and lineage",
+    "Profile Candidate": "structured non-flattened set of trait candidates, including uncertain or contradictory candidates",
+    "Preference": "choice/affinity evidence that may inform personality but is not personality by itself",
+    "Emotion": "context-bound state evidence; not stable personality structure",
+    "Learning Pattern": "learning-owned pattern evidence; not automatic trait activation",
+    "Regulation Parameter": "dynamic-regulation-owned control candidate; not personality"
+  },
+  "boundary_rules": {
+    "single_event_trait_formation": false,
+    "single_context_auto_generalization": false,
+    "contradictions_must_be_preserved": true,
+    "counterexamples_must_be_preserved": true,
+    "user_correction_precedes_inference": true,
+    "profile_flattening_to_single_score": false,
+    "profile_direct_action_control": false
+  }
+}

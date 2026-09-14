@@ -1,0 +1,35 @@
+{
+  "classifications": {
+    "A": [
+      {"asset":"capabilities/midplatform/core/cognitive_flow","reuse":"cycle lifecycle, transition, interruption, trace and reconsideration semantics"},
+      {"asset":"capabilities/midplatform/core/cognitive_execution_chain","reuse":"cross-layer handoff, compatibility, feedback and idempotency reference semantics"},
+      {"asset":"capabilities/midplatform/core/context_pcn_intent_mainline","reuse":"Context → PCN → Intent handoff boundary semantics"},
+      {"asset":"capabilities/midplatform/core/decision_governance","reuse":"decision candidate and authority boundary"},
+      {"asset":"capabilities/midplatform/core/task_manager/module","reuse":"task lifecycle interface"},
+      {"asset":"capabilities/midplatform/core/action_governance","reuse":"action admission and safety boundary"},
+      {"asset":"capabilities/midplatform/core/runtime_executor","reuse":"controlled runtime request/result contract"},
+      {"asset":"capabilities/midplatform/core/cognitive_memory_experience","reuse":"experience/memory candidate references"},
+      {"asset":"capabilities/midplatform/core/cognitive_learning","reuse":"learning evidence candidate references"},
+      {"asset":"capabilities/midplatform/core/self_governance","reuse":"self continuity candidate references"},
+      {"asset":"capabilities/midplatform/core/personality_governance","reuse":"frozen Personality FROZEN_V1 reference boundary"}
+    ],
+    "B": [
+      {"asset":"capabilities/midplatform/core/context_foundation","reason":"context is controlled skeleton and remains an adapter input"},
+      {"asset":"capabilities/midplatform/core/field_state_reducer","reason":"field/world outputs are candidate/read-model inputs"},
+      {"asset":"docs/architecture/luna_action_runtime_foundation_v1","reason":"runtime boundary and outcome contracts require later product closure"},
+      {"asset":"docs/architecture/luna_capability_governance_architecture_v1","reason":"registry/admission architecture requires product adapter"},
+      {"asset":"docs/architecture/model_governance","reason":"model governance is reference-only; no model call"}
+    ],
+    "C": [
+      {"asset":"historical orchestration assets that make orchestration a semantic super-owner","reason":"conflicts with current canonical owner boundaries"},
+      {"asset":"legacy provider-driven emotion package as Emotion authority","reason":"not current canonical Emotion owner and must not be activated"}
+    ],
+    "D": [
+      {"asset":"real runtime/device/provider execution","reason":"outside controlled integration"},
+      {"asset":"perception/observation product gateway","reason":"next product module"},
+      {"asset":"result comparison implementation and persistence","reason":"genuine later product gaps"},
+      {"asset":"Emotion Engine, B Route, semantic compression","reason":"explicitly deferred"}
+    ]
+  },
+  "existing_files_modified": []
+}

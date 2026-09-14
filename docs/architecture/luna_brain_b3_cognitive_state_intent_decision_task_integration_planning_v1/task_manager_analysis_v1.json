@@ -1,0 +1,11 @@
+{
+  "artifact": "b3_task_manager_analysis_v1",
+  "canonical_owner": "Task Manager",
+  "reusable_types": ["TaskCandidate", "TaskReadinessCandidate", "TaskBlockCandidate", "TaskPlanCandidate", "TaskStepCandidate", "TaskHandoffCandidate", "TaskManagerModuleRequestV1", "TaskManagerModuleResultV1"],
+  "lifecycle": ["received", "admitted", "planned", "ready", "waiting_dependency", "running_candidate", "paused", "resuming", "completed", "partially_completed", "failed", "cancelled", "terminated", "blocked"],
+  "candidate_rules": ["TaskCandidate.fact_status=not_fact", "task_execution=false", "executed_step=false", "tool_call=false", "user_output=false", "direct_mount=false", "memory/world-model write forbidden"],
+  "readiness_rules": ["health refs can hold", "decision block refs can block", "required observation refs yield REQUIRES_OBSERVATION", "high risk without governance ref blocks", "only READY readiness can form a TaskCandidate"],
+  "decision_mapping": "Decision Governance emits DecisionToActionTaskHandoffCandidateV1 with task_created=false; a future narrow adapter must submit a Task Manager candidate/input, never let Decision Governance create a task directly.",
+  "cancellation_interruption": "Task Manager owns lifecycle transitions, interruption, recovery, cancellation and termination candidates; B3 does not execute them.",
+  "b3_stop": "Decision Candidate/handoff → Task Candidate/readiness candidate; no scheduler, runtime, device or action side effect."
+}

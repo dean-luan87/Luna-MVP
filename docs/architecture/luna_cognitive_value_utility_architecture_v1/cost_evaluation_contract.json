@@ -1,0 +1,12 @@
+{
+  "title": "Cost Evaluation Contract v1",
+  "cost_domains": ["Compute", "Time", "Battery", "Memory", "User Attention", "Device Wear", "Network"],
+  "inputs": ["Goal Candidate", "Capability Requirement", "Self Resource State", "Self Rhythm Hint", "Task Context"],
+  "output": "Resource Cost Candidate",
+  "candidate_only": true,
+  "calculation_implemented": false,
+  "self_provides_resource_context": true,
+  "cost_does_not_control_runtime": true,
+  "cost_does_not_switch_model": true,
+  "unknowns_preserved": true
+}

@@ -1,0 +1,36 @@
+{
+  "title": "Self Model Dependency Boundary v1",
+  "allowed": [
+    "Self Evolution → Self Model Update Candidate",
+    "Capability Profile → Capability Awareness",
+    "Memory → Self History Reference",
+    "Field/Workspace/Intent/Task → Self Context",
+    "Resource State → Resource Awareness",
+    "Self Model → Brain Context",
+    "Self Model → Action Eligibility Context",
+    "Emotion Context → Future Interface Metadata"
+  ],
+  "forbidden": [
+    "Self Model → Constitution",
+    "Self Model → Value Rewrite",
+    "Self Model → Personality",
+    "Self Model → Emotion Runtime",
+    "Self Model → Social Identity",
+    "Self Model → Automatic Goal Creation",
+    "Self Model → Identity Rewrite",
+    "Self Model → Direct Action",
+    "Self Model → Direct Reality Mutation",
+    "Self Model → Model Training",
+    "Self Model → Runtime Learning",
+    "Provider → Self Identity"
+  ],
+  "rules": {
+    "identity_boundary": true,
+    "emotion_boundary": true,
+    "candidate_update_boundary": true,
+    "brain_authority_preserved": true,
+    "action_boundary_preserved": true,
+    "no_runtime_execution": true,
+    "no_social_identity": true
+  }
+}

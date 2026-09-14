@@ -1,0 +1,28 @@
+{
+  "title": "Expectation Source Contract v1",
+  "contract_type": "Expectation Source Governance",
+  "allowed_sources": ["Hypothesis Driven", "Belief Driven", "Field Rule Driven", "Task Driven"],
+  "source_record": {
+    "source_id": "source-example",
+    "source_type": "Hypothesis Driven",
+    "hypothesis_reference": "hypothesis-example",
+    "belief_reference": null,
+    "field_rule_reference": null,
+    "task_reference": null,
+    "field_reference": "field-example",
+    "situation_reference": "situation-example",
+    "confidence": "candidate",
+    "provenance": [],
+    "unknowns": []
+  },
+  "source_boundaries": {
+    "Hypothesis Driven": "expected Evidence that validates a Hypothesis",
+    "Belief Driven": "revocable expectation from a validated pattern",
+    "Field Rule Driven": "observation implied by a current Field Rule",
+    "Task Driven": "expected state change for an existing Task"
+  },
+  "source_does_not_make_decision": true,
+  "source_does_not_modify_reality": true,
+  "source_does_not_modify_belief_automatically": true,
+  "unknowns_are_preserved": true
+}

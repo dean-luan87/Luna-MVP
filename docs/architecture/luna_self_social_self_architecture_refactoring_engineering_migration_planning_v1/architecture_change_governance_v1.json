@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Architecture Change Governance",
+  "lifecycle": ["Proposal", "Impact Analysis", "Ownership Review", "Migration Plan", "Implementation", "Validation"],
+  "change_inputs": ["Architecture Change Proposal", "Affected Modules", "State Ownership", "Permission Impact", "Runtime Impact", "Rollback Risk"],
+  "required_outputs": ["Ownership Decision", "Impact Registry Entry", "Migration Plan", "Validation Contract", "Change Trace"],
+  "approval": {"constitution_check": true, "governance_review": true, "core_integration_review": true, "implementation_admission": true},
+  "rules": {"proposal_before_code": true, "impact_before_owner_change": true, "owner_before_implementation": true, "migration_plan_required": true, "validation_required": true, "no_direct_architecture_edit": true}
+}

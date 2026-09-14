@@ -1,0 +1,35 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Followup-Runner-Route-UI-Queue-Execution-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "followup_runner_route_queue_state_record",
+    "patch": {
+      "modules": [
+        "capabilities/midplatform/model_test_lens/static_site/followup_runner_route_copy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/followup_runner_route_queue_state_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/followup_runner_route_queue_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/followup_runner_route_queue_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/followup_runner_route_summary_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/browser_runtime_guard_v1.js"
+      ],
+      "updated": [
+        "capabilities/midplatform/model_test_lens/static_site/index.html",
+        "capabilities/midplatform/model_test_lens/static_site/app.js",
+        "capabilities/midplatform/model_test_lens/static_site/styles.css",
+        "capabilities/midplatform/model_test_lens/static_site/luna_observation_compact_ui_v1.js",
+        "capabilities/midplatform/model_test_lens/review_model_test_lens_followup_runner_route_ui_queue_execution_post_review_v1.py"
+      ],
+      "browser_fix": "app.js queue code used bare global.xxx (Node); fixed to window.xxx for browser compatibility",
+      "entry_points": [
+        "browser_runtime_guard",
+        "right_queue_panel",
+        "bottom_queue_summary",
+        "pin_unpin_exclude"
+      ]
+    }
+  }
+}

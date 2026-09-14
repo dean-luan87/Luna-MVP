@@ -1,0 +1,25 @@
+{
+  "title": "Brain Attention Interface v1",
+  "contract_type": "Brain Attention Requirement",
+  "input": {
+    "brain_context": {},
+    "information_gap": [],
+    "unknowns": [],
+    "risk": [],
+    "provenance": []
+  },
+  "output": {
+    "attention_requirement": "candidate",
+    "need_more_evidence": true,
+    "observation_requirement": {},
+    "discriminating_targets": [],
+    "resource_cost_candidate": {}
+  },
+  "boundary": {
+    "brain_does_not_allocate_attention": true,
+    "brain_does_not_arbitrate_attention": true,
+    "attention_retains_resource_management": true,
+    "brain_request_is_candidate_only": true,
+    "unknowns_are_preserved": true
+  }
+}

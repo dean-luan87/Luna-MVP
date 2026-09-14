@@ -1,0 +1,13 @@
+{
+  "contract_id": "emotion_future_signal_boundary_v1",
+  "future_role": "Adaptive Signal",
+  "inputs": ["Emotion Context Candidate", "Field Context", "Self Stability", "Resource State"],
+  "outputs": ["Homeostasis Influence Candidate", "Risk Weight Adjustment Candidate", "Exploration Modulation Candidate"],
+  "emotion_is_not_decision_signal": true,
+  "emotion_is_not_state_owner": true,
+  "emotion_does_not_modify_identity": true,
+  "emotion_does_not_modify_constitution": true,
+  "emotion_runtime": false,
+  "future_interface_only": true,
+  "candidate_only": true
+}

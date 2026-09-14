@@ -1,0 +1,23 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standards_index_plan_record",
+  "governance_standards_index_plan_record": {
+    "record_id": "governance_standards_index_plan_v1",
+    "index_rel_path": "capabilities/midplatform/governance_standards/governance_standards_index_v1.md",
+    "required_sections_defined": true,
+    "section_count": 15
+  }
+}

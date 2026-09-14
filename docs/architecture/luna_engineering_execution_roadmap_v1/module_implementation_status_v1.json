@@ -1,0 +1,21 @@
+{
+  "version":"1.0",
+  "name":"Luna Module Implementation Status",
+  "modules":[
+    {"module":"System Constitution","status":"Implemented","evidence":"docs/architecture/luna_system_constitution_governance_v1/","owner":"Constitution"},
+    {"module":"Cognitive OS Governance","status":"Implemented","evidence":"docs/architecture/luna_cognitive_operating_system_architecture_v1/","owner":"Cognitive OS Governance"},
+    {"module":"Cognitive Core","status":"Implemented","evidence":"docs/architecture/luna_cognitive_core_integration_review_v1/","owner":"Cognitive Core Governance"},
+    {"module":"Self Layer","status":"Architecture Only","evidence":"docs/architecture/luna_cognitive_self_model_architecture_v1/","owner":"Self Governance"},
+    {"module":"Social Self Layer","status":"Architecture Only","evidence":"docs/architecture/luna_self_social_self_architecture_refactoring_v1/","owner":"Social Self Governance"},
+    {"module":"Integration Layer","status":"Architecture Only","evidence":"docs/architecture/cognitive_emotion_context_boundary_v1/","owner":"Cognitive Integration"},
+    {"module":"Capability Governance","status":"Partial","evidence":"docs/architecture/luna_capability_governance_architecture_v1/; capabilities/registry/","owner":"Capability Governance"},
+    {"module":"Model Manager","status":"Partial","evidence":"docs/architecture/cognitive_model_manager_runtime_boundary_v1/","owner":"Capability Governance"},
+    {"module":"Runtime Foundation","status":"Partial","evidence":"docs/architecture/luna_cognitive_runtime_foundation_v1/","owner":"Cognitive Runtime Governance"},
+    {"module":"Action Boundary","status":"Implemented","evidence":"docs/architecture/luna_cognitive_action_boundary_v1/","owner":"Action Governance"},
+    {"module":"Action Runtime","status":"Architecture Only","evidence":"docs/architecture/luna_action_runtime_foundation_v1/","owner":"Action Runtime"},
+    {"module":"Provider Adapter","status":"Skeleton","evidence":"capabilities/ocr_runtime/; capabilities/vision_runtime/","owner":"Capability Runtime"},
+    {"module":"Emotion Engine","status":"Architecture Only","evidence":"docs/architecture/cognitive_emotion_context_boundary_v1/","owner":"Cognitive Integration"}
+  ],
+  "valid_statuses":["Implemented","Skeleton","Architecture Only","Partial","Deprecated Candidate","Migration Required"],
+  "rules":{"evidence_required":true,"status_does_not_authorize_execution":true}
+}

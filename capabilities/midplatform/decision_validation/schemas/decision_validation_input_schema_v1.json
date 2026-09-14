@@ -1,0 +1,12 @@
+{
+  "schema_id": "DecisionValidationInputSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "agent_plan_candidate",
+    "situation_understanding_candidate",
+    "policy_context",
+    "candidate_only",
+    "not_fact"
+  ],
+  "optional_fields": ["case_library_candidates", "user_goal_candidate_optional"]
+}

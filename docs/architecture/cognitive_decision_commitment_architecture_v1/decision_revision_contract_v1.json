@@ -1,0 +1,29 @@
+{
+  "title": "Decision Revision Contract v1",
+  "contract_type": "Decision Commitment Revision Loop",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "commitment_reference": "commitment-example",
+    "feedback": {},
+    "outcome_evidence": [],
+    "reality_change": {},
+    "expectation_difference": {},
+    "capability_constraint": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "flow": ["Decision Candidate", "Commitment", "Feedback", "Revision Candidate", "New Commitment"],
+  "output": {
+    "revision_candidate": {},
+    "new_decision_candidate": {},
+    "new_commitment_candidate": {},
+    "invalidated_commitment": {}
+  },
+  "boundary": {
+    "revision_is_candidate_based": true,
+    "revision_does_not_execute_action": true,
+    "revision_does_not_modify_value": true,
+    "revision_does_not_modify_goal": true,
+    "unknowns_are_preserved": true
+  }
+}

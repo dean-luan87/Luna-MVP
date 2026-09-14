@@ -1,0 +1,26 @@
+{
+  "artifact": "personality_profile_candidate_schema_v1",
+  "entity": "PersonalityProfileCandidateV1",
+  "schema_version": "personality-profile-candidate-schema-v1",
+  "contract_version": "personality-governance-contract-v1",
+  "type": "object",
+  "required_fields": ["profile_candidate_id", "trait_candidate_refs", "uncertain_trait_refs", "contested_trait_refs", "contradictory_trait_groups", "context_scope_refs", "temporal_scope", "confidence_candidate", "stability_summary_candidate", "revision_parent_ref", "supersedes_ref", "revocation_refs", "trace_ref", "provenance_refs", "sensitivity", "candidate_only", "activated", "persisted", "truth_declared"],
+  "profile_rules": {
+    "composed_from_multiple_traits": true,
+    "flattened_single_score": false,
+    "uncertain_traits_allowed": true,
+    "contested_traits_allowed": true,
+    "contradictory_candidates_allowed": true,
+    "immutable_identity": false,
+    "direct_action_control": false,
+    "direct_intent_control": false
+  },
+  "invariants": {
+    "candidate_only": true,
+    "activated": false,
+    "persisted": false,
+    "truth_declared": false,
+    "source_owner_mutation": false,
+    "cross_user_transfer": false
+  }
+}

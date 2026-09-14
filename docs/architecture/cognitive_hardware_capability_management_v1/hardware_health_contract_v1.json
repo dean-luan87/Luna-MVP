@@ -1,0 +1,20 @@
+{
+  "contract_name": "Hardware Health Contract v1",
+  "hardware_id": "hardware-example",
+  "health_state": "Available | Degraded | Limited | Failed | Unknown",
+  "health_evidence": [],
+  "diagnostics_reference": null,
+  "confidence": null,
+  "provenance": [],
+  "timestamp": null,
+  "calibration_state": "Calibrated | Drifted | Required | Unknown",
+  "limitation": [],
+  "health_update_candidate": null,
+  "self_capability_update_candidate": null,
+  "health_does_not_modify_identity": true,
+  "health_does_not_modify_goal": true,
+  "health_does_not_modify_decision": true,
+  "health_does_not_execute_action": true,
+  "reducer_is_sole_state_mutation_authority": true,
+  "unknowns_are_preserved": true
+}

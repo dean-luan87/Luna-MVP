@@ -1,0 +1,27 @@
+{
+  "phase": "Phase-Luna-Dynamic-Cognitive-Flow-Minimum-Actionable-Loop-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_IMPLEMENTATION",
+  "owner": "Cognitive Flow Governance",
+  "canonical_owner_reuse": true,
+  "route": [
+    "Cognitive Goal",
+    "Provisional Plan Candidates",
+    "Current Minimum Necessary Need",
+    "Capability Requirement",
+    "Capability Scope / Resolution / Invocation candidates",
+    "Evidence / Outcome candidates",
+    "Updated Cognitive State Version",
+    "Sufficiency / Reconsideration",
+    "STOP / CONTINUE / REPLAN / DEFER"
+  ],
+  "candidate_only": true,
+  "runtime_execution": false,
+  "provider_invocation": false,
+  "camera_activation": false,
+  "model_invocation": false,
+  "memory_mutation": false,
+  "learning_execution": false,
+  "automatic_capability_acquisition": false,
+  "action_execution": false,
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

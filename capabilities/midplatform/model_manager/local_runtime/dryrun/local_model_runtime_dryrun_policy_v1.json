@@ -1,0 +1,37 @@
+{
+  "schema_id": "LocalModelRuntimeDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Local-Model-Integration-DryRun-v1-001",
+  "layer_id": "Model_Manager_Local_Runtime_DryRun",
+  "dryrun_only": true,
+  "principle": "验证 Local Runtime 与 External API 对上层完全透明。",
+  "chain": [
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "decision_validation_candidate",
+    "capability_match",
+    "runtime_selection",
+    "local_runtime_adapter",
+    "evidence_candidate",
+    "validation",
+    "evaluation_record"
+  ],
+  "rules": [
+    {"rule_id": "runtime_not_task_decider", "description": "Runtime 不决定任务，L2 决定需求"},
+    {"rule_id": "local_output_not_fact", "description": "本地模型输出经 Validation 才可能 admission"},
+    {"rule_id": "runtime_not_tool_os", "description": "Runtime Adapter ≠ Tool OS"},
+    {"rule_id": "runtime_unavailable_explicit_fallback", "description": "不可用显式 fallback，不偷偷换模型"},
+    {"rule_id": "unified_governance_chain", "description": "本地与 API 同一治理链"},
+    {"rule_id": "capability_plus_runtime_selection", "description": "Capability Match + Runtime Availability"},
+    {"rule_id": "lifecycle_upper_unchanged", "description": "Runtime 升级不影响 L1/L2"}
+  ],
+  "boundary_flags": {
+    "runtime_not_task_decider": true,
+    "local_output_not_fact": true,
+    "runtime_not_tool_os": true,
+    "runtime_unavailable_explicit_fallback": true,
+    "unified_governance_chain": true,
+    "capability_plus_runtime_selection": true,
+    "dryrun_only": true
+  }
+}

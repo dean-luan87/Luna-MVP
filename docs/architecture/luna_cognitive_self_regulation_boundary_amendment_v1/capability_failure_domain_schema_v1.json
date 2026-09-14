@@ -1,0 +1,9 @@
+{
+  "title": "Capability Failure Domain Schema v1",
+  "owner": "Capability Registry / Self Regulation Boundary",
+  "schema": ["capability_id", "failure_domain", "affected_capabilities", "unaffected_capabilities", "degradation_policy", "recovery_policy", "dependency_refs", "confidence", "unknown"],
+  "examples": [
+    {"capability_id":"vision_sensor","failure_domain":"vision_input","affected_capabilities":["visual_understanding","ocr"],"unaffected_capabilities":["speech","memory","conversation"],"degradation_policy":"reduce_visual_dependency_and_raise_unknown"}
+  ],
+  "rules": {"domain_declared_before_admission":true,"affected_set_explicit":true,"unaffected_set_explicit":true,"no_identity_impact_by_default":true,"unknown_required":true}
+}

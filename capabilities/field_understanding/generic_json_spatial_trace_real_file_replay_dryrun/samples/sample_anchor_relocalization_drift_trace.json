@@ -1,0 +1,66 @@
+{
+  "file_ref": "sample_anchor_relocalization_drift_trace",
+  "format_ref": "generic_json_spatial_trace",
+  "file_origin": {
+    "source_kind": "local_controlled_sample",
+    "source_path": "capabilities/field_understanding/generic_json_spatial_trace_real_file_replay_dryrun/samples/sample_anchor_relocalization_drift_trace.json",
+    "file_origin_ref": "sample_anchor_relocalization_drift_trace_v1",
+    "converted_from": "rtab_map_graph_export_converted_json_trace_file"
+  },
+  "trace_items": [
+    {
+      "trace_id": "real_anchor_graph_001",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_anchor_relocalization_drift_trace",
+        "real_anchor_graph_001"
+      ],
+      "time_window_ms": [1700003000, 1700003200],
+      "confidence": 0.86,
+      "candidate_type": "anchor",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "anchor_ref": "anchor_corridor_b",
+        "graph_node_ref": "node_corridor_b_12"
+      },
+      "candidate_only": true
+    },
+    {
+      "trace_id": "real_relocalization_candidate_002",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_anchor_relocalization_drift_trace",
+        "real_relocalization_candidate_002"
+      ],
+      "timestamp_ms": 1700003300,
+      "confidence": 0.81,
+      "candidate_type": "relocalization",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "relocalization_status": "candidate",
+        "matched_map_ref": "map_session_graph_01",
+        "match_score": 0.77,
+        "runtime_trust_restore": false
+      },
+      "candidate_only": true
+    },
+    {
+      "trace_id": "real_drift_candidate_003",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_anchor_relocalization_drift_trace",
+        "real_drift_candidate_003"
+      ],
+      "timestamp_ms": 1700003400,
+      "confidence": 0.74,
+      "candidate_type": "drift",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "drift_level": "moderate",
+        "drift_metric_m": 0.28,
+        "map_segment_ref": "segment_graph_c"
+      },
+      "candidate_only": true
+    }
+  ]
+}

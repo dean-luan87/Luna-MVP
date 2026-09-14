@@ -1,0 +1,95 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:07:08.046384+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "failure_mode_taxonomy_record",
+  "record": {
+    "record_id": "failure_mode_taxonomy_v1",
+    "failure_modes": [
+      {
+        "mode_id": "low_light_boundary_loss",
+        "symptom": "object_edges_blur_into_background",
+        "likely_cause": "dusk_low_contrast_lighting",
+        "mitigation": "exposure_normalization_or_detector_assisted_box",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "medium"
+      },
+      {
+        "mode_id": "glare_and_reflection_merge",
+        "symptom": "mask_bleeds_into_reflection_or_glow",
+        "likely_cause": "glass_screen_headlight_reflection",
+        "mitigation": "tighter_box_negative_points",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "medium"
+      },
+      {
+        "mode_id": "small_object_under_segmentation",
+        "symptom": "tiny_mask_area_low_score",
+        "likely_cause": "small_prompt_target_vehicle_or_sign",
+        "mitigation": "detector_assisted_box_multi_point",
+        "requires_detector_or_ocr": true,
+        "runtime_admission_risk": "high"
+      },
+      {
+        "mode_id": "large_plane_over_segmentation",
+        "symptom": "road_mask_expands_beyond_intended_region",
+        "likely_cause": "uniform_asphalt_texture",
+        "mitigation": "negative_points_road_boundary_prior",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "high"
+      },
+      {
+        "mode_id": "repeated_pattern_confusion",
+        "symptom": "building_windows_merge_across_facade",
+        "likely_cause": "repetitive_architectural_pattern",
+        "mitigation": "tighter_vertical_box",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "low"
+      },
+      {
+        "mode_id": "shadow_vehicle_merge",
+        "symptom": "vehicle_mask_includes_shadow_or_road",
+        "likely_cause": "dark_vehicle_on_dark_road",
+        "mitigation": "detector_box_plus_negative_points",
+        "requires_detector_or_ocr": true,
+        "runtime_admission_risk": "high"
+      },
+      {
+        "mode_id": "text_region_fragmentation",
+        "symptom": "sign_mask_splits_or_misses_text_panel",
+        "likely_cause": "fine_text_and_pole_structure",
+        "mitigation": "ocr_detector_localized_box",
+        "requires_detector_or_ocr": true,
+        "runtime_admission_risk": "medium"
+      },
+      {
+        "mode_id": "prompt_box_too_loose",
+        "symptom": "mask_includes_adjacent_objects",
+        "likely_cause": "normalized_box_covers_multiple_objects",
+        "mitigation": "tighter_box_or_multi_point_refinement",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "medium"
+      },
+      {
+        "mode_id": "prompt_point_ambiguous",
+        "symptom": "unstable_mask_when_point_used",
+        "likely_cause": "ambiguous_click_region",
+        "mitigation": "prefer_box_or_multi_point",
+        "requires_detector_or_ocr": false,
+        "runtime_admission_risk": "medium"
+      }
+    ],
+    "failure_mode_count": 9
+  }
+}

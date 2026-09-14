@@ -1,0 +1,21 @@
+{
+    "artifact": "cognitive_execution_chain_idempotency_contract_v1",
+    "status": "PLANNING_CANDIDATE",
+    "idempotency_keys": {
+        "intent_candidate_ref": "required",
+        "causal_candidate_ref": "required",
+        "decision_candidate_ref": "required",
+        "action_candidate_ref": "required",
+        "execution_request_idempotency_key": "required"
+    },
+    "guards": [
+        "duplicate_handoff_not_duplicate_consumption",
+        "duplicate_decision_to_action_not_duplicate_action_candidate",
+        "duplicate_action_to_execution_not_duplicate_execution_request",
+        "duplicate_feedback_not_duplicate_loop_branch"
+    ],
+    "integration_authority": {
+        "generates_execution_authority": false,
+        "writes_runtime_state": false
+    }
+}

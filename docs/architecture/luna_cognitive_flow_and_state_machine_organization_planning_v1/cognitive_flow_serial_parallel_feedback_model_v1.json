@@ -1,0 +1,39 @@
+{
+    "artifact": "cognitive_flow_serial_parallel_feedback_model_v1",
+    "strict_sequential": [
+        "INITIALIZING -> CONTEXT_READY",
+        "CONTEXT_READY -> INTENT_READY",
+        "INTENT_READY -> STATE_FORMING",
+        "STATE_FORMING -> STATE_READY",
+        "STATE_READY -> REGULATING",
+        "REGULATING -> REGULATION_READY"
+    ],
+    "optional_dependencies": [
+        "PCN may be absent but cycle still starts with reduced richness",
+        "Causal refs may be absent during upstream cycle formation",
+        "Regulation stage may emit no-change candidate"
+    ],
+    "parallel_readable": [
+        "Field refs may be read throughout cycle without ownership transfer",
+        "Persistent intent ref may be read alongside new context",
+        "Dynamic regulation may read emotion/resource refs in parallel with state vector"
+    ],
+    "feedback_reconsideration": [
+        "Context update can route to RECONSIDERING",
+        "Field update during state formation can restart STATE_FORMING with newer refs",
+        "Hypothesis competition unresolved can remain inside STATE_FORMING or trigger RECONSIDERING",
+        "Dynamic regulation can request reconsideration without mutating upstream state"
+    ],
+    "asynchronous_future_candidates": [
+        "future memory observation package",
+        "future learning package",
+        "future causal update during cycle"
+    ],
+    "cycle_boundary_inheritance": [
+        "persistent_intent_ref",
+        "unresolved_hypothesis_refs",
+        "uncertainty_refs",
+        "pending_reconsideration_ref",
+        "regulation_candidate_ref_optional"
+    ]
+}

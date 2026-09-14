@@ -1,0 +1,17 @@
+{
+  "schema_id": "DocumentSurfaceIterationDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Controlled-Execution-Iteration-DryRun-v1-001",
+  "iteration_dryrun_only": true,
+  "boundary_status": "frozen",
+  "runtime_activation_allowed": false,
+  "iteration_strategy_layer": true,
+  "round1_result_override_forbidden": true,
+  "manifest_file": "_fixtures/document_surface_real_runtime_controlled_iteration_v2/registry_manifest_v1.json",
+  "output_root": "_tmp_eval_out/p1_midplatform_luna_model_manager_region_intelligence_ownership_document_surface_detector_real_runtime_controlled_execution_iteration_dryrun_v1/",
+  "candidate_count_cap": 5,
+  "fake_relation_forbidden": true,
+  "forced_multi_surface_forbidden": true,
+  "next_phase_on_go": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Controlled-Execution-Iteration-Post-Review-v1-001",
+  "next_phase_on_missing_fixtures": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Iteration-Fixture-Preparation-Planning-v1-001"
+}

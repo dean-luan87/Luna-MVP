@@ -1,0 +1,11 @@
+{
+  "mapping_id": "understanding_state_mapping_v1",
+  "core_state": "Understanding",
+  "components": ["belief", "hypothesis", "confidence", "unknowns"],
+  "source_modules": ["Hypothesis", "Belief", "Expectation", "Reality Validation", "Cognitive Schema", "Attention"],
+  "outputs": ["Understanding Candidate", "Confidence Update Candidate", "Prediction Error Candidate", "Unknown Preservation Candidate"],
+  "reality_precedence": true,
+  "belief_is_not_reality": true,
+  "single_evidence_not_certainty": true,
+  "candidate_only": true
+}

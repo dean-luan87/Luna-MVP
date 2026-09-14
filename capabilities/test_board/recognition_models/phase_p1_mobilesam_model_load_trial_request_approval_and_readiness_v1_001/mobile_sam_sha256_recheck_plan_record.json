@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_sha256_recheck_plan_record",
+  "mobile_sam_sha256_recheck_plan_record": {
+    "plan_id": "mobile_sam_model_load_sha256_recheck_plan_v1",
+    "sha256_recheck_required_before_model_load": true,
+    "expected_sha256": "6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f",
+    "expected_size_bytes": 40728226,
+    "storage_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "sha256_mismatch_blocks_model_load": true,
+    "size_mismatch_blocks_model_load": true
+  }
+}

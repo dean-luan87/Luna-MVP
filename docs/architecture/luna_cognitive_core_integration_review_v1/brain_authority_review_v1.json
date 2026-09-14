@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Brain Authority Review",
+  "authority_owner": "Brain",
+  "can": ["Context Integration", "Situation Understanding", "Candidate Evaluation", "Decision Candidate Generation", "Decision Trace"],
+  "cannot": ["Action Execution", "Capability Ownership", "Memory Direct Mutation", "Constitution Modification", "Identity Rewrite", "Value Rewrite", "Goal Rewrite", "Provider Invocation"],
+  "decision_candidate_sources": ["Brain"],
+  "review_inputs": ["Global Cognitive State", "Unknown", "Risk", "Constraints", "Capability Request Candidates"],
+  "rules": {"single_decision_candidate_owner": true, "execution_separate": true, "external_capability_not_authority": true, "trace_required": true}
+}

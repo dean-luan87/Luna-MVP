@@ -1,0 +1,63 @@
+{
+  "backend_id": "multi_backend_mock_v1",
+  "backend_family": "multi_backend",
+  "output_type": "combined multi-backend slam output",
+  "source_chain": ["multi_backend_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.79,
+  "backend_origin": "multi_backend_combined_export_mock",
+  "license_ref": "mixed_per_backend_license",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "adapter_replay_dryrun_only",
+  "commercial_use_status": "non_commercial_or_unverified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "backends": [
+    {
+      "backend_id": "mb_openvins",
+      "backend_family": "vio",
+      "poses": [
+        {"id": "mp0", "timestamp_ms": 1000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [0.0, 0.0, 0.0], "tracking_state": "ok", "confidence": 0.8},
+        {"id": "mp1", "timestamp_ms": 1100, "pose": [0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "velocity_hint": [1.0, 0.0, 0.0], "tracking_state": "lost", "confidence": 0.2}
+      ]
+    },
+    {
+      "backend_id": "mb_orb",
+      "backend_family": "visual_slam",
+      "camera_poses": [
+        {"id": "mkf0", "timestamp_ms": 2000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.82},
+        {"id": "mkf1", "timestamp_ms": 2200, "pose": [0.3, 0.05, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.8}
+      ],
+      "keyframes": [{"id": "mkf0", "landmark_count": 120}],
+      "map_points_summary": {"total_map_points": 4000},
+      "loop_closure_hint": {"id": "mlc0", "from_kf": "mkf1", "to_kf": "mkf0", "score": 0.9, "is_loop_closure": true},
+      "drift_estimate": {"id": "mdrift0", "map_inconsistency": 0.06, "tracking_drift": 0.03}
+    },
+    {
+      "backend_id": "mb_kimera",
+      "backend_family": "metric_semantic_slam",
+      "pose_graph": {"nodes": [{"id": "mn0", "timestamp_ms": 3000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]}]},
+      "semantic_mesh_regions": [{"id": "mr0", "semantic_label": "floor", "area_hint": 10.0}],
+      "object_landmarks": [{"id": "mobj0", "semantic_label": "chair", "position": [0.4, 0.2, 0.0]}],
+      "room_or_place_hints": [{"id": "mplace0", "place_label": "lab", "confidence": 0.6}]
+    },
+    {
+      "backend_id": "mb_hydra",
+      "backend_family": "scene_graph_slam",
+      "places": [{"id": "hplace0", "place_label": "corridor", "position": [1.0, 0.0, 0.0]}],
+      "rooms": [{"id": "hroom0", "room_label": "office", "position": [2.0, 1.0, 0.0]}],
+      "objects": [{"id": "hobj0", "semantic_label": "door", "position": [1.5, 0.0, 0.0]}],
+      "relations": [{"id": "hrel0", "subject_ref": "hobj0", "object_ref": "hroom0", "relation": "leads_to"}],
+      "edges": [{"id": "hedge0", "from": "hplace0", "to": "hroom0", "edge_type": "traversable_hint"}]
+    },
+    {
+      "backend_id": "mb_neural",
+      "backend_family": "neural_gaussian_slam",
+      "camera_trajectory": [
+        {"id": "mc0", "timestamp_ms": 4000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]},
+        {"id": "mc1", "timestamp_ms": 4200, "pose": [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]}
+      ],
+      "gaussian_map_metadata": {"id": "mgmap0", "gaussian_count": 100000},
+      "local_map_summary": {"id": "mlmap0", "voxel_count": 30000},
+      "uncertainty_hint": {"id": "munc0", "map_uncertainty": 0.3}
+    }
+  ]
+}

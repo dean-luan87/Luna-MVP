@@ -1,0 +1,27 @@
+{
+  "title": "Brain Expectation Interface v1",
+  "contract_type": "Brain Expectation Feedback Evaluation",
+  "input": {
+    "expectation_candidates": [],
+    "feedback_status": [],
+    "expectation_differences": [],
+    "current_reality": {},
+    "hypothesis_context": {},
+    "belief_context": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "expectation_evaluation_candidate": {},
+    "option_weight_adjustment_candidate": {},
+    "more_observation_request": null,
+    "learning_input_candidate": {}
+  },
+  "boundary": {
+    "feedback_informs_brain": true,
+    "brain_does_not_modify_expectation_automatically": true,
+    "brain_does_not_modify_belief_automatically": true,
+    "current_reality_overrides_stale_belief": true,
+    "unknowns_are_preserved": true
+  }
+}

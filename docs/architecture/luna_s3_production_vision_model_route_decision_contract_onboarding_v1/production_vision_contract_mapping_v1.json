@@ -1,0 +1,12 @@
+{
+  "model_asset_contracts": ["model-asset:yolov5n:weights-v1", "model-asset:yolo11n:weights-v1", "model-asset:yolo26n:weights-v1"],
+  "loader_contracts": {
+    "model-asset:yolov5n:weights-v1": "loader:yolov5:torch-hub-local:v1",
+    "model-asset:yolo11n:weights-v1": "loader:ultralytics:yolo:v1",
+    "model-asset:yolo26n:weights-v1": "loader:ultralytics:yolo:v1"
+  },
+  "provider_adapter_contract": "adapter:yolo:visual-evidence:v1",
+  "capability_contract": "capability:object-detection:v1",
+  "canonical_evidence_contract": "evidence:visual-detection-candidate:v1",
+  "cognitive_consumers_changed": false
+}

@@ -1,0 +1,17 @@
+{
+  "contract_id": "luna_core_state_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Reality -> Field", "Field -> Understanding", "Self -> State Constraints", "Understanding -> Goal", "Goal -> Value", "Value -> Decision", "Memory -> Historical Influence", "Resource -> Attention Budget", "Outcome -> Learning Candidate", "Learning -> Adaptive Layer Candidate", "Stable Core -> All Governance", "Hive -> Metric Candidate", "B Route -> Future State Candidate"
+  ],
+  "forbidden_dependencies": [
+    "Memory -> Override Reality", "Memory -> Direct Identity Change", "Experience -> Direct Self Modification", "Learning -> Direct Constitution Change", "Learning -> Direct Identity Change", "Hive -> Direct State Modification", "Hive -> Direct Parameter Update", "B Route -> Override A Route", "B Route -> Direct Self Modification", "B Route -> Virtual Outcome as Experience", "Value -> Execute Action", "Goal -> Execute Action", "Decision -> Direct Reality Mutation", "Resource -> Direct Hardware Control", "Module -> Create Second Core Vector", "Runtime -> Core State Authority", "Emotion -> Direct Invariant Change"
+  ],
+  "no_runtime": true,
+  "no_state_machine_runtime": true,
+  "no_hive_runtime": true,
+  "no_b_route_runtime": true,
+  "no_automatic_learning": true,
+  "no_automatic_parameter_update": true,
+  "no_identity_change": true,
+  "no_constitution_change": true
+}

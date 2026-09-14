@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T02:03:18.249875+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_single_inference_execution_record",
+  "mobile_sam_single_inference_execution_record": {
+    "record_id": "mobile_sam_single_inference_execution_record_v1",
+    "command_purpose": "mobile_sam_single_local_test_image_candidate_inference_only",
+    "manifest_path_used": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_inference_trial_execution_and_post_review_v1_smoke_v0/mobile_sam_local_test_image_manifest_v1.json",
+    "test_image_id": "mobile_sam_synthetic_tiny_test_image_v1",
+    "inference_attempted": true,
+    "inference_success": true,
+    "inference_error": "",
+    "output_type": "segmentation_masks",
+    "mask_count": 3,
+    "result_shape_summary": "masks=(3, 128, 128) scores=(3,)",
+    "elapsed_seconds": 2.5344,
+    "peak_memory_mb": 840.28
+  }
+}

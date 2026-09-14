@@ -1,0 +1,13 @@
+{
+  "contract_id": "observation_field_event_handoff_candidate_v1",
+  "producer": "Observation Gateway / Context Foundation integration",
+  "consumer": "Field Event Admission",
+  "field_relevant_observation_required": true,
+  "field_event_admission_required": true,
+  "admission_is_fact_admission": false,
+  "reducer_eligible_only_after_admission": true,
+  "observation_can_mutate_field": false,
+  "required_lineage": ["observation_refs", "evidence_refs", "source_chain", "occurred_at", "observed_at", "received_at", "trace_ref", "provenance_refs"],
+  "candidate_only": true,
+  "runtime_execution": false
+}

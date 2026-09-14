@@ -1,0 +1,22 @@
+{
+  "file_ref": "invalid_missing_source_chain_trace",
+  "format_ref": "generic_json_spatial_trace",
+  "file_origin": {
+    "source_kind": "local_controlled_sample",
+    "source_path": "capabilities/field_understanding/generic_json_spatial_trace_real_file_replay_dryrun/samples/invalid_missing_source_chain_trace.json",
+    "file_origin_ref": "invalid_missing_source_chain_trace_v1",
+    "converted_from": "luna_generic_json_spatial_trace"
+  },
+  "trace_items": [
+    {
+      "trace_id": "invalid_missing_source_chain_001",
+      "source_chain": [],
+      "timestamp_ms": 1700009000,
+      "confidence": 0.5,
+      "candidate_type": "pose",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {},
+      "candidate_only": true
+    }
+  ]
+}

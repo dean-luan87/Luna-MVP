@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.475242+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_repair_route_comparison_record",
+  "timm_repair_route_comparison_record": {
+    "record_id": "timm_repair_route_comparison_v1",
+    "route_a_id": "timm_no_deps_controlled_install",
+    "route_a_priority": "P0",
+    "route_a_selected": true,
+    "route_b_id": "timm_wheel_cache_or_offline_install",
+    "route_b_priority": "P1",
+    "route_b_selected": false,
+    "route_c_id": "extended_timeout_full_isolated_install",
+    "route_c_priority": "P2",
+    "route_c_selected": false,
+    "route_d_id": "global_env_reuse",
+    "route_d_priority": "rejected",
+    "route_d_selected": false,
+    "selected_route": "timm_no_deps_controlled_install",
+    "same_full_isolated_install_retry_not_recommended": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "boundary_id": "b2_hypothesis_boundary_v1",
+  "canonical_types": ["CognitiveHypothesisCandidateV1", "HypothesisCompetitionResultV1"],
+  "owner": "Cognitive Interpretation Contracts / Cognitive State Formation",
+  "required_refs": ["supporting_evidence_refs", "opposing_evidence_refs", "alternative_hypothesis_refs", "unknown_refs", "conflict_refs", "attention_refs", "context_refs", "field_refs", "pcn_refs", "intent_refs"],
+  "lifecycle": ["PROPOSED", "SUPPORTED", "CONTESTED", "INSUFFICIENT_EVIDENCE", "SUSPENDED", "REVISED", "REJECTED", "REVOKED"],
+  "rules": ["single_truth_collapsed_false", "candidate_only_true", "causal_truth_false", "decision_output_false", "action_output_false", "preserve_alternatives"],
+  "b2_behavior": "Real B1 CurrentWorld may provide evidence/context references; B2 may form hypothesis candidates but cannot promote them to fact, intent, decision, task, or action."
+}

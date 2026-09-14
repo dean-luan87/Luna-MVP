@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-Midplatform-Model-Version-Dependency-Registry-P1-Probe-Reconciliation-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "post_review",
+  "recorded_at_utc": "2026-06-29T04:02:04.659996+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "MIDPLATFORM_REGISTRY_P1_PROBE_RECONCILIATION_POST_REVIEW_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "reconciliation_profile_count": 1,
+    "stage_ref_count": 4,
+    "asset_reconciliation_record_count": 17,
+    "import_name_match_count": 17,
+    "license_type_match_count": 17,
+    "weight_required_match_count": 17,
+    "reserved_match_count": 17,
+    "restricted_agreement_count": 17,
+    "runtime_eligibility_consistent_count": 17,
+    "divergence_blocker_count": 0,
+    "negative_guard_count": 12,
+    "blocker_count": 0
+  }
+}

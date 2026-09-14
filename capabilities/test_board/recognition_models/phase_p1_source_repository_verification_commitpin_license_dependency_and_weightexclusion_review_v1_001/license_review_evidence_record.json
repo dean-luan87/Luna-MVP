@@ -1,0 +1,48 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.998195+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "scoped_network_lookup_allowed": true,
+  "git_clone_allowed": false,
+  "source_checkout_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "license_review_evidence_record",
+  "source_license_review_evidence": [
+    {
+      "asset_id": "byte_track",
+      "license_file_found": true,
+      "license_type_candidate": "MIT",
+      "license_file_evidence_ref": "license_review_evidence_v1.json",
+      "license_review_completed": true,
+      "license_review_confidence": "high",
+      "license_review_rationale": "GitHub repo metadata license.spdx_id=MIT and a root LICENSE file (1067 bytes) is present.",
+      "commercial_runtime_not_approved": true,
+      "source_install_allowed_by_license_for_trial": true,
+      "license_review_failure_reason": null,
+      "license_completion_does_not_approve_commercial_runtime": true,
+      "license_completion_does_not_approve_weight_download": true,
+      "license_completion_does_not_approve_inference_runtime": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "license_file_found": true,
+      "license_type_candidate": "Apache-2.0",
+      "license_file_evidence_ref": "license_review_evidence_v1.json",
+      "license_review_completed": true,
+      "license_review_confidence": "high",
+      "license_review_rationale": "GitHub repo metadata license.spdx_id=Apache-2.0 and a root LICENSE file (11357 bytes) is present (code derived from Meta segment-anything, Apache-2.0). Note: the committed checkpoint weight is a separate artifact whose distribution terms are NOT covered by code-license review here.",
+      "commercial_runtime_not_approved": true,
+      "source_install_allowed_by_license_for_trial": true,
+      "license_review_failure_reason": null,
+      "license_completion_does_not_approve_commercial_runtime": true,
+      "license_completion_does_not_approve_weight_download": true,
+      "license_completion_does_not_approve_inference_runtime": true
+    }
+  ]
+}

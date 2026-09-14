@@ -1,0 +1,27 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_reality_feedback_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "field_observation_updates_reality",
+      "chain": ["reality_field", "cognitive_field", "observation_requirement", "reality_update_candidate"],
+      "expected": "evidence_and_reducer_governed_update",
+      "direct_reality_write": false
+    },
+    {
+      "case_id": "unknown_preserved_through_field",
+      "reality_unknown": "alternative_exit",
+      "field_unknown": "alternative_exit",
+      "a_route_input": "unknown_preserved",
+      "invented_fact": false
+    },
+    {
+      "case_id": "self_state_does_not_change_reality",
+      "self_state": "battery_low",
+      "reality": "office_unchanged",
+      "field_change": "self_layer_only",
+      "reality_changed": false
+    }
+  ]
+}

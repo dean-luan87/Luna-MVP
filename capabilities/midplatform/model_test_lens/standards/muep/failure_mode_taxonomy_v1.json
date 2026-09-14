@@ -1,0 +1,57 @@
+{
+  "taxonomy_id": "muep_failure_mode_taxonomy_v1",
+  "version": "1",
+  "description": "Standardized failure modes for cross-model comparison in Model Test Lens.",
+  "failure_modes": [
+    {
+      "id": "under_segmentation",
+      "label": "under-segmentation",
+      "typical_models": ["sam", "depth"]
+    },
+    {
+      "id": "over_segmentation",
+      "label": "over-segmentation",
+      "typical_models": ["sam"]
+    },
+    {
+      "id": "drift",
+      "label": "drift",
+      "typical_models": ["slam", "tracking"]
+    },
+    {
+      "id": "hallucination",
+      "label": "hallucination",
+      "typical_models": ["vlm", "ocr"]
+    },
+    {
+      "id": "misalignment",
+      "label": "misalignment",
+      "typical_models": ["slam", "ocr", "sam"]
+    },
+    {
+      "id": "low_confidence_collapse",
+      "label": "low confidence collapse",
+      "typical_models": ["all"]
+    },
+    {
+      "id": "small_object_failure",
+      "label": "small object failure",
+      "typical_models": ["sam", "detection", "ocr"]
+    },
+    {
+      "id": "boundary_instability",
+      "label": "boundary instability",
+      "typical_models": ["sam", "depth"]
+    },
+    {
+      "id": "tracking_lost",
+      "label": "tracking lost",
+      "typical_models": ["slam", "tracking"]
+    },
+    {
+      "id": "loop_closure_failure",
+      "label": "loop closure failure",
+      "typical_models": ["slam"]
+    }
+  ]
+}

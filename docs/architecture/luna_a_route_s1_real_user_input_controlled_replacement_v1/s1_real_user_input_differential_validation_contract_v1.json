@@ -1,0 +1,12 @@
+{
+  "policy_id": "a-route-s1-real-user-input-differential-v1",
+  "baseline": "S0_GOLDEN_SYNTHETIC_BASELINE",
+  "replacement_scope": "USER_INPUT_ONLY",
+  "synthetic_adapter_retained": true,
+  "one_component_at_a_time": true,
+  "comparison_dimensions": ["contract outputs", "trace/provenance", "state transitions", "negative guards", "unrelated module behavior"],
+  "semantic_equivalence_exclusions": ["source-specific input identity", "source-specific timestamp", "raw input reference token"],
+  "differential_rule": "Synthetic ProductLoopInputV1 and Real Input Adapter output are compared at the canonical downstream contract; source-specific refs may differ",
+  "failure_localization_default": ["USER_INPUT", "S1 adapter", "adjacent ProductLoopInput handoff"],
+  "s0_dimensions_preserved": true
+}

@@ -1,0 +1,32 @@
+{
+    "artifact": "current_world_candidate_schema_v1",
+    "entity": "current_world_candidate",
+    "fields": {
+        "current_world_id": "string",
+        "attention_refs": "string[]",
+        "active_hypothesis_refs": "string[]",
+        "alternative_hypothesis_refs": "string[]",
+        "context_refs": "string[]",
+        "field_state_refs": "string[]",
+        "pcn_refs": "string[]",
+        "intent_refs": "string[]",
+        "observation_refs": "string[]",
+        "uncertainty_refs": "string[]",
+        "conflict_refs": "string[]",
+        "temporal_refs": "string[]",
+        "source_versions": "object",
+        "trace_ref": "string",
+        "provenance_refs": "string[]"
+    },
+    "supported_world_modes": [
+        "partial_world",
+        "unknown_world",
+        "conflicted_world",
+        "multi_hypothesis_world"
+    ],
+    "forbidden": [
+        "single_truth_collapse",
+        "field_state_mutation",
+        "field_confidence_mutation"
+    ]
+}

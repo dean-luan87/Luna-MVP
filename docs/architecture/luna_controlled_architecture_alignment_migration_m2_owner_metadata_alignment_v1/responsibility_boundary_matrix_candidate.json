@@ -1,0 +1,116 @@
+{
+  "matrix_id": "luna_controlled_architecture_alignment_m2_responsibility_boundary_matrix_candidate_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "candidate_only": true,
+  "single_writer_per_scope": true,
+  "records": [
+    {
+      "owner": "Field State Reducer",
+      "responsibility": "Maintain governed world and Field state candidates through admitted-event reduction.",
+      "forbidden_responsibility": ["user intent", "causal reasoning", "decision", "Memory persistence", "action execution"],
+      "write_scope": ["Field State Candidate", "Field Transition Candidate", "Reducer Trace", "Replay Key"],
+      "read_scope": ["Admitted Field Event", "Temporal Context", "Policy Reference", "Trace Context"]
+    },
+    {
+      "owner": "Field State Read Model",
+      "responsibility": "Provide read-only Field query and projection candidates without state mutation.",
+      "forbidden_responsibility": ["Field state mutation", "event reduction", "fact admission", "cognitive interpretation", "action execution"],
+      "write_scope": ["Read Projection Candidate", "Query Result Candidate", "Read Diagnostics"],
+      "read_scope": ["Controlled Field State Candidate", "Query Candidate", "State Version", "Provenance"]
+    },
+    {
+      "owner": "Observation Manager",
+      "responsibility": "Coordinate evidence collection and produce candidate-only observation and admission-handoff outputs.",
+      "forbidden_responsibility": ["cognition", "Cognitive Attention ownership", "fact admission", "Field state mutation", "decision", "action execution"],
+      "write_scope": ["Observation Candidate", "Evidence Candidate", "Admission Handoff Candidate", "Observation Trace"],
+      "read_scope": ["Task Context Candidate", "Scene Context Candidate", "Vision Evidence Candidate", "OCR Evidence Candidate"]
+    },
+    {
+      "owner": "Task Manager",
+      "responsibility": "Govern approved task lifecycle, dependencies, capability routing, interruption, and result aggregation.",
+      "forbidden_responsibility": ["intent generation", "causal reasoning", "final decision", "Runtime dispatch", "action execution", "fact admission"],
+      "write_scope": ["Task State Candidate", "Dependency Candidate", "Capability Route Candidate", "Aggregated Result Candidate"],
+      "read_scope": ["Approved Task Candidate", "Decision Reference", "Field Context Snapshot", "Capability Availability"]
+    },
+    {
+      "owner": "Capability Governance / Model Manager",
+      "responsibility": "Govern model identity, admission, matching, routing candidates, lifecycle, fallback, and diagnostics.",
+      "forbidden_responsibility": ["cognitive conclusion", "fact admission", "goal creation", "intent generation", "decision", "action execution", "provider Runtime invocation"],
+      "write_scope": ["Model Selection Candidate", "Lifecycle Candidate", "Fallback Candidate", "Model Diagnostics"],
+      "read_scope": ["Capability Requirement", "Admission Policy", "Resource Constraint", "Model Registry", "Provider Availability"]
+    },
+    {
+      "owner": "Protocol Manager",
+      "responsibility": "Govern protocol registry lookup, lifecycle, compatibility, admission, and change candidates.",
+      "forbidden_responsibility": ["protocol registry mutation", "Runtime protocol loading", "cognitive fact", "state mutation", "decision", "action execution"],
+      "write_scope": ["Protocol Governance Candidate", "Compatibility Candidate", "Admission Candidate", "Protocol Diagnostics"],
+      "read_scope": ["Protocol Registry Reference", "Version Constraint", "Compatibility Requirement", "Admission Policy"]
+    },
+    {
+      "owner": "Capability Governance / OCR Capability",
+      "responsibility": "Produce structured OCR evidence envelopes, ambiguity candidates, diagnostics, and trace/replay.",
+      "forbidden_responsibility": ["fact admission", "world state mutation", "Memory write", "cognitive conclusion", "decision", "action execution"],
+      "write_scope": ["OCR Evidence Candidate", "Layout Candidate", "Reading Order Candidate", "OCR Diagnostics"],
+      "read_scope": ["OCR Request Candidate", "Region Reference", "Raw OCR Evidence", "Model Capability Reference"]
+    },
+    {
+      "owner": "Capability Governance / Vision Capability",
+      "responsibility": "Produce visual evidence, region, tracking, and model-handoff candidates with trace/replay.",
+      "forbidden_responsibility": ["fact admission", "world state mutation", "Memory write", "cognitive conclusion", "decision", "action execution"],
+      "write_scope": ["Vision Evidence Candidate", "Region Candidate", "Tracking Candidate", "Model Handoff Candidate"],
+      "read_scope": ["Visual Request Candidate", "Frame Quality Candidate", "Task Context", "Model Capability Reference"]
+    },
+    {
+      "owner": "Memory System",
+      "responsibility": "Govern Memory storage, admission, consolidation, activation, retrieval, and historical influence candidates.",
+      "forbidden_responsibility": ["reality override", "decision", "direct Cognitive Core mutation", "automatic Self change", "PCN ownership transfer"],
+      "write_scope": ["Memory Object Candidate", "Memory Admission Result", "Memory Activation Candidate", "Historical Influence Candidate"],
+      "read_scope": ["Experience Candidate", "Memory Candidate", "Information Lifecycle Policy", "Context Match", "Admission Result"]
+    },
+    {
+      "owner": "Personal Cognitive Network Governance",
+      "responsibility": "Govern cross-object connection, activation, and read-only context projection candidates.",
+      "forbidden_responsibility": ["source ownership", "source mutation", "source persistence", "Self ownership", "Role ownership", "Relationship ownership", "Memory ownership", "Emotion ownership", "Value ownership"],
+      "write_scope": ["Typed Link Candidate", "Activation Candidate", "Context Projection Candidate", "Network Revision Candidate"],
+      "read_scope": ["Field Context Reference", "Self Reference", "Role Reference", "Relationship Reference", "Memory Projection Reference", "Emotion Context Reference", "Value Reference"]
+    },
+    {
+      "owner": "Intent Governance",
+      "responsibility": "Qualify, preserve, bind, and govern context-bound Intent Candidates.",
+      "forbidden_responsibility": ["Goal ownership transfer", "Task ownership", "decision selection", "action execution", "Reality mutation"],
+      "write_scope": ["Intent Candidate", "Intent Conflict Candidate", "Clarification Candidate", "Goal Alignment Candidate"],
+      "read_scope": ["Field Context", "PCN Projection", "Self Reference", "Role Reference", "Goal Reference", "Task Reference", "Value Constraint"]
+    },
+    {
+      "owner": "Causal Reasoning Governance",
+      "responsibility": "Produce evidence-bound, revisable causal and condition candidates with counter-evidence.",
+      "forbidden_responsibility": ["causal fact promotion", "Rule Engine authority", "World Model Runtime", "decision selection", "action execution", "state mutation"],
+      "write_scope": ["Causal Candidate", "Condition Candidate", "Alternative Explanation Candidate", "Unknown Candidate"],
+      "read_scope": ["Field Observation", "PCN Projection", "Intent Candidate", "Hypothesis", "Belief", "Experience Reference"]
+    },
+    {
+      "owner": "Experience Governance",
+      "responsibility": "Compress governed outcomes and traces into reusable experience and guidance candidates.",
+      "forbidden_responsibility": ["direct Memory write", "direct PCN mutation", "knowledge fact creation", "automatic learning", "decision", "action execution"],
+      "write_scope": ["Experience Representation Candidate", "Guidance Candidate", "Pattern Candidate", "Memory Admission Candidate"],
+      "read_scope": ["Feedback", "Reality Validation", "Outcome Evaluation", "Decision Trace", "Action Trace"]
+    },
+    {
+      "owner": "A/B Route Boundary Governance",
+      "responsibility": "Govern the separation and candidate handoff between current-reality cognition and future simulation.",
+      "forbidden_responsibility": ["current Reality override", "A Route mutation", "current decision override", "Self mutation", "action execution", "Simulation Runtime"],
+      "write_scope": ["Simulation Request Candidate", "Possible Future Candidate", "Counterfactual Candidate", "Return-to-A Candidate"],
+      "read_scope": ["Current A Route Understanding", "Intent Expansion Candidate", "Causal Candidate", "Risk", "Resource Boundary"]
+    },
+    {
+      "owner": "Decision Arbitration",
+      "responsibility": "Filter, compare, select, and trace a governed Decision Candidate under hard constraints.",
+      "forbidden_responsibility": ["action execution", "task lifecycle ownership", "Reality mutation", "Memory mutation", "Constitution modification"],
+      "write_scope": ["Selected Decision Candidate", "Decision Trace", "Reconsideration Candidate", "Rejected Candidate Set"],
+      "read_scope": ["Understanding", "Intent Candidate", "Causal Candidate", "A/B Candidate", "Goal", "Value Utility", "Self State", "Risk"]
+    }
+  ],
+  "required_owner_count": 15,
+  "active_metadata_modified": false,
+  "migration_executed": false
+}

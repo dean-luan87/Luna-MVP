@@ -1,0 +1,31 @@
+{
+  "phase_id": "Phase-P1-OptionB-CE-DryRun-Preflight-Candidate-Scope-Write-v1-001",
+  "input_mode": "manual_trusted_handoff",
+  "history_scan_performed": false,
+  "anchor_file_read": false,
+  "allowed_execution_candidates": [
+    "A1_classical_helper_ok_candidate",
+    "C1_document_specific_surface_model_ok_for_preflight"
+  ],
+  "blocked_references": [
+    "A2_uncontrolled_binary",
+    "B1_weight_missing",
+    "B2_license_unknown",
+    "B3_caption_text",
+    "C2_document_type_fact",
+    "D1_hardware_missing"
+  ],
+  "allowed_candidate_count": 2,
+  "blocked_reference_count": 6,
+  "invalid_candidate_count": 0,
+  "blocked_candidate_leak_count": 0,
+  "active_model_selected": false,
+  "active_skill_selected": false,
+  "option_b_execution_allowed": false,
+  "segmentation_execution_allowed": false,
+  "controlled_execution_allowed": false,
+  "runtime_activation_allowed": false,
+  "scope_valid": true,
+  "blocker_count": 0,
+  "final_decision": "CANDIDATE_SCOPE_VERIFY_GO"
+}

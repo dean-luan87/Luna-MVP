@@ -1,0 +1,8 @@
+{
+  "title": "Execution Context Manager Contract v1",
+  "owner": "Capability Governance",
+  "schema": ["execution_id", "priority", "timeout", "resource_budget", "constraint", "caller", "trace_id", "lifecycle_state"],
+  "context_scope": ["single execution", "admitted capability", "declared input", "declared resources"],
+  "forbidden_context": ["full Brain state", "unrestricted Goal", "Identity secrets", "unrelated provider context"],
+  "rules": {"context_isolation": true, "timeout_required": true, "budget_required": true, "trace_required": true, "no_shared_unauthorized_context": true}
+}

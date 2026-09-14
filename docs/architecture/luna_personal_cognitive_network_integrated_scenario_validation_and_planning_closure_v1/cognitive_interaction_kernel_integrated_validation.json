@@ -1,0 +1,42 @@
+{
+  "artifact_id": "cognitive_interaction_kernel_integrated_validation_v1",
+  "status": "PLANNING_CANDIDATE",
+  "validation_scope": "STATIC_INTEGRATED_SCENARIO_SIMULATION",
+  "owner": "Cognitive Interaction Governance",
+  "required_inputs": [
+    "CONTEXT",
+    "ACTIVE_FIELD",
+    "ACTIVE_ROLE",
+    "RELATIONSHIP",
+    "CURRENT_NEED_REFERENCE",
+    "PCN_ACTIVATION",
+    "RESOURCE_CONSTRAINT",
+    "OBSERVATION_AXIS"
+  ],
+  "allowed_outputs": ["INTERACTION_CANDIDATE"],
+  "validated_interactions": [
+    {"type": "RESONANCE", "scenario_refs": ["SCENARIO_07_SAME_TYPE_WORK_FIELD_RESONANCE", "SCENARIO_11_SUBJECTIVE_WRONG_CAUSAL_ASSOCIATION"], "candidate_only": true},
+    {"type": "COMPETITION", "scenario_refs": ["SCENARIO_08_FATHER_VS_EMPLOYEE"], "candidate_only": true},
+    {"type": "OCCUPATION", "scenario_refs": ["SCENARIO_02_TEMPORARY_OVERTIME_AT_HOME", "SCENARIO_03_LONG_TERM_OVERTIME_AT_HOME"], "candidate_only": true},
+    {"type": "OVERLAP", "scenario_refs": ["SCENARIO_04_SPOUSES_AND_COLLEAGUES", "SCENARIO_09_SPOUSES_BUILD_BUSINESS"], "candidate_only": true},
+    {"type": "HISTORICAL_REACTIVATION", "scenario_refs": ["SCENARIO_06_MEETING_HISTORICAL_REACTIVATION", "SCENARIO_10_DORMANT_OLD_FRIEND_REACTIVATION"], "candidate_only": true}
+  ],
+  "owner_separation": {
+    "is_pcn_owner": false,
+    "is_field_owner": false,
+    "is_role_owner": false,
+    "is_relationship_owner": false,
+    "is_causal_engine": false,
+    "is_decision_engine": false,
+    "is_observation_axis": false
+  },
+  "negative_boundaries": {
+    "source_mutation_allowed": false,
+    "causal_fact_allowed": false,
+    "winner_selection_allowed": false,
+    "runtime_execution_allowed": false,
+    "cnn_gnn_or_neural_implementation": false
+  },
+  "validation_result": "BOUNDARY_COMPATIBLE",
+  "candidate_only": true
+}

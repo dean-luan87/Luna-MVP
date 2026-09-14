@@ -1,0 +1,16 @@
+{
+  "interface_name": "Social Field Memory Interface v1",
+  "social_field_reference": "social-field-example",
+  "social_field_memory_candidate": null,
+  "interaction_history": [],
+  "role_history": [],
+  "relationship_history": [],
+  "field_context": null,
+  "timestamp": null,
+  "provenance": [],
+  "unknowns": [],
+  "memory_is_candidate": true,
+  "memory_does_not_override_reality": true,
+  "memory_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

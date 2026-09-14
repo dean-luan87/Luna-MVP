@@ -1,0 +1,17 @@
+{
+    "artifact": "self_intent_boundary_v1",
+    "intent_owner_preserved": "Intent Governance",
+    "self_governance_may_reference": [
+        "own intent refs",
+        "persistent intent refs",
+        "intent history"
+    ],
+    "must_not": [
+        "create_intent_directly",
+        "reprioritize_intent",
+        "activate_intent",
+        "cancel_intent",
+        "claim_all_intent_as_permanent_self_attributes"
+    ],
+    "rule": "Self constrains and interprets intent-relative self evidence; Intent Governance remains the intent semantic owner."
+}

@@ -1,0 +1,50 @@
+{
+  "schema_id": "DocumentSurfaceDetectorPostReviewPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Integration-Post-Review-v1-001",
+  "post_review_only": true,
+  "principle": "只做审查、归档、边界冻结、风险登记、下一阶段准入判断",
+  "forbidden_actions": [
+    "no_real_model_execution",
+    "no_real_image_segmentation",
+    "no_ocr_execution",
+    "no_vlm_execution",
+    "no_new_layout_parser_behavior"
+  ],
+  "frozen_pipeline": [
+    "Attention-Gated Region",
+    "Model Manager Runtime Binding",
+    "document_surface_detector_v1 deterministic fixture runtime",
+    "document_surface_candidate + relation_hint_candidate",
+    "Ownership Evidence Package",
+    "Text Owner Assignment Candidate",
+    "Validation"
+  ],
+  "upstream_dependencies": [
+    "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_DOCUMENT_SURFACE_DETECTOR_REAL_RUNTIME_INTEGRATION_PLANNING_GO",
+    "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_DOCUMENT_SURFACE_DETECTOR_REAL_RUNTIME_INTEGRATION_DRYRUN_GO",
+    "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_REAL_RUNTIME_INTEGRATION_DRYRUN_GO",
+    "P1_MIDPLATFORM_LUNA_SITUATION_UNDERSTANDING_ATTENTION_GATED_REGION_INTELLIGENCE_DRYRUN_GO",
+    "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_LIGHTWEIGHT_VISION_RUNTIME_PLANNING_GO"
+  ],
+  "negative_guards": [
+    "no_ocr_text_output",
+    "no_document_fact_output",
+    "no_global_ocr",
+    "no_full_scene_segmentation_by_default",
+    "attention_gate_required",
+    "candidate_only_not_fact",
+    "runtime_does_not_override_ownership_graph",
+    "surface_candidate_before_text_owner_assignment",
+    "owner_required_for_text_assignment",
+    "occlusion_not_absence",
+    "no_silent_fallback_to_vlm",
+    "no_silent_fallback_to_ocr",
+    "no_merge_overlapped_documents",
+    "screen_surface_not_document_surface_fact",
+    "failure_returns_runtime_error_candidate",
+    "attention_blocked_zero_runtime_call"
+  ],
+  "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Implementation-Planning-v1-001",
+  "parallel_next_track": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

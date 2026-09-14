@@ -1,0 +1,191 @@
+{
+    "version": "1.0",
+    "name": "Field State Type Registry",
+    "state_types": [
+        {
+            "state_type": "presence_state",
+            "allowed_value_shape": "boolean_or_enum",
+            "allowed_source_event_types": [
+                "field_definition_observed",
+                "field_definition_asserted"
+            ],
+            "minimum_support_policy": "multi_event_consensus",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "accessibility_state",
+            "allowed_value_shape": "enum",
+            "allowed_source_event_types": [
+                "field_definition_observed",
+                "temporary_overlay_started",
+                "temporary_overlay_ended"
+            ],
+            "minimum_support_policy": "multi_event_consensus",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "negative_event_override",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "provisional",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "path_state",
+            "allowed_value_shape": "enum",
+            "allowed_source_event_types": [
+                "field_relation_observed",
+                "field_transition_detected"
+            ],
+            "minimum_support_policy": "latest_valid_event",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "obstruction_state",
+            "allowed_value_shape": "enum",
+            "allowed_source_event_types": [
+                "field_definition_observed",
+                "temporary_overlay_started"
+            ],
+            "minimum_support_policy": "negative_event_override",
+            "expiry_policy": "temporary_overlay_separation",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "contradiction_penalty",
+            "default_status": "provisional",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "facility_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "field_definition_asserted",
+                "institutional_rule_asserted"
+            ],
+            "minimum_support_policy": "multi_event_consensus",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "explicit_owner_override_candidate",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "service_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "social_activity_observed",
+                "institutional_condition_observed"
+            ],
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "temporal_decay_weighted",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "environmental_condition_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "field_definition_observed",
+                "temporary_overlay_started"
+            ],
+            "minimum_support_policy": "latest_valid_event",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "negative_event_override",
+            "confidence_policy": "temporal_decay_weighted",
+            "default_status": "provisional",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "human_activity_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "social_activity_observed",
+                "field_transition_detected"
+            ],
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "contradiction_penalty",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "navigation_relevance_state",
+            "allowed_value_shape": "enum",
+            "allowed_source_event_types": [
+                "active_projection_changed",
+                "field_transition_detected"
+            ],
+            "minimum_support_policy": "highest_confidence_valid_event",
+            "expiry_policy": "expiration_degrade",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "temporary_overlay_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "temporary_overlay_started",
+                "temporary_overlay_ended"
+            ],
+            "minimum_support_policy": "latest_valid_event",
+            "expiry_policy": "temporary_overlay_separation",
+            "conflict_policy": "negative_event_override",
+            "confidence_policy": "weighted_confidence",
+            "default_status": "active",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "uncertainty_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "refresh_due",
+                "temporal_definition_stale",
+                "user_confirmation_asserted"
+            ],
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "expiry_policy": "no_state_change",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "uncertainty_floor",
+            "default_status": "uncertain",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "conflict_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "revocation_requested",
+                "field_transition_detected",
+                "revision_applied"
+            ],
+            "minimum_support_policy": "conflict_preservation",
+            "expiry_policy": "no_state_change",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "uncertainty_floor",
+            "default_status": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "state_type": "entity_field_observation_relation_state",
+            "allowed_value_shape": "object",
+            "allowed_source_event_types": [
+                "entity_field_relation_observed"
+            ],
+            "minimum_support_policy": "multi_event_consensus",
+            "expiry_policy": "no_state_change",
+            "conflict_policy": "conflict_preservation",
+            "confidence_policy": "relation_observation_lineage_only",
+            "default_status": "candidate",
+            "fact_promotion_allowed": false
+        }
+    ],
+    "registry_complete": true
+}

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "deployment:mac-local-test:v1": {"name": "MAC_LOCAL_TEST", "latency_ms": null, "fps": null, "ram_mb": null, "vram_mb": null, "power_w": null, "cold_start_ms": null, "model_size_mb": null, "supported_export_formats": ["pt", "onnx"], "status": "UNRESOLVED"},
+    "deployment:jetson-edge:v1": {"name": "JETSON_EDGE", "latency_ms": null, "fps": null, "ram_mb": null, "vram_mb": null, "power_w": null, "cold_start_ms": null, "model_size_mb": null, "supported_export_formats": ["pt", "onnx", "engine"], "status": "UNRESOLVED"},
+    "deployment:cpu-fallback:v1": {"name": "CPU_FALLBACK", "latency_ms": null, "fps": null, "ram_mb": null, "vram_mb": null, "power_w": null, "cold_start_ms": null, "model_size_mb": null, "supported_export_formats": ["pt", "onnx"], "status": "UNRESOLVED"},
+    "deployment:future-wearable-edge:v1": {"name": "FUTURE_WEARABLE_EDGE", "latency_ms": null, "fps": null, "ram_mb": null, "vram_mb": null, "power_w": null, "cold_start_ms": null, "model_size_mb": null, "supported_export_formats": ["onnx", "engine"], "status": "UNRESOLVED"}
+  },
+  "deployment_compatibility_is_not_production_approval": true
+}

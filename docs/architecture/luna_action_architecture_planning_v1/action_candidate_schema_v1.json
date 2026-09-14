@@ -1,0 +1,195 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/action/action-candidate/v1",
+    "title": "Action Candidate Schema v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "action_candidate_id",
+        "owner",
+        "decision_refs",
+        "intent_refs",
+        "causal_refs",
+        "target_refs",
+        "context_refs",
+        "field_refs",
+        "resource_refs",
+        "permission_refs",
+        "safety_refs",
+        "confirmation_refs",
+        "precondition_refs",
+        "dependency_refs",
+        "risk_refs",
+        "reversibility",
+        "execution_readiness",
+        "action_state",
+        "cancellation_policy",
+        "rollback_policy",
+        "provenance",
+        "version",
+        "revision_lineage"
+    ],
+    "properties": {
+        "action_candidate_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "owner": {
+            "const": "Action Governance"
+        },
+        "decision_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "intent_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "causal_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "target_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "context_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "field_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "resource_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "permission_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "safety_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "confirmation_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "precondition_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "dependency_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "risk_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "reversibility": {
+            "type": "string",
+            "enum": [
+                "reversible",
+                "partially_reversible",
+                "irreversible",
+                "unknown"
+            ]
+        },
+        "execution_readiness": {
+            "type": "string",
+            "enum": [
+                "not_ready",
+                "candidate_ready",
+                "blocked",
+                "suspended"
+            ]
+        },
+        "action_state": {
+            "type": "string",
+            "minLength": 1
+        },
+        "cancellation_policy": {
+            "type": "string",
+            "minLength": 1
+        },
+        "rollback_policy": {
+            "type": "string",
+            "minLength": 1
+        },
+        "provenance": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "version": {
+            "type": "string",
+            "minLength": 1
+        },
+        "revision_lineage": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "$defs": {
+        "ref": {
+            "type": "object",
+            "required": [
+                "owner",
+                "ref_id"
+            ],
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ref_id": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "planning_guards": {
+        "candidate_only": true,
+        "runtime_command_output": false,
+        "action_execution": false,
+        "task_creation": false,
+        "device_control": false
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "artifact": "decision_owner_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Decision Governance",
+    "unique_owner": true,
+    "legacy_aliases": [
+        {
+            "name": "Decision Arbitration",
+            "classification": "legacy_alias_non_canonical",
+            "ownership_equivalent": true,
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Brain Decision",
+            "classification": "legacy_reference",
+            "ownership_equivalent": false,
+            "creates_new_owner": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Decision Commitment",
+            "classification": "legacy_reference",
+            "ownership_equivalent": false,
+            "creates_new_owner": false,
+            "mutation_authority": false
+        }
+    ],
+    "owned_candidate_types": [
+        "Decision Candidate",
+        "Decision Option Candidate",
+        "Decision Selection Candidate",
+        "Decision Trace Candidate",
+        "Decision-to-ActionTask Handoff Candidate"
+    ],
+    "reference_only_inputs": [
+        "Intent refs",
+        "Causal refs",
+        "Context refs",
+        "Field refs",
+        "Role refs",
+        "Permission refs",
+        "Safety refs",
+        "Resource refs"
+    ],
+    "forbidden_ownership": [
+        "Intent",
+        "Causal",
+        "Action",
+        "Task",
+        "Permission",
+        "Safety",
+        "Role",
+        "Resource",
+        "Runtime",
+        "Database"
+    ],
+    "forbidden_responsibility": [
+        "execute action",
+        "create task",
+        "issue actuator command",
+        "bypass permission",
+        "bypass safety",
+        "modify upstream owner policy"
+    ],
+    "source_owner_transfer": false,
+    "cross_write_authority": false,
+    "active_owner_metadata_changed": false
+}

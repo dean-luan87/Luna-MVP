@@ -1,0 +1,124 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Execution-DryRun-Foundation-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T02:45:34.866938+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "p1_execution_dryrun_foundation_v1",
+  "steps_executed": [
+    "this_phase_is_execution_simulation_layer_only",
+    "structure_level_run_verification_only",
+    "no_real_inference_is_enforced",
+    "no_model_download_is_enforced",
+    "no_runtime_execution_is_enforced",
+    "no_dataset_pull_is_enforced",
+    "no_dependency_install_is_enforced",
+    "import_feasibility_is_checked_without_install",
+    "dependency_resolution_is_mock_only",
+    "execution_mock_signature_does_not_execute",
+    "dependency_graph_must_build_with_no_cycles",
+    "execution_path_must_be_valid_linear_branching_hybrid",
+    "execution_states_are_structure_level_only",
+    "deferred_models_are_state_d_not_runtime",
+    "fallback_chains_are_candidate_only",
+    "model_output_must_pass_recognition_model_output_adapter",
+    "model_output_must_pass_midplatform_model_data_handling",
+    "model_output_must_pass_midplatform_model_control",
+    "candidate_only_boundary_must_be_preserved",
+    "vla_action_chain_is_excluded",
+    "existing_governance_must_be_reused_no_governance_bypass",
+    "p1_execution_trace_streaming_dryrun_requires_separate_phase",
+    "all_virtual_and_real_test_artifacts_must_be_written_to_the_test_board",
+    "test_process_records_must_be_preserved",
+    "test_conclusions_must_be_preserved",
+    "test_board_artifacts_are_protected_and_must_not_be_deleted",
+    "cleanup_scripts_must_not_remove_protected_test_board_artifacts",
+    "any_test_artifact_deletion_requires_explicit_governance_approval"
+  ],
+  "passed_check_count": 87,
+  "failed_check_count": 0,
+  "stage_refs": [
+    {
+      "stage_index": 1,
+      "phase_ref": "Phase-Recognition-Model-P1-Download-License-Planning-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P1_DOWNLOAD_LICENSE_PLANNING_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 2,
+      "phase_ref": "Phase-Model-Governance-Runtime-Trial-Planning-v1-001",
+      "expected_go": "MODEL_GOVERNANCE_RUNTIME_TRIAL_PLANNING_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 3,
+      "phase_ref": "Phase-Recognition-Midplatform-Model-Governance-Integrated-Closure-v1-001",
+      "expected_go": "RECOGNITION_MIDPLATFORM_MODEL_GOVERNANCE_INTEGRATED_CLOSURE_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 4,
+      "phase_ref": "Phase-Recognition-Model-P1-Output-Adapter-DryRun-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P1_OUTPUT_ADAPTER_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 5,
+      "phase_ref": "Phase-Recognition-Model-P1-Invocation-And-Local-Availability-DryRun-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P1_INVOCATION_AND_LOCAL_AVAILABILITY_DRYRUN_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 6,
+      "phase_ref": "Phase-Recognition-Model-P0-Integration-Closure-v1-001",
+      "expected_go": "RECOGNITION_MODEL_P0_INTEGRATION_CLOSURE_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 7,
+      "phase_ref": "Phase-Midplatform-Model-Admission-Governance-Standard-v1-001",
+      "expected_go": "MODEL_ADMISSION_GOVERNANCE_STANDARD_REVIEW_GO",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 8,
+      "phase_ref": "Phase-Midplatform-Interface-Layer-Governance-Protocol-v1-001",
+      "expected_go": "INTERFACE_LAYER_GOVERNANCE_PROTOCOL_BASELINE_READY_FOR_ADOPTION",
+      "gated": true,
+      "go_verified": true
+    },
+    {
+      "stage_index": 9,
+      "phase_ref": "Phase-PhaseOne-Environment-Cognition-Evidence-Main-Chain-Closure-v1-001",
+      "expected_go": "PHASE_ONE_ENVIRONMENT_COGNITION_EVIDENCE_MAIN_CHAIN_CLOSURE_GO",
+      "gated": true,
+      "go_verified": true
+    }
+  ],
+  "upstream_sealed_phase_review": {
+    "p1_download_license_planning_go_verified": true,
+    "runtime_trial_planning_go_verified": true,
+    "integrated_model_governance_closure_go_verified": true,
+    "p1_output_adapter_dryrun_go_verified": true,
+    "p1_invocation_local_availability_dryrun_go_verified": true,
+    "p0_integration_closure_go_verified": true,
+    "model_admission_governance_verified": true,
+    "interface_layer_governance_verified": true,
+    "phase_one_evidence_main_chain_closure_go_verified": true,
+    "controlled_trial_template_ref_ok": true
+  }
+}

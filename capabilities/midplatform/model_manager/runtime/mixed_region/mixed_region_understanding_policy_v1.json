@@ -1,0 +1,64 @@
+{
+  "schema_id": "RegionIntelligencePolicyV1",
+  "version": "v2",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Mixed-Region-Understanding-Planning-v1-001",
+  "layer_id": "Region_Intelligence_Layer",
+  "planning_only": true,
+  "principle": "区域是信息载体 — Ownership 先于 OCR，理解信息属于谁",
+  "core_question": "这个区域承载了哪些信息？哪些通道需要激活？信息属于哪个实体？",
+  "architecture": {
+    "upstream": "region_candidate",
+    "region_discovery": "region_owner_analyzer",
+    "ownership_layer": "ownership_understanding",
+    "activation": "information_channel_activation",
+    "channels": {
+      "ownership_channel": {"capability": "understand_region_ownership", "provider": "region_owner_analyzer_v1"},
+      "text_channel": {"capability": "understand_region_text", "provider": "paddleocr_recognizer_v1"},
+      "visual_channel": {"capability": "understand_region_visual", "provider": "vision_model_v1"},
+      "spatial_channel": {"capability": "understand_region_layout", "provider": "spatial_analyzer_v1"},
+      "context_channel": {"capability": "understand_region_context", "provider": "context_analyzer_v1"}
+    },
+    "fusion": "semantic_fusion_adapter",
+    "completeness": "evidence_completeness"
+  },
+  "capabilities": [
+    "understand_region_ownership",
+    "understand_region_text",
+    "understand_region_visual",
+    "understand_region_layout",
+    "understand_region_context"
+  ],
+  "ownership_pipeline": [
+    "object_surface_segmentation",
+    "ownership_analysis",
+    "occlusion_graph",
+    "region_partition",
+    "ocr_per_owner_crop"
+  ],
+  "rules": [
+    {"rule_id": "ownership_before_ocr", "description": "先发现信息载体，再分区域 OCR"},
+    {"rule_id": "text_has_owner", "description": "每个文字片段必须有 owner_candidate"},
+    {"rule_id": "no_flat_text_merge", "description": "禁止全图 OCR 平铺合并"},
+    {"rule_id": "occlusion_acknowledged", "description": "遮挡区域 — 缺失标题可能是被挡，非不存在"},
+    {"rule_id": "reflection_not_physical", "description": "玻璃反光与真实店招分离归属"},
+    {"rule_id": "multi_entity_shelf", "description": "货架商品/价签/背景广告分别归属"}
+  ],
+  "forbidden": [
+    "full_image_ocr_first",
+    "fixed_ocr_plus_vlm",
+    "text_without_owner",
+    "flat_merge_all_text",
+    "ocr_solves_ownership",
+    "assume_occluded_content_absent"
+  ],
+  "boundary_flags": {
+    "region_intelligence_layer": true,
+    "five_channel_with_ownership": true,
+    "ownership_before_ocr": true,
+    "information_channel_activation": true,
+    "evidence_completeness": true,
+    "not_ocr_extension": true,
+    "semantic_fusion_not_answer_fusion": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Mixed-Region-Understanding-DryRun-v1-001"
+}

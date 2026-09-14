@@ -1,0 +1,11 @@
+{
+  "title": "Decision Utility Relation v1",
+  "inputs": ["Expected Benefit", "Importance", "Probability", "Resource Cost", "Risk Factor"],
+  "flow": ["Utility Candidate", "Constraint Filter", "Priority Ranking Candidate", "Decision Selection Candidate"],
+  "utility_is_candidate": true,
+  "utility_does_not_decide_alone": true,
+  "utility_does_not_execute": true,
+  "hard_constraint_precedes_utility": true,
+  "scalar_score_is_not_authority": true,
+  "candidate_only": true
+}

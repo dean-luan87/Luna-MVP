@@ -1,0 +1,40 @@
+{
+  "artifact": "intent_field_role_relationship_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "intent_owner": "Intent Governance",
+  "source_boundaries": [
+    {
+      "source": "Field",
+      "owner": "Cognitive Field",
+      "allowed_reference": "current physical, social, activity, temporal, and mental-field constraints",
+      "forbidden_equivalence": "Field pressure is not Intent",
+      "cross_write": false
+    },
+    {
+      "source": "Role",
+      "owner": "Social Self / Role Governance",
+      "allowed_reference": "current participation identity, obligation, and Role conflict candidates",
+      "forbidden_equivalence": "Role obligation is not Intent",
+      "cross_write": false
+    },
+    {
+      "source": "Relationship",
+      "owner": "Social Self / Relationship Governance",
+      "allowed_reference": "relationship type, strength, history, current state, and relevance",
+      "forbidden_equivalence": "Relationship importance is not Intent",
+      "cross_write": false
+    }
+  ],
+  "combined_influence_examples": [
+    "Family Field plus parent Role plus child Relationship may support a protection or care Intent candidate.",
+    "Office Field plus employee Role plus unresolved work state may support an unfinished-work carryover candidate.",
+    "Public Field plus weak Relationship may constrain approach while preserving an observe candidate."
+  ],
+  "guards": [
+    "Field does not create Intent",
+    "Role does not create Intent",
+    "Relationship does not create Intent",
+    "Intent does not mutate Field, Role, or Relationship",
+    "social expectation does not prove subjective direction"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_name": "Emotion Context Schema v1",
+  "context_candidate_id": "emotion-context-example",
+  "field_reference": {},
+  "role_reference": {},
+  "relationship_reference": {},
+  "memory_metadata_reference": {},
+  "time_scope": {},
+  "evidence": [],
+  "provenance": [],
+  "confidence": null,
+  "unknowns": [],
+  "revocable": true,
+  "placeholder_only": true,
+  "does_not_compute_emotion": true,
+  "unknowns_are_preserved": true
+}

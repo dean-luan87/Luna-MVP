@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "name": "Module Migration Mapping",
+  "migration_type": "conceptual_ownership_mapping_only",
+  "mappings": [
+    {"existing_module": "Self Model", "new_owner": "Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Self Regulation", "new_owner": "Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Self Evolution", "new_owner": "Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Capability Awareness", "new_owner": "Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Capability Governance", "new_owner": "Capability Governance / Self Layer interface", "change": "boundary mapping", "code_change": false},
+    {"existing_module": "Role System", "new_owner": "Social Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Relationship System", "new_owner": "Social Self Layer", "change": "reclassify ownership", "code_change": false},
+    {"existing_module": "Emotion Context", "new_owner": "Integration Layer", "change": "boundary reclassification", "code_change": false},
+    {"existing_module": "Constitution", "new_owner": "L0 Governance", "change": "top-level constraint mapping", "code_change": false}
+  ],
+  "rules": {"no_file_move": true, "no_module_deletion": true, "no_code_refactor": true, "historical_assets_preserved": true, "mapping_not_runtime": true}
+}

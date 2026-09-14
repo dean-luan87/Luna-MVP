@@ -1,0 +1,141 @@
+{
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "template_types": [
+    "planning",
+    "request_approval_readiness",
+    "execution_post_review",
+    "failure_review_repair_planning",
+    "registry_patch_planning",
+    "registry_patch_execution",
+    "runtime_boundary_planning"
+  ],
+  "templates": {
+    "planning": {
+      "required_flags": [
+        "planning_only=true",
+        "execution_flags=false"
+      ],
+      "required_records": [
+        "profile",
+        "stage_refs",
+        "planning_records"
+      ],
+      "negative_guards": [
+        "no_execution_in_planning"
+      ],
+      "go_criteria": [
+        "blocker_count=0"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=planning, module=model_governance|recognition_models"
+    },
+    "request_approval_readiness": {
+      "required_flags": [
+        "upstream_go_verified",
+        "owner_approval_recorded"
+      ],
+      "required_records": [
+        "request_record",
+        "approval_record",
+        "readiness_record"
+      ],
+      "negative_guards": [
+        "no_execution_before_readiness"
+      ],
+      "go_criteria": [
+        "readiness_checklist_complete"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=planning"
+    },
+    "execution_post_review": {
+      "required_flags": [
+        "scoped_execution_flag=true"
+      ],
+      "required_records": [
+        "execution_audit",
+        "post_review_record"
+      ],
+      "negative_guards": [
+        "boundary_guards_active"
+      ],
+      "go_criteria": [
+        "target_success_or_failed_no_boundary"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=real_test"
+    },
+    "failure_review_repair_planning": {
+      "required_flags": [
+        "upstream_failed_no_boundary"
+      ],
+      "required_records": [
+        "failure_audit",
+        "repair_plan"
+      ],
+      "negative_guards": [
+        "no_blind_retry"
+      ],
+      "go_criteria": [
+        "repair_route_defined"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=planning"
+    },
+    "registry_patch_planning": {
+      "required_flags": [
+        "registry_mutation_allowed=false"
+      ],
+      "required_records": [
+        "patch_plan",
+        "diff_plan"
+      ],
+      "negative_guards": [
+        "no_registry_write"
+      ],
+      "go_criteria": [
+        "patch_plan_complete"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=planning"
+    },
+    "registry_patch_execution": {
+      "required_flags": [
+        "registry_mutation_allowed=true_scoped"
+      ],
+      "required_records": [
+        "pre_patch_snapshot",
+        "diff",
+        "write_audit"
+      ],
+      "negative_guards": [
+        "scoped_asset_only"
+      ],
+      "go_criteria": [
+        "patch_success_post_review"
+      ],
+      "output_path_convention": "overlay_json + review_json",
+      "test_board_convention": "test_mode=real_test"
+    },
+    "runtime_boundary_planning": {
+      "required_flags": [
+        "runtime_execution_allowed=false"
+      ],
+      "required_records": [
+        "runtime_boundary",
+        "output_adapter_boundary",
+        "semantic_exclusion"
+      ],
+      "negative_guards": [
+        "no_runtime_activation"
+      ],
+      "go_criteria": [
+        "boundaries_defined"
+      ],
+      "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/*_review_v1.json",
+      "test_board_convention": "test_mode=planning"
+    }
+  },
+  "controlled_trial_governance_template_ref": "ControlledTrialGovernanceLifecycleTemplateV1",
+  "recorded_at_utc": "2026-07-01T04:11:05.339177+00:00"
+}

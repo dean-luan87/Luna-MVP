@@ -1,0 +1,84 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_execution_outcome_validation",
+  "scope": "Decision_Candidate_to_Outcome_Interpretation_only",
+  "cases": [
+    {
+      "case_id": "high_risk_decision_accidental_good_outcome",
+      "situation_reference": {
+        "shortcut_risk": "high"
+      },
+      "decision_candidate": {
+        "selected_option": "high_risk_shortcut",
+        "risk_visibility": "high"
+      },
+      "execution_boundary": {
+        "status_candidate": "represented_as_completed",
+        "real_action_execution": false
+      },
+      "outcome_evidence": {
+        "goal_progress": "reached",
+        "incident_observed": false
+      },
+      "expected_outcome_interpretation": {
+        "outcome_progress": "good",
+        "strategy_quality": "not_confirmed_by_single_outcome"
+      },
+      "expected_cause_attribution": ["Random Event", "Unknown"],
+      "forbidden_outputs": ["strategy_excellent_confirmed", "automatic_strategy_adoption"],
+      "assertions": {
+        "outcome_success_does_not_validate_risk_strategy": true,
+        "attribution_is_not_blame": true,
+        "adaptation_remains_candidate_only": true
+      }
+    },
+    {
+      "case_id": "distant_text_failure_capability_gap",
+      "situation_reference": {
+        "distant_text_understanding_needed": true
+      },
+      "decision_candidate": {
+        "selected_option": "attempt_information_acquisition"
+      },
+      "execution_boundary": {
+        "status_candidate": "boundary_completed",
+        "real_action_execution": false
+      },
+      "outcome_evidence": {
+        "text_evidence": "not_obtained",
+        "camera_capability": "insufficient_for_distance"
+      },
+      "expected_cause_attribution": ["Capability Gap"],
+      "forbidden_attribution": ["Decision Failure"],
+      "assertions": {
+        "capability_failure_is_distinguished": true,
+        "self_capability_feedback_is_candidate_only": true,
+        "self_model_not_automatically_modified": true
+      }
+    },
+    {
+      "case_id": "unknown_cause_outcome",
+      "situation_reference": {
+        "goal_context": "normal_progress"
+      },
+      "decision_candidate": {
+        "selected_option": "continue_candidate"
+      },
+      "execution_boundary": {
+        "status_candidate": "partial",
+        "real_action_execution": false
+      },
+      "outcome_evidence": {
+        "goal_progress": "deviated",
+        "evidence_coverage": "insufficient"
+      },
+      "expected_cause_attribution": ["Unknown"],
+      "forbidden_outputs": ["certain_single_cause"],
+      "assertions": {
+        "unknown_cause_preserved": true,
+        "no_false_blame": true,
+        "adaptation_candidate_may_be_deferred": true
+      }
+    }
+  ]
+}

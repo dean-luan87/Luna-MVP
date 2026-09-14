@@ -1,0 +1,9 @@
+{
+  "title": "Runtime Snapshot Contract v1",
+  "owner": "Cognitive OS Governance",
+  "schema": ["snapshot_id", "timestamp", "runtime_state", "active_modules", "pending_events", "trace_id", "snapshot_reason", "lifecycle_state"],
+  "uses": ["Recovery", "Debug", "Replay Reference"],
+  "allowed_persistence": ["Long-term Memory Reference", "Experience Reference", "Important Snapshot"],
+  "forbidden_persistence": ["Temporary Workspace", "Runtime Cache", "Unverified State", "Sensitive transient payload"],
+  "rules": {"snapshot_before_recovery": true, "owner_validation_required": true, "not_runtime_database": true}
+}

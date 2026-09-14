@@ -1,0 +1,21 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S2-Real-Raw-Camera-Input-Stream-Controlled-Replacement-v1-001",
+  "canonical_owner_decision": "REUSE_FIELD_PERCEPTION_ORCHESTRATOR",
+  "new_semantic_owner": false,
+  "assets": [
+    {"classification": "A", "asset": "Field Perception Orchestrator Active Observation Control", "location": "capabilities/midplatform/field_perception_orchestrator/integration/", "reuse": "demand, bounded control, deduplication and handoff substrate"},
+    {"classification": "A", "asset": "Observation Gateway Governance", "location": "capabilities/midplatform/core/observation_gateway/", "reuse": "downstream evidence/observation boundary; raw frame is not promoted"},
+    {"classification": "B", "asset": "video_frame_envelope_v0", "location": "capabilities/vision_runtime/video_frame_envelope_v0.py", "reuse": "metadata vocabulary: frame id, stream, timestamp, dimensions, image ref, fingerprint"},
+    {"classification": "B", "asset": "vision_stream_registry_v0 and vision_frame_trace_v0", "location": "capabilities/vision_runtime/", "reuse": "trace/registry reference; S2 adapter avoids their output persistence path"},
+    {"classification": "B", "asset": "vision_frame_input_governance_v0", "location": "capabilities/vision_runtime/vision_frame_input_governance_v0.py", "reuse": "raw frame gate boundary; recognition remains false"},
+    {"classification": "B", "asset": "controlled frame input and phone/local capture contracts", "location": "capabilities/vision/ and capabilities/device_env/", "reuse": "source/reference and privacy constraints"},
+    {"classification": "C", "asset": "direct camera-to-provider/runtime paths", "location": "legacy tools, old camera handlers and direct YOLO/OCR/SLAM routes", "reuse": "not promoted; bypass/semantic execution risk"},
+    {"classification": "D", "asset": "Vision/YOLO, OCR, SLAM/VIO, VLM and real product runtime", "location": "future S3-S5+ workstreams", "reuse": "deferred"}
+  ],
+  "existing_canonical_raw_camera_owner": "No separate semantic raw-camera owner; transport is integrated under Field Perception Orchestrator",
+  "bounded_session_contract_exists": true,
+  "observation_demand_owner_can_remain_field_perception_orchestrator": true,
+  "observation_gateway_accepts_raw_reference_as_truth": false,
+  "s2_new_owner_required": false,
+  "existing_assets_modified": false
+}

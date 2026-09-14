@@ -1,0 +1,523 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Registry",
+    "policy_outcomes": [
+        "select_single_support",
+        "select_multi_support",
+        "preserve_existing_state",
+        "create_provisional_candidate",
+        "degrade_existing_state",
+        "suspend_existing_state",
+        "expire_existing_state",
+        "revoke_existing_state",
+        "supersede_existing_state",
+        "create_temporary_overlay_candidate",
+        "preserve_conflict",
+        "mark_uncertain",
+        "mark_unresolved",
+        "no_state_change",
+        "reject_policy_application"
+    ],
+    "policies": [
+        {
+            "policy_id": "latest_valid_event",
+            "policy_version": "v1",
+            "description": "在可用事件中选择最新且满足时序约束的支持。",
+            "eligible_state_types": [
+                "path_state",
+                "environmental_condition_state",
+                "temporary_overlay_state"
+            ],
+            "required_event_conditions": [
+                "admitted_event",
+                "valid_event",
+                "stable_event_id"
+            ],
+            "prohibited_event_conditions": [
+                "revoked_event",
+                "expired_support_event"
+            ],
+            "required_temporal_conditions": [
+                "active_or_expiring_support_present"
+            ],
+            "prohibited_temporal_conditions": [
+                "revoked",
+                "superseded"
+            ],
+            "confidence_treatment": "state_type_specific_weighted",
+            "conflict_treatment": "preserve_if_not_safe",
+            "policy_outcomes": [
+                "select_single_support",
+                "reject_policy_application",
+                "no_state_change"
+            ],
+            "precedence_class": "selection_low",
+            "composable_with": [
+                "expiration_degrade",
+                "temporary_overlay_separation"
+            ],
+            "mutually_exclusive_with": [
+                "revocation_override"
+            ],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "highest_confidence_valid_event",
+            "policy_version": "v1",
+            "description": "在满足约束的事件中按置信度加权选择支持。",
+            "eligible_state_types": [
+                "navigation_relevance_state",
+                "presence_state",
+                "accessibility_state"
+            ],
+            "required_event_conditions": [
+                "admitted_event",
+                "valid_event"
+            ],
+            "prohibited_event_conditions": [
+                "revoked_event",
+                "invalid_confidence"
+            ],
+            "required_temporal_conditions": [
+                "support_not_expired"
+            ],
+            "prohibited_temporal_conditions": [
+                "revoked"
+            ],
+            "confidence_treatment": "state_type_specific_weighted",
+            "conflict_treatment": "preserve_if_contradiction",
+            "policy_outcomes": [
+                "select_single_support",
+                "mark_uncertain",
+                "reject_policy_application"
+            ],
+            "precedence_class": "selection_low",
+            "composable_with": [
+                "multi_event_consensus",
+                "insufficient_evidence_unresolved"
+            ],
+            "mutually_exclusive_with": [
+                "revocation_override"
+            ],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "multi_event_consensus",
+            "policy_version": "v1",
+            "description": "在多事件支持一致时进行组合选择。",
+            "eligible_state_types": [
+                "presence_state",
+                "facility_state",
+                "service_state",
+                "accessibility_state",
+                "entity_field_observation_relation_state"
+            ],
+            "required_event_conditions": [
+                "minimum_event_count_met",
+                "admitted_event"
+            ],
+            "prohibited_event_conditions": [
+                "hard_contradiction_unresolved"
+            ],
+            "required_temporal_conditions": [
+                "support_not_revoked"
+            ],
+            "prohibited_temporal_conditions": [
+                "revoked"
+            ],
+            "confidence_treatment": "consensus_weighted",
+            "conflict_treatment": "preserve_on_unresolved",
+            "policy_outcomes": [
+                "select_multi_support",
+                "mark_unresolved",
+                "reject_policy_application"
+            ],
+            "precedence_class": "selection_mid",
+            "composable_with": [
+                "highest_confidence_valid_event",
+                "conflict_preservation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "negative_event_override",
+            "policy_version": "v1",
+            "description": "负向事件在安全条件下覆盖正向候选。",
+            "eligible_state_types": [
+                "obstruction_state",
+                "accessibility_state",
+                "environmental_condition_state"
+            ],
+            "required_event_conditions": [
+                "negative_signal_present",
+                "admitted_event"
+            ],
+            "prohibited_event_conditions": [
+                "negative_signal_revoked"
+            ],
+            "required_temporal_conditions": [
+                "negative_signal_active"
+            ],
+            "prohibited_temporal_conditions": [
+                "negative_signal_expired"
+            ],
+            "confidence_treatment": "negative_weighted",
+            "conflict_treatment": "preserve_if_insufficient_evidence",
+            "policy_outcomes": [
+                "create_provisional_candidate",
+                "degrade_existing_state",
+                "mark_unresolved"
+            ],
+            "precedence_class": "selection_high",
+            "composable_with": [
+                "insufficient_evidence_unresolved",
+                "conflict_preservation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "revocation_override",
+            "policy_version": "v1",
+            "description": "撤销信号优先阻止被撤销支持继续参与。",
+            "eligible_state_types": [
+                "presence_state",
+                "accessibility_state",
+                "path_state",
+                "service_state",
+                "facility_state"
+            ],
+            "required_event_conditions": [
+                "revocation_event_present",
+                "admitted_event"
+            ],
+            "prohibited_event_conditions": [
+                "revocation_event_invalid"
+            ],
+            "required_temporal_conditions": [
+                "revocation_event_active"
+            ],
+            "prohibited_temporal_conditions": [
+                "revocation_event_expired"
+            ],
+            "confidence_treatment": "revocation_priority",
+            "conflict_treatment": "prefer_revocation_then_preserve_conflict",
+            "policy_outcomes": [
+                "revoke_existing_state",
+                "no_state_change",
+                "preserve_conflict"
+            ],
+            "precedence_class": "override_top",
+            "composable_with": [
+                "no_state_change"
+            ],
+            "mutually_exclusive_with": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "expiration_degrade",
+            "policy_version": "v1",
+            "description": "支持过期时降级而非继续 active。",
+            "eligible_state_types": [
+                "presence_state",
+                "accessibility_state",
+                "service_state",
+                "environmental_condition_state"
+            ],
+            "required_event_conditions": [
+                "expired_support_present"
+            ],
+            "prohibited_event_conditions": [
+                "fresh_support_present_and_dominant"
+            ],
+            "required_temporal_conditions": [
+                "expired_or_expiring"
+            ],
+            "prohibited_temporal_conditions": [
+                "revoked"
+            ],
+            "confidence_treatment": "temporal_decay_strict",
+            "conflict_treatment": "preserve_if_competing_active_signal",
+            "policy_outcomes": [
+                "degrade_existing_state",
+                "expire_existing_state",
+                "mark_unresolved"
+            ],
+            "precedence_class": "override_high",
+            "composable_with": [
+                "insufficient_evidence_unresolved"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "temporary_overlay_separation",
+            "policy_version": "v1",
+            "description": "临时 overlay 与 substrate 分层，不允许永久覆盖。",
+            "eligible_state_types": [
+                "temporary_overlay_state",
+                "accessibility_state",
+                "path_state"
+            ],
+            "required_event_conditions": [
+                "overlay_event_present",
+                "admitted_event"
+            ],
+            "prohibited_event_conditions": [
+                "overlay_event_missing_scope"
+            ],
+            "required_temporal_conditions": [
+                "overlay_active_or_expiring"
+            ],
+            "prohibited_temporal_conditions": [
+                "overlay_revoked_without_replacement"
+            ],
+            "confidence_treatment": "overlay_specific_weighting",
+            "conflict_treatment": "parallel_preservation",
+            "policy_outcomes": [
+                "create_temporary_overlay_candidate",
+                "preserve_existing_state",
+                "mark_unresolved"
+            ],
+            "precedence_class": "overlay_high",
+            "composable_with": [
+                "conflict_preservation",
+                "expiration_degrade"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "conflict_preservation",
+            "policy_version": "v1",
+            "description": "无法安全决策时保留冲突，不伪造 winner。",
+            "eligible_state_types": [
+                "conflict_state",
+                "uncertainty_state",
+                "accessibility_state",
+                "path_state"
+            ],
+            "required_event_conditions": [
+                "contradiction_present"
+            ],
+            "prohibited_event_conditions": [
+                "conflict_already_resolved_with_evidence"
+            ],
+            "required_temporal_conditions": [
+                "conflict_context_valid"
+            ],
+            "prohibited_temporal_conditions": [],
+            "confidence_treatment": "uncertainty_floor",
+            "conflict_treatment": "preserve_conflict",
+            "policy_outcomes": [
+                "preserve_conflict",
+                "mark_unresolved",
+                "no_state_change"
+            ],
+            "precedence_class": "safety_top",
+            "composable_with": [
+                "insufficient_evidence_unresolved",
+                "temporary_overlay_separation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "insufficient_evidence_unresolved",
+            "policy_version": "v1",
+            "description": "证据不足时标记 unresolved 或回退 no_state_change。",
+            "eligible_state_types": [
+                "uncertainty_state",
+                "conflict_state",
+                "human_activity_state",
+                "service_state",
+                "entity_field_observation_relation_state"
+            ],
+            "required_event_conditions": [
+                "evidence_below_threshold"
+            ],
+            "prohibited_event_conditions": [
+                "strong_consensus_present"
+            ],
+            "required_temporal_conditions": [
+                "temporal_context_available"
+            ],
+            "prohibited_temporal_conditions": [],
+            "confidence_treatment": "minimum_evidence_gate",
+            "conflict_treatment": "preserve_if_any_contradiction",
+            "policy_outcomes": [
+                "mark_unresolved",
+                "mark_uncertain",
+                "no_state_change"
+            ],
+            "precedence_class": "safety_high",
+            "composable_with": [
+                "expiration_degrade",
+                "conflict_preservation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "explicit_owner_override_candidate",
+            "policy_version": "v1",
+            "description": "Owner correction 仅作为 governed candidate 参与评估。",
+            "eligible_state_types": [
+                "facility_state",
+                "service_state",
+                "navigation_relevance_state"
+            ],
+            "required_event_conditions": [
+                "owner_correction_event",
+                "admitted_event",
+                "provenance_present"
+            ],
+            "prohibited_event_conditions": [
+                "owner_correction_without_review"
+            ],
+            "required_temporal_conditions": [
+                "owner_correction_not_revoked"
+            ],
+            "prohibited_temporal_conditions": [
+                "owner_correction_expired"
+            ],
+            "confidence_treatment": "owner_weighting_with_review_gate",
+            "conflict_treatment": "preserve_conflict_if_contradiction",
+            "policy_outcomes": [
+                "create_provisional_candidate",
+                "supersede_existing_state",
+                "reject_policy_application"
+            ],
+            "precedence_class": "governed_mid",
+            "composable_with": [
+                "multi_event_consensus",
+                "conflict_preservation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "policy_id": "no_state_change",
+            "policy_version": "v1",
+            "description": "安全兜底，不创建新 state，不推进 mutation。",
+            "eligible_state_types": [
+                "presence_state",
+                "accessibility_state",
+                "path_state",
+                "obstruction_state",
+                "facility_state",
+                "service_state",
+                "environmental_condition_state",
+                "human_activity_state",
+                "navigation_relevance_state",
+                "temporary_overlay_state",
+                "uncertainty_state",
+                "conflict_state"
+            ],
+            "required_event_conditions": [
+                "fallback_requested_or_no_safe_policy"
+            ],
+            "prohibited_event_conditions": [],
+            "required_temporal_conditions": [],
+            "prohibited_temporal_conditions": [],
+            "confidence_treatment": "none",
+            "conflict_treatment": "preserve_existing_or_conflict",
+            "policy_outcomes": [
+                "no_state_change",
+                "preserve_existing_state",
+                "reject_policy_application"
+            ],
+            "precedence_class": "fallback",
+            "composable_with": [
+                "revocation_override",
+                "insufficient_evidence_unresolved",
+                "conflict_preservation"
+            ],
+            "mutually_exclusive_with": [],
+            "deterministic_required": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false,
+            "state_write_allowed": false,
+            "action_trigger_allowed": false,
+            "real_execution": false,
+            "implemented": false,
+            "runtime_callable": false
+        }
+    ],
+    "global_simple_average_default": false,
+    "policy_registry_complete": true
+}

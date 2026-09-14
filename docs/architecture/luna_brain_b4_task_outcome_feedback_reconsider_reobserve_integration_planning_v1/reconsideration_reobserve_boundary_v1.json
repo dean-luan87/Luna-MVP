@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_reconsideration_reobserve_boundary_v1",
+  "reconsideration_owner":"Outcome Evaluation Governance emits ReconsiderationHandoffCandidateV1; Cognitive Flow owns cognitive re-entry; Decision/Task remain their own lifecycle owners.",
+  "reobserve_owner":"Field Perception Orchestrator / Active Observation Control",
+  "triggers":["INSUFFICIENT_EVIDENCE", "CONTESTED", "STALE_ACTUAL", "STALE_EXPECTATION", "runtime failure/timeout/partial/rejection candidate"],
+  "relationship":"Reconsideration is a candidate change of evaluation/flow; reobserve is an observation need handoff. Neither is automatic retry or provider execution.",
+  "contracts":["ReconsiderationHandoffCandidateV1", "ObservationNeedHandoffCandidateV1", "CognitiveFlow ReconsiderationCandidateV1"]
+}

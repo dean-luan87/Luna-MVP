@@ -1,0 +1,22 @@
+{
+  "artifact": "emotion_state_taxonomy_v1",
+  "canonical_dimensions": [
+    "valence_candidate",
+    "arousal_candidate",
+    "activation_intensity_candidate",
+    "emotion_category_candidate",
+    "uncertainty_candidate",
+    "temporal_persistence_candidate",
+    "context_attachment_candidate",
+    "regulation_pressure_candidate"
+  ],
+  "candidate_value_spaces": {
+    "valence_candidate": ["negative_candidate", "neutral_candidate", "positive_candidate", "mixed_candidate", "unknown"],
+    "arousal_candidate": ["low_candidate", "medium_candidate", "high_candidate", "fluctuating_candidate", "unknown"],
+    "activation_intensity_candidate": ["weak_candidate", "moderate_candidate", "strong_candidate", "transient_spike_candidate", "unknown"],
+    "emotion_category_candidate": ["named_category_candidate", "unnamed_affective_candidate", "mixed_category_candidate", "unresolved_category_candidate"],
+    "temporal_persistence_candidate": ["transient", "short_lived", "persistent_candidate", "decaying", "recovering", "unknown"]
+  },
+  "named_category_rule": "Any named emotion remains a revisable candidate label supported by evidence; it is never immutable truth or diagnosis.",
+  "anti_score_rule": "No single opaque emotional score may replace the multidimensional candidate representation."
+}

@@ -1,0 +1,10 @@
+{
+  "schema_id": "cognitive_state_v1",
+  "owner": "Cognitive State Management",
+  "states": ["NORMAL", "IDLE", "FOCUS", "PROTECTION", "DEGRADED", "RECOVERY"],
+  "state_candidate_fields": ["state_id", "state_candidate", "reason", "evidence_refs", "confidence", "resource_implication", "unknowns", "field_ref", "lifecycle_state"],
+  "candidate_only": true,
+  "automatic_transition": false,
+  "runtime_state_machine": false,
+  "emotion_input": false
+}

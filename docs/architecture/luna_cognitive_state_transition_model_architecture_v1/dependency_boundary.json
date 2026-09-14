@@ -1,0 +1,18 @@
+{
+  "contract_id": "state_transition_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Reality -> Field Transition", "Field -> Understanding Transition", "Memory -> Understanding Transition", "Understanding -> Goal Transition", "Goal -> Value Transition", "Value -> Decision Candidate", "Outcome -> Memory Transition", "Resource -> Global Regulation", "Self -> Boundary Governance", "Stability -> All State Transitions", "Momentum -> Transition Candidate", "Elasticity -> Transition Candidate", "Persistence -> Continuity Candidate", "B Route -> Future State Candidate", "Hive -> Transition Metric Candidate"
+  ],
+  "forbidden_dependencies": [
+    "Memory -> Override Reality", "Learning -> Direct Self Update", "Single Outcome -> Direct Memory Write", "Self Transition -> Direct Identity Change", "Self Transition -> Direct Constitution Change", "Stability Constraint -> Automatic Acceptance", "Momentum -> Scheduler", "Elasticity -> Automatic Transition", "Persistence -> Reinitialize Identity", "B Route -> Override A Route", "B Route -> Virtual Outcome as Experience", "B Route -> Update Parameters", "Hive -> Direct State Modification", "Hive -> Direct Parameter Update", "Value -> Execute Action", "Goal -> Execute Action", "Decision -> Reality Mutation", "Runtime -> Transition Authority", "Emotion -> Direct Invariant Change"
+  ],
+  "no_state_runtime": true,
+  "no_prediction_runtime": true,
+  "no_scheduler": true,
+  "no_automatic_transition": true,
+  "no_b_route_runtime": true,
+  "no_hive_runtime": true,
+  "no_automatic_learning": true,
+  "no_identity_change": true,
+  "no_constitution_change": true
+}

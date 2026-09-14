@@ -1,0 +1,40 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-State-Formation-Architecture-And-Controlled-Implementation-Planning-v1-001",
+    "goal": "Produce architecture and controlled implementation planning assets for Attention/Hypothesis/Current World as one complete module without runtime execution.",
+    "mode": "planning_only",
+    "execution_authority": {
+        "agent": "V0",
+        "user_terminal": "V2",
+        "final_arbitration": "V3"
+    },
+    "constraints": [
+        "no_python_execution",
+        "no_runner_execution",
+        "no_verifier_execution_by_agent",
+        "static_checks_only",
+        "candidate_only_outputs",
+        "owner_preservation"
+    ],
+    "deliverables": [
+        "cognitive_state_formation_architecture_plan_v1.md",
+        "cognitive_state_formation_owner_boundary_v1.json",
+        "cognitive_state_formation_concept_boundary_matrix_v1.json",
+        "cognitive_state_formation_input_contract_v1.json",
+        "cognitive_state_formation_output_contract_v1.json",
+        "cognitive_state_formation_trace_provenance_contract_v1.json",
+        "attention_candidate_schema_v1.json",
+        "attention_selection_model_v1.json",
+        "cognitive_hypothesis_schema_v1.json",
+        "cognitive_hypothesis_state_model_v1.json",
+        "cognitive_hypothesis_competition_model_v1.json",
+        "current_world_candidate_schema_v1.json",
+        "current_world_field_boundary_v1.json",
+        "cognitive_state_formation_causal_handoff_v1.json",
+        "cognitive_state_vector_candidate_contract_v1.json",
+        "cognitive_state_formation_gap_registry_v1.json",
+        "cognitive_state_formation_scenario_suite_v1.json",
+        "cognitive_state_formation_negative_guards_v1.json",
+        "verify_cognitive_state_formation_architecture_planning_v1.py"
+    ],
+    "agent_stop_state": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

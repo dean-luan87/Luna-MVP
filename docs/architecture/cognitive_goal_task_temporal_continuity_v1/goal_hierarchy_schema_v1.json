@@ -1,0 +1,23 @@
+{
+  "schema_name": "Goal Hierarchy Schema v1",
+  "goal_id": "goal-example",
+  "goal_type": "Long Term | Current | Task",
+  "parent_goal_reference": null,
+  "origin": "Brain | User | External Event | Task Process",
+  "intent_reference": "intent-example",
+  "field_reference": "field-example",
+  "constraints": [],
+  "priority_candidate": "candidate",
+  "validity_interval": {"start": null, "end": null},
+  "status": "Proposed | Active | Suspended | Completed | Abandoned | Expired",
+  "completion_condition": null,
+  "provenance": [],
+  "unknowns": [],
+  "goal_is_not_task": true,
+  "goal_is_not_action": true,
+  "goal_does_not_modify_reality": true,
+  "goal_does_not_execute": true,
+  "brain_retains_goal_authority": true,
+  "goal_revision_requires_review": true,
+  "unknowns_are_preserved": true
+}

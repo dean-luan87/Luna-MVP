@@ -1,0 +1,141 @@
+{
+  "contract_id": "cognitive_loop_identity_contract_v1",
+  "phase": "Phase-Luna-Cognitive-Loop-Architecture-Alignment-And-Implementation-Contract-v1-001",
+  "status": "architecture_only",
+  "canonical_owner": "Cognitive Flow Governance",
+  "identity_fields": {
+    "loop_id": "opaque loop identity; stable across pause, wait, resume, and terminal assessment",
+    "cognitive_concern_ref": "Brain-owned local unresolved concern that justified persistent Loop materialization",
+    "goal_ref": "Cognitive Goal candidate reference",
+    "intent_refs": "read-only Intent Governance references",
+    "role_refs": "read-only Role / Perspective references",
+    "perspective_refs": "read-only perspective references used for meaning and relevance",
+    "field_refs": "read-only Field references",
+    "context_refs": "read-only Context Foundation references",
+    "current_world_refs": "read-only Current World candidate references",
+    "current_state_version_ref": "latest Cognitive State version owned by Cognitive State Formation",
+    "current_need_ref": "current minimum necessary Need only",
+    "provisional_plan_ref": "candidate plan reference; never an execution queue",
+    "hypothesis_refs": "local hypothesis lineage references owned by Cognitive State Formation",
+    "expectation_refs": "expected evidence/outcome references owned by the relevant governance owner",
+    "attention_refs": "read-only Attention references",
+    "evidence_refs": "accepted or pending evidence references",
+    "experience_refs": "future Experience candidate references only; no mutation",
+    "task_behavior_refs": "read-only Task / Behavior continuity references",
+    "priority_refs": "global priority and arbitration references",
+    "resource_envelope_refs": "resource constraint and budget references",
+    "safety_refs": "Safety / Survival governance references",
+    "emotion_modulation_refs": "read-only Emotion modulation references",
+    "spatial_continuity_refs": "spatial continuity references",
+    "temporal_continuity_refs": "temporal continuity references",
+    "pending_candidate_refs": "unmaterialized loop-local candidates",
+    "capability_requirement_refs": "Requirement candidates bound to the state version that created them",
+    "observation_refs": "admitted or proposed Observation references",
+    "priority_refs": "priority and arbitration references, not a local scheduling algorithm",
+    "resource_refs": "shared resource constraint references",
+    "trace_refs": "loop-scoped transition and handoff traces",
+    "provenance_refs": "reverse-linkable source and owner provenance",
+    "lifecycle_state": "ACTIVE, PAUSED, WAITING, DEFERRED, STOPPED, or COMPLETED candidate"
+  },
+  "not_equivalent_to": [
+    "Task",
+    "Intent",
+    "Plan",
+    "execution queue",
+    "Observation owner",
+    "Resource allocator",
+    "Safety authority",
+    "Self",
+    "Role",
+    "Emotion",
+    "Memory",
+    "Experience",
+    "Action",
+    "World Truth",
+    "Provider identity"
+  ],
+  "materialization_rule": {
+    "materialize_only_when": [
+      "unresolved information gap",
+      "multi-step reasoning",
+      "hypothesis maintenance",
+      "re-observation",
+      "reconsideration",
+      "waiting",
+      "pause_or_resume",
+      "capability use or acquisition candidate",
+      "cross-time continuity"
+    ],
+    "immediate_cognition_may_remain_in_brain": true,
+    "brain_must_not_duplicate_materialized_local_concern": true,
+    "loop_creation_governance_owner": "Brain / existing Brain Governance"
+  },
+  "state_ownership": {
+    "authoritative_data": ["Intent", "Role", "Field", "Safety", "Resource", "Emotion", "Memory", "Experience", "Provider identity"],
+    "source_owned_state_or_candidates": ["Current World candidate", "Task / Behavior state", "Attention", "Observation evidence", "Capability Scope / Resolution"],
+    "loop_local_state": ["local disposition", "current minimum Need", "hypothesis lineage", "pending candidates", "state-version lineage", "pause/wait reason", "last disposition"],
+    "read_only_references": ["Context", "Attention", "Evidence", "Requirement", "Observation", "Task / Behavior", "priority", "continuity", "trace", "provenance"]
+  },
+  "lifecycle_mapping": [
+    {
+      "lifecycle": "ACTIVE",
+      "existing_reuse": ["Cognitive Flow STATE_READY", "Cognitive Flow REGULATING"],
+      "meaning": "loop has a current candidate transition under governance",
+      "semantic_gap": "ACTIVE is a loop-level disposition, not a current canonical cycle enum",
+      "implementation_recommendation": "represent as a candidate lifecycle field mapped to existing active Cognitive Flow stages; do not expand the canonical enum yet",
+      "provider_invocation": false
+    },
+    {
+      "lifecycle": "PAUSED",
+      "existing_reuse": ["SUSPENDED", "SuspendCandidateV1"],
+      "meaning": "governed pause caused by Brain, Safety, Resource, or User control",
+      "semantic_gap": "PAUSED and SUSPENDED are near-equivalent but retain source terminology",
+      "implementation_recommendation": "reuse SuspendCandidateV1 and map lifecycle PAUSED to SUSPENDED",
+      "provider_invocation": false
+    },
+    {
+      "lifecycle": "WAITING",
+      "existing_reuse": ["DEFERRED_ASYNC_REFERENCE", "TaskReadiness HOLD", "TaskReadiness REQUIRES_OBSERVATION"],
+      "meaning": "external information, user response, capability recovery, or dependency is required and no current next step is admitted",
+      "semantic_gap": "WAITING is not a canonical Cognitive Flow enum",
+      "implementation_recommendation": "add only a minimal candidate lifecycle disposition in the Loop envelope; do not mutate Task readiness or create a scheduler",
+      "provider_invocation": false
+    },
+    {
+      "lifecycle": "DEFERRED",
+      "existing_reuse": ["Dynamic Flow DEFER", "DEFERRED_ASYNC_REFERENCE"],
+      "meaning": "governance defers continuation without declaring failure",
+      "semantic_gap": "DEFER is a next-step disposition rather than a persistent Loop lifecycle",
+      "implementation_recommendation": "map lifecycle DEFERRED to DEFER plus a deferred reference",
+      "provider_invocation": false
+    },
+    {
+      "lifecycle": "STOPPED",
+      "existing_reuse": ["candidate-only terminal disposition"],
+      "meaning": "intentional stop distinct from failure and distinct from goal completion",
+      "semantic_gap": "STOPPED has no exact existing canonical lifecycle value",
+      "implementation_recommendation": "add a candidate-only terminal label only in the Loop envelope; never alias Task failure or cancellation",
+      "provider_invocation": false
+    },
+    {
+      "lifecycle": "COMPLETED",
+      "existing_reuse": ["CYCLE_STATES.COMPLETED", "STOP_SUFFICIENT"],
+      "meaning": "this loop's own goal is sufficient or otherwise terminally complete",
+      "semantic_gap": "COMPLETED is cycle-level while STOP_SUFFICIENT is cognitive sufficiency",
+      "implementation_recommendation": "reuse COMPLETED and require loop-local sufficiency/outcome references",
+      "provider_invocation": false
+    }
+  ],
+  "state_version_rule": "every accepted evidence, pause/resume assessment, or world comparison produces or references an explicit candidate state version; old Requirements are reassessed against their source version",
+  "completion_output": "Cognitive Outcome Candidate for Brain assimilation; not World Truth, Decision, Action, Memory, Experience, or Intent mutation",
+  "branch_reservation": {
+    "future_fields": ["parent_loop_ref", "derived_from", "dependency_refs", "shared_context_refs", "inherited_evidence_refs", "branch_reason", "supersede_ref", "merge_candidate_ref"],
+    "brain_owned_creation": true,
+    "recursive_autonomous_spawning": false
+  },
+  "candidate_only": true,
+  "runtime_execution": false,
+  "scheduler_execution": false,
+  "provider_invocation": false,
+  "owner_mutation": false
+}

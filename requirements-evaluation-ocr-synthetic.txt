@@ -1,0 +1,11 @@
+# Evaluation Tools / OCR Synthetic (Phase-EvaluationTools-OCR-001)
+#
+# IMPORTANT:
+# - This requirements file is for OFFLINE EVALUATION TOOLS ONLY.
+# - It must NOT be imported by Luna runtime/mainline requirements.
+# - TRDG is OPTIONAL in v0; if unavailable, generator falls back to Pillow-only.
+
+trdg
+Pillow
+numpy
+

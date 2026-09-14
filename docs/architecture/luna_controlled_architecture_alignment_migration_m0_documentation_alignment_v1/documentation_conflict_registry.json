@@ -1,0 +1,88 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_v2_m0_documentation_conflicts",
+  "purpose": "Resolve documentation semantics without rewriting historical assets or changing active implementation.",
+  "conflicts": [
+    {
+      "conflict_id": "historical_implemented_status_ambiguity",
+      "subject": "Implementation status terminology",
+      "source_a": "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/implemented_vs_planned_registry_v2.json",
+      "source_b": "capabilities/registry/baselines/",
+      "conflict": "Historical implemented labels may describe validated architecture while active module baselines describe engineering implementation.",
+      "resolution": "M0 qualifies historical architecture claims as ARCHITECTURE_VALIDATED unless an active module baseline provides ENGINEERING_BASELINE_ACTIVE evidence.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "cognitive_flow_vs_migration_dependency_order",
+      "subject": "Flow semantics",
+      "source_a": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/architecture_v2.md",
+      "source_b": "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/migration_dependency_graph.json",
+      "conflict": "The cognitive information flow and controlled migration dependency order list Intent and Causal work in different sequences.",
+      "resolution": "The architecture document defines cognitive information flow; the dependency graph defines migration preconditions. Migration order is not Runtime or cognitive dataflow.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "brain_candidate_vs_decision_selection",
+      "subject": "Decision authority",
+      "source_a": "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/authority_baseline_v2.json",
+      "source_b": "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/",
+      "conflict": "Brain candidate generation can be misread as final Decision selection authority.",
+      "resolution": "Brain owns Decision Candidate generation; Decision Arbitration owns governed candidate filtering and selection; neither owns Action execution.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "memory_vs_personal_cognitive_network",
+      "subject": "Historical storage and cross-object projection ownership",
+      "source_a": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/",
+      "source_b": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/personal_cognitive_network_boundary.json",
+      "conflict": "PCN activation and projection could be misread as Memory ownership or a replacement memory store.",
+      "resolution": "Memory retains persistence, consolidation, activation, and retrieval ownership. PCN owns cross-object links, activation coordination, and read-only context projections only.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "architecture_runtime_vs_root_a3_runtime",
+      "subject": "Runtime equivalence",
+      "source_a": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/architecture_v2.md",
+      "source_b": "runtime/",
+      "conflict": "Dynamic architecture terminology could be mistaken for implementation by the existing root A3 Runtime.",
+      "resolution": "Root A3 Runtime is recorded as LEGACY_RUNTIME_UNALIGNED; no Dynamic Cognitive Architecture v2 Runtime equivalence or activation is inferred.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "social_self_owner_label_granularity",
+      "subject": "Social Self, Role, and Relationship owner terminology",
+      "source_a": "docs/architecture/luna_self_social_self_architecture_refactoring_v1/",
+      "source_b": "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/cognitive_asset_ownership_matrix.json",
+      "conflict": "Social Self is a governance domain while Role and Relationship each require their own canonical responsibility owner labels.",
+      "resolution": "Use Social Self as the governance domain and Social Self / Role System plus Social Self / Relationship System as distinct canonical owners; neither ownership is transferred to PCN.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    },
+    {
+      "conflict_id": "action_architecture_vs_runtime_activation",
+      "subject": "Action boundary readiness",
+      "source_a": "docs/architecture/luna_cognitive_action_boundary_v1/",
+      "source_b": "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/phase_contract.json",
+      "conflict": "A validated Action boundary could be misread as authorization to execute or activate Action Runtime.",
+      "resolution": "Action architecture is ARCHITECTURE_VALIDATED only. M0 performs no Action execution, Runtime activation, or Runtime boundary adjustment.",
+      "status": "resolved_by_documentation_qualification",
+      "requires_existing_asset_edit": false,
+      "blocks_m1": false
+    }
+  ],
+  "all_resolved": true,
+  "unresolved_conflict_ids": [],
+  "existing_assets_modified": false,
+  "runtime_changed": false,
+  "schema_or_contract_changed": false
+}

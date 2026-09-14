@@ -1,0 +1,51 @@
+{
+    "version": "1.0",
+    "name": "Temporal Validity Model",
+    "description": "定义时间有效性类型、规则和投影资格",
+    "temporal_types": [
+        "persistent",
+        "interval",
+        "recurring",
+        "temporary",
+        "seasonal",
+        "event_driven",
+        "until_revoked",
+        "inherited",
+        "unknown_validity"
+    ],
+    "validity_components": [
+        {
+            "field": "activation_rule",
+            "description": "何时开始将定义视为候选有效。"
+        },
+        {
+            "field": "deactivation_rule",
+            "description": "何时结束候选有效性。"
+        },
+        {
+            "field": "expiry_rule",
+            "description": "候选何时被标记为过期。"
+        },
+        {
+            "field": "refresh_rule",
+            "description": "何时请求刷新证据或验证。"
+        },
+        {
+            "field": "recurrence_rule",
+            "description": "周期性时间段的定义规则。"
+        },
+        {
+            "field": "inheritance_rule",
+            "description": "从父定义继承时间有效性的规则。"
+        },
+        {
+            "field": "projection_eligibility",
+            "description": "当前是否可参与 ActiveFieldProjection。"
+        }
+    ],
+    "policy_guidance": {
+        "recurrence_is_candidate": "recurrence 模式仅构建候选，不等同于确定性事实。",
+        "expired_not_active": "过期定义不得参与当前 Active Projection。",
+        "revoked_not_eligible": "撤回定义不得继续生成候选。"
+    }
+}

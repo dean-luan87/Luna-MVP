@@ -1,0 +1,1361 @@
+{
+    "registry_version": "v1",
+    "name": "Luna Capability Registry",
+    "last_updated": "2026-07-17",
+    "lifecycle_registry_ref": "capabilities/registry/luna_capability_lifecycle_registry_v1.json",
+    "manifest_schema_ref": "capabilities/registry/schemas/capability_module_manifest_schema_v1.json",
+    "notes": [
+        "Capability Module is the minimal packaging, iteration, and acceptance unit in Luna.",
+        "Subsystem/component/policy/protocol/adapter/runner/verifier are internal assets unless explicitly promoted with governance evidence.",
+        "This registry is foundation-only and does not create runtime loading services."
+    ],
+    "capabilities": [
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "capability_name": "Field Perception Orchestrator",
+            "domain": "midplatform.field_perception",
+            "owner_layer": "midplatform",
+            "responsibility": "Coordinate candidate-only field perception planning and controlled visual invocation handoff from Field Perception to Vision Manager to Model Manager to Observation Manager.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "field state, task context, observation summaries, resource budget, uncertainty/conflict state, and invocation history",
+                "refs": [
+                    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_input_adapter_v1.py",
+                    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_visual_invocation_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "field perception plan plus candidate-only visual invocation handoff result with diagnostics, trace, replay, and result link contract",
+                "refs": [
+                    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_plan_builder_v1.py",
+                    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_visual_handoff_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [
+                "luna.task_manager",
+                "luna.field_state_reducer",
+                "luna.vision_manager",
+                "luna.model_manager",
+                "luna.observation_manager"
+            ],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/field_perception_orchestrator/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_field_perception_visual_handoff_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_diagnostics_v1.py",
+                    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_handoff_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_trace_replay_v1.py",
+                    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_handoff_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_trace_replay_v1.py",
+                    "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_handoff_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only handoff boundary",
+                "no real model execution, no real visual evidence generation, no field state write, no runtime loop"
+            ],
+            "ready_evidence": {
+                "total_cases": 16,
+                "passed_cases": 16,
+                "failed_cases": [],
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "deterministic_replay": true,
+                "boundary_preserved": true,
+                "unhandled_exceptions": 0,
+                "evidence_ref": "_tmp_eval_out/field_perception_visual_handoff_integration_v1_smoke_v0/field_perception_visual_handoff_integration_v1.json"
+            },
+            "internal_components": [
+                "field_understanding",
+                "information_gap_detection",
+                "visual_capability_planning",
+                "model_requirement_handoff",
+                "observation_request_handoff",
+                "trace_replay"
+            ],
+            "manifest_path": "capabilities/registry/manifests/field_perception_orchestrator_manifest_v1.json",
+            "last_updated": "2026-07-17"
+        },
+        {
+            "capability_id": "luna.field_state_reducer",
+            "capability_name": "Field State Reducer",
+            "domain": "midplatform.field_state",
+            "owner_layer": "midplatform.core",
+            "responsibility": "Reduce admitted field events to field state candidate and read projection candidate under policy and governance boundaries.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "admitted events plus state/temporal/governance snapshots",
+                "refs": [
+                    "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "field state candidate, projection candidate, diagnostics, trace, replay key",
+                "refs": [
+                    "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/core/field_state_reducer/module/",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/core/field_state_reducer/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_field_state_reducer_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/field_state_reducer/field_state_reducer_trace_types_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/field_state_reducer/state_reduction/state_reduction_provenance_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only output boundary",
+                "no state persistence or action execution"
+            ],
+            "ready_evidence": {
+                "total_cases": 16,
+                "passed_cases": 16,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "boundary_preserved": true,
+                "evidence_ref": "_tmp_eval_out/_latest_module_integration_report.json"
+            },
+            "internal_components": [
+                "policy_evaluation",
+                "policy_selection",
+                "state_reduction",
+                "trace_builder",
+                "replay_builder"
+            ],
+            "manifest_path": "capabilities/registry/manifests/field_state_reducer_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.model_manager",
+            "capability_name": "Model Manager",
+            "domain": "midplatform.model_governance",
+            "owner_layer": "midplatform",
+            "responsibility": "Govern model admission, capability-first routing, ownership/resource evaluation, and lifecycle planning in controlled scope.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "model request candidate, ownership/resource/version snapshots",
+                "refs": [
+                    "capabilities/midplatform/model_manager/module/model_manager_module_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "model selection/lifecycle/fallback candidates with diagnostics, trace, replay",
+                "refs": [
+                    "capabilities/midplatform/model_manager/module/model_manager_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/model_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/model_manager/module/model_manager_health_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/model_manager/module/model_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/model_manager/module/model_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no direct runtime execution or state mutation"
+            ],
+            "ready_evidence": {
+                "total_cases": 16,
+                "passed_cases": 16,
+                "failed_cases": [],
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "deterministic_replay": true,
+                "boundary_preserved": true,
+                "evidence_ref": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/model_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.model_controller",
+            "capability_name": "Model Controller",
+            "domain": "midplatform.model_governance",
+            "owner_layer": "midplatform",
+            "responsibility": "Historical alias for luna.model_manager.",
+            "lifecycle_status": "deprecated",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "alias forwarding only",
+                "refs": []
+            },
+            "output_contract": {
+                "summary": "alias forwarding only",
+                "refs": []
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": null,
+                "exists": false
+            },
+            "implementation_path": "capabilities/midplatform/model_manager/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": false,
+                "refs": []
+            },
+            "trace_support": {
+                "supported": false,
+                "refs": []
+            },
+            "replay_support": {
+                "supported": false,
+                "refs": []
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "migrated_to_luna.model_manager",
+            "upgrade_policy": "no_new_upgrade_on_alias",
+            "deprecation_policy": "frozen_alias_no_new_dependents",
+            "known_limitations": [
+                "deprecated alias only",
+                "new dependency registration is forbidden"
+            ],
+            "ready_evidence": null,
+            "historical_alias_for": "luna.model_manager",
+            "migrated_to": "luna.model_manager",
+            "internal_components": [],
+            "manifest_path": null,
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "capability_name": "Task Manager",
+            "domain": "midplatform.task_orchestration",
+            "owner_layer": "midplatform.core",
+            "responsibility": "Coordinate task orchestration lifecycle, dependency routing, interruption/recovery candidates, and governed handoff through consolidated module API.",
+            "lifecycle_status": "building",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "task request and governance handoff signals",
+                "refs": [
+                    "capabilities/midplatform/task_manager_contract_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "task orchestration decisions and handoff records",
+                "refs": [
+                    "capabilities/midplatform/core/task_manager_types_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/core/task_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_task_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/task_manager/module/task_manager_module_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/task_manager/module/task_manager_module_facade_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/task_manager/module/task_manager_module_facade_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only orchestration boundary",
+                "no direct runtime dispatch or state mutation"
+            ],
+            "ready_evidence": null,
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/task_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "capability_name": "Observation Manager",
+            "domain": "midplatform.observation",
+            "owner_layer": "midplatform",
+            "responsibility": "Assemble unified candidate-only observation chain from task/scene/attention/region to vision+ocr evidence association and admission handoff.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "observation request candidates with task/scene/attention/region/temporal constraints",
+                "refs": [
+                    "capabilities/midplatform/observation_manager/module/observation_manager_module_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "observation candidate and permission admission handoff candidate with diagnostics/trace/replay",
+                "refs": [
+                    "capabilities/midplatform/observation_manager/module/observation_manager_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [
+                "luna.task_manager",
+                "luna.vision_manager",
+                "luna.ocr_manager",
+                "luna.permission_and_admission_manager",
+                "luna.protocol_manager"
+            ],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/observation_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/observation_manager/module/observation_manager_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/observation_manager/module/observation_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/observation_manager/module/observation_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no fact admission, no field state write, no provider runtime invocation"
+            ],
+            "ready_evidence": {
+                "total_cases": 20,
+                "passed_cases": 20,
+                "failed_cases": [],
+                "observation_candidate_present_when_expected": true,
+                "attention_plan_present_when_expected": true,
+                "vision_request_candidate_present_when_expected": true,
+                "ocr_request_candidate_present_when_expected": true,
+                "crossmodal_association_present_when_expected": true,
+                "admission_handoff_present_when_expected": true,
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "deterministic_replay": true,
+                "boundary_preserved": true,
+                "unhandled_exceptions": 0,
+                "evidence_ref": "tools/evaluation/midplatform/run_observation_manager_module_integration_v1.py"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/observation_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.vision_manager",
+            "capability_name": "Vision Manager",
+            "domain": "perception.vision",
+            "owner_layer": "midplatform",
+            "responsibility": "Assemble task-aware visual input candidates, model handoff candidates, and composed visual evidence under strict candidate-only boundaries.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "vision observation request, attention target, frame quality, ownership and version snapshots",
+                "refs": [
+                    "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "visual evidence candidates, model handoff candidate, diagnostics, trace/replay",
+                "refs": [
+                    "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_vision_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/vision_manager/module/vision_manager_module_facade_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/vision_manager/module/vision_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/vision_manager/module/vision_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only module; no real provider runtime execution",
+                "no state mutation, fact admission, or action execution"
+            ],
+            "ready_evidence": {
+                "integration_runner": "tools/evaluation/midplatform/run_vision_manager_module_integration_v1.py",
+                "scenario_count": 18,
+                "integration_pass": true,
+                "boundary_flags_ok": true,
+                "deterministic_replay_ok": true
+            },
+            "internal_components": [
+                "input_validation_and_admission",
+                "attention_and_roi_builder",
+                "visual_candidate_normalization",
+                "model_handoff_candidate_builder",
+                "trace_replay"
+            ],
+            "manifest_path": "capabilities/registry/manifests/vision_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.ocr_manager",
+            "capability_name": "OCR Manager",
+            "domain": "perception.ocr",
+            "owner_layer": "midplatform",
+            "responsibility": "Assemble candidate-only OCR input/governance/engine/evidence chain and emit structured OCR evidence envelope with diagnostics and deterministic trace/replay.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "OCR request, source/frame refs, region candidates, and optional human correction candidate input",
+                "refs": [
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_module_input_adapter_v1.py",
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_request_governance_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "raw OCR evidence + layout/reading-order/attribution/enhancement/correction/crossmodal candidates + structured evidence envelope + diagnostics + trace/replay",
+                "refs": [
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_evidence_envelope_builder_v1.py",
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_diagnostics_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/ocr_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_ocr_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/ocr_manager/module/ocr_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no direct provider runtime/model execution/state mutation/fact admission"
+            ],
+            "ready_evidence": {
+                "total_cases": 18,
+                "passed_cases": 18,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "evidence_envelope_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "raw_evidence_preserved": true,
+                "boundary_preserved": true,
+                "evidence_ref": "tools/evaluation/midplatform/run_ocr_manager_module_integration_v1.py"
+            },
+            "internal_components": [
+                "ocr_engine_capability_adapter",
+                "region_attribution",
+                "layout_analysis",
+                "reading_order",
+                "enhancement_candidate",
+                "human_correction_adapter",
+                "crossmodal_consistency",
+                "evidence_envelope_builder",
+                "diagnostics",
+                "trace_replay"
+            ],
+            "manifest_path": "capabilities/registry/manifests/ocr_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.speech_manager",
+            "capability_name": "Speech Manager",
+            "domain": "voice.speech",
+            "owner_layer": "capabilities.voice",
+            "responsibility": "Manage voice and speech guidance pathways under governance controls.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "voice dialogue, speech text, and provider request candidates",
+                "refs": [
+                    "capabilities/voice/interfaces/tts_provider.py",
+                    "capabilities/midplatform/speech_manager/module/speech_manager_module_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "speech output plane candidates, diagnostics, trace, and replay outputs",
+                "refs": [
+                    "capabilities/voice/interfaces/voice_output_plane.py",
+                    "capabilities/midplatform/speech_manager/module/speech_manager_provider_candidate_adapter_v1.py",
+                    "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py"
+                ]
+            },
+            "dependencies": [
+                "luna.model_manager"
+            ],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/speech_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/speech_manager/module/speech_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/speech_manager/module/speech_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "functional_module_ready",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only processing only; no real ASR/TTS/VOP runtime",
+                "speaker identity and ASR outputs remain non-factual candidates"
+            ],
+            "ready_evidence": {
+                "lifecycle_status": "functional_module_ready",
+                "total_cases": 19,
+                "passed_cases": 19,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "boundary_preserved": true,
+                "speaker_identity_auto_confirmed_false": true,
+                "asr_candidate_auto_fact_false": true,
+                "evidence_ref": "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py"
+            },
+            "internal_components": [
+                "input_adapter",
+                "request_governance",
+                "priority_resolver",
+                "interruption_controller",
+                "content_governance",
+                "provider_candidate_adapter",
+                "diagnostics",
+                "trace_replay",
+                "module_output_builder"
+            ],
+            "manifest_path": "capabilities/registry/manifests/speech_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.field_state_read_model",
+            "capability_name": "Field State Read Model",
+            "domain": "midplatform.field_state",
+            "owner_layer": "midplatform.core",
+            "responsibility": "Provide controlled read-only field state projection and query access over reducer-compatible state candidates without mutation, fact admission, or runtime dispatch.",
+            "lifecycle_status": "integration_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "field state read query plus controlled runtime request",
+                "refs": [
+                    "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+                    "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "field state read result plus controlled runtime envelope",
+                "refs": [
+                    "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+                    "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+                ]
+            },
+            "dependencies": [
+                "luna.field_state_reducer"
+            ],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/core/field_state_read_model/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_field_state_read_model_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+                    "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+                    "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "no real state store",
+                "no asynchronous runtime",
+                "no downstream dispatch",
+                "no batch query",
+                "no retry orchestration",
+                "no persistence",
+                "no real source adapter"
+            ],
+            "ready_evidence": {
+                "total_cases": 25,
+                "passed_cases": 25,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "boundary_preserved": true,
+                "evidence_ref": "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+            },
+            "internal_components": [
+                "query_validator",
+                "projection_builder",
+                "result_builder",
+                "module_api",
+                "controlled_source_adapter",
+                "runtime_envelope_builder",
+                "controlled_runtime"
+            ],
+            "manifest_path": "capabilities/registry/manifests/field_state_read_model_manifest_v1.json",
+            "last_updated": "2026-07-17"
+        },
+        {
+            "capability_id": "luna.memory_manager",
+            "capability_name": "Memory Manager",
+            "domain": "midplatform.memory",
+            "owner_layer": "midplatform.core",
+            "responsibility": "Provide governed working memory skeleton services for midplatform workflows.",
+            "lifecycle_status": "skeleton_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "planned memory operation requests",
+                "refs": [
+                    "capabilities/midplatform/core/working_memory_skeleton_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "planned memory operation results",
+                "refs": [
+                    "capabilities/midplatform/core/working_memory_skeleton_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": null,
+                "exists": false
+            },
+            "implementation_path": "capabilities/midplatform/core/working_memory_skeleton_v1.py",
+            "integration_runner": {
+                "path": null,
+                "exists": false,
+                "runner_type": "none"
+            },
+            "diagnostics_support": {
+                "supported": false,
+                "refs": []
+            },
+            "trace_support": {
+                "supported": false,
+                "refs": []
+            },
+            "replay_support": {
+                "supported": false,
+                "refs": []
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "skeleton-only implementation",
+                "no integration runner evidence"
+            ],
+            "ready_evidence": null,
+            "internal_components": [],
+            "manifest_path": null,
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.permission_and_admission_manager",
+            "capability_name": "Permission And Admission Manager",
+            "domain": "governance.permission_admission",
+            "owner_layer": "governance",
+            "responsibility": "Resolve candidate-only permission and admission eligibility for evidence/model/protocol/capability/state/action/runtime requests under governance boundaries.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "permission/admission request candidates with subject/resource/policy/evidence/provenance/risk snapshots",
+                "refs": [
+                    "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "admission decision candidates, rejection reasons, review requirements, diagnostics, trace, replay",
+                "refs": [
+                    "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/permission_and_admission_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no fact admission, state write, model/action execution, or runtime dispatch"
+            ],
+            "ready_evidence": {
+                "total_cases": 20,
+                "passed_cases": 20,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "boundary_preserved": true,
+                "unhandled_exceptions": 0,
+                "evidence_ref": "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/permission_and_admission_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.action_manager",
+            "capability_name": "Action Manager",
+            "domain": "execution.action",
+            "owner_layer": "navigation_and_governance",
+            "responsibility": "Manage execution-ready action planning, release governance, and controlled action boundaries.",
+            "lifecycle_status": "planned",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "planned action candidates and governance approvals",
+                "refs": []
+            },
+            "output_contract": {
+                "summary": "planned action execution envelopes",
+                "refs": []
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": null,
+                "exists": false
+            },
+            "implementation_path": null,
+            "integration_runner": {
+                "path": null,
+                "exists": false,
+                "runner_type": "none"
+            },
+            "diagnostics_support": {
+                "supported": false,
+                "refs": []
+            },
+            "trace_support": {
+                "supported": false,
+                "refs": []
+            },
+            "replay_support": {
+                "supported": false,
+                "refs": []
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "manual_only",
+            "upgrade_policy": "manual_only",
+            "deprecation_policy": "manual_only",
+            "known_limitations": [
+                "no dedicated module implementation registered",
+                "no integration runner"
+            ],
+            "ready_evidence": null,
+            "internal_components": [],
+            "manifest_path": null,
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "capability_name": "Navigation Manager",
+            "domain": "midplatform.navigation",
+            "owner_layer": "midplatform",
+            "responsibility": "Assemble candidate-only navigation request, route state, progress, evidence, risk, guidance, arrival, and task/speech handoff outputs.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "navigation request candidates with route/progress/evidence/context snapshots",
+                "refs": [
+                    "capabilities/midplatform/navigation_manager/module/navigation_manager_module_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "navigation route/risk/guidance/arrival/task+speech handoff candidates with diagnostics and trace/replay",
+                "refs": [
+                    "capabilities/midplatform/navigation_manager/module/navigation_manager_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [
+                "luna.task_manager",
+                "luna.observation_manager",
+                "luna.field_state_reducer",
+                "luna.vision_manager",
+                "luna.ocr_manager",
+                "luna.permission_and_admission_manager",
+                "luna.protocol_manager",
+                "luna.speech_manager"
+            ],
+            "dependents": [
+                "luna.task_manager",
+                "luna.speech_manager",
+                "luna.action_manager"
+            ],
+            "module_api": {
+                "path": "capabilities/midplatform/navigation_manager/module/navigation_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/navigation_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/navigation_manager/module/navigation_manager_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/navigation_manager/module/navigation_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/navigation_manager/module/navigation_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no real map/gps/camera/reroute runtime side effects"
+            ],
+            "ready_evidence": {
+                "total_cases": 20,
+                "passed_cases": 20,
+                "failed_cases": [],
+                "route_state_present_when_expected": true,
+                "guidance_candidate_present_when_expected": true,
+                "deviation_candidate_present_when_expected": true,
+                "crossing_assessment_present_when_expected": true,
+                "obstacle_assessment_present_when_expected": true,
+                "arrival_candidate_present_when_expected": true,
+                "task_handoff_present_when_expected": true,
+                "speech_handoff_present_when_expected": true,
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "deterministic_replay": true,
+                "boundary_preserved": true,
+                "unhandled_exceptions": 0,
+                "evidence_ref": "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/navigation_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.system_diagnostics",
+            "capability_name": "System Diagnostics",
+            "domain": "system_health",
+            "owner_layer": "capabilities.system_health",
+            "responsibility": "Provide system health governance and diagnostics state framing.",
+            "lifecycle_status": "skeleton_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "system health status inputs",
+                "refs": [
+                    "capabilities/system_health/system_health_center_governance_v0.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "system health diagnostics outputs",
+                "refs": [
+                    "capabilities/system_health/system_health_center_governance_v0.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": null,
+                "exists": false
+            },
+            "implementation_path": "capabilities/system_health/system_health_center_governance_v0.py",
+            "integration_runner": {
+                "path": null,
+                "exists": false,
+                "runner_type": "none"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/system_health/system_health_center_governance_v0.py"
+                ]
+            },
+            "trace_support": {
+                "supported": false,
+                "refs": []
+            },
+            "replay_support": {
+                "supported": false,
+                "refs": []
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "no standalone diagnostics module API",
+                "no module-level integration runner"
+            ],
+            "ready_evidence": null,
+            "internal_components": [],
+            "manifest_path": null,
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.protocol_manager",
+            "capability_name": "Protocol Manager",
+            "domain": "midplatform.protocols",
+            "owner_layer": "midplatform.protocols",
+            "responsibility": "Manage protocol registry, checker, and protocol health contracts across midplatform flows.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "protocol operation request candidates with version and governance snapshots",
+                "refs": [
+                    "capabilities/midplatform/protocol_manager/module/protocol_manager_module_input_adapter_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "protocol governance/compatibility/admission candidates with diagnostics and trace/replay",
+                "refs": [
+                    "capabilities/midplatform/protocol_manager/module/protocol_manager_module_output_builder_v1.py"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+                "exists": true
+            },
+            "implementation_path": "capabilities/midplatform/protocol_manager/module/",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py",
+                "exists": true,
+                "runner_type": "module_integration"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/protocol_manager/module/protocol_manager_diagnostics_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/protocol_manager/module/protocol_manager_trace_replay_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "capabilities/midplatform/protocol_manager/module/protocol_manager_trace_replay_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only boundary",
+                "no runtime protocol loading or registry mutation"
+            ],
+            "ready_evidence": {
+                "total_cases": 18,
+                "passed_cases": 18,
+                "failed_cases": [],
+                "diagnostics_present_all": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "deterministic_replay": true,
+                "boundary_preserved": true,
+                "evidence_ref": "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/protocol_manager_manifest_v1.json",
+            "last_updated": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.system_integration_validation",
+            "capability_name": "System Integration Validation",
+            "domain": "midplatform.system_validation",
+            "owner_layer": "midplatform",
+            "responsibility": "Validate controlled cross-module main-chain handoff integrity from Task Manager through Field State Reducer under candidate-only boundaries.",
+            "lifecycle_status": "functional_module_ready",
+            "module_version": "v1",
+            "api_version": "v1",
+            "input_contract": {
+                "summary": "synthetic system-chain scenarios and cross-module handoff assertions",
+                "refs": [
+                    "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+                ]
+            },
+            "output_contract": {
+                "summary": "system integration validation report with scenario outcomes, boundary checks, and trace/replay evidence",
+                "refs": [
+                    "_tmp_eval_out/system_integration_validation_v1_smoke_v0/system_integration_validation_v1.json"
+                ]
+            },
+            "dependencies": [],
+            "dependents": [],
+            "module_api": {
+                "path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+                "exists": true
+            },
+            "implementation_path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+            "integration_runner": {
+                "path": "tools/evaluation/midplatform/run_system_integration_validation_v1.py",
+                "exists": true,
+                "runner_type": "smoke"
+            },
+            "diagnostics_support": {
+                "supported": true,
+                "refs": [
+                    "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+                ]
+            },
+            "trace_support": {
+                "supported": true,
+                "refs": [
+                    "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+                ]
+            },
+            "replay_support": {
+                "supported": true,
+                "refs": [
+                    "tools/evaluation/midplatform/run_system_integration_validation_v1.py"
+                ]
+            },
+            "persistence_authority": false,
+            "fact_admission_authority": false,
+            "action_execution_authority": false,
+            "runtime_authority": false,
+            "replacement_policy": "planned_replacement",
+            "upgrade_policy": "evidence_gated",
+            "deprecation_policy": "announce_and_freeze_dependents",
+            "known_limitations": [
+                "candidate-only validation boundary",
+                "no real model execution",
+                "no real visual evidence generation",
+                "no real field state write",
+                "no runtime loop activation"
+            ],
+            "ready_evidence": {
+                "total_cases": 6,
+                "passed_cases": 6,
+                "failed_cases": [],
+                "deterministic_replay": true,
+                "trace_present_all": true,
+                "replay_present_all": true,
+                "boundary_preserved": true,
+                "integration_pass": true,
+                "scenario_count": 6,
+                "unhandled_exceptions": 0,
+                "evidence_ref": "_tmp_eval_out/system_integration_validation_v1_smoke_v0/system_integration_validation_v1.json"
+            },
+            "internal_components": [],
+            "manifest_path": "capabilities/registry/manifests/system_integration_validation_manifest_v1.json",
+            "last_updated": "2026-07-17"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "guess_loader_from_extension": false,
+  "try_multiple_loaders_until_success": false,
+  "automatic_network_download": false,
+  "automatic_model_download": false,
+  "human_contract_selection_required_normal_path": false,
+  "provider_semantic_authority": false,
+  "model_availability_implies_execution": false,
+  "model_upgrade_implies_truth_upgrade": false,
+  "contract_resolution_mutates_cognition": false,
+  "contract_repository_owns_observation": false,
+  "contract_repository_owns_decision": false,
+  "contract_repository_owns_task": false,
+  "contract_repository_owns_field": false,
+  "contract_repository_owns_context": false,
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "database_write": false,
+  "real_side_effect": false
+}

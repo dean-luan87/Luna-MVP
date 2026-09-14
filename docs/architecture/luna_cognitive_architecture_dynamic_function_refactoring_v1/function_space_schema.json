@@ -1,0 +1,12 @@
+{
+  "schema_id": "dynamic_function_space_v1",
+  "status": "architecture_only",
+  "function_spaces": ["field_input_space", "attention_resource_function", "memory_influence_function", "self_regulation_function", "exploration_drive_function", "confidence_dynamics_function", "goal_activation_function", "utility_function", "decision_function", "parameter_evolution_function"],
+  "required_fields": ["function_id", "input_refs", "parameter_refs", "output_candidate_types", "field_scope", "owner", "trace_ref", "unknowns"],
+  "function_output_is_candidate": true,
+  "function_is_not_runtime": true,
+  "function_is_not_action": true,
+  "function_is_not_decision_authority": true,
+  "bounded_parameters_required": true,
+  "runtime": false
+}

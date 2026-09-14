@@ -1,0 +1,20 @@
+{
+  "registry_id": "state_measurement_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "State Observation", "owner": "Cognitive Observation Governance", "writer": "Read Only Observation Flow", "reader": "Metric System"},
+    {"module": "Cognitive Metrics", "owner": "Cognitive Metric Governance", "writer": "Metric Candidate Flow", "reader": "Quality Evaluation"},
+    {"module": "State Quality", "owner": "State Quality Governance", "writer": "Quality Candidate Flow", "reader": "Calibration and Hive"},
+    {"module": "Field Understanding Metric", "owner": "Understanding Measurement Governance", "writer": "Understanding Metric Flow", "reader": "Quality Evaluation"},
+    {"module": "Decision Quality Metric", "owner": "Decision Measurement Governance", "writer": "Decision Metric Flow", "reader": "Quality Evaluation"},
+    {"module": "Memory Utility Metric", "owner": "Memory Measurement Governance", "writer": "Memory Utility Flow", "reader": "Calibration"},
+    {"module": "Self Stability Metric", "owner": "Self Stability Governance", "writer": "Self Metric Flow", "reader": "Self Review"},
+    {"module": "Adaptation Efficiency Metric", "owner": "Adaptation Measurement Governance", "writer": "Adaptation Metric Flow", "reader": "Calibration"},
+    {"module": "Cognitive Fitness", "owner": "Cognitive Fitness Governance", "writer": "Fitness Candidate Flow", "reader": "Hive and B Route"},
+    {"module": "Hive Metrics", "owner": "Hive Observation Boundary", "writer": "Metric Interface", "reader": "Self Review"},
+    {"module": "Self Calibration", "owner": "Self Calibration Governance", "writer": "Calibration Candidate Flow", "reader": "Parameter Governance"},
+    {"module": "B Route Evaluation", "owner": "B Route Governance", "writer": "Simulation Evaluation Boundary", "reader": "A Route Governance"},
+    {"module": "Transition Quality", "owner": "Transition Quality Governance", "writer": "Transition Measurement Flow", "reader": "State Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"}
+  ]
+}

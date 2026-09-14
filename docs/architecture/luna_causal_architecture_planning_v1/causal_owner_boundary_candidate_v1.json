@@ -1,0 +1,60 @@
+{
+    "artifact": "causal_owner_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Causal Governance",
+    "unique_owner": true,
+    "legacy_aliases": [
+        {
+            "name": "Causal Reasoning Governance",
+            "classification": "legacy_alias_non_canonical",
+            "ownership_equivalent": true,
+            "creates_new_owner": false
+        }
+    ],
+    "owned_candidate_types": [
+        "Causal Hypothesis Candidate",
+        "Causal State Candidate",
+        "Causal Evidence Relation Candidate",
+        "Causal Conflict Candidate",
+        "Causal Counterfactual Candidate",
+        "Causal Trace Candidate",
+        "Causal-to-Decision Handoff Candidate"
+    ],
+    "reference_only_inputs": [
+        "Intent refs",
+        "Context refs",
+        "Field refs",
+        "PCN refs",
+        "Memory prior refs",
+        "Emotion influence refs",
+        "Observation evidence refs",
+        "Role and Relationship refs",
+        "Temporal ordering refs"
+    ],
+    "forbidden_ownership": [
+        "Intent",
+        "Field",
+        "Context",
+        "PCN",
+        "Memory",
+        "Emotion",
+        "Observation",
+        "Role",
+        "Decision",
+        "Action",
+        "Task",
+        "Runtime",
+        "Database"
+    ],
+    "forbidden_responsibility": [
+        "directly mutate source-owned objects",
+        "promote correlation to causal fact automatically",
+        "emit final Decision",
+        "emit Action instruction",
+        "create Task",
+        "execute runtime command"
+    ],
+    "source_owner_transfer": false,
+    "cross_write_authority": false,
+    "active_owner_metadata_changed": false
+}

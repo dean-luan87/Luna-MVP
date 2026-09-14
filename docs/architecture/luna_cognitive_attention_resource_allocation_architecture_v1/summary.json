@@ -1,0 +1,17 @@
+{
+  "phase": "Phase-Luna-Cognitive-Attention-Resource-Allocation-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_ATTENTION_RESOURCE_ALLOCATION_ARCHITECTURE_READY",
+  "attention_types": ["Perceptual Attention", "Semantic Attention", "Context Attention", "Decision Attention", "Self Attention"],
+  "canonical_flow": ["Reality", "Field", "Information", "Attention Evaluation", "Attention Allocation Candidate", "Self Resource Governance", "Active Attention", "Understanding", "Decision Candidate"],
+  "reusable_attention_assets": ["Cognitive Attention Global Architecture", "Attention Competition/Arbitration", "Attention Adaptation Stability", "Field Attention/Decision Integration"],
+  "model_attention_assets": ["MobileSAM/Vision Attention capability boundaries", "attention_neural_interface_contract_v1.json"],
+  "owner_conflicts": ["Attention Layer vs Self Regulation resource authority", "Model Attention vs Cognitive Attention terminology"],
+  "parallel_risks": ["parallel Attention Controller", "model Attention replacement", "Scheduler/resource owner duplication"],
+  "migration_mapping": ["existing_attention_contracts_to_resource_allocation_adapter", "runtime_attention_interface_to_future_admission_boundary"],
+  "runtime": false,
+  "scheduler": false,
+  "automatic_allocation": false,
+  "model_attention_modification": false,
+  "action_execution": false
+}

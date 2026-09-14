@@ -1,0 +1,12 @@
+{
+  "contract_id": "attention_budget_v1",
+  "owner": "Self Regulation",
+  "resources": ["CPU", "GPU/NPU", "Memory", "Battery", "Time", "Interaction Cost"],
+  "inputs": ["self_state", "self_rhythm_hint", "cognitive_state", "task_demand", "risk"],
+  "outputs": ["attention_budget_candidate", "allowed_activity_candidate", "resource_limit_candidate", "degradation_candidate"],
+  "self_has_final_resource_governance": true,
+  "budget_is_candidate": true,
+  "unlimited_attention": false,
+  "direct_hardware_control": false,
+  "runtime_control": false
+}

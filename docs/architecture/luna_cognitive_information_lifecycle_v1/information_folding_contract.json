@@ -1,0 +1,14 @@
+{
+  "version":"1.0",
+  "name":"Information Folding Contract",
+  "owner":"Information Lifecycle Governance",
+  "levels":[
+    {"level":0,"name":"Raw Observation","meaning":"source observation"},
+    {"level":1,"name":"Episode","meaning":"complete situated event"},
+    {"level":2,"name":"Experience Pattern","meaning":"repeated or consequential pattern"},
+    {"level":3,"name":"Memory Principle","meaning":"validated higher-order regularity"}
+  ],
+  "required_evidence":["source lineage","context relation","repetition or impact","conflict status","confidence"],
+  "outputs":["folding_candidate","pattern_candidate","principle_candidate","no_fold"],
+  "rules":{"folding_not_deletion":true,"source_lineage_preserved":true,"automatic_pattern_mining_forbidden":true,"principle_not_reality":true}
+}

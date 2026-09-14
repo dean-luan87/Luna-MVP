@@ -1,0 +1,13 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "negative_guards": [
+        "do not execute python runner or verifier by agent",
+        "do not weaken verifier checks",
+        "do not hardcode pass conditions",
+        "do not mutate Context or PCN assets",
+        "do not modify planning assets under luna_intent_architecture_planning_v1",
+        "do not create parallel Intent owner",
+        "do not introduce runtime, model, database, network, or provider side effects",
+        "do not output Decision, Action, Task, or Causal truth"
+    ]
+}

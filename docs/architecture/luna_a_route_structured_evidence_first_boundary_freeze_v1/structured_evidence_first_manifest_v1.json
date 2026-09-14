@@ -1,0 +1,15 @@
+{
+  "freeze_id": "STRUCTURED_EVIDENCE_FIRST_BOUNDARY_FREEZE_V1",
+  "freeze_status": "FROZEN_V1",
+  "principle": "STRUCTURED_EVIDENCE_FIRST",
+  "semantic_compression_status": "DEFERRED",
+  "canonical_owner": "A Route Orchestration Governance for lifecycle; existing perception owners for evidence",
+  "s0_baseline_ref": "S0_GOLDEN_SYNTHETIC_BASELINE:FROZEN_V1",
+  "s1_scope_ref": "USER_INPUT human-language adapter only",
+  "s0_assets_modified": false,
+  "s1_implementation_modified": false,
+  "implementation_files_created": [],
+  "emotion_engine_execution": false,
+  "b_route_execution": false,
+  "provenance_grants_authority": false
+}

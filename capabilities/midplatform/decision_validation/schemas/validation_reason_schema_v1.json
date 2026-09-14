@@ -1,0 +1,6 @@
+{
+  "schema_id": "ValidationReasonSchemaV1",
+  "version": "v1",
+  "required_fields": ["reason_code", "reason_text", "polarity", "candidate_only", "not_fact"],
+  "polarity_enum": ["positive", "negative", "neutral", "warning"]
+}

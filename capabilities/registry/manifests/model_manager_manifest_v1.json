@@ -1,0 +1,52 @@
+{
+    "capability_id": "luna.model_manager",
+    "capability_name": "Luna Model Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "entrypoint": "run_model_manager_module_api_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/model_manager/module/model_manager_module_facade_v1.py",
+            "entrypoint": "run_model_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/midplatform/model_manager/luna_model_manager_processor_v1.py",
+            "capabilities/midplatform/model_manager/engines/model_routing_engine_v1.py",
+            "capabilities/midplatform/model_manager/registry/provider_registry_loader_v1.py",
+            "capabilities/midplatform/model_manager/registry/multi_provider_selection_v1.py",
+            "capabilities/midplatform/model_manager/model_manager_dryrun/capability_matching_processor_v1.py",
+            "capabilities/midplatform/model_manager/runtime/runtime_resource_profile_v1.py",
+            "capabilities/midplatform/model_manager/runtime/runtime_health_checker_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py",
+            "scenarios": 16
+        },
+        "ready_evidence": {
+            "total_cases": 16,
+            "passed_cases": 16,
+            "failed_cases": [],
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_model_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_action_execution": true,
+        "no_direct_model_call": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "luna.model_controller"
+    ]
+}

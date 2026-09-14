@@ -1,0 +1,12 @@
+{
+  "title": "Goal Candidate Contract v1",
+  "inputs": ["Field", "Intent", "Drive", "Value Context", "Self State", "Capability State", "Task Context", "Memory Context", "Schema Context"],
+  "required_review": ["reasonability", "capability", "resource", "stability", "Constitution"],
+  "output": "Goal Candidate",
+  "candidate_only": true,
+  "automatic_goal_creation": false,
+  "automatic_goal_adjustment": false,
+  "goal_manager_runtime": false,
+  "action_execution": false,
+  "unknowns_preserved": true
+}

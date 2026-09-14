@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luna 观察镜</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="luna-observation-lens" data-user-mode="simple">
+  <div id="lol-app" class="lol-app">
+    <header class="lol-top-bar" id="lol-top-bar" aria-label="任务栏">
+      <div class="lol-top-brand">
+        <h1 id="lol-title">Luna 观察镜</h1>
+        <p class="lol-subtitle" id="lol-subtitle">查看 Luna 如何看见、标注、判断和解释当前画面</p>
+      </div>
+      <div class="lol-top-badges">
+        <span class="badge badge-ok" id="lol-badge-candidate">候选结果</span>
+        <span class="badge badge-warn" id="lol-badge-runtime">非运行态</span>
+      </div>
+      <div class="lol-top-actions">
+        <label class="btn btn-secondary lol-file-btn">
+          <span id="lol-select-file-label">选择文件</span>
+          <input type="file" id="lol-file-input" accept="image/*,video/*" hidden />
+        </label>
+        <button type="button" id="lol-start-btn" class="btn btn-primary" disabled>开始观察</button>
+        <div class="lol-view-toggle" role="tablist" aria-label="视图切换">
+          <button type="button" class="lol-view-btn" data-view="original" role="tab">原图</button>
+          <button type="button" class="lol-view-btn" data-view="compare" role="tab">普通对比</button>
+          <button type="button" class="lol-view-btn active" data-view="hud" role="tab">机器人视角</button>
+        </div>
+        <label class="btn btn-ghost lol-json-btn">
+          导入结果
+          <input type="file" id="lol-json-input" accept=".json,application/json" hidden />
+        </label>
+        <button type="button" id="lol-advanced-btn" class="btn btn-ghost" aria-pressed="false">高级流程</button>
+        <button type="button" id="lol-developer-btn" class="btn btn-ghost" aria-pressed="false">开发者</button>
+      </div>
+      <div class="lol-top-status">
+        <span id="lol-service-status" class="lol-service-status" role="status">正在检查本地测试服务…</span>
+        <button type="button" id="lol-recheck-service" class="btn btn-ghost btn-sm" hidden>重新检查服务</button>
+        <span id="lol-load-status" class="load-status"></span>
+      </div>
+    </header>
+
+    <div class="lol-main-grid">
+      <aside class="lol-left-rail" id="lol-left-rail" aria-label="能力与输入"></aside>
+      <main class="lol-central" id="lol-central" aria-label="主观察画面"></main>
+      <aside class="lol-right-panel" id="lol-right-panel" aria-label="Luna 解释面板"></aside>
+    </div>
+
+    <div id="lol-object-chip-host" class="lol-object-chip-host" aria-label="识别对象胶囊条"></div>
+
+    <footer class="lol-bottom-dock" id="lol-bottom-dock" aria-label="指标摘要与折叠面板"></footer>
+  </div>
+
+  <div id="advanced-workflow" class="lol-advanced-host" hidden>
+    <div id="local-asset-import-host"></div>
+    <div id="runner-bridge-host"></div>
+  </div>
+
+  <script src="human_correction_copy_v1.js"></script>
+  <script src="human_correction_midplatform_analyzer_v1.js"></script>
+  <script src="human_correction_store_v1.js"></script>
+  <script src="human_correction_target_picker_v1.js"></script>
+  <script src="human_correction_training_signal_preview_v1.js"></script>
+  <script src="human_correction_modal_v1.js"></script>
+  <script src="human_correction_drawer_v1.js"></script>
+  <script src="human_correction_ui_v1.js"></script>
+  <script src="observation_attention_copy_v1.js"></script>
+  <script src="observation_attention_engine_v1.js"></script>
+  <script src="observation_attention_priority_panel_v1.js"></script>
+  <script src="observation_attention_summary_v1.js"></script>
+  <script src="followup_runner_route_copy_v1.js"></script>
+  <script src="followup_runner_route_queue_state_v1.js"></script>
+  <script src="followup_runner_route_queue_v1.js"></script>
+  <script src="followup_runner_route_queue_panel_v1.js"></script>
+  <script src="followup_runner_route_summary_v1.js"></script>
+  <script src="runner_manual_trigger_copy_v1.js"></script>
+  <script src="runner_manual_trigger_request_state_v1.js"></script>
+  <script src="runner_manual_trigger_request_v1.js"></script>
+  <script src="runner_manual_trigger_request_panel_v1.js"></script>
+  <script src="runner_manual_trigger_summary_v1.js"></script>
+  <script src="runner_invocation_admission_copy_v1.js"></script>
+  <script src="runner_invocation_admission_policy_v1.js"></script>
+  <script src="runner_invocation_admission_v1.js"></script>
+  <script src="runner_invocation_admission_panel_v1.js"></script>
+  <script src="runner_invocation_admission_summary_v1.js"></script>
+  <script src="controlled_runner_execution_copy_v1.js"></script>
+  <script src="controlled_runner_execution_state_v1.js"></script>
+  <script src="controlled_runner_execution_ui_v1.js"></script>
+  <script src="controlled_runner_execution_panel_v1.js"></script>
+  <script src="controlled_runner_execution_summary_v1.js"></script>
+  <script src="runner_sandbox_client_v1.js"></script>
+  <script src="result_layer_copy_v1.js"></script>
+  <script src="result_layer_state_v1.js"></script>
+  <script src="result_layer_panel_v1.js"></script>
+  <script src="result_layer_summary_v1.js"></script>
+  <script src="midplatform_interaction_copy_v1.js"></script>
+  <script src="midplatform_result_processor_v1.js"></script>
+  <script src="midplatform_interaction_state_v1.js"></script>
+  <script src="midplatform_interaction_panel_v1.js"></script>
+  <script src="multi_model_collaboration_copy_v1.js"></script>
+  <script src="multi_model_collaboration_state_v1.js"></script>
+  <script src="multi_model_collaboration_panel_v1.js"></script>
+  <script src="mobile_sam_ocr_controlled_execution_copy_v1.js"></script>
+  <script src="mobile_sam_ocr_request_state_v1.js"></script>
+  <script src="mobile_sam_ocr_request_ui_v1.js"></script>
+  <script src="mobile_sam_ocr_admission_v1.js"></script>
+  <script src="mobile_sam_ocr_execution_candidate_v1.js"></script>
+  <script src="mobile_sam_ocr_controlled_execution_panel_v1.js"></script>
+  <script src="mobile_sam_ocr_controlled_execution_summary_v1.js"></script>
+  <script src="scene_profile_policy_v1.js"></script>
+  <script src="scene_profile_candidate_v1.js"></script>
+  <script src="prompt_label_display_policy_v1.js"></script>
+  <script src="scene_prompt_set_outdoor_street_v1.js"></script>
+  <script src="scene_prompt_set_subway_platform_v1.js"></script>
+  <script src="segmentation_prompt_policy_v1.js"></script>
+  <script src="browser_runtime_guard_v1.js"></script>
+  <script src="hud_overlay_readability_v1.js"></script>
+  <script src="visual_expression_interaction_v1.js"></script>
+  <script src="segmentation_boundary_visual_polish_v1.js"></script>
+  <script src="hud_attention_visual_language_v1.js"></script>
+  <script src="hud_visual_policy_v1.js"></script>
+  <script src="hud_color_semantics_v1.js"></script>
+  <script src="hud_reasoning_compression_v1.js"></script>
+  <script src="luna_observation_label_i18n_v1.js"></script>
+  <script src="luna_observation_copy_v1.js"></script>
+  <script src="luna_observation_layout_v1.js"></script>
+  <script src="luna_observation_drawers_v1.js"></script>
+  <script src="luna_capability_grid_trigger_v1.js?v=20260702d"></script>
+  <script src="luna_bottom_drawer_state_guard_v1.js?v=20260702d"></script>
+  <script src="observation_canvas_first_collapsible_layout_v1.js?v=20260702c"></script>
+  <script src="luna_left_capability_drawer_v1.js?v=20260702c"></script>
+  <script src="hud_object_chip_bar_v1.js?v=20260702c"></script>
+  <script src="hud_selected_object_detail_v1.js?v=20260702c"></script>
+  <script src="luna_bottom_drawer_tabs_v1.js?v=20260702c"></script>
+  <script src="luna_topbar_compact_actions_v1.js?v=20260702c"></script>
+  <script src="luna_observation_compact_ui_v1.js"></script>
+  <script src="model_insight_layer_v1.js"></script>
+  <script src="slam_diagnostic_panels.js"></script>
+  <script src="local_asset_import_examples_v1.js"></script>
+  <script src="local_asset_import_ui_v1.js"></script>
+  <script src="runner_bridge_ui_v1.js"></script>
+  <script src="hud_hidpi_renderer_v1.js?v=20260702b"></script>
+  <script src="hud_label_layout_policy_v1.js?v=20260702b"></script>
+  <script src="hud_external_annotation_panel_v1.js?v=20260702b"></script>
+  <script src="visual_overlay_examples_v1.js?v=20260702"></script>
+  <script src="visual_overlay_renderer_v1.js?v=20260702"></script>
+  <script src="visual_overlay_controls_v1.js"></script>
+  <script src="visual_overlay_layer_v1.js"></script>
+  <script src="visual_compare_renderer_v1.js"></script>
+  <script src="visual_compare_controls_v1.js"></script>
+  <script src="visual_compare_view_v1.js"></script>
+  <script src="perception_hud_examples_v1.js"></script>
+  <script src="perception_hud_mobile_sam_adapter_v1.js"></script>
+  <script src="perception_hud_renderer_v1.js?v=20260702b"></script>
+  <script src="perception_hud_reasoning_panel_v1.js"></script>
+  <script src="overlay_route_filter_v1.js"></script>
+  <script src="perception_hud_controls_v1.js"></script>
+  <script src="perception_hud_view_v1.js"></script>
+  <script src="luna_situation_understanding_copy_v1.js"></script>
+  <script src="luna_situation_understanding_state_v1.js"></script>
+  <script src="luna_situation_understanding_summary_v1.js"></script>
+  <script src="luna_situation_understanding_trace_view_v1.js"></script>
+  <script src="luna_situation_understanding_panel_v1.js"></script>
+  <script src="luna_agent_planning_copy_v1.js"></script>
+  <script src="luna_agent_planning_state_v1.js"></script>
+  <script src="luna_agent_planning_summary_v1.js"></script>
+  <script src="luna_agent_planning_trace_view_v1.js"></script>
+  <script src="luna_agent_planning_panel_v1.js"></script>
+  <script src="dual_route_perception_copy_v1.js"></script>
+  <script src="dual_route_perception_state_v1.js"></script>
+  <script src="dual_route_perception_summary_v1.js"></script>
+  <script src="dual_route_perception_panel_v1.js"></script>
+  <script src="scene_task_model_activation_copy_v1.js"></script>
+  <script src="scene_task_model_activation_state_v1.js"></script>
+  <script src="scene_task_model_activation_summary_v1.js"></script>
+  <script src="scene_task_model_activation_panel_v1.js"></script>
+  <script src="simple_mode_ui_v1.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Operator Registry",
+    "operators": [
+        {
+            "operator_id": "equals",
+            "operand_count": 2,
+            "operand_types": [
+                "scalar",
+                "scalar"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "not_equals",
+            "operand_count": 2,
+            "operand_types": [
+                "scalar",
+                "scalar"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "in",
+            "operand_count": 2,
+            "operand_types": [
+                "scalar",
+                "array"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "not_in",
+            "operand_count": 2,
+            "operand_types": [
+                "scalar",
+                "array"
+            ],
+            "null_behavior": "true",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "greater_than",
+            "operand_count": 2,
+            "operand_types": [
+                "number",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "greater_than_or_equal",
+            "operand_count": 2,
+            "operand_types": [
+                "number",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "less_than",
+            "operand_count": 2,
+            "operand_types": [
+                "number",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "less_than_or_equal",
+            "operand_count": 2,
+            "operand_types": [
+                "number",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "exists",
+            "operand_count": 1,
+            "operand_types": [
+                "any"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "not_exists",
+            "operand_count": 1,
+            "operand_types": [
+                "any"
+            ],
+            "null_behavior": "true",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "all_of",
+            "operand_count": 2,
+            "operand_types": [
+                "array",
+                "array"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "any_of",
+            "operand_count": 2,
+            "operand_types": [
+                "array",
+                "array"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "none_of",
+            "operand_count": 2,
+            "operand_types": [
+                "array",
+                "array"
+            ],
+            "null_behavior": "true",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "minimum_count",
+            "operand_count": 2,
+            "operand_types": [
+                "array",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        },
+        {
+            "operator_id": "maximum_count",
+            "operand_count": 2,
+            "operand_types": [
+                "array",
+                "number"
+            ],
+            "null_behavior": "false",
+            "deterministic_required": true,
+            "implemented": false,
+            "runtime_callable": false
+        }
+    ],
+    "operator_registry_complete": true
+}

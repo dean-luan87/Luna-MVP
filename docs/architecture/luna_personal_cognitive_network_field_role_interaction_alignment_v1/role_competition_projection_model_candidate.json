@@ -1,0 +1,34 @@
+{
+  "artifact_id": "role_competition_projection_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cognitive Interaction Governance",
+  "competition_dimensions": [
+    "simultaneous_field_projections",
+    "simultaneous_role_projections",
+    "goal_tension_references",
+    "relationship_tension_references",
+    "benefit_cost_tension_references",
+    "resource_contention"
+  ],
+  "output_schema": [
+    "competition_candidate_id",
+    "participating_projection_refs",
+    "tension_dimensions",
+    "hard_constraints",
+    "uncertainty",
+    "evidence_refs",
+    "provenance",
+    "future_arbitration_ref"
+  ],
+  "rules": {
+    "pcn_expresses_competition_candidate_only": true,
+    "interaction_kernel_selects_winner": false,
+    "pcn_selects_winner": false,
+    "multiple_active_roles_are_allowed": true,
+    "automatic_conflict_resolution": false,
+    "final_selection_owner": "future_decision_arbitration_subject_to_self_boundary"
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

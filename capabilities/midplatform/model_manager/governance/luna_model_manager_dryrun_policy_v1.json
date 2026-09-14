@@ -1,0 +1,45 @@
+{
+  "schema_id": "LunaModelManagerDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Foundation-DryRun-v1-001",
+  "layer_id": "Model_Manager",
+  "dryrun_only": true,
+  "principle": "Model Manager schedules capability providers; L2 owns final plan decisions.",
+  "chain": [
+    "job_envelope",
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "decision_validation_candidate",
+    "capability_match_candidate",
+    "provider_selection_candidate",
+    "tool_os_handoff_candidate",
+    "teacher_adapter_handoff_candidate"
+  ],
+  "rules": [
+    {"rule_id": "model_manager_after_validation", "description": "Model Manager 在 L2.5 validation 之后调度 provider"},
+    {"rule_id": "capability_first_not_model_first", "description": "能力优先，不是模型优先"},
+    {"rule_id": "provider_candidate_not_decision", "description": "输出 provider_candidate，Model Manager 无决策权"},
+    {"rule_id": "model_manager_not_tool_os", "description": "Model Manager 选择能力，Tool OS 执行能力"},
+    {"rule_id": "evaluation_no_auto_routing", "description": "Evaluation 不自动改变路由权重"},
+    {"rule_id": "admission_required", "description": "新模型 candidate 未经 admission 不可进入路由池"},
+    {"rule_id": "unavailable_no_silent_fallback", "description": "provider 不可用时不静默降级到其他模型"},
+    {"rule_id": "no_model_execution", "description": "不执行模型、不下载、不替换"},
+    {"rule_id": "no_auto_policy_update", "description": "不自动更新策略"},
+    {"rule_id": "no_fact_write", "description": "不写 fact"},
+    {"rule_id": "no_real_api_in_dryrun", "description": "DryRun 无真实 API"}
+  ],
+  "boundary_flags": {
+    "model_manager_after_validation": true,
+    "capability_first_not_model_first": true,
+    "provider_candidate_not_decision": true,
+    "model_manager_not_tool_os": true,
+    "evaluation_no_auto_routing": true,
+    "admission_required": true,
+    "unavailable_no_silent_fallback": true,
+    "no_model_execution": true,
+    "no_auto_policy_update": true,
+    "no_fact_write": true,
+    "no_real_api_in_dryrun": true,
+    "dryrun_only": true
+  }
+}

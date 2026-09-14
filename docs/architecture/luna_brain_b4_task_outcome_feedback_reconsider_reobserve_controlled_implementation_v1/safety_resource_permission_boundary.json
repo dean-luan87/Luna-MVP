@@ -1,0 +1,7 @@
+{
+  "gates":["safety","permission","resource","confirmation","scope","time_window","idempotency","runtime_readiness"],
+  "previous_success_authorizes_future_execution":false,
+  "feedback_is_authorization":false,
+  "action_or_runtime_bypass":false,
+  "side_effects":false
+}

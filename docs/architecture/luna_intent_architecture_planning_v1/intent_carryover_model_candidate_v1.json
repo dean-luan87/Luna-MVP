@@ -1,0 +1,49 @@
+{
+  "artifact": "intent_carryover_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Intent Governance",
+  "definition": "Candidate continuity of a future-state tendency across Field or Context transitions when supporting conditions remain unresolved or reactivate.",
+  "core_rules": [
+    "Field transition does not imply Intent termination",
+    "Context transition does not imply Intent termination",
+    "unfinished-work Intent may remain active after a physical move from office to home",
+    "carryover must preserve source owners, provenance, uncertainty, and temporal trace",
+    "carryover may weaken, become suppressed or dormant, or reactivate",
+    "no fixed duration threshold is frozen"
+  ],
+  "carryover_factor_refs": [
+    "unfinished state",
+    "importance candidate",
+    "Role obligation",
+    "Memory activation",
+    "Field residue",
+    "Emotion influence",
+    "relationship relevance",
+    "resource condition"
+  ],
+  "candidate_fields": [
+    "carryover_id",
+    "intent_candidate_ref",
+    "source_context_ref",
+    "target_context_ref",
+    "continuity_support_refs",
+    "decay_or_amplification_candidate",
+    "state_candidate",
+    "unknowns",
+    "provenance",
+    "trace"
+  ],
+  "mental_field_continuity_relation": {
+    "related": true,
+    "merged": false,
+    "owner": "Context Governance",
+    "rule": "Mental Field Continuity can provide a reference that supports carryover, but Intent Governance does not own or mutate it."
+  },
+  "guards": {
+    "carryover_is_memory": false,
+    "carryover_is_context": false,
+    "carryover_is_identity": false,
+    "context_switch_forces_termination": false,
+    "automatic_persistence": false
+  }
+}

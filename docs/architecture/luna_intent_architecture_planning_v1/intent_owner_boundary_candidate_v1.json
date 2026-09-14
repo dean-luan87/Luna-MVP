@@ -1,0 +1,72 @@
+{
+  "artifact": "intent_owner_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "canonical_owner": "Intent Governance",
+  "unique_owner": true,
+  "owned_candidate_types": [
+    "Potential Intent Candidate",
+    "Intent Candidate",
+    "Intent State Candidate",
+    "Intent Interaction Candidate",
+    "Intent Trace Candidate"
+  ],
+  "responsibility": [
+    "qualify potential Intent evidence without claiming truth",
+    "preserve multiple Intent candidates, uncertainty, alternatives, provenance, and formation trace",
+    "represent coexistence, conflict, suppression, amplification, temporary dominance, dormancy, and reactivation",
+    "prepare candidate-only Intent-to-Causal handoff"
+  ],
+  "allowed_writes": [
+    "phase-local Potential Intent Candidate",
+    "phase-local Intent Candidate",
+    "phase-local Intent State Candidate",
+    "phase-local Intent Interaction Candidate",
+    "phase-local Intent Trace Candidate"
+  ],
+  "reference_only_inputs": [
+    "Context",
+    "PCN",
+    "Self",
+    "Field",
+    "Role",
+    "Relationship",
+    "Memory",
+    "Experience",
+    "Emotion",
+    "Value",
+    "Resource",
+    "external request",
+    "unfinished state",
+    "task reference"
+  ],
+  "forbidden_ownership": [
+    "Context",
+    "Personal Cognitive Network",
+    "Self",
+    "Field",
+    "Role",
+    "Relationship",
+    "Memory",
+    "Experience",
+    "Emotion",
+    "Value",
+    "Causal",
+    "Decision",
+    "Action",
+    "Task",
+    "Runtime",
+    "Reality"
+  ],
+  "forbidden_responsibility": [
+    "create or mutate source-owned objects",
+    "turn pressure, activation, recall, emotion, need, drive, goal, or task into certain Intent",
+    "select a final winner or make a Decision",
+    "create Goal or Task automatically",
+    "produce a causal explanation",
+    "authorize or execute Action",
+    "change Self identity or Constitution",
+    "control Runtime, models, providers, hardware, or persistence"
+  ],
+  "owner_independence_rule": "Owner independence does not mean isolation; source-owned influence is accepted only through references and never grants mutation authority.",
+  "active_owner_metadata_changed": false
+}

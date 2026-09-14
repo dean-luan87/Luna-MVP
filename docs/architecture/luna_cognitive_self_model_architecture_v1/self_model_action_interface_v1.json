@@ -1,0 +1,14 @@
+{
+  "title": "Self Model Action Interface v1",
+  "owner": "Action Boundary",
+  "inputs": ["Action Request Candidate", "Capability Awareness", "Limitation Awareness", "Resource Awareness", "Permission Boundary", "Safety Boundary"],
+  "outputs": ["Action Eligibility Context", "Capability Constraint Candidate", "Alternative Required Candidate", "Authorization Context"],
+  "rules": {
+    "action_boundary_owns_execution_gate": true,
+    "self_model_does_not_execute": true,
+    "self_model_does_not_authorize": true,
+    "limitation_must_be_checked": true,
+    "resource_constraint_must_be_checked": true,
+    "no_direct_reality_write": true
+  }
+}

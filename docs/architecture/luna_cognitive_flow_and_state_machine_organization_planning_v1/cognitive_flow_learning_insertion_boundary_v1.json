@@ -1,0 +1,23 @@
+{
+    "artifact": "cognitive_flow_learning_insertion_boundary_v1",
+    "future_route": [
+        "Cognitive Cycle",
+        "Experience Candidate",
+        "Cognitive Memory / Experience Governance",
+        "Learning Candidate",
+        "Parameter Update Candidate",
+        "Dynamic Cognitive Regulation governance/bounds",
+        "separately admitted activation"
+    ],
+    "forbidden": [
+        "learning_direct_parameter_mutation",
+        "learning_direct_intent_mutation",
+        "learning_direct_state_mutation",
+        "learning_automatic_genome_activation"
+    ],
+    "rules": {
+        "learning_not_implemented_in_phase": true,
+        "flow_not_learning_owner": true,
+        "candidate_only_bridge": true
+    }
+}

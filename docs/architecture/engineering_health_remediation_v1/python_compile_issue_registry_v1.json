@@ -1,0 +1,29 @@
+{
+  "title": "Python Compile Issue Registry v1",
+  "scope": "capabilities/",
+  "compile_command": "python3 -m compileall capabilities/",
+  "issues": [
+    {
+      "file": "capabilities/midplatform/model_test_lens/multi_model_interaction/mobile_sam_ocr_controlled_execution_types_v1.py",
+      "issue_type": "STATIC_IMPORT_OR_SYNTAX_FAILURE",
+      "location": "RECOMMENDED_NEXT_PHASE block",
+      "original_problem": "dictionary-like fields were enclosed by parentheses and the name was defined twice",
+      "remediation": "rename the preserved boundary mapping to BOUNDARY_FLAGS, close it as a mapping, retain one RECOMMENDED_NEXT_PHASE string",
+      "status": "remediated",
+      "protocol_changed": false,
+      "capability_behavior_changed": false,
+      "model_or_hardware_called": false
+    }
+  ],
+  "registry_rules": {
+    "fix_failed_items_only": true,
+    "preserve_interface_meaning": true,
+    "no_protocol_redesign": true,
+    "no_new_capability": true,
+    "no_model_runtime": true,
+    "no_hardware_runtime": true,
+    "no_action_execution": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

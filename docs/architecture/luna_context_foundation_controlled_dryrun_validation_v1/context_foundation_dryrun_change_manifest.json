@@ -1,0 +1,44 @@
+{
+  "manifest_id": "luna_context_foundation_controlled_dryrun_change_manifest_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "created_files": [
+    "context_foundation_dryrun_contract_v1.json",
+    "context_expansion_governance_candidate.json",
+    "resource_bounded_context_expansion_candidate.json",
+    "unknown_resolution_policy_candidate.json",
+    "context_foundation_dryrun_scenarios.json",
+    "context_foundation_dryrun_trace_validation.json",
+    "nested_constraint_relationship_candidate.json",
+    "context_foundation_dryrun_validation_summary.md",
+    "context_foundation_dryrun_change_manifest.json",
+    "phase_contract.json",
+    "verify_context_foundation_dryrun_validation_v1.py"
+  ],
+  "modified_existing_files": [],
+  "deleted_files": [],
+  "moved_files": [],
+  "renamed_files": [],
+  "runtime_changed": false,
+  "schema_changed": false,
+  "contract_changed": false,
+  "implementation_changed": false,
+  "owner_metadata_changed": false,
+  "dryrun_only": true,
+  "dryrun_executed_by_agent": false,
+  "model_called": false,
+  "provider_called": false,
+  "database_accessed": false,
+  "state_mutation_executed": false,
+  "protected_skeleton_baseline_hashes": {
+    "context_carryover_types_v1.py": "dc04e8bba2fd3538ce8e698b12d4639bef72094604af1db0a3a797f18e64b849",
+    "context_foundation_fixture_v1.py": "3750f0c6974822ce72dcddef5e85c5c638e970147bdd0e2b7cf436d6d3da7d60",
+    "context_foundation_protocol_v1.py": "8bf8d8e0e4ba69d30bdd988b734e04c3cd8b7feec6388306c72c9e07e2a95820",
+    "context_foundation_skeleton_v1.py": "9d11e02eb6cc4f3b0a474e99ea83358daaa0be032ecd0201debdfa0fcf9de017",
+    "context_foundation_static_validators_v1.py": "32d5a4691f261fa3e6918972d397404872de7f85cc3927e65ba95410563fda8b",
+    "context_foundation_trace_types_v1.py": "a5a42af16ed8ecc4a0b4e255951d463d76239ecbf377f9a301f5ee90f76e6a0e",
+    "context_foundation_types_v1.py": "cfaa9125e023072dd10881b48b5a55e3fd32d8d98368b0b4d24e0a09404f6c50",
+    "context_projection_types_v1.py": "9db89aba208af5b7cbabd6980fe5b27a16f66cde995f65e5a2acaa6ac9093113",
+    "run_context_foundation_controlled_skeleton_v1.py": "e605355065630b36834b415a7ff6f29707430b0e0a1a68e39191c9f5218d263d"
+  }
+}
+

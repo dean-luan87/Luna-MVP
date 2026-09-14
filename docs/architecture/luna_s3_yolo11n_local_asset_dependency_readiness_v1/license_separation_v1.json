@@ -1,0 +1,9 @@
+{
+  "target_asset_id": "model-asset:yolo11n:weights-v1",
+  "license_type": "UNKNOWN",
+  "commercial_license_status": "REQUIRES_LICENSE_REVIEW",
+  "technical_admission_can_be_ready_candidate": true,
+  "commercial_approval_is_automatic": false,
+  "license_source_ref": "model_contract_repository_license_profile",
+  "unknown_is_not_approved": true
+}

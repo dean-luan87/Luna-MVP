@@ -1,0 +1,69 @@
+{
+    "artifact": "cognitive_execution_chain_error_namespace_matrix_v1",
+    "entries": [
+        {
+            "namespace": "INTENT_*",
+            "owner": "Intent Governance",
+            "error_type": "intent_candidate_formation_and_boundary",
+            "propagation_allowed": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true,
+            "terminal": false,
+            "diagnostics_handoff": true
+        },
+        {
+            "namespace": "causal_governance.controlled_implementation.v1",
+            "owner": "Causal Governance",
+            "error_type": "causal_uncertainty_or_conflict",
+            "propagation_allowed": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true,
+            "terminal": false,
+            "diagnostics_handoff": true
+        },
+        {
+            "namespace": "decision_governance.controlled_implementation.v1",
+            "owner": "Decision Governance",
+            "error_type": "defer_abstain_permission_safety_constraint",
+            "propagation_allowed": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true,
+            "terminal": false,
+            "diagnostics_handoff": true
+        },
+        {
+            "namespace": "action_governance.controlled_implementation.v1",
+            "owner": "Action Governance",
+            "error_type": "action_readiness_cancel_permission_confirmation",
+            "propagation_allowed": true,
+            "retry_authority": "decision_or_executor_explicit_only",
+            "reconsideration_allowed": true,
+            "terminal": false,
+            "diagnostics_handoff": true
+        },
+        {
+            "namespace": "RuntimeExecutorErrorV1",
+            "owner": "Runtime Executor",
+            "error_type": "admission_failure_timeout_partial_rollback",
+            "propagation_allowed": true,
+            "retry_authority": "explicit_authority_required",
+            "reconsideration_allowed": true,
+            "terminal": true,
+            "diagnostics_handoff": true
+        },
+        {
+            "namespace": "cognitive_execution_chain.controlled_integration.v1",
+            "owner": "Cognitive Execution Chain Integration",
+            "error_type": "compatibility_trace_idempotency_gate",
+            "propagation_allowed": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": false,
+            "terminal": true,
+            "diagnostics_handoff": true
+        }
+    ],
+    "assertions": {
+        "error_propagation_not_equal_retry_authority": true,
+        "namespace_coverage_complete": true
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Decision Negative Guards",
+  "guards":[
+    {"guard":"no_emotion_runtime","forbidden":"Emotion Runtime"},
+    {"guard":"no_learning_runtime","forbidden":"Learning Runtime"},
+    {"guard":"no_role_runtime","forbidden":"Role Runtime"},
+    {"guard":"no_automatic_decision","forbidden":"automatic Decision"},
+    {"guard":"no_world_model","forbidden":"World Model"},
+    {"guard":"no_self_modification","forbidden":"Self Modification"},
+    {"guard":"no_action_execution","forbidden":"Action Execution"},
+    {"guard":"no_b_simulation","forbidden":"B Route simulation engine"}
+  ],
+  "rules":{"architecture_only":true,"no_runtime_activation":true,"no_external_side_effect":true}
+}

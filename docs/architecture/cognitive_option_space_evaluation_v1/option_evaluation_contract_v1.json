@@ -1,0 +1,30 @@
+{
+  "title": "Option Evaluation Contract v1",
+  "contract_type": "Option Evaluation Candidate",
+  "evaluation": {
+    "survival_impact": {},
+    "goal_alignment": {},
+    "capability_fit": {},
+    "resource_cost": {},
+    "risk": {},
+    "uncertainty": {},
+    "experience_reference": {},
+    "confidence": {},
+    "unknowns": [],
+    "constraint_fit": {}
+  },
+  "rules": {
+    "evaluation_is_candidate_only": true,
+    "evaluation_is_not_final_value_judgment": true,
+    "evaluation_is_not_decision": true,
+    "evaluation_is_not_action": true,
+    "evaluation_is_not_prediction": true,
+    "unknowns_remain_visible": true,
+    "risk_must_be_visible": true,
+    "resource_cost_must_be_visible": true,
+    "capability_fit_must_be_visible": true,
+    "brain_retains_final_evaluation": true,
+    "provider_cannot_evaluate_value": true,
+    "experience_cannot_override_reality": true
+  }
+}

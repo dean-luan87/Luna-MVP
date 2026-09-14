@@ -1,0 +1,24 @@
+{
+  "candidate_id": "luna_resource_bounded_context_expansion_candidate_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "resource_type": [
+    "Hardware Resource",
+    "Runtime Resource",
+    "Cognitive Resource"
+  ],
+  "available_budget_reference": "Source-owned Resource Budget Projection Reference",
+  "expansion_scope": "Eligible source references admitted within the currently available budget",
+  "degradation_behavior": "Reduce expansion range, preserve current-Reality precedence, required references, Unknown, provenance, and trace",
+  "resource_insufficient_result": "Degraded Context Scope Candidate",
+  "resource_insufficiency_is_failure": false,
+  "static_layer_limit_allowed": false,
+  "numeric_expansion_limit_owned_by_context": false,
+  "resource_owner_precedence": true,
+  "budget_mutation_allowed": false,
+  "hardware_control_allowed": false,
+  "runtime_control_allowed": false,
+  "minimum_context_preserved": true,
+  "trace_required": true,
+  "active_model": false
+}
+

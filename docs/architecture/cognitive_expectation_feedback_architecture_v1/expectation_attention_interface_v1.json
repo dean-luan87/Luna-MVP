@@ -1,0 +1,27 @@
+{
+  "title": "Expectation Attention Interface v1",
+  "contract_type": "Expectation Validation Attention Request",
+  "input": {
+    "expectation_reference": "expectation-example",
+    "validation_condition": {},
+    "expected_evidence": [],
+    "risk": [],
+    "unknowns": [],
+    "field_context": {},
+    "provenance": []
+  },
+  "output": {
+    "attention_request": "candidate",
+    "observation_targets": [],
+    "priority_candidate": {},
+    "persistence_candidate": {},
+    "resource_cost_candidate": {}
+  },
+  "boundary": {
+    "expectation_produces_observation_requirement": true,
+    "expectation_does_not_allocate_attention": true,
+    "attention_owns_resource_allocation": true,
+    "attention_only_supports_validation": true,
+    "unknowns_are_preserved": true
+  }
+}

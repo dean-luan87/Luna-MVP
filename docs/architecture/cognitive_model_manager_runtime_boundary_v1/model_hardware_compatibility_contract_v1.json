@@ -1,0 +1,18 @@
+{
+  "contract_name": "Model Hardware Compatibility Contract v1",
+  "model_reference": "model-example",
+  "hardware_reference": "hardware-example",
+  "capability_reference": "capability-example",
+  "compatibility_state": "Compatible Candidate | Limited Candidate | Incompatible Candidate | Unknown",
+  "required_hardware_capability": [],
+  "required_driver_reference": null,
+  "resource_constraints": [],
+  "health_constraints": [],
+  "calibration_constraints": [],
+  "limitation": [],
+  "compatibility_is_not_admission": true,
+  "compatibility_is_not_runtime_execution": true,
+  "hardware_state_is_authoritative": true,
+  "model_does_not_control_hardware": true,
+  "unknowns_are_preserved": true
+}

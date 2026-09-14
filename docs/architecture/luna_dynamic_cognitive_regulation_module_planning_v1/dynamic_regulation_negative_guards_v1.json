@@ -1,0 +1,23 @@
+{
+    "artifact": "dynamic_regulation_negative_guards_v1",
+    "must_hold": {
+        "dynamic_regulation_not_learning": true,
+        "state_vector_not_parameter_store": true,
+        "regulation_candidate_not_owner_mutation": true,
+        "parameter_genome_candidate_not_active_genome": true,
+        "emotion_influence_not_regulation_authority": true,
+        "intent_influence_not_regulation_authority": true,
+        "attention_modulation_not_attention_ownership": true,
+        "hypothesis_modulation_not_hypothesis_ownership": true
+    },
+    "forbidden": [
+        "model_weight_mutation",
+        "permanent_parameter_persistence",
+        "database_write",
+        "runtime_side_effect",
+        "autonomous_self_rewrite",
+        "unbounded_parameter_drift",
+        "cross_user_parameter_propagation",
+        "silent_adaptive_mutation"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Trace Integration Contract v1",
+  "owner": "Cognitive OS Governance",
+  "chain": ["Wake-up", "Event", "Runtime Context", "Flow Execution Candidate", "State Proposal", "Decision Boundary", "Trace"],
+  "required_fields": ["trace_id", "timestamp", "wake_id", "event_id", "runtime_context", "flow_reference", "state_proposal_reference", "decision_boundary_reference"],
+  "readers": ["Diagnostics", "Governance Audit", "Learning Candidate Review"],
+  "rules": {"provenance_required": true, "trace_not_authority": true, "append_only_reference": true}
+}

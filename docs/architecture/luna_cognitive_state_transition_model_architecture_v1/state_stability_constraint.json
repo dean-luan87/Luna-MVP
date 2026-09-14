@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_stability_constraint_v1",
+  "constraint": "Delta L < Threshold unless governed exception",
+  "inputs": ["Current State Vector", "Candidate State Vector", "Evidence Strength", "Risk", "Impact", "Time Window", "Self Boundary"],
+  "outputs": ["Stability Review Candidate", "Accept Difference Candidate", "Reject Difference Candidate", "Defer Difference Candidate"],
+  "stable_core_protected": true,
+  "short_term_noise_does_not_change_identity": true,
+  "high_risk_reaction_can_be_fast": true,
+  "threshold_is_field_scoped": true,
+  "automatic_acceptance": false,
+  "candidate_only": true
+}

@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.351369+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "model_load_request_approval_readiness_status": "mobile_sam_model_load_trial_requested_approved_for_preparation_and_execution_next_no_load_no_inference_no_runtime",
+    "model_loaded_this_phase": false,
+    "imported_this_phase": false,
+    "registry_mutated_this_phase": false,
+    "can_enter_model_load_execution_next": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+    "recommended_next_phase_scope": "mobile_sam_only",
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001",
+    "transition_note": "PLANNING / APPROVAL ONLY (mobile_sam_only). The registry overlay was audited and confirms mobile_sam=code_and_weight_ready with verified weight sha256==6dbb90523a35330fedd7f1d3dfc66f995213d81b29a5ca8108dbcdd4e37d6c2f, size==40728226, storage path, and all model_load/inference/runtime/output_adapter/semantic/commercial flags still false. A model-load trial request, a NARROW owner approval (model-load preparation + execution-next only), a TEMPLATE-ONLY command whitelist (never executed; no image input / segmentation / prediction / runtime server), a sha256 recheck plan, a controlled env/code/weight path plan, a memory/timeout boundary, a rollback/cleanup plan, a readiness review, and a follow-up execution handoff were produced. NOTHING was imported / model loaded / inferred / run; the registry was NOT mutated and no extra weight was downloaded. Model-load approval is NOT inference / runtime / output-adapter / semantic / commercial-runtime approval. Next: Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001 (real controlled import + model load, still no segmentation / prediction / inference / runtime). byte_track stays out of scope (Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001)."
+  },
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO"
+}

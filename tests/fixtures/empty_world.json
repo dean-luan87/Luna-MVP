@@ -1,0 +1,5 @@
+{
+  "name": "empty_world",
+  "description": "No vision, no gps, no ocr",
+  "run_seconds": 1800
+}

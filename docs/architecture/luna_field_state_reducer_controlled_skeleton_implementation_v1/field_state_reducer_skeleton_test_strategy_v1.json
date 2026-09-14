@@ -1,0 +1,29 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Skeleton Test Strategy",
+    "checks": [
+        "required_file_validation",
+        "python_import_validation",
+        "type_completeness",
+        "protocol_completeness",
+        "planning_to_code_mapping",
+        "single_mutation_authority_declaration",
+        "admitted_event_validation",
+        "raw_observation_rejection",
+        "provider_recall_prohibition",
+        "external_lookup_prohibition",
+        "action_trigger_prohibition",
+        "event_mutation_prohibition",
+        "state_mutation_prohibition",
+        "database_prohibition",
+        "scheduler_prohibition",
+        "policy_registry_implementation_false",
+        "transition_guards",
+        "deterministic_placeholder",
+        "provenance_trace_completeness",
+        "synthetic_fixture_completeness",
+        "no_runtime_implementation_guard",
+        "no_production_execution_guard"
+    ],
+    "test_strategy_complete": true
+}

@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "name": "Architecture Conflict Update",
+  "conflicts": [
+    {"topic": "Self vs Social Role", "resolution": "Role belongs to Social Self; Self Identity remains continuous", "status": "resolved_by_mapping"},
+    {"topic": "Self vs Relationship", "resolution": "Relationship belongs to Social Self; Self reads context only", "status": "resolved_by_mapping"},
+    {"topic": "Emotion Ownership", "resolution": "Emotion is an Integration context boundary, not Self or Social Self authority", "status": "resolved_by_boundary"},
+    {"topic": "Social Feedback vs Self Evolution", "resolution": "Integration classifies feedback before a Self Evolution candidate", "status": "resolved_by_integration"},
+    {"topic": "Constitution vs Self/Social Self", "resolution": "Constitution remains L0 read-only constraint", "status": "resolved_by_hierarchy"}
+  ],
+  "rules": {"all_core_conflicts_resolved": true, "no_direct_override": true, "integration_is_router_not_authority": true, "future_emotion_deferred": true}
+}

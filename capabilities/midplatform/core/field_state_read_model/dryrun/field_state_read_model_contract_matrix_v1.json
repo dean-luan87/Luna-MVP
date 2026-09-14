@@ -1,0 +1,70 @@
+{
+    "matrix_id": "FieldStateReadModelContractDryRunMatrixV1",
+    "version": "v1",
+    "scenario_categories": {
+        "legal_reads": [
+            "field_state_ref_only_read_ready",
+            "snapshot_ref_only_read_ready",
+            "both_refs_read_ready",
+            "full_projection",
+            "partial_projection",
+            "insufficient_projection",
+            "stale_with_full_payload",
+            "unavailable_without_candidate"
+        ],
+        "priority_conflicts": [
+            "invalid_query_overrides_unavailable",
+            "unavailable_overrides_stale",
+            "stale_overrides_insufficient",
+            "insufficient_overrides_partial",
+            "partial_overrides_ready"
+        ],
+        "invalid_queries": [
+            "missing_query_id",
+            "missing_requester_ref",
+            "missing_query_scope",
+            "missing_trace_ref",
+            "missing_replay_key",
+            "empty_required_fields",
+            "missing_both_state_refs",
+            "invalid_query_scope",
+            "unknown_query_field",
+            "invalid_required_fields_type",
+            "duplicate_required_fields",
+            "invalid_temporal_scope_type",
+            "invalid_metadata_type"
+        ],
+        "invalid_state_candidates": [
+            "invalid_state_payload_type",
+            "invalid_available_fields_type",
+            "missing_source_state_ref",
+            "missing_state_version",
+            "invalid_provenance_refs_type",
+            "unknown_temporal_status",
+            "state_ref_mismatch",
+            "replay_key_mismatch",
+            "trace_ref_mismatch"
+        ],
+        "determinism_and_boundary": [
+            "stable_required_field_order",
+            "stable_missing_field_order",
+            "stable_provenance_order",
+            "stable_json_serialization",
+            "deterministic_replay",
+            "query_input_immutability",
+            "state_candidate_immutability",
+            "boundary_flags_constant",
+            "runtime_executed_false",
+            "candidate_only_true"
+        ]
+    },
+    "priority_order": [
+        "query_rejected",
+        "state_unavailable",
+        "stale_state",
+        "insufficient_state",
+        "partial_projection",
+        "read_ready"
+    ],
+    "expected_total_cases": 45
+}

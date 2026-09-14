@@ -1,0 +1,61 @@
+{
+    "artifact": "cognitive_flow_existing_asset_inventory_v1",
+    "current_modules": [
+        {
+            "module": "Context Foundation",
+            "path": "capabilities/midplatform/core/context_foundation",
+            "role": "context candidate producer",
+            "classification": "reused"
+        },
+        {
+            "module": "Personal Cognitive Network",
+            "path": "capabilities/midplatform/core/personal_cognitive_network",
+            "role": "network/activation/context projection candidate producer",
+            "classification": "reused"
+        },
+        {
+            "module": "Intent Governance",
+            "path": "capabilities/midplatform/core/intent_governance",
+            "role": "intent candidate owner",
+            "classification": "reused"
+        },
+        {
+            "module": "Cognitive State Formation",
+            "path": "capabilities/midplatform/core/cognitive_state_formation",
+            "role": "attention/hypothesis/current-world/state-vector producer",
+            "classification": "reused"
+        },
+        {
+            "module": "Dynamic Cognitive Regulation",
+            "path": "capabilities/midplatform/core/dynamic_cognitive_regulation",
+            "role": "state-vector-driven regulation candidate producer",
+            "classification": "reused"
+        },
+        {
+            "module": "Causal Governance",
+            "path": "capabilities/midplatform/core/causal_governance",
+            "role": "independent causal candidate owner",
+            "classification": "reused"
+        },
+        {
+            "module": "Field State Reducer",
+            "path": "capabilities/midplatform/core/field_state_reducer",
+            "role": "independent field state owner",
+            "classification": "reused"
+        },
+        {
+            "module": "Context PCN Intent Mainline",
+            "path": "capabilities/midplatform/core/context_pcn_intent_mainline",
+            "role": "partial upstream integration bridge only",
+            "classification": "valid_but_partial"
+        },
+        {
+            "module": "Cognitive Execution Chain",
+            "path": "capabilities/midplatform/core/cognitive_execution_chain",
+            "role": "downstream Intent->Causal->Decision->Action->Runtime handoff bridge only",
+            "classification": "valid_but_partial"
+        }
+    ],
+    "equivalent_current_canonical_organization_module_found": false,
+    "reason": "No current module spans Context through Dynamic Regulation plus cycle transition/suspend/resume/inheritance governance."
+}

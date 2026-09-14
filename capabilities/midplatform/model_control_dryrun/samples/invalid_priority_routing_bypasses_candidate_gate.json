@@ -1,0 +1,13 @@
+{
+  "control_id": "invalid_priority_routing_bypasses_candidate_gate_001",
+  "policy_id": "model_priority_routing",
+  "model_family": "object_detection_completion_family",
+  "license_ref": "license:multi_family_mixed",
+  "allowed_use": "candidate_only",
+  "availability_state": "available",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "priority_routing_confidence_policy_v1",
+  "fallback_plan": "fallback_to_lowest_risk_available_route",
+  "priority_routing_bypasses_candidate_gate": true,
+  "candidate_gate_bypass": true
+}

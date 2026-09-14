@@ -1,0 +1,62 @@
+{
+  "schema_id": "luna_mental_field_continuity_schema_candidate_v1",
+  "continuity_id": {
+    "type": "string",
+    "required": true
+  },
+  "source_field": {
+    "type": "reference",
+    "required": true,
+    "read_only": true
+  },
+  "current_field": {
+    "type": "reference",
+    "required": true,
+    "read_only": true
+  },
+  "continuity_type": [
+    "unfinished_task",
+    "emotional_pressure",
+    "role_activation",
+    "relationship_residual"
+  ],
+  "activation_state": {
+    "type": "enum",
+    "allowed": ["Candidate", "Active", "Suspended", "Released", "Expired", "Unknown"]
+  },
+  "intensity_reference": {
+    "type": "reference",
+    "numeric_value_allowed": false,
+    "calculation_allowed": false
+  },
+  "duration_scope": {
+    "type": "object",
+    "fields": ["valid_from", "valid_until", "expiry_condition"]
+  },
+  "release_condition_reference": [],
+  "uncertainty": {
+    "unknown_allowed": true,
+    "uncertain_allowed": true,
+    "multiple_candidate_allowed": true
+  },
+  "provenance": [
+    {
+      "source_owner": "",
+      "source_reference": "",
+      "projection_version": "",
+      "temporal_validity": "",
+      "trace_reference": ""
+    }
+  ],
+  "semantic_boundaries": {
+    "is_memory": false,
+    "is_emotion_state": false,
+    "is_causal_explanation": false,
+    "is_decision": false,
+    "is_action": false,
+    "context_reference_only": true
+  },
+  "source_owner_precedence": true,
+  "active_schema": false,
+  "status": "PLANNING_CANDIDATE"
+}

@@ -1,0 +1,15 @@
+{
+  "version":"1.0",
+  "name":"Role Negative Guards",
+  "guards":[
+    {"guard":"no_role_runtime","forbidden":"Role Runtime implementation"},
+    {"guard":"no_automatic_role_generation","forbidden":"automatic role generation"},
+    {"guard":"no_automatic_learning","forbidden":"automatic learning"},
+    {"guard":"no_emotion_runtime","forbidden":"Emotion Runtime"},
+    {"guard":"no_social_runtime","forbidden":"Social Runtime"},
+    {"guard":"no_identity_rewrite","forbidden":"Role rewriting Identity"},
+    {"guard":"no_b_switch","forbidden":"B Route direct role switch"},
+    {"guard":"no_action","forbidden":"Role direct Action execution"}
+  ],
+  "rules":{"architecture_only":true,"no_runtime_activation":true,"no_external_side_effect":true}
+}

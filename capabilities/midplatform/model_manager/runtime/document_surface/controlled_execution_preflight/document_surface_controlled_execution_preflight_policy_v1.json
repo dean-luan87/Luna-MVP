@@ -1,0 +1,16 @@
+{
+  "schema_id": "DocumentSurfaceControlledExecutionPreflightPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Controlled-Execution-Preflight-v1-001",
+  "preflight_only": true,
+  "detector_execution_enabled": false,
+  "real_execution_enabled": false,
+  "protocol_compliance_check": "required",
+  "existing_midplatform_protocol_chain_extension": true,
+  "protocol_patch_not_new_branch": true,
+  "allowed_actions": ["cv2_import_probe", "directory_existence_check", "registry_schema_check", "policy_completeness_check"],
+  "forbidden_actions": ["detector_execution", "cv2_imread", "cv2_image_processing", "ocr", "vlm", "layout_parser", "silent_install", "runtime_activation"],
+  "next_phase_if_cv2_available": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-Real-Runtime-Controlled-Execution-DryRun-v1-001",
+  "next_phase_if_cv2_missing": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-CV2-Dependency-Admission-Review-v1-001",
+  "parallel_next_track": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

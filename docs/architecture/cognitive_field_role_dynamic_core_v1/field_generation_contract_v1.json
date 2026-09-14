@@ -1,0 +1,15 @@
+{
+  "contract_name": "Field Generation Contract v1",
+  "field_source": ["Reality", "Social Relationship", "Task", "Goal", "Virtual Interaction", "Memory Reconstruction"],
+  "source_reference": null,
+  "field_type": "Physical | Social | Virtual | Task Generated | Relationship",
+  "field_candidate": null,
+  "temporary_field": false,
+  "creation_evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "field_close_candidate": null,
+  "generation_does_not_modify_reality": true,
+  "generation_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,25 @@
+{
+  "format_ref": "segmentation_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_frame_001.jpg"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "grounded_sam_2",
+    "model_id": "grounded_sam2_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "segmentation_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "regions": [
+    {"region_id": "reg_walkable_1", "label": "walkable_area", "mask_ref": "mask://frame_001/walkable_1", "bbox": [0, 360, 640, 480], "confidence": 0.85},
+    {"region_id": "reg_wall_1", "label": "wall", "mask_ref": "mask://frame_001/wall_1", "bbox": [0, 0, 120, 480], "confidence": 0.8},
+    {"region_id": "reg_doorway_1", "label": "doorway", "mask_ref": "mask://frame_001/doorway_1", "bbox": [120, 80, 260, 360], "confidence": 0.83},
+    {"region_id": "reg_queue_1", "label": "queue_area", "mask_ref": "mask://frame_001/queue_1", "bbox": [260, 260, 460, 460], "confidence": 0.74},
+    {"region_id": "reg_sign_1", "label": "sign_region", "mask_ref": "mask://frame_001/sign_1", "bbox": [300, 40, 380, 110], "confidence": 0.79}
+  ]
+}

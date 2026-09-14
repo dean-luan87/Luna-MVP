@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "contract_type": "cognitive_field_lifecycle_transition",
+  "states": ["Created", "Active", "Background", "Suspended", "Closed", "Archived"],
+  "required_fields": ["field_id", "from_state", "to_state", "transition_reason", "authority_reference", "validity", "provenance", "unknowns"],
+  "allowed_transitions": {
+    "Created": ["Active", "Background", "Suspended", "Closed"],
+    "Active": ["Background", "Suspended", "Closed"],
+    "Background": ["Active", "Suspended", "Closed"],
+    "Suspended": ["Active", "Background", "Closed"],
+    "Closed": ["Archived"],
+    "Archived": []
+  },
+  "transition_is_not_decision": true,
+  "transition_is_not_action": true,
+  "lifecycle_is_not_runtime": true,
+  "lifecycle_is_not_scheduler": true
+}

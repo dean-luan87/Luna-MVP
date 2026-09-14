@@ -1,0 +1,20 @@
+{
+  "phase": "Phase-Luna-A-Route-Active-Observation-Controlled-Integration-v1-001",
+  "canonical_owner": "Field Perception Orchestrator",
+  "owner_decision": "B_EXISTING_OWNER_REQUIRES_CONTROLLED_INTEGRATION",
+  "owner_scope": "observation demand, request, capability requirement, bounded provider session candidate, evidence sufficiency candidate, observation control decision candidate, and next-cycle ingress candidate",
+  "owned_concepts": ["ObservationDemandCandidate", "ObservationRequestCandidate", "CapabilityRequirementCandidate", "BoundedProviderSessionCandidate", "EvidenceSufficiencyCandidate", "ObservationControlDecision", "NextCycleIngressCandidate", "idempotency and loop guards"],
+  "not_owned": ["Context", "Field State", "Attention truth", "Intent", "Task", "Decision", "Provider implementation", "Model inference", "Provider runtime execution", "Observation Evidence truth", "Observation Gateway semantic authority", "Emotion", "Memory semantic compression"],
+  "semantic_inequalities": ["Observation Demand != Observation Request", "Observation Request != Capability Requirement", "Capability Requirement != Model Selection", "Model Selection != Provider Invocation", "Provider Session Candidate != Provider Runtime Execution", "Evidence Sufficiency != Model Confidence"],
+  "candidate_types": ["ObservationDemandCandidateV1", "ObservationRequestCandidateV1", "CapabilityRequirementCandidateV1", "BoundedProviderSessionCandidateV1", "EvidenceSufficiencyCandidateV1", "ObservationControlDecisionV1", "NextCycleIngressCandidateV1"],
+  "control_decisions": ["STOP", "CONTINUE", "REDIRECT", "SWITCH_PROVIDER", "ADD_CAPABILITY", "RECONSIDER", "DEFER", "FAIL"],
+  "sufficiency_statuses": ["SUFFICIENT", "INSUFFICIENT", "CONTESTED", "STALE", "NEEDS_CONFIRMATION", "NEEDS_ADDITIONAL_MODALITY", "NEEDS_REDIRECT", "NEEDS_PROVIDER_SWITCH"],
+  "runtime_execution": false,
+  "provider_invocation": false,
+  "runtime_handoff_ready": false,
+  "mutation_authority": false,
+  "candidate_only": true,
+  "synthetic_only": true,
+  "maximum_reconsideration_depth": 2,
+  "automatic_retry": false
+}

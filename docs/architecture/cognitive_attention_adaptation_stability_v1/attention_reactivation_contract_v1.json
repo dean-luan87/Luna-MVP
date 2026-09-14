@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Anomaly Reactivation Contract",
+  "trigger": [
+    "new evidence",
+    "deviation detected",
+    "risk increase candidate",
+    "confidence decline",
+    "capability change"
+  ],
+  "input": {
+    "stable_pattern": "required",
+    "new_evidence": "required",
+    "deviation_candidate": "required"
+  },
+  "output": "Attention Increase Candidate",
+  "allocation_effect": "candidate only",
+  "automatic_attention_change": false,
+  "automatic_decision": false,
+  "automatic_action": false,
+  "reality_mutation": false
+}

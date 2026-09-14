@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:58:26.963477+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "real_local_image_model_load_record",
+  "record": {
+    "record_id": "real_local_image_model_load_record_v1",
+    "import_attempted": true,
+    "import_success": true,
+    "import_error": "",
+    "checkpoint_load_attempted": true,
+    "model_object_created": true,
+    "model_type_name": "Sam",
+    "checkpoint_load_success": true,
+    "checkpoint_load_error": "",
+    "model_object_released": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "schema_id": "SituationUnderstandingInputV1",
+  "version": "v1",
+  "layer_id": "L1_Situation_Understanding",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_sections": [
+    "frame_context",
+    "user_goal_candidate",
+    "visual_evidence_candidates",
+    "situation_case_refs",
+    "environment_memory_candidates",
+    "human_correction_signals",
+    "available_capabilities"
+  ],
+  "boundary_flags": {
+    "input_not_situation_output": true,
+    "candidate_only": true,
+    "not_fact": true
+  },
+  "field_definitions": {
+    "frame_context": { "$ref": "frame_context_schema_v1.json" },
+    "user_goal_candidate": { "$ref": "user_goal_candidate_schema_v1.json" },
+    "visual_evidence_candidates": {
+      "type": "array",
+      "items": { "$ref": "visual_evidence_candidate_schema_v1.json" }
+    },
+    "situation_case_refs": {
+      "type": "array",
+      "items": { "$ref": "situation_case_ref_schema_v1.json" }
+    },
+    "available_capabilities": {
+      "type": "array",
+      "items": { "$ref": "available_capability_schema_v1.json" }
+    }
+  },
+  "policy_refs": ["luna_situation_understanding_policy_v1"],
+  "trace_refs": { "type": "array" }
+}

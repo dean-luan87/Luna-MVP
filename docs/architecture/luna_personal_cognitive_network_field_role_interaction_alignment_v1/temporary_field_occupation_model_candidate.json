@@ -1,0 +1,33 @@
+{
+  "artifact_id": "temporary_field_occupation_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Cognitive Interaction Governance",
+  "distinction": {
+    "CORE_FIELD_OWNERSHIP": "Source-owned structural Field identity and boundaries.",
+    "TEMPORARY_DOMINANT_PROJECTION": "A time-bounded cognitive projection that dominates attention or context without acquiring Field ownership."
+  },
+  "occupation_states": ["NONE", "TEMPORARY_OCCUPATION", "REPEATED_OCCUPATION", "PERSISTENT_INFLUENCE_CANDIDATE"],
+  "candidate_fields": [
+    "occupation_candidate_id",
+    "source_field_ref",
+    "projected_field_ref",
+    "active_role_refs",
+    "relationship_refs",
+    "context_ref",
+    "supporting_evidence_refs",
+    "resource_scope",
+    "uncertainty",
+    "provenance"
+  ],
+  "rules": {
+    "occupation_does_not_transfer_ownership": true,
+    "occupation_does_not_overwrite_current_reality": true,
+    "automatic_structural_change": false,
+    "single_event_persistent_change": false,
+    "source_field_mutation": false,
+    "expiration_or_reassessment_required": true
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

@@ -1,0 +1,35 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m4_migration_blocker_registry_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "reviewed_categories": [
+    {
+      "category": "Owner conflict",
+      "status": "CLEAR",
+      "evidence": "M2 owner conflict review reports no duplicate Owner, duplicate Writer, owner drift, or permission conflict."
+    },
+    {
+      "category": "Contract conflict",
+      "status": "CLEAR",
+      "evidence": "M1 blocked contract registry is empty and all candidate contracts remain additive and inactive."
+    },
+    {
+      "category": "Runtime conflict",
+      "status": "CLEAR",
+      "evidence": "M3 records no active Runtime conflict, no Runtime cognitive owner, no Field bypass, and no Runtime modification."
+    },
+    {
+      "category": "Legacy conflict",
+      "status": "CLEAR",
+      "evidence": "M0-M3 preserve existing baselines, APIs, owners, historical documents, and the legacy A3 Runtime."
+    },
+    {
+      "category": "Missing dependency",
+      "status": "CLEAR",
+      "evidence": "All cross-phase evidence references required for M0 to M3 consistency validation exist; future implementation dependencies remain explicitly unassigned and non-activating."
+    }
+  ],
+  "blockers": [],
+  "blocker_count": 0,
+  "migration_executed": false,
+  "m5_started": false
+}

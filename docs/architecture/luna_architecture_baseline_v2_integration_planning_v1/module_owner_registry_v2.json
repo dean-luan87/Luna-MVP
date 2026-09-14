@@ -1,0 +1,22 @@
+{
+  "version":"2.0",
+  "name":"Luna Module Owner Registry",
+  "ownership":[
+    {"concept":"Constitution","owner":"Constitution","writer":"Constitution Governance","readers":["all layers"],"layer":"L0"},
+    {"concept":"Identity","owner":"Self Model","writer":"Self Model under Constitution","readers":["Self Layer","Integration","Brain"],"layer":"L2_SELF"},
+    {"concept":"Self Capability State","owner":"Self Model","writer":"Self Regulation candidate gate","readers":["Brain","Capability Governance","Attention"],"layer":"L2_SELF"},
+    {"concept":"Self Regulation State","owner":"Self Regulation","writer":"Self Regulation","readers":["Brain","Cognitive Runtime"],"layer":"L2_SELF"},
+    {"concept":"Self Evolution Candidate","owner":"Self Evolution","writer":"Self Evolution candidate pipeline","readers":["Self Regulation","Brain","Learning"],"layer":"L2_SELF"},
+    {"concept":"Role State","owner":"Social Self","writer":"Role System","readers":["Workspace","Brain","Integration"],"layer":"L2_SOCIAL"},
+    {"concept":"Relationship Context","owner":"Social Self","writer":"Relationship System","readers":["Workspace","Brain","Integration","Memory"],"layer":"L2_SOCIAL"},
+    {"concept":"Social Responsibility and Norm","owner":"Social Self","writer":"Responsibility and Social Norm","readers":["Attention","Brain","Action Boundary"],"layer":"L2_SOCIAL"},
+    {"concept":"Emotion Context Metadata","owner":"Cognitive Integration","writer":"Emotion Context Boundary","readers":["Integration","Memory","Brain"],"layer":"L2_INTEGRATION"},
+    {"concept":"Global Cognitive State","owner":"Global State","writer":"Global State Composer","readers":["Brain","Cognitive Runtime","Memory"],"layer":"L2_CORE"},
+    {"concept":"Decision Candidate","owner":"Brain","writer":"Brain","readers":["Decision Commitment","Action Boundary","Trace"],"layer":"L2_CORE"},
+    {"concept":"Capability Registry","owner":"Capability Governance","writer":"Capability Registry","readers":["Model Manager","Admission","Self Regulation"],"layer":"L2_CAPABILITY"},
+    {"concept":"Model Asset State","owner":"Capability Governance","writer":"Model Manager","readers":["Admission","Calibration","Self Regulation"],"layer":"L2_CAPABILITY"},
+    {"concept":"Action Request","owner":"Action Governance","writer":"Action Boundary","readers":["Action Runtime","Feedback"],"layer":"L2_ACTION"},
+    {"concept":"Runtime State","owner":"Cognitive Runtime Governance","writer":"State Sync and Recovery","readers":["Cognitive Runtime","Global State","Diagnostics"],"layer":"L2_RUNTIME"}
+  ],
+  "rules":{"single_owner":true,"writer_declared":true,"reader_not_writer":false,"l0_protected":true,"no_shared_final_writer":true}
+}

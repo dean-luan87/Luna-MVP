@@ -1,0 +1,8 @@
+{
+  "title": "Capability Cache Boundary v1",
+  "owner": "Capability Governance",
+  "cache_classes": ["Static Evidence", "Dynamic Evidence", "Sensitive Evidence"],
+  "policy": {"Static Evidence":"longer retention subject to validation", "Dynamic Evidence":"short-lived context-bound retention", "Sensitive Evidence":"do not cache"},
+  "required_fields": ["cache_id", "evidence_reference", "class", "context", "expiry", "validation_state", "trace_id"],
+  "rules": {"sensitive_not_cached": true, "unverified_not_cached": true, "cache_not_reality": true, "cache_not_memory_owner": true}
+}

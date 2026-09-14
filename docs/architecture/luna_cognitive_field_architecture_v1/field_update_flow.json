@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field Update Flow",
+  "stages":[
+    {"order":1,"stage":"Reality Reference","input":"external Reality","output":"read-only reference","owner":"Reality Evidence Pipeline"},
+    {"order":2,"stage":"Observation","input":"Evidence candidates","output":"observation package","owner":"Attention / Evidence"},
+    {"order":3,"stage":"Interpretation","input":"observation + admitted Knowledge + Memory context","output":"Field update candidate","owner":"Cognitive Core"},
+    {"order":4,"stage":"Context Fusion","input":"Self + Social Self + Role + Task","output":"subject-bound Field state","owner":"Cognitive Field"},
+    {"order":5,"stage":"Current Understanding","input":"Field state + Unknowns","output":"Situation context","owner":"Brain Boundary"},
+    {"order":6,"stage":"Feedback","input":"outcome or contradiction","output":"Field update candidate","owner":"Feedback / Learning Candidate"}
+  ],
+  "rules":{"reality_precedes_interpretation":true,"unknown_preserved":true,"field_update_candidate_only":true,"no_direct_action":true}
+}

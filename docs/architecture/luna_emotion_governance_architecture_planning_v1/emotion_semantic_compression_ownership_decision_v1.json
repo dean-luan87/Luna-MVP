@@ -1,0 +1,49 @@
+{
+  "artifact": "emotion_semantic_compression_ownership_decision_v1",
+  "decision_rule": "Do not inherit the historical Emotion Engine deferral as automatic Emotion Governance ownership. The four capabilities are cross-owner semantic synthesis concerns and remain deferred.",
+  "decisions": [
+    {
+      "capability": "semantic compression",
+      "semantic_owner": "Future Cross-Owner Semantic Synthesis Governance",
+      "execution_owner": "Future separately authorized semantic synthesis runtime",
+      "source_owner": "Typed candidates from relevant semantic owners, including Emotion Governance where affective evidence exists",
+      "persistence_owner": "None in this phase; destination owner decides after synthesis contract",
+      "implementation_deferred": true,
+      "why": "Generic semantic compression crosses owner boundaries and must not become hidden Emotion authority."
+    },
+    {
+      "capability": "affective memory compression",
+      "semantic_owner": "Future Cross-Owner Semantic Synthesis Governance with Cognitive Memory & Experience Governance admission",
+      "execution_owner": "Future separately authorized synthesis/compression runtime",
+      "source_owner": "Emotion Governance affective candidates plus Cognitive Memory & Experience historical references",
+      "persistence_owner": "Cognitive Memory & Experience Governance, only after a future persistence contract",
+      "implementation_deferred": true,
+      "why": "Affective content originates from Emotion but compression changes memory semantics; neither owner may silently absorb the other."
+    },
+    {
+      "capability": "emotion-memory summary",
+      "semantic_owner": "Future Cross-Owner Semantic Synthesis Governance",
+      "execution_owner": "Future separately authorized summary-generation runtime",
+      "source_owner": "Emotion Governance and Cognitive Memory & Experience Governance",
+      "persistence_owner": "Cognitive Memory & Experience Governance, if a future memory candidate is admitted",
+      "implementation_deferred": true,
+      "why": "A summary is a cross-owner artifact, not an Emotion State and not an automatic Memory write."
+    },
+    {
+      "capability": "personality-memory semantic fusion",
+      "semantic_owner": "Future Cross-Owner Semantic Synthesis Governance",
+      "execution_owner": "Future separately authorized synthesis runtime",
+      "source_owner": "Personality Governance FROZEN_V1 and Cognitive Memory & Experience Governance, with Emotion references only when typed",
+      "persistence_owner": "None in this phase; Personality remains non-persistent candidate-only",
+      "implementation_deferred": true,
+      "why": "Personality is frozen and Memory owns historical semantics; Emotion Governance cannot fuse or mutate either owner."
+    }
+  ],
+  "frozen_flags": {
+    "semantic_compression_execution": false,
+    "affective_memory_compression_execution": false,
+    "emotion_memory_summary_generation": false,
+    "personality_memory_semantic_fusion": false,
+    "emotion_governance_owns_all_four": false
+  }
+}

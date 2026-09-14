@@ -1,0 +1,175 @@
+{
+  "registry_id": "model_room_registry_v1",
+  "model_room_registry_complete": true,
+  "rooms": [
+    {
+      "room_id": "visual_perception_room",
+      "candidates": [
+        "SAM2",
+        "Grounded_SAM2",
+        "ByteTrack",
+        "YOLO_lightweight",
+        "GroundingDINO",
+        "Florence2",
+        "DINO_X"
+      ],
+      "expected_outputs": [
+        "ObjectObservationCandidate",
+        "MaskObservationCandidate",
+        "TrackObservationCandidate",
+        "VisualRelationHintCandidate"
+      ],
+      "directory_prepare_allowed": true,
+      "adapter_placeholder_allowed": true,
+      "weight_download_allowed": false,
+      "inference_allowed": false
+    },
+    {
+      "room_id": "ocr_text_perception_room",
+      "candidates": [
+        "PaddleOCR",
+        "RapidOCR"
+      ],
+      "expected_outputs": [
+        "TextObservationCandidate",
+        "TextRegionCandidate",
+        "ReadabilityCandidate"
+      ],
+      "directory_prepare_allowed": true,
+      "adapter_placeholder_allowed": true,
+      "weight_download_allowed": false,
+      "inference_allowed": false
+    },
+    {
+      "room_id": "audio_speech_perception_room",
+      "candidates": [
+        "Whisper",
+        "faster_whisper",
+        "SenseVoice",
+        "pyannote_audio",
+        "VAD_placeholder",
+        "voiceprint_placeholder"
+      ],
+      "expected_outputs": [
+        "SpeechObservationCandidate",
+        "SpeakerObservationCandidate",
+        "IntentHintCandidate",
+        "InterruptSignalCandidate"
+      ],
+      "directory_prepare_allowed": true,
+      "adapter_placeholder_allowed": true,
+      "weight_download_allowed": false,
+      "inference_allowed": false
+    },
+    {
+      "room_id": "spatial_slam_scene_graph_room",
+      "candidates": [
+        "Kimera",
+        "Hydra",
+        "HOV_SG",
+        "Open3DSG",
+        "RTG_SLAM_placeholder",
+        "Splatt3R_SLAM_placeholder"
+      ],
+      "expected_outputs": [
+        "PoseObservationCandidate",
+        "SpatialObservationCandidate",
+        "SceneRelationCandidate",
+        "SceneGraphReferenceCandidate",
+        "AccessibilityRelationCandidate"
+      ],
+      "reference_only_now": true,
+      "directory_prepare_allowed": true,
+      "adapter_placeholder_allowed": true,
+      "weight_download_allowed": false,
+      "runtime_build_allowed": false,
+      "inference_allowed": false
+    },
+    {
+      "room_id": "ecs_entity_component_room",
+      "candidates": [
+        "Luna_dataclass_ECS_skeleton",
+        "Esper",
+        "Flecs"
+      ],
+      "expected_outputs": [
+        "WorldEntityCandidate",
+        "EntityComponentCandidate",
+        "AttributeStateCandidate",
+        "EntityStateUpdateCandidate"
+      ],
+      "dataclass_skeleton_allowed": true,
+      "external_runtime_dependency_allowed": false,
+      "reference_manifest_allowed": true
+    },
+    {
+      "room_id": "semantic_event_graph_room",
+      "candidates": [
+        "Luna_lightweight_event_graph_skeleton",
+        "NetworkX",
+        "RDFLib",
+        "Neo4j"
+      ],
+      "expected_outputs": [
+        "SemanticEventCandidate",
+        "RiskZoneCandidate",
+        "RuleZoneCandidate",
+        "PlaceFunctionCandidate",
+        "EventRelationCandidate"
+      ],
+      "lightweight_skeleton_allowed": true,
+      "external_database_allowed": false,
+      "reference_manifest_allowed": true
+    },
+    {
+      "room_id": "field_simulation_room",
+      "candidates": [
+        "Luna_geometry_simulator",
+        "collision_path_intersection_placeholder",
+        "occlusion_update_placeholder"
+      ],
+      "expected_outputs": [
+        "FieldSimulationResultCandidate",
+        "TrajectoryProjectionCandidate",
+        "RiskProjectionCandidate",
+        "MissingInformationCandidate",
+        "SafeWindowCandidate"
+      ],
+      "self_developed_placeholder_allowed": true,
+      "external_model_dependency_required_now": false
+    },
+    {
+      "room_id": "midplatform_reasoning_room",
+      "candidates": [
+        "structured_LLM_reasoning",
+        "local_small_model",
+        "cloud_LLM",
+        "rule_LLM_hybrid"
+      ],
+      "expected_outputs": [
+        "MidplatformReasoningCandidate",
+        "NeedMoreInfoCandidate",
+        "RiskCandidate",
+        "RouteCandidate",
+        "PerceptionNeedCandidate",
+        "TaskBlockedCandidate"
+      ],
+      "adapter_placeholder_allowed": true,
+      "model_selection_allowed": false,
+      "inference_allowed": false
+    }
+  ],
+  "phase": "Phase-Midplatform-Field-First-Core-Model-Preinstall-Plan-and-Cache-Manifest-Prepare-v1-001",
+  "scope": "field_first_core_model_preinstall_plan_only",
+  "source_chain": "field_first_core_model_preinstall_plan_v1",
+  "governance_constraints_ref": "migration_governance_development_constraints_v1",
+  "foundation_id": "midplatform_task_manager_foundation_v1",
+  "runtime_status": "not_enabled",
+  "field_first_core_model_preinstall_plan_only": true,
+  "midplatform_overall_status": "construction_consolidation",
+  "foundation_consolidation_not_final_midplatform_completion": true,
+  "no_fragmentary_phase_expansion": true,
+  "integration_test_executed": false,
+  "output_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_model_preinstall_plan_v1_smoke_v0",
+  "ideal_operation_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_ideal_operation_mechanism_and_model_requirement_mapping_v1_smoke_v0"
+}

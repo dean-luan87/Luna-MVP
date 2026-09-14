@@ -1,0 +1,15 @@
+{
+  "matrix_name": "Cognitive Core Module Dependency Matrix v1",
+  "modules": ["Reality", "Field", "Role", "Relationship", "Self", "Attention", "Workspace", "Drive", "Value", "Brain", "Decision", "Action Boundary", "Experience", "Learning", "Reflex", "Emotion Context"],
+  "dependencies": {
+    "Field": ["Reality"],
+    "Role": ["Field", "Relationship", "Task"],
+    "Workspace": ["Field", "Role", "Relationship", "Self", "Attention", "Memory"],
+    "Brain": ["Workspace", "Drive", "Value"],
+    "Learning": ["Experience", "Memory", "Reality"],
+    "Reflex": ["Constitution", "Field", "Learning"],
+    "Emotion Context": ["Field", "Role", "Relationship", "Memory"]
+  },
+  "no_reverse_authority": ["Field→Decision", "Learning→Goal", "Emotion Context→Decision", "Model→Brain"],
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "DocumentSurfaceRuntimeTraceSchemaV1",
+  "type": "object",
+  "required": [
+    "execution_id",
+    "source_image_ref",
+    "source_region_id",
+    "attention_gate_status",
+    "runtime_id",
+    "implementation_mode",
+    "dependency_status",
+    "input_boundary_status",
+    "output_boundary_status",
+    "fallback_attempted",
+    "ocr_called",
+    "vlm_called",
+    "layout_called",
+    "candidate_only",
+    "not_fact"
+  ],
+  "properties": {
+    "execution_id": {"type": "string"},
+    "source_image_ref": {"type": "string"},
+    "source_region_id": {"type": "string"},
+    "attention_gate_status": {"type": "string"},
+    "field_context_candidate": {"type": "object"},
+    "runtime_id": {"type": "string", "const": "document_surface_detector_v1"},
+    "implementation_mode": {"type": "string", "const": "option_a_classical_cv_boundary"},
+    "dependency_status": {"type": "string"},
+    "input_boundary_status": {"type": "string"},
+    "output_boundary_status": {"type": "string"},
+    "candidate_outputs": {"type": "object"},
+    "validation_status_candidate": {"type": "string"},
+    "abort_status": {"type": "string"},
+    "fallback_attempted": {"type": "boolean", "const": false},
+    "ocr_called": {"type": "boolean", "const": false},
+    "vlm_called": {"type": "boolean", "const": false},
+    "layout_called": {"type": "boolean", "const": false},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

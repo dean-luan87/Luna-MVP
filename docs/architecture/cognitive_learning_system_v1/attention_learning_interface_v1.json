@@ -1,0 +1,14 @@
+{
+  "interface_name": "Attention Learning Interface v1",
+  "experience_reference": {},
+  "attention_pattern_candidate": {},
+  "attention_evaluation_candidate": {},
+  "field_context": {},
+  "risk": [],
+  "uncertainty_reduction": {},
+  "validation_status": "Pending",
+  "attention_update_is_candidate_only": true,
+  "does_not_allocate_attention_directly": true,
+  "does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,18 @@
+{
+  "artifact":"abcd_gap_registry_v1",
+  "legend":{"A":"directly reusable canonical assets","B":"reusable through adapters/integration","C":"legacy/drift/conflicting semantics","D":"deferred/outside current A Route scope"},
+  "entries":[
+    {"id":"G-A01","classification":"A","asset":"Runtime Executor result candidate","reason":"current canonical candidate type is reusable as actual result reference"},
+    {"id":"G-A02","classification":"A","asset":"Cognitive Execution Chain feedback/idempotency/reconsideration","reason":"current controlled handoff substrate is reusable"},
+    {"id":"G-B01","classification":"B","asset":"Action Outcome Evaluation architecture contracts","reason":"high-value comparison/failure/multi-cause boundaries need current owner/typed adapter"},
+    {"id":"G-B02","classification":"B","asset":"Expectation Feedback contracts","reason":"expectation difference statuses can inform future contract"},
+    {"id":"G-B03","classification":"B","asset":"Decision/Task/Action/Observation/Field/Current World references","reason":"each supplies source refs; none owns evaluation"},
+    {"id":"G-C01","classification":"C","asset":"provider confidence or direct provider success claims","reason":"conflicts with confidence != correctness and provider non-authority"},
+    {"id":"G-C02","classification":"C","asset":"single-score outcome simplifications","reason":"conflicts with structured deviation, comparability and multi-cause uncertainty"},
+    {"id":"G-D01","classification":"D","asset":"Emotion Engine / Advanced Emotion Governance","reason":"deferred workstream"},
+    {"id":"G-D02","classification":"D","asset":"B Route","reason":"outside A Route completion"},
+    {"id":"G-D03","classification":"D","asset":"semantic compression / affective memory compression / personality-memory fusion","reason":"deferred and no owner inherited"},
+    {"id":"G-D04","classification":"D","asset":"cross-user transfer","reason":"privacy and governance boundary"}
+  ],
+  "genuine_gap":"D_NO_CANONICAL_OWNER_FOUND for a narrow Outcome Evaluation Governance owner; implementation is outside this planning phase"
+}

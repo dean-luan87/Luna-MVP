@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Memory Open Source Adapter Boundary",
+  "owner":"Memory Governance",
+  "flow":["Memory Governance","Memory Adapter","External Storage Engine","Storage Backend"],
+  "external_can":["store validated entry","retrieve by governed key","report health"],
+  "external_cannot":["decide retention","decide deletion","modify Self","modify Role","create Decision","write Reality"],
+  "rules":{"validated_entry_required":true,"adapter_required":true,"replacement_required":true,"external_storage_not_memory_authority":true}
+}

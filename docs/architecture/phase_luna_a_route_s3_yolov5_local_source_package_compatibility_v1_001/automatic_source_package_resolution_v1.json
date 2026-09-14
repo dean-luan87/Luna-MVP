@@ -1,0 +1,9 @@
+{
+  "flow": ["Model Asset", "Loader Contract", "Local Source Package Contract", "Provider Adapter Contract", "Capability Contract", "Evidence Contract", "Compatibility Validation"],
+  "unique_compatible_package": "RESOLVED",
+  "zero_compatible_packages": "LOCAL_SOURCE_PACKAGE_NOT_FOUND",
+  "multiple_compatible_packages": "LOCAL_SOURCE_PACKAGE_AMBIGUOUS",
+  "incompatible_package": "LOCAL_SOURCE_PACKAGE_INCOMPATIBLE",
+  "manual_source_selection_required_normal_path": false,
+  "loader_guessing": false
+}

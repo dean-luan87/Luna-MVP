@@ -1,0 +1,18 @@
+{
+  "model_asset": "model-asset:yolov5n:weights-v1",
+  "identity": "RESOLVED_UNIQUE",
+  "model_contract_resolution": "MODEL_CONTRACT_RESOLVED",
+  "loader_contract_resolution": "LOADER_CONTRACT_RESOLVED",
+  "loader_contract": "loader:yolov5:torch-hub-local:v1",
+  "loader_kind": "torch_hub_yolov5_custom_local_weights",
+  "capability_contract": "capability:object-detection:v1",
+  "evidence_contract": "evidence:visual-detection-candidate:v1",
+  "compatibility": "BLOCKED",
+  "blocking_reasons": ["LOCAL_SOURCE_PACKAGE_REQUIRED", "LOCAL_SOURCE_PACKAGE_NOT_FOUND", "DEPENDENCY_NOT_SATISFIED"],
+  "local_source_package_resolution": "LOCAL_SOURCE_PACKAGE_NOT_FOUND",
+  "local_source_package_ref": null,
+  "final_admission": "BLOCKED",
+  "execution_admitted": false,
+  "network_allowed": false,
+  "automatic_download_allowed": false
+}

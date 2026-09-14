@@ -1,0 +1,77 @@
+{
+  "schema_id": "GroundingDetectionCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "Route A — Detection/Grounding 输出的区域候选。不是 fact，不是语义确认。",
+  "route_id": "route_a_detector_grounding_sam",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "candidate_id",
+    "source_image_ref",
+    "grounding_prompt",
+    "detected_label_candidate",
+    "bbox",
+    "confidence",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "candidate_id": { "type": "string" },
+    "source_image_ref": { "type": "string" },
+    "grounding_prompt": {
+      "type": "string",
+      "description": "Open-vocabulary prompt used for grounding — not fact label"
+    },
+    "detected_label_candidate": {
+      "type": "string",
+      "description": "Detector label candidate — must not upgrade to fact"
+    },
+    "bbox": {
+      "type": "object",
+      "properties": {
+        "x1": { "type": "number" },
+        "y1": { "type": "number" },
+        "x2": { "type": "number" },
+        "y2": { "type": "number" }
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sam_mask_ref": {
+      "type": "string",
+      "description": "Optional ref after SAM refine step"
+    },
+    "source_model": {
+      "type": "string",
+      "enum": ["grounding_dino_placeholder", "detection_placeholder", "planning_stub_v1"]
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "detected_label_not_fact": { "type": "boolean", "const": true },
+    "trace_chain": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stage": { "type": "string" },
+          "ref": { "type": "string" }
+        }
+      }
+    }
+  },
+  "forbidden_operations": [
+    "detected_label_candidate_as_fact",
+    "grounding_prompt_as_fact_label",
+    "route_a_direct_ocr_call",
+    "route_a_direct_navigation"
+  ],
+  "boundary_flags": {
+    "route_a_candidate_only": true,
+    "no_grounding_label_fact_upgrade": true,
+    "no_fact_write": true,
+    "no_navigation_decision": true,
+    "planning_only": true
+  }
+}

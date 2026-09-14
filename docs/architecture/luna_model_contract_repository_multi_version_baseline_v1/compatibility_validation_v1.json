@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "missing loader contract",
+    "unsupported weight format",
+    "missing local source package",
+    "missing required dependency declaration",
+    "adapter-loader incompatibility",
+    "capability mismatch",
+    "evidence contract incompatibility",
+    "deprecated or blocked contract",
+    "ambiguous match",
+    "network required but forbidden"
+  ],
+  "validation_is_declarative": true,
+  "inference_executed": false,
+  "download_executed": false,
+  "admission_requires_compatibility": true
+}

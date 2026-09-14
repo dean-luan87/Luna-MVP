@@ -1,0 +1,19 @@
+{
+  "contract_id": "dynamic_refactoring_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Legacy Module -> Meta Function Mapping", "Field -> Function Input Space", "Attention -> Resource Function", "Memory -> Historical Influence", "Self Rhythm -> Self Regulation Subfunction", "Belief -> Confidence Dynamics", "Goal -> Goal Activation", "Value -> Utility Function", "Decision -> Decision Function", "Learning -> Parameter Evolution", "Hive -> Candidate Evidence", "Self Review -> Parameter Governance", "Constitution -> All Meta Governance"
+  ],
+  "forbidden_dependencies": [
+    "Meta Function -> Replace Legacy Module", "Meta Function -> Direct Reality Mutation", "Meta Function -> Execute Action", "Field Function -> Reality Authority", "Attention Function -> Direct State Mutation", "Memory Influence -> Override Reality", "Self Regulation -> Switch Model", "Self Regulation -> Hardware Control", "Exploration Function -> Resolve Unknown Automatically", "Belief Function -> Create Reality", "Goal Function -> Direct Action", "Utility Function -> Commit Decision", "Decision Function -> Execute Action", "Learning Function -> Automatic Parameter Update", "Learning Function -> Model Training", "Hive -> Direct Luna Modification", "Hive -> Parameter Write", "Genome -> Identity Change", "Parameter Governance -> Constitution Change", "B Route -> Direct Parameter Adoption", "Runtime -> Parameter Authority", "Emotion -> Direct Parameter Adoption"
+  ],
+  "no_code_refactor": true,
+  "no_file_move": true,
+  "no_module_replacement": true,
+  "no_runtime": true,
+  "no_automatic_tuning": true,
+  "no_hive_connection": true,
+  "no_parameter_learning": true,
+  "no_self_automatic_modification": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true
+}

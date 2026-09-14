@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T11:00:00.553130+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "multi_real_image_memory_timeout_monitor_record",
+  "record": {
+    "monitor_id": "multi_real_image_memory_timeout_monitor_v1",
+    "memory_limit_mb": 4096,
+    "timeout_seconds": 600,
+    "started_at": "2026-07-01T10:59:57.757882+00:00",
+    "ended_at": "2026-07-01T11:00:00.542944+00:00",
+    "elapsed_seconds": 2.7849,
+    "peak_memory_mb": 853.2,
+    "timeout_occurred": false,
+    "oom_occurred": false,
+    "model_object_cleanup_attempted": true,
+    "persistent_process_left": false
+  }
+}

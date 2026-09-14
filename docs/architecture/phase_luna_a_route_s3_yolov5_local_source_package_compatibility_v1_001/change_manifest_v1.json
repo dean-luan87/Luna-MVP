@@ -1,0 +1,16 @@
+{
+  "canonical_owner": "Model Manager / Model Governance",
+  "existing_files_modified": [
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_types_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_registry_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_resolver_v1.py"
+  ],
+  "new_integration_files": [
+    "capabilities/midplatform/model_manager/model_contract_repository/local_source_package_integration/__init__.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/local_source_package_integration/local_source_package_fixture_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/local_source_package_integration/run_local_source_package_compatibility_v1.py"
+  ],
+  "s3_semantic_contract_modified": false,
+  "s0_s1_s2_modified": false,
+  "downloaded_assets": false
+}

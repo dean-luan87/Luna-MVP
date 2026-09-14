@@ -1,0 +1,13 @@
+{
+  "title": "Selective Learning Self Evolution Boundary v1",
+  "self_evolution_role": "review and govern long-term growth candidates",
+  "inputs": ["Approved Growth Candidate", "Capability Evidence", "Schema Candidate", "Self State", "Risk", "Reversibility"],
+  "outputs": ["Self Evolution Candidate", "Capability Growth Candidate", "Strategy Growth Candidate", "Rejected Candidate", "Deferred Candidate"],
+  "protected": ["Constitution", "Identity", "Safety Boundary"],
+  "self_review_required": true,
+  "automatic_self_modification": false,
+  "direct_identity_change": false,
+  "direct_constitution_change": false,
+  "emotion_runtime": false,
+  "candidate_only": true
+}

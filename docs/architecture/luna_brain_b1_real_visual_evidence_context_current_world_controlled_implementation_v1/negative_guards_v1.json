@@ -1,0 +1,29 @@
+{
+  "false": [
+    "provider_semantic_authority",
+    "automatic_fact_admission",
+    "visual_detection_as_object_truth",
+    "direct_context_mutation",
+    "direct_field_state_mutation",
+    "second_field_state_writer",
+    "current_world_truth_declaration",
+    "direct_current_world_mutation",
+    "intent_mutation",
+    "decision_mutation",
+    "task_mutation",
+    "action_execution",
+    "runtime_execution",
+    "ocr_execution",
+    "slam_execution",
+    "vio_execution",
+    "vlm_execution",
+    "semantic_interpretation",
+    "semantic_compression",
+    "online_learning",
+    "database_write",
+    "vector_store_write",
+    "embedding_execution",
+    "hidden_provider_continuation"
+  ],
+  "field_state_reducer_is_single_mutation_authority": true
+}

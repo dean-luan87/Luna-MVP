@@ -1,0 +1,16 @@
+{
+  "schema_id": "PlanGoalCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["interpreted_goal", "goal_type", "source", "confidence", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "goal_type": {
+      "enum": ["read_text", "identify_place", "find_direction", "assess_walkable", "navigate", "find_object", "understand_environment", "monitor_change", "ask_user", "manual_review", "unknown"]
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

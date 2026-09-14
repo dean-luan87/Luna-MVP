@@ -1,0 +1,41 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.305348+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "localhost_only": true,
+  "not_runtime": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "slam_local_video_runner_route_v1",
+    "route_stages": [
+      "video_or_frame_sequence_upload",
+      "asset_register_api",
+      "job_create_api",
+      "job_run_api_after_approval",
+      "slam_video_runner",
+      "raw_trajectory_output",
+      "slam_evaluation_adapter_v1",
+      "slam_diagnostic_engine_v1",
+      "muep_envelope",
+      "ui_load_result_api"
+    ],
+    "without_gt_limited_diagnostics": [
+      "trajectory_visualization",
+      "tracking_lost_ratio",
+      "smoothness_proxy",
+      "failure_timeline_if_tracking_state_available",
+      "no_ate",
+      "no_full_drift_score",
+      "no_gt_limited_mode",
+      "not_comparable_to_gt_benchmark"
+    ],
+    "no_ate_without_gt": true,
+    "no_gt_benchmark_comparison_without_gt": true
+  }
+}

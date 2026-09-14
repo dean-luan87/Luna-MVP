@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_task_feedback_lifecycle_v1",
+  "owner":"Task Manager",
+  "feedback_inputs":["OutcomeEvaluationCandidateV1", "DeviationCandidateV1", "ReconsiderationHandoffCandidateV1", "ObservationNeedHandoffCandidateV1", "Runtime/Action result refs"],
+  "candidate_effects":["pending", "ready/not-ready", "deferred", "blocked", "requires observation", "interrupted", "cancelled", "completed candidate", "recovery candidate"],
+  "rule":"Outcome Evaluation emits candidate feedback; Task Manager owns lifecycle transition and mutation authority.",
+  "idempotency":"Reuse Task Manager and Outcome Evaluation duplicate/replay guards; no hidden task re-execution."
+}

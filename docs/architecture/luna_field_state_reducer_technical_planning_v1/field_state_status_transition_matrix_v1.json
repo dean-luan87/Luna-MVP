@@ -1,0 +1,83 @@
+{
+    "version": "1.0",
+    "name": "Field State Status Transition Matrix",
+    "forbidden_transitions": [
+        {
+            "from": "revoked",
+            "to": "active",
+            "allowed": false
+        },
+        {
+            "from": "expired",
+            "to": "active",
+            "allowed": false,
+            "without_new_event": true
+        },
+        {
+            "from": "suspended",
+            "to": "active",
+            "allowed": false,
+            "without_refresh_evidence": true
+        },
+        {
+            "from": "superseded",
+            "to": "active",
+            "allowed": false
+        },
+        {
+            "from": "conflicted",
+            "to": "active",
+            "allowed": false,
+            "without_conflict_resolution": true
+        },
+        {
+            "from": "unresolved",
+            "to": "active",
+            "allowed": false,
+            "without_sufficient_evidence": true
+        }
+    ],
+    "allowed_transitions": [
+        {
+            "from": "candidate",
+            "to": "provisional",
+            "allowed": true
+        },
+        {
+            "from": "provisional",
+            "to": "active",
+            "allowed": true
+        },
+        {
+            "from": "active",
+            "to": "degraded",
+            "allowed": true
+        },
+        {
+            "from": "active",
+            "to": "suspended",
+            "allowed": true
+        },
+        {
+            "from": "active",
+            "to": "expired",
+            "allowed": true
+        },
+        {
+            "from": "active",
+            "to": "revoked",
+            "allowed": true
+        },
+        {
+            "from": "active",
+            "to": "superseded",
+            "allowed": true
+        },
+        {
+            "from": "conflicted",
+            "to": "unresolved",
+            "allowed": true
+        }
+    ],
+    "transition_matrix_complete": true
+}

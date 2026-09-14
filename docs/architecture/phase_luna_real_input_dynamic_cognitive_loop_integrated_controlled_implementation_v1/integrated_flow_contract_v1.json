@@ -1,0 +1,21 @@
+{
+  "flow": [
+    "B1 evidence reference",
+    "Current World candidate",
+    "B2 Cognitive State and Cognitive Flow candidates",
+    "Dynamic Flow selects current minimum Need",
+    "Need forms bounded EVIDENCE_ONLY Capability Requirement",
+    "Scope then readiness Resolution then Invocation Candidate",
+    "controlled Outcome assessment with independent dimensions",
+    "state version update and Requirement reassessment",
+    "STOP_SUFFICIENT / CONTINUE / REPLAN / REQUEST_MORE_EVIDENCE / DEFER"
+  ],
+  "invariants": [
+    "Plan is provisional and non-binding",
+    "Need is not Action",
+    "Requirement is not Invocation",
+    "Invocation Candidate is not execution",
+    "Capability execution SUCCESS is not Goal SUFFICIENT",
+    "Goal SUFFICIENT terminates remaining candidates without failure"
+  ]
+}

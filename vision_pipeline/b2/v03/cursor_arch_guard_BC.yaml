@@ -1,0 +1,203 @@
+# Cursor Architecture Guard Rules for B/C Boundary
+# This file defines hard constraints that Cursor must enforce when generating/modifying B or C code.
+# These are NOT suggestions - they are design boundaries that cannot be violated.
+
+---
+# 1. Architecture Role Guard
+roles:
+  B:
+    identity: "future_observer"
+    description: "B observes the future, not the present"
+    forbidden_capabilities:
+      - confirm_risk
+      - verify_risk
+      - enforce_action
+      - self_wakeup
+      - real_time_navigation
+      - auto_trigger
+      - self_scheduling
+    allowed_capabilities:
+      - signal_potential_risks
+      - suggest_behavior_changes
+      - observe_long_range
+      - model_future_scenarios
+  
+  C:
+    identity: "real_time_executor"
+    description: "C executes in real-time, not future prediction"
+    forbidden_capabilities:
+      - future_prediction
+      - long_range_world_modeling
+      - overriding_B_safety_interrupt
+      - ignoring_NEED_STOP
+    allowed_capabilities:
+      - real_time_navigation
+      - immediate_obstacle_avoidance
+      - short_range_sensing
+      - execute_safety_stop
+
+# Cursor execution rules for Role Guard:
+# - If B code contains: confirm / verified / must_stop → ERROR
+# - If B contains: auto_wake / self_trigger / schedule_self → ERROR
+# - If C code ignores NEED_STOP → ERROR
+# - If C attempts long-range prediction → ERROR
+
+---
+# 2. Decision Semantics Guard
+decision_semantics:
+  B_output:
+    allowed_impacts:
+      - NO_OP
+      - NEED_SLOW_DOWN
+      - PATH_UNCERTAIN
+      - NEED_DETOUR
+      - NEED_STOP
+    forbidden_impacts:
+      - FORCE_STOP
+      - CONFIRMED_DANGER
+      - IMMEDIATE_ACTION
+      - MUST_ACT
+      - VERIFIED_RISK
+    semantic_requirements:
+      - must_be_suggestion: true
+      - must_be_deniable: true
+      - must_use_potential_language: true
+    forbidden_language:
+      - "confirmed"
+      - "verified"
+      - "must"
+      - "enforce"
+      - "guaranteed"
+
+# Cursor execution rules for Decision Semantics Guard:
+# - Any impact enum outside allowed list → ERROR
+# - Any "confirmed/verified/must" language in B output → ERROR
+# - Impact semantics must be "suggestion / reminder / potential"
+
+---
+# 3. Intervention Uniqueness Guard
+intervention:
+  only_allowed:
+    impact: NEED_STOP
+    condition: "clear_safety_hazard_detected"
+    description: "Only one intervention case exists"
+  forbidden:
+    - multiple_intervention_levels
+    - escalating_force
+    - FORCE_*_categories
+    - IMMEDIATE_*_actions
+    - adding_new_intervention_types
+
+# Cursor execution rules for Intervention Guard:
+# - B has only ONE scenario where it can override C
+# - Any attempt to add "one more emergency level" → ERROR
+# - Any new FORCE_* or IMMEDIATE_* impact → ERROR
+
+---
+# 4. Time Authority Guard
+time:
+  authority: system_time_only
+  required_fields:
+    - system_ts
+    - frame_id
+  forbidden_sources:
+    - camera_time
+    - perception_time
+    - external_timestamp
+    - video_timestamp
+  validation:
+    max_drift_ms: 100
+    validation_location: "C_side"
+    action_on_drift: "log_warning_but_process"
+
+# Cursor execution rules for Time Authority Guard:
+# - B → C messages MUST include system_ts
+# - C MUST validate time drift (allow ±threshold)
+# - No alternative time sources allowed
+
+---
+# 5. Silence Validity Guard
+silence:
+  allowed_state: NO_OP
+  explanation_required: false
+  user_feedback_required: false
+  forbidden_actions:
+    - force_logging_on_NO_OP
+    - explain_silence_to_user
+    - heartbeat_on_silence
+    - "no_detection"_messages
+
+# Cursor execution rules for Silence Guard:
+# - NO_OP must NOT generate logs/prompts
+# - NO_OP must NOT explain "why no warning"
+# - Silence is a valid and final outcome
+
+---
+# 6. Frequency Non-Consistency Guard
+frequency:
+  B:
+    allowed_latency: delayed
+    description: "B operates at lower frequency, longer range"
+    forbidden:
+      - real_time_reaction
+      - immediate_response
+  C:
+    required_latency: real_time
+    description: "C operates at high frequency, short range"
+    forbidden:
+      - delayed_reaction
+      - future_planning
+  invariant:
+    shared_reference:
+      - system_time
+      - world_position
+    synchronization: "NOT required"
+    alignment: "REQUIRED"
+
+# Cursor execution rules for Frequency Guard:
+# - B must NOT attempt real-time actions
+# - C must NOT attempt future prediction
+# - Both must share system_time and world_position
+
+---
+# 7. Evolution Direction Guard
+evolution:
+  B:
+    direction:
+      - foresight
+      - abstraction
+      - long_range_modeling
+    forbidden:
+      - real_time_precision
+      - immediate_execution
+      - short_range_optimization
+  C:
+    direction:
+      - immediacy
+      - execution_accuracy
+      - real_time_performance
+    forbidden:
+      - future_authority
+      - long_range_planning
+      - abstraction_layer
+  invariant:
+    - no_capability_substitution
+    - no_authority_escalation
+    - orthogonal_evolution_only
+
+# Cursor execution rules for Evolution Guard:
+# - B improvements must be in foresight/abstraction
+# - C improvements must be in immediacy/execution
+# - No capability substitution allowed
+# - No authority escalation allowed
+
+---
+# Global Enforcement Rules
+enforcement:
+  mode: "strict"
+  on_violation: "ERROR"
+  bypass_allowed: false
+  review_required: true
+  
+# This YAML is a design boundary that cannot be bypassed.
+# Cursor must check these rules when generating/modifying B or C code.

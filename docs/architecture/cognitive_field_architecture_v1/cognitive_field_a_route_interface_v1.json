@@ -1,0 +1,16 @@
+{
+  "schema_version": "v1",
+  "interface_type": "cognitive_field_to_a_route",
+  "input": "Cognitive Field Package",
+  "required_fields": ["relevant_reality", "self_state", "goal_context", "rule_reference", "unknown", "provenance"],
+  "output": "A Route Input Environment",
+  "output_boundary": {
+    "situation_candidate": "A Route responsibility",
+    "decision": false,
+    "recommendation": false,
+    "action": false,
+    "prediction": false
+  },
+  "raw_reality_database_access": false,
+  "raw_model_output_access": false
+}

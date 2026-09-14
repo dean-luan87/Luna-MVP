@@ -1,0 +1,14 @@
+{
+  "deferred_outside_a": [
+    {"capability":"Emotion Engine implementation","owner_or_future_workstream":"Emotion Engine","reason":"A Route only needs nullable/reference-level emotion influence; implementation remains deferred."},
+    {"capability":"Advanced Emotion Governance runtime","owner_or_future_workstream":"Emotion Governance","reason":"Not required for Active Observation Control and must not be activated."},
+    {"capability":"Semantic compression","owner_or_future_workstream":"Future cross-owner semantic synthesis","reason":"No owner decision or implementation in this phase."},
+    {"capability":"Affective memory compression","owner_or_future_workstream":"Memory/Experience plus future integration","reason":"Outside observation demand/control."},
+    {"capability":"Personality-memory semantic fusion","owner_or_future_workstream":"Future cross-owner integration","reason":"Personality remains FROZEN_V1."},
+    {"capability":"B Route","owner_or_future_workstream":"Future Route B","reason":"A Route product completion remains prerequisite."},
+    {"capability":"Cross-user transfer","owner_or_future_workstream":"Future privacy-governed work","reason":"Forbidden by current boundaries and unnecessary for A Route."},
+    {"capability":"Real camera/YOLO/OCR/SLAM/audio execution","owner_or_future_workstream":"Later provider/runtime modules","reason":"This phase is audit/planning only; no runtime capability is implemented."},
+    {"capability":"Scheduler-driven permanent observation","owner_or_future_workstream":"Future runtime/resource governance","reason":"Provider autonomy is false by default."},
+    {"capability":"Persistence implementation","owner_or_future_workstream":"Future A Route product closure","reason":"No persistence implementation in this audit."}
+  ]
+}

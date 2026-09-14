@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "local_runner_bridge_api_schema_v1",
+  "title": "Local Runner Bridge API V1",
+  "description": "Planning schema for localhost-only Model Test Lens runner bridge HTTP API. Not runtime. Not commercial backend.",
+  "type": "object",
+  "required": [
+    "api_version",
+    "service_bind_address",
+    "service_port",
+    "localhost_only",
+    "not_runtime",
+    "not_output_adapter",
+    "not_commercial_backend",
+    "endpoints"
+  ],
+  "properties": {
+    "api_version": { "const": "v1" },
+    "service_host": { "const": "http://127.0.0.1:8787" },
+    "ui_host": { "const": "http://localhost:8765" },
+    "service_bind_address": { "const": "127.0.0.1" },
+    "service_port": { "const": 8787 },
+    "localhost_only": { "const": true },
+    "bind_all_interfaces_forbidden": { "const": true },
+    "external_network_allowed": { "const": false },
+    "not_runtime": { "const": true },
+    "not_output_adapter": { "const": true },
+    "not_commercial_backend": { "const": true },
+    "registry_mutation_allowed": { "const": false },
+    "fact_write_allowed": { "const": false },
+    "semantic_layer_allowed": { "const": false },
+    "navigation_action_speech_allowed": { "const": false },
+    "live_camera_allowed": { "const": false },
+    "live_microphone_allowed": { "const": false },
+    "dataset_download_allowed": { "const": false },
+    "candidate_output_only": { "const": true },
+    "adapter_required_before_ui_display": { "const": true },
+    "service_must_write_testboard": { "const": true },
+    "asset_store_rel": {
+      "const": "capabilities/test_assets/model_test_lens"
+    },
+    "endpoints": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["method", "path", "purpose"],
+        "properties": {
+          "method": { "type": "string", "enum": ["GET", "POST"] },
+          "path": { "type": "string" },
+          "purpose": { "type": "string" }
+        }
+      }
+    }
+  }
+}

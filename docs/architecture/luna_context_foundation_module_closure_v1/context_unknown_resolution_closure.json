@@ -1,0 +1,31 @@
+{
+  "closure_id": "luna_context_unknown_resolution_closure_v1",
+  "owner": "Context_Foundation",
+  "unknown_semantics": "An unresolved Context reference that may remain unresolved or receive candidate completion.",
+  "candidate_completion_allowed": true,
+  "completion_sources": [
+    "Historical Experience",
+    "Memory Pattern",
+    "System Rule"
+  ],
+  "completion_output": "Unknown Completion Candidate",
+  "requirements": [
+    "Candidate Status",
+    "Source Reference",
+    "Source Owner",
+    "Confidence",
+    "Provenance",
+    "Temporal Validity",
+    "Contradiction Preservation"
+  ],
+  "multiple_candidates_allowed": true,
+  "current_reality_precedence": true,
+  "fact_promotion_allowed": false,
+  "automatic_memory_write_allowed": false,
+  "intent_generation_allowed": false,
+  "causal_conclusion_allowed": false,
+  "decision_generation_allowed": false,
+  "action_generation_allowed": false,
+  "active_contract": false,
+  "status": "FROZEN_CLOSURE_BASELINE"
+}

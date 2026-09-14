@@ -1,0 +1,39 @@
+{
+  "schema_id": "LocalModelResourceProfileV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Local-Model-Integration-Planning-v1-001",
+  "description": "本地模型资源画像 — GPU/CPU/并发/延迟",
+  "required_fields": ["profile_id", "model_id", "execution_mode", "resource", "candidate_only"],
+  "properties": {
+    "profile_id": {"type": "string"},
+    "model_id": {"type": "string"},
+    "execution_mode": {"type": "string", "enum": ["local_runtime", "external_api"]},
+    "resource": {
+      "type": "object",
+      "properties": {
+        "gpu_memory_required_gb": {"type": "number"},
+        "gpu_memory_available_gb": {"type": "number"},
+        "cpu_load_percent": {"type": "number"},
+        "inference_time_ms_avg": {"type": "number"},
+        "concurrent_limit": {"type": "integer"},
+        "temperature_celsius": {"type": "number"},
+        "power_watts": {"type": "number"},
+        "runtime_status": {"type": "string", "enum": ["available", "busy", "insufficient", "offline"]}
+      }
+    },
+    "candidate_only": {"type": "boolean", "const": true}
+  },
+  "example": {
+    "profile_id": "lrp_internvl2_5_v1",
+    "model_id": "internvl2_5",
+    "execution_mode": "local_runtime",
+    "resource": {
+      "gpu_memory_required_gb": 8,
+      "gpu_memory_available_gb": 12,
+      "inference_time_ms_avg": 2000,
+      "concurrent_limit": 1,
+      "runtime_status": "available"
+    },
+    "candidate_only": true
+  }
+}

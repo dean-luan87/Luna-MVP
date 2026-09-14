@@ -1,0 +1,14 @@
+{
+  "version":"1.0",
+  "name":"Information Retention Policy",
+  "owner":"Information Lifecycle Governance",
+  "information_types":[
+    {"type":"field_information","typical_timescale":"seconds_to_hours","retention":"active_context_then_dormant"},
+    {"type":"experience","typical_timescale":"hours_to_long_term","retention":"candidate_then_validated"},
+    {"type":"memory","typical_timescale":"long_term","retention":"validated_and_context_retrievable"},
+    {"type":"knowledge","typical_timescale":"long_term_external_source","retention":"admission_and_version_bound"}
+  ],
+  "retention_factors":["current_relevance","future_utility","self_impact","role_impact","repeatability","uncertainty","reliability","conflict","risk"],
+  "exit_states":["dormant","archived","removed"],
+  "rules":{"same_lifecycle_different_parameters":true,"removed_not_deleted":true,"retention_not_decision":true}
+}

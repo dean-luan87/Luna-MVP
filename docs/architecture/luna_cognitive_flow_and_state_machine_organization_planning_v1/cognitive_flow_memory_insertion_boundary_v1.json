@@ -1,0 +1,18 @@
+{
+    "artifact": "cognitive_flow_memory_insertion_boundary_v1",
+    "position": "after completed_or_suspended_cycle packaging",
+    "memory_may_observe": [
+        "cycle_summary_candidate",
+        "salient_cognitive_event_candidate",
+        "hypothesis_resolution_candidate",
+        "intent_evolution_candidate",
+        "current_world_transition_candidate",
+        "regulation_outcome_candidate",
+        "unresolved_uncertainty_candidate"
+    ],
+    "rules": {
+        "memory_not_implemented_in_phase": true,
+        "flow_not_memory_owner": true,
+        "memory_observes_candidate_outputs_only": true
+    }
+}

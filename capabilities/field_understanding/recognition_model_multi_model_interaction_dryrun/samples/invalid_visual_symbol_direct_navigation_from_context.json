@@ -1,0 +1,17 @@
+{
+  "interaction_id": "visual_symbol_scene_context",
+  "interaction_type": "cross_model_context_validation",
+  "source_model_families": ["visual_symbol_model_family", "scene_relation_vlm_family"],
+  "candidate_refs": ["visual_symbol_candidate:sym_001", "scene_context_candidate:sc_001"],
+  "source_chain": "recognition_model_multi_model_interaction_dryrun_v1",
+  "confidence_policy_ref": "min_of_member_confidence_policy_v1",
+  "alignment_policy_ref": "symbol_scene_context_alignment_policy_v1",
+  "conflict_policy_ref": "symbol_meaning_conflict_to_candidate_policy_v1",
+  "uncertainty_policy_ref": "symbol_meaning_uncertainty_propagation_policy_v1",
+  "adapter_mapping_refs": ["symbol_context_consistency_candidate"],
+  "fallback_plan": "fallback_to_symbol_candidate_only",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "direct_navigation_requested": true
+}

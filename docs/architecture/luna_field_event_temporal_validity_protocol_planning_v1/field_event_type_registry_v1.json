@@ -1,0 +1,75 @@
+{
+    "version": "1.0",
+    "name": "Field Event Type Registry",
+    "description": "FieldEvent 类型注册表，按协议分类冻结。",
+    "categories": [
+        {
+            "category": "observation",
+            "event_types": [
+                "field_definition_observed",
+                "field_relation_observed",
+                "entity_field_relation_observed",
+                "social_activity_observed",
+                "institutional_condition_observed",
+                "temporary_overlay_observed"
+            ]
+        },
+        {
+            "category": "assertion",
+            "event_types": [
+                "field_definition_asserted",
+                "personal_name_asserted",
+                "social_convention_asserted",
+                "institutional_rule_asserted",
+                "user_confirmation_asserted"
+            ]
+        },
+        {
+            "category": "lifecycle",
+            "event_types": [
+                "field_candidate_activated",
+                "field_candidate_suspended",
+                "field_candidate_expired",
+                "field_candidate_superseded",
+                "field_candidate_revoked",
+                "field_candidate_archived"
+            ]
+        },
+        {
+            "category": "temporal",
+            "event_types": [
+                "temporal_interval_started",
+                "temporal_interval_ended",
+                "recurrence_window_opened",
+                "recurrence_window_closed",
+                "temporary_overlay_started",
+                "temporary_overlay_ended",
+                "refresh_due",
+                "temporal_definition_stale"
+            ]
+        },
+        {
+            "category": "correction",
+            "event_types": [
+                "human_correction_submitted",
+                "field_definition_corrected",
+                "evidence_retracted",
+                "revocation_requested",
+                "revision_applied"
+            ]
+        },
+        {
+            "category": "transition",
+            "event_types": [
+                "field_transition_detected",
+                "child_field_entered",
+                "parent_field_exited",
+                "overlapping_field_activated",
+                "active_projection_changed"
+            ]
+        }
+    ],
+    "registry_complete": true,
+    "candidate_only": true,
+    "not_fact": true
+}

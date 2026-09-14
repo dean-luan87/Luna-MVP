@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "name": "Context Foundation Controlled Skeleton Change Manifest v1",
+  "status": "CONTROLLED_SKELETON_CANDIDATE",
+  "created_code_files": [
+    "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_projection_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_carryover_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_protocol_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_trace_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py",
+    "capabilities/midplatform/core/context_foundation/run_context_foundation_controlled_skeleton_v1.py"
+  ],
+  "created_documentation_files": [
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_controlled_skeleton_implementation_v1.md",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_planning_to_code_mapping_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_skeleton_contract_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/context_foundation_controlled_skeleton_change_manifest_v1.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/phase_contract.json",
+    "docs/architecture/luna_context_foundation_controlled_skeleton_implementation_v1/verify_context_foundation_controlled_skeleton_v1.py"
+  ],
+  "modified_existing_files": [],
+  "deleted_files": [],
+  "moved_files": [],
+  "renamed_files": [],
+  "runtime_files_changed": [],
+  "planning_files_changed": [],
+  "alignment_files_changed": [],
+  "active_schema_files_changed": [],
+  "active_contract_files_changed": [],
+  "owner_metadata_files_changed": [],
+  "runtime_executed": false,
+  "controlled_runner_executed_by_agent": false,
+  "state_mutation_executed": false,
+  "database_accessed": false,
+  "model_called": false,
+  "implementation_scope": "controlled_skeleton_only"
+}
+

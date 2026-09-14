@@ -1,0 +1,12 @@
+{
+  "version":"1.0",
+  "name":"Luna Cognitive Runtime Loop Integration Contracts",
+  "flow":["Runtime Tick","Context Assembly","Workspace Integration","Attention Candidate","Brain Invocation Boundary","Decision Candidate","Trace","State Update"],
+  "runtime_tick_separate_from_cognitive_tick":true,
+  "context_required_fields":["context_id","situation","available_information","self_state_ref","capability_state_ref","unknowns"],
+  "brain_output":"Decision Candidate only",
+  "allowed_state_writes":["runtime candidate state","trace state"],
+  "forbidden_state_writes":["Constitution","Identity","Reality","Goal","Memory"],
+  "forbidden_integrations":["model","LLM","provider","hardware","camera","microphone","action execution","real learning","emotion runtime","social runtime","memory consolidation"],
+  "verification":{"agent":"V0 static checks only","user_terminal":"V2 verifier and fixture","chatgpt":"V3 audit"}
+}

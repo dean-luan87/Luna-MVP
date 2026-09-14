@@ -1,0 +1,28 @@
+{
+  "title": "Cognitive Loop Definition v1",
+  "loop_name": "Canonical Cognitive Loop",
+  "steps": ["Observe", "Represent", "Understand", "Hypothesize", "Evaluate", "Commit", "Prepare Action", "Feedback", "Learn", "Adapt"],
+  "transitions": [
+    "Observe → Represent",
+    "Represent → Understand",
+    "Understand → Hypothesize",
+    "Hypothesize → Evaluate",
+    "Evaluate → Commit",
+    "Commit → Prepare Action",
+    "Prepare Action → Feedback",
+    "Feedback → Learn",
+    "Learn → Adapt",
+    "Adapt → Observe"
+  ],
+  "semantic_boundaries": {
+    "commit_is_decision_commitment_candidate_review": true,
+    "prepare_action_is_action_request_candidate_only": true,
+    "feedback_is_evidence_candidate": true,
+    "learn_is_candidate_based": true,
+    "adapt_does_not_auto_modify_goal_or_value": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  },
+  "forbidden_runtime": ["Action Execution", "Model Runtime", "Hardware Runtime", "B Simulation Runtime", "Automatic Learning"],
+  "loop_is_definition_not_execution": true
+}

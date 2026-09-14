@@ -1,0 +1,28 @@
+{
+  "title": "Intent Attention Interface v1",
+  "contract_type": "Intent Attention Influence Candidate",
+  "input": {
+    "intent_candidate": "intent-example",
+    "field_context": {},
+    "role_context": {},
+    "task_context": {},
+    "risk": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "attention_influence_candidate": {
+      "relevance": "candidate",
+      "information_targets": [],
+      "persistence": "candidate",
+      "resource_cost": "candidate"
+    }
+  },
+  "boundary": {
+    "intent_influences_attention": true,
+    "intent_does_not_allocate_attention": true,
+    "attention_governance_retains_allocation": true,
+    "intent_does_not_change_goal": true,
+    "unknowns_are_preserved": true
+  }
+}

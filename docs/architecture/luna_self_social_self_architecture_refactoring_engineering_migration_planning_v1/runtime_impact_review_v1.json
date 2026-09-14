@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Runtime Impact Review",
+  "status": "planning_only_no_runtime_change",
+  "state_contracts": ["Self State", "Social State", "Integration Context", "Capability State", "Global Cognitive State"],
+  "events": ["Self Observation Event", "Social Context Event", "Role Transition Event", "Relationship Context Event", "Integration Candidate Event"],
+  "runtime_requirements": ["Read Self State", "Read Social State", "Read Integration Context", "Preserve State Ownership", "Trace Context Provenance"],
+  "runtime_forbidden": ["Runtime Owns Self Identity", "Runtime Owns Role", "Runtime Direct Emotion Calculation", "Runtime Direct Brain Override", "Runtime Constitution Edit"],
+  "review_actions": ["Add schema references", "Review context package", "Validate lifecycle hooks", "Validate trace boundary"],
+  "rules": {"runtime_not_modified": true, "state_owner_preserved": true, "social_state_not_identity": true, "integration_candidate_only": true, "no_runtime_activation": true}
+}

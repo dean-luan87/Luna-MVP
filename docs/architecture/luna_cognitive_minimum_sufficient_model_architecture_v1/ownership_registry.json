@@ -1,0 +1,17 @@
+{
+  "registry_id": "luna_core_state_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"state": "Field", "owner": "Cognitive Field", "writer": "Field Update Candidate Flow", "reader": "All Cognitive Functions"},
+    {"state": "Self", "owner": "Self Governance", "writer": "Self Review and Constraint Flow", "reader": "All Governance"},
+    {"state": "Understanding", "owner": "Understanding Governance", "writer": "Evidence-validated Candidate Flow", "reader": "Goal and Decision"},
+    {"state": "Goal", "owner": "Goal Governance", "writer": "Goal Candidate and Self Review", "reader": "Value and Decision"},
+    {"state": "Value", "owner": "Value Utility Governance", "writer": "Utility Candidate Flow", "reader": "Decision Arbitration"},
+    {"state": "Memory", "owner": "Memory Governance", "writer": "Validated Consolidation Candidate", "reader": "Understanding and Learning"},
+    {"state": "Resource", "owner": "Resource and Self Regulation Governance", "writer": "Resource Budget Candidate Flow", "reader": "Attention and Runtime Boundary"},
+    {"state": "Cognitive Invariant", "owner": "Constitution Governance", "writer": "Explicit Change Control", "reader": "All State Governance"},
+    {"state": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"},
+    {"state": "Hive Metrics", "owner": "Hive Observation Boundary", "writer": "Metric Observation Interface", "reader": "Self Review"},
+    {"state": "B Route Simulation", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route Governance"}
+  ]
+}

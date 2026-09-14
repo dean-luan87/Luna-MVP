@@ -1,0 +1,135 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T11:00:00.553130+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "multi_real_image_per_image_quality_summary_record",
+  "record": {
+    "record_id": "multi_real_image_per_image_quality_summary_v1",
+    "per_image_summaries": [
+      {
+        "image_id": "mobile_sam_multi_real_image_street_scene_v1_001",
+        "scene_type": "daytime_tree_lined_sidewalk_scene",
+        "prompt_attempt_count": 5,
+        "prompt_success_count": 5,
+        "prompt_failure_count": 0,
+        "skipped_prompt_count": 0,
+        "average_score_if_available": 0.8114,
+        "mask_area_ratio_stats": {
+          "min": 0.029866,
+          "max": 0.116527,
+          "mean": 0.051943
+        },
+        "observed_failure_modes": [],
+        "likely_quality_risks": [
+          "daytime_scene_clutter",
+          "thin_object_fragmentation",
+          "small_dynamic_object",
+          "large_plane_ambiguity"
+        ],
+        "strongest_prompt_category": "building_or_large_structure",
+        "weakest_prompt_category": "street_facility_or_pole_or_edge_object",
+        "human_review_required": true,
+        "suitable_for_runtime_admission": false,
+        "suitable_for_quality_observation": true,
+        "not_semantic_fact": true
+      },
+      {
+        "image_id": "mobile_sam_multi_real_image_street_scene_v1_002",
+        "scene_type": "daytime_hazy_urban_street_scene",
+        "prompt_attempt_count": 5,
+        "prompt_success_count": 5,
+        "prompt_failure_count": 0,
+        "skipped_prompt_count": 0,
+        "average_score_if_available": 0.8918,
+        "mask_area_ratio_stats": {
+          "min": 0.007637,
+          "max": 0.100652,
+          "mean": 0.044816
+        },
+        "observed_failure_modes": [],
+        "likely_quality_risks": [
+          "daytime_scene_clutter",
+          "thin_object_fragmentation",
+          "small_dynamic_object",
+          "large_plane_ambiguity"
+        ],
+        "strongest_prompt_category": "road_or_crosswalk_or_large_plane",
+        "weakest_prompt_category": "street_facility_or_pole_or_edge_object",
+        "human_review_required": true,
+        "suitable_for_runtime_admission": false,
+        "suitable_for_quality_observation": true,
+        "not_semantic_fact": true
+      },
+      {
+        "image_id": "mobile_sam_multi_real_image_street_scene_v1_003",
+        "scene_type": "daytime_street_vendor_stalls_scene",
+        "prompt_attempt_count": 5,
+        "prompt_success_count": 5,
+        "prompt_failure_count": 0,
+        "skipped_prompt_count": 0,
+        "average_score_if_available": 0.8663,
+        "mask_area_ratio_stats": {
+          "min": 0.030149,
+          "max": 0.210972,
+          "mean": 0.088321
+        },
+        "observed_failure_modes": [],
+        "likely_quality_risks": [
+          "daytime_scene_clutter",
+          "thin_object_fragmentation",
+          "small_dynamic_object",
+          "large_plane_ambiguity"
+        ],
+        "strongest_prompt_category": "road_or_crosswalk_or_large_plane",
+        "weakest_prompt_category": "street_facility_or_pole_or_edge_object",
+        "human_review_required": true,
+        "suitable_for_runtime_admission": false,
+        "suitable_for_quality_observation": true,
+        "not_semantic_fact": true
+      },
+      {
+        "image_id": "mobile_sam_multi_real_image_street_scene_v1_004",
+        "scene_type": "daytime_sidewalk_scooters_scene",
+        "prompt_attempt_count": 5,
+        "prompt_success_count": 5,
+        "prompt_failure_count": 0,
+        "skipped_prompt_count": 0,
+        "average_score_if_available": 0.8426,
+        "mask_area_ratio_stats": {
+          "min": 0.037783,
+          "max": 0.09697,
+          "mean": 0.061633
+        },
+        "observed_failure_modes": [],
+        "likely_quality_risks": [
+          "daytime_scene_clutter",
+          "thin_object_fragmentation",
+          "small_dynamic_object",
+          "large_plane_ambiguity"
+        ],
+        "strongest_prompt_category": "building_or_large_structure",
+        "weakest_prompt_category": "sign_or_advertisement_screen",
+        "human_review_required": true,
+        "suitable_for_runtime_admission": false,
+        "suitable_for_quality_observation": true,
+        "not_semantic_fact": true
+      }
+    ],
+    "human_review_required": true,
+    "suitable_for_runtime_admission": false,
+    "suitable_for_quality_observation": true,
+    "not_semantic_fact": true
+  }
+}

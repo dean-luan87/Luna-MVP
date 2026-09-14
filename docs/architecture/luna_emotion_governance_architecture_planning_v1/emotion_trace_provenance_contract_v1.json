@@ -1,0 +1,44 @@
+{
+  "artifact": "emotion_trace_provenance_contract_v1",
+  "reverse_route": [
+    "Emotion State Candidate",
+    "Emotion Appraisal Candidate",
+    "Emotion Evidence Candidate",
+    "Memory / Experience / Context / Self / Personality / Intent / Regulation refs",
+    "Cognitive Cycle",
+    "original source evidence"
+  ],
+  "required_fields": [
+    "emotion_state_candidate_ref",
+    "emotion_appraisal_refs",
+    "emotion_evidence_refs",
+    "source_refs",
+    "memory_refs",
+    "experience_refs",
+    "context_refs",
+    "self_refs",
+    "personality_refs",
+    "intent_refs",
+    "attention_refs",
+    "regulation_refs",
+    "pcn_refs",
+    "cognitive_cycle_ref",
+    "contradiction_refs",
+    "mixed_emotion_refs",
+    "revision_refs",
+    "supersession_refs",
+    "revocation_refs",
+    "expiration_refs",
+    "provenance_refs",
+    "trace_version"
+  ],
+  "rules": {
+    "reverse_lookup_supported": true,
+    "source_evidence_not_dropped": true,
+    "contradiction_and_mixed_refs_retained": true,
+    "lineage_retained": true,
+    "provenance_does_not_grant_semantic_authority": true,
+    "owner_traces_are_immutable_references": true,
+    "candidate_only": true
+  }
+}

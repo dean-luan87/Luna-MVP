@@ -1,0 +1,13 @@
+{
+  "contract_id": "memory_influence_function_v1",
+  "function_role": "Historical Influence Function",
+  "inputs": ["Current Field", "Memory Layers", "Context Match", "Recency", "Reinforcement", "Memory Reliability"],
+  "parameters": ["activation_strength", "influence_weight", "context_dependency", "decay_rate"],
+  "outputs": ["Memory Activation Candidate", "Context Influence Candidate", "Historical Comparison Candidate"],
+  "memory_is_not_reality": true,
+  "memory_is_not_decision_authority": true,
+  "memory_does_not_override_current_field": true,
+  "memory_does_not_create_goal": true,
+  "automatic_recall": false,
+  "candidate_only": true
+}

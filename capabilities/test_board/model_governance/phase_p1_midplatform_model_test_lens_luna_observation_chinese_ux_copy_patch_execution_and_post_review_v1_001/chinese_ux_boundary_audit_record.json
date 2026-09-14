@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Chinese-UX-Copy-Patch-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "ui_must_not_execute_model": true,
+  "test_mode": "real_test",
+  "record": {
+    "record_id": "chinese_ux_boundary_audit_record"
+  }
+}

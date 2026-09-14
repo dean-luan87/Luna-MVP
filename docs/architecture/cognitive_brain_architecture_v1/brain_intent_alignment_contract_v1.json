@@ -1,0 +1,28 @@
+{
+  "title": "Brain Intent Alignment Contract v1",
+  "contract_type": "Intent Alignment Candidate",
+  "input": {
+    "intent_state": {},
+    "goal_state": {},
+    "task_state": {},
+    "option_candidate": {},
+    "global_cognitive_state": {},
+    "drive_influence": {},
+    "value_constraints": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "alignment_status": "aligned | partially aligned | misaligned | unknown",
+    "alignment_candidate": {},
+    "deviation_reason": {},
+    "clarification_request": null
+  },
+  "boundary": {
+    "intent_is_not_decision": true,
+    "alignment_does_not_modify_intent": true,
+    "alignment_does_not_modify_goal": true,
+    "alignment_does_not_modify_value": true,
+    "unknowns_are_preserved": true
+  }
+}

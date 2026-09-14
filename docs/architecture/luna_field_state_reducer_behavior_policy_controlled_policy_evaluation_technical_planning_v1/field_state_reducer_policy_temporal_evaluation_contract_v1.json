@@ -1,0 +1,87 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Temporal Evaluation Contract",
+    "temporal_statuses": {
+        "not_yet_valid": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": true,
+            "new_event_required": true,
+            "reactivation_allowed": false,
+            "rejection_reason": "invalid_temporal_status",
+            "fact_promotion_allowed": false
+        },
+        "active": {
+            "evaluation_allowed": true,
+            "support_eligible": true,
+            "blocking": false,
+            "refresh_required": false,
+            "new_event_required": false,
+            "reactivation_allowed": false,
+            "rejection_reason": "",
+            "fact_promotion_allowed": false
+        },
+        "expiring": {
+            "evaluation_allowed": true,
+            "support_eligible": true,
+            "blocking": false,
+            "refresh_required": true,
+            "new_event_required": false,
+            "reactivation_allowed": false,
+            "rejection_reason": "",
+            "fact_promotion_allowed": false
+        },
+        "expired": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": true,
+            "new_event_required": true,
+            "reactivation_allowed": true,
+            "rejection_reason": "expired_support_present",
+            "fact_promotion_allowed": false
+        },
+        "suspended": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": true,
+            "new_event_required": true,
+            "reactivation_allowed": true,
+            "rejection_reason": "suspended_support_present",
+            "fact_promotion_allowed": false
+        },
+        "revoked": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": false,
+            "new_event_required": true,
+            "reactivation_allowed": false,
+            "rejection_reason": "revoked_support_present",
+            "fact_promotion_allowed": false
+        },
+        "superseded": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": true,
+            "new_event_required": true,
+            "reactivation_allowed": false,
+            "rejection_reason": "invalid_temporal_status",
+            "fact_promotion_allowed": false
+        },
+        "unknown": {
+            "evaluation_allowed": true,
+            "support_eligible": false,
+            "blocking": true,
+            "refresh_required": true,
+            "new_event_required": true,
+            "reactivation_allowed": false,
+            "rejection_reason": "invalid_temporal_status",
+            "fact_promotion_allowed": false
+        }
+    },
+    "temporal_evaluation_contract_complete": true
+}

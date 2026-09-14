@@ -1,0 +1,35 @@
+{
+  "schema_id": "LearningPolicyReviewResultSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "review_id",
+    "learning_candidate_id",
+    "provenance_check_passed",
+    "policy_decision",
+    "policy_refs",
+    "reviewed_at"
+  ],
+  "policy_decision_enum": [
+    "accept_as_case_candidate",
+    "require_human_review",
+    "reject",
+    "hold"
+  ],
+  "risk_fields": [
+    "copyright_or_usage_risk",
+    "privacy_risk",
+    "hallucination_risk",
+    "unsafe_rule_risk",
+    "unsupported_fact_risk"
+  ],
+  "boundary_flags": {
+    "policy_review_required": true,
+    "unsafe_rule_block": true,
+    "privacy_guard": true,
+    "planning_only": true
+  }
+}

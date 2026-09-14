@@ -1,0 +1,21 @@
+{
+  "schema_id": "SituationUncertaintyV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["needs_user_goal", "needs_manual_review", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "needs_user_goal": { "type": "boolean" },
+    "needs_manual_review": { "type": "boolean" },
+    "ambiguity_reason_optional": { "type": "string" },
+    "confidence_gap_optional": { "type": "string" },
+    "fallback_suggestion": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "unknown_scene_requires_uncertainty": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1", "unknown_scene_requires_uncertainty"]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Self Evolution Learning Interface v1",
+  "owner": "Learning System",
+  "inputs": ["Learning Signal", "Prediction/Expectation Difference", "Validated Pattern Candidate", "Feedback"],
+  "outputs": ["Strategy Candidate", "Capability Growth Candidate", "Behavior Adaptation Candidate", "Limitation Awareness Candidate"],
+  "rules": {
+    "learning_signal_is_candidate_input": true,
+    "learning_does_not_auto_adopt": true,
+    "self_evolution_does_not_train_models": true,
+    "parameter_update_forbidden": true,
+    "trace_required": true,
+    "unknown_preserved": true
+  }
+}

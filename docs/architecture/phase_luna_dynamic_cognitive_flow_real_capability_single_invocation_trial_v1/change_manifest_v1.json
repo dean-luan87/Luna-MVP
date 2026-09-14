@@ -1,0 +1,13 @@
+{
+  "files_created": [
+    "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/dynamic_cognitive_flow_real_capability_trial_types_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/dynamic_cognitive_flow_real_capability_trial_fixture_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/dynamic_cognitive_flow_real_capability_trial_adapter_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/run_dynamic_cognitive_flow_real_capability_single_invocation_trial_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/verify_dynamic_cognitive_flow_real_capability_single_invocation_trial_v1.py"
+  ],
+  "canonical_types_changed": false,
+  "canonical_owner_changed": false,
+  "existing_yolo_execution_copied": false,
+  "existing_s3_y11_runner_modified": false
+}

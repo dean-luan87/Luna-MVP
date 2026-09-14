@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Human Interaction Safety Boundary",
+  "protected_domains": ["User Safety", "Privacy", "Materially Consequential Action", "Sensitive Evidence", "Identity Continuity", "System Stability"],
+  "required_safeguards": ["Evidence Validation", "Authorization Review", "Unknown Preservation", "Risk Escalation", "Traceability", "Reversible Candidate Handling"],
+  "escalation": ["Low Risk Candidate", "Review Required", "Human Confirmation or Higher Authority", "Refuse/Defer if Unresolved"],
+  "forbidden": ["Silent High-Impact Action", "Forced Certainty", "Unreviewed Privacy Exposure", "Constitution Bypass", "Automatic Identity Change"],
+  "rules": {"high_impact_requires_review": true, "privacy_is_protected": true, "safety_over_task_completion": true, "unknown_preserved": true, "action_authorization_required": true}
+}

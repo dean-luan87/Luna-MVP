@@ -1,0 +1,39 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.996968+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_source_repository_verification_commitpin_review_status": "network_evidence_backed_review_complete_no_clone_no_install_no_weight_download",
+    "in_scope_assets": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "ready_asset_ids": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "not_ready_asset_ids": [],
+    "both_assets_ready": true,
+    "recommended_next_phase": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+    "retry_scope_asset_ids": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "byte_track_repository": "https://github.com/FoundationVision/ByteTrack",
+    "byte_track_commit_pin": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+    "mobile_sam_repository": "https://github.com/ChaoningZhang/MobileSAM",
+    "mobile_sam_commit_pin": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+    "mobile_sam_full_clone_blocked": true,
+    "transition_note": "Network-enabled, READONLY evidence review for byte_track and mobile_sam complete. All lookups were scoped readonly GitHub REST calls (api.github.com), each logged in the evidence log; NO clone, NO checkout, NO install, NO pip, NO weight/model/dataset/example download, NO import, NO model load, NO inference, NO runtime, NO registry mutation, and NO source-execution retry were performed. byte_track verified to FoundationVision/ByteTrack (redirected from ifzhang/ByteTrack), MIT, commit pinned to d1bf019 on main; importable module is the in-repo yolox source component (no clean PyPI wheel); requirements include torch/torchvision/opencv/numpy with HIGH build/compile risk (setup.py builds C++ extensions) and old onnx pins (conflict risk); no committed weights, no git-lfs. mobile_sam verified to ChaoningZhang/MobileSAM, Apache-2.0, commit pinned to f706ad9 on master; setup.py has EMPTY install_requires so torch/torchvision are UNDECLARED runtime deps; and CRITICALLY weights/mobile_sam.pt (~40MB) is a committed regular blob (not git-lfs), so a full clone would equal a weight download -> full clone is BLOCKED and a weight-excluding (sparse-checkout / archive-filtered, code-only) checkout is required and feasible. License review does NOT approve commercial runtime / weight download / inference; dependency review does NOT approve installation; commit pin does NOT approve source execution; weight-excluding feasibility does NOT approve weight download. Readiness: both assets READY. Recommended next phase: Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001. Even where readiness=true, retry was NOT executed here; and there is NO weight-download phase until a SUCCESSFUL source-execution post-review."
+  },
+  "final_decision": "P1_SOURCE_REPOSITORY_VERIFICATION_COMMITPIN_LICENSE_DEPENDENCY_WEIGHT_EXCLUSION_REVIEW_GO"
+}

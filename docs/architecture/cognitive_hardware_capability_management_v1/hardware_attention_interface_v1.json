@@ -1,0 +1,16 @@
+{
+  "interface_name": "Hardware Attention Interface v1",
+  "hardware_reference": "hardware-example",
+  "capability_state": "Available | Degraded | Limited | Failed | Unknown",
+  "capability_confidence_candidate": null,
+  "observation_cost": null,
+  "attention_reallocation_candidate": {"reduce": [], "increase": [], "alternative": []},
+  "information_value": null,
+  "resource_cost": null,
+  "attention_does_not_modify_hardware": true,
+  "attention_does_not_modify_goal": true,
+  "attention_does_not_modify_decision": true,
+  "attention_does_not_execute_action": true,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

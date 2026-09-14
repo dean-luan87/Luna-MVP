@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Baseline Contract",
+  "field_reference": "field-id-candidate",
+  "field_pattern": "stable reality pattern candidate",
+  "expected_attention_requirement": "candidate",
+  "normal_observation_cost": "candidate",
+  "familiarity": "candidate",
+  "uncertainty": "required",
+  "supporting_experience": [],
+  "validation_status": "candidate",
+  "review_condition": "new evidence or expiry",
+  "automatic_strategy_change": false,
+  "single_event_adoption": false,
+  "reality_override": false
+}

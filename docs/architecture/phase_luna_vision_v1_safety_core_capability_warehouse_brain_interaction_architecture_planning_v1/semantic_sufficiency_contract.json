@@ -1,0 +1,15 @@
+{
+  "contract_id": "luna-task-semantic-sufficiency-v1",
+  "owner": "future Semantic Resolution & Sufficiency Kernel (SRSK)",
+  "vision_role": "provide_requested_evidence_depth_only",
+  "evidence_sufficiency_owner": "FPO / Active Observation Control",
+  "inputs": ["task_ref", "why_needed", "required_semantic_depth", "evidence_refs", "stop_condition"],
+  "outcomes": ["SUFFICIENT", "INSUFFICIENT", "CONTESTED", "NEEDS_CONFIRMATION", "DEFER"],
+  "rule": "SRSK_evaluates_whether_resolved_meaning_is_sufficient_for_active_task_or_cognitive_need",
+  "evidence_sufficiency_is_semantic_sufficiency": false,
+  "more_detail_is_not_automatically_better": true,
+  "unknown_and_partial_known_are_valid": true,
+  "provider_invocation": false,
+  "semantic_authority_is_truth_authority": false,
+  "semantic_authority_is_mutation_authority": false
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Capability Growth Contract v1",
+  "flow": ["Approved Growth Candidate", "Capability Governance", "Capability Update Candidate", "Self Evolution Review"],
+  "growth_levels": ["Level 0 Temporary Information", "Level 1 Experience Pattern", "Level 2 Capability Improvement", "Level 3 Self Evolution Candidate"],
+  "mutable_targets": ["Capability", "Strategy", "Schema", "Capability Confidence"],
+  "protected_targets": ["Constitution", "Identity", "Safety Boundary", "Core Brain Rules"],
+  "automatic_capability_change": false,
+  "parameter_update": false,
+  "model_training": false,
+  "capability_governance_required": true,
+  "candidate_only": true
+}

@@ -1,0 +1,113 @@
+active_provider: piper
+fallback_provider: piper
+
+# runtime mode switch（基线保留；默认仍为 offline-only）
+tts_runtime_mode: offline_only
+
+# offline-only gate（默认开启）：
+# - 运行态 TTS provider chain 只允许离线 provider
+# - requires_network=true 的 provider 必须被跳过（不得进入默认链路）
+offline_only: true
+
+provider_order:
+  - piper
+
+fallback:
+  enabled: true
+  max_retry_per_provider: 1
+  fallback_on_timeout: true
+  fallback_on_exception: true
+  fallback_on_invalid_audio: true
+
+timeouts:
+  piper_ms: 5000
+  qwen_ms: 5000
+
+# runtime modes（只改变运行策略，不删除 offline-only baseline）
+runtime_modes:
+  offline_only:
+    offline_only: true
+    provider_order:
+      - piper
+    active_provider: piper
+    fallback_provider: piper
+    timeouts:
+      piper_ms: 5000
+      qwen_ms: 5000
+    allow_online: false
+  online_prefer_qwen:
+    offline_only: false
+    allow_online: true
+    provider_order:
+      - qwen
+      - piper
+    active_provider: qwen
+    fallback_provider: piper
+    timeouts:
+      qwen_ms: 2000
+      piper_ms: 5000
+    latency:
+      soft_latency_warning_ms: 800
+      first_response_budget_ms: 1200
+      hard_timeout_ms: 2000
+
+# Phase-VoiceTTS-Policy-002（受控在线优先策略；默认关闭，不污染 offline-only 基线）
+online_runtime:
+  enabled: false
+  policy_id: qwen_online_first_local_realtime_fallback_v0
+  provider_order:
+    - qwen
+    - piper
+    - legacy_macos_say
+  latency:
+    soft_latency_warning_ms: 800
+    first_response_budget_ms: 1200
+    hard_timeout_ms: 2000
+  circuit_breaker:
+    failure_count_threshold: 3
+    failure_window_ms: 300000
+    open_duration_ms: 300000
+    half_open_probe_count: 1
+
+presets:
+  default: calm_female_v1
+  available:
+    - calm_female_v1
+    - navigation_clear_v1
+    - warning_strong_v1
+    - gentle_companion_v1
+
+backend_override:
+  enabled: true
+  source: reserved
+
+cutover:
+  enabled: true
+  mode: provider_chain_first
+  rollback_to_legacy_on_failure: true
+  rollback_on_selector_failure: true
+  rollback_on_provider_chain_failure: true
+  observe_rollbacks: true
+
+legacy_fallback:
+  enabled: true
+  mode: current_main_chain
+  reason_tag: legacy_voice_runtime
+
+local_runtime:
+  piper:
+    executable: "/Users/luanlei/Library/Python/3.9/bin/piper"
+    voice_path: "speech/tts/piper/zh_CN-huayan-medium.onnx"
+    enabled: true
+  qwen:
+    enabled: false
+    api_key_env: "DASHSCOPE_API_KEY"
+    requires_network: true
+    requires_api_key: true
+    model: "qwen-tts"
+    voice: "Serena"
+    # 语速：1.0 为默认；<1 放慢；>1 加速
+    speed: 0.75
+    format: "wav"
+    sample_rate: 16000
+

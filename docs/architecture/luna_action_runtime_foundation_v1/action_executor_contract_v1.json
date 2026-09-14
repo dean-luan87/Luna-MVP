@@ -1,0 +1,9 @@
+{
+  "title": "Action Executor Contract v1",
+  "owner": "Action Runtime Governance",
+  "input": "Approved Action Candidate",
+  "pipeline": ["Approved Action", "Execution Context", "Executor", "Execution Result", "Outcome Collector"],
+  "schema": ["execution_id", "action_id", "executor_id", "status", "trace_id"],
+  "not_allowed": ["Modify Memory", "Modify Value", "Modify Goal", "Replan", "Re-Decide", "Direct Cognitive Control"],
+  "rules": {"approval_required": true, "executor_not_brain": true, "outcome_required": true, "executor_not_implemented": true}
+}

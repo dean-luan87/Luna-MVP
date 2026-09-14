@@ -1,0 +1,128 @@
+{
+    "simulation_id": "pcn_minimum_scenario_simulation_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "cases": [
+        {
+            "case_id": "CASE_1_WEATHER_QUERY",
+            "input": "Check weather",
+            "expected_activation": {
+                "expansion_level": "minimal",
+                "reason": "low personal cognitive dependency"
+            },
+            "expected_projection": [
+                "current_field_reference",
+                "task_minimum_context"
+            ],
+            "forbidden_output": [
+                "causal_conclusion",
+                "decision",
+                "action"
+            ]
+        },
+        {
+            "case_id": "CASE_2_JOB_CHANGE",
+            "input": "Should I change jobs?",
+            "expected_activation": {
+                "field": [
+                    "Work"
+                ],
+                "role": [
+                    "Work Role"
+                ],
+                "relationship": [
+                    "Family",
+                    "Work Related"
+                ],
+                "memory": [
+                    "historical_work_experience"
+                ],
+                "emotion": [
+                    "current_stress_state"
+                ]
+            },
+            "expected_projection": [
+                "active_reference_set",
+                "active_link_set",
+                "unresolved_links"
+            ]
+        },
+        {
+            "case_id": "CASE_3_WORK_CARRYOVER_AT_HOME",
+            "input": "Still upset about work after returning home",
+            "expected_activation": {
+                "field": [
+                    "Home Field"
+                ],
+                "carryover": [
+                    "Work Mental Carryover"
+                ],
+                "role": [
+                    "Work Role"
+                ],
+                "relationship": [
+                    "Family Relationship"
+                ]
+            },
+            "forbidden_output": [
+                "direct_causal_fact"
+            ]
+        },
+        {
+            "case_id": "CASE_4_CONFLICT_WITH_FRIEND",
+            "input": "Conflict with a friend",
+            "expected_activation": {
+                "relationship": [
+                    "Friend Relationship"
+                ],
+                "memory": [
+                    "historical_conflict_experience"
+                ],
+                "emotion": [
+                    "current_emotion_state"
+                ],
+                "events": [
+                    "relevant_event_refs"
+                ]
+            },
+            "expected_projection": [
+                "relationship_link_cluster"
+            ]
+        },
+        {
+            "case_id": "CASE_5_LEARNING_SUPPORT",
+            "input": "Accompany learning",
+            "expected_activation": {
+                "field": [
+                    "Learning Field"
+                ],
+                "role": [
+                    "Learning Role"
+                ],
+                "memory": [
+                    "historical_learning_habit"
+                ],
+                "task": [
+                    "task_status_ref"
+                ],
+                "experience": [
+                    "related_experience_ref"
+                ]
+            }
+        },
+        {
+            "case_id": "CASE_6_DORMANT_RELATION_REACTIVATION",
+            "input": "Long dormant relation appears again",
+            "expected_activation": {
+                "dormant_link_reactivation": true,
+                "trigger": "high_current_context_relevance"
+            },
+            "expected_state_change": [
+                "DORMANT -> REACTIVATED"
+            ],
+            "forbidden_behavior": [
+                "inactivity_auto_delete"
+            ]
+        }
+    ]
+}

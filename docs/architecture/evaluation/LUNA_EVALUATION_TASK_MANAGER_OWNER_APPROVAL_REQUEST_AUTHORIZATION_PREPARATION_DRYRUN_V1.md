@@ -1,0 +1,12 @@
+# Luna Evaluation — Authorization Preparation DryRun v1
+
+## Run
+
+```bash
+python3 tools/evaluation/midplatform/run_task_manager_owner_approval_request_authorization_preparation_dryrun_v1.py
+python3 tools/evaluation/midplatform/verify_task_manager_owner_approval_request_authorization_preparation_dryrun_v1.py
+```
+
+## GO Target
+
+`MIDPLATFORM_TASK_MANAGER_OWNER_APPROVAL_REQUEST_AUTHORIZATION_PREPARATION_DRYRUN_READY_FOR_MODULE_LEVEL_FUNCTIONAL_SLICE_PLANNING_OR_AUTHORIZATION_PREPARATION_REVIEW`

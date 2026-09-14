@@ -1,0 +1,24 @@
+{
+  "contract_name": "Experience Evaluation Contract v1",
+  "experience_candidate_reference": "experience-example",
+  "assessment": {
+    "repeatability": null,
+    "reliability": null,
+    "relevance": null,
+    "impact": null,
+    "conflict": null
+  },
+  "evidence_support": [],
+  "unknowns": [],
+  "provenance": [],
+  "retention_output": "Experience Retention Candidate",
+  "one_off_noise_not_promoted": true,
+  "unconfirmed_information_not_promoted": true,
+  "model_guess_not_promoted": true,
+  "current_reality_overrides": true,
+  "evaluation_does_not_modify_reality": true,
+  "evaluation_does_not_modify_goal": true,
+  "evaluation_does_not_modify_decision": true,
+  "evaluation_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

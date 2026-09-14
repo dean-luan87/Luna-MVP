@@ -1,0 +1,53 @@
+{
+    "artifact_id": "pcn_skeleton_to_dryrun_mapping_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "mapping": {
+        "pcn_planning": {
+            "inputs": [
+                "docs/architecture/luna_personal_cognitive_network_planning_v1/",
+                "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/"
+            ],
+            "outputs": [
+                "pcn_dryrun_scenario_expectation_registry_v1.json",
+                "pcn_controlled_dryrun_input_contract_v1.json",
+                "pcn_controlled_dryrun_output_contract_v1.json"
+            ]
+        },
+        "field_role_alignment": {
+            "inputs": [
+                "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/temporary_field_occupation_model_candidate.json",
+                "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/field_resonance_model_candidate.json",
+                "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/role_competition_projection_model_candidate.json",
+                "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/historical_field_relationship_reactivation_candidate.json",
+                "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/cognitive_interaction_kernel_boundary_candidate.json"
+            ],
+            "outputs": [
+                "pcn_interaction_dryrun_validation_contract_v1.json",
+                "pcn_nested_constraint_dryrun_contract_v1.json"
+            ]
+        },
+        "integrated_planning_closure": {
+            "inputs": [
+                "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/pcn_planning_conflict_matrix.json",
+                "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/pcn_nested_constraint_closure_review.json"
+            ],
+            "outputs": [
+                "pcn_dryrun_clarification_inheritance_v1.json",
+                "pcn_resource_degradation_dryrun_contract_v1.json",
+                "pcn_subjective_cognition_dryrun_contract_v1.json"
+            ]
+        },
+        "pcn_skeleton": {
+            "inputs": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py"
+            ],
+            "outputs": [
+                "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_dryrun_v1.py",
+                "docs/architecture/luna_personal_cognitive_network_controlled_dryrun_validation_v1/verify_personal_cognitive_network_controlled_dryrun_validation_v1.py"
+            ]
+        }
+    },
+    "case_coverage": 12,
+    "candidate_only": true
+}

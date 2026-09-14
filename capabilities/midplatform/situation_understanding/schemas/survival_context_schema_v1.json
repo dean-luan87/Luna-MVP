@@ -1,0 +1,26 @@
+{
+  "schema_id": "SurvivalContextV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "environment_type", "risk_level", "mobility_relevance", "information_relevance",
+    "social_relevance", "task_pressure", "uncertainty_level", "candidate_only", "not_fact"
+  ],
+  "field_definitions": {
+    "environment_type": {
+      "enum": ["commercial_entry", "public_transport", "street_mobility", "indoor_navigation",
+        "retail_consumption", "home_living", "work_context", "unknown"]
+    },
+    "risk_level": { "enum": ["low", "medium", "high", "unknown"] },
+    "mobility_relevance": { "enum": ["none", "low", "medium", "high", "unknown"] },
+    "information_relevance": { "enum": ["none", "low", "medium", "high", "unknown"] },
+    "social_relevance": { "enum": ["none", "low", "medium", "high", "unknown"] },
+    "task_pressure": { "enum": ["none", "low", "medium", "high", "unknown"] },
+    "uncertainty_level": { "enum": ["low", "medium", "high", "unknown"] },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

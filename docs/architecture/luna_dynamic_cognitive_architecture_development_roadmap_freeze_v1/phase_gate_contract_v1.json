@@ -1,0 +1,95 @@
+{
+  "contract_id": "luna_dynamic_cognitive_architecture_development_phase_gate_contract_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "planning_only": true,
+  "gates": [
+    {
+      "gate_id": "GATE-P0-ENTRY",
+      "phase": "Context Foundation",
+      "gate_type": "ENTRY",
+      "requirements": [
+        "Dynamic Cognitive Architecture v2 freeze evidence available",
+        "Integration audit readiness confirmed",
+        "separate Context Foundation phase instruction authorized",
+        "existing Context, Field, Self, Role, Relationship, Temporal, Emotion, and Memory assets reused before new design"
+      ],
+      "failure_action": "STOP_WITHOUT_CONTEXT_IMPLEMENTATION"
+    },
+    {
+      "gate_id": "GATE-P0-EXIT",
+      "phase": "Context Foundation",
+      "gate_type": "EXIT",
+      "requirements": [
+        "typed context primitives defined",
+        "source Owner and Writer precedence verified",
+        "existing Memory integration is read-only projection",
+        "Context Foundation does not generate Intent or perform PCN activation",
+        "temporal validity and reset semantics explicit"
+      ],
+      "failure_action": "BLOCK_PHASE_1"
+    },
+    {
+      "gate_id": "GATE-P1-EXIT",
+      "phase": "Personal Cognitive Network",
+      "gate_type": "EXIT",
+      "requirements": [
+        "PCN Skeleton verified",
+        "activation mechanism verified",
+        "source ownership and persistence remain external",
+        "Connection, Activation, and Context Projection are the only PCN write scopes"
+      ],
+      "failure_action": "BLOCK_PHASE_2"
+    },
+    {
+      "gate_id": "GATE-P2-EXIT",
+      "phase": "Intent Architecture",
+      "gate_type": "EXIT",
+      "requirements": [
+        "Intent output remains Candidate",
+        "Goal, Task, Decision, and Action boundaries preserved",
+        "unknown and clarification behavior verified"
+      ],
+      "failure_action": "BLOCK_PHASE_3"
+    },
+    {
+      "gate_id": "GATE-P3-EXIT",
+      "phase": "Causal Reasoning Engine",
+      "gate_type": "EXIT",
+      "requirements": [
+        "multiple observation axes supported",
+        "counter-evidence and temporal validity retained",
+        "Causal output cannot become Fact, Reality mutation, Decision, or Action"
+      ],
+      "failure_action": "BLOCK_PHASE_4"
+    },
+    {
+      "gate_id": "GATE-P4-EXIT",
+      "phase": "A/B Simulation & Decision Support",
+      "gate_type": "EXIT",
+      "requirements": [
+        "A Route current-Reality precedence verified",
+        "B Route remains simulation candidate",
+        "Decision Support does not own final Action",
+        "Runtime remains separately governed"
+      ],
+      "failure_action": "BLOCK_PHASE_5"
+    },
+    {
+      "gate_id": "GATE-P5-EXIT",
+      "phase": "Experience Compression & Cognitive Evolution",
+      "gate_type": "EXIT",
+      "requirements": [
+        "Event-to-Outcome-to-Evaluation trace complete",
+        "Experience remains Candidate until admitted",
+        "Memory retains admission and persistence authority",
+        "Growth remains Candidate until Self Review",
+        "single-event durable pattern promotion forbidden"
+      ],
+      "failure_action": "BLOCK_COGNITIVE_EVOLUTION_ADMISSION"
+    }
+  ],
+  "gate_bypass_allowed": false,
+  "phase_self_authorization_allowed": false,
+  "final_verification_required_per_phase": true,
+  "active_contract": false
+}

@@ -1,0 +1,10 @@
+{
+  "contract_name": "Runtime Wake-up Manager Contract v1",
+  "wake_up_sources": ["Reality Change", "Field Change", "Attention Trigger", "Reflex Signal", "Task Deadline"],
+  "wake_up_candidate": {},
+  "target_process": {},
+  "priority_candidate": {},
+  "wake_up_does_not_make_decision": true,
+  "wake_up_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

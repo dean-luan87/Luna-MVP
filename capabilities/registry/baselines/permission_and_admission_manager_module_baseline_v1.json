@@ -1,0 +1,166 @@
+{
+    "capability_id": "luna.permission_and_admission_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_module_types_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_input_adapter_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_subject_resolver_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_resource_resolver_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_request_classifier_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_policy_registry_adapter_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_evidence_provenance_validator_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_consent_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_ownership_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_authority_boundary_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_risk_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_conflict_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_revocation_checker_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_admission_eligibility_resolver_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_admission_decision_builder_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_diagnostics_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_trace_replay_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_output_builder_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_facade_v1.py",
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+        "entrypoint": "run_permission_and_admission_manager_module_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Assemble candidate-only permission and admission chain across policy, evidence, consent, ownership, authority, risk, conflict, and revocation checks",
+        "Produce structured admission decision candidates with rejection reasons and review requirements",
+        "Provide deterministic trace/replay identifiers and module-level diagnostics under strict non-execution boundary"
+    ],
+    "forbidden_authorities": [
+        "fact_admission_execution",
+        "fact_promotion_execution",
+        "state_mutation_execution",
+        "state_store_write_execution",
+        "model_execution",
+        "protocol_activation",
+        "skill_activation",
+        "capability_activation",
+        "action_execution",
+        "runtime_dispatch",
+        "database_write",
+        "external_lookup",
+        "production_execution"
+    ],
+    "reused_assets": [
+        "capabilities/governance/permission_semantics_canonicalization_planning_v1.py",
+        "capabilities/governance/permission_semantics_canonicalization_dryrun_v1.py"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_module_types_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_input_adapter_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_subject_resolver_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_resource_resolver_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_request_classifier_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_policy_registry_adapter_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_evidence_provenance_validator_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_consent_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_ownership_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_authority_boundary_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_risk_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_conflict_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_revocation_checker_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_admission_eligibility_resolver_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_admission_decision_builder_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_diagnostics_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_trace_replay_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_output_builder_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_facade_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py"
+    ],
+    "internal_components": [
+        "permission_policy_lookup",
+        "evidence_validator",
+        "consent_checker",
+        "ownership_checker",
+        "authority_checker",
+        "risk_checker",
+        "conflict_checker",
+        "admission_decision_builder",
+        "trace_builder",
+        "replay_builder"
+    ],
+    "legacy_assets": [
+        "capabilities/governance/permission_semantics_canonicalization_planning_v1.py",
+        "capabilities/governance/permission_semantics_canonicalization_dryrun_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not create a parallel top-level permission core outside capabilities/midplatform/permission_and_admission_manager/module",
+        "Do not promote internal checkers as separate top-level capabilities"
+    ],
+    "dependency_contracts": [],
+    "input_contract_ref": [
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_manager_input_adapter_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_output_builder_v1.py",
+        "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_diagnostics_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_admission_eligibility_resolver_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 20,
+        "passed_cases": 20,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "diagnostics_present_all": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "boundary_preserved": true,
+        "unhandled_exceptions": 0,
+        "evidence_ref": "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

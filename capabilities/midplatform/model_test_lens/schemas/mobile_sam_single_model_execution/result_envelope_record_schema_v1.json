@@ -1,0 +1,39 @@
+{
+  "schema_id": "ResultEnvelopeRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-002",
+  "description": "Result envelope 记录。result layer 消费，须经 fact admission 才能写 fact。",
+  "required_fields": [
+    "source_execution_id",
+    "result_type",
+    "payload_ref",
+    "confidence",
+    "needs_fact_admission",
+    "not_fact",
+    "candidate_only"
+  ],
+  "field_definitions": {
+    "source_execution_id": { "type": "string", "pattern": "^rex_mobile_sam_" },
+    "source_execution_candidate_id": { "type": "string" },
+    "result_type": {
+      "type": "string",
+      "enum": ["segmentation_result_envelope", "segmentation_mask_candidate"]
+    },
+    "payload_ref": { "type": "string" },
+    "mask_ref": { "type": "string" },
+    "confidence": { "type": "number" },
+    "model_source": { "type": "string" },
+    "model_version": { "type": "string" },
+    "needs_fact_admission": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "candidate_only": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" },
+    "result_layer_not_observation_layer": { "type": "boolean", "const": true },
+    "result_layer_not_segmentation_owner": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "runner_output_not_fact": true,
+    "no_direct_fact_write_from_runner": true,
+    "result_layer_not_observation_layer": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "artifact": "memory_salience_retention_decay_model_v1",
+    "candidate_models": [
+        "salience",
+        "retention",
+        "decay",
+        "refresh",
+        "reinforcement",
+        "supersession",
+        "revision",
+        "revocation"
+    ],
+    "rules": {
+        "repeated_retrieval_not_truth": true,
+        "repeated_occurrence_not_permanent_rule": true,
+        "high_salience_does_not_bypass_admission": true,
+        "decay_reduces_influence_not_truth": true
+    }
+}

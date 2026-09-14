@@ -1,0 +1,13 @@
+{
+  "contract_id": "a_route_dynamic_self_adaptive_mapping_v1",
+  "flow": ["Reality", "Field", "Dynamic Cognitive Function", "Understanding", "Decision", "Action", "Outcome", "Self Calibration", "Parameter Evolution"],
+  "a_route_purpose": "current_reality_cognition",
+  "dynamic_function_is_interpretive_layer": true,
+  "self_adaptive_is_governance_layer": true,
+  "outcome_is_error_signal_candidate": true,
+  "parameter_evolution_is_candidate": true,
+  "runtime": false,
+  "action_execution": false,
+  "automatic_learning": false,
+  "candidate_only": true
+}

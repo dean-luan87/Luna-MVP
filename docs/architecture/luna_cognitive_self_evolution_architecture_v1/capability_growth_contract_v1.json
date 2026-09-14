@@ -1,0 +1,16 @@
+{
+  "title": "Capability Growth Contract v1",
+  "owner": "Self Evolution / Capability Growth",
+  "inputs": ["Performance Evidence", "Outcome Evidence", "Failure Attribution", "Capability State", "Field Condition"],
+  "output": "Capability Growth Candidate",
+  "schema": ["growth_id", "capability", "context", "baseline", "evidence_window", "observed_change", "confidence", "limitation", "review_status"],
+  "rules": {
+    "context_bound": true,
+    "performance_evidence_required": true,
+    "failure_attribution_required": true,
+    "no_model_parameter_update": true,
+    "no_automatic_upgrade": true,
+    "candidate_only": true,
+    "unknown_preserved": true
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Capability Provider Boundary",
+  "owner":"Capability Governance",
+  "capability_groups":["Vision","Audio","OCR","SLAM","Language Model","Hardware","Tool"],
+  "provider_outputs":["raw result candidate","evidence candidate","health signal","failure signal"],
+  "provider_cannot":["create Meaning","create Goal","create Decision","define Self","define Memory Value","define Growth Direction","write Reality"],
+  "rules":{"capability_requirement_precedes_provider":true,"evidence_gateway_required":true,"provider_isolation_required":true,"replacement_path_required":true}
+}

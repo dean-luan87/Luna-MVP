@@ -1,0 +1,27 @@
+{
+  "frame_seq": 61,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R61_memory_bias_accumulated_under_familiar_context_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.14,
+  "memory_bias_accumulated_under_familiar_context_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "这个场景太熟悉了，记忆一直在主导，但当前观察反而不一致",
+  "object_search_flow_type": "familiar_context_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "familiar_context_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 16, 74, 86], "conf": 0.9 },
+    { "label": "cup", "bbox": [149, 49, 210, 118], "conf": 0.57 }
+  ]
+}

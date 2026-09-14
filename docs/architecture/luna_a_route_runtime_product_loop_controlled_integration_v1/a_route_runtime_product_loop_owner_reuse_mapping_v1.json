@@ -1,0 +1,17 @@
+{
+  "schema_version":"1.0",
+  "canonical_owner":"A Route Orchestration Governance",
+  "classification":{"A":"reuse in integration","B":"typed handoff adapter","C":"legacy/conflicting path","D":"deferred"},
+  "reuse":[
+    {"owner":"A Route Orchestration","location":"capabilities/midplatform/core/a_route_orchestration","class":"A","authority":"cycle lifecycle and handoff coordination"},
+    {"owner":"Observation Gateway","location":"capabilities/midplatform/core/observation_gateway","class":"B","authority":"observation candidate ingress only"},
+    {"owner":"Field Perception Orchestrator","location":"capabilities/midplatform/field_perception_orchestrator","class":"B","authority":"bounded observation demand/control candidate"},
+    {"owner":"Context / Field / Current World","location":"capabilities/midplatform/core/context_foundation/integration","class":"B","authority":"owner-controlled context/world handoff"},
+    {"owner":"Cognitive Flow / Decision / Task / Action","location":"capabilities/midplatform/core","class":"B","authority":"semantic candidate production"},
+    {"owner":"Runtime Executor","location":"capabilities/midplatform/core/runtime_executor","class":"B","authority":"runtime admission/result contract"},
+    {"owner":"Outcome Evaluation Governance","location":"capabilities/midplatform/core/outcome_evaluation_governance","class":"B","authority":"outcome evaluation candidate"},
+    {"owner":"Emotion Engine / B Route / semantic compression","location":"deferred registries","class":"D","authority":"inactive"}
+  ],
+  "existing_owner_files_modified":false,
+  "parallel_semantic_owner_created":false
+}

@@ -1,0 +1,11 @@
+{
+  "artifact":"b4_minimum_implementation_scope_v1",
+  "future_adapters":[
+    {"name":"B3 Task/Action expected-outcome adapter", "owner":"Outcome Evaluation integration", "output":"ExpectedOutcomeInputV1"},
+    {"name":"controlled Runtime result adapter", "owner":"Outcome Evaluation integration", "output":"ActualResultInputV1 from synthetic candidate metadata only"},
+    {"name":"Outcome feedback routing adapter", "owner":"Task Manager/Cognitive Flow integration", "output":"lifecycle/reconsideration/observation-need candidates"}
+  ],
+  "reuse":["OutcomeEvaluationEngineV1", "Outcome Evaluation validators", "Runtime result candidate types", "Cognitive Flow reconsideration types", "Task Manager lifecycle/recovery types", "Action Governance candidate handoffs"],
+  "not_required":["real Action", "Runtime execution", "Experience/Memory write", "Learning", "new feedback owner", "new retry engine", "provider invocation"],
+  "stop":"No later than Outcome/Feedback -> Reconsideration/Reobserve candidate."
+}

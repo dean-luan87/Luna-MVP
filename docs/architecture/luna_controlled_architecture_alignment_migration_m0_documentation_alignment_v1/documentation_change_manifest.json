@@ -1,0 +1,40 @@
+{
+  "manifest_id": "luna_dynamic_cognitive_architecture_v2_m0_documentation_change_manifest",
+  "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M0-Documentation-Alignment-v1-001",
+  "change_scope": "new M0 documentation overlay assets only",
+  "created_files": [
+    "dynamic_cognitive_architecture_v2_canonical_alignment.md",
+    "module_responsibility_documentation_alignment.md",
+    "documentation_alignment_summary.md",
+    "canonical_architecture_reference_registry_v2.json",
+    "architecture_status_terminology_registry.json",
+    "module_responsibility_alignment_registry.json",
+    "documentation_reference_alignment_registry.json",
+    "documentation_conflict_registry.json",
+    "documentation_change_manifest.json",
+    "phase_contract.json",
+    "verify_controlled_architecture_alignment_m0_documentation_alignment_v1.py"
+  ],
+  "modified_existing_files": [],
+  "deleted_files": [],
+  "moved_files": [],
+  "renamed_files": [],
+  "code_files_changed": [],
+  "runtime_files_changed": [],
+  "schema_files_changed": [],
+  "contract_files_changed": [],
+  "active_baselines_changed": [],
+  "historical_phase_assets_changed": [],
+  "documentation_overlay_only": true,
+  "migration_executed": false,
+  "owner_transferred": false,
+  "runtime_activated": false,
+  "m1_started": false,
+  "source_snapshot_refs": [
+    "docs/architecture/luna_architecture_baseline_v2_integration_planning_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/",
+    "docs/architecture/luna_dynamic_cognitive_architecture_alignment_migration_validation_planning_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/",
+    "capabilities/registry/baselines/"
+  ]
+}

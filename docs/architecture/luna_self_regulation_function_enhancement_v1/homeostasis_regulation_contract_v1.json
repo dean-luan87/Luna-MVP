@@ -1,0 +1,11 @@
+{
+  "contract_id": "self_regulation_homeostasis_v1",
+  "owner": "Self Regulation Function",
+  "inputs": ["Core State Vector", "Current Value", "State Range", "Field Scope", "Resource State", "Risk", "Constitution"],
+  "outputs": ["Homeostasis Check Candidate", "Range Adjustment Candidate", "Stability Candidate", "Defer Candidate", "Reject Candidate"],
+  "range_fields": ["minimum", "preferred", "maximum", "unit", "field_scope", "time_window", "evidence_ref", "version", "rollback_ref"],
+  "is_internal_mechanism": true,
+  "is_independent_layer": false,
+  "automatic_control": false,
+  "candidate_only": true
+}

@@ -1,0 +1,157 @@
+{
+  "mapping_id": "GovernanceStandardsPathMappingV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Execution-And-Post-Review-v1-001",
+  "created_at": "2026-07-01T04:29:13.053954+00:00",
+  "entries": [
+    {
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_v1.md",
+      "rule_or_standard_id": "ModelAssetOnboardingGovernanceStandardV1",
+      "category": "model_onboarding",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "cc46265c7fdee833b34c1f10eb5515270dd1d8c9d95dbd9c0fe61b9138344c3f"
+    },
+    {
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_types_v1.py",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_types_v1.py",
+      "rule_or_standard_id": "ModelAssetOnboardingGovernanceStandardV1_types",
+      "category": "model_onboarding",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "16c6031f6989bf3e9d3ba0d854d9241f78a5238bcaea39ee2beb6ba5d9d2f9b6"
+    },
+    {
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_registry_v1.py",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_registry_v1.py",
+      "rule_or_standard_id": "ModelAssetOnboardingGovernanceStandardV1_registry",
+      "category": "model_onboarding",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "e45fbd918fe8bc2b5836a51fc4847667b8d634e72fb1bbdaa4cb1d299b8cb9ac"
+    },
+    {
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/review_model_asset_onboarding_governance_standard_v1.py",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/review_model_asset_onboarding_governance_standard_v1.py",
+      "rule_or_standard_id": "ModelAssetOnboardingGovernanceStandardV1_review",
+      "category": "model_onboarding",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "a959d38cc40dd23bf275d67cdcf60404dd39ea74b74323366a0af31f510f6436"
+    },
+    {
+      "source_path": "_tmp_eval_out/p1_controlled_install_governance_standardization_v1_smoke_v0/reusable_phase_template_map_v1.json",
+      "canonical_path": "capabilities/midplatform/governance_standards/templates/reusable_phase_template_map_v1.json",
+      "rule_or_standard_id": "ReusablePhaseTemplateMapV1",
+      "category": "templates",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "36a966cabb281055670ca21c6434aaea4b3dc844f0b704ffac12f4dc1ae66cad"
+    },
+    {
+      "source_path": "_tmp_eval_out/p1_controlled_install_governance_standardization_v1_smoke_v0/mobile_sam_case_mapping_v1.json",
+      "canonical_path": "capabilities/midplatform/governance_standards/case_mappings/mobile_sam_case_mapping_v1.json",
+      "rule_or_standard_id": "MobileSAMCaseMappingV1",
+      "category": "case_mappings",
+      "copied_or_generated": "copied",
+      "original_preserved": true,
+      "status": "copied",
+      "sha256": "d35e3098596208fd1b801d85dba9397b8a29faf3eecf61d6929f3ec60482b238"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+      "canonical_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+      "rule_or_standard_id": "legacy_reusable_governance_rules_inventory_v1.json",
+      "category": "legacy_rules",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "1e8a2c98c7ba8de5ece847926033de237f81edc555608216685854e8a8f346d4"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_mapping_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_mapping_v1.md",
+      "rule_or_standard_id": "legacy_reusable_governance_rules_mapping_v1.md",
+      "category": "legacy_rules",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "a736b52dc517882b82338ce6bffb8f528f111c0d02a0d6702112871ce61a1370"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "rule_or_standard_id": "governance_rule_usage_notes_index_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "86ba70b79723564a70273843109056b93847a373064caec392f7ead0b71fce17"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/protocol_governance/protocol_governance_standard_index_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/protocol_governance/protocol_governance_standard_index_v1.md",
+      "rule_or_standard_id": "protocol_governance_standard_index_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "266e09143de3dc2693cc9e6cc60e78425d93b3f3311144f710ec322a26d22a8b"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/file_governance/file_size_module_split_governance_rule_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/file_governance/file_size_module_split_governance_rule_v1.md",
+      "rule_or_standard_id": "file_size_module_split_governance_rule_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "00243fd93a3e8d2fef7b1ded7167f12026889a2ad9fe053d8b6e79680ec762b7"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/input_output_symmetry/input_output_symmetry_governance_standard_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/input_output_symmetry/input_output_symmetry_governance_standard_v1.md",
+      "rule_or_standard_id": "input_output_symmetry_governance_standard_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "24dec8fe374df9b213cdb324b7295bba837723a315f3c53f3dfa0c47d57122f9"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/owner_approval/owner_approval_governance_standard_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/owner_approval/owner_approval_governance_standard_v1.md",
+      "rule_or_standard_id": "owner_approval_governance_standard_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "17847d0b43f88592a3e17a6893e39a183e60ace42d89129caeac154a69d18336"
+    },
+    {
+      "source_path": "capabilities/midplatform/governance_standards/validation_rules/validate_once_reference_governance_standard_v1.md",
+      "canonical_path": "capabilities/midplatform/governance_standards/validation_rules/validate_once_reference_governance_standard_v1.md",
+      "rule_or_standard_id": "validate_once_reference_governance_standard_v1.md",
+      "category": "governance",
+      "copied_or_generated": "generated",
+      "original_preserved": true,
+      "status": "already_canonical",
+      "sha256": "a91523c63280e656036cff86021f113dff0edc79ff090741a616b42cdeda906b"
+    },
+    {
+      "source_path": "generated",
+      "canonical_path": "capabilities/midplatform/governance_standards/index/governance_standards_index_v1.md",
+      "copied_or_generated": "generated",
+      "sha256": "826609cb2c911656f0159a7ceaa915794c5b1c8e24e9767b807b8a19a44c4922",
+      "status": "generated",
+      "original_preserved": true,
+      "category": "index",
+      "rule_or_standard_id": "GovernanceStandardsIndexV1"
+    }
+  ]
+}

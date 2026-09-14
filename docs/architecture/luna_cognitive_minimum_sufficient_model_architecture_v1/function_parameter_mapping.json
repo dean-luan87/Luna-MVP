@@ -1,0 +1,18 @@
+{
+  "mapping_id": "core_state_function_parameter_mapping_v1",
+  "mapping": [
+    {"state": "Field", "functions": ["Field Input Function", "Field Influence Function"], "parameters": ["field_weight", "transition_sensitivity"]},
+    {"state": "Self", "functions": ["Self Regulation Function"], "parameters": ["risk_sensitivity", "resource_threshold", "stability_threshold"]},
+    {"state": "Understanding", "functions": ["Confidence Dynamics", "Prediction Error Function"], "parameters": ["evidence_weight", "error_sensitivity", "confidence_decay"]},
+    {"state": "Goal", "functions": ["Goal Activation Function"], "parameters": ["activation_threshold", "priority_weight", "suppression_weight"]},
+    {"state": "Value", "functions": ["Utility Function"], "parameters": ["benefit_weight", "cost_weight", "risk_weight"]},
+    {"state": "Memory", "functions": ["Historical Influence Function"], "parameters": ["activation_weight", "decay_rate", "context_weight"]},
+    {"state": "Resource", "functions": ["Resource Regulation Function"], "parameters": ["compute_budget", "attention_budget", "exploration_budget"]}
+  ],
+  "parameters_are_bounded": true,
+  "field_scope_required": true,
+  "version_required": true,
+  "rollback_required": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

@@ -1,0 +1,13 @@
+{
+  "contract_id": "luna-visual-capability-warehouse-v1",
+  "owner": "Capability Governance",
+  "model_manager_admission_required": true,
+  "capability_is_model": false,
+  "registration_mode": "DYNAMIC_MANIFEST_REGISTRATION",
+  "mandatory_slots_ref": "safety_capability_slot_contract.json",
+  "optional_capabilities": "REGISTERED_ON_DEMAND",
+  "user_lifecycle_operations": ["install", "suspend", "replace", "uninstall"],
+  "safety_constraints": "MANDATORY_SAFETY_CAPABILITIES_ARE_NOT_OPTIONAL",
+  "evidence_gateway_required": true,
+  "provider_semantic_authority": false
+}

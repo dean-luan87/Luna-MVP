@@ -1,0 +1,75 @@
+{
+    "artifact": "causal_concept_boundary_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "owner": "Causal Governance",
+    "concepts": [
+        {
+            "concept": "Observation",
+            "definition": "Source-owned evidence intake and traceable observation record.",
+            "owned_by_causal": false,
+            "causal_role": "input_reference"
+        },
+        {
+            "concept": "Association",
+            "definition": "Weak relation candidate without directional cause claim.",
+            "owned_by_causal": true,
+            "causal_role": "intermediate_candidate"
+        },
+        {
+            "concept": "Correlation",
+            "definition": "Co-variation candidate that may support or oppose a hypothesis but is not causality.",
+            "owned_by_causal": true,
+            "causal_role": "supporting_signal"
+        },
+        {
+            "concept": "Inference",
+            "definition": "Governed reasoning step from evidence to revisable explanation candidate.",
+            "owned_by_causal": true,
+            "causal_role": "reasoning_step"
+        },
+        {
+            "concept": "Causal Hypothesis",
+            "definition": "Candidate explanation of why under explicit uncertainty.",
+            "owned_by_causal": true,
+            "causal_role": "primary_output_candidate"
+        },
+        {
+            "concept": "Causal Support",
+            "definition": "Evidence support relation attached to hypothesis candidates.",
+            "owned_by_causal": true,
+            "causal_role": "support_graph"
+        },
+        {
+            "concept": "Causal Conflict",
+            "definition": "Competing or incompatible explanation relation preserved unresolved if needed.",
+            "owned_by_causal": true,
+            "causal_role": "conflict_graph"
+        },
+        {
+            "concept": "Causal Uncertainty",
+            "definition": "Unknowns, confidence limits, and unresolved confounders.",
+            "owned_by_causal": true,
+            "causal_role": "uncertainty_envelope"
+        },
+        {
+            "concept": "Causal Candidate or Result",
+            "definition": "Revisable candidate conclusion, never promoted to immutable fact in this phase.",
+            "owned_by_causal": true,
+            "causal_role": "handoff_candidate"
+        },
+        {
+            "concept": "Decision",
+            "definition": "Selection authority layer consuming causal candidates.",
+            "owned_by_causal": false,
+            "causal_role": "downstream_consumer_only"
+        }
+    ],
+    "non_equivalence_guards": {
+        "temporal_precedence_not_causality": true,
+        "correlation_not_causality": true,
+        "inference_not_decision": true,
+        "causal_hypothesis_not_decision": true,
+        "causal_result_not_action": true
+    },
+    "active_contract": false
+}

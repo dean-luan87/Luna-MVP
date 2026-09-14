@@ -1,0 +1,33 @@
+{
+    "artifact": "cognitive_state_formation_negative_guards_v1",
+    "core_guards": {
+        "integration_module_does_not_own_field_state": true,
+        "current_world_not_equal_field_state": true,
+        "cognitive_hypothesis_not_equal_causal_hypothesis": true,
+        "attention_not_decision_priority": true,
+        "attention_not_action_priority": true,
+        "single_truth_collapse": false
+    },
+    "mutation_guards": {
+        "context_mutation": false,
+        "pcn_mutation": false,
+        "intent_mutation": false,
+        "field_mutation": false,
+        "causal_mutation": false
+    },
+    "output_guards": {
+        "decision_output": false,
+        "action_output": false,
+        "task_output": false
+    },
+    "side_effect_guards": {
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "runtime_side_effect": false,
+        "model_call": false,
+        "learning_update": false,
+        "self_regulation_update": false,
+        "dynamic_parameter_mutation": false
+    }
+}

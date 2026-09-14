@@ -1,0 +1,27 @@
+{
+  "title": "Decision Expectation Interface v1",
+  "contract_type": "Commitment Expected Outcome and Feedback",
+  "input": {
+    "commitment_reference": "commitment-example",
+    "expected_outcome": {},
+    "expectation_reference": "expectation-example",
+    "validation_condition": {},
+    "field_context": {},
+    "task_context": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "feedback_status": "candidate",
+    "maintain_candidate": {},
+    "revision_candidate": {},
+    "invalidation_candidate": {}
+  },
+  "boundary": {
+    "commitment_binds_expected_outcome": true,
+    "feedback_can_maintain_revise_or_invalidate": true,
+    "expectation_does_not_make_decision": true,
+    "feedback_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

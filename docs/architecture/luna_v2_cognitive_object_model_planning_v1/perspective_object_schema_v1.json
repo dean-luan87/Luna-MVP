@@ -1,0 +1,284 @@
+{
+    "schema_id": "perspective_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Perspective object schemas for Luna V2.",
+    "objects": {
+        "PerspectiveDefinition": {
+            "object_type": "entity",
+            "parent_type": "entity",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "perspective_category",
+                "applicability_scope",
+                "mandatory_safety_constraint"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "primary_perspective",
+                "secondary_perspectives",
+                "perspective_weights",
+                "suppressed_perspectives",
+                "perspective_conflicts",
+                "selection_reason",
+                "task_ref",
+                "emotion_modulation_ref",
+                "personality_preference_ref",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "conflicts_with",
+                "supported_by",
+                "perceived_by",
+                "meaningful_to"
+            ],
+            "prohibited_outputs": [
+                "safety_override_without_governance"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "PerspectiveState": {
+            "object_type": "state",
+            "parent_type": "state",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "state_value",
+                "perspective_definition_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "conflicts_with",
+                "supported_by"
+            ],
+            "prohibited_outputs": [
+                "physical_reality_rewrite"
+            ],
+            "lifecycle_rules": [
+                "observed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "PerspectiveWeight": {
+            "object_type": "state",
+            "parent_type": "state",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "weight_value",
+                "perspective_definition_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "selection_reason",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "supported_by"
+            ],
+            "prohibited_outputs": [
+                "weight_to_fact_promotion"
+            ],
+            "lifecycle_rules": [
+                "proposed -> active_candidate -> superseded"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "PerspectiveConflict": {
+            "object_type": "relation",
+            "parent_type": "relation",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "conflict_source_ref",
+                "conflict_target_ref",
+                "conflict_type"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "selection_reason",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "conflicts_with",
+                "contradicted_by",
+                "derived_from"
+            ],
+            "prohibited_outputs": [
+                "conflict_resolution_without_safety"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "PerspectiveSelectionCandidate": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "selected_perspective_ref",
+                "selection_reason",
+                "task_ref",
+                "emotion_modulation_ref",
+                "personality_preference_ref",
+                "mandatory_safety_constraint"
+            ],
+            "optional_fields": [
+                "secondary_perspectives",
+                "suppressed_perspectives",
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "perceived_by",
+                "supported_by",
+                "contradicted_by"
+            ],
+            "prohibited_outputs": [
+                "selection_as_physical_change"
+            ],
+            "lifecycle_rules": [
+                "proposed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Safety Overrides Perspective"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    },
+    "perspective_categories": [
+        "safety",
+        "navigation",
+        "food_search",
+        "social_living",
+        "personal_memory",
+        "exploration",
+        "learning",
+        "commercial",
+        "healthcare",
+        "emergency"
+    ],
+    "rules": [
+        "primary_perspective is unique",
+        "secondary_perspectives can be multiple",
+        "safety is mandatory and non-overridable",
+        "perspective selection only changes interpretation weight, not physical reality",
+        "emotion may modulate perspective but cannot override safety"
+    ]
+}

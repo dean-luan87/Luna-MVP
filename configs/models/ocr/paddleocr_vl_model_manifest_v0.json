@@ -1,0 +1,59 @@
+{
+  "manifest_version": "v0",
+  "model_config_id": "paddleocr_vl_1_5_candidate_v0",
+  "model_family": "paddleocr_vl",
+  "model_name": "PaddleOCR-VL",
+  "model_variant": "vl_1_5_0_9b",
+  "model_task": "ocr_raw_text_candidates",
+  "candidate_tier": "complex_layout_ocr",
+  "provider_kind": "unavailable",
+  "weights_source": "manual_download_required",
+  "weights_paths": {
+    "det_model_path": null,
+    "rec_model_path": null,
+    "cls_model_path": null,
+    "tokenizer_path": null,
+    "other_assets": []
+  },
+  "weights_sha256": {},
+  "weights_file_size_bytes": {},
+  "dependency_profile_id": "vl_transformers_gpu_heavy_v0",
+  "python_version": null,
+  "paddleocr_version": null,
+  "paddlepaddle_version": null,
+  "opencv_version": null,
+  "numpy_version": null,
+  "pillow_version": null,
+  "platform": null,
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "supports_chinese": true,
+  "supports_english": true,
+  "supports_digits": true,
+  "supports_bbox": true,
+  "supports_confidence": "unknown",
+  "supports_orientation": true,
+  "supports_layout": true,
+  "supports_video_frame_input": true,
+  "expected_input_format": "image/document",
+  "expected_output_format": "raw_text_candidates(text,bbox,confidence,frame_id,model_config_id,line_order,raw_text_joined)",
+  "raw_text_only": true,
+  "semantic_interpretation_enabled": false,
+  "allows_execute_now": false,
+  "real_tts_invoked": false,
+  "created_at": null,
+  "verified_at": null,
+  "verification_status": "pending",
+  "fallback_policy": {
+    "fallback_model_config_id": "paddleocr_ppocrv5_lightweight_zh_en_v0",
+    "notes": "complex candidate; not for realtime first source"
+  },
+  "risks": [
+    "gpu_heavy",
+    "output_semantics_may_drift_to_markdown"
+  ],
+  "notes": "Candidate-only manifest; weights not prepared in ModelOCR-003."
+}
+

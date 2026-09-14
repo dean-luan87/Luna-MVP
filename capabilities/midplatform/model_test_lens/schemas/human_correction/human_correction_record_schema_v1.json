@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "HumanCorrectionRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "title": "Human Correction Record",
+  "description": "人工指错记录。correction candidate only — 不修改 envelope、不覆盖模型输出、不写 fact。",
+  "type": "object",
+  "required": [
+    "correction_id",
+    "phase_ref",
+    "source_envelope_ref",
+    "source_model_id",
+    "source_model_category",
+    "correction_target",
+    "correction_type",
+    "severity",
+    "user_note",
+    "suggested_fix",
+    "training_signal_candidate",
+    "hard_case_candidate",
+    "needs_review",
+    "candidate_only",
+    "not_fact",
+    "not_runtime_output",
+    "not_navigation_instruction",
+    "not_speech_output",
+    "created_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "correction_id": {
+      "type": "string",
+      "pattern": "^correction_[a-z0-9_]+$"
+    },
+    "phase_ref": {
+      "type": "string"
+    },
+    "source_envelope_ref": {
+      "type": "string",
+      "description": "原始 envelope 引用，只读"
+    },
+    "source_test_case_id": {
+      "type": "string"
+    },
+    "source_model_id": {
+      "type": "string"
+    },
+    "source_model_category": {
+      "type": "string"
+    },
+    "correction_target": {
+      "$ref": "human_correction_target_schema_v1.json"
+    },
+    "correction_type": {
+      "type": "string",
+      "description": "见 human_correction_feedback_taxonomy_v1.json"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "blocker"]
+    },
+    "user_marked_region": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["point", "box", "polygon", "freehand"]
+        },
+        "data": {
+          "type": "array",
+          "items": { "type": "number" }
+        }
+      }
+    },
+    "user_note": {
+      "type": "string",
+      "minLength": 1,
+      "description": "用户一句修正说明"
+    },
+    "expected_label": {
+      "type": "string",
+      "description": "可选，用户认为更合理的标签（非 ground truth）"
+    },
+    "expected_behavior": {
+      "type": "string",
+      "description": "可选，期望行为描述"
+    },
+    "suggested_fix": {
+      "type": "string",
+      "description": "修正建议，如需要 Detection 复核"
+    },
+    "recommended_followup_model": {
+      "type": "string",
+      "enum": ["detection", "ocr", "slam", "depth", "human_review", "dataset_review"]
+    },
+    "error_cause_hypothesis": {
+      "type": "string",
+      "description": "可选，见 taxonomy error_cause_hypothesis"
+    },
+    "training_signal_candidate": {
+      "type": "boolean",
+      "const": true
+    },
+    "hard_case_candidate": {
+      "type": "boolean"
+    },
+    "regression_test_candidate": {
+      "type": "boolean",
+      "default": false
+    },
+    "needs_review": {
+      "type": "boolean",
+      "const": true
+    },
+    "candidate_only": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_fact": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_runtime_output": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_navigation_instruction": {
+      "type": "boolean",
+      "const": true
+    },
+    "not_speech_output": {
+      "type": "boolean",
+      "const": true
+    },
+    "must_not_modify_original_envelope": {
+      "type": "boolean",
+      "const": true
+    },
+    "must_not_modify_model_output": {
+      "type": "boolean",
+      "const": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "test_board_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "forbidden_operations": [
+    "modify_original_envelope",
+    "overwrite_model_output",
+    "write_fact",
+    "write_semantic",
+    "mutate_registry",
+    "trigger_runtime",
+    "call_output_adapter",
+    "trigger_navigation",
+    "trigger_speech",
+    "auto_enter_training",
+    "auto_become_ground_truth"
+  ],
+  "example": {
+    "correction_id": "correction_mobile_sam_street_001_04",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+    "source_envelope_ref": "capabilities/midplatform/model_test_lens/examples/mobile_sam_multi_real_image_envelope_example_v1.json",
+    "source_test_case_id": "mobile_sam_multi_real_image_street_scene_v1_001",
+    "source_model_id": "mobile_sam",
+    "source_model_category": "segmentation",
+    "correction_target": {
+      "target_id": "object_04",
+      "target_type": "segmentation_mask",
+      "source_envelope_ref": "capabilities/midplatform/model_test_lens/examples/mobile_sam_multi_real_image_envelope_example_v1.json",
+      "source_model_id": "mobile_sam",
+      "source_model_category": "segmentation",
+      "source_object_id": "object_04",
+      "target_display_name": "④ 前方车辆",
+      "candidate_only": true
+    },
+    "correction_type": "boundary_inaccurate",
+    "severity": "medium",
+    "user_marked_region": {
+      "type": "box",
+      "data": [120, 80, 340, 220]
+    },
+    "user_note": "车辆区域没有完整覆盖，右侧车身漏掉了",
+    "suggested_fix": "需要目标检测模型复核车辆边界",
+    "recommended_followup_model": "detection",
+    "error_cause_hypothesis": "missing_detection_model",
+    "training_signal_candidate": true,
+    "hard_case_candidate": true,
+    "regression_test_candidate": true,
+    "needs_review": true,
+    "candidate_only": true,
+    "not_fact": true,
+    "not_runtime_output": true,
+    "not_navigation_instruction": true,
+    "not_speech_output": true,
+    "must_not_modify_original_envelope": true,
+    "must_not_modify_model_output": true,
+    "created_at": "2026-07-02T10:00:00Z",
+    "test_board_refs": []
+  }
+}

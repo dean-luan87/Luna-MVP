@@ -1,0 +1,17 @@
+{
+  "policy_id": "document_surface_option_b_admission_post_review_policy_v1",
+  "post_review_only": true,
+  "segmentation_execution_forbidden": true,
+  "model_download_forbidden": true,
+  "dependency_install_forbidden": true,
+  "preflight_execution_forbidden": true,
+  "controlled_execution_forbidden": true,
+  "runtime_activation_allowed": false,
+  "option_b_execution_allowed": false,
+  "option_b_active_model_selected": false,
+  "active_registry_update_allowed": false,
+  "boundary_status": "frozen",
+  "protocol_compliance_check": "required",
+  "candidate_only": true,
+  "not_fact": true
+}

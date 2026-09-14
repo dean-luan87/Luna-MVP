@@ -1,0 +1,247 @@
+{
+    "capability_id": "luna.navigation_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_api_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_types_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_input_adapter_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_request_classifier_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_route_adapter_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_route_memory_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_progress_resolver_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_evidence_adapter_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_landmark_resolver_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_crossing_governance_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_obstacle_risk_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_deviation_resolver_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_guidance_candidate_builder_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_arrival_resolver_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_task_handoff_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_speech_handoff_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_diagnostics_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_trace_replay_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_output_builder_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_facade_v1.py",
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_module_api_v1.py",
+            "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/navigation_manager/module/navigation_manager_module_api_v1.py",
+        "entrypoint": "run_navigation_manager_module_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Assemble candidate-only navigation chain from request intake, route state, progress, evidence, risk, guidance, and arrival",
+        "Provide candidate-only task and speech handoff outputs without runtime execution side effects",
+        "Emit deterministic diagnostics, trace, and replay outputs under strict navigation boundary constraints"
+    ],
+    "forbidden_authorities": [
+        "real_map_lookup_execution",
+        "real_gps_read_execution",
+        "real_camera_read_execution",
+        "real_reroute_execution",
+        "navigation_action_execution",
+        "fact_admission_execution",
+        "fact_promotion_execution",
+        "field_state_write_execution",
+        "state_mutation_execution",
+        "speech_output_execution",
+        "database_write",
+        "provider_runtime_execution",
+        "production_runtime_execution"
+    ],
+    "reused_assets": [
+        "capabilities/navigation/runtime/navigation_real_executor_v0.py",
+        "capabilities/midplatform/navigation_guidance_to_speech_candidate_adapter_v1.py",
+        "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+        "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+        "capabilities/vision/task_aware_visual_focus_policy_v1.py"
+    ],
+    "legacy_assets": [
+        "docs/architecture/LUNA_NAVIGATION_GOVERNANCE_ACTION_BOUNDARY_V0.md",
+        "docs/architecture/LUNA_NAVIGATION_ROLLBACK_AND_INTERRUPTION_GOVERNANCE_ENTRY_V0.md",
+        "docs/architecture/LUNA_NAVIGATION_GOVERNANCE_ACTION_RELEASE_CONTROL_FIRST_LIVE_GUARDED_IMPLEMENTATION_MINIMAL_REAL_EFFECT_LIVE_IMPLEMENTATION_DEFINITION_V0.md",
+        "tools/evaluation/midplatform/run_navigation_guidance_to_speech_candidate_adapter_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not create parallel navigation core outside capabilities/midplatform/navigation_manager/module",
+        "Do not keep navigation runtime executor as top-level navigation_manager implementation after module promotion"
+    ],
+    "asset_scan_snapshot": {
+        "scan_date": "2026-07-16",
+        "formal_trunk": [
+            "capabilities/navigation/runtime/navigation_real_executor_v0.py",
+            "capabilities/registry/luna_capability_registry_v1.json"
+        ],
+        "reused_assets": [
+            "capabilities/midplatform/navigation_guidance_to_speech_candidate_adapter_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "capabilities/vision/task_aware_visual_focus_policy_v1.py"
+        ],
+        "legacy_assets": [
+            "docs/architecture/LUNA_NAVIGATION_GOVERNANCE_ACTION_BOUNDARY_V0.md",
+            "docs/architecture/LUNA_NAVIGATION_ROLLBACK_AND_INTERRUPTION_GOVERNANCE_ENTRY_V0.md"
+        ],
+        "duplicate_assets": [
+            "capabilities/navigation/runtime/navigation_real_executor_v0.py",
+            "capabilities/midplatform/navigation_manager/module/"
+        ],
+        "missing_module_layer": [
+            "capabilities/midplatform/navigation_manager/module/"
+        ],
+        "structural_blocker": []
+    },
+    "dependency_contracts": [
+        {
+            "depends_on": "luna.task_manager",
+            "dependency_type": "task_handoff_contract",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "fallback_behavior": "emit_local_task_progress_candidate",
+            "unavailable_behavior": "keep_navigation_local_progress_only",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.observation_manager",
+            "dependency_type": "observation_candidate_input",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "fallback_behavior": "consume_route_and_map_evidence_only",
+            "unavailable_behavior": "degrade_to_non_observation_navigation_evidence",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "state_projection_context",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_api_v1.py",
+            "fallback_behavior": "use_navigation_local_context",
+            "unavailable_behavior": "mark_state_projection_unavailable",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.vision_manager",
+            "dependency_type": "visual_navigation_evidence",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "fallback_behavior": "consume_ocr_or_map_hints",
+            "unavailable_behavior": "degrade_visual_assessment",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.ocr_manager",
+            "dependency_type": "ocr_navigation_evidence",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/ocr_manager/module/ocr_manager_module_api_v1.py",
+            "fallback_behavior": "consume_visual_or_map_hints",
+            "unavailable_behavior": "degrade_text_assessment",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.permission_and_admission_manager",
+            "dependency_type": "governance_gate",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "fallback_behavior": "candidate_only_local_gate",
+            "unavailable_behavior": "block_fact_transition",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.protocol_manager",
+            "dependency_type": "protocol_contract_validation",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "fallback_behavior": "use_local_contract_assumption",
+            "unavailable_behavior": "mark_protocol_check_unresolved",
+            "confidence": "inferred"
+        },
+        {
+            "depends_on": "luna.speech_manager",
+            "dependency_type": "speech_handoff_consumer",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "fallback_behavior": "keep_text_guidance_only",
+            "unavailable_behavior": "mute_runtime_speech_path",
+            "confidence": "inferred"
+        }
+    ],
+    "input_contract_ref": [
+        "capabilities/midplatform/navigation_manager/module/navigation_manager_module_input_adapter_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/navigation_manager/module/navigation_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/navigation_manager/module/navigation_manager_guidance_candidate_builder_v1.py",
+        "capabilities/midplatform/navigation_manager/module/navigation_manager_task_handoff_v1.py",
+        "capabilities/midplatform/navigation_manager/module/navigation_manager_speech_handoff_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/navigation_manager/module/navigation_manager_module_output_builder_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/navigation_manager/module/navigation_manager_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 20,
+        "passed_cases": 20,
+        "failed_cases": [],
+        "route_state_present_when_expected": true,
+        "guidance_candidate_present_when_expected": true,
+        "deviation_candidate_present_when_expected": true,
+        "crossing_assessment_present_when_expected": true,
+        "obstacle_assessment_present_when_expected": true,
+        "arrival_candidate_present_when_expected": true,
+        "task_handoff_present_when_expected": true,
+        "speech_handoff_present_when_expected": true,
+        "diagnostics_present_all": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "deterministic_replay": true,
+        "boundary_preserved": true,
+        "unhandled_exceptions": 0,
+        "evidence_ref": "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

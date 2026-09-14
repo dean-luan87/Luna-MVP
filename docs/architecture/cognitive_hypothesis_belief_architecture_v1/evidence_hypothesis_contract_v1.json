@@ -1,0 +1,28 @@
+{
+  "title": "Evidence Hypothesis Contract v1",
+  "contract_type": "Evidence to Hypothesis Candidate",
+  "input": {
+    "evidence_reference": "evidence-example",
+    "evidence_type": "Observed | Human Feedback | Retrieved Memory | Field Rule",
+    "related_field": "field-example",
+    "related_situation": "situation-example",
+    "confidence": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "hypothesis_candidate": "hypothesis-example",
+    "candidate_explanation": "candidate",
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "validation_requirement": {}
+  },
+  "boundary": {
+    "evidence_does_not_become_reality_automatically": true,
+    "hypothesis_is_not_reality": true,
+    "hypothesis_is_not_prediction": true,
+    "hypothesis_does_not_make_decision": true,
+    "hypothesis_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

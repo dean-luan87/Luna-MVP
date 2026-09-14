@@ -1,0 +1,43 @@
+{
+    "artifact": "runtime_executor_controlled_execution_contract_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "phase": "Phase-Luna-Runtime-Executor-Controlled-Implementation-v1-001",
+    "canonical_owner": "Runtime Executor",
+    "legacy_aliases": [
+        {
+            "name": "Action Runtime Governance",
+            "authority": false,
+            "mutation_authority": false,
+            "reference_only": true
+        },
+        {
+            "name": "Action Executor",
+            "authority": false,
+            "mutation_authority": false,
+            "reference_only": true
+        }
+    ],
+    "execution_mode": "Controlled Skeleton Implementation",
+    "synthetic_execution_lifecycle": true,
+    "candidate_only": true,
+    "planning_only": true,
+    "runtime_execution": false,
+    "adapter_call_execution": false,
+    "provider_call_execution": false,
+    "device_control": false,
+    "scheduler_execution": false,
+    "task_lifecycle_mutation": false,
+    "database_write": false,
+    "source_mutation": false,
+    "permission_bypass": false,
+    "safety_bypass": false,
+    "final_gate_skip": false,
+    "automatic_retry": false,
+    "idempotency_duplicate_no_second_attempt": true,
+    "retry_requires_explicit_authority": true,
+    "timeout_and_cancel_trace_required": true,
+    "partial_result_not_success": true,
+    "result_handoff_reference_only": true,
+    "diagnostics_evidence_only": true,
+    "final_go_authority": "USER_V2_PLUS_CHATGPT_V3_ONLY"
+}

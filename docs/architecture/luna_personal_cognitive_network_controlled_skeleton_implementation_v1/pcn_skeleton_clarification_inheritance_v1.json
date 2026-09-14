@@ -1,0 +1,49 @@
+{
+    "artifact_id": "pcn_skeleton_clarification_inheritance_v1",
+    "status": "CONTROLLED_SKELETON_CANDIDATE",
+    "source_matrix": "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/pcn_planning_conflict_matrix.json",
+    "clarifications": [
+        {
+            "clarification_id": "CLAR-001-LINK-MULTI-RELATION",
+            "source_ref": "records[1].area=Link Model",
+            "implementation_interpretation": "Skeleton link/trace types preserve multi-relationship references without source merge or overwrite.",
+            "core_boundary_changed": false,
+            "owner_changed": false,
+            "resolved": false
+        },
+        {
+            "clarification_id": "CLAR-002-ACTIVATION-DISTINCTION",
+            "source_ref": "records[2].area=Activation",
+            "implementation_interpretation": "Fixture and interaction handoff distinguish ordinary activation, temporary occupation, resonance, overlap, and historical reactivation as candidates.",
+            "core_boundary_changed": false,
+            "owner_changed": false,
+            "resolved": false
+        },
+        {
+            "clarification_id": "CLAR-003-GROWTH-NON-AUTO-STRUCTURAL",
+            "source_ref": "records[3].area=Growth",
+            "implementation_interpretation": "Growth skeleton outputs StructuralChangeCandidate only as review-required candidate; no auto structural mutation.",
+            "core_boundary_changed": false,
+            "owner_changed": false,
+            "resolved": false
+        },
+        {
+            "clarification_id": "CLAR-004-NESTED-AXIS-KERNEL-FEEDBACK",
+            "source_ref": "records[7].area=Nested Constraints",
+            "implementation_interpretation": "Skeleton stores observation/interaction references and preserves no-mutual-write by boundary validators.",
+            "core_boundary_changed": false,
+            "owner_changed": false,
+            "resolved": false
+        },
+        {
+            "clarification_id": "CLAR-005-SCENARIO-EXTENSION-TO-12",
+            "source_ref": "records[8].area=Scenario Model",
+            "implementation_interpretation": "Synthetic fixture set extends to 12 scenarios without editing original 6-case planning asset.",
+            "core_boundary_changed": false,
+            "owner_changed": false,
+            "resolved": false
+        }
+    ],
+    "clarification_count": 5,
+    "silent_resolution_forbidden": true
+}

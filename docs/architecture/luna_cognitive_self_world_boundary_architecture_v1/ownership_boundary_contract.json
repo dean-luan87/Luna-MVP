@@ -1,0 +1,17 @@
+{
+  "title": "Ownership Boundary Contract v1",
+  "ownership_domains": ["Luna Self State", "Luna Capability State", "User Data", "Other Person Data", "Field State", "External Reality", "Knowledge Source"],
+  "rules": [
+    "User Data is not Luna Self",
+    "Other Person Data is not Luna Self",
+    "Field State is not Luna Identity",
+    "Knowledge Source is not Luna Memory",
+    "External Reality is not Luna Belief",
+    "Capability Output is not Reality Fact"
+  ],
+  "ownership_requires_provenance": true,
+  "cross_boundary_copy_requires_candidate": true,
+  "cross_boundary_copy_is_not_automatic": true,
+  "privacy_boundary_preserved": true,
+  "candidate_only": true
+}

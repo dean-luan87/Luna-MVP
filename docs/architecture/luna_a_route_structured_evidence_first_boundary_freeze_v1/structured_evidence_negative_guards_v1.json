@@ -1,0 +1,17 @@
+{
+  "guards": {
+    "sensor_to_conclusion_language_shortcut": false,
+    "provider_summary_as_truth": false,
+    "vision_to_world_truth": false,
+    "ocr_to_world_truth": false,
+    "slam_to_semantic_truth": false,
+    "raw_sensor_to_product_loop_language_conversion": false,
+    "automatic_semantic_compression": false,
+    "automatic_fact_admission": false,
+    "automatic_field_mutation": false,
+    "automatic_current_world_truth_declaration": false
+  },
+  "provenance_grants_authority": false,
+  "observation_admission_grants_truth": false,
+  "s1_human_language_path_allowed": true
+}

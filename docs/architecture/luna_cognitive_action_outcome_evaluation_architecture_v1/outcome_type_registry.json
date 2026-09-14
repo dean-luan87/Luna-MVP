@@ -1,0 +1,11 @@
+{
+  "title": "Outcome Type Registry v1",
+  "types": ["Expected Outcome", "Actual Outcome", "Outcome Difference", "Outcome Impact"],
+  "states": ["Success", "Failure", "Partial Success", "Unexpected Outcome", "Unknown"],
+  "expected_source": "Decision Candidate",
+  "actual_source": "Reality Validation / Future Action Runtime",
+  "difference_preserved": true,
+  "unknown_preserved": true,
+  "outcome_is_not_experience": true,
+  "candidate_only": true
+}

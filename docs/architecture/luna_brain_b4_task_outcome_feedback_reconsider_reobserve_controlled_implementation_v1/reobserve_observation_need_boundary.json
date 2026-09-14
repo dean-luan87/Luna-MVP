@@ -1,0 +1,8 @@
+{
+  "route":"Outcome/Feedback -> ObservationNeedHandoffCandidateV1 -> ReobserveCandidateV1 -> FPO/Active Observation Control",
+  "owner":"Field Perception Orchestrator / Active Observation Control",
+  "reasons":["outcome evidence insufficient","result conflict","partial result","stale result","unexpected deviation"],
+  "provider_invocation":false,
+  "camera_activation":false,
+  "authority":"handoff only; no provider execution"
+}

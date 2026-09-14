@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.305348+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "localhost_only": true,
+  "not_runtime": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "mobilesam_local_image_runner_route_v1",
+    "route_stages": [
+      "image_upload",
+      "asset_register_api",
+      "job_create_api",
+      "job_run_api_after_approval",
+      "segmentation_mobile_sam_runner",
+      "candidate_masks",
+      "segmentation_metrics",
+      "muep_envelope",
+      "ui_load_result_api"
+    ],
+    "candidate_only": true,
+    "not_fact_not_runtime": true
+  }
+}

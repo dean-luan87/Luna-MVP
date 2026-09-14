@@ -1,0 +1,28 @@
+{
+  "artifact": "intent_concept_boundary_matrix_v1",
+  "status": "PLANNING_CANDIDATE",
+  "canonical_intent_definition": "A subjective, future-oriented, directional, state-changing tendency formed under governed multi-source influence.",
+  "canonical_question": "I tend to move the next state in which direction?",
+  "boundaries": [
+    {"concept": "Need", "is_intent": false, "relation": "may motivate formation", "owner_independent": true, "non_equivalence": "Need indicates a deficit or requirement; it does not itself express a governed future-state tendency."},
+    {"concept": "Drive", "is_intent": false, "relation": "may provide directional pressure", "owner_independent": true, "non_equivalence": "Drive supplies pressure; Intent is a qualified subjective tendency."},
+    {"concept": "Desire", "is_intent": false, "relation": "may influence preference", "owner_independent": true, "non_equivalence": "Desire is not a governed Intent candidate and no Emotion runtime is introduced."},
+    {"concept": "Goal", "is_intent": false, "relation": "may receive an admitted direction later", "owner_independent": true, "non_equivalence": "Goal represents a state direction to maintain, improve, or reach and has separate governance."},
+    {"concept": "Task", "is_intent": false, "relation": "may be a downstream execution decomposition or an external reference", "owner_independent": true, "non_equivalence": "Task Manager owns task lifecycle, not subjective tendency."},
+    {"concept": "Attention", "is_intent": false, "relation": "may amplify or suppress available evidence", "owner_independent": true, "non_equivalence": "Attention allocates cognitive resources; it is not Intent."},
+    {"concept": "Emotion", "is_intent": false, "relation": "future influence reference", "owner_independent": true, "non_equivalence": "Emotion can influence strength or direction candidates but cannot create or mutate Intent."},
+    {"concept": "PCN Activation", "is_intent": false, "relation": "provides connected context projection", "owner_independent": true, "non_equivalence": "Activation is salience/connectivity, not subjective future direction."},
+    {"concept": "Strong Cognitive Link", "is_intent": false, "relation": "may increase supporting context", "owner_independent": true, "non_equivalence": "Link strength does not prove Intent."},
+    {"concept": "Repeated Activation", "is_intent": false, "relation": "may support recurrence evidence", "owner_independent": true, "non_equivalence": "Frequency is not formation or truth."},
+    {"concept": "Field Pressure", "is_intent": false, "relation": "constrains or influences formation", "owner_independent": true, "non_equivalence": "Environmental pressure is not owned subjective direction."},
+    {"concept": "Role Obligation", "is_intent": false, "relation": "constrains or influences formation", "owner_independent": true, "non_equivalence": "Social obligation does not automatically become Intent."},
+    {"concept": "Decision", "is_intent": false, "relation": "downstream course selection", "owner_independent": true, "non_equivalence": "Intent competition and dominance do not select a course."},
+    {"concept": "Action", "is_intent": false, "relation": "downstream execution", "owner_independent": true, "non_equivalence": "Intent never authorizes or performs Action."}
+  ],
+  "global_guards": [
+    "influence_does_not_grant_mutation_authority",
+    "candidate_does_not_imply_truth",
+    "priority_does_not_imply_decision",
+    "no_concept_above_is_an_alias_for_intent"
+  ]
+}

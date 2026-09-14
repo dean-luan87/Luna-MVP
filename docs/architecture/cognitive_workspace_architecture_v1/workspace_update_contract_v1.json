@@ -1,0 +1,17 @@
+{
+  "contract_name": "Workspace Update Contract v1",
+  "update_candidate": {},
+  "active_field_context_delta": {},
+  "active_role_context_delta": {},
+  "active_relationship_context_delta": {},
+  "active_task_context_delta": {},
+  "attention_state_delta": {},
+  "known_state_delta": {},
+  "unknown_state_delta": [],
+  "conflict_state_delta": [],
+  "provenance": [],
+  "update_is_not_decision": true,
+  "update_does_not_modify_reality": true,
+  "update_does_not_modify_memory": true,
+  "unknowns_are_preserved": true
+}

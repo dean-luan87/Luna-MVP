@@ -1,0 +1,25 @@
+{
+  "model_family": "object_detection_completion_family",
+  "candidate_models": ["YOLO_lightweight_local_weight_path", "RT_DETR_lightweight_optional"],
+  "planned_target_candidates": [
+    "object_evidence_candidate",
+    "open_vocab_object_candidate"
+  ],
+  "package_or_module_refs": ["ultralytics", "rtdetr"],
+  "command_refs": [],
+  "local_resource_refs": ["models/object_detection/yolo_lightweight.pt(local_weight_path)"],
+  "license_ref": "agpl_3_0_yolo_or_per_model_license_commercial_uncleared",
+  "model_origin": "external_open_source_object_detection_model",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "object_detection.callable.detect_contract_v1",
+  "output_schema_ref": "object_detection_output_schema_v1",
+  "adapter_mapping_ref": "object_evidence_candidate",
+  "fallback_plan": "fallback_to_p0_test_only_detection_or_unavailable_record",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "test_only_until_commercial_license_cleared",
+  "commercial_use_status": "commercial_runtime_not_approved",
+  "availability_probe_mode": "local_resource_visibility",
+  "availability_status": "test_only",
+  "high_tier_observation": ["GroundingDINO"],
+  "boundaries": ["yolo_remains_test_only_if_agpl_or_commercial_uncleared", "object_identity_is_not_fact"]
+}

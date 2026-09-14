@@ -1,0 +1,82 @@
+{
+  "schema_id": "LunaCapabilityRegistryV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Foundation-Planning-v1-001",
+  "description": "能力优先注册表 — Luna 按 need 查找 provider",
+  "capabilities": [
+    {
+      "capability_id": "unknown_scene_reasoning",
+      "capability_label": "理解未知环境",
+      "need_triggers": ["unknown_scene", "high_uncertainty", "scene_identity"],
+      "providers": [
+        {"model_id": "qwen_vl", "provider_type": "teacher", "priority": 1, "status": "active"},
+        {"model_id": "internvl2_5", "provider_type": "local_vlm", "priority": 2, "status": "active"},
+        {"model_id": "gemini_vision", "provider_type": "teacher", "priority": 3, "status": "active"},
+        {"model_id": "gpt_vision", "provider_type": "teacher", "priority": 4, "status": "candidate"},
+        {"model_id": "human_review", "provider_type": "fallback", "priority": 99, "status": "active"}
+      ]
+    },
+    {
+      "capability_id": "text_recognition",
+      "capability_label": "文字识别",
+      "need_triggers": ["text_content", "place_identity", "precise_ocr", "shopfront_sign"],
+      "providers": [
+        {"model_id": "ocr_v1", "provider_type": "tool", "priority": 1, "status": "active"},
+        {"model_id": "qwen_vl", "provider_type": "teacher", "priority": 5, "status": "active", "note": "weak for precise_ocr"}
+      ]
+    },
+    {
+      "capability_id": "spatial_mapping",
+      "capability_label": "空间建图",
+      "need_triggers": ["navigation_map", "slam"],
+      "providers": [
+        {"model_id": "slam_v1", "provider_type": "tool", "priority": 1, "status": "active"}
+      ],
+      "not_for_goals": ["read_text", "identify_place"]
+    },
+    {
+      "capability_id": "complex_reasoning",
+      "capability_label": "复杂推理与规划",
+      "need_triggers": ["find_best_option", "complex_navigation", "indoor_mall"],
+      "providers": [
+        {"model_id": "gpt_vision", "provider_type": "teacher", "priority": 1, "status": "candidate"},
+        {"model_id": "qwen_vl", "provider_type": "teacher", "priority": 2, "status": "active"}
+      ]
+    },
+    {
+      "capability_id": "precise_ocr",
+      "capability_label": "精确文字识别",
+      "need_triggers": ["precise_ocr", "read_small_text", "shopfront_sign"],
+      "providers": [
+        {"model_id": "ocr_v1", "provider_type": "tool", "priority": 1, "status": "active"},
+        {"model_id": "paddleocr_v1", "provider_type": "tool", "priority": 2, "status": "candidate"},
+        {"model_id": "qwen_vl", "provider_type": "teacher", "priority": 99, "status": "active", "note": "weak — visual_reasoning only, excluded for precise_ocr"}
+      ]
+    },
+    {
+      "capability_id": "object_detection",
+      "capability_label": "目标检测",
+      "providers": [
+        {"model_id": "detection_v1", "provider_type": "tool", "priority": 1, "status": "active"}
+      ]
+    }
+  ],
+  "slots": [
+    {
+      "slot_id": "slot:object-detection:vision:v1",
+      "slot_version": "v1",
+      "capability_ref": "object_detection",
+      "capability_contract_ref": "capability:object-detection:v1",
+      "domain": "VISION",
+      "modality": "IMAGE",
+      "input_contract_refs": ["RawFrameReferenceV1"],
+      "output_contract_refs": ["evidence:visual-detection-candidate:v1"],
+      "lifecycle_state": "UNBOUND",
+      "source_version_refs": ["capability-registry:v1", "slot-contract:UniversalCapabilitySlotV1"],
+      "provenance_refs": ["capability-governance:object-detection-slot-declaration:v1"],
+      "compatibility_constraint_refs": ["constraint:object-detection:bounded-evidence-only:v1"],
+      "candidate_only": true,
+      "model_binding_owned_elsewhere": true
+    }
+  ]
+}

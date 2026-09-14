@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Dependency Probe Summary Schema v1",
+    "type": "object",
+    "required": [
+        "candidate_count",
+        "dependency_checked_count",
+        "adapter_checked_count",
+        "execution_count",
+        "download_count",
+        "install_count",
+        "blocker_count",
+        "candidate_only",
+        "not_fact"
+    ],
+    "properties": {
+        "candidate_count": {
+            "type": "integer"
+        },
+        "dependency_checked_count": {
+            "type": "integer"
+        },
+        "adapter_checked_count": {
+            "type": "integer"
+        },
+        "execution_count": {
+            "type": "integer"
+        },
+        "download_count": {
+            "type": "integer"
+        },
+        "install_count": {
+            "type": "integer"
+        },
+        "blocker_count": {
+            "type": "integer"
+        },
+        "candidate_only": {
+            "type": "boolean"
+        },
+        "not_fact": {
+            "type": "boolean"
+        }
+    }
+}

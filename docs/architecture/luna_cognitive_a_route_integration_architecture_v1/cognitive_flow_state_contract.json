@@ -1,0 +1,13 @@
+{
+  "contract_id": "cognitive_flow_state_v1",
+  "states": ["Observed", "Structured", "Fielded", "Attending", "Contextualized", "Hypothesized", "Understood", "GoalEvaluated", "Valued", "Arbitrated", "ActionPending", "OutcomePending", "Evaluated", "Experienced", "Remembered", "Learned", "SelfReviewed"],
+  "flow_state_is_process_descriptor": true,
+  "flow_state_is_not_field": true,
+  "flow_state_is_not_reality": true,
+  "flow_state_is_not_action_command": true,
+  "same_field_multiple_flows_allowed": true,
+  "field_change_triggers_attention_recompute_candidate": true,
+  "required_metadata": ["flow_id", "state", "field_ref", "timestamp", "source_event", "trace_ref", "unknowns"],
+  "automatic_transition": false,
+  "runtime_implemented": false
+}

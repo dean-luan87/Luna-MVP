@@ -1,0 +1,291 @@
+{
+  "manifest_id": "GovernanceStandardsManifestV1",
+  "version": "v1",
+  "created_by_phase": "Phase-P1-Midplatform-Governance-Standards-Packaging-Execution-And-Post-Review-v1-001",
+  "standard_library_root": "capabilities/midplatform/governance_standards",
+  "created_at": "2026-07-01T04:29:13.054621+00:00",
+  "migration_mode": "canonical_copy_no_delete",
+  "main_program_separation": true,
+  "original_evidence_preserved": true,
+  "standards": [
+    {
+      "standard_id": "ModelAssetOnboardingGovernanceStandardV1",
+      "standard_name": "ModelAssetOnboardingGovernanceStandardV1",
+      "category": "model_onboarding",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_v1.md",
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ModelAssetOnboardingGovernanceStandardV1_types",
+      "standard_name": "ModelAssetOnboardingGovernanceStandardV1_types",
+      "category": "model_onboarding",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_types_v1.py",
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_types_v1.py",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ModelAssetOnboardingGovernanceStandardV1_registry",
+      "standard_name": "ModelAssetOnboardingGovernanceStandardV1_registry",
+      "category": "model_onboarding",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_registry_v1.py",
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/model_asset_onboarding_governance_standard_registry_v1.py",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ModelAssetOnboardingGovernanceStandardV1_review",
+      "standard_name": "ModelAssetOnboardingGovernanceStandardV1_review",
+      "category": "model_onboarding",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_onboarding/review_model_asset_onboarding_governance_standard_v1.py",
+      "source_path": "capabilities/midplatform/model_asset_onboarding_governance_standard/review_model_asset_onboarding_governance_standard_v1.py",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ReusablePhaseTemplateMapV1",
+      "standard_name": "ReusablePhaseTemplateMapV1",
+      "category": "templates",
+      "canonical_path": "capabilities/midplatform/governance_standards/templates/reusable_phase_template_map_v1.json",
+      "source_path": "_tmp_eval_out/p1_controlled_install_governance_standardization_v1_smoke_v0/reusable_phase_template_map_v1.json",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "MobileSAMCaseMappingV1",
+      "standard_name": "MobileSAMCaseMappingV1",
+      "category": "case_mappings",
+      "canonical_path": "capabilities/midplatform/governance_standards/case_mappings/mobile_sam_case_mapping_v1.json",
+      "source_path": "_tmp_eval_out/p1_controlled_install_governance_standardization_v1_smoke_v0/mobile_sam_case_mapping_v1.json",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "legacy_reusable_governance_rules_inventory_v1.json",
+      "standard_name": "legacy_reusable_governance_rules_inventory_v1.json",
+      "category": "legacy_rules",
+      "canonical_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+      "source_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "legacy_reusable_governance_rules_mapping_v1.md",
+      "standard_name": "legacy_reusable_governance_rules_mapping_v1.md",
+      "category": "legacy_rules",
+      "canonical_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_mapping_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_mapping_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "governance_rule_usage_notes_index_v1.md",
+      "standard_name": "governance_rule_usage_notes_index_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "protocol_governance_standard_index_v1.md",
+      "standard_name": "protocol_governance_standard_index_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/protocol_governance/protocol_governance_standard_index_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/protocol_governance/protocol_governance_standard_index_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "file_size_module_split_governance_rule_v1.md",
+      "standard_name": "file_size_module_split_governance_rule_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/file_governance/file_size_module_split_governance_rule_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/file_governance/file_size_module_split_governance_rule_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "input_output_symmetry_governance_standard_v1.md",
+      "standard_name": "input_output_symmetry_governance_standard_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/input_output_symmetry/input_output_symmetry_governance_standard_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/input_output_symmetry/input_output_symmetry_governance_standard_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "owner_approval_governance_standard_v1.md",
+      "standard_name": "owner_approval_governance_standard_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/owner_approval/owner_approval_governance_standard_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/owner_approval/owner_approval_governance_standard_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "validate_once_reference_governance_standard_v1.md",
+      "standard_name": "validate_once_reference_governance_standard_v1.md",
+      "category": "governance",
+      "canonical_path": "capabilities/midplatform/governance_standards/validation_rules/validate_once_reference_governance_standard_v1.md",
+      "source_path": "capabilities/midplatform/governance_standards/validation_rules/validate_once_reference_governance_standard_v1.md",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "GovernanceStandardsIndexV1",
+      "standard_name": "GovernanceStandardsIndexV1",
+      "category": "index",
+      "canonical_path": "capabilities/midplatform/governance_standards/index/governance_standards_index_v1.md",
+      "source_path": "generated",
+      "version": "v1",
+      "lifecycle_status": "canonical_copy_no_delete",
+      "reusable_scope": "midplatform_governance",
+      "dependencies": [],
+      "referenced_by_phases": [
+        "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001"
+      ],
+      "usage_note_ref": "capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+      "protected": true,
+      "non_deletable": true
+    }
+  ],
+  "categories": [
+    "test_board_governance",
+    "controlled_trial_governance",
+    "owner_approval_governance",
+    "negative_guard_pattern",
+    "failure_semantics",
+    "registry_patch_governance",
+    "model_asset_onboarding_governance",
+    "runtime_boundary_governance",
+    "input_output_symmetry_governance",
+    "protocol_governance",
+    "file_size_module_split_governance",
+    "validate_once_reference_governance",
+    "evidence_candidate_governance",
+    "runtime_output_semantic_exclusion",
+    "rollback_governance",
+    "artifact_protection_cleanup_governance",
+    "runtime_not_main_program_rule"
+  ],
+  "legacy_rule_count": 17,
+  "reuse_before_create_policy": true,
+  "standard_patch_required_for_rule_extension": true,
+  "runtime_execution_allowed": false,
+  "registry_mutation_allowed": false
+}

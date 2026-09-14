@@ -1,0 +1,18 @@
+{
+  "matrix_id": "cognitive_state_transition_matrix_v1",
+  "owner": "Cognitive State Management",
+  "allowed_transitions": [
+    {"from": "NORMAL", "to": ["IDLE", "FOCUS", "PROTECTION", "DEGRADED"]},
+    {"from": "IDLE", "to": ["NORMAL", "FOCUS", "PROTECTION"]},
+    {"from": "FOCUS", "to": ["NORMAL", "IDLE", "PROTECTION", "DEGRADED"]},
+    {"from": "PROTECTION", "to": ["RECOVERY", "NORMAL", "DEGRADED"]},
+    {"from": "DEGRADED", "to": ["RECOVERY", "NORMAL", "PROTECTION"]},
+    {"from": "RECOVERY", "to": ["NORMAL", "DEGRADED", "PROTECTION"]}
+  ],
+  "transition_is_candidate": true,
+  "transition_execution": false,
+  "scheduler_authority": false,
+  "model_switching": false,
+  "hardware_control": false,
+  "review_required": true
+}

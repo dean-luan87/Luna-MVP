@@ -1,0 +1,29 @@
+{
+  "matrix_name": "A Route Constitution Authority Matrix v1",
+  "Brain": ["Intent", "Goal", "Value", "final Decision", "authorization judgment"],
+  "A Route": ["Reality interpretation", "Situation", "Option", "Decision Candidate", "Outcome interpretation", "Experience Candidate"],
+  "Reality Workspace": ["Evidence validation", "Reality State", "Unknown preservation"],
+  "Reducer": ["sole State mutation authority"],
+  "Cognitive Field": ["context organization", "field lifecycle candidates"],
+  "Attention": ["resource allocation candidate", "observation priority candidate"],
+  "Neural": ["fast response candidate", "escalation candidate"],
+  "Task": ["continuity", "lifecycle", "resume candidate"],
+  "Capability": ["Evidence provision"],
+  "Provider": ["capability execution candidate"],
+  "Model Manager": ["asset/version/resource/health governance"],
+  "Action Boundary": ["Action Intent", "Action Request", "permission candidate"],
+  "Experience": ["historical reference candidate"],
+  "forbidden_authority": [
+    "Capability to Decision",
+    "Model to Goal",
+    "Provider to Brain",
+    "Experience to Reality",
+    "Field to Goal mutation",
+    "Attention to Decision mutation",
+    "Action to direct Reality mutation"
+  ],
+  "identity_continuity": true,
+  "brain_is_final_cognitive_authority": true,
+  "reducer_is_sole_state_mutation_authority": true,
+  "no_second_cognitive_subject": true
+}

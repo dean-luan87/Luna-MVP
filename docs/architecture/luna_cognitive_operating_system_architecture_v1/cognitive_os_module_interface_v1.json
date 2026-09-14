@@ -1,0 +1,8 @@
+{
+  "title": "Cognitive OS Module Interface v1",
+  "owner": "Cognitive OS Governance",
+  "required_fields": ["module_id", "owner", "layer", "version", "contract", "dependency", "state"],
+  "interface_operations": ["register", "validate", "admit", "activate_candidate", "suspend_candidate", "recover_candidate", "deprecate", "archive"],
+  "module_outputs": ["state update candidate", "event candidate", "trace reference", "health candidate", "recovery candidate"],
+  "rules": {"one_owner": true, "one_layer": true, "contract_before_active": true, "no_direct_action": true, "no_runtime_implementation": true}
+}

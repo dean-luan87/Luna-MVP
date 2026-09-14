@@ -1,0 +1,27 @@
+{
+  "title": "Brain Learning Interface v1",
+  "contract_type": "Brain Learning Candidate Input",
+  "input": {
+    "experience_candidates": [],
+    "strategy_candidates": [],
+    "pattern_candidates": [],
+    "feedback_candidates": [],
+    "capability_learning_candidates": [],
+    "global_cognitive_state": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "learning_relevance_candidate": {},
+    "strategy_evaluation_candidate": {},
+    "future_adjustment_candidate": {},
+    "brain_review_reference": null
+  },
+  "boundary": {
+    "learning_does_not_modify_brain": true,
+    "learning_does_not_make_decision": true,
+    "learning_does_not_change_goal_automatically": true,
+    "learning_is_input_candidate": true,
+    "unknowns_are_preserved": true
+  }
+}

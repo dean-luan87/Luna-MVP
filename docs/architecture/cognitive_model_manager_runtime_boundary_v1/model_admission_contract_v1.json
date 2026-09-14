@@ -1,0 +1,20 @@
+{
+  "contract_name": "Model Admission Contract v1",
+  "model_candidate_reference": "model-example",
+  "registry_check": "candidate",
+  "capability_declaration_check": "candidate",
+  "boundary_declaration_check": "candidate",
+  "resource_requirement_check": "candidate",
+  "evidence_output_check": "candidate",
+  "hardware_compatibility_check": "candidate",
+  "permission_check": "candidate",
+  "health_baseline_check": "candidate",
+  "protocol_compatibility_check": "candidate",
+  "admission_state": "Draft | Review | Admitted Candidate | Rejected | Deferred | Deprecated",
+  "admission_is_not_runtime_execution": true,
+  "admission_does_not_enable_automatic_switching": true,
+  "admission_does_not_modify_goal": true,
+  "admission_does_not_modify_decision": true,
+  "provider_cannot_admit_itself": true,
+  "unknowns_are_preserved": true
+}

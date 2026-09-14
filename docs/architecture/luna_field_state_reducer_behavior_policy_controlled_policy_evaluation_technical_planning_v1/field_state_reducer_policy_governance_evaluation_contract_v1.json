@@ -1,0 +1,52 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Governance Evaluation Contract",
+    "governance_dependencies": [
+        {
+            "dependency_id": "owner_correction_review",
+            "required": true,
+            "status_when_missing": "governance_review_required"
+        },
+        {
+            "dependency_id": "fact_admission_dependency",
+            "required": true,
+            "status_when_missing": "governance_review_required"
+        },
+        {
+            "dependency_id": "permission_admission_dependency",
+            "required": true,
+            "status_when_missing": "governance_review_required"
+        },
+        {
+            "dependency_id": "human_review_dependency",
+            "required": true,
+            "status_when_missing": "governance_review_required"
+        },
+        {
+            "dependency_id": "protocol_version_dependency",
+            "required": true,
+            "status_when_missing": "invalid_input"
+        },
+        {
+            "dependency_id": "provenance_dependency",
+            "required": true,
+            "status_when_missing": "invalid_input"
+        },
+        {
+            "dependency_id": "change_control_dependency",
+            "required": true,
+            "status_when_missing": "governance_review_required"
+        },
+        {
+            "dependency_id": "runtime_boundary_dependency",
+            "required": true,
+            "status_when_missing": "blocked"
+        }
+    ],
+    "evaluation_has_fact_admission_authority": false,
+    "evaluation_has_direct_state_write_authority": false,
+    "evaluation_has_action_trigger_authority": false,
+    "owner_correction_candidate_only": true,
+    "governance_review_can_return_governance_review_required": true,
+    "governance_contract_complete": true
+}

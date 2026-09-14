@@ -1,0 +1,25 @@
+{
+  "title": "Global State Self State Interface v1",
+  "contract_type": "Self State Projection",
+  "input": {
+    "identity_reference": "identity-example",
+    "capability_state": {},
+    "dynamic_self_state": {},
+    "self_version": "candidate",
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "self_state_reference": "candidate",
+    "identity_reference": "identity-example",
+    "capability_reference": "candidate",
+    "state_reference": "candidate"
+  },
+  "boundary": {
+    "global_state_does_not_modify_identity": true,
+    "global_state_does_not_modify_capability": true,
+    "global_state_does_not_modify_self_state": true,
+    "self_owner_retains_authority": true,
+    "unknowns_are_preserved": true
+  }
+}

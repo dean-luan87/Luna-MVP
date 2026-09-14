@@ -1,0 +1,20 @@
+{
+  "contract_name": "Learning Governance Contract v1",
+  "reality_priority": true,
+  "experience_is_not_fact": true,
+  "unknowns_are_preserved": true,
+  "candidate_requires_validation": true,
+  "incorrect_experience_is_revocable": true,
+  "strategy_requires_context_binding": true,
+  "provenance_required": true,
+  "confidence_required": true,
+  "brain_review_candidate": true,
+  "human_review_candidate": true,
+  "automatic_model_training": false,
+  "online_learning_runtime": false,
+  "automatic_strategy_switching": false,
+  "learning_does_not_modify_reality": true,
+  "learning_does_not_modify_identity": true,
+  "learning_does_not_modify_goal": true,
+  "learning_does_not_modify_decision": true
+}

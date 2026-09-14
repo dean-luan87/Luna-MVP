@@ -1,0 +1,18 @@
+{
+  "scoring_model_id": "slam_scoring_model_v2",
+  "version": "2",
+  "formula": "SLAM_score = 0.4*ATE_score + 0.2*stability + 0.2*drift_penalty + 0.2*diagnostic_penalty",
+  "weights": {
+    "ate_score": 0.4,
+    "stability": 0.2,
+    "drift_penalty": 0.2,
+    "diagnostic_penalty": 0.2
+  },
+  "diagnostic_penalty_sources": [
+    "drift_spike_count",
+    "failure_events_count",
+    "loop_closure_failure_severity"
+  ],
+  "supersedes": "slam_scoring_model_v1.json",
+  "muep_bridge": "SLAM primary task score feeds MUEP layer_a_task.primary_metric_score_normalized"
+}

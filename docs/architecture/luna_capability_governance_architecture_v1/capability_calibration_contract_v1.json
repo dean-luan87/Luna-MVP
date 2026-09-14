@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Capability Calibration Contract",
+  "owner": "Capability Calibration",
+  "scope": "Luna capability health, not provider internal model training",
+  "metrics": ["Accuracy", "Stability", "Latency", "Resource Cost", "Failure Rate"],
+  "inputs": ["Capability Task Outcomes", "Performance Evidence", "Failure Attribution", "Resource Observations", "Runtime Traces"],
+  "outputs": ["Capability Health Score", "Calibration Evidence", "Degradation Candidate", "Qualification Evidence"],
+  "rules": {"capability_level_assessment": true, "model_internal_training_out_of_scope": true, "evidence_required": true, "health_is_candidate": true, "no_auto_upgrade": true}
+}

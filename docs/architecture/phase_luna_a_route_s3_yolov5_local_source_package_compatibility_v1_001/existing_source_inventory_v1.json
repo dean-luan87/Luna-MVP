@@ -1,0 +1,13 @@
+{
+  "complete_local_yolov5_source_package_exists": false,
+  "repository_search_scope": "Luna-Core project-visible assets",
+  "found_assets": [
+    "configs/models/yolo/yolo_model_manifest_v0.json",
+    "Luna_Badge_MVP/vision/yolov5_detector.py",
+    "yolov5n.pt manifest reference"
+  ],
+  "missing_required_markers": ["hubconf.py", "models/yolo.py", "models/common.py", "utils/", "DetectMultiBackend", "attempt_load"],
+  "historical_detector_reusable_as_local_package": false,
+  "historical_detector_reason": "uses remote torch.hub source and ignores the supplied local model path",
+  "external_asset_prerequisite": "an already-present complete local YOLOv5 source tree"
+}

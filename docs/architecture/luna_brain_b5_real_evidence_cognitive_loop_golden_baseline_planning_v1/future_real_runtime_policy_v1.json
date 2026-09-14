@@ -1,0 +1,8 @@
+{
+  "activated_in_b5":false,
+  "prerequisites":["Action admission","permission","safety","resource readiness","runtime readiness","idempotency","rollback","Outcome verification","external success evidence"],
+  "controlled_fixture_distinct_from_real":true,
+  "real_runtime_result_must_not_be_inferred_from":"model/path/action candidate availability",
+  "future_execution_owner":"Runtime Executor",
+  "future_outcome_owner":"Outcome Evaluation Governance"
+}

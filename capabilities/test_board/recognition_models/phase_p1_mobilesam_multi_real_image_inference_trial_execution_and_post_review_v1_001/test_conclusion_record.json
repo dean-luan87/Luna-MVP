@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T11:00:00.550535+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "execution_status": "go",
+    "inference_attempted": true,
+    "image_count": 4,
+    "prompt_attempt_count": 20,
+    "prompt_success_count": 20,
+    "prompt_failure_count": 0,
+    "candidate_masks_written": true,
+    "registry_mutated_this_phase": false,
+    "multi_real_image_inference_trial_success": true,
+    "multi_real_image_candidate_masks_verified": true,
+    "real_scene_multi_image_quality_observation_available": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Multi-Real-Image-Quality-Review-And-Automated-Test-Planning-v1-001",
+    "transition_note": "REAL EXECUTION on 4 user-supplied scoped local street scenes. 20 planned prompt trials (4 images × 5 categories), candidate masks only. NO runtime/semantic/fact/navigation. NO registry mutation."
+  },
+  "final_decision": "P1_MOBILE_SAM_MULTI_REAL_IMAGE_INFERENCE_TRIAL_EXECUTION_GO"
+}

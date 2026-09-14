@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Open Source Asset Replacement Contract",
+  "owner":"Capability Governance and Self Regulation",
+  "flow":["Failure Signal","Capability Impact Analysis","Degraded Capability Candidate","Replacement Candidate","Admission Review","Controlled Availability","Validation"],
+  "required_fields":["asset_id","failure_domain","affected_capabilities","unaffected_capabilities","replacement_options","risk","validation_gate"],
+  "rules":{"failure_isolation":true,"replacement_not_automatic":true,"self_preservation_precedes_optimization":true,"identity_continuity":true}
+}

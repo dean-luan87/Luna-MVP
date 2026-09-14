@@ -1,0 +1,56 @@
+{
+  "model_id": "luna_context_complexity_evaluation_candidate_v1",
+  "policy": {
+    "principle": "Use the minimum sufficient Context scope required by the current question.",
+    "complexity_is_candidate": true,
+    "complexity_does_not_grant_reasoning_authority": true
+  },
+  "scenarios": [
+    {
+      "scenario_type": "Weather",
+      "complexity_level": "LOW",
+      "required_context_scope": ["Field Context", "Temporal Context", "Observation Context"],
+      "reason": "Current location, time, and admitted weather evidence are sufficient; relationship and deep history are normally unnecessary."
+    },
+    {
+      "scenario_type": "Time",
+      "complexity_level": "LOW",
+      "required_context_scope": ["Temporal Context"],
+      "reason": "A direct time query requires only a valid temporal reference."
+    },
+    {
+      "scenario_type": "Simple Query",
+      "complexity_level": "LOW",
+      "required_context_scope": ["Field Context", "Observation Context"],
+      "reason": "A bounded factual query should not activate unrelated personal or emotional history."
+    },
+    {
+      "scenario_type": "Multi-constraint Planning",
+      "complexity_level": "HIGH",
+      "required_context_scope": ["Field Context", "Self Context", "Role Context", "Relationship Context", "Memory Context", "Emotion Context", "Temporal Context"],
+      "reason": "Planning requires multiple bounded sources but Context still does not select a plan."
+    },
+    {
+      "scenario_type": "Relationship",
+      "complexity_level": "HIGH",
+      "required_context_scope": ["Relationship Context", "Role Context", "Memory Context", "Emotion Context", "Temporal Context"],
+      "reason": "Relationship questions require source-owned history, role, emotion context, and validity."
+    },
+    {
+      "scenario_type": "Emotion Expression",
+      "complexity_level": "HIGH",
+      "required_context_scope": ["Field Context", "Self Context", "Relationship Context", "Memory Context", "Emotion Context", "Temporal Context"],
+      "reason": "The background may be complex, but Context must preserve possible causes as Unknown and cannot infer them."
+    },
+    {
+      "scenario_type": "Life Choice",
+      "complexity_level": "HIGH",
+      "required_context_scope": ["Field Context", "Self Context", "Role Context", "Relationship Context", "Memory Context", "Emotion Context", "Temporal Context"],
+      "reason": "Long-horizon choices require broad context while Decision remains downstream."
+    }
+  ],
+  "low_context_types": ["Weather", "Time", "Simple Query"],
+  "high_context_types": ["Multi-constraint Planning", "Relationship", "Emotion Expression", "Life Choice"],
+  "automatic_deep_expansion": false,
+  "status": "PLANNING_CANDIDATE"
+}

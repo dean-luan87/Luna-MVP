@@ -1,0 +1,233 @@
+{
+    "layers": [
+        {
+            "layer_id": "L0",
+            "layer_name": "Observation Scan",
+            "purpose": "Collect raw observations and boundary signals",
+            "input_owner": "observation_channel",
+            "output_owner": "observation_candidate",
+            "interpretation_owner": "observation_scan",
+            "allowed_candidate_types": [
+                "observation_candidate"
+            ],
+            "prohibited_outputs": [
+                "fact",
+                "runtime_activation"
+            ],
+            "required_governance_refs": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "boundary_verifier"
+            ],
+            "stop_condition": "insufficient_signal_quality"
+        },
+        {
+            "layer_id": "L1",
+            "layer_name": "Field Understanding",
+            "purpose": "Construct a minimal field representation",
+            "input_owner": "observation_scan",
+            "output_owner": "field_candidate",
+            "interpretation_owner": "field_understanding",
+            "allowed_candidate_types": [
+                "field_candidate"
+            ],
+            "prohibited_outputs": [
+                "production_action",
+                "full_world_reconstruction"
+            ],
+            "required_governance_refs": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "candidate_verifier"
+            ],
+            "stop_condition": "no_stable_field_candidate"
+        },
+        {
+            "layer_id": "L2",
+            "layer_name": "Situation and Goal",
+            "purpose": "Frame current situation and goal state",
+            "input_owner": "field_understanding",
+            "output_owner": "situation_goal_candidate",
+            "interpretation_owner": "situation_goal",
+            "allowed_candidate_types": [
+                "situation_goal_candidate"
+            ],
+            "prohibited_outputs": [
+                "policy_override",
+                "hidden_state_injection"
+            ],
+            "required_governance_refs": [
+                "candidate_fact_admission",
+                "negative_guards"
+            ],
+            "required_verifier_classes": [
+                "governance_verifier"
+            ],
+            "stop_condition": "incomplete_situation_context"
+        },
+        {
+            "layer_id": "L3",
+            "layer_name": "Expectation Generation",
+            "purpose": "Generate expectation candidates",
+            "input_owner": "situation_goal",
+            "output_owner": "expectation_candidate",
+            "interpretation_owner": "expectation",
+            "allowed_candidate_types": [
+                "expectation_candidate"
+            ],
+            "prohibited_outputs": [
+                "fact_promotion",
+                "runtime_override"
+            ],
+            "required_governance_refs": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "candidate_verifier"
+            ],
+            "stop_condition": "no_expectation_candidate"
+        },
+        {
+            "layer_id": "L4",
+            "layer_name": "Attention Allocation",
+            "purpose": "Focus attention on relevant cues",
+            "input_owner": "expectation",
+            "output_owner": "attention_candidate",
+            "interpretation_owner": "attention",
+            "allowed_candidate_types": [
+                "attention_candidate"
+            ],
+            "prohibited_outputs": [
+                "autonomous_action",
+                "over_commitment"
+            ],
+            "required_governance_refs": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "required_verifier_classes": [
+                "boundary_verifier"
+            ],
+            "stop_condition": "attention_ambiguous"
+        },
+        {
+            "layer_id": "L5",
+            "layer_name": "Region Intelligence",
+            "purpose": "Generate region-level evidence candidates",
+            "input_owner": "attention",
+            "output_owner": "region_evidence_candidate",
+            "interpretation_owner": "region_intelligence",
+            "allowed_candidate_types": [
+                "region_evidence_candidate"
+            ],
+            "prohibited_outputs": [
+                "production_execution",
+                "full_world_reconstruction"
+            ],
+            "required_governance_refs": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "evidence_verifier"
+            ],
+            "stop_condition": "insufficient_region_evidence"
+        },
+        {
+            "layer_id": "L6",
+            "layer_name": "Role and Relation Inference",
+            "purpose": "Infer role and relation candidates",
+            "input_owner": "region_intelligence",
+            "output_owner": "role_candidate",
+            "interpretation_owner": "role_relation_inference",
+            "allowed_candidate_types": [
+                "role_candidate",
+                "relation_candidate"
+            ],
+            "prohibited_outputs": [
+                "irreversible_intervention",
+                "fact_promotion"
+            ],
+            "required_governance_refs": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "candidate_verifier"
+            ],
+            "stop_condition": "role_hypothesis_unresolved"
+        },
+        {
+            "layer_id": "L7",
+            "layer_name": "Evidence Fusion",
+            "purpose": "Merge evidence candidates into a coherent state",
+            "input_owner": "role_relation_inference",
+            "output_owner": "evidence_candidate",
+            "interpretation_owner": "evidence_fusion",
+            "allowed_candidate_types": [
+                "evidence_candidate"
+            ],
+            "prohibited_outputs": [
+                "fact_promotion_without_admission"
+            ],
+            "required_governance_refs": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "required_verifier_classes": [
+                "evidence_verifier"
+            ],
+            "stop_condition": "evidence_incoherent"
+        },
+        {
+            "layer_id": "L8",
+            "layer_name": "Decision and Interaction",
+            "purpose": "Decide whether and how to interact",
+            "input_owner": "evidence_fusion",
+            "output_owner": "interaction_decision_candidate",
+            "interpretation_owner": "decision",
+            "allowed_candidate_types": [
+                "interaction_decision_candidate"
+            ],
+            "prohibited_outputs": [
+                "autonomous_irreversible_action"
+            ],
+            "required_governance_refs": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "required_verifier_classes": [
+                "interaction_verifier"
+            ],
+            "stop_condition": "interaction_decision_unresolved"
+        },
+        {
+            "layer_id": "L9",
+            "layer_name": "Feedback and Memory",
+            "purpose": "Record feedback and memory candidates",
+            "input_owner": "decision",
+            "output_owner": "feedback_candidate",
+            "interpretation_owner": "feedback_memory",
+            "allowed_candidate_types": [
+                "feedback_candidate",
+                "memory_candidate"
+            ],
+            "prohibited_outputs": [
+                "implicit_fact_promotion"
+            ],
+            "required_governance_refs": [
+                "evidence_chain",
+                "rollback_revocation"
+            ],
+            "required_verifier_classes": [
+                "memory_verifier"
+            ],
+            "stop_condition": "no_durable_memory_candidate"
+        }
+    ]
+}

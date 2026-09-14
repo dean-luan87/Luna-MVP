@@ -1,0 +1,40 @@
+{
+    "contract_id": "pcn_memory_boundary_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "memory_owner": "Memory System",
+    "pcn_owner": "Personal Cognitive Network Governance",
+    "memory_owns": [
+        "Stored Experience",
+        "Historical Information",
+        "Memory Admission",
+        "Retrieval",
+        "Consolidation"
+    ],
+    "pcn_owns": [
+        "Cross-object Link",
+        "Activation",
+        "Context Projection"
+    ],
+    "allowed_interface": {
+        "memory_to_pcn": [
+            "memory_projection_reference",
+            "temporal_validity",
+            "provenance",
+            "confidence",
+            "uncertainty"
+        ],
+        "pcn_to_memory": [
+            "memory_relevance_request_candidate",
+            "projection_feedback_candidate"
+        ]
+    },
+    "forbidden": [
+        "pcn_copies_memory_body",
+        "pcn_modifies_memory",
+        "pcn_persists_memory",
+        "memory_directly_mutates_pcn_link"
+    ],
+    "source_owner_precedence": true,
+    "second_writer_prohibited": true
+}

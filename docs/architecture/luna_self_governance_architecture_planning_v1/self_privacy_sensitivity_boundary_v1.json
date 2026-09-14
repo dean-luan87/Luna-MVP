@@ -1,0 +1,18 @@
+{
+    "artifact": "self_privacy_sensitivity_boundary_v1",
+    "sensitivity_levels": [
+        "NORMAL",
+        "SENSITIVE",
+        "HIGH_SENSITIVITY",
+        "USER_CONFIRMATION_REQUIRED",
+        "DO_NOT_GENERALIZE",
+        "DO_NOT_TRANSFER",
+        "DO_NOT_PERSIST_CANDIDATE"
+    ],
+    "rules": {
+        "self_related_information_potentially_highly_sensitive": true,
+        "no_runtime_encryption_in_this_phase": true,
+        "no_automatic_cross_user_transfer": true,
+        "high_sensitivity_requires_confirmation_path": true
+    }
+}

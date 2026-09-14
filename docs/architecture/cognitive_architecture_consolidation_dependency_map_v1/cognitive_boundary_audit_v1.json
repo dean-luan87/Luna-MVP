@@ -1,0 +1,27 @@
+{
+  "title": "Cognitive Architecture Boundary Audit v1",
+  "audit_type": "static_architecture_boundary_audit",
+  "domains": {
+    "Core": ["Self", "Field", "Brain", "Memory", "Learning", "Attention", "Workspace", "Situation", "Intent", "Goal", "Task"],
+    "Governance": ["Constitution", "Admission", "Registry", "Protocol", "Authority", "Diagnostics"],
+    "Capability": ["Capability Governance", "Hardware Capability", "Model Manager", "Provider"],
+    "Runtime": ["Cognitive Runtime", "Capability Runtime", "Action Boundary"],
+    "Future": ["Emotion Runtime", "B Simulation", "Prediction Runtime"]
+  },
+  "boundary_checks": [
+    {"check": "Core owns Self, Field, Brain, Memory, and Learning", "expected": "pass"},
+    {"check": "Governance owns Constitution, Admission, Registry, and Protocol", "expected": "pass"},
+    {"check": "Capability provides capability state/evidence only", "expected": "pass"},
+    {"check": "Provider cannot access Brain directly", "expected": "pass"},
+    {"check": "Learning cannot write Reality", "expected": "pass"},
+    {"check": "Emotion Context cannot override Decision", "expected": "pass"},
+    {"check": "Action Boundary retains execution authority", "expected": "pass"},
+    {"check": "Reducer retains Reality write authority", "expected": "pass"}
+  ],
+  "forbidden_paths": ["Learning → Reality", "Emotion → Decision Override", "Capability → Goal Creation", "Provider → Brain Direct Access", "Model → Decision"],
+  "audit_is_static": true,
+  "no_runtime_execution": true,
+  "no_model_or_hardware_calls": true,
+  "unknowns_are_preserved": true,
+  "provenance_is_preserved": true
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "contract_type": "evidence_intake",
+  "accepted_sources": ["vision", "audio", "ocr", "slam", "user_input", "capability_output"],
+  "required_fields": ["evidence_id", "source", "content", "timestamp", "confidence", "capability_reference", "provenance", "uncertainty"],
+  "output": "evidence_package",
+  "intake_boundary": {
+    "direct_world_state_write": false,
+    "direct_reality_assertion": false,
+    "direct_situation_generation": false,
+    "decision_authority": false
+  },
+  "validation": ["schema", "timestamp", "confidence_range", "provenance", "uncertainty", "capability_reference"],
+  "unknown_preservation": true
+}

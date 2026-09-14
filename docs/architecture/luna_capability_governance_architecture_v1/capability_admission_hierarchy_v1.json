@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Capability Admission Hierarchy",
+  "primary_admission": "Capability Admission",
+  "flow": ["New Capability Candidate", "Capability Review", "Risk Assessment", "Evidence Requirement", "Admission Decision", "Active"],
+  "qualification_branches": ["Model Qualification", "Provider Qualification", "Runtime Qualification"],
+  "qualification_inputs": ["Capability Contract", "Risk Profile", "Evidence Contract", "Resource Profile", "Compatibility", "Health Evidence"],
+  "decisions": ["admit", "reject", "defer", "suspend"],
+  "owners": {"capability_review": "Capability Governance", "model_qualification": "Model Manager", "provider_qualification": "Provider Governance", "runtime_qualification": "Capability Runtime Governance"},
+  "rules": {"capability_admission_is_primary": true, "model_admission_is_subordinate": true, "all_branches_required_before_active": true, "no_provider_self_admission": true, "no_runtime_activation": true}
+}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>B2 Trace Viewer v0.4.3 (DCS)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial; margin: 0; background: #0b0f14; color:#e8eef6; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 16px; }
+    .card { background: #121923; border: 1px solid #1f2a3a; border-radius: 10px; padding: 12px; }
+    .row { display:flex; gap:12px; flex-wrap: wrap; }
+    .kpi { flex:1; min-width: 240px; }
+    .kpi h2 { margin:0 0 6px 0; font-size: 14px; color:#9fb3c8; font-weight:600; }
+    .kpi .num { font-size: 28px; font-weight:800; letter-spacing: .5px; }
+    .num.red { color:#ffb4b4; }
+    .num.yellow { color:#ffe6a6; }
+    .num.green { color:#b6ffd1; }
+    .controls { display:flex; gap:10px; align-items:center; flex-wrap: wrap; }
+    select,input { background:#0f1620; color:#e8eef6; border:1px solid #233145; border-radius: 8px; padding: 8px 10px; }
+    input { min-width: 320px; }
+    .hint { color:#9fb3c8; font-size:12px; margin-top:6px; }
+    .main { display:grid; grid-template-columns: 1.2fr .8fr; gap: 12px; margin-top:12px; }
+    @media(max-width: 960px){ .main{ grid-template-columns: 1fr; } }
+    .list { max-height: 68vh; overflow:auto; padding: 0; }
+    .item { padding:10px; border-bottom:1px solid #1f2a3a; cursor:pointer; }
+    .item:hover { filter: brightness(1.08); }
+    .meta { display:flex; justify-content: space-between; gap:10px; flex-wrap: wrap; font-size: 12px; color:#cfe0f2; }
+    .tag { font-size:12px; padding:2px 8px; border-radius: 999px; border:1px solid rgba(255,255,255,.12); }
+    .grade-red { background:#5a0b0b; color:#fff; }
+    .grade-yellow { background:#4a3a06; color:#fff; }
+    .grade-green { background:#0d3a1d; color:#fff; }
+    .bg-red { background:#5a0b0b; color:#fff; }
+    .bg-yellow { background:#4a3a06; color:#fff; }
+    .bg-green { background:#0d3a1d; color:#fff; }
+    pre { margin:0; white-space: pre-wrap; word-break: break-word; font-size: 12px; line-height: 1.35; background:#0f1620; border:1px solid #233145; border-radius:10px; padding:12px; max-height:68vh; overflow:auto; }
+    .title { font-size: 16px; font-weight: 800; margin: 0 0 10px 0; }
+    a { color:#9ad1ff; text-decoration:none; }
+    .small { font-size:12px; color:#9fb3c8; }
+    button { cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="title">B2 Trace Viewer v0.4.3 — DCS 审判视图</div>
+      <div class="small">
+        数据源：<span id="srcLabel"></span> ｜ 点击一条记录会输出 <code>jump_request</code> 到 Console（用于与视频播放器联动）
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <div class="card kpi">
+          <h2>Total</h2>
+          <div class="num" id="kTotal">0</div>
+        </div>
+        <div class="card kpi">
+          <h2>RED</h2>
+          <div class="num red" id="kRed">0</div>
+        </div>
+        <div class="card kpi">
+          <h2>YELLOW</h2>
+          <div class="num yellow" id="kYellow">0</div>
+        </div>
+        <div class="card kpi">
+          <h2>GREEN</h2>
+          <div class="num green" id="kGreen">0</div>
+        </div>
+      </div>
+
+      <div class="controls" style="margin-top:12px;">
+        <label>Grade:
+          <select id="gradeSel">
+            <option value="ALL">ALL</option>
+            <option value="RED">RED</option>
+            <option value="YELLOW">YELLOW</option>
+            <option value="GREEN">GREEN</option>
+          </select>
+        </label>
+        <label>Search:
+          <input id="searchBox" placeholder="搜索：impact / violation / reason / 任意 JSON 字符串" />
+        </label>
+        <button id="reloadBtn" style="padding:8px 10px;border-radius:8px;border:1px solid #233145;background:#0f1620;color:#e8eef6;cursor:pointer;">Reload</button>
+      </div>
+      <div class="hint">
+        排序：RED → YELLOW → GREEN，然后按 t_video_s / frame_id 升序。RED 默认置顶且不可被隐藏（即使筛选 ALL）。
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="card">
+        <div class="title" style="margin-bottom:8px;">Trace 列表</div>
+        <div class="list" id="list"></div>
+      </div>
+      <div class="card">
+        <div class="title" style="margin-bottom:8px;">详情（JSON）</div>
+        <pre id="detail">{}</pre>
+        <div class="hint">点击列表项将打印：<code>jump_request</code> 到 Console</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const qs = new URLSearchParams(location.search);
+    const src = qs.get("src") || "../artifacts/trace_enriched.jsonl";
+    document.getElementById("srcLabel").innerText = src;
+
+    const gradeOrder = { "RED": 0, "YELLOW": 1, "GREEN": 2, "UNKNOWN": 3 };
+
+    function safeGet(obj, path, defVal=null){
+      try {
+        return path.split(".").reduce((a,k)=> (a && a[k]!==undefined) ? a[k] : undefined, obj) ?? defVal;
+      } catch { return defVal; }
+    }
+
+    function computeGrade(e){
+      const g = safeGet(e, "dcs.grade", "UNKNOWN");
+      return (g === "RED" || g === "YELLOW" || g === "GREEN") ? g : "UNKNOWN";
+    }
+
+    function rowClass(grade){
+      if (grade === "RED") return "bg-red";
+      if (grade === "YELLOW") return "bg-yellow";
+      if (grade === "GREEN") return "bg-green";
+      return "";
+    }
+
+    function tagClass(grade){
+      if (grade === "RED") return "tag grade-red";
+      if (grade === "YELLOW") return "tag grade-yellow";
+      if (grade === "GREEN") return "tag grade-green";
+      return "tag";
+    }
+
+    function asNum(v){
+      if (v === null || v === undefined) return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    }
+
+    function sortEvents(events){
+      return events.sort((a,b)=>{
+        const ga = computeGrade(a), gb = computeGrade(b);
+        const oa = gradeOrder[ga] ?? 9;
+        const ob = gradeOrder[gb] ?? 9;
+        if (oa !== ob) return oa - ob;
+
+        const ta = asNum(a.t_video_s) ?? asNum(safeGet(a, "time.t_video_s", null));
+        const tb = asNum(b.t_video_s) ?? asNum(safeGet(b, "time.t_video_s", null));
+        if (ta !== null && tb !== null && ta !== tb) return ta - tb;
+
+        const fa = asNum(a.frame_id);
+        const fb = asNum(b.frame_id);
+        if (fa !== null && fb !== null && fa !== fb) return fa - fb;
+
+        return 0;
+      });
+    }
+
+    async function loadJsonl(url){
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`fetch failed: ${r.status} ${r.statusText}`);
+      const text = await r.text();
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      const events = [];
+      for (const line of lines){
+        try { events.push(JSON.parse(line)); } catch {}
+      }
+      return events;
+    }
+
+    function updateKpi(events){
+      let red=0,yellow=0,green=0;
+      for (const e of events){
+        const g = computeGrade(e);
+        if (g==="RED") red++;
+        else if (g==="YELLOW") yellow++;
+        else if (g==="GREEN") green++;
+      }
+      document.getElementById("kTotal").innerText = events.length;
+      document.getElementById("kRed").innerText = red;
+      document.getElementById("kYellow").innerText = yellow;
+      document.getElementById("kGreen").innerText = green;
+    }
+
+    function stringifyPretty(obj){
+      return JSON.stringify(obj, null, 2);
+    }
+
+    function buildRow(e){
+      const grade = computeGrade(e);
+      const engine = e.engine_version ?? e.version ?? "unknown";
+      const human = safeGet(e, "time.human_time", e.human_time ?? "??:??");
+      const impact = e.impact ?? "UNKNOWN";
+      const main = e.main_factor ?? safeGet(e, "main_factor", null) ?? "";
+      const vio = (safeGet(e, "dcs.violations", []) || []).join(", ");
+      const t = asNum(e.t_video_s) ?? asNum(safeGet(e, "time.t_video_s", null));
+      const fid = e.frame_id ?? null;
+
+      const div = document.createElement("div");
+      div.className = `item ${rowClass(grade)}`;
+
+      const left = `[${engine}] ${human} | ${impact}` + (main ? ` | main=${main}` : "");
+      const right = `<span class="${tagClass(grade)}">${grade}</span>`;
+
+      div.innerHTML = `
+        <div class="meta">
+          <div>${left}</div>
+          <div>${right}</div>
+        </div>
+        ${vio ? `<div class="hint">violations: ${vio}</div>` : ``}
+      `;
+
+      div.onclick = () => {
+        document.getElementById("detail").innerText = stringifyPretty(e);
+        console.log("jump_request", { t_video_s: t, frame_id: fid, human_time: human });
+      };
+
+      return div;
+    }
+
+    function applyFilters(allEvents){
+      const gradeSel = document.getElementById("gradeSel").value;
+      const q = document.getElementById("searchBox").value.trim().toLowerCase();
+
+      const filtered = allEvents.filter(e=>{
+        const g = computeGrade(e);
+        if (gradeSel !== "ALL" && g !== gradeSel) return false;
+        if (q){
+          const line = JSON.stringify(e).toLowerCase();
+          if (!line.includes(q)) return false;
+        }
+        return true;
+      });
+
+      // RED 默认置顶（筛选 ALL 时也能体现）
+      return sortEvents(filtered);
+    }
+
+    let ALL = [];
+
+    async function render(){
+      const list = document.getElementById("list");
+      list.innerHTML = `<div class="hint">Loading...</div>`;
+      try{
+        ALL = await loadJsonl(src);
+        ALL = sortEvents(ALL);
+        updateKpi(ALL);
+        const events = applyFilters(ALL);
+
+        list.innerHTML = "";
+        if (!events.length){
+          list.innerHTML = `<div class="hint">No results.</div>`;
+          return;
+        }
+        for (const e of events){
+          list.appendChild(buildRow(e));
+        }
+      } catch(err){
+        list.innerHTML = `<div class="hint">Load failed: ${err.message}</div>`;
+      }
+    }
+
+    document.getElementById("gradeSel").addEventListener("change", ()=> {
+      const list = document.getElementById("list");
+      const events = applyFilters(ALL);
+      list.innerHTML = "";
+      for (const e of events) list.appendChild(buildRow(e));
+    });
+
+    document.getElementById("searchBox").addEventListener("input", ()=> {
+      const list = document.getElementById("list");
+      const events = applyFilters(ALL);
+      list.innerHTML = "";
+      for (const e of events) list.appendChild(buildRow(e));
+    });
+
+    document.getElementById("reloadBtn").addEventListener("click", ()=> render());
+
+    render();
+  </script>
+</body>
+</html>

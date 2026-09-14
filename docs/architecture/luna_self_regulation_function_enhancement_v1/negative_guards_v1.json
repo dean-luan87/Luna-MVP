@@ -1,0 +1,43 @@
+{
+  "contract_id": "self_regulation_function_enhancement_negative_guards_v1",
+  "forbidden": [
+    "new_homeostasis_layer",
+    "second_regulation_owner",
+    "runtime",
+    "scheduler",
+    "automatic_control",
+    "automatic_calibration",
+    "automatic_adaptation",
+    "automatic_parameter_update",
+    "automatic_genome_update",
+    "direct_action",
+    "direct_model_switch",
+    "direct_hardware_control",
+    "provider_invocation",
+    "identity_change",
+    "constitution_change",
+    "goal_rewrite",
+    "value_rewrite",
+    "brain_rule_rewrite",
+    "source_code_modification",
+    "model_training",
+    "hive_direct_update",
+    "emotion_runtime",
+    "social_runtime",
+    "b_route_update_state",
+    "no_check_weaken",
+    "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "self_regulation_is_unique_owner": true,
+    "homeostasis_is_internal_mechanism": true,
+    "calibration_is_internal_mechanism": true,
+    "adaptation_is_internal_mechanism": true,
+    "drift_is_review_signal": true,
+    "stable_core_protected": true,
+    "candidates_require_self_review": true,
+    "runtime_is_external_application_boundary": true,
+    "unknowns_preserved": true,
+    "passed_assets_preserved": true
+  }
+}

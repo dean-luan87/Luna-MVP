@@ -1,0 +1,127 @@
+{
+    "version": "1.0",
+    "name": "Luna Verification Failure Classification And Remediation Standard",
+    "failure_classes": {
+        "MISSING_ARTIFACT": {
+            "description": "Required file or required section is missing.",
+            "remediation_scope": "Create missing artifact only.",
+            "allowed_files": [
+                "missing_required_files"
+            ],
+            "prohibited_shortcuts": [
+                "remove_required_check",
+                "rename_output_to_fake_match"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "OUTPUT_CONTRACT_DRIFT": {
+            "description": "Output field names/shapes/values drift from verifier contract.",
+            "remediation_scope": "Fix failed contract items only.",
+            "allowed_files": [
+                "contract_output_files",
+                "contract_json_assets"
+            ],
+            "prohibited_shortcuts": [
+                "delete_failed_checks",
+                "hardcode_pass",
+                "change_success_conditions"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "STATIC_IMPORT_OR_SYNTAX_FAILURE": {
+            "description": "Syntax or import failure in verifier/phase assets.",
+            "remediation_scope": "Repair syntax/import issue only.",
+            "allowed_files": [
+                "files_with_static_errors"
+            ],
+            "prohibited_shortcuts": [
+                "skip_py_compile",
+                "disable_import_path_checks"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "FIXTURE_CONTRACT_FAILURE": {
+            "description": "Fixture immutability/admission/synthetic boundary failed.",
+            "remediation_scope": "Fix fixture contract or case mapping only.",
+            "allowed_files": [
+                "fixture_contract_files",
+                "test_case_contract_files"
+            ],
+            "prohibited_shortcuts": [
+                "disable_negative_cases",
+                "bypass_fixture_validation"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "RUNTIME_BOUNDARY_VIOLATION": {
+            "description": "Unauthorized runtime/state/database/network/model/device activity.",
+            "remediation_scope": "Remove violating behavior and restore boundary.",
+            "allowed_files": [
+                "violating_phase_assets",
+                "boundary_contract_assets"
+            ],
+            "prohibited_shortcuts": [
+                "suppress_violation_logs",
+                "relabel_runtime_as_dryrun"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "BLOCKED_BY_BOUNDARY_VIOLATION"
+        },
+        "VERIFIER_DEFECT": {
+            "description": "Verifier logic defect or unstable checker implementation.",
+            "remediation_scope": "Fix verifier defect without lowering checks.",
+            "allowed_files": [
+                "phase_verifier_file"
+            ],
+            "prohibited_shortcuts": [
+                "reduce_check_count",
+                "remove_failed_check",
+                "force_success_return"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "REAL_IMPLEMENTATION_DEFECT": {
+            "description": "Authorized implementation behavior is incorrect.",
+            "remediation_scope": "Fix defective implementation under phase boundary.",
+            "allowed_files": [
+                "in_scope_runtime_or_skeleton_files"
+            ],
+            "prohibited_shortcuts": [
+                "mock_pass_without_fix",
+                "skip_required_cases"
+            ],
+            "rerun_requirement": "User must rerun original Final Phase Verifier after fix.",
+            "next_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+        },
+        "ARCHITECTURE_BLOCKER": {
+            "description": "Upstream architecture dependency or unresolved governance conflict blocks completion.",
+            "remediation_scope": "Produce blocker report and wait for governance decision.",
+            "allowed_files": [
+                "blocker_report_files",
+                "phase_summary_files"
+            ],
+            "prohibited_shortcuts": [
+                "unilateral_scope_expansion",
+                "fake_dependency_resolution"
+            ],
+            "rerun_requirement": "User reruns original Final Phase Verifier after blocker resolution.",
+            "next_status": "BLOCKED_BEFORE_USER_TERMINAL_VERIFICATION"
+        }
+    },
+    "remediation_principles": {
+        "fix_failed_items_only": true,
+        "do_not_modify_passed_assets": true,
+        "do_not_delete_checks": true,
+        "do_not_hide_failure_by_renaming": true,
+        "do_not_hardcode_pass": true,
+        "do_not_reduce_check_count": true,
+        "do_not_change_success_conditions": true,
+        "user_must_rerun_original_final_phase_verifier": true
+    },
+    "failure_classification_complete": true
+}

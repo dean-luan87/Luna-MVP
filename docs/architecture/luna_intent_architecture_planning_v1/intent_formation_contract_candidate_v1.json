@@ -1,0 +1,64 @@
+{
+  "artifact": "intent_formation_contract_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Intent Governance",
+  "input_mode": "SOURCE_OWNED_REFERENCE_ONLY",
+  "admissible_influence_sources": [
+    "Context",
+    "PCN activation projection",
+    "Field pressure",
+    "Role pressure or obligation",
+    "Relationship context",
+    "Memory reference",
+    "Experience reference",
+    "Emotion influence reference",
+    "Self state",
+    "Resource state",
+    "unfinished state",
+    "external request",
+    "task reference"
+  ],
+  "minimum_candidate_evidence": [
+    "source_refs",
+    "context_refs",
+    "pcn_refs_or_explicit_absence",
+    "why_candidate",
+    "supporting_refs",
+    "uncertainty",
+    "alternative_candidates",
+    "provenance",
+    "formation_trace"
+  ],
+  "formation_steps": [
+    "receive immutable source-owned references",
+    "preserve Unknown and conflicting indications",
+    "create Potential Intent Candidate when evidence is incomplete",
+    "qualify future-state direction without asserting truth",
+    "create or revise Intent Candidate under Intent Governance",
+    "record coexistence, conflict, suppression, amplification, or carryover candidates",
+    "prepare candidate-only downstream handoff when eligible"
+  ],
+  "prohibited_source_authority": [
+    "Context creates Intent",
+    "PCN creates Intent",
+    "Field pressure equals Intent",
+    "Role obligation equals Intent",
+    "Memory recall equals Intent",
+    "Experience pattern equals Intent",
+    "Emotion creates Intent",
+    "Need or Drive equals Intent",
+    "external request equals admitted Intent",
+    "Task reference equals Intent"
+  ],
+  "output_candidates": [
+    "Potential Intent Candidate",
+    "Intent Candidate",
+    "Intent State Candidate",
+    "Intent Interaction Candidate",
+    "Intent Trace Candidate"
+  ],
+  "automatic_promotion": false,
+  "fixed_score_threshold": false,
+  "runtime_behavior": false,
+  "active_contract": false
+}

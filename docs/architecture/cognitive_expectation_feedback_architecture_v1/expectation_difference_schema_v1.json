@@ -1,0 +1,20 @@
+{
+  "title": "Expectation Difference Schema v1",
+  "contract_type": "Expectation Difference",
+  "difference_id": "difference-example",
+  "expectation_reference": "expectation-example",
+  "expected_state": {},
+  "observed_reality": {},
+  "comparison_basis": {},
+  "difference_category": "none | partial | contradiction | unknown | expired",
+  "difference_magnitude": "candidate",
+  "feedback_status": "Confirmed | Partially Confirmed | Contradicted | Unknown | Expired",
+  "learning_signal": "candidate",
+  "unknowns": [],
+  "risk": [],
+  "provenance": [],
+  "difference_is_not_prediction_error": true,
+  "difference_does_not_modify_belief_automatically": true,
+  "difference_does_not_modify_reality": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,9 @@
+{
+  "required_asset_id": "model-asset:yolo11n:weights-v1",
+  "required_loader_contract": "loader:ultralytics:yolo:v1",
+  "required_status": "ADMISSION_READY_CANDIDATE",
+  "required_contract_statuses": ["RESOLVED", "RESOLVED", "RESOLVED", "RESOLVED", "RESOLVED"],
+  "provider_invocation_without_admission": false,
+  "model_path_alone_authorizes_execution": false,
+  "dependency_verification_is_consumed": true
+}

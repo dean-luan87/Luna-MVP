@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "source_repo_verification_standard_record",
+  "source_repo_verification_standard_record": {
+    "record_id": "source_repo_verification_standard_v1",
+    "canonical_repo_verification_required": true,
+    "commit_pin_required": true,
+    "license_review_required": true,
+    "dependency_review_required": true,
+    "weight_exclusion_checkout_required_when_committed_weight": true
+  }
+}

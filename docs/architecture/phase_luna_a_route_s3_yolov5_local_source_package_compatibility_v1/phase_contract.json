@@ -1,0 +1,11 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S3-YOLOv5-Local-Source-Package-Compatibility-v1-001",
+  "owner": "Model Manager / Model Governance",
+  "contract_only": true,
+  "inference_execution": false,
+  "provider_invocation": false,
+  "network_access": false,
+  "automatic_download": false,
+  "s3_observation_control_semantics_modified": false,
+  "current_yolov5n_status": "BLOCKED_ON_LOCAL_SOURCE_PACKAGE_NOT_FOUND"
+}

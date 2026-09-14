@@ -1,0 +1,14 @@
+{
+  "interface_name": "Relationship Memory Interface v1",
+  "interaction_experience_reference": "interaction-experience-example",
+  "relationship_memory_reference": "relationship-memory-example",
+  "relationship_candidate": null,
+  "field_context": "field-example",
+  "history": [],
+  "confidence": null,
+  "evidence": [],
+  "unknowns": [],
+  "memory_does_not_override_reality": true,
+  "memory_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

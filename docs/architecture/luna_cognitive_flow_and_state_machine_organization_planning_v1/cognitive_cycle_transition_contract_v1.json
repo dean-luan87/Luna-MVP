@@ -1,0 +1,106 @@
+{
+    "artifact": "cognitive_cycle_transition_contract_v1",
+    "transition_rules": [
+        {
+            "from": "IDLE",
+            "to": "INITIALIZING",
+            "requires": [
+                "cycle_start_candidate",
+                "duplicate_start_guard_pass"
+            ]
+        },
+        {
+            "from": "INITIALIZING",
+            "to": "CONTEXT_READY",
+            "requires": [
+                "context_refs",
+                "trace_ref"
+            ]
+        },
+        {
+            "from": "CONTEXT_READY",
+            "to": "INTENT_READY",
+            "requires": [
+                "intent_candidate_or_persisted_intent_ref"
+            ]
+        },
+        {
+            "from": "INTENT_READY",
+            "to": "STATE_FORMING",
+            "requires": [
+                "state_formation_input_complete"
+            ]
+        },
+        {
+            "from": "STATE_FORMING",
+            "to": "STATE_READY",
+            "requires": [
+                "current_world_ref",
+                "cognitive_state_vector_ref"
+            ]
+        },
+        {
+            "from": "STATE_READY",
+            "to": "REGULATING",
+            "requires": [
+                "regulation_input_complete"
+            ]
+        },
+        {
+            "from": "REGULATING",
+            "to": "REGULATION_READY",
+            "requires": [
+                "regulation_candidate_or_no_change_candidate"
+            ]
+        },
+        {
+            "from": "ANY_ACTIVE",
+            "to": "RECONSIDERING",
+            "requires": [
+                "reconsideration_candidate"
+            ]
+        },
+        {
+            "from": "ANY_ACTIVE",
+            "to": "SUSPENDED",
+            "requires": [
+                "interrupt_or_suspend_candidate"
+            ]
+        },
+        {
+            "from": "SUSPENDED",
+            "to": "INITIALIZING",
+            "requires": [
+                "resume_candidate",
+                "resume_idempotency_pass"
+            ]
+        },
+        {
+            "from": "STATE_READY",
+            "to": "COMPLETED",
+            "requires": [
+                "no_regulation_needed"
+            ]
+        },
+        {
+            "from": "REGULATION_READY",
+            "to": "COMPLETED",
+            "requires": [
+                "outputs_frozen"
+            ]
+        },
+        {
+            "from": "ANY_ACTIVE",
+            "to": "ABORTED",
+            "requires": [
+                "abort_candidate"
+            ]
+        }
+    ],
+    "transition_invariants": {
+        "transition_candidate_only": true,
+        "same_input_snapshot_deterministic_transition": true,
+        "no_owner_output_rewrite": true,
+        "completed_cycle_immutable": true
+    }
+}

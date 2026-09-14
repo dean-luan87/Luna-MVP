@@ -1,0 +1,62 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T04:38:21.787250+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "code_only_install_result_audit_record",
+  "code_only_install_result_audits": [
+    {
+      "asset_id": "byte_track",
+      "upstream_review_ref": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+      "code_only_install_success": true,
+      "find_spec_verified_symbol": "yolox",
+      "find_spec_result": true,
+      "full_clone_used": false,
+      "weight_excluding_checkout_used": false,
+      "weight_files_materialized": [],
+      "global_env_contamination": false,
+      "weight_download_performed": false,
+      "real_import_performed": false,
+      "model_load_performed": false,
+      "inference_performed": false,
+      "runtime_execution_performed": false,
+      "audit_passed": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "upstream_review_ref": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+      "code_only_install_success": true,
+      "find_spec_verified_symbol": "mobile_sam",
+      "find_spec_result": true,
+      "full_clone_used": false,
+      "weight_excluding_checkout_used": true,
+      "weight_files_materialized": [],
+      "global_env_contamination": false,
+      "weight_download_performed": false,
+      "real_import_performed": false,
+      "model_load_performed": false,
+      "inference_performed": false,
+      "runtime_execution_performed": false,
+      "audit_passed": true
+    }
+  ],
+  "upstream_verification_checks": {
+    "upstream.final_decision_go": true,
+    "upstream.blocker_count_zero": true,
+    "upstream.attempted_eq_2": true,
+    "upstream.successful_eq_2": true,
+    "upstream.failed_or_deferred_eq_0": true,
+    "upstream.byte_track_find_spec_yolox": true,
+    "upstream.mobile_sam_full_clone_used_false": true,
+    "upstream.mobile_sam_weight_files_empty": true
+  }
+}

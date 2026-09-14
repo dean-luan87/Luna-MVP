@@ -1,0 +1,19 @@
+{
+    "artifact": "execution_partial_result_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "partial_result_required_fields": [
+        "execution_id",
+        "attempt_number",
+        "completed_substeps",
+        "remaining_substeps",
+        "partial_outcome_refs",
+        "confidence",
+        "trace_ref"
+    ],
+    "rules": {
+        "partial_result_not_success": true,
+        "partial_result_requires_explicit_terminal_followup": true,
+        "partial_result_can_lead_to_rollback_required": true,
+        "partial_result_can_lead_to_retry_candidate": true
+    }
+}

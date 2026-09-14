@@ -1,0 +1,21 @@
+{
+  "schema_name": "Model Registry Schema v1",
+  "model_id": "model-example",
+  "model_identity": {"name": null, "vendor": null, "version": null},
+  "provider_reference": "provider-example",
+  "capability_bindings": ["Text Recognition Capability"],
+  "resource_requirement_reference": "resource-example",
+  "hardware_compatibility_reference": "hardware-compatibility-example",
+  "performance_profile": {"latency": null, "quality": null, "throughput": null},
+  "health_state": "candidate",
+  "permission_reference": "permission-example",
+  "cognitive_scope": "local feature/candidate analysis only",
+  "known_limitations": [],
+  "registry_state": "Draft | Review | Admission | Active | Deprecated | Archived",
+  "model_is_not_brain": true,
+  "model_is_not_decision_authority": true,
+  "model_is_not_goal_authority": true,
+  "model_does_not_modify_reality": true,
+  "model_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

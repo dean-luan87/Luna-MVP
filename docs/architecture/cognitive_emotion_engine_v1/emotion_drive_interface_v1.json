@@ -1,0 +1,11 @@
+{
+  "interface_name": "Emotion Drive Interface v1",
+  "emotion_state_reference": {},
+  "drive_modulation_candidate": {},
+  "drive_reference": {},
+  "valence": null,
+  "arousal": null,
+  "modulation_is_candidate_only": true,
+  "emotion_does_not_own_drive": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Action Execution Contract v1",
+  "owner": "Action Boundary Governance",
+  "input": "Action Approved Candidate",
+  "future_output": "Outcome Evidence",
+  "execution_owner": "Future Action Runtime",
+  "boundary": ["Decision", "Action Boundary", "Execution System", "External World", "Outcome Evidence"],
+  "not_implemented": ["Action Runtime", "Hardware Control", "Robot Movement", "API Execution", "External Side Effect"],
+  "rules": {"execution_future_only": true, "action_boundary_not_executor": true, "outcome_required": true, "no_current_side_effect": true}
+}

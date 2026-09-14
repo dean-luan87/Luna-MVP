@@ -1,0 +1,10 @@
+{
+  "title": "Decision Candidate Lifecycle Contract v1",
+  "states": ["Proposed", "Evaluated", "Approved", "Active", "Invalidated", "Reconsidered"],
+  "automatic_transition": false,
+  "selected_state_is_candidate": true,
+  "invalidating_events": ["Reality Change", "Field Change", "Understanding Contradiction", "Risk Increase", "Capability Failure", "Self State Change", "Goal Change Candidate"],
+  "reconsideration_output": "Reconsideration Candidate",
+  "runtime_implemented": false,
+  "action_execution": false
+}

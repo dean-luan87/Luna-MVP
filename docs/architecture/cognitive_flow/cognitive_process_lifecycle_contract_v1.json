@@ -1,0 +1,23 @@
+{
+  "schema_version": "v1",
+  "contract_type": "cognitive_process_lifecycle",
+  "creation_sources": ["Brain", "Neural", "User", "External Event"],
+  "lifecycle_states": ["Created", "Active", "Background", "Suspended", "Completed", "Archived"],
+  "required_fields": ["process_id", "intent_reference", "context", "state", "resource", "priority", "authority", "lifecycle"],
+  "thread_types": ["Task Thread", "Attention Thread", "Monitoring Thread", "Background Thread"],
+  "transition_rules": {
+    "Created": ["Active", "Background", "Suspended"],
+    "Active": ["Background", "Suspended", "Completed"],
+    "Background": ["Active", "Suspended", "Completed"],
+    "Suspended": ["Active", "Background", "Completed"],
+    "Completed": ["Archived"],
+    "Archived": []
+  },
+  "authority": {
+    "creates_goal": false,
+    "makes_decision": false,
+    "executes_action": false,
+    "direct_state_mutation": false,
+    "reducer_is_sole_state_mutation_authority": true
+  }
+}

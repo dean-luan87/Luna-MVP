@@ -1,0 +1,22 @@
+{
+  "contract_name": "Model Evidence Output Contract v1",
+  "model_reference": "model-example",
+  "capability_reference": "capability-example",
+  "raw_output_candidate": null,
+  "evidence_type": "Text | Scene | Spatial | Audio",
+  "source": "provider-example",
+  "confidence": null,
+  "limitation": [],
+  "unknowns": [],
+  "provenance": [],
+  "timestamp": null,
+  "schema_validation": "candidate",
+  "evidence_gateway_required": true,
+  "reality_update_candidate_required": true,
+  "output_is_not_reality": true,
+  "output_is_not_situation": true,
+  "output_is_not_decision": true,
+  "output_is_not_goal": true,
+  "output_is_not_action": true,
+  "unknowns_are_preserved": true
+}

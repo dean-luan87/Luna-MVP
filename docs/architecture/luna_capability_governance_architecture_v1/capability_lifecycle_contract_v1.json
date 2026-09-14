@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "name": "Capability Lifecycle Contract",
+  "states": ["Candidate", "Registered", "Testing", "Active", "Degraded", "Suspended", "Retired"],
+  "transitions": [
+    {"from": "Candidate", "to": "Registered", "condition": "registry identity and contract present"},
+    {"from": "Registered", "to": "Testing", "condition": "admission review started"},
+    {"from": "Testing", "to": "Active", "condition": "admission and qualification pass"},
+    {"from": "Active", "to": "Degraded", "condition": "health evidence below threshold"},
+    {"from": "Degraded", "to": "Suspended", "condition": "continued risk or unavailable support"},
+    {"from": "Suspended", "to": "Testing", "condition": "reviewed recovery candidate"},
+    {"from": "Suspended", "to": "Retired", "condition": "governance retirement decision"}
+  ],
+  "rules": {"active_requires_admission": true, "degraded_is_not_identity_failure": true, "retirement_review_required": true, "no_automatic_transition": true}
+}

@@ -1,0 +1,23 @@
+{
+  "artifact": "personality_idempotency_contract_v1",
+  "guards": [
+    "duplicate_personality_evidence_guard",
+    "duplicate_trait_candidate_guard",
+    "duplicate_profile_update_guard",
+    "duplicate_revision_guard",
+    "duplicate_revocation_guard",
+    "duplicate_supersession_guard",
+    "replayed_evidence_guard",
+    "user_correction_precedence"
+  ],
+  "rules": {
+    "same_evidence_same_candidate_identity": true,
+    "same_cycle_does_not_duplicate_candidate": true,
+    "silent_duplicate_consolidation_forbidden": true,
+    "replayed_evidence_does_not_raise_stability": true,
+    "duplicate_profile_update_is_no_op_candidate": true,
+    "revision_parent_identity_is_stable": true,
+    "revocation_is_idempotent": true,
+    "user_correction_cannot_be_overwritten_by_inference": true
+  }
+}

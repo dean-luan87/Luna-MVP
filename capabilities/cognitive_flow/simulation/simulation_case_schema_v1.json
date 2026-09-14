@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "luna.cognitive_primitive.simulation_case.v1",
+  "title": "Cognitive Primitive Simulation Case v1",
+  "type": "object",
+  "required": ["scenario", "trace_ref"],
+  "properties": {
+    "scenario": {"enum": ["shopping_mall", "airport", "street"]},
+    "trace_ref": {"type": "string", "minLength": 1},
+    "source_ref": {"type": "string", "minLength": 1},
+    "occurred_at": {"type": "string", "minLength": 1},
+    "observed_at": {"type": "string", "minLength": 1}
+  },
+  "output": {
+    "type": "object",
+    "description": "One Observation Event candidate only; never a fact, entity, relation, state, or conclusion.",
+    "required": ["observation_id", "observation_type", "candidate_only", "fact_admitted", "conclusion_made"]
+  },
+  "boundary": {
+    "model_invocation_allowed": false,
+    "network_allowed": false,
+    "ocr_allowed": false,
+    "slam_allowed": false,
+    "fact_generation_allowed": false
+  }
+}

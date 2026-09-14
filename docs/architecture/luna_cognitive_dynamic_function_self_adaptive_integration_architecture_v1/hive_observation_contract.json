@@ -1,0 +1,14 @@
+{
+  "contract_id": "integrated_hive_observation_v1",
+  "observation_tuple": ["Field", "Cognitive Genome", "Outcome"],
+  "inputs": ["Field Context", "Genome Version", "Outcome Evidence", "Performance Metrics", "Risk Metrics"],
+  "outputs": ["Performance Analysis", "Optimization Candidate", "Comparative Evidence", "Confidence", "Unknowns"],
+  "hive_role": "observer_and_candidate_provider",
+  "hive_is_not_owner": true,
+  "hive_has_no_write_permission": true,
+  "external_hive_connection": false,
+  "privacy_scope_required": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "candidate_only": true
+}

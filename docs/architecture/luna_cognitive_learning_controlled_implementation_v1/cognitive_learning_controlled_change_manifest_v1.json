@@ -1,0 +1,11 @@
+{
+    "artifact": "cognitive_learning_controlled_change_manifest_v1",
+    "assertions": {
+        "only_new_learning_module_files_created": true,
+        "only_new_phase_documentation_files_created": true,
+        "no_existing_module_modified": true,
+        "no_planning_source_modified": true,
+        "no_runtime_training_or_execution_introduced": true,
+        "no_db_vector_store_embedding_execution": true
+    }
+}

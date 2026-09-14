@@ -1,0 +1,31 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Controlled DryRun Test Strategy",
+    "checks": [
+        "required_file_validation",
+        "python_import_validation",
+        "case_registry_completeness",
+        "positive_case_execution",
+        "negative_case_rejection",
+        "structured_error_matching",
+        "deterministic_repeated_execution",
+        "reversed_input_ordering",
+        "fixture_immutability",
+        "trace_completeness",
+        "replay_key_stability",
+        "placeholder_result_enforcement",
+        "no_active_state_creation",
+        "no_state_mutation",
+        "no_runtime",
+        "no_database",
+        "no_provider",
+        "no_external_lookup",
+        "no_model",
+        "no_action",
+        "no_production_execution"
+    ],
+    "trace_validation_required": true,
+    "replay_key_stability_required": true,
+    "fixture_immutability_required": true,
+    "test_strategy_complete": true
+}

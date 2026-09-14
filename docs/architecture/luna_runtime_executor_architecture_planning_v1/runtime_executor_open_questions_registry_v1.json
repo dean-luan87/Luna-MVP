@@ -1,0 +1,36 @@
+{
+    "artifact": "runtime_executor_open_questions_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "open_questions": [
+        {
+            "id": "Q1",
+            "question": "Should idempotency key be mandatory for irreversible requests?",
+            "impact": "high",
+            "blocking": false
+        },
+        {
+            "id": "Q2",
+            "question": "How should retry authority be delegated for adapter timeout classes?",
+            "impact": "high",
+            "blocking": false
+        },
+        {
+            "id": "Q3",
+            "question": "What is the canonical timeout hierarchy when queue and execution windows overlap?",
+            "impact": "medium",
+            "blocking": false
+        },
+        {
+            "id": "Q4",
+            "question": "Should partial results always trigger rollback-required for irreversible actions?",
+            "impact": "medium",
+            "blocking": false
+        },
+        {
+            "id": "Q5",
+            "question": "How to version adapter capability contracts without owner ambiguity?",
+            "impact": "medium",
+            "blocking": false
+        }
+    ]
+}

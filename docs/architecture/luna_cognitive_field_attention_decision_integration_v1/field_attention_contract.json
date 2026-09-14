@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Contract",
+  "owner":"Attention System",
+  "inputs":["Field state","Active Role","Task","Self capability","Memory relevance","Knowledge relevance","Risk","Unknowns"],
+  "outputs":["attention priority candidate","selected evidence candidate","observation request candidate","unknown priority"],
+  "permissions":{"allocate_attention_candidate":true,"modify_reality":false,"create_decision":false,"force_role":false},
+  "rules":{"field_context_required":true,"unknowns_preserved":true,"candidate_only":true,"brain_retains_judgment":true}
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_logic_validation",
+  "scope": "Evidence_to_Situation_Candidate_only",
+  "cases": [
+    {
+      "case_id": "road_construction_reassessment",
+      "initial_world_evidence": {
+        "road_state": "normal"
+      },
+      "initial_situation_candidate": {
+        "passage_context": "available"
+      },
+      "new_world_evidence": {
+        "road_state": "construction_ahead",
+        "evidence_change": "material"
+      },
+      "self_state": {
+        "mobility_capability": "normal"
+      },
+      "goal_context": {
+        "purpose": "reach_destination"
+      },
+      "expected_revised_situation_candidate": {
+        "passage_context": "restricted",
+        "alternative_path_information_needed": true,
+        "supersedes_initial_situation_candidate": true
+      },
+      "forbidden_outputs": ["retain_stale_available_passage_context"]
+    }
+  ],
+  "assertions": {
+    "new_material_evidence_reassesses_situation": true,
+    "reassessment_is_not_a_decision": true,
+    "action_excluded": true
+  }
+}

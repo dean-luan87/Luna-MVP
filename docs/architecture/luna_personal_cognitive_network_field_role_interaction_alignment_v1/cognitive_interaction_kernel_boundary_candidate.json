@@ -1,0 +1,41 @@
+{
+  "artifact_id": "cognitive_interaction_kernel_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "conceptual_definition": "A convolution-like local cognitive interaction lens that observes how bounded projections respond together; it is not a neural convolution implementation or a second cognitive network.",
+  "owner": "Cognitive Interaction Governance",
+  "inputs": [
+    "context_candidate",
+    "field_projection_candidates",
+    "active_role_projection_candidates",
+    "relationship_projection_candidates",
+    "current_need_or_task_reference",
+    "pcn_activation_projection",
+    "resource_constraint"
+  ],
+  "observed_patterns": [
+    "RESONANCE",
+    "COMPETITION",
+    "TEMPORARY_OCCUPATION",
+    "OVERLAP",
+    "COEXISTENCE",
+    "FUSION_CANDIDATE",
+    "HISTORICAL_REACTIVATION"
+  ],
+  "outputs": ["LOCAL_INTERACTION_CANDIDATE", "INTERACTION_TRACE_CANDIDATE", "UNCERTAINTY_REFERENCE"],
+  "ownership_split": {
+    "pcn_owns": ["network_connections", "activation_candidates", "context_projections"],
+    "interaction_kernel_owns": ["local_interaction_candidate"],
+    "source_object_owners_retain": ["field", "role", "relationship", "context", "self", "memory", "value"]
+  },
+  "negative_boundaries": {
+    "is_pcn_owner": false,
+    "is_cnn_or_convolution_implementation": false,
+    "mutates_source_objects": false,
+    "produces_causal_fact": false,
+    "selects_decision": false,
+    "executes_action": false,
+    "runs_runtime": false
+  },
+  "candidate_only": true,
+  "active_contract": false
+}

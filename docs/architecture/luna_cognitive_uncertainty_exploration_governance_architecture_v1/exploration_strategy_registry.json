@@ -1,0 +1,15 @@
+{
+  "registry_id": "exploration_strategy_registry_v1",
+  "owner": "Exploration Evaluation",
+  "strategies": [
+    {"strategy": "Perception Exploration", "purpose": "improve sensing clarity", "examples": ["resample", "change_view", "adjust_device"]},
+    {"strategy": "Interaction Exploration", "purpose": "clarify user intent", "examples": ["ask_question", "request_confirmation"]},
+    {"strategy": "Environment Exploration", "purpose": "expand Field context", "examples": ["observe_more", "collect_environment_context"]},
+    {"strategy": "Knowledge Exploration", "purpose": "address knowledge gap", "examples": ["knowledge_library_candidate", "external_knowledge_candidate"]},
+    {"strategy": "Experience Exploration", "purpose": "address missing practice", "examples": ["try_candidate", "feedback_candidate"]}
+  ],
+  "automatic_execution": false,
+  "knowledge_auto_call": false,
+  "candidate_only": true,
+  "self_approval_required": true
+}

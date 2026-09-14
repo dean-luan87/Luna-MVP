@@ -1,0 +1,25 @@
+{
+  "architecture_id": "b2_current_cognitive_architecture_v1",
+  "observed_contracts": {
+    "cognitive_state_input": "CognitiveStateFormationInputV1",
+    "cognitive_state_output": "CognitiveStateFormationOutputV1",
+    "cognitive_flow_input": "CognitiveFlowInputV1",
+    "cognitive_flow_output": "CognitiveFlowOutputV1",
+    "current_world": "CurrentWorldCandidateV1",
+    "cognitive_attention": "AttentionCandidateV1 / AttentionSelectionCandidateV1",
+    "hypothesis": "CognitiveHypothesisCandidateV1 / HypothesisCompetitionResultV1",
+    "cycle": "CognitiveCycleSnapshotV1 / CognitiveCycleStateCandidateV1 / transition candidates"
+  },
+  "observed_sequence": [
+    "Context/PCN/Intent/Field/Observation references",
+    "Cognitive State Formation",
+    "attention candidates and selection",
+    "hypothesis candidates and competition",
+    "CurrentWorldCandidate and cognitive state vector candidates",
+    "Causal handoff candidate",
+    "Cognitive Flow lifecycle and transition candidates",
+    "future Decision handoff boundary"
+  ],
+  "ownership_observation": "Cognitive Flow coordinates lifecycle and handoffs; it does not own Current World, Attention, Hypothesis, Context, Intent, or Field mutation.",
+  "b2_status": "planning_candidate_only"
+}

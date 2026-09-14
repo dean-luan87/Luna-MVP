@@ -1,0 +1,95 @@
+{
+  "schema_id": "PromptLabelDisplayPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Aware-Segmentation-Prompt-Policy-Planning-v1-001",
+  "description": "主图与详情如何展示 segmentation prompt 相关标签。禁止 prompt 直出 fact 类别。",
+  "planning_only": true,
+  "principle": "主图显示中台任务语义；prompt 仅作 source_hint 在详情展示。",
+  "main_canvas": {
+    "owner": "observation_attention_task_semantics",
+    "allowed_short_labels": [
+      "文字候选区",
+      "通行结构区",
+      "屏幕/标识候选",
+      "动态目标候选",
+      "大型结构候选",
+      "观察候选"
+    ],
+    "allowed_priority_prefixes": ["P0", "P1", "P2", "P3"],
+    "forbidden_short_labels": [
+      "路牌",
+      "前方车辆",
+      "广告屏",
+      "道路区域",
+      "左侧建筑",
+      "车辆",
+      "指示牌",
+      "站台牌"
+    ],
+    "forbidden_patterns": [
+      "prompt_label_as_display_fact",
+      "road_sign_as_路牌",
+      "front_vehicle_as_前方车辆",
+      "station_direction_sign_as_指示牌事实"
+    ],
+    "ui_marker_uses_task_semantics_not_prompt_label": true
+  },
+  "detail_panel": {
+    "allowed_fields": [
+      "source_prompt_hint",
+      "segmentation_prompt_id",
+      "prompt_is_not_fact",
+      "semantic_label",
+      "suggested_followup_models"
+    ],
+    "required_notices": [
+      "注意：prompt 不是类别判断",
+      "分割状态：candidate_only",
+      "后续建议：OCR / Detection 复核"
+    ],
+    "example": {
+      "source_prompt_hint": "station_direction_sign_prompt",
+      "prompt_is_not_fact": true,
+      "display_task_semantic": "P0 文字候选区",
+      "suggested_followup": "OCR"
+    }
+  },
+  "prompt_to_task_semantic_map": {
+    "road_sign": "文字候选区",
+    "road_sign_candidate": "文字候选区",
+    "station_direction_sign": "文字候选区",
+    "station_name_board": "文字候选区",
+    "route_map_or_line_info": "文字候选区",
+    "front_vehicle": "动态目标候选",
+    "vehicle_candidate": "动态目标候选",
+    "people_region": "动态目标候选",
+    "crosswalk_or_road_region": "通行结构区",
+    "floor_walkable_area": "通行结构区",
+    "warning_line_or_platform_edge": "通行结构区",
+    "center_advertisement_screen": "屏幕/标识候选",
+    "advertisement_panel": "屏幕/标识候选",
+    "platform_screen_door": "屏幕/标识候选",
+    "left_building": "大型结构候选",
+    "building_structure": "大型结构候选",
+    "large_static_structure": "大型结构候选"
+  },
+  "ocr_route_gate": {
+    "ocr_route_requires_text_likely_candidate": true,
+    "allowed_ocr_route_sources": [
+      "text_likely_region_candidate",
+      "static_text_carrier_candidate",
+      "ocr_task_semantic_candidate"
+    ],
+    "forbidden_ocr_route_sources": [
+      "prompt_label_direct",
+      "road_sign_prompt_as_sign_fact"
+    ]
+  },
+  "boundary_flags": {
+    "prompt_label_display_not_fact": true,
+    "no_prompt_label_fact_upgrade": true,
+    "ui_marker_uses_task_semantics_not_prompt_label": true,
+    "ocr_route_requires_text_likely_candidate": true,
+    "planning_only": true
+  }
+}

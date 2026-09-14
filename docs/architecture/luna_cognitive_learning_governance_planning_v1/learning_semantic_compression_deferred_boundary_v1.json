@@ -1,0 +1,19 @@
+{
+    "artifact": "learning_semantic_compression_deferred_boundary_v1",
+    "semantic_compression_status": "DEFERRED",
+    "deferred_items": [
+        "memory semantic compression",
+        "experience semantic compression",
+        "affective summarization",
+        "emotional meaning compression",
+        "relationship narrative compression",
+        "self narrative compression",
+        "long-term autobiographical abstraction"
+    ],
+    "optional_nullable_refs": [
+        "semantic_compression_ref",
+        "affective_memory_summary_ref",
+        "emotional_context_summary_ref"
+    ],
+    "current_learning_readiness_affected": false
+}

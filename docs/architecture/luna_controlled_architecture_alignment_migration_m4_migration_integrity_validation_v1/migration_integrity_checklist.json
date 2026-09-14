@@ -1,0 +1,94 @@
+{
+  "checklist_id": "luna_controlled_architecture_alignment_m4_migration_integrity_checklist_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "records": [
+    {
+      "check": "Dynamic Architecture v2 positioning is correct",
+      "status": "PASS",
+      "evidence": "M0 defines Dynamic Cognitive Architecture v2 as an upper cognitive integration view below Constitution, Cognitive OS, and Baseline v2.",
+      "blocker": false
+    },
+    {
+      "check": "Dynamic Architecture v2 does not replace Baseline",
+      "status": "PASS",
+      "evidence": "M0 preserves the engineering baseline and M0-M3 manifests record no baseline changes.",
+      "blocker": false
+    },
+    {
+      "check": "Candidate contracts are not activated",
+      "status": "PASS",
+      "evidence": "M1 defines additive planning candidates only and M1-M3 manifests record no active contract activation.",
+      "blocker": false
+    },
+    {
+      "check": "Fact and Candidate remain separated",
+      "status": "PASS",
+      "evidence": "M1 boundary flows preserve evidence, candidate, admission, and fact precedence; M3 forbids cognitive or Runtime promotion into Reality facts.",
+      "blocker": false
+    },
+    {
+      "check": "No second Writer is introduced",
+      "status": "PASS",
+      "evidence": "M1 schema ownership and M2 responsibility scopes preserve source-owner precedence and one Writer per governed scope.",
+      "blocker": false
+    },
+    {
+      "check": "Owner is unique",
+      "status": "PASS",
+      "evidence": "M2 owner conflict review reports no duplicate owner and no owner drift across fifteen reviewed assets.",
+      "blocker": false
+    },
+    {
+      "check": "Write Authority is unique",
+      "status": "PASS",
+      "evidence": "M2 responsibility boundary matrix declares single_writer_per_scope=true and the conflict review reports no duplicate writer.",
+      "blocker": false
+    },
+    {
+      "check": "Runtime does not own Cognition",
+      "status": "PASS",
+      "evidence": "M3 runtime boundary matrix sets runtime_cognitive_owner=false and explicitly forbids Runtime Intent, Causal, Memory, Reality, Decision, and Value ownership.",
+      "blocker": false
+    },
+    {
+      "check": "Runtime remains unmodified",
+      "status": "PASS",
+      "evidence": "M3 manifest records no Runtime files, APIs, adapters, cognitive Runtime, or migration changes.",
+      "blocker": false
+    },
+    {
+      "check": "Legacy assets are preserved",
+      "status": "PASS",
+      "evidence": "M0-M3 preserve existing baselines, APIs, owners, and the legacy A3 Runtime while treating new cognitive elements as planning references.",
+      "blocker": false
+    },
+    {
+      "check": "Rollback remains definable",
+      "status": "PASS",
+      "evidence": "M1 supplies candidate-alias rollback definitions and later phases activate none of those candidates or alter active assets.",
+      "blocker": false
+    },
+    {
+      "check": "Personal Cognitive Network remains projection-only",
+      "status": "PASS",
+      "evidence": "M0-M3 consistently deny PCN ownership, persistence, mutation, direct Runtime invocation, and ownership of Self, Role, Relationship, Memory, Emotion, or Value.",
+      "blocker": false
+    },
+    {
+      "check": "Future Runtime gaps remain unimplemented",
+      "status": "PASS",
+      "evidence": "M3 records five future Runtime gaps with runtime_required=false and six adapter candidates with implementation_created=false.",
+      "blocker": false
+    },
+    {
+      "check": "Migration has not executed",
+      "status": "PASS",
+      "evidence": "Every M0-M3 change manifest and phase contract records migration_executed or Migration as false.",
+      "blocker": false
+    }
+  ],
+  "pass_count": 14,
+  "fail_count": 0,
+  "blocker_count": 0,
+  "migration_executed": false
+}

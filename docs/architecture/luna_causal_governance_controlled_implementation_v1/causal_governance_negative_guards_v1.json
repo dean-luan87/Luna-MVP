@@ -1,0 +1,17 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "negative_guards": [
+        "temporal precedence != causality",
+        "correlation != causality",
+        "model output != causal fact",
+        "memory prior != causal fact",
+        "intent preference != causal conclusion",
+        "emotion != causal authority",
+        "field/context != causal authority",
+        "causal hypothesis != decision",
+        "causal result != action",
+        "causal layer != task creator",
+        "no cross-owner mutation",
+        "no check weakening or hardcoded pass"
+    ]
+}

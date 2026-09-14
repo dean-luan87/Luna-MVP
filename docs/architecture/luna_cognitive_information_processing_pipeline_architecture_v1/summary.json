@@ -1,0 +1,11 @@
+{
+  "phase": "Phase-Luna-Cognitive-Information-Processing-Pipeline-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_INFORMATION_PROCESSING_PIPELINE_ARCHITECTURE_READY",
+  "canonical_pipeline": ["Reality", "Observation Evidence", "Information Structuring", "Cognitive Field", "Attention Allocation", "Context Assembly", "Hypothesis Generation", "Current Understanding", "Decision Candidate", "Action / Interaction Boundary", "Experience Extraction", "Memory Consolidation", "Pattern / Growth Candidate"],
+  "principles": ["model_stops_at_evidence", "field_activates_memory", "knowledge_requires_field_role_context", "decision_is_candidate", "experience_is_growth_entry", "unknown_preserved"],
+  "next_scope": "Memory deepening, selective knowledge learning, and governed capability growth planning",
+  "runtime_active": false,
+  "model_integration": false,
+  "action_execution": false
+}

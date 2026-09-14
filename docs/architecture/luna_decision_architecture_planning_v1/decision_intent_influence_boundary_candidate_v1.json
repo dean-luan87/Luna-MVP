@@ -1,0 +1,12 @@
+{
+    "artifact": "decision_intent_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "intent_influence": {
+        "intent_refs_required": true,
+        "intent_can_influence_option_preference": true,
+        "intent_equals_decision": false,
+        "intent_cannot_directly_trigger_action": true
+    },
+    "cross_write": false,
+    "mutates_intent": false
+}

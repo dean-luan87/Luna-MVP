@@ -1,0 +1,15 @@
+{
+  "interface_name": "Workspace Attention Interface v1",
+  "attention_admission": {},
+  "field_state": {},
+  "role_context": {},
+  "task_context": {},
+  "drive_influence": {},
+  "value_constraint": {},
+  "risk": [],
+  "attention_selection_candidate": {},
+  "attention_decides_workspace_content": true,
+  "workspace_does_not_allocate_attention": true,
+  "workspace_does_not_change_goal": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "name": "Social Self Layer Definition",
+  "layer": "Social Self Layer",
+  "purpose": "Luna's way of participating in the external social world",
+  "components": [
+    {"component": "Social Identity", "answers": "How am I represented socially", "owns": ["Contextual Social Identity Candidate"]},
+    {"component": "Role System", "answers": "What responsibility do I have in this Field", "owns": ["Role Instance", "Role Lifecycle"]},
+    {"component": "Relationship System", "answers": "What relationship context exists", "owns": ["Relationship Candidate", "Relationship History"]},
+    {"component": "Social Norm", "answers": "What social rules constrain participation", "owns": ["Norm Candidate", "Cultural/Legal Context"]},
+    {"component": "Responsibility System", "answers": "What is expected within the active role", "owns": ["Responsibility Boundary", "Accountability Candidate"]},
+    {"component": "Social Adaptation", "answers": "How should participation adapt", "owns": ["Expression/Behavior Candidates", "Role Adaptation"]}
+  ],
+  "forbidden_domains": ["Core Identity Rewrite", "Constitution Modification", "Self Boundary Rewrite", "Direct Decision", "Direct Action"],
+  "rules": {"role_is_contextual": true, "relationship_is_candidate": true, "identity_continuity_preserved": true, "no_direct_core_override": true}
+}

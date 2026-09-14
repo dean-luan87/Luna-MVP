@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "new_code_directory":"capabilities/midplatform/core/a_route_orchestration/integration",
+  "new_doc_directory":"docs/architecture/luna_a_route_runtime_product_loop_controlled_integration_v1",
+  "existing_verified_owner_files_modified":[],
+  "new_semantic_owner":false,
+  "authority_impact":"adds lifecycle/handoff integration only; downstream semantic authorities unchanged",
+  "runtime_activation":false,
+  "side_effects":false
+}

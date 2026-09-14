@@ -1,0 +1,19 @@
+{
+  "artifact":"idempotency_guards_v1",
+  "candidate_only":true,
+  "guards":[
+    {"id":"duplicate_result","signature":"source_owner + source_ref + observed_at + attempt/ref"},
+    {"id":"duplicate_comparison","signature":"expectation_ref + actual_result_ref + comparison_basis_version"},
+    {"id":"duplicate_evaluation","signature":"comparison_ref + evaluation_contract_version"},
+    {"id":"duplicate_attribution","signature":"evaluation_ref + attribution_kind + support_set_version"},
+    {"id":"duplicate_reconsideration","signature":"evaluation_ref + recommendation + depth"},
+    {"id":"duplicate_learning_signal","signature":"evaluation_ref + deviation/attribution set"},
+    {"id":"correction_replay","signature":"correction_id + corrected_ref"},
+    {"id":"revocation_replay","signature":"revocation_id + target_ref"},
+    {"id":"supersession_replay","signature":"supersession_id + prior_ref + successor_ref"},
+    {"id":"completed_evaluation_mutation","signature":"evaluation_id + terminal status","action":"reject mutation; create revision candidate"}
+  ],
+  "hidden_global_mutable_state":false,
+  "reconsideration_depth_guard":true,
+  "completed_immutable":true
+}

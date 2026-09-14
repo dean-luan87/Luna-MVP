@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "classification_legend": {"A": "canonical reusable", "B": "reusable with typed adapter", "C": "legacy or conflicting", "D": "deferred outside A Route"},
+  "assets": [
+    {"id":"A01","name":"A Route Orchestration Governance","location":"capabilities/midplatform/core/a_route_orchestration","class":"A","role":"lifecycle caller and handoff coordinator","maturity":"M5"},
+    {"id":"A02","name":"Field Perception Orchestrator","location":"capabilities/midplatform/field_perception_orchestrator","class":"A","role":"observation demand/control substrate","maturity":"M6"},
+    {"id":"A03","name":"Observation Gateway","location":"capabilities/midplatform/core/observation_gateway","class":"A","role":"evidence to observation candidate ingress","maturity":"M6"},
+    {"id":"A04","name":"Context / Field / Current World integration","location":"capabilities/midplatform/core/context_foundation/integration","class":"A","role":"controlled world/context handoff","maturity":"M6"},
+    {"id":"A05","name":"Cognitive Flow and Execution Chain","location":"capabilities/midplatform/core/cognitive_flow; capabilities/midplatform/core/cognitive_execution_chain","class":"A","role":"controlled cognitive sequencing","maturity":"M5"},
+    {"id":"A06","name":"Intent / Causal / Decision / Task / Action owners","location":"capabilities/midplatform/core/intent_governance; capabilities/midplatform/core/causal_governance; capabilities/midplatform/core/decision_governance; capabilities/midplatform/core/task_manager; capabilities/midplatform/core/action_governance","class":"A","role":"semantic candidate production","maturity":"M5"},
+    {"id":"A07","name":"Runtime Executor","location":"capabilities/midplatform/core/runtime_executor","class":"A","role":"execution admission/result contract","maturity":"M4"},
+    {"id":"A08","name":"Outcome Evaluation Governance","location":"capabilities/midplatform/core/outcome_evaluation_governance","class":"A","role":"comparison and candidate feedback","maturity":"M6"},
+    {"id":"A09","name":"Memory / Learning / Self / Personality","location":"capabilities/midplatform/core/cognitive_memory_experience; capabilities/midplatform/core/cognitive_learning; capabilities/midplatform/core/self_governance; capabilities/midplatform/core/personality_governance","class":"A","role":"candidate continuity and signal consumers","maturity":"M4"},
+    {"id":"A10","name":"Model, Capability, Protocol, Permission assets","location":"capabilities/midplatform/core/model_manager; capabilities/midplatform/core/capability_registry; capabilities/midplatform/core/protocol_manager; capabilities/midplatform/core/permission_governance","class":"A","role":"admission and routing candidates","maturity":"M4"},
+    {"id":"B01","name":"Voice/input/output paths","location":"capabilities/voice; docs/architecture","class":"B","role":"typed product ingress and user-visible delivery adapters","maturity":"M2"},
+    {"id":"B02","name":"Persistence and interrupted-cycle continuity","location":"distributed across existing state contracts","class":"B","role":"session/persistence adapter required","maturity":"M2"},
+    {"id":"C01","name":"Direct provider/runtime legacy paths","location":"historical docs and non-canonical assets","class":"C","role":"not promoted to route authority","maturity":"M1"},
+    {"id":"D01","name":"Emotion/B Route/semantic synthesis workstreams","location":"planning/deferred registries","class":"D","role":"outside current A Route product loop","maturity":"M2"}
+  ]
+}

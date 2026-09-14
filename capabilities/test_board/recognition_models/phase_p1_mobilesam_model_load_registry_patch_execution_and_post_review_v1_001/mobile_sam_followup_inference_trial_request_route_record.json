@@ -1,0 +1,23 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:42:38.533539+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "registry_mutation_allowed": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_followup_inference_trial_request_route_record",
+  "mobile_sam_followup_inference_trial_request_route": {
+    "route_id": "mobile_sam_followup_inference_trial_request_route_v1",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+    "next_phase_scope": "mobile_sam_only",
+    "next_phase_allows_inference_trial_request": true,
+    "next_phase_still_no_direct_inference": true
+  }
+}

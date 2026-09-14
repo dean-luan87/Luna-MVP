@@ -1,0 +1,16 @@
+{
+  "interface_name": "Drive Brain Interface v1",
+  "drive_state_candidate": null,
+  "value_weight_candidate": null,
+  "drive_conflict_candidate": [],
+  "value_conflict_candidate": [],
+  "tradeoff_candidate": null,
+  "goal_reference": "goal-example",
+  "decision_candidate_reference": "decision-example",
+  "brain_review_required": true,
+  "brain_retains_goal_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "drive_does_not_make_decision": true,
+  "value_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

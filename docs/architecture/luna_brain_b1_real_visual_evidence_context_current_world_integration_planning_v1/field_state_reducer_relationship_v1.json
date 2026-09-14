@@ -1,0 +1,11 @@
+{
+  "canonical_chain": ["raw/provider evidence", "Observation Gateway candidate/admission", "Field Event Admission", "admitted_field_events", "Field State Reducer", "Field State candidate/read model", "Context/Current World references"],
+  "reducer_input_contract": "admitted_field_events only",
+  "raw_observation_allowed_as_reducer_input": false,
+  "raw_model_result_allowed_as_reducer_input": false,
+  "mutation_authority": "Field State Reducer only",
+  "event_admitted_not_equal_state_created": true,
+  "event_active_not_equal_state_active": true,
+  "B1_implication": "YOLO evidence may produce an event candidate and reducer_input_candidate only after event admission; B1 must not directly invoke or emulate state mutation.",
+  "reducer_trace_requirements": ["input_event_ids", "accepted_event_ids", "rejected_event_ids", "ignored_event_ids", "conflict_ids", "temporal_snapshot", "replay_key", "resulting_state_hash when produced"]
+}

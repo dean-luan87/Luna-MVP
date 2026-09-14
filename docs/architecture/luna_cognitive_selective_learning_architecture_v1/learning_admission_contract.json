@@ -1,0 +1,13 @@
+{
+  "title": "Selective Learning Admission Contract v1",
+  "inputs": ["Learning Candidate", "Utility Candidate", "Evidence", "Self State", "Capability State", "Memory Context", "Schema Context", "Constitution", "Identity Boundary", "Safety Boundary"],
+  "review_criteria": ["Evidence Quality", "Utility", "Cost", "Risk", "Reversibility", "Capability Relevance", "Constitution Compliance", "Self Boundary", "Unknown Preservation"],
+  "outputs": ["Approved Growth Candidate", "Rejected Learning Candidate", "Deferred Learning Candidate", "Revised Learning Candidate"],
+  "admission_required": true,
+  "self_review_required": true,
+  "capability_governance_required": true,
+  "automatic_admission": false,
+  "automatic_learning": false,
+  "revocation_supported": true,
+  "candidate_only": true
+}

@@ -1,0 +1,21 @@
+{
+  "model_id": "opencv_rule_based_visual_symbol",
+  "model_family": "visual_symbol_rule_family",
+  "install_target": "opencv_visual_symbol_p0",
+  "download_source": "pypi:opencv-python",
+  "package_name": "opencv-python",
+  "model_resource_ref": "no_model_weight_rule_runtime_only",
+  "license_ref": "apache_2_0_opencv",
+  "allowed_use": "test_only",
+  "commercial_use_status": "commercial_allowed_under_apache_2_0",
+  "dependency_list": ["opencv-python", "numpy"],
+  "local_runtime_requirement": "cpu_python3",
+  "gpu_required": false,
+  "offline_supported": true,
+  "expected_import_module": "cv2",
+  "expected_version_check": "cv2.__version__",
+  "local_resource_check": "verify_rule_module_available_no_weights",
+  "fallback_plan": "degrade_to_no_visual_symbol_candidate",
+  "source_chain": "recognition_model_download_and_install_dryrun_v1",
+  "adapter_dryrun_requested": true
+}

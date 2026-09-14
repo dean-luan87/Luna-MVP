@@ -1,0 +1,11 @@
+{
+  "contract_id": "field_event_candidate_v1",
+  "owner": "Field Temporal Evolution",
+  "input": "reality_event",
+  "outputs": ["field_event_candidate", "field_update_candidate", "event_provenance", "unknowns"],
+  "required_fields": ["event_id", "field_ref", "event_type", "observed_at", "evidence_refs", "source", "confidence"],
+  "flow": ["Reality Event", "Field Event Candidate", "Field Update Candidate", "Field State Change Candidate"],
+  "direct_field_runtime_write": false,
+  "direct_reality_write": false,
+  "direct_action": false
+}

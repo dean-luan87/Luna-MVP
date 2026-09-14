@@ -1,0 +1,30 @@
+{
+  "title": "Action Request Contract v1",
+  "contract_type": "Action Request",
+  "request": {
+    "request_id": "required",
+    "decision_reference": "required",
+    "intent": "required",
+    "target": "required",
+    "constraints": "required",
+    "confidence": "required",
+    "required_capability": "required",
+    "authorization_level": "required",
+    "risk_classification": "required",
+    "provenance": "required",
+    "expiry": "required"
+  },
+  "request_states": ["Created", "Validated", "Authorized Candidate", "Rejected", "Expired", "Feedback Pending"],
+  "rules": {
+    "action_request_is_not_action_command": true,
+    "action_request_is_not_execution": true,
+    "action_request_requires_validation": true,
+    "action_request_requires_permission_candidate": true,
+    "action_request_cannot_modify_goal": true,
+    "action_request_cannot_modify_decision": true,
+    "action_request_cannot_modify_reality": true,
+    "action_request_cannot_execute": true,
+    "provider_is_not_action_authority": true,
+    "brain_retains_authorization_authority": true
+  }
+}

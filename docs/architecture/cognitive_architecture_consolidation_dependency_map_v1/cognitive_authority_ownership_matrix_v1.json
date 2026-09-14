@@ -1,0 +1,27 @@
+{
+  "title": "Cognitive Authority Ownership Matrix v1",
+  "matrix_type": "authority_ownership",
+  "rows": [
+    {"object": "Reality", "owner": "Evidence / Reality Update Pipeline", "writer": "Reducer", "reader": ["Field", "Situation", "Brain", "Memory", "Learning"]},
+    {"object": "Field", "owner": "Field System", "writer": "Field State Pipeline", "reader": ["Situation", "Role", "Attention", "Workspace", "Brain"]},
+    {"object": "Attention", "owner": "Attention System", "writer": "Attention Arbitration", "reader": ["Workspace", "Brain", "Capability", "Runtime"]},
+    {"object": "Goal", "owner": "Goal System + Brain Review", "writer": "Goal Governance", "reader": ["Task", "Workspace", "Brain", "Decision Commitment"]},
+    {"object": "Intent", "owner": "Intent Contract + Brain Review", "writer": "Intent Governance", "reader": ["Goal", "Task", "Brain", "Decision Commitment"]},
+    {"object": "Decision", "owner": "Brain", "writer": "Decision Review", "reader": ["Decision Commitment", "Memory", "Learning"]},
+    {"object": "Decision Commitment", "owner": "Decision Governance", "writer": "Commitment Review", "reader": ["Action Boundary", "Expectation", "Memory", "Learning"]},
+    {"object": "Action", "owner": "Action Boundary", "writer": "Execution Boundary", "reader": ["Outcome Evidence", "Experience"]},
+    {"object": "Experience", "owner": "Experience System", "writer": "Experience Admission", "reader": ["Memory", "Learning", "Attention", "Field Behavior"]},
+    {"object": "Learning", "owner": "Learning Governance", "writer": "Learning Candidate Pipeline", "reader": ["Memory", "Attention", "Capability", "Brain"]},
+    {"object": "Capability", "owner": "Capability Governance", "writer": "Capability Admission / State Pipeline", "reader": ["Attention", "Decision Commitment", "Model Manager"]},
+    {"object": "Protocol", "owner": "Protocol Governance", "writer": "Protocol Lifecycle", "reader": ["All governed domains"]}
+  ],
+  "authority_rules": {
+    "owner_is_normative": true,
+    "writer_must_be_explicit": true,
+    "reader_has_no_implicit_write": true,
+    "brain_does_not_own_reality": true,
+    "provider_does_not_own_brain": true,
+    "action_boundary_owns_execution": true,
+    "unknowns_are_preserved": true
+  }
+}

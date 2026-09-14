@@ -1,0 +1,25 @@
+{
+  "boundary_id": "human-language-vs-sensor-semantics-v1",
+  "human_authored_language": {
+    "example": "前面的路封了",
+    "meaning": "user stated that the road ahead is closed",
+    "valid_ingress": "USER_INPUT",
+    "is_luna_semantic_compression": false,
+    "becomes_external_reality_truth": false,
+    "becomes_field_truth": false,
+    "becomes_current_world_truth": false,
+    "downstream_path": ["Real User Input Adapter", "ProductLoopInputV1", "normal A Route governance"]
+  },
+  "machine_sensor_input": {
+    "examples": ["barrier candidate", "construction sign candidate", "blocked region candidate", "pedestrian detour candidate"],
+    "must_remain": "structured provider-native evidence",
+    "must_not_become": "conclusion-level natural-language sentence merely to fit ProductLoopInputV1",
+    "semantic_interpretation": "deferred to governed downstream cognitive/world processes",
+    "downstream_path": ["Raw Sensor Data", "Provider-Native Evidence", "Perception Evidence", "Observation Candidate", "Context / Current World / Field references"]
+  },
+  "inequalities": [
+    "User Statement != External Reality Truth",
+    "Human-authored semantics != Luna semantic compression",
+    "Structured Evidence != Semantic Compression"
+  ]
+}

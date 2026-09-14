@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-A-Route-S3-YOLO11n-Local-Asset-And-Dependency-Readiness-v1-001",
+  "mode": "CONTROLLED_READINESS_ONLY",
+  "canonical_owner": "Model Manager / Model Governance",
+  "target_model": "YOLO11n",
+  "target_asset_id": "model-asset:yolo11n:weights-v1",
+  "physical_asset_missing_is_honest": true,
+  "external_provisioning_allowed": true,
+  "agent_download_allowed": false,
+  "agent_install_allowed": false,
+  "inference_allowed": false,
+  "technical_admission_is_candidate_only": true,
+  "commercial_license_is_separate": true,
+  "s3_plus_deferred": ["YOLO26 provisioning", "real inference", "OCR", "SLAM", "VLM", "semantic compression"]
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Failure Recovery Contract v1",
+  "owner": "Cognitive OS Governance",
+  "failure_types": ["Module Failure", "Timeout", "State Sync Failure", "Flow Interrupted"],
+  "pipeline": ["Detect", "Diagnose", "Degrade", "Recover", "Resume"],
+  "schema": ["failure_id", "failure_type", "source", "impact", "fallback_candidate", "resume_point", "trace_id", "recovery_state"],
+  "rules": {"degrade_before_stop": true, "resume_requires_state_validation": true, "constitution_immutable": true, "value_immutable": true, "personality_immutable": true}
+}

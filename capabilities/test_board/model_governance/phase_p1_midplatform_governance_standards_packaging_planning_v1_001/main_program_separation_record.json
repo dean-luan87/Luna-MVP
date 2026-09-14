@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "main_program_separation_record",
+  "main_program_separation_record": {
+    "record_id": "main_program_separation_v1",
+    "separation_rules": [
+      "governance_standards_must_not_import_main_program_runtime",
+      "main_program_runtime_must_not_depend_on_governance_test_executors",
+      "runtime_reads_admission_results_only",
+      "governance_rules_must_not_call_models",
+      "governance_rules_must_not_download_weights",
+      "governance_rules_must_not_write_fact",
+      "governance_rules_must_not_trigger_navigation_action_speech",
+      "governance_standards_are_policy_protocol_template_not_execution_logic"
+    ],
+    "governance_standards_not_under_main_program": true,
+    "runtime_admission_gate_required": true
+  }
+}

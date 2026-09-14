@@ -1,0 +1,6 @@
+{
+  "cursor_health_check": true,
+  "history_scan_performed": false,
+  "file_read_count": 0,
+  "final_decision": "CURSOR_HEALTH_CHECK_GO"
+}

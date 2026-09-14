@@ -1,0 +1,25 @@
+{
+  "verifier": "capabilities/midplatform/core/cognitive_flow/verify_dynamic_cognitive_flow_controlled_implementation_v1.py",
+  "contract": "user-terminal-only",
+  "checks": [
+    "36 unique controlled scenarios",
+    "expected final disposition and next-step disposition",
+    "state-version count and reconsideration count",
+    "early sufficiency prevents materialization of remaining plan candidates",
+    "replan selects alternative current minimum Need",
+    "unavailable/degraded capability does not hallucinate evidence",
+    "execution SUCCESS + requirement UNSATISFIED continues reconsideration",
+    "capability FAILURE can coexist with STOP_SUFFICIENT",
+    "stale Requirement cannot produce eligible invocation",
+    "candidate-only and no-execution guards"
+  ],
+  "not_checked_here": [
+    "pytest",
+    "py_compile",
+    "Python runtime execution",
+    "Runner execution",
+    "Verifier execution",
+    "camera/model/provider availability",
+    "real capability invocation"
+  ]
+}

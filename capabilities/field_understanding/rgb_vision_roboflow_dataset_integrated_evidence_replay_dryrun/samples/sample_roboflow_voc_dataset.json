@@ -1,0 +1,27 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "voc",
+  "license_ref": {
+    "license": "Public Domain",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "street-obstacles/1",
+    "dataset_url": "https://universe.roboflow.com/example/street-obstacles"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "annotation_tool": "roboflow_annotate",
+    "export_format": "pascal_voc"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export", "roboflow_voc"],
+  "images": [
+    {"image_id": "img_020", "file_name": "street_020.jpg", "width": 1024, "height": 768, "scene_label_hint": "outdoor_street", "confidence": 0.79}
+  ],
+  "annotations": [
+    {"ann_id": "ann_020", "type": "bbox", "label": "obstacle", "image_id": "img_020", "bbox": [200, 400, 320, 560], "confidence": 0.8},
+    {"ann_id": "ann_021", "type": "bbox", "label": "vehicle", "image_id": "img_020", "bbox": [600, 350, 900, 600], "confidence": 0.84}
+  ]
+}

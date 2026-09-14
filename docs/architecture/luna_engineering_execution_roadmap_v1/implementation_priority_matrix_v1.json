@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Luna Implementation Priority Matrix",
+  "priorities":[
+    {"priority":"P0","name":"Core Runtime Foundation","modules":["State","Event","Trace","Lifecycle","Recovery","Persistence"],"entry_gate":"Baseline v2 and state ownership ready","exit_gate":"runtime foundation validation","risk":"high","authorized_here":false},
+    {"priority":"P1","name":"Capability Activation","modules":["Capability Runtime","Model Manager Integration","Provider Adapter","Calibration"],"entry_gate":"P0 validation and Capability Governance ready","exit_gate":"controlled capability evidence trace","risk":"high","authorized_here":false},
+    {"priority":"P2","name":"Cognitive Enhancement","modules":["Memory Runtime","Learning Runtime","Self Evolution Runtime"],"entry_gate":"stable runtime traces","exit_gate":"candidate-only adaptation validation","risk":"medium","authorized_here":false},
+    {"priority":"P3","name":"Social / Emotion Future","modules":["Social Self Runtime","Role Manager","Emotion Engine"],"entry_gate":"new boundary review","exit_gate":"future dedicated phase","risk":"high","authorized_here":false}
+  ],
+  "rules":{"priority_order":["P0","P1","P2","P3"],"no_conflicting_order":true,"planning_only":true,"no_priority_authorizes_execution":true}
+}

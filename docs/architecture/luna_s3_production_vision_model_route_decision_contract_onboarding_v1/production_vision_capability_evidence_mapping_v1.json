@@ -1,0 +1,10 @@
+{
+  "activated_capabilities": ["OBJECT_DETECTION"],
+  "available_but_not_activated": ["SEGMENTATION", "POSE", "OBB", "OPEN_VOCABULARY"],
+  "capability_contract": "capability:object-detection:v1",
+  "required_input_contract": "RawFrameReferenceV1",
+  "canonical_evidence_contract": "evidence:visual-detection-candidate:v1",
+  "evidence_fields": {"candidate_only": true, "truth_declared": false, "fact_admitted": false, "provider_semantic_authority": false},
+  "model_upgrade_changes_cognitive_consumers": false,
+  "capability_availability_implies_activation": false
+}

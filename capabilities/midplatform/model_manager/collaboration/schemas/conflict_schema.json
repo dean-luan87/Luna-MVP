@@ -1,0 +1,34 @@
+{
+  "schema_id": "ModelConflictV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Model-Collaboration-Planning-v1-001",
+  "description": "模型冲突候选 — 交 Validation，禁止按分听谁",
+  "required_fields": [
+    "conflict_id",
+    "model_conflict_candidate",
+    "not_auto_resolved",
+    "not_score_voting"
+  ],
+  "forbidden_resolution": ["majority_vote", "highest_score_wins", "auto_merge_hypothesis"],
+  "properties": {
+    "conflict_id": {"type": "string"},
+    "conflicting_providers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["model_id", "hypothesis_candidate"],
+        "properties": {
+          "model_id": {"type": "string"},
+          "hypothesis_candidate": {"type": "string"},
+          "evidence_type": {"type": "string"}
+        }
+      }
+    },
+    "model_conflict_candidate": {"type": "boolean", "const": true},
+    "not_auto_resolved": {"type": "boolean", "const": true},
+    "not_score_voting": {"type": "boolean", "const": true},
+    "validation_action": {"type": "string", "enum": ["request_more_evidence", "requires_human_review"]},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

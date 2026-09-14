@@ -1,0 +1,55 @@
+{
+    "version": "1.0",
+    "name": "Field Event Minimum Case Timeline",
+    "case_id": "xiaobeimen_timeline",
+    "timeline": [
+        {
+            "phase": "daytime",
+            "facts": [
+                "road active",
+                "entrance_exit active",
+                "night_market inactive"
+            ]
+        },
+        {
+            "phase": "evening",
+            "events": [
+                "recurrence_window_opened",
+                "vendor evidence observed",
+                "night_market candidate activated"
+            ]
+        },
+        {
+            "phase": "inspection",
+            "events": [
+                "enforcement overlay started",
+                "night_market suspended",
+                "road and entrance remain active"
+            ]
+        },
+        {
+            "phase": "inspection_end",
+            "events": [
+                "overlay ended",
+                "not auto restore night_market",
+                "request refresh evidence"
+            ]
+        },
+        {
+            "phase": "personal_naming",
+            "events": [
+                "personal_name_asserted = 小北门",
+                "valid until revoked",
+                "personal scope only"
+            ]
+        },
+        {
+            "phase": "ride_hailing",
+            "events": [
+                "internet ride-hailing uses institutional/map naming",
+                "local taxi conversation may use social/personal naming candidate"
+            ]
+        }
+    ],
+    "timeline_complete": true
+}

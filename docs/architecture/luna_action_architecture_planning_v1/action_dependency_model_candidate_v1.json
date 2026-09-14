@@ -1,0 +1,24 @@
+{
+    "artifact": "action_dependency_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "dependency_types": [
+        "upstream_decision_dependency",
+        "resource_dependency",
+        "capability_dependency",
+        "temporal_dependency",
+        "context_dependency",
+        "task_reference_dependency"
+    ],
+    "dependency_status_set": [
+        "missing",
+        "unknown",
+        "satisfied",
+        "violated",
+        "stale"
+    ],
+    "rules": {
+        "dependency_unknown_not_executable": true,
+        "dependency_violation_blocks_readiness": true,
+        "dependency_can_lead_precondition_pending": true
+    }
+}

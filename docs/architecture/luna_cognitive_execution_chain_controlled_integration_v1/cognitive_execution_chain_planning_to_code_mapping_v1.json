@@ -1,0 +1,37 @@
+{
+    "artifact": "cognitive_execution_chain_planning_to_code_mapping_v1",
+    "status": "CONTROLLED_INTEGRATION_CANDIDATE",
+    "planning_inputs": [
+        "../luna_cognitive_execution_chain_integration_planning_v1/cognitive_execution_chain_forward_handoff_matrix_v1.json",
+        "../luna_cognitive_execution_chain_integration_planning_v1/cross_layer_io_symmetry_matrix_v1.json",
+        "../luna_cognitive_execution_chain_integration_planning_v1/cognitive_execution_chain_integration_gap_registry_v1.json"
+    ],
+    "code_assets": [
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_types_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_error_types_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_trace_types_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_handoff_mapping_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_compatibility_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_idempotency_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_reconsideration_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_static_validators_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_fixture_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/cognitive_execution_chain_engine_v1.py",
+        "../../../capabilities/midplatform/core/cognitive_execution_chain/run_cognitive_execution_chain_controlled_integration_v1.py"
+    ],
+    "gap_a_resolved_in_adapter": [
+        "GAP-IO-001",
+        "GAP-IO-002",
+        "GAP-IO-003",
+        "GAP-MISSING-REF-001",
+        "GAP-MISSING-REF-002",
+        "GAP-ENUM-001",
+        "GAP-LEGACY-ALIAS-001",
+        "GAP-LEGACY-ALIAS-002"
+    ],
+    "gap_b_not_modified": [],
+    "gap_c_not_modified": [],
+    "deferred": [
+        "future multi-version negotiation policy evolution"
+    ]
+}

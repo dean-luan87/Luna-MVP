@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>B2 v0.5 Gate Dashboard — Runtime Health</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0f1117;
+  color: #e6e6e6;
+  margin: 0;
+  padding: 20px;
+}
+
+h2 {
+  color: #e6e6e6;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#fileInput {
+  margin-bottom: 20px;
+  padding: 8px;
+  background: #1f2933;
+  border: 1px solid #333;
+  color: #e6e6e6;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ① 顶部：健康仪表盘 */
+.health-dashboard {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #1a1f2e;
+  border-radius: 8px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.health-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.health-label {
+  font-size: 12px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.health-value {
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.health-value.red { color: #fca5a5; }
+.health-value.yellow { color: #fcd34d; }
+.health-value.green { color: #86efac; }
+
+.health-icon {
+  font-size: 24px;
+}
+
+/* ② 中部：双轨时间轴 */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.track-section {
+  background: #1a1f2e;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #2d3748;
+}
+
+.track-header h3 {
+  margin: 0;
+  color: #e6e6e6;
+  font-size: 18px;
+}
+
+.track-subtitle {
+  color: #6b7280;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Runtime Track: 深色/冷色 */
+.runtime-track {
+  background: #0f1419;
+  border: 1px solid #1e2938;
+}
+
+.runtime-track .track-header h3 {
+  color: #8fd3ff;
+}
+
+.runtime-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: transparent;
+}
+
+.runtime-table th {
+  background: #1a1f2e;
+  color: #8fd3ff;
+}
+
+.runtime-table td {
+  color: #8fd3ff;
+  font-style: italic;
+}
+
+.runtime-table tbody tr {
+  background-color: #0b1f2a;
+  opacity: 0.85;
+}
+
+.runtime-table tbody tr:hover {
+  background-color: #0d2535;
+  opacity: 0.95;
+}
+
+/* Decision Track: 亮色/强语义 */
+.decision-track {
+  background: #1a1f2e;
+  border: 1px solid #2d3748;
+}
+
+.decision-track .track-header h3 {
+  color: #eaeaea;
+}
+
+.decision-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: transparent;
+}
+
+.decision-table th {
+  background: #1f2933;
+  color: #eaeaea;
+}
+
+.decision-table td {
+  color: #eaeaea;
+}
+
+.decision-table tbody tr {
+  background-color: #111;
+}
+
+.decision-table tbody tr:hover {
+  background-color: #252b3a;
+  cursor: pointer;
+}
+
+/* 通用表格样式 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+th, td {
+  border: 1px solid #2d3748;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  background: #1f2933;
+  color: #a0aec0;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  color: #e6e6e6;
+}
+
+tbody tr:hover {
+  background: #252b3a;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 11px;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+}
+
+.badge.ACTIVE {
+  background: #14532d;
+  color: #86efac;
+}
+
+.badge.READ_ONLY {
+  background: #92400e;
+  color: #fcd34d;
+}
+
+.badge.SUSPENDED {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+.dcs-badge {
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.dcs-badge.RED {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+.dcs-badge.YELLOW {
+  background: #92400e;
+  color: #fcd34d;
+}
+
+.dcs-badge.GREEN {
+  background: #14532d;
+  color: #86efac;
+}
+
+.compute-NONE { color: #fca5a5; }
+.compute-LIGHT { color: #fcd34d; }
+.compute-FULL { color: #86efac; }
+
+/* v0.5: 视觉区分 Runtime Profile vs Decision Event */
+tr.runtime-profile {
+  background-color: #0b1f2a;
+  color: #8fd3ff;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+tr.runtime-profile:hover {
+  background-color: #0d2535;
+  opacity: 0.95;
+}
+
+tr.decision-event {
+  background-color: #111;
+  color: #eaeaea;
+}
+
+tr.decision-event:hover {
+  background-color: #252b3a;
+}
+
+/* ③ 底部：违规聚合 */
+.violations-panel {
+  padding: 20px;
+  background: #1a1f2e;
+  border-radius: 8px;
+}
+
+.violations-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #e6e6e6;
+}
+
+.violation-item {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: #252b3a;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.violation-name {
+  color: #e6e6e6;
+  font-size: 13px;
+}
+
+.violation-count {
+  color: #fca5a5;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#runtimeRows:empty::before,
+#decisionRows:empty::before {
+  content: "请选择 trace 文件（JSONL 格式）";
+  display: block;
+  padding: 40px;
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+}
+</style>
+</head>
+
+<body>
+<h2>B2 v0.5 Gate Dashboard — Runtime Health</h2>
+<p class="subtitle">这是系统的"自白"：B 有没有在不该算的时候算</p>
+
+<input type="file" id="fileInput" accept=".jsonl,.json" />
+
+<!-- ① 顶部：健康仪表盘（扩展：B + C） -->
+<div class="health-dashboard" id="healthDashboard" style="display: none;">
+  <div class="health-item">
+    <span class="health-label">Runtime Health</span>
+    <div class="health-value">
+      <span class="health-icon">🟥</span>
+      <span class="red" id="redCount">0</span>
+    </div>
+  </div>
+  <div class="health-item">
+    <span class="health-label"></span>
+    <div class="health-value">
+      <span class="health-icon">🟨</span>
+      <span class="yellow" id="yellowCount">0</span>
+    </div>
+  </div>
+  <div class="health-item">
+    <span class="health-label"></span>
+    <div class="health-value">
+      <span class="health-icon">🟩</span>
+      <span class="green" id="greenCount">0</span>
+    </div>
+  </div>
+  <div class="health-item" style="margin-left: 30px; padding-left: 30px; border-left: 1px solid #2d3748;">
+    <span class="health-label">B Gate</span>
+    <div class="health-value">
+      <span class="health-icon">🟩</span>
+      <span class="green" id="bGreenCount">0</span>
+      <span class="health-icon">🟨</span>
+      <span class="yellow" id="bYellowCount">0</span>
+      <span class="health-icon">🟥</span>
+      <span class="red" id="bRedCount">0</span>
+    </div>
+  </div>
+  <div class="health-item">
+    <span class="health-label">C Control</span>
+    <div class="health-value">
+      <span class="health-icon">🟩</span>
+      <span class="green" id="cGreenCount">0</span>
+      <span class="health-icon">🟨</span>
+      <span class="yellow" id="cYellowCount">0</span>
+      <span class="health-icon">🟥</span>
+      <span class="red" id="cRedCount">0</span>
+    </div>
+  </div>
+  <div class="health-item" style="margin-left: 30px; padding-left: 30px; border-left: 1px solid #2d3748;">
+    <span class="health-label">Decision Count</span>
+    <div class="health-value">
+      <span id="meaningfulDecisionCount">0</span>
+      <span style="font-size: 14px; color: #6b7280; margin-left: 5px;">/ <span id="totalDecisionCount">0</span></span>
+    </div>
+  </div>
+  <div class="health-item">
+    <span class="health-label">Decision Density</span>
+    <div class="health-value" id="decisionDensity">0%</div>
+  </div>
+</div>
+
+<!-- ①-2 行为指纹面板 -->
+<div id="fingerprint-panel" class="fingerprint-panel" style="display: none;">
+  <div class="fingerprint-header">
+    <h3>Gate Behavior Fingerprint (v0.5)</h3>
+    <span class="fingerprint-subtitle">系统行为特征摘要</span>
+  </div>
+  <pre id="fingerprint-json" class="fingerprint-json"></pre>
+</div>
+
+<!-- ①-3 Runtime Fingerprint 面板 (v0.5 Patch F) -->
+<div id="runtime-fingerprint-panel" class="fingerprint-panel" style="display: none;">
+  <div class="fingerprint-header">
+    <h3>Runtime Fingerprint (v0.5 Patch F)</h3>
+    <span class="fingerprint-subtitle">跨视频稳定性评分</span>
+  </div>
+  <pre id="runtime-fingerprint-json" class="fingerprint-json"></pre>
+</div>
+
+<!-- ①-4 Personality Fingerprint 面板 (v0.5 Patch G) -->
+<div id="personality-fingerprint-panel" class="fingerprint-panel" style="display: none; margin-top: 20px; padding: 12px; border: 1px solid #2d3748;">
+  <h3>Personality Fingerprint (v0.5)</h3>
+  <pre id="personality-fingerprint-json" class="fingerprint-json">loading...</pre>
+</div>
+
+<!-- ② 中部：双轨时间轴（Runtime Track + Decision Track） -->
+<div class="timeline-container">
+  <!-- Runtime Track (B + C) -->
+  <div class="track-section runtime-track">
+    <div class="track-header">
+      <h3>Runtime Track (B + C)</h3>
+      <span class="track-subtitle">系统在"呼吸"</span>
+    </div>
+    <table class="runtime-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>B Gate</th>
+          <th>B Compute</th>
+          <th>C Mode</th>
+          <th>C Control</th>
+          <th>Transition</th>
+          <th>Blocked By</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody id="runtimeRows"></tbody>
+    </table>
+  </div>
+  
+  <!-- Decision Track -->
+  <div class="track-section decision-track">
+    <div class="track-header">
+      <h3>Decision Track</h3>
+      <span class="track-subtitle">系统在"说话/判断"</span>
+    </div>
+    <table class="decision-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Impact</th>
+          <th>Level</th>
+          <th>Confidence</th>
+          <th>DCS</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody id="decisionRows"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ③ 底部：违规聚合 -->
+<div class="violations-panel" id="violationsPanel" style="display: none;">
+  <div class="violations-title">Top Violations</div>
+  <div id="violationsList"></div>
+</div>
+
+<script>
+let allRecords = [];
+let violations = {};
+
+document.getElementById("fileInput").addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const lines = reader.result.split("\n");
+    const runtimeTbody = document.getElementById("runtimeRows");
+    const decisionTbody = document.getElementById("decisionRows");
+    runtimeTbody.innerHTML = "";
+    decisionTbody.innerHTML = "";
+    allRecords = [];
+    violations = {};
+    
+    // v0.5 Patch E-3: 加载并显示行为指纹
+    loadFingerprint();
+
+    // v0.5: 统计口径修正 - 区分 Runtime 和 Decision
+    let stats = {
+      red: 0,
+      yellow: 0,
+      green: 0,
+      bRed: 0,
+      bYellow: 0,
+      bGreen: 0,
+      cRed: 0,
+      cYellow: 0,
+      cGreen: 0,
+      runtimeCount: 0,  // Runtime Profile 事件数
+      decisionCount: 0, // Decision 事件数
+      noOpCount: 0      // Decision 中 NO_OP 的数量（仅统计 Decision）
+    };
+
+    lines.forEach(line => {
+      if (!line.trim()) return;
+      
+      try {
+        const obj = JSON.parse(line);
+        
+        // 支持两种格式：B GateRuntimeProfile 和 C RuntimeProfile
+        let bProfile = null;
+        let cProfile = null;
+        let dcsResult = null;
+        
+        // B GateRuntimeProfile
+        if (obj.event_type === "GATE_RUNTIME_PROFILE" && obj.gate_runtime_profile) {
+          bProfile = obj.gate_runtime_profile;
+          dcsResult = obj.dcs_result;
+        } else if (obj.gate) {
+          if (obj.gate.version || obj.gate.gate_mode) {
+            bProfile = obj.gate;
+          } else if (obj.gate.runtime_profile) {
+            bProfile = {
+              gate_mode: obj.gate.mode || "UNKNOWN",
+              compute_level: obj.gate.runtime_profile?.compute_level || "UNKNOWN",
+              tick_interval_ms: obj.gate.runtime_profile?.tick_interval_ms || 0,
+              blocked_by: obj.gate.blocked_by || null,
+              human_reason: obj.gate.reason || obj.gate.human_readable || "",
+            };
+          }
+          dcsResult = obj.dcs;
+        }
+        
+        // C RuntimeProfile
+        if (obj.event_type === "C_RUNTIME_PROFILE" && obj.c_runtime_profile) {
+          cProfile = obj.c_runtime_profile;
+          if (!dcsResult) dcsResult = obj.dcs_result;
+        } else if (obj.c_runtime_profile) {
+          cProfile = obj.c_runtime_profile;
+        }
+        
+        // 至少需要 B 或 C 的 profile
+        if (!bProfile && !cProfile) return;
+
+        // v0.5: 区分事件类型
+        const eventType = obj.event_type || "tick";
+        const isRuntimeProfile = eventType === "GATE_RUNTIME_PROFILE" || eventType === "C_RUNTIME_PROFILE";
+        const isDecisionEvent = eventType === "tick";
+        
+        if (isRuntimeProfile) {
+          stats.runtimeCount++;
+        } else if (isDecisionEvent) {
+          stats.decisionCount++;
+          // v0.5: NO_OP 只统计 Decision 事件，不统计 Runtime
+          const impact = obj.impact?.impact || obj.impact || "NO_OP";
+          if (impact === "NO_OP") {
+            stats.noOpCount++;
+          }
+        }
+
+        const time = obj.time || {};
+        
+        // B 信息
+        const bGateMode = bProfile ? (bProfile.gate_mode || bProfile.mode || "UNKNOWN") : "–";
+        const bComputeLevel = bProfile ? (bProfile.compute_level || bProfile.runtime_profile?.compute_level || "UNKNOWN") : "–";
+        const bTickInterval = bProfile ? (bProfile.tick_interval_ms || bProfile.runtime_profile?.tick_interval_ms || 0) : 0;
+        const bBlockedBy = bProfile ? (bProfile.blocked_by || "") : "";
+        const bReason = bProfile ? (bProfile.human_reason || bProfile.reason || "") : "";
+        
+        // C 信息
+        const cMode = cProfile ? (cProfile.mode || "UNKNOWN") : "–";
+        const cControlLevel = cProfile ? (cProfile.control_level || "UNKNOWN") : "–";
+        const cUpdateInterval = cProfile ? (cProfile.update_interval_ms || 0) : 0;
+        const cBlockedBy = cProfile ? (cProfile.blocked_by || "") : "";
+        const cReason = cProfile ? (cProfile.human_reason || cProfile.reason || "") : "";
+
+        // DCS 结果
+        let dcsLevel = "GREEN";
+        if (dcsResult) {
+          dcsLevel = dcsResult.grade || dcsResult.level || "GREEN";
+          if (dcsResult.violations && dcsResult.violations.length > 0) {
+            dcsResult.violations.forEach(v => {
+              violations[v] = (violations[v] || 0) + 1;
+            });
+          }
+        }
+
+        // 统计（总体）
+        if (dcsLevel === "RED") stats.red++;
+        else if (dcsLevel === "YELLOW") stats.yellow++;
+        else stats.green++;
+        
+        // B 统计
+        if (bProfile) {
+          if (bGateMode === "SUSPENDED" || bComputeLevel === "NONE") stats.bRed++;
+          else if (bGateMode === "READ_ONLY" || bComputeLevel === "LIGHT") stats.bYellow++;
+          else stats.bGreen++;
+        }
+        
+        // C 统计
+        if (cProfile) {
+          if (cMode === "SUSPENDED" || cControlLevel === "NONE") stats.cRed++;
+          else if (cMode === "DEGRADED" || cControlLevel === "ASSIST") stats.cYellow++;
+          else stats.cGreen++;
+        }
+
+        // v0.5: 双轨分流 - Runtime Track vs Decision Track
+        if (isRuntimeProfile) {
+          // Runtime Track: 显示 B + C 的运行态
+          const tr = document.createElement("tr");
+          const blockedBy = bBlockedBy || cBlockedBy || "–";
+          const reason = bReason || cReason || "";
+          const combinedReason = bReason && cReason ? `${bReason} | C: ${cReason}` : reason;
+          
+          // v0.5: 提取并显示 Transition 信息（为什么没切换）
+          let transitionDisplay = "–";
+          let transitionTooltip = "";
+          if (bProfile) {
+            const meta = bProfile.meta || {};
+            const transition = meta.transition || {};
+            const counters = meta.counters || {};
+            
+            const desiredMode = transition.desired_mode || "";
+            const switched = transition.switched || false;
+            const blockedBy = transition.blocked_by || null;
+            const residenceFrames = transition.residence_frames || 0;
+            const cooldownRemaining = transition.cooldown_remaining || 0;
+            
+            // 构建显示文本
+            const parts = [];
+            if (blockedBy) {
+              parts.push(`blocked:${blockedBy}`);
+            }
+            if (residenceFrames > 0) {
+              parts.push(`res:${residenceFrames}`);
+            }
+            if (cooldownRemaining > 0) {
+              parts.push(`cd:${cooldownRemaining}`);
+            }
+            if (switched) {
+              parts.push("switched");
+            }
+            
+            transitionDisplay = parts.length > 0 ? parts.join(" ") : "–";
+            
+            // 构建 tooltip
+            const tooltipParts = [];
+            if (desiredMode && desiredMode !== bGateMode) {
+              tooltipParts.push(`期望: ${desiredMode}`);
+            }
+            if (blockedBy) {
+              tooltipParts.push(`阻止: ${blockedBy}`);
+            }
+            if (residenceFrames > 0) {
+              tooltipParts.push(`驻留: ${residenceFrames} 帧`);
+            }
+            if (cooldownRemaining > 0) {
+              tooltipParts.push(`冷却: ${cooldownRemaining} 帧`);
+            }
+            if (counters.hysteresis_hold_hits > 0) {
+              tooltipParts.push(`Hysteresis 命中: ${counters.hysteresis_hold_hits}`);
+            }
+            if (counters.min_hold_hits > 0) {
+              tooltipParts.push(`Min-hold 命中: ${counters.min_hold_hits}`);
+            }
+            if (counters.cooldown_hits > 0) {
+              tooltipParts.push(`Cooldown 命中: ${counters.cooldown_hits}`);
+            }
+            
+            transitionTooltip = tooltipParts.length > 0 ? tooltipParts.join("\n") : "";
+          }
+          
+          tr.innerHTML = `
+            <td>${time.human_time || (time.ts ? time.ts.toFixed(2) : (time.t_video_s ? time.t_video_s.toFixed(2) : ""))}</td>
+            <td><span class="badge ${bGateMode}">${bGateMode}</span></td>
+            <td class="compute-${bComputeLevel}">${bComputeLevel}</td>
+            <td><span class="badge ${cMode}">${cMode}</span></td>
+            <td class="compute-${cControlLevel}">${cControlLevel}</td>
+            <td title="${transitionTooltip}" style="font-size: 0.85em; color: #8fd3ff;">${transitionDisplay}</td>
+            <td>${blockedBy}</td>
+            <td title="${combinedReason}">${combinedReason.length > 40 ? combinedReason.substring(0, 40) + "..." : combinedReason}</td>
+          `;
+          
+          runtimeTbody.appendChild(tr);
+        } else if (isDecisionEvent) {
+          // v0.5 Patch C: Decision Track 默认过滤 NO_OP
+          const impact = obj.impact?.impact || obj.impact || obj.impact_evaluation?.impact || "NO_OP";
+          
+          // 只显示 impact != NO_OP 的决策事件
+          if (impact === "NO_OP") {
+            // NO_OP 不显示在 Decision Track（但已计入统计）
+            return;  // 跳过，不添加到 Decision Track
+          }
+          
+          // Decision Track: 显示决策信息（仅非 NO_OP）
+          const tr = document.createElement("tr");
+          tr.classList.add("decision-event");
+          
+          const level = obj.impact?.level || obj.decision?.level || "NOTICE";
+          const confidence = obj.impact?.confidence || obj.decision?.confidence || 0.0;
+          const reason = obj.impact?.reason || obj.decision?.reason || "";
+          
+          tr.innerHTML = `
+            <td>${time.human_time || (time.ts ? time.ts.toFixed(2) : (time.t_video_s ? time.t_video_s.toFixed(2) : ""))}</td>
+            <td><strong>${impact}</strong></td>
+            <td>${level}</td>
+            <td>${confidence.toFixed(2)}</td>
+            <td><span class="dcs-badge ${dcsLevel}">${dcsLevel}</span></td>
+            <td title="${reason}">${reason.length > 40 ? reason.substring(0, 40) + "..." : reason}</td>
+          `;
+          
+          // 可点击查看原因链
+          tr.addEventListener("click", () => {
+            console.log("Decision details:", obj);
+            alert(`Decision: ${impact}\nLevel: ${level}\nConfidence: ${confidence}\nReason: ${reason}`);
+          });
+          
+          decisionTbody.appendChild(tr);
+        }
+        
+        allRecords.push({ obj, bProfile, cProfile, time, dcsResult });
+      } catch (err) {
+        console.warn("Failed to parse line:", err, line);
+      }
+    });
+
+    // 更新健康仪表盘（总体）
+    document.getElementById("redCount").textContent = stats.red;
+    document.getElementById("yellowCount").textContent = stats.yellow;
+    document.getElementById("greenCount").textContent = stats.green;
+    
+    // 更新 B Gate 统计
+    document.getElementById("bRedCount").textContent = stats.bRed;
+    document.getElementById("bYellowCount").textContent = stats.bYellow;
+    document.getElementById("bGreenCount").textContent = stats.bGreen;
+    
+    // 更新 C Control 统计
+    document.getElementById("cRedCount").textContent = stats.cRed;
+    document.getElementById("cYellowCount").textContent = stats.cYellow;
+    document.getElementById("cGreenCount").textContent = stats.cGreen;
+    
+    // v0.5 Patch C: 增加仪表盘指标
+    const meaningfulDecisions = stats.decisionCount - stats.noOpCount;
+    const decisionDensity = stats.decisionCount > 0 ? ((meaningfulDecisions / stats.decisionCount) * 100).toFixed(1) : "0.0";
+    
+    // 更新 Decision 指标
+    document.getElementById("meaningfulDecisionCount").textContent = meaningfulDecisions;
+    document.getElementById("totalDecisionCount").textContent = stats.decisionCount;
+    document.getElementById("decisionDensity").textContent = decisionDensity + "%";
+    
+    // 输出统计信息到控制台（用于调试）
+    console.log("v0.5 统计口径:", {
+      "Runtime Profile 事件": stats.runtimeCount,
+      "Decision 事件总数": stats.decisionCount,
+      "NO_OP 决策": stats.noOpCount,
+      "有意义决策": meaningfulDecisions,
+      "Decision 密度": decisionDensity + "%"
+    });
+    
+    document.getElementById("healthDashboard").style.display = "flex";
+
+    // 更新违规聚合
+    const violationsList = document.getElementById("violationsList");
+    violationsList.innerHTML = "";
+    
+    const sortedViolations = Object.entries(violations)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+    
+    if (sortedViolations.length > 0) {
+      sortedViolations.forEach(([name, count]) => {
+        const item = document.createElement("div");
+        item.className = "violation-item";
+        item.innerHTML = `
+          <span class="violation-name">${name}</span>
+          <span class="violation-count">× ${count}</span>
+        `;
+        violationsList.appendChild(item);
+      });
+      document.getElementById("violationsPanel").style.display = "block";
+    }
+  };
+
+  reader.readAsText(file);
+  
+  // v0.5 Patch E-3: 加载并显示行为指纹
+  loadFingerprint();
+});
+
+// v0.5 Patch E-3: 加载并显示行为指纹
+function loadFingerprint() {
+  fetch("../artifacts/gate_fingerprint_v05.json")
+    .then(response => {
+      if (!response.ok) {
+        // 如果文件不存在，隐藏面板
+        document.getElementById("fingerprint-panel").style.display = "none";
+        return null;
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data && data.gate_fingerprint) {
+        const fp = data.gate_fingerprint;
+        const displayData = {
+          "总帧数": fp.total_frames,
+          "状态分布": Object.entries(fp.mode_ratio || {}).reduce((acc, [k, v]) => {
+            acc[k] = `${(v * 100).toFixed(1)}%`;
+            return acc;
+          }, {}),
+          "状态切换次数": fp.mode_switch_count,
+          "平均 ACTIVE 持续时间": `${fp.avg_active_duration.toFixed(1)} 帧`,
+          "平均 READ_ONLY 持续时间": `${fp.avg_read_only_duration.toFixed(1)} 帧`,
+          "进入 Hysteresis 命中": fp.enter_hysteresis_hits,
+          "退出 Hysteresis 命中": fp.exit_hysteresis_hits
+        };
+        
+        document.getElementById("fingerprint-json").textContent = 
+          JSON.stringify(displayData, null, 2);
+        document.getElementById("fingerprint-panel").style.display = "block";
+      } else {
+        document.getElementById("fingerprint-panel").style.display = "none";
+      }
+    })
+    .catch(error => {
+      console.warn("无法加载行为指纹:", error);
+      document.getElementById("fingerprint-panel").style.display = "none";
+    });
+}
+
+// 页面加载时尝试加载指纹
+loadFingerprint();
+
+// v0.5 Patch F-C: 加载并显示 Runtime Fingerprint
+function loadRuntimeFingerprint() {
+  // 尝试从多个可能的路径加载
+  const possiblePaths = [
+    "../artifacts/runtime_fingerprint_v05.json",
+    "artifacts/runtime_fingerprint_v05.json",
+    "./artifacts/runtime_fingerprint_v05.json"
+  ];
+  
+  let loaded = false;
+  
+  for (const path of possiblePaths) {
+    fetch(path)
+      .then(response => {
+        if (!response.ok) {
+          return null;
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data && !loaded) {
+          loaded = true;
+          renderRuntimeFingerprint(data);
+        }
+      })
+      .catch(() => {
+        // 继续尝试下一个路径
+      });
+  }
+  
+  // 如果所有路径都失败，隐藏面板
+  setTimeout(() => {
+    if (!loaded) {
+      document.getElementById("runtime-fingerprint-panel").style.display = "none";
+    }
+  }, 1000);
+}
+
+// v0.5 Patch F-C: 渲染 Runtime Fingerprint
+function renderRuntimeFingerprint(fp) {
+  const displayData = {
+    "视频 ID": fp.video_id || "unknown",
+    "时长": `${fp.duration_sec || 0} 秒`,
+    "稳定性评分": fp.stability_score !== undefined ? fp.stability_score.toFixed(3) : "N/A",
+    "Gate 切换率": `${fp.state_switch_rate?.gate_switches_per_min || 0} 次/分钟`,
+    "C 切换率": `${fp.state_switch_rate?.c_switches_per_min || 0} 次/分钟`,
+    "决策密度": `${fp.decision_density?.ticks_per_min || 0} 次/分钟`,
+    "NO_OP 比例": `${((fp.decision_density?.no_op_ratio || 0) * 100).toFixed(1)}%`,
+    "Gate 状态分布": Object.entries(fp.gate_distribution || {}).reduce((acc, [k, v]) => {
+      acc[k] = `${(v * 100).toFixed(1)}%`;
+      return acc;
+    }, {})
+  };
+  
+  document.getElementById("runtime-fingerprint-json").textContent = 
+    JSON.stringify(displayData, null, 2);
+  document.getElementById("runtime-fingerprint-panel").style.display = "block";
+  
+  // 根据稳定性评分设置颜色提示
+  const score = fp.stability_score || 0;
+  const panel = document.getElementById("runtime-fingerprint-panel");
+  if (score >= 0.85) {
+    panel.style.borderLeft = "4px solid #86efac"; // 绿色
+  } else if (score >= 0.7) {
+    panel.style.borderLeft = "4px solid #fcd34d"; // 黄色
+  } else {
+    panel.style.borderLeft = "4px solid #fca5a5"; // 红色
+  }
+}
+
+// 页面加载时尝试加载 Runtime Fingerprint
+loadRuntimeFingerprint();
+
+// v0.5 Patch G-2: 加载并显示 Personality Fingerprint
+function loadPersonalityFingerprint() {
+  const possiblePaths = [
+    "../artifacts/personality_fingerprint_v05.json",
+    "artifacts/personality_fingerprint_v05.json",
+    "./artifacts/personality_fingerprint_v05.json"
+  ];
+  
+  let loaded = false;
+  
+  for (const path of possiblePaths) {
+    fetch(path)
+      .then(response => {
+        if (!response.ok) {
+          return null;
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data && data.personality_fingerprint && !loaded) {
+          loaded = true;
+          renderPersonalityFingerprint(data.personality_fingerprint);
+        }
+      })
+      .catch(() => {
+        // 继续尝试下一个路径
+      });
+  }
+  
+  setTimeout(() => {
+    if (!loaded) {
+      document.getElementById("personality-fingerprint-panel").style.display = "none";
+    }
+  }, 1000);
+}
+
+// 如果从 DCS report 加载，也支持
+function renderFingerprintFromReport(report) {
+  const fp = report.fingerprint?.personality_fingerprint || report.personality_fingerprint;
+  if (!fp) {
+    document.getElementById("personality-fingerprint-json").textContent = "N/A";
+    return;
+  }
+  renderPersonalityFingerprint(fp);
+}
+
+// v0.5 Patch G-2: 渲染 Personality Fingerprint（只显示事实，不做解释）
+function renderPersonalityFingerprint(pfp) {
+  if (!pfp) {
+    document.getElementById("personality-fingerprint-json").textContent = "N/A";
+    return;
+  }
+  
+  // 不加颜色、不加评价、不加趋势，只显示原始 JSON
+  document.getElementById("personality-fingerprint-json").textContent = 
+    JSON.stringify(pfp, null, 2);
+  document.getElementById("personality-fingerprint-panel").style.display = "block";
+}
+
+// 页面加载时尝试加载 Personality Fingerprint
+loadPersonalityFingerprint();
+</script>
+</body>
+</html>

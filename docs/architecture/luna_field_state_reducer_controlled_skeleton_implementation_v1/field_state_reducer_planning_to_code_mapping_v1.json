@@ -1,0 +1,142 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Planning to Code Mapping",
+    "mappings": [
+        {
+            "planning_asset": "field_state_schema_v1.json",
+            "code_asset": "field_state_reducer_types_v1.py",
+            "mapping_type": "schema_to_dataclass",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_type_registry_v1.json",
+            "code_asset": "field_state_reducer_types_v1.py",
+            "mapping_type": "registry_to_enum",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_status_registry_v1.json",
+            "code_asset": "field_state_reducer_types_v1.py",
+            "mapping_type": "registry_to_enum",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_reducer_input_contract_v1.json",
+            "code_asset": "field_state_reducer_static_validators_v1.py",
+            "mapping_type": "contract_to_validator",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_reducer_output_contract_v1.json",
+            "code_asset": "field_state_reducer_skeleton_v1.py",
+            "mapping_type": "contract_to_placeholder_output",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_reduction_policy_registry_v1.json",
+            "code_asset": "field_state_reducer_policy_registry_skeleton_v1.py",
+            "mapping_type": "registry_to_metadata",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_status_transition_matrix_v1.json",
+            "code_asset": "field_state_reducer_transition_registry_skeleton_v1.py",
+            "mapping_type": "matrix_to_guard_registry",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_event_ordering_contract_v1.json",
+            "code_asset": "field_state_reducer_skeleton_v1.py",
+            "mapping_type": "ordering_to_placeholder_order",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_conflict_resolution_matrix_v1.json",
+            "code_asset": "field_state_reducer_skeleton_v1.py",
+            "mapping_type": "conflict_to_preserved_placeholder",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_temporal_reduction_contract_v1.json",
+            "code_asset": "field_state_reducer_static_validators_v1.py",
+            "mapping_type": "temporal_to_boundary_validator",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_confidence_aggregation_contract_v1.json",
+            "code_asset": "field_state_reducer_policy_registry_skeleton_v1.py",
+            "mapping_type": "confidence_to_deferred_policy",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_provenance_trace_schema_v1.json",
+            "code_asset": "field_state_reducer_trace_types_v1.py",
+            "mapping_type": "trace_schema_to_dataclass",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_replay_contract_v1.json",
+            "code_asset": "field_state_reducer_skeleton_v1.py",
+            "mapping_type": "replay_contract_to_placeholder_key",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_minimum_case_timeline_v1.json",
+            "code_asset": "field_state_reducer_fixture_v1.py",
+            "mapping_type": "timeline_to_synthetic_fixture",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        },
+        {
+            "planning_asset": "field_state_reducer_negative_guards_v1.json",
+            "code_asset": "field_state_reducer_error_types_v1.py",
+            "mapping_type": "guard_to_error_namespace",
+            "reused_field_names": true,
+            "deferred_runtime_logic": true,
+            "rewrite_required": false,
+            "planning_asset_modified": false
+        }
+    ],
+    "planning_to_code_mapping_complete": true
+}

@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:31:44.844313+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_retry_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_retry_inference_runtime_exclusion_record",
+  "mobile_sam_retry_inference_runtime_exclusion_record": {
+    "record_id": "mobile_sam_retry_inference_runtime_exclusion_v1",
+    "no_image_input": true,
+    "no_segmentation": true,
+    "no_prediction": true,
+    "no_inference": true,
+    "no_runtime_server": true,
+    "no_output_adapter": true,
+    "no_semantic_layer": true,
+    "model_load_retry_success_not_inference_approval": true,
+    "model_load_retry_success_not_runtime_approval": true,
+    "model_load_retry_success_not_output_adapter_approval": true,
+    "model_load_retry_success_not_semantic_layer_approval": true,
+    "model_load_retry_success_not_commercial_runtime_approval": true
+  }
+}

@@ -1,0 +1,135 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/decision/decision-provenance-trace/v1",
+    "title": "Decision Provenance Trace Schema Candidate v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "trace_id",
+        "decision_candidate_refs",
+        "intent_refs",
+        "causal_refs",
+        "evidence_refs",
+        "constraint_refs",
+        "risk_refs",
+        "utility_refs",
+        "permission_refs",
+        "safety_refs",
+        "resource_state_refs",
+        "alternative_option_refs",
+        "rejected_alternative_refs",
+        "selection_or_nonselection_reason_refs",
+        "state_transition_refs",
+        "revision_lineage_refs",
+        "provenance"
+    ],
+    "properties": {
+        "trace_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "decision_candidate_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "intent_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "causal_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "evidence_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "constraint_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "risk_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "utility_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "permission_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "safety_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "resource_state_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "alternative_option_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "rejected_alternative_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "selection_or_nonselection_reason_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "state_transition_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "revision_lineage_refs": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "provenance": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        }
+    },
+    "planning_guards": {
+        "trace_explainability_required": true,
+        "selected_or_not_selected_must_be_explainable": true,
+        "active_schema": false
+    }
+}

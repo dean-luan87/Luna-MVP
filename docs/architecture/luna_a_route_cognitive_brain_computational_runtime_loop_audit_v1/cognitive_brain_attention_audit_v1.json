@@ -1,0 +1,17 @@
+{
+  "artifact":"cognitive_brain_attention_audit_v1",
+  "canonical_evidence":"capabilities/midplatform/core/cognitive_state_formation/cognitive_state_formation_engine_v1.py",
+  "maturity":"M5_DETERMINISTIC_CONTROLLED_ALGORITHM",
+  "actual_function":"priority_candidate = 0.35*relevance + 0.25*salience + 0.25*risk + 0.10*urgency + 0.05*intent_alignment",
+  "uses":{"task_relevance":"indirect intent alignment","information_gap":"not explicit in this engine","risk":"yes","safety":"candidate refs only","uncertainty":"candidate input/refs","expected_information_gain":"ABSENT","novelty":"not in score","temporal_urgency":"yes","resource_cost":"ABSENT in score","provider_cost":"ABSENT","observation_history":"ABSENT","reobservation_penalty":"ABSENT","contradiction":"refs/branches only","user_priority":"ABSENT"},
+  "target_ranking":"deterministic sorting of synthetic attention candidates",
+  "region_selection":"ABSENT; region selection belongs to active observation boundary, not this engine",
+  "persistence":"candidate lifecycle contracts exist historically; no runtime persistence",
+  "switching":"controlled candidate/ref only; no runtime switch",
+  "inhibition_cooldown":"ABSENT executable function",
+  "stop_condition":"ABSENT as a general attention allocator; observation sufficiency is separate controlled candidate",
+  "resource_budget":"candidate refs in regulation/observation contracts, not consumed by attention function",
+  "exploration_exploitation":"planning/parameter candidates only",
+  "attention_score_status":"real deterministic heuristic in synthetic engine, not calibrated or runtime-connected",
+  "gaps":["information-gain function","cost-aware allocator","region selector","runtime persistence/switch/inhibition","real data calibration"]
+}

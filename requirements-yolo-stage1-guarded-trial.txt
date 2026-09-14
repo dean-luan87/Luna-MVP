@@ -1,0 +1,5 @@
+# Phase-Mainline-GuardedTrial-005 / 005-Fix
+# Luna_Badge_MVP YOLOv5Detector uses torch.hub.load('ultralytics/yolov5', ...).
+ultralytics>=8.0.0
+seaborn>=0.13.0
+pandas>=2.0.0

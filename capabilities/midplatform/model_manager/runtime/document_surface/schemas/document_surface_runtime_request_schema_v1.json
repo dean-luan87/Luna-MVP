@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "DocumentSurfaceRuntimeRequestSchemaV1",
+  "type": "object",
+  "required": [
+    "source_region_id",
+    "attention_gate_status",
+    "allowed_capabilities",
+    "forbidden_capabilities",
+    "candidate_only"
+  ],
+  "properties": {
+    "request_id": {"type": "string"},
+    "source_region_id": {"type": "string"},
+    "attention_gate_status": {"enum": ["allowed", "blocked"]},
+    "goal_context": {"type": "object"},
+    "region_crop_ref": {"type": "string"},
+    "fixture_ref": {"type": "string"},
+    "allowed_capabilities": {"type": "array", "items": {"type": "string"}},
+    "forbidden_capabilities": {"type": "array", "items": {"type": "string"}},
+    "candidate_only": {"type": "boolean", "const": true}
+  }
+}

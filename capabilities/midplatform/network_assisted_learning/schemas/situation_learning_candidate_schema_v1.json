@@ -1,0 +1,41 @@
+{
+  "schema_id": "SituationLearningCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "planning_endpoint": "situation_learning_candidate",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "learning_candidate_id",
+    "source_type",
+    "source_refs",
+    "proposed_scene_type",
+    "proposed_task_clues",
+    "proposed_needed_tools",
+    "proposed_noop_tools",
+    "confidence",
+    "risk_flags",
+    "candidate_only",
+    "not_fact",
+    "review_status",
+    "provenance_ref",
+    "trace_refs"
+  ],
+  "review_status_enum": [
+    "pending_policy_review",
+    "policy_accepted",
+    "policy_rejected",
+    "pending_human_review",
+    "accepted_as_case",
+    "rejected"
+  ],
+  "boundary_flags": {
+    "learning_candidate_not_fact": true,
+    "policy_review_required": true,
+    "provenance_required": true,
+    "no_runner_invocation_from_learning_candidate": true,
+    "no_fact_from_learning_candidate": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "phase":"Phase-Luna-Brain-B5-Real-Evidence-Cognitive-Loop-Golden-Baseline-Planning-v1-001",
+  "mode":"INVENTORY + GOLDEN BASELINE PLANNING ONLY",
+  "objective":"Freeze an auditable cross-phase Golden Baseline for S3 and B1-B4 without adding business behavior.",
+  "entry":["S3 GO","B1 GO","B2 GO","B3 GO","B4 GO per user-terminal evidence"],
+  "outputs":["phase index","owner matrix","route","regression index","guard baseline","trace baseline","manifest plan","change/version policy"],
+  "runtime_execution":false,
+  "business_logic_change":false,
+  "status":"WAITING_FOR_USER_REVIEW"
+}

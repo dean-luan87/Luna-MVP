@@ -1,0 +1,17 @@
+{
+  "contract_id": "cognitive_state_negative_guards_v1",
+  "forbidden": [
+    "state_runtime", "scheduler", "automatic_state_transition", "state_execute_action", "state_direct_reality_mutation", "attention_own_state", "attention_switch_state", "self_rhythm_switch_state", "emotion_own_state", "memory_switch_state", "learning_direct_state_mutation", "learning_direct_identity_change", "learning_direct_constitution_change", "single_outcome_schema_update", "b_route_override_a_state", "b_route_override_reality", "b_route_direct_self_modification", "runtime_state_authority", "state_learning_runtime", "state_b_route_runtime", "state_model_switching", "state_hardware_control", "action_execution", "learning_runtime", "emotion_runtime", "b_route_runtime", "model_calls", "provider_calls", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "six_state_model": true,
+    "state_is_not_field": true,
+    "state_is_not_flow": true,
+    "transitions_are_candidates": true,
+    "attention_is_not_state_owner": true,
+    "self_rhythm_is_resource_hint": true,
+    "self_review_required_for_learning": true,
+    "a_route_b_route_separation": true,
+    "unknowns_preserved": true
+  }
+}

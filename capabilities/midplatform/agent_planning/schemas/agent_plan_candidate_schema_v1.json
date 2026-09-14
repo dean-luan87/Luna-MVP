@@ -1,0 +1,30 @@
+{
+  "schema_id": "AgentPlanCandidateV1",
+  "version": "v1",
+  "layer_id": "L2_Agent_Planning",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "plan_id",
+    "plan_goal_candidate",
+    "plan_strategy",
+    "plan_steps",
+    "tool_plan_candidates",
+    "noop_tool_plan_candidates",
+    "fallback_strategy",
+    "ask_user_strategy",
+    "stop_conditions",
+    "handoff_to_tool_os_candidate",
+    "trace_refs",
+    "candidate_only",
+    "not_fact"
+  ],
+  "boundary_flags": {
+    "agent_plan_candidate_not_fact": true,
+    "no_runner_invocation": true,
+    "no_tool_execution": true,
+    "no_tool_install": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

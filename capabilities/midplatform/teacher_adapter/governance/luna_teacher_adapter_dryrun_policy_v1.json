@@ -1,0 +1,40 @@
+{
+  "schema_id": "LunaTeacherAdapterDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Third-Party-Teacher-Adapter-DryRun-v1-001",
+  "layer_id": "Teacher_Adapter",
+  "dryrun_only": true,
+  "principle": "Teacher challenges plan AFTER L2.5 validation; evidence reviewed, never executed directly.",
+  "chain": [
+    "job_envelope",
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "decision_validation_candidate",
+    "teacher_evidence_candidate",
+    "teacher_validation_review",
+    "tool_os_handoff_candidate"
+  ],
+  "rules": [
+    {"rule_id": "teacher_after_validation", "description": "Teacher 在 validation 之后挑战 plan，不在 planning 上方"},
+    {"rule_id": "teacher_evidence_not_fact", "description": "Teacher 输出是 evidence candidate，不是 fact"},
+    {"rule_id": "no_selected_plan_override", "description": "Teacher 不得覆盖 selected plan"},
+    {"rule_id": "no_l1_scene_override", "description": "Teacher 不得覆盖 L1 scene owner"},
+    {"rule_id": "no_tool_execution", "description": "Teacher 不触发工具执行"},
+    {"rule_id": "no_fact_write", "description": "Teacher 不写 fact"},
+    {"rule_id": "no_direct_training", "description": "Learning teacher 不直接训练"},
+    {"rule_id": "validation_reviews_teacher", "description": "Luna validation 审核 teacher evidence"},
+    {"rule_id": "no_real_api_in_dryrun", "description": "DryRun 无真实 API"}
+  ],
+  "boundary_flags": {
+    "teacher_after_validation": true,
+    "teacher_evidence_not_fact": true,
+    "no_selected_plan_override": true,
+    "no_l1_scene_override": true,
+    "no_tool_execution": true,
+    "no_fact_write": true,
+    "no_direct_training": true,
+    "validation_reviews_teacher": true,
+    "no_real_api_in_dryrun": true,
+    "dryrun_only": true
+  }
+}

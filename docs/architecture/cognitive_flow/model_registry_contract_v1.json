@@ -1,0 +1,11 @@
+{
+  "schema_version": "v1",
+  "registry_type": "Model Registry",
+  "purpose": "provider identity and capability supply mapping",
+  "required_fields": ["model_id", "provider_identity", "version", "supported_capability", "input_boundary", "output_boundary", "confidence_profile", "resource_profile", "known_limitations", "lifecycle", "provenance"],
+  "provider_role": "provide capability evidence only",
+  "forbidden_claims": ["understand_world", "own_goal", "make_decision", "define_self"],
+  "model_manager_authority": ["admission", "health", "version", "fallback_candidate", "trace"],
+  "direct_brain_access": false,
+  "direct_reality_assertion": false
+}

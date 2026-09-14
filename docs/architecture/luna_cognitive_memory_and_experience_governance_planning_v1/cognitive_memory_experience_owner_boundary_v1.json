@@ -1,0 +1,43 @@
+{
+    "artifact": "cognitive_memory_experience_owner_boundary_v1",
+    "canonical_owner_candidate": "Cognitive Memory & Experience Governance",
+    "owner_decision": {
+        "accepted": true,
+        "rationale": [
+            "Experience candidate formation and memory admission are semantically coupled in the current planning scope.",
+            "Actual storage/runtime persistence can remain a lower-level capability without owning memory meaning.",
+            "A single semantic owner avoids historical split-owner drift between Experience Layer and Memory System."
+        ]
+    },
+    "allowed_authority": [
+        "experience candidate formation governance",
+        "memory candidate admission governance",
+        "memory type classification",
+        "salience candidate governance",
+        "consolidation candidate governance",
+        "revision candidate governance",
+        "revocation candidate governance",
+        "contradiction handling",
+        "uncertainty preservation",
+        "retention/decay policy candidates",
+        "future retrieval eligibility metadata"
+    ],
+    "forbidden_authority": [
+        "direct DB write",
+        "vector DB ownership",
+        "embedding ownership",
+        "automatic fact creation",
+        "field fact mutation",
+        "PCN mutation",
+        "personality mutation",
+        "intent mutation",
+        "learning execution",
+        "parameter mutation"
+    ],
+    "parallel_owner_forbidden": [
+        "Experience Governance",
+        "Memory Governance",
+        "Memory System",
+        "Experience Layer"
+    ]
+}

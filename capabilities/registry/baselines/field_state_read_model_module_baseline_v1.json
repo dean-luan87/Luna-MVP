@@ -1,0 +1,209 @@
+{
+    "capability_id": "luna.field_state_read_model",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_controlled_runtime_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_query_validator_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_projection_builder_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_result_builder_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_controlled_source_adapter_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_envelope_builder_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_controlled_runtime_v1.py",
+            "tools/evaluation/midplatform/run_field_state_read_model_module_integration_v1.py",
+            "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_api_v1.py",
+        "entrypoint": "read_field_state",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Provide read-only state projection and query authority over controlled state candidates",
+        "Preserve provenance, trace, replay, and state version through read results",
+        "Provide controlled read runtime orchestration without mutation or dispatch"
+    ],
+    "forbidden_authorities": [
+        "state_mutation",
+        "event_reduction",
+        "fact_admission",
+        "evidence_fabrication",
+        "real_model_execution",
+        "action_execution",
+        "runtime_loop",
+        "real_state_store_connection",
+        "downstream_dispatch"
+    ],
+    "reused_assets": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_model_types_v1.py",
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+        "docs/architecture/field_kernel/field_state_read_model_controlled_skeleton_v1.md",
+        "docs/architecture/field_kernel/field_state_read_model_contract_dryrun_v1.md",
+        "docs/architecture/field_kernel/field_state_read_model_controlled_runtime_v1.md"
+    ],
+    "extended_assets": [
+        "capabilities/registry/manifests/field_state_read_model_manifest_v1.json",
+        "docs/architecture/field_kernel/field_state_read_model_governance_rule_candidates_v1.md",
+        "docs/architecture/field_kernel/field_state_read_model_module_integration_v1.md",
+        "tools/evaluation/midplatform/run_field_state_read_model_module_integration_v1.py",
+        "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+    ],
+    "internal_components": [
+        "query_validator",
+        "projection_builder",
+        "result_builder",
+        "module_api",
+        "controlled_source_adapter",
+        "runtime_envelope_builder",
+        "controlled_runtime",
+        "module_integration_runner",
+        "module_integration_verifier"
+    ],
+    "legacy_assets": [
+        "luna.field_read_model planned identity in earlier governance assets"
+    ],
+    "duplicate_risks": [
+        "Do not create a second field read model naming system alongside luna.field_state_read_model",
+        "Do not introduce mutation or admission runtime into the read model integration path"
+    ],
+    "dependency_contracts": [
+        {
+            "depends_on": "luna.field_state_reducer",
+            "dependency_type": "contract_dependency",
+            "required": true,
+            "interface_ref": "capabilities/midplatform/core/field_state_reducer/module/field_state_reducer_module_types_v1.py",
+            "fallback_behavior": "return_state_unavailable_candidate_only",
+            "unavailable_behavior": "block_controlled_read_runtime",
+            "confidence": "governed"
+        }
+    ],
+    "input_contract_ref": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+        "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+    ],
+    "lifecycle_contract_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "tools/evaluation/midplatform/verify_field_state_read_model_module_integration_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/core/field_state_read_model/module/field_state_read_model_module_types_v1.py",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py",
+            "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json",
+            "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json",
+            "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json"
+        ]
+    },
+    "ready_evidence": {
+        "accepted_phase_results": {
+            "controlled_skeleton": {
+                "runner_total_cases": 10,
+                "runner_passed_cases": 10,
+                "verifier_passed_checks": 18,
+                "evidence_ref": "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json"
+            },
+            "contract_dryrun": {
+                "runner_total_cases": 45,
+                "runner_passed_cases": 45,
+                "verifier_passed_checks": 20,
+                "evidence_ref": "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json"
+            },
+            "controlled_runtime": {
+                "runner_total_cases": 24,
+                "runner_passed_cases": 24,
+                "verifier_passed_checks": 25,
+                "evidence_ref": "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json"
+            }
+        },
+        "runner_summaries": {
+            "skeleton": "10/10",
+            "contract_dryrun": "45/45",
+            "controlled_runtime": "24/24",
+            "module_integration": "see integration report"
+        },
+        "verifier_summaries": {
+            "skeleton": "18/18",
+            "contract_dryrun": "20/20",
+            "controlled_runtime": "25/25",
+            "module_integration": "see integration verifier"
+        },
+        "boundary_summary": {
+            "read_only": true,
+            "state_mutation": false,
+            "event_reduction": false,
+            "fact_admission": false,
+            "evidence_fabrication": false,
+            "real_model_execution": false,
+            "action_execution": false,
+            "runtime_loop": false,
+            "real_state_store_connected": false,
+            "candidate_only": true
+        },
+        "contract_stable_refs": [
+            "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_query_schema_v1.json",
+            "capabilities/midplatform/core/field_state_read_model/planning/field_state_read_result_schema_v1.json",
+            "capabilities/midplatform/core/field_state_read_model/runtime/field_state_read_model_runtime_types_v1.py"
+        ],
+        "file_inventory": [
+            "capabilities/midplatform/core/field_state_read_model/module/",
+            "capabilities/midplatform/core/field_state_read_model/runtime/",
+            "capabilities/midplatform/core/field_state_read_model/dryrun/"
+        ],
+        "known_limitations": [
+            "no real state store",
+            "no asynchronous runtime",
+            "no downstream dispatch",
+            "no batch query",
+            "no retry orchestration",
+            "no persistence",
+            "no real source adapter"
+        ],
+        "promotion_constraints": [
+            "do not promote to mutation authority",
+            "do not introduce reducer internal implementation dependency",
+            "do not connect real store before dedicated controlled source policy phase"
+        ],
+        "next_allowed_phase": "protocol_governance_admission_candidate",
+        "integration_evidence_ref": "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+    },
+    "calibration_triggers": [
+        "manifest_registry_mismatch",
+        "dependency_boundary_violation",
+        "evidence_chain_break",
+        "deterministic_report_failure",
+        "forbidden_dependency_detected",
+        "boundary_flag_drift",
+        "phase_result_regression"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline only in anomaly diagnostic workflow",
+            "Compare manifest, registry, dependency map, and baseline references",
+            "Verify skeleton, contract dryrun, and controlled runtime evidence chain",
+            "Block promotion if mutation authority or real store dependency appears"
+        ]
+    },
+    "baseline_created_at": "2026-07-17",
+    "last_baseline_review": "2026-07-17",
+    "baseline_update_required": false
+}

@@ -1,0 +1,28 @@
+{
+  "registry_id": "luna_dynamic_cognitive_system_v2_candidate",
+  "status": "canonical_freeze_candidate",
+  "components": [
+    {"id": "environment_understanding", "owner": "Observation Manager / Reality Evidence Pipeline", "responsibility": "perception and evidence candidates", "candidate_only": true},
+    {"id": "field_system", "owner": "Field System", "responsibility": "current field context and activation input", "candidate_only": true},
+    {"id": "personal_cognitive_network", "owner": "Personal Cognitive Network Governance", "responsibility": "typed cross-object link and activation projection candidates", "candidate_only": true},
+    {"id": "self", "owner": "Self Governance", "responsibility": "identity, capability, resource, and boundary source state", "candidate_only": false},
+    {"id": "role", "owner": "Social Self / Role System", "responsibility": "field-bound role lifecycle and projection source", "candidate_only": true},
+    {"id": "relationship", "owner": "Social Self / Relationship System", "responsibility": "relationship state/history candidates", "candidate_only": true},
+    {"id": "memory", "owner": "Memory System", "responsibility": "historical persistence, consolidation, activation, and retrieval", "candidate_only": true},
+    {"id": "causal_network", "owner": "Causal Reasoning Governance", "responsibility": "evidence-bound causal relation candidates", "candidate_only": true},
+    {"id": "intent_processing", "owner": "Intent Governance", "responsibility": "intent qualification and context binding", "candidate_only": true},
+    {"id": "intent_evaluation_gate", "owner": "Cognitive Routing Governance", "responsibility": "direct-response or cognitive-expansion recommendation", "candidate_only": true},
+    {"id": "decision_arbitration", "owner": "Decision Arbitration", "responsibility": "decision candidate selection", "candidate_only": true},
+    {"id": "task_manager", "owner": "Task Manager", "responsibility": "task lifecycle and capability routing", "candidate_only": true},
+    {"id": "action", "owner": "Action Governance / Action Runtime", "responsibility": "governed execution", "candidate_only": false},
+    {"id": "feedback_validation", "owner": "Reality Validation / Outcome Evaluation", "responsibility": "feedback and outcome validation candidates", "candidate_only": true},
+    {"id": "experience_compression", "owner": "Experience Governance", "responsibility": "reusable experience representation and guidance candidates", "candidate_only": true},
+    {"id": "network_evolution", "owner": "Learning Governance / Self Review", "responsibility": "governed network evolution candidates", "candidate_only": true},
+    {"id": "emotion_context", "owner": "Cognitive Integration", "responsibility": "attachment and adaptive-signal context", "candidate_only": true},
+    {"id": "value_utility", "owner": "Value Utility Governance", "responsibility": "benefit, cost, risk, and priority evidence", "candidate_only": true},
+    {"id": "model_manager", "owner": "Capability Governance", "responsibility": "model asset and routing candidates", "candidate_only": true}
+  ],
+  "unique_owner_per_responsibility": true,
+  "active_baseline_replacement": false,
+  "runtime_activation": false
+}

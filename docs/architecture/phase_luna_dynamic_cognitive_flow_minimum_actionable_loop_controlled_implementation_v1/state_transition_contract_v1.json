@@ -1,0 +1,14 @@
+{
+  "contract": "dynamic_state_transition_contract_v1",
+  "state_version_rule": "Each accepted Evidence Update creates a candidate state version with parent and evidence lineage; no Reducer state is mutated.",
+  "transition_rules": [
+    {"from": "INSUFFICIENT", "on": "insufficient evidence", "to": "INSUFFICIENT", "next": "CONTINUE"},
+    {"from": "INSUFFICIENT", "on": "hypothesis invalidated", "to": "RECONSIDER", "next": "REPLAN"},
+    {"from": "INSUFFICIENT", "on": "capability unavailable/degraded", "to": "RECONSIDER", "next": "REQUEST_MORE_EVIDENCE or DEFER"},
+    {"from": "INSUFFICIENT", "on": "execution SUCCESS + requirement UNSATISFIED", "to": "RECONSIDER", "next": "REQUEST_MORE_EVIDENCE"},
+    {"from": "INSUFFICIENT", "on": "goal sufficient", "to": "SUFFICIENT", "next": "STOP_SUFFICIENT"},
+    {"from": "SUFFICIENT", "on": "later candidate", "to": "SUFFICIENT", "next": "STOP_SUFFICIENT", "materialize": false}
+  ],
+  "reconsideration": "A candidate re-entry from evidence/outcome to Cognitive Flow current-need evaluation; not retry and not provider invocation.",
+  "stale_requirement": "A requirement whose source state version differs from the current state is SUPERSEDED or requires reassessment and cannot force invocation."
+}

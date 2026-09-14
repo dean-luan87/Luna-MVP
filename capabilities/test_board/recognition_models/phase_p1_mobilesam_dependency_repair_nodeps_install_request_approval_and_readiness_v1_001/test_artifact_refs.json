@@ -1,0 +1,19 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.540952+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_artifact_refs",
+  "artifact_refs": [
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_v1_smoke_v0/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_review_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_v1_smoke_v0/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_review_v1.json"
+  ],
+  "source_review_file": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_v1_smoke_v0/p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness_review_v1.json"
+}

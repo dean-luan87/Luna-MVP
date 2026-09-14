@@ -1,0 +1,14 @@
+{
+  "control_id": "invalid_unavailable_model_triggered_download_001",
+  "policy_id": "model_fallback",
+  "model_family": "segmentation_family",
+  "license_ref": "license:apache_2_0",
+  "allowed_use": "candidate_only",
+  "availability_state": "download_planning_required",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "fallback_confidence_policy_v1",
+  "fallback_plan": "fallback_to_available_object_family",
+  "unavailable_model_triggered_download": true,
+  "download_requested": true,
+  "forced_execution_requested": true
+}

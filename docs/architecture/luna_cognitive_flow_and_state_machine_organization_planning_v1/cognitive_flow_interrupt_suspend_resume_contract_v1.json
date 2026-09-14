@@ -1,0 +1,35 @@
+{
+    "artifact": "cognitive_flow_interrupt_suspend_resume_contract_v1",
+    "candidate_types": {
+        "interrupt_candidate": [
+            "new_safety_critical_field_event",
+            "invalidated_evidence",
+            "intent_cancellation",
+            "required_ref_revoked",
+            "resource_constraint",
+            "conflicting_high_priority_context",
+            "user_interruption"
+        ],
+        "suspend_candidate": [
+            "wait_for_revalidation",
+            "resource_pause",
+            "user_pause"
+        ],
+        "resume_candidate": [
+            "refs_revalidated",
+            "resource_recovered",
+            "user_resume"
+        ],
+        "abort_candidate": [
+            "invalid_evidence_block",
+            "irrecoverable_boundary_violation"
+        ]
+    },
+    "rules": {
+        "candidate_only": true,
+        "no_runtime_interrupt_execution": true,
+        "suspend_requires_trace": true,
+        "resume_requires_idempotency": true,
+        "abort_preserves_provenance": true
+    }
+}

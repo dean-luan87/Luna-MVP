@@ -1,0 +1,27 @@
+{
+  "artifact_id": "interaction_kernel_observation_axis_boundary_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owners": {
+    "observation_axis": "Observation Axis Governance",
+    "interaction_kernel": "Cognitive Interaction Governance"
+  },
+  "distinction": {
+    "observation_axis": "Chooses the role, stance, and relationship perspective from which the current problem is observed.",
+    "interaction_kernel": "Observes the local response among the projections admitted under that perspective."
+  },
+  "mutual_constraints": [
+    "observation_axis_limits_which_local_relations_are_projected",
+    "interaction_candidate_exposes_axis_specific_tension_or_resonance",
+    "axis_change_requires_reprojection_not_source_mutation",
+    "interaction_result_may_request_axis_review_but_not_switch_axis"
+  ],
+  "rules": {
+    "same_owner": false,
+    "observation_axis_is_interaction_kernel": false,
+    "interaction_kernel_selects_perspective": false,
+    "observation_axis_inferrs_causal_fact": false,
+    "source_objects_read_only": true
+  },
+  "candidate_only": true,
+  "runtime_implemented": false
+}

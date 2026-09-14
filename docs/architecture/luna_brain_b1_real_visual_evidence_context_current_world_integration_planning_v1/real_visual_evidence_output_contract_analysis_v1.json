@@ -1,0 +1,27 @@
+{
+  "provider_output": {
+    "type": "ProviderNativeDetectionRecordV1",
+    "fields": ["detection_id", "provider_name", "provider_version", "model_ref", "frame_ref", "class_id", "class_label", "bbox", "confidence", "region_ref", "frame_dimensions", "inference_timestamp", "provider_trace_ref", "provider_output_ref"]
+  },
+  "canonical_visual_evidence": {
+    "type": "VisualDetectionEvidenceCandidateV1",
+    "fields": ["evidence_id", "provider_ref", "model_ref", "frame_ref", "detection_ref", "class_candidate", "bbox", "confidence", "region_ref", "temporal_ref", "uncertainty_refs", "contradiction_refs", "trace_ref", "provenance_refs"],
+    "candidate_only": true,
+    "truth_declared": false,
+    "fact_admitted": false,
+    "field_mutation": false,
+    "current_world_mutation": false,
+    "intent_created": false,
+    "task_created": false,
+    "natural_language_conclusion_ref": ""
+  },
+  "gateway_handoff": {
+    "type": "ObservationGatewayEvidenceHandoffCandidateV1",
+    "fields": ["handoff_id", "ingress_type", "evidence_refs", "provider_ref", "source_frame_ref", "raw_output_refs", "trace_ref", "provenance_refs"],
+    "ingress_type": "VISION",
+    "candidate_only": true,
+    "gateway_admission": false,
+    "semantic_authority": false
+  },
+  "current_status": "provider adapter creates a gateway handoff candidate; canonical gateway admission/brain ingestion is the B1 gap"
+}

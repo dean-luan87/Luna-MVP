@@ -1,0 +1,21 @@
+{
+    "artifact": "execution_adapter_device_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "adapter_contract": {
+        "adapter_required": true,
+        "device_isolated": true,
+        "provider_isolated": true,
+        "direct_device_control_by_executor": false
+    },
+    "allowed_adapter_output": [
+        "raw_outcome_candidate",
+        "adapter_failure_candidate",
+        "adapter_timeout_candidate"
+    ],
+    "forbidden_adapter_output": [
+        "decision_override",
+        "permission_override",
+        "safety_override",
+        "silent_side_effect"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Luna Core vs Capability Boundary v1",
+  "core": {"layer": "L2", "owns": ["Reality representation", "Field", "Situation", "Global Cognitive State", "Brain", "Intent", "Goal", "Decision Commitment", "Learning candidates"], "receives": ["Evidence candidates", "Capability state candidates", "Social/emotion context candidates"], "cannot": ["Provider execution", "Hardware control", "direct Action execution"]},
+  "capability": {"layer": "L4", "owns": ["Capability Contract", "Capability Discovery", "Capability Calibration", "Model Manager", "Provider Boundary", "Hardware Capability", "Evidence Gateway", "Action Boundary"], "receives": ["Observation/Capability Requirements", "Resource and admission constraints"], "cannot": ["Brain control", "Goal creation", "Decision ownership", "direct Reality write"]},
+  "bridges": [
+    {"name": "capability_requirement", "direction": "L2 -> L4", "output": "Capability Request Candidate"},
+    {"name": "evidence_return", "direction": "L4 -> L2", "output": "Evidence Candidate through Gateway"},
+    {"name": "action_boundary", "direction": "L2 -> L4", "output": "Action Request Candidate"}
+  ],
+  "rules": {"core_is_not_provider": true, "provider_is_not_brain": true, "evidence_is_not_fact_without_reducer": true}
+}

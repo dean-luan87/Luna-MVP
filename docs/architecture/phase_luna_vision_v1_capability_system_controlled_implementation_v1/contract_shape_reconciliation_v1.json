@@ -1,0 +1,39 @@
+{
+  "audit_id": "visual-capability-system-contract-shape-reconciliation-v1",
+  "scope": "VCS-01..VCS-24",
+  "field_semantic_owners": {
+    "rollback_required": "VisualCapabilityManifestV1",
+    "rollback_available": "SafetyRegistrationAssessmentV1",
+    "rollback_policy_ref": "SafetyCapabilitySlotV1",
+    "degradation_policy_ref": "SafetyCapabilitySlotV1",
+    "registration_status": "CapabilityRegistrationCandidateV1",
+    "accepted": "CapabilityRegistrationOutcomeV1/SafetyRegistrationAssessmentV1/CapabilityLifecycleTransitionCandidateV1",
+    "outcome": "CapabilityRouteResultV1"
+  },
+  "scenarios": [
+    {"scenario_id":"VCS-01","title":"mandatory safety slot exists","objects_used":["slots"],"asserted_fields":["mandatory"],"actual_types":["SafetyCapabilitySlotV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-02","title":"safety slot independent from model identity","objects_used":["safety","motion","sign"],"asserted_fields":["model_asset_refs","model_independent_identity"],"actual_types":["VisualCapabilityManifestV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-03","title":"optional capability dynamically registered","objects_used":["optional_registration"],"asserted_fields":["accepted","registration_id","candidate_only"],"actual_types":["CapabilityRegistrationOutcomeV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-04","title":"registration does not activate capability","objects_used":["optional_registration"],"asserted_fields":["accepted","automatic_activation","lifecycle_state"],"actual_types":["CapabilityRegistrationOutcomeV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-05","title":"optional OCR not installed","objects_used":["task_ocr"],"asserted_fields":["outcome"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-06","title":"optional face uninstall","objects_used":["face","lifecycle_transition"],"asserted_fields":["accepted"],"actual_types":["VisualCapabilityManifestV1","CapabilityLifecycleTransitionCandidateV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-07","title":"mandatory safety uninstall rejected","objects_used":["safety","lifecycle_transition"],"asserted_fields":["accepted"],"actual_types":["VisualCapabilityManifestV1","CapabilityLifecycleTransitionCandidateV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-08","title":"safety baseline bypass rejected","objects_used":["safety","lifecycle_transition"],"asserted_fields":["accepted"],"actual_types":["VisualCapabilityManifestV1","CapabilityLifecycleTransitionCandidateV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-09","title":"unapproved safety provider","objects_used":["unapproved"],"asserted_fields":["accepted","approved_provider","reason"],"actual_types":["SafetyRegistrationAssessmentV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-10","title":"approved safety replacement","objects_used":["safety_registration"],"asserted_fields":["accepted","reason"],"actual_types":["SafetyRegistrationAssessmentV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-11","title":"degraded safety provider","objects_used":["degraded_route"],"asserted_fields":["outcome"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-12","title":"below-baseline capability","objects_used":["below_baseline"],"asserted_fields":["accepted","minimum_baseline_met","reason"],"actual_types":["SafetyRegistrationAssessmentV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-13","title":"rollback reference required","objects_used":["safety","slots","no_rollback"],"asserted_fields":["rollback_required","rollback_policy_ref","rollback_available","accepted"],"actual_types":["VisualCapabilityManifestV1","SafetyCapabilitySlotV1","SafetyRegistrationAssessmentV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-14","title":"Safety Channel without ordinary Observation Need","objects_used":["safety_request","safety_route"],"asserted_fields":["ordinary_observation_need_present","outcome"],"actual_types":["CapabilityRouteRequestCandidateV1","CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-15","title":"Safety candidate-only","objects_used":["safety_route"],"asserted_fields":["candidate_only","truth_declared","fact_admitted"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-16","title":"Task Observation requires Observation Need","objects_used":["task_without_need"],"asserted_fields":["outcome"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-17","title":"installed optional route","objects_used":["task_face","face"],"asserted_fields":["outcome","selected_capability_ref"],"actual_types":["CapabilityRouteResultV1","VisualCapabilityManifestV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-18","title":"absent optional route","objects_used":["task_ocr"],"asserted_fields":["outcome"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-19","title":"degraded safety escalation","objects_used":["degraded_route"],"asserted_fields":["escalation_candidate","interrupt_candidate"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-20","title":"SNSP reference-only","objects_used":["sign","snsps"],"asserted_fields":["social_norm_semantic_pack_ref","outcome","truth_declared"],"actual_types":["VisualCapabilityManifestV1","CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-21","title":"SRSK reference-only","objects_used":["srsk_request","srsk"],"asserted_fields":["semantic_resolution_request_ref","outcome"],"actual_types":["CapabilityRouteRequestCandidateV1","CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-22","title":"Vision does not own Semantic Sufficiency","objects_used":["controlled_metadata"],"asserted_fields":["vision_owns_semantic_sufficiency"],"actual_types":["runner_summary"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-23","title":"no provider/model invocation","objects_used":["route_results"],"asserted_fields":["provider_invocation","model_inference"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true},
+    {"scenario_id":"VCS-24","title":"no Brain Golden Baseline bypass","objects_used":["route_results"],"asserted_fields":["observation_gateway_required","candidate_only"],"actual_types":["CapabilityRouteResultV1"],"field_exists":true,"shape_correct":true,"semantic_layer_correct":true}
+  ]
+}

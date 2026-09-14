@@ -1,0 +1,8 @@
+{
+  "title": "Recovery Management Contract v1",
+  "owner": "Self Regulation / Recovery Management",
+  "pipeline": ["Failure", "Diagnosis", "Recovery Candidate", "Validation", "Apply Candidate", "Monitor"],
+  "recovery_options": ["Current Version Restore", "Historical Version Candidate", "Alternate Model Candidate", "Alternate Provider Candidate", "Reduced Capability Mode"],
+  "schema": ["recovery_id", "failure_ref", "diagnosis", "candidate", "validation_evidence", "rollback_plan", "monitoring_requirement", "review_status", "trace_id"],
+  "rules": {"validation_before_apply":true,"rollback_required":true,"monitoring_required":true,"candidate_only":true,"no_automatic_provider_switch":true,"no_code_modification":true}
+}

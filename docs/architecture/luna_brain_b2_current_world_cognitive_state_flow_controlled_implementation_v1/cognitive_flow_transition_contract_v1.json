@@ -1,0 +1,10 @@
+{
+  "owner": "Cognitive Flow Governance",
+  "input": "CognitiveFlowInputV1 with explicit current_world_ref",
+  "outputs": ["CognitiveCycleStateCandidateV1", "CognitiveCycleTransitionCandidateV1", "ReconsiderationCandidateV1", "ModuleHandoffEnvelopeV1"],
+  "mutation": false,
+  "runtime_transition": false,
+  "scheduler": false,
+  "task_execution": false,
+  "current_world_ownership": false
+}

@@ -1,0 +1,134 @@
+{
+  "schema_id": "HumanCorrectionFeedbackTaxonomyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "description": "第一版人工指错类型分类。纠错仅生成 correction candidate，不修改模型输出。",
+  "correction_types": [
+    {
+      "correction_type": "false_positive",
+      "label_zh": "误识别",
+      "label_en": "False Positive",
+      "description": "模型标出了不该标的对象。",
+      "mobile_sam_priority": "medium",
+      "example": "背景纹理被误标为物体"
+    },
+    {
+      "correction_type": "false_negative",
+      "label_zh": "漏识别",
+      "label_en": "False Negative",
+      "description": "画面中有对象但模型没标出。",
+      "mobile_sam_priority": "high",
+      "example": "画面右侧有车辆但未出现编号"
+    },
+    {
+      "correction_type": "wrong_label",
+      "label_zh": "标签错误",
+      "label_en": "Wrong Label",
+      "description": "识别区域存在，但名称或类别不对。",
+      "mobile_sam_priority": "high",
+      "example": "路牌区域被标为普通物体"
+    },
+    {
+      "correction_type": "boundary_inaccurate",
+      "label_zh": "边界不准",
+      "label_en": "Boundary Inaccurate",
+      "description": "框或 mask 没有覆盖正确区域。",
+      "mobile_sam_priority": "high",
+      "example": "车辆 mask 未覆盖右侧车身"
+    },
+    {
+      "correction_type": "confidence_mismatch",
+      "label_zh": "置信度不合理",
+      "label_en": "Confidence Mismatch",
+      "description": "分数过高或过低，与视觉证据不符。",
+      "mobile_sam_priority": "medium",
+      "example": "模糊路牌显示 95% 置信度"
+    },
+    {
+      "correction_type": "task_relevance_error",
+      "label_zh": "任务相关性错误",
+      "label_en": "Task Relevance Error",
+      "description": "模型关注错了重点，与当前观察任务不匹配。",
+      "mobile_sam_priority": "high",
+      "example": "分割了大量背景而忽略前方障碍"
+    },
+    {
+      "correction_type": "risk_assessment_error",
+      "label_zh": "风险判断错误",
+      "label_en": "Risk Assessment Error",
+      "description": "危险、不确定或稳定状态标错。",
+      "mobile_sam_priority": "medium",
+      "example": "前方行人被标为低风险"
+    },
+    {
+      "correction_type": "recommendation_error",
+      "label_zh": "建议不合理",
+      "label_en": "Recommendation Error",
+      "description": "Luna 的下一步建议不符合当前场景。",
+      "mobile_sam_priority": "medium",
+      "example": "建议继续直行但前方有障碍"
+    },
+    {
+      "correction_type": "duplicate_or_overlapping_detection",
+      "label_zh": "重复或重叠识别",
+      "label_en": "Duplicate or Overlapping Detection",
+      "description": "同一对象被重复标注或重叠框混乱。",
+      "mobile_sam_priority": "low",
+      "example": "同一车辆出现两个编号"
+    },
+    {
+      "correction_type": "unclear_need_review",
+      "label_zh": "不确定需复核",
+      "label_en": "Unclear — Need Review",
+      "description": "用户不确定具体问题，标记为待复核。",
+      "mobile_sam_priority": "medium",
+      "example": "这个区域像路牌但看不清，需 OCR 复核"
+    }
+  ],
+  "severity_levels": [
+    {"severity": "low", "label_zh": "低", "description": "轻微偏差，不影响主要判断"},
+    {"severity": "medium", "label_zh": "中", "description": "明显问题，建议后续复测"},
+    {"severity": "high", "label_zh": "高", "description": "严重影响观察结论"},
+    {"severity": "blocker", "label_zh": "阻断", "description": "导致当前场景结论不可信"}
+  ],
+  "error_cause_hypothesis": [
+    {"cause_id": "low_light", "label_zh": "光线不足"},
+    {"cause_id": "occlusion", "label_zh": "遮挡"},
+    {"cause_id": "small_object", "label_zh": "目标过小"},
+    {"cause_id": "far_distance", "label_zh": "距离过远"},
+    {"cause_id": "motion_blur", "label_zh": "运动模糊"},
+    {"cause_id": "reflective_surface", "label_zh": "反光表面"},
+    {"cause_id": "crowded_scene", "label_zh": "场景拥挤"},
+    {"cause_id": "similar_texture", "label_zh": "纹理相似"},
+    {"cause_id": "prompt_too_loose", "label_zh": "提示词过宽"},
+    {"cause_id": "prompt_too_narrow", "label_zh": "提示词过窄"},
+    {"cause_id": "missing_detection_model", "label_zh": "缺少检测模型"},
+    {"cause_id": "missing_ocr_model", "label_zh": "缺少 OCR 模型"},
+    {"cause_id": "missing_depth", "label_zh": "缺少深度感知"},
+    {"cause_id": "missing_tracking", "label_zh": "缺少跟踪能力"},
+    {"cause_id": "model_limitation", "label_zh": "模型能力限制"},
+    {"cause_id": "annotation_incomplete", "label_zh": "标注不完整"},
+    {"cause_id": "unknown", "label_zh": "原因未知"}
+  ],
+  "recommended_followup_models": [
+    "detection",
+    "ocr",
+    "slam",
+    "depth",
+    "human_review",
+    "dataset_review"
+  ],
+  "mobile_sam_focus_types": [
+    "false_negative",
+    "boundary_inaccurate",
+    "wrong_label",
+    "task_relevance_error",
+    "unclear_need_review"
+  ],
+  "boundary_flags": {
+    "correction_candidate_only": true,
+    "not_fact": true,
+    "not_ground_truth": true,
+    "not_auto_training_data": true
+  }
+}

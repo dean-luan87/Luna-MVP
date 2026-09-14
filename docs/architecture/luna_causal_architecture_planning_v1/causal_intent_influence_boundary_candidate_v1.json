@@ -1,0 +1,27 @@
+{
+    "artifact": "causal_intent_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "causal_owner": "Causal Governance",
+    "intent_owner": "Intent Governance",
+    "accepted_intent_inputs": [
+        "intent_candidate_refs",
+        "potential_intent_refs",
+        "intent_interaction_refs",
+        "intent_uncertainty_refs",
+        "intent_provenance_refs"
+    ],
+    "allowed_effects": [
+        "hypothesis_generation_candidate",
+        "support_weight_adjustment_candidate",
+        "alternative_explanation_generation_candidate"
+    ],
+    "forbidden": [
+        "intent_preference_equals_causal_conclusion",
+        "causal_mutates_intent",
+        "intent_mutates_causal_directly",
+        "intent_decides_causal_winner"
+    ],
+    "cross_write": false,
+    "producer_mutation_authority_over_consumer": false,
+    "consumer_mutation_authority_over_producer": false
+}

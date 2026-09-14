@@ -1,0 +1,17 @@
+{
+  "version": "2.0",
+  "name": "Luna Canonical Layer Registry",
+  "layers": [
+    {"layer_id":"L0","canonical_name":"System Constitution","owner":"Constitution","parent":null,"scope":"highest constraints and invariants"},
+    {"layer_id":"L1","canonical_name":"Cognitive Operating System","owner":"Cognitive OS Governance","parent":"L0","scope":"lifecycle, protocol, and cross-module governance"},
+    {"layer_id":"L2_CORE","canonical_name":"Cognitive Core","owner":"Cognitive Core Governance","parent":"L1","scope":"world representation, understanding, memory, learning, and judgment"},
+    {"layer_id":"L2_SELF","canonical_name":"Self System","owner":"Self Governance","parent":"L1","scope":"identity, capability awareness, regulation, and evolution"},
+    {"layer_id":"L2_SOCIAL","canonical_name":"Social System","owner":"Social Self Governance","parent":"L1","scope":"social identity, role, relationship, responsibility, and norm context"},
+    {"layer_id":"L2_INTEGRATION","canonical_name":"Integration System","owner":"Cognitive Integration","parent":"L1","scope":"internal/social context integration and future emotion boundary"},
+    {"layer_id":"L2_CAPABILITY","canonical_name":"Capability Governance","owner":"Capability Governance","parent":"L1","scope":"capability, model, admission, calibration, and provider boundaries"},
+    {"layer_id":"L2_ACTION","canonical_name":"Action System","owner":"Action Governance","parent":"L1","scope":"action request and execution gates"},
+    {"layer_id":"L2_RUNTIME","canonical_name":"Runtime System","owner":"Cognitive Runtime Governance","parent":"L1","scope":"tick, event, scheduling boundary, synchronization, and recovery"},
+    {"layer_id":"L3_EXTERNAL","canonical_name":"External / Provider / Hardware Boundary","owner":"External Boundary Governance","parent":"L1","scope":"external world and capability implementations"}
+  ],
+  "rules": {"unique_layer_id":true,"l0_top_level":true,"no_duplicate_layer":true,"mapping_only":true,"no_runtime_activation":true}
+}

@@ -1,0 +1,29 @@
+{
+  "frame_seq": 65,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R65_multi_recovery_chain_locally_valid_but_globally_stalled_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.27,
+  "multi_insertion_expected": true,
+  "multi_recovery_chain_locally_valid_but_globally_stalled_observed": true,
+  "main_task_resumed_but_not_progressed_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "每一跳恢复都说得通，但主目标步数没有累计前进",
+  "object_search_flow_type": "multi_recovery_chain_flow",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "multi_recovery_chain_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [14, 19, 86, 92], "conf": 0.82 },
+    { "label": "shelf", "bbox": [120, 40, 210, 120], "conf": 0.58 }
+  ]
+}

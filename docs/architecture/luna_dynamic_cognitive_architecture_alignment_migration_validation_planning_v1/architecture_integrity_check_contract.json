@@ -1,0 +1,12 @@
+{
+  "contract_id": "post_migration_architecture_integrity_check_v1",
+  "required_nodes": ["Field", "Personal Cognitive Network", "Role", "Relationship", "Experience", "Intent", "Causal", "Decision", "Action"],
+  "required_node_fields": ["node_id", "canonical_owner", "status", "source_assets", "target_position", "dependency_contract", "compatibility_result"],
+  "allowed_statuses": ["aligned", "preserved", "adapted", "blocked", "retired_candidate"],
+  "unassigned_owner_forbidden": true,
+  "tbd_status_forbidden": true,
+  "duplicate_node_owner_forbidden": true,
+  "missing_node_blocks_freeze": true,
+  "blocked_node_requires_resolution_or_governance_acceptance": true,
+  "candidate_only": true
+}

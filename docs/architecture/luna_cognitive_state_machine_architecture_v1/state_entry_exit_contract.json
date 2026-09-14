@@ -1,0 +1,18 @@
+{
+  "contract_id": "cognitive_state_entry_exit_v1",
+  "entry_requirements": {
+    "Observation": ["Evidence or Observation Event Candidate", "Field Context Candidate"],
+    "Understanding": ["Evidence Context", "Hypothesis/Belief Candidate", "Unknowns"],
+    "Decision": ["Current Understanding Candidate", "Goal Candidate", "Value/Utility Candidate"],
+    "Action": ["Approved Decision Candidate", "Action Boundary Candidate", "Self Constraint Check"],
+    "Reflection": ["Actual Outcome Candidate", "Expected Outcome Reference", "Validation Context"],
+    "Learning": ["Experience/Pattern Candidate", "Learning Utility Candidate", "Self Review Candidate"]
+  },
+  "exit_is_candidate": true,
+  "exit_requires_trace": true,
+  "entry_does_not_execute": true,
+  "entry_does_not_modify_reality": true,
+  "exit_does_not_auto_write_memory": true,
+  "exit_does_not_auto_update_schema": true,
+  "self_review_required_for_learning_exit": true
+}

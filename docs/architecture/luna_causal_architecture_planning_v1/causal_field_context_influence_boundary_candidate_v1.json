@@ -1,0 +1,25 @@
+{
+    "artifact": "causal_field_context_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "causal_owner": "Causal Governance",
+    "field_owner": "Cognitive Field",
+    "context_owner": "Context Governance",
+    "accepted_inputs": [
+        "field_constraint_refs",
+        "field_transition_refs",
+        "context_envelope_refs",
+        "context_temporal_scope_refs",
+        "context_unknown_refs"
+    ],
+    "rules": [
+        "field_context_influence_only",
+        "field_context_not_causal_authority",
+        "context_not_causal_authority",
+        "no_cross_write"
+    ],
+    "forbidden": [
+        "field_context_directly_create_causal_fact",
+        "causal_mutates_field_or_context",
+        "context_mutates_causal_state"
+    ]
+}

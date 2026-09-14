@@ -1,0 +1,12 @@
+{
+    "artifact": "decision_causal_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "causal_influence": {
+        "causal_refs_required": true,
+        "causal_candidate_influences_decision": true,
+        "causal_candidate_equals_decision": false,
+        "causal_uncertainty_must_be_preserved": true
+    },
+    "cross_write": false,
+    "mutates_causal": false
+}

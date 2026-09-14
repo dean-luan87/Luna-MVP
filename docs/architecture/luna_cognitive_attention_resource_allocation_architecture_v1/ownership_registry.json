@@ -1,0 +1,17 @@
+{
+  "registry_id": "cognitive_attention_resource_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Evidence Input", "owner": "Evidence Layer", "writer": "Evidence Gateway", "readers": ["Field", "Attention Layer"]},
+    {"object": "Field Context", "owner": "Field", "writer": "Field Governance", "readers": ["Attention Layer", "Brain"]},
+    {"object": "Attention Allocation", "owner": "Attention Layer", "writer": "Attention Governance", "readers": ["Understanding", "Memory", "Brain"]},
+    {"object": "Uncertainty Value", "owner": "Uncertainty", "writer": "Uncertainty Governance", "readers": ["Attention Evaluation", "Self Regulation"]},
+    {"object": "Belief Conflict Context", "owner": "Belief", "writer": "Belief Governance", "readers": ["Attention Evaluation", "Reality Validation"]},
+    {"object": "Historical Relevance", "owner": "Memory", "writer": "Memory Governance", "readers": ["Attention Layer", "Context Assembly"]},
+    {"object": "Schema Prior", "owner": "Schema", "writer": "Schema Governance", "readers": ["Attention Layer", "Hypothesis"]},
+    {"object": "Self Resource Governance", "owner": "Self Regulation", "writer": "Self Attention Governance", "readers": ["Attention Layer", "Runtime Boundary"]},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain", "readers": ["Action Boundary", "Experience"]},
+    {"object": "Runtime Execution", "owner": "Runtime", "writer": "Runtime Governance", "readers": ["Self Regulation", "Attention Layer"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "candidate_writes_only": true, "self_final_resource_governance": true}
+}

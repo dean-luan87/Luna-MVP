@@ -1,0 +1,20 @@
+{
+  "schema_id": "TeacherAssistanceRequestSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "task_type",
+    "required_output_type",
+    "input_evidence",
+    "situation_understanding_candidate",
+    "policy_context",
+    "candidate_only",
+    "not_fact"
+  ],
+  "task_type_enum": [
+    "scene_hypothesis",
+    "alternative_plan",
+    "learning_case",
+    "visual_evidence",
+    "uncertainty_reduction"
+  ]
+}

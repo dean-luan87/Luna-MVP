@@ -1,0 +1,42 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_decision_logic_validation",
+  "scope": "Situation_to_Decision_Candidate_only",
+  "cases": [
+    {
+      "case_id": "flooded_road_option_generation",
+      "situation_reference": {
+        "road_condition": "flooded",
+        "water_depth": "unknown",
+        "passage_need": "continue_forward"
+      },
+      "self_context": {
+        "mobility_capability": "normal",
+        "water_depth_capability_limit": "unknown"
+      },
+      "goal_context": {
+        "purpose": "continue_toward_destination"
+      },
+      "expected_option_candidates": [
+        {
+          "option": "continue_forward",
+          "risk": "unknown_water_depth"
+        },
+        {
+          "option": "seek_alternative_route",
+          "cost": "additional_time"
+        },
+        {
+          "option": "request_further_confirmation",
+          "cost": "task_delay"
+        }
+      ],
+      "assertions": {
+        "option_diversity_present": true,
+        "option_cost_or_risk_visible": true,
+        "option_is_not_recommendation": true,
+        "decision_and_action_excluded": true
+      }
+    }
+  ]
+}

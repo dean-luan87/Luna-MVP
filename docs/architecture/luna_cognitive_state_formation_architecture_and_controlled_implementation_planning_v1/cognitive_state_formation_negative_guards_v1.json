@@ -1,0 +1,21 @@
+{
+    "artifact": "cognitive_state_formation_negative_guards_v1",
+    "must_fail_if_present": [
+        "field_state_mutation",
+        "field_confidence_mutation",
+        "intent_mutation",
+        "causal_truth_label",
+        "decision_output",
+        "action_output",
+        "task_output",
+        "runtime_command_output",
+        "owner_transfer_marker",
+        "trace_missing",
+        "provenance_missing"
+    ],
+    "assertions": {
+        "candidate_only": true,
+        "owner_preservation": true,
+        "trace_provenance_required": true
+    }
+}

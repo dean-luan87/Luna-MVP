@@ -1,0 +1,17 @@
+{
+  "contract_name": "Task Field Binding Contract v1",
+  "task_id": "task-example",
+  "origin_field_reference": "field-origin",
+  "current_field_reference": "field-current",
+  "goal_reference": "goal-example",
+  "binding_mode": "Bound | Following Transition | Background | Suspended",
+  "field_transition_reference": null,
+  "context_update_candidate": {"shared": [], "preserved": [], "unknowns": []},
+  "confidentiality_boundary": "required",
+  "task_does_not_modify_reality": true,
+  "field_does_not_modify_goal": true,
+  "field_transition_does_not_delete_task": true,
+  "reality_over_experience": true,
+  "reducer_is_sole_state_mutation_authority": true,
+  "unknowns_are_preserved": true
+}

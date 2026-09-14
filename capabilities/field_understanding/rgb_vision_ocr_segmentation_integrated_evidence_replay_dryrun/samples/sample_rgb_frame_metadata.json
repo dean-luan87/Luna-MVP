@@ -1,0 +1,32 @@
+{
+  "format_ref": "rgb_frame_or_video_file",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "capture_mode": "offline_sample",
+    "file_name": "stadium_concourse_frame_001.jpg"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "rgb_frame_loader",
+    "model_id": "none_required_for_raw_frame"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "rgb_frame_or_video_file"],
+  "export_session_id": "rgb_sample_session_2026_06_25",
+  "frames": [
+    {
+      "frame_id": "frame_001",
+      "timestamp_ms": 1719288000000,
+      "scene_label_hint": "indoor_concourse",
+      "confidence": 0.82
+    },
+    {
+      "frame_id": "frame_002",
+      "timestamp_ms": 1719288000500,
+      "scene_label_hint": "indoor_concourse_near_entrance",
+      "confidence": 0.8
+    }
+  ]
+}

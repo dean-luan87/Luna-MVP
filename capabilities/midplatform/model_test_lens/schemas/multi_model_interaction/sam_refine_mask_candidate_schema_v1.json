@@ -1,0 +1,52 @@
+{
+  "schema_id": "SamRefineMaskCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "Route A — SAM/MobileSAM mask refine 候选。几何 refine，不是对象语义 fact。",
+  "route_id": "route_a_detector_grounding_sam",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "candidate_id",
+    "source_bbox_candidate_id",
+    "source_image_ref",
+    "sam_mask_ref",
+    "refine_source",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "candidate_id": { "type": "string" },
+    "source_bbox_candidate_id": { "type": "string" },
+    "source_image_ref": { "type": "string" },
+    "sam_mask_ref": { "type": "string" },
+    "refine_source": {
+      "type": "string",
+      "enum": ["mobile_sam", "sam_placeholder", "planning_stub_v1"]
+    },
+    "pixel_box": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "confidence": { "type": "number" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "sam_mask_not_semantic_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "forbidden_operations": [
+    "sam_mask_as_object_fact",
+    "sam_mask_as_text_fact",
+    "mask_ref_direct_ocr_without_midplatform"
+  ],
+  "boundary_flags": {
+    "no_sam_mask_fact_upgrade": true,
+    "route_a_candidate_only": true,
+    "no_fact_write": true,
+    "planning_only": true
+  }
+}

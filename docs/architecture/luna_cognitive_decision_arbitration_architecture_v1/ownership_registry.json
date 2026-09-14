@@ -1,0 +1,17 @@
+{
+  "title": "Decision Arbitration Ownership Registry v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Brain", "owner": "Brain", "writer": "Brain Candidate Generation Boundary", "reader": ["Decision Arbitration"]},
+    {"module": "Decision Arbitration", "owner": "Decision Arbitration", "writer": "Decision Arbitration Boundary", "reader": ["Action Boundary", "Brain", "Runtime"]},
+    {"module": "Self", "owner": "Self", "writer": "Self Regulation / Self Governance", "reader": ["Decision Arbitration"]},
+    {"module": "Constitution", "owner": "Constitution", "writer": "Constitution Governance", "reader": ["Decision Arbitration", "Self", "Brain"]},
+    {"module": "Value Utility", "owner": "Value Utility", "writer": "Value Governance", "reader": ["Decision Arbitration", "Brain"]},
+    {"module": "Goal", "owner": "Goal", "writer": "Goal Governance", "reader": ["Brain", "Decision Arbitration"]},
+    {"module": "Action Boundary", "owner": "Action Boundary", "writer": "Action Permission Gate", "reader": ["Runtime"]},
+    {"module": "Runtime", "owner": "Runtime", "writer": "Future Runtime Admission", "reader": ["Action Boundary"]},
+    {"module": "Field", "owner": "Field", "writer": "Field State Owner", "reader": ["Brain", "Decision Arbitration"]},
+    {"module": "Memory", "owner": "Memory", "writer": "Memory Governance", "reader": ["Brain", "Decision Arbitration"]},
+    {"module": "B Route", "owner": "B Route", "writer": "Future Simulation Governance", "reader": ["Decision Arbitration"]}
+  ]
+}

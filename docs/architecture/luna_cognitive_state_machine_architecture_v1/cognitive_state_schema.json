@@ -1,0 +1,13 @@
+{
+  "schema_id": "cognitive_state_v1",
+  "status": "architecture_only",
+  "states": ["Observation", "Understanding", "Decision", "Action", "Reflection", "Learning"],
+  "required_fields": ["state_id", "state_type", "field_ref", "flow_ref", "entry_reason", "exit_conditions", "timestamp", "trace_ref", "unknowns"],
+  "state_is_cognitive_mode": true,
+  "state_is_not_field": true,
+  "state_is_not_flow": true,
+  "state_is_not_runtime": true,
+  "state_is_not_action_command": true,
+  "candidate_only": true,
+  "automatic_transition": false
+}

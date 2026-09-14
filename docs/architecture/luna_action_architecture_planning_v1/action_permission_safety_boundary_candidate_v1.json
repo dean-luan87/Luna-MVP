@@ -1,0 +1,24 @@
+{
+    "artifact": "action_permission_safety_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "permission_recheck": {
+        "required": true,
+        "permission_still_valid": true,
+        "scope_still_matches": true,
+        "target_still_matches": true,
+        "time_context_still_valid": true
+    },
+    "safety_recheck": {
+        "required": true,
+        "safety_still_valid": true,
+        "scope_still_matches": true,
+        "target_still_matches": true,
+        "time_context_still_valid": true
+    },
+    "guards": {
+        "permission_inheritance_without_validation_forbidden": true,
+        "safety_inheritance_without_validation_forbidden": true,
+        "no_permission_bypass": true,
+        "no_safety_bypass": true
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Expectation Situation Interface v1",
+  "contract_type": "Situation to Expectation Context",
+  "input": {
+    "situation_reference": "situation-example",
+    "current_understanding": {},
+    "hypothesis_candidates": [],
+    "belief_candidates": [],
+    "field_context": {},
+    "intent_context": {},
+    "goal_context": {},
+    "task_context": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "expectation_candidates": [],
+    "validation_conditions": [],
+    "confidence": {},
+    "feedback_status": "Unknown"
+  },
+  "boundary": {
+    "situation_does_not_create_prediction": true,
+    "expectation_does_not_modify_situation_automatically": true,
+    "reality_feedback_updates_situation_candidate": true,
+    "unknowns_are_preserved": true
+  }
+}

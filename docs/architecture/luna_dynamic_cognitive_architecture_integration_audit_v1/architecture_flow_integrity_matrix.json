@@ -1,0 +1,234 @@
+{
+  "audit_id": "luna_dynamic_cognitive_architecture_integration_flow_integrity_audit_v1",
+  "audit_status": "ARCHITECTURE_AUDIT_CANDIDATE",
+  "flow_semantics": "logical responsibility and governed information flow; not an active Runtime call graph",
+  "required_logical_chain": [
+    "Reality",
+    "Field State",
+    "Observation / Evidence",
+    "Context Projection",
+    "Personal Cognitive Network",
+    "Intent",
+    "Causal Reasoning",
+    "A/B Route",
+    "Decision",
+    "Task",
+    "Runtime",
+    "Outcome",
+    "Experience Compression",
+    "Memory"
+  ],
+  "records": [
+    {
+      "flow_id": "FLOW-001",
+      "source": "Reality",
+      "target": "Field State",
+      "relationship": "Reality-facing information reaches authoritative Field State only through governed evidence admission and reduction.",
+      "owner": "Field State Reducer",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/canonical_architecture_freeze.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/field_context_projection_contract_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-002",
+      "source": "Field State",
+      "target": "Observation / Evidence",
+      "relationship": "Current Field exposes observation requirements and evidence scope; this is the feedback side of the Field/Observation loop and does not grant Observation Fact authority.",
+      "owner": "Observation Manager",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/future_development_boundary_rules.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-003",
+      "source": "Observation / Evidence",
+      "target": "Context Projection",
+      "relationship": "Provenance-bearing evidence contributes to an admitted, read-only current-world context; it does not become Fact by observation alone.",
+      "owner": "Field State Reducer",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/field_context_projection_contract_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-004",
+      "source": "Context Projection",
+      "target": "Personal Cognitive Network",
+      "relationship": "PCN consumes governed references and produces connection, activation, and contextual projection candidates without source mutation.",
+      "owner": "Personal Cognitive Network Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/canonical_architecture_freeze.md"
+      ]
+    },
+    {
+      "flow_id": "FLOW-005",
+      "source": "Personal Cognitive Network",
+      "target": "Intent",
+      "relationship": "Read-only PCN projections may support a context-bound Intent Candidate; they do not create Goal, Task, Decision, or Action authority.",
+      "owner": "Intent Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-006",
+      "source": "Intent",
+      "target": "Causal Reasoning",
+      "relationship": "Intent supplies a governed relevance and goal-binding context to revisable causal candidate formation; it does not predetermine a causal conclusion.",
+      "owner": "Causal Reasoning Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md"
+      ]
+    },
+    {
+      "flow_id": "FLOW-007",
+      "source": "Causal Reasoning",
+      "target": "A/B Route",
+      "relationship": "Evidence-bound causal and alternative-explanation candidates may enter current-Reality evaluation or future-simulation boundaries without becoming Fact.",
+      "owner": "A/B Route Boundary Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/canonical_architecture_freeze.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-008",
+      "source": "A/B Route",
+      "target": "Decision",
+      "relationship": "A Route retains current-Reality precedence while B Route contributes possible-future candidates; neither route owns final Decision selection.",
+      "owner": "Decision Arbitration",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/canonical_architecture_freeze.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/decision_input_contract_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-009",
+      "source": "Decision",
+      "target": "Task",
+      "relationship": "A governed selected Decision reference may initialize approved task lifecycle without transferring Decision ownership to Task Manager.",
+      "owner": "Task Manager",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-010",
+      "source": "Task",
+      "target": "Runtime",
+      "relationship": "A future admitted task handoff may reach Runtime only through Action Governance and Runtime admission; this audit creates no adapter or active path.",
+      "owner": "Legacy A3 Runtime Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-011",
+      "source": "Runtime",
+      "target": "Outcome",
+      "relationship": "Runtime may emit traceable execution, resource, failure, and outcome evidence without interpreting it or mutating Memory.",
+      "owner": "Legacy A3 Runtime Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-012",
+      "source": "Outcome",
+      "target": "Experience Compression",
+      "relationship": "Only validated outcomes, evaluation results, and traces may form Experience Candidates; Outcome alone is not Experience.",
+      "owner": "Experience Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_cognitive_action_outcome_evaluation_architecture_v1/experience_transition_model.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/experience_memory_projection_contract_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-013",
+      "source": "Experience Compression",
+      "target": "Memory",
+      "relationship": "Experience Compression produces Memory-admission candidates only; Memory retains admission, persistence, consolidation, activation, and retrieval authority.",
+      "owner": "Memory System",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json",
+        "docs/architecture/luna_cognitive_information_lifecycle_v1/memory_information_relation.json"
+      ]
+    }
+  ],
+  "supporting_edges": [
+    {
+      "flow_id": "FLOW-S01",
+      "source": "Reality",
+      "target": "Observation / Evidence",
+      "relationship": "Governed evidence ingress precedes Field reduction.",
+      "owner": "Observation Manager",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/future_development_boundary_rules.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-S02",
+      "source": "Observation / Evidence",
+      "target": "Field State",
+      "relationship": "Admitted observation evidence is reduced into a traceable Field State Candidate by the sole reducer writer.",
+      "owner": "Field State Reducer",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/field_context_projection_contract_candidate.json"
+      ]
+    },
+    {
+      "flow_id": "FLOW-S03",
+      "source": "Runtime",
+      "target": "Capability / Model",
+      "relationship": "A future admitted invocation request may reach governed capability computation without transferring cognitive authority.",
+      "owner": "Capability Governance",
+      "direction_valid": true,
+      "boundary_valid": true,
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m5_architecture_freeze_v1/architecture_dependency_freeze_map.json"
+      ]
+    }
+  ],
+  "breakpoints": [],
+  "reverse_dependency_conflicts": [],
+  "owner_conflicts": [],
+  "blocker_count": 0
+}

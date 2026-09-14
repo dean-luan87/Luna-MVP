@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Experience to Memory Transition",
+  "source":"Experience System",
+  "target":"Memory System",
+  "retention_checks":["repeatability","value","impact","relevance","reliability","conflict","duration","scope"],
+  "outputs":["memory_candidate","retention_candidate","rejection_candidate","unknown"],
+  "memory_scopes":["self_memory","social_memory","world_memory"],
+  "rules":{"experience_not_automatically_memory":true,"validation_required":true,"scope_owner_required":true,"current_reality_precedes":true}
+}

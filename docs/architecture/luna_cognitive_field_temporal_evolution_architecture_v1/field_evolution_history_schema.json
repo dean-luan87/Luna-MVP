@@ -1,0 +1,11 @@
+{
+  "schema_id": "field_evolution_history_candidate_v1",
+  "owner": "Field Temporal Evolution",
+  "fields": ["history_id", "field_identity_ref", "ordered_snapshot_refs", "transition_refs", "change_reasons", "timestamps", "source_evidence", "confidence", "unknowns"],
+  "ordered_history": true,
+  "history_is_memory": false,
+  "history_overwrites_reality": false,
+  "candidate_only": true,
+  "append_requires_evidence": true,
+  "memory_consolidation_externalized": true
+}

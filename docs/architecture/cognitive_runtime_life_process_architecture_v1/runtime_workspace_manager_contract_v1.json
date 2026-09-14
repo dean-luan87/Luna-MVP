@@ -1,0 +1,12 @@
+{
+  "contract_name": "Runtime Workspace Manager Contract v1",
+  "primary_workspace": {},
+  "background_workspaces": [],
+  "refresh_candidate": {},
+  "field_context": {},
+  "attention_state": {},
+  "workspace_manager_only_refreshes_context": true,
+  "workspace_manager_does_not_become_brain": true,
+  "workspace_manager_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,43 @@
+{
+    "artifact": "causal_to_decision_handoff_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Causal Governance",
+    "consumer_owner": "Decision Arbitration",
+    "handoff_kind": "CAUSAL_TO_DECISION_HANDOFF_CANDIDATE",
+    "required_payload": [
+        "handoff_id",
+        "causal_hypothesis_refs",
+        "supporting_evidence_refs",
+        "opposing_evidence_refs",
+        "uncertainty",
+        "provenance",
+        "alternative_hypothesis_refs",
+        "unresolved_conflict_refs",
+        "counterfactual_refs"
+    ],
+    "allowed_output": [
+        "causal candidate or result references",
+        "evidence refs",
+        "uncertainty",
+        "provenance",
+        "alternative hypotheses",
+        "unresolved conflicts"
+    ],
+    "forbidden_output": [
+        "final decision",
+        "action instruction",
+        "task",
+        "execution request",
+        "user-facing command"
+    ],
+    "guards": {
+        "candidate_only": true,
+        "decision_executed": false,
+        "action_triggered": false,
+        "task_created": false,
+        "source_owner_transfer": false,
+        "producer_mutates_decision": false,
+        "consumer_mutates_causal": false
+    },
+    "active_contract": false
+}

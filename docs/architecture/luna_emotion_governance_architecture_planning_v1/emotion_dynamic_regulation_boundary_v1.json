@@ -1,0 +1,20 @@
+{
+  "artifact": "emotion_dynamic_regulation_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "regulation_owner": "Dynamic Cognitive Regulation Governance",
+  "distinctions": [
+    "Emotion regulation != Dynamic Cognitive Regulation parameter mutation",
+    "Emotion State Candidate != Parameter Genome",
+    "Emotion recovery candidate != Regulation parameter activation"
+  ],
+  "allowed_interfaces": ["EmotionToRegulationInfluenceCandidate", "RegulationToEmotionContextCandidate", "emotion_volatility_reference", "emotion_intensity_reference"],
+  "frozen_rules": {
+    "emotion_may_consume_regulation_context": true,
+    "emotion_may_output_regulation_influence_reference": true,
+    "emotion_cannot_mutate_regulation_parameters": true,
+    "emotion_cannot_activate_parameter_genome": true,
+    "regulation_cannot_directly_mutate_emotion_state": true,
+    "candidate_only": true
+  },
+  "forbidden": ["parameter_write", "parameter_genome_activation", "regulation_authority_transfer", "emotion_as_regulation_command"]
+}

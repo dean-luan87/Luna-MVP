@@ -1,0 +1,13 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "session_id": "correction_session_plan_v1",
+    "candidate_only": true
+  }
+}

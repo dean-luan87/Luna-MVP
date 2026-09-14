@@ -1,0 +1,51 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_behavior_robustness_validation",
+  "scope": "candidate_only_behavior_robustness",
+  "cases": [
+    {
+      "case_id": "camera_contamination_visual_degradation",
+      "initial_self_context": {
+        "identity_reference": "Luna",
+        "visual_reliability": "normal"
+      },
+      "degradation_evidence": {
+        "camera_condition": "contaminated",
+        "visual_reliability_candidate": "reduced"
+      },
+      "expected_candidates": {
+        "self_capability_limitation": "visual_reliability_reduced",
+        "confidence_adjustment": "reduced",
+        "observation_adjustment_candidate": true,
+        "identity_continuity": "Identity Stable",
+        "capability_change": "Capability Changed"
+      },
+      "forbidden_outputs": [
+        "unchanged_visual_confidence",
+        "identity_replacement",
+        "automatic_self_model_mutation"
+      ],
+      "assertions": {
+        "capability_degradation_affects_cognition": true,
+        "self_identity_stability_preserved": true,
+        "self_update_remains_candidate_only": true
+      }
+    },
+    {
+      "case_id": "dark_environment_confidence_under_stress",
+      "world_context": {
+        "illumination": "low",
+        "evidence_coverage": "reduced"
+      },
+      "expected_candidates": {
+        "confidence": "lower_or_calibrated",
+        "unknowns_visible": true
+      },
+      "forbidden_outputs": ["confidence_inflation"],
+      "assertions": {
+        "stress_does_not_raise_unsupported_confidence": true,
+        "decision_remains_candidate_only": true
+      }
+    }
+  ]
+}

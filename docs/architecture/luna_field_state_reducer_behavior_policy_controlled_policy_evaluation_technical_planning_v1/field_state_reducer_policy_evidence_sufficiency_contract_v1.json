@@ -1,0 +1,27 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evidence Sufficiency Contract",
+    "statuses": [
+        "sufficient",
+        "insufficient",
+        "contradictory",
+        "missing_required_source",
+        "missing_provenance",
+        "stale_evidence",
+        "synthetic_only_not_production_fact"
+    ],
+    "minimum_event_count": 2,
+    "source_diversity_requirement": 2,
+    "required_provenance": [
+        "source_id",
+        "event_id",
+        "event_time",
+        "admission_id"
+    ],
+    "temporal_freshness_requirement": "event_age_within_policy_window",
+    "contradiction_handling": "preserve_conflict_or_mark_unresolved",
+    "no_evidence_fabrication": true,
+    "insufficient_evidence_default": "unresolved_or_no_state_change",
+    "fact_promotion_allowed": false,
+    "evidence_sufficiency_contract_complete": true
+}

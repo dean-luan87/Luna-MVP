@@ -1,0 +1,32 @@
+{
+  "schema_id": "luna_level1_field_cognition_golden_corpus_manifest_v1",
+  "corpus_id": "luna-level1-field-cognition-golden-corpus",
+  "corpus_version": "v1",
+  "owner": "Evaluation Governance",
+  "purpose": "Luna Field Cognition Level-1 evaluation",
+  "dataset_registry_ref": "luna-evaluation-world-observation-corpus-registry:v1",
+  "registration_status": "CATEGORIES_DECLARED_NO_DATASET_REGISTERED",
+  "category_count": 16,
+  "category_ids": [
+    "obvious_field",
+    "multiple_candidate_field",
+    "irrelevant_distractors",
+    "target_absent",
+    "missing_critical_information",
+    "partial_occlusion",
+    "conflicting_evidence",
+    "false_external_evidence",
+    "stale_evidence",
+    "wrong_attention_trap",
+    "capability_mismatch",
+    "reobservation_required",
+    "hypothesis_revision",
+    "premature_sufficiency_trap",
+    "stop_condition_test",
+    "environment_state_change"
+  ],
+  "registered_dataset_refs": [],
+  "registered_sample_refs": [],
+  "evaluation_only": true,
+  "runtime_allowed": false
+}

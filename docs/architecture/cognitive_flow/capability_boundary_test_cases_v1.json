@@ -1,0 +1,39 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_logic_validation",
+  "scope": "Evidence_to_Situation_Candidate_only",
+  "cases": [
+    {
+      "case_id": "distant_sign_low_light_occlusion",
+      "world_evidence": {
+        "target": "distant_sign",
+        "distance_m": 30,
+        "illumination": "weak",
+        "occlusion_percent": 50
+      },
+      "self_state": {
+        "camera_capability": "ordinary",
+        "ocr_capability": "ordinary"
+      },
+      "goal_context": {
+        "purpose": "obtain_sign_information"
+      },
+      "expected_situation_candidate": {
+        "text_evidence": "insufficient",
+        "pharmacy_identity": "unconfirmed",
+        "information_acquisition_adaptation_candidate": "approach_or_obtain_better_evidence"
+      },
+      "expected_confidence": "low_or_calibrated",
+      "forbidden_outputs": [
+        "confirmed_sign_text",
+        "confirmed_pharmacy_identity",
+        "capability_to_false_confidence"
+      ]
+    }
+  ],
+  "assertions": {
+    "capability_boundary_participates_in_situation": true,
+    "unsupported_identity_is_not_a_fact": true,
+    "decision_and_action_excluded": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T04:38:21.785876+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "registry_patch_readiness_planning_status": "byte_track_and_mobile_sam_planned_as_code_only_source_install_verified_code_readiness_only_no_mutation_no_weight_download",
+    "byte_track_planned_install_method": "source_component_code_only",
+    "mobile_sam_planned_install_method": "source_component_code_only_weight_excluding_checkout",
+    "both_readiness_level": "code_only_ready",
+    "recommended_next_phase": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+    "weight_download_phase_after_patch_post_review": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+    "transition_note": "PLANNING ONLY. The real CODE_ONLY_GO result (byte_track + mobile_sam both code-only install verified, 2/2, 0 deferred, 0 blocker, no weight download, mobile_sam weight-excluding checkout with 0 weight files, no global pollution) was audited and turned into a registry-patch plan and a readiness plan. byte_track is planned as source_component_code_only (import_root=yolox; build/C++/onnx risk known); mobile_sam is planned as source_component_code_only_weight_excluding_checkout (import_root=mobile_sam; committed weights/mobile_sam.pt known but NOT downloaded). BOTH reach code_only_ready ONLY — explicitly NOT weight / model / inference / runtime readiness. This phase did NOT mutate the registry, did NOT write registry files, did NOT install, download, import, load, infer, or enter runtime. Next phase: Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001 may actually patch the registry (still NO weight download); weight download (Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001) only opens AFTER the registry patch post-review, and requires a separate request + owner approval + source review + hash/storage plan + post-review."
+  },
+  "final_decision": "P1_SOURCE_CODE_ONLY_INSTALL_REGISTRY_PATCH_AND_READINESS_PLANNING_GO"
+}

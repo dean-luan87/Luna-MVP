@@ -1,0 +1,13 @@
+{
+  "relation_id": "self_regulation_drift_relation_v1",
+  "owner": "Self Regulation Function",
+  "source": "Cognitive Drift Detection",
+  "equation": "Drift=Distance(Self_t,Self_{t+n})",
+  "consumed_as": ["Drift Candidate", "Self Review Candidate", "Stabilization Candidate", "Rollback Candidate"],
+  "protected_dimensions": ["Identity", "Constitution", "Safety Boundary", "Ownership Boundary"],
+  "single_event_is_not_identity_drift": true,
+  "drift_does_not_modify_self": true,
+  "drift_does_not_modify_constitution": true,
+  "automatic_recovery": false,
+  "candidate_only": true
+}

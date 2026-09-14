@@ -1,0 +1,15 @@
+{
+  "title": "Self Limitation Awareness Contract v1",
+  "owner": "Cognitive Self Model / Limitation Awareness",
+  "inputs": ["limitation", "boundary", "confidence", "affected_area", "Unknown", "Failure Evidence"],
+  "output": "Current Limitation Awareness",
+  "schema": ["limitation_id", "limitation", "boundary", "confidence", "affected_area", "condition", "evidence_refs", "unknown", "review_status"],
+  "rules": {
+    "limitation_not_identity": true,
+    "boundary_explicit": true,
+    "uncertainty_explicit": true,
+    "no_overclaim": true,
+    "permission_not_inferred": true,
+    "review_required_for_update": true
+  }
+}

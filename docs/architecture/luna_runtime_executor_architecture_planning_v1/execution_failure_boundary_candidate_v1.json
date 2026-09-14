@@ -1,0 +1,27 @@
+{
+    "artifact": "execution_failure_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "failure_classes": [
+        "admission_failure",
+        "permission_failure",
+        "safety_failure",
+        "dependency_failure",
+        "adapter_failure",
+        "timeout_failure",
+        "partial_failure",
+        "unknown_failure"
+    ],
+    "required_fields": [
+        "failure_id",
+        "execution_id",
+        "failure_class",
+        "failure_stage",
+        "cause_candidate_refs",
+        "trace_ref"
+    ],
+    "rules": {
+        "failure_requires_trace": true,
+        "failure_not_auto_retry": true,
+        "failure_not_decision_rewrite": true
+    }
+}

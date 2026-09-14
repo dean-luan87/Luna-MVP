@@ -1,0 +1,18 @@
+{
+  "contract_name": "Field Memory Contract v1",
+  "memory_class": "Field Memory",
+  "field_reference": "field-example",
+  "field_context": [],
+  "observed_patterns": [],
+  "entrances": [],
+  "flow_patterns": [],
+  "recurring_constraints": [],
+  "supporting_experiences": [],
+  "field_pattern_candidate": true,
+  "memory_is_not_field_rule": true,
+  "memory_is_not_reality": true,
+  "current_reality_precedence": true,
+  "provenance_required": true,
+  "decay_required": true,
+  "unknowns_are_preserved": true
+}

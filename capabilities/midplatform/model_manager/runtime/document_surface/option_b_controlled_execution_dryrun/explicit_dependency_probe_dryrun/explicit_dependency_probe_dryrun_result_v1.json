@@ -1,0 +1,47 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-DryRun-v1-001",
+    "scope": "explicit_dependency_probe_dryrun_only",
+    "input_mode": "metadata_only_dryrun",
+    "candidate_records": [
+        {
+            "candidate_id": "A1_classical_helper_ok_candidate",
+            "dependency_category": "classical_helper",
+            "dependency_name": "unresolved_candidate_dependency",
+            "expected_version": "unknown",
+            "version_required": false,
+            "probe_strategy": "metadata_dryrun_only",
+            "probe_performed": false,
+            "dependency_present": "unknown",
+            "version_match": "unknown",
+            "import_performed": false,
+            "pip_performed": false,
+            "subprocess_performed": false,
+            "execution_allowed": false,
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "candidate_id": "C1_document_specific_surface_model_ok_for_preflight",
+            "dependency_category": "document_specific_surface_model",
+            "dependency_name": "unresolved_model_runtime_dependency",
+            "expected_version": "unknown",
+            "version_required": true,
+            "probe_strategy": "metadata_dryrun_only",
+            "probe_performed": false,
+            "dependency_present": "unknown",
+            "version_match": "unknown",
+            "model_weight_present": "unknown",
+            "license_cleared": false,
+            "hardware_admitted": false,
+            "import_performed": false,
+            "pip_performed": false,
+            "subprocess_performed": false,
+            "execution_allowed": false,
+            "candidate_only": true,
+            "not_fact": true
+        }
+    ],
+    "candidate_only": true,
+    "not_fact": true,
+    "final_decision": "EXPLICIT_DEPENDENCY_PROBE_DRYRUN_GO"
+}

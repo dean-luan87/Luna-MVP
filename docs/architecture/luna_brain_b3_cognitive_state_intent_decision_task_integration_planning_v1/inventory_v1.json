@@ -1,0 +1,35 @@
+{
+  "artifact": "b3_inventory_v1",
+  "phase": "Phase-Luna-Brain-B3-Cognitive-State-Intent-Decision-Task-Integration-Planning-v1-001",
+  "mode": "INVENTORY_AND_TECHNICAL_PLANNING_ONLY",
+  "canonical_owner_conclusion": "Existing owners are sufficient; no parallel Intent, Decision, Task, Action, or Runtime owner is required.",
+  "assets": [
+    {"classification": "A", "owner": "Intent Governance", "path": "capabilities/midplatform/core/intent_governance/", "reuse": ["PotentialIntentCandidateV1", "IntentCandidateV1", "IntentInteractionCandidateV1", "IntentGovernanceInputV1", "IntentGovernanceOutputV1", "Intent-to-Causal handoff"]},
+    {"classification": "A", "owner": "Decision Governance", "path": "capabilities/midplatform/core/decision_governance/", "reuse": ["DecisionGovernanceInputV1", "DecisionCandidateV1", "DecisionSelectionCandidateV1", "DecisionToActionTaskHandoffCandidateV1"]},
+    {"classification": "A", "owner": "Task Manager", "path": "capabilities/midplatform/core/task_manager_types_v1.py and task_manager/module/", "reuse": ["TaskCandidate", "TaskReadinessCandidate", "TaskPlanCandidate", "TaskStepCandidate", "TaskHandoffCandidate", "TaskManagerModuleRequestV1/ResultV1"]},
+    {"classification": "A", "owner": "Action Governance", "path": "capabilities/midplatform/core/action_governance/", "reuse": ["ActionCandidateV1", "ActionToTaskManagerHandoffCandidateV1", "ActionToRuntimeExecutorHandoffCandidateV1"]},
+    {"classification": "A", "owner": "Runtime Executor", "path": "capabilities/midplatform/core/runtime_executor/", "reuse": ["execution admission and runtime handoff boundary only"]},
+    {"classification": "A", "owner": "Intent Governance upstream integration", "path": "capabilities/midplatform/core/context_pcn_intent_mainline/", "reuse": ["reference-only Context/PCN-to-Intent input pattern"]},
+    {"classification": "C", "owner": "Legacy Decision Center", "path": "capabilities/midplatform/core/decision_center_*", "reuse": [], "reason": "Older task-facing types are imported by the legacy Task Manager skeleton and must not become a second Decision owner."},
+    {"classification": "D", "owner": "Action/Runtime execution", "path": "capabilities/midplatform/core/action_governance/ and runtime_executor/", "reuse": ["preserve downstream handoff contracts"], "reason": "Execution is outside B3."}
+  ],
+  "synthetic_assets": [
+    "intent_governance_fixture_v1.py",
+    "decision_governance_fixture_v1.py",
+    "task_manager_skeleton_v1.py",
+    "task_manager/module/",
+    "action_governance fixtures and validators"
+  ],
+  "planning_evidence": [
+    "docs/architecture/luna_intent_architecture_planning_v1/",
+    "docs/architecture/luna_decision_architecture_planning_v1/",
+    "docs/architecture/luna_cognitive_decision_arbitration_architecture_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/",
+    "docs/architecture/midplatform/LUNA_TASK_MANAGER_CONTRACT_V1.md"
+  ],
+  "blockers": [
+    "A future B3 implementation must define the narrow adapter from B2 Cognitive State/Flow references to IntentGovernanceInputV1 source_refs without changing Intent ownership.",
+    "DecisionToActionTaskHandoffCandidateV1 is a candidate handoff to Task Manager, not task creation; a future B3 adapter must use Task Manager readiness contracts explicitly.",
+    "No single canonical cross-owner B3 replay artifact was found; the implementation must validate structured B2 references before consumption."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schema_id": "ModelDeprecationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Lifecycle-Sandbox-v1-001",
+  "principle": "模型退役保留历史 trace，不删除认知记录。",
+  "deprecation_triggers": [
+    {"trigger_id": "replacement_available", "description": "有替代模型可用"},
+    {"trigger_id": "evaluation_degraded", "description": "持续评估下降"},
+    {"trigger_id": "policy_obsolete", "description": "策略淘汰"}
+  ],
+  "rules": [
+    {"rule_id": "preserve_lifecycle_trace", "description": "退役保留 lifecycle_trace"},
+    {"rule_id": "deprecated_not_routing_eligible", "description": "deprecated 不参与路由"},
+    {"rule_id": "deprecated_not_executable", "description": "deprecated 不可执行"},
+    {"rule_id": "no_auto_deprecation", "description": "不自动退役，须显式触发"}
+  ],
+  "boundary_flags": {
+    "preserve_trace_on_deprecation": true,
+    "no_auto_deprecation": true,
+    "sandbox_only": true
+  }
+}

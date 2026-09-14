@@ -1,0 +1,16 @@
+{
+  "model_id": "rapidocr_onnxruntime",
+  "model_family": "ocr_model_family",
+  "model_version_ref": "rapidocr_real_v1",
+  "model_origin": "external_open_source_ocr_model",
+  "license_ref": "apache_2_0",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "input_ref": "sample_p0_ocr_text_sign_image.png",
+  "output_schema_ref": "ocr_output_schema_v1",
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "text_evidence_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "commercial_allowed_under_apache_2_0_pending_verification",
+  "real_output": true,
+  "inference_scope": "p0_controlled_sample_only"
+}

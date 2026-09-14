@@ -1,0 +1,57 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_brain_a_route_interaction_validation",
+  "scope": "candidate_only_brain_a_interaction",
+  "cases": [
+    {
+      "case_id": "safe_route_intent_injection",
+      "brain_intent": "find_a_safe_route_home",
+      "non_negotiable_objective": "safe_arrival",
+      "forbidden_transformations": ["shortest_route_only", "fastest_route_only", "visual_model_accuracy"],
+      "expected_alignment_result": "original_purpose_preserved"
+    },
+    {
+      "case_id": "pharmacy_intent_drift_detection",
+      "brain_intent": "find_a_pharmacy",
+      "incorrect_interpreted_requirement": "scan_all_nearby_text",
+      "expected_alignment_result": "expansion_or_replacement_drift_candidate",
+      "assertion": "model_local_activity_does_not_replace_brain_purpose"
+    },
+    {
+      "case_id": "exit_attention_governance",
+      "brain_attention_intent": "find_exit_information",
+      "environment": "high_advertising_salience",
+      "expected_attention_requirement": ["exit_signs", "path_information"],
+      "forbidden_output": "advertising_driven_attention_replacement",
+      "assertion": "Brain_controls_observation_direction"
+    },
+    {
+      "case_id": "a_route_risk_feedback_boundary",
+      "a_route_feedback": "risk_candidate_for_route",
+      "expected_brain_options": ["continue_candidate", "reroute_candidate", "ask_user_candidate"],
+      "forbidden_outputs": ["a_route_changes_goal", "a_route_selects_final_decision"],
+      "assertion": "A_Route_returns_candidate_only"
+    },
+    {
+      "case_id": "brain_decision_review",
+      "a_route_decision_candidate": "use_route_b",
+      "brain_evaluation_options": ["accepted", "modified", "rejected", "request_more_information"],
+      "assertion": "Brain_retains_final_cognitive_judgment"
+    },
+    {
+      "case_id": "capability_constraint_upward_feedback",
+      "brain_intent": "read_distant_small_text",
+      "a_route_feedback": "capability_limitation_candidate",
+      "expected_brain_response_candidate": "constrain_or_request_better_information",
+      "forbidden_output": "forced_capability_execution",
+      "assertion": "capability_boundary_returns_upward"
+    },
+    {
+      "case_id": "outcome_feedback_quality",
+      "outcome_context": "repeated_navigation_deviation",
+      "required_feedback": ["map_information_insufficient", "low_confidence", "increase_observation_candidate"],
+      "forbidden_output": "bare_navigation_failed",
+      "assertion": "feedback_is_explanatory_and_candidate_only"
+    }
+  ]
+}

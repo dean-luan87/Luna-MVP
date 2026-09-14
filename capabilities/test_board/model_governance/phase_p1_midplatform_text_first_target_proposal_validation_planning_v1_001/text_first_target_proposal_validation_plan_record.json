@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "text_first_target_proposal_planning": true,
+  "record": {
+    "plan_ref": "capabilities/midplatform/model_test_lens/target_proposal/text_first_target_proposal_validation_plan_v1.md"
+  }
+}

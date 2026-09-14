@@ -1,0 +1,665 @@
+{
+  "manifest_id": "preinstall_manifest_v1",
+  "preinstall_manifest_complete": true,
+  "entries": [
+    {
+      "model_project_id": "SAM2",
+      "display_name": "SAM 2",
+      "model_room": "visual_perception_room",
+      "operation_node_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_candidate_outputs": [
+        "MaskObservationCandidate",
+        "TrackObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/SAM2",
+      "docs_url_placeholder": "https://docs.placeholder.luna/SAM2",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "await_capability_review",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Grounded_SAM2",
+      "display_name": "Grounded SAM 2",
+      "model_room": "visual_perception_room",
+      "operation_node_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_candidate_outputs": [
+        "ObjectObservationCandidate",
+        "MaskObservationCandidate",
+        "TrackObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Grounded_SAM2",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Grounded_SAM2",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "near_term_candidate_pending_review",
+      "reason_for_status": "open_vocab_visual",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "ByteTrack",
+      "display_name": "ByteTrack",
+      "model_room": "visual_perception_room",
+      "operation_node_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_candidate_outputs": [
+        "TrackObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/ByteTrack",
+      "docs_url_placeholder": "https://docs.placeholder.luna/ByteTrack",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "entity_continuity_reference",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "YOLO_lightweight",
+      "display_name": "YOLO Lightweight",
+      "model_room": "visual_perception_room",
+      "operation_node_refs": [
+        "visual_object_segmentation_tracking"
+      ],
+      "expected_candidate_outputs": [
+        "ObjectObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/YOLO_lightweight",
+      "docs_url_placeholder": "https://docs.placeholder.luna/YOLO_lightweight",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "adapter_placeholder_only",
+      "reason_for_status": "lightweight_detector_placeholder",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "PaddleOCR",
+      "display_name": "PaddleOCR",
+      "model_room": "ocr_text_perception_room",
+      "operation_node_refs": [
+        "ocr_text_perception"
+      ],
+      "expected_candidate_outputs": [
+        "TextObservationCandidate",
+        "TextRegionCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/PaddleOCR",
+      "docs_url_placeholder": "https://docs.placeholder.luna/PaddleOCR",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "near_term_candidate_pending_review",
+      "reason_for_status": "ocr_primary_candidate",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "RapidOCR",
+      "display_name": "RapidOCR",
+      "model_room": "ocr_text_perception_room",
+      "operation_node_refs": [
+        "ocr_text_perception"
+      ],
+      "expected_candidate_outputs": [
+        "TextObservationCandidate",
+        "TextRegionCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/RapidOCR",
+      "docs_url_placeholder": "https://docs.placeholder.luna/RapidOCR",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "lightweight_ocr_alternative",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Whisper",
+      "display_name": "Whisper",
+      "model_room": "audio_speech_perception_room",
+      "operation_node_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_candidate_outputs": [
+        "SpeechObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Whisper",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Whisper",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "asr_reference",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "faster_whisper",
+      "display_name": "faster-whisper",
+      "model_room": "audio_speech_perception_room",
+      "operation_node_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_candidate_outputs": [
+        "SpeechObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/faster_whisper",
+      "docs_url_placeholder": "https://docs.placeholder.luna/faster_whisper",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "asr_edge_candidate",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "SenseVoice",
+      "display_name": "SenseVoice",
+      "model_room": "audio_speech_perception_room",
+      "operation_node_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_candidate_outputs": [
+        "SpeechObservationCandidate",
+        "IntentHintCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/SenseVoice",
+      "docs_url_placeholder": "https://docs.placeholder.luna/SenseVoice",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "chinese_asr_candidate",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "pyannote_audio",
+      "display_name": "pyannote.audio",
+      "model_room": "audio_speech_perception_room",
+      "operation_node_refs": [
+        "audio_speech_speaker"
+      ],
+      "expected_candidate_outputs": [
+        "SpeakerObservationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/pyannote_audio",
+      "docs_url_placeholder": "https://docs.placeholder.luna/pyannote_audio",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "document_review_pending",
+      "reason_for_status": "speaker_diarization",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Kimera",
+      "display_name": "Kimera",
+      "model_room": "spatial_slam_scene_graph_room",
+      "operation_node_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SpatialObservationCandidate",
+        "SceneGraphReferenceCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Kimera",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Kimera",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "structure_reference_not_runtime",
+      "hardware_risk": "high",
+      "integration_risk": "high",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Hydra",
+      "display_name": "Hydra",
+      "model_room": "spatial_slam_scene_graph_room",
+      "operation_node_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SceneGraphReferenceCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Hydra",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Hydra",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "field_model_structure_reference",
+      "hardware_risk": "high",
+      "integration_risk": "high",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "HOV_SG",
+      "display_name": "HOV-SG",
+      "model_room": "spatial_slam_scene_graph_room",
+      "operation_node_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SceneGraphReferenceCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/HOV_SG",
+      "docs_url_placeholder": "https://docs.placeholder.luna/HOV_SG",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "long_term_reference",
+      "hardware_risk": "high",
+      "integration_risk": "high",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Open3DSG",
+      "display_name": "Open3DSG",
+      "model_room": "spatial_slam_scene_graph_room",
+      "operation_node_refs": [
+        "spatial_slam_dynamic_scene_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SceneRelationCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Open3DSG",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Open3DSG",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": true,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "long_term_reference",
+      "hardware_risk": "high",
+      "integration_risk": "high",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Esper",
+      "display_name": "Esper",
+      "model_room": "ecs_entity_component_room",
+      "operation_node_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_candidate_outputs": [
+        "EntityComponentCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Esper",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Esper",
+      "license_status": "pending_review",
+      "weights_required": false,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "ecs_reference_dataclass_first",
+      "hardware_risk": "low",
+      "integration_risk": "low",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Flecs",
+      "display_name": "Flecs",
+      "model_room": "ecs_entity_component_room",
+      "operation_node_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_candidate_outputs": [
+        "EntityComponentCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Flecs",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Flecs",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "long_term_performance_reference",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "NetworkX",
+      "display_name": "NetworkX",
+      "model_room": "semantic_event_graph_room",
+      "operation_node_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SemanticEventCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/NetworkX",
+      "docs_url_placeholder": "https://docs.placeholder.luna/NetworkX",
+      "license_status": "pending_review",
+      "weights_required": false,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "directory_only",
+      "reason_for_status": "lightweight_graph_reference",
+      "hardware_risk": "low",
+      "integration_risk": "low",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "RDFLib",
+      "display_name": "RDFLib",
+      "model_room": "semantic_event_graph_room",
+      "operation_node_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SemanticEventCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/RDFLib",
+      "docs_url_placeholder": "https://docs.placeholder.luna/RDFLib",
+      "license_status": "pending_review",
+      "weights_required": false,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "reference_only_now",
+      "reason_for_status": "kg_standard_reference",
+      "hardware_risk": "low",
+      "integration_risk": "low",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Neo4j",
+      "display_name": "Neo4j",
+      "model_room": "semantic_event_graph_room",
+      "operation_node_refs": [
+        "lightweight_semantic_event_graph"
+      ],
+      "expected_candidate_outputs": [
+        "SemanticEventCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Neo4j",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Neo4j",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "deferred_due_to_runtime_cost",
+      "reason_for_status": "no_database_now",
+      "hardware_risk": "medium",
+      "integration_risk": "high",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Luna_dataclass_ECS_skeleton",
+      "display_name": "Luna ECS Skeleton",
+      "model_room": "ecs_entity_component_room",
+      "operation_node_refs": [
+        "ecs_entity_component"
+      ],
+      "expected_candidate_outputs": [
+        "EntityComponentCandidate",
+        "AttributeStateCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Luna_dataclass_ECS_skeleton",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Luna_dataclass_ECS_skeleton",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "adapter_placeholder_only",
+      "reason_for_status": "self_developed_primary",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "Luna_geometry_simulator",
+      "display_name": "Luna Geometry Simulator",
+      "model_room": "field_simulation_room",
+      "operation_node_refs": [
+        "field_simulation"
+      ],
+      "expected_candidate_outputs": [
+        "FieldSimulationResultCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/Luna_geometry_simulator",
+      "docs_url_placeholder": "https://docs.placeholder.luna/Luna_geometry_simulator",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "adapter_placeholder_only",
+      "reason_for_status": "self_developed_primary",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    },
+    {
+      "model_project_id": "structured_LLM_reasoning",
+      "display_name": "Structured LLM Reasoning",
+      "model_room": "midplatform_reasoning_room",
+      "operation_node_refs": [
+        "midplatform_reasoning"
+      ],
+      "expected_candidate_outputs": [
+        "MidplatformReasoningCandidate"
+      ],
+      "source_url_placeholder": "https://placeholder.luna/structured_LLM_reasoning",
+      "docs_url_placeholder": "https://docs.placeholder.luna/structured_LLM_reasoning",
+      "license_status": "pending_review",
+      "weights_required": true,
+      "weights_downloaded": false,
+      "download_authorized": false,
+      "runtime_build_required": false,
+      "runtime_build_completed": false,
+      "inference_ready": false,
+      "adapter_required": true,
+      "adapter_placeholder_created": true,
+      "capability_review_required": true,
+      "capability_review_status": "pending",
+      "recommended_preinstall_status": "blocked_until_download_authorized",
+      "reason_for_status": "model_selection_not_allowed",
+      "hardware_risk": "medium",
+      "integration_risk": "medium",
+      "notes": "preinstall_plan_only_no_download"
+    }
+  ],
+  "phase": "Phase-Midplatform-Field-First-Core-Model-Preinstall-Plan-and-Cache-Manifest-Prepare-v1-001",
+  "scope": "field_first_core_model_preinstall_plan_only",
+  "source_chain": "field_first_core_model_preinstall_plan_v1",
+  "governance_constraints_ref": "migration_governance_development_constraints_v1",
+  "foundation_id": "midplatform_task_manager_foundation_v1",
+  "runtime_status": "not_enabled",
+  "field_first_core_model_preinstall_plan_only": true,
+  "midplatform_overall_status": "construction_consolidation",
+  "foundation_consolidation_not_final_midplatform_completion": true,
+  "no_fragmentary_phase_expansion": true,
+  "integration_test_executed": false,
+  "output_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_model_preinstall_plan_v1_smoke_v0",
+  "ideal_operation_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_ideal_operation_mechanism_and_model_requirement_mapping_v1_smoke_v0"
+}

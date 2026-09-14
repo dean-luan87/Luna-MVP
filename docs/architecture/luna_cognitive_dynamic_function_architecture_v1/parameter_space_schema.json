@@ -1,0 +1,14 @@
+{
+  "schema_id": "cognitive_parameter_space_v1",
+  "status": "architecture_only",
+  "dimensions": ["perception", "cognition", "memory", "decision", "resource_risk"],
+  "parameter_required_fields": ["parameter_id", "name", "dimension", "value", "range", "unit", "source", "mutable", "risk_level", "validation_metric", "rollback_ref"],
+  "allowed_examples": ["risk_sensitivity", "memory_decay_rate", "exploration_threshold", "context_weight", "uncertainty_tolerance"],
+  "bounded_values_required": true,
+  "parameter_is_not_identity": true,
+  "parameter_is_not_constitution": true,
+  "parameter_is_not_decision_authority": true,
+  "automatic_tuning": false,
+  "runtime": false,
+  "candidate_only": true
+}

@@ -1,0 +1,118 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Eligibility Matrix",
+    "global_simple_average_default": false,
+    "eligibility_matrix": [
+        {
+            "policy_id": "latest_valid_event",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "highest_confidence_valid_event",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "multi_event_consensus",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "negative_event_override",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "revocation_override",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "expiration_degrade",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "temporary_overlay_separation",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "conflict_preservation",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "insufficient_evidence_unresolved",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "explicit_owner_override_candidate",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        },
+        {
+            "policy_id": "no_state_change",
+            "admitted_only": true,
+            "direct_state_write_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false,
+            "provider_recall_allowed": false,
+            "external_lookup_allowed": false,
+            "real_execution": false
+        }
+    ],
+    "eligibility_matrix_complete": true
+}

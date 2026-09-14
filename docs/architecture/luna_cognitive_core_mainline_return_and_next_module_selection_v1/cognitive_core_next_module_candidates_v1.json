@@ -1,0 +1,174 @@
+{
+    "artifact": "cognitive_core_next_module_candidates_v1",
+    "candidate_modules": [
+        {
+            "candidate_id": "C01",
+            "module_name": "Field State / Field Cognition Mainline Module",
+            "current_assets": [
+                "field_state_reducer core skeleton and behavior_policy assets",
+                "controlled dryrun GO evidence"
+            ],
+            "completion_level": "skeleton_plus_dryrun",
+            "duplicate_implementation_risk": "medium",
+            "cognitive_mainline_relation": "high",
+            "real_runtime_dependency": "medium",
+            "core_differentiation_gain": "high",
+            "priority": "P0",
+            "should_do_now": false,
+            "why_not_now": "still blocked by policy-evaluation and non-runtime reduction closure",
+            "stop_condition": "field policy evaluation technical plan complete and no runtime mutation boundary preserved"
+        },
+        {
+            "candidate_id": "C02",
+            "module_name": "Context -> PCN -> Intent Pre-Cognitive Mainline Module",
+            "current_assets": [
+                "Context closure with context->PCN handoff candidate",
+                "PCN closure with PCN->Intent handoff candidate",
+                "Intent Governance GO implementation"
+            ],
+            "completion_level": "closure_plus_go_components",
+            "duplicate_implementation_risk": "low",
+            "cognitive_mainline_relation": "very_high",
+            "real_runtime_dependency": "low",
+            "core_differentiation_gain": "very_high",
+            "priority": "P0",
+            "should_do_now": true,
+            "why_now": "unblocks front-half cognition mainline with minimal runtime dependency and strongest core identity value",
+            "stop_condition": "pre-cognitive handoff chain contracts and controlled integration evidence complete without owner/mutation boundary violations"
+        },
+        {
+            "candidate_id": "C03",
+            "module_name": "Attention / Hypothesis / Current World State Chain Module",
+            "current_assets": [
+                "hypothesis-belief architecture package",
+                "global state representation package"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "medium",
+            "cognitive_mainline_relation": "high",
+            "real_runtime_dependency": "low",
+            "core_differentiation_gain": "high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "missing module-level closure and controlled implementation evidence",
+            "stop_condition": "architecture-to-module closure contract and owner boundary freeze complete"
+        },
+        {
+            "candidate_id": "C04",
+            "module_name": "Learning / Experience Return Loop Module",
+            "current_assets": [
+                "learning architecture contracts and go/no-go"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "medium",
+            "cognitive_mainline_relation": "high",
+            "real_runtime_dependency": "low",
+            "core_differentiation_gain": "high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "currently no controlled module implementation baseline",
+            "stop_condition": "learning candidate lifecycle closure and governance admission boundaries complete"
+        },
+        {
+            "candidate_id": "C05",
+            "module_name": "Dynamic Cognitive Function Model Module",
+            "current_assets": [
+                "dynamic function architecture",
+                "self-adaptive integration architecture"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "high",
+            "cognitive_mainline_relation": "high",
+            "real_runtime_dependency": "medium",
+            "core_differentiation_gain": "very_high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "large conceptual surface, high owner-boundary risk, insufficient closure granularity",
+            "stop_condition": "single-owner execution boundary and parameter governance admission contracts stabilized"
+        },
+        {
+            "candidate_id": "C06",
+            "module_name": "Cognitive State Vector / Self Regulation Module",
+            "current_assets": [
+                "state machine architecture",
+                "self regulation architecture"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "medium",
+            "cognitive_mainline_relation": "high",
+            "real_runtime_dependency": "medium",
+            "core_differentiation_gain": "high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "needs upstream attention/hypothesis/global-state chain module baseline first",
+            "stop_condition": "state ownership and non-runtime transition boundaries pass controlled closure"
+        },
+        {
+            "candidate_id": "C07",
+            "module_name": "Cognitive Parameter Governance Module",
+            "current_assets": [
+                "parameter and genome schemas in dynamic architecture assets"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "high",
+            "cognitive_mainline_relation": "medium",
+            "real_runtime_dependency": "medium",
+            "core_differentiation_gain": "high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "parameter authority and auto-tuning prohibitions not yet module-closed",
+            "stop_condition": "parameter mutation governance and review loop contracts closed"
+        },
+        {
+            "candidate_id": "C08",
+            "module_name": "Memory/Experience Formal Integration Module",
+            "current_assets": [
+                "memory cognitive architecture package",
+                "learning-memory interfaces"
+            ],
+            "completion_level": "architecture_only",
+            "duplicate_implementation_risk": "high",
+            "cognitive_mainline_relation": "very_high",
+            "real_runtime_dependency": "medium",
+            "core_differentiation_gain": "very_high",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "still lacks controlled integration with current cognition execution chain",
+            "stop_condition": "candidate-only memory ingress/egress and provenance coupling closure complete"
+        },
+        {
+            "candidate_id": "C09",
+            "module_name": "Task Manager Formal Integration Module",
+            "current_assets": [
+                "task manager core module code",
+                "large midplatform task manager contract/roadmap corpus"
+            ],
+            "completion_level": "foundation_consolidation",
+            "duplicate_implementation_risk": "high",
+            "cognitive_mainline_relation": "medium",
+            "real_runtime_dependency": "high",
+            "core_differentiation_gain": "medium",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "runtime-adjacent and document sprawl risk before cognitive upstream chain convergence",
+            "stop_condition": "single canonical contract and non-bypass integration boundary frozen"
+        },
+        {
+            "candidate_id": "C10",
+            "module_name": "Diagnostics / Maintenance Formal Integration Module",
+            "current_assets": [
+                "diagnostics-maintenance boundary planning contract",
+                "system health governance baseline"
+            ],
+            "completion_level": "boundary_only",
+            "duplicate_implementation_risk": "medium",
+            "cognitive_mainline_relation": "medium",
+            "real_runtime_dependency": "high",
+            "core_differentiation_gain": "medium",
+            "priority": "P1",
+            "should_do_now": false,
+            "why_not_now": "requires stabilized task/runtime integration surfaces first",
+            "stop_condition": "diagnostics owner-preserved candidate pipeline verified end-to-end"
+        }
+    ]
+}

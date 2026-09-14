@@ -1,0 +1,9 @@
+{
+  "artifact": "b3_task_manager_handoff_contract_v1",
+  "owner": "Task Manager",
+  "input": "DecisionToActionTaskHandoffCandidateV1",
+  "outputs": ["TaskReadinessCandidate", "TaskCandidate"],
+  "readiness": ["READY", "BLOCKED", "HOLD", "REQUIRES_OBSERVATION", "PAUSED"],
+  "guards": ["fact_status=not_fact", "task_execution=false", "executed_step=false", "direct_mount=false", "no scheduler", "no runtime dispatch", "no user output side effect"],
+  "boundary": "TaskCandidate existence does not imply admission, scheduling, running, completion, Action, or Runtime execution."
+}

@@ -1,0 +1,154 @@
+{
+    "review_version": "v1",
+    "capability_id": "luna.field_state_read_model",
+    "module_id": "luna.midplatform.field_state_read_model",
+    "review_status": "governance_admission_candidate",
+    "formal_l1_admission_executed": false,
+    "l0_modified": false,
+    "l1_candidates": [
+        {
+            "rule_id": "L1-CANDIDATE-01",
+            "rule": "Mutation authority must be singular.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "controlled_skeleton",
+                "contract_dryrun",
+                "controlled_runtime",
+                "module_integration"
+            ],
+            "rationale": "Cross-module authority boundary between Reducer and Read Model is explicit and repeatedly verified."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-02",
+            "rule": "Read and write authority must be separated.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "controlled_skeleton",
+                "controlled_runtime",
+                "module_integration"
+            ],
+            "rationale": "Implementation-independent authority separation is reusable across modules."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-03",
+            "rule": "Predictable rejection and unexpected exception must be routed separately.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "contract_dryrun",
+                "controlled_runtime"
+            ],
+            "rationale": "The rule is implementation-independent and has deterministic negative-path evidence."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-04",
+            "rule": "Rejection paths must not fabricate a normal business result.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "contract_dryrun",
+                "controlled_runtime"
+            ],
+            "rationale": "The rule prevents semantic falsification and can be reused across modules."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-05",
+            "rule": "Candidate outputs must preserve provenance, trace, and version.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "controlled_skeleton",
+                "contract_dryrun",
+                "controlled_runtime"
+            ],
+            "rationale": "Preservation is verified across three phases and does not depend on internal structure."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-06",
+            "rule": "Runtime boundary flags must be explicit.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "controlled_skeleton",
+                "contract_dryrun",
+                "controlled_runtime",
+                "module_integration"
+            ],
+            "rationale": "Explicit boundary evidence is reusable for controlled runtimes."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-07",
+            "rule": "A verifier must not implicitly repeat runner execution.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "module_integration"
+            ],
+            "rationale": "Preserves execution authority and report integrity; formal admission remains pending cross-module governance review."
+        },
+        {
+            "rule_id": "L1-CANDIDATE-08",
+            "rule": "Module integration requires skeleton, contract dry-run, and controlled runtime evidence first.",
+            "classification": "recommended_for_l1_admission_candidate",
+            "evidence": [
+                "controlled_skeleton",
+                "contract_dryrun",
+                "controlled_runtime",
+                "module_integration"
+            ],
+            "rationale": "The evidence cadence is module-independent and verified by the integration chain."
+        }
+    ],
+    "module_only_rules": [
+        {
+            "rule_id": "MODULE-01",
+            "rule": "Reducer is the only Field State mutation authority.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-02",
+            "rule": "Read Model only owns read/query/projection authority.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-03",
+            "rule": "Read Model must not write state or admit facts.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-04",
+            "rule": "Read Model six-state priority remains fixed.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-05",
+            "rule": "Read Model runtime five-state set remains fixed.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-06",
+            "rule": "Predictable Read Model contract rejection must not enter contained-error routing.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-07",
+            "rule": "Read Model rejection path must not call its read API to fabricate a result.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-08",
+            "rule": "Read Model trace/replay/version/provenance fields must be preserved.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-09",
+            "rule": "Read Model input objects must remain immutable.",
+            "classification": "module_level"
+        },
+        {
+            "rule_id": "MODULE-10",
+            "rule": "Read Model candidate outputs must not be upgraded into facts.",
+            "classification": "module_level"
+        }
+    ],
+    "deferred_rules": [],
+    "deferred_classification_note": "No existing candidate is unclassified. L1 recommendations remain candidates and require later authorized cross-module admission; no protocol text is changed here.",
+    "source_candidate_document": "docs/architecture/field_kernel/field_state_read_model_governance_rule_candidates_v1.md",
+    "protocol_governance_ref": "docs/architecture/LUNA_PROTOCOL_GOVERNANCE_V0.md",
+    "reviewed_at": "2026-07-20"
+}

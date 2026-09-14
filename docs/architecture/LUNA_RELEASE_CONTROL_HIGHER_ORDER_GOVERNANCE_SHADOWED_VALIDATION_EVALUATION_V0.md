@@ -1,0 +1,119 @@
+# Phase-Next-173 — Higher-Order Governance Shadowed Validation Evaluation v0（短文件名）
+
+**文件**：`docs/architecture/LUNA_RELEASE_CONTROL_HIGHER_ORDER_GOVERNANCE_SHADOWED_VALIDATION_EVALUATION_V0.md`  
+**阶段**：Phase-Next-173  
+**性质**：shadowed / guarded / evaluation-first（验证与评估层）  
+**对象**：Phase-Next-172 higher-order governance runtime  
+**约束继承**：151 / 155 / 158 / 159 / 162 / 163 / 166 / 167 / 170 / 171（不得改写）
+
+---
+
+## 0) 本阶段只做一件事（写死）
+
+对 Phase-Next-172 的 higher-order governance 执行器做 shadowed validation / evaluation 闭环，回答：
+
+1. 是否只在显式入口下生效（non-default）
+2. 是否只有 lower-order governance 已 legal complete 且 closed-safe 后才能进入 higher-order governance
+3. 是否只会输出白名单 higher-order governance outcome
+4. forbidden higher-order governance probe 是否都会被真正阻断
+5. governance 后是否始终保持 closed-safe state
+6. `allow_next_governance_preparation_under_same_guardrails` 是否始终不等于自动进入下一阶段 runtime
+7. 是否具备进入下一阶段（higher-order go/no-go pack）的资格
+
+---
+
+## 1) 严格边界（写死）
+
+禁止：
+
+- 不新增更大真实能力
+- 不进入 full controlled trial
+- 不开启默认路径
+- 不扩大真实 side effects 面
+- 不修改 171 definition
+- 不扩张 172 能力边界（173 不是重构）
+
+允许：
+
+- 新增 shadowed validation harness / evaluation 工具
+- 新增 validation docs / test matrix
+- 只读 trace/telemetry 汇总（不改变运行行为）
+
+---
+
+## 2) 文件名长度限制与等价承载声明（写死）
+
+由于 macOS 文件名长度限制，173 的两个产物采用短文件名承载，功能等价于长命名要求：
+
+### 2.1 主验证工具
+
+- **主工具（短文件名）**：`tools/validate_release_control_higher_order_governance_shadowed_validation_evaluation_v0.py`
+- **等价长命名（不落盘，仅声明）**：  
+  `tools/validate_navigation_governance_action_release_control_first_live_guarded_implementation_minimal_real_effect_live_implementation_controlled_trial_preparation_first_controlled_short_window_real_trial_higher_order_governance_shadowed_validation_evaluation_v0.py`
+
+### 2.2 Evaluation 文档（本文件）
+
+- **Evaluation 文档（短文件名）**：`docs/architecture/LUNA_RELEASE_CONTROL_HIGHER_ORDER_GOVERNANCE_SHADOWED_VALIDATION_EVALUATION_V0.md`
+- **等价长命名（不落盘，仅声明）**：  
+  `docs/architecture/LUNA_NAVIGATION_GOVERNANCE_ACTION_RELEASE_CONTROL_FIRST_LIVE_GUARDED_IMPLEMENTATION_MINIMAL_REAL_EFFECT_LIVE_IMPLEMENTATION_CONTROLLED_TRIAL_PREPARATION_FIRST_CONTROLLED_SHORT_WINDOW_REAL_TRIAL_HIGHER_ORDER_GOVERNANCE_SHADOWED_VALIDATION_EVALUATION_V0.md`
+
+### 2.3 Test Matrix
+
+- **Test Matrix（短文件名）**：`docs/architecture/LUNA_RELEASE_CONTROL_HIGHER_ORDER_GOVERNANCE_SHADOWED_VALIDATION_TEST_MATRIX_V0.md`
+- **等价长命名（不落盘，仅声明）**：  
+  `docs/architecture/LUNA_NAVIGATION_GOVERNANCE_ACTION_RELEASE_CONTROL_FIRST_LIVE_GUARDED_IMPLEMENTATION_MINIMAL_REAL_EFFECT_LIVE_IMPLEMENTATION_CONTROLLED_TRIAL_PREPARATION_FIRST_CONTROLLED_SHORT_WINDOW_REAL_TRIAL_HIGHER_ORDER_GOVERNANCE_SHADOWED_VALIDATION_TEST_MATRIX_V0.md`
+
+---
+
+## 3) Validation 目标边界（按 171 维度冻结口径）
+
+必须验证并给出结构化结果：
+
+- **entry_gate_integrity**：显式入口；默认路径不触发
+- **lower_order_prerequisite_integrity**：lower-order legal complete 前不得进入
+- **allowed_higher_order_governance_outcome_integrity**：只能输出 allowlist
+- **forbidden_higher_order_governance_block_integrity**：forbidden probes 必须阻断
+- **closed_safe_state_integrity**：治理前后 closed-safe 始终成立
+- **no_next_runtime_integrity**：`allows_next_runtime_now=false` 写死
+
+---
+
+## 4) go / conditional_go / no_go（仅 173 评估结论，不替代正式治理链）
+
+### go
+
+- entry / prerequisite / allowlist / blocking / closed-safe / no-next-runtime 全部成立
+- 非法路径均被正确拦截
+
+### conditional_go
+
+- 核心边界成立
+- 但 trace/readability/reason codes 仍需补强（不影响安全成立）
+
+### no_go
+
+任一出现即 no_go：
+
+- 无 legal lower-order completion 却进入 higher-order governance
+- 输出 forbidden outcome
+- governance 后破坏 closed-safe state
+- 出现隐式 reopen / retry runtime / widen / long-running / default-on
+- `allow_next_governance_preparation_under_same_guardrails` 变成自动进入下一阶段 runtime
+- default path 存在误触发风险
+
+---
+
+## 5) 本阶段验收标准
+
+输出：
+
+- 新增/修改文件清单
+- 覆盖场景列表（A–M）
+- 结构化 evaluation 报告（含 overall_evaluation 与 recommended_next_step）
+
+并明确声明：
+
+- 默认路径仍未开启
+- 本阶段未进入 full controlled trial
+- 本阶段没有扩大真实 side effects 面
+

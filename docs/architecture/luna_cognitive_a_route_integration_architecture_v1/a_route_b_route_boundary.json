@@ -1,0 +1,19 @@
+{
+  "contract_id": "a_route_b_route_boundary_v1",
+  "a_route": {
+    "purpose": "current_reality_cognition_and_feedback",
+    "flow": ["Reality", "Field", "Understanding", "Decision", "Action", "Outcome", "Learning"],
+    "source_of_truth": "Current Reality and Validated Evidence"
+  },
+  "b_route": {
+    "purpose": "future_simulation_and_counterfactual_exploration",
+    "status": "future_interface_only",
+    "runtime": false,
+    "cannot_override_current_reality": true,
+    "cannot_override_current_decision": true,
+    "cannot_directly_modify_self": true,
+    "cannot_directly_modify_learning": true
+  },
+  "cross_route_interface": "B Route may return Simulation Candidate to A Route Governance",
+  "route_mixing": false
+}

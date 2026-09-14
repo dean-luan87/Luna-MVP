@@ -1,0 +1,29 @@
+{
+  "frame_seq": 89,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R89_advisory_candidate_resume_fragility_global_stall_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.24,
+  "task_resume_target": "resume_advisory_positive_m16_route",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.6-A：明确冲 SF-1′ advisory 正样本，多轮恢复后全局仍停滞",
+  "object_search_flow_type": "advisory_sf1_prime_positive_flow",
+  "object_search_step_index": 4,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "advisory_sf1_prime_positive_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 18, 78, 90], "conf": 0.83 },
+    { "label": "cup", "bbox": [160, 38, 230, 105], "conf": 0.62 }
+  ]
+}

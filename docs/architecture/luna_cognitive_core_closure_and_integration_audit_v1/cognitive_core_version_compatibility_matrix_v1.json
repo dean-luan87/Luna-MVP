@@ -1,0 +1,49 @@
+{
+    "artifact": "cognitive_core_version_compatibility_matrix_v1",
+    "overall_status": "COMPATIBLE_WITH_ADAPTER",
+    "rules": {
+        "no_silent_coercion": true,
+        "no_implicit_enum_conversion": true,
+        "no_missing_ref_fabrication": true,
+        "no_version_bypass": true
+    },
+    "handoff_versions": [
+        {
+            "handoff_id": "H01",
+            "classification": "compatible_with_adapter",
+            "notes": "owner token normalization only; no semantic rewrite"
+        },
+        {
+            "handoff_id": "H02",
+            "classification": "compatible",
+            "notes": "candidate-v1 handoff preserved"
+        },
+        {
+            "handoff_id": "H03",
+            "classification": "compatible",
+            "notes": "Intent refs satisfy State Formation input contract"
+        },
+        {
+            "handoff_id": "H04",
+            "classification": "compatible",
+            "notes": "State Vector candidate is explicit source-of-truth input for Dynamic Regulation"
+        },
+        {
+            "handoff_id": "H05",
+            "classification": "compatible_with_adapter",
+            "notes": "Flow consumes regulation_candidate_ref rather than a separately frozen H05 envelope"
+        },
+        {
+            "handoff_id": "H06",
+            "classification": "compatible_with_adapter",
+            "notes": "Flow lifecycle package and Memory input share trace/cycle/source refs but no standalone envelope"
+        },
+        {
+            "handoff_id": "H07",
+            "classification": "compatible_with_adapter",
+            "notes": "Memory/Learning bridge is structurally aligned through evidence and source refs"
+        }
+    ],
+    "migration_required_count": 0,
+    "incompatible_count": 0
+}

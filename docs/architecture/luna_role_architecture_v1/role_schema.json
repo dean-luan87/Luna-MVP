@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Role Schema",
+  "owner":"Social Self / Role Layer",
+  "required_fields":["role_id","field_id","task_id","relationship_context","responsibility","permission","expectation","self_capability_ref","confidence","lifecycle_state","provenance"],
+  "role_properties":{"field_bound":true,"identity_independent":true,"candidate_first":true,"time_bound":true},
+  "forbidden_fields":["permanent_identity_rewrite","unbounded_authority","automatic_emotion_decision"],
+  "rules":{"role_not_personality":true,"role_not_identity":true,"field_required":true,"owner_unique":true}
+}

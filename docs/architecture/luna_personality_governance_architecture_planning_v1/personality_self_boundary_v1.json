@@ -1,0 +1,17 @@
+{
+  "artifact": "personality_self_boundary_v1",
+  "self_owner_preserved": "Self Governance",
+  "personality_owner": "Personality Governance",
+  "self_governance_may_provide": ["Self Personality Evidence Candidate", "Self Attribution reference", "Self Continuity reference", "Self Evolution Evidence Candidate"],
+  "personality_may_provide": ["Self Personality Reference Candidate"],
+  "frozen_assertions": {
+    "Self Attribution != Personality Trait": true,
+    "Self Continuity != Personality Stability": true,
+    "Self Preference Evidence != Personality Truth": true,
+    "SelfEvolutionEvidenceCandidate != Personality Activation": true,
+    "self_direct_mutation": false,
+    "personality_direct_self_mutation": false,
+    "source_owner_mutation": false
+  },
+  "rules": ["Self evidence is input reference only.", "Personality cannot rewrite identity, attribution, continuity, or Self state.", "Both sides use candidate-only handoffs."]
+}

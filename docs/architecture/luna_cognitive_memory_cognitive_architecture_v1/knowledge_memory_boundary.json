@@ -1,0 +1,12 @@
+{
+  "boundary_id": "knowledge_memory_boundary_v1",
+  "owner": "Knowledge / Memory Governance Boundary",
+  "knowledge_is": "external_information",
+  "memory_is": "validated_subject_experience",
+  "required_flow": ["Knowledge", "Field", "Role", "Task", "Practice", "Experience", "Memory Candidate"],
+  "reading_is_experience": false,
+  "knowledge_auto_memory": false,
+  "knowledge_auto_growth": false,
+  "admission_required": true,
+  "provenance_required": true
+}

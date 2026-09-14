@@ -1,0 +1,15 @@
+{
+  "title": "Strategy Evolution Contract v1",
+  "owner": "Self Evolution / Strategy Evolution",
+  "inputs": ["Pattern Candidate", "Capability Profile", "Limitation Awareness", "Field Context", "Task Context"],
+  "output": "Strategy Candidate",
+  "schema": ["strategy_id", "trigger_context", "method", "evidence", "confidence", "resource_cost", "unknown", "review_status"],
+  "rules": {
+    "strategy_is_candidate": true,
+    "automatic_behavior_forbidden": true,
+    "goal_change_forbidden": true,
+    "value_change_forbidden": true,
+    "current_reality_revalidation_required": true,
+    "review_required_before_adoption": true
+  }
+}

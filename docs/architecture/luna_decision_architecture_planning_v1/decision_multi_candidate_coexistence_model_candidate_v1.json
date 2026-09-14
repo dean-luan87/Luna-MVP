@@ -1,0 +1,25 @@
+{
+    "artifact": "decision_multi_candidate_coexistence_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "supports": [
+        "multiple candidate coexistence",
+        "temporary preferred candidate",
+        "candidate conflict",
+        "unresolved tie",
+        "partial ordering",
+        "no selection",
+        "defer",
+        "abstain"
+    ],
+    "coexistence_rules": {
+        "single_winner_required": false,
+        "forced_selection_forbidden": true,
+        "conflict_trace_required": true,
+        "rejected_alternative_trace_required": true
+    },
+    "priority_semantics": {
+        "hard_constraints_before_soft_preferences": true,
+        "utility_is_soft_preference": true,
+        "risk_is_not_authority": true
+    }
+}

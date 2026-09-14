@@ -1,0 +1,46 @@
+{
+    "artifact": "self_stability_mutability_model_v1",
+    "partitions": [
+        {
+            "partition": "STRUCTURAL_SELF",
+            "examples": [
+                "agent identity reference",
+                "system embodiment reference",
+                "capability boundaries",
+                "ownership boundaries"
+            ],
+            "change_mode": "rare_reviewed_candidate_only"
+        },
+        {
+            "partition": "SEMI_STABLE_SELF",
+            "examples": [
+                "roles",
+                "relationship positions",
+                "preference candidates",
+                "interaction tendencies"
+            ],
+            "change_mode": "reviewable_revisionable_candidate_only"
+        },
+        {
+            "partition": "TRANSIENT_SELF",
+            "examples": [
+                "current intent",
+                "current resource state",
+                "current emotional evidence",
+                "current task involvement",
+                "current uncertainty"
+            ],
+            "change_mode": "cycle_scoped_candidate_only"
+        },
+        {
+            "partition": "FUTURE_PERSONALITY_DERIVED_SELF",
+            "examples": [
+                "trait candidates",
+                "trait stability",
+                "trait expression"
+            ],
+            "change_mode": "DEFERRED"
+        }
+    ],
+    "flattening_forbidden": true
+}

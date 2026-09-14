@@ -1,0 +1,41 @@
+{
+    "artifact": "cognitive_execution_chain_controlled_execution_contract_v1",
+    "phase_id": "Phase-Luna-Cognitive-Execution-Chain-Controlled-Integration-v1-001",
+    "status": "CONTROLLED_INTEGRATION_CANDIDATE",
+    "owners": {
+        "intent": "Intent Governance",
+        "causal": "Causal Governance",
+        "decision": "Decision Governance",
+        "action": "Action Governance",
+        "runtime_executor": "Runtime Executor",
+        "integration": "Cognitive Execution Chain Integration"
+    },
+    "integration_no_owner_authority": true,
+    "integration_no_mutation_authority": true,
+    "forward_chain": [
+        "Intent->Causal",
+        "Causal->Decision",
+        "Decision->Action",
+        "Action->Runtime"
+    ],
+    "compatibility_rules": {
+        "compatible": "allow",
+        "migration_required": "block",
+        "incompatible": "hard_reject"
+    },
+    "idempotency_rules": {
+        "duplicate_handoff_consumption_forbidden": true,
+        "duplicate_action_to_execution_request_forbidden": true,
+        "duplicate_feedback_reconsideration_forbidden": true
+    },
+    "runtime_boundary": {
+        "candidate_only": true,
+        "runtime_side_effect": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "field_mutation": false,
+        "memory_mutation": false
+    }
+}

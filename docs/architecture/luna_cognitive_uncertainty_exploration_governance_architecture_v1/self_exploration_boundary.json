@@ -1,0 +1,11 @@
+{
+  "boundary_id": "self_exploration_governance_boundary_v1",
+  "owner": "Self Layer",
+  "controller": "Exploration Governance Controller",
+  "allowed": ["priority_approval", "resource_budget", "exploration_depth", "stop_decision", "approve", "reject", "defer"],
+  "forbidden": ["modify_identity", "modify_value", "modify_goal", "modify_constitution", "modify_brain_rules", "modify_source_code", "automatic_model_switch", "hardware_control", "direct_action", "automatic_learning"],
+  "self_rhythm_role": "provide_state_and_resource_constraint",
+  "cognitive_kernel_role": "propose_exploration",
+  "runtime_role": "future_executor_only",
+  "candidate_only": true
+}

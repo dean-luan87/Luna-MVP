@@ -1,0 +1,91 @@
+{
+    "version": "1.0",
+    "name": "Field Event and Temporal Validity Protocol Component Contracts",
+    "description": "组件契约描述事件、准入、时间有效性和覆盖协议之间的接口",
+    "components": [
+        {
+            "name": "Field Event Intake",
+            "inputs": [
+                "raw_event_payload",
+                "source_id",
+                "received_at"
+            ],
+            "outputs": [
+                "standardized_field_event",
+                "event_metadata"
+            ],
+            "constraints": [
+                "no direct FieldState updates",
+                "preserve original semantics"
+            ]
+        },
+        {
+            "name": "Event Validator",
+            "inputs": [
+                "standardized_field_event",
+                "current_time",
+                "security_constraints"
+            ],
+            "outputs": [
+                "validation_result",
+                "rejection_reason",
+                "validation_trace"
+            ],
+            "constraints": [
+                "no direct FieldState modification",
+                "human correction accepted"
+            ]
+        },
+        {
+            "name": "Temporal Validity Evaluator",
+            "inputs": [
+                "temporal_validity_object",
+                "current_time",
+                "field_scope"
+            ],
+            "outputs": [
+                "current_temporal_status",
+                "projection_eligibility",
+                "refresh_recommendation"
+            ],
+            "constraints": [
+                "expired definitions ineligible",
+                "recurrence candidate only"
+            ]
+        },
+        {
+            "name": "Temporary Overlay Manager",
+            "inputs": [
+                "overlay_event",
+                "expected_duration",
+                "overlay_scope"
+            ],
+            "outputs": [
+                "overlay_state",
+                "expiration_event",
+                "overlay_resolution"
+            ],
+            "constraints": [
+                "must not delete substrate",
+                "must end before reprojection"
+            ]
+        },
+        {
+            "name": "Revision and Revocation Manager",
+            "inputs": [
+                "revocation_event",
+                "correction_event",
+                "approval_metadata"
+            ],
+            "outputs": [
+                "revocation_status",
+                "rollback_target",
+                "replay_directive"
+            ],
+            "constraints": [
+                "must not delete history",
+                "must preserve event lineage"
+            ]
+        }
+    ]
+}

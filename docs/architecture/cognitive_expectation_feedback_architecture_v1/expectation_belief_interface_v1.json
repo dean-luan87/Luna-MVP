@@ -1,0 +1,27 @@
+{
+  "title": "Expectation Belief Interface v1",
+  "contract_type": "Belief to Expectation Candidate",
+  "input": {
+    "belief_reference": "belief-example",
+    "validated_pattern_reference": "pattern-example",
+    "field_context": {},
+    "situation_context": {},
+    "confidence": {},
+    "decay_state": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "expectation_candidate": "expectation-example",
+    "expected_state": {},
+    "expected_evidence": [],
+    "revalidation_requirement": {}
+  },
+  "boundary": {
+    "belief_is_not_reality": true,
+    "belief_does_not_override_current_feedback": true,
+    "belief_does_not_create_expectation_as_fact": true,
+    "expectation_is_revocable": true,
+    "unknowns_are_preserved": true
+  }
+}

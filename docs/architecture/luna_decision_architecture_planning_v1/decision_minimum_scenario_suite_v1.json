@@ -1,0 +1,235 @@
+{
+    "artifact": "decision_minimum_scenario_suite_v1",
+    "status": "PLANNING_CANDIDATE",
+    "scenario_count": 14,
+    "required_case_fields": [
+        "scenario_id",
+        "theme",
+        "inputs",
+        "expected_state",
+        "expected_semantic_outcome",
+        "forbidden_outcomes",
+        "expected_handoff"
+    ],
+    "semantic_coverage": [
+        "single low-risk selectable candidate",
+        "multi candidate coexistence",
+        "utility high but permission denied",
+        "utility high but safety veto",
+        "causal uncertainty high causes defer",
+        "insufficient evidence causes request-more-evidence",
+        "no acceptable option causes abstain",
+        "reversible candidate",
+        "irreversible candidate confirmation required",
+        "resource constraint lower-cost candidate",
+        "role constraint alters eligibility",
+        "intent preference cannot over-authorize",
+        "competing causal hypotheses cause contested decision",
+        "decision-to-action/task candidate-only handoff"
+    ],
+    "scenarios": [
+        {
+            "scenario_id": "D01_LOW_RISK_SINGLE_CANDIDATE",
+            "theme": "single low-risk candidate",
+            "inputs": [
+                "one option",
+                "permission pass",
+                "safety pass",
+                "adequate evidence"
+            ],
+            "expected_state": "SELECTED_CANDIDATE",
+            "expected_semantic_outcome": "candidate selected without execution",
+            "forbidden_outcomes": [
+                "action execution",
+                "task creation"
+            ],
+            "expected_handoff": "candidate_only"
+        },
+        {
+            "scenario_id": "D02_TWO_CANDIDATE_COEXISTENCE",
+            "theme": "two candidates coexist",
+            "inputs": [
+                "option A",
+                "option B",
+                "partial ordering"
+            ],
+            "expected_state": "CONTESTED",
+            "expected_semantic_outcome": "coexistence preserved",
+            "forbidden_outcomes": [
+                "forced single winner"
+            ],
+            "expected_handoff": "coexistence_with_trace"
+        },
+        {
+            "scenario_id": "D03_HIGH_UTILITY_PERMISSION_DENIED",
+            "theme": "utility high but permission denies",
+            "inputs": [
+                "high utility option",
+                "permission veto"
+            ],
+            "expected_state": "CONSTRAINED",
+            "expected_semantic_outcome": "candidate ineligible due to permission",
+            "forbidden_outcomes": [
+                "utility overrides permission"
+            ],
+            "expected_handoff": "blocked_candidate_context"
+        },
+        {
+            "scenario_id": "D04_HIGH_UTILITY_SAFETY_VETO",
+            "theme": "utility high but safety veto",
+            "inputs": [
+                "high utility option",
+                "safety veto"
+            ],
+            "expected_state": "CONSTRAINED",
+            "expected_semantic_outcome": "safety block preserved",
+            "forbidden_outcomes": [
+                "utility overrides safety"
+            ],
+            "expected_handoff": "blocked_candidate_context"
+        },
+        {
+            "scenario_id": "D05_CAUSAL_UNCERTAINTY_DEFER",
+            "theme": "causal uncertainty too high",
+            "inputs": [
+                "multiple causal refs",
+                "unknown causal direction"
+            ],
+            "expected_state": "DEFERRED",
+            "expected_semantic_outcome": "defer decision",
+            "forbidden_outcomes": [
+                "forced selection"
+            ],
+            "expected_handoff": "defer_reason_candidate"
+        },
+        {
+            "scenario_id": "D06_EVIDENCE_GAP_REQUEST_MORE",
+            "theme": "evidence insufficient",
+            "inputs": [
+                "missing evidence refs",
+                "known unknowns"
+            ],
+            "expected_state": "NEEDS_MORE_EVIDENCE",
+            "expected_semantic_outcome": "request more evidence",
+            "forbidden_outcomes": [
+                "silent default pick"
+            ],
+            "expected_handoff": "evidence_request_candidate"
+        },
+        {
+            "scenario_id": "D07_NO_ACCEPTABLE_OPTION_ABSTAIN",
+            "theme": "no acceptable option",
+            "inputs": [
+                "all candidates blocked by constraints"
+            ],
+            "expected_state": "ABSTAINED",
+            "expected_semantic_outcome": "abstain",
+            "forbidden_outcomes": [
+                "fallback forced execution"
+            ],
+            "expected_handoff": "abstain_reason_candidate"
+        },
+        {
+            "scenario_id": "D08_REVERSIBLE_CANDIDATE",
+            "theme": "reversible",
+            "inputs": [
+                "reversibility reversible",
+                "moderate uncertainty"
+            ],
+            "expected_state": "ELIGIBLE",
+            "expected_semantic_outcome": "reversible candidate eligible",
+            "forbidden_outcomes": [
+                "mark irreversible without basis"
+            ],
+            "expected_handoff": "candidate_only"
+        },
+        {
+            "scenario_id": "D09_IRREVERSIBLE_CONFIRMATION_REQUIRED",
+            "theme": "irreversible candidate",
+            "inputs": [
+                "reversibility irreversible",
+                "high impact"
+            ],
+            "expected_state": "NEEDS_CONFIRMATION",
+            "expected_semantic_outcome": "confirmation requirement raised",
+            "forbidden_outcomes": [
+                "auto-confirm",
+                "auto-execute"
+            ],
+            "expected_handoff": "confirmation_required_candidate"
+        },
+        {
+            "scenario_id": "D10_RESOURCE_CONSTRAINT_LOWER_COST",
+            "theme": "resource degradation",
+            "inputs": [
+                "resource pressure",
+                "multiple cost options"
+            ],
+            "expected_state": "ELIGIBLE",
+            "expected_semantic_outcome": "lower-cost candidate preferred or defer",
+            "forbidden_outcomes": [
+                "silent intent rewrite"
+            ],
+            "expected_handoff": "resource_aware_candidate"
+        },
+        {
+            "scenario_id": "D11_ROLE_CONSTRAINT_ELIGIBILITY_SHIFT",
+            "theme": "role changes allowed scope",
+            "inputs": [
+                "role scope refs",
+                "candidate options"
+            ],
+            "expected_state": "CONSTRAINED",
+            "expected_semantic_outcome": "eligibility shifts with role boundary",
+            "forbidden_outcomes": [
+                "role bypass permission"
+            ],
+            "expected_handoff": "role_constrained_candidate"
+        },
+        {
+            "scenario_id": "D12_INTENT_PREFERENCE_NO_OVERRULE",
+            "theme": "intent influence only",
+            "inputs": [
+                "strong intent preference",
+                "permission or safety conflict"
+            ],
+            "expected_state": "CONSTRAINED",
+            "expected_semantic_outcome": "intent does not over-authorize",
+            "forbidden_outcomes": [
+                "intent equals decision authority"
+            ],
+            "expected_handoff": "intent_influence_trace"
+        },
+        {
+            "scenario_id": "D13_COMPETING_CAUSAL_HYPOTHESES",
+            "theme": "competing causal hypotheses",
+            "inputs": [
+                "causal H1",
+                "causal H2",
+                "unresolved tie"
+            ],
+            "expected_state": "CONTESTED",
+            "expected_semantic_outcome": "contested decision with alternatives preserved",
+            "forbidden_outcomes": [
+                "collapse to one without trace"
+            ],
+            "expected_handoff": "alternatives_preserved"
+        },
+        {
+            "scenario_id": "D14_DECISION_TO_ACTION_TASK_CANDIDATE_ONLY",
+            "theme": "handoff boundary",
+            "inputs": [
+                "selected candidate ref",
+                "authorization context"
+            ],
+            "expected_state": "SELECTED_CANDIDATE",
+            "expected_semantic_outcome": "handoff payload emitted without execution",
+            "forbidden_outcomes": [
+                "task creation",
+                "actuator command",
+                "api call"
+            ],
+            "expected_handoff": "candidate_only_handoff"
+        }
+    ]
+}

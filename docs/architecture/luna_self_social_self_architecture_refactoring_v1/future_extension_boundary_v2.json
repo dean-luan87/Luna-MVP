@@ -1,0 +1,12 @@
+{
+  "version": "2.0",
+  "name": "Self Social Future Extension Boundary",
+  "extensions": [
+    {"extension": "Emotion Engine", "mount": "Integration Layer", "status": "future", "allowed": ["Emotion State", "Attention Context", "Preference Context"], "forbidden": ["Decision Authority", "Action Authority", "Identity Rewrite"]},
+    {"extension": "Social Runtime", "mount": "Social Self Layer", "status": "future", "allowed": ["Role/Relationship Runtime"], "forbidden": ["Core Identity Rewrite", "Constitution Rewrite", "Unreviewed Social Action"]},
+    {"extension": "Personality Growth", "mount": "Self Layer + Integration", "status": "future", "allowed": ["Candidate Profile Evolution"], "forbidden": ["Automatic Identity Change", "Automatic Value Change"]},
+    {"extension": "B Route", "mount": "Integration / Simulation Boundary", "status": "future", "allowed": ["State Snapshot Simulation"], "forbidden": ["Reality Mutation", "Direct Action", "Unreviewed Goal Change"]}
+  ],
+  "entry_gates": ["Constitution Check", "Self/Social Boundary Review", "Core Integration Review", "Governance Admission", "V2/V3 Verification"],
+  "rules": {"self_social_boundary_required": true, "integration_boundary_required": true, "future_not_active": true, "no_runtime_in_phase": true}
+}

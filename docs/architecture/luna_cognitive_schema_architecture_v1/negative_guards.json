@@ -1,0 +1,14 @@
+{
+  "guard_set_id": "cognitive_schema_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["runtime", "schema_store", "automatic_schema_generation", "automatic_pattern_mining", "automatic_learning", "model_training", "parameter_update", "knowledge_automatic_injection", "emotion_runtime", "b_route", "decision_override", "self_automatic_modification", "memory_direct_schema_activation", "knowledge_automatic_schema_creation", "schema_direct_decision_override", "schema_reality_replacement", "schema_self_modification", "parallel_memory", "parallel_knowledge", "database_access", "model_calls"],
+  "schema_is_not_memory": true,
+  "schema_is_not_knowledge": true,
+  "schema_is_not_model": true,
+  "long_term_validation_required": true,
+  "candidate_only": true,
+  "unknown_preserved": true,
+  "provenance_preserved": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

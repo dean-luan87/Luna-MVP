@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "name": "Context Foundation Skeleton Contract v1",
+  "status": "CONTROLLED_SKELETON_CANDIDATE",
+  "skeleton_only": true,
+  "candidate_only": true,
+  "reference_only": true,
+  "real_context_generation": false,
+  "runtime_execution": false,
+  "state_mutation": false,
+  "source_object_storage": false,
+  "source_owner_transfer": false,
+  "database_access": false,
+  "network_access": false,
+  "model_call": false,
+  "provider_call": false,
+  "device_access": false,
+  "production_data_access": false,
+  "synthetic_fixture_only": true,
+  "deterministic_trace_required": true,
+  "unknown_preservation_required": true,
+  "provenance_required": true,
+  "source_owner_precedence": true,
+  "context_write_scope": [
+    "Context Envelope Candidate",
+    "Context Trace Candidate"
+  ],
+  "forbidden_outputs": [
+    "Fact",
+    "Intent",
+    "Goal",
+    "Causal Explanation",
+    "Decision",
+    "Action",
+    "Runtime Command",
+    "Memory Mutation",
+    "Field Mutation",
+    "Relationship Mutation",
+    "Emotion Calculation",
+    "Emotion Mutation"
+  ],
+  "source_owners_retained": [
+    "Field State System",
+    "Observation Manager",
+    "Memory System",
+    "Self System",
+    "Role System / Social Self",
+    "Relationship System / Social Self",
+    "Emotion Context Boundary / Integration Layer"
+  ]
+}
+

@@ -1,0 +1,32 @@
+{
+    "artifact": "dynamic_regulation_existing_asset_reuse_mapping_v1",
+    "direct_reuse_mainline": [
+        {
+            "asset": "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_vector_candidate_contract_v1.json",
+            "usage": "state vector input source contract"
+        },
+        {
+            "asset": "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_formation_output_contract_v1.json",
+            "usage": "candidate-only downstream contract alignment"
+        },
+        {
+            "asset": "docs/architecture/luna_cognitive_state_formation_architecture_and_controlled_implementation_planning_v1/cognitive_state_formation_owner_boundary_v1.json",
+            "usage": "owner-preservation baseline"
+        },
+        {
+            "asset": "docs/architecture/luna_cognitive_state_formation_controlled_implementation_v1/cognitive_state_formation_controlled_execution_contract_v1.json",
+            "usage": "controlled execution boundary pattern"
+        }
+    ],
+    "reference_only": [
+        "docs/architecture/luna_cognitive_dynamic_function_architecture_v1",
+        "docs/architecture/luna_cognitive_dynamic_function_self_adaptive_integration_architecture_v1",
+        "docs/architecture/luna_cognitive_self_regulation_architecture_v1"
+    ],
+    "extension_targets": [
+        "single owner unification for dynamic function and self-regulation",
+        "parameter classification and bounded modulation",
+        "revision/revocation and trace provenance closure"
+    ],
+    "no_changes_to_passed_modules": true
+}

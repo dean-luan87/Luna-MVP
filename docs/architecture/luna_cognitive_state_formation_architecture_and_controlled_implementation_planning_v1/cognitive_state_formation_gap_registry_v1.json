@@ -1,0 +1,43 @@
+{
+    "artifact": "cognitive_state_formation_gap_registry_v1",
+    "gap_groups": [
+        {
+            "gap_id": "A",
+            "name": "Attention mainline realization gap",
+            "description": "No explicit canonical pipeline yet for attention candidate generation and selection under new unified module owner.",
+            "planned_outputs": [
+                "attention_candidate_schema_v1.json",
+                "attention_selection_model_v1.json"
+            ]
+        },
+        {
+            "gap_id": "B",
+            "name": "Hypothesis space formation gap",
+            "description": "Need explicit competing hypothesis lifecycle and non-collapse rules separate from causal owner semantics.",
+            "planned_outputs": [
+                "cognitive_hypothesis_schema_v1.json",
+                "cognitive_hypothesis_state_model_v1.json",
+                "cognitive_hypothesis_competition_model_v1.json"
+            ]
+        },
+        {
+            "gap_id": "C",
+            "name": "Current world candidate composition gap",
+            "description": "Need explicit composition contract and boundary against field reducer authority.",
+            "planned_outputs": [
+                "current_world_candidate_schema_v1.json",
+                "current_world_field_boundary_v1.json"
+            ]
+        },
+        {
+            "gap_id": "D",
+            "name": "Cross-owner handoff and trace closure gap",
+            "description": "Need strict candidate-only causal handoff plus mandatory trace/provenance reverse lookup chain.",
+            "planned_outputs": [
+                "cognitive_state_formation_causal_handoff_v1.json",
+                "cognitive_state_formation_trace_provenance_contract_v1.json"
+            ]
+        }
+    ],
+    "phase_constraint": "planning_only_no_runtime"
+}

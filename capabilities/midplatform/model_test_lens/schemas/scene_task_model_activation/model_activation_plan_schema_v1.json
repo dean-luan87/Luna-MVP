@@ -1,0 +1,64 @@
+{
+  "schema_id": "ModelActivationPlanSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Scene-Task-Model-Activation-Planning-v1-001",
+  "description": "中台模型激活计划候选。本阶段终点。决定哪些模型出场、哪些 no-op。",
+  "planning_only": true,
+  "planning_endpoint": "model_activation_plan_candidate",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "plan_id",
+    "scene_profile_ref",
+    "task_intent_ref",
+    "activated_model_set",
+    "model_noop_set",
+    "model_region_assignment",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "plan_id": { "type": "string" },
+    "scene_profile_ref": { "type": "string" },
+    "task_intent_ref": { "type": "string" },
+    "activated_model_set": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "model_name": { "type": "string" },
+          "activation_reason": { "type": "string" },
+          "allowed_runner_type": { "type": "string" }
+        }
+      }
+    },
+    "model_noop_set": {
+      "type": "array",
+      "items": { "$ref": "model_noop_record" }
+    },
+    "model_region_assignment": {
+      "type": "array",
+      "items": { "$ref": "model_region_assignment" }
+    },
+    "activation_summary": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "model_activation_candidate_not_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "forbidden_operations": [
+    "activation_as_fact",
+    "blanket_all_models_activate",
+    "inactive_model_generates_task",
+    "activation_triggers_runner_directly"
+  ],
+  "boundary_flags": {
+    "model_activation_candidate_not_fact": true,
+    "no_blanket_model_activation": true,
+    "noop_record_required_for_inactive_models": true,
+    "no_fact_write": true,
+    "no_runner_execution_in_planning": true,
+    "planning_only": true
+  }
+}

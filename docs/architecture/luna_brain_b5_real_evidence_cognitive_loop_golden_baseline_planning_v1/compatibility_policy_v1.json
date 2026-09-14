@@ -1,0 +1,11 @@
+{
+  "statuses":["BACKWARD_COMPATIBLE","REQUIRES_TARGETED_REGRESSION","REQUIRES_FULL_REGRESSION","BREAKING_CHANGE","BLOCKED_CHANGE"],
+  "criteria":{
+    "BACKWARD_COMPATIBLE":"field additions or implementation substitutions preserving owner, semantics, evidence contract, trace and guards",
+    "REQUIRES_TARGETED_REGRESSION":"affected stage contract or integration-only adapter changes without downstream shape change",
+    "REQUIRES_FULL_REGRESSION":"owner, canonical evidence, candidate/truth, trace, mutation or negative guard boundary changes",
+    "BREAKING_CHANGE":"incompatible type/semantic/lifecycle change requiring a new version",
+    "BLOCKED_CHANGE":"change violates owner, network, execution, truth or mutation policy"
+  },
+  "silent_contract_rewrite":false
+}

@@ -1,0 +1,11 @@
+{
+  "title": "Schema Learning Relation v1",
+  "flow": ["Schema", "Capability Gap Context", "Learning Candidate", "Self Review"],
+  "schema_role": "provide validated pattern context and reveal gaps",
+  "schema_is_learning": false,
+  "schema_creates_learning_automatically": false,
+  "schema_direct_capability_change": false,
+  "schema_direct_goal_change": false,
+  "repeated_pattern_required": true,
+  "candidate_only": true
+}

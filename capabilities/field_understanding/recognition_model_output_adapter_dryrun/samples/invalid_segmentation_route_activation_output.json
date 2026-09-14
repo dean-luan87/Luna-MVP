@@ -1,0 +1,16 @@
+{
+  "model_id": "mock_segmentation_v1",
+  "model_family": "segmentation_model_family",
+  "model_version_ref": "mock_seg_v1_0_0",
+  "model_origin": "external_open_source_segmentation_model",
+  "license_ref": "apache_2_0_or_per_model_license",
+  "source_chain": "recognition_model_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_0001",
+  "output_schema_ref": "segmentation_output_schema_v1",
+  "confidence": 0.83,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "region_evidence_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "route_activation_requested": true
+}

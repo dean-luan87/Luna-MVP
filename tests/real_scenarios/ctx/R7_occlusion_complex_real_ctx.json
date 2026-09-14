@@ -1,0 +1,18 @@
+{
+  "frame_seq": 7,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R7_occlusion_complex_real_ctx",
+  "focus_object_label": "bottle",
+  "detector_floor_due": true,
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 100, 100], "conf": 0.80 },
+    { "label": "bottle", "bbox": [0, 0, 210, 50], "conf": 0.85 }
+  ],
+
+  "search_subtask_state": "waiting_user",
+
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "我不太确定是不是遮挡这里"
+}
+

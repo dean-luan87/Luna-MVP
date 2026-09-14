@@ -1,0 +1,22 @@
+{
+    "artifact": "memory_context_boundary_v1",
+    "retrieval_candidate": {
+        "entity": "MemoryRetrievalCandidateV1",
+        "fields": [
+            "memory_ref",
+            "retrieval_reason",
+            "relevance_candidate",
+            "confidence_reference_status",
+            "temporal_status",
+            "contradiction_refs",
+            "provenance_refs",
+            "candidate_only"
+        ]
+    },
+    "forbidden": [
+        "direct_context_overwrite",
+        "direct_field_state_overwrite",
+        "current_world_truth_declaration",
+        "bypass_context_admission"
+    ]
+}

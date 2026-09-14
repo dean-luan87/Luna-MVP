@@ -1,0 +1,14 @@
+{
+  "handling_id": "invalid_reserved_family_executed_001",
+  "policy_id": "unavailable_reserved_degraded_handling",
+  "candidate_refs": ["reserved_only:audio_speech_family", "reserved_only:emotion_multimodal_bridge_family"],
+  "model_family_refs": ["audio_speech_family", "emotion_multimodal_bridge_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "degraded_state_confidence_policy_v1",
+  "fallback_plan": "reserved_only_no_execution",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "allowed_use": "reserved_only_no_execution",
+  "commercial_use_status": "not_evaluated_reserved",
+  "reserved_family_executed": true
+}

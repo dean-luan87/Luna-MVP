@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "name": "Ownership Migration Map",
+  "mapping_principle": "No Move First; Mapping First; Owner First; Migration Later",
+  "mappings": [
+    {"object": "Self Model", "old_owner": "Self Model", "new_owner": "Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Self Capability", "old_owner": "Self Model / Capability Awareness", "new_owner": "Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Self Regulation", "old_owner": "Self Regulation", "new_owner": "Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Self Evolution", "old_owner": "Self Evolution", "new_owner": "Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Role", "old_owner": "Self/Social Boundary", "new_owner": "Social Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Relationship", "old_owner": "Social Field", "new_owner": "Social Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Social Identity", "old_owner": "Social Field Boundary", "new_owner": "Social Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Social Norm / Responsibility", "old_owner": "Field Rule / Role", "new_owner": "Social Self Layer", "migration_action": "register mapping", "stage": "Planning", "code_change": false},
+    {"object": "Emotion Context", "old_owner": "Emotion Context Boundary", "new_owner": "Integration Layer", "migration_action": "reclassify boundary", "stage": "Planning", "code_change": false},
+    {"object": "Constitution", "old_owner": "L0 Governance", "new_owner": "L0 Governance", "migration_action": "preserve top-level constraint", "stage": "Frozen", "code_change": false}
+  ],
+  "rules": {"no_file_move": true, "no_delete": true, "no_code_change": true, "owner_review_required": true, "implementation_after_plan": true}
+}

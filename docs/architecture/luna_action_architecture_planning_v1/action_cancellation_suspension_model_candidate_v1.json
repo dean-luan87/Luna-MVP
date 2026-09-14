@@ -1,0 +1,25 @@
+{
+    "artifact": "action_cancellation_suspension_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "cancellation_triggers": [
+        "user_cancellation",
+        "safety_cancellation",
+        "permission_revoked",
+        "context_changed",
+        "target_invalidated"
+    ],
+    "suspension_triggers": [
+        "resource_unavailable",
+        "dependency_temporary_missing",
+        "temporal_window_not_reached",
+        "confirmation_pending"
+    ],
+    "semantic_distinction": {
+        "CANCELLED": "Explicitly stopped and should not continue waiting.",
+        "SUSPENDED": "Temporarily paused and may be resumed under changed conditions."
+    },
+    "guards": {
+        "cancelled_not_suspended": true,
+        "suspended_not_deleted": true
+    }
+}

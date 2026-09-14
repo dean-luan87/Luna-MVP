@@ -1,0 +1,18 @@
+{
+  "version":"1.0",
+  "name":"Role Lifecycle",
+  "owner":"Role Governance",
+  "states":["discovered","candidate","activated","running","feedback","strengthened","weakened","suspended","exited","archived"],
+  "transitions":[
+    {"from":"discovered","to":"candidate","trigger":"field/task evidence"},
+    {"from":"candidate","to":"activated","trigger":"governance admission"},
+    {"from":"activated","to":"running","trigger":"field remains active"},
+    {"from":"running","to":"feedback","trigger":"outcome or interaction"},
+    {"from":"feedback","to":"strengthened","trigger":"reliable positive pattern"},
+    {"from":"feedback","to":"weakened","trigger":"repeated limitation or conflict"},
+    {"from":"running","to":"suspended","trigger":"field background or permission loss"},
+    {"from":"running","to":"exited","trigger":"field/task closed"},
+    {"from":"exited","to":"archived","trigger":"retention governance"}
+  ],
+  "rules":{"transition_owner":"Role Governance","field_exit_closes_instance":true,"pattern_not_identity":true,"no_runtime_in_phase":true}
+}

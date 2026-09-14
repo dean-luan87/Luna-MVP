@@ -1,0 +1,12 @@
+{
+  "mapping_id": "b_route_evaluation_mapping_v1",
+  "inputs": ["Predicted State Trajectory", "Predicted Outcomes", "State Quality Function", "Cognitive Fitness Function", "Unknowns"],
+  "outputs": ["Trajectory Quality Candidate", "Future Fitness Candidate", "Risk Candidate", "Alternative Candidate"],
+  "b_route_is_simulation_only": true,
+  "predicted_quality_is_not_actual_quality": true,
+  "virtual_outcome_is_not_experience": true,
+  "b_route_cannot_update_state": true,
+  "b_route_cannot_update_parameters": true,
+  "b_route_runtime": false,
+  "candidate_only": true
+}

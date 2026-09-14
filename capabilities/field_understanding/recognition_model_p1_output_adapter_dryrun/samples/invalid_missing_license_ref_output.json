@@ -1,0 +1,16 @@
+{
+  "model_id": "mock_p1_tracking_invalid_b",
+  "model_family": "tracking_family",
+  "model_version_ref": "mock_bytetrack_v1_0_0",
+  "model_origin": "external_open_source_tracking_package",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_sequence_p1_0001",
+  "output_schema_ref": "tracking_output_schema_v1",
+  "confidence": 0.76,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "track_evidence_candidate",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_package_license_check_required",
+  "fallback_plan": "fallback_to_per_frame_object_evidence_candidate",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain"
+}

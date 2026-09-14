@@ -1,0 +1,14 @@
+{
+  "phase": "Phase-Luna-Capability-Model-Provider-Binding-Controlled-Implementation-v1-001",
+  "synthetic_only": true,
+  "scenario_count": 34,
+  "groups": {
+    "capability_model": 12,
+    "model_provider": 10,
+    "cross_binding": 6,
+    "authority_observability": 6
+  },
+  "runtime_execution": false,
+  "model_loading": false,
+  "provider_invocation": false
+}

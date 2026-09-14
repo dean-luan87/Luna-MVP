@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-And-Inference-Trial-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:37:53.508998+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_inference_rollback_cleanup_plan_record",
+  "mobile_sam_inference_rollback_cleanup_plan_record": {
+    "record_id": "mobile_sam_inference_rollback_cleanup_plan_v1",
+    "pre_inference_snapshot_required": true,
+    "rollback_required": true,
+    "rollback_preserves_registry": true,
+    "rollback_preserves_weight_file": true,
+    "rollback_preserves_test_board": true,
+    "rollback_preserves_review_artifacts": true,
+    "candidate_output_cleanup_required": true,
+    "no_fact_write_on_failure": true,
+    "no_registry_mutation_on_failure": true
+  }
+}

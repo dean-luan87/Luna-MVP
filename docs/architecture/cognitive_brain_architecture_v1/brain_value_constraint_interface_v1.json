@@ -1,0 +1,24 @@
+{
+  "title": "Brain Value Constraint Interface v1",
+  "contract_type": "Value Constraint for Brain Evaluation",
+  "input": {
+    "value_state": {},
+    "value_constraints": [],
+    "priority_candidates": [],
+    "global_cognitive_state": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "constraint_package": {},
+    "option_constraint_fit_candidate": {},
+    "value_conflict_candidate": null
+  },
+  "boundary": {
+    "value_is_constraint": true,
+    "brain_does_not_create_value": true,
+    "brain_does_not_modify_value": true,
+    "value_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "memory_activation_v1",
+  "owner": "Memory Retrieval Governance",
+  "activation_trigger": "current_field_context",
+  "inputs": ["current_field", "active_role", "task", "attention_context", "memory_scope", "context_match"],
+  "outputs": ["relevant_memory_activation_candidate", "retrieval_trace", "confidence", "unknowns"],
+  "field_activates_memory": true,
+  "autonomous_recall": false,
+  "context_required": true,
+  "current_reality_precedence": true,
+  "decision_override": false
+}

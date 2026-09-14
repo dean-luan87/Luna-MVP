@@ -1,0 +1,41 @@
+{
+  "planning_id": "luna_brain_b2_current_world_cognitive_state_flow_integration_planning_v1",
+  "status": "PLANNING_ONLY",
+  "canonical_owner_reuse": true,
+  "inventory": {
+    "current_world": "Cognitive State Formation Governance / Current World representation candidates",
+    "cognitive_state": "Cognitive State Formation Governance",
+    "cognitive_flow": "Cognitive Flow Governance",
+    "attention": "Cognitive State Formation produces cognitive attention candidates; Field Perception Orchestrator owns provider-facing observation attention/control",
+    "hypothesis": "Cognitive State Formation / Cognitive Interpretation Contracts",
+    "context": "Context Foundation",
+    "pcn": "Personal Cognitive Network Governance",
+    "intent": "Intent Governance",
+    "observation_need": "Field Perception Orchestrator Active Observation Control",
+    "field_mutation": "Field State Reducer",
+    "decision_handoff": "Decision Governance / Decision Arbitration boundary",
+    "lifecycle": "Cognitive Flow Governance"
+  },
+  "reusable_assets": [
+    "cognitive_state_formation_core_types_v1.py",
+    "cognitive_state_formation_engine_v1.py",
+    "cognitive_state_formation_fixture_v1.py",
+    "current_world_types_v1.py",
+    "attention_types_v1.py",
+    "cognitive_hypothesis_types_v1.py",
+    "cognitive_flow_engine_v1.py",
+    "cognitive_flow_fixture_v1.py",
+    "field_perception_active_observation_control_types_v1.py",
+    "field_perception_active_observation_control_engine_v1.py",
+    "context_foundation_types_v1.py",
+    "context_pcn_intent_mainline_types_v1.py"
+  ],
+  "classification": {
+    "A_directly_reusable": ["Cognitive State Formation contracts and engine", "Cognitive Flow contracts and engine", "B1 CurrentWorldCandidateV1", "Active Observation Control contracts", "C01-C36 synthetic Context/World regression"],
+    "B_reusable_with_narrow_adapter": ["B1 CurrentWorldCandidate to CognitiveStateFormationInput mapping", "Cognitive State Formation output to CognitiveFlowInput mapping", "Observation Need candidate handoff from cognitive reconsideration"],
+    "C_legacy_or_bypass": ["Any direct provider-to-brain path", "Any Context-to-Intent shortcut", "Any parallel world/cognitive owner discovered outside the canonical owner matrix"],
+    "D_deferred": ["dynamic cognitive functions", "cognitive parameter genome", "self-regulation", "semantic compression", "online learning", "Decision/Task/Action execution"]
+  },
+  "implementation_files_modified_in_this_phase": [],
+  "runtime_executed": false
+}

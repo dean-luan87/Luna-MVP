@@ -1,0 +1,23 @@
+{
+  "model_id": "bytetrack_via_supervision",
+  "model_role": "tracking",
+  "model_family": "tracking_model_family",
+  "tier": "P1",
+  "download_allowed": true,
+  "download_source": "pypi:supervision+github:ByteTrack",
+  "model_weight_required": false,
+  "license_ref": "mit_supervision_and_bytetrack",
+  "license_allows_current_use": true,
+  "commercial_use_status": "commercial_allowed_under_mit",
+  "size_estimate": "small_algorithmic_no_heavy_weights",
+  "dependencies": ["supervision", "numpy", "scipy"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": false,
+  "offline_supported": true,
+  "output_format_stable": true,
+  "output_schema_ref": "tracking_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_track_evidence_candidate",
+  "adapter_mapping_ref": "track_evidence_candidate",
+  "notes": "tracking_consumes_upstream_detection_p1_depends_on_p0_object_detection"
+}

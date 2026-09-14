@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Role Self Social Boundary",
+  "owner":"Social Self Governance",
+  "inputs":{"self":["capability","limitation","identity_boundary","resource_state"],"social_self":["expectation","relationship","norm","responsibility"]},
+  "role_output":["participation_context","responsibility_candidate","permission_candidate","behavior_boundary"],
+  "permissions":{"self_defines_capability_boundary":true,"social_self_defines_context":true,"role_projects_both":true,"role_rewrites_identity":false,"role_rewrites_constitution":false},
+  "rules":{"identity_continuity":true,"social_role_field_bound":true,"role_owner_social_self":true}
+}

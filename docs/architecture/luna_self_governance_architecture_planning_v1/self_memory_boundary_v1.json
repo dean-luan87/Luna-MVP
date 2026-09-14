@@ -1,0 +1,17 @@
+{
+    "artifact": "self_memory_boundary_v1",
+    "memory_owner_preserved": "Cognitive Memory & Experience Governance",
+    "self_governance_may_consume": [
+        "SELF_RELATED memory candidates",
+        "autobiographical experience refs",
+        "preference memory refs",
+        "relational memory refs"
+    ],
+    "must_not": [
+        "persist_memory",
+        "rewrite_memory",
+        "admit_memory_truth",
+        "perform_semantic_compression"
+    ],
+    "semantic_compression": "DEFERRED_TO_EMOTION_ENGINE"
+}

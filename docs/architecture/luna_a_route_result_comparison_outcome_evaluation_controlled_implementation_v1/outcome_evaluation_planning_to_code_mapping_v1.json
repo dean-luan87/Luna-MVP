@@ -1,0 +1,19 @@
+{
+  "mapping":[
+    {"planning":"expected_outcome_input_model_v1.json","code":"outcome_evaluation_core_types_v1.py:ExpectedOutcomeInputV1"},
+    {"planning":"actual_result_input_model_v1.json","code":"outcome_evaluation_core_types_v1.py:ActualResultInputV1"},
+    {"planning":"comparability_gate_v1.json","code":"outcome_evaluation_engine_v1.py:_comparability"},
+    {"planning":"deviation_model_v1.json","code":"outcome_evaluation_engine_v1.py:_deviation"},
+    {"planning":"outcome_evaluation_candidate_schema_v1.json","code":"outcome_evaluation_core_types_v1.py:OutcomeEvaluationCandidateV1"},
+    {"planning":"attribution_taxonomy_v1.json","code":"outcome_evaluation_engine_v1.py:_attributions"},
+    {"planning":"reconsideration_handoff_v1.json","code":"outcome_evaluation_engine_v1.py:_reconsideration"},
+    {"planning":"learning_signal_handoff_v1.json","code":"outcome_evaluation_engine_v1.py:_learning_signal"},
+    {"planning":"observation_feedback_handoff_v1.json","code":"outcome_evaluation_engine_v1.py:_observation_need"},
+    {"planning":"temporal_comparison_model_v1.json","code":"outcome_evaluation_engine_v1.py:_comparability and _deviation"},
+    {"planning":"correction_revision_model_v1.json","code":"outcome_evaluation_engine_v1.py:_evaluation and _guards"},
+    {"planning":"trace_provenance_model_v1.json","code":"outcome_evaluation_engine_v1.py:_trace"},
+    {"planning":"idempotency_guards_v1.json","code":"outcome_evaluation_engine_v1.py:_guards"},
+    {"planning":"scenario_suite_v1.json","code":"outcome_evaluation_fixture_v1.py:build_fixture_cases"}
+  ],
+  "not_implemented":["Prediction Engine","Bayesian update","Cognitive State Vector mathematics","Dynamic Cognitive Function","online learning","provider invocation","Emotion Engine","B Route","semantic compression"]
+}

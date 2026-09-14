@@ -1,0 +1,36 @@
+{
+  "title": "Architecture Asset Inventory v1",
+  "inventory_scope": "docs/architecture/",
+  "inventory_mode": "policy plus repository snapshot",
+  "status_values": ["active", "historical", "verification_only", "missing_asset_candidate"],
+  "required_asset_types": ["md", "json", "verifier"],
+  "observed_snapshot": {
+    "cognitive_directory_count": 100,
+    "active_count": 53,
+    "verification_only_count": 46,
+    "missing_asset_candidate_count": 1,
+    "missing_asset_candidate_examples": ["cognitive_flow"]
+  },
+  "classification_rules": {
+    "active": "directory has at least one Markdown asset, one JSON asset, and verify_<directory>.py",
+    "historical": "retained prior phase that is no longer the active canonical phase",
+    "verification_only": "directory has a verifier but no phase Markdown/JSON surface",
+    "missing_asset_candidate": "directory is present but lacks one or more required asset types and needs review"
+  },
+  "sample_entries": [
+    {"path": "cognitive_decision_commitment_architecture_v1", "status": "active"},
+    {"path": "cognitive_architecture_consolidation_dependency_map_v1", "status": "active"},
+    {"path": "cognitive_emotion_engine_v1", "status": "historical", "active": false},
+    {"path": "cognitive_flow", "status": "missing_asset_candidate"},
+    {"path": "cognitive_a_route_system_integration_readiness_review_v1", "status": "verification_only"}
+  ],
+  "scan_contract": {
+    "every_cognitive_directory_receives_status": true,
+    "historical_assets_are_not_deleted": true,
+    "missing_assets_are_registered_only": true,
+    "inventory_is_not_runtime_input": true,
+    "rescan_required_after_asset_change": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

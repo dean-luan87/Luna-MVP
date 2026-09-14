@@ -1,0 +1,14 @@
+{
+  "contract_id": "hive_evaluation_interface_v1",
+  "input_tuple": ["Field", "Cognitive Genome", "Outcome"],
+  "inputs": ["anonymized_field_context", "genome_version", "outcome_evidence", "capability_metrics", "risk_metrics"],
+  "outputs": ["Parameter Improvement Candidate", "Comparative Evidence", "Confidence", "Unknowns"],
+  "hive_is_observer_not_authority": true,
+  "external_hive_connection": false,
+  "direct_luna_modification": false,
+  "self_review_required": true,
+  "accept_reject_defer_required": true,
+  "privacy_boundary_required": true,
+  "candidate_only": true,
+  "runtime": false
+}

@@ -1,0 +1,25 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Tuple
+
+
+INTEGRATION_ERROR_CODES = (
+    "INVALID_PRODUCT_INGRESS", "INVALID_STAGE_TRANSITION", "HANDOFF_CONTRACT_MISMATCH",
+    "MISSING_TRACE", "MISSING_PROVENANCE", "RUNTIME_NOT_ADMITTED", "DUPLICATE_EXECUTION_REQUEST",
+    "DUPLICATE_RESULT", "DUPLICATE_FEEDBACK", "RECONSIDERATION_DEPTH_EXCEEDED",
+    "REOBSERVATION_DEPTH_EXCEEDED", "REPEATED_FAILURE_SIGNATURE", "COMPLETED_CYCLE_IMMUTABLE",
+    "ABORTED_CYCLE_IMMUTABLE", "INVALID_FEEDBACK_ROUTE", "DUPLICATE_INPUT", "DUPLICATE_TASK",
+    "DUPLICATE_ACTION", "DUPLICATE_EVALUATION", "DUPLICATE_NEXT_CYCLE_INGRESS",
+)
+
+
+@dataclass(frozen=True)
+class ProductLoopIntegrationErrorV1:
+    code: str
+    stage_id: str
+    message: str
+    trace_ref: str
+    provenance_refs: Tuple[str, ...]
+    terminal: bool = True
+

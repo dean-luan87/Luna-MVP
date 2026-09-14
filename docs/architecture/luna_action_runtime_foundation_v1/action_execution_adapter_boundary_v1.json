@@ -1,0 +1,10 @@
+{
+  "title": "Action Execution Adapter Boundary v1",
+  "owner": "Action Runtime Governance",
+  "pipeline": ["Action Runtime", "Adapter", "External Executor"],
+  "adapter_input": ["Execution Candidate", "Execution Context", "Approved Permission"],
+  "adapter_output": ["Raw Outcome", "Execution Failure", "Timeout"],
+  "runtime_not_know": ["specific device internals", "unbounded API authority", "unrelated user data"],
+  "future_examples": ["Navigation Adapter → Robot Controller", "App Adapter → API"],
+  "rules": {"adapter_required": true, "device_isolated": true, "external_executor_future_only": true, "no_current_device_control": true}
+}

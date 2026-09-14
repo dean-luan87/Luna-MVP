@@ -1,0 +1,8 @@
+{
+  "type":"B3TaskDecisionReferenceV1",
+  "mode":"REAL_B3_TASK_DECISION_INPUT or SYNTHETIC_B3_TASK_DECISION_INPUT",
+  "read_only":true,
+  "candidate_only":true,
+  "preserved":["task_ref","task_readiness_ref","decision_ref","current_world_ref","context_refs","field_refs","uncertainty_refs","conflict_refs","temporal_refs","trace_ref","provenance_refs"],
+  "does_not_rerun":["B1","B2","B3","YOLO","Gateway","Context","Cognitive State Formation"]
+}

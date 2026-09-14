@@ -1,0 +1,17 @@
+{
+  "schema_name": "Field Conflict Candidate Schema v1",
+  "conflict_id": "field-conflict-example",
+  "fields": ["Work Field", "Historical Relationship Field"],
+  "role_stack": [],
+  "relationship_layer": [],
+  "drive_reference": "drive-example",
+  "value_reference": "value-example",
+  "risk": null,
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "brain_review_required": true,
+  "automatic_resolution": false,
+  "conflict_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

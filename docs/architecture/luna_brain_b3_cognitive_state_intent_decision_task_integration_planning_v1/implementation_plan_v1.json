@@ -1,0 +1,16 @@
+{
+  "artifact": "b3_implementation_plan_v1",
+  "status": "PLANNING_ONLY",
+  "sequence": [
+    {"step": 1, "name": "validate B2 replay input", "owner": "B3 integration", "output": "typed Cognitive State/Flow reference set with trace/provenance/uncertainty/conflict"},
+    {"step": 2, "name": "form Intent influence input", "owner": "Intent Governance", "output": "IntentGovernanceInputV1 using read-only source/context/PCN refs"},
+    {"step": 3, "name": "run controlled Intent qualification", "owner": "Intent Governance", "output": "Potential/Intent/Interaction/Lifecycle candidates"},
+    {"step": 4, "name": "form Decision input", "owner": "Decision Governance", "output": "DecisionGovernanceInputV1 with intent, cognitive, evidence, permission, safety and resource refs"},
+    {"step": 5, "name": "arbitrate candidate options", "owner": "Decision Governance", "output": "DecisionCandidate/Selection/Defer/Abstain/Reconsideration candidates"},
+    {"step": 6, "name": "submit Task candidate boundary", "owner": "Task Manager", "output": "readiness and TaskCandidate only; health/dependency/permission/cancellation refs preserved"},
+    {"step": 7, "name": "stop before Action/Runtime", "owner": "B3 guard", "output": "no execution, scheduler, device, provider or side effect"}
+  ],
+  "no_hidden_loop": true,
+  "no_manual_contract_selection_normal_path": true,
+  "future_review_gate": "B3 implementation must be reviewed after synthetic and real-B2 differential verification before any Action/Runtime phase."
+}

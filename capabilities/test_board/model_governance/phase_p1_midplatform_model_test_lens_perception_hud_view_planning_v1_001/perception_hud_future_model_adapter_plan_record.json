@@ -1,0 +1,63 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:21:11.426693+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "hud_is_read_only": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "perception_hud_future_model_adapter_plan_v1",
+    "adapters": {
+      "detection_tracking": {
+        "status": "reserved",
+        "hud_must_show": [
+          "bounding_box",
+          "class_label",
+          "confidence",
+          "missed_object_warning"
+        ]
+      },
+      "ocr": {
+        "status": "reserved",
+        "hud_must_show": [
+          "text_box",
+          "recognized_text",
+          "reading_order",
+          "unclear_text_warning"
+        ]
+      },
+      "slam_vio": {
+        "status": "reserved",
+        "hud_must_show": [
+          "keypoints",
+          "tracking_state",
+          "trajectory_minimap",
+          "drift_warning"
+        ]
+      },
+      "depth_world": {
+        "status": "reserved"
+      },
+      "asr": {
+        "status": "reserved"
+      },
+      "tts": {
+        "status": "reserved"
+      },
+      "speaker": {
+        "status": "reserved"
+      },
+      "face_expression_gesture": {
+        "status": "reserved"
+      },
+      "multimodal_vlm": {
+        "status": "reserved"
+      }
+    }
+  }
+}

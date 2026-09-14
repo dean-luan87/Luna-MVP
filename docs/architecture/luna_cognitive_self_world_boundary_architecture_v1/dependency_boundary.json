@@ -1,0 +1,41 @@
+{
+  "title": "Self World Boundary Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Reality -> External World Context",
+    "Field -> Self World Boundary Context",
+    "Self Layer -> Internal Self State",
+    "Social Self -> Social Context Candidate",
+    "Memory -> Context Candidate",
+    "Schema -> Pattern Candidate",
+    "Capability Governance -> Capability Boundary Context",
+    "Experience -> Growth Candidate",
+    "Self Growth Governance -> Self Evolution Candidate",
+    "Constitution -> Highest Constraint Context",
+    "Integration -> Candidate Review Context"
+  ],
+  "forbidden_dependencies": [
+    "Memory -> Direct Identity Change",
+    "Experience -> Direct Self Modification",
+    "Social Feedback -> Replace Self",
+    "Capability Failure -> Destroy Identity",
+    "Knowledge -> Rewrite Constitution",
+    "Social Self -> Rewrite Identity",
+    "Field Memory -> Modify Self Identity",
+    "Capability Output -> Replace Reality",
+    "Self -> Own Social Role",
+    "Self -> Own Relationship",
+    "Emotion -> Rewrite Identity",
+    "Outcome -> Direct Identity Change",
+    "Schema -> Modify Constitution",
+    "Provider -> Modify Self",
+    "Runtime -> Rewrite Boundary"
+  ],
+  "no_self_runtime": true,
+  "no_identity_mutation": true,
+  "no_automatic_personality_change": true,
+  "no_emotion_runtime": true,
+  "no_social_runtime": true,
+  "no_learning_runtime": true,
+  "reality_is_external_authority": true,
+  "social_self_is_not_self": true
+}

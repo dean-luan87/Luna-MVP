@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "statuses":["candidate_ready","controlled_handoff_ready","runtime_handoff_ready","runtime_execution_started","runtime_execution_completed","result_available"],
+  "inequalities":["Candidate != Runtime Authorization","Routing Candidate != Invocation","Observation Admission != Provider Continuation Authorization","Action Candidate != Execution","Runtime Result != Outcome Evaluation","Outcome Evaluation != Decision Mutation","Learning Signal != Learning Execution"],
+  "current_status":{"candidate_ready":"present","controlled_handoff_ready":"present in controlled assets","runtime_handoff_ready":"not proven","runtime_execution_started":"not proven","runtime_execution_completed":"not proven","result_available":"synthetic/candidate only"},
+  "required_future_admission":["owner authorization","permission/admission contract","resource budget","trace/provenance","idempotency key","explicit runtime side-effect boundary"],
+  "runtime_execution_allowed_in_this_phase":false
+}

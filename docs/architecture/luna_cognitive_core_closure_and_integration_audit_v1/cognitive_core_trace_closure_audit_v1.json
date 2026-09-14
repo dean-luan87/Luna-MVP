@@ -1,0 +1,56 @@
+{
+    "artifact": "cognitive_core_trace_closure_audit_v1",
+    "overall_status": "CLOSED_WITH_ADAPTER",
+    "root_trace_linkage": true,
+    "cycle_reverse_locatable": true,
+    "trace_route": [
+        "Learning / ParameterUpdateCandidate",
+        "Learning Evidence",
+        "Memory / Experience",
+        "Cognitive Cycle",
+        "Dynamic Regulation",
+        "Cognitive State Vector",
+        "Current World / Hypothesis / Attention",
+        "Intent",
+        "PCN",
+        "Context / source evidence"
+    ],
+    "module_requirements": {
+        "cognitive_flow": [
+            "root_cycle_trace_id",
+            "cycle_id",
+            "previous_cycle_id",
+            "transition_trace",
+            "reconsideration_trace"
+        ],
+        "cognitive_memory_experience": [
+            "root_cycle_trace_id",
+            "cycle_id",
+            "experience_candidate_id",
+            "memory_candidate_id",
+            "admission_trace"
+        ],
+        "cognitive_learning": [
+            "root_cycle_trace_id",
+            "learning_trace_id",
+            "learning_evidence_id",
+            "learning_candidate_id",
+            "parameter_update_candidate_id"
+        ]
+    },
+    "lineage": {
+        "revision_lineage": true,
+        "revocation_lineage": true,
+        "supersession_lineage": true,
+        "reconsideration_lineage": true
+    },
+    "rules": {
+        "owner_traces_immutable": true,
+        "trace_continuity_not_authority": true,
+        "missing_trace_hop_fabrication": false
+    },
+    "adapter_notes": [
+        "Flow->Experience uses cycle/package refs rather than a dedicated standalone handoff envelope.",
+        "Experience/Memory->Learning uses reverse-locatable refs plus evidence candidate rather than a single canonical envelope type."
+    ]
+}

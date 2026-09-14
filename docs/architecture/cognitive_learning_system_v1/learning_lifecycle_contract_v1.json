@@ -1,0 +1,21 @@
+{
+  "contract_name": "Learning Lifecycle Contract v1",
+  "states": [
+    "Observed",
+    "Recorded",
+    "Evaluated",
+    "Pattern Candidate",
+    "Strategy Candidate",
+    "Validated",
+    "Adaptive Update Candidate",
+    "Accepted",
+    "Rejected",
+    "Revoked",
+    "Archived"
+  ],
+  "accepted_means_candidate_for_future_subsystem": true,
+  "accepted_does_not_mean_automatic_activation": true,
+  "revocation_supported": true,
+  "unknowns_are_preserved": true,
+  "lifecycle_does_not_make_decision": true
+}

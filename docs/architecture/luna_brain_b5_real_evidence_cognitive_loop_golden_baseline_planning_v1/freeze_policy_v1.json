@@ -1,0 +1,7 @@
+{
+  "frozen_means":["canonical owner cannot silently change","contract semantic change requires version/change record","regression impact must be declared","negative guards cannot silently weaken","breaking changes require new baseline version","old baseline remains auditable"],
+  "frozen_does_not_mean":"immutable forever",
+  "change_record_required":true,
+  "silent_owner_replacement":false,
+  "silent_contract_rewrite":false
+}

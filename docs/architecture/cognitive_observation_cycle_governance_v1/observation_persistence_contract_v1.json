@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Observation Persistence Contract",
+  "profiles": {
+    "Transient Observation": {
+      "purpose": "one-off evidence need",
+      "release": "after Evidence is evaluated or the request expires"
+    },
+    "Persistent Observation": {
+      "purpose": "continuing task or safety-relevant need",
+      "release": "when the Field or requirement no longer qualifies"
+    },
+    "Background Observation": {
+      "purpose": "low-intensity monitoring candidate",
+      "release": "on resource pressure, Field close, or governance suspension"
+    }
+  },
+  "requires_release_condition": true,
+  "unbounded_stream": false,
+  "automatic_frequency_adjustment": false,
+  "hardware_control": false,
+  "runtime_execution": false
+}

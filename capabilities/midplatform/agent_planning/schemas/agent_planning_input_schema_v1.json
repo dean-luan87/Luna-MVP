@@ -1,0 +1,20 @@
+{
+  "schema_id": "AgentPlanningInputV1",
+  "version": "v1",
+  "layer_id": "L2_Agent_Planning",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_sections": [
+    "situation_understanding_candidate",
+    "user_goal_candidate",
+    "available_capabilities",
+    "policy_context"
+  ],
+  "boundary_flags": {
+    "situation_input_required": true,
+    "candidate_only": true,
+    "not_fact": true
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

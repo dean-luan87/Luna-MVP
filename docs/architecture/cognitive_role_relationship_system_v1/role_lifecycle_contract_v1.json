@@ -1,0 +1,16 @@
+{
+  "contract_name": "Role Lifecycle Contract v1",
+  "states": ["Created", "Active", "Background", "Suspended", "Closed"],
+  "role_reference": "role-example",
+  "field_context": "field-example",
+  "responsibility": [],
+  "permission": [],
+  "expectation": [],
+  "behavior_boundary": [],
+  "duration": null,
+  "transition_requires_evidence": true,
+  "transition_requires_confidence": true,
+  "role_does_not_modify_identity": true,
+  "role_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

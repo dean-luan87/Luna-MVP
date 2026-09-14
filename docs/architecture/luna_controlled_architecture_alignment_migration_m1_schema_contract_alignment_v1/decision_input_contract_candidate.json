@@ -1,0 +1,50 @@
+{
+    "contract_id": "decision_input_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Decision Arbitration",
+    "producer": "Decision Arbitration",
+    "consumer": [
+        "Task Manager",
+        "Action Governance / Action Runtime",
+        "Experience Governance"
+    ],
+    "candidate_fact": "decision_input_candidate_only_not_action",
+    "unknown": {
+        "allowed": true,
+        "representation": "constraint_gap_or_unresolved_input",
+        "behavior": "emit_reconsideration_candidate"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "field_context_ref",
+            "intent_candidate_ref",
+            "causal_candidate_ref",
+            "ab_route_candidate_ref"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "decision_comparison_reference_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "decision_selection_boundary_only"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "constraint_or_risk_change"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_selected_candidate_before_action_boundary"
+    },
+    "failure_behavior": {
+        "on_missing_required_input": "emit_input_incomplete_candidate",
+        "on_risk_violation": "emit_rejected_candidate_set",
+        "on_boundary_violation": "block_downstream_handoff"
+    },
+    "write_authority": "Decision Arbitration",
+    "compatibility_alias": "decision_candidate_input_alias"
+}

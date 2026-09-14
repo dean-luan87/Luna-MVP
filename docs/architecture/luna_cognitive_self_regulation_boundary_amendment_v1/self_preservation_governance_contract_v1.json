@@ -1,0 +1,9 @@
+{
+  "title": "Self Preservation Governance Contract v1",
+  "owner": "Self Regulation / Self Preservation Governance",
+  "priority_order": ["System Survival / Stability", "Core Cognitive Function", "User Task Completion", "Capability Improvement", "Performance Optimization"],
+  "inputs": ["Upgrade Candidate", "Resource State", "Health State", "Risk", "Task Requirement", "Calibration Evidence"],
+  "outputs": ["Preservation Decision Candidate", "Upgrade Rejection Candidate", "Stable Operation Candidate", "Degradation Candidate"],
+  "schema": ["preservation_id", "candidate_ref", "priority_level", "stability_risk", "core_function_impact", "benefit", "cost", "decision_candidate", "reason", "alternative", "confidence", "trace_id"],
+  "rules": {"stability_first":true,"core_function_protected":true,"optimization_not_authority":true,"candidate_only":true,"review_required":true,"no_constitution_change":true}
+}

@@ -1,0 +1,20 @@
+{
+  "decision_id": "b2_cognitive_flow_route_decision_v1",
+  "selected_route": [
+    "B1 CurrentWorldCandidateV1 and its read-only Context/Field/Observation/uncertainty/conflict/temporal refs",
+    "narrow adapter to existing CognitiveStateFormationInputV1",
+    "CognitiveStateFormationEngineV1",
+    "AttentionCandidate and HypothesisCandidate outputs plus candidate cognitive state/world/vector",
+    "narrow adapter to existing CognitiveFlowInputV1 with current_world_ref",
+    "CognitiveFlowEngineV1 lifecycle, transition, reconsideration, and handoff candidates",
+    "future Decision Governance boundary"
+  ],
+  "why": ["both engines and fixtures already exist", "ownership guards prohibit Cognitive Flow from owning state", "Cognitive State Formation already preserves alternatives, uncertainty, conflicts, and provenance", "CognitiveFlowInputV1 explicitly supports current_world_ref"],
+  "rejected_routes": {
+    "direct_current_world_to_decision": "bypasses Cognitive State Formation and Decision boundary",
+    "current_world_to_context_rebuild": "duplicates B1 Context integration and risks Context becoming a second world owner",
+    "current_world_to_attention_only": "loses hypothesis/state lifecycle and confuses observation control with cognitive attention",
+    "new_brain_owner": "violates canonical owner and source-owner precedence"
+  },
+  "contract_gap": "CognitiveStateFormationInputV1 lacks an explicit current_world_ref; resolve through a new contract version or an explicitly approved read-only adapter before implementation."
+}

@@ -1,0 +1,18 @@
+{
+  "contract_id": "dynamic_cognitive_function_dependency_boundary_v1",
+  "allowed_dependencies": [
+    "Field -> Cognitive Function Input", "Self -> Self Regulation Function", "Goal -> Cognitive Function Input", "Cognitive State Vector -> Dynamic Function", "Dynamic Function -> Vector Update Candidate", "Self Regulation Function -> Resource Candidate", "Parameter Space -> Cognitive Genome", "Outcome -> Adaptive Adjustment Candidate", "Hive Evaluation -> Parameter Improvement Candidate", "Self Review -> Parameter Evolution Candidate", "Constitution -> All Parameter Governance"
+  ],
+  "forbidden_dependencies": [
+    "Dynamic Function -> Reality Mutation", "Dynamic Function -> Direct Decision Commit", "Dynamic Function -> Execute Action", "Self Regulation Function -> Switch Model", "Self Regulation Function -> Hardware Control", "Self Regulation Function -> Approve Learning Alone", "Parameter Space -> Identity Change", "Cognitive Genome -> Decision Authority", "Cognitive Genome -> Constitution Change", "Hive Evaluation -> Direct Luna Modification", "Hive Evaluation -> Parameter Write", "Hive Evaluation -> Self Modification", "Adaptive Adjustment -> Automatic Tuning", "Adaptive Adjustment -> Model Parameter Update", "Parameter Evolution -> Automatic Self Modification", "Parameter Evolution -> Identity Change", "Parameter Evolution -> Constitution Change", "Parameter Evolution -> Safety Boundary Change", "B Route -> Direct Parameter Adoption", "Runtime -> Parameter Governance", "Emotion -> Direct Parameter Adoption", "Provider -> Parameter Authority"
+  ],
+  "no_runtime": true,
+  "no_automatic_tuning": true,
+  "no_hive_connection": true,
+  "no_parameter_learning": true,
+  "no_self_automatic_modification": true,
+  "no_emotion_runtime": true,
+  "no_b_route_runtime": true,
+  "no_model_integration": true,
+  "no_hardware_control": true
+}

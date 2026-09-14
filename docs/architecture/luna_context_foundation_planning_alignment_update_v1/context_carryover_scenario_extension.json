@@ -1,0 +1,54 @@
+{
+  "validation_set_id": "luna_context_carryover_scenario_extension_v1",
+  "scenarios": [
+    {
+      "scenario_id": "CARRYOVER-01-WORK-TO-HOME",
+      "name": "工作到家庭",
+      "input": "用户从办公室回到家，工作尚未结束，角色与压力引用仍然活跃。",
+      "expected_projection": {
+        "source_field": "Office Field Reference",
+        "current_field": "Home Field Reference",
+        "continuity_type": ["unfinished_task", "emotional_pressure", "role_activation"],
+        "physical_field_changed": true,
+        "mental_field_fully_switched": false,
+        "release_condition_reference_required": true
+      },
+      "forbidden_results": ["stress calculation", "cause judgment", "Intent", "Decision", "Emotion Mutation"],
+      "passes_boundary": true
+    },
+    {
+      "scenario_id": "CARRYOVER-02-LONG-WORK-PRESSURE",
+      "name": "长期工作压力累计引用",
+      "input": "多个时间窗口中持续存在工作压力相关来源引用。",
+      "expected_projection": {
+        "continuity_type": ["emotional_pressure", "unfinished_task"],
+        "duration_scope_required": true,
+        "historical_source_reference_required": true,
+        "long_term_residual_reference_allowed": true,
+        "calculated_pressure_value": false
+      },
+      "forbidden_results": ["conclude user should resign", "diagnose stress", "Causal Explanation", "Decision", "Memory write"],
+      "passes_boundary": true
+    },
+    {
+      "scenario_id": "CARRYOVER-03-RELATIONSHIP-CONFLICT",
+      "name": "朋友关系冲突后的跨场残留",
+      "input": "用户与朋友发生冲突后进入另一个物理场景。",
+      "expected_projection": {
+        "continuity_type": ["relationship_residual", "emotional_pressure"],
+        "source_field_reference_required": true,
+        "relationship_owner_reference_required": true,
+        "uncertainty_required": true,
+        "current_field_reality_precedence": true
+      },
+      "forbidden_results": ["relationship judgment Fact", "assign blame", "Causal Explanation", "Intent", "Decision"],
+      "passes_boundary": true
+    }
+  ],
+  "scenario_count": 3,
+  "all_reference_only": true,
+  "emotion_calculation_executed": false,
+  "causal_reasoning_executed": false,
+  "implementation_test_executed": false,
+  "status": "PLANNING_CANDIDATE"
+}

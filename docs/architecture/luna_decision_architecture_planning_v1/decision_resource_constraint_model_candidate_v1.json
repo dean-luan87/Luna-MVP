@@ -1,0 +1,16 @@
+{
+    "artifact": "decision_resource_constraint_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "resource_degradation_support": [
+        "narrower option set",
+        "lower-cost candidate",
+        "defer",
+        "abstain",
+        "request external support"
+    ],
+    "rules": {
+        "cannot_rewrite_intent_semantics": true,
+        "cannot_bypass_permission": true,
+        "cannot_bypass_safety": true
+    }
+}

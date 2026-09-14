@@ -1,0 +1,24 @@
+{
+    "artifact": "decision_option_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "option_definition": "An admissible choice-space element considered by Decision Governance.",
+    "required_option_fields": [
+        "option_id",
+        "option_statement",
+        "source_refs",
+        "estimated_utility_refs",
+        "estimated_risk_refs",
+        "constraint_refs",
+        "permission_refs",
+        "safety_refs",
+        "resource_refs",
+        "provenance"
+    ],
+    "option_rules": {
+        "option_not_decision": true,
+        "option_not_action": true,
+        "option_not_task": true,
+        "option_may_be_infeasible": true,
+        "option_may_remain_unselected": true
+    }
+}

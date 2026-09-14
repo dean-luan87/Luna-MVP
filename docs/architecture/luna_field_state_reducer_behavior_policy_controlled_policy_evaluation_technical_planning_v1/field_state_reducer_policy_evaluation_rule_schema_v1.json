@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Rule Schema",
+    "required_fields": [
+        "rule_id",
+        "policy_id",
+        "condition_type",
+        "operator",
+        "expected_value",
+        "input_path",
+        "required",
+        "blocking",
+        "rejection_reason",
+        "evaluation_order",
+        "short_circuit_allowed",
+        "trace_required",
+        "candidate_only",
+        "fact_promotion_allowed"
+    ],
+    "candidate_only": true,
+    "fact_promotion_allowed": false,
+    "rule_schema_complete": true
+}

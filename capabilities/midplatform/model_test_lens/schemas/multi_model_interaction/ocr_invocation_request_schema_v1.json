@@ -1,0 +1,71 @@
+{
+  "schema_id": "OcrInvocationRequestSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+  "description": "OCR 调用请求。仅允许从 OCR task candidate 生成。",
+  "required_fields": [
+    "ocr_invocation_request_id",
+    "source_ocr_task_candidate_id",
+    "source_region_id",
+    "source_result_candidate_id",
+    "source_analysis_record_id",
+    "requested_runner_type",
+    "trigger_mode",
+    "admission_status",
+    "execution_status",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "ocr_invocation_request_id": {
+      "type": "string",
+      "pattern": "^oir_ocr_[a-z0-9_]+$"
+    },
+    "source_ocr_task_candidate_id": { "type": "string" },
+    "source_followup_model_route_candidate_id": { "type": "string" },
+    "source_region_id": { "type": "string" },
+    "source_result_candidate_id": { "type": "string" },
+    "source_analysis_record_id": { "type": "string" },
+    "source_image_ref": { "type": "string" },
+    "region_crop_ref": { "type": "string" },
+    "region_geometry_ref": { "type": "string" },
+    "ocr_target_reason": { "type": "string" },
+    "requested_runner_type": { "type": "string", "enum": ["OCR"], "const": "OCR" },
+    "trigger_mode": { "type": "string", "enum": ["manual_controlled"], "const": "manual_controlled" },
+    "admission_status": {
+      "type": "string",
+      "enum": ["pending_admission", "admitted", "rejected", "cancelled"]
+    },
+    "execution_status": { "type": "string", "enum": ["not_executed"], "const": "not_executed" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_executed": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array", "minItems": 8 }
+  },
+  "generation_rules": {
+    "only_from": "ocr_task_candidate",
+    "forbidden_generators": [
+      "ui_direct",
+      "mobilesam_result_direct",
+      "human_correction_direct"
+    ],
+    "human_correction_path": [
+      "correction_attribution",
+      "priority_signal",
+      "ocr_task_candidate"
+    ]
+  },
+  "forbidden_operations": [
+    "ui_direct_ocr_request",
+    "mobilesam_direct_ocr_request",
+    "human_correction_direct_ocr_request",
+    "bypass_midplatform"
+  ],
+  "boundary_flags": {
+    "ocr_request_requires_ocr_task_candidate": true,
+    "ocr_request_traceable_to_midplatform_analysis": true,
+    "ocr_request_traceable_to_mobile_sam_result": true,
+    "no_human_correction_ground_truth": true
+  }
+}

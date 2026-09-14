@@ -1,0 +1,40 @@
+{
+  "validation_id": "luna_context_foundation_dryrun_trace_validation_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "required_trace_fields": [
+    "source_reference",
+    "expansion_reason",
+    "resource_constraint",
+    "confidence",
+    "candidate_status"
+  ],
+  "additional_trace_fields": [
+    "source_owner",
+    "projection_version",
+    "temporal_validity",
+    "unknown_state",
+    "provenance",
+    "trace_reference"
+  ],
+  "trace_rules": {
+    "source_reference_required": true,
+    "expansion_reason_required": true,
+    "resource_constraint_required": true,
+    "confidence_required": true,
+    "candidate_status_required": true,
+    "unknown_preserved": true,
+    "multiple_candidates_traceable": true,
+    "source_owner_precedence": true
+  },
+  "forbidden_trace_semantics": [
+    "Fact Promotion",
+    "Intent Generation",
+    "Causal Conclusion",
+    "Decision Selection",
+    "Source Mutation"
+  ],
+  "runtime_trace_created": false,
+  "database_trace_written": false,
+  "active_validation": false
+}
+

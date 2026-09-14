@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.553047+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_artifact_refs",
+  "artifact_refs": [
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/p1_midplatform_governance_standards_packaging_planning_review_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/p1_midplatform_governance_standards_packaging_planning_review_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/p1_midplatform_governance_standards_packaging_planning_review_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_standards_directory_plan_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_standards_manifest_plan_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_standards_reference_policy_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_standards_future_execution_route_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/legacy_reusable_governance_rules_inventory_plan_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_rule_usage_notes_index_plan_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/governance_standard_reuse_policy_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/usage_notes/governance_rule_usage_notes_index_v1.md",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/governance_standards_index_v1.md",
+    "/Users/luanlei/Desktop/Luna-Core/capabilities/midplatform/governance_standards/governance_standards_manifest_v1.json"
+  ],
+  "source_review_file": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_governance_standards_packaging_planning_v1_smoke_v0/p1_midplatform_governance_standards_packaging_planning_review_v1.json"
+}

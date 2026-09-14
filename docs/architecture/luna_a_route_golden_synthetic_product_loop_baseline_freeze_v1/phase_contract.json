@@ -1,0 +1,19 @@
+{
+  "phase_id":"Phase-Luna-A-Route-Golden-Synthetic-Product-Loop-Baseline-Freeze-v1-001",
+  "execution_mode":"BASELINE_FREEZE / CLOSURE ONLY",
+  "freeze_only":true,
+  "implementation_change":false,
+  "planning_asset_change":false,
+  "fixture_change":false,
+  "runner_change":false,
+  "prior_verifier_change":false,
+  "runtime_execution":false,
+  "provider_invocation":false,
+  "model_call":false,
+  "database_write":false,
+  "vector_store_write":false,
+  "scheduler_execution":false,
+  "device_control":false,
+  "real_side_effect":false,
+  "agent_stop_status":"WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Runtime Tick Contract",
+  "tick_reference": "required",
+  "time_reference": "required",
+  "cycle_inputs": ["world_event", "reality_update_candidate", "resource_state"],
+  "cycle_stages": [
+    "Reality Update",
+    "Field Update",
+    "Attention Reallocation",
+    "Observation Candidate",
+    "Cognition Candidate",
+    "Brain Evaluation Candidate",
+    "Experience Update Candidate",
+    "Next Cycle"
+  ],
+  "multi_frequency": true,
+  "uniform_frequency_required": false,
+  "scheduler_implementation": false,
+  "runtime_execution": false,
+  "state_mutation_authority": "Reducer remains the sole State mutation authority"
+}

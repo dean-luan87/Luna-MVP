@@ -1,0 +1,17 @@
+{
+  "manifest_id":"luna-brain-real-evidence-cognitive-loop-golden-baseline",
+  "baseline_version":"B5-PLANNED-V1",
+  "phase_set":["S3-Y11","B1","B2","B3","B4"],
+  "references":["canonical_owner_matrix_v1.json","end_to_end_route_v1.json","candidate_truth_boundary_v1.json","mutation_authority_matrix_v1.json","regression_index_v1.json","negative_guard_baseline_v1.json","trace_provenance_baseline_v1.json","change_impact_matrix_v1.json"],
+  "contract_set_version":"referenced per phase; not flattened",
+  "owner_matrix_version":"owner-matrix-v1",
+  "regression_index_version":"regression-index-v1",
+  "negative_guard_version":"negative-guard-v1",
+  "trace_contract_version":"trace-provenance-v1",
+  "real_synthetic_boundary":"real_s3_to_b4_input boundaries; downstream execution controlled as indexed",
+  "deferred_capabilities_ref":"deferred_capabilities_v1.json",
+  "compatibility_policy_ref":"compatibility_policy_v1.json",
+  "change_impact_policy_ref":"change_impact_matrix_v1.json",
+  "manifest_does_not_duplicate_contracts":true,
+  "manifest_is_authoritative_for":"baseline membership and references, not semantic ownership"
+}

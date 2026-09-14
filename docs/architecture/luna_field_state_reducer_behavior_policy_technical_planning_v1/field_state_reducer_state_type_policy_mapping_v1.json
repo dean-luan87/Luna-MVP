@@ -1,0 +1,257 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer State Type Policy Mapping",
+    "state_type_mappings": {
+        "presence_state": {
+            "allowed_policies": [
+                "multi_event_consensus",
+                "highest_confidence_valid_event",
+                "revocation_override",
+                "insufficient_evidence_unresolved",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "temporary_overlay_separation"
+            ],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "multi_event_consensus",
+            "confidence_policy_ref": "presence_state_confidence_policy",
+            "temporal_policy_ref": "presence_state_temporal_policy",
+            "conflict_policy_ref": "presence_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "accessibility_state": {
+            "allowed_policies": [
+                "negative_event_override",
+                "multi_event_consensus",
+                "highest_confidence_valid_event",
+                "revocation_override",
+                "temporary_overlay_separation",
+                "no_state_change"
+            ],
+            "prohibited_policies": [],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "multi_event_consensus",
+            "confidence_policy_ref": "accessibility_state_confidence_policy",
+            "temporal_policy_ref": "accessibility_state_temporal_policy",
+            "conflict_policy_ref": "accessibility_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "path_state": {
+            "allowed_policies": [
+                "latest_valid_event",
+                "multi_event_consensus",
+                "temporary_overlay_separation",
+                "conflict_preservation",
+                "revocation_override",
+                "no_state_change"
+            ],
+            "prohibited_policies": [],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "latest_valid_event",
+            "confidence_policy_ref": "path_state_confidence_policy",
+            "temporal_policy_ref": "path_state_temporal_policy",
+            "conflict_policy_ref": "path_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "obstruction_state": {
+            "allowed_policies": [
+                "negative_event_override",
+                "conflict_preservation",
+                "insufficient_evidence_unresolved",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "highest_confidence_valid_event"
+            ],
+            "default_fallback_policy": "insufficient_evidence_unresolved",
+            "minimum_support_policy": "negative_event_override",
+            "confidence_policy_ref": "obstruction_state_confidence_policy",
+            "temporal_policy_ref": "obstruction_state_temporal_policy",
+            "conflict_policy_ref": "obstruction_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "facility_state": {
+            "allowed_policies": [
+                "multi_event_consensus",
+                "explicit_owner_override_candidate",
+                "conflict_preservation",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "temporary_overlay_separation"
+            ],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "multi_event_consensus",
+            "confidence_policy_ref": "facility_state_confidence_policy",
+            "temporal_policy_ref": "facility_state_temporal_policy",
+            "conflict_policy_ref": "facility_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "service_state": {
+            "allowed_policies": [
+                "multi_event_consensus",
+                "explicit_owner_override_candidate",
+                "expiration_degrade",
+                "insufficient_evidence_unresolved",
+                "no_state_change"
+            ],
+            "prohibited_policies": [],
+            "default_fallback_policy": "insufficient_evidence_unresolved",
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "confidence_policy_ref": "service_state_confidence_policy",
+            "temporal_policy_ref": "service_state_temporal_policy",
+            "conflict_policy_ref": "service_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "environmental_condition_state": {
+            "allowed_policies": [
+                "latest_valid_event",
+                "negative_event_override",
+                "expiration_degrade",
+                "conflict_preservation",
+                "no_state_change"
+            ],
+            "prohibited_policies": [],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "latest_valid_event",
+            "confidence_policy_ref": "environmental_condition_state_confidence_policy",
+            "temporal_policy_ref": "environmental_condition_state_temporal_policy",
+            "conflict_policy_ref": "environmental_condition_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "human_activity_state": {
+            "allowed_policies": [
+                "insufficient_evidence_unresolved",
+                "multi_event_consensus",
+                "conflict_preservation",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "revocation_override"
+            ],
+            "default_fallback_policy": "insufficient_evidence_unresolved",
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "confidence_policy_ref": "human_activity_state_confidence_policy",
+            "temporal_policy_ref": "human_activity_state_temporal_policy",
+            "conflict_policy_ref": "human_activity_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "navigation_relevance_state": {
+            "allowed_policies": [
+                "highest_confidence_valid_event",
+                "latest_valid_event",
+                "conflict_preservation",
+                "explicit_owner_override_candidate",
+                "no_state_change"
+            ],
+            "prohibited_policies": [],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "highest_confidence_valid_event",
+            "confidence_policy_ref": "navigation_relevance_state_confidence_policy",
+            "temporal_policy_ref": "navigation_relevance_state_temporal_policy",
+            "conflict_policy_ref": "navigation_relevance_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "temporary_overlay_state": {
+            "allowed_policies": [
+                "temporary_overlay_separation",
+                "latest_valid_event",
+                "expiration_degrade",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "revocation_override"
+            ],
+            "default_fallback_policy": "no_state_change",
+            "minimum_support_policy": "latest_valid_event",
+            "confidence_policy_ref": "temporary_overlay_state_confidence_policy",
+            "temporal_policy_ref": "temporary_overlay_state_temporal_policy",
+            "conflict_policy_ref": "temporary_overlay_state_conflict_policy",
+            "overlay_policy_ref": "temporary_overlay_separation",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "uncertainty_state": {
+            "allowed_policies": [
+                "insufficient_evidence_unresolved",
+                "conflict_preservation",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "default_fallback_policy": "insufficient_evidence_unresolved",
+            "minimum_support_policy": "insufficient_evidence_unresolved",
+            "confidence_policy_ref": "uncertainty_state_confidence_policy",
+            "temporal_policy_ref": "uncertainty_state_temporal_policy",
+            "conflict_policy_ref": "uncertainty_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        },
+        "conflict_state": {
+            "allowed_policies": [
+                "conflict_preservation",
+                "insufficient_evidence_unresolved",
+                "no_state_change"
+            ],
+            "prohibited_policies": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "default_fallback_policy": "conflict_preservation",
+            "minimum_support_policy": "conflict_preservation",
+            "confidence_policy_ref": "conflict_state_confidence_policy",
+            "temporal_policy_ref": "conflict_state_temporal_policy",
+            "conflict_policy_ref": "conflict_state_conflict_policy",
+            "overlay_policy_ref": "overlay_not_primary",
+            "owner_correction_policy_ref": "explicit_owner_override_candidate",
+            "latest_event_global_default": false,
+            "highest_confidence_global_default": false,
+            "fact_promotion_allowed": false
+        }
+    },
+    "state_type_mapping_complete": true
+}

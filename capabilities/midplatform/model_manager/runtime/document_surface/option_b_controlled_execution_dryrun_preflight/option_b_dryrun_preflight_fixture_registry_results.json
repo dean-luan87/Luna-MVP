@@ -1,0 +1,82 @@
+{
+  "result_id": "option_b_dryrun_preflight_fixture_registry_results_v1",
+  "phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Preflight-Anchor-Based-v1-001",
+  "input_registry_ref": "controlled_fixture_registry_anchor_v1.json",
+  "registry_mode": "metadata_only_preflight",
+  "image_content_read_allowed": false,
+  "image_content_read_performed": false,
+  "required_fields": [
+    "fixture_id",
+    "file_name",
+    "source_type",
+    "target_candidate",
+    "expected_behavior",
+    "forbidden_behavior"
+  ],
+  "fixtures_checked": [
+    {
+      "fixture_id": "overlapping_receipts_clear_two_surfaces",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison"
+    },
+    {
+      "fixture_id": "high_overlap_with_visible_corners",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1"
+    },
+    {
+      "fixture_id": "receipt_attached_clear",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison"
+    },
+    {
+      "fixture_id": "receipt_attached_uncertain",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1"
+    },
+    {
+      "fixture_id": "low_contrast_single_paper",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1"
+    },
+    {
+      "fixture_id": "texture_false_positive_no_document",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1_C1_comparison"
+    },
+    {
+      "fixture_id": "true_screen_document_fixture",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "C1"
+    },
+    {
+      "fixture_id": "single_clear_boundary_baseline",
+      "metadata_complete": true,
+      "source_type": "synthetic_controlled",
+      "not_real_world_benchmark": true,
+      "target_candidate": "A1"
+    }
+  ],
+  "metrics": {
+    "fixture_registry_expected_count": 8,
+    "fixture_registry_valid_count": 8,
+    "fixture_registry_missing_count": 0,
+    "image_content_read_rate": 0
+  },
+  "compliance": true,
+  "status": "PASS"
+}

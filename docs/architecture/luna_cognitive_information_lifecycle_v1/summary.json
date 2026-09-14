@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Information Lifecycle Summary",
+  "canonical_chain":["Observed","Candidate","Admitted","Active","Reinforced","Compressed","Dormant","Archived","Removed"],
+  "shared_types":["Field Information","Experience","Memory","Knowledge"],
+  "primary_owner":"Information Lifecycle Governance",
+  "status":"architecture_only",
+  "principles":["value before resource use","decay reduces influence","folding preserves lineage","removed is not deleted","Reality precedes all references"],
+  "rules":{"common_lifecycle":true,"unknown_preserved":true,"automatic_execution_forbidden":true}
+}

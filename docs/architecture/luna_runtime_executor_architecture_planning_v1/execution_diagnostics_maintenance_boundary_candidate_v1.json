@@ -1,0 +1,18 @@
+{
+    "artifact": "execution_diagnostics_maintenance_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "diagnostics_fields": [
+        "health_state_candidate",
+        "error_code_candidate",
+        "latency_candidate",
+        "failure_rate_candidate",
+        "last_failure_ref"
+    ],
+    "maintenance_boundary": {
+        "diagnostics_produce_evidence_only": true,
+        "diagnostics_not_decision_owner": true,
+        "diagnostics_not_permission_owner": true,
+        "diagnostics_not_safety_owner": true,
+        "maintenance_actions_candidate_only": true
+    }
+}

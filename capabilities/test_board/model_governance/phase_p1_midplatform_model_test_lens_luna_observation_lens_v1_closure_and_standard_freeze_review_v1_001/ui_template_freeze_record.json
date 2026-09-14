@@ -1,0 +1,11 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Luna-Observation-Lens-V1-Closure-And-Standard-Freeze-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "ui_template_freeze_record"
+  }
+}

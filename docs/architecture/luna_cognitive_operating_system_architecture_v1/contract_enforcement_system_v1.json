@@ -1,0 +1,8 @@
+{
+  "title": "Contract Enforcement System v1",
+  "owner": "Cognitive OS Governance",
+  "contract_types": ["Input Contract", "Output Contract", "Permission Contract", "Boundary Contract"],
+  "checks": ["schema shape", "required fields", "owner and writer", "dependency admission", "permission", "illegal state mutation", "provenance"],
+  "failure_outputs": ["Contract Failure Candidate", "Admission Block Candidate", "Diagnostics Event"],
+  "rules": {"enforcement_before_active": true, "provider_output_requires_gateway": true, "contract_failure_not_action": true}
+}

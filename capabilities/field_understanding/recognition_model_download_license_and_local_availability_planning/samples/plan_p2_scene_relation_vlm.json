@@ -1,0 +1,23 @@
+{
+  "model_id": "scene_relation_lightweight_vlm",
+  "model_role": "scene_relation",
+  "model_family": "scene_relation_model_family",
+  "tier": "P2",
+  "download_allowed": true,
+  "download_source": "huggingface:lightweight_vlm_or_scene_graph_model",
+  "model_weight_required": true,
+  "license_ref": "per_model_license_check_required",
+  "license_allows_current_use": true,
+  "commercial_use_status": "unknown_until_per_checkpoint_license_verified_test_only",
+  "size_estimate": "large_hundreds_of_mb_to_gb",
+  "dependencies": ["torch", "transformers"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": true,
+  "offline_supported": true,
+  "output_format_stable": false,
+  "output_schema_ref": "scene_relation_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_scene_relation_candidate",
+  "adapter_mapping_ref": "scene_relation_candidate",
+  "notes": "p2_heaviest_output_format_less_stable_deferred_last_gpu_required"
+}

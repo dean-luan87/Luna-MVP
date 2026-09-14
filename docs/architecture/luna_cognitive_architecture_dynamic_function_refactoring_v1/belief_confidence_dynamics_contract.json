@@ -1,0 +1,12 @@
+{
+  "contract_id": "belief_confidence_dynamics_v1",
+  "equation": "Belief(t+1) = f(Belief(t), Evidence, PredictionError)",
+  "inputs": ["Belief State", "Evidence", "Prediction Error", "Field Context", "Unknowns"],
+  "parameters": ["evidence_weight", "prediction_error_sensitivity", "confidence_decay", "contradiction_threshold"],
+  "outputs": ["Confidence Update Candidate", "Belief Revision Candidate", "Contradiction Candidate", "Unknown Preservation Candidate"],
+  "reality_precedence": true,
+  "belief_is_not_reality": true,
+  "single_evidence_is_not_certainty": true,
+  "automatic_belief_update": false,
+  "candidate_only": true
+}

@@ -1,0 +1,109 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Status Registry",
+    "statuses": [
+        {
+            "status_id": "not_evaluated",
+            "description": "Evaluation not started",
+            "terminal": false,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "evaluation_ready",
+            "description": "Input is valid for evaluation",
+            "terminal": false,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "eligible_candidate",
+            "description": "Policy is eligible as candidate only",
+            "terminal": true,
+            "selectable": true,
+            "selection_candidate_allowed": true,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "ineligible",
+            "description": "Policy not eligible",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "blocked",
+            "description": "Policy evaluation is blocked by required conditions",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "insufficient_evidence",
+            "description": "Evidence is insufficient",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "unresolved_conflict",
+            "description": "Conflict exists and unresolved",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "temporally_invalid",
+            "description": "Temporal evaluation invalidates policy",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "governance_review_required",
+            "description": "Governance review required before candidate acceptance",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "status_id": "invalid_input",
+            "description": "Input schema or required snapshots invalid",
+            "terminal": true,
+            "selectable": false,
+            "selection_candidate_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        }
+    ],
+    "selection_gate_rule": "only_eligible_candidate_can_enter_selection_candidate_set",
+    "eligible_candidate_is_not_final_selection": true,
+    "status_registry_complete": true
+}

@@ -1,0 +1,27 @@
+{
+    "artifact": "action_state_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "model_kind": "SEMANTIC_STATE_CANDIDATES_NOT_RUNTIME_FSM",
+    "state_candidates": [
+        "PROPOSED",
+        "ELIGIBLE",
+        "PRECONDITION_PENDING",
+        "CONSTRAINED",
+        "NEEDS_PERMISSION",
+        "NEEDS_CONFIRMATION",
+        "READY_CANDIDATE",
+        "SUSPENDED",
+        "BLOCKED",
+        "CANCELLED",
+        "ROLLBACK_REQUIRED",
+        "FAILED_CANDIDATE",
+        "REVISED",
+        "REVOKED"
+    ],
+    "guards": {
+        "state_implies_execution": false,
+        "executed_state_from_action_governance_forbidden": true,
+        "cancelled_not_suspended": true,
+        "ready_not_executed": true
+    }
+}

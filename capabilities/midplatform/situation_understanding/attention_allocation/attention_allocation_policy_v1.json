@@ -1,0 +1,38 @@
+{
+  "schema_id": "AttentionAllocationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Situation-Understanding-Attention-Allocation-Planning-v1-001",
+  "layer_id": "L1_Attention_Allocation",
+  "parent_layer": "L1_Situation_Understanding",
+  "planning_only": true,
+  "principle": "决定下一秒有限计算资源和注意力放在哪里 — Active Perception",
+  "pipeline": [
+    "L0_observation_scan",
+    "value_assessment",
+    "observation_budget_allocation",
+    "region_intelligence_gate"
+  ],
+  "l1_structure": {
+    "scene_understanding": "upstream",
+    "attention_allocation": "current",
+    "region_intelligence": "downstream_gated",
+    "evidence_completeness": "downstream"
+  },
+  "forbidden": [
+    "l0_scan_triggers_ocr",
+    "l0_scan_triggers_qwen",
+    "see_text_then_ocr",
+    "all_regions_sam",
+    "all_regions_deep_understanding",
+    "skip_attention_go_to_models"
+  ],
+  "boundary_flags": {
+    "attention_before_region_intelligence": true,
+    "l0_low_cost_scan": true,
+    "value_assessment_by_goal": true,
+    "observation_budget_manager": true,
+    "selective_deep_understanding": true,
+    "not_all_models_start": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Situation-Understanding-Attention-Allocation-DryRun-v1-001"
+}

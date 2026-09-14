@@ -1,0 +1,75 @@
+{
+  "artifact": "emotion_governance_existing_asset_inventory_v1",
+  "phase": "Phase-Luna-Emotion-Governance-Architecture-Planning-v1-001",
+  "canonical_owner_exists_before_phase": false,
+  "canonical_owner_decision": "Emotion Governance",
+  "classification_rules": {
+    "A": "directly reusable current canonical assets/boundaries",
+    "B": "useful historical/reference architecture requiring adaptation",
+    "C": "conflicting/deprecated owner semantics or architecture",
+    "D": "deliberately deferred runtime/model/persistence capabilities"
+  },
+  "assets": [
+    {
+      "classification": "A",
+      "path": "docs/architecture/cognitive_emotion_context_boundary_v1/",
+      "reuse": "context candidate, provenance, unknown preservation, revocability, and no-computation boundary",
+      "reason": "Existing verified placeholder boundary is compatible with candidate-only Emotion Governance planning."
+    },
+    {
+      "classification": "B",
+      "path": "docs/architecture/cognitive_emotion_engine_v1/",
+      "reuse": "multidimensional state, context binding, lifecycle vocabulary, candidate interfaces, and revocability",
+      "reason": "Useful reference architecture, but its future engine/runtime framing is not current owner authority."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_personality_governance_baseline_freeze_v1/",
+      "reuse": "FROZEN_V1 candidate-only boundary and no Personality mutation",
+      "reason": "Personality Governance is frozen and must only be consumed through typed candidate/reference interfaces."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_self_governance_architecture_planning_v1/self_emotion_boundary_v1.json",
+      "reuse": "EmotionEvidenceToSelfCandidate and SelfContextToEmotionCandidate interfaces",
+      "reason": "Existing Self boundary explicitly forbids direct emotional self mutation."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1/",
+      "reuse": "experience evidence, memory references, salience/retention/decay, contradiction, revision, and persistence-owner separation",
+      "reason": "Memory/Experience remains the semantic owner of memory meaning and future persistence contracts."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_cognitive_learning_governance_planning_v1/learning_self_personality_emotion_boundary_v1.json",
+      "reuse": "EmotionEngineEvidenceCandidate as candidate-only learning input",
+      "reason": "Learning observes emotion candidates but cannot mutate emotional state."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_dynamic_cognitive_regulation_module_planning_v1/emotion_influence_boundary_v1.json",
+      "reuse": "emotion influence/reference only and no direct parameter write",
+      "reason": "Dynamic Regulation already separates emotion influence from parameter authority."
+    },
+    {
+      "classification": "A",
+      "path": "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1/",
+      "reuse": "cycle reference, owner trace linkage, and sequencing without semantic super-owner",
+      "reason": "Cognitive Flow can carry Emotion candidates without owning their meaning."
+    },
+    {
+      "classification": "C",
+      "path": "capabilities/midplatform/core/* references to \"Emotion / Integration Governance\"",
+      "reuse": "reference only; rename/adapt through a future typed contract",
+      "reason": "The string implies an owner but no canonical module exists and the scope is broader than governed Emotion semantics."
+    },
+    {
+      "classification": "D",
+      "path": "historical/future Emotion Engine runtime, model inference, expression, TTS, and persistent state assumptions",
+      "reuse": "none in this phase",
+      "reason": "Runtime, model, persistence, expression, and device behavior require separately authorized phases."
+    }
+  ],
+  "audit_conclusion": "Create one new planning-only Emotion Governance owner; do not create an implementation module or promote historical engine ownership."
+}

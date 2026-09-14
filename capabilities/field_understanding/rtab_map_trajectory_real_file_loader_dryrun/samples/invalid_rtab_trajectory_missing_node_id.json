@@ -1,0 +1,18 @@
+{
+  "format_ref": "rtab_map_trajectory_export_file",
+  "export_session_id": "rtab_export_session_invalid_node_id",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_trajectory_invalid_node_id.txt"
+  },
+  "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_invalid_node_id"],
+  "records": [
+    {
+      "timestamp_ms": 0,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.9,
+      "source_chain": ["rtab_map_trajectory_export", "rtab_export_session_invalid_node_id", "row_0"]
+    }
+  ]
+}

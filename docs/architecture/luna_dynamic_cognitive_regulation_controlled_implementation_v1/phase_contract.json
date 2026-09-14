@@ -1,0 +1,166 @@
+{
+  "phase_id": "Phase-Luna-Dynamic-Cognitive-Regulation-Controlled-Implementation-v1-001",
+  "stage": "Controlled Dynamic Cognitive Regulation implementation",
+  "execution_mode": "controlled_implementation",
+  "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+  "canonical_owner": "Dynamic Cognitive Regulation Governance",
+  "previous_phase": "Phase-Luna-Dynamic-Cognitive-Function-And-Self-Regulation-Module-Planning-v1-001",
+  "previous_phase_decision": "DYNAMIC_COGNITIVE_REGULATION_MODULE_PLANNING_VERIFIED",
+  "input_assets": [
+    "docs/architecture/luna_dynamic_cognitive_regulation_module_planning_v1/",
+    "capabilities/midplatform/core/cognitive_state_formation/",
+    "capabilities/midplatform/core/intent_governance/",
+    "capabilities/midplatform/core/causal_governance/",
+    "capabilities/midplatform/core/context_foundation/",
+    "capabilities/midplatform/core/personal_cognitive_network/"
+  ],
+  "scope": [
+    "create one controlled Dynamic Cognitive Regulation module",
+    "implement deterministic bounded parameter candidate evaluation",
+    "implement candidate-only Genome, lifecycle, influence, trace, revision, and revocation contracts",
+    "implement R01-R20 deterministic synthetic fixtures and a user-terminal runner",
+    "create controlled implementation documentation and a final phase verifier"
+  ],
+  "out_of_scope": [
+    "modify existing approved modules",
+    "real Runtime execution",
+    "database or persistent parameter writes",
+    "device, Scheduler, Task, model, or provider execution",
+    "automatic tuning, Learning activation, or model-weight changes",
+    "active Genome activation or cross-user propagation"
+  ],
+  "implementation_principles": [
+    "single canonical owner",
+    "new files in two target directories only",
+    "source-owned references remain immutable",
+    "candidate-only outputs",
+    "deterministic identical-input behavior",
+    "explicit bounds enforcement without silent coercion",
+    "minimal change and no parallel implementation"
+  ],
+  "required_code_files": [
+    "__init__.py",
+    "dynamic_cognitive_regulation_registry_v1.py",
+    "dynamic_cognitive_regulation_error_types_v1.py",
+    "dynamic_cognitive_regulation_core_types_v1.py",
+    "cognitive_parameter_types_v1.py",
+    "cognitive_parameter_bounds_types_v1.py",
+    "cognitive_parameter_genome_types_v1.py",
+    "dynamic_regulation_candidate_types_v1.py",
+    "self_regulation_state_types_v1.py",
+    "dynamic_regulation_trace_types_v1.py",
+    "dynamic_regulation_handoff_types_v1.py",
+    "dynamic_regulation_io_types_v1.py",
+    "dynamic_cognitive_regulation_protocol_v1.py",
+    "dynamic_cognitive_regulation_ownership_guard_v1.py",
+    "dynamic_cognitive_regulation_static_validators_v1.py",
+    "dynamic_cognitive_regulation_fixture_v1.py",
+    "dynamic_cognitive_regulation_engine_v1.py",
+    "run_dynamic_cognitive_regulation_controlled_implementation_v1.py"
+  ],
+  "required_doc_files": [
+    "dynamic_cognitive_regulation_controlled_implementation_overview_v1.md",
+    "dynamic_cognitive_regulation_controlled_execution_contract_v1.json",
+    "dynamic_cognitive_regulation_negative_guards_v1.json",
+    "dynamic_cognitive_regulation_planning_to_code_mapping_v1.json",
+    "dynamic_cognitive_regulation_controlled_change_manifest_v1.json",
+    "dynamic_cognitive_regulation_implementation_summary_v1.md",
+    "phase_contract.json",
+    "verify_dynamic_cognitive_regulation_controlled_implementation_v1.py"
+  ],
+  "required_checks": {
+    "V0": "editor/static diagnostics only; no execution commands",
+    "V1": "user-terminal controlled synthetic Runner for this instruction",
+    "V2": "user-terminal Final Phase Verifier",
+    "V3": "ChatGPT final audit"
+  },
+  "verification_authority": {
+    "V0": "AGENT_EDITOR_STATIC_ONLY",
+    "V1": "USER_TERMINAL_ONLY_FOR_THIS_PHASE",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_checks": [
+    "manual source review",
+    "editor diagnostics"
+  ],
+  "allowed_agent_execution": [
+    "read repository files",
+    "create or modify files inside the two new target directories"
+  ],
+  "prohibited_agent_execution": [
+    "python",
+    "python3",
+    "py_compile",
+    "pytest",
+    "runner",
+    "verifier",
+    "shell validation",
+    "Runtime",
+    "database",
+    "device",
+    "Scheduler",
+    "Task mutation",
+    "model call"
+  ],
+  "negative_guards": [
+    "no check weakening",
+    "no hardcoded pass",
+    "no fixture reinterpretation",
+    "no bounds bypass",
+    "no silent coercion",
+    "no source mutation",
+    "no parallel owner",
+    "no Runtime side effect"
+  ],
+  "boundary_flags": {
+    "synthetic_only": true,
+    "candidate_only": true,
+    "runtime_executed": false,
+    "database_write": false,
+    "device_control": false,
+    "scheduler_execution": false,
+    "task_mutation": false,
+    "model_call": false,
+    "source_module_mutation": false
+  },
+  "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "user_terminal_commands": [
+    "python3 capabilities/midplatform/core/dynamic_cognitive_regulation/run_dynamic_cognitive_regulation_controlled_implementation_v1.py",
+    "python3 docs/architecture/luna_dynamic_cognitive_regulation_controlled_implementation_v1/verify_dynamic_cognitive_regulation_controlled_implementation_v1.py"
+  ],
+  "expected_success_decision": "V2_FINAL_VERIFICATION_PASSED",
+  "expected_success_readiness": "LUNA_DYNAMIC_COGNITIVE_REGULATION_CONTROLLED_IMPLEMENTATION_READY",
+  "expected_next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "expected_failure_decision": "BLOCKED_BY_VERIFIER_FAILURE",
+  "expected_failure_readiness": "LUNA_DYNAMIC_COGNITIVE_REGULATION_CONTROLLED_IMPLEMENTATION_REMEDIATION_REQUIRED",
+  "expected_failure_next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "stop_condition": "Stop after all files are created and editor/static review completes; do not execute Runner or Verifier.",
+  "blocker_conditions": [
+    "required upstream owner contract must be modified",
+    "parallel owner becomes necessary",
+    "candidate-only behavior cannot represent planning contract",
+    "real Runtime or side effect is required"
+  ],
+  "completion_report_format": [
+    "new files",
+    "existing files modified",
+    "reused assets",
+    "Gap Audit A/B/C/D",
+    "canonical owner",
+    "parameter model",
+    "bounds",
+    "Genome",
+    "engine",
+    "influence boundaries",
+    "R01-R20",
+    "trace/provenance",
+    "negative guards",
+    "blockers",
+    "Runner command",
+    "Verifier command",
+    "current status"
+  ],
+  "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "next_phase_not_automatically_authorized": true
+}

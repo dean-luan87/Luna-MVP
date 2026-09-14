@@ -1,0 +1,33 @@
+{
+  "boundary_id": "a_route_provider_autonomy_boundary_v1",
+  "default_principle": "Perception Provider has no autonomous continuous-execution authority.",
+  "provider_autonomy_allowed_by_default": false,
+  "forbidden_autonomous_triggers": ["camera_frame_arrival", "audio_frame_arrival", "previous_successful_detection", "model_available", "provider_available", "observation_gateway_admission"],
+  "required_demand_chain": ["information_need_candidate", "observation_request_candidate", "attention_scope_candidate", "capability_requirement_candidate", "capability/model_admission_candidate", "bounded_provider_session_admission", "provider_output_evidence"],
+  "provider_permissions": {
+    "provider_can_create_evidence_candidate": true,
+    "provider_can_create_observation_truth": false,
+    "provider_can_start_itself": false,
+    "provider_can_extend_duration_itself": false,
+    "provider_can_select_followup_provider_itself": false,
+    "provider_can_mutate_context": false,
+    "provider_can_mutate_field": false,
+    "provider_can_mutate_intent": false,
+    "provider_can_mutate_task": false,
+    "provider_can_mutate_decision": false
+  },
+  "safety_exception": {
+    "name": "Safety-critical baseline perception",
+    "allowed": "ONLY_IF_EXPLICIT_POLICY_AND_ADMISSION_EXISTS",
+    "required_properties": ["explicit", "bounded", "policy_governed", "resource_governed", "traceable", "revocable", "scope_limited", "time_limited"],
+    "not_a_general_exception": true,
+    "does_not_authorize": ["permanent_camera_loop", "unbounded_yolo", "default_ocr", "continuous_slam", "provider_self_selection"]
+  },
+  "current_status": "CONTRACT_PARTIAL_RUNTIME_NOT_PROVEN",
+  "evidence_refs": [
+    "docs/architecture/cognitive_flow/cognitive_capability_registry_admission_relationship_v1.md",
+    "docs/architecture/cognitive_model_manager_runtime_boundary_v1/model_provider_isolation_contract_v1.md",
+    "docs/architecture/ocr/LUNA_OCR_PROVIDER_ADMISSION_CHECKLIST_V0.md",
+    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_stop_condition_v1.py"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_id": "luna_context_projection_schema_candidate_v1",
+  "context_id": {
+    "type": "string",
+    "required": true
+  },
+  "context_version": {
+    "type": "string",
+    "required": true
+  },
+  "temporal_scope": {
+    "type": "object",
+    "required": true,
+    "fields": ["valid_from", "valid_until", "current_event_window", "recent_context_window", "expiry_condition", "reset_condition"]
+  },
+  "field_projection": {
+    "type": "object",
+    "source_owner": "Field State System",
+    "read_only": true
+  },
+  "self_projection": {
+    "type": "object",
+    "source_owner": "Self System",
+    "read_only": true
+  },
+  "role_projection": {
+    "type": "object",
+    "source_owner": "Role System / Social Self",
+    "read_only": true
+  },
+  "relationship_projection": {
+    "type": "object",
+    "source_owner": "Relationship System / Social Self",
+    "read_only": true
+  },
+  "memory_projection": {
+    "type": "object",
+    "source_owner": "Memory System",
+    "read_only": true
+  },
+  "emotion_projection": {
+    "type": "object",
+    "source_owner": "Emotion Context Boundary / Integration Layer",
+    "read_only": true,
+    "calculation_allowed": false
+  },
+  "observation_projection": {
+    "type": "object",
+    "source_owner": "Observation Manager",
+    "read_only": true,
+    "fact_status": "EVIDENCE_CANDIDATE_ONLY"
+  },
+  "uncertainty": {
+    "type": "object",
+    "required": true,
+    "fields": ["unknowns", "uncertain_items", "conflicting_candidates", "confidence", "resolution_status"]
+  },
+  "provenance": [
+    {
+      "source_owner": "",
+      "source_reference": "",
+      "projection_version": "",
+      "admission_reference": "",
+      "temporal_validity": ""
+    }
+  ],
+  "trace_reference": {
+    "type": "string",
+    "required": true
+  },
+  "candidate_semantics": {
+    "unknown_supported": true,
+    "uncertain_supported": true,
+    "multiple_candidate_supported": true,
+    "source_owner_precedence": true,
+    "context_is_not_fact": true
+  },
+  "forbidden_fields": [
+    "intent",
+    "goal",
+    "causal_explanation",
+    "decision",
+    "action",
+    "memory_mutation",
+    "field_mutation"
+  ],
+  "active_schema": false,
+  "status": "PLANNING_CANDIDATE"
+}

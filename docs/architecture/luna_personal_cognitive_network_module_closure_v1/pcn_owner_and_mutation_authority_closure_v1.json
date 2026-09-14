@@ -1,0 +1,35 @@
+{
+    "artifact_id": "pcn_owner_and_mutation_authority_closure_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "pcn_owner": "Personal Cognitive Network Governance",
+    "pcn_write_scope": [
+        "typed_connection_candidates",
+        "activation_candidates",
+        "active_projection_candidates",
+        "growth_dormancy_reactivation_candidates",
+        "trace_candidates"
+    ],
+    "pcn_non_write_scope": [
+        "context_source_state",
+        "field_source_state",
+        "role_source_state",
+        "relationship_source_state",
+        "memory_source_state",
+        "emotion_source_state",
+        "interaction_kernel_source_state",
+        "intent_state",
+        "causal_state",
+        "decision_state",
+        "action_state",
+        "resource_owner_state"
+    ],
+    "cross_owner_rules": {
+        "source_owner_precedence": true,
+        "single_writer_per_source_state": true,
+        "owner_independence_not_equal_cognitive_isolation": true,
+        "constraint_feedback_activation_do_not_grant_mutation": true,
+        "second_writer_prohibited": true
+    },
+    "mutation_authority_preserved": true,
+    "owner_changed": false
+}

@@ -1,0 +1,9 @@
+{
+  "profile_id": "benchmark:luna-first-person-vision:v1",
+  "name": "LUNA_FIRST_PERSON_VISION_V1",
+  "metrics": ["critical_obstacle_recall", "person_recall", "vehicle_recall", "small_object_recall", "false_positive_rate", "task_relative_evidence_sufficiency_success", "time_to_sufficient_evidence", "latency", "fps", "memory", "power"],
+  "dataset_reference": "/Users/luanlei/Desktop/Luna-Workspace-Min/input_videos/phone_local_batch_001/phone_local_001_clear_path.mp4",
+  "dataset_executed": false,
+  "status": "UNRESOLVED",
+  "best_fit_can_be_declared": false
+}

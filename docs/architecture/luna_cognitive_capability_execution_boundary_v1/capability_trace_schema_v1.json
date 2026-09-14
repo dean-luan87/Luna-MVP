@@ -1,0 +1,8 @@
+{
+  "title": "Capability Trace Schema v1",
+  "owner": "Capability Governance",
+  "chain": ["Cognitive Request", "Capability Selection", "Provider Reference", "Evidence", "Validation", "Cognitive Update"],
+  "fields": ["trace_id", "request_id", "capability", "selection_reference", "provider_reference", "evidence_reference", "validation_reference", "cognitive_update_reference", "timestamp"],
+  "readers": ["Diagnostics", "Calibration", "Learning Candidate Review", "Governance Audit"],
+  "rules": {"provenance_required": true, "trace_not_authority": true, "provider_identity_is_reference_only": true}
+}

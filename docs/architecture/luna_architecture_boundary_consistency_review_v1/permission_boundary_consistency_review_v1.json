@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "name": "Permission Boundary Consistency Review",
+  "rows": [
+    {"module": "Self Layer", "allowed": ["Own Identity", "Own Capability Profile", "Assess Stability", "Propose Evolution"], "forbidden": ["Define Social Role", "Decide Relationship", "Modify Constitution", "Direct Action"]},
+    {"module": "Social Self Layer", "allowed": ["Own Role Context", "Own Relationship Context", "Assess Social Norm", "Propose Social Adaptation"], "forbidden": ["Modify Self Identity", "Modify Constitution", "Modify Capability Reality", "Direct Decision", "Direct Action"]},
+    {"module": "Integration Layer", "allowed": ["Classify Feedback", "Compose Context", "Route Candidates", "Provide Emotion Context"], "forbidden": ["Direct Self Mutation", "Direct Social Decision", "Override Brain", "Direct Action", "Modify Constitution"]},
+    {"module": "Capability Governance", "allowed": ["Manage Capability", "Provide Health", "Coordinate Admission"], "forbidden": ["Own Self Identity", "Generate Goal", "Generate Decision", "Execute Action"]},
+    {"module": "Brain", "allowed": ["Integrate Context", "Generate Decision Candidate"], "forbidden": ["Modify Constitution", "Direct Hardware", "Own Capability Implementation"]}
+  ],
+  "rules": {"self_social_non_overwrite": true, "integration_candidate_only": true, "capability_independent": true, "brain_remains_decision_owner": true, "permission_conflict_is_blocker": true}
+}

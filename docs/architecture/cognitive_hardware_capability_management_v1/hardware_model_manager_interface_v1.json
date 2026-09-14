@@ -1,0 +1,15 @@
+{
+  "interface_name": "Hardware Model Manager Interface v1",
+  "hardware_reference": "hardware-example",
+  "resource_profile_reference": "resource-example",
+  "model_requirement_candidate": {"capability": null, "resource_constraints": [], "scale": null},
+  "model_admission_candidate": null,
+  "health_constraint_candidate": null,
+  "hardware_contributes_resource_profile": true,
+  "model_manager_manages_implementation_assets": true,
+  "hardware_manager_manages_body_state": true,
+  "model_manager_does_not_manage_cognition": true,
+  "hardware_does_not_select_model": true,
+  "no_model_runtime_in_this_phase": true,
+  "unknowns_are_preserved": true
+}

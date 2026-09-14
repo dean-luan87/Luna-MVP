@@ -1,0 +1,12 @@
+{
+  "target_model": "YOLO11n",
+  "target_asset_id": "model-asset:yolo11n:weights-v1",
+  "expected_asset_path": "vision/detection/yolo/yolo11n.pt",
+  "expected_asset_filename": "yolo11n.pt",
+  "path_is_governed_identity_signal": true,
+  "filename_alone_is_authoritative": false,
+  "extension_alone_selects_loader": false,
+  "external_provisioning_required_when_absent": true,
+  "fake_weight_creation_forbidden": true,
+  "asset_download_by_model_manager": false
+}

@@ -1,0 +1,137 @@
+{
+  "matrix_id": "luna_controlled_architecture_alignment_m4_cross_phase_consistency_matrix_v1",
+  "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M4-Migration-Integrity-Validation-v1-001",
+  "planning_status": "PLANNING_CANDIDATE",
+  "migration_executed": false,
+  "records": [
+    {
+      "check_id": "M0_M1_ARCHITECTURE_TO_CONTRACT",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M1 Schema / Contract Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json"
+      ],
+      "conflict": "",
+      "resolution": "M1 expresses the M0 integration view through additive candidate-only boundaries and does not promote Dynamic Cognitive Architecture v2 into a replacement baseline or Runtime."
+    },
+    {
+      "check_id": "M0_M1_MODULE_RESPONSIBILITY",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M1 Schema / Contract Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json"
+      ],
+      "conflict": "",
+      "resolution": "Field, Observation, Memory, Task, Model, Protocol, and PCN responsibilities remain separated when translated into schema ownership candidates."
+    },
+    {
+      "check_id": "M1_M2_SCHEMA_TO_OWNER",
+      "source_phase": "M1 Schema / Contract Alignment",
+      "target_phase": "M2 Owner Metadata Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json"
+      ],
+      "conflict": "",
+      "resolution": "M2 preserves source-owner precedence and assigns one governed write scope per responsibility without activating metadata or transferring ownership."
+    },
+    {
+      "check_id": "M1_M2_COMPATIBILITY_AND_ROLLBACK",
+      "source_phase": "M1 Schema / Contract Alignment",
+      "target_phase": "M2 Owner Metadata Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/legacy_compatibility_rollback_contract_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/capability_registry_alignment_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/m2_change_manifest.json"
+      ],
+      "conflict": "",
+      "resolution": "Candidate aliases remain withdrawable, active baselines remain authoritative, and M2 records no active registry, baseline, contract, schema, or owner-metadata change."
+    },
+    {
+      "check_id": "M2_M3_OWNER_TO_RUNTIME",
+      "source_phase": "M2 Owner Metadata Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json"
+      ],
+      "conflict": "",
+      "resolution": "M3 carries M2 owners into Runtime-facing references while explicitly denying Runtime ownership of Intent, Causal Reasoning, Memory, Reality interpretation, Value, and Decision."
+    },
+    {
+      "check_id": "M2_M3_FUTURE_OWNER_REFERENCE",
+      "source_phase": "M2 Owner Metadata Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/capability_registry_alignment_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/future_cognitive_runtime_gap_registry.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_adapter_candidate_registry.json"
+      ],
+      "conflict": "",
+      "resolution": "Future PCN, Intent, Causal, A/B Route, Experience, and adapter entries remain planning references with runtime_required and implementation_created both false."
+    },
+    {
+      "check_id": "M0_M3_RUNTIME_NON_EQUIVALENCE",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/m3_change_manifest.json"
+      ],
+      "conflict": "",
+      "resolution": "The active root A3 Runtime remains the existing engineering surface and is not relabeled as Dynamic Cognitive Architecture v2 Runtime; no Runtime files or APIs are changed."
+    },
+    {
+      "check_id": "M0_M3_FIELD_PRECEDENCE",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json"
+      ],
+      "conflict": "",
+      "resolution": "Field State remains the governed Reality-facing source; Cognitive Layer and Runtime cannot fabricate, bypass, or mutate Field State."
+    },
+    {
+      "check_id": "M0_M3_TASK_MODEL_BOUNDARIES",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_risk_register.json"
+      ],
+      "conflict": "",
+      "resolution": "Task Manager remains task-lifecycle governance and Model Manager remains model-capability governance; neither gains cognitive, Decision, provider-call, dispatch, or Action authority."
+    },
+    {
+      "check_id": "M0_M3_PCN_BOUNDARY",
+      "source_phase": "M0 Documentation Alignment",
+      "target_phase": "M3 Runtime Boundary Alignment",
+      "consistency_status": "PASS",
+      "evidence_refs": [
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+        "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json"
+      ],
+      "conflict": "",
+      "resolution": "PCN remains a future link, activation, and read-only projection capability and cannot own source objects, persist them, mutate them, or invoke Runtime directly."
+    }
+  ],
+  "conflict_count": 0,
+  "blocked_count": 0,
+  "all_required_phase_links_present": true
+}

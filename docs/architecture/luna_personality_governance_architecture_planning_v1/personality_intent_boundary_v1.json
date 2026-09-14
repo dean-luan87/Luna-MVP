@@ -1,0 +1,14 @@
+{
+  "artifact": "personality_intent_boundary_v1",
+  "intent_owner_preserved": "Intent Governance",
+  "allowed_inputs": ["intent candidate refs", "intent context refs", "goal/commitment context refs", "intent outcome refs"],
+  "allowed_outputs": ["intent-linked personality evidence candidate"],
+  "forbidden": ["Personality owns intent", "Personality mutates intent", "Personality creates task", "Personality decides action", "Personality uses profile as action policy"],
+  "rules": {
+    "intent_is_context_only": true,
+    "personality_direct_intent_mutation": false,
+    "intent_direct_personality_activation": false,
+    "profile_direct_decision": false,
+    "profile_direct_action": false
+  }
+}

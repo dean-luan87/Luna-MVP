@@ -1,0 +1,45 @@
+{
+  "schema_id": "RegionIntelligenceProtocolPatchesV1",
+  "version": "v1",
+  "patches": [
+    {
+      "patch_id": "field_understanding_protocol_patch_v1",
+      "rules": [
+        "field_not_equal_scene_label",
+        "field_outputs_field_candidate_only",
+        "field_may_influence_attention_not_fact",
+        "field_must_include_expected_entities_behaviors_information_risk_patterns"
+      ]
+    },
+    {
+      "patch_id": "attention_gate_protocol_patch_v1",
+      "rules": [
+        "low_value_region_blocked_from_region_intelligence",
+        "blocked_region_runtime_call_count_zero",
+        "attention_is_control_system_not_label",
+        "attention_budget_affects_model_manager_calls"
+      ]
+    },
+    {
+      "patch_id": "ownership_graph_protocol_patch_v1",
+      "rules": [
+        "text_must_bind_owner_candidate",
+        "surface_candidate_before_text_owner_assignment",
+        "occlusion_not_absence",
+        "reflection_not_real_sign",
+        "screen_content_not_paper_document",
+        "overlapped_documents_no_merge"
+      ]
+    },
+    {
+      "patch_id": "lightweight_runtime_protocol_patch_v1",
+      "rules": [
+        "runtime_outputs_candidate_only",
+        "runtime_does_not_assign_fact",
+        "runtime_does_not_override_ownership_graph",
+        "failure_returns_runtime_error_candidate",
+        "no_silent_fallback_to_heavy_model"
+      ]
+    }
+  ]
+}

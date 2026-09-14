@@ -1,0 +1,19 @@
+{
+  "phase": "Phase-Luna-Logical-Capability-To-Runtime-Admission-Candidate-Adapter-Controlled-Implementation-v1-001",
+  "scenario_count": 34,
+  "scenario_ids": [
+    "LR-01", "LR-02", "LR-03",
+    "MA-01", "MA-02", "MA-03", "MA-04",
+    "IN-01", "IN-02", "IN-03",
+    "DR-01", "DR-02", "DR-03", "DR-04",
+    "GV-01", "GV-02", "GV-03",
+    "EX-01", "EX-02", "EX-03",
+    "BD-01", "BD-02", "BD-03", "BD-04", "BD-05",
+    "ST-01", "ST-02", "ST-03",
+    "IS-01", "IS-02", "IS-03",
+    "TT-01", "TT-02", "TT-03"
+  ],
+  "execution": "synthetic_only",
+  "provider_invocation": false,
+  "runtime_probe": false
+}

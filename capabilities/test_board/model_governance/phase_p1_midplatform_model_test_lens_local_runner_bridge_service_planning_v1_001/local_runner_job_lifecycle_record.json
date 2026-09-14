@@ -1,0 +1,39 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.305348+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "localhost_only": true,
+  "not_runtime": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "local_runner_job_lifecycle_v1",
+    "states": [
+      "created",
+      "asset_registered",
+      "awaiting_approval",
+      "ready_to_run",
+      "running",
+      "adapter_processing",
+      "completed",
+      "failed_no_boundary_violation",
+      "blocked"
+    ],
+    "required_fields_per_state": [
+      "job_id",
+      "status",
+      "status_reason",
+      "created_at",
+      "updated_at",
+      "phase_ref",
+      "test_board_ref",
+      "artifact_refs"
+    ],
+    "lifecycle_defined": true
+  }
+}

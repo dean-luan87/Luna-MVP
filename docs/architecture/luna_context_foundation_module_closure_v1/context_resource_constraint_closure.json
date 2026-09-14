@@ -1,0 +1,29 @@
+{
+  "closure_id": "luna_context_resource_constraint_closure_v1",
+  "owner": "Context_Foundation",
+  "context_expansion_constraints": [
+    "Hardware",
+    "Runtime",
+    "Cognitive Resource"
+  ],
+  "budget_input": "Source-owned Context Expansion Budget Reference",
+  "expansion_rule": "Admit the minimum sufficient eligible source references within the current resource budget.",
+  "insufficient_resource_result": "Degraded Context Scope Candidate",
+  "degradation_requirements": [
+    "Preserve current-Reality precedence",
+    "Preserve required references",
+    "Preserve Unknown and contradictions",
+    "Preserve provenance and trace",
+    "Record the resource constraint"
+  ],
+  "resource_insufficiency_is_context_failure": false,
+  "fixed_depth_allowed": false,
+  "static_layer_limit_allowed": false,
+  "numeric_limit_owned_by_context": false,
+  "budget_mutation_allowed": false,
+  "hardware_control_allowed": false,
+  "runtime_control_allowed": false,
+  "model_switching_allowed": false,
+  "active_contract": false,
+  "status": "FROZEN_CLOSURE_BASELINE"
+}

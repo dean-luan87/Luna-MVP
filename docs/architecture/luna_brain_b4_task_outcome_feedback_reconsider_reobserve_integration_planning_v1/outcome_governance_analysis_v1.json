@@ -1,0 +1,9 @@
+{
+  "artifact":"b4_outcome_governance_analysis_v1",
+  "owner":"Outcome Evaluation Governance",
+  "canonical_flow":["ExpectedOutcomeInputV1 + ActualResultInputV1", "ComparabilityGateCandidateV1", "DeviationCandidateV1", "OutcomeEvaluationCandidateV1", "AttributionCandidateV1", "feedback/reconsideration/observation-need handoffs"],
+  "semantics":["Outcome Candidate != World Truth", "Task success candidate != verified external success", "Action failure candidate != global Task failure", "uncertainty and contradiction remain explicit"],
+  "statuses":["MATCH", "PARTIAL_MATCH", "MISMATCH", "UNKNOWN", "CONTESTED"],
+  "existing_fixture":"O01-O36",
+  "authority":false
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_behavior_robustness_validation",
+  "scope": "candidate_only_behavior_robustness",
+  "cases": [
+    {
+      "case_id": "navigation_failures_map_data_attribution",
+      "outcome_sequence": [
+        {
+          "navigation_result": "failed",
+          "supported_cause_candidate": "map_data_error"
+        },
+        {
+          "navigation_result": "failed",
+          "supported_cause_candidate": "map_data_error"
+        },
+        {
+          "navigation_result": "failed",
+          "supported_cause_candidate": "map_data_error"
+        }
+      ],
+      "expected_candidates": {
+        "cause_attribution": "external_information_source_limit",
+        "pattern_candidate": "map_data_reliability_constraint",
+        "requires_validation_before_adoption": true
+      },
+      "forbidden_outputs": [
+        "Luna_is_not_good_at_navigation",
+        "automatic_self_identity_change",
+        "automatic_strategy_update"
+      ],
+      "assertions": {
+        "repeated_failure_does_not_misattribute_to_self": true,
+        "pattern_is_not_adoption": true,
+        "experience_adoption_excluded": true
+      }
+    },
+    {
+      "case_id": "feedback_loop_anti_oscillation",
+      "initial_state": {
+        "capability_confidence": "moderate",
+        "observation_strategy": "bounded"
+      },
+      "single_failure": {
+        "outcome_difference": "insufficient_evidence"
+      },
+      "expected_candidates": {
+        "adaptation_candidate": "increase_observation_consideration",
+        "confidence_change": "bounded_or_pending_validation",
+        "recovery_candidate": true
+      },
+      "forbidden_outputs": [
+        "immediate_capability_collapse",
+        "automatic_permanent_conservatism",
+        "feedback_loop_self_degradation"
+      ],
+      "assertions": {
+        "single_failure_does_not_create_oscillation": true,
+        "correction_safety_preserved": true,
+        "state_mutation_excluded": true
+      }
+    }
+  ]
+}

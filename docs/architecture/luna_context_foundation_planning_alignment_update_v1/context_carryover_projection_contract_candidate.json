@@ -1,0 +1,46 @@
+{
+  "contract_id": "luna_context_carryover_projection_contract_candidate_v1",
+  "producer": "Context Foundation Governance Candidate",
+  "consumer": [
+    "Current Context Envelope Candidate",
+    "Future Personal Cognitive Network Governance",
+    "Future Intent Governance",
+    "Future Causal Reasoning Governance"
+  ],
+  "input_reference": [
+    "Previous Field Projection",
+    "Current Field Projection",
+    "Mental State Reference"
+  ],
+  "output_reference": [
+    "Context Carryover Candidate",
+    "Continuity Reference",
+    "Temporal Scope",
+    "Release Condition Reference",
+    "Uncertainty Reference",
+    "Provenance",
+    "Trace Reference"
+  ],
+  "write_authority": "Context Carryover Candidate only",
+  "unknown_allowed": true,
+  "uncertain_allowed": true,
+  "multiple_candidate_allowed": true,
+  "trace_required": true,
+  "provenance_required": true,
+  "source_owner_precedence": true,
+  "read_only_projection": true,
+  "forbidden_outputs": [
+    "Emotion State",
+    "Emotion Decision",
+    "Emotion Mutation",
+    "Causal Explanation",
+    "Intent",
+    "Decision",
+    "Action",
+    "Memory Mutation",
+    "Field Mutation"
+  ],
+  "direct_source_mutation": false,
+  "active_contract": false,
+  "status": "PLANNING_CANDIDATE"
+}

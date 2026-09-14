@@ -1,0 +1,91 @@
+{
+  "schema_id": "NetworkAssistedSituationLearningPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "principle": "三方模型可以教 Luna，但不能直接改 Luna。",
+  "learning_chain": [
+    "external_learning_source",
+    "situation_learning_candidate",
+    "learning_policy_review_result",
+    "situation_case_record",
+    "situation_training_dataset_candidate"
+  ],
+  "rules": [
+    {
+      "rule_id": "no_direct_web_training",
+      "description": "网络数据不得直接训练 Luna 模型"
+    },
+    {
+      "rule_id": "no_direct_teacher_weight_update",
+      "description": "三方模型输出不得直接修改 Luna 模型权重"
+    },
+    {
+      "rule_id": "teacher_output_candidate_only",
+      "description": "Teacher 输出只能是 candidate"
+    },
+    {
+      "rule_id": "web_reference_candidate_only",
+      "description": "Web reference 只能是 candidate"
+    },
+    {
+      "rule_id": "provenance_required",
+      "description": "所有 learning candidate 必须有 provenance"
+    },
+    {
+      "rule_id": "policy_review_required",
+      "description": "进入 case library 必须经过 policy review"
+    },
+    {
+      "rule_id": "human_review_required_for_training",
+      "description": "进入 training dataset 必须 pending human approval"
+    },
+    {
+      "rule_id": "no_fact_from_learning_candidate",
+      "description": "learning candidate 不得写 fact"
+    },
+    {
+      "rule_id": "no_runner_invocation_from_learning_candidate",
+      "description": "learning candidate 不得直接触发 runner"
+    },
+    {
+      "rule_id": "no_tool_install_from_learning_candidate",
+      "description": "learning candidate 不得直接安装或下载工具"
+    },
+    {
+      "rule_id": "external_source_trust_tier_required",
+      "description": "外部来源必须标注 trust_tier"
+    },
+    {
+      "rule_id": "unsafe_rule_block",
+      "description": "违反核心规则的外部样本必须 reject 或 flag",
+      "examples": ["text task activates SLAM by default"]
+    },
+    {
+      "rule_id": "privacy_guard",
+      "description": "含个人敏感信息的样本不得直接进入训练集"
+    }
+  ],
+  "unsafe_patterns": [
+    "text_task_activates_slam_by_default",
+    "teacher_overrides_luna_policy",
+    "web_auto_train",
+    "learning_candidate_triggers_runner"
+  ],
+  "boundary_flags": {
+    "no_direct_web_training": true,
+    "no_direct_teacher_weight_update": true,
+    "teacher_output_candidate_only": true,
+    "web_reference_candidate_only": true,
+    "provenance_required": true,
+    "policy_review_required": true,
+    "human_review_required_for_training": true,
+    "no_fact_from_learning_candidate": true,
+    "no_runner_invocation_from_learning_candidate": true,
+    "no_tool_install_from_learning_candidate": true,
+    "external_source_trust_tier_required": true,
+    "unsafe_rule_block": true,
+    "privacy_guard": true,
+    "planning_only": true
+  }
+}

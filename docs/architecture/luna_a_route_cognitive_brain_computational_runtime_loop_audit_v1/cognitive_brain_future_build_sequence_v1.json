@@ -1,0 +1,14 @@
+{
+  "artifact":"cognitive_brain_future_build_sequence_v1",
+  "sequence":[
+    {"order":1,"module":"Result Comparison / Outcome Evaluation controlled module","goal":"produce typed expected/actual comparison, deviation and error candidates without mutation","depends_on":["runtime result candidates","expectation feedback contracts"],"exit_condition":"comparison scenarios distinguish observation/prediction/decision/execution/world-change outcomes with reverse trace"},
+    {"order":2,"module":"A Route Runtime Product Loop Integration","goal":"connect bounded user ingress, existing controlled owners, action/runtime boundary and result feedback","depends_on":["order 1","permission/admission","existing A Route orchestration"],"exit_condition":"one product route can execute under explicit runtime policy and return a result candidate"},
+    {"order":3,"module":"User-facing Input/Output and Capability Runtime Gateway","goal":"provide real bounded interaction and capability execution adapters","depends_on":["order 2","safety/resource governance"],"exit_condition":"user can provide input, receive governed output, and trace execution/result"},
+    {"order":4,"module":"Runtime Attention and Evidence Feedback Integration","goal":"connect attention demand, cost, information need, sufficiency and result comparison","depends_on":["order 2","order 3"],"exit_condition":"attention can allocate/stop/redirect with explicit budget and no provider autonomy"},
+    {"order":5,"module":"Expectation / Prediction / Reconsideration Integration","goal":"turn current contracts into bounded evidence-driven expectation and error feedback","depends_on":["order 1","order 4"],"exit_condition":"competing expectations and prediction error route to controlled reconsideration"},
+    {"order":6,"module":"Computable Cognitive State and Regulation Integration","goal":"only after product loop evidence exists, introduce bounded numeric state/update behavior","depends_on":["order 1","order 5","parameter governance"],"exit_condition":"state update is specified, bounded, traceable, tested and still owner-safe"},
+    {"order":7,"module":"Learning and Parameter Review Integration","goal":"admit bounded learning signals and human/self review without automatic mutation","depends_on":["order 1","order 6"],"exit_condition":"learning adjustments remain reversible, reviewed, and non-automatic"}
+  ],
+  "sequence_rule":"module-level construction; do not fragment into isolated schema phases",
+  "not_in_sequence":["Emotion Engine","B Route","semantic compression","affective memory compression","cross-user transfer"]
+}

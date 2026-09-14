@@ -1,0 +1,28 @@
+{
+  "schema_version":"1.0",
+  "states":["IDLE","INPUT_RECEIVED","OBSERVATION_REQUIRED","OBSERVING","OBSERVATION_READY","WORLD_CONTEXT_READY","COGNITION_READY","DECISION_READY","TASK_READY","ACTION_READY","EXECUTION_PENDING","EXECUTING","RESULT_READY","EVALUATING","RECONSIDERING","REOBSERVATION_REQUIRED","NEXT_CYCLE_READY","COMPLETED","DEFERRED","FAILED","ABORTED"],
+  "terminal_states":["COMPLETED","FAILED","ABORTED"],
+  "control_states":["DEFERRED","RECONSIDERING","ABORTED"],
+  "transitions":[
+    {"from":"IDLE","to":"INPUT_RECEIVED","condition":"new idempotent input ingress"},
+    {"from":"INPUT_RECEIVED","to":"OBSERVATION_REQUIRED","condition":"information need unresolved"},
+    {"from":"INPUT_RECEIVED","to":"COGNITION_READY","condition":"context is sufficient without observation"},
+    {"from":"OBSERVATION_REQUIRED","to":"OBSERVING","condition":"bounded observation control admitted"},
+    {"from":"OBSERVING","to":"OBSERVATION_READY","condition":"observation candidate available"},
+    {"from":"OBSERVATION_READY","to":"WORLD_CONTEXT_READY","condition":"context/field handoff acknowledged"},
+    {"from":"WORLD_CONTEXT_READY","to":"COGNITION_READY","condition":"cognitive ingress acknowledged"},
+    {"from":"COGNITION_READY","to":"DECISION_READY","condition":"decision candidate acknowledged"},
+    {"from":"DECISION_READY","to":"TASK_READY","condition":"task candidate acknowledged"},
+    {"from":"TASK_READY","to":"ACTION_READY","condition":"action candidate acknowledged"},
+    {"from":"ACTION_READY","to":"EXECUTION_PENDING","condition":"explicit runtime admission available"},
+    {"from":"EXECUTION_PENDING","to":"EXECUTING","condition":"runtime authorization and invocation"},
+    {"from":"EXECUTING","to":"RESULT_READY","condition":"actual result received"},
+    {"from":"RESULT_READY","to":"EVALUATING","condition":"result/evaluation handoff acknowledged"},
+    {"from":"EVALUATING","to":"COMPLETED","condition":"sufficient successful outcome"},
+    {"from":"EVALUATING","to":"REOBSERVATION_REQUIRED","condition":"observation need candidate"},
+    {"from":"EVALUATING","to":"RECONSIDERING","condition":"reconsideration candidate"},
+    {"from":"EVALUATING","to":"NEXT_CYCLE_READY","condition":"bounded feedback creates next cycle"},
+    {"from":"NEXT_CYCLE_READY","to":"INPUT_RECEIVED","condition":"next-cycle ingress accepted"}
+  ],
+  "guards":["max_reconsideration_depth","max_reobservation_depth","repeated_failure_signature","completed_cycle_immutable"]
+}

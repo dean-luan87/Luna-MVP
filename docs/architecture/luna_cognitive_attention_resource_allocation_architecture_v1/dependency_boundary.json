@@ -1,0 +1,11 @@
+{
+  "boundary_id": "cognitive_attention_resource_dependency_v1",
+  "reusable_assets": ["docs/architecture/cognitive_attention_global_architecture_v1", "docs/architecture/cognitive_attention_competition_arbitration_v1", "docs/architecture/cognitive_attention_adaptation_stability_v1", "docs/architecture/luna_cognitive_field_attention_decision_integration_v1", "docs/architecture/luna_cognitive_state_management_reality_validation_architecture_v1", "docs/architecture/luna_cognitive_uncertainty_exploration_governance_architecture_v1", "docs/architecture/luna_self_rhythm_controller_architecture_v1"],
+  "model_attention_boundary": ["model_attention_is_capability_internal", "cognitive_attention_is_core_resource_allocation", "model_attention_cannot_replace_cognitive_attention"],
+  "allowed_dependencies": ["Field -> Attention Signal", "Belief Conflict -> Attention Boost Candidate", "Uncertainty -> Attention Candidate", "Schema -> Attention Prior", "Memory -> Relevance Context", "Cognitive Kernel -> Attention Candidate", "Self Regulation -> Budget Governance", "Brain -> consume active context", "Runtime -> future admitted scheduling"],
+  "forbidden_dependencies": ["Attention -> Direct Action", "Attention -> Reality Mutation", "Memory -> Force Attention", "Schema -> Override Reality", "Model Attention -> Replace Cognitive Attention", "Attention -> Unlimited Resource Usage", "Attention -> Model Switching", "Attention -> Hardware Control", "Attention -> Scheduler Modification"],
+  "no_parallel_attention_controller": true,
+  "no_model_attention_replacement": true,
+  "runtime": false,
+  "scheduler": false
+}

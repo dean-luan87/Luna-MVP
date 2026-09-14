@@ -1,0 +1,20 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "yolo",
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "no-license-dataset/1",
+    "dataset_url": "https://universe.roboflow.com/example/no-license-dataset"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "export_format": "yolov8"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export"],
+  "images": [
+    {"image_id": "img_050", "file_name": "x_050.jpg", "width": 640, "height": 480, "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_050", "type": "bbox", "label": "entrance", "image_id": "img_050", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

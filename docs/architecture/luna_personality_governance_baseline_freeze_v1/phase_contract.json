@@ -1,0 +1,54 @@
+{
+  "Phase": "Phase-Luna-Personality-Governance-Baseline-Freeze-v1-001",
+  "Stage": "Luna Personality Governance Baseline / Closure",
+  "Execution Mode": "BASELINE_FREEZE",
+  "Canonical Root": "/Users/luanlei/Desktop/Luna-Core",
+  "Previous Phases": [
+    "Phase-Luna-Personality-Governance-Architecture-Planning-v1-001",
+    "Phase-Luna-Personality-Governance-Controlled-Implementation-v1-001"
+  ],
+  "Current Work Description": "Freeze the verified Personality Governance v1 baseline without adding Personality capability or modifying existing implementation assets.",
+  "Input Assets": [
+    "docs/architecture/luna_personality_governance_architecture_planning_v1/",
+    "docs/architecture/luna_personality_governance_controlled_implementation_v1/",
+    "_eval_out/personality_governance_controlled_implementation_v1/"
+  ],
+  "Allowed Scope": [
+    "read existing planning and controlled implementation assets",
+    "read user-terminal verification artifacts",
+    "create baseline manifest",
+    "create frozen boundary and deferred registries",
+    "create closure summary",
+    "create this phase contract",
+    "create static freeze verifier"
+  ],
+  "Forbidden Scope": [
+    "modify Personality implementation",
+    "modify planning assets",
+    "modify existing owner modules",
+    "add Personality capability",
+    "rerun P01-P36",
+    "rerun the prior controlled implementation verifier",
+    "open negative guards",
+    "implement semantic compression",
+    "implement Emotion Engine",
+    "implement persistence or runtime"
+  ],
+  "Baseline Assertions": {
+    "canonical_owner": "Personality Governance",
+    "scenario_count": 36,
+    "scenario_ids": "P01-P36",
+    "controlled_verifier_check_count": 22,
+    "controlled_verifier_failed_check_count": 0,
+    "controlled_verifier_blocker_count": 0,
+    "freeze_status": "FROZEN_V1"
+  },
+  "Verification Authority": {
+    "freeze_static_verifier": "USER_TERMINAL_ONLY",
+    "runner_execution": "NOT_PERFORMED_IN_FREEZE",
+    "prior_verifier_execution": "NOT_PERFORMED_IN_FREEZE"
+  },
+  "User Terminal Command": "cd /Users/luanlei/Desktop/Luna-Core && python3 docs/architecture/luna_personality_governance_baseline_freeze_v1/verify_personality_governance_baseline_freeze_v1.py",
+  "Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "Current Status": "FROZEN_V1_PENDING_USER_TERMINAL_STATIC_VERIFICATION"
+}

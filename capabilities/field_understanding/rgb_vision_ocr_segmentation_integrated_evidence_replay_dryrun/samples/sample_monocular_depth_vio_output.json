@@ -1,0 +1,27 @@
+{
+  "format_ref": "monocular_depth_or_vio_output",
+  "frame_origin": {
+    "device_profile": "rgb_first_first_person_camera",
+    "file_name": "stadium_concourse_clip_001.mp4"
+  },
+  "file_origin": {
+    "exported_by": "offline_rgb_sample_pack",
+    "export_session_id": "rgb_sample_session_2026_06_25"
+  },
+  "model_output_origin": {
+    "provider": "monocular_depth_estimation",
+    "model_id": "mono_depth_vio_mock_v1"
+  },
+  "source_chain": ["offline_rgb_sample_pack", "monocular_depth_or_vio_output"],
+  "frame_id": "frame_001",
+  "timestamp_ms": 1719288000000,
+  "hints": [
+    {
+      "hint_id": "hint_depth_1",
+      "relative_depth_hint": {"entrance": 0.4, "counter": 0.7, "obstacle": 0.2},
+      "visual_odometry_hint": {"translation_hint": [0.1, 0.0, 0.3], "rotation_hint": 0.02},
+      "motion_hint": "forward_slow",
+      "confidence": 0.66
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "required_reverse_path": [
+    "CurrentWorldCandidateV1",
+    "ContextWorldAssemblyCandidateV1",
+    "ObservationContextHandoffCandidateV1",
+    "ObservationGatewayTraceV1",
+    "VisualDetectionEvidenceCandidateV1",
+    "provider output reference",
+    "frame reference",
+    "model/provider provenance"
+  ],
+  "preserved": [
+    "trace_refs",
+    "provenance_refs",
+    "temporal_refs",
+    "uncertainty_refs",
+    "contradiction_refs"
+  ],
+  "provenance_grants_authority": false,
+  "duplicate_policy": "replay is rejected at the Gateway handoff idempotency boundary"
+}

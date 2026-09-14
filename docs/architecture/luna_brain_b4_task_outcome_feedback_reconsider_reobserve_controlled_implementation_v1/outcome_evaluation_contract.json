@@ -1,0 +1,8 @@
+{
+  "owner":"Outcome Evaluation Governance",
+  "route":["ExpectedOutcomeInputV1 + ActualResultInputV1","ComparabilityGateCandidateV1","DeviationCandidateV1","AttributionCandidateV1","OutcomeEvaluationCandidateV1"],
+  "preserved":["uncertainty","contradiction","temporal status","provenance","idempotency"],
+  "outcome_is_world_truth":false,
+  "external_success_verified":false,
+  "learning_signal_allowed":false
+}

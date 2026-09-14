@@ -1,0 +1,12 @@
+{
+  "schema_id": "slam_output_schema_v1",
+  "type": "slam",
+  "output": {
+    "trajectory": [],
+    "map": {},
+    "keyframes": [],
+    "tracking_state": "OK | LOST",
+    "covariance": []
+  },
+  "candidate_only": true
+}

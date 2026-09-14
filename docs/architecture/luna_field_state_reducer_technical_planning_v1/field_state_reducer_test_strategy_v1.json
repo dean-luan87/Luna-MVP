@@ -1,0 +1,22 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Test Strategy",
+    "test_categories": [
+        "schema_validation",
+        "required_file_validation",
+        "registry_completeness",
+        "transition_legality",
+        "deterministic_ordering",
+        "replay_determinism",
+        "direct_mutation_prohibition",
+        "revoked_expired_suspended_guards",
+        "conflict_preservation",
+        "overlay_substrate_isolation",
+        "provenance_completeness",
+        "no_runtime_implementation_guard",
+        "no_provider_recall_guard",
+        "no_action_trigger_guard",
+        "no_fact_promotion_guard"
+    ],
+    "test_strategy_complete": true
+}

@@ -1,0 +1,64 @@
+{
+  "phase": "Phase-Luna-A-Route-Active-Observation-Control-Gap-Audit-v1-001",
+  "audit_mode": "READ_ONLY_INVENTORY_AUDIT_AND_ARCHITECTURE_PLANNING_ONLY",
+  "canonical_owner_found": true,
+  "canonical_owner_candidate": "Field Perception Orchestrator",
+  "owner_decision": "B_EXISTING_OWNER_REQUIRES_CONTROLLED_INTEGRATION",
+  "inventory_scope": ["capabilities", "docs/architecture", "tools"],
+  "excluded": ["_eval_out", "_tmp_eval_out", "archives", "generated_outputs"],
+  "classifications": {
+    "A": [
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_facade_v1.py","reuse":"existing candidate control path for information gap, observation goal, region, capability, budget, stop, and re-observation"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_information_gap_detector_v1.py","reuse":"information gap candidate and sufficient-for-decision input boundary"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_capability_planner_v1.py","reuse":"capability requirement candidate without provider execution"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_stop_condition_v1.py","reuse":"candidate stop condition reference"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/module/field_perception_reobservation_policy_v1.py","reuse":"stale/conflict re-observation candidate"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/integration/field_perception_to_model_manager_requirement_adapter_v1.py","reuse":"visual capability to model capability requirement adapter"},
+      {"asset":"capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py","reuse":"request classification, attention/region candidates, evidence quality, cross-modal and admission-handoff candidates"},
+      {"asset":"capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py","reuse":"model admission/resource/routing candidate boundary"},
+      {"asset":"capabilities/midplatform/model_manager/module/model_manager_routing_candidate_v1.py","reuse":"provider/model routing candidate only"},
+      {"asset":"capabilities/midplatform/core/observation_gateway","reuse":"canonical evidence normalization, observation candidate, admission and A Route ingress"},
+      {"asset":"capabilities/midplatform/core/a_route_orchestration","reuse":"INGRESS_READY and cycle handoff lifecycle only"},
+      {"asset":"capabilities/midplatform/core/cognitive_state_formation/attention_types_v1.py","reuse":"attention candidate schema and downstream attention boundary"},
+      {"asset":"capabilities/cognitive_flow/current_cognitive_context/observation_planning_dryrun","reuse":"candidate-only information need / observation planning semantics"},
+      {"asset":"capabilities/midplatform/core/field_state_reducer","reuse":"Field owner retains state admission and reduction authority"},
+      {"asset":"capabilities/midplatform/core/cognitive_flow","reuse":"cycle and feedback organization references"}
+    ],
+    "B": [
+      {"asset":"capabilities/midplatform/task_observation_request_contract_v1.py","reason":"high-value task observation request contract, but legacy evaluation roots and controlled-only execution assumptions require adaptation"},
+      {"asset":"capabilities/midplatform/field_perception_orchestrator/integration/field_perception_to_observation_request_adapter_v1.py","reason":"useful typed request adapter, but it currently previews observation_manager rather than a canonical A Route demand gate"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_observation_attention_selection_architecture_plan_v1.md","reason":"attention selection boundary and candidate semantics"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_attention_axis_observation_requirement_go_no_go_v1.md","reason":"information need, scope, region, evidence-type and capability requirement distinction"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_flow/capability_admission_contract_v1.json","reason":"admission is not execution and provider cannot self-admit"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_capability_registry_admission_relationship_v1.md","reason":"registry, admission, availability and invocation distinction"},
+      {"asset":"docs/architecture/cognitive_model_manager_runtime_boundary_v1/model_admission_contract_v1.json","reason":"model admission and no automatic switching boundary"},
+      {"asset":"docs/architecture/cognitive_flow/cognitive_model_manager_provider_management_runtime_boundary_v1.md","reason":"capability requirement to provider candidate projection without cognitive authority"},
+      {"asset":"docs/architecture/ocr/LUNA_OCR_PROVIDER_ADMISSION_CHECKLIST_V0.md","reason":"OCR request/ROI/budget/admission boundary, not current canonical A Route owner"},
+      {"asset":"capabilities/field_understanding/spatial_evidence_provider_manager","reason":"spatial provider admission, health, fallback and disable candidates; no general observation demand authority"},
+      {"asset":"capabilities/field_understanding/slam_spatial_evidence_adapter","reason":"spatial evidence translation candidate; no SLAM execution or text authority"},
+      {"asset":"docs/architecture/luna_field_state_reducer_behavior_policy_controlled_policy_evaluation_technical_planning_v1/field_state_reducer_policy_evidence_sufficiency_contract_v1.json","reason":"evidence sufficiency policy reference, not task-relative observation sufficiency owner"},
+      {"asset":"capabilities/midplatform/model_test_lens/observation_attention","reason":"historical/manual observation-attention exploration and schema reference"}
+    ],
+    "C": [
+      {"asset":"legacy provider/model assets that start or route providers from frame arrival","reason":"provider-driven autonomy conflicts with the frozen demand/admission principle"},
+      {"asset":"historical assets that let OCR, YOLO, SLAM, or model output mutate Field/Context/Intent/Task directly","reason":"semantic authority and owner boundary conflict"},
+      {"asset":"capabilities/midplatform/model_manager/engines/model_routing_engine_v1.py direct should_invoke_model route","reason":"use only as routing reference; direct invocation implication cannot be promoted to A Route authority"},
+      {"asset":"capabilities/midplatform/task_observation_request_contract_v1.py hard-coded external workspace defaults","reason":"repository/environment drift prevents direct canonical runtime reuse"}
+    ],
+    "D": [
+      {"asset":"real camera, YOLO, OCR, audio, SLAM provider execution","reason":"runtime/provider activation is outside this audit and remains unimplemented or separately governed"},
+      {"asset":"Emotion Engine and Advanced Emotion Governance","reason":"deferred until A_ROUTE_PRODUCT_COMPLETE_V1"},
+      {"asset":"semantic compression, affective memory compression, Personality-memory fusion","reason":"cross-owner semantic synthesis is explicitly deferred"},
+      {"asset":"B Route and cross-user transfer","reason":"outside current A Route and privacy boundary"},
+      {"asset":"persistent observation demand store and scheduler-driven continuous observation","reason":"not required for this planning audit and cannot be inferred from candidate assets"}
+    ]
+  },
+  "evidence_refs": [
+    "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_facade_v1.py",
+    "capabilities/midplatform/observation_manager/module/observation_manager_module_facade_v1.py",
+    "capabilities/midplatform/model_manager/module/model_manager_module_types_v1.py",
+    "docs/architecture/cognitive_flow/cognitive_context_driven_observation_planning_dryrun_contract_v1.md",
+    "docs/architecture/cognitive_flow/cognitive_observation_attention_selection_boundary_contract_v1.md",
+    "docs/architecture/luna_a_route_perception_observation_gateway_controlled_integration_v1/observation_gateway_controlled_execution_contract_v1.json"
+  ]
+}

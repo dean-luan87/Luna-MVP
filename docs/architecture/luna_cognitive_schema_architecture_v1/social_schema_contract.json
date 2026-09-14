@@ -1,0 +1,12 @@
+{
+  "contract_id": "social_schema_v1",
+  "owner": "Schema Layer",
+  "schema_type": "Social Schema",
+  "inputs": ["Social Memory", "Knowledge", "Experience", "relationship_context", "validated_pattern_candidate"],
+  "outputs": ["social_schema_candidate", "social_context_structure", "unknowns", "provenance"],
+  "social_bound": true,
+  "candidate_only": true,
+  "direct_social_self_update": false,
+  "social_judgment": false,
+  "decision_authority": false
+}

@@ -1,0 +1,11 @@
+{
+  "version": "2.0",
+  "name": "Emotion Boundary Reclassification",
+  "new_owner": "Self-Social Interaction / Integration Layer",
+  "status": "context_boundary_only",
+  "flow": ["Social Event", "Social Self Interpretation", "Emotion State Candidate", "Integration", "Possible Self/Social Candidate Update"],
+  "inputs": ["Field", "Role", "Relationship", "Memory Metadata", "Self State", "Reality Feedback"],
+  "outputs": ["Emotion Context Candidate", "Attention Context Candidate", "Preference Context Candidate"],
+  "cannot": ["Direct Decision", "Direct Action", "Value Rewrite", "Identity Rewrite", "Constitution Modification", "Emotion Runtime Calculation"],
+  "rules": {"emotion_not_self_owner": true, "emotion_not_social_self_owner": true, "integration_context_only": true, "no_emotion_runtime": true, "future_engine_admission_required": true}
+}

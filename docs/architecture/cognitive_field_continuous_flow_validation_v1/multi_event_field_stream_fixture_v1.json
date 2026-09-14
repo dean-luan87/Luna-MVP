@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "multi_event_field_stream",
+  "deterministic": true,
+  "field": "office_field",
+  "events": [
+    {"time": "10:05", "event": "user_enters_meeting_room", "expected": "adaptive_context_update"},
+    {"time": "10:20", "event": "message_received", "expected": "transient_context_candidate"},
+    {"time": "11:10", "event": "battery_decreases", "expected": "self_resource_update_candidate"},
+    {"time": "11:15", "event": "network_changes", "expected": "resource_constraint_candidate"}
+  ],
+  "context_preserved": true,
+  "state_pollution": false,
+  "decision_output": false
+}

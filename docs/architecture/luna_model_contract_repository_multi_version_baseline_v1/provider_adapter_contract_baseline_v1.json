@@ -1,0 +1,10 @@
+{
+  "provider_adapter_id": "adapter:yolo:visual-evidence:v1",
+  "provider_family": "yolo",
+  "supported_loader_contracts": ["loader:yolov5:torch-hub-local:v1", "loader:ultralytics:yolo:v1"],
+  "native_output_contract": "detections_xyxy_conf_cls",
+  "canonical_output_contract": "evidence:visual-detection-candidate:v1",
+  "candidate_only_output": true,
+  "semantic_authority": false,
+  "provider_invocation": false
+}

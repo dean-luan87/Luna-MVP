@@ -1,0 +1,10 @@
+{
+  "title": "Upgrade Rejection Policy v1",
+  "owner": "Self Preservation Governance",
+  "inputs": ["Upgrade Candidate", "Capability Value", "Resource Cost", "Risk", "Stability", "Task Requirement", "Calibration Evidence"],
+  "evaluation_factors": ["Capability Value", "Resource Cost", "Risk", "Stability", "Task Requirement"],
+  "schema": ["candidate_id", "decision", "reason", "alternative", "benefit", "cost", "stability_risk", "confidence", "evidence_refs", "review_status"],
+  "decision_examples": [{"decision":"reject","reason":"stability_risk","alternative":"keep_current_version"}],
+  "allowed_decisions": ["accept_candidate", "reject_candidate", "defer_for_evidence", "keep_current_version"],
+  "rules": {"rejection_is_candidate":true,"no_automatic_switch":true,"stability_risk_can_veto_optimization":true,"calibration_required":true,"rollback_not_automatic":true}
+}

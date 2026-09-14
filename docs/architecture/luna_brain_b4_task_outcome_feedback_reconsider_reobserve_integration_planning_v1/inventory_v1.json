@@ -1,0 +1,16 @@
+{
+  "artifact": "b4_inventory_v1",
+  "conclusion": "Canonical candidate-only Task, Action, Runtime, Outcome Evaluation, Cognitive Flow and Experience assets exist. B4 needs typed adapters, not a new feedback super-owner.",
+  "assets": [
+    {"classification":"A","owner":"Task Manager","path":"capabilities/midplatform/core/task_manager/ and task_manager_types_v1.py","use":"lifecycle, readiness, interruption, cancellation, recovery, task candidate"},
+    {"classification":"A","owner":"Action Governance","path":"capabilities/midplatform/core/action_governance/","use":"ActionCandidateV1, admission/readiness, permission/safety/resource, runtime/task handoffs"},
+    {"classification":"A","owner":"Runtime Executor","path":"capabilities/midplatform/core/runtime_executor/","use":"controlled execution result, failure, timeout, partial, cancel, retry and idempotency candidates"},
+    {"classification":"A","owner":"Outcome Evaluation Governance","path":"capabilities/midplatform/core/outcome_evaluation_governance/","use":"comparability, deviation, outcome evaluation, attribution, reconsideration, observation need, learning signal and guards"},
+    {"classification":"A","owner":"Cognitive Flow","path":"capabilities/midplatform/core/cognitive_flow/","use":"reconsideration, interrupt/suspend/resume/abort candidates and re-entry references"},
+    {"classification":"A","owner":"Cognitive Memory/Experience","path":"capabilities/midplatform/core/cognitive_memory_experience/","use":"ExperienceCandidateV1 and future memory/learning boundary; not activated in B4"},
+    {"classification":"B","owner":"Cognitive Execution Chain","path":"capabilities/midplatform/core/cognitive_execution_chain/","use":"runtime/action feedback reconsideration helpers and provenance/idempotency references"},
+    {"classification":"C","owner":"Historical/provider-specific feedback paths","path":"legacy docs and direct provider outcome claims","use":"none without a canonical adapter","reason":"provider confidence/result is not verified outcome truth"},
+    {"classification":"D","owner":"Learning, Memory persistence, dynamic regulation, B Route","path":"deferred workstreams","use":"outside B4"}
+  ],
+  "canonical_synthetic_fixtures": ["Action Governance synthetic cases", "Runtime Executor synthetic cases", "Outcome Evaluation O01-O36", "Cognitive Flow synthetic reconsideration cases", "Task Manager lifecycle/interruption fixtures"]
+}

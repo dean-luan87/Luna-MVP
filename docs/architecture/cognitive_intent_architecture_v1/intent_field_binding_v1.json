@@ -1,0 +1,28 @@
+{
+  "title": "Intent Field Binding v1",
+  "contract_type": "Intent Context Binding",
+  "binding_request": {
+    "intent_candidate": "intent-example",
+    "field_reference": "field-example",
+    "field_state_reference": "field-state-example",
+    "role_reference": "role-example",
+    "relationship_references": [],
+    "self_state_reference": "self-state-example",
+    "situation_reference": "situation-example",
+    "time_window": {"start": null, "end": null},
+    "provenance": []
+  },
+  "binding_rules": {
+    "intent_is_field_bound": true,
+    "intent_references_existing_field": true,
+    "binding_does_not_create_field": true,
+    "binding_does_not_mutate_field": true,
+    "binding_does_not_mutate_role": true,
+    "binding_does_not_mutate_relationship": true,
+    "binding_does_not_mutate_self_identity": true,
+    "reality_remains_authoritative": true,
+    "unknowns_are_preserved": true
+  },
+  "context_difference": "same goal may produce different intent in different fields, roles, or relationships",
+  "binding_failure": "produce unknown or conflict candidate, never silently complete"
+}

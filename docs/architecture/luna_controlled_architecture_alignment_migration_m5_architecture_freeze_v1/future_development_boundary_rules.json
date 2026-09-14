@@ -1,0 +1,93 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m5_future_development_boundary_rules_v1",
+  "freeze_status": "ARCHITECTURE_FREEZE_CANDIDATE",
+  "rules": [
+    {
+      "rule_id": "NO_SECOND_COGNITIVE_ARCHITECTURE",
+      "rule": "All future cognitive development must classify itself within Dynamic Cognitive Architecture v2 and its governing Constitution, Cognitive OS, and Baseline hierarchy.",
+      "applies_to": "all new cognitive modules, architecture proposals, migrations, and integrations",
+      "forbidden_pattern": "creating a parallel cognitive mainline, replacement cognition stack, or unregistered top-level architecture",
+      "reason": "A second cognitive architecture would recreate dual ownership, incompatible flows, and migration ambiguity."
+    },
+    {
+      "rule_id": "RUNTIME_NO_COGNITIVE_OWNERSHIP",
+      "rule": "Runtime may execute admitted requests and return evidence, but it must not own cognitive interpretation or selection.",
+      "applies_to": "Runtime, schedulers, lifecycle managers, execution adapters, and task handoffs",
+      "forbidden_pattern": "Runtime generating Intent, causal conclusions, Value judgments, Reality interpretations, Memory decisions, or final Decision ownership",
+      "reason": "Execution infrastructure must remain separable from Luna's cognitive subject and governance."
+    },
+    {
+      "rule_id": "MODEL_MANAGER_NO_REASONING_OWNERSHIP",
+      "rule": "Model Manager governs model capabilities and candidate routing only.",
+      "applies_to": "Model Manager, providers, model adapters, and inference-result handoffs",
+      "forbidden_pattern": "treating model or provider output as Reality, Intent, causal fact, Goal, Value, or Decision authority",
+      "reason": "External model computation is evidence or capability support, not Luna's cognitive ownership."
+    },
+    {
+      "rule_id": "MEMORY_NO_DIRECT_DECISION",
+      "rule": "Memory may provide governed historical influence and context candidates but cannot select or execute a Decision.",
+      "applies_to": "Memory retrieval, consolidation, activation, recommendation, and experience projection",
+      "forbidden_pattern": "Memory output directly becoming a Decision, Task dispatch, Action, Reality override, or Self mutation",
+      "reason": "Past experience must inform current understanding without replacing current Reality and Decision governance."
+    },
+    {
+      "rule_id": "OBSERVATION_NO_DIRECT_FACT",
+      "rule": "Observation produces evidence and admission-handoff candidates only.",
+      "applies_to": "Observation Manager, OCR, Vision, sensors, and external evidence producers",
+      "forbidden_pattern": "Observation or model evidence directly becoming an admitted Fact, Decision, or Action",
+      "reason": "Evidence provenance and admission must precede Field State and cognitive interpretation."
+    },
+    {
+      "rule_id": "TASK_MANAGER_NO_INTENT",
+      "rule": "Task Manager governs approved task lifecycle after upstream Intent and Decision governance.",
+      "applies_to": "Task Manager, task planners, dependency graphs, and task-result aggregation",
+      "forbidden_pattern": "Task Manager generating Intent, owning Goal, performing causal judgment, selecting Decision, dispatching Runtime directly, or executing Action",
+      "reason": "Task orchestration must not become an implicit cognitive or execution authority."
+    },
+    {
+      "rule_id": "CANDIDATE_REQUIRES_VALIDATION_BEFORE_REALITY",
+      "rule": "Every cognitive, causal, simulation, model, observation, experience, or decision candidate must pass its governed validation and admission boundary before affecting authoritative state.",
+      "applies_to": "all Candidate schemas, handoffs, projections, adapters, and future Runtime outputs",
+      "forbidden_pattern": "unvalidated Candidate promotion into Reality, Field State, Memory, Self, active Contract, or execution authority",
+      "reason": "Candidate/Fact separation preserves evidence, reversibility, unknowns, and single-Writer authority."
+    },
+    {
+      "rule_id": "PCN_PROJECTION_ONLY",
+      "rule": "Personal Cognitive Network owns typed connections, activation, and read-only context projection candidates only.",
+      "applies_to": "PCN architecture, future PCN schemas, PCN adapters, and network evolution proposals",
+      "forbidden_pattern": "PCN owning, persisting, or mutating Self, Role, Relationship, Memory, Emotion, Value, Belief, Schema, or other source objects",
+      "reason": "Cross-object cognition requires independent source ownership and cannot collapse into a universal data owner."
+    },
+    {
+      "rule_id": "FIELD_STATE_REALITY_PRECEDENCE",
+      "rule": "Reality-facing context must retain admitted Field State provenance and the Field State Reducer remains the only governed reducer writer.",
+      "applies_to": "Field, Context, Cognitive Layer, Runtime context, Memory projection, and model output",
+      "forbidden_pattern": "cognitive projection, Memory, model output, or Runtime bypassing Field State or mutating Field State directly",
+      "reason": "Luna must distinguish current Reality from hypotheses, history, simulation, and execution evidence."
+    },
+    {
+      "rule_id": "OWNER_AND_WRITER_REQUIRED",
+      "rule": "Every new module, schema, contract, and state transition must declare one Owner and one write authority before implementation.",
+      "applies_to": "all future engineering assets and architecture exceptions",
+      "forbidden_pattern": "shared final ownership, implicit writer, ownerless state, duplicate writer, or ownership transfer by documentation wording",
+      "reason": "Unique ownership is required for traceability, rollback, admission, and conflict resolution."
+    },
+    {
+      "rule_id": "IMPLEMENTATION_STATUS_MUST_BE_EVIDENCE_BASED",
+      "rule": "Architecture validation, planning references, controlled skeletons, and active Runtime implementation must remain explicitly distinguishable.",
+      "applies_to": "documentation, registries, baselines, manifests, readiness reports, and future phase contracts",
+      "forbidden_pattern": "claiming implementation, activation, migration, or Runtime equivalence from architecture naming alone",
+      "reason": "Status inflation can activate unproven capabilities and erase rollback boundaries."
+    },
+    {
+      "rule_id": "FREEZE_CHANGE_REQUIRES_EXCEPTION_REVIEW",
+      "rule": "Any change to a frozen scope must enter the architecture-freeze exception process under a separate authorized phase.",
+      "applies_to": "Dynamic Cognitive Architecture v2, Owner, Schema, Contract, Runtime, dependency, and development-governance boundaries",
+      "forbidden_pattern": "editing a frozen boundary as an incidental implementation change or bypassing impact, ownership, compatibility, rollback, V2, and V3 review",
+      "reason": "The freeze is a governed reference and cannot drift through local implementation convenience."
+    }
+  ],
+  "rule_count": 12,
+  "candidate_contracts_activated": false,
+  "migration_executed": false
+}

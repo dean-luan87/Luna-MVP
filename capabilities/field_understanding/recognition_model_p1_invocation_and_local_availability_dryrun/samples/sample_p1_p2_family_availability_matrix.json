@@ -1,0 +1,13 @@
+{
+  "matrix_ref": "p1_p2_family_availability_matrix_v1",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "families": [
+    {"model_family": "segmentation_family", "tier": "P1", "availability_status": "download_planning_required"},
+    {"model_family": "tracking_family", "tier": "P1", "availability_status": "contract_only"},
+    {"model_family": "depth_spatial_hint_family", "tier": "P1", "availability_status": "deferred_due_to_resource"},
+    {"model_family": "object_detection_completion_family", "tier": "P1", "availability_status": "test_only"},
+    {"model_family": "scene_relation_vlm_family", "tier": "P2", "availability_status": "deferred_due_to_output_instability"},
+    {"model_family": "audio_speech_family", "tier": "P2", "availability_status": "reserved_only"},
+    {"model_family": "emotion_multimodal_bridge_family", "tier": "P2", "availability_status": "reserved_only"}
+  ]
+}

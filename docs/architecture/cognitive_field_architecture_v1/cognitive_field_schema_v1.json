@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "schema_type": "cognitive_field",
+  "required_fields": ["field_id", "field_type", "lifecycle", "reality_layer", "self_layer", "goal_layer", "rule_layer", "social_layer", "emotion_layer", "unknowns", "provenance"],
+  "reality_layer": ["entities", "relations", "events", "states", "locations", "changes"],
+  "self_layer": ["capability", "resource", "health", "limitation"],
+  "goal_layer": ["task_goal", "intent_reference"],
+  "rule_layer": ["survival_constitution", "safety_boundary", "authority_constraint"],
+  "social_layer": ["role_reference", "relationship_state", "permission_context"],
+  "emotion_layer": ["attention_bias_candidate", "priority_influence_candidate", "relationship_weight_candidate"],
+  "field_state_only": true,
+  "unknowns_required": true,
+  "provenance_required": true,
+  "forbidden_outputs": ["decision", "recommendation", "prediction", "plan", "reasoning", "action", "emotional_judgment", "value_judgment", "personality_formation"]
+}

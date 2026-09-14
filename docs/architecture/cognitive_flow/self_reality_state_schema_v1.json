@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "schema_type": "self_reality_state",
+  "required_fields": ["identity", "capability", "resource", "limitation", "current_condition", "validity", "provenance", "updated_at"],
+  "identity": {
+    "reference": "Luna",
+    "continuity": "stable",
+    "may_change_from_world_evidence": false
+  },
+  "layers": ["Identity", "Capability", "Resource", "Limitation", "Current Condition"],
+  "personality": "out_of_scope",
+  "goal_authority": false,
+  "decision_authority": false,
+  "state_mutation_authority": "Reducer only"
+}

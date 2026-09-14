@@ -1,0 +1,8 @@
+{
+  "retry_is_reconsideration":false,
+  "automatic_retry":false,
+  "hidden_retry_loop":false,
+  "retry_owner":"existing Action/Runtime/Task policy owners",
+  "recovery_owner":"Task Manager for task recovery; Runtime Executor for result references",
+  "b4_behavior":"preserve retry/recovery references only"
+}

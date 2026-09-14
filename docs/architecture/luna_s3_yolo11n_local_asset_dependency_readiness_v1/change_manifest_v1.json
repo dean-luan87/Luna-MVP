@@ -1,0 +1,9 @@
+{
+  "phase": "Phase-Luna-A-Route-S3-YOLO11n-Local-Asset-And-Dependency-Readiness-v1-001",
+  "new_owner": false,
+  "existing_owner_reused": "Model Manager / Model Governance",
+  "existing_s0_s1_s2_s3_assets_modified": false,
+  "existing_model_contract_repository_semantics_modified": false,
+  "new_integration_scope": "YOLO11n physical asset, checksum, dependency readiness, technical admission candidate",
+  "inference_implemented": false
+}

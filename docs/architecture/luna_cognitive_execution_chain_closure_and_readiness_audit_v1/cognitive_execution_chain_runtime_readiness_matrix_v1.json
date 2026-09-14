@@ -1,0 +1,71 @@
+{
+    "artifact": "cognitive_execution_chain_runtime_readiness_matrix_v1",
+    "capabilities": [
+        {
+            "capability": "Intent->Causal",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "adapter mapping required, candidate-only"
+        },
+        {
+            "capability": "Causal->Decision",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "migration_required blocks must remain explicit"
+        },
+        {
+            "capability": "Decision->Action",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "optional unresolved refs are adapter-managed"
+        },
+        {
+            "capability": "Action->Runtime",
+            "status": "DEFERRED",
+            "notes": "critical compatibility blockers for real runtime"
+        },
+        {
+            "capability": "Runtime result handoff",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "reference-only handoff in controlled mode"
+        },
+        {
+            "capability": "Reconsideration",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "route candidates only, no runtime mutation"
+        },
+        {
+            "capability": "Trace",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "trace linkage closed for controlled synthetic execution"
+        },
+        {
+            "capability": "Provenance",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "reverse locatable, reference-only"
+        },
+        {
+            "capability": "Idempotency",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "duplicate guards validated in controlled scenarios"
+        },
+        {
+            "capability": "Version compatibility",
+            "status": "DEFERRED",
+            "notes": "Action->Runtime hard-block remains"
+        },
+        {
+            "capability": "Task reference flow",
+            "status": "PLANNING_ONLY",
+            "notes": "reference handoff only, no task runtime orchestration"
+        },
+        {
+            "capability": "Diagnostics flow",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "diagnostics candidates available, no maintenance runtime invocation"
+        },
+        {
+            "capability": "Field/Memory candidate evidence",
+            "status": "READY_WITH_CONSTRAINTS",
+            "notes": "candidate evidence only, no writeback"
+        }
+    ],
+    "classification_note": "READY_FOR_CONTROLLED_RUNTIME does not mean production ready"
+}

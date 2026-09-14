@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.542206+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "pip_install_allowed": false,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_torch_torchvision_reuse_boundary_record",
+  "timm_torch_torchvision_reuse_boundary_record": {
+    "record_id": "timm_torch_torchvision_reuse_boundary_v1",
+    "existing_torch_reuse_allowed": true,
+    "existing_torch_version_expected": "2.8.0",
+    "existing_torch_reuse_does_not_allow_global_mutation": true,
+    "existing_torch_reuse_does_not_allow_reinstall": true,
+    "existing_torch_reinstall_allowed": false,
+    "torchvision_status_check_required_before_execution": true,
+    "torchvision_reinstall_allowed": false,
+    "torch_compatibility_must_be_observed_after_model_load_retry": true,
+    "if_torchvision_missing_then_enter_dependency_repair_loop": true,
+    "torchvision_observed_available": true,
+    "torchvision_observed_version": "0.23.0"
+  }
+}

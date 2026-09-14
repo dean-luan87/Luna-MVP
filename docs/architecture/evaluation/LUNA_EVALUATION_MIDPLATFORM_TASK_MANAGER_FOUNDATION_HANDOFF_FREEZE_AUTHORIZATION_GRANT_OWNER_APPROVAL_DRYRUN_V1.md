@@ -1,0 +1,10 @@
+# Luna Evaluation — Owner Approval DryRun v1
+
+```bash
+python3 tools/evaluation/midplatform/run_midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_dryrun_v1.py
+python3 tools/evaluation/midplatform/verify_midplatform_task_manager_foundation_handoff_freeze_authorization_grant_owner_approval_dryrun_v1.py
+```
+
+Upstream: Owner Approval Planning GO + Protocol Shared-Code Smoke GO
+
+Final Decision: `MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_OWNER_APPROVAL_DRYRUN_READY_FOR_POST_DRYRUN_REVIEW`

@@ -1,0 +1,51 @@
+{
+  "schema_id": "RealChainValidationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-Multi-Model-Chain-Integration-Planning-v1-001",
+  "layer_id": "Model_Manager_Real_Chain",
+  "planning_only": true,
+  "principle": "先验证协作编排，再扩大模型数量 — 第一条真实链：店招识别",
+  "chain_id": "shopfront_text_detection_ocr_qwen_context_v1",
+  "frozen_chain": {
+    "goal": "identify_place",
+    "situation": "shopfront_sign",
+    "agent_plan": ["read_text", "verify_context"],
+    "slots": [
+      {"slot_id": "slot_1", "capability": "text_detection", "role": "text_detector", "output": "text_region_candidate"},
+      {"slot_id": "slot_2", "capability": "text_recognition", "role": "ocr", "output": "ocr_text_candidate", "depends_on": "slot_1"},
+      {"slot_id": "slot_3", "capability": "context_reasoning", "role": "vlm_context", "output": "context_evidence_candidate", "depends_on": "slot_2"}
+    ],
+    "provider_fill": {
+      "slot_1": "detection_v1",
+      "slot_2": "ocr_v1",
+      "slot_3": "qwen_vl"
+    }
+  },
+  "rules": [
+    {"rule_id": "text_capability_first", "description": "任务需要文字 → 文字能力优先"},
+    {"rule_id": "sam_not_target_discovery", "description": "SAM 不作为 target discovery，仅 mask refinement"},
+    {"rule_id": "detector_not_semantic", "description": "Detector 输出 text_region_candidate，不是店招判断"},
+    {"rule_id": "ocr_not_fact", "description": "OCR 输出 ocr_text_candidate，不是事实"},
+    {"rule_id": "qwen_context_not_ocr", "description": "Qwen 仅上下文解释，不负责 OCR"},
+    {"rule_id": "no_ocr_vs_qwen_competition", "description": "禁止 OCR vs Qwen 竞争"},
+    {"rule_id": "no_auto_answer_fusion", "description": "禁止证据自动融合成答案"},
+    {"rule_id": "ocr_failure_l2_replan", "description": "OCR 失败 → failure evidence → L2 replan，非自动换 Qwen"},
+    {"rule_id": "unsupported_claim_reject", "description": "Qwen 无 OCR 支撑 → unsupported_claim reject"},
+    {"rule_id": "degradation_explicit", "description": "资源不足 → collaboration_degradation_candidate"}
+  ],
+  "forbidden": [
+    "grounding_sam_first_chain",
+    "internvl_in_phase_one",
+    "gemini_in_phase_one",
+    "multi_model_competition",
+    "auto_model_replacement",
+    "silent_degradation"
+  ],
+  "boundary_flags": {
+    "model_os_frozen": true,
+    "single_chain_scope": true,
+    "text_detection_ocr_qwen_only": true,
+    "collaboration_slot_driven": true,
+    "no_fact_write": true
+  }
+}

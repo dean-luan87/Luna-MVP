@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:24:51.632602+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "no_deps_required": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_nodeps_rollback_readiness_record",
+  "timm_nodeps_rollback_readiness_record": {
+    "record_id": "timm_nodeps_rollback_readiness_v1",
+    "rollback_available": true,
+    "rollback_not_executed_by_default": true,
+    "rollback_target_path": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_timm_repair_workspace/install_target",
+    "rollback_removes_timm_target_if_failed": true,
+    "rollback_preserves_mobile_sam_code": true,
+    "rollback_preserves_weight_file": true,
+    "rollback_preserves_registry": true,
+    "rollback_preserves_test_board": true,
+    "rollback_preserves_review_artifacts": true,
+    "global_env_contamination_check_done": true
+  }
+}

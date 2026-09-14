@@ -1,0 +1,51 @@
+{
+  "registry_id": "luna_dynamic_cognitive_architecture_cross_cutting_capability_boundary_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "capabilities": [
+    {
+      "capability": "Emotion Engine",
+      "position": "Cross-cutting context and adaptive influence",
+      "stage_contributions": {
+        "Context Foundation": "current emotion-context reference",
+        "Intent Architecture": "need-strength and affective-context input candidate",
+        "Causal Reasoning Engine": "emotion-context cause and effect reference",
+        "A/B Simulation & Decision Support": "governed utility-weight adjustment candidate"
+      },
+      "owner_retained": "Integration Layer / Emotion Governance",
+      "forbidden_responsibilities": ["Intent ownership", "Value ownership", "Decision ownership", "Action", "Identity mutation", "Runtime control"],
+      "independent_mainline": false
+    },
+    {
+      "capability": "Memory System",
+      "position": "Cross-cutting historical influence and admission authority",
+      "stage_contributions": {
+        "Context Foundation": "read-only immediate, recent, and long-term historical projections",
+        "Personal Cognitive Network": "source-owned historical references",
+        "Intent Architecture": "historical relevance candidate",
+        "Causal Reasoning Engine": "historical evidence and counter-evidence",
+        "Experience Compression & Cognitive Evolution": "Memory admission and persistence governance"
+      },
+      "owner_retained": "Memory System",
+      "forbidden_responsibilities": ["Reality override", "Intent creation", "Decision", "source mutation by projection consumer", "automatic experience admission"],
+      "independent_mainline": false
+    },
+    {
+      "capability": "Observation Axis",
+      "position": "Cross-cutting perspective and evidence-collection axis",
+      "stage_contributions": {
+        "Context Foundation": "evidence provenance and current observation perspective",
+        "Intent Architecture": "perspective-specific evidence reference",
+        "Causal Reasoning Engine": "user, counterparty, family, organization, and environment observation axes",
+        "A/B Simulation & Decision Support": "perspective-bounded evaluation evidence",
+        "Experience Compression & Cognitive Evolution": "outcome observation trace"
+      },
+      "owner_retained": "Observation Manager",
+      "forbidden_responsibilities": ["Fact declaration", "Intent creation", "causal truth", "Decision", "Action"],
+      "independent_mainline": false
+    }
+  ],
+  "required_capabilities": ["Emotion Engine", "Memory System", "Observation Axis"],
+  "owner_transfer_allowed": false,
+  "parallel_phase_creation_authorized": false,
+  "runtime_activation_authorized": false
+}

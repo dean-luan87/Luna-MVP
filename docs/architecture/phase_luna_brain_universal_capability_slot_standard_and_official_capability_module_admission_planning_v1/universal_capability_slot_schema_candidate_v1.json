@@ -1,0 +1,42 @@
+{
+  "schema_id": "UniversalCapabilitySlotCandidateV1",
+  "status": "PLANNING_CANDIDATE",
+  "slot_identity": {
+    "slot_id": "required_stable_identifier",
+    "slot_version": "standard_version",
+    "slot_state": ["EMPTY", "AVAILABLE", "BOUND", "DEGRADED", "SUSPENDED", "RECOVERY_CANDIDATE", "RETIRED"],
+    "binding_state": ["EMPTY", "BINDING_CANDIDATE", "BOUND", "UNBINDING_CANDIDATE", "REBINDING_CANDIDATE"]
+  },
+  "binding": {
+    "bound_capability_module_ref": "optional_current_module_ref",
+    "compatibility_boundary_refs": [],
+    "historical_binding_refs": [],
+    "last_known_capability_module_ref": null
+  },
+  "governance": {
+    "admission_status": "candidate",
+    "permission_boundary_refs": [],
+    "lifecycle_policy_refs": [],
+    "governance_status_ref": null
+  },
+  "resources": {
+    "resource_allocation_boundary_refs": [],
+    "current_availability": "candidate",
+    "health_degradation_state": "unknown",
+    "recovery_ref": null
+  },
+  "self_visibility": {
+    "brain_self_visibility": "current_and_historical_reference_candidate",
+    "usage_history_ref": null,
+    "trace_refs": [],
+    "provenance_refs": []
+  },
+  "authority": {
+    "slot_is_capability": false,
+    "slot_is_model": false,
+    "slot_is_provider": false,
+    "slot_is_knowledge": false,
+    "slot_is_safety_classification": false,
+    "slot_is_origin_classification": false
+  }
+}

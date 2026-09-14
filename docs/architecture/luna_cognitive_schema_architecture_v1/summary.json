@@ -1,0 +1,19 @@
+{
+  "phase": "Phase-Luna-Cognitive-Schema-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_SCHEMA_ARCHITECTURE_READY",
+  "schema_types": ["Field Schema", "Role Schema", "Social Schema", "Self Schema"],
+  "canonical_flow": ["Knowledge", "Practice", "Experience", "Memory", "Pattern", "Cognitive Schema", "Understanding", "Decision Candidate", "Growth Candidate"],
+  "lifecycle": ["Observed", "Candidate", "Validated", "Active", "Reinforced", "Compressed", "Generalized", "Dormant", "Archived", "Removed"],
+  "reusable_schema_assets": ["cognitive_flow/cognitive_schema_model_v1.md", "cognitive_flow/cognitive_schema_activation_model_v1.md", "cognitive_flow/cognitive_schema_evolution_model_v1.md", "cognitive_memory_cognitive_architecture_v1/memory_folding_contract.json"],
+  "memory_pattern_assets": ["memory_cognitive_architecture_v1/memory_folding_contract.json", "memory_cognitive_architecture_v1/experience_memory_schema.json", "luna_cognitive_self_evolution_architecture_v1/pattern_extraction_contract_v1.json"],
+  "knowledge_assets": ["luna_knowledge_memory_boundary_architecture_v1/knowledge_admission_contract_v1.json", "luna_knowledge_memory_boundary_architecture_v1/knowledge_injection_governance_v1.json"],
+  "owner_conflicts": ["historical Schema planning assets vs new Schema Layer", "Pattern Extraction vs Schema Governance"],
+  "parallel_risks": ["parallel_schema_registry", "parallel_pattern_mining", "parallel_schema_activation", "parallel_lifecycle_owner"],
+  "migration_mapping": ["historical_schema_assets_to_schema_layer_registry", "pattern_extraction_to_schema_candidate_adapter"],
+  "runtime": false,
+  "schema_store": false,
+  "automatic_learning": false,
+  "model_training": false,
+  "database_access": false
+}

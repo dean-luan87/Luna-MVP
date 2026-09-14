@@ -1,0 +1,19 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-03T05:09:41.610025+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_artifact_refs",
+  "artifact_refs": [
+    "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_midplatform_model_test_lens_visual_expression_system_planning_v1_smoke_v0/p1_midplatform_model_test_lens_visual_expression_system_planning_review_v1.json",
+    "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_midplatform_model_test_lens_visual_expression_system_planning_v1_smoke_v0/p1_midplatform_model_test_lens_visual_expression_system_planning_review_v1.json"
+  ],
+  "source_review_file": "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_midplatform_model_test_lens_visual_expression_system_planning_v1_smoke_v0/p1_midplatform_model_test_lens_visual_expression_system_planning_review_v1.json"
+}

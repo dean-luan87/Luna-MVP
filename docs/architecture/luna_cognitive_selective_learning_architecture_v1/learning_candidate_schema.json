@@ -1,0 +1,30 @@
+{
+  "title": "Selective Learning Candidate Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["candidate_id", "source", "field_ref", "role_ref", "task_ref", "gap", "evidence", "expected_capability_gain", "future_decision_improvement", "learning_cost", "risk", "utility_candidate", "target_level", "provenance", "unknowns"],
+  "properties": {
+    "candidate_id": {"type": "string"},
+    "source": {"type": "string"},
+    "field_ref": {"type": ["string", "null"]},
+    "role_ref": {"type": ["string", "null"]},
+    "task_ref": {"type": ["string", "null"]},
+    "gap": {"type": "string"},
+    "evidence": {"type": "array"},
+    "expected_capability_gain": {"type": "object"},
+    "future_decision_improvement": {"type": "object"},
+    "learning_cost": {"type": "object"},
+    "risk": {"type": "object"},
+    "utility_candidate": {"type": "object"},
+    "target_level": {"type": "string"},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"}
+  },
+  "candidate_only": true,
+  "self_review_required": true,
+  "automatic_learning": false,
+  "model_training": false,
+  "parameter_update": false,
+  "automatic_memory_write": false,
+  "automatic_schema_update": false
+}

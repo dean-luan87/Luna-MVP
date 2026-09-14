@@ -1,0 +1,30 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Dependency-And-Adapter-Probe-DryRun-v1-001",
+    "scope": "dependency_probe_dryrun_only",
+    "input_mode": "metadata_only_dryrun",
+    "candidate_records": [
+        {
+            "candidate_id": "A1_classical_helper_ok_candidate",
+            "dependency_probe_status": "planned_not_performed",
+            "adapter_probe_status": "planned_not_performed",
+            "dependency_present": "unknown",
+            "adapter_present": "unknown",
+            "probe_performed": false,
+            "candidate_only": true,
+            "not_fact": true
+        },
+        {
+            "candidate_id": "C1_document_specific_surface_model_ok_for_preflight",
+            "dependency_probe_status": "planned_not_performed",
+            "adapter_probe_status": "planned_not_performed",
+            "dependency_present": "unknown",
+            "adapter_present": "unknown",
+            "probe_performed": false,
+            "candidate_only": true,
+            "not_fact": true
+        }
+    ],
+    "candidate_only": true,
+    "not_fact": true,
+    "final_decision": "DEPENDENCY_AND_ADAPTER_PROBE_DRYRUN_GO"
+}

@@ -1,0 +1,14 @@
+{
+  "version":"1.0",
+  "name":"Open Source Integration Data Flow",
+  "flow":[
+    {"order":1,"from":"External Asset","to":"Capability Boundary","object":"raw capability output","permission":"isolated input"},
+    {"order":2,"from":"Capability Boundary","to":"Evidence Gateway","object":"evidence candidate","permission":"validated output"},
+    {"order":3,"from":"Evidence Gateway","to":"Cognitive Field","object":"Observation Evidence","permission":"Field update candidate"},
+    {"order":4,"from":"Memory Governance","to":"Memory Adapter","object":"validated Memory","permission":"storage request"},
+    {"order":5,"from":"Knowledge Admission","to":"Knowledge Adapter","object":"admitted Knowledge","permission":"library storage request"},
+    {"order":6,"from":"Failure Diagnostics","to":"Self Regulation","object":"degraded capability signal","permission":"health candidate"}
+  ],
+  "forbidden_flows":["External Asset → Cognitive Kernel authority","External Asset → Memory direct write","External Asset → Decision","External Asset → Self","Provider → Reality"],
+  "rules":{"ordered":true,"evidence_boundary":true,"adapter_boundary":true,"external_not_kernel":true}
+}

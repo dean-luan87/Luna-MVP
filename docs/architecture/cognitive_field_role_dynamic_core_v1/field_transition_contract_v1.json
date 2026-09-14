@@ -1,0 +1,18 @@
+{
+  "contract_name": "Field Transition Contract v1",
+  "states": ["Created", "Active", "Background", "Suspended", "Closed", "Archived"],
+  "field_reference": "field-example",
+  "from_state": "Created",
+  "to_state": "Active",
+  "transition_reason": null,
+  "source_field": null,
+  "target_field": null,
+  "continuity_context": [],
+  "evidence": [],
+  "confidence": null,
+  "nested_or_associated": true,
+  "transfer_candidate": true,
+  "transition_does_not_modify_identity": true,
+  "transition_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

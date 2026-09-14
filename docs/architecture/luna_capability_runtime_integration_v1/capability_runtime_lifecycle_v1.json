@@ -1,0 +1,8 @@
+{
+  "title": "Capability Runtime Lifecycle v1",
+  "owner": "Capability Governance",
+  "states": ["Requested", "Validated", "Queued", "Executing", "Collected", "Result Validated", "Completed", "Archived", "Failed", "Degraded", "Recovered"],
+  "normal_path": ["Requested", "Validated", "Queued", "Executing", "Collected", "Result Validated", "Completed", "Archived"],
+  "failure_path": ["Failed", "Degraded", "Recovered", "Queued"],
+  "rules": {"admission_before_requested_execution": true, "result_validation_required": true, "recovered_requeue_is_candidate": true, "lifecycle_owner_required": true}
+}

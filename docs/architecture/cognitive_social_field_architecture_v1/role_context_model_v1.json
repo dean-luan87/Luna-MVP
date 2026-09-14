@@ -1,0 +1,16 @@
+{
+  "contract_name": "Role Context Model v1",
+  "role_context_id": "role-context-example",
+  "field_context": "office-field-example",
+  "role_candidate": "Employee",
+  "permission_boundary": [],
+  "responsibility": [],
+  "expected_behavior": [],
+  "confidence": null,
+  "unknowns": [],
+  "role_belongs_to_field": true,
+  "role_does_not_belong_to_identity": true,
+  "role_does_not_modify_self_identity": true,
+  "role_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

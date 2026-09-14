@@ -1,0 +1,14 @@
+{
+  "contract_id": "field_temporal_relation_v1",
+  "owner": "Field Temporal Evolution",
+  "relations": [
+    {"target": "Self", "input": "self_state_and_capability_boundary", "output": "self_constraint_context_candidate"},
+    {"target": "Role", "input": "active_role_context", "output": "role_continuity_context_candidate"},
+    {"target": "Memory", "input": "historical_field_context", "output": "relevant_memory_reference"},
+    {"target": "Knowledge", "input": "current_rule_context", "output": "knowledge_context_reference"}
+  ],
+  "relation_is_candidate": true,
+  "field_owns_other_modules": false,
+  "direct_mutation": false,
+  "unknown_preserved": true
+}

@@ -1,0 +1,14 @@
+{
+    "artifact": "memory_intent_boundary_v1",
+    "allowed": [
+        "memory_reference_to_intent",
+        "experience_reference_to_intent",
+        "intent_influence_reference"
+    ],
+    "forbidden": [
+        "create_intent",
+        "activate_intent",
+        "change_intent_priority_directly",
+        "revoke_intent_directly"
+    ]
+}

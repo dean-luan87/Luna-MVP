@@ -1,0 +1,15 @@
+{
+    "artifact": "action_revision_revocation_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "revision_rules": {
+        "revision_requires_new_version": true,
+        "revision_preserves_lineage": true,
+        "revision_invalidates_stale_confirmation": true,
+        "revision_rechecks_permission_and_safety": true
+    },
+    "revocation_rules": {
+        "revocation_causes_non_ready_state": true,
+        "revocation_can_be_from_permission_or_safety_or_human": true,
+        "revoked_candidate_not_executable": true
+    }
+}

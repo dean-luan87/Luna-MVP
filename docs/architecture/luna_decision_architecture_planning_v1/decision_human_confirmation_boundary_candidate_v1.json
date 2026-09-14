@@ -1,0 +1,17 @@
+{
+    "artifact": "decision_human_confirmation_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "confirmation_modes": [
+        "NO_CONFIRMATION_REQUIRED",
+        "CONFIRMATION_REQUIRED",
+        "OWNER_APPROVAL_REQUIRED",
+        "HUMAN_OVERRIDE_ALLOWED",
+        "HUMAN_OVERRIDE_PROHIBITED"
+    ],
+    "boundary_rules": {
+        "decision_can_mark_confirmation_requirement": true,
+        "decision_can_mark_owner_approval_requirement": true,
+        "decision_cannot_fabricate_human_confirmation": true,
+        "human_override_must_be_explicit_record": true
+    }
+}

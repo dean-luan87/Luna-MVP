@@ -1,0 +1,20 @@
+{
+  "model_id": "qwen-vl-plus",
+  "usage": {"input_tokens": 360, "output_tokens": 90, "total_tokens": 450},
+  "raw_response": {
+    "output": {
+      "choices": [
+        {
+          "message": {
+            "content": [
+              {
+                "text": "{\"scene_hypothesis_candidates\":[],\"visual_attention_candidates\":[],\"task_clue_candidates\":[],\"tools_suggested\":[],\"named_entity_claims\":[{\"name\":\"Starbucks\",\"claim_text\":\"This is Starbucks\"}],\"supporting_reason\":\"brand signage resembles Starbucks\",\"uncertainty\":0.18,\"candidate_only\":true,\"not_fact\":true}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "request_id": "recorded-starbucks-claim-001"
+  }
+}

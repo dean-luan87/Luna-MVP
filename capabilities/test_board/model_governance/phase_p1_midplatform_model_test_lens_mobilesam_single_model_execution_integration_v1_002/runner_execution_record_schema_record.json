@@ -1,0 +1,38 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-002",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "runner_execution_record_schema_record",
+    "patch": {
+      "modules": [
+        "capabilities/midplatform/model_test_lens/mobile_sam_single_model_execution_integration/controlled_execution_records_v1.py",
+        "capabilities/midplatform/model_test_lens/mobile_sam_single_model_execution_integration/runner_sandbox/runner_sandbox_executor_v1.py",
+        "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_controlled_execution_v1.py",
+        "capabilities/midplatform/model_test_lens/static_site/runner_sandbox_client_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/result_layer_copy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/result_layer_state_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/result_layer_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/result_layer_summary_v1.js",
+        "capabilities/midplatform/model_test_lens/schemas/mobile_sam_single_model_execution/runner_execution_record_schema_v1.json",
+        "capabilities/midplatform/model_test_lens/schemas/mobile_sam_single_model_execution/runner_error_candidate_schema_v1.json",
+        "capabilities/midplatform/model_test_lens/schemas/mobile_sam_single_model_execution/result_envelope_record_schema_v1.json",
+        "capabilities/midplatform/model_test_lens/run_mobile_sam_controlled_execution_integration_smoke_v1.py"
+      ],
+      "updated": [
+        "capabilities/midplatform/model_test_lens/mobile_sam_single_model_execution_integration/runner_sandbox/runner_sandbox_v1.py",
+        "capabilities/midplatform/model_test_lens/local_runner_bridge/local_runner_bridge_api_handlers_v1.py",
+        "capabilities/midplatform/model_test_lens/static_site/index.html",
+        "capabilities/midplatform/model_test_lens/static_site/app.js",
+        "capabilities/midplatform/model_test_lens/static_site/styles.css",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_ui_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/controlled_runner_execution_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/luna_observation_compact_ui_v1.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+    "schema_id": "living_context_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Living context schema for Luna V2.",
+    "objects": {
+        "LivingContext": {
+            "object_type": "entity",
+            "parent_type": "entity",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "context_scope",
+                "context_sources"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "supports",
+                "triggered_by",
+                "remembered_through"
+            ],
+            "prohibited_outputs": [
+                "context_assumption_as_fact"
+            ],
+            "lifecycle_rules": [
+                "proposed -> observed -> active_candidate"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ContextSignal": {
+            "object_type": "state",
+            "parent_type": "state",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "signal_type",
+                "signal_value",
+                "signal_sources"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "belongs_to",
+                "supports",
+                "triggered_by"
+            ],
+            "prohibited_outputs": [
+                "signal_as_direct_explanation"
+            ],
+            "lifecycle_rules": [
+                "observed -> admitted_candidate -> active_candidate"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ContextSnapshot": {
+            "object_type": "projection",
+            "parent_type": "projection",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "snapshot_refs",
+                "snapshot_context"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "contains",
+                "derived_from",
+                "remembered_through"
+            ],
+            "prohibited_outputs": [
+                "snapshot_as_final_fact"
+            ],
+            "lifecycle_rules": [
+                "proposed -> active_candidate -> archived"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ExperienceRecord": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "revoked",
+                "unresolved_fields",
+                "experience_type",
+                "context_refs",
+                "memory_refs"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "allowed_relations": [
+                "remembered_through",
+                "meaningful_to",
+                "emotionally_attached_to"
+            ],
+            "prohibited_outputs": [
+                "experience_as_fact"
+            ],
+            "lifecycle_rules": [
+                "observed -> active_candidate -> archived"
+            ],
+            "governance_refs": [
+                "Memory System",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    },
+    "signal_types": [
+        "visual",
+        "audio",
+        "text",
+        "location",
+        "weather",
+        "temperature",
+        "light",
+        "smell",
+        "time",
+        "person",
+        "group",
+        "task",
+        "social_activity",
+        "institutional_condition",
+        "emotion_candidate"
+    ],
+    "rules": [
+        "unobtained modalities may be missing",
+        "multi-modal inputs do not require full coverage",
+        "use minimum sufficient context",
+        "signal is not equal to interpretation results"
+    ]
+}

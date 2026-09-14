@@ -1,0 +1,11 @@
+{
+  "artifact":"b5_end_to_end_route_v1",
+  "route":[
+    {"stage":"S3 real provider","input":"admitted YOLO11n single frame","output":"VisualDetectionEvidenceCandidateV1","owner":"FPO / Vision Provider Integration","candidate_only":true,"truth_declared":false,"mutation_authority":"none","status":"real provider"},
+    {"stage":"B1 Evidence -> Brain","input":"VisualDetectionEvidenceCandidateV1 + ObservationGatewayEvidenceHandoffCandidateV1","output":"ContextWorldAssemblyCandidateV1 + CurrentWorldCandidateV1","owner":"Observation Gateway -> Context Foundation -> Cognitive State Formation","candidate_only":true,"truth_declared":false,"mutation_authority":"Field State Reducer only; not executed","status":"real input + controlled integration"},
+    {"stage":"B2 Current World -> Cognitive State","input":"CurrentWorldCandidateV1","output":"Cognitive State/Attention/Hypothesis/Observation Need/Cognitive Flow candidates","owner":"Cognitive State Formation / Cognitive Flow","candidate_only":true,"truth_declared":false,"mutation_authority":"candidate transition only","status":"real B1 input + controlled downstream"},
+    {"stage":"B3 Cognitive -> Intent/Decision/Task","input":"validated B2 refs","output":"Intent influence, Decision candidate, TaskCandidate/readiness","owner":"Intent Governance -> Decision Governance -> Task Manager","candidate_only":true,"truth_declared":false,"mutation_authority":"Intent/Decision/Task owners only; no runtime mutation","status":"real B2 input + controlled downstream"},
+    {"stage":"B4 Task -> Outcome -> Feedback","input":"validated B3 refs","output":"Action candidate -> controlled Runtime Result -> Outcome/Task feedback/Reconsider/Reobserve","owner":"Action Governance -> Outcome Evaluation Governance -> Task Manager/Cognitive Flow/FPO","candidate_only":true,"truth_declared":false,"mutation_authority":"no real Action/Runtime; Task/Cognitive/Observation owners retain authority","status":"real B3 input + controlled downstream"}
+  ],
+  "provider_to_brain_shortcut":false
+}

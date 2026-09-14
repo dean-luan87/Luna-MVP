@@ -1,0 +1,14 @@
+{
+  "control_id": "model_fallback_001",
+  "policy_id": "model_fallback",
+  "model_family": "segmentation_family",
+  "model_id": "mobilesam_download_planning_required_v1",
+  "license_ref": "license:apache_2_0",
+  "allowed_use": "candidate_only",
+  "availability_state": "download_planning_required",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "fallback_confidence_policy_v1",
+  "fallback_plan": "fallback_to_available_object_family_or_unavailable_record_no_download",
+  "primary_unavailable_reason": "missing_local_resource",
+  "boundaries": ["fallback_route_is_candidate_only", "fallback_does_not_trigger_real_inference"]
+}

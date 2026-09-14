@@ -1,0 +1,17 @@
+{
+  "registry_id": "self_regulation_subfunctions_v1",
+  "canonical_owner": "Self Regulation Function",
+  "unique_owner_required": true,
+  "subfunctions": [
+    {"id": "homeostasis_regulation", "name": "Homeostasis Regulation", "purpose": "Maintain contextual state ranges", "output": "Homeostasis Candidate"},
+    {"id": "resource_regulation", "name": "Resource Regulation", "purpose": "Evaluate compute, memory, time, energy, and attention budgets", "output": "Resource Budget Candidate"},
+    {"id": "cognitive_balance_regulation", "name": "Cognitive Balance Regulation", "purpose": "Balance quality, cost, risk, drift, and stability", "output": "Balance Candidate"},
+    {"id": "calibration_regulation", "name": "Calibration Regulation", "purpose": "Turn repeated measurement and outcome evidence into review candidates", "output": "Calibration Candidate"},
+    {"id": "adaptive_regulation", "name": "Adaptive Regulation", "purpose": "Propose governed adaptive parameter candidates", "output": "Adaptive Parameter Candidate"},
+    {"id": "stability_protection", "name": "Stability Protection", "purpose": "Protect stable core and continuity during change", "output": "Stability/Veto Candidate"}
+  ],
+  "independent_homeostasis_owner": false,
+  "independent_calibration_owner": false,
+  "independent_adaptation_owner": false,
+  "candidate_only": true
+}

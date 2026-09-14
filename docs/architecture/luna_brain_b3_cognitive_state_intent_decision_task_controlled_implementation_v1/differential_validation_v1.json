@@ -1,0 +1,7 @@
+{
+  "artifact": "b3_differential_validation_v1",
+  "compare": ["synthetic Cognitive State/Flow -> Intent/Decision/Task", "real B2 Cognitive State/Flow -> Intent/Decision/Task"],
+  "invariants": ["owner identity", "contract shape", "lifecycle shape", "candidate-only semantics", "trace/provenance", "uncertainty/conflict", "safety/permission/resource guards", "no unrelated behavior change"],
+  "allowed_differences": ["Intent content", "Decision content", "Task content", "priority", "candidate count"],
+  "forbidden_differences": ["direct Intent mutation", "Decision as Action", "Task as Runtime", "provider invocation", "hidden loops", "truth promotion"]
+}

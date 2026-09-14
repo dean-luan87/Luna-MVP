@@ -1,0 +1,10 @@
+{
+  "contract_id": "attention_lifecycle_v1",
+  "owner": "Attention Layer",
+  "states": ["Detected", "Candidate", "Evaluated", "Approved", "Active", "Reduced", "Suspended", "Archived"],
+  "automatic_transition": false,
+  "approval_required": true,
+  "active_is_runtime": false,
+  "resource_release_supported": true,
+  "candidate_only": true
+}

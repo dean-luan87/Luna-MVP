@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "name": "Runtime Integration Boundary Review",
+  "status": "interface_closed_runtime_unimplemented",
+  "state": ["Global State", "Self State", "Capability State", "Workspace State", "Lifecycle State"],
+  "events": ["Observation Event", "Failure Event", "Learning Event", "Feedback Event", "Wake-up Event"],
+  "traces": ["Decision Trace", "Action Trace", "Recovery Trace", "State Transition Trace"],
+  "recovery": ["Snapshot", "Restore Candidate", "Lifecycle Review"],
+  "interfaces": ["Tick", "Wake-up", "Process Lifecycle", "State Synchronization", "Brain Invocation Boundary"],
+  "forbidden": ["Runtime Implementation", "Model Integration", "Hardware Integration", "Action Execution", "Automatic Scheduler Activation", "Automatic Learning Execution"],
+  "rules": {"state_schema_required": true, "event_source_required": true, "trace_required": true, "recovery_candidate_only": true, "runtime_not_active": true}
+}

@@ -1,0 +1,11 @@
+{
+    "artifact": "self_idempotency_contract_v1",
+    "guards": {
+        "duplicate_self_attribution_guard": true,
+        "duplicate_self_continuity_update_guard": true,
+        "revision_replay_guard": true,
+        "revocation_replay_guard": true,
+        "explicit_correction_precedence": true,
+        "same_evidence_no_repeated_self_attribute": true
+    }
+}

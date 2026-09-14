@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Self System Integration Mapping",
+  "layers": [
+    {"module": "Self Model", "answers": "Who am I", "owns": ["Identity Continuity", "Self Context", "Capability Profile"], "can_modify": ["Self Model Candidate"], "cannot_modify": ["Constitution", "Brain Rules"]},
+    {"module": "Self Regulation", "answers": "Am I stable now", "owns": ["Self Health Assessment", "Capability Isolation", "Resource/Degradation Candidates"], "can_modify": ["Regulation Candidate", "Self State Candidate"], "cannot_modify": ["Identity", "Value", "Goal", "Constitution", "Brain Rules"]},
+    {"module": "Self Evolution", "answers": "How can I grow", "owns": ["Evolution Candidate", "Capability Profile Growth Candidate"], "can_modify": ["Evolution Candidate"], "cannot_modify": ["Constitution", "Brain Rules", "Identity"]}
+  ],
+  "integration_flow": ["Self Model", "Self Regulation", "Self Evolution"],
+  "rules": {"identity_continuity_preserved": true, "regulation_and_evolution_separate": true, "candidate_review_required": true, "no_direct_core_rule_rewrite": true}
+}

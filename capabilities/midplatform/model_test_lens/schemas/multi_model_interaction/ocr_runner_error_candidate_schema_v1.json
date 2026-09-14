@@ -1,0 +1,52 @@
+{
+  "schema_id": "OcrRunnerErrorCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Runner-Sandbox-Integration-Planning-v1-001",
+  "description": "OCR runner 错误候选。错误不写 fact，不污染 Result/Fact Layer，可追溯 execution candidate。",
+  "required_fields": [
+    "error_candidate_id",
+    "error_type",
+    "error_stage",
+    "source_ocr_execution_candidate_id",
+    "not_fact",
+    "not_navigation_decision",
+    "trace_chain"
+  ],
+  "error_types": [
+    "timeout",
+    "runner_unavailable",
+    "invalid_crop",
+    "empty_text",
+    "low_confidence",
+    "invalid_output_schema",
+    "unreadable_region",
+    "route_mismatch",
+    "cancelled"
+  ],
+  "field_definitions": {
+    "error_candidate_id": { "type": "string", "pattern": "^oerr_ocr_[a-z0-9_]+$" },
+    "error_type": { "type": "string" },
+    "error_stage": { "type": "string" },
+    "error_reason": { "type": "string" },
+    "source_ocr_execution_candidate_id": { "type": "string" },
+    "source_ocr_execution_id": { "type": "string" },
+    "recoverable": { "type": "boolean" },
+    "not_fact": { "type": "boolean", "const": true },
+    "not_navigation_decision": { "type": "boolean", "const": true },
+    "runner_error_not_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "forbidden_operations": [
+    "error_direct_to_fact",
+    "error_direct_to_result_layer",
+    "error_direct_to_navigation",
+    "overwrite_mobilesam_result"
+  ],
+  "boundary_flags": {
+    "ocr_error_does_not_write_fact": true,
+    "ocr_error_not_navigation_decision": true,
+    "traceable_to_ocr_execution_candidate": true,
+    "error_does_not_pollute_result_layer": true,
+    "planning_only": true
+  }
+}

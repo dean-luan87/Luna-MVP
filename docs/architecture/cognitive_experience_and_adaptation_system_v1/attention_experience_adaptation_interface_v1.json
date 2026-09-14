@@ -1,0 +1,18 @@
+{
+  "interface_name": "Attention Experience Adaptation Interface v1",
+  "experience_reference": "experience-example",
+  "field_context": null,
+  "attention_pattern_candidate": null,
+  "information_value": null,
+  "risk_context": null,
+  "uncertainty": null,
+  "resource_cost": null,
+  "future_attention_candidate": true,
+  "attention_governance_review_required": true,
+  "experience_does_not_directly_allocate_attention": true,
+  "experience_does_not_modify_goal": true,
+  "experience_does_not_modify_decision": true,
+  "anomaly_reactivation_preserved": true,
+  "decay_required": true,
+  "unknowns_are_preserved": true
+}

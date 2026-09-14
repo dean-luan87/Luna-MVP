@@ -1,0 +1,29 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Skeleton Negative Guards",
+    "guards": {
+        "no_real_reduction": true,
+        "no_active_state_creation": true,
+        "no_direct_state_write": true,
+        "no_event_mutation": true,
+        "no_raw_observation_consumption": true,
+        "no_non_admitted_event_consumption": true,
+        "no_provider_recall": true,
+        "no_external_lookup": true,
+        "no_model_call": true,
+        "no_action_trigger": true,
+        "no_memory_write": true,
+        "no_navigation_write": true,
+        "no_database": true,
+        "no_scheduler": true,
+        "no_message_queue": true,
+        "no_event_consumer": true,
+        "no_runtime_loop": true,
+        "no_production_data": true,
+        "no_training": true,
+        "no_migration": true,
+        "no_previous_phase_modification": true,
+        "no_physical_delete": true
+    },
+    "negative_guards_complete": true
+}

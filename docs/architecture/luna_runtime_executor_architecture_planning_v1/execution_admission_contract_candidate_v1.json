@@ -1,0 +1,30 @@
+{
+    "artifact": "execution_admission_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "admission_inputs": [
+        "execution_request_candidate",
+        "action_candidate_ref",
+        "execution_readiness_ref",
+        "permission_recheck_ref",
+        "safety_recheck_ref",
+        "confirmation_ref",
+        "resource_constraint_ref"
+    ],
+    "admission_rules": {
+        "permission_recheck_required": true,
+        "safety_recheck_required": true,
+        "confirmation_scope_match_required": true,
+        "resource_available_or_explicitly_degraded": true,
+        "unknown_not_auto_pass": true
+    },
+    "admission_outcomes": [
+        "ADMITTED_CANDIDATE",
+        "REJECTED_CANDIDATE",
+        "SUSPENDED_CANDIDATE"
+    ],
+    "guards": {
+        "admission_not_execution": true,
+        "no_permission_bypass": true,
+        "no_safety_bypass": true
+    }
+}

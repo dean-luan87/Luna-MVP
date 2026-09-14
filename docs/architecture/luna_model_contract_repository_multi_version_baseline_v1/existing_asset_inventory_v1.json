@@ -1,0 +1,28 @@
+{
+  "canonical_owner": "capabilities/midplatform/model_manager/",
+  "existing_assets": {
+    "A_direct_reuse": [
+      "capabilities/midplatform/model_manager/registries/model_registry_v1.json",
+      "capabilities/midplatform/model_manager/registries/capability_registry_v1.json",
+      "capabilities/midplatform/model_manager/registry/provider_registry_v1.json",
+      "capabilities/midplatform/model_manager/lifecycle/model_registry_state_machine_v1.py",
+      "capabilities/midplatform/model_admission_governance/"
+    ],
+    "B_adapter_or_extension": [
+      "configs/models/yolo/yolo_model_manifest_v0.json",
+      "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_model_candidate_binding_v1.py",
+      "capabilities/vision_runtime/yolo_candidate_adapter_v0.py"
+    ],
+    "C_legacy_or_conflicting": [
+      "Luna_Badge_MVP/vision/yolov5_detector.py",
+      "capabilities/guarded_trial/yolo_stage1_10_frame_executor_v0.py"
+    ],
+    "D_deferred_or_outside": [
+      "customer recommendation engine",
+      "model inference execution",
+      "online model training"
+    ]
+  },
+  "owner_decision": "EXISTING_MODEL_MANAGER_OWNER_EXTENDED",
+  "parallel_owner_created": false
+}

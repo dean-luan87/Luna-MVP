@@ -1,0 +1,75 @@
+{
+  "schema_id": "CorrectionAttributionTaxonomyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Single-Model-Interaction-Validation-v1-001",
+  "description": "用户纠错归因分类。纠错首先是系统反馈信号，必须先分类再决定用途。",
+  "attribution_classes": [
+    {
+      "attribution_id": "model_error",
+      "label_zh": "模型问题",
+      "description": "模型识别/分割/标签本身错误，可作为训练数据候选（须经净化与 review）。",
+      "example": "Detection 预测 car，实际是 billboard；MobileSAM 边界漏裁",
+      "typical_correction_types": [
+        "false_positive",
+        "false_negative",
+        "wrong_label",
+        "boundary_inaccurate",
+        "confidence_mismatch",
+        "duplicate_detection"
+      ]
+    },
+    {
+      "attribution_id": "task_strategy_error",
+      "label_zh": "任务/策略问题",
+      "description": "任务目标或路由策略错误，应调整任务策略而非直接训练模型。",
+      "example": "用户想看广告牌，系统却在找车辆",
+      "typical_correction_types": [
+        "task_relevance_error",
+        "recommendation_error"
+      ]
+    },
+    {
+      "attribution_id": "attention_priority_error",
+      "label_zh": "关注度/优先级问题",
+      "description": "Attention priority 或区域关注度配置不当，非模型输出本身错误。",
+      "example": "用户说「这个区域不用看」—— 可能是 priority 错，不是 MobileSAM 错",
+      "typical_correction_types": [
+        "priority_wrong"
+      ],
+      "signal_keywords_zh": ["不用看", "不重要", "忽略", "别关注", "优先级"]
+    },
+    {
+      "attribution_id": "user_preference",
+      "label_zh": "用户偏好",
+      "description": "用户表达个体偏好，进入 Decision Layer / Preference Memory，非模型错误。",
+      "example": "我更关注公交站牌",
+      "signal_keywords_zh": ["更关注", "想看", "偏好", "优先看", "我关心"]
+    },
+    {
+      "attribution_id": "environment_limitation",
+      "label_zh": "环境/成像限制",
+      "description": "光线、遮挡、模糊等环境因素，通常不产生直接训练标签。",
+      "typical_correction_types": [
+        "low_light",
+        "occlusion",
+        "motion_blur",
+        "reflective_glare",
+        "crowded_scene",
+        "small_or_far_target",
+        "background_interference",
+        "image_quality_poor"
+      ]
+    }
+  ],
+  "forbidden_shortcuts": [
+    "user_correction_direct_to_training",
+    "user_correction_direct_to_model_finetune",
+    "user_correction_as_ground_truth",
+    "user_correction_modify_mask"
+  ],
+  "boundary_flags": {
+    "midplatform_entry_required": true,
+    "raw_log_not_training_data": true,
+    "purified_dataset_only_for_training": true
+  }
+}

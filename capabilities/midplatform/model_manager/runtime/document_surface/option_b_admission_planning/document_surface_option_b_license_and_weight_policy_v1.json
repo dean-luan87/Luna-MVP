@@ -1,0 +1,79 @@
+{
+  "schema_id": "DocumentSurfaceOptionBLicenseAndWeightPolicyV1",
+  "version": "v1",
+  "planning_only": true,
+  "block_conditions": [
+    {
+      "condition_id": "license_unknown",
+      "block_reason": "license_status_unknown",
+      "candidate_status": "blocked_license",
+      "next_action": "request_license_review",
+      "forbidden_workaround": "assume_permissive_license"
+    },
+    {
+      "condition_id": "commercial_use_unclear",
+      "block_reason": "commercial_use_not_cleared",
+      "candidate_status": "blocked_license",
+      "next_action": "legal_review_required",
+      "forbidden_workaround": "use_without_license_clearance"
+    },
+    {
+      "condition_id": "model_weight_too_large",
+      "block_reason": "weight_exceeds_controlled_budget",
+      "candidate_status": "blocked_weight",
+      "next_action": "select_lighter_candidate_or_reject",
+      "forbidden_workaround": "download_anyway"
+    },
+    {
+      "condition_id": "requires_network_runtime",
+      "block_reason": "network_runtime_required",
+      "candidate_status": "blocked_dependency",
+      "next_action": "reject_or_require_offline_wrapper",
+      "forbidden_workaround": "silent_network_call"
+    },
+    {
+      "condition_id": "requires_uncontrolled_download",
+      "block_reason": "uncontrolled_download_source",
+      "candidate_status": "blocked_dependency",
+      "next_action": "admit_only_controlled_source",
+      "forbidden_workaround": "curl_wget_direct"
+    },
+    {
+      "condition_id": "requires_gpu_when_unavailable",
+      "block_reason": "gpu_required_but_not_admitted",
+      "candidate_status": "blocked_dependency",
+      "next_action": "hardware_admission_review",
+      "forbidden_workaround": "force_cpu_unverified"
+    },
+    {
+      "condition_id": "output_contract_not_enforceable",
+      "block_reason": "cannot_restrict_to_candidate_outputs",
+      "candidate_status": "blocked_or_requires_wrapper",
+      "next_action": "design_output_wrapper",
+      "forbidden_workaround": "pass_raw_output_downstream"
+    },
+    {
+      "condition_id": "produces_semantic_fact_by_default",
+      "block_reason": "semantic_fact_default_output",
+      "candidate_status": "blocked_or_requires_wrapper",
+      "next_action": "wrapper_strip_semantic_facts",
+      "forbidden_workaround": "promote_to_fact"
+    },
+    {
+      "condition_id": "cannot_disable_text_generation",
+      "block_reason": "text_generation_not_disableable",
+      "candidate_status": "blocked_or_requires_wrapper",
+      "next_action": "reject_or_wrapper_only",
+      "forbidden_workaround": "use_as_ocr_substitute"
+    },
+    {
+      "condition_id": "cannot_disable_ocr_like_output",
+      "block_reason": "ocr_like_output_not_disableable",
+      "candidate_status": "blocked_or_requires_wrapper",
+      "next_action": "reject_or_wrapper_only",
+      "forbidden_workaround": "route_to_ocr_pipeline"
+    }
+  ],
+  "candidate_only": true,
+  "not_fact": true
+}

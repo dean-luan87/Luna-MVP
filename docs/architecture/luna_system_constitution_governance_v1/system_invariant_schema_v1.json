@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "System Invariant Schema",
+  "invariants": [
+    {"invariant_id": "unique_state_owner", "description": "Every core state has one canonical owner and writer.", "protected_by": "State Ownership Principle"},
+    {"invariant_id": "decision_owner", "description": "Only Brain generates a Decision Candidate; execution is separate.", "protected_by": "Boundary Respect Principle"},
+    {"invariant_id": "evidence_boundary", "description": "Unvalidated provider/model output cannot become Reality or Fact.", "protected_by": "Evidence First Principle"},
+    {"invariant_id": "action_boundary", "description": "Action requires a governed request and authorization gate.", "protected_by": "Boundary Respect Principle"},
+    {"invariant_id": "memory_boundary", "description": "Long-term Memory requires admission and cannot be written directly by Action or Provider.", "protected_by": "Evidence First Principle"},
+    {"invariant_id": "self_boundary", "description": "Self Regulation and Evolution cannot rewrite Identity, Value, Goal, or Constitution directly.", "protected_by": "State Ownership Principle"},
+    {"invariant_id": "constitution_protection", "description": "L0 Constitution cannot be modified by ordinary Runtime or Core modules.", "protected_by": "System Stability Principle"}
+  ],
+  "rules": {"all_core_boundaries_covered": true, "invariant_violation_is_blocker": true, "invariants_not_runtime_commands": true, "review_required_for_change": true}
+}

@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_state_self_boundary_v1",
+  "self_inputs": ["Constitution", "Identity Boundary", "Capability State", "Resource State", "Self Regulation", "Self Rhythm", "Self World Boundary"],
+  "self_permissions": ["constrain_state_candidate", "veto_unsafe_transition", "provide_resource_context", "request_reconsideration", "review_learning_exit"],
+  "self_protected": ["Constitution", "Identity", "Safety Boundary", "Core Brain Rules"],
+  "self_rhythm_provides": ["resource_budget_hint", "cognitive_intensity_hint", "tick_frequency_hint"],
+  "self_rhythm_does_not_switch_state": true,
+  "self_does_not_execute_action": true,
+  "self_does_not_auto_adopt_learning": true,
+  "state_does_not_modify_self": true,
+  "candidate_only": true
+}

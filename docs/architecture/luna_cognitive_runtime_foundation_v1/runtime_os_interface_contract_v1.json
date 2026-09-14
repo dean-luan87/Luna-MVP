@@ -1,0 +1,9 @@
+{
+  "title": "Runtime to Cognitive OS Interface Contract v1",
+  "owner": "Cognitive OS Governance",
+  "uses": ["Lifecycle Contract", "Event Contract", "State Contract", "Trace Contract", "Recovery Contract", "Admission Contract"],
+  "inputs": ["Wake-up Candidate", "Pending Event", "Lifecycle State", "Runtime Context"],
+  "outputs": ["Flow Candidate", "State Proposal", "Trace Reference", "Recovery Candidate", "Persistence Candidate"],
+  "runtime_does_not_modify": ["Constitution", "Governance", "Decision Authority", "Reality"],
+  "rules": {"interface_only": true, "owner_bound": true, "no_runtime_implementation": true}
+}

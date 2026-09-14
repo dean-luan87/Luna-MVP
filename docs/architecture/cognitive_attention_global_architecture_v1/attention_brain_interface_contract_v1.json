@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Brain Interface Contract",
+  "brain_inputs": ["intent", "goal", "value_context", "resource_context"],
+  "attention_output": "Brain Awareness Candidate",
+  "attention_candidate_fields": ["relevance", "risk", "uncertainty", "provenance", "confidence"],
+  "brain_evaluation": "required",
+  "brain_retains_goal": true,
+  "brain_retains_decision": true,
+  "attention_modifies_brain": false,
+  "attention_modifies_goal": false,
+  "attention_modifies_decision": false,
+  "attention_issues_action": false
+}

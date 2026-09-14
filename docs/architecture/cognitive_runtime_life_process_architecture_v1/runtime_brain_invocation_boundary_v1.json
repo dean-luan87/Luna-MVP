@@ -1,0 +1,15 @@
+{
+  "contract_name": "Runtime Brain Invocation Boundary v1",
+  "invocation_candidate": {},
+  "unknown_condition": {},
+  "conflict_condition": {},
+  "risk_condition": {},
+  "high_cost_condition": {},
+  "brain_input_package": {},
+  "brain_retains_goal_authority": true,
+  "brain_retains_value_authority": true,
+  "brain_retains_reasoning_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "runtime_does_not_say_what_to_choose": true,
+  "unknowns_are_preserved": true
+}

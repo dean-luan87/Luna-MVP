@@ -1,0 +1,224 @@
+{
+    "mappings": [
+        {
+            "existing_module": "Situation Understanding",
+            "current_location_or_domain": "situation_understanding",
+            "target_architecture_domain": "cognition/field_understanding",
+            "target_layer": "L1",
+            "reuse_status": "reuse",
+            "migration_action": "logical_remap",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain semantic role while remapping to the field-centric vertical stack."
+        },
+        {
+            "existing_module": "Observation Attention",
+            "current_location_or_domain": "attention_layers",
+            "target_architecture_domain": "cognition/attention",
+            "target_layer": "L4",
+            "reuse_status": "reuse",
+            "migration_action": "logical_remap",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Preserve attention logic while aligning to explicit layer charter."
+        },
+        {
+            "existing_module": "Region Intelligence",
+            "current_location_or_domain": "region_intelligence",
+            "target_architecture_domain": "cognition/region_intelligence",
+            "target_layer": "L5",
+            "reuse_status": "reuse",
+            "migration_action": "logical_remap",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as a first-class cognitive layer."
+        },
+        {
+            "existing_module": "Ownership Understanding",
+            "current_location_or_domain": "ownership_understanding",
+            "target_architecture_domain": "cognition/role_relation_inference",
+            "target_layer": "L6",
+            "reuse_status": "adapt",
+            "migration_action": "logical_remap",
+            "compatibility_required": true,
+            "priority": "P1",
+            "notes": "Adapt ownership reasoning into role-relation inference."
+        },
+        {
+            "existing_module": "Model Manager",
+            "current_location_or_domain": "model_manager",
+            "target_architecture_domain": "governance/model_skill_admission",
+            "target_layer": "L4",
+            "reuse_status": "reuse",
+            "migration_action": "adapter_first",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain governance responsibilities while aligning to horizontal reuse."
+        },
+        {
+            "existing_module": "Model Test Lens",
+            "current_location_or_domain": "evaluation/model_test_lens",
+            "target_architecture_domain": "evaluation/model_test_lens",
+            "target_layer": "cross_layer",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Keep as a shared horizontal evaluation asset."
+        },
+        {
+            "existing_module": "Human Correction Layer",
+            "current_location_or_domain": "evaluation/human_correction",
+            "target_architecture_domain": "evaluation/human_correction",
+            "target_layer": "cross_layer",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as a shared correction route."
+        },
+        {
+            "existing_module": "Followup Runner",
+            "current_location_or_domain": "runtime/followup_runner",
+            "target_architecture_domain": "runtime/controlled_execution",
+            "target_layer": "runtime",
+            "reuse_status": "adapt",
+            "migration_action": "adapter_first",
+            "compatibility_required": true,
+            "priority": "P1",
+            "notes": "Adapt execution semantics to layered runtime boundary."
+        },
+        {
+            "existing_module": "Controlled Runner Execution",
+            "current_location_or_domain": "runtime/controlled_execution",
+            "target_architecture_domain": "runtime/controlled_execution",
+            "target_layer": "runtime",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as runtime execution domain."
+        },
+        {
+            "existing_module": "OCR Evidence",
+            "current_location_or_domain": "providers/ocr",
+            "target_architecture_domain": "providers/ocr",
+            "target_layer": "providers",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Remain a provider-layer evidence source."
+        },
+        {
+            "existing_module": "Vision Evidence",
+            "current_location_or_domain": "providers/vision",
+            "target_architecture_domain": "providers/vision",
+            "target_layer": "providers",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Remain a provider-layer evidence source."
+        },
+        {
+            "existing_module": "Network-Assisted Situation Learning",
+            "current_location_or_domain": "providers/network",
+            "target_architecture_domain": "providers/network",
+            "target_layer": "providers",
+            "reuse_status": "adapt",
+            "migration_action": "adapter_first",
+            "compatibility_required": true,
+            "priority": "P1",
+            "notes": "Adapt to field-centric learning context."
+        },
+        {
+            "existing_module": "Document Surface Detector",
+            "current_location_or_domain": "runtime/document_surface",
+            "target_architecture_domain": "cognition/region_intelligence",
+            "target_layer": "L5",
+            "reuse_status": "defer",
+            "migration_action": "frozen_reference_only",
+            "compatibility_required": true,
+            "priority": "P2",
+            "notes": "Option B route remains deferred; do not activate it in this planning phase."
+        },
+        {
+            "existing_module": "Option A baseline",
+            "current_location_or_domain": "option_a_baseline",
+            "target_architecture_domain": "runtime/admission_runtime",
+            "target_layer": "runtime",
+            "reuse_status": "freeze",
+            "migration_action": "frozen_reference_only",
+            "compatibility_required": true,
+            "priority": "P1",
+            "notes": "Retain as a baseline reference only."
+        },
+        {
+            "existing_module": "Option B deferred route",
+            "current_location_or_domain": "option_b_controlled_execution_dryrun",
+            "target_architecture_domain": "governance/model_skill_admission",
+            "target_layer": "governance",
+            "reuse_status": "freeze",
+            "migration_action": "frozen_reference_only",
+            "compatibility_required": true,
+            "priority": "P2",
+            "notes": "Do not activate or migrate this route during planning."
+        },
+        {
+            "existing_module": "Task Manager",
+            "current_location_or_domain": "task_management",
+            "target_architecture_domain": "cognition/decision",
+            "target_layer": "L8",
+            "reuse_status": "adapt",
+            "migration_action": "logical_remap",
+            "compatibility_required": true,
+            "priority": "P1",
+            "notes": "Adapt task management into decision and interaction responsibilities."
+        },
+        {
+            "existing_module": "Protocol Governance",
+            "current_location_or_domain": "governance/protocols",
+            "target_architecture_domain": "governance/cross_layer_protocols",
+            "target_layer": "governance",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as a horizontal governance layer."
+        },
+        {
+            "existing_module": "Evidence Chain",
+            "current_location_or_domain": "governance/evidence_chain",
+            "target_architecture_domain": "governance/evidence_chain",
+            "target_layer": "governance",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as a shared evidence backbone."
+        },
+        {
+            "existing_module": "Runtime Boundary",
+            "current_location_or_domain": "governance/runtime_boundary",
+            "target_architecture_domain": "governance/runtime_boundary",
+            "target_layer": "governance",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as the execution boundary contract."
+        },
+        {
+            "existing_module": "Model / Skill Admission",
+            "current_location_or_domain": "governance/model_skill_admission",
+            "target_architecture_domain": "governance/model_skill_admission",
+            "target_layer": "governance",
+            "reuse_status": "retain",
+            "migration_action": "no_move",
+            "compatibility_required": true,
+            "priority": "P0",
+            "notes": "Retain as the shared admission gateway."
+        }
+    ]
+}

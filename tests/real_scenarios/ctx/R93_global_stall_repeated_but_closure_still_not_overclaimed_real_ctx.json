@@ -1,0 +1,28 @@
+{
+  "frame_seq": 93,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R93_global_stall_repeated_but_closure_still_not_overclaimed_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.23,
+  "task_resume_target": "resume_global_stall_repeated_m16",
+  "recovery_declared_but_resume_chain_fragile_expected": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": false,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.6-E：全局停滞反复但 closure 不升格为 overclaim 变体",
+  "object_search_flow_type": "global_stall_repeated_flow",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 3,
+  "object_search_resolution_path": [
+    "global_stall_repeated_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [13, 19, 79, 89], "conf": 0.81 },
+    { "label": "box", "bbox": [162, 40, 226, 108], "conf": 0.58 }
+  ]
+}

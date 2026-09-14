@@ -1,0 +1,67 @@
+{
+    "capability_id": "luna.navigation_manager",
+    "capability_name": "Luna Navigation Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/navigation_manager/module/navigation_manager_module_api_v1.py",
+            "entrypoint": "run_navigation_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/navigation_manager/module/navigation_manager_module_facade_v1.py",
+            "entrypoint": "run_navigation_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/navigation/runtime/navigation_real_executor_v0.py",
+            "capabilities/midplatform/navigation_guidance_to_speech_candidate_adapter_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py",
+            "capabilities/midplatform/core/task_manager/module/task_manager_module_api_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "capabilities/vision/task_aware_visual_focus_policy_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py",
+            "scenarios": 20
+        },
+        "ready_evidence": {
+            "total_cases": 20,
+            "passed_cases": 20,
+            "failed_cases": [],
+            "route_state_present_when_expected": true,
+            "guidance_candidate_present_when_expected": true,
+            "deviation_candidate_present_when_expected": true,
+            "crossing_assessment_present_when_expected": true,
+            "obstacle_assessment_present_when_expected": true,
+            "arrival_candidate_present_when_expected": true,
+            "task_handoff_present_when_expected": true,
+            "speech_handoff_present_when_expected": true,
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "unhandled_exceptions": 0,
+            "evidence_ref": "tools/evaluation/midplatform/run_navigation_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_real_map_lookup_execution": true,
+        "no_real_gps_read_execution": true,
+        "no_real_camera_read_execution": true,
+        "no_real_reroute_execution": true,
+        "no_navigation_action_execution": true,
+        "no_fact_admission_execution": true,
+        "no_field_state_write_execution": true,
+        "no_speech_output_execution": true,
+        "no_provider_runtime_execution": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "navigation_guidance_runtime",
+        "navigation_guidance_handoff_adapter"
+    ]
+}

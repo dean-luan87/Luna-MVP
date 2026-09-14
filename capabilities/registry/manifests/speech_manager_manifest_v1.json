@@ -1,0 +1,55 @@
+{
+    "capability_id": "luna.speech_manager",
+    "capability_name": "Luna Speech Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "entrypoint": "run_speech_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/speech_manager/module/speech_manager_module_facade_v1.py",
+            "entrypoint": "run_speech_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/voice/interfaces/tts_provider.py",
+            "capabilities/voice/interfaces/voice_output_plane.py",
+            "capabilities/voice/README.md",
+            "capabilities/midplatform/voice_output_plane_adapter_for_guidance_v1.py",
+            "capabilities/midplatform/navigation_guidance_to_speech_candidate_adapter_v1.py",
+            "capabilities/voice/voice_interruption_governance_dryrun_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py",
+            "scenarios": 19
+        },
+        "ready_evidence": {
+            "total_cases": 19,
+            "passed_cases": 19,
+            "failed_cases": [],
+            "deterministic_replay": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "boundary_preserved": true,
+            "speaker_identity_auto_confirmed_false": true,
+            "asr_candidate_auto_fact_false": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_asr_runtime_call": true,
+        "no_direct_tts_runtime_call": true,
+        "no_direct_vop_runtime_call": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "speech_controller",
+        "speech_output_manager",
+        "voice_guidance_manager"
+    ]
+}

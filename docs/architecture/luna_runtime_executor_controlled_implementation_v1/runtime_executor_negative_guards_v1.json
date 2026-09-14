@@ -1,0 +1,41 @@
+{
+    "artifact": "runtime_executor_negative_guards_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "negative_guards": [
+        "action candidate != execution request",
+        "execution readiness != execution",
+        "executor != decision governance",
+        "executor != action governance",
+        "executor != task manager",
+        "executor != scheduler",
+        "permission bypass forbidden",
+        "safety bypass forbidden",
+        "final gate skip forbidden",
+        "automatic retry forbidden",
+        "retry without authority forbidden",
+        "timeout without trace forbidden",
+        "cancellation without trace forbidden",
+        "partial result marked success forbidden",
+        "rollback execution claim without trigger forbidden",
+        "adapter direct side effect claim forbidden",
+        "diagnostics as decision authority forbidden",
+        "result handoff as owner transfer forbidden",
+        "parallel runtime executor authority forbidden",
+        "runtime/device/provider call forbidden",
+        "scheduler runtime forbidden",
+        "task mutation forbidden",
+        "database write forbidden"
+    ],
+    "forbidden_flags": {
+        "planning_only_false": true,
+        "candidate_only_false": true,
+        "runtime_executed_true": true,
+        "adapter_call_executed_true": true,
+        "provider_call_executed_true": true,
+        "device_control_executed_true": true,
+        "scheduler_runtime_executed_true": true,
+        "task_mutation_executed_true": true,
+        "database_write_executed_true": true,
+        "source_mutation_allowed_true": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "artifact":"learning_signal_handoff_v1",
+  "producer":"Outcome Evaluation Governance (future narrow owner)",
+  "consumer":"Cognitive Learning",
+  "candidate_only":true,
+  "required_fields":["learning_signal_id","evaluation_ref","deviation_refs","attribution_refs","outcome_refs","feedback_refs","context_refs","intent_refs","hypothesis_refs","current_world_refs","contradiction_refs","counterexample_refs","temporal_refs","provenance_refs","trace_ref"],
+  "possible_statuses":["PROPOSED","ADMISSIBLE_CANDIDATE","INSUFFICIENT_EVIDENCE","CONTESTED","DEFERRED","REJECTED","REVOKED","SUPERSEDED"],
+  "prohibitions":["no Learning state mutation","no parameter update","no model weight update","no Memory mutation","no Personality mutation","no Self mutation","no Dynamic Regulation parameter mutation","no Parameter Genome activation"],
+  "owner_rule":"Cognitive Learning decides admission later"
+}

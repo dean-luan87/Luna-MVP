@@ -1,0 +1,22 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Skeleton Contract",
+    "skeleton_only": true,
+    "candidate_only": true,
+    "real_policy_selection_allowed": false,
+    "real_policy_execution_allowed": false,
+    "real_precedence_execution_allowed": false,
+    "real_composition_execution_allowed": false,
+    "confidence_aggregation_allowed": false,
+    "conflict_resolution_allowed": false,
+    "active_state_creation_allowed": false,
+    "state_mutation_allowed": false,
+    "fact_promotion_allowed": false,
+    "action_trigger_allowed": false,
+    "provider_recall_allowed": false,
+    "external_lookup_allowed": false,
+    "model_call_allowed": false,
+    "runtime_execution_allowed": false,
+    "synthetic_fixture_only": true,
+    "skeleton_contract_complete": true
+}

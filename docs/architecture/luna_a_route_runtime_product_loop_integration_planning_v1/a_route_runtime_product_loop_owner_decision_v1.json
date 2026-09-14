@@ -1,0 +1,10 @@
+{
+  "schema_version":"1.0",
+  "decision_class":"A_EXISTING_CANONICAL_OWNER",
+  "canonical_loop_caller":"A Route Orchestration Governance",
+  "location":"capabilities/midplatform/core/a_route_orchestration",
+  "owns":["lifecycle advancement","handoff acknowledgement","bounded retry/reconsideration","stop/defer/fail/complete control","cycle trace linkage"],
+  "does_not_own":["context semantics","field truth","intent","hypothesis","decision","task","action","memory","learning","self","personality","provider semantics"],
+  "new_super_owner_required":false,
+  "rationale":"The existing orchestration owner already exposes lifecycle, handoff status, control states, idempotency and trace structures; the gap is runtime integration, not semantic ownership."
+}

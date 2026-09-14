@@ -1,0 +1,41 @@
+{
+  "schema_id": "RegionIntelligenceOwnershipDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-DryRun-v1-001",
+  "layer_id": "Information_Ownership_Evidence_Routing",
+  "dryrun_only": true,
+  "principle": "先判断世界中的信息单元，再决定哪些能力值得调用",
+  "core_question": "谁拥有这些信息？哪些信息值得被理解？",
+  "pipeline": [
+    "entity_discovery",
+    "ownership_graph",
+    "information_channel_selection",
+    "evidence_package",
+    "validation"
+  ],
+  "verify_dimensions": [
+    {"id": "ownership_first", "description": "先识别归属，再 per-entity OCR"},
+    {"id": "missing_information_reasoning", "description": "缺失原因：occluded/ocr_failed/quality"},
+    {"id": "channel_conflict", "description": "同区域 text/visual 冲突 → semantic_conflict_candidate"}
+  ],
+  "output_structure": {
+    "entity_candidates": "per-entity ownership + information_channels + completeness",
+    "relation_candidates": "occlusion/overlap/attached_to/behind"
+  },
+  "forbidden": [
+    "global_ocr_first",
+    "all_models_start",
+    "flat_text_visual_merge",
+    "assume_occluded_absent",
+    "visual_plus_text_equals_answer"
+  ],
+  "boundary_flags": {
+    "information_ownership_graph": true,
+    "selective_channel_activation": true,
+    "ownership_before_ocr": true,
+    "missing_information_reasoning": true,
+    "not_global_model_activation": true,
+    "deterministic_fixture_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Real-Runtime-Integration-Planning-v1-001"
+}

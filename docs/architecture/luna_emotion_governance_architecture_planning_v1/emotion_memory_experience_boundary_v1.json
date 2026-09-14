@@ -1,0 +1,27 @@
+{
+  "artifact": "emotion_memory_experience_boundary_v1",
+  "canonical_emotion_owner": "Emotion Governance",
+  "canonical_memory_owner": "Cognitive Memory & Experience Governance",
+  "allowed_routes": {
+    "experience_to_emotion": "Experience supplies Emotion Evidence Candidate references.",
+    "memory_to_emotion": "Memory supplies historical affective influence/reference candidates, not emotion truth.",
+    "emotion_to_memory": "Emotion supplies future memory observation/experience candidates through typed interfaces.",
+    "emotion_to_experience": "Emotion supplies candidate experience context and outcome references."
+  },
+  "frozen_rules": {
+    "emotion_is_not_memory_owner": true,
+    "emotion_does_not_mutate_memory": true,
+    "memory_does_not_directly_mutate_emotion_state": true,
+    "repeated_memory_is_not_emotion_truth": true,
+    "emotion_memory_compression_not_executed": true,
+    "memory_persistence_remains_memory_owner_contract": true,
+    "candidate_only": true
+  },
+  "allowed_interfaces": [
+    "MemoryAffectiveInfluenceReferenceCandidate",
+    "EmotionToMemoryObservationCandidate",
+    "EmotionExperienceCandidate",
+    "MemoryRevisionToEmotionCandidate"
+  ],
+  "forbidden": ["memory_rewrite", "automatic_memory_write", "emotion_memory_summary_execution", "affective_memory_compression_execution"]
+}

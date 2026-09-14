@@ -1,0 +1,129 @@
+{
+    "waves": [
+        {
+            "wave_id": "Wave 0",
+            "objective": "Architecture freeze only",
+            "allowed_actions": [
+                "document_target_architecture",
+                "freeze_governance_contracts"
+            ],
+            "prohibited_actions": [
+                "directory_move",
+                "import_rewrite",
+                "model_activation"
+            ],
+            "entry_conditions": [
+                "planning_artifacts_present"
+            ],
+            "exit_conditions": [
+                "architecture_frozen"
+            ],
+            "rollback_point": "planning_boundary",
+            "owner_approval_required": false
+        },
+        {
+            "wave_id": "Wave 1",
+            "objective": "Logical ownership mapping without moving files",
+            "allowed_actions": [
+                "logical_remap",
+                "compatibility_notes"
+            ],
+            "prohibited_actions": [
+                "file_move",
+                "bulk_import_change",
+                "runtime_activation"
+            ],
+            "entry_conditions": [
+                "architecture_frozen"
+            ],
+            "exit_conditions": [
+                "logical_mapping_complete"
+            ],
+            "rollback_point": "logical_mapping_boundary",
+            "owner_approval_required": false
+        },
+        {
+            "wave_id": "Wave 2",
+            "objective": "Compatibility aliases and adapters",
+            "allowed_actions": [
+                "adapter_first_interfaces",
+                "compatibility_aliases"
+            ],
+            "prohibited_actions": [
+                "legacy_deletion",
+                "bulk_import_change",
+                "production_activation"
+            ],
+            "entry_conditions": [
+                "logical_mapping_complete"
+            ],
+            "exit_conditions": [
+                "adapter_layer_ready"
+            ],
+            "rollback_point": "adapter_boundary",
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 3",
+            "objective": "Controlled directory migration planning",
+            "allowed_actions": [
+                "migration_plan_generation"
+            ],
+            "prohibited_actions": [
+                "file_move",
+                "import_change",
+                "runtime_activation"
+            ],
+            "entry_conditions": [
+                "adapter_layer_ready"
+            ],
+            "exit_conditions": [
+                "migration_plan_reviewed"
+            ],
+            "rollback_point": "migration_plan_boundary",
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 4",
+            "objective": "Controlled migration dry-run",
+            "allowed_actions": [
+                "dry_run_migration",
+                "trace_validation"
+            ],
+            "prohibited_actions": [
+                "real_migration",
+                "model_execution",
+                "production_activation"
+            ],
+            "entry_conditions": [
+                "migration_plan_reviewed"
+            ],
+            "exit_conditions": [
+                "dry_run_complete"
+            ],
+            "rollback_point": "dry_run_boundary",
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 5",
+            "objective": "Real migration only after owner approval",
+            "allowed_actions": [
+                "real_migration_after_approval"
+            ],
+            "prohibited_actions": [
+                "silent_migration",
+                "runtime_activation",
+                "production_activation"
+            ],
+            "entry_conditions": [
+                "dry_run_complete",
+                "owner_approval_complete"
+            ],
+            "exit_conditions": [
+                "migration_complete"
+            ],
+            "rollback_point": "migration_execution_boundary",
+            "owner_approval_required": true
+        }
+    ]
+}

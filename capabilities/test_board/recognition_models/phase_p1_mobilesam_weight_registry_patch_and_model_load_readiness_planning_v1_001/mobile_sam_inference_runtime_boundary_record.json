@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Weight-Registry-Patch-And-Model-Load-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:54:15.986837+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_inference_runtime_boundary_record",
+  "mobile_sam_inference_runtime_boundary_record": {
+    "record_id": "mobile_sam_inference_runtime_boundary_v1",
+    "inference_requires_separate_trial": true,
+    "runtime_requires_separate_trial": true,
+    "output_adapter_requires_separate_review": true,
+    "semantic_layer_requires_separate_promotion": true,
+    "commercial_runtime_not_approved": true
+  }
+}

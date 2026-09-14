@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "registry_type": "Cognitive Field Registry",
+  "purpose": "current managed field directory",
+  "required_fields": ["field_id", "field_type", "lifecycle_state", "activation_source", "owner_reference", "resource_requirement", "boundary_policy", "created_time", "last_active_time", "validity", "provenance"],
+  "example_entries": [
+    {"field_id": "navigation_field", "lifecycle_state": "Active"},
+    {"field_id": "home_field", "lifecycle_state": "Background"},
+    {"field_id": "maintenance_field", "lifecycle_state": "Suspended"}
+  ],
+  "registry_is_not_memory": true,
+  "registry_is_not_cognitive_subject": true,
+  "registry_creates_decision": false,
+  "direct_reality_mutation": false
+}

@@ -1,0 +1,10 @@
+{
+    "dependency_name": "",
+    "dependency_category": "",
+    "expected_version": "",
+    "version_required": false,
+    "probe_strategy": "planned_only",
+    "probe_result_type": "metadata_only",
+    "candidate_only": true,
+    "not_fact": true
+}

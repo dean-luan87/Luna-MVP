@@ -1,0 +1,9 @@
+{
+  "analysis_id": "b2_observation_need_evidence_sufficiency_v1",
+  "owner": "Field Perception Orchestrator Active Observation Control",
+  "existing_types": ["EvidenceSufficiencyCandidateV1", "ObservationControlDecisionV1", "NextCycleIngressCandidateV1"],
+  "decision_map": {"SUFFICIENT": "STOP", "INSUFFICIENT": "CONTINUE", "CONTESTED": "RECONSIDER", "NEEDS_ADDITIONAL_MODALITY": "ADD_CAPABILITY", "NEEDS_REDIRECT": "REDIRECT", "NEEDS_PROVIDER_SWITCH": "SWITCH_PROVIDER"},
+  "b2_output": "B2 may expose observation_need_candidate, reconsider_candidate, or continue_observation_candidate as a handoff/reference candidate only.",
+  "not_allowed": ["provider_invocation", "YOLO", "OCR", "SLAM", "VLM", "camera_control", "field_mutation"],
+  "invariant": "Model/provider confidence is not Evidence Sufficiency and Gateway admission is not continuation authorization."
+}

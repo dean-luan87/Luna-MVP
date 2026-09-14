@@ -1,0 +1,18 @@
+{
+  "interface_name": "Social Field Attention Interface v1",
+  "social_field_reference": "social-field-example",
+  "participants": [],
+  "role_context": null,
+  "relationship_context": null,
+  "social_rule_candidates": [],
+  "interaction_pattern_candidates": [],
+  "attention_candidate": null,
+  "information_value": null,
+  "risk_context": null,
+  "unknowns": [],
+  "social_field_provides_attention_candidate": true,
+  "social_field_does_not_allocate_attention_directly": true,
+  "social_field_does_not_modify_goal": true,
+  "social_field_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

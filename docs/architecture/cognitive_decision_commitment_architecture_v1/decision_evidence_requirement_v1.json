@@ -1,0 +1,24 @@
+{
+  "title": "Decision Evidence Requirement v1",
+  "contract_type": "Commitment Evidence Requirement",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "commitment_candidate": "commitment-example",
+    "supporting_evidence": [],
+    "unknowns": [],
+    "risk_level": "candidate",
+    "expected_outcome": {}
+  },
+  "output": {
+    "evidence_sufficiency_check": "candidate",
+    "missing_evidence": [],
+    "validation_condition": {},
+    "more_evidence_request": null
+  },
+  "boundary": {
+    "evidence_requirement_does_not_make_decision": true,
+    "evidence_requirement_does_not_invoke_capability": true,
+    "evidence_requirement_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

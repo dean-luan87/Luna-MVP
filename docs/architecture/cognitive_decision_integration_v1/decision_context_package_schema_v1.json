@@ -1,0 +1,43 @@
+{
+  "title": "Decision Context Package Schema v1",
+  "type": "object",
+  "required": [
+    "package_id",
+    "situation",
+    "options",
+    "constraints",
+    "risk",
+    "unknown",
+    "capability",
+    "self_state",
+    "confidence",
+    "provenance"
+  ],
+  "properties": {
+    "package_id": {"type": "string"},
+    "situation": {"type": "object"},
+    "options": {"type": "array"},
+    "constraints": {"type": "object"},
+    "risk": {"type": "object"},
+    "unknown": {"type": "array"},
+    "capability": {"type": "object"},
+    "self_state": {"type": "object"},
+    "confidence": {"type": "object"},
+    "evidence_support": {"type": "array"},
+    "experience_reference": {"type": "object"},
+    "provenance": {"type": "array"},
+    "decision_candidate": {"type": "object"},
+    "review_status": {"type": "string"},
+    "revision_reference": {"type": "object"}
+  },
+  "boundary": {
+    "package_is_not_action_command": true,
+    "package_is_not_execution": true,
+    "package_is_not_outcome": true,
+    "package_does_not_modify_goal": true,
+    "package_does_not_modify_reality": true,
+    "package_does_not_execute_action": true,
+    "brain_retains_final_judgment": true,
+    "reducer_is_sole_state_mutation_authority": true
+  }
+}

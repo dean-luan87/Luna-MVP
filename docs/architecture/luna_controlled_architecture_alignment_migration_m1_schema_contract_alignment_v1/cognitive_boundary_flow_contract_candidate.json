@@ -1,0 +1,60 @@
+{
+    "contract_id": "cognitive_boundary_flow_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Architecture Governance",
+    "producer": "Architecture Governance",
+    "consumer": [
+        "Schema / Contract Alignment Review",
+        "Future M2 Ownership Alignment"
+    ],
+    "candidate_fact": "boundary_rule_candidate_only",
+    "unknown": {
+        "allowed": false,
+        "representation": "boundary_gap",
+        "behavior": "register_blocked_contract"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "source_boundary_refs"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "rule_review_reference_only"
+    },
+    "admission": {
+        "required": true,
+        "mode": "planning_review_only"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "future_governed_boundary_update"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_candidate_rule_if_owner_conflict_detected"
+    },
+    "failure_behavior": {
+        "on_forbidden_flow_detected": "block_candidate_alignment",
+        "on_owner_conflict": "register_blocked_contract",
+        "on_writer_duplication": "reject_contract_set"
+    },
+    "write_authority": "Architecture Governance",
+    "allowed_flows": [
+        "Field -> PCN",
+        "Observation -> Evidence",
+        "Memory -> Context",
+        "PCN -> Intent/Causal Context",
+        "Decision -> Action Candidate",
+        "Outcome -> Experience"
+    ],
+    "forbidden_flows": [
+        "Model -> Cognitive Fact",
+        "Observation -> Decision",
+        "Memory -> Reality Override",
+        "PCN -> Source Mutation",
+        "Task Manager -> Intent"
+    ]
+}

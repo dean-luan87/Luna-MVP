@@ -1,0 +1,18 @@
+{
+  "contract_name": "Workspace Lifecycle Contract v1",
+  "states": ["Created", "Active", "Updated", "Background", "Closed"],
+  "transitions": [
+    "Created → Active",
+    "Active → Updated",
+    "Updated → Background",
+    "Background → Active",
+    "Active → Closed",
+    "Background → Closed"
+  ],
+  "primary_workspace": "Primary Workspace",
+  "background_workspaces": ["Background Workspace"],
+  "workspace_isolation": true,
+  "closed_workspace_does_not_delete_memory": true,
+  "lifecycle_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

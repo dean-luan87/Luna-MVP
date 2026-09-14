@@ -1,0 +1,17 @@
+{
+  "contract_name": "Relationship Evolution Contract v1",
+  "from_state": "Initial",
+  "to_state": "Developing",
+  "allowed_states": ["Initial", "Developing", "Stable", "Changed", "Unknown", "Archived"],
+  "interaction_experience_reference": "interaction-experience-example",
+  "relationship_memory_reference": "relationship-memory-example",
+  "evidence": [],
+  "confidence": null,
+  "history": [],
+  "unknowns": [],
+  "relationship_candidate": true,
+  "relationship_judgment": false,
+  "emotion_inference": false,
+  "does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

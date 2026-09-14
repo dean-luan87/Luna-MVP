@@ -1,0 +1,31 @@
+{
+  "model_family": "scene_relation_vlm_family",
+  "candidate_models": ["lightweight_vlm_structured_output", "scene_graph_extractor", "relation_extractor"],
+  "planned_target_candidates": [
+    "scene_relation_candidate",
+    "attribute_candidate",
+    "relation_hypothesis_candidate"
+  ],
+  "package_or_module_refs": ["lightweight_vlm_runtime", "scene_graph_extractor_module"],
+  "command_refs": [],
+  "local_resource_refs": ["models/vlm/lightweight_vlm(planned)"],
+  "license_ref": "per_model_license_check_required",
+  "model_origin": "external_open_source_or_hosted_vlm",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "scene_relation.callable.extract_relation_contract_v1",
+  "output_schema_ref": "scene_relation_structured_output_schema_v1",
+  "adapter_mapping_ref": "scene_relation_candidate",
+  "fallback_plan": "fallback_to_no_relation_hypothesis_and_object_region_candidates_only",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "structured_candidate_only_no_final_interpretation",
+  "commercial_use_status": "per_model_license_check_required",
+  "availability_probe_mode": "contract_level_callable_check",
+  "availability_status": "deferred_due_to_output_instability",
+  "structured_output_required": true,
+  "adapter_controllable": true,
+  "boundaries": [
+    "scene_relation_is_not_final_interpretation",
+    "vlm_output_must_be_structured_and_adapter_controlled",
+    "no_direct_reasoning_authority"
+  ]
+}

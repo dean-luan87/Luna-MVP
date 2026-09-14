@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Role Memory Relation",
+  "owner":"Role Layer and Memory Governance",
+  "flow":["Field Experience","Role Performance Record","Role Memory Candidate","Memory Validation","Role Pattern Candidate","Role Growth Candidate"],
+  "memory_content":["role_context","responsibility_outcome","capability_gap","interaction_pattern","feedback"],
+  "rules":{"memory_validation_required":true,"repetition_not_automatic_role":true,"role_memory_not_identity":true,"role_memory_not_decision":true}
+}

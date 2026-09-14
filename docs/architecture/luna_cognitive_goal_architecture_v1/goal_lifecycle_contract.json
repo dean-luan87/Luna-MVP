@@ -1,0 +1,10 @@
+{
+  "title": "Goal Lifecycle Contract v1",
+  "states": ["Detected", "Candidate", "Evaluated", "Admitted", "Active", "Progressing", "Completed", "Expired", "Archived"],
+  "automatic_transition": false,
+  "governance_admission_required": true,
+  "completion_requires_evidence": true,
+  "expiration_does_not_delete_history": true,
+  "candidate_only": true,
+  "runtime_implemented": false
+}

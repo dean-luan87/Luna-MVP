@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+    "name": "Field Event and Temporal Validity Protocol Test Strategy",
+    "description": "定义协议验证策略，包括边界、回放、冲突和临时覆盖场景",
+    "test_categories": [
+        "schema_validation",
+        "event_admission",
+        "temporal_validity_evaluation",
+        "overlay_lifecycle",
+        "revision_revocation",
+        "replay_determinism",
+        "conflict_coexistence"
+    ],
+    "focus_points": [
+        "验证事件分类与准入结果类型是否一致。",
+        "验证 temporal_validity 对象状态转换是否正确。",
+        "验证 overlay 结束后投影重新计算的逻辑。",
+        "验证修订/撤回历史保留与 lineage。",
+        "验证 replay 过程不会调用外部 provider。"
+    ]
+}

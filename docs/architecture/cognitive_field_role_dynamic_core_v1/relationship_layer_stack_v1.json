@@ -1,0 +1,17 @@
+{
+  "schema_name": "Relationship Layer Stack v1",
+  "stack_id": "relationship-stack-example",
+  "participant_a": "participant-a",
+  "participant_b": "participant-b",
+  "relationships": ["Colleague", "Friend", "Historical Conflict"],
+  "source_field": [],
+  "time": [],
+  "evidence": [],
+  "confidence": [],
+  "history": [],
+  "boundary": [],
+  "unknowns": [],
+  "relationship_is_contextual": true,
+  "relationship_is_not_single_global_label": true,
+  "unknowns_are_preserved": true
+}

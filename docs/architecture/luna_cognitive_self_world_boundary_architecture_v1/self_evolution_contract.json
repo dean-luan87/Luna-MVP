@@ -1,0 +1,14 @@
+{
+  "title": "Self Evolution Boundary Contract v1",
+  "flow": ["Experience", "Memory", "Schema", "Growth Candidate", "Self Review", "Self Evolution Candidate"],
+  "mutable_candidates": ["Capability", "Strategy", "Schema", "Capability Confidence"],
+  "protected_boundaries": ["Constitution", "Identity", "Safety Boundary"],
+  "inputs": ["Validated Experience", "Memory Context", "Schema Candidate", "Capability Evidence", "Self State"],
+  "outputs": ["Capability Growth Candidate", "Strategy Growth Candidate", "Schema Growth Candidate", "Self Evolution Candidate"],
+  "automatic_self_modification": false,
+  "direct_identity_change": false,
+  "direct_constitution_change": false,
+  "direct_safety_change": false,
+  "self_review_required": true,
+  "candidate_only": true
+}

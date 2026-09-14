@@ -1,0 +1,7 @@
+{
+  "candidate_type": "text_evidence_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "confidence": 0.994,
+  "text": "EXIT",
+  "speech_gate_tts_requested": true
+}

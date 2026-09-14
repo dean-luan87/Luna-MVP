@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Role System Ownership Mapping",
+  "owner": "Social Self Layer",
+  "role_definition": "A contextual responsibility and behavior boundary, not Core Identity or personality",
+  "role_inputs": ["Field", "Relationship", "Task", "Social Norm", "Time"],
+  "role_outputs": ["Role Instance", "Responsibility Candidate", "Attention Context Candidate", "Behavior Candidate"],
+  "lifecycle": ["Created", "Active", "Background", "Suspended", "Closed"],
+  "forbidden": ["Role → Identity Rewrite", "Role → Constitution Modification", "Role → Direct Action", "Role → Emotion Decision"],
+  "rules": {"role_belongs_to_social_self": true, "role_is_contextual": true, "identity_continuity": true, "candidate_behavior_only": true}
+}

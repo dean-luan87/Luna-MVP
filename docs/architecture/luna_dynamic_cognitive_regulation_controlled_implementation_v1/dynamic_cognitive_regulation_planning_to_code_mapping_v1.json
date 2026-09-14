@@ -1,0 +1,159 @@
+{
+  "artifact": "dynamic_cognitive_regulation_planning_to_code_mapping_v1",
+  "planning_root": "docs/architecture/luna_dynamic_cognitive_regulation_module_planning_v1/",
+  "implementation_root": "capabilities/midplatform/core/dynamic_cognitive_regulation/",
+  "mapping_complete": true,
+  "mappings": [
+    {
+      "planning_asset": "dynamic_cognitive_regulation_owner_boundary_v1.json",
+      "implementation_assets": [
+        "dynamic_cognitive_regulation_registry_v1.py",
+        "dynamic_cognitive_regulation_ownership_guard_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py"
+      ],
+      "coverage": ["canonical owner", "internal subsystems", "parallel-owner guards"]
+    },
+    {
+      "planning_asset": "dynamic_cognitive_regulation_concept_boundary_matrix_v1.json",
+      "implementation_assets": [
+        "dynamic_cognitive_regulation_core_types_v1.py",
+        "dynamic_regulation_candidate_types_v1.py",
+        "dynamic_cognitive_regulation_static_validators_v1.py"
+      ],
+      "coverage": ["state vector is input", "regulation is candidate", "self-regulation is not learning", "emotion is influence"]
+    },
+    {
+      "planning_asset": "cognitive_state_vector_input_contract_v1.json",
+      "implementation_assets": [
+        "dynamic_regulation_io_types_v1.py",
+        "dynamic_cognitive_regulation_static_validators_v1.py"
+      ],
+      "coverage": ["required state fields", "candidate-only invariants", "reference-only sources"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_candidate_schema_v1.json",
+      "implementation_assets": [
+        "dynamic_regulation_candidate_types_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py"
+      ],
+      "coverage": ["all eight modulation kinds", "candidate-only", "revision and revocation parents"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_function_contract_v1.json",
+      "implementation_assets": [
+        "dynamic_cognitive_regulation_protocol_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py"
+      ],
+      "coverage": ["deterministic evaluation", "bounded output", "no Runtime"]
+    },
+    {
+      "planning_asset": "cognitive_parameter_classification_v1.json",
+      "implementation_assets": [
+        "dynamic_cognitive_regulation_registry_v1.py",
+        "cognitive_parameter_types_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py"
+      ],
+      "coverage": ["classes A/B/C/D/E", "approval", "expiry", "learned candidate boundary"]
+    },
+    {
+      "planning_asset": "cognitive_parameter_bounds_contract_v1.json",
+      "implementation_assets": [
+        "cognitive_parameter_bounds_types_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py",
+        "dynamic_cognitive_regulation_static_validators_v1.py"
+      ],
+      "coverage": ["absolute bounds", "step bounds", "clamp reasons", "reject invalid", "no silent coercion"]
+    },
+    {
+      "planning_asset": "cognitive_parameter_genome_candidate_schema_v1.json",
+      "implementation_assets": [
+        "cognitive_parameter_genome_types_v1.py",
+        "dynamic_cognitive_regulation_ownership_guard_v1.py"
+      ],
+      "coverage": ["candidate only", "no activation", "no persistence", "no identity", "no cross-user propagation"]
+    },
+    {
+      "planning_asset": "self_regulation_state_model_v1.json",
+      "implementation_assets": [
+        "self_regulation_state_types_v1.py",
+        "dynamic_cognitive_regulation_engine_v1.py"
+      ],
+      "coverage": ["OBSERVED", "ASSESSED", "CANDIDATE", "UNDER_REVIEW", "DEFERRED", "REVISED", "REVOKED"]
+    },
+    {
+      "planning_asset": "attention_influence_boundary_v1.json",
+      "implementation_assets": ["dynamic_regulation_candidate_types_v1.py", "dynamic_regulation_handoff_types_v1.py"],
+      "coverage": ["modulation only", "no ownership transfer", "no state mutation"]
+    },
+    {
+      "planning_asset": "intent_influence_boundary_v1.json",
+      "implementation_assets": ["dynamic_regulation_io_types_v1.py", "dynamic_regulation_handoff_types_v1.py"],
+      "coverage": ["reference-only pressure", "no Intent mutation", "no Goal or Task creation"]
+    },
+    {
+      "planning_asset": "hypothesis_influence_boundary_v1.json",
+      "implementation_assets": ["dynamic_regulation_io_types_v1.py", "dynamic_regulation_handoff_types_v1.py"],
+      "coverage": ["threshold/reconsideration candidates", "no truth declaration", "no Causal mutation"]
+    },
+    {
+      "planning_asset": "emotion_influence_boundary_v1.json",
+      "implementation_assets": ["dynamic_regulation_io_types_v1.py", "dynamic_cognitive_regulation_engine_v1.py"],
+      "coverage": ["read-only influence", "emotion-aware candidate", "no authority takeover"]
+    },
+    {
+      "planning_asset": "resource_influence_boundary_v1.json",
+      "implementation_assets": ["dynamic_regulation_io_types_v1.py", "dynamic_cognitive_regulation_engine_v1.py"],
+      "coverage": ["bounded resource candidate", "no device, Scheduler, Task, or Runtime authority"]
+    },
+    {
+      "planning_asset": "learning_boundary_v1.json",
+      "implementation_assets": ["cognitive_parameter_types_v1.py", "cognitive_parameter_genome_types_v1.py", "dynamic_cognitive_regulation_engine_v1.py"],
+      "coverage": ["Class E candidate", "no auto apply", "no weights", "no persistence"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_trace_provenance_contract_v1.json",
+      "implementation_assets": ["dynamic_regulation_trace_types_v1.py", "dynamic_cognitive_regulation_engine_v1.py"],
+      "coverage": ["complete trace", "reverse lookup", "source-owner chain", "no provenance authority"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_revision_revocation_model_v1.json",
+      "implementation_assets": ["dynamic_regulation_candidate_types_v1.py", "dynamic_cognitive_regulation_engine_v1.py"],
+      "coverage": ["revision lineage", "revocation lineage", "source version lineage"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_negative_guards_v1.json",
+      "implementation_assets": ["dynamic_cognitive_regulation_registry_v1.py", "dynamic_cognitive_regulation_core_types_v1.py", "dynamic_cognitive_regulation_static_validators_v1.py"],
+      "coverage": ["all code-level negative guards", "no side effects", "no bounds bypass"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_minimum_scenario_suite_v1.json",
+      "implementation_assets": ["dynamic_cognitive_regulation_fixture_v1.py", "run_dynamic_cognitive_regulation_controlled_implementation_v1.py"],
+      "coverage": ["R01-R20 exact IDs", "expected behavior", "actual behavior", "per-case checks"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_existing_asset_reuse_mapping_v1.json",
+      "implementation_assets": ["dynamic_cognitive_regulation_controlled_implementation_overview_v1.md", "dynamic_cognitive_regulation_implementation_summary_v1.md"],
+      "coverage": ["State Formation reuse", "historical architecture reference-only", "no passed module changes"]
+    },
+    {
+      "planning_asset": "dynamic_regulation_gap_registry_v1.json",
+      "implementation_assets": ["dynamic_cognitive_regulation_implementation_summary_v1.md", "dynamic_cognitive_regulation_controlled_change_manifest_v1.json"],
+      "coverage": ["A closure", "B none", "C none", "D deferred"]
+    },
+    {
+      "planning_asset": "dynamic_cognitive_regulation_architecture_plan_v1.md",
+      "implementation_assets": ["dynamic_cognitive_regulation_controlled_implementation_overview_v1.md", "phase_contract.json"],
+      "coverage": ["single module", "single owner", "controlled implementation boundaries"]
+    },
+    {
+      "planning_asset": "phase_contract.json",
+      "implementation_assets": ["phase_contract.json"],
+      "coverage": ["new phase authority", "user-only runner and verifier", "stop status"]
+    },
+    {
+      "planning_asset": "verify_dynamic_cognitive_regulation_module_planning_v1.py",
+      "implementation_assets": ["verify_dynamic_cognitive_regulation_controlled_implementation_v1.py"],
+      "coverage": ["planning constraints retained", "implementation checks expanded", "V2 remains user-terminal only"]
+    }
+  ]
+}

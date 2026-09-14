@@ -1,0 +1,13 @@
+{
+  "schema_version":"1.0",
+  "routes":[
+    {"condition":"sufficient outcome","route":"COMPLETE or NEXT_CYCLE","mutation":false},
+    {"condition":"insufficient/stale evidence","route":"REOBSERVE","consumer":"Field Perception Orchestrator","provider_invocation":false},
+    {"condition":"contradiction/user correction/partial or failed execution","route":"RECONSIDER","mutation":false},
+    {"condition":"provider/runtime unavailable or resource constrained","route":"DEFER","mutation":false},
+    {"condition":"terminal execution failure","route":"FAIL","mutation":false},
+    {"condition":"learning signal","route":"Cognitive Learning candidate only","learning_execution":false}
+  ],
+  "OutcomeEvaluation_mutates_Decision":false,
+  "ObservationNeed_invokes_provider":false
+}

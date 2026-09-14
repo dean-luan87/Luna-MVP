@@ -1,0 +1,19 @@
+{
+  "schema_name": "Role Schema v1",
+  "role_id": "role-example",
+  "field_context": "office-field-example",
+  "role_candidate": "Employee",
+  "responsibility": [],
+  "permission": [],
+  "expectation": [],
+  "behavior_boundary": [],
+  "duration": null,
+  "confidence": null,
+  "evidence": [],
+  "unknowns": [],
+  "identity_reference": "identity-example",
+  "identity_is_not_role": true,
+  "role_belongs_to_field": true,
+  "role_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,9 @@
+{
+  "baseline": "S3 synthetic visual evidence",
+  "future_comparators": ["YOLO11n real evidence", "YOLO26n real evidence"],
+  "dimensions": ["contract_compatibility", "trace_provenance", "state_transitions", "evidence_sufficiency", "latency", "resource_use", "detection_quality", "unrelated_module_behavior"],
+  "same_frame_video_set_reusable": true,
+  "models_replaced_per_phase": 1,
+  "executed_now": false,
+  "real_data_calibration_now": false
+}

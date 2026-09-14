@@ -1,0 +1,23 @@
+{
+  "contract_id": "a_route_observation_control_decision_candidate_contract_v1",
+  "decisions": ["STOP", "CONTINUE", "REDIRECT", "SWITCH_PROVIDER", "ADD_CAPABILITY", "RECONSIDER", "DEFER", "FAIL"],
+  "required_fields": ["decision", "reason", "source_refs", "evidence_refs", "budget_state", "trace_ref", "provenance_refs"],
+  "priority_rules": [
+    "contract/version/authority violations -> FAIL",
+    "reconsideration depth exceeded -> FAIL",
+    "completed observation mutation or repeated failure signature -> FAIL",
+    "task completed -> STOP",
+    "cancel/revoked safety -> STOP",
+    "budget exhaustion or duplicate replay -> DEFER",
+    "provider failure with fallback -> SWITCH_PROVIDER",
+    "target lost/user correction/redirect requirement -> REDIRECT",
+    "intent change or contradiction -> RECONSIDER",
+    "sufficient evidence -> STOP",
+    "missing modality -> ADD_CAPABILITY",
+    "active demand with insufficient evidence -> CONTINUE",
+    "missing admission/session -> DEFER"
+  ],
+  "authority_boundary": {"runtime_execution": false, "provider_mutation": false, "downstream_mutation": false, "candidate_only": true},
+  "no_hidden_retry": true,
+  "maximum_reconsideration_depth": 2
+}

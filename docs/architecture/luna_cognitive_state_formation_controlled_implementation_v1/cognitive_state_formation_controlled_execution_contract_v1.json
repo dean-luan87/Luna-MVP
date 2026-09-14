@@ -1,0 +1,54 @@
+{
+    "artifact": "cognitive_state_formation_controlled_execution_contract_v1",
+    "phase_id": "Phase-Luna-Cognitive-State-Formation-Controlled-Implementation-v1-001",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "module_path": "capabilities/midplatform/core/cognitive_state_formation",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "owner": "Cognitive State Formation Governance",
+    "input_contract": {
+        "reference_only": true,
+        "candidate_only": true,
+        "required_groups": [
+            "context_refs",
+            "pcn_refs",
+            "intent_refs",
+            "field_refs",
+            "observation_refs"
+        ],
+        "optional_groups": [
+            "risk_refs",
+            "uncertainty_refs",
+            "task_refs",
+            "role_refs",
+            "memory_refs"
+        ]
+    },
+    "output_contract": {
+        "required_outputs": [
+            "attention_candidates",
+            "attention_selection_candidate",
+            "cognitive_hypotheses",
+            "hypothesis_competition_result",
+            "current_world_candidate",
+            "cognitive_state_vector_candidate",
+            "causal_handoff_candidate",
+            "trace",
+            "provenance",
+            "negative_guard_status"
+        ],
+        "forbidden_outputs": [
+            "decision_output",
+            "action_output",
+            "task_output",
+            "runtime_execution_request",
+            "database_write"
+        ]
+    },
+    "runtime_boundary": {
+        "runtime_executed": false,
+        "model_call": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false
+    }
+}

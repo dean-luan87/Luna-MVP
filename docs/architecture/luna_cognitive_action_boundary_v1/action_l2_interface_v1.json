@@ -1,0 +1,8 @@
+{
+  "title": "Action Boundary to L2 Interface v1",
+  "owner": "Cognitive Core Governance",
+  "inputs": ["Decision Commitment", "Intent", "Goal", "Context", "Confidence", "Constraints"],
+  "outputs": ["Action Request Candidate", "Outcome Evidence", "Action Failure Candidate", "Re-evaluation Candidate"],
+  "l2_not_modified": ["Goal", "Value", "Decision", "Brain", "Reality"],
+  "rules": {"decision_source_required": true, "action_not_decision_owner": true, "outcome_feedback_required": true, "interface_only": true}
+}

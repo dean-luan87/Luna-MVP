@@ -1,0 +1,116 @@
+{
+  "spec_id": "LunaObservationLensComponentSpecV1",
+  "version": "v1",
+  "components": {
+    "top_task_bar": {
+      "component_id": "ObservationTopTaskBar",
+      "user_visible_labels": {
+        "file_picker": "选择图片或视频",
+        "start_button": "开始观察",
+        "view_toggle": ["原图", "普通对比", "机器人视角"],
+        "advanced": "高级流程",
+        "developer": "开发者模式"
+      },
+      "status_chips": ["Candidate-only", "非 Runtime"]
+    },
+    "left_capability_rail": {
+      "component_id": "CapabilityCardRail",
+      "groups": [
+        {
+          "group_id": "vision",
+          "title": "视觉能力",
+          "capabilities": [
+            { "id": "segmentation", "label": "图像分割", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "detection", "label": "目标检测", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "ocr", "label": "OCR 文字识别", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "slam", "label": "SLAM / 空间定位", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "depth", "label": "深度感知", "status_options": ["可测试", "实验中", "未接入"] }
+          ]
+        },
+        {
+          "group_id": "audio",
+          "title": "声音能力",
+          "capabilities": [
+            { "id": "asr", "label": "语音识别", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "tts", "label": "语音合成", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "speaker", "label": "说话人", "status_options": ["可测试", "实验中", "未接入"] }
+          ]
+        },
+        {
+          "group_id": "multimodal",
+          "title": "综合理解",
+          "capabilities": [
+            { "id": "face_gesture", "label": "表情 / 手势", "status_options": ["可测试", "实验中", "未接入"] },
+            { "id": "vlm", "label": "多模态理解", "status_options": ["可测试", "实验中", "未接入"] }
+          ]
+        }
+      ],
+      "forbidden_default_labels": [
+        "placeholder", "active_example_available", "model_category",
+        "runner_type", "adapter", "panel_id", "panel_status"
+      ]
+    },
+    "central_observation_canvas": {
+      "component_id": "ObservationCanvas",
+      "empty_state": {
+        "title": "把图片或视频放进这里",
+        "subtitle": "Luna 会在这里显示它看到的内容"
+      },
+      "modes": ["original", "compare", "robot_vision_hud"],
+      "default_mode": "robot_vision_hud",
+      "visual_style": {
+        "theme": "dark_hud",
+        "maximize_canvas": true,
+        "overlay_high_contrast": true
+      }
+    },
+    "right_luna_explanation_panel": {
+      "component_id": "LunaExplanationPanel",
+      "panel_title": "Luna 观察面板",
+      "sections": [
+        { "section_id": "current_task", "title": "当前任务" },
+        { "section_id": "what_i_see", "title": "我看到了什么" },
+        { "section_id": "why_i_judge", "title": "我为什么这么判断" },
+        { "section_id": "what_i_am_uncertain", "title": "我不确定什么" },
+        { "section_id": "recommended_next_test", "title": "建议下一步怎么测" }
+      ],
+      "reuse_perception_hud_reasoning_semantics": true
+    },
+    "bottom_collapsible_dock": {
+      "component_id": "ObservationBottomDock",
+      "default_collapsed": true,
+      "tabs": [
+        {
+          "tab_id": "evaluation_metrics",
+          "title": "评估指标",
+          "contains": ["verdict", "key_metrics", "top_failures"]
+        },
+        {
+          "tab_id": "advanced_workflow",
+          "title": "高级流程",
+          "contains": ["manifest", "job_request", "runner_bridge", "testboard_refs", "candidate_boundary"]
+        },
+        {
+          "tab_id": "developer_info",
+          "title": "开发者信息",
+          "contains": ["raw_envelope", "json", "artifact_paths", "phase_ref", "trace"]
+        }
+      ],
+      "progress_timeline": [
+        "选择文件", "本地测试", "生成结果", "解释完成"
+      ]
+    },
+    "whitebox_view_slot": {
+      "component_id": "WhiteboxViewSlotPlaceholder",
+      "planned": true,
+      "runtime_connected": false,
+      "slots": ["evidence_chain", "decision_chain", "trace", "testboard_link"]
+    },
+    "service_offline_hint": {
+      "component_id": "ServiceOfflineHint",
+      "message": "本地测试服务未启动。需要测试本地图片时，请运行 bash scripts/start_local_runner_bridge.sh",
+      "display": "lightweight_single_line",
+      "forbidden": "large_engineering_warning_banner"
+    }
+  }
+}

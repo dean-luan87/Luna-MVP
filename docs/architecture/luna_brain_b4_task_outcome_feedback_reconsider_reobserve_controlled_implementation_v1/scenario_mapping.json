@@ -1,0 +1,6 @@
+{
+  "scenario_count":28,
+  "ranges":{"B4-01-B4-11":"input/action/runtime/outcome boundaries","B4-12-B4-16":"failure/task feedback/reconsideration","B4-17-B4-21":"observation need/partial/timeout/cancel/recovery","B4-22-B4-25":"safety/retry/deferred workstreams","B4-26":"synthetic regression","B4-27":"differential governance","B4-28":"real B3 end-to-end candidate"},
+  "real_component":"REAL_B3_TASK_DECISION_INPUT",
+  "runtime_component":"CONTROLLED_RUNTIME_RESULT_FIXTURE"
+}

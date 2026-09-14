@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_safety_resource_permission_boundary_v1",
+  "permission": {"owner": "Permission Governance / downstream admission owners", "decision_use": "read-only context and veto input", "mutation_by_b3": false},
+  "safety": {"owner": "Safety Governance and Action Boundary", "decision_use": "constraint/veto/block reference", "mutation_by_b3": false},
+  "resource": {"intent_use": "candidate degradation/coexistence constraints", "decision_use": "resource refs and pressure affecting ranking/eligibility", "task_use": "resource_constraints and dependency/readiness refs", "mutation_by_b3": false},
+  "interruption": {"intent": "suppression/dormancy/reactivation candidates", "decision": "defer/reconsider/revoke candidates", "task": "pause/cancel/terminate/recovery candidates", "execution": "out of scope"},
+  "frozen_rules": ["utility is not permission", "risk is not safety authority", "preferred is not authorized", "high-impact unresolved cases defer or require higher authority", "safety overrides task completion"]
+}

@@ -1,0 +1,14 @@
+{
+  "registry_id": "cognitive_state_type_registry_v1",
+  "unique_state_types": true,
+  "types": [
+    {"state": "Observation", "purpose": "collect_evidence_and_establish_field", "attention_focus": ["environment_change", "evidence", "unknowns"]},
+    {"state": "Understanding", "purpose": "assemble_context_and_validate_interpretations", "attention_focus": ["hypothesis", "belief", "validation"]},
+    {"state": "Decision", "purpose": "evaluate_goal_value_and_candidates", "attention_focus": ["goal", "utility", "risk", "candidate_difference"]},
+    {"state": "Action", "purpose": "hold_approved_action_observation_window", "attention_focus": ["execution_status", "expected_outcome", "safety"]},
+    {"state": "Reflection", "purpose": "compare_expected_actual_and_extract_experience", "attention_focus": ["outcome", "difference", "failure_classification"]},
+    {"state": "Learning", "purpose": "evaluate_patterns_and_growth_candidates", "attention_focus": ["pattern", "schema", "capability_gap", "growth_evidence"]}
+  ],
+  "emotion_is_not_state_owner": true,
+  "b_route_state_is_separate": true
+}

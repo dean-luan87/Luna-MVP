@@ -1,0 +1,23 @@
+{
+  "model_id": "fastsam_s_or_mobilesam",
+  "model_role": "segmentation",
+  "model_family": "segmentation_model_family",
+  "tier": "P1",
+  "download_allowed": true,
+  "download_source": "pypi:ultralytics_fastsam+weights:fastsam_s|github:MobileSAM",
+  "model_weight_required": true,
+  "license_ref": "agpl_3_0_fastsam_or_apache_2_0_mobilesam",
+  "license_allows_current_use": true,
+  "commercial_use_status": "prefer_mobilesam_apache_for_commercial_fastsam_agpl_test_only",
+  "size_estimate": "medium_about_23mb_fastsam_s_to_40mb_mobilesam",
+  "dependencies": ["ultralytics", "torch_cpu", "opencv-python"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": false,
+  "offline_supported": true,
+  "output_format_stable": true,
+  "output_schema_ref": "segmentation_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_region_evidence_candidate",
+  "adapter_mapping_ref": "region_evidence_candidate",
+  "notes": "p1_after_p0_stable_prefer_apache_mobilesam_for_commercial_path"
+}

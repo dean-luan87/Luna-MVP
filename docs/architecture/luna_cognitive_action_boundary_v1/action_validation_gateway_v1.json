@@ -1,0 +1,8 @@
+{
+  "title": "Action Validation Gateway v1",
+  "owner": "Action Boundary Governance",
+  "pipeline": ["Action Candidate", "Risk Evaluation", "Permission Check", "Context Validation", "Action Approved Candidate"],
+  "required_inputs": ["candidate_id", "risk_reference", "permission_reference", "context_reference", "trace_id"],
+  "output": "Action Approved Candidate",
+  "rules": {"approved_is_not_execution": true, "all_gates_required": true, "revalidation_on_context_change": true, "direct_action_forbidden": true}
+}

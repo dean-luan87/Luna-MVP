@@ -1,0 +1,22 @@
+{
+  "schema_name": "Cognitive Task Lifecycle Schema v1",
+  "states": ["Created", "Active", "Background", "Suspended", "Resumed", "Completed", "Abandoned", "Expired"],
+  "allowed_transitions": {
+    "Created": ["Active", "Suspended", "Abandoned"],
+    "Active": ["Background", "Suspended", "Completed", "Abandoned"],
+    "Background": ["Active", "Suspended", "Completed", "Abandoned", "Expired"],
+    "Suspended": ["Resumed", "Abandoned", "Expired"],
+    "Resumed": ["Active", "Background", "Suspended", "Completed", "Abandoned"],
+    "Completed": [],
+    "Abandoned": [],
+    "Expired": []
+  },
+  "transition_requires_candidate": true,
+  "resume_requires_identity_continuity": true,
+  "completion_requires_evidence": true,
+  "abandonment_requires_review": true,
+  "task_state_is_not_action_execution": true,
+  "task_state_does_not_modify_goal": true,
+  "task_state_does_not_modify_reality": true,
+  "reducer_is_sole_state_mutation_authority": true
+}

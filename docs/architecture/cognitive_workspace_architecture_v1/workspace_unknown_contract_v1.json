@@ -1,0 +1,14 @@
+{
+  "contract_name": "Workspace Unknown Contract v1",
+  "known_state": {},
+  "unknown_state": [],
+  "conflict_state": [],
+  "unknown_id": "unknown-example",
+  "source_reference": {},
+  "confidence": null,
+  "provenance": [],
+  "unknown_is_first_class": true,
+  "unknown_is_not_silently_completed": true,
+  "unknown_affects_attention": true,
+  "unknowns_are_preserved": true
+}

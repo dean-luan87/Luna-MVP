@@ -1,0 +1,8 @@
+{
+  "contract_id": "local-source-package-contract-v1",
+  "required_fields": ["local_source_package_id", "package_family", "package_version", "package_path", "source_kind", "compatible_loader_contract_ids", "required_files", "validation_markers", "network_allowed", "automatic_download_allowed", "checksum", "provenance_ref", "status"],
+  "statuses": ["REGISTERED", "SUPPORTED", "MISSING", "INCOMPATIBLE", "BLOCKED", "DEPRECATED"],
+  "yolov5_required_markers": ["hubconf.py", "models/yolo.py", "models/common.py", "utils/", "models.yolo.Model"],
+  "checksum_nullable": true,
+  "package_path_nullable_when_missing": true
+}

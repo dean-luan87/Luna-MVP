@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Attention Memory Relation",
+  "owner":"Attention and Memory Systems",
+  "inputs":["Field match","Task match","Role match","memory confidence","current risk"],
+  "outputs":["memory retrieval priority candidate","relevant memory context","memory conflict flag"],
+  "permissions":{"request_retrieval":true,"load_all_memory":false,"rewrite_memory":false,"override_reality":false},
+  "rules":{"field_driven_retrieval":true,"current_reality_precedes_memory":true,"attention_not_memory_owner":true}
+}

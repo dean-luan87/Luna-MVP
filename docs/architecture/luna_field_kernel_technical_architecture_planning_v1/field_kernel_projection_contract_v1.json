@@ -1,0 +1,25 @@
+{
+    "input": {
+        "field_state_refs": "reference to current field state components",
+        "task_ref": "reference to current task",
+        "user_goal_ref": "reference to user goal",
+        "current_time": "current timestamp",
+        "safety_constraints": "safety constraint set",
+        "perspective_candidates": "candidate perspective definitions",
+        "emotion_modulation_ref": "emotion candidate reference",
+        "personality_preference_ref": "personality preference reference"
+    },
+    "output": {
+        "active_field_projection": "candidate projection object",
+        "selected_definition_refs": "references to selected definitions",
+        "suppressed_definition_refs": "references to suppressed definitions",
+        "unresolved_conflicts": "list of unresolved conflicts",
+        "expectation_seed_candidates": "candidate expectations",
+        "attention_prior_candidates": "candidate attention priors",
+        "naming_preferences": "interaction naming preference suggestions",
+        "refresh_requests": "requests for temporal refresh"
+    },
+    "projection_candidate_only": true,
+    "projection_not_fact": true,
+    "projection_does_not_mutate_substrate": true
+}

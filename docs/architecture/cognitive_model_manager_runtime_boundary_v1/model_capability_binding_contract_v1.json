@@ -1,0 +1,18 @@
+{
+  "contract_name": "Model Capability Binding Contract v1",
+  "model_reference": "model-example",
+  "capability_id": "text_evidence_extraction",
+  "capability_scope": "Evidence Provision",
+  "input_contract": {"accepted": [], "excluded": ["full_goal", "full_self", "full_field", "decision"]},
+  "output_contract": {"evidence_type": "Text Evidence", "schema_reference": "evidence-schema-example"},
+  "known_limitations": [],
+  "confidence_boundary": null,
+  "provenance_requirement": true,
+  "cognitive_scope_is_local": true,
+  "model_cannot_create_goal": true,
+  "model_cannot_create_decision": true,
+  "model_cannot_create_field": true,
+  "model_cannot_modify_reality": true,
+  "evidence_gateway_required": true,
+  "unknowns_are_preserved": true
+}

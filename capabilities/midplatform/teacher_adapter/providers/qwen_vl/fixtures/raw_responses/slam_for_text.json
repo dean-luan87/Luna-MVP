@@ -1,0 +1,20 @@
+{
+  "model_id": "qwen-vl-plus",
+  "usage": {"input_tokens": 380, "output_tokens": 120, "total_tokens": 500},
+  "raw_response": {
+    "output": {
+      "choices": [
+        {
+          "message": {
+            "content": [
+              {
+                "text": "{\"scene_hypothesis_candidates\":[],\"visual_attention_candidates\":[],\"task_clue_candidates\":[{\"clue_text\":\"建议使用 SLAM 建图理解文字\",\"tools_suggested\":[\"slam\"],\"candidate_only\":true,\"not_fact\":true}],\"tools_suggested\":[\"slam\"],\"named_entity_claims\":[],\"supporting_reason\":\"spatial mapping suggested for text\",\"uncertainty\":0.45,\"candidate_only\":true,\"not_fact\":true}"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "request_id": "recorded-slam-text-001"
+  }
+}

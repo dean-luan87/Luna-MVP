@@ -1,0 +1,35 @@
+{
+    "artifact": "self_reference_schema_v1",
+    "schema_version": "self-reference-schema-v1",
+    "type": "object",
+    "required_fields": [
+        "self_ref_id",
+        "self_id_ref",
+        "identity_ref",
+        "subject_boundary_class",
+        "source_refs",
+        "evidence_refs",
+        "provenance_refs",
+        "confidence_candidate",
+        "uncertainty_refs",
+        "temporal_validity_candidate",
+        "candidate_only"
+    ],
+    "field_definitions": {
+        "self_ref_id": "unique self-reference identifier",
+        "self_id_ref": "stable continuity anchor reference",
+        "identity_ref": "stable identity boundary reference, nullable if unresolved",
+        "subject_boundary_class": "SELF | OTHER | SHARED | ENVIRONMENT | SYSTEM | UNKNOWN | CONTESTED",
+        "source_refs": "source owner refs used in constructing the self reference",
+        "evidence_refs": "evidence refs supporting the self-reference determination",
+        "provenance_refs": "immutable provenance refs",
+        "confidence_candidate": "LOW | MEDIUM | HIGH | NEEDS_CONFIRMATION",
+        "uncertainty_refs": "refs to unknown or ambiguity carriers",
+        "temporal_validity_candidate": "TRANSIENT | STABLE | STALE | EXPIRED",
+        "candidate_only": true
+    },
+    "forbidden_defaults": [
+        "identity_ref auto-filled without evidence",
+        "subject_boundary_class forced to SELF on first observation"
+    ]
+}

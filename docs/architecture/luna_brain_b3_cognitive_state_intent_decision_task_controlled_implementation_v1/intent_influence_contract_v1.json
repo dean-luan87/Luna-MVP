@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_intent_influence_contract_v1",
+  "owner": "Intent Governance",
+  "mapping": "B2 references -> IntentGovernanceInputV1.source_refs/context_refs/pcn_refs",
+  "outputs": ["PotentialIntentCandidateV1", "IntentCandidateV1", "IntentInteractionCandidateV1", "IntentToCausalHandoffCandidateV1"],
+  "invariants": ["Cognitive State does not own Intent", "Potential Intent != Active Intent", "Intent Candidate != Dominant Intent", "dominance != Decision", "priority != authorization", "truth_status remains UNKNOWN"],
+  "multi_intent": "Existing interaction and lifecycle semantics are preserved; no hard-coded single-intent promotion is introduced."
+}

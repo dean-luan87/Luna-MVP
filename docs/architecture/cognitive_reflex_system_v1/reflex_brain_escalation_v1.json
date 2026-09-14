@@ -1,0 +1,13 @@
+{
+  "interface_name": "Reflex Brain Escalation Interface v1",
+  "reflex_candidate": {},
+  "complexity": {},
+  "uncertainty": {},
+  "risk": {},
+  "brain_review_required": true,
+  "goal_authority": "Brain",
+  "final_decision_authority": "Brain",
+  "response_candidate": {},
+  "escalation_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

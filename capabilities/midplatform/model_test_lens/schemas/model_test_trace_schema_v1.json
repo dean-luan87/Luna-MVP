@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "model_test_trace_schema_v1",
+  "title": "Model Test Trace V1",
+  "type": "object",
+  "required": ["trace_id", "test_case_id", "model_id", "stages"],
+  "properties": {
+    "trace_id": { "type": "string" },
+    "test_case_id": { "type": "string" },
+    "model_id": { "type": "string" },
+    "execution_phase_ref": { "type": "string" },
+    "started_at": { "type": "string" },
+    "ended_at": { "type": "string" },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage_id", "stage_name"],
+        "properties": {
+          "stage_id": { "type": "string" },
+          "stage_name": { "type": "string" },
+          "status": { "type": "string", "enum": ["planned", "attempted", "success", "failed", "skipped"] },
+          "notes": { "type": "string" },
+          "registry_recheck": { "type": "boolean" },
+          "weight_recheck": { "type": "boolean" },
+          "memory_limit_mb": { "type": "integer" },
+          "timeout_seconds": { "type": "integer" },
+          "prompt_ref": { "type": "string" },
+          "candidate_only": { "type": "boolean", "const": true }
+        }
+      }
+    },
+    "boundary_flags": {
+      "type": "object",
+      "properties": {
+        "page_executed_model": { "type": "boolean", "const": false },
+        "phase_runner_executed_model": { "type": "boolean" }
+      }
+    }
+  }
+}

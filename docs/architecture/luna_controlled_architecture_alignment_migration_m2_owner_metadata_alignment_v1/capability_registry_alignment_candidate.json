@@ -1,0 +1,145 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m2_capability_registry_alignment_candidate_v1",
+  "planning_status": "PLANNING_CANDIDATE",
+  "alignment_types": ["KEEP", "BOUNDARY_ALIGNMENT_ONLY", "FUTURE_REFERENCE", "BLOCKED"],
+  "records": [
+    {
+      "capability": "luna.field_state_reducer",
+      "architecture_position": "Field System / State Reduction",
+      "owner": "Field State Reducer",
+      "baseline_reference": "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+      "alignment_type": "BOUNDARY_ALIGNMENT_ONLY",
+      "migration_required": false,
+      "notes": "Preserve the active reducer owner and mainline; Field System is the architecture domain, not a replacement writer."
+    },
+    {
+      "capability": "luna.field_state_read_model",
+      "architecture_position": "Field System / Read Model",
+      "owner": "Field State Read Model",
+      "baseline_reference": "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+      "alignment_type": "BOUNDARY_ALIGNMENT_ONLY",
+      "migration_required": false,
+      "notes": "Preserve read-only authority and reducer mutation separation."
+    },
+    {
+      "capability": "luna.observation_manager",
+      "architecture_position": "Observation Manager / Reality Evidence Pipeline",
+      "owner": "Observation Manager",
+      "baseline_reference": "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+      "alignment_type": "KEEP",
+      "migration_required": false,
+      "notes": "Evidence collection and admission-handoff candidates remain separate from cognition and Decision."
+    },
+    {
+      "capability": "luna.task_manager",
+      "architecture_position": "Task Execution Orchestration Boundary",
+      "owner": "Task Manager",
+      "baseline_reference": "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+      "alignment_type": "KEEP",
+      "migration_required": false,
+      "notes": "Task lifecycle remains downstream of Intent and Decision and gains no Runtime dispatch authority."
+    },
+    {
+      "capability": "luna.model_manager",
+      "architecture_position": "Capability Governance / Model Capability Support",
+      "owner": "Capability Governance / Model Manager",
+      "baseline_reference": "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+      "alignment_type": "KEEP",
+      "migration_required": false,
+      "notes": "Model selection remains candidate-only and cannot become cognition, fact, Intent, or Decision."
+    },
+    {
+      "capability": "luna.protocol_manager",
+      "architecture_position": "Cognitive OS Governance / Protocol Manager",
+      "owner": "Protocol Manager",
+      "baseline_reference": "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+      "alignment_type": "BOUNDARY_ALIGNMENT_ONLY",
+      "migration_required": false,
+      "notes": "Cognitive OS is the governance domain; the active Protocol Manager owner and API remain unchanged."
+    },
+    {
+      "capability": "luna.ocr_manager",
+      "architecture_position": "Capability Governance / Evidence Producer",
+      "owner": "Capability Governance / OCR Capability",
+      "baseline_reference": "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+      "alignment_type": "KEEP",
+      "migration_required": false,
+      "notes": "OCR remains a structured evidence candidate provider and cannot write Field, Memory, or Decision."
+    },
+    {
+      "capability": "luna.vision_manager",
+      "architecture_position": "Capability Governance / Evidence Producer",
+      "owner": "Capability Governance / Vision Capability",
+      "baseline_reference": "capabilities/registry/baselines/vision_manager_module_baseline_v1.json",
+      "alignment_type": "KEEP",
+      "migration_required": false,
+      "notes": "Vision remains an evidence and model-handoff candidate provider."
+    },
+    {
+      "capability": "luna.memory_system",
+      "architecture_position": "Cognitive Architecture / Historical Influence Source",
+      "owner": "Memory System",
+      "baseline_reference": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1/memory_cognitive_architecture.md",
+      "alignment_type": "BOUNDARY_ALIGNMENT_ONLY",
+      "migration_required": false,
+      "notes": "Architecture and controlled skeleton only; no production Runtime or new persistence authority is inferred."
+    },
+    {
+      "capability": "luna.personal_cognitive_network",
+      "architecture_position": "Dynamic Cognitive Architecture / Cross-object Projection",
+      "owner": "Personal Cognitive Network Governance",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Future reference only; no capability registry entry, source ownership, persistence, or implementation is created."
+    },
+    {
+      "capability": "luna.intent_architecture",
+      "architecture_position": "Dynamic Cognitive Architecture / Intent Governance",
+      "owner": "Intent Governance",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/intent_binding_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Architecture reference only; no Intent Runtime or active capability registry metadata is created."
+    },
+    {
+      "capability": "luna.causal_reasoning",
+      "architecture_position": "Dynamic Cognitive Architecture / Causal Candidate Governance",
+      "owner": "Causal Reasoning Governance",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/causal_candidate_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Planning reference only; no Causal Runtime or fact authority is created."
+    },
+    {
+      "capability": "luna.experience_compression",
+      "architecture_position": "Dynamic Cognitive Architecture / Experience Governance",
+      "owner": "Experience Governance",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/experience_memory_projection_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Planning reference only; no Memory writer or learning Runtime is created."
+    },
+    {
+      "capability": "luna.a_b_route_boundary",
+      "architecture_position": "Dynamic Cognitive Architecture / A-B Route Boundary",
+      "owner": "A/B Route Boundary Governance",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/a_b_route_handoff_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Boundary reference only; no B Route Runtime or current-Reality mutation authority is created."
+    },
+    {
+      "capability": "luna.decision_arbitration",
+      "architecture_position": "Dynamic Cognitive Architecture / Decision Candidate Selection",
+      "owner": "Decision Arbitration",
+      "baseline_reference": "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/decision_input_contract_candidate.json",
+      "alignment_type": "FUTURE_REFERENCE",
+      "migration_required": false,
+      "notes": "Architecture reference only; no Decision Runtime, Task ownership, or Action authority is created."
+    }
+  ],
+  "active_registry_change_required": false,
+  "active_baseline_change_required": false,
+  "migration_executed": false
+}

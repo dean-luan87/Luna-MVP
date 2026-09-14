@@ -1,0 +1,28 @@
+{
+    "artifact": "current_world_field_boundary_v1",
+    "field_state_characteristics": [
+        "event-driven",
+        "mutation-controlled",
+        "replayable",
+        "provenance-backed"
+    ],
+    "current_world_characteristics": [
+        "read-oriented",
+        "candidate-oriented",
+        "composed from references",
+        "uncertainty/conflict preserved"
+    ],
+    "rules": {
+        "current_world_not_equal_field_state": true,
+        "current_world_may_reference_field_state": true,
+        "current_world_may_reference_context": true,
+        "current_world_may_reference_pcn": true,
+        "current_world_may_reference_intent": true,
+        "current_world_may_reference_hypotheses": true,
+        "current_world_cannot_modify_field_entities": true,
+        "current_world_cannot_declare_field_truth": true,
+        "current_world_cannot_change_field_confidence": true,
+        "current_world_cannot_execute_event_admission": true,
+        "current_world_cannot_execute_reducer_transition": true
+    }
+}

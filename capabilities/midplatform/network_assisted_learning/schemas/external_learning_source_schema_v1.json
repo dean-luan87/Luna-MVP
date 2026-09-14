@@ -1,0 +1,38 @@
+{
+  "schema_id": "ExternalLearningSourceSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "source_id",
+    "source_type",
+    "source_name",
+    "collection_method",
+    "trust_tier",
+    "allowed_usage",
+    "candidate_only",
+    "not_fact"
+  ],
+  "source_type_enum": [
+    "web_reference",
+    "teacher_model",
+    "human_correction",
+    "test_trace",
+    "synthetic_case",
+    "internal_policy"
+  ],
+  "trust_tier_enum": ["high", "medium", "low", "unknown"],
+  "allowed_usage_enum": [
+    "reference_only",
+    "case_candidate",
+    "training_candidate_pending_review"
+  ],
+  "boundary_flags": {
+    "external_source_trust_tier_required": true,
+    "provenance_required": true,
+    "candidate_only": true,
+    "not_fact": true
+  }
+}

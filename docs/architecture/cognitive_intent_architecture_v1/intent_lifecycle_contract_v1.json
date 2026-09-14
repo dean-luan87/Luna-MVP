@@ -1,0 +1,23 @@
+{
+  "title": "Intent Lifecycle Contract v1",
+  "contract_type": "Intent Candidate Lifecycle",
+  "states": [
+    "Created", "Qualified", "ContextBound", "Presented", "Reviewed",
+    "Accepted", "Modified", "Rejected", "Deferred", "Expired", "Archived"
+  ],
+  "transitions": [
+    "Created → Qualified", "Qualified → ContextBound", "ContextBound → Presented",
+    "Presented → Reviewed", "Reviewed → Accepted", "Reviewed → Modified",
+    "Reviewed → Rejected", "Reviewed → Deferred", "Accepted → Expired",
+    "Rejected → Archived", "Deferred → Presented", "Expired → Archived"
+  ],
+  "transition_rules": {
+    "candidate_based": true,
+    "provenance_preserved": true,
+    "expiry_is_contextual": true,
+    "accepted_intent_does_not_generate_goal_automatically": true,
+    "lifecycle_does_not_make_decision": true,
+    "lifecycle_does_not_execute_action": true,
+    "unknowns_are_preserved": true
+  }
+}

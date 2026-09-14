@@ -1,0 +1,49 @@
+{
+  "title": "Expectation Governance Contract v1",
+  "contract_type": "Expectation Admission and Feedback Governance",
+  "admission_checks": [
+    "source permission",
+    "Hypothesis or Belief compatibility",
+    "Field binding",
+    "Situation binding",
+    "Task compatibility",
+    "expected Evidence",
+    "validation condition",
+    "time context",
+    "confidence",
+    "Unknown",
+    "Risk",
+    "Provenance"
+  ],
+  "feedback_checks": ["Reality observation", "comparison basis", "Difference", "Feedback Status", "current Field", "current Time"],
+  "authority": {
+    "expectation": "proposes validation requirement",
+    "attention": "owns resource allocation",
+    "observation": "returns Evidence candidate",
+    "feedback": "produces comparison and update candidate",
+    "memory": "records event and expectation separation",
+    "learning": "receives Feedback and Difference",
+    "brain": "retains final judgment authority",
+    "reality": "remains authoritative"
+  },
+  "boundary": {
+    "no_prediction_runtime": true,
+    "no_world_model": true,
+    "no_automatic_future_reasoning": true,
+    "no_automatic_belief_modification": true,
+    "no_automatic_reality_modification": true,
+    "no_automatic_decision": true,
+    "no_action_runtime": true,
+    "no_b_simulation_runtime": true,
+    "no_model_training": true,
+    "no_hardware_execution": true,
+    "no_silent_unknown_completion": true,
+    "unknowns_are_preserved": true
+  },
+  "change_control": {
+    "constitution_review_required": true,
+    "protocol_version_required": true,
+    "field_scope_review_required": true,
+    "brain_boundary_review_required": true
+  }
+}

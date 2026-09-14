@@ -1,0 +1,148 @@
+{
+    "contract_id": "luna_intent_governance_controlled_implementation_phase_contract_v1",
+    "phase": "Phase-Luna-Intent-Governance-Controlled-Implementation-v1-001",
+    "stage": "Intent Governance Controlled Implementation",
+    "execution_mode": "Controlled Implementation",
+    "current_work_description": {
+        "in_scope": [
+            "Intent Governance core candidate module",
+            "candidate-only fixture and controlled runner",
+            "static verifier and implementation documentation"
+        ],
+        "out_of_scope": [
+            "runtime integration",
+            "active schema activation",
+            "active contract activation",
+            "causal/decision/action runtime behavior",
+            "source-owner mutation"
+        ]
+    },
+    "previous_phase": "Phase-Luna-Intent-Architecture-Planning-v1-001",
+    "previous_phase_decision": "V2_FINAL_VERIFICATION_PASSED",
+    "input_assets": [
+        "docs/architecture/luna_intent_architecture_planning_v1/"
+    ],
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_architecture_plan_v1.md",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_candidate_schema_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/potential_intent_schema_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_formation_contract_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_state_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_competition_coexistence_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_temporary_dominance_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_carryover_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_resource_constraint_model_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_to_causal_handoff_contract_candidate_v1.json",
+        "docs/architecture/luna_intent_architecture_planning_v1/intent_minimum_scenario_suite_v1.json"
+    ],
+    "target_directory": "capabilities/midplatform/core/intent_governance/",
+    "documentation_directory": "docs/architecture/luna_intent_governance_controlled_implementation_v1/",
+    "scope": [
+        "new intent_governance module files only",
+        "standard-library-only static implementation",
+        "synthetic fixture only",
+        "agent static checks only"
+    ],
+    "out_of_scope": [
+        "modification of existing passed planning assets",
+        "modification of Context or PCN modules",
+        "python/shell runtime execution by agent",
+        "model/database/network/provider/device access"
+    ],
+    "required_final_files": [
+        "capabilities/midplatform/core/intent_governance/__init__.py",
+        "capabilities/midplatform/core/intent_governance/intent_error_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_core_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_io_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_lifecycle_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_interaction_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_carryover_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_resource_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_trace_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_handoff_types_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_registry_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_protocol_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_ownership_guard_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_static_validators_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_fixture_v1.py",
+        "capabilities/midplatform/core/intent_governance/intent_governance_skeleton_v1.py",
+        "capabilities/midplatform/core/intent_governance/run_intent_governance_controlled_implementation_v1.py",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_controlled_implementation_overview_v1.md",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_negative_guards_v1.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_implementation_summary_v1.md",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/intent_governance_controlled_change_manifest_v1.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_intent_governance_controlled_implementation_v1/verify_intent_governance_controlled_implementation_v1.py"
+    ],
+    "implementation_principles": [
+        "single owner intent governance",
+        "source-owner precedence",
+        "reference-only cross-module inputs",
+        "candidate-only outputs",
+        "unknown and alternative preservation",
+        "dominance is not decision"
+    ],
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "ast parse",
+            "boundary token checks",
+            "manifest consistency"
+        ],
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "negative_guards": [
+        "no runner execution by agent",
+        "no verifier execution by agent",
+        "no runtime integration",
+        "no source mutation",
+        "no check weakening",
+        "no parallel intent owner"
+    ],
+    "verification_authority": {
+        "V0": "AGENT_STATIC_ONLY",
+        "V1": "NOT_AUTHORIZED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "allowed_agent_checks": [
+        "file existence",
+        "json parsing",
+        "ast parsing",
+        "editor diagnostics"
+    ],
+    "allowed_agent_execution": [
+        "create in-scope files",
+        "modify in-scope new files"
+    ],
+    "prohibited_agent_execution": [
+        "python",
+        "shell",
+        "runner",
+        "verifier",
+        "runtime",
+        "network",
+        "database",
+        "model"
+    ],
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "python3 capabilities/midplatform/core/intent_governance/run_intent_governance_controlled_implementation_v1.py",
+        "python3 docs/architecture/luna_intent_governance_controlled_implementation_v1/verify_intent_governance_controlled_implementation_v1.py"
+    ],
+    "expected_success_decision": "LUNA_INTENT_GOVERNANCE_CONTROLLED_IMPLEMENTATION_READY",
+    "expected_failure_decision": "LUNA_INTENT_GOVERNANCE_CONTROLLED_IMPLEMENTATION_REMEDIATION_REQUIRED",
+    "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "runtime_executed": false,
+    "runner_executed_by_agent": false,
+    "verifier_executed_by_agent": false,
+    "state_mutation_executed": false,
+    "next_phase_auto_entry": false
+}

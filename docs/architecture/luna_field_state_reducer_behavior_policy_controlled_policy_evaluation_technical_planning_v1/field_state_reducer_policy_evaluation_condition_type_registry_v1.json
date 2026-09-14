@@ -1,0 +1,273 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Condition Type Registry",
+    "condition_types": [
+        {
+            "condition_type": "event_count_condition",
+            "description": "Checks event count requirements",
+            "required_input_fields": [
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "minimum_count",
+                "maximum_count",
+                "greater_than_or_equal"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "admitted_event_condition",
+            "description": "Checks admission status for events",
+            "required_input_fields": [
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "all_of",
+                "none_of",
+                "exists"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "event_type_condition",
+            "description": "Checks event type constraints",
+            "required_input_fields": [
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "in",
+                "not_in",
+                "any_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "positive_support_condition",
+            "description": "Checks positive support presence",
+            "required_input_fields": [
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "exists",
+                "minimum_count"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "negative_support_condition",
+            "description": "Checks negative support constraints",
+            "required_input_fields": [
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "exists",
+                "none_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "temporal_status_condition",
+            "description": "Checks temporal status validity",
+            "required_input_fields": [
+                "temporal_snapshot"
+            ],
+            "supported_operators": [
+                "equals",
+                "in",
+                "not_equals"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "confidence_threshold_condition",
+            "description": "Checks threshold compliance",
+            "required_input_fields": [
+                "confidence_policy_snapshot"
+            ],
+            "supported_operators": [
+                "greater_than_or_equal",
+                "less_than_or_equal"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "source_diversity_condition",
+            "description": "Checks source diversity",
+            "required_input_fields": [
+                "admitted_events",
+                "provenance_snapshot"
+            ],
+            "supported_operators": [
+                "minimum_count",
+                "greater_than_or_equal"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "source_reliability_condition",
+            "description": "Checks source reliability requirement",
+            "required_input_fields": [
+                "provenance_snapshot"
+            ],
+            "supported_operators": [
+                "greater_than_or_equal",
+                "all_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "conflict_presence_condition",
+            "description": "Checks unresolved conflicts",
+            "required_input_fields": [
+                "conflict_snapshot"
+            ],
+            "supported_operators": [
+                "exists",
+                "none_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "existing_state_condition",
+            "description": "Checks existing state constraints",
+            "required_input_fields": [
+                "existing_state_snapshot"
+            ],
+            "supported_operators": [
+                "exists",
+                "equals",
+                "not_exists"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "owner_correction_condition",
+            "description": "Checks owner correction governance constraints",
+            "required_input_fields": [
+                "owner_correction_snapshot"
+            ],
+            "supported_operators": [
+                "equals",
+                "all_of",
+                "any_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "overlay_condition",
+            "description": "Checks overlay and substrate boundary",
+            "required_input_fields": [
+                "overlay_snapshot"
+            ],
+            "supported_operators": [
+                "equals",
+                "not_equals",
+                "all_of"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "revocation_condition",
+            "description": "Checks revocation constraints",
+            "required_input_fields": [
+                "temporal_snapshot",
+                "admitted_events"
+            ],
+            "supported_operators": [
+                "exists",
+                "in"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "expiration_condition",
+            "description": "Checks expiration constraints",
+            "required_input_fields": [
+                "temporal_snapshot"
+            ],
+            "supported_operators": [
+                "equals",
+                "in"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "refresh_evidence_condition",
+            "description": "Checks refresh evidence requirements",
+            "required_input_fields": [
+                "admitted_events",
+                "temporal_snapshot"
+            ],
+            "supported_operators": [
+                "exists",
+                "minimum_count"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "provenance_condition",
+            "description": "Checks provenance completeness",
+            "required_input_fields": [
+                "provenance_snapshot"
+            ],
+            "supported_operators": [
+                "all_of",
+                "exists",
+                "not_exists"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        },
+        {
+            "condition_type": "version_snapshot_condition",
+            "description": "Checks required contract version snapshots",
+            "required_input_fields": [
+                "policy_registry_version",
+                "eligibility_matrix_version",
+                "evaluation_contract_version"
+            ],
+            "supported_operators": [
+                "exists",
+                "all_of",
+                "equals"
+            ],
+            "deterministic_required": true,
+            "external_lookup_allowed": false,
+            "runtime_dependency_allowed": false
+        }
+    ],
+    "condition_type_registry_complete": true
+}

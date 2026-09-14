@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Permission Governance Matrix",
+  "rows": [
+    {"module": "Brain", "layer": "L2", "allowed": ["Understand State", "Evaluate Candidates", "Generate Decision Candidate", "Write Decision Trace"], "forbidden": ["Modify Constitution", "Execute Hardware", "Own Capability", "Direct Provider", "Rewrite Identity"]},
+    {"module": "Self Regulation", "layer": "L2", "allowed": ["Observe Self", "Assess Health", "Propose Stability Adjustment", "Propose Degradation"], "forbidden": ["Modify Identity", "Modify Value", "Modify Goal", "Modify Constitution", "Direct Model Switch", "Execute Hardware"]},
+    {"module": "Capability Governance", "layer": "L3", "allowed": ["Define Capability", "Manage Lifecycle", "Assess Health", "Provide Options", "Coordinate Admission"], "forbidden": ["Generate Goal", "Change Value", "Generate Decision", "Execute Action", "Modify Constitution"]},
+    {"module": "Runtime", "layer": "L4", "allowed": ["Execute Admitted Request", "Return Evidence", "Write Execution Trace"], "forbidden": ["Make Decision", "Generate Goal", "Modify Constitution", "Rewrite State Authority", "Self Admit"]},
+    {"module": "Memory", "layer": "L2", "allowed": ["Admit Records", "Retrieve Context", "Consolidate Evidence"], "forbidden": ["Write Reality Directly", "Generate Decision", "Modify Constitution", "Treat Model Output As Fact"]},
+    {"module": "Learning", "layer": "L2", "allowed": ["Extract Pattern", "Generate Candidate", "Record Learning Signal"], "forbidden": ["Automatic Rule Change", "Rewrite Value", "Rewrite Identity", "Modify Constitution", "Automatic Goal Change"]},
+    {"module": "Action Boundary", "layer": "L4", "allowed": ["Validate Action Request", "Apply Permission Gate", "Return Outcome Evidence"], "forbidden": ["Create Goal", "Change Decision", "Write Reality Directly", "Bypass Authorization"]}
+  ],
+  "rules": {"least_authority": true, "forbidden_overrides_allowed": true, "execute_requires_admission": true, "no_module_edits_l0": true, "permission_review_required": true}
+}

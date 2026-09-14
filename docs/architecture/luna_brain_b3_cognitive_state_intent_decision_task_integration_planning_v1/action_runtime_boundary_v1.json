@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_action_runtime_boundary_v1",
+  "owners": {"action_candidate": "Action Governance", "runtime_execution": "Runtime Executor", "task_lifecycle": "Task Manager"},
+  "reusable_assets": ["ActionCandidateV1", "ActionToTaskManagerHandoffCandidateV1", "ActionToRuntimeExecutorHandoffCandidateV1", "ExecutionFinalGateResultV1"],
+  "allowed_in_b3": ["preserve action/task consumer references in Decision handoff", "record action boundary as future downstream consumer", "carry permission/safety/resource/confirmation references"],
+  "forbidden_in_b3": ["create Action Candidate as a side effect of Decision", "execute action", "dispatch runtime", "scheduler/device control", "create task through Action handoff", "permission or safety bypass", "hidden retry or loop"],
+  "boundary": "Decision selection and Task Candidate are upstream candidate artifacts; Action Governance validates action candidates; Runtime Executor is the later execution authority."
+}

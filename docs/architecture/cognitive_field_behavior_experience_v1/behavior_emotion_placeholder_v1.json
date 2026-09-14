@@ -1,0 +1,16 @@
+{
+  "placeholder_name": "Behavior Emotion Placeholder v1",
+  "status": "schema_only",
+  "field_reference": "field-example",
+  "experience_reference": "experience-example",
+  "emotion_attachment_candidate": null,
+  "behavior_preference_candidate": null,
+  "runtime_enabled": false,
+  "does_not_modify_reality": true,
+  "does_not_modify_goal": true,
+  "does_not_modify_decision": true,
+  "does_not_execute_action": true,
+  "no_emotion_runtime": true,
+  "no_personality_switching": true,
+  "unknowns_are_preserved": true
+}

@@ -1,0 +1,21 @@
+{
+  "schema_id": "TaskClueCandidateV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["task_type", "priority", "reason", "evidence_refs", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "task_type": {
+      "enum": ["read_text", "find_direction", "assess_walkable", "avoid_obstacle",
+        "identify_place", "find_object", "identify_person", "understand_environment",
+        "monitor_change", "ask_user", "manual_review"]
+    },
+    "priority": { "enum": ["P0", "P1", "P2", "P3"] },
+    "reason": { "type": "string" },
+    "evidence_refs": { "type": "array", "items": { "type": "string" } },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

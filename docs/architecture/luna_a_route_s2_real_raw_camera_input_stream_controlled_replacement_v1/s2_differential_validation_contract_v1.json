@@ -1,0 +1,11 @@
+{
+  "baseline": "S0_GOLDEN_SYNTHETIC_BASELINE:FROZEN_V1",
+  "prior_replacement": "S1_REAL_USER_INPUT",
+  "replacement_scope": "RAW_CAMERA_INPUT_STREAM_ONLY",
+  "synthetic_source_retained": true,
+  "comparison_dimensions": ["contract outputs", "trace/provenance", "state transitions", "negative guards", "unrelated module behavior"],
+  "allowed_source_differences": ["source_ref", "frame_id", "timestamps", "dimensions", "payload reference", "content hash"],
+  "forbidden_differences": ["semantic authority", "provider autonomy", "downstream state ownership", "hidden model execution", "negative guard values"],
+  "real_mode_requires": "external source reference supplied by user",
+  "one_component_at_a_time": true
+}

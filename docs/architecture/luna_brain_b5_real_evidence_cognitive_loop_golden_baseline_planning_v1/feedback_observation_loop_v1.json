@@ -1,0 +1,8 @@
+{
+  "route":"Outcome Evaluation / Cognitive Flow -> Observation Need candidate -> Reobserve candidate/handoff -> FPO / Active Observation Control",
+  "owners":{"outcome_candidate":"Outcome Evaluation Governance","reconsideration":"Cognitive Flow Governance","observation_execution":"FPO / Active Observation Control"},
+  "reconsideration_is_retry":false,
+  "provider_invocation_from_cognition":false,
+  "automatic_camera_activation":false,
+  "provider_autonomy":false
+}

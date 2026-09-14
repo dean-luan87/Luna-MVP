@@ -1,0 +1,11 @@
+{
+  "route_roles": {
+    "model-asset:yolov5n:weights-v1": {"role": "LEGACY_REFERENCE", "runtime_priority": "LOW", "benchmark_candidate": false, "do_not_invest_further": true, "production_admission": "NOT_YET_PROVEN"},
+    "model-asset:yolo11n:weights-v1": {"role": "STABILITY_COMPARATOR", "runtime_priority": "MEDIUM", "benchmark_candidate": true, "do_not_invest_further": false, "production_admission": "NOT_YET_PROVEN"},
+    "model-asset:yolo26n:weights-v1": {"role": "PRIMARY_CANDIDATE", "runtime_priority": "HIGH", "benchmark_candidate": true, "do_not_invest_further": false, "production_admission": "NOT_YET_PROVEN"}
+  },
+  "best_fit": false,
+  "best_fit_status": "NOT_EVALUATED",
+  "latest_model_auto_upgrade": false,
+  "production_approved_without_real_validation": false
+}

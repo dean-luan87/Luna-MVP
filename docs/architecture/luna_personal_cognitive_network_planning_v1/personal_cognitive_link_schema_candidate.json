@@ -1,0 +1,35 @@
+{
+    "schema_id": "personal_cognitive_link_schema_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "required_fields": {
+        "link_id": "unique link candidate id",
+        "source_refs": "array of source object references",
+        "relation_type": "subjective relation semantics",
+        "activation_state": "ACTIVE|WEAK|DORMANT|REACTIVATED",
+        "strength_state": "current subjective strength",
+        "formation_source": "why this association candidate formed",
+        "context_refs": "context references that activate the link",
+        "temporal_validity": "time scope and freshness",
+        "provenance": "source and derivation references",
+        "confidence": "confidence in association stability",
+        "uncertainty": "uncertainty and unknown markers",
+        "status": "candidate lifecycle status"
+    },
+    "strength_semantics": {
+        "strength_not_equal_truth": true,
+        "strong_but_wrong_allowed": true,
+        "reason": "PCN models personal cognitive relatedness, not social objective truth."
+    },
+    "forbidden_semantics": [
+        "causal_fact_generation",
+        "source_object_body_copy",
+        "source_object_mutation",
+        "source_object_persistence_transfer"
+    ],
+    "trace_replay": {
+        "trace_required": true,
+        "replay_required": true
+    }
+}

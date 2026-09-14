@@ -1,0 +1,10 @@
+{
+  "sensitivity": "HIGH_SENSITIVITY by default",
+  "do_not_persist_candidate": true,
+  "cross_user_transfer": false,
+  "runner_artifacts": "metadata/references only",
+  "automatic_actions_forbidden": ["save frames", "copy frames into _eval_out", "embed frames", "vectorize frames", "train on frames", "upload frames"],
+  "raw_bytes_in_json_artifacts": false,
+  "content_hash": "optional metadata hash only; not semantic content",
+  "provenance_grants_authority": false
+}

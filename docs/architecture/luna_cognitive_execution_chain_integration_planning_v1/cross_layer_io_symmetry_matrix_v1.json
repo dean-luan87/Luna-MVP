@@ -1,0 +1,206 @@
+{
+    "artifact": "cross_layer_io_symmetry_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "matrix": [
+        {
+            "hop_id": "H1",
+            "producer": "IntentToCausalHandoffCandidateV1",
+            "consumer": "CausalGovernanceInputV1",
+            "field_mapping": [
+                {
+                    "producer_field": "intent_candidate_refs",
+                    "consumer_field": "intent_refs",
+                    "semantic": "same",
+                    "cardinality": "1..n -> 1..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": true,
+                    "trace_ref": false,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "context_refs",
+                    "consumer_field": "context_refs",
+                    "semantic": "same",
+                    "cardinality": "1..n -> 1..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "compatible",
+                    "provenance_ref": true,
+                    "trace_ref": false,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "uncertainty",
+                    "consumer_field": "unknowns",
+                    "semantic": "similar",
+                    "cardinality": "0..n -> 0..n",
+                    "required": false,
+                    "enum_compatible": true,
+                    "version_compatible": "backward_compatible",
+                    "provenance_ref": false,
+                    "trace_ref": false,
+                    "error_ref": false
+                }
+            ],
+            "symmetry_status": "partial",
+            "integration_gap_refs": [
+                "GAP-IO-001",
+                "GAP-VERSION-001"
+            ]
+        },
+        {
+            "hop_id": "H2",
+            "producer": "CausalToDecisionHandoffCandidateV1",
+            "consumer": "DecisionGovernanceInputV1",
+            "field_mapping": [
+                {
+                    "producer_field": "causal_hypothesis_refs",
+                    "consumer_field": "causal_refs",
+                    "semantic": "same",
+                    "cardinality": "1..n -> 1..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "compatible",
+                    "provenance_ref": true,
+                    "trace_ref": true,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "supporting_evidence_refs/opposing_evidence_refs",
+                    "consumer_field": "evidence_refs",
+                    "semantic": "merged",
+                    "cardinality": "n+n -> n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": true,
+                    "trace_ref": false,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "uncertainty",
+                    "consumer_field": "causal_uncertainty_level",
+                    "semantic": "different_representation",
+                    "cardinality": "0..n -> scalar",
+                    "required": true,
+                    "enum_compatible": false,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": false,
+                    "trace_ref": false,
+                    "error_ref": false
+                }
+            ],
+            "symmetry_status": "partial",
+            "integration_gap_refs": [
+                "GAP-IO-002",
+                "GAP-ENUM-001",
+                "GAP-VERSION-002"
+            ]
+        },
+        {
+            "hop_id": "H3",
+            "producer": "DecisionToActionTaskHandoffCandidateV1",
+            "consumer": "ActionGovernanceInputV1",
+            "field_mapping": [
+                {
+                    "producer_field": "decision_candidate_refs/selected_candidate_ref",
+                    "consumer_field": "selected_decision_refs",
+                    "semantic": "same",
+                    "cardinality": "n+1 -> 1..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": true,
+                    "trace_ref": true,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "permission_status_refs",
+                    "consumer_field": "permission_refs",
+                    "semantic": "same",
+                    "cardinality": "0..n -> 0..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "compatible",
+                    "provenance_ref": false,
+                    "trace_ref": false,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "safety_status_refs",
+                    "consumer_field": "safety_refs",
+                    "semantic": "same",
+                    "cardinality": "0..n -> 0..n",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "compatible",
+                    "provenance_ref": false,
+                    "trace_ref": false,
+                    "error_ref": false
+                }
+            ],
+            "symmetry_status": "partial",
+            "integration_gap_refs": [
+                "GAP-IO-003",
+                "GAP-MISSING-REF-001"
+            ]
+        },
+        {
+            "hop_id": "H4",
+            "producer": "ActionToRuntimeExecutorHandoffCandidateV1",
+            "consumer": "ExecutionRequestCandidateV1/RuntimeExecutorInputV1",
+            "field_mapping": [
+                {
+                    "producer_field": "action_candidate_ref",
+                    "consumer_field": "action_candidate_ref",
+                    "semantic": "same_name_different_shape",
+                    "cardinality": "1 -> 1",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": true,
+                    "trace_ref": true,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "execution_readiness",
+                    "consumer_field": "execution_readiness_ref",
+                    "semantic": "state_to_ref",
+                    "cardinality": "1 -> 1",
+                    "required": true,
+                    "enum_compatible": false,
+                    "version_compatible": "incompatible",
+                    "provenance_ref": false,
+                    "trace_ref": false,
+                    "error_ref": false
+                },
+                {
+                    "producer_field": "provenance",
+                    "consumer_field": "provenance_ref",
+                    "semantic": "many_to_one",
+                    "cardinality": "1..n -> 1",
+                    "required": true,
+                    "enum_compatible": true,
+                    "version_compatible": "migration_required",
+                    "provenance_ref": true,
+                    "trace_ref": false,
+                    "error_ref": false
+                }
+            ],
+            "symmetry_status": "incompatible",
+            "integration_gap_refs": [
+                "GAP-IO-004",
+                "GAP-VERSION-003",
+                "GAP-MISSING-REF-002"
+            ]
+        }
+    ],
+    "support_levels": [
+        "compatible",
+        "backward_compatible",
+        "migration_required",
+        "incompatible"
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "artifact": "attention_selection_model_v1",
+    "model_type": "deterministic_candidate_selection",
+    "steps": [
+        "validate input references and ownership",
+        "generate multi-attention candidates",
+        "compute heuristic candidate scores",
+        "preserve high-risk/high-uncertainty override candidates",
+        "emit attention_selection_candidate with alternatives preserved"
+    ],
+    "selection_rules": {
+        "risk_can_override_intent_relevance": true,
+        "high_uncertainty_must_not_be_silently_dropped": true,
+        "multi_attention_supported": true
+    },
+    "forbidden": [
+        "hard_fact_scoring",
+        "decision_authority",
+        "action_authority"
+    ]
+}

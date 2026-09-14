@@ -1,0 +1,17 @@
+{
+  "schema_name": "Role Projection Model v1",
+  "role_instance_id": "role-instance-example",
+  "field_reference": "field-example",
+  "relationship_reference": "relationship-example",
+  "task_reference": "task-example",
+  "rule_reference": "rule-example",
+  "time_reference": "time-example",
+  "role_candidate": "Organizer Candidate",
+  "priority_candidate": null,
+  "responsibility": [],
+  "constraint": [],
+  "attention_requirement": null,
+  "role_instance_formula": "Field + Relationship + Task + Rule + Time",
+  "role_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

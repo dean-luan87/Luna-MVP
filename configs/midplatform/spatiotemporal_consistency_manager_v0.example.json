@@ -1,0 +1,42 @@
+{
+  "deadline_classes": {
+    "background_world_context": {
+      "late_result_policy": "async_only",
+      "max_latency_ms": 60000,
+      "voice_notice_required": false
+    },
+    "navigation_near_realtime": {
+      "late_result_policy": "revalidate_spatial_anchor",
+      "max_latency_ms": 3000,
+      "voice_notice_required": true
+    },
+    "safety_realtime": {
+      "late_result_policy": "discard",
+      "max_latency_ms": 800,
+      "voice_notice_required": true
+    },
+    "task_context_medium": {
+      "late_result_policy": "async_or_revalidate",
+      "max_latency_ms": 10000,
+      "voice_notice_required": false
+    }
+  },
+  "fallback_policy": {
+    "allow_async_defer": true,
+    "allow_cache_reuse": true,
+    "allow_cancel_low_value_info": true,
+    "allow_model_switching": true
+  },
+  "model_call_policy": {
+    "all_calls_require_deadline": true,
+    "all_outputs_require_spatiotemporal_anchor": true,
+    "expired_outputs_cannot_drive_action": true,
+    "timeout_must_notify_midplatform": true
+  },
+  "schema_version": "spatiotemporal_consistency_manager_v0",
+  "voice_notice_policy": {
+    "drop_expired_voice_notice": true,
+    "max_notice_latency_ms": 1000,
+    "notify_user_when_action_affected": true
+  }
+}

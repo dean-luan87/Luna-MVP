@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Similarity Engine Boundary",
+  "owner":"Cognitive Retrieval Governance",
+  "engines":["FAISS","Chroma"],
+  "outputs":["similarity score","nearest candidate references","retrieval metadata"],
+  "outputs_not":["meaning","truth","decision","emotion","growth direction"],
+  "required_context":["Field","Role","Task","scope","provenance","current Reality check"],
+  "rules":{"similarity_not_semantics":true,"retrieval_not_decision":true,"current_reality_precedes":true,"adapter_required":true}
+}

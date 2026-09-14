@@ -1,0 +1,59 @@
+{
+    "artifact": "causal_state_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "model_kind": "SEMANTIC_STATE_CANDIDATES_NOT_PRODUCTION_ENUM_OR_FSM",
+    "state_candidates": [
+        {
+            "state": "PROPOSED",
+            "meaning": "A new causal hypothesis candidate is formed from bounded evidence references."
+        },
+        {
+            "state": "SUPPORTED",
+            "meaning": "Evidence support candidate outweighs opposition under current review scope."
+        },
+        {
+            "state": "CONTESTED",
+            "meaning": "Competing hypotheses or strong opposition keeps conclusion unresolved."
+        },
+        {
+            "state": "INSUFFICIENT_EVIDENCE",
+            "meaning": "Current evidence is not enough for support progression."
+        },
+        {
+            "state": "SUSPENDED",
+            "meaning": "Hypothesis candidate is paused awaiting evidence or boundary clarification."
+        },
+        {
+            "state": "REVISED",
+            "meaning": "Hypothesis candidate has been updated with provenance-preserving revision trace."
+        },
+        {
+            "state": "REJECTED",
+            "meaning": "Candidate is not retained as active explanation under current evidence."
+        },
+        {
+            "state": "REVOKED",
+            "meaning": "Previously admitted support is invalidated and candidate is withdrawn with trace."
+        }
+    ],
+    "transition_requirements": [
+        "evidence_refs",
+        "temporal_order_refs",
+        "uncertainty",
+        "provenance",
+        "revision_or_revocation_trace"
+    ],
+    "guards": {
+        "boolean_true_false_only_forbidden": true,
+        "state_implies_decision": false,
+        "state_implies_action": false,
+        "state_implies_truth_fact": false,
+        "multi_hypothesis_states_allowed": true
+    },
+    "not_frozen": [
+        "runtime_fsm",
+        "fixed_score_threshold",
+        "fixed_evidence_count_threshold",
+        "retention_duration"
+    ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Utility Score Contract v1",
+  "inputs": ["Expected Benefit", "Importance", "Probability", "Resource Cost", "Risk Factor"],
+  "formula": "(Expected Benefit × Importance × Probability) - (Resource Cost × Risk Factor)",
+  "output": ["Benefit Candidate", "Cost Candidate", "Risk Candidate", "Utility Candidate", "Priority Candidate"],
+  "calculation_implemented": false,
+  "candidate_only": true,
+  "hard_constraint_check_required": true,
+  "utility_does_not_decide": true,
+  "utility_does_not_execute": true,
+  "automatic_scoring": false
+}

@@ -1,0 +1,109 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.305348+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "localhost_only": true,
+  "not_runtime": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "local_runner_registry_plan_v1",
+    "runners": [
+      {
+        "runner_id": "segmentation_mobile_sam_runner",
+        "runner_type": "segmentation_runner",
+        "status": "planned_v1",
+        "inputs": [
+          "image_manifest",
+          "prompt_plan"
+        ],
+        "outputs": [
+          "candidate_masks",
+          "quality_metrics",
+          "muep_envelope"
+        ],
+        "model_id": "mobile_sam"
+      },
+      {
+        "runner_id": "slam_video_runner",
+        "runner_type": "slam_runner",
+        "status": "planned_v1_limited",
+        "inputs": [
+          "video_manifest",
+          "frame_sequence_manifest",
+          "optional_gt_trajectory"
+        ],
+        "outputs": [
+          "trajectory",
+          "diagnostics",
+          "slam_envelope"
+        ],
+        "constraints": [
+          "no_ate_without_gt",
+          "no_gt_benchmark_comparison_without_gt"
+        ]
+      },
+      {
+        "runner_id": "ocr_runner",
+        "runner_type": "ocr_runner",
+        "status": "placeholder",
+        "inputs": [
+          "image_manifest",
+          "frame_manifest"
+        ],
+        "outputs": [
+          "text_boxes",
+          "recognized_text",
+          "confidence",
+          "ocr_envelope"
+        ]
+      },
+      {
+        "runner_id": "tts_eval_runner",
+        "runner_type": "tts_runner",
+        "status": "placeholder",
+        "inputs": [
+          "text_manifest",
+          "generated_audio_ref"
+        ],
+        "outputs": [
+          "waveform",
+          "duration",
+          "quality_metrics",
+          "tts_envelope"
+        ]
+      },
+      {
+        "runner_id": "asr_runner",
+        "runner_type": "asr_runner",
+        "status": "placeholder",
+        "inputs": [
+          "audio_manifest"
+        ],
+        "outputs": [
+          "transcript",
+          "timestamps",
+          "wer_if_reference",
+          "asr_envelope"
+        ]
+      }
+    ],
+    "capability_ids": [
+      "segmentation_mobile_sam",
+      "slam_orb_placeholder",
+      "ocr_placeholder",
+      "tts_placeholder",
+      "asr_placeholder"
+    ],
+    "runner_registry_defined": true,
+    "v1_implementation_runners": [
+      "segmentation_mobile_sam_runner",
+      "slam_video_runner"
+    ]
+  }
+}

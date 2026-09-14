@@ -1,0 +1,217 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Rejection Reason Registry",
+    "rejection_reasons": [
+        {
+            "reason_id": "unknown_policy",
+            "category": "input",
+            "description": "Unknown policy id",
+            "blocking": true,
+            "recoverable": false,
+            "required_remediation": "correct_policy_id",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "unknown_state_type",
+            "category": "input",
+            "description": "Unknown state type",
+            "blocking": true,
+            "recoverable": false,
+            "required_remediation": "correct_state_type",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "missing_required_event",
+            "category": "evidence",
+            "description": "Required event missing",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "collect_required_event",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "prohibited_event_present",
+            "category": "evidence",
+            "description": "Prohibited event present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "filter_prohibited_event",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "non_admitted_event_present",
+            "category": "admission",
+            "description": "Non-admitted event present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "admit_or_remove_event",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "insufficient_event_count",
+            "category": "evidence",
+            "description": "Insufficient event count",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "collect_more_events",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "invalid_temporal_status",
+            "category": "temporal",
+            "description": "Temporal status invalid",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "refresh_temporal_support",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "revoked_support_present",
+            "category": "temporal",
+            "description": "Revoked support present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "replace_revoked_support",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "expired_support_present",
+            "category": "temporal",
+            "description": "Expired support present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "refresh_expired_support",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "suspended_support_present",
+            "category": "temporal",
+            "description": "Suspended support present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "refresh_suspended_support",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "missing_refresh_evidence",
+            "category": "temporal",
+            "description": "Missing refresh evidence",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "collect_refresh_evidence",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "confidence_below_threshold",
+            "category": "confidence",
+            "description": "Confidence below threshold",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "improve_confidence_inputs",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "source_diversity_insufficient",
+            "category": "confidence",
+            "description": "Source diversity insufficient",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "add_diverse_sources",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "source_reliability_insufficient",
+            "category": "confidence",
+            "description": "Source reliability insufficient",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "improve_source_reliability",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "unresolved_conflict_present",
+            "category": "conflict",
+            "description": "Unresolved conflict present",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "perform_conflict_review",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "owner_review_required",
+            "category": "governance",
+            "description": "Owner review required",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "complete_owner_review",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "overlay_substrate_boundary_violation",
+            "category": "boundary",
+            "description": "Overlay/substrate boundary violated",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "separate_overlay_substrate_evaluation",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "missing_provenance",
+            "category": "provenance",
+            "description": "Provenance missing",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "provide_provenance",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "missing_version_snapshot",
+            "category": "version",
+            "description": "Version snapshot missing",
+            "blocking": true,
+            "recoverable": true,
+            "required_remediation": "lock_required_snapshots",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "external_dependency_requested",
+            "category": "boundary",
+            "description": "External dependency requested",
+            "blocking": true,
+            "recoverable": false,
+            "required_remediation": "remove_external_dependency",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "reason_id": "runtime_dependency_requested",
+            "category": "boundary",
+            "description": "Runtime dependency requested",
+            "blocking": true,
+            "recoverable": false,
+            "required_remediation": "remove_runtime_dependency",
+            "state_mutation_allowed": false,
+            "action_trigger_allowed": false
+        }
+    ],
+    "rejection_reason_registry_complete": true
+}

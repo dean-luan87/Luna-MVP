@@ -1,0 +1,9 @@
+{
+  "title": "Capability Selection Boundary v1",
+  "owner": "Capability Governance",
+  "inputs": ["Capability Requirement", "Capability Profile", "Current Resource State", "Admission Result"],
+  "output": "Capability Candidate",
+  "selection_factors": ["requirement_match", "health", "calibration", "resource_cost", "latency", "context_fit", "risk"],
+  "not_authority": ["Brain judgment", "Goal creation", "Decision ownership", "Action execution"],
+  "rules": {"selection_is_not_brain_decision": true, "provider_is_implementation_option": true, "admission_required": true}
+}

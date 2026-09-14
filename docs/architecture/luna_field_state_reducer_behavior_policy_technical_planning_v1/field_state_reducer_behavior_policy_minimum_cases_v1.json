@@ -1,0 +1,403 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Minimum Cases",
+    "cases": [
+        {
+            "case_id": "latest_valid_event_safe_case",
+            "state_type": "path_state",
+            "input_event_conditions": [
+                "admitted",
+                "valid",
+                "newer_event_present"
+            ],
+            "temporal_conditions": [
+                "active_support"
+            ],
+            "confidence_conditions": [
+                "above_threshold"
+            ],
+            "conflict_conditions": [
+                "no_hard_contradiction"
+            ],
+            "eligible_policies": [
+                "latest_valid_event",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "latest_valid_event"
+            ],
+            "rejected_policies": [
+                "revocation_override"
+            ],
+            "expected_decision_outcome": "select_single_support",
+            "expected_state_status_candidate": "provisional",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "latest_valid_event_blocked_by_revocation_case",
+            "state_type": "path_state",
+            "input_event_conditions": [
+                "revocation_event_present"
+            ],
+            "temporal_conditions": [
+                "revocation_active"
+            ],
+            "confidence_conditions": [
+                "n/a"
+            ],
+            "conflict_conditions": [
+                "revocation_vs_latest"
+            ],
+            "eligible_policies": [
+                "revocation_override",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "revocation_override"
+            ],
+            "rejected_policies": [
+                "latest_valid_event"
+            ],
+            "expected_decision_outcome": "revoke_existing_state",
+            "expected_state_status_candidate": "revoked",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "highest_confidence_safe_case",
+            "state_type": "navigation_relevance_state",
+            "input_event_conditions": [
+                "admitted",
+                "valid",
+                "confidence_ranked"
+            ],
+            "temporal_conditions": [
+                "active_support"
+            ],
+            "confidence_conditions": [
+                "winner_above_threshold"
+            ],
+            "conflict_conditions": [
+                "no_hard_conflict"
+            ],
+            "eligible_policies": [
+                "highest_confidence_valid_event",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "highest_confidence_valid_event"
+            ],
+            "rejected_policies": [
+                "revocation_override"
+            ],
+            "expected_decision_outcome": "select_single_support",
+            "expected_state_status_candidate": "candidate",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "confidence_winner_blocked_by_conflict_case",
+            "state_type": "navigation_relevance_state",
+            "input_event_conditions": [
+                "confidence_winner_present",
+                "hard_contradiction_present"
+            ],
+            "temporal_conditions": [
+                "active_support"
+            ],
+            "confidence_conditions": [
+                "winner_present"
+            ],
+            "conflict_conditions": [
+                "unresolved"
+            ],
+            "eligible_policies": [
+                "conflict_preservation",
+                "insufficient_evidence_unresolved"
+            ],
+            "selected_policy_or_policies": [
+                "conflict_preservation"
+            ],
+            "rejected_policies": [
+                "highest_confidence_valid_event"
+            ],
+            "expected_decision_outcome": "preserve_conflict",
+            "expected_state_status_candidate": "conflicted",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "multi_event_consensus_case",
+            "state_type": "presence_state",
+            "input_event_conditions": [
+                "multi_source_events",
+                "admitted"
+            ],
+            "temporal_conditions": [
+                "active_or_expiring"
+            ],
+            "confidence_conditions": [
+                "consensus_above_threshold"
+            ],
+            "conflict_conditions": [
+                "no_hard_contradiction"
+            ],
+            "eligible_policies": [
+                "multi_event_consensus",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "multi_event_consensus"
+            ],
+            "rejected_policies": [],
+            "expected_decision_outcome": "select_multi_support",
+            "expected_state_status_candidate": "provisional",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "consensus_blocked_by_contradiction_case",
+            "state_type": "presence_state",
+            "input_event_conditions": [
+                "multi_source_events",
+                "hard_contradiction_present"
+            ],
+            "temporal_conditions": [
+                "active_support"
+            ],
+            "confidence_conditions": [
+                "insufficient_for_safe_consensus"
+            ],
+            "conflict_conditions": [
+                "unresolved"
+            ],
+            "eligible_policies": [
+                "conflict_preservation",
+                "insufficient_evidence_unresolved"
+            ],
+            "selected_policy_or_policies": [
+                "conflict_preservation"
+            ],
+            "rejected_policies": [
+                "multi_event_consensus"
+            ],
+            "expected_decision_outcome": "mark_unresolved",
+            "expected_state_status_candidate": "unresolved",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "expired_support_degrade_case",
+            "state_type": "service_state",
+            "input_event_conditions": [
+                "expired_support_present"
+            ],
+            "temporal_conditions": [
+                "expired"
+            ],
+            "confidence_conditions": [
+                "decayed"
+            ],
+            "conflict_conditions": [
+                "none"
+            ],
+            "eligible_policies": [
+                "expiration_degrade",
+                "insufficient_evidence_unresolved"
+            ],
+            "selected_policy_or_policies": [
+                "expiration_degrade",
+                "insufficient_evidence_unresolved"
+            ],
+            "rejected_policies": [
+                "latest_valid_event"
+            ],
+            "expected_decision_outcome": "degrade_existing_state",
+            "expected_state_status_candidate": "degraded",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "temporary_overlay_separation_case",
+            "state_type": "temporary_overlay_state",
+            "input_event_conditions": [
+                "overlay_event_present",
+                "substrate_present"
+            ],
+            "temporal_conditions": [
+                "overlay_active"
+            ],
+            "confidence_conditions": [
+                "overlay_confidence_valid"
+            ],
+            "conflict_conditions": [
+                "overlay_vs_substrate_conflict_possible"
+            ],
+            "eligible_policies": [
+                "temporary_overlay_separation",
+                "conflict_preservation"
+            ],
+            "selected_policy_or_policies": [
+                "temporary_overlay_separation"
+            ],
+            "rejected_policies": [
+                "substrate_overwrite"
+            ],
+            "expected_decision_outcome": "create_temporary_overlay_candidate",
+            "expected_state_status_candidate": "candidate",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "unresolved_conflict_preservation_case",
+            "state_type": "conflict_state",
+            "input_event_conditions": [
+                "mutually_exclusive_signals"
+            ],
+            "temporal_conditions": [
+                "active_context"
+            ],
+            "confidence_conditions": [
+                "no_safe_winner"
+            ],
+            "conflict_conditions": [
+                "unresolved"
+            ],
+            "eligible_policies": [
+                "conflict_preservation",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "conflict_preservation"
+            ],
+            "rejected_policies": [
+                "highest_confidence_valid_event"
+            ],
+            "expected_decision_outcome": "preserve_conflict",
+            "expected_state_status_candidate": "conflicted",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "insufficient_evidence_no_state_change_case",
+            "state_type": "uncertainty_state",
+            "input_event_conditions": [
+                "low_support_or_empty"
+            ],
+            "temporal_conditions": [
+                "unknown_or_stale"
+            ],
+            "confidence_conditions": [
+                "below_minimum"
+            ],
+            "conflict_conditions": [
+                "n/a"
+            ],
+            "eligible_policies": [
+                "insufficient_evidence_unresolved",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "no_state_change"
+            ],
+            "rejected_policies": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "expected_decision_outcome": "no_state_change",
+            "expected_state_status_candidate": "uncertain",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "owner_correction_candidate_case",
+            "state_type": "facility_state",
+            "input_event_conditions": [
+                "owner_correction_event",
+                "supporting_evidence"
+            ],
+            "temporal_conditions": [
+                "owner_correction_active"
+            ],
+            "confidence_conditions": [
+                "review_gated"
+            ],
+            "conflict_conditions": [
+                "possible_conflict_with_machine_candidate"
+            ],
+            "eligible_policies": [
+                "explicit_owner_override_candidate",
+                "conflict_preservation"
+            ],
+            "selected_policy_or_policies": [
+                "explicit_owner_override_candidate"
+            ],
+            "rejected_policies": [
+                "owner_direct_fact_override"
+            ],
+            "expected_decision_outcome": "create_provisional_candidate",
+            "expected_state_status_candidate": "provisional",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        },
+        {
+            "case_id": "revoked_event_no_reactivation_case",
+            "state_type": "accessibility_state",
+            "input_event_conditions": [
+                "revoked_support_present",
+                "reactivation_without_new_event_attempt"
+            ],
+            "temporal_conditions": [
+                "revoked"
+            ],
+            "confidence_conditions": [
+                "n/a"
+            ],
+            "conflict_conditions": [
+                "revocation_conflict"
+            ],
+            "eligible_policies": [
+                "revocation_override",
+                "no_state_change"
+            ],
+            "selected_policy_or_policies": [
+                "revocation_override",
+                "no_state_change"
+            ],
+            "rejected_policies": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "expected_decision_outcome": "reject_policy_application",
+            "expected_state_status_candidate": "revoked",
+            "real_state_creation_allowed": false,
+            "state_mutation_allowed": false,
+            "fact_promotion_allowed": false,
+            "action_trigger_allowed": false
+        }
+    ],
+    "minimum_cases_complete": true
+}

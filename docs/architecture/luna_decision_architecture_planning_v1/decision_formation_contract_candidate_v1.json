@@ -1,0 +1,43 @@
+{
+    "artifact": "decision_formation_contract_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "producer_owner": "Decision Governance",
+    "required_inputs": [
+        "intent_refs",
+        "causal_refs",
+        "context_refs",
+        "field_refs",
+        "role_refs",
+        "permission_refs",
+        "safety_refs",
+        "resource_refs",
+        "constraint_refs",
+        "evidence_refs"
+    ],
+    "formation_steps": [
+        "admit_source_references",
+        "build_option_candidates",
+        "evaluate_hard_constraints_first",
+        "annotate_risk_and_utility_candidates",
+        "derive_decision_state_candidate",
+        "attach_provenance_and_uncertainty",
+        "emit_candidate_only_selection_context"
+    ],
+    "formation_guards": {
+        "planning_only": true,
+        "runtime_executed": false,
+        "decision_execution": false,
+        "action_triggered": false,
+        "task_created": false,
+        "database_write": false,
+        "model_call": false,
+        "source_mutation": false
+    },
+    "forbidden_outputs": [
+        "action command",
+        "task creation",
+        "provider call",
+        "database mutation",
+        "field state mutation"
+    ]
+}

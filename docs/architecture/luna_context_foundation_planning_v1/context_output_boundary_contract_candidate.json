@@ -1,0 +1,41 @@
+{
+  "contract_id": "luna_context_output_boundary_contract_candidate_v1",
+  "producer": "Context Foundation Governance Candidate",
+  "allowed_outputs": [
+    "Current Context Candidate",
+    "Context Reference",
+    "Context Confidence",
+    "Temporal Scope",
+    "Unknown Reference",
+    "Multiple Candidate Reference",
+    "Provenance",
+    "Trace Reference"
+  ],
+  "allowed_consumers": [
+    "Personal Cognitive Network Governance",
+    "Intent Governance",
+    "Causal Reasoning Governance"
+  ],
+  "forbidden_outputs": [
+    "Fact",
+    "Intent",
+    "Goal",
+    "Causal Explanation",
+    "Decision",
+    "Action",
+    "Runtime Command",
+    "Memory Mutation",
+    "Field Mutation",
+    "Relationship Mutation",
+    "Emotion Calculation"
+  ],
+  "consumer_write_authority_transfer": false,
+  "source_owner_transfer": false,
+  "candidate_only": true,
+  "read_only_projection": true,
+  "trace_required": true,
+  "provenance_required": true,
+  "unknown_preservation_required": true,
+  "active_contract": false,
+  "status": "PLANNING_CANDIDATE"
+}

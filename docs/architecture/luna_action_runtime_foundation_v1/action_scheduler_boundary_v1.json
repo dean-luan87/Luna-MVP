@@ -1,0 +1,8 @@
+{
+  "title": "Action Scheduler Boundary v1",
+  "owner": "Action Runtime Governance",
+  "inputs": ["Approved Action", "Priority", "Resource State", "Environment"],
+  "output": "Execution Candidate",
+  "not_authority": ["Goal", "Decision", "Value", "Action Permission", "Constitution"],
+  "rules": {"boundary_only": true, "scheduler_not_implemented": true, "priority_is_candidate": true, "no_goal_authority": true, "no_value_authority": true}
+}

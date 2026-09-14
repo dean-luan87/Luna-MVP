@@ -1,0 +1,29 @@
+{
+  "title": "Cognitive Module Inventory v1",
+  "inventory_scope": "canonical architecture assets only",
+  "inventory_is_not_runtime_input": true,
+  "domains": ["Core", "Governance", "Capability", "Runtime", "Future Interface"],
+  "modules": [
+    {"module": "Reality / Evidence", "domain": "Core", "status": "canonical", "owner": "Reality Update Pipeline"},
+    {"module": "Field / Role / Relationship", "domain": "Core", "status": "canonical", "owner": "Field System"},
+    {"module": "Self", "domain": "Core", "status": "canonical", "owner": "Self System"},
+    {"module": "Attention / Workspace", "domain": "Core", "status": "canonical", "owner": "Attention and Workspace Systems"},
+    {"module": "Situation / Hypothesis / Belief / Expectation", "domain": "Core", "status": "canonical", "owner": "Cognitive Interpretation Contracts"},
+    {"module": "Intent / Goal / Task", "domain": "Core", "status": "canonical", "owner": "Intent and Goal Governance"},
+    {"module": "Brain / Decision Commitment", "domain": "Core", "status": "canonical", "owner": "Brain and Decision Governance"},
+    {"module": "Memory / Experience / Learning", "domain": "Core", "status": "canonical", "owner": "Experience and Learning Systems"},
+    {"module": "Reflex / Emotion Context Boundary", "domain": "Core", "status": "canonical boundary", "owner": "Constitution and Context Contracts"},
+    {"module": "Constitution / Governance Plane", "domain": "Governance", "status": "canonical", "owner": "Governance Plane"},
+    {"module": "Capability / Model / Hardware / Provider", "domain": "Capability", "status": "isolated interface", "owner": "Capability Governance"},
+    {"module": "Cognitive Runtime / Action Runtime", "domain": "Runtime", "status": "future interface", "owner": "Runtime Governance"},
+    {"module": "B Simulation / Emotion Runtime", "domain": "Future Interface", "status": "placeholder only", "owner": "Future phase governance"}
+  ],
+  "inventory_rules": {
+    "no_new_cognitive_module": true,
+    "module_inventory_is_governance_only": true,
+    "baseline_is_not_runtime_input": true,
+    "duplicate_ownership_requires_review": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

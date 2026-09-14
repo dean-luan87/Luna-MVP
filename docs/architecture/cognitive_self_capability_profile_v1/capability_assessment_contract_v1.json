@@ -1,0 +1,19 @@
+{
+  "contract_name": "Capability Assessment Contract v1",
+  "capability_reference": "capability-example",
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "outcome_evidence": [],
+  "experience_pattern": [],
+  "failure_attribution": [],
+  "confidence_calibration": null,
+  "performance_window": null,
+  "assessment_candidate": null,
+  "model_self_evaluation_accepted": false,
+  "current_reality_precedence": true,
+  "human_calibration_interface": true,
+  "assessment_does_not_modify_identity": true,
+  "assessment_does_not_modify_goal": true,
+  "assessment_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

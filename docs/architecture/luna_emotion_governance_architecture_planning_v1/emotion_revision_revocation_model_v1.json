@@ -1,0 +1,36 @@
+{
+  "artifact": "emotion_revision_revocation_model_v1",
+  "lineage_operations": [
+    "revision",
+    "supersession",
+    "revocation",
+    "expiration",
+    "source correction",
+    "memory revision",
+    "self correction reference",
+    "personality correction reference",
+    "temporal invalidation"
+  ],
+  "required_lineage_refs": [
+    "revision_parent_ref",
+    "supersedes_ref",
+    "revocation_refs",
+    "source_correction_refs",
+    "memory_revision_refs",
+    "self_correction_refs",
+    "personality_correction_refs",
+    "temporal_invalidation_refs",
+    "trace_ref",
+    "provenance_refs"
+  ],
+  "rules": {
+    "revision_does_not_delete_prior_candidate": true,
+    "supersession_preserves_reverse_trace": true,
+    "revocation_preserves_reason_and_source": true,
+    "expiration_is_not_truth_deletion": true,
+    "source_correction_precedence": true,
+    "memory_revision_is_reference_only": true,
+    "self_personality_corrections_do_not_mutate_those_owners": true,
+    "candidate_only": true
+  }
+}

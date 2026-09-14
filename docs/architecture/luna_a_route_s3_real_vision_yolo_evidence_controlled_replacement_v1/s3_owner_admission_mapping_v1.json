@@ -1,0 +1,33 @@
+{
+  "field_perception_orchestrator": {
+    "owns": ["observation demand", "observation request", "capability requirement", "bounded provider session", "evidence sufficiency", "control decision"],
+    "does_not_own": ["YOLO inference", "world truth", "Field mutation"]
+  },
+  "model_manager_provider_manager": {
+    "owns": ["model/provider candidate admission", "resource and version constraints"],
+    "does_not_own": ["why observation is needed", "semantic truth"]
+  },
+  "vision_yolo_provider": {
+    "owns": ["provider-native inference output"],
+    "does_not_own": ["observation demand", "attention", "Field", "Context", "Intent", "Task"]
+  },
+  "observation_gateway": {
+    "owns": ["Perception Evidence and Observation Candidate governance"],
+    "does_not_own": ["provider invocation authorization"]
+  },
+  "admission_chain": [
+    "Observation Demand",
+    "Observation Request",
+    "Capability Requirement: VISION_DETECTION",
+    "Model/Provider Admission Candidate",
+    "Bounded Provider Session",
+    "Provider Invocation",
+    "Structured Visual Evidence",
+    "Observation Gateway Handoff Candidate"
+  ],
+  "candidate_vs_authority": {
+    "capability_requirement_is_model_selection": false,
+    "model_admission_is_provider_invocation": false,
+    "provider_output_is_semantic_authority": false
+  }
+}

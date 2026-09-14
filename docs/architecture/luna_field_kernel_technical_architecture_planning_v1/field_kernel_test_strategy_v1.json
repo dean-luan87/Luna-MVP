@@ -1,0 +1,204 @@
+{
+    "tests": [
+        {
+            "test_id": "reducer_determinism_test",
+            "objective": "验证相同事件序列产生相同 FieldState 归约结果。",
+            "fixture_requirements": [
+                "event sequence fixture",
+                "initial FieldState"
+            ],
+            "expected_outputs": [
+                "deterministic_reduced_state"
+            ],
+            "negative_guards": [
+                "non-deterministic reducer path"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "event_replay_test",
+            "objective": "验证事件回放能恢复当前 FieldState。",
+            "fixture_requirements": [
+                "event timeline fixture",
+                "snapshot reference"
+            ],
+            "expected_outputs": [
+                "replayed_field_state"
+            ],
+            "negative_guards": [
+                "direct state mutation bypass"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "temporal_expiry_test",
+            "objective": "验证 temporal definition 到期后进入 expired_state。",
+            "fixture_requirements": [
+                "temporal definition fixture",
+                "expiry timestamp"
+            ],
+            "expected_outputs": [
+                "expired_state marker"
+            ],
+            "negative_guards": [
+                "expired definition remains active"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "multi_reality_coexistence_test",
+            "objective": "验证 physical/institutional/social/personal 定义可并存。",
+            "fixture_requirements": [
+                "multi-reality definition fixture"
+            ],
+            "expected_outputs": [
+                "coexistence_set"
+            ],
+            "negative_guards": [
+                "single label overwrite"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "temporary_overlay_test",
+            "objective": "验证临时覆盖能够启动和结束。",
+            "fixture_requirements": [
+                "temporary overlay fixture",
+                "expiration event"
+            ],
+            "expected_outputs": [
+                "overlay_termination"
+            ],
+            "negative_guards": [
+                "temporary overlay 不持久化"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "perspective_projection_boundary_test",
+            "objective": "验证投影仅为 candidate 且不写回 substrate。",
+            "fixture_requirements": [
+                "projection fixture",
+                "field state fixture"
+            ],
+            "expected_outputs": [
+                "projection_candidate_only",
+                "projection_not_fact"
+            ],
+            "negative_guards": [
+                "projection mutates substrate"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "candidate_to_fact_leak_test",
+            "objective": "验证候选不会直接成为事实。",
+            "fixture_requirements": [
+                "candidate fixture",
+                "admission guard"
+            ],
+            "expected_outputs": [
+                "candidate_only",
+                "not_fact"
+            ],
+            "negative_guards": [
+                "candidate to fact leak"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "revocation_test",
+            "objective": "验证 revocation event 能正确标记 revoked_state。",
+            "fixture_requirements": [
+                "revocation fixture",
+                "revision history fixture"
+            ],
+            "expected_outputs": [
+                "revoked_state"
+            ],
+            "negative_guards": [
+                "revocation bypass"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "human_correction_test",
+            "objective": "验证人工更正形成事件并进入 replay 路径。",
+            "fixture_requirements": [
+                "human correction fixture",
+                "conflict fixture"
+            ],
+            "expected_outputs": [
+                "correction_event",
+                "replay_requirement"
+            ],
+            "negative_guards": [
+                "human correction bypass event sourcing"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "partial_failure_rollback_test",
+            "objective": "验证部分状态更新失败时回滚。",
+            "fixture_requirements": [
+                "partial update fixture",
+                "rollback mechanism fixture"
+            ],
+            "expected_outputs": [
+                "rollback_candidate"
+            ],
+            "negative_guards": [
+                "partial state commit"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        },
+        {
+            "test_id": "unresolved_state_test",
+            "objective": "验证冲突或证据不足时进入 unresolved_state。",
+            "fixture_requirements": [
+                "conflicting evidence fixture",
+                "candidate fixture"
+            ],
+            "expected_outputs": [
+                "unresolved_state"
+            ],
+            "negative_guards": [
+                "forced resolution without evidence"
+            ],
+            "deterministic_required": true,
+            "real_model_required": false,
+            "image_read_required": false,
+            "runtime_required": false
+        }
+    ]
+}

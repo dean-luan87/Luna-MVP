@@ -1,0 +1,18 @@
+{
+    "artifact": "learning_admission_state_model_v1",
+    "states": [
+        "PROPOSED",
+        "EVIDENCE_ACCUMULATING",
+        "ELIGIBLE",
+        "CONTESTED",
+        "INSUFFICIENT_EVIDENCE",
+        "NEEDS_CONFIRMATION",
+        "LEARNING_CANDIDATE_READY",
+        "PARAMETER_UPDATE_CANDIDATE_READY",
+        "REVISED",
+        "SUPERSEDED",
+        "REVOKED",
+        "EXPIRED",
+        "REJECTED"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+  "gateway_owner": "Observation Gateway",
+  "canonical_types": ["ObservationIngressCandidateV1", "PerceptionEvidenceV1", "ObservationCandidateV1", "ObservationGatewayResultV1"],
+  "gateway_current_contract": {
+    "requires": ["provider_ref", "source_ref", "payload_ref", "temporal_ref", "trace_ref", "provenance_refs"],
+    "preserves": ["uncertainty_refs", "contradiction_refs", "correction_refs", "temporal_lineage", "reverse_lookup_path"],
+    "candidate_only": true,
+    "observation_is_world_truth": false,
+    "gateway_can_mutate_field_state": false,
+    "gateway_can_mutate_context": false
+  },
+  "real_gap": "ObservationGatewayEngineV1 currently builds PerceptionEvidenceV1 from ObservationIngressRequestV1 and its controlled runner enforces synthetic_only=true; no discovered adapter consumes the S3 VisualDetectionEvidenceCandidateV1 directly.",
+  "required_future_boundary": "A narrow contract adapter or controlled extension under Observation Gateway must preserve structured detection payload references and map the S3 handoff into canonical gateway evidence without declaring fact.",
+  "not_allowed": ["direct Current World injection", "direct Field mutation", "provider continuation authorization", "semantic compression"]
+}

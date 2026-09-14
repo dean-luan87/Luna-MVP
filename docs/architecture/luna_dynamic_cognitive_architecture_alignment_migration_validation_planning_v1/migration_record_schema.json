@@ -1,0 +1,13 @@
+{
+  "schema_id": "architecture_alignment_migration_record_v1",
+  "required_fields": ["migration_id", "old_module", "old_path", "old_owner", "new_position", "target_owner", "migration_type", "compatibility_checks", "before_evidence_refs", "after_evidence_refs", "rollback_plan", "legacy_compatibility", "status", "blockers", "trace_ref"],
+  "migration_types": ["keep", "boundary_update", "adapter", "rename_candidate", "move_candidate"],
+  "statuses": ["planned", "authorized", "in_progress", "aligned", "preserved", "adapted", "blocked", "retired_candidate", "rolled_back"],
+  "compatibility_dimensions": ["public_api", "schema", "owner", "dependency", "candidate_fact_semantics", "trace_replay", "behavior", "documentation", "import_path", "rollback"],
+  "rename_candidate_is_not_rename_authority": true,
+  "move_candidate_is_not_move_authority": true,
+  "single_owner_required": true,
+  "before_after_evidence_required": true,
+  "rollback_required": true,
+  "candidate_only": true
+}

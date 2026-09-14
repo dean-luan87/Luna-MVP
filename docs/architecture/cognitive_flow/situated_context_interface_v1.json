@@ -1,0 +1,21 @@
+{
+  "schema_version": "v1",
+  "interface_type": "situated_reality_context",
+  "inputs": ["current_world_state", "self_state", "goal", "resource"],
+  "output": "situation_candidate",
+  "input_boundaries": {
+    "world_state": "current most credible reality representation",
+    "self_state": "identity, capability, resource, limitation, current condition",
+    "goal": "read-only Brain context",
+    "resource": "read-only governed context"
+  },
+  "output_boundaries": {
+    "candidate_only": true,
+    "action": false,
+    "decision": false,
+    "goal_modification": false,
+    "brain_bypass": false
+  },
+  "reality_state_is_not_situation": true,
+  "reducer_remains_state_authority": true
+}

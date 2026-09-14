@@ -1,0 +1,6 @@
+{
+  "required_chain": ["B1 CurrentWorldCandidate", "state formation source ref", "derived cognitive world candidate", "flow snapshot", "flow trace/provenance"],
+  "preserved": ["trace_ref", "provenance_refs", "temporal_refs", "uncertainty_refs", "conflict_refs"],
+  "authority": false,
+  "replay": "B2 consumes structured B1 candidate reference; it does not treat arbitrary evaluation JSON as truth."
+}

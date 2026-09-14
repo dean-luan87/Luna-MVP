@@ -1,0 +1,18 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S3-Real-Vision-YOLO-Evidence-Controlled-Replacement-v1-001",
+  "new_semantic_owner": false,
+  "canonical_owner_reused": "Field Perception Orchestrator",
+  "reused_provider": "capabilities/vision_runtime/yolo_candidate_adapter_v0.py",
+  "new_code_files": ["field_perception_real_vision_evidence_types_v1.py", "field_perception_real_vision_provider_adapter_v1.py", "field_perception_real_vision_fixture_v1.py", "run_a_route_s3_real_vision_yolo_evidence_controlled_replacement_v1.py"],
+  "existing_owner_files_modified": false,
+  "s0_modified": false,
+  "s1_modified": false,
+  "s2_modified": false,
+  "observation_gateway_modified": false,
+  "vision_provider_stack_duplicated": false,
+  "ocr_activated": false,
+  "slam_activated": false,
+  "vlm_activated": false,
+  "semantic_compression_added": false,
+  "world_or_field_write_added": false
+}

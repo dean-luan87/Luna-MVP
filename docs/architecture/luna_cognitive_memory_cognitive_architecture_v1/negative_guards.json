@@ -1,0 +1,14 @@
+{
+  "guard_set_id": "cognitive_memory_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["memory_runtime", "memory_store", "automatic_compression", "automatic_folding", "model_calls", "database_access", "automatic_learning", "direct_self_modification", "direct_social_self_modification", "direct_role_modification", "direct_decision_override", "knowledge_automatic_memory", "experience_automatic_growth", "retrieval_replaces_reality", "pattern_asserts_fact", "memory_identity_rewrite", "memory_goal_rewrite", "memory_constitution_rewrite", "memory_direct_action", "parallel_memory_system"],
+  "memory_is_not_database": true,
+  "memory_is_not_reality": true,
+  "memory_is_not_decision": true,
+  "candidate_only": true,
+  "current_reality_precedence": true,
+  "unknown_preserved": true,
+  "provenance_preserved": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

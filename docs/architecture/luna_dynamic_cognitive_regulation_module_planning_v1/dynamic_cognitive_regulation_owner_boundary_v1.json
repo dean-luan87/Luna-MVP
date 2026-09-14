@@ -1,0 +1,37 @@
+{
+    "artifact": "dynamic_cognitive_regulation_owner_boundary_v1",
+    "module_name": "Dynamic Cognitive Regulation Module",
+    "canonical_owner_candidate": "Dynamic Cognitive Regulation Governance",
+    "owner_choice": {
+        "rationale": [
+            "Dynamic Function and Self-Regulation must be integrated as one complete planning module.",
+            "Avoid split owner drift among dynamic function, self-regulation, and parameter governance.",
+            "Keep ownership boundary clear for influence-only outputs."
+        ],
+        "equivalent_owner_found_in_active_impl": false,
+        "legacy_references": [
+            "Dynamic Cognitive Function Governance",
+            "Cognitive Function Governance",
+            "Self Regulation",
+            "Parameter Governance"
+        ],
+        "decision": "single owner candidate for this planning phase"
+    },
+    "owner_covers": [
+        "dynamic regulation function candidate generation",
+        "self-regulation candidate generation",
+        "bounded parameter modulation candidate generation",
+        "downstream influence candidate handoff"
+    ],
+    "owner_does_not_cover": [
+        "intent ownership",
+        "attention ownership",
+        "hypothesis ownership",
+        "causal ownership",
+        "field mutation authority",
+        "decision authority",
+        "action authority",
+        "task authority",
+        "runtime authority"
+    ]
+}

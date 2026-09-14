@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Emotion Boundary Consistency Review",
+  "owner": "Integration Layer",
+  "not_owned_by": ["Self Layer", "Social Self Layer"],
+  "flow": ["Social Self Event", "Self Context", "Integration", "Emotion Context Candidate", "Attention/Preference Context"],
+  "cannot": ["Enter Self Identity", "Enter Social Self Ownership", "Direct Decision", "Direct Action", "Rewrite Value", "Emotion Runtime"],
+  "rules": {"integration_only": true, "self_excluded": true, "social_self_excluded": true, "context_only": true, "no_emotion_runtime": true, "future_admission_required": true}
+}

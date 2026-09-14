@@ -1,0 +1,23 @@
+{
+  "contract_id": "a-route-s3-real-vision-yolo-evidence-controlled-v1",
+  "canonical_owner": "Field Perception Orchestrator",
+  "adapter_role": "bounded provider admission, invocation boundary and structured evidence mapping",
+  "input": "RawFrameRecordV1 + authorized VisionProviderAdmissionCandidateV1",
+  "provider_output": "ProviderNativeDetectionRecordV1",
+  "output": ["VisualDetectionEvidenceCandidateV1", "ObservationGatewayEvidenceHandoffCandidateV1"],
+  "real_mode": "local-only existing YOLO adapter, explicit bounded authorization required",
+  "synthetic_mode": "deterministic provider-shaped fixture; no model invocation",
+  "required_authorization": ["observation_demand", "observation_request", "VISION_DETECTION capability requirement", "bounded provider session", "model admission reference", "trace/provenance"],
+  "candidate_only": true,
+  "truth_declared": false,
+  "fact_admitted": false,
+  "field_mutation": false,
+  "current_world_mutation": false,
+  "semantic_interpretation": false,
+  "semantic_compression": false,
+  "provider_autonomous_execution": false,
+  "ocr_execution": false,
+  "slam_execution": false,
+  "vlm_execution": false,
+  "raw_content_persisted": false
+}

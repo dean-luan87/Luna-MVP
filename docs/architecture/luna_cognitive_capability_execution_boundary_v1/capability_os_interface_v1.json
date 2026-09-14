@@ -1,0 +1,8 @@
+{
+  "title": "Capability to Cognitive OS Interface v1",
+  "owner": "Cognitive OS Governance",
+  "inputs": ["Lifecycle Contract", "Admission Contract", "Resource State", "Event Contract", "Trace Contract", "Recovery Contract"],
+  "outputs": ["Capability Request Admission Candidate", "Capability Health Event", "Execution Trace Reference", "Failure Recovery Candidate"],
+  "os_not_modified": ["Constitution", "Cognitive Flow Authority", "Goal", "Decision", "Reality"],
+  "rules": {"os_controls_lifecycle": true, "os_controls_admission": true, "capability_does_not_control_os": true, "interface_only": true}
+}

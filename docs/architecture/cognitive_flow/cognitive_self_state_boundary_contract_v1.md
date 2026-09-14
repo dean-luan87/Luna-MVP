@@ -1,0 +1,22 @@
+# Cognitive Self State Boundary Contract v1
+
+- Self State != Identity.
+- Self State != Personality.
+- Self State != Emotion.
+- Self State != Memory.
+- Self State != Consciousness.
+- Self State != Reality.
+- Self State != Decision.
+- Self State != Action.
+- Self State != Permission.
+- Capability State != Capability Upgrade.
+- Capability State != Capability Authority.
+- Resource State != Resource Mutation.
+- Reliability != Truth.
+- Reliability != Fact Confidence.
+- Knowledge Availability != Knowledge Truth.
+- Cognitive Load != Fatigue Emotion.
+- Experience != Self State Authority.
+- Emotion != Self State Authority.
+- Self State != State Mutation.
+- Reducer remains the only State Mutation Authority.

@@ -1,0 +1,11 @@
+{
+  "title": "Outcome Experience Relation v1",
+  "flow": ["Outcome", "Outcome Evaluation", "Experience Candidate", "Experience Validation", "Memory/Schema Candidate"],
+  "outcome_is_fact_candidate": true,
+  "experience_requires_situated_context": true,
+  "outcome_is_not_experience": true,
+  "outcome_does_not_write_experience_directly": true,
+  "repetition_or_impact_required_for_reinforcement": true,
+  "candidate_only": true,
+  "automatic_learning": false
+}

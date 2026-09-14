@@ -1,0 +1,56 @@
+{
+    "capability_id": "luna.field_perception_orchestrator",
+    "capability_name": "Luna Field Perception Orchestrator",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_api_v1.py",
+            "entrypoint": "run_field_perception_orchestrator_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_visual_handoff_api_v1.py",
+            "entrypoint": "run_field_perception_visual_handoff_integration_v1"
+        },
+        "core_reused": [
+            "capabilities/midplatform/vision_manager/module/vision_manager_module_api_v1.py",
+            "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "capabilities/midplatform/observation_manager/module/observation_manager_module_api_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_field_perception_visual_handoff_integration_v1.py",
+            "scenarios": 16
+        },
+        "ready_evidence": {
+            "total_cases": 16,
+            "passed_cases": 16,
+            "failed_cases": [],
+            "no_visual_request_when_not_required": true,
+            "vision_request_present_when_expected": true,
+            "model_requirement_present_when_expected": true,
+            "eligible_model_binding_correct": true,
+            "deduplication_correct": true,
+            "budget_degradation_correct": true,
+            "observation_request_present_when_expected": true,
+            "result_link_contract_present_when_expected": true,
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "unhandled_exceptions": 0,
+            "evidence_ref": "_tmp_eval_out/field_perception_visual_handoff_integration_v1_smoke_v0/field_perception_visual_handoff_integration_v1.json"
+        }
+    },
+    "constraints": {
+        "candidate_only_processing": true,
+        "no_real_model_execution": true,
+        "no_real_visual_evidence_generation": true,
+        "no_field_state_write_execution": true,
+        "no_runtime_loop": true
+    },
+    "historical_aliases": []
+}

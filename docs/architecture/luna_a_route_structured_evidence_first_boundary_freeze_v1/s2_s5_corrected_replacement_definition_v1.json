@@ -1,0 +1,26 @@
+{
+  "baseline": "S0_GOLDEN_SYNTHETIC_BASELINE:FROZEN_V1",
+  "S2": {
+    "name": "REAL_RAW_CAMERA_INPUT_STREAM_INGESTION",
+    "flow": ["Real Camera / Input Stream", "Raw Frame / Frame Reference", "bounded stream/session adapter", "Observation Control / Perception ingress"],
+    "proves": "real raw stream data can enter governed perception path",
+    "does_not_execute": ["YOLO", "OCR", "SLAM", "VLM", "semantic interpretation", "semantic compression"]
+  },
+  "S3": {
+    "name": "REAL_VISION_YOLO_EVIDENCE_REPLACEMENT",
+    "flow": ["Real Frame", "Real Vision/YOLO", "structured Perception Evidence"],
+    "output_authoritative_world_language": false
+  },
+  "S4": {
+    "name": "REAL_OCR_EVIDENCE_REPLACEMENT",
+    "flow": ["Observation demand / region", "Real OCR", "structured text evidence"],
+    "output_authoritative_world_language": false
+  },
+  "S5": {
+    "name": "REAL_SLAM_VIO_SPATIAL_EVIDENCE_REPLACEMENT",
+    "flow": ["Spatial observation need", "Real SLAM/VIO", "structured spatial/geometric evidence"],
+    "output_authoritative_world_language": false
+  },
+  "one_component_at_a_time": true,
+  "semantic_compression_execution": false
+}

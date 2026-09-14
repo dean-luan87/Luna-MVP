@@ -1,0 +1,50 @@
+{
+    "capability_id": "luna.permission_and_admission_manager",
+    "capability_name": "Luna Permission And Admission Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_api_v1.py",
+            "entrypoint": "run_permission_and_admission_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/permission_and_admission_manager/module/permission_and_admission_module_facade_v1.py",
+            "entrypoint": "run_permission_and_admission_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/governance/permission_semantics_canonicalization_planning_v1.py",
+            "capabilities/governance/permission_semantics_canonicalization_dryrun_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py",
+            "scenarios": 20
+        },
+        "ready_evidence": {
+            "total_cases": 20,
+            "passed_cases": 20,
+            "failed_cases": [],
+            "deterministic_replay": true,
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "boundary_preserved": true,
+            "unhandled_exceptions": 0,
+            "evidence_ref": "tools/evaluation/midplatform/run_permission_and_admission_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_fact_admission_execution": true,
+        "no_fact_promotion_execution": true,
+        "no_state_mutation_execution": true,
+        "no_runtime_dispatch_execution": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "permission_semantics_manager",
+        "admission_gate_manager"
+    ]
+}

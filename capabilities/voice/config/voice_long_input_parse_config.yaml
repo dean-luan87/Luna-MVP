@@ -1,0 +1,9 @@
+# 长语音解析路由（v1）。若环境无 PyYAML，见 voice_long_input_parse_config.py 内建默认。
+parse_mode: rule_only
+# rule_only | model_preferred_with_rule_fallback
+enable_model_adapter: false
+model_timeout_ms: 2000
+fallback_to_rule_on_timeout: true
+fallback_to_rule_on_validation_error: true
+max_task_candidates: 3
+allow_non_task_payload: true

@@ -1,0 +1,19 @@
+{
+  "schema_name": "Hardware Registry Extension Schema v1",
+  "hardware_id": "hardware-example",
+  "hardware_type": "Camera | Microphone | IMU | GPS | Display | Battery | Storage | Network",
+  "identity": {"manufacturer": null, "model": null, "serial_reference": null},
+  "specification": {"resolution": null, "fov": null, "range": null, "capacity": null},
+  "capability_profile_reference": "hardware-capability-example",
+  "resource_profile_reference": "resource-example",
+  "health_state_reference": "health-example",
+  "calibration_state_reference": "calibration-example",
+  "limitation": [],
+  "registry_state": "Draft | Review | Admission | Active | Deprecated | Archived",
+  "admission_required": true,
+  "hardware_manager_does_not_control": true,
+  "hardware_does_not_modify_reality": true,
+  "hardware_does_not_modify_goal": true,
+  "hardware_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

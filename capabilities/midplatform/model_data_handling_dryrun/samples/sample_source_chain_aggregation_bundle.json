@@ -1,0 +1,29 @@
+{
+  "handling_id": "source_chain_aggregation_001",
+  "policy_id": "source_chain_aggregation",
+  "candidate_refs": [
+    "text_evidence_candidate:txt_001",
+    "visual_symbol_candidate:sym_001",
+    "region_evidence_candidate:reg_001",
+    "track_evidence_candidate:track_001",
+    "spatial_hint_candidate:sh_001",
+    "scene_relation_candidate:rel_001",
+    "reserved_emotion_context_candidate:rec_001"
+  ],
+  "model_family_refs": [
+    "ocr_model_family", "visual_symbol_model_family", "segmentation_family", "tracking_family",
+    "depth_spatial_hint_family", "scene_relation_vlm_family", "emotion_multimodal_bridge_family"
+  ],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "confidence_policy_ref": "source_aggregation_confidence_policy_v1",
+  "fallback_plan": "fallback_to_per_model_source_chain_without_aggregation",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "member_source_chains": [
+    "rapidocr_v1", "opencv_visual_symbol_v1", "mobilesam_v1", "bytetrack_v1",
+    "midas_small_v1", "lightweight_vlm_v1", "reserved_emotion_bridge_v0"
+  ],
+  "boundaries": ["source_aggregation_cannot_erase_weak_or_uncertain_source_state"]
+}

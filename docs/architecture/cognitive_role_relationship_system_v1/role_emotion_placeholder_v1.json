@@ -1,0 +1,14 @@
+{
+  "interface_name": "Role Emotion Placeholder v1",
+  "role_reference": "role-example",
+  "relationship_reference": "relationship-example",
+  "field_reference": "field-example",
+  "memory_reference": "memory-example",
+  "emotion_state_candidate": null,
+  "placeholder_only": true,
+  "emotion_runtime": false,
+  "role_does_not_infer_emotion": true,
+  "relationship_does_not_judge_emotion": true,
+  "emotion_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

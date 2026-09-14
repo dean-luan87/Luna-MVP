@@ -1,0 +1,50 @@
+{
+    "artifact": "cognitive_learning_gap_registry_v1",
+    "gaps": [
+        {
+            "gap_id": "A",
+            "classification": "resolvable_in_new_learning_module",
+            "items": [
+                "learning evidence schema",
+                "learning candidate schema",
+                "parameter update candidate schema",
+                "generalization/confidence model",
+                "boundary contracts",
+                "trace and idempotency"
+            ],
+            "blocker": false
+        },
+        {
+            "gap_id": "B",
+            "classification": "requires_extension_of_existing_canonical_owner_contract",
+            "items": [
+                {
+                    "affected_owner": "Dynamic Cognitive Regulation Governance",
+                    "affected_contract": "future parameter update candidate admission contract",
+                    "reason": "Learning can only propose ParameterUpdateCandidate; downstream admission details remain in regulation owner",
+                    "proposed_future_remediation": "add typed parameter update admission bridge in future implementation phase",
+                    "blocker": false
+                }
+            ]
+        },
+        {
+            "gap_id": "C",
+            "classification": "conflicts_with_current_canonical_architecture",
+            "items": [],
+            "blocker": false
+        },
+        {
+            "gap_id": "D",
+            "classification": "intentionally_deferred_capability",
+            "items": [
+                "runtime training",
+                "model weight updates",
+                "semantic compression execution",
+                "cross-user transfer",
+                "parameter activation",
+                "genome activation"
+            ],
+            "blocker": false
+        }
+    ]
+}

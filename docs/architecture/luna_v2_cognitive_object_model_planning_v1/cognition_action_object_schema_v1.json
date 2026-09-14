@@ -1,0 +1,311 @@
+{
+    "schema_id": "cognition_action_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Cognition and action candidate schemas for Luna V2.",
+    "objects": {
+        "ExpectationCandidate": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "expectation_description",
+                "target_refs"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "expectation_as_fact"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "AttentionCandidate": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "attention_target_ref",
+                "attention_priority"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "attention_as_physical_action"
+            ],
+            "governance_refs": [
+                "Runtime Boundary",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ObservationRequest": {
+            "object_type": "request",
+            "parent_type": "request",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "request_type",
+                "target_refs",
+                "request_reason"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "request_as_execution"
+            ],
+            "governance_refs": [
+                "Runtime Boundary",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "InteractionDecisionCandidate": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "decision_criteria",
+                "target_refs",
+                "execution_permission_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "decision_as_execution"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Runtime Boundary"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "FeedbackCandidate": {
+            "object_type": "feedback",
+            "parent_type": "feedback",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "feedback_text",
+                "target_refs"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "feedback_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "CognitiveRevision": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "revision_reason",
+                "previous_version_ref"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "revision_without_history"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "PersonalityDevelopmentCandidate": {
+            "object_type": "decision_candidate",
+            "parent_type": "decision_candidate",
+            "required_fields": [
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "development_goal",
+                "impact_scope"
+            ],
+            "optional_fields": [
+                "evidence_refs",
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "personality_mutation_without_approval"
+            ],
+            "governance_refs": [
+                "Human Correction",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    },
+    "rules": [
+        "ExpectationCandidate may not become fact",
+        "AttentionCandidate only decides resource and observation target",
+        "InteractionDecisionCandidate does not equal action execution",
+        "PersonalityDevelopmentCandidate may not automatically modify production personality",
+        "FeedbackCandidate may only form corrective candidates",
+        "CognitiveRevision must retain old version and reason"
+    ]
+}

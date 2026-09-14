@@ -1,0 +1,14 @@
+{
+  "phase_id": "Phase-Luna-Model-Contract-Repository-Multi-Version-Baseline-v1-001",
+  "owner": "Model Manager / Model Governance",
+  "implementation_scope": "contract repository and deterministic compatibility baseline",
+  "inference_execution": false,
+  "provider_invocation": false,
+  "network_access": false,
+  "automatic_download": false,
+  "human_contract_selection_required_normal_path": false,
+  "s0_s1_s2_s3_mutation": false,
+  "recommendation_engine": false,
+  "candidate_only": true,
+  "current_yolov5n_admission": "BLOCKED_ON_MISSING_LOCAL_SOURCE_PACKAGE"
+}

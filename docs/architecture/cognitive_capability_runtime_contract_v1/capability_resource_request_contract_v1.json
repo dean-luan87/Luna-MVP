@@ -1,0 +1,21 @@
+{
+  "contract_name": "Capability Resource Request Contract v1",
+  "request_reference": "capability-request-example",
+  "capability_reference": "capability-example",
+  "camera_or_sensor": {"required": false, "candidate": true},
+  "gpu_cpu": {"required": true, "candidate": true},
+  "memory": {"required": null, "candidate": true},
+  "latency": {"deadline": null, "candidate": true},
+  "energy": {"cost": null, "candidate": true},
+  "network": {"required": false, "candidate": true},
+  "storage": {"required": null, "candidate": true},
+  "resource_budget": "candidate",
+  "attention_priority": "candidate",
+  "allocation_candidate": null,
+  "resource_denied_candidate": null,
+  "resource_request_is_not_execution": true,
+  "resource_request_does_not_modify_goal": true,
+  "resource_request_does_not_modify_decision": true,
+  "resource_cost_is_explicit": true,
+  "no_runtime_allocation_in_this_phase": true
+}

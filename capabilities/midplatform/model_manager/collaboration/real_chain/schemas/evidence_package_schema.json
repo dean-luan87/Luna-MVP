@@ -1,0 +1,21 @@
+{
+  "schema_id": "RealChainEvidencePackageV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-Multi-Model-Chain-Integration-Planning-v1-001",
+  "description": "单 Slot 证据包 — 非事实",
+  "evidence_types": {
+    "text_region_candidate": "哪里有文字",
+    "ocr_text_candidate": "文字是什么",
+    "context_evidence_candidate": "上下文解释"
+  },
+  "forbidden_output": ["scene_fact", "place_fact", "shop_name_fact"],
+  "properties": {
+    "package_id": {"type": "string"},
+    "slot_id": {"type": "string"},
+    "provider_id": {"type": "string"},
+    "evidence_type": {"type": "string"},
+    "payload": {"type": "object"},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

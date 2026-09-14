@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Decision Social Boundary",
+  "owner":"Brain and Social Self Governance",
+  "social_inputs":["Role","Relationship","Responsibility","Social Norm","Social Self expectation"],
+  "decision_constraints":["role responsibility","permission boundary","social safety","relationship context"],
+  "permissions":{"social_contextualizes":true,"social_creates_decision":false,"social_overrides_brain":false,"social_rewrites_identity":false},
+  "rules":{"role_context_required":true,"social_decision_forbidden":true,"brain_evaluates_candidate":true}
+}

@@ -1,0 +1,18 @@
+{
+  "backend_id": "invalid_semantic_label_fact_write",
+  "backend_family": "metric_semantic_slam",
+  "output_type": "semantic mesh / object landmarks",
+  "source_chain": ["kimera_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.78,
+  "backend_origin": "kimera_like_export_mock",
+  "license_ref": "BSD-2-Clause",
+  "license_boundary": "open_verified",
+  "allowed_use": "observation_and_adapter_replay_dryrun",
+  "commercial_use_status": "unknown_until_license_verified",
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "direct_fact_write": true,
+  "define_field_identity": true,
+  "object_landmarks": [
+    {"id": "obj0", "semantic_label": "chair", "position": [0.4, 0.2, 0.0], "direct_fact_write": true}
+  ]
+}

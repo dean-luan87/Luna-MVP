@@ -1,0 +1,27 @@
+{
+  "title": "Brain Hypothesis Interface v1",
+  "contract_type": "Brain Hypothesis Evaluation",
+  "input": {
+    "hypothesis_candidates": [],
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "field_context": {},
+    "situation_context": {},
+    "confidence": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "hypothesis_evaluation_candidate": {},
+    "validation_requirement": {},
+    "more_evidence_request": null,
+    "conflict_reference": null
+  },
+  "boundary": {
+    "brain_does_not_create_fact": true,
+    "brain_does_not_solidify_belief_automatically": true,
+    "hypothesis_remains_candidate": true,
+    "reality_and_evidence_remain_authoritative": true,
+    "unknowns_are_preserved": true
+  }
+}

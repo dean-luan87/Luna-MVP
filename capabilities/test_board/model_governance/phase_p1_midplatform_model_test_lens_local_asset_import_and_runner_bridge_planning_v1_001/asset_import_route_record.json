@@ -1,0 +1,54 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-And-Runner-Bridge-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T02:51:10.106488+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "page_must_not_execute_model": true,
+  "candidate_output_only": true,
+  "record": {
+    "slam": {
+      "route_id": "slam_video_import_route_v1",
+      "stages": [
+        "video_or_frame_sequence",
+        "local_asset_manifest",
+        "slam_job_request",
+        "runner_bridge_request",
+        "orb_slam3_vins_kimera_runner_execution_phase",
+        "raw_trajectory_output",
+        "slam_evaluation_adapter_v1",
+        "slam_diagnostic_engine_v1",
+        "muep_envelope",
+        "model_test_lens_display"
+      ],
+      "without_gt_limited_diagnostics": [
+        "trajectory_visualization",
+        "tracking_state_timeline",
+        "trajectory_smoothness_proxy",
+        "lost_frame_ratio",
+        "no_ate",
+        "no_full_drift_score"
+      ],
+      "no_ate_without_gt": true,
+      "no_gt_benchmark_comparison_without_gt": true
+    },
+    "image": {
+      "route_id": "image_import_route_v1",
+      "stages": [
+        "image",
+        "local_asset_manifest",
+        "segmentation_ocr_depth_vlm_job_request",
+        "runner_bridge_request",
+        "model_specific_runner_execution_phase",
+        "model_specific_adapter",
+        "muep_envelope",
+        "model_test_lens_display"
+      ],
+      "mobile_sam_via_segmentation_runner": true
+    }
+  }
+}

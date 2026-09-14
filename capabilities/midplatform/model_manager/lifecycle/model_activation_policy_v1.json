@@ -1,0 +1,22 @@
+{
+  "schema_id": "ModelActivationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Lifecycle-Sandbox-v1-001",
+  "principle": "admitted 不等于 active；须通过 activation 才进入执行与路由池。",
+  "activation_requirements": [
+    {"requirement_id": "admission_approved", "description": "admission 决策通过"},
+    {"requirement_id": "benchmark_passed", "description": "benchmark evaluation passed"},
+    {"requirement_id": "capability_registry_updated", "description": "能力注册表已更新"},
+    {"requirement_id": "no_policy_violation", "description": "无策略违规"}
+  ],
+  "rules": [
+    {"rule_id": "no_auto_activation", "description": "禁止自动激活"},
+    {"rule_id": "candidate_not_active", "description": "candidate/evaluating 不可 active"},
+    {"rule_id": "blocked_never_active", "description": "blocked 不可激活"}
+  ],
+  "boundary_flags": {
+    "no_auto_activation": true,
+    "activation_candidate_only": true,
+    "sandbox_only": true
+  }
+}

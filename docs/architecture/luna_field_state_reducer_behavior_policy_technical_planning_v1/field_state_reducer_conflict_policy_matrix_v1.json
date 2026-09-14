@@ -1,0 +1,170 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Conflict Policy Matrix",
+    "conflict_cases": [
+        {
+            "scenario": "positive_vs_negative",
+            "allowed_policies": [
+                "negative_event_override",
+                "conflict_preservation",
+                "insufficient_evidence_unresolved"
+            ],
+            "prohibited_policies": [
+                "force_single_winner"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "active_vs_revoked",
+            "allowed_policies": [
+                "revocation_override",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "latest_valid_event",
+                "highest_confidence_valid_event"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "permanent_vs_temporary",
+            "allowed_policies": [
+                "temporary_overlay_separation",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "substrate_overwrite"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "direct_vs_inferred",
+            "allowed_policies": [
+                "conflict_preservation",
+                "multi_event_consensus"
+            ],
+            "prohibited_policies": [
+                "fabricated_resolution"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "high_confidence_vs_low_confidence",
+            "allowed_policies": [
+                "highest_confidence_valid_event",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "confidence_only_fact_promotion"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "newer_vs_older",
+            "allowed_policies": [
+                "latest_valid_event",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "age_only_auto_win"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "owner_correction_vs_machine_candidate",
+            "allowed_policies": [
+                "explicit_owner_override_candidate",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "owner_direct_fact_override"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "same_priority_contradiction",
+            "allowed_policies": [
+                "conflict_preservation",
+                "insufficient_evidence_unresolved"
+            ],
+            "prohibited_policies": [
+                "forced_tie_break_without_rule"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "mutually_exclusive_states",
+            "allowed_policies": [
+                "conflict_preservation",
+                "insufficient_evidence_unresolved"
+            ],
+            "prohibited_policies": [
+                "coexistence_without_review"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        },
+        {
+            "scenario": "partially_compatible_states",
+            "allowed_policies": [
+                "multi_event_consensus",
+                "conflict_preservation"
+            ],
+            "prohibited_policies": [
+                "single_winner_for_partial_compatibility"
+            ],
+            "preserve_conflict_when_unresolved": true,
+            "winner_required": false,
+            "provisional_allowed": true,
+            "unresolved_allowed": true,
+            "fact_promotion_allowed": false,
+            "direct_state_write_allowed": false
+        }
+    ],
+    "unresolved_conflict_preservation_supported": true,
+    "conflict_policy_matrix_complete": true
+}

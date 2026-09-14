@@ -1,0 +1,82 @@
+{
+  "registry_id": "ModelTestLensUIStandardRegistryV1",
+  "version": "v1",
+  "created_by_phase": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-UI-Standardization-Planning-v1-001",
+  "standards": [
+    {
+      "standard_id": "ModelTestLensUIStandardV1",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/model_test_lens_ui_standard_v1.md",
+      "category": "ui_flow",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ModelTestLensUIFlowStandardV1",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/model_test_lens_ui_flow_standard_v1.json",
+      "category": "ui_flow",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "PerceptionHudUITemplateStandardV1",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/perception_hud/perception_hud_ui_template_standard_v1.md",
+      "category": "perception_hud",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "PerceptionHudModelAdapterRequirementsV1",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/perception_hud/perception_hud_model_adapter_requirements_v1.json",
+      "category": "perception_hud",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "PerceptionHudDefaultLayoutSpecV1",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/perception_hud/perception_hud_default_layout_spec_v1.json",
+      "category": "perception_hud",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "ModelTestLensPerceptionHudUIGovernanceStandardV1",
+      "canonical_path": "capabilities/midplatform/governance_standards/model_test_lens_ui/model_test_lens_perception_hud_ui_governance_standard_v1.md",
+      "category": "governance",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "LunaObservationLensV1TemplateStandard",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_template_standard.md",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true,
+      "frozen": true,
+      "default_ui_template": true
+    },
+    {
+      "standard_id": "LunaObservationLensV1ComponentContract",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_component_contract.json",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true
+    },
+    {
+      "standard_id": "LunaObservationLensV1ModelAdapterSlotContract",
+      "canonical_path": "capabilities/midplatform/model_test_lens/standards/ui/luna_observation_lens_v1_model_adapter_slot_contract.json",
+      "category": "luna_observation_lens",
+      "protected": true,
+      "non_deletable": true
+    }
+  ],
+  "perception_hud_schemas": [
+    "capabilities/midplatform/model_test_lens/schemas/perception_hud/perception_hud_scene_annotation_schema_v1.json",
+    "capabilities/midplatform/model_test_lens/schemas/perception_hud/perception_hud_reasoning_panel_schema_v1.json",
+    "capabilities/midplatform/model_test_lens/schemas/perception_hud/perception_hud_overlay_layer_schema_v1.json"
+  ],
+  "all_future_model_test_pages_must_follow": true,
+  "luna_observation_lens_v1_default": true,
+  "robot_vision_hud_default": true,
+  "object_chip_bar_default": true,
+  "drawer_first_engineering_info": true
+}

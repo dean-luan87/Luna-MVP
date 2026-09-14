@@ -1,0 +1,64 @@
+{
+    "artifact": "self_governance_owner_boundary_v1",
+    "canonical_owner_candidate": "Self Governance",
+    "owner_required": true,
+    "owner_selection_rationale": [
+        "Current canonical core contains self-related refs and evidence but no converged self-attribution/self-continuity owner.",
+        "Historical self assets are conceptually rich but naming-conflicted relative to current canonical owners.",
+        "A narrow owner is needed to govern self attribution and continuity semantics without absorbing existing cognitive-core owners."
+    ],
+    "owns": [
+        "self reference semantics",
+        "identity attribution candidate semantics",
+        "self attribution candidate semantics",
+        "self continuity candidate semantics",
+        "stable/semi-stable/transient self partition semantics",
+        "self revision/revocation semantics",
+        "self sensitivity and transfer restrictions"
+    ],
+    "must_not_own": [
+        "Context facts",
+        "Field State",
+        "PCN relationships",
+        "Intent",
+        "Attention",
+        "Hypothesis",
+        "Current World",
+        "Dynamic Regulation parameters",
+        "Memory",
+        "Learning",
+        "Personality",
+        "Emotion",
+        "Task",
+        "Runtime execution"
+    ],
+    "allowed_actions": [
+        "consume self-related evidence refs",
+        "form candidate-only self attributions",
+        "form candidate-only self continuity updates",
+        "maintain revision/revocation lineage",
+        "preserve original owner trace and provenance"
+    ],
+    "forbidden_actions": [
+        "rewrite source-owner semantics",
+        "promote observation into self fact by default",
+        "activate runtime state",
+        "persist self profile directly",
+        "rewrite personality or emotion",
+        "mutate intent or memory",
+        "change dynamic regulation parameters"
+    ],
+    "upstream_owners_preserved": [
+        "Context Foundation",
+        "Personal Cognitive Network Governance",
+        "Intent Governance",
+        "Cognitive State Formation Governance",
+        "Dynamic Cognitive Regulation Governance",
+        "Cognitive Memory & Experience Governance",
+        "Cognitive Learning Governance"
+    ],
+    "future_downstream_owners": [
+        "Personality Governance",
+        "Emotion Governance"
+    ]
+}

@@ -1,0 +1,55 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.414059+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "code_only_source_install": true,
+  "post_review_included": true,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "source_retry_network_boundary_record",
+  "source_retry_network_boundary_records": [
+    {
+      "record_id": "source_retry_network_boundary_1",
+      "asset_id": "mobile_sam",
+      "allowed_target": "github.com (scoped readonly source checkout)",
+      "actual_target": "https://github.com/ChaoningZhang/MobileSAM (partial clone, blob:none, sparse exclude weights/)",
+      "command_ref": "git clone --filter=blob:none --no-checkout + sparse-checkout + git checkout",
+      "purpose": "weight_excluding_source_checkout",
+      "timestamp": "2026-06-30T04:28:03.409719+00:00",
+      "network_boundary_compliant": true,
+      "violation_detected": false,
+      "violation_reason": null
+    },
+    {
+      "record_id": "source_retry_network_boundary_2",
+      "asset_id": "byte_track",
+      "allowed_target": "github.com (scoped readonly source checkout)",
+      "actual_target": "https://github.com/FoundationVision/ByteTrack (partial clone, blob:none, checkout pinned commit)",
+      "command_ref": "git clone --filter=blob:none --no-checkout + git checkout d1bf0191",
+      "purpose": "scoped_source_checkout_pinned_commit",
+      "timestamp": "2026-06-30T04:28:03.409719+00:00",
+      "network_boundary_compliant": true,
+      "violation_detected": false,
+      "violation_reason": null
+    },
+    {
+      "record_id": "source_retry_network_boundary_3",
+      "asset_id": "both",
+      "allowed_target": "no package index / no external URL",
+      "actual_target": "pip install --no-index (local checkout path only, no PyPI, no weight/model/dataset/example download)",
+      "command_ref": "pip install --no-index --no-deps --no-build-isolation --target",
+      "purpose": "code_only_install_no_download",
+      "timestamp": "2026-06-30T04:28:03.409719+00:00",
+      "network_boundary_compliant": true,
+      "violation_detected": false,
+      "violation_reason": null
+    }
+  ]
+}

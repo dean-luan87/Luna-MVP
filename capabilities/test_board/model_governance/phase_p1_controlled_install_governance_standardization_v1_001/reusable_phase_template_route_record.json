@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "reusable_phase_template_route_record",
+  "reusable_phase_template_route_record": {
+    "record_id": "reusable_phase_template_route_v1",
+    "template_types": [
+      "planning",
+      "request_approval_readiness",
+      "execution_post_review",
+      "failure_review_repair_planning",
+      "registry_patch_planning",
+      "registry_patch_execution",
+      "runtime_boundary_planning"
+    ],
+    "output_path_convention": "_tmp_eval_out/<phase>_smoke_v0/",
+    "test_board_convention": "capabilities/test_board/<module>/phase_<slug>/"
+  }
+}

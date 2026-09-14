@@ -1,0 +1,29 @@
+{
+    "artifact_id": "pcn_subjective_cognition_closure_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "unknown_policy": {
+        "unknown_may_evolve_to_candidate_completion": true,
+        "candidate_completion_sources": [
+            "evidence",
+            "experience",
+            "memory",
+            "system_rules",
+            "causal_reasoning_future"
+        ],
+        "pcn_promote_unknown_to_fact": false
+    },
+    "subjective_policy": {
+        "subjective_belief_preserved": true,
+        "subjective_association_preserved": true,
+        "subjective_strength_preserved": true,
+        "subjective_strength_equals_truth": false,
+        "pcn_reality_arbitration": false
+    },
+    "semantic_guards": {
+        "dormant_not_deleted": true,
+        "historical_reactivation_not_new_truth": true,
+        "resonance_not_causal_fact": true,
+        "competition_not_arbitration": true
+    },
+    "candidate_only": true
+}

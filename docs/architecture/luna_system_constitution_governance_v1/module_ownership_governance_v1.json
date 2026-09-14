@@ -1,0 +1,15 @@
+{
+  "version": "1.0",
+  "name": "Module Ownership Governance",
+  "owners": [
+    {"concept": "Constitution", "owner": "System Constitution", "writer": "Governed Change Control Only", "readers": ["All Layers"]},
+    {"concept": "Reality", "owner": "Reality/Evidence Pipeline", "writer": "Validated Evidence Reducer", "readers": ["Cognitive Core", "Field", "Brain"]},
+    {"concept": "Decision", "owner": "Brain", "writer": "Brain Decision Candidate Flow", "readers": ["Commitment", "Action Boundary", "Trace"]},
+    {"concept": "Action", "owner": "Action Boundary/Runtime", "writer": "Admitted Execution Request", "readers": ["Outcome", "Experience"]},
+    {"concept": "Memory", "owner": "Memory System", "writer": "Memory Admission/Consolidation", "readers": ["Workspace", "Brain", "Learning"]},
+    {"concept": "Capability", "owner": "Capability Registry/Governance", "writer": "Capability Admission Lifecycle", "readers": ["Brain", "Self Regulation", "Runtime"]},
+    {"concept": "Self State", "owner": "Self Model/Self Regulation", "writer": "Validated Self Observation Candidate", "readers": ["Workspace", "Brain", "Capability Governance"]},
+    {"concept": "Goal", "owner": "Goal System/Brain Review", "writer": "Governed Goal Proposal", "readers": ["Task", "Workspace", "Brain"]}
+  ],
+  "rules": {"unique_owner_required": true, "writer_must_be_declared": true, "reader_does_not_imply_write": true, "l0_owner_protected": true}
+}

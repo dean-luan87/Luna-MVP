@@ -1,0 +1,19 @@
+{
+  "schema_id": "ModelNeedHintV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["capability_type", "reason", "policy_ref", "candidate_only", "not_fact"],
+  "field_definitions": {
+    "capability_type": {
+      "enum": ["ocr", "detection", "sam", "slam", "depth", "tracking", "vlm",
+        "search", "map", "speech", "other"]
+    },
+    "reason": { "type": "string" },
+    "policy_ref": { "type": "string" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true }
+  },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

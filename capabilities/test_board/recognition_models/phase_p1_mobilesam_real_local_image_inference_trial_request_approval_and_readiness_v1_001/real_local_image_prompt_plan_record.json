@@ -1,0 +1,99 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Local-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:45:11.725615+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "real_inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "real_local_image_prompt_plan_record",
+  "record": {
+    "record_id": "real_local_image_prompt_plan_v1",
+    "prompt_targets": [
+      {
+        "target_id": "road_sign",
+        "target_description": "road sign region (test prompt only)",
+        "prompt_type": "point_or_box",
+        "approximate_region": {
+          "x_norm": 0.15,
+          "y_norm": 0.25,
+          "w_norm": 0.12,
+          "h_norm": 0.1
+        },
+        "expected_output": "candidate_mask",
+        "semantic_assertion_allowed": false,
+        "fact_write_allowed": false
+      },
+      {
+        "target_id": "left_building",
+        "target_description": "left building facade (test prompt only)",
+        "prompt_type": "point_or_box",
+        "approximate_region": {
+          "x_norm": 0.05,
+          "y_norm": 0.2,
+          "w_norm": 0.25,
+          "h_norm": 0.55
+        },
+        "expected_output": "candidate_mask",
+        "semantic_assertion_allowed": false,
+        "fact_write_allowed": false
+      },
+      {
+        "target_id": "center_advertisement_screen",
+        "target_description": "center advertisement screen (test prompt only)",
+        "prompt_type": "point_or_box",
+        "approximate_region": {
+          "x_norm": 0.42,
+          "y_norm": 0.3,
+          "w_norm": 0.18,
+          "h_norm": 0.15
+        },
+        "expected_output": "candidate_mask",
+        "semantic_assertion_allowed": false,
+        "fact_write_allowed": false
+      },
+      {
+        "target_id": "front_vehicle",
+        "target_description": "front vehicle region (test prompt only)",
+        "prompt_type": "point_or_box",
+        "approximate_region": {
+          "x_norm": 0.55,
+          "y_norm": 0.55,
+          "w_norm": 0.3,
+          "h_norm": 0.25
+        },
+        "expected_output": "candidate_mask",
+        "semantic_assertion_allowed": false,
+        "fact_write_allowed": false
+      },
+      {
+        "target_id": "crosswalk_or_road_region",
+        "target_description": "crosswalk or road region (test prompt only)",
+        "prompt_type": "point_or_box",
+        "approximate_region": {
+          "x_norm": 0.2,
+          "y_norm": 0.7,
+          "w_norm": 0.6,
+          "h_norm": 0.2
+        },
+        "expected_output": "candidate_mask",
+        "semantic_assertion_allowed": false,
+        "fact_write_allowed": false
+      }
+    ],
+    "prompt_labels_are_test_descriptions_only": true,
+    "mobile_sam_does_not_produce_semantic_facts": true,
+    "prompt_target_label_is_not_fact_recognition": true,
+    "segmentation_output_is_candidate_mask_only": true,
+    "object_category_judgment_requires_separate_evidence": true,
+    "coordinates_are_test_prompts_not_fact_layer_positioning": true
+  }
+}

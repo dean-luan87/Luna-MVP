@@ -1,0 +1,15 @@
+{
+  "phase": "Phase-Luna-A-To-B-Contingency-Reasoning-Return-Bridge-Controlled-Implementation-v1-001",
+  "scenario_count": 36,
+  "families": {
+    "trigger": ["AB-01", "AB-02", "AB-03", "AB-04", "AB-05", "AB-06"],
+    "derived_grant": ["BG-01", "BG-02", "BG-03", "BG-04", "BG-05", "BG-06"],
+    "b_result": ["BR-01", "BR-02", "BR-03", "BR-04", "BR-05", "BR-06"],
+    "return": ["RT-01", "RT-02", "RT-03", "RT-04"],
+    "a_evaluation": ["AE-01", "AE-02", "AE-03", "AE-04", "AE-05", "AE-06"],
+    "concurrency": ["CC-01", "CC-02", "CC-03"],
+    "staleness": ["ST-01", "ST-02", "ST-03"],
+    "isolation": ["IS-01"],
+    "negative": ["NG-01"]
+  }
+}

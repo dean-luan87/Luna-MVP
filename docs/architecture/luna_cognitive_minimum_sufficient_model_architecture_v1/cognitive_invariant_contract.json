@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_invariant_v1",
+  "invariants": ["Reality Priority", "Safety", "Ownership", "Self Identity", "Constitution", "Unknown Preservation", "Unique State Owner"],
+  "stable_core": true,
+  "invariant_is_not_parameter": true,
+  "invariant_is_not_goal": true,
+  "invariant_is_not_utility_score": true,
+  "invariant_violation_is_non_compensatory": true,
+  "review_required_for_change": true,
+  "automatic_change": false,
+  "candidate_only": true
+}

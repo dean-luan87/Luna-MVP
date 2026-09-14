@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "local_runner_job_schema_v1",
+  "title": "Local Runner Job V1",
+  "description": "Test job created by Local Runner Bridge Service. Candidate-only. Requires TestBoard.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "status",
+    "status_reason",
+    "created_at",
+    "updated_at",
+    "phase_ref",
+    "asset_manifest_ref",
+    "requested_model_category",
+    "requested_model_id",
+    "candidate_output_only",
+    "requires_test_board_record",
+    "not_runtime",
+    "not_fact_source"
+  ],
+  "properties": {
+    "job_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "created",
+        "asset_registered",
+        "awaiting_approval",
+        "ready_to_run",
+        "running",
+        "adapter_processing",
+        "completed",
+        "failed_no_boundary_violation",
+        "blocked"
+      ]
+    },
+    "status_reason": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "phase_ref": { "type": "string" },
+    "test_board_ref": { "type": "string" },
+    "artifact_refs": { "type": "array", "items": { "type": "string" } },
+    "asset_manifest_ref": { "type": "string" },
+    "requested_model_category": { "type": "string" },
+    "requested_model_id": { "type": "string" },
+    "runner_type": { "type": "string" },
+    "run_after_create": { "type": "boolean", "default": false },
+    "owner_approval_required": { "const": true },
+    "candidate_output_only": { "const": true },
+    "requires_test_board_record": { "const": true },
+    "not_runtime": { "const": true },
+    "not_output_adapter": { "const": true },
+    "not_fact_source": { "const": true },
+    "not_semantic_source": { "const": true },
+    "registry_mutation_allowed": { "const": false },
+    "fact_write_allowed": { "const": false },
+    "semantic_layer_allowed": { "const": false },
+    "navigation_action_speech_allowed": { "const": false }
+  }
+}

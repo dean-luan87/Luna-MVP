@@ -1,0 +1,221 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "RunnerInvocationRequestSchemaV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+    "description": "Runner 调用请求。由 pinned runner_task_candidate 手动触发生成，是执行前准入门禁对象，不是 runner 执行、不是 fact、不是导航决策。",
+    "three_layer_model": {
+      "runner_task_candidate": "what_could_be_considered",
+      "runner_invocation_request": "prepared_application_to_execute",
+      "runner_execution": "actual_model_run"
+    },
+    "required_fields": [
+      "invocation_request_id",
+      "source_runner_task_candidate_id",
+      "source_region_id",
+      "source_attention_record_id",
+      "source_followup_model_route_candidate_id",
+      "requested_runner_type",
+      "requested_by",
+      "trigger_mode",
+      "admission_status",
+      "execution_status",
+      "route_reason",
+      "trace_chain",
+      "candidate_only",
+      "not_fact",
+      "not_executed",
+      "no_navigation_decision",
+      "created_at"
+    ],
+    "field_definitions": {
+      "invocation_request_id": {
+        "type": "string",
+        "pattern": "^rir_(detection|ocr)_[a-z0-9_]+$",
+        "description": "调用请求唯一 ID"
+      },
+      "source_runner_task_candidate_id": {
+        "type": "string",
+        "pattern": "^rtc_[a-z0-9_]+$",
+        "description": "必须来自 pinned runner_task_candidate"
+      },
+      "source_region_id": {
+        "type": "string"
+      },
+      "source_attention_record_id": {
+        "type": "string"
+      },
+      "source_followup_model_route_candidate_id": {
+        "type": "string"
+      },
+      "source_envelope_ref": {
+        "type": "string"
+      },
+      "requested_runner_type": {
+        "type": "string",
+        "enum": [
+          "Detection",
+          "OCR"
+        ],
+        "description": "本阶段 scope：Detection / OCR"
+      },
+      "source_target_model_id": {
+        "type": "string",
+        "enum": [
+          "detection",
+          "ocr"
+        ],
+        "description": "与 runner_task_candidate.target_model_id 一致"
+      },
+      "requested_by": {
+        "type": "string",
+        "enum": [
+          "manual_user_trigger",
+          "developer_test_trigger"
+        ]
+      },
+      "trigger_mode": {
+        "type": "string",
+        "enum": [
+          "manual_only"
+        ],
+        "const": "manual_only"
+      },
+      "admission_status": {
+        "type": "string",
+        "enum": [
+          "pending_admission",
+          "admitted",
+          "rejected",
+          "cancelled"
+        ]
+      },
+      "execution_status": {
+        "type": "string",
+        "enum": [
+          "not_executed"
+        ],
+        "const": "not_executed",
+        "description": "本阶段 planning only：禁止 running/executed/completed"
+      },
+      "input_payload_ref": {
+        "type": "string",
+        "description": "Envelope / frame 引用，不触发模型调用"
+      },
+      "region_crop_ref": {
+        "type": "string"
+      },
+      "region_geometry_ref": {
+        "type": "string"
+      },
+      "route_reason": {
+        "type": "string"
+      },
+      "source_queue_state_at_request": {
+        "type": "string",
+        "enum": [
+          "pinned"
+        ],
+        "description": "生成 request 时 task 必须为 pinned"
+      },
+      "trace_chain": {
+        "type": "array",
+        "minItems": 5,
+        "items": {
+          "type": "object",
+          "required": [
+            "stage",
+            "ref"
+          ],
+          "properties": {
+            "stage": {
+              "type": "string",
+              "enum": [
+                "segmentation_region",
+                "observation_attention_record",
+                "followup_model_route_candidate",
+                "runner_task_candidate",
+                "runner_invocation_request"
+              ]
+            },
+            "ref": {
+              "type": "string"
+            },
+            "queue_state": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "candidate_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_fact": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_executed": {
+        "type": "boolean",
+        "const": true
+      },
+      "no_navigation_decision": {
+        "type": "boolean",
+        "const": true
+      },
+      "invocation_request_only": {
+        "type": "boolean",
+        "const": true
+      },
+      "not_runner_execution": {
+        "type": "boolean",
+        "const": true
+      },
+      "correction_boosted": {
+        "type": "boolean",
+        "description": "Human correction priority signal only, not ground truth"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    "boundary_flags": {
+      "planning_only": true,
+      "invocation_request_only": true,
+      "not_runner_execution": true,
+      "not_fact": true,
+      "candidate_only": true,
+      "no_navigation_decision": true,
+      "execution_status_not_executed_only": true,
+      "requires_pinned_runner_task_candidate": true,
+      "not_auto_runner_trigger": true
+    },
+    "forbidden_interpretations": [
+      "runner_execution",
+      "model_output",
+      "fact_write",
+      "navigation_command",
+      "auto_runner_trigger",
+      "running_state",
+      "executed_state",
+      "completed_state",
+      "orphan_request",
+      "bypass_runner_task_candidate",
+      "human_correction_as_ground_truth",
+      "prompt_label_as_ground_truth",
+      "confirmed_dynamic_from_single_frame"
+    ],
+    "upstream_schema_refs": [
+      "capabilities/midplatform/model_test_lens/schemas/followup_runner_route/followup_runner_task_candidate_schema_v1.json",
+      "capabilities/midplatform/model_test_lens/schemas/observation_attention/followup_model_route_schema_v1.json"
+    ]
+  }
+}

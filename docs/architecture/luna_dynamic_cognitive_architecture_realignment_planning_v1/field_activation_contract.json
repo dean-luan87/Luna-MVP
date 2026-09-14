@@ -1,0 +1,15 @@
+{
+  "contract_id": "field_cognitive_network_activation_v1",
+  "field_owner": "Field System",
+  "network_owner": "Personal Cognitive Network Governance",
+  "inputs": ["Admitted Field State Candidate", "Current Task Context", "Self State", "Role Context", "Relationship Context", "Resource State"],
+  "outputs": ["Field Context Projection Candidate", "Network Activation Candidate", "Related Field Candidate", "Unknown Activation Candidate"],
+  "example_related_fields": ["Work Field", "Family Field", "Financial Field", "Self Growth Field", "Emotion Context"],
+  "field_state_reducer_mainline_preserved": true,
+  "field_is_not_location_only": true,
+  "activation_does_not_modify_source_objects": true,
+  "activation_does_not_write_memory": true,
+  "activation_does_not_create_intent": true,
+  "candidate_only": true,
+  "runtime": false
+}

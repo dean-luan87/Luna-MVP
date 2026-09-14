@@ -1,0 +1,10 @@
+{
+  "artifact":"comparability_gate_v1",
+  "candidate_only":true,
+  "states":["COMPARABLE","PARTIALLY_COMPARABLE","NOT_COMPARABLE","INSUFFICIENT_EVIDENCE","STALE_ACTUAL","STALE_EXPECTATION","CONTESTED","NEEDS_CONFIRMATION"],
+  "checks":["same target/entity","same attribute/relation","compatible temporal window","compatible spatial scope","compatible units/schema","sufficient evidence","contradiction state","uncertainty","source validity","correction/revocation status"],
+  "outputs":["comparability_state","comparison_basis_refs","blocked_reason_refs","uncertainty_refs","required_confirmation_refs","trace_ref","provenance_refs"],
+  "rule":"No deviation calculation is authorized unless the gate returns COMPARABLE or PARTIALLY_COMPARABLE.",
+  "not_comparable_behavior":"preserve unknown/mismatch reason and emit no forced success/error conclusion",
+  "confidence_boundary":"model confidence cannot bypass comparability"
+}

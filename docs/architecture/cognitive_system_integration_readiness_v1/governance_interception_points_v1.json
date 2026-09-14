@@ -1,0 +1,22 @@
+{
+  "contract_name": "Governance Interception Points v1",
+  "interception_points": [
+    {"point": "Protocol", "checks": ["schema", "version", "compatibility"]},
+    {"point": "Authority", "checks": ["owner", "permission", "scope"]},
+    {"point": "Admission", "checks": ["identity", "capability", "boundary", "health"]},
+    {"point": "Resource", "checks": ["compute", "energy", "memory", "latency", "network"]},
+    {"point": "Runtime", "checks": ["process lifecycle", "tick", "wake-up", "state synchronization"]},
+    {"point": "Diagnostics", "checks": ["failure classification", "provenance", "degradation", "unknown"]}
+  ],
+  "protocol_interception_required": true,
+  "authority_interception_required": true,
+  "admission_interception_required": true,
+  "resource_interception_required": true,
+  "runtime_interception_required": true,
+  "diagnostics_interception_required": true,
+  "diagnostics_emits_candidate_not_action": true,
+  "governance_does_not_make_decision": true,
+  "governance_does_not_modify_reality": true,
+  "governance_lifecycle": ["Draft", "Review", "Admission", "Active", "Deprecated", "Archived"],
+  "unknowns_are_preserved": true
+}

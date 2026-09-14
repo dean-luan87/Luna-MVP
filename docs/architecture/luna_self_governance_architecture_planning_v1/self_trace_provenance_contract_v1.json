@@ -1,0 +1,33 @@
+{
+    "artifact": "self_trace_provenance_contract_v1",
+    "required_fields": [
+        "root_cycle_trace_id",
+        "self_trace_id",
+        "self_ref_id",
+        "self_attribution_id",
+        "continuity_id",
+        "source_intent_refs",
+        "source_memory_refs",
+        "source_learning_refs",
+        "source_pcn_refs",
+        "source_regulation_refs",
+        "source_context_refs",
+        "revision_refs",
+        "revocation_refs",
+        "provenance_refs",
+        "schema_version",
+        "contract_version"
+    ],
+    "reverse_route": [
+        "Self candidate",
+        "self attribution",
+        "memory / learning / intent / PCN / regulation evidence",
+        "cognitive cycle",
+        "source context/evidence"
+    ],
+    "rules": {
+        "original_owner_provenance_immutable": true,
+        "trace_continuity_not_authority": true,
+        "reverse_lookup_supported": true
+    }
+}

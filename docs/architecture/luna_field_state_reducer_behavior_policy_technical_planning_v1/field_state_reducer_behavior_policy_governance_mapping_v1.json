@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Governance Mapping",
+    "governance_domains": [
+        "L0 Constitution",
+        "L1 System Protocols",
+        "Information Channel Governance",
+        "Permission / Admission Contract",
+        "Change Control",
+        "Runtime Boundary Contract",
+        "Model / Skill Admission Contract",
+        "System Diagnostics",
+        "Protocol Lifecycle Governance",
+        "Fact Admission",
+        "Human Correction Governance",
+        "Replay Governance"
+    ],
+    "policy_layer_governed": true,
+    "policy_layer_is_constitution_layer": false,
+    "policy_layer_has_fact_admission_authority": false,
+    "policy_layer_has_action_trigger_authority": false,
+    "policy_layer_has_direct_state_store_write_authority": false,
+    "governance_mapping_complete": true
+}

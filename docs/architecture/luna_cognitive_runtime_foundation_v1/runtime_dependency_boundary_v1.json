@@ -1,0 +1,21 @@
+{
+  "title": "Runtime Foundation Dependency Boundary v1",
+  "allowed": [
+    {"source":"L0 Constitution","target":"Runtime Foundation","mode":"constraint"},
+    {"source":"Cognitive OS","target":"Runtime Foundation","mode":"lifecycle/event/state contracts"},
+    {"source":"Runtime Foundation","target":"L2 Cognitive Core","mode":"flow/state/trace candidates"},
+    {"source":"Runtime Foundation","target":"L4 Capability Boundary","mode":"event/health routing only"},
+    {"source":"Reflex","target":"Runtime Foundation","mode":"wake-up/interrupt candidate"}
+  ],
+  "forbidden": [
+    "Runtime → Decision Ownership",
+    "Runtime → Reality Modification",
+    "Runtime → Action Execution",
+    "Capability → Runtime Control",
+    "Emotion → Runtime Scheduling",
+    "Runtime → Goal Mutation",
+    "Runtime → Value Mutation",
+    "Runtime → Constitution Mutation"
+  ],
+  "rules": {"runtime_is_substrate": true, "owner_validation_required": true, "no_direct_action": true, "no_direct_reality_write": true, "no_real_runtime": true}
+}

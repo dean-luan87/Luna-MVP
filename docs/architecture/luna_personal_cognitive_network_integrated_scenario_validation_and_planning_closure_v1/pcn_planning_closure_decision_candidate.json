@@ -1,0 +1,35 @@
+{
+  "artifact_id": "pcn_planning_closure_decision_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "PCN Planning Closure Governance",
+  "stability_checks": {
+    "object_model_stable": true,
+    "link_model_stable": true,
+    "source_ownership_stable": true,
+    "activation_model_stable": true,
+    "field_role_interaction_stable": true,
+    "resource_boundary_stable": true,
+    "dormancy_stable": true,
+    "subjective_boundary_stable": true,
+    "context_handoff_stable": true,
+    "memory_boundary_stable": true,
+    "causal_boundary_stable": true,
+    "nested_loop_model_stable": true
+  },
+  "decision_inputs": {
+    "scenario_suite_all_pass": true,
+    "conflict_matrix_blocker_count": 0,
+    "open_question_blocker_count": 0,
+    "interaction_kernel_boundary_compatible": true,
+    "source_mutation_detected": false,
+    "second_writer_detected": false
+  },
+  "decision_rule": "READY_FOR_CONTROLLED_SKELETON only when every stability check and scenario passes, no conflict/open-question blocker exists, and no source mutation or second writer is detected; otherwise REMEDIATION_REQUIRED.",
+  "decision": "READY_FOR_CONTROLLED_SKELETON",
+  "decision_is_derived_not_hardcoded": true,
+  "readiness_means_authorization": false,
+  "implementation_authorized": false,
+  "skeleton_authorized": false,
+  "next_phase_authorized": false,
+  "candidate_only": true
+}

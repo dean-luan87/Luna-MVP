@@ -1,0 +1,22 @@
+{
+  "contract_name": "Adaptation Candidate Contract v1",
+  "source_experience_reference": "experience-example",
+  "candidate_type": "Attention Pattern | Behavior Pattern | Self Capability Adjustment | Field Observation",
+  "scope": null,
+  "condition": null,
+  "expected_effect": null,
+  "confidence": null,
+  "unknowns": [],
+  "provenance": [],
+  "validation_state": "Candidate | Review | Accepted Candidate | Rejected | Expired",
+  "increase_attention_to_exits": true,
+  "always_avoid_this_place": false,
+  "candidate_only": true,
+  "no_automatic_learning": true,
+  "no_model_parameter_update": true,
+  "no_direct_action": true,
+  "no_goal_mutation": true,
+  "no_decision_mutation": true,
+  "no_identity_mutation": true,
+  "unknowns_are_preserved": true
+}

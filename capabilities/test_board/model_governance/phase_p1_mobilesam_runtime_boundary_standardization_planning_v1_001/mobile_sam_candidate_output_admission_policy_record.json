@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Runtime-Boundary-Standardization-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:38:54.578829+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "runtime_execution_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_candidate_output_admission_policy_record",
+  "record": {
+    "record_id": "mobile_sam_candidate_output_admission_policy_v1",
+    "candidate_output_may_enter_runtime_admission_review": true,
+    "candidate_output_must_remain_candidate": true,
+    "candidate_output_requires_schema": true,
+    "candidate_output_requires_no_fact_write": true
+  }
+}

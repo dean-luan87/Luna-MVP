@@ -1,0 +1,106 @@
+{
+    "artifact": "dynamic_regulation_minimum_scenario_suite_v1",
+    "scenario_count": 20,
+    "scenarios": [
+        {
+            "id": "R01",
+            "name": "normal_stable_state_no_regulation_needed",
+            "expect": "no_change_candidate"
+        },
+        {
+            "id": "R02",
+            "name": "attention_overload_bounded_attention_modulation",
+            "expect": "attention_modulation_candidate_bounded"
+        },
+        {
+            "id": "R03",
+            "name": "uncertainty_high_exploration_bias_candidate",
+            "expect": "exploration_bias_candidate"
+        },
+        {
+            "id": "R04",
+            "name": "repeated_unresolved_hypothesis_reconsideration_sensitivity",
+            "expect": "reconsideration_sensitivity_candidate"
+        },
+        {
+            "id": "R05",
+            "name": "resource_pressure_resource_allocation_modulation",
+            "expect": "resource_allocation_candidate"
+        },
+        {
+            "id": "R06",
+            "name": "emotional_spike_influence_no_authority_takeover",
+            "expect": "emotion_influence_only"
+        },
+        {
+            "id": "R07",
+            "name": "intent_priority_influence_no_intent_mutation",
+            "expect": "intent_influence_only"
+        },
+        {
+            "id": "R08",
+            "name": "parameter_reaches_upper_bound",
+            "expect": "clamped_upper_bound_with_reason"
+        },
+        {
+            "id": "R09",
+            "name": "parameter_reaches_lower_bound",
+            "expect": "clamped_lower_bound_with_reason"
+        },
+        {
+            "id": "R10",
+            "name": "immutable_parameter_mutation_rejected",
+            "expect": "rejected"
+        },
+        {
+            "id": "R11",
+            "name": "governance_controlled_parameter_requires_approval",
+            "expect": "deferred_or_under_review"
+        },
+        {
+            "id": "R12",
+            "name": "temporary_parameter_expires",
+            "expect": "expired_and_not_reused"
+        },
+        {
+            "id": "R13",
+            "name": "conflicting_regulation_candidates_coexist",
+            "expect": "conflicts_preserved"
+        },
+        {
+            "id": "R14",
+            "name": "state_vector_stale_regulation_rejected_or_deferred",
+            "expect": "rejected_or_deferred"
+        },
+        {
+            "id": "R15",
+            "name": "missing_provenance_reject",
+            "expect": "rejected"
+        },
+        {
+            "id": "R16",
+            "name": "learned_parameter_candidate_cannot_auto_apply",
+            "expect": "candidate_only_no_auto_apply"
+        },
+        {
+            "id": "R17",
+            "name": "regulation_revision",
+            "expect": "revision_lineage_present"
+        },
+        {
+            "id": "R18",
+            "name": "regulation_revocation",
+            "expect": "revocation_lineage_present"
+        },
+        {
+            "id": "R19",
+            "name": "duplicate_regulation_candidate_idempotency",
+            "expect": "idempotent_result"
+        },
+        {
+            "id": "R20",
+            "name": "downstream_influence_candidate_handoff",
+            "expect": "candidate_only_handoff"
+        }
+    ]
+}

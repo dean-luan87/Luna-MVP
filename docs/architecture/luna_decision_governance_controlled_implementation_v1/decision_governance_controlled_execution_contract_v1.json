@@ -1,0 +1,46 @@
+{
+    "contract_id": "luna_decision_governance_controlled_implementation_contract_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "phase": "Phase-Luna-Decision-Governance-Controlled-Implementation-v1-001",
+    "canonical_owner": "Decision Governance",
+    "legacy_aliases": [
+        {
+            "name": "Decision Arbitration",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Brain Decision",
+            "authority": false,
+            "mutation_authority": false
+        },
+        {
+            "name": "Decision Commitment",
+            "authority": false,
+            "mutation_authority": false
+        }
+    ],
+    "candidate_only": true,
+    "synthetic_fixture_only": true,
+    "deterministic_governance_logic": true,
+    "runtime_execution": false,
+    "database_write": false,
+    "source_mutation_allowed": false,
+    "decision_output": false,
+    "action_output": false,
+    "task_output": false,
+    "handoff_kind": "DECISION_TO_ACTION_TASK_HANDOFF_CANDIDATE",
+    "forbidden_outputs": [
+        "actual action",
+        "actuator command",
+        "navigation execution",
+        "speech execution",
+        "task creation",
+        "scheduler operation",
+        "api side effect",
+        "database mutation"
+    ],
+    "active_schema_changed": false,
+    "active_contract_changed": false,
+    "owner_metadata_changed": false
+}

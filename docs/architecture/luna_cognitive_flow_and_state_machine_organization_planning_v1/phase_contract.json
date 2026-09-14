@@ -1,0 +1,67 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Flow-And-State-Machine-Organization-Planning-v1-001",
+    "execution_mode": "PLANNING_ONLY",
+    "canonical_execution_root": "/Users/luanlei/Desktop/Luna-Core",
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1",
+        "docs/architecture/luna_cognitive_state_machine_architecture_v1",
+        "capabilities/midplatform/core/context_foundation",
+        "capabilities/midplatform/core/personal_cognitive_network",
+        "capabilities/midplatform/core/intent_governance",
+        "capabilities/midplatform/core/cognitive_state_formation",
+        "capabilities/midplatform/core/dynamic_cognitive_regulation",
+        "capabilities/midplatform/core/causal_governance",
+        "capabilities/midplatform/core/field_state_reducer",
+        "capabilities/midplatform/core/context_pcn_intent_mainline",
+        "capabilities/midplatform/core/cognitive_execution_chain"
+    ],
+    "scope": {
+        "in_scope": [
+            "cycle organization planning",
+            "owner boundary planning",
+            "transition/reconsideration/suspend/resume planning",
+            "trace and inheritance planning",
+            "future memory and learning insertion boundary planning"
+        ],
+        "out_of_scope": [
+            "runtime implementation",
+            "module implementation changes",
+            "memory implementation",
+            "learning implementation",
+            "scheduler execution"
+        ]
+    },
+    "deliverables": [
+        "cognitive_flow_architecture_plan_v1.md",
+        "cognitive_flow_existing_asset_inventory_v1.json",
+        "cognitive_flow_historical_asset_classification_v1.json",
+        "cognitive_flow_owner_boundary_v1.json",
+        "cognitive_cycle_definition_v1.json",
+        "cognitive_cycle_state_model_v1.json",
+        "cognitive_cycle_transition_contract_v1.json",
+        "cognitive_flow_module_interaction_matrix_v1.json",
+        "cognitive_flow_serial_parallel_feedback_model_v1.json",
+        "cognitive_flow_interrupt_suspend_resume_contract_v1.json",
+        "cognitive_cycle_inheritance_contract_v1.json",
+        "cognitive_flow_memory_insertion_boundary_v1.json",
+        "cognitive_flow_learning_insertion_boundary_v1.json",
+        "cognitive_flow_trace_provenance_contract_v1.json",
+        "cognitive_flow_idempotency_contract_v1.json",
+        "cognitive_flow_negative_guards_v1.json",
+        "cognitive_flow_minimum_scenario_suite_v1.json",
+        "cognitive_flow_gap_registry_v1.json",
+        "cognitive_flow_planning_summary_v1.md",
+        "phase_contract.json",
+        "verify_cognitive_flow_and_state_machine_organization_planning_v1.py"
+    ],
+    "agent_forbidden_execution": [
+        "python",
+        "python3",
+        "runner",
+        "verifier",
+        "pytest",
+        "py_compile",
+        "shell_validation"
+    ],
+    "agent_stop_state": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

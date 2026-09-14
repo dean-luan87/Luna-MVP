@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T08:52:29.597074+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_dependency_repair_install_execution_profile_count": 1,
+    "stage_ref_count": 11,
+    "timm_pre_install_snapshot_record_count": 1,
+    "timm_version_resolution_record_count": 1,
+    "timm_install_execution_record_count": 1,
+    "timm_dependency_mutation_record_count": 1,
+    "timm_find_spec_probe_record_count": 1,
+    "timm_environment_contamination_audit_count": 1,
+    "timm_install_post_review_audit_count": 1,
+    "timm_rollback_readiness_record_count": 1,
+    "mobile_sam_model_load_retry_gate_after_timm_install_count": 1,
+    "negative_guard_count": 18,
+    "blocker_count": 0
+  }
+}

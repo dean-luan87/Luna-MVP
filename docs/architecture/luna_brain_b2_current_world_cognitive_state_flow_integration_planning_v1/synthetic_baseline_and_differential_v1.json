@@ -1,0 +1,12 @@
+{
+  "baseline_assets": [
+    {"asset": "cognitive_state_formation_fixture_v1.py", "classification": "A", "role": "synthetic Cognitive State candidate formation"},
+    {"asset": "cognitive_flow_fixture_v1.py", "classification": "A", "role": "synthetic lifecycle/transition candidates"},
+    {"asset": "Context/World C01-C36 fixtures", "classification": "A", "role": "synthetic upstream Context/CurrentWorld regression"},
+    {"asset": "direct provider-to-brain or parallel world paths", "classification": "C", "role": "bypass and not promotable"}
+  ],
+  "replacement": "Keep synthetic inputs and add a real B1 CurrentWorld reference through the same canonical formation/flow boundaries.",
+  "differential_dimensions": ["contract outputs", "owner preservation", "state-transition shape", "trace/provenance", "uncertainty and contradiction preservation", "attention/hypothesis boundaries", "negative guards", "unrelated module behavior"],
+  "allowed_differences": ["attention targets", "hypothesis content", "candidate confidence", "number of hypotheses", "world candidate identifiers", "real evidence references"],
+  "forbidden_differences": ["truth promotion", "field mutation", "intent mutation", "provider invocation", "semantic compression", "owner bypass"]
+}

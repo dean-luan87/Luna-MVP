@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Provider Boundary",
+  "owner": "Provider Governance",
+  "flow": ["Capability", "Provider Adapter", "Model", "Evidence Candidate"],
+  "provides": ["Implementation Entry Point", "Adapter Contract", "Provider Health Evidence"],
+  "does_not_own": ["Decision", "State", "Reality", "Goal", "Identity", "Memory"],
+  "existing_asset_roots": ["docs/architecture/luna_capability_runtime_integration_v1/provider_adapter_contract_v1.json", "docs/architecture/cognitive_capability_runtime_contract_v1/provider_isolation_contract_v1.md"],
+  "rules": {"provider_isolation": true, "evidence_gateway_required": true, "no_direct_brain": true, "no_direct_reality_write": true, "qualification_required": true}
+}

@@ -1,0 +1,14 @@
+{
+  "interface_name": "Social Emotion Placeholder v1",
+  "social_field_reference": "social-field-example",
+  "role_reference": "role-context-example",
+  "relationship_reference": "relationship-example",
+  "memory_reference": "memory-example",
+  "emotion_state_candidate": null,
+  "placeholder_only": true,
+  "emotion_runtime": false,
+  "emotion_does_not_modify_reality": true,
+  "emotion_does_not_make_decision": true,
+  "emotion_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

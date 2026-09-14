@@ -1,0 +1,32 @@
+{
+  "artifact": "emotion_concept_boundary_matrix_v1",
+  "canonical_owner": "Emotion Governance",
+  "frozen_inequalities": [
+    "Emotion Evidence != Emotion Appraisal",
+    "Emotion Appraisal != Emotion State",
+    "Emotion State != Mood",
+    "Emotion State != Personality Trait",
+    "Emotion State != Self",
+    "Emotion State != Memory",
+    "Emotion State != Intent",
+    "Emotion State != Action",
+    "Emotion State != External Reality"
+  ],
+  "concepts": {
+    "Emotion Evidence": "source-bound observation/reference candidate with evidence, provenance, confidence, uncertainty, and temporal scope",
+    "Emotion Appraisal": "candidate interpretation of relevance, expectation, goal relation, risk, or affective meaning; not state truth",
+    "Emotion State": "multidimensional candidate containing valence, arousal, activation/intensity, category candidates, context, and validity",
+    "Mood": "broader contextual persistence candidate that may contain emotion references; not immutable state or personality truth",
+    "Personality Trait": "Personality Governance candidate; emotion is evidence only and cannot activate it",
+    "Self": "Self Governance identity/continuity candidate; emotion cannot mutate it",
+    "Memory": "Cognitive Memory & Experience historical semantic owner; emotion supplies observation candidates",
+    "Intent": "Intent Governance goal-pressure/priority owner; emotion supplies influence candidates only",
+    "Action": "downstream action owner; emotion has no execution authority",
+    "External Reality": "reality/evidence authority; emotion cannot rewrite facts"
+  },
+  "anti_flattening_rules": [
+    "Do not collapse valence, arousal, activation, category, uncertainty, and context into one opaque emotional score.",
+    "Do not silently average contradictory evidence into certainty.",
+    "Named emotion categories remain candidate semantics and may be revised, superseded, revoked, or expired."
+  ]
+}

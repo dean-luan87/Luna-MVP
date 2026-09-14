@@ -1,0 +1,39 @@
+{
+  "file_ref": "sample_spatial_fusion_trace",
+  "format_ref": "generic_json_spatial_trace",
+  "file_origin": {
+    "source_kind": "local_controlled_sample",
+    "source_path": "capabilities/field_understanding/generic_json_spatial_trace_real_file_replay_dryrun/samples/sample_spatial_fusion_trace.json",
+    "file_origin_ref": "sample_spatial_fusion_trace_v1",
+    "converted_from": "slam_local_odometry_with_gps_stub_metadata"
+  },
+  "trace_items": [
+    {
+      "trace_id": "real_fusion_pose_gps_stub_001",
+      "source_chain": [
+        "generic_json_spatial_trace_real_file_replay_dryrun_v1",
+        "sample_spatial_fusion_trace",
+        "real_fusion_pose_gps_stub_001"
+      ],
+      "timestamp_ms": 1700004000,
+      "confidence": 0.87,
+      "candidate_type": "pose",
+      "field_synthesis_entrypoint": "field_synthesis_v1",
+      "payload": {
+        "position_m": [5.4, 2.1, 0.0],
+        "orientation_quat": [0.0, 0.0, 0.0, 1.0],
+        "companion_candidate_types": ["motion"],
+        "motion": {
+          "velocity_mps": [0.15, 0.04, 0.0]
+        },
+        "gps_hint": {
+          "gps_stub_ref": "gps_stub_outdoor_01",
+          "alignment_hint": "slam_primary_gps_support",
+          "must_not_override_field_identity": true
+        },
+        "graph_anchor_candidate_ref": "anchor_outdoor_gate_a"
+      },
+      "candidate_only": true
+    }
+  ]
+}

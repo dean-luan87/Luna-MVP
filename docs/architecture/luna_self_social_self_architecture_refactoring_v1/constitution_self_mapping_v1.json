@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Constitution to Self Mapping",
+  "constitution_owner": "L0 System Constitution",
+  "self_layer_relation": "Self Layer is constrained by Constitution and cannot edit it at Runtime",
+  "social_self_relation": "Social Self Layer is constrained by Constitution and cannot edit it at Runtime",
+  "integration_relation": "Integration reads Constitution constraints and emits candidates only",
+  "protected_principles": ["System Stability", "Evidence First", "Boundary Respect", "Unknown Preservation", "State Ownership", "Human Interaction Safety"],
+  "forbidden": ["Self → Constitution Modification", "Social Self → Constitution Modification", "Integration → Constitution Modification", "Emotion → Constitution Modification"],
+  "rules": {"constitution_top_level": true, "self_read_only": true, "social_self_read_only": true, "integration_read_only": true}
+}

@@ -1,0 +1,90 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.305348+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "localhost_only": true,
+  "not_runtime": true,
+  "candidate_output_only": true,
+  "record": {
+    "record_id": "local_runner_bridge_api_plan_v1",
+    "service_host": "http://127.0.0.1:8787",
+    "service_bind_address": "127.0.0.1",
+    "service_port": 8787,
+    "ui_host": "http://localhost:8765",
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/api/v1/assets/register",
+        "purpose": "receive local upload or path ref; generate manifest; return asset_id/manifest_ref"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/jobs/create",
+        "purpose": "create test job from asset_manifest + model_category + model_id",
+        "run_after_create_default": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/jobs/{job_id}/run",
+        "purpose": "trigger local runner execution; localhost only; candidate-only; TestBoard required"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/status",
+        "purpose": "return queued/running/completed/failed/blocked"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/result",
+        "purpose": "return envelope path, result manifest, TestBoard refs"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/capabilities",
+        "purpose": "return available local runners on this machine"
+      }
+    ],
+    "localhost_only": true,
+    "external_network_allowed": false,
+    "asset_store_rel": "capabilities/test_assets/model_test_lens",
+    "endpoints_detail": [
+      {
+        "method": "POST",
+        "path": "/api/v1/assets/register",
+        "purpose": "receive local upload or path ref; generate manifest; return asset_id/manifest_ref"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/jobs/create",
+        "purpose": "create test job from asset_manifest + model_category + model_id",
+        "run_after_create_default": false
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/jobs/{job_id}/run",
+        "purpose": "trigger local runner execution; localhost only; candidate-only; TestBoard required"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/status",
+        "purpose": "return queued/running/completed/failed/blocked"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/jobs/{job_id}/result",
+        "purpose": "return envelope path, result manifest, TestBoard refs"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/capabilities",
+        "purpose": "return available local runners on this machine"
+      }
+    ]
+  }
+}

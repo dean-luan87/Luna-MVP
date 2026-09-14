@@ -1,0 +1,98 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Precedence Matrix",
+    "precedence_rules": [
+        {
+            "higher_policy": "revocation_override",
+            "lower_policy": "latest_valid_event",
+            "condition": "revocation_event_valid_and_active",
+            "reason": "撤销优先阻断被撤销支持继续参与。",
+            "deterministic_tie_breaker": "stable_event_id_tie_breaker",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "revocation_override",
+            "lower_policy": "highest_confidence_valid_event",
+            "condition": "revocation_targets_current_support",
+            "reason": "高置信度不应覆盖撤销。",
+            "deterministic_tie_breaker": "stable_event_id_tie_breaker",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "conflict_preservation",
+            "lower_policy": "highest_confidence_valid_event",
+            "condition": "contradiction_unresolved_or_unsafe_single_winner",
+            "reason": "冲突未安全解决时优先保留冲突。",
+            "deterministic_tie_breaker": "conflict_rule_id_then_stable_event_id",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "insufficient_evidence_unresolved",
+            "lower_policy": "latest_valid_event",
+            "condition": "evidence_below_threshold",
+            "reason": "证据不足优先 unresolved，禁止 fabricated state。",
+            "deterministic_tie_breaker": "minimum_evidence_rule_id",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "temporary_overlay_separation",
+            "lower_policy": "latest_valid_event",
+            "condition": "overlay_and_substrate_both_present",
+            "reason": "overlay 分层优先，禁止 substrate overwrite。",
+            "deterministic_tie_breaker": "overlay_scope_then_stable_event_id",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "expiration_degrade",
+            "lower_policy": "latest_valid_event",
+            "condition": "support_expired_without_fresh_replacement",
+            "reason": "过期支持不能继续作为 active support。",
+            "deterministic_tie_breaker": "temporal_status_priority",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "conflict_preservation",
+            "lower_policy": "multi_event_consensus",
+            "condition": "consensus_inputs_contain_hard_contradiction",
+            "reason": "共识不能伪装冲突。",
+            "deterministic_tie_breaker": "conflict_rule_id_then_input_order",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "no_state_change",
+            "lower_policy": "latest_valid_event",
+            "condition": "no_safe_policy_after_precedence_filter",
+            "reason": "no_state_change 作为安全 fallback。",
+            "deterministic_tie_breaker": "fallback_order_index",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "multi_event_consensus",
+            "lower_policy": "highest_confidence_valid_event",
+            "condition": "source_diversity_required_and_available",
+            "reason": "多源一致性优先于单源置信度 winner。",
+            "deterministic_tie_breaker": "source_diversity_score_then_stable_event_id",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        },
+        {
+            "higher_policy": "conflict_preservation",
+            "lower_policy": "explicit_owner_override_candidate",
+            "condition": "owner_correction_conflicts_with_confirmed_fact_without_review",
+            "reason": "Owner correction 不能未经评审直接覆盖 confirmed fact。",
+            "deterministic_tie_breaker": "governance_review_state",
+            "override_allowed": true,
+            "fact_promotion_allowed": false
+        }
+    ],
+    "owner_correction_not_auto_higher_than_confirmed_fact": true,
+    "precedence_matrix_complete": true
+}

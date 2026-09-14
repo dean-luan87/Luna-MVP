@@ -1,0 +1,7 @@
+{
+  "title": "Action Candidate Management v1",
+  "owner": "Action Boundary Governance",
+  "schema": ["candidate_id", "action_type", "benefit", "risk", "dependency", "confidence", "source_request", "trace_id"],
+  "operations": ["create candidate", "compare candidates", "retain alternatives", "expire candidate", "submit validation"],
+  "rules": {"candidate_not_action": true, "multiple_candidates_allowed": true, "no_auto_execution": true, "unknown_preserved": true}
+}

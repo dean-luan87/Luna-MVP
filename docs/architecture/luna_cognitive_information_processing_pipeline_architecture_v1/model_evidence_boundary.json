@@ -1,0 +1,10 @@
+{
+  "boundary_id": "model_provider_evidence_boundary_v1",
+  "owner": "Capability Governance / Evidence Gateway",
+  "model_and_provider_outputs": ["observation", "evidence", "confidence", "provenance", "limitations", "unknowns"],
+  "model_stops_at": "Evidence",
+  "forbidden_outputs": ["meaning", "situation_understanding", "decision", "goal", "identity_update", "memory_fact", "growth", "action_command"],
+  "gateway_required": true,
+  "direct_core_access": false,
+  "direct_reality_write": false
+}

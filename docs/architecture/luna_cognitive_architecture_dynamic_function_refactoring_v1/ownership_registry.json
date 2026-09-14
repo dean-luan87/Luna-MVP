@@ -1,0 +1,24 @@
+{
+  "registry_id": "dynamic_refactoring_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Module Function Mapping", "owner": "Architecture Governance", "writer": "Mapping Candidate Registry", "reader": "All Meta Architecture"},
+    {"module": "Function Space", "owner": "Cognitive Function Governance", "writer": "Function Contract Boundary", "reader": "Dynamic Functions"},
+    {"module": "Field Function", "owner": "Cognitive Field Governance", "writer": "Field Candidate Flow", "reader": "Cognitive Function"},
+    {"module": "Attention Function", "owner": "Attention System", "writer": "Attention Candidate Flow", "reader": "Cognitive Function"},
+    {"module": "Memory Influence Function", "owner": "Memory Governance", "writer": "Memory Activation Candidate Flow", "reader": "Context and Understanding"},
+    {"module": "Self Regulation Function", "owner": "Self Regulation", "writer": "Self Regulation Candidate Flow", "reader": "Cognitive Function"},
+    {"module": "Exploration Function", "owner": "Uncertainty Exploration Governance", "writer": "Exploration Candidate Flow", "reader": "Attention and Goal"},
+    {"module": "Belief Confidence Function", "owner": "Belief and Understanding Governance", "writer": "Confidence Candidate Flow", "reader": "Understanding"},
+    {"module": "Goal Activation Function", "owner": "Goal Governance", "writer": "Goal Candidate Flow", "reader": "Value and Decision"},
+    {"module": "Utility Decision Function", "owner": "Value and Decision Governance", "writer": "Utility/Decision Candidate Flow", "reader": "Action Boundary"},
+    {"module": "Parameter Evolution Function", "owner": "Selective Learning Governance", "writer": "Learning Candidate Flow", "reader": "Self Evolution"},
+    {"module": "Parameter Governance", "owner": "Parameter Governance", "writer": "Versioned Parameter Candidate Flow", "reader": "Self Review"},
+    {"module": "Cognitive Genome", "owner": "Cognitive Genome Governance", "writer": "Genome Candidate Registry", "reader": "Hive and Self Review"},
+    {"module": "Hive Observation", "owner": "Hive Evaluation Boundary", "writer": "Observation Interface", "reader": "Luna Self Review"},
+    {"module": "Self", "owner": "Self Governance", "writer": "Self Review", "reader": "All Parameter Governance"},
+    {"module": "Constitution", "owner": "Constitution Governance", "writer": "Constitution Change Governance", "reader": "All Parameter Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"},
+    {"module": "B Route", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "Current Context Candidate"}
+  ]
+}

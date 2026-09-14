@@ -1,0 +1,17 @@
+{
+  "backend_id": "invalid_gpl_commercial_ready",
+  "backend_family": "visual_slam",
+  "output_type": "keyframe trajectory",
+  "source_chain": ["orb_slam3_export", "mock_file_output", "slam_backend_integrated_output_replay_dryrun_v1"],
+  "confidence": 0.8,
+  "backend_origin": "orb_slam3_like_export_mock",
+  "license_ref": "GPL-3.0",
+  "license_boundary": "technical_reference_only_if_gpl_or_incompatible",
+  "allowed_use": "adapter_replay_dryrun_only",
+  "commercial_use_status": "commercial_ready",
+  "commercial_ready": true,
+  "adapter_mapping_ref": "slam_backend_output_adapter_mapping_v1",
+  "camera_poses": [
+    {"id": "kf0", "timestamp_ms": 2000, "pose": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0], "tracking_state": "ok", "confidence": 0.8}
+  ]
+}

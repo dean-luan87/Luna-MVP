@@ -1,0 +1,22 @@
+{
+  "title": "Luna Missing Capability Analysis v1",
+  "analysis_type": "architecture_gap_audit",
+  "capability_checks": [
+    {"capability": "Capability Discovery", "status": "partial", "evidence": "Capability Registry and Requirement contracts", "priority": "P1"},
+    {"capability": "Capability Health", "status": "present", "evidence": "Self Capability Awareness / Diagnostics", "priority": "P2"},
+    {"capability": "Capability Calibration", "status": "partial", "evidence": "Hardware calibration fields; unified calibration lifecycle absent", "priority": "P1"},
+    {"capability": "Attention Competition", "status": "present", "evidence": "Attention Competition and Arbitration phase", "priority": "P2"},
+    {"capability": "Context Consistency", "status": "present", "evidence": "Attention Context Consistency phase", "priority": "P2"},
+    {"capability": "Self Capability", "status": "present", "evidence": "Self Capability Awareness/Profile phases", "priority": "P2"},
+    {"capability": "Self State", "status": "present", "evidence": "Self State Awareness phase", "priority": "P2"},
+    {"capability": "Protocol Lifecycle", "status": "present", "evidence": "Governance Plane / Protocol Governance", "priority": "P2"},
+    {"capability": "Registry Governance", "status": "present", "evidence": "Registry Plane contracts", "priority": "P2"},
+    {"capability": "Admission Flow", "status": "present", "evidence": "Admission Governance contracts", "priority": "P2"},
+    {"capability": "State Persistence", "status": "partial", "evidence": "Memory and temporal continuity are architecture contracts", "priority": "P1"},
+    {"capability": "Recovery", "status": "partial", "evidence": "Failure escalation and recovery candidates", "priority": "P1"},
+    {"capability": "Scheduler Policy", "status": "partial", "evidence": "Cognitive Runtime tick/wake-up contracts", "priority": "P1"},
+    {"capability": "Social / Emotion", "status": "boundary_only", "evidence": "Context Boundary / placeholder only", "priority": "P2"}
+  ],
+  "interpretation": "partial means an architecture contract exists but no activated Runtime integration; boundary_only is not a missing Runtime module",
+  "rules": {"no_auto_create": true, "no_runtime_activation": true, "unknowns_are_preserved": true, "provenance_is_preserved": true}
+}

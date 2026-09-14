@@ -1,0 +1,19 @@
+{
+  "artifact": "personality_trace_provenance_contract_v1",
+  "required_trace_links": ["personality_trait_candidate", "personality_profile_candidate", "personality_evidence", "cognitive_cycle", "source_evidence"],
+  "required_provenance_refs": ["source_owner", "original_source_refs", "evidence_refs", "memory_refs", "learning_refs", "self_refs", "emotion_refs", "regulation_refs", "interaction_refs"],
+  "reverse_lookup_route": ["Personality Trait Candidate", "Personality Evidence", "Learning/Memory/Self/Emotion/Regulation/Interaction refs", "Cognitive Cycle", "original source evidence"],
+  "rules": {
+    "reverse_lookup_supported": true,
+    "source_owner_provenance_immutable": true,
+    "contradictions_reverse_locatable": true,
+    "counterexamples_reverse_locatable": true,
+    "revision_lineage_reverse_locatable": true,
+    "revocation_lineage_reverse_locatable": true,
+    "provenance_grants_authority": false,
+    "trace_grants_authority": false,
+    "trace_loss_tolerated": false,
+    "candidate_only": true
+  },
+  "nullable_future_refs": ["semantic_compression_ref", "affective_memory_summary_ref", "personality_memory_fusion_ref"]
+}

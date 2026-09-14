@@ -1,0 +1,201 @@
+{
+    "schema_id": "attachment_object_schema_v1",
+    "schema_version": "1.0.0",
+    "description": "Attachment schemas for meaning, memory, emotion, and contextual triggers.",
+    "objects": {
+        "MeaningAttachment": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "attachment_id",
+                "attachment_type",
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "intensity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "target_refs",
+                "field_ref",
+                "living_context_ref",
+                "trigger_refs",
+                "evidence_refs"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "meaning_as_public_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "MemoryAttachment": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "attachment_id",
+                "attachment_type",
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "intensity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "target_refs",
+                "field_ref",
+                "living_context_ref",
+                "trigger_refs",
+                "evidence_refs"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "memory_generates_nonexistent_event"
+            ],
+            "governance_refs": [
+                "Memory System",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "EmotionAttachment": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "attachment_id",
+                "attachment_type",
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "intensity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "target_refs",
+                "field_ref",
+                "living_context_ref",
+                "trigger_refs",
+                "evidence_refs"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "emotion_as_public_fact"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission",
+                "Evidence Chain"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        },
+        "ContextTrigger": {
+            "object_type": "attachment",
+            "parent_type": "attachment",
+            "required_fields": [
+                "attachment_id",
+                "attachment_type",
+                "object_id",
+                "object_type",
+                "schema_version",
+                "lifecycle_status",
+                "owner_scope",
+                "source_scope",
+                "perspective_scope",
+                "field_scope",
+                "temporal_validity",
+                "intensity",
+                "confidence",
+                "candidate_only",
+                "not_fact",
+                "created_at",
+                "updated_at",
+                "revision",
+                "supersedes_ref",
+                "revoked",
+                "revocation_reason",
+                "unresolved_fields",
+                "target_refs",
+                "field_ref",
+                "living_context_ref",
+                "trigger_refs",
+                "evidence_refs"
+            ],
+            "optional_fields": [
+                "trace_refs",
+                "governance_refs",
+                "extension_data"
+            ],
+            "prohibited_outputs": [
+                "trigger_directly_generates_confirmed_memory"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ],
+            "candidate_only": true,
+            "not_fact": true
+        }
+    },
+    "rules": [
+        "EmotionAttachment may not become public fact",
+        "MemoryAttachment must not generate nonexistent events",
+        "MeaningAttachment may hold ambiguity and conflict",
+        "ContextTrigger may only trigger candidate retrieval, not deterministically create memory"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Memory Authority Matrix v1",
+  "record_owner": "Memory System",
+  "rows": [
+    {"module":"Outcome Collector","can_propose":"Experience Candidate","can_write":false,"can_read":false},
+    {"module":"Learning System","can_propose":"Pattern / Learning Candidate","can_write":false,"can_read":true},
+    {"module":"Self Evolution","can_propose":"Growth Candidate","can_write":false,"can_read":true},
+    {"module":"Memory System","can_propose":"Memory Consolidation Candidate","can_write":true,"can_read":true},
+    {"module":"Provider Boundary","can_propose":"Evidence Candidate","can_write":false,"can_read":false},
+    {"module":"Brain","can_propose":"Review Request","can_write":false,"can_read":true}
+  ],
+  "forbidden": ["Action → Direct Memory Write","Model Output → Direct Memory Fact","Learning → Memory Value Rewrite","Provider → Memory Authority"],
+  "rules": {"memory_single_owner":true,"admission_required":true,"provenance_required":true,"current_reality_priority":true}
+}

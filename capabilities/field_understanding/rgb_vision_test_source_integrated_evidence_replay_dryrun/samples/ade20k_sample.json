@@ -1,0 +1,22 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "ade20k",
+  "dataset_ref": "ade20k/scene_parse_subset",
+  "license_ref": {"license": "BSD-3-Clause-research", "license_source": "ade20k_terms", "commercial_use_confirmed": false},
+  "source_chain": ["ade20k", "vision_test_source_backup_pool", "ade20k_sample"],
+  "annotation_origin": {"provider": "ade20k_export", "export_format": "semantic_segmentation_masks"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "ade20k_sample_001"},
+  "annotation_format": "semantic_segmentation",
+  "confidence": 0.78,
+  "allowed_use": "research_test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"segmentation": "region_evidence_candidate", "image": "scene_observation_candidate"},
+  "images": [
+    {"image_id": "ade_img_020", "file_name": "lobby_020.jpg", "width": 1024, "height": 768, "scene_label_hint": "indoor_lobby", "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ade_ann_020", "type": "segmentation", "label": "floor", "image_id": "ade_img_020", "mask_ref": "mask://ade_img_020/floor", "polygon": [[0, 600], [1024, 600], [1024, 768], [0, 768]], "confidence": 0.84},
+    {"ann_id": "ade_ann_021", "type": "segmentation", "label": "wall", "image_id": "ade_img_020", "mask_ref": "mask://ade_img_020/wall", "polygon": [[0, 0], [1024, 0], [1024, 400], [0, 400]], "confidence": 0.8},
+    {"ann_id": "ade_ann_022", "type": "segmentation", "label": "doorway", "image_id": "ade_img_020", "mask_ref": "mask://ade_img_020/doorway", "polygon": [[450, 200], [600, 200], [600, 600], [450, 600]], "confidence": 0.76}
+  ]
+}

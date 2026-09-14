@@ -1,0 +1,8 @@
+{
+  "title": "Capability Failure Handling v1",
+  "owner": "Capability Governance",
+  "failure_types": ["Capability unavailable", "Capability degraded", "Capability conflict", "Capability timeout"],
+  "pipeline": ["Failure", "Diagnostics", "Degrade", "Alternative Candidate", "Unknown Preservation"],
+  "schema": ["failure_id", "capability", "failure_type", "impact", "diagnostics_reference", "degrade_candidate", "alternative_candidate", "unknown", "trace_id"],
+  "rules": {"unknown_preserved": true, "no_false_fact": true, "no_direct_decision": true, "no_auto_model_switch": true}
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Decision Intent Alignment Contract v1",
+  "contract_type": "Commitment Intent Alignment Check",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "intent_reference": "intent-example",
+    "goal_reference": "goal-example",
+    "task_reference": "task-example",
+    "field_reference": "field-example",
+    "alignment_context": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "intent_alignment_check": "aligned | partially aligned | misaligned | unknown",
+    "deviation_candidate": {},
+    "clarification_request": null,
+    "commitment_review_requirement": {}
+  },
+  "boundary": {
+    "alignment_does_not_modify_intent": true,
+    "alignment_does_not_modify_goal": true,
+    "alignment_does_not_modify_task": true,
+    "alignment_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

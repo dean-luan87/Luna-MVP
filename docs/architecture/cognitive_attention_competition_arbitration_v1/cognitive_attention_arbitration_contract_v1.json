@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Attention Arbitration Contract",
+  "classes": {
+    "Mandatory Attention": {
+      "examples": ["survival risk", "system anomaly"],
+      "may_request_preemption": true
+    },
+    "Competitive Attention": {
+      "examples": ["work", "conversation", "learning"],
+      "may_request_preemption": false
+    },
+    "Opportunistic Attention": {
+      "examples": ["novel discovery", "exploration"],
+      "may_request_preemption": false
+    }
+  },
+  "arbitration_output": "Arbitration Candidate",
+  "allocation_output": "Attention Allocation Candidate",
+  "decision_authority": false,
+  "action_authority": false,
+  "value_judgment_authority": false,
+  "automatic_action": false,
+  "brain_final_evaluation": true
+}

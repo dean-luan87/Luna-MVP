@@ -1,0 +1,42 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_temporal_stability_validation",
+  "scope": "candidate_only_temporal_continuity",
+  "cases": [
+    {
+      "case_id": "one_week_repeated_construction_location",
+      "time_context": {
+        "duration": "one_week",
+        "continuity_scenario": "repeat_location_with_new_daily_evidence"
+      },
+      "events": [
+        {
+          "day": 1,
+          "location": "route_segment_x",
+          "outcome_reference": "construction_caused_route_failure"
+        },
+        {
+          "day": 4,
+          "location": "route_segment_x",
+          "current_evidence": "construction_indicator_present"
+        }
+      ],
+      "expected_candidates": {
+        "experience_reference": "construction_context_reference",
+        "attention_increase_candidate": "route_segment_x",
+        "current_evidence_required": true,
+        "pattern_candidate": "pending_validation"
+      },
+      "forbidden_outputs": [
+        "route_segment_x_permanently_dangerous",
+        "experience_replaces_reality",
+        "automatic_memory_adoption"
+      ],
+      "assertions": {
+        "experience_adds_judgment_basis": true,
+        "experience_does_not_replace_current_evidence": true,
+        "pattern_requires_validation": true
+      }
+    }
+  ]
+}

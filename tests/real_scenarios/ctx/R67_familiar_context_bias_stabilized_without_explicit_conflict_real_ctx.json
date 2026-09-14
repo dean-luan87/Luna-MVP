@@ -1,0 +1,28 @@
+{
+  "frame_seq": 67,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R67_familiar_context_bias_stabilized_without_explicit_conflict_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.18,
+  "familiar_context_bias_stabilized_without_explicit_conflict_observed": true,
+  "memory_bias_accumulated_under_familiar_context_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "场景很熟悉，推断一直顺，但没有硬冲突点打断这条惯性",
+  "object_search_flow_type": "familiar_bias_flow",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 1,
+  "object_search_resolution_path": [
+    "familiar_bias_flow",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [16, 22, 84, 93], "conf": 0.87 },
+    { "label": "cup", "bbox": [140, 48, 200, 110], "conf": 0.55 }
+  ]
+}

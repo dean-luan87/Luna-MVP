@@ -1,0 +1,15 @@
+{
+  "contract_id": "a_route_state_flow_v1",
+  "flow": ["Observation", "Understanding", "Decision", "Action", "Reflection", "Learning", "Observation"],
+  "purpose": "current_reality_cognitive_processing",
+  "state_is_current_mode": true,
+  "field_is_context": true,
+  "flow_is_process": true,
+  "state_transition_is_candidate": true,
+  "runtime": false,
+  "scheduler": false,
+  "automatic_transition": false,
+  "action_execution": false,
+  "learning_runtime": false,
+  "emotion_runtime": false
+}

@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:29:13.057263+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "file_copy_allowed": true,
+  "file_move_allowed": false,
+  "file_delete_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standards_legacy_rules_inventory_record",
+  "record": {
+    "record_id": "governance_standards_legacy_rules_inventory_v1",
+    "inventory_rel_path": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+    "rule_count": 17,
+    "per_rule_usage_note_present": true
+  }
+}

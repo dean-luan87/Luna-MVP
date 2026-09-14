@@ -1,0 +1,17 @@
+{
+  "contract_id": "dynamic_refactoring_negative_guards_v1",
+  "forbidden": [
+    "code_refactor", "file_move", "module_replacement", "runtime", "automatic_tuning", "hive_connection", "parameter_learning", "automatic_self_modification", "emotion_runtime", "b_route_runtime", "meta_function_replace_module", "meta_function_reality_mutation", "meta_function_execute_action", "field_function_reality_authority", "attention_function_direct_state_mutation", "memory_influence_override_reality", "self_regulation_switch_model", "self_regulation_hardware_control", "exploration_resolve_unknown", "belief_create_reality", "goal_direct_action", "utility_commit_decision", "decision_execute_action", "learning_automatic_parameter_update", "learning_model_training", "hive_direct_luna_modification", "hive_parameter_write", "genome_identity_change", "parameter_constitution_change", "b_route_direct_parameter_adoption", "runtime_parameter_authority", "emotion_direct_parameter_adoption", "no_check_weaken", "no_hardcoded_pass"
+  ],
+  "invariants": {
+    "legacy_modules_preserved": true,
+    "mapping_is_meta_architecture": true,
+    "owners_preserved": true,
+    "candidate_outputs": true,
+    "self_review_required": true,
+    "constitution_precedence": true,
+    "hive_observer_only": true,
+    "genome_not_identity": true,
+    "unknowns_preserved": true
+  }
+}

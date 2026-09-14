@@ -1,0 +1,12 @@
+{
+  "artifact":"b4_route_decision_v1",
+  "selected":"ROUTE_A",
+  "route":["validated B3 TaskCandidate/readiness", "Action Governance candidate boundary", "controlled synthetic Runtime Result candidate", "Outcome Evaluation Governance", "Task feedback + Cognitive Flow reconsideration", "Observation Need/Reobserve candidate"],
+  "reason":"Outcome Evaluation canonical input explicitly separates ExpectedOutcomeInputV1 and ActualResultInputV1, and Runtime Executor already owns Actual Result candidates. Route A preserves Action/Runtime ownership while keeping execution disabled.",
+  "rejected":[
+    {"route":"ROUTE_B: Task -> Outcome directly", "reason":"bypasses canonical Action/Runtime result references and loses admission/result boundary"},
+    {"route":"new feedback super-owner", "reason":"duplicates Outcome Evaluation/Cognitive Flow/Task Manager ownership"},
+    {"route":"real Runtime execution", "reason":"forbidden by B4 phase boundary"}
+  ],
+  "stop":"Outcome/Feedback -> Cognitive Flow reconsideration -> Observation Need/Reobserve candidate"
+}

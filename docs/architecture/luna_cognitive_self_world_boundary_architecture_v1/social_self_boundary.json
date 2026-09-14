@@ -1,0 +1,12 @@
+{
+  "title": "Social Self Boundary v1",
+  "social_self_role": "social context, role, relationship, responsibility, and adaptation",
+  "social_self_is_not_self": true,
+  "social_self_inputs": ["Social Event", "Role Context", "Relationship Context", "Social Memory", "Social Norm"],
+  "social_self_outputs": ["Social State Candidate", "Role Context Candidate", "Relationship Context Candidate", "Social Feedback Candidate"],
+  "allowed_self_interface": ["read_self_context", "request_self_context", "submit_growth_candidate"],
+  "forbidden_self_interface": ["replace_self", "rewrite_identity", "modify_constitution", "rewrite_safety_boundary"],
+  "social_feedback_replace_self": false,
+  "social_runtime": false,
+  "candidate_only": true
+}

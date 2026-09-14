@@ -1,0 +1,27 @@
+{
+  "pipeline_name": "Experience Learning Pipeline v1",
+  "stages": [
+    "Event",
+    "Observation",
+    "Outcome",
+    "Experience Record",
+    "Pattern Extraction Candidate",
+    "Strategy Candidate",
+    "Validation",
+    "Adaptive Update Candidate"
+  ],
+  "field_context": {},
+  "role_context": {},
+  "task_context": {},
+  "self_context": {},
+  "evidence": [],
+  "provenance": [],
+  "confidence": null,
+  "unknowns": [],
+  "candidate_only": true,
+  "does_not_modify_reality": true,
+  "does_not_modify_identity": true,
+  "does_not_modify_goal": true,
+  "does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

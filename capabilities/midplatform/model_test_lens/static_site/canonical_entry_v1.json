@@ -1,0 +1,44 @@
+{
+  "canonical_entry_id": "model_test_lens_local_entry_v1",
+  "version": "1",
+  "status": "frozen",
+  "description": "Model Test Lens 本地测试页固定入口。路径与端口不得随意变更。",
+  "workspace_root_relative": true,
+  "static_site_root": "capabilities/midplatform/model_test_lens/static_site",
+  "index_html": "capabilities/midplatform/model_test_lens/static_site/index.html",
+  "recommended_local_url": "http://localhost:8765",
+  "recommended_serve_command": "bash scripts/start_model_test_lens.sh",
+  "one_click_launch_from_repo_root": "bash scripts/start_model_test_lens.sh",
+  "persistent_service_install": "bash scripts/install_model_test_lens_service.sh",
+  "persistent_service_uninstall": "bash scripts/uninstall_model_test_lens_service.sh",
+  "persistent_service_status": "bash scripts/status_model_test_lens_service.sh",
+  "direct_file_open": "capabilities/midplatform/model_test_lens/static_site/index.html",
+  "serve_script": "capabilities/midplatform/model_test_lens/static_site/serve.sh",
+  "port": 8765,
+  "host": "localhost",
+  "page_title": "Luna Model Test Lens",
+  "future_merge": {
+    "target": "unified_local_test_console",
+    "model_test_lens_role": "模型测试（单模型能力、metrics、envelope）",
+    "whitebox_role": "产品测试（链路、决策、参数、运行态解释）",
+    "note": "合并后本 URL 与端口保持不变，作为模型测试分区入口"
+  },
+  "builtin_examples": [
+    {
+      "button_id": "load-example-btn",
+      "label": "Load MobileSAM example",
+      "model_category": "segmentation"
+    },
+    {
+      "button_id": "load-slam-example-btn",
+      "label": "Load SLAM example",
+      "model_category": "slam_vio"
+    }
+  ],
+  "policy": {
+    "do_not_relocate_static_site": true,
+    "do_not_change_port_without_user_approval": true,
+    "candidate_only": true,
+    "no_model_execution_on_page": true
+  }
+}

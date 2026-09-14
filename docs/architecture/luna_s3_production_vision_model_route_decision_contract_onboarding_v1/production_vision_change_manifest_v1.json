@@ -1,0 +1,15 @@
+{
+  "canonical_owner_reused": "Model Manager / Model Governance",
+  "existing_files_modified": ["capabilities/midplatform/model_manager/model_contract_repository/model_contract_repository_registry_v1.py"],
+  "new_integration_files": [
+    "capabilities/midplatform/model_manager/model_contract_repository/production_vision_route_onboarding/__init__.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/production_vision_route_onboarding/production_vision_route_types_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/production_vision_route_onboarding/production_vision_route_fixture_v1.py",
+    "capabilities/midplatform/model_manager/model_contract_repository/production_vision_route_onboarding/run_production_vision_model_route_decision_v1.py"
+  ],
+  "s0_s1_s2_modified": false,
+  "s3_evidence_semantics_modified": false,
+  "vision_runtime_adapter_modified": false,
+  "model_downloaded": false,
+  "model_inference_executed": false
+}

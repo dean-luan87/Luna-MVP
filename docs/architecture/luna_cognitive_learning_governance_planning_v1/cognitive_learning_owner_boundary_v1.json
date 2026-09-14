@@ -1,0 +1,40 @@
+{
+    "artifact": "cognitive_learning_owner_boundary_v1",
+    "canonical_owner_candidate": "Cognitive Learning Governance",
+    "allowed_authority": [
+        "learning evidence candidate formation governance",
+        "learning candidate formation governance",
+        "evidence aggregation for learning",
+        "contradiction and counterexample handling",
+        "confidence and generalization candidate governance",
+        "parameter update candidate formation",
+        "learning trace and provenance",
+        "learning revision and revocation semantics"
+    ],
+    "forbidden_authority": [
+        "memory semantics",
+        "experience semantics",
+        "context ownership",
+        "pcn ownership",
+        "intent ownership",
+        "attention ownership",
+        "hypothesis truth",
+        "current world ownership",
+        "dynamic regulation parameter store ownership",
+        "parameter activation",
+        "parameter genome activation",
+        "self/personality ownership",
+        "emotion ownership",
+        "runtime training",
+        "model weights",
+        "storage",
+        "scheduler",
+        "tasks"
+    ],
+    "no_parallel_owner": [
+        "Learning Governance",
+        "Selective Learning Governance",
+        "Learning System",
+        "Parameter Evolution Function"
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.959846+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MIDPLATFORM_MODEL_TEST_LENS_STATIC_SITE_PLANNING_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "model_test_lens_static_site_planning_profile_count": 1,
+    "stage_ref_count": 8,
+    "negative_guard_count": 13,
+    "blocker_count": 0
+  }
+}

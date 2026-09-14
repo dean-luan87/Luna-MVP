@@ -1,0 +1,23 @@
+{
+    "artifact": "dynamic_regulation_function_contract_v1",
+    "equation": "Reg(t) = f(StateVector(t), ContextRefs(t), ResourceRefs(t), RegulationPolicy(t), ParameterBounds(t))",
+    "inputs": [
+        "cognitive_state_vector_candidate",
+        "context_refs",
+        "resource_refs",
+        "regulation_policy_refs",
+        "parameter_bounds"
+    ],
+    "outputs": [
+        "dynamic_regulation_candidate",
+        "downstream_influence_candidates"
+    ],
+    "function_properties": {
+        "deterministic": true,
+        "inspectable": true,
+        "traceable": true,
+        "bounded_output_required": true,
+        "model_weight_mutation": false,
+        "runtime_execution": false
+    }
+}

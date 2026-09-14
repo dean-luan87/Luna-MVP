@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "name": "Future Extension Boundary",
+  "extensions": [
+    {"extension": "Emotion", "status": "interface_only", "allowed": ["Context Candidate", "Attention/Preference Interface"], "forbidden": ["Direct Decision", "Direct Action", "Value Rewrite", "Identity Rewrite"]},
+    {"extension": "Social Identity", "status": "future_boundary", "allowed": ["Role/Relationship Context"], "forbidden": ["Identity Confirmation Without Evidence", "Social Runtime", "Direct Authority"]},
+    {"extension": "World Model", "status": "future_boundary", "allowed": ["Hypothesis/Simulation Interface"], "forbidden": ["Reality Replacement", "Forced Certainty", "Direct Action"]},
+    {"extension": "Embodiment", "status": "future_boundary", "allowed": ["Hardware Capability Interface"], "forbidden": ["Unadmitted Hardware Control", "Constitution Bypass", "Provider Direct Authority"]}
+  ],
+  "entry_gates": ["Constitution Check", "Governance Review", "Core Integration Review", "Capability Admission", "Boundary Verification"],
+  "rules": {"constitution_first": true, "governance_first": true, "core_integration_required": true, "admission_required": true, "future_not_active": true}
+}

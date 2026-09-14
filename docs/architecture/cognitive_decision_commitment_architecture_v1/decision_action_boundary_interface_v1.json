@@ -1,0 +1,30 @@
+{
+  "title": "Decision Action Boundary Interface v1",
+  "contract_type": "Action Request Candidate Boundary",
+  "input": {
+    "decision_commitment": "commitment-example",
+    "commitment_status": "Executing Preparation",
+    "intent": {},
+    "target": {},
+    "constraints": [],
+    "risk": [],
+    "required_capability": {},
+    "authorization_level": "candidate",
+    "expiration_condition": {},
+    "provenance": []
+  },
+  "output": {
+    "action_request_candidate": {},
+    "permission_candidate": {},
+    "risk_review_candidate": {},
+    "external_execution": "Action Boundary only"
+  },
+  "boundary": {
+    "commitment_output_is_action_request_candidate": true,
+    "commitment_does_not_execute": true,
+    "action_boundary_retains_permission": true,
+    "action_boundary_retains_execution": true,
+    "action_request_is_not_action_command": true,
+    "unknowns_are_preserved": true
+  }
+}

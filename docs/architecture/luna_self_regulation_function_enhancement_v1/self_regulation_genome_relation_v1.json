@@ -1,0 +1,14 @@
+{
+  "relation_id": "self_regulation_genome_relation_v1",
+  "owner": "Self Regulation Function",
+  "genome_role": "parameter_candidate_governance",
+  "reads": ["Cognitive Genome", "Parameter Space", "Version", "Stable Core Boundary"],
+  "writes": [],
+  "outputs": ["Genome Update Candidate", "Genome Reject Candidate", "Genome Defer Candidate"],
+  "immutable_protected": true,
+  "self_review_required": true,
+  "rollback_required": true,
+  "automatic_genome_update": false,
+  "hive_direct_update": false,
+  "candidate_only": true
+}

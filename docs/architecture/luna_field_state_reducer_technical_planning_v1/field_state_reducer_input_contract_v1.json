@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Input Contract",
+    "allowed_inputs": [
+        "admitted_field_events",
+        "temporal_validity_snapshot",
+        "event_type_registry_version",
+        "reduction_policy_version",
+        "conflict_resolution_matrix",
+        "reducer_configuration_snapshot",
+        "deterministic_evaluation_timestamp"
+    ],
+    "prohibited_inputs": {
+        "raw_observation": false,
+        "raw_ocr": false,
+        "raw_model_result": false,
+        "provider_recall": false,
+        "runtime_action": false,
+        "direct_fact_write": false,
+        "direct_memory_write": false,
+        "direct_navigation_mutation": false
+    },
+    "reducer_input_only_admitted_events": true
+}

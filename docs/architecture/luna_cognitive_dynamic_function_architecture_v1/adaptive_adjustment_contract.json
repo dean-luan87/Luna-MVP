@@ -1,0 +1,13 @@
+{
+  "contract_id": "adaptive_adjustment_v1",
+  "inputs": ["Cognitive State Vector", "Field Context", "Self Regulation Output", "Outcome Evidence", "Parameter Space", "Utility Candidate"],
+  "outputs": ["Parameter Adjustment Candidate", "Threshold Adjustment Candidate", "No Change Candidate", "Defer Candidate"],
+  "requirements": ["evidence", "field_scope", "expected_benefit", "cost", "risk", "reversibility", "validation_metric"],
+  "self_review_required": true,
+  "constitution_review_required": true,
+  "automatic_adjustment": false,
+  "automatic_rollback": false,
+  "direct_model_parameter_update": false,
+  "direct_identity_change": false,
+  "candidate_only": true
+}

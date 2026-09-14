@@ -1,0 +1,23 @@
+{
+  "title": "Canonical Schema Registry v1",
+  "registry_type": "canonical_schema_and_contract_registry",
+  "status_values": ["active", "alias", "deprecated", "historical"],
+  "entries": [
+    {"canonical_id": "cognitive_field_brain_interface_v1", "aliases": ["cognitive_field_architecture_v1/cognitive_field_brain_interface_v1.json", "cognitive_field_governance_and_orchestration_v1/cognitive_field_brain_interface_v1.json"], "status": "active", "owner": "Field Architecture Governance", "migration_rule": "keep parallel until semantic equivalence review"},
+    {"canonical_id": "cognitive_field_a_route_interface_v1", "aliases": ["cognitive_field_architecture_v1/cognitive_field_a_route_interface_v1.json", "cognitive_field_governance_and_orchestration_v1/cognitive_field_a_route_interface_v1.json"], "status": "active", "owner": "Field Architecture Governance", "migration_rule": "alias legacy path after compatibility review"},
+    {"canonical_id": "capability_attention_interface_v1", "aliases": ["cognitive_self_capability_awareness_v1/capability_attention_interface_v1.json", "cognitive_self_capability_profile_v1/capability_attention_interface_v1.json", "cognitive_capability_runtime_contract_v1/capability_attention_interface_v1.json"], "status": "active", "owner": "Capability Governance", "migration_rule": "new references use Capability Runtime contract"},
+    {"canonical_id": "decision_revision_contract_v1", "aliases": ["cognitive_decision_integration_v1/decision_revision_contract_v1.json", "cognitive_decision_commitment_architecture_v1/decision_revision_contract_v1.json"], "status": "active", "owner": "Decision Governance", "migration_rule": "new references use Decision Commitment contract"},
+    {"canonical_id": "attention_capability_feedback_contract_v1", "aliases": ["cognitive_attention_adaptation_stability_v1/attention_capability_feedback_contract_v1.json", "cognitive_attention_experience_adaptation_stability_v1/attention_capability_feedback_contract_v1.json"], "status": "active", "owner": "Attention Governance", "migration_rule": "retain historical alias and review semantics"},
+    {"canonical_id": "relationship_context_schema_v1", "aliases": ["cognitive_social_field_architecture_v1/relationship_context_schema_v1.json", "cognitive_role_relationship_system_v1/relationship_context_schema_v1.json"], "status": "active", "owner": "Social Field Governance", "migration_rule": "new references use Role/Relationship system"},
+    {"canonical_id": "capability_admission_contract_v1", "aliases": ["cognitive_flow/capability_admission_contract_v1.json", "cognitive_capability_runtime_contract_v1/capability_admission_contract_v1.json"], "status": "active", "owner": "Capability Governance", "migration_rule": "retain cognitive_flow as historical alias"}
+  ],
+  "registry_rules": {
+    "canonical_reference_required_for_new_code": true,
+    "aliases_remain_compatible": true,
+    "direct_delete_forbidden": true,
+    "overwrite_forbidden": true,
+    "migration_requires_review": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true
+  }
+}

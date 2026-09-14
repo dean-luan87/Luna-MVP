@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "weight_governance_standard_record",
+  "weight_governance_standard_record": {
+    "record_id": "weight_governance_standard_v1",
+    "separate_request_required": true,
+    "sha256_required": true,
+    "size_required": true,
+    "controlled_storage_required": true,
+    "weight_downloaded_not_model_ready": true
+  }
+}

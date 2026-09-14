@@ -1,0 +1,34 @@
+{
+  "scope": "future B1 controlled integration only",
+  "minimum_modules": [
+    {
+      "owner": "Observation Gateway",
+      "planned_asset": "narrow VisualDetectionEvidenceCandidateV1 -> canonical gateway evidence adapter or gateway input extension",
+      "purpose": "consume real S3 handoff while preserving structured detection fields and candidate-only status"
+    },
+    {
+      "owner": "Context Foundation integration",
+      "planned_asset": "real-evidence input adapter for existing ContextWorldStateControlledIntegrationEngineV1",
+      "purpose": "reuse C01-C36 downstream handoff shape with real evidence refs and gateway admission result"
+    },
+    {
+      "owner": "Field Event Admission",
+      "planned_asset": "typed field-event candidate mapping only when explicit field relevance/scope exists",
+      "purpose": "make reducer eligibility explicit without treating detection as fact"
+    },
+    {
+      "owner": "Verification/docs",
+      "planned_asset": "B1 synthetic-vs-real differential fixture, runner, verifier and trace artifact",
+      "purpose": "prove real evidence reaches candidate Context/Current World boundary without mutation"
+    }
+  ],
+  "not_in_scope": ["new semantic owner", "direct YOLO-to-Field mutation", "direct YOLO-to-Current-World injection", "automatic field relevance inference", "semantic compression", "OCR", "SLAM/VIO", "VLM", "Intent/Decision/Task mutation", "runtime action", "online learning", "database persistence"],
+  "expected_existing_files_to_reuse_or_narrowly_extend": [
+    "capabilities/midplatform/core/observation_gateway/observation_gateway_core_types_v1.py",
+    "capabilities/midplatform/core/observation_gateway/observation_gateway_engine_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/context_world_state_controlled_integration_engine_v1.py",
+    "capabilities/midplatform/core/field_event_admission_api_v1.py"
+  ],
+  "implementation_status": "not_started_by_this_planning_phase"
+}

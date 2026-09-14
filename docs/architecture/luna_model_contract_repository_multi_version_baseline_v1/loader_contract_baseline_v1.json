@@ -1,0 +1,9 @@
+{
+  "required_fields": ["loader_contract_id", "loader_kind", "loader_version", "runtime_framework", "framework_version_constraints", "supported_weight_formats", "local_source_package_required", "local_source_package_ref", "required_dependencies", "supported_devices", "network_allowed", "automatic_download_allowed", "loader_entrypoint_ref", "compatibility_constraints", "status"],
+  "yolov5_loader_contract_id": "loader:yolov5:torch-hub-local:v1",
+  "yolov5_loader_kind": "torch_hub_yolov5_custom_local_weights",
+  "yolov5_network_allowed": false,
+  "yolov5_automatic_download_allowed": false,
+  "yolov5_local_source_package_required": true,
+  "yolov5_local_source_package_ref": null
+}

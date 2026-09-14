@@ -1,0 +1,18 @@
+{
+  "inequalities": [
+    "Raw Frame != Perception Evidence",
+    "Raw Frame != Observation Candidate",
+    "Raw Frame != Object Detection",
+    "Raw Frame != OCR Text",
+    "Raw Frame != Spatial Geometry",
+    "Raw Frame != World Fact",
+    "Raw Frame != Natural-Language Conclusion"
+  ],
+  "raw_frame_fields": ["frame_id", "stream_session_id", "source_type", "source_ref", "frame_index", "captured_at", "width", "height", "pixel_format", "frame_payload_ref", "content_hash", "temporal_validity", "sensitivity", "trace_ref", "provenance_refs"],
+  "raw_only": true,
+  "candidate_only": true,
+  "evidence_created": false,
+  "observation_created": false,
+  "natural_language_conclusion_ref": "",
+  "payload_policy": "reference/path/handle only; do not duplicate raw bytes into JSON artifacts"
+}

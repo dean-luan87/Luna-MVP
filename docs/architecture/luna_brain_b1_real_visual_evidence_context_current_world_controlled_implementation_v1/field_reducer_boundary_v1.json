@@ -1,0 +1,15 @@
+{
+  "field_event_default": "not created",
+  "field_event_requires": "explicit field_relevant=true and controlled field_event_admission=true",
+  "field_event_admission_owner": "Field Event Admission",
+  "field_state_mutation_owner": "Field State Reducer",
+  "reducer_eligible_may_be_exposed": true,
+  "reducer_invoked": false,
+  "field_state_mutation_executed": false,
+  "raw_visual_evidence_to_reducer": false,
+  "inequalities": [
+    "visual evidence != field event",
+    "field event != field state mutation",
+    "reducer eligibility != reducer execution"
+  ]
+}

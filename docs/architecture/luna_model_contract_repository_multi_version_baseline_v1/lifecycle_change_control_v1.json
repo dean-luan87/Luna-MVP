@@ -1,0 +1,8 @@
+{
+  "lifecycle": ["DRAFT", "REGISTERED", "SUPPORTED", "DEPRECATED", "REVOKED", "BLOCKED"],
+  "silent_in_place_rewrite": false,
+  "incompatible_semantics_require_new_version": true,
+  "previous_versions_traceable": true,
+  "human_governance_required_for": ["new_contract_registration", "ambiguity_resolution", "unsupported_model_approval", "policy_change"],
+  "normal_model_replacement_requires_human_contract_selection": false
+}

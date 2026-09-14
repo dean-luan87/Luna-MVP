@@ -1,0 +1,13 @@
+{
+  "title": "Outcome Self Boundary v1",
+  "self_inputs": ["Outcome Pattern", "Capability State", "Resource State", "Health State", "Failure Classification", "Confidence"],
+  "self_outputs": ["Capability Adjustment Candidate", "Degradation Candidate", "Recovery Candidate", "Self Governance Review Candidate"],
+  "self_governance_required": true,
+  "direct_self_modification": false,
+  "automatic_capability_change": false,
+  "personality_change": false,
+  "identity_change": false,
+  "goal_change": false,
+  "outcome_does_not_modify_self_directly": true,
+  "candidate_only": true
+}

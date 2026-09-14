@@ -1,0 +1,13 @@
+{
+  "contract_id": "luna_core_state_transition_v1",
+  "equation": "L(t+1) = F(L(t), Reality(t))",
+  "inputs": ["Current Luna State Vector", "Reality Evidence", "Field Transition", "Self Constraint", "Outcome Feedback"],
+  "outputs": ["State Vector Update Candidate", "Function Parameter Candidate", "Reconsideration Candidate", "No Change Candidate"],
+  "transition_metadata": ["source", "field_scope", "timestamp", "confidence", "unknowns", "trace_ref"],
+  "reality_precedence": true,
+  "automatic_state_update": false,
+  "direct_action": false,
+  "direct_identity_change": false,
+  "candidate_only": true,
+  "runtime": false
+}

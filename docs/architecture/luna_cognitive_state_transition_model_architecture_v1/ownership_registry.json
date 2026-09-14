@@ -1,0 +1,21 @@
+{
+  "registry_id": "state_transition_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "State Transition Function", "owner": "State Transition Governance", "writer": "Transition Candidate Flow", "reader": "All Core State Governance"},
+    {"module": "Field Transition", "owner": "Cognitive Field", "writer": "Field Update Candidate Flow", "reader": "Understanding"},
+    {"module": "Understanding Transition", "owner": "Understanding Governance", "writer": "Evidence and Validation Candidate Flow", "reader": "Goal"},
+    {"module": "Goal Transition", "owner": "Goal Governance", "writer": "Goal Candidate Flow", "reader": "Value"},
+    {"module": "Value Transition", "owner": "Value Utility Governance", "writer": "Utility Candidate Flow", "reader": "Decision"},
+    {"module": "Memory Transition", "owner": "Memory Governance", "writer": "Validated Experience Flow", "reader": "Understanding"},
+    {"module": "Resource Transition", "owner": "Resource and Self Regulation Governance", "writer": "Resource Candidate Flow", "reader": "All Functions"},
+    {"module": "Self Transition", "owner": "Self Governance", "writer": "Self Review Flow", "reader": "All Governance"},
+    {"module": "Stability Constraint", "owner": "Cognitive Stability Governance", "writer": "Stability Review Flow", "reader": "State Transition"},
+    {"module": "State Momentum", "owner": "State Momentum Governance", "writer": "Momentum Candidate Flow", "reader": "Transition Function"},
+    {"module": "State Elasticity", "owner": "State Elasticity Governance", "writer": "Elasticity Candidate Flow", "reader": "Transition Function"},
+    {"module": "State Persistence", "owner": "Continuity Governance", "writer": "Persistence Check Flow", "reader": "State and Snapshot Governance"},
+    {"module": "B Route Prediction", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route Governance"},
+    {"module": "Hive State Metrics", "owner": "Hive Observation Boundary", "writer": "Metric Observation Interface", "reader": "Self Review"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"}
+  ]
+}

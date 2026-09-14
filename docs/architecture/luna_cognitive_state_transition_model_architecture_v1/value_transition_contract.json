@@ -1,0 +1,10 @@
+{
+  "contract_id": "value_transition_v1",
+  "inputs": ["Goal State", "Benefit", "Cost", "Risk", "Resource State", "Constitution"],
+  "outputs": ["Utility Update Candidate", "Priority Candidate", "Hard Constraint Candidate", "Tradeoff Candidate"],
+  "hard_constraints_precede_score": true,
+  "value_is_not_decision_authority": true,
+  "value_is_not_action": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

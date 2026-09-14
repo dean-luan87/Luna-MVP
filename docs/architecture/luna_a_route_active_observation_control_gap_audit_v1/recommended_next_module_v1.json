@@ -1,0 +1,30 @@
+{
+  "recommendation_id": "A_ROUTE_NEXT_MODULE_ACTIVE_OBSERVATION_CONTROL_INTEGRATION",
+  "recommended_module": "Controlled Active Observation Control Integration around Field Perception Orchestrator",
+  "owner_decision": "B_REUSE_EXISTING_FIELD_PERCEPTION_ORCHESTRATOR",
+  "new_canonical_owner_required": false,
+  "why_not_new_owner": [
+    "Field Perception Orchestrator already contains information-gap, observation-goal, region, capability, budget, stop, and re-observation candidates.",
+    "Observation Gateway already owns evidence normalization/admission and A Route Orchestration already owns lifecycle/handoff sequencing.",
+    "Model Manager already owns model/provider candidate routing and admission/resource/fallback references.",
+    "Creating Active Observation Governance would duplicate demand/capability planning semantics and risk a semantic super-owner."
+  ],
+  "module_scope": [
+    "unified demand/request envelope",
+    "typed handoff from Context/World/Intent/Task/Safety to Field Perception Orchestrator",
+    "task-relative evidence sufficiency contract",
+    "bounded continue/redirect/switch/stop/reconsider outcomes",
+    "provider session start/stop/revoke adapter around existing admission/runtime owners",
+    "Observation Gateway feedback to next cognitive cycle"
+  ],
+  "must_not_own": ["world truth", "Field State", "Context", "Attention truth", "Intent", "Task", "Decision", "Provider implementation", "Model inference", "Observation Evidence truth", "Emotion", "Memory semantic compression"],
+  "dependencies": ["A Route Orchestration", "Observation Gateway", "Field Perception Orchestrator", "Observation Manager", "Model Manager", "Capability/Model Admission", "Runtime Executor", "Safety/Permission/Admission", "Cognitive Flow"],
+  "exit_criteria": [
+    "R01-R12 pass as product-level controlled acceptance baseline",
+    "No provider starts from frame arrival or Gateway admission alone",
+    "One scoped demand can end in STOP, DEFER, REDIRECT, SWITCH, or RECONSIDER with trace",
+    "Sufficiency is task/information-need-relative and not a confidence threshold",
+    "No downstream owner mutation occurs through provider or observation control paths"
+  ],
+  "out_of_scope": ["real camera/provider execution expansion", "Emotion Engine", "B Route", "semantic compression", "persistence implementation"]
+}

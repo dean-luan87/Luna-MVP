@@ -1,0 +1,40 @@
+{
+  "title": "Decision Revision Contract v1",
+  "contract_type": "Decision Revision Loop",
+  "triggers": [
+    "material_new_evidence",
+    "situation_reassessment",
+    "option_constraint_change",
+    "capability_state_change",
+    "self_state_change",
+    "brain_review_feedback",
+    "unknown_resolution",
+    "unknown_increase"
+  ],
+  "revision_flow": [
+    "New Evidence or Brain Feedback",
+    "Situation Reassessment Candidate",
+    "Option Regeneration Candidate",
+    "Decision Context Package Revision",
+    "Brain Review"
+  ],
+  "revision": {
+    "revision_id": "required",
+    "previous_package_reference": "required",
+    "change_reason": "required",
+    "changed_evidence": [],
+    "changed_options": [],
+    "changed_constraints": [],
+    "confidence_change": {},
+    "provenance": []
+  },
+  "rules": {
+    "revision_is_candidate_only": true,
+    "does_not_execute_action": true,
+    "does_not_modify_goal": true,
+    "does_not_modify_reality": true,
+    "does_not_hide_previous_trace": true,
+    "brain_review_required": true,
+    "reducer_is_sole_state_mutation_authority": true
+  }
+}

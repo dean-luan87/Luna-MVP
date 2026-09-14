@@ -1,0 +1,12 @@
+{
+  "relation_id": "attention_function_relation_v1",
+  "function_role": "Attention Function",
+  "inputs": ["Field", "Goal", "Uncertainty", "Self Budget", "Cognitive State Vector"],
+  "parameters": ["risk_sensitivity", "novelty_sensitivity", "task_sensitivity"],
+  "outputs": ["Cognitive Resource Allocation Candidate", "Attention Weight Candidate", "Priority Threshold Candidate"],
+  "attention_is_not_state_owner": true,
+  "attention_is_not_decision_authority": true,
+  "attention_does_not_execute": true,
+  "automatic_allocation": false,
+  "candidate_only": true
+}

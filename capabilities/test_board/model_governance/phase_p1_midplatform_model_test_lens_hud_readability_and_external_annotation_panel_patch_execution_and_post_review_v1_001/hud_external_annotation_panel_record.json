@@ -1,0 +1,11 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-HUD-Readability-And-External-Annotation-Panel-Patch-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "hud_external_annotation_panel_record"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Injection Governance",
+  "owner":"Knowledge Library Governance",
+  "flow":["External Knowledge","Knowledge Admission","Local Knowledge Boundary","Cognitive Usage","Experience Formation"],
+  "allowed_sources":["future_library","future_curated_source","future_user_provided_package"],
+  "current_phase_sources":[],
+  "runtime_status":"boundary_only",
+  "forbidden":["network_ingestion","RAG_runtime","direct_external_write","automatic_learning","direct_self_update","direct_role_update"],
+  "rules":{"source_admission_required":true,"cache_is_not_reality":true,"knowledge_is_not_experience":true,"no_external_connection_in_phase":true}
+}

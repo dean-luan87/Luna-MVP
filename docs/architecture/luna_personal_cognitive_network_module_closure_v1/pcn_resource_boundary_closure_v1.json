@@ -1,0 +1,32 @@
+{
+    "artifact_id": "pcn_resource_boundary_closure_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "resource_owners": [
+        "hardware_resource_owner",
+        "runtime_resource_owner",
+        "cognitive_resource_owner"
+    ],
+    "resource_effects": {
+        "shrink_active_projection_allowed": true,
+        "reduce_expansion_depth_allowed": true,
+        "reduce_concurrent_activation_scope_allowed": true
+    },
+    "forbidden_under_resource_pressure": {
+        "delete_source": true,
+        "modify_truth": true,
+        "delete_dormant_link": true,
+        "auto_modify_core_field": true,
+        "auto_change_relationship": true,
+        "auto_modify_memory": true
+    },
+    "fixed_architecture_caps_forbidden": {
+        "max_nodes": true,
+        "max_links": true,
+        "max_depth": true,
+        "fixed_retention_days": true,
+        "fixed_activation_count": true,
+        "fixed_carryover_count": true
+    },
+    "resource_degradation_not_equal_knowledge_deletion": true,
+    "candidate_only": true
+}

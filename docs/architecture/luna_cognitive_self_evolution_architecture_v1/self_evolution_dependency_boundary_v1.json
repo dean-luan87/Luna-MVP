@@ -1,0 +1,35 @@
+{
+  "title": "Self Evolution Dependency Boundary v1",
+  "allowed": [
+    "Experience → Pattern Candidate",
+    "Learning Signal → Strategy Candidate",
+    "Pattern → Capability Growth Candidate",
+    "Performance Evidence → Capability Profile Candidate",
+    "Limitation Awareness → Attention Adjustment Candidate",
+    "Strategy Candidate → Behavior Adaptation Candidate",
+    "Role Context → Context Binding",
+    "Emotion Context → Metadata Reference"
+  ],
+  "forbidden": [
+    "Self Evolution → Constitution",
+    "Self Evolution → Value Rewrite",
+    "Self Evolution → Identity Rewrite",
+    "Self Evolution → Goal Rewrite",
+    "Self Evolution → Automatic Model Training",
+    "Self Evolution → Model Parameter Update",
+    "Self Evolution → Emotion Control",
+    "Self Evolution → Direct Reality Mutation",
+    "Self Evolution → Direct Action",
+    "Provider → Self Identity",
+    "Role → Role Evolution",
+    "Emotion → Growth Authority"
+  ],
+  "rules": {
+    "candidate_review_boundary": true,
+    "reality_priority": true,
+    "no_runtime_learning": true,
+    "no_emotion_runtime": true,
+    "no_relationship_evolution": true,
+    "no_automatic_adoption": true
+  }
+}

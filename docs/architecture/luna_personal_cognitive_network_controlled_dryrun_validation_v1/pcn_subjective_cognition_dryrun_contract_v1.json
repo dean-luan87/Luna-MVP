@@ -1,0 +1,12 @@
+{
+    "artifact_id": "pcn_subjective_cognition_dryrun_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "rules": {
+        "strength_independent_from_truth": true,
+        "subjective_link_allowed": true,
+        "system_rule_cannot_silently_delete_personal_link": true,
+        "causal_fact_not_generated": true,
+        "truth_promotion_not_executed": true
+    },
+    "candidate_only": true
+}

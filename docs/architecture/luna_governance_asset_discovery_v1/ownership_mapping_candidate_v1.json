@@ -1,0 +1,17 @@
+{
+  "title": "Ownership Mapping Candidate v1",
+  "mapping_status": "candidate_only",
+  "entries": [
+    {"asset":"capabilities/registry/luna_capability_registry_v1.json","current_location":"capabilities/registry","target_owner":"L4 Capability Registry Plane","migration_needed":false,"reason":"Existing root registry already matches the Core Baseline capability registry owner."},
+    {"asset":"capabilities/midplatform/model_manager/registries/capability_registry_v1.json","current_location":"Model Manager registries","target_owner":"L4 Capability Registry Plane or Model Manager sub-registry alias","migration_needed":true,"reason":"Parallel capability registry; do not move or delete until canonical decision."},
+    {"asset":"capabilities/midplatform/model_manager/registries/model_registry_v1.json","current_location":"Model Manager registries","target_owner":"L4 Model Manager / Model Registry","migration_needed":false,"reason":"Model registry is naturally owned by Model Manager, subject to Model Admission governance."},
+    {"asset":"capabilities/registry/baselines/model_manager_module_baseline_v1.json","current_location":"Capability baseline plane","target_owner":"L1 Governance baseline plus L4 Model Manager owner reference","migration_needed":false,"reason":"Baseline explicitly separates governance evidence from runtime authority."},
+    {"asset":"capabilities/midplatform/model_admission_governance/","current_location":"Midplatform model admission","target_owner":"L4 Model Admission","migration_needed":false,"reason":"Existing dedicated model admission surface."},
+    {"asset":"capabilities/field_understanding/spatial_evidence_provider_admission/","current_location":"Field Understanding provider admission","target_owner":"L4 Provider Admission","migration_needed":true,"reason":"Admission class is clear but owner must be linked to the canonical Capability Governance Plane."},
+    {"asset":"docs/architecture/model_governance/","current_location":"Architecture model governance family","target_owner":"L1 Governance / L4 Model Management documentation","migration_needed":true,"reason":"Parallel with model_platform and midplatform Model Manager documents; mapping only."},
+    {"asset":"docs/architecture/model_platform/","current_location":"Architecture model platform family","target_owner":"L4 Model Management documentation","migration_needed":true,"reason":"Potential duplicate platform/governance ownership; no file movement authorized."},
+    {"asset":"docs/architecture/capability_registry/","current_location":"Architecture capability registry family","target_owner":"L4 Capability Registry Governance","migration_needed":false,"reason":"Matches canonical capability registry standards."},
+    {"asset":"capabilities/evaluation/ocr/ocr_provider_benchmark_registry_v0.py","current_location":"OCR evaluation","target_owner":"L4 Calibration / Provider Evidence","migration_needed":true,"reason":"Calibration evidence should be referenced by Provider/Model Admission without moving the evaluator."}
+  ],
+  "rules": {"candidate_only":true,"no_move":true,"no_delete":true,"no_rename":true,"requires_separate_migration_phase":true}
+}

@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Information Lifecycle Negative Guards",
+  "guards":[
+    {"guard":"no_information_runtime","forbidden":"Runtime information flow implementation"},
+    {"guard":"no_automatic_learning","forbidden":"automatic learning"},
+    {"guard":"no_automatic_compression","forbidden":"automatic compression"},
+    {"guard":"no_pattern_mining","forbidden":"Pattern Mining"},
+    {"guard":"no_emotion_weight","forbidden":"Emotion weighting"},
+    {"guard":"no_b_simulation","forbidden":"B Route simulation"},
+    {"guard":"no_memory_consolidation","forbidden":"Memory Consolidation"},
+    {"guard":"no_self_social_update","forbidden":"automatic Self/Social update"},
+    {"guard":"no_deletion_shortcut","forbidden":"Removed equals deletion"}
+  ],
+  "rules":{"architecture_only":true,"no_runtime_activation":true,"no_external_side_effect":true,"no_check_weakening":true}
+}

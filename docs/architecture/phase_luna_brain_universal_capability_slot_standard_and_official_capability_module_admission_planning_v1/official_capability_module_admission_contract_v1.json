@@ -1,0 +1,24 @@
+{
+  "contract_id": "OfficialCapabilityModuleAdmissionContractV1",
+  "owner_chain": ["Capability Registry", "Capability Admission", "Model Manager", "Provider Governance", "System Maintenance"],
+  "ordered_stages": [
+    "CAPABILITY_MODULE_DEFINITION_ADMISSION",
+    "CAPABILITY_IMPLEMENTATION_ADMISSION",
+    "MODEL_PROVIDER_ADMISSION",
+    "SLOT_COMPATIBILITY_ASSESSMENT",
+    "MODULE_TO_SLOT_BINDING",
+    "INSTALLATION",
+    "ACTIVATION"
+  ],
+  "non_equivalences": [
+    "OFFICIAL_MODULE_AVAILABLE != ADMITTED",
+    "ADMITTED != INSTALLED",
+    "INSTALLED != BOUND",
+    "BOUND != ACTIVE",
+    "CAPABILITY_MODULE != MODEL",
+    "CAPABILITY_MODULE != PROVIDER"
+  ],
+  "required_evidence": ["identity", "version", "provenance", "integrity_signature", "compatibility", "resource", "permission", "dependency", "safety_classification", "rollback_recovery"],
+  "runtime_execution": false,
+  "market_admission": "DEFERRED"
+}

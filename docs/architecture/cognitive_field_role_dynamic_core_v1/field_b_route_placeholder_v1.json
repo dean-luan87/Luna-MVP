@@ -1,0 +1,13 @@
+{
+  "interface_name": "Field B Route Placeholder v1",
+  "current_field_state": "field-state-example",
+  "simulation_field_candidate": null,
+  "modified_variables": ["Role", "Rule", "Relationship", "Goal"],
+  "simulation_mode": "Placeholder",
+  "reality_is_read_only": true,
+  "b_runtime": false,
+  "prediction": false,
+  "simulation_does_not_modify_reality": true,
+  "simulation_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

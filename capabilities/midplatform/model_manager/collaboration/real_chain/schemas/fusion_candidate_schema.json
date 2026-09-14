@@ -1,0 +1,19 @@
+{
+  "schema_id": "RealChainFusionCandidateV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Real-Multi-Model-Chain-Integration-Planning-v1-001",
+  "description": "证据组合候选 — Evidence Set + Validation，非答案合成",
+  "forbidden": ["answer_synthesis", "majority_vote", "fact_write"],
+  "properties": {
+    "fusion_id": {"type": "string"},
+    "chain_id": {"type": "string"},
+    "evidence_packages": {"type": "array"},
+    "evidence_set": {"type": "array"},
+    "fusion_candidate": {"type": "boolean", "const": true},
+    "not_answer_fusion": {"type": "boolean", "const": true},
+    "requires_validation": {"type": "boolean", "const": true},
+    "fact_admission_candidate": {"type": "boolean", "const": false},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

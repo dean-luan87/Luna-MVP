@@ -1,0 +1,25 @@
+{
+    "artifact": "dynamic_regulation_trace_provenance_contract_v1",
+    "trace_required": [
+        "root_trace_id",
+        "state_vector_trace_ref",
+        "regulation_trace_ref",
+        "influence_handoff_trace_ref"
+    ],
+    "provenance_required": [
+        "source_owner_refs",
+        "source_ref_chain",
+        "parameter_version_refs",
+        "policy_ref_chain"
+    ],
+    "reverse_lookup_chain": [
+        "influence_candidate",
+        "regulation_candidate",
+        "state_vector_ref",
+        "context_or_resource_or_policy_refs"
+    ],
+    "forbidden": [
+        "rewrite_upstream_trace",
+        "provenance_as_authority"
+    ]
+}

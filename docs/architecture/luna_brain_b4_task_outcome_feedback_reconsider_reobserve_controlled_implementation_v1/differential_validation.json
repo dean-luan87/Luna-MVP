@@ -1,0 +1,6 @@
+{
+  "compare":["synthetic Task/Action input -> controlled Runtime Result -> Outcome/Feedback","real B3 Task input -> controlled Runtime Result -> Outcome/Feedback"],
+  "invariants":["ownership","contract shape","lifecycle shape","candidate-only","trace/provenance","temporal","uncertainty/conflict","safety/permission/resource","reobserve authority","no side effects"],
+  "allowed_differences":["outcome classification","deviation label","task wording","retry count","action content"],
+  "provider_invocation":false
+}

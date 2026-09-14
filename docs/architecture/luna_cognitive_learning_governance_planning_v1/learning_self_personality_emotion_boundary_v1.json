@@ -1,0 +1,14 @@
+{
+    "artifact": "learning_self_personality_emotion_boundary_v1",
+    "future_outputs_only": [
+        "SelfEvolutionEvidenceCandidate",
+        "PersonalityEvolutionEvidenceCandidate",
+        "EmotionEngineEvidenceCandidate"
+    ],
+    "frozen_flags": {
+        "self_mutation": false,
+        "personality_mutation": false,
+        "emotional_state_mutation": false,
+        "trait_activation": false
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "contract_id": "uncertainty_attention_relation_v1",
+  "owner": "Attention",
+  "inputs": ["uncertainty_candidate", "impact_candidate", "field_context", "risk", "task_relevance"],
+  "outputs": ["observation_requirement_candidate", "attention_priority_candidate", "validation_request_candidate"],
+  "unknown_requests_attention": true,
+  "attention_executes_exploration": false,
+  "decision_authority": false,
+  "candidate_only": true
+}

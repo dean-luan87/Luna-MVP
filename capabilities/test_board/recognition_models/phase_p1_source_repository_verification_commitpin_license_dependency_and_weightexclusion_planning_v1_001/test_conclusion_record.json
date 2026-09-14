@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.364707+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_source_repository_verification_commitpin_planning_status": "planning_complete_candidate_only_no_network_no_clone_no_install_no_weight_download",
+    "in_scope_assets": [
+      "byte_track",
+      "mobile_sam"
+    ],
+    "recommended_next_phase": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+    "next_step_ref": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+    "transition_note": "Compressed pre-retry planning for byte_track and mobile_sam complete. This phase only PLANNED the questions that must be resolved before the next source-execution retry: (1) who the real repository candidate is (recorded as unverified_candidate_or_missing, must be verified before execution and must not be fabricated; byte_track ByteTrack/YOLOX has unresolved/source-component import identity, mobile_sam MobileSAM may ship a committed checkpoint so a full clone may equal a weight download); (2) how commit pin is determined (required, currently unverified, must not be fabricated, drift after pin blocks execution); (3) how license review is done (required, currently unverified, repo license file + transitive deps must be checked, must complete before retry, must not be fabricated); (4) how dependency review is done (source requirements + transitive deps unverified, torch/opencv/numpy-scipy + build/compile risk review required, must complete before retry, must not be fabricated); and (5) how mobile_sam avoids cloning checkpoint weights (weight-excluding checkout required before retry, blocking *.pth/*.pt/*.ckpt/*.safetensors/*.onnx/*.bin/*.h5/*.pb, git-lfs blocked/scoped, sparse-checkout/archive filtering if supported; this plan is NOT weight-download approval). NO network lookup, NO clone, NO checkout, NO install, NO pip, NO dependency install, NO download, NO import, NO model load, NO inference, NO runtime, NO output adapter, NO semantic layer, NO registry mutation was performed. Source-execution retry is NOT allowed now and requires future readiness (all 10 preconditions currently unsatisfied). Both assets are routed to the next, network-enabled review phase: Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001 — which may verify repo URL, resolve commit, inspect license/dependency manifests and review mobile_sam weight-excluding checkout feasibility, but still may NOT clone / checkout / install / pip / download weights / inference / runtime."
+  },
+  "final_decision": "P1_SOURCE_REPOSITORY_VERIFICATION_COMMITPIN_LICENSE_DEPENDENCY_WEIGHT_EXCLUSION_PLANNING_GO"
+}

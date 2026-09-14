@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "runner_bridge_request_schema_v1",
+  "title": "Runner Bridge Request V1",
+  "type": "object",
+  "required": [
+    "runner_bridge_request_id",
+    "job_request_ref",
+    "runner_type",
+    "runner_execution_phase_required",
+    "adapter_required",
+    "lens_may_read_runner_output",
+    "lens_may_not_execute_runner",
+    "lens_may_not_modify_runner_output",
+    "requires_owner_approval"
+  ],
+  "properties": {
+    "runner_bridge_request_id": { "type": "string" },
+    "job_request_ref": { "type": "string" },
+    "runner_type": {
+      "type": "string",
+      "enum": [
+        "slam_runner",
+        "segmentation_runner",
+        "ocr_runner",
+        "depth_runner",
+        "tracking_runner",
+        "asr_runner",
+        "tts_runner",
+        "speaker_runner",
+        "vlm_runner"
+      ]
+    },
+    "runner_allowed_to_execute_model": {
+      "type": "boolean",
+      "description": "true only after separate owner-approved execution phase"
+    },
+    "runner_execution_phase_required": { "const": true },
+    "requires_owner_approval": { "const": true },
+    "runner_output_expected": {
+      "type": "object",
+      "properties": {
+        "raw_model_output": { "type": "boolean" },
+        "metrics": { "type": "boolean" },
+        "diagnostics": { "type": "boolean" },
+        "candidate_outputs": { "type": "boolean" },
+        "test_board_refs": { "type": "boolean" }
+      }
+    },
+    "adapter_required": { "const": true },
+    "adapter_target_envelope": { "const": "model_test_result_envelope_v1" },
+    "lens_may_read_runner_output": { "const": true },
+    "lens_may_not_execute_runner": { "const": true },
+    "lens_may_not_modify_runner_output": { "const": true }
+  }
+}

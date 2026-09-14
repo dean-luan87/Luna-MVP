@@ -1,0 +1,15 @@
+{
+    "artifact": "self_dynamic_regulation_boundary_v1",
+    "dynamic_regulation_owner_preserved": "Dynamic Cognitive Regulation Governance",
+    "self_governance_may_reference": [
+        "regulation tendency refs",
+        "resource pressure refs",
+        "bounded modulation history refs"
+    ],
+    "frozen_assertions": {
+        "regulation_candidate_not_personality": true,
+        "regulation_parameter_not_self_identity": true,
+        "parameter_genome_not_self": true,
+        "parameter_update_candidate_not_self_evolution": true
+    }
+}

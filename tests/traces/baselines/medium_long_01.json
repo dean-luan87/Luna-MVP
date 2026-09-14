@@ -1,0 +1,20 @@
+{
+  "label": "medium_long_01",
+  "video": "test_video_complex_6m42s.mp4",
+  "description": "6m42s 工业级稳态回归锚点，改参/改代码后必跑，四指标不可退化",
+  "baseline_run": {
+    "mode_switch_total": 6,
+    "CAUTION_ratio": 0.3483,
+    "SAFE_EDGE_duration_mean_sec": 2.49,
+    "SAFE_EDGE_to_CAUTION_ratio": 0.3643
+  },
+  "constraints": {
+    "mode_switch_total_max": 6,
+    "CAUTION_ratio_min": 0.2,
+    "CAUTION_ratio_max": 0.5,
+    "SAFE_EDGE_duration_mean_sec_min": 2.0,
+    "SAFE_EDGE_duration_mean_sec_max": 4.0,
+    "SAFE_EDGE_to_CAUTION_ratio_min": 0.3,
+    "SAFE_EDGE_to_CAUTION_ratio_max": 0.6
+  }
+}

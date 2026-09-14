@@ -1,0 +1,27 @@
+{
+  "registry_id": "dynamic_cognitive_architecture_ownership_alignment_v1",
+  "unique_owner_required": true,
+  "records": [
+    {"responsibility": "observation and evidence intake", "owner": "Observation Manager / Reality Evidence Pipeline", "consumers": ["Field System", "Cognitive Core"]},
+    {"responsibility": "field state and context", "owner": "Field System", "consumers": ["Personal Cognitive Network", "Attention", "Intent Governance"]},
+    {"responsibility": "cross-object topology and activation projection", "owner": "Personal Cognitive Network Governance", "consumers": ["Causal Reasoning Governance", "Intent Governance", "Brain"]},
+    {"responsibility": "self identity and boundary", "owner": "Self Governance", "consumers": ["Personal Cognitive Network", "Self Regulation", "Brain"]},
+    {"responsibility": "role lifecycle", "owner": "Social Self / Role System", "consumers": ["Personal Cognitive Network", "Intent Governance"]},
+    {"responsibility": "relationship lifecycle", "owner": "Social Self / Relationship System", "consumers": ["Personal Cognitive Network", "Intent Governance"]},
+    {"responsibility": "memory persistence and activation", "owner": "Memory System", "consumers": ["Personal Cognitive Network", "Understanding", "Experience Governance"]},
+    {"responsibility": "causal candidate reasoning", "owner": "Causal Reasoning Governance", "consumers": ["Intent Governance", "Brain", "Decision Arbitration"]},
+    {"responsibility": "intent qualification", "owner": "Intent Governance", "consumers": ["Cognitive Routing Governance", "Goal Governance", "Brain"]},
+    {"responsibility": "direct-response versus expansion recommendation", "owner": "Cognitive Routing Governance", "consumers": ["Brain", "A/B Route Boundary"]},
+    {"responsibility": "value and utility evaluation", "owner": "Value Utility Governance", "consumers": ["Intent Governance", "Decision Arbitration"]},
+    {"responsibility": "decision candidate selection", "owner": "Decision Arbitration", "consumers": ["Action Governance", "Task Manager"]},
+    {"responsibility": "task lifecycle and routing", "owner": "Task Manager", "consumers": ["Action Governance", "Capability Governance"]},
+    {"responsibility": "action execution", "owner": "Action Governance / Action Runtime", "consumers": ["External World", "Outcome Evaluation"]},
+    {"responsibility": "experience compression", "owner": "Experience Governance", "consumers": ["Memory System", "Learning Governance"]},
+    {"responsibility": "emotion context", "owner": "Cognitive Integration", "consumers": ["Personal Cognitive Network", "Attention", "Self Regulation"]},
+    {"responsibility": "model asset management", "owner": "Capability Governance", "consumers": ["Capability Runtime", "Task Manager"]}
+  ],
+  "personal_network_does_not_absorb_source_owners": true,
+  "task_manager_is_not_action_owner": true,
+  "emotion_is_not_value_owner": true,
+  "intent_is_not_decision_owner": true
+}

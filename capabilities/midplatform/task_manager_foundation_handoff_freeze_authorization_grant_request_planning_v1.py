@@ -1,0 +1,574 @@
+# -*- coding: utf-8 -*-
+"""Luna Midplatform Task Manager Foundation Handoff Freeze Authorization Grant Request Planning v1.
+
+Structure inherited from task_manager_foundation_handoff_freeze_authorization_grant_planning_v1.py
+with upstream evidence from grant_post_dryrun_review_v1 (whitelist template reuse).
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+from capabilities.governance.migration_governance_development_constraints_v1 import CONSTRAINT_DOC_ID
+from capabilities.midplatform.midplatform_task_manager_controlled_skeleton_implementation_dryrun_v1 import (
+    SKELETON_FILES,
+)
+from capabilities.midplatform.task_manager_foundation_handoff_evaluation_template_lineage_v1 import (
+    BASE_GRANT_PLANNING_TEMPLATE_FILES,
+    GRANT_REQUEST_PLANNING_STAGE_ADDITIONS,
+    GRANT_REQUEST_PLANNING_STAGE_TERM_OVERRIDES,
+    GRANT_REQUEST_PLANNING_WHITELIST_FILES,
+    build_core_go_no_go_summary_fields,
+    build_template_lineage,
+)
+from capabilities.midplatform.task_manager_foundation_handoff_final_closure_planning_v1 import GOVERNANCE_DEBTS
+from capabilities.midplatform.task_manager_foundation_handoff_freeze_authorization_grant_post_dryrun_review_v1 import (
+    CHAIN_EVIDENCE_NODES as UPSTREAM_CHAIN_NODES,
+    DEFAULT_OUTPUT as DEFAULT_GRANT_POST_REVIEW_ROOT,
+    FINAL_DECISION_GO as GRANT_POST_REVIEW_FINAL_GO,
+    GO_CONDITIONS_KEYS as UPSTREAM_GO_KEYS,
+    NEXT_PHASE_GO as GRANT_POST_REVIEW_NEXT_PHASE,
+    RUNTIME_FORBIDDEN_FLAGS,
+)
+from capabilities.midplatform.task_manager_foundation_handoff_planning_v1 import (
+    BOUNDARY_STATEMENT_EN,
+    BOUNDARY_STATEMENT_ZH,
+    FOUNDATION_ID,
+)
+
+PHASE_ID = "Phase-Midplatform-Task-Manager-Foundation-Handoff-Freeze-Authorization-Grant-Request-Planning-v1-001"
+SCOPE = "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_request_planning_only"
+SOURCE_CHAIN = "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_request_planning_v1"
+FINAL_DECISION_GO = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_READY_FOR_DRYRUN"
+FINAL_DECISION_PRIOR = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_PRIOR_REVIEW_GAP"
+FINAL_DECISION_SCOPE = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_REQUEST_SCOPE_ESCALATION"
+FINAL_DECISION_ISSUANCE = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_REQUEST_RECORD_LEAKAGE"
+FINAL_DECISION_REQUEST = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_AUTHORIZATION_REQUEST_LEAKAGE"
+FINAL_DECISION_FREEZE = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_FREEZE_STATE_ESCALATION"
+FINAL_DECISION_DEBT = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_GOVERNANCE_DEBT_GAP"
+FINAL_DECISION_L1 = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_L1_PROTOCOL_SCOPE_LEAKAGE"
+FINAL_DECISION_RUNTIME = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_RUNTIME_SCOPE_LEAKAGE"
+FINAL_DECISION_LINEAGE = "MIDPLATFORM_TASK_MANAGER_FOUNDATION_HANDOFF_FREEZE_AUTHORIZATION_GRANT_REQUEST_PLANNING_BLOCKED_BY_TEMPLATE_LINEAGE_GAP"
+NEXT_PHASE_GO = "Phase-Midplatform-Task-Manager-Foundation-Handoff-Freeze-Authorization-Grant-Request-DryRun-v1-001"
+NEXT_PHASE_HOLD = "Phase-Midplatform-Task-Manager-Foundation-Handoff-Freeze-Authorization-Grant-Request-Planning-Issue-Review-v1-001"
+DEFAULT_OUTPUT = (
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/"
+    "midplatform_task_manager_foundation_handoff_freeze_authorization_grant_request_planning_v1_smoke_v0"
+)
+GRANT_REQUEST_PLANNING_PACKAGE_FILES: Tuple[str, ...] = (
+    "task_manager_foundation_handoff_freeze_authorization_grant_request_plan_v1.json",
+    "task_manager_foundation_handoff_freeze_authorization_grant_request_plan_v1.md",
+    "task_manager_freeze_authorization_grant_request_scope_matrix_v1.json",
+    "task_manager_freeze_authorization_grant_request_candidate_matrix_v1.json",
+    "task_manager_freeze_authorization_grant_owner_approval_candidate_matrix_v1.json",
+    "task_manager_freeze_authorization_grant_request_prerequisite_matrix_v1.json",
+    "task_manager_freeze_authorization_grant_request_evidence_chain_v1.json",
+    "task_manager_freeze_authorization_grant_request_boundary_contract_v1.json",
+    "task_manager_freeze_authorization_grant_request_non_execution_constraints_v1.json",
+    "task_manager_freeze_authorization_grant_request_governance_debt_carryover_v1.json",
+    "task_manager_freeze_authorization_grant_request_template_lineage_v1.json",
+    "task_manager_freeze_authorization_grant_request_next_phase_readiness_v1.json",
+    "summary.json",
+    "verifier_report.json",
+)
+
+BOUNDARY_CONTRACT_STATEMENTS: Tuple[str, ...] = (
+    "grant_request_planning != authorization_request",
+    "request_candidate != request_record",
+    "owner_approval_candidate != owner_approval_record",
+    "grant_candidate != grant_record",
+    "grant_planning_ready != grant_issued",
+    "freeze_candidate != frozen",
+    "closure_candidate != closed",
+)
+REQUEST_SCOPE_ROWS: Tuple[Dict[str, str], ...] = (
+    {"scope": "foundation_freeze_authorization_grant_request", "classification": "grant-request-planning-scope"},
+    {"scope": "skeleton_asset_grant_request", "classification": "grant-request-planning-scope"},
+    {"scope": "evidence_chain_grant_request", "classification": "grant-request-planning-scope"},
+    {"scope": "owner_operator_approval_candidate", "classification": "grant-request-planning-scope"},
+    {"scope": "governance_debt_acknowledgement", "classification": "grant-request-planning-scope"},
+    {"scope": "rollback_revoke_boundary", "classification": "grant-request-planning-scope"},
+)
+PREREQUISITE_ROWS: Tuple[Dict[str, Any], ...] = (
+    {"prerequisite": "grant_post_dryrun_review_go", "required": True},
+    {"prerequisite": "authorization_request_absent", "required": True},
+    {"prerequisite": "authorization_grant_absent", "required": True},
+    {"prerequisite": "grant_token_absent", "required": True},
+    {"prerequisite": "grant_record_absent", "required": True},
+    {"prerequisite": "owner_approval_record_absent", "required": True},
+    {"prerequisite": "foundation_not_frozen", "required": True},
+    {"prerequisite": "closure_not_executed", "required": True},
+    {"prerequisite": "governance_debt_preserved", "required": True},
+)
+NON_EXECUTION_CONSTRAINTS: Tuple[str, ...] = (
+    "no_authorization_request",
+    "no_request_record",
+    "no_owner_approval_record",
+    "no_authorization_grant",
+    "no_grant_token",
+    "no_grant_record",
+    "no_freeze_execution_path",
+    "no_rollback_execution_path",
+    "no_foundation_frozen",
+    "no_closed_state",
+    "no_runtime_executor",
+    "no_scheduler_binding",
+    "no_task_execution_authority",
+    "no_output_authorization",
+    "no_memory_worldmodel_write_path",
+    "no_module_adapter_integration",
+    "no_information_channel_governance_implementation",
+    "no_protocol_governance_implementation",
+    "no_closure_channel_governance_implementation",
+    "no_system_protocols_integration_implementation",
+    "no_closure_execution",
+)
+OWNER_APPROVAL_CANDIDATE_ROWS: Tuple[Dict[str, str], ...] = (
+    {"role": "foundation_owner", "approval_status": "owner-approval-candidate"},
+    {"role": "operator_approver", "approval_status": "owner-approval-candidate"},
+)
+CHAIN_EVIDENCE_NODES: Tuple[str, ...] = UPSTREAM_CHAIN_NODES + ("freeze_authorization_grant_request_planning",)
+GO_CONDITIONS_KEYS: Tuple[str, ...] = (
+    "prior_grant_post_review_go",
+    "grant_request_plan_complete",
+    "request_scope_planning_only",
+    "request_candidate_only",
+    "owner_approval_candidate_only",
+    "authorization_request_absent",
+    "request_record_absent",
+    "owner_approval_record_absent",
+    "grant_token_absent",
+    "grant_record_absent",
+    "authorization_grant_absent",
+    "foundation_not_frozen",
+    "closure_not_executed",
+    "governance_debt_carryover_complete",
+    "l1_protocols_not_implemented",
+    "system_protocols_integration_not_implemented",
+    "template_lineage_ok",
+    "non_execution_boundary_ok",
+    "next_phase_readiness_ok",
+)
+PLANNING_TRUE_KEYS: Tuple[str, ...] = GO_CONDITIONS_KEYS
+
+
+def _read_json(path: Path) -> Dict[str, Any]:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _meta(out: Path, post_review: Path) -> Dict[str, Any]:
+    return {
+        "phase": PHASE_ID,
+        "scope": SCOPE,
+        "source_chain": SOURCE_CHAIN,
+        "governance_constraints_ref": CONSTRAINT_DOC_ID,
+        "foundation_id": FOUNDATION_ID,
+        "runtime_status": "not_enabled",
+        "grant_request_planning_only": True,
+        "authorization_request_absent": True,
+        "request_record_absent": True,
+        "owner_approval_record_absent": True,
+        "authorization_grant_absent": True,
+        "grant_token_absent": True,
+        "grant_record_absent": True,
+        "foundation_not_frozen": True,
+        "closure_not_executed": True,
+        "l1_protocols_not_implemented": True,
+        "system_protocols_integration_not_implemented": True,
+        "output_root": str(out),
+        "grant_post_dryrun_review_root": str(post_review),
+        "boundary_statement_en": BOUNDARY_STATEMENT_EN,
+        "boundary_statement_zh": BOUNDARY_STATEMENT_ZH,
+    }
+
+
+def run_task_manager_foundation_handoff_freeze_authorization_grant_request_planning_v1(
+    *,
+    grant_post_dryrun_review_root: str,
+    output_root: Optional[str] = None,
+) -> Dict[str, Any]:
+    out = Path(output_root or DEFAULT_OUTPUT).expanduser().resolve()
+    post_review = Path(grant_post_dryrun_review_root).expanduser().resolve()
+    repo_root = Path(__file__).resolve().parents[2]
+    meta = _meta(out, post_review)
+    issues: List[str] = []
+
+    post_summary = _read_json(post_review / "summary.json")
+    post_verifier = _read_json(post_review / "verifier_report.json")
+    chain_review = _read_json(post_review / "task_manager_freeze_authorization_grant_chain_evidence_review_v1.json")
+    grant_candidate_src = _read_json(
+        post_review / "task_manager_freeze_authorization_grant_absence_review_v1.json"
+    )
+
+    prior_grant_post_review_go = (
+        post_summary.get("final_decision") == GRANT_POST_REVIEW_FINAL_GO
+        and post_summary.get("recommended_next_phase") == GRANT_POST_REVIEW_NEXT_PHASE
+        and post_verifier.get("verifier") == "GO"
+        and int(post_verifier.get("passed_checks", 0)) >= 420
+        and post_verifier.get("failed_checks") == 0
+        and post_verifier.get("blocker_count") == 0
+        and post_summary.get("next_planning_ready") is True
+        and all(post_summary.get(k) is True for k in UPSTREAM_GO_KEYS)
+    )
+    if not prior_grant_post_review_go:
+        issues.append("prior_grant_post_review_not_go")
+
+    evidence_chain = []
+    for stage in UPSTREAM_CHAIN_NODES:
+        row = next((r for r in chain_review.get("chain") or [] if r.get("stage") == stage), {})
+        evidence_chain.append({"stage": stage, "linked": row.get("linked") is True})
+    evidence_chain.append(
+        {
+            "stage": "freeze_authorization_grant_request_planning",
+            "root": str(out),
+            "readiness": "grant-request-planning-ready",
+            "authorization_request": False,
+            "request_record": False,
+            "grant_issued": False,
+            "linked": True,
+        }
+    )
+    evidence_chain_complete = prior_grant_post_review_go and all(node.get("linked") for node in evidence_chain)
+    if not evidence_chain_complete:
+        issues.append("evidence_chain_gap")
+
+    scope_rows = list(REQUEST_SCOPE_ROWS)
+    request_scope_planning_only = all(
+        row["classification"] == "grant-request-planning-scope"
+        and row["classification"] not in ("request-issued-scope", "authorized-scope")
+        for row in scope_rows
+    )
+    if not request_scope_planning_only:
+        issues.append("request_scope_escalation")
+
+    candidate_rows: List[Dict[str, Any]] = []
+    for rel in SKELETON_FILES:
+        path = repo_root / rel
+        candidate_rows.append(
+            {
+                "asset_type": "core_skeleton",
+                "path": rel,
+                "request_status": "grant-request-candidate",
+                "grant_status": "grant-request-candidate",
+                "freeze_status": "freeze-candidate",
+                "exists": path.is_file(),
+            }
+        )
+    request_candidate_only = all(
+        row.get("request_status") == "grant-request-candidate"
+        and row.get("grant_status") == "grant-request-candidate"
+        and row.get("request_status") != "request-record"
+        and row.get("freeze_status") != "frozen"
+        for row in candidate_rows
+    )
+    if not request_candidate_only:
+        issues.append("request_scope_escalation")
+
+    owner_rows = [
+        {**row, "approval_record": False, "owner_approval_record": False}
+        for row in OWNER_APPROVAL_CANDIDATE_ROWS
+    ]
+    owner_approval_candidate_only = all(
+        row.get("approval_status") == "owner-approval-candidate"
+        and row.get("approval_status") != "owner-approval-record"
+        and row.get("approval_record") is False
+        for row in owner_rows
+    )
+    if not owner_approval_candidate_only:
+        issues.append("owner_approval_record_leakage")
+
+    prerequisite_values = {
+        "grant_post_dryrun_review_go": prior_grant_post_review_go,
+        "authorization_request_absent": post_summary.get("authorization_request_absent") is True
+        or grant_candidate_src.get("authorization_request_absent") is True,
+        "authorization_grant_absent": post_summary.get("authorization_grant_absent") is True
+        or grant_candidate_src.get("authorization_grant_absent") is True,
+        "grant_token_absent": post_summary.get("grant_token_absent") is True
+        or grant_candidate_src.get("grant_token_absent") is True,
+        "grant_record_absent": post_summary.get("grant_record_absent") is True
+        or grant_candidate_src.get("grant_record_absent") is True,
+        "owner_approval_record_absent": post_summary.get("owner_approval_record_absent") is True
+        or grant_candidate_src.get("owner_approval_record_absent") is True,
+        "foundation_not_frozen": post_summary.get("foundation_not_frozen") is True,
+        "closure_not_executed": post_summary.get("closure_not_executed") is True,
+        "governance_debt_preserved": post_summary.get("governance_debt_preserved") is True,
+    }
+    prerequisite_rows = [
+        {**row, "satisfied": prerequisite_values.get(row["prerequisite"]) is True}
+        for row in PREREQUISITE_ROWS
+    ]
+    prerequisites_ok = all(row.get("satisfied") for row in prerequisite_rows)
+    if not prerequisites_ok:
+        issues.append("prerequisite_gap")
+
+    authorization_request_absent = prerequisite_values["authorization_request_absent"]
+    authorization_grant_absent = prerequisite_values["authorization_grant_absent"]
+    grant_token_absent = prerequisite_values["grant_token_absent"]
+    grant_record_absent = prerequisite_values["grant_record_absent"]
+    owner_approval_record_absent = prerequisite_values["owner_approval_record_absent"]
+    request_record_absent = True
+    foundation_not_frozen = prerequisite_values["foundation_not_frozen"]
+    closure_not_executed = prerequisite_values["closure_not_executed"]
+
+    if not authorization_request_absent:
+        issues.append("authorization_request_leakage")
+    if not request_record_absent or not owner_approval_record_absent or not grant_token_absent or not grant_record_absent:
+        issues.append("request_record_leakage")
+
+    boundary_contract = {
+        "contract_id": "task_manager_freeze_authorization_grant_request_boundary_contract_v1",
+        "statements": list(BOUNDARY_CONTRACT_STATEMENTS),
+        "grant_request_planning_only": True,
+        "authorization_request_absent": True,
+        "request_record_absent": True,
+        "owner_approval_record_absent": True,
+        "grant_issued": False,
+        "freeze_status": "freeze-candidate",
+        "foundation_frozen": False,
+        "closure_applied": False,
+        "closed": False,
+    }
+
+    debts = list(GOVERNANCE_DEBTS)
+    governance_debt_carryover_complete = (
+        len(debts) >= 2
+        and debts[0]["debt_title"] == GOVERNANCE_DEBTS[0]["debt_title"]
+        and debts[0]["priority"] == "P1"
+        and debts[0]["classification"] == "L1 Midplatform System Protocols"
+        and debts[0]["must_not_implement_now"] is True
+        and debts[1]["debt_title"] == GOVERNANCE_DEBTS[1]["debt_title"]
+        and debts[1]["priority"] == "P1"
+        and debts[1]["classification"] == "L1 Midplatform System Protocols"
+        and debts[1]["must_not_implement_now"] is True
+    )
+    if not governance_debt_carryover_complete:
+        issues.append("governance_debt_gap")
+
+    l1_protocols_not_implemented = True
+    system_protocols_integration_not_implemented = True
+    non_execution_boundary_ok = True
+
+    template_lineage = build_template_lineage(
+        base_phase="Freeze-Authorization-Grant-Planning-v1-001",
+        base_capability=BASE_GRANT_PLANNING_TEMPLATE_FILES[0],
+        base_runner=BASE_GRANT_PLANNING_TEMPLATE_FILES[1],
+        base_verifier=BASE_GRANT_PLANNING_TEMPLATE_FILES[2],
+        base_go_no_go_pack=BASE_GRANT_PLANNING_TEMPLATE_FILES[3],
+        stage_phase="Freeze-Authorization-Grant-Request-Planning-v1-001",
+        stage_term_overrides=GRANT_REQUEST_PLANNING_STAGE_TERM_OVERRIDES,
+        stage_additions=GRANT_REQUEST_PLANNING_STAGE_ADDITIONS,
+        template_files=GRANT_REQUEST_PLANNING_WHITELIST_FILES,
+        repo_root=repo_root,
+        upstream_review_phase="Freeze-Authorization-Grant-Post-DryRun-Review-v1-001",
+    )
+    upstream_lineage_ok = post_summary.get("template_lineage_ok") is True
+    if not template_lineage.get("template_lineage_ok") or not upstream_lineage_ok:
+        issues.append("template_lineage_gap")
+
+    grant_request_plan_complete = (
+        prior_grant_post_review_go
+        and evidence_chain_complete
+        and request_scope_planning_only
+        and request_candidate_only
+        and owner_approval_candidate_only
+        and prerequisites_ok
+        and governance_debt_carryover_complete
+        and template_lineage.get("template_lineage_ok") is True
+    )
+    next_phase_readiness_ok = grant_request_plan_complete
+
+    if not prior_grant_post_review_go:
+        final_decision = FINAL_DECISION_PRIOR
+    elif not template_lineage.get("template_lineage_ok"):
+        final_decision = FINAL_DECISION_LINEAGE
+    elif not request_scope_planning_only or not request_candidate_only or not owner_approval_candidate_only:
+        final_decision = FINAL_DECISION_SCOPE
+    elif not request_record_absent or not owner_approval_record_absent or not grant_token_absent or not grant_record_absent:
+        final_decision = FINAL_DECISION_ISSUANCE
+    elif not authorization_request_absent:
+        final_decision = FINAL_DECISION_REQUEST
+    elif not foundation_not_frozen:
+        final_decision = FINAL_DECISION_FREEZE
+    elif not governance_debt_carryover_complete:
+        final_decision = FINAL_DECISION_DEBT
+    elif not l1_protocols_not_implemented:
+        final_decision = FINAL_DECISION_L1
+    elif not non_execution_boundary_ok:
+        final_decision = FINAL_DECISION_RUNTIME
+    else:
+        final_decision = FINAL_DECISION_GO
+
+    go_condition_values = {
+        "prior_grant_post_review_go": prior_grant_post_review_go,
+        "grant_request_plan_complete": grant_request_plan_complete,
+        "request_scope_planning_only": request_scope_planning_only,
+        "request_candidate_only": request_candidate_only,
+        "owner_approval_candidate_only": owner_approval_candidate_only,
+        "authorization_request_absent": authorization_request_absent,
+        "request_record_absent": request_record_absent,
+        "owner_approval_record_absent": owner_approval_record_absent,
+        "grant_token_absent": grant_token_absent,
+        "grant_record_absent": grant_record_absent,
+        "authorization_grant_absent": authorization_grant_absent,
+        "foundation_not_frozen": foundation_not_frozen,
+        "closure_not_executed": closure_not_executed,
+        "governance_debt_carryover_complete": governance_debt_carryover_complete,
+        "l1_protocols_not_implemented": l1_protocols_not_implemented,
+        "system_protocols_integration_not_implemented": system_protocols_integration_not_implemented,
+        "template_lineage_ok": template_lineage.get("template_lineage_ok") is True and upstream_lineage_ok,
+        "non_execution_boundary_ok": non_execution_boundary_ok,
+        "next_phase_readiness_ok": next_phase_readiness_ok,
+    }
+    planning_pass = len(issues) == 0 and final_decision == FINAL_DECISION_GO and all(go_condition_values.values())
+    next_phase = NEXT_PHASE_GO if planning_pass else NEXT_PHASE_HOLD
+    core_schema_fields = build_core_go_no_go_summary_fields(
+        go_conditions=go_condition_values,
+        forbidden_runtime_flags=RUNTIME_FORBIDDEN_FLAGS,
+        chain_trace_nodes=CHAIN_EVIDENCE_NODES,
+        go_no_go_decision=final_decision,
+        final_decision=final_decision,
+        next_phase=next_phase,
+        template_lineage=template_lineage,
+    )
+
+    request_plan = {
+        "plan_id": "task_manager_foundation_handoff_freeze_authorization_grant_request_plan_v1",
+        "request_scope": [
+            "define freeze authorization grant request admission criteria without issuing request",
+            "inventory grant-request-candidate assets",
+            "define owner/operator approval candidates without approval records",
+            "trace evidence chain through grant request planning",
+            "preserve governance debt carryover",
+            "define non-request constraints for future request dry-run",
+        ],
+        **go_condition_values,
+        "final_decision": final_decision,
+        "recommended_next_phase": next_phase,
+        **meta,
+    }
+    scope_matrix = {
+        "matrix_id": "task_manager_freeze_authorization_grant_request_scope_matrix_v1",
+        "rows": scope_rows,
+        "request_scope_planning_only": request_scope_planning_only,
+        **meta,
+    }
+    candidate_matrix = {
+        "matrix_id": "task_manager_freeze_authorization_grant_request_candidate_matrix_v1",
+        "rows": candidate_rows,
+        "request_candidate_only": request_candidate_only,
+        **meta,
+    }
+    owner_matrix = {
+        "matrix_id": "task_manager_freeze_authorization_grant_owner_approval_candidate_matrix_v1",
+        "rows": owner_rows,
+        "owner_approval_candidate_only": owner_approval_candidate_only,
+        **meta,
+    }
+    prerequisite_matrix = {
+        "matrix_id": "task_manager_freeze_authorization_grant_request_prerequisite_matrix_v1",
+        "rows": prerequisite_rows,
+        "prerequisites_ok": prerequisites_ok,
+        **meta,
+    }
+    evidence_chain_doc = {
+        "chain_id": "task_manager_freeze_authorization_grant_request_evidence_chain_v1",
+        "chain": evidence_chain,
+        "node_count": len(CHAIN_EVIDENCE_NODES),
+        "evidence_chain_complete": evidence_chain_complete,
+        "points_to_request_planning_not_issued": True,
+        **meta,
+    }
+    boundary_contract_doc = {**boundary_contract, **meta}
+    non_execution = {
+        "constraints_id": "task_manager_freeze_authorization_grant_request_non_execution_constraints_v1",
+        "constraints": list(NON_EXECUTION_CONSTRAINTS),
+        "non_execution_boundary_ok": non_execution_boundary_ok,
+        **{c: True for c in NON_EXECUTION_CONSTRAINTS},
+        **meta,
+    }
+    debt_carryover = {
+        "carryover_id": "task_manager_freeze_authorization_grant_request_governance_debt_carryover_v1",
+        "debts": debts,
+        "governance_debt_carryover_complete": governance_debt_carryover_complete,
+        "l1_protocols_not_implemented": l1_protocols_not_implemented,
+        "system_protocols_integration_not_implemented": system_protocols_integration_not_implemented,
+        **meta,
+    }
+    template_lineage_doc = {
+        "lineage_id": "task_manager_freeze_authorization_grant_request_template_lineage_v1",
+        "upstream_grant_post_review_lineage_ok": upstream_lineage_ok,
+        **template_lineage,
+        **meta,
+    }
+    next_phase_doc = {
+        "readiness_id": "task_manager_freeze_authorization_grant_request_next_phase_readiness_v1",
+        "recommended_next_phase": next_phase,
+        "target": "freeze_authorization_grant_request_dryrun",
+        "readiness": "freeze-authorization-grant-request-dryrun-ready",
+        "authorization_request_issued": False,
+        "request_record_created": False,
+        "owner_approval_record_created": False,
+        "grant_issued": False,
+        "freeze_authorization_granted": False,
+        "foundation_frozen": False,
+        "closed": False,
+        "module_adapter_implementation_ready": False,
+        "next_phase_readiness_ok": next_phase_readiness_ok,
+        **meta,
+    }
+    summary = {
+        "phase": PHASE_ID,
+        "scope": SCOPE,
+        "planning_pass": planning_pass,
+        "blocker_count": len(issues),
+        "issues": issues,
+        **go_condition_values,
+        **core_schema_fields,
+        **meta,
+    }
+    markdown = "\n".join(
+        [
+            "# Task Manager Foundation Handoff Freeze Authorization Grant Request Plan v1",
+            "",
+            "This phase performs freeze authorization grant request planning only. It does not issue authorization request, create request records, or issue grant.",
+            "",
+            "本阶段仅执行 freeze authorization grant request planning，不发起 authorization request，不生成 request record / owner approval record，不签发 grant。",
+            "",
+            f"Prior grant post-dryrun review GO: `{prior_grant_post_review_go}`",
+            f"Authorization request absent: `{authorization_request_absent}`",
+            f"Request record absent: `{request_record_absent}`",
+            f"Owner approval record absent: `{owner_approval_record_absent}`",
+            f"Grant request planning ≠ authorization request",
+            f"Template lineage OK: `{template_lineage.get('template_lineage_ok')}`",
+            f"Final decision: `{final_decision}`",
+            f"Recommended next phase: `{next_phase}`",
+            "",
+            "## Request Boundary Contract",
+            *[f"- {stmt}" for stmt in BOUNDARY_CONTRACT_STATEMENTS],
+            "",
+            "## Governance Debt Carryover (P1, not implemented)",
+            f"- {GOVERNANCE_DEBTS[0]['debt_title']}",
+            f"- {GOVERNANCE_DEBTS[1]['debt_title']}",
+        ]
+    )
+    return {
+        "task_manager_foundation_handoff_freeze_authorization_grant_request_plan": request_plan,
+        "task_manager_foundation_handoff_freeze_authorization_grant_request_plan_md": markdown,
+        "task_manager_freeze_authorization_grant_request_scope_matrix": scope_matrix,
+        "task_manager_freeze_authorization_grant_request_candidate_matrix": candidate_matrix,
+        "task_manager_freeze_authorization_grant_owner_approval_candidate_matrix": owner_matrix,
+        "task_manager_freeze_authorization_grant_request_prerequisite_matrix": prerequisite_matrix,
+        "task_manager_freeze_authorization_grant_request_evidence_chain": evidence_chain_doc,
+        "task_manager_freeze_authorization_grant_request_boundary_contract": boundary_contract_doc,
+        "task_manager_freeze_authorization_grant_request_non_execution_constraints": non_execution,
+        "task_manager_freeze_authorization_grant_request_governance_debt_carryover": debt_carryover,
+        "task_manager_freeze_authorization_grant_request_template_lineage": template_lineage_doc,
+        "task_manager_freeze_authorization_grant_request_next_phase_readiness": next_phase_doc,
+        "summary": summary,
+    }

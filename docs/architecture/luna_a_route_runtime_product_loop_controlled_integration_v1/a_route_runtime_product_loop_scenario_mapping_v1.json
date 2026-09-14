@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "source":"docs/architecture/luna_a_route_runtime_product_loop_integration_planning_v1/a_route_runtime_product_loop_minimum_scenario_suite_v1.json",
+  "scenario_ids":["L01","L02","L03","L04","L05","L06","L07","L08","L09","L10","L11","L12","L13","L14","L15","L16","L17","L18","L19","L20","L21","L22","L23","L24","L25","L26","L27","L28","L29","L30","L31","L32","L33","L34","L35","L36","L37","L38","L39","L40"],
+  "fixture_owner":"capabilities/midplatform/core/a_route_orchestration/integration/a_route_product_loop_integration_fixture_v1.py",
+  "runner_owner":"capabilities/midplatform/core/a_route_orchestration/integration/run_a_route_runtime_product_loop_controlled_integration_v1.py",
+  "L40_chain":["INPUT","OBSERVATION_REQUIRED","OBSERVING","OBSERVATION_READY","WORLD_CONTEXT_READY","COGNITION_READY","DECISION_READY","TASK_READY","ACTION_READY","EXECUTION_PENDING","EXECUTING","RESULT_READY","EVALUATING","FEEDBACK","COMPLETED"]
+}

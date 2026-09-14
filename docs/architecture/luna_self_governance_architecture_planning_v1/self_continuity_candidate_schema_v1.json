@@ -1,0 +1,27 @@
+{
+    "artifact": "self_continuity_candidate_schema_v1",
+    "schema_version": "self-continuity-schema-v1",
+    "type": "object",
+    "required_fields": [
+        "continuity_id",
+        "self_id_ref",
+        "previous_self_state_ref",
+        "current_self_state_candidate_ref",
+        "persistent_self_attribute_candidate_refs",
+        "transient_self_attribute_candidate_refs",
+        "unresolved_attribution_refs",
+        "revision_lineage_refs",
+        "revocation_lineage_refs",
+        "provenance_refs",
+        "root_cycle_trace_id",
+        "schema_version",
+        "contract_version",
+        "candidate_only"
+    ],
+    "rules": {
+        "continuity_not_immutable_identity": true,
+        "transient_and_persistent_separated": true,
+        "unresolved_attribution_preserved": true,
+        "candidate_only": true
+    }
+}

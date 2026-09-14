@@ -1,0 +1,13 @@
+{
+  "contract_id": "dynamic_cognitive_architecture_v2_freeze_decision_v1",
+  "inputs": ["Closed Migration Records", "Architecture Integrity Result", "Asset Ownership Result", "Boundary Integrity Result", "Cognitive Chain Result", "Regression Results", "Documentation Consistency Result", "Rollback Evidence", "Unresolved Risk Registry"],
+  "outputs": ["Freeze Decision Candidate", "Remediation Required Candidate", "Blocked Candidate"],
+  "mandatory_conditions": ["all_required_nodes_present", "all_assets_assigned", "unique_owners", "no_dual_mainline", "all_chain_edges_closed", "all_boundary_checks_passed", "all_required_regressions_passed", "documentation_code_mapping_consistent", "rollback_verified", "unresolved_risks_governed"],
+  "allowed_decisions": ["freeze_candidate", "remediation_required", "blocked"],
+  "freeze_does_not_modify_baseline": true,
+  "freeze_does_not_start_next_phase": true,
+  "integrity_validation_required": true,
+  "user_v2_required": true,
+  "chatgpt_v3_required": true,
+  "candidate_only": true
+}

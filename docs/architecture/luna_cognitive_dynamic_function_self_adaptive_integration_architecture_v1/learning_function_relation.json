@@ -1,0 +1,12 @@
+{
+  "relation_id": "learning_function_relation_v1",
+  "function_role": "Parameter Evolution Candidate Generator",
+  "inputs": ["Outcome", "Prediction Error", "Experience", "Pattern", "Schema", "Learning Utility", "Self Review"],
+  "outputs": ["Parameter Evolution Candidate", "Schema Candidate", "Threshold Candidate", "Weight Candidate", "No Change Candidate"],
+  "learning_is_not_automatic_update": true,
+  "learning_is_not_model_training": true,
+  "learning_requires_self_review": true,
+  "learning_does_not_modify_identity": true,
+  "learning_does_not_modify_constitution": true,
+  "candidate_only": true
+}

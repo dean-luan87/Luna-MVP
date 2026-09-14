@@ -1,0 +1,10 @@
+{
+  "contract_id": "experimental_layer_constraint_v1",
+  "experimental": ["New Strategy", "Unvalidated Threshold", "Candidate Weight", "Prototype Behavior"],
+  "requirements": ["Isolation", "Field Scope", "Limited Exposure", "Evidence Collection", "Risk Limit", "Rollback", "Self Review"],
+  "cannot_modify": ["Identity", "Constitution", "Safety Boundary", "Reality", "Core Brain Rules"],
+  "promotion_requires": ["Repeated Evidence", "State Quality", "Cognitive Fitness", "Stability", "Explicit Admission"],
+  "automatic_promotion": false,
+  "automatic_activation": false,
+  "candidate_only": true
+}

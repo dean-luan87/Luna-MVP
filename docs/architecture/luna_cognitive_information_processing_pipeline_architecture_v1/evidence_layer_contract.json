@@ -1,0 +1,11 @@
+{
+  "contract_id": "evidence_layer_v1",
+  "owner": "Capability Governance / Evidence Gateway",
+  "layer": "L5 Capability",
+  "inputs": ["Camera", "Microphone", "OCR", "SLAM", "Sensors", "External Knowledge"],
+  "outputs": ["raw_observation_candidate", "evidence_candidate", "provenance", "confidence", "limitations", "unknowns"],
+  "provider_stops_at_evidence": true,
+  "meaning_authority": false,
+  "forbidden_writes": ["meaning", "decision", "goal", "reality", "identity", "memory", "growth"],
+  "rules": ["every evidence item has provenance", "limitations remain visible", "unknowns are preserved", "gateway admission is required"]
+}

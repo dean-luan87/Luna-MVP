@@ -1,0 +1,45 @@
+{
+    "artifact": "cognitive_execution_chain_version_compatibility_contract_v1",
+    "status": "PLANNING_CANDIDATE",
+    "required_fields": [
+        "schema_version",
+        "contract_version",
+        "producer_version",
+        "consumer_supported_version",
+        "compatibility_status",
+        "migration_required",
+        "hard_block"
+    ],
+    "compatibility_status_set": [
+        "compatible",
+        "backward_compatible",
+        "migration_required",
+        "incompatible"
+    ],
+    "handoff_rules": [
+        {
+            "if": "compatibility_status=compatible",
+            "allow_handoff": true,
+            "hard_block": false
+        },
+        {
+            "if": "compatibility_status=backward_compatible",
+            "allow_handoff": true,
+            "hard_block": false
+        },
+        {
+            "if": "compatibility_status=migration_required",
+            "allow_handoff": "conditional",
+            "hard_block": false
+        },
+        {
+            "if": "compatibility_status=incompatible",
+            "allow_handoff": false,
+            "hard_block": true
+        }
+    ],
+    "forbidden": [
+        "silent_coercion_on_version_mismatch",
+        "implicit_schema_downgrade_without_trace"
+    ]
+}

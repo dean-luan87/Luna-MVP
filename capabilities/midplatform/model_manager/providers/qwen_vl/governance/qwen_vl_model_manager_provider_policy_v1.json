@@ -1,0 +1,42 @@
+{
+  "schema_id": "QwenVLModelManagerProviderPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-QwenVL-Real-Provider-Integration-Planning-v1-001",
+  "layer_id": "Model_Manager_Provider_QwenVL",
+  "planning_only": true,
+  "principle": "Qwen-VL is a Model Manager provider, not a special Teacher bypass.",
+  "chain": [
+    "job_envelope",
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "decision_validation_candidate",
+    "model_manager_routing",
+    "qwen_vl_provider_invoke",
+    "evidence_candidate",
+    "provider_validation_review"
+  ],
+  "rules": [
+    {"rule_id": "registry_lifecycle_gate", "description": "仅 active/admitted 模型可路由"},
+    {"rule_id": "capability_first", "description": "按 capability 选 provider，非硬编码 qwen"},
+    {"rule_id": "weakness_respected", "description": "precise_ocr 场景不选 Qwen"},
+    {"rule_id": "evidence_not_fact", "description": "输出 evidence candidate 非 fact"},
+    {"rule_id": "no_plan_override", "description": "不覆盖 L2 selected plan"},
+    {"rule_id": "no_tool_execution", "description": "不触发工具执行"},
+    {"rule_id": "provider_error_to_l2", "description": "provider 错误交还 L2 fallback"},
+    {"rule_id": "unsupported_claim_reject", "description": "无证据命名实体拒绝"},
+    {"rule_id": "lifecycle_version_switch", "description": "v2 激活后 v1 deprecated"},
+    {"rule_id": "no_hardcoded_provider_call", "description": "禁止 if provider==qwen 硬编码"}
+  ],
+  "boundary_flags": {
+    "registry_lifecycle_gate": true,
+    "capability_first": true,
+    "weakness_respected": true,
+    "evidence_not_fact": true,
+    "no_plan_override": true,
+    "no_tool_execution": true,
+    "provider_error_to_l2": true,
+    "unsupported_claim_reject": true,
+    "planning_only": true,
+    "no_live_api_default": true
+  }
+}

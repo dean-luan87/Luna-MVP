@@ -1,0 +1,27 @@
+{
+  "title": "Decision Constraint Check Contract v1",
+  "contract_type": "Commitment Constraint Check",
+  "input": {
+    "decision_candidate": "decision-candidate-example",
+    "constitution_constraints": [],
+    "value_constraints": [],
+    "safety_constraints": [],
+    "governance_constraints": [],
+    "risk": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "constraint_check": "pass | fail | unknown | review required",
+    "violations": [],
+    "review_requirement": {},
+    "commitment_status_candidate": "candidate"
+  },
+  "boundary": {
+    "value_is_constraint": true,
+    "constraint_check_does_not_modify_value": true,
+    "constraint_check_does_not_modify_goal": true,
+    "constraint_check_does_not_execute": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Cognitive Value Utility Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Field -> Value Context",
+    "Goal -> Value Evaluation Candidate",
+    "Self -> Resource and Stability Context",
+    "Memory -> Probability and Outcome Context",
+    "Schema -> Pattern and Prior Context",
+    "Value -> Utility Candidate",
+    "Value -> Priority Ranking Candidate",
+    "Value -> Exploration Utility Candidate",
+    "Value -> Brain Constraint Package",
+    "Brain -> Future Decision Arbitration Review"
+  ],
+  "forbidden_dependencies": [
+    "Value -> Create Goal",
+    "Value -> Direct Action",
+    "Value -> Modify Reality",
+    "Value -> Modify Identity",
+    "Value -> Rewrite Constitution",
+    "Value -> Modify Itself",
+    "Utility -> Execute Action",
+    "Priority -> Execute Action",
+    "Memory -> Force Value",
+    "Schema -> Override Evidence",
+    "Emotion -> Modify Value",
+    "Model -> Compute Utility Directly",
+    "Provider -> Change Value",
+    "Runtime -> Delegate Value Authority"
+  ],
+  "no_parallel_value_manager": true,
+  "no_parallel_utility_engine": true,
+  "utility_runtime": false,
+  "automatic_scoring": false,
+  "decision_arbitration_runtime": false,
+  "action_execution": false,
+  "emotion_integration": false,
+  "learning": false
+}

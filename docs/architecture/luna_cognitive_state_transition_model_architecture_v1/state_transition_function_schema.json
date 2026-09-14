@@ -1,0 +1,12 @@
+{
+  "schema_id": "state_transition_function_v1",
+  "status": "architecture_only",
+  "equation": "L(t+1)=F(L(t),Reality(t))",
+  "core_states": ["Field", "Self", "Understanding", "Goal", "Value", "Memory", "Resource"],
+  "required_fields": ["transition_id", "source_state_vector", "reality_input", "state_difference", "update_candidates", "constraints", "timestamp", "field_scope", "unknowns", "trace_ref"],
+  "state_difference_required": true,
+  "candidate_updates_only": true,
+  "automatic_transition": false,
+  "runtime": false,
+  "prediction_runtime": false
+}

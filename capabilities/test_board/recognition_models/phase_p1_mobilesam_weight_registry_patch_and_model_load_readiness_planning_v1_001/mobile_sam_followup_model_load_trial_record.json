@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Weight-Registry-Patch-And-Model-Load-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:54:15.986837+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_followup_model_load_trial_record",
+  "mobile_sam_followup_model_load_trial_route": {
+    "route_id": "mobile_sam_followup_model_load_trial_route_v1",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001",
+    "next_phase_scope": "mobile_sam_only",
+    "next_phase_allows_registry_overlay_write": true,
+    "next_phase_writes_readiness_level": "code_and_weight_ready",
+    "next_phase_still_no_model_load": true,
+    "next_phase_still_no_inference": true,
+    "next_phase_still_no_runtime": true,
+    "subsequent_model_load_trial_phase": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+    "optional_followup_phase": "Phase-P1-ByteTrack-Weight-Source-Resolution-Planning-v1-001"
+  }
+}

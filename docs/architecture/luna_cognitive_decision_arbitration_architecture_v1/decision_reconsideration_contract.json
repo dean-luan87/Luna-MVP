@@ -1,0 +1,12 @@
+{
+  "title": "Decision Reconsideration Contract v1",
+  "triggers": ["Reality Change", "Field Change", "New Evidence", "Understanding Contradiction", "Risk Increase", "Capability Failure", "Self State Change", "Goal Change Candidate"],
+  "inputs": ["Current Decision Candidate", "Changed Context", "New Evidence", "Unknowns", "Invalidation Reason"],
+  "output": "Reconsideration Candidate",
+  "current_decision_is_not_preserved_blindly": true,
+  "automatic_reconsideration": false,
+  "reconsideration_does_not_execute": true,
+  "reconsideration_does_not_modify_reality": true,
+  "brain_review_required": true,
+  "candidate_only": true
+}

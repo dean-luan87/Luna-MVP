@@ -1,0 +1,35 @@
+{
+  "A_directly_reusable": [
+    {"asset": "capabilities/midplatform/core/observation_gateway", "owner": "Observation Gateway", "role": "admitted Observation Candidate and evidence refs"},
+    {"asset": "capabilities/midplatform/core/context_foundation", "owner": "Context Foundation", "role": "reference-only Context envelope assembly"},
+    {"asset": "capabilities/midplatform/core/field_event_admission_api_v1.py", "owner": "Field Event Admission", "role": "Field Event temporal/admission eligibility"},
+    {"asset": "capabilities/midplatform/core/field_state_reducer", "owner": "Field State Reducer", "role": "sole Field mutation authority and reducer eligibility boundary"},
+    {"asset": "capabilities/midplatform/core/cognitive_state_formation/current_world_types_v1.py", "owner": "Cognitive State Formation", "role": "Current World candidate representation"},
+    {"asset": "capabilities/midplatform/core/a_route_orchestration", "owner": "A Route Orchestration", "role": "next-stage lifecycle handoff"}
+  ],
+  "B_adapter_required": [
+    "Observation Candidate to Context projection",
+    "Observation Candidate to Field Event Candidate",
+    "Field Event Admission result to reducer eligibility candidate",
+    "Context plus Field State references to Current World candidate",
+    "Current World candidate to A Route next cognitive stage"
+  ],
+  "C_do_not_reuse": [
+    "provider direct Field State mutation",
+    "provider direct Context mutation",
+    "Current World treated as Field truth",
+    "second Field State writer",
+    "silent contradiction overwrite"
+  ],
+  "D_deferred": [
+    "real runtime state mutation",
+    "database persistence",
+    "scheduler-driven expiration",
+    "Emotion Engine",
+    "B Route",
+    "semantic compression",
+    "cross-user transfer"
+  ],
+  "new_semantic_owner_created": false,
+  "existing_owner_files_modified": []
+}

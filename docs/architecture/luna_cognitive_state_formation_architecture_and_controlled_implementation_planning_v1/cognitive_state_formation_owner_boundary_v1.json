@@ -1,0 +1,38 @@
+{
+    "artifact": "cognitive_state_formation_owner_boundary_v1",
+    "module_name": "Cognitive State Formation Module",
+    "canonical_owner_candidate": "Cognitive State Formation Governance",
+    "owner_selection_rationale": [
+        "Attention/Hypothesis/CurrentWorld should be one coherent module-level owner to avoid split ownership drift.",
+        "No active canonical owner with the same responsibility set was found in current controlled implementation modules.",
+        "Historical mentions like Attention Owner exist in migration/legacy architecture docs and are treated as non-canonical for current phase."
+    ],
+    "owner_existence_scan": {
+        "found_exact_canonical_owner": false,
+        "historical_mentions": [
+            "docs/architecture/luna_cognitive_closed_loop_integration_v1/module_interaction_matrix_v1.json",
+            "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/cognitive_asset_ownership_matrix.json",
+            "docs/architecture/luna_dynamic_cognitive_architecture_alignment_migration_validation_planning_v1/migration_compatibility_matrix.json"
+        ],
+        "decision": "introduce single module owner candidate without creating sub-owner duplicates"
+    },
+    "owner_not_allowed_to_absorb": [
+        "Field State reduction or mutation authority",
+        "Intent ownership",
+        "Causal hypothesis ownership",
+        "Decision authority",
+        "Action authority",
+        "Task authority",
+        "Runtime authority"
+    ],
+    "upstream_owners_preserved": [
+        "Context Foundation",
+        "Personal Cognitive Network Governance",
+        "Intent Governance",
+        "Field State Reducer"
+    ],
+    "downstream_owners_preserved": [
+        "Causal Governance",
+        "Decision Governance"
+    ]
+}

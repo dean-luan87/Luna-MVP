@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "muep_input_schema_v1",
+  "title": "MUEP Input V1 — Minimal Unified Evaluation Protocol",
+  "description": "Unified input for all model types in Model Test Lens. Candidate evaluation only.",
+  "type": "object",
+  "required": ["model_type", "input", "task"],
+  "properties": {
+    "protocol_version": { "type": "string", "const": "muep_v1" },
+    "model_type": {
+      "type": "string",
+      "enum": ["slam", "ocr", "sam", "asr", "tts", "vlm", "depth", "tracking", "speaker", "face"]
+    },
+    "model_id": { "type": "string" },
+    "input": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "string",
+          "enum": ["image", "video", "sequence", "audio", "text", "multimodal"]
+        },
+        "metadata": { "type": "object" },
+        "asset_refs": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "task": {
+      "type": "object",
+      "properties": {
+        "prompt": { "type": "string" },
+        "mode": { "type": "string", "enum": ["single", "batch", "stream"] }
+      }
+    }
+  }
+}

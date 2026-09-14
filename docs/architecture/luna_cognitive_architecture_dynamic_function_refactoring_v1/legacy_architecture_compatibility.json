@@ -1,0 +1,15 @@
+{
+  "contract_id": "legacy_architecture_compatibility_v1",
+  "preserved_modules": ["Field", "Memory Layers", "Knowledge Boundary", "Self Boundary", "Value Utility", "Decision Arbitration", "Outcome Evaluation", "Selective Learning"],
+  "mapping_is_additive": true,
+  "old_owner_preserved": true,
+  "old_lifecycle_preserved": true,
+  "old_contracts_remain_canonical": true,
+  "dynamic_layer_is_meta_architecture": true,
+  "file_move": false,
+  "file_delete": false,
+  "code_refactor": false,
+  "module_replacement": false,
+  "runtime_activation": false,
+  "automatic_migration": false
+}

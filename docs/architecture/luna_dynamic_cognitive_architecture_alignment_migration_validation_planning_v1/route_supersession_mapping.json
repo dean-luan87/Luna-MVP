@@ -1,0 +1,12 @@
+{
+  "mapping_id": "dynamic_cognitive_migration_route_supersession_v1",
+  "source_plan": "docs/architecture/luna_dynamic_cognitive_architecture_realignment_planning_v1/migration_plan.md",
+  "source_plan_preserved": true,
+  "source_plan_modified": false,
+  "old_route": ["Architecture Planning", "Asset Mapping", "Controlled Skeleton", "Runtime Integration Candidate"],
+  "new_route": ["Architecture Planning", "Asset Mapping", "Controlled Architecture Alignment Migration", "Migration Integrity Validation", "Architecture Freeze Decision", "Intent Planning", "Personal Cognitive Network Skeleton", "Causal Reasoning Skeleton"],
+  "added_mandatory_gates": ["Migration Integrity Validation", "Architecture Freeze Decision"],
+  "supersession_type": "planning_amendment",
+  "retroactive_asset_mutation": false,
+  "next_phase_automatic": false
+}

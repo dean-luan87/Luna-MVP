@@ -1,0 +1,48 @@
+{
+  "artifact": "emotion_state_lifecycle_model_v1",
+  "states": [
+    "PROPOSED",
+    "EVIDENCE_ACCUMULATING",
+    "INSUFFICIENT_EVIDENCE",
+    "CONTESTED",
+    "MIXED",
+    "TEMPORARY",
+    "ACTIVE_CANDIDATE",
+    "DECAYING",
+    "RECOVERING",
+    "REVISED",
+    "SUPERSEDED",
+    "REVOKED",
+    "EXPIRED"
+  ],
+  "transitions": [
+    "PROPOSED -> EVIDENCE_ACCUMULATING",
+    "EVIDENCE_ACCUMULATING -> ACTIVE_CANDIDATE",
+    "EVIDENCE_ACCUMULATING -> INSUFFICIENT_EVIDENCE",
+    "ACTIVE_CANDIDATE -> DECAYING",
+    "DECAYING -> RECOVERING",
+    "DECAYING -> EXPIRED",
+    "RECOVERING -> ACTIVE_CANDIDATE",
+    "any -> CONTESTED",
+    "any -> MIXED",
+    "any -> REVISED",
+    "any -> SUPERSEDED",
+    "any -> REVOKED",
+    "any -> EXPIRED"
+  ],
+  "historical_asset_mapping": {
+    "Triggered": "PROPOSED",
+    "Active": "ACTIVE_CANDIDATE",
+    "Decay": "DECAYING",
+    "Integrated": "candidate handoff/reference, not an authority state",
+    "Archived": "EXPIRED or retained historical reference, never deletion of lineage"
+  },
+  "rules": {
+    "state_is_candidate_only": true,
+    "state_does_not_make_decision": true,
+    "state_does_not_make_personality": true,
+    "state_does_not_mutate_memory": true,
+    "unknowns_preserved": true,
+    "revocation_and_expiration_retain_trace": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Expectation Difference Contract v1",
+  "owner": "Cognitive Core Governance",
+  "schema": ["expected", "actual", "difference", "confidence", "learning_candidate", "trace_id"],
+  "sources": ["Expectation", "Reality/Outcome Evidence"],
+  "outputs": ["Correction Candidate", "Experience Candidate", "Strategy Candidate"],
+  "rules": {"not_prediction": true, "reality_feedback_required": true, "difference_not_decision": true, "unknown_supported": true}
+}

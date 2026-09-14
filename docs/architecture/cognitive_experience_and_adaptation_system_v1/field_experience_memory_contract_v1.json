@@ -1,0 +1,20 @@
+{
+  "contract_name": "Field Experience Memory Contract v1",
+  "field_reference": "field-example",
+  "context": [],
+  "observed_pattern": null,
+  "supporting_experiences": [],
+  "repeatability": null,
+  "reliability": null,
+  "relevance": null,
+  "impact": null,
+  "conflict": [],
+  "field_pattern_candidate": true,
+  "pattern_is_not_rule": true,
+  "pattern_is_not_reality": true,
+  "current_reality_precedence": true,
+  "unknowns_are_preserved": true,
+  "provenance_required": true,
+  "decay_required": true,
+  "compression_boundary_required": true
+}

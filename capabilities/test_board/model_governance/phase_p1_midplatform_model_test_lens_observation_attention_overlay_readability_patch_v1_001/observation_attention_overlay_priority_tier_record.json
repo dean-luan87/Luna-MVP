@@ -1,0 +1,30 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Overlay-Readability-Patch-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "observation_attention_overlay_priority_tier_record",
+    "patch": {
+      "modules": [
+        "capabilities/midplatform/model_test_lens/static_site/hud_overlay_readability_v1.js"
+      ],
+      "updated": [
+        "capabilities/midplatform/model_test_lens/static_site/perception_hud_renderer_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/perception_hud_view_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/hud_hidpi_renderer_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/hud_visual_policy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/luna_observation_compact_ui_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/app.js",
+        "capabilities/midplatform/model_test_lens/static_site/index.html"
+      ],
+      "scope": [
+        "label_anchor_avoidance",
+        "priority_visual_tiers",
+        "scene_structure_denoise",
+        "compact_vs_full_labels",
+        "debug_guidelines_gated"
+      ]
+    }
+  }
+}

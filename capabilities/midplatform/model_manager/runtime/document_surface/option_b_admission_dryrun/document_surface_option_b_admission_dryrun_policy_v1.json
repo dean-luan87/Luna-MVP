@@ -1,0 +1,15 @@
+{
+  "schema_id": "DocumentSurfaceOptionBAdmissionDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Dependency-And-Model-Candidate-Admission-DryRun-v1-001",
+  "admission_dryrun_only": true,
+  "segmentation_execution_forbidden": true,
+  "model_download_forbidden": true,
+  "dependency_install_forbidden": true,
+  "active_model_selection_forbidden": true,
+  "preflight_execution_forbidden": true,
+  "controlled_execution_forbidden": true,
+  "runtime_activation_allowed": false,
+  "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Dependency-And-Model-Candidate-Admission-Post-Review-v1-001",
+  "parallel_next_track": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

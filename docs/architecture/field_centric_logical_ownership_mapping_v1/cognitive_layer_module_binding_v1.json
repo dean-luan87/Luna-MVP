@@ -1,0 +1,238 @@
+{
+    "bindings": [
+        {
+            "layer_id": "L0",
+            "primary_modules": [
+                "Observation Attention"
+            ],
+            "supporting_modules": [
+                "OCR Evidence",
+                "Vision Evidence"
+            ],
+            "governance_bindings": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "OCR Evidence",
+                "Vision Evidence"
+            ],
+            "runtime_bindings": [
+                "Controlled Runner Execution"
+            ],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L1",
+            "primary_modules": [
+                "Situation Understanding"
+            ],
+            "supporting_modules": [
+                "Observation Attention"
+            ],
+            "governance_bindings": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "Vision Evidence"
+            ],
+            "runtime_bindings": [
+                "Controlled Runner Execution"
+            ],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L2",
+            "primary_modules": [
+                "Situation Understanding"
+            ],
+            "supporting_modules": [
+                "Ownership Understanding"
+            ],
+            "governance_bindings": [
+                "candidate_fact_admission"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "Network-Assisted Situation Learning"
+            ],
+            "runtime_bindings": [],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L3",
+            "primary_modules": [
+                "Field-Centric Object Role"
+            ],
+            "supporting_modules": [
+                "Region Intelligence"
+            ],
+            "governance_bindings": [
+                "candidate_fact_admission",
+                "evidence_chain"
+            ],
+            "evaluation_bindings": [
+                "Verifiers"
+            ],
+            "provider_bindings": [
+                "Vision Evidence"
+            ],
+            "runtime_bindings": [],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L4",
+            "primary_modules": [
+                "Observation Attention"
+            ],
+            "supporting_modules": [
+                "Field-Centric Object Role"
+            ],
+            "governance_bindings": [
+                "runtime_boundary",
+                "negative_guards"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "Vision Evidence"
+            ],
+            "runtime_bindings": [
+                "Controlled Runner Execution"
+            ],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L5",
+            "primary_modules": [
+                "Region Intelligence"
+            ],
+            "supporting_modules": [
+                "Document Surface Detector"
+            ],
+            "governance_bindings": [
+                "runtime_boundary",
+                "evidence_chain"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "Vision Evidence",
+                "OCR Evidence"
+            ],
+            "runtime_bindings": [
+                "Controlled Runner Execution"
+            ],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L6",
+            "primary_modules": [
+                "Field-Centric Object Role",
+                "Ownership Understanding"
+            ],
+            "supporting_modules": [
+                "Region Intelligence"
+            ],
+            "governance_bindings": [
+                "candidate_fact_admission"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [
+                "Vision Evidence"
+            ],
+            "runtime_bindings": [],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L7",
+            "primary_modules": [
+                "Evidence Chain"
+            ],
+            "supporting_modules": [
+                "Region Intelligence",
+                "Field-Centric Object Role"
+            ],
+            "governance_bindings": [
+                "evidence_chain"
+            ],
+            "evaluation_bindings": [
+                "Diagnostics"
+            ],
+            "provider_bindings": [],
+            "runtime_bindings": [],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L8",
+            "primary_modules": [
+                "Task Manager"
+            ],
+            "supporting_modules": [
+                "Model Manager"
+            ],
+            "governance_bindings": [
+                "change_control"
+            ],
+            "evaluation_bindings": [
+                "Model Test Lens"
+            ],
+            "provider_bindings": [],
+            "runtime_bindings": [
+                "Controlled Runner Execution"
+            ],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        },
+        {
+            "layer_id": "L9",
+            "primary_modules": [
+                "Human Correction Layer"
+            ],
+            "supporting_modules": [
+                "Evidence Chain"
+            ],
+            "governance_bindings": [
+                "post_review_freeze"
+            ],
+            "evaluation_bindings": [
+                "Human Correction"
+            ],
+            "provider_bindings": [],
+            "runtime_bindings": [],
+            "unresolved_ownership": [],
+            "migration_required": false,
+            "current_phase_action": "logical_bind_only"
+        }
+    ]
+}

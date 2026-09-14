@@ -1,0 +1,22 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "self_continuity_stream",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "identity_across_daily_fields",
+      "fields": ["home_field", "commute_field", "office_field", "commercial_field"],
+      "identity": "Luna",
+      "identity_drift": false,
+      "stable_layer": ["constitution", "core_capability", "authority"]
+    },
+    {
+      "case_id": "resource_change_without_identity_change",
+      "field": "office_field",
+      "self_before": {"battery": "normal", "vision": "normal"},
+      "self_after": {"battery": "low", "vision": "normal"},
+      "expected": "adaptive_self_resource_constraint",
+      "identity_drift": false
+    }
+  ]
+}

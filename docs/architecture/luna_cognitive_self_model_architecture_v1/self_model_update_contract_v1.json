@@ -1,0 +1,16 @@
+{
+  "title": "Self Model Update Contract v1",
+  "owner": "Self Model Governance",
+  "inputs": ["Growth Candidate", "Validation Evidence", "Capability Profile", "Limitation Evidence", "Resource State", "Review Decision"],
+  "output": "Self Model Update Candidate",
+  "schema": ["update_id", "target_component", "before", "after_candidate", "evidence_refs", "confidence", "unknown", "review_status", "reversible", "trace_id"],
+  "rules": {
+    "evidence_required": true,
+    "review_required": true,
+    "candidate_before_write": true,
+    "reversible": true,
+    "identity_rewrite_forbidden": true,
+    "value_rewrite_forbidden": true,
+    "goal_creation_forbidden": true
+  }
+}

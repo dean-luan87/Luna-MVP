@@ -1,0 +1,22 @@
+{
+  "title": "Canonical Information Flow Contract v1",
+  "stages": ["Observation","Evidence","Context","State","Hypothesis / Belief","Expectation","Decision","Action","Outcome","Learning","Evolution"],
+  "links": [
+    {"from":"Observation","to":"Evidence","object":"Evidence Candidate","owner":"Evidence Gateway"},
+    {"from":"Evidence","to":"Context","object":"Reality Update Candidate","owner":"Reality Workspace"},
+    {"from":"Context","to":"State","object":"Field / Self / Workspace State","owner":"State Owners"},
+    {"from":"State","to":"Hypothesis / Belief","object":"Situation Candidate","owner":"Cognitive Core"},
+    {"from":"Hypothesis / Belief","to":"Expectation","object":"Expectation Candidate","owner":"Expectation System"},
+    {"from":"Expectation","to":"Decision","object":"Brain Input Package","owner":"Brain"},
+    {"from":"Decision","to":"Action","object":"Action Request Candidate","owner":"Action Boundary"},
+    {"from":"Action","to":"Outcome","object":"Outcome Evidence","owner":"Action Runtime"},
+    {"from":"Outcome","to":"Learning","object":"Learning Signal","owner":"Learning System"},
+    {"from":"Learning","to":"Evolution","object":"Growth Candidate","owner":"Self Evolution"}
+  ],
+  "reentry_links": [
+    {"from":"Outcome","to":"Expectation","object":"Expectation Difference"},
+    {"from":"Evolution","to":"Self Model","object":"Self Model Update Candidate"},
+    {"from":"Outcome","to":"Memory","object":"Experience Candidate"}
+  ],
+  "rules": {"single_canonical_flow":true,"source_and_owner_required":true,"direct_provider_to_brain_forbidden":true,"direct_model_to_memory_forbidden":true}
+}

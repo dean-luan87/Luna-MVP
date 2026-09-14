@@ -1,0 +1,20 @@
+{
+  "schema_name": "Capability Confidence Model v1",
+  "capability_reference": "capability-example",
+  "field_reference": "field-example",
+  "condition": "condition-example",
+  "performance_evidence": [],
+  "outcome_evidence": [],
+  "experience_pattern": [],
+  "failure_attribution": [],
+  "confidence_calibration": null,
+  "recency": null,
+  "uncertainty": null,
+  "confidence_candidate": null,
+  "unknown": true,
+  "model_self_confidence_not_accepted": true,
+  "human_calibration_interface": true,
+  "confidence_does_not_modify_goal": true,
+  "confidence_does_not_modify_decision": true,
+  "unknowns_are_preserved": true
+}

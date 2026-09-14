@@ -1,0 +1,23 @@
+{
+  "title": "Hypothesis Field Interface v1",
+  "contract_type": "Hypothesis Field Context Binding",
+  "input": {
+    "hypothesis_reference": "hypothesis-example",
+    "field_reference": "field-example",
+    "field_state": {},
+    "field_rule_context": {},
+    "situation_reference": "situation-example",
+    "time_validity": {"start": null, "end": null},
+    "provenance": [],
+    "unknowns": []
+  },
+  "boundary": {
+    "hypothesis_is_field_bound": true,
+    "hypothesis_references_existing_field": true,
+    "hypothesis_does_not_create_field": true,
+    "hypothesis_does_not_mutate_field": true,
+    "hypothesis_does_not_cross_field_silently": true,
+    "same_evidence_can_have_different_field_meaning": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Global Cognitive State Integration Contract v1",
+  "owner": "Cognitive OS State Management",
+  "components": ["Field State", "Self State", "Workspace State", "Memory State", "Attention State", "Capability State", "Action State", "Emotion Context", "Role Context"],
+  "schema": ["global_state_id", "timestamp", "components", "snapshot_version", "trace_id"],
+  "operations": ["compose", "snapshot", "compare", "route_to_owner_validation"],
+  "rules": {"composes_only": true, "does_not_own_components": true, "component_owner_validation_required": true, "unknown_preserved": true}
+}

@@ -1,0 +1,126 @@
+{
+    "artifact": "cognitive_flow_minimum_scenario_suite_v1",
+    "scenario_count": 24,
+    "scenarios": [
+        {
+            "id": "C01",
+            "name": "normal_complete_cognitive_cycle",
+            "expect": "complete"
+        },
+        {
+            "id": "C02",
+            "name": "persistent_intent_across_two_cycles",
+            "expect": "intent_ref_inherited"
+        },
+        {
+            "id": "C03",
+            "name": "context_update_triggers_reconsideration",
+            "expect": "reconsideration_candidate"
+        },
+        {
+            "id": "C04",
+            "name": "field_update_during_state_formation",
+            "expect": "state_forming_restart_or_reconsideration"
+        },
+        {
+            "id": "C05",
+            "name": "conflicting_hypotheses",
+            "expect": "conflict_preserved"
+        },
+        {
+            "id": "C06",
+            "name": "unresolved_uncertainty_retained",
+            "expect": "uncertainty_inherited"
+        },
+        {
+            "id": "C07",
+            "name": "regulation_requests_reconsideration",
+            "expect": "regulation_to_reconsideration_route"
+        },
+        {
+            "id": "C08",
+            "name": "no_regulation_change_required",
+            "expect": "complete_without_regulation_change"
+        },
+        {
+            "id": "C09",
+            "name": "duplicate_cycle_start",
+            "expect": "duplicate_start_guard"
+        },
+        {
+            "id": "C10",
+            "name": "duplicate_transition_request",
+            "expect": "duplicate_transition_guard"
+        },
+        {
+            "id": "C11",
+            "name": "intent_cancellation",
+            "expect": "interrupt_or_abort_candidate"
+        },
+        {
+            "id": "C12",
+            "name": "required_ref_revoked",
+            "expect": "suspend_or_abort_candidate"
+        },
+        {
+            "id": "C13",
+            "name": "safety_interrupt",
+            "expect": "interrupt_candidate"
+        },
+        {
+            "id": "C14",
+            "name": "resource_driven_suspension",
+            "expect": "suspend_candidate"
+        },
+        {
+            "id": "C15",
+            "name": "controlled_resume",
+            "expect": "resume_candidate"
+        },
+        {
+            "id": "C16",
+            "name": "abort_after_invalid_evidence",
+            "expect": "abort_candidate"
+        },
+        {
+            "id": "C17",
+            "name": "completed_cycle_immutable",
+            "expect": "completed_cycle_immutability_guard"
+        },
+        {
+            "id": "C18",
+            "name": "next_cycle_inheritance",
+            "expect": "reference_only_inheritance"
+        },
+        {
+            "id": "C19",
+            "name": "future_memory_observation_boundary",
+            "expect": "memory_boundary_reserved"
+        },
+        {
+            "id": "C20",
+            "name": "future_learning_boundary",
+            "expect": "learning_boundary_reserved"
+        },
+        {
+            "id": "C21",
+            "name": "causal_candidate_arrives_during_cycle",
+            "expect": "optional_read_only_causal_participation"
+        },
+        {
+            "id": "C22",
+            "name": "field_state_version_advances",
+            "expect": "field_ref_version_progression"
+        },
+        {
+            "id": "C23",
+            "name": "multiple_intents_one_temporarily_dominant",
+            "expect": "temporary_dominant_intent_selection_without_mutation"
+        },
+        {
+            "id": "C24",
+            "name": "regulation_candidate_rejected_by_bounds",
+            "expect": "reconsideration_or_complete_without_activation"
+        }
+    ]
+}

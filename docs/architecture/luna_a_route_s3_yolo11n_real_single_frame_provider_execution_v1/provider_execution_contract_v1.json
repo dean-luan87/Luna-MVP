@@ -1,0 +1,17 @@
+{
+  "loader_contract_id": "loader:ultralytics:yolo:v1",
+  "loader_entrypoint": "ultralytics.YOLO",
+  "local_model_only": true,
+  "single_frame": true,
+  "max_invocations": 1,
+  "hidden_retry": false,
+  "provider_autonomous_continuous_execution": false,
+  "network_access": false,
+  "automatic_model_download": false,
+  "automatic_package_download": false,
+  "provider_statuses": [
+    "SUCCESS_WITH_DETECTIONS",
+    "SUCCESS_ZERO_DETECTIONS",
+    "FAILED_WITH_DIAGNOSTIC"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Self Health State Schema v1",
+  "owner": "Self Regulation / Self Health Assessment",
+  "health_states": ["Healthy", "Warning", "Degraded", "Critical", "Recovery Required", "Unknown"],
+  "health_domains": ["Hardware Health", "Software Health", "Capability Health", "Model Health", "Resource Health"],
+  "schema": ["health_id", "domain", "state", "severity", "evidence_refs", "confidence", "unknown", "timestamp", "trace_id"],
+  "transitions": [
+    {"from":"Healthy","to":"Warning","condition":"early degradation evidence"},
+    {"from":"Warning","to":"Degraded","condition":"reliability or resource impact confirmed"},
+    {"from":"Degraded","to":"Critical","condition":"safe operation boundary threatened"},
+    {"from":"Critical","to":"Recovery Required","condition":"recovery candidate needed"},
+    {"from":"Recovery Required","to":"Healthy","condition":"validated recovery and monitoring"},
+    {"from":"Warning","to":"Healthy","condition":"evidence no longer supports warning"}
+  ],
+  "rules": {"assessment_not_decision":true,"unknown_first_class":true,"provenance_required":true,"recovery_validation_required":true}
+}

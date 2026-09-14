@@ -1,0 +1,18 @@
+{
+  "title": "Luna Code Health Report v1",
+  "scope": ["capabilities/", "tools/"],
+  "compile_status": {"command": "python3 -m compileall capabilities/", "status": "passed_after_remediation", "source_compile_without_bytecode": {"capabilities": "passed", "tools": "passed"}, "tools_compileall_note": "direct invocation may hit an unwritable macOS user cache path; rerun in the user's project environment"},
+  "python_counts": {"capabilities": 3372, "tools": 2280, "combined": 5652},
+  "line_thresholds": {"normal_max": 600, "warning_over": 800, "blocker_candidate_over": 1200},
+  "large_file_count_over_1200": 20,
+  "priority_files": [
+    {"file": "capabilities/voice/runtime/voice_final_text_dispatcher.py", "lines": 5161, "category": "Active Code", "priority": "P0"},
+    {"file": "tools/real_scenario_pack.py", "lines": 1902, "category": "Tooling", "priority": "P1"},
+    {"file": "tools/decision_monitor_viewer.py", "lines": 1738, "category": "Tooling", "priority": "P1"},
+    {"file": "capabilities/governance/gate_taxonomy_and_requirement_framework_planning_v1.py", "lines": 1596, "category": "Governance", "priority": "P1"},
+    {"file": "capabilities/midplatform/task_manager_runtime_dryrun_v1.py", "lines": 1462, "category": "Frozen Compatibility", "priority": "P1"}
+  ],
+  "import_health": {"compileall": "passed", "circular_dependency_scan": "not_authorized_for_runtime_import_execution", "unused_import_scan": "candidate_only"},
+  "naming_findings": ["manager/controller/registry/service naming requires ownership review"],
+  "rules": {"no_direct_refactor": true, "no_runtime_activation": true, "unknowns_are_preserved": true}
+}

@@ -1,0 +1,60 @@
+{
+    "artifact": "dynamic_cognitive_regulation_concept_boundary_matrix_v1",
+    "boundaries": [
+        {
+            "concept": "Cognitive State Vector",
+            "is": [
+                "state input candidate",
+                "bounded situational cognitive summary"
+            ],
+            "is_not": [
+                "mutable parameter store",
+                "model weight",
+                "long-term memory",
+                "learning result"
+            ]
+        },
+        {
+            "concept": "Regulation Candidate",
+            "is": [
+                "influence candidate",
+                "bounded adjustment proposal"
+            ],
+            "is_not": [
+                "owner mutation",
+                "runtime command",
+                "decision command"
+            ]
+        },
+        {
+            "concept": "Self-Regulation",
+            "is": [
+                "stability maintenance and resource-risk balancing candidate"
+            ],
+            "is_not": [
+                "learning runtime",
+                "identity/constitution mutation"
+            ]
+        },
+        {
+            "concept": "Learning",
+            "is": [
+                "future parameter update candidate source"
+            ],
+            "is_not": [
+                "immediate regulation authority",
+                "auto-apply executor"
+            ]
+        },
+        {
+            "concept": "Emotion Influence",
+            "is": [
+                "signal/reference input"
+            ],
+            "is_not": [
+                "regulation authority",
+                "direct parameter write"
+            ]
+        }
+    ]
+}

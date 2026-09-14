@@ -1,0 +1,23 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "field_continuity_test_cases",
+  "deterministic": true,
+  "cases": [
+    {
+      "case_id": "home_to_office_continuity",
+      "transition": "home_field_to_office_field",
+      "stable_layer_preserved": ["identity", "core_capability", "authority", "survival_constitution"],
+      "adaptive_layer_changed": ["attention_scope", "goal_context", "rule_reference"],
+      "transient_layer_released": ["temporary_home_task"],
+      "identity_changed": false
+    },
+    {
+      "case_id": "field_self_state_variation",
+      "same_reality": "office",
+      "self_variants": ["normal", "battery_low", "vision_degraded"],
+      "expected_change": "self_layer_only",
+      "reality_changed": false,
+      "identity_changed": false
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+    "mapping_id": "cognitive_object_model_existing_asset_mapping_v1",
+    "schema_version": "1.0.0",
+    "mappings": [
+        {
+            "existing_asset": "Situation Understanding",
+            "consumed_object_types": [
+                "entity",
+                "state"
+            ],
+            "produced_object_types": [
+                "state",
+                "relationship"
+            ],
+            "governance_role": "interpretation",
+            "interpretation_role": "contextual understanding",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Observation Attention",
+            "consumed_object_types": [
+                "decision_candidate",
+                "request"
+            ],
+            "produced_object_types": [
+                "decision_candidate",
+                "state"
+            ],
+            "governance_role": "execution",
+            "interpretation_role": "attention focus",
+            "execution_role": "resource allocation",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Region Intelligence",
+            "consumed_object_types": [
+                "entity",
+                "state"
+            ],
+            "produced_object_types": [
+                "relation",
+                "state"
+            ],
+            "governance_role": "analysis",
+            "interpretation_role": "spatial reasoning",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Ownership Understanding",
+            "consumed_object_types": [
+                "entity",
+                "relation"
+            ],
+            "produced_object_types": [
+                "relation",
+                "state"
+            ],
+            "governance_role": "authorship",
+            "interpretation_role": "ownership semantics",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Field-Centric Object Role",
+            "consumed_object_types": [
+                "entity",
+                "state"
+            ],
+            "produced_object_types": [
+                "relation",
+                "projection"
+            ],
+            "governance_role": "field role interpretation",
+            "interpretation_role": "object role mapping",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Model Manager",
+            "consumed_object_types": [
+                "entity",
+                "attachment"
+            ],
+            "produced_object_types": [
+                "state",
+                "projection"
+            ],
+            "governance_role": "model repository",
+            "interpretation_role": "model lifecycle",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Model Test Lens",
+            "consumed_object_types": [
+                "state",
+                "event"
+            ],
+            "produced_object_types": [
+                "feedback",
+                "decision_candidate"
+            ],
+            "governance_role": "evaluation",
+            "interpretation_role": "test scoring",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Human Correction",
+            "consumed_object_types": [
+                "feedback",
+                "attachment"
+            ],
+            "produced_object_types": [
+                "decision_candidate",
+                "revision"
+            ],
+            "governance_role": "correction",
+            "interpretation_role": "human review",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Evidence Chain",
+            "consumed_object_types": [
+                "evidence",
+                "trace"
+            ],
+            "produced_object_types": [
+                "relation",
+                "state"
+            ],
+            "governance_role": "trust and audit",
+            "interpretation_role": "evidence management",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Runtime Boundary",
+            "consumed_object_types": [
+                "policy",
+                "state"
+            ],
+            "produced_object_types": [
+                "relation",
+                "projection"
+            ],
+            "governance_role": "execution governance",
+            "interpretation_role": "boundary enforcement",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Model / Skill Admission",
+            "consumed_object_types": [
+                "decision_candidate",
+                "state"
+            ],
+            "produced_object_types": [
+                "state",
+                "projection"
+            ],
+            "governance_role": "admission",
+            "interpretation_role": "skill eligibility",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Candidate / Fact Admission",
+            "consumed_object_types": [
+                "decision_candidate",
+                "evidence"
+            ],
+            "produced_object_types": [
+                "state",
+                "projection"
+            ],
+            "governance_role": "admission",
+            "interpretation_role": "admission adjudication",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Task Manager",
+            "consumed_object_types": [
+                "decision_candidate",
+                "state"
+            ],
+            "produced_object_types": [
+                "request",
+                "projection"
+            ],
+            "governance_role": "task orchestration",
+            "interpretation_role": "task assignment",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Followup Runner",
+            "consumed_object_types": [
+                "request",
+                "decision_candidate"
+            ],
+            "produced_object_types": [
+                "event",
+                "state"
+            ],
+            "governance_role": "follow-up coordination",
+            "interpretation_role": "sequence continuation",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "OCR Evidence",
+            "consumed_object_types": [
+                "entity",
+                "event"
+            ],
+            "produced_object_types": [
+                "evidence",
+                "state"
+            ],
+            "governance_role": "evidence provider",
+            "interpretation_role": "raw evidence capture",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Vision Evidence",
+            "consumed_object_types": [
+                "entity",
+                "event"
+            ],
+            "produced_object_types": [
+                "evidence",
+                "state"
+            ],
+            "governance_role": "evidence provider",
+            "interpretation_role": "raw evidence capture",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Network-Assisted Situation Learning",
+            "consumed_object_types": [
+                "state",
+                "projection"
+            ],
+            "produced_object_types": [
+                "decision_candidate",
+                "belief"
+            ],
+            "governance_role": "interpretation",
+            "interpretation_role": "situational learning",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Emotional Engine",
+            "consumed_object_types": [
+                "attachment",
+                "state"
+            ],
+            "produced_object_types": [
+                "attachment",
+                "decision_candidate"
+            ],
+            "governance_role": "emotion modeling",
+            "interpretation_role": "emotion influence",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "medium"
+        },
+        {
+            "existing_asset": "Memory System",
+            "consumed_object_types": [
+                "attachment",
+                "event"
+            ],
+            "produced_object_types": [
+                "attachment",
+                "projection"
+            ],
+            "governance_role": "memory management",
+            "interpretation_role": "recall and archive",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        },
+        {
+            "existing_asset": "Interaction Governance",
+            "consumed_object_types": [
+                "decision_candidate",
+                "feedback"
+            ],
+            "produced_object_types": [
+                "revision",
+                "relation"
+            ],
+            "governance_role": "interaction adjudication",
+            "interpretation_role": "feedback and correction",
+            "execution_role": "none",
+            "reuse_status": "reused",
+            "extension_required": false,
+            "rewrite_required": false,
+            "physical_move_allowed": false,
+            "current_priority": "high"
+        }
+    ]
+}

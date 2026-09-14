@@ -1,0 +1,58 @@
+{
+  "artifact": "personality_governance_frozen_boundary_registry_v1",
+  "phase": "Phase-Luna-Personality-Governance-Baseline-Freeze-v1-001",
+  "freeze_status": "FROZEN_V1",
+  "canonical_owner": "Personality Governance",
+  "semantic_boundaries": {
+    "Personality": "candidate-governed semantic layer only",
+    "Personality_Trait": "not Self, Emotion, Memory, Preference, Learning Pattern, or Regulation Parameter",
+    "Personality_Candidate": "not Personality Truth",
+    "Repeated_Behavior": "not Personality Truth",
+    "Repeated_Emotion": "not Personality Trait",
+    "Temporary_Regulation_Pattern": "not Personality Trait",
+    "User_Correction": "higher precedence than inferred Personality Candidate",
+    "Personality_Evolution_Evidence": "not Personality Mutation"
+  },
+  "candidate_boundary": {
+    "candidate_only": true,
+    "activated": false,
+    "persisted": false,
+    "truth_declared": false,
+    "fact_admission": false,
+    "source_owner_mutation": false,
+    "profile_direct_action_control": false,
+    "profile_direct_intent_control": false
+  },
+  "owner_boundary": {
+    "owns": [
+      "Personality Trait Candidate",
+      "Personality Profile Candidate",
+      "Personality Evidence Admission",
+      "Trait Stability Governance",
+      "Personality Revision/Supersession/Revocation/Expiration",
+      "Personality Trace and Provenance"
+    ],
+    "does_not_own": [
+      "Self identity truth",
+      "Emotion state",
+      "Memory",
+      "Experience",
+      "Learning",
+      "Intent",
+      "PCN relationships",
+      "Dynamic Regulation parameters",
+      "Task",
+      "Decision",
+      "Action",
+      "Runtime",
+      "user identity truth"
+    ],
+    "parallel_owner_directories_forbidden": [
+      "trait_governance",
+      "persona_governance",
+      "temperament_governance",
+      "character_governance"
+    ]
+  },
+  "integration_rule": "Inbound evidence and outbound references remain typed, candidate-only, traceable, and authority-free."
+}

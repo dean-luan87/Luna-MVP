@@ -1,0 +1,16 @@
+{
+    "artifact": "learning_privacy_transfer_boundary_v1",
+    "sensitivity_levels": [
+        "NORMAL",
+        "SENSITIVE",
+        "HIGH_SENSITIVITY",
+        "USER_CONFIRMATION_REQUIRED",
+        "DO_NOT_GENERALIZE",
+        "DO_NOT_TRANSFER",
+        "DO_NOT_PERSIST_CANDIDATE"
+    ],
+    "defaults": {
+        "user_specific_learning_candidate": true,
+        "cross_user_transfer": false
+    }
+}

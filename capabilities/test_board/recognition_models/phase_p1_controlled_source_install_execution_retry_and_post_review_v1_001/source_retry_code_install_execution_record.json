@@ -1,0 +1,51 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:28:03.414059+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "code_only_source_install": true,
+  "post_review_included": true,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "source_retry_code_install_execution_record",
+  "source_retry_code_install_execution_records": [
+    {
+      "asset_id": "byte_track",
+      "code_install_command": "pip install --no-index --no-deps --no-build-isolation --target install_target/byte_track checkout/byte_track_src",
+      "code_install_return_code": 0,
+      "code_install_succeeded": true,
+      "built_artifact": "yolox-0.1.0-cp39-cp39-macosx_10_9_universal2.whl",
+      "cpp_extension_compiled": true,
+      "installed_into_controlled_target_only": true,
+      "global_env_polluted": false,
+      "dependency_download_performed": false,
+      "weight_download_performed": false,
+      "install_stdout_summary": "Building wheel for yolox (setup.py): finished done; Successfully built yolox; Successfully installed yolox-0.1.0",
+      "install_stderr_summary": "legacy setup.py bdist_wheel DEPRECATION notice only (non-fatal)",
+      "execution_status": "SUCCESS",
+      "defer_or_fail_reason": null
+    },
+    {
+      "asset_id": "mobile_sam",
+      "code_install_command": "pip install --no-index --no-deps --no-build-isolation --target install_target/mobile_sam checkout/mobile_sam_src",
+      "code_install_return_code": 0,
+      "code_install_succeeded": true,
+      "built_artifact": "mobile_sam-1.0-py3-none-any.whl",
+      "cpp_extension_compiled": false,
+      "installed_into_controlled_target_only": true,
+      "global_env_polluted": false,
+      "dependency_download_performed": false,
+      "weight_download_performed": false,
+      "install_stdout_summary": "Created wheel for mobile-sam (pure python); Successfully installed mobile-sam-1.0",
+      "install_stderr_summary": "none",
+      "execution_status": "SUCCESS",
+      "defer_or_fail_reason": null
+    }
+  ]
+}

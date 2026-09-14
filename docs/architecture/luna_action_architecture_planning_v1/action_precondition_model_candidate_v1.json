@@ -1,0 +1,27 @@
+{
+    "artifact": "action_precondition_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "precondition_domains": [
+        "environment",
+        "target_object",
+        "resource",
+        "dependency",
+        "temporal",
+        "permission",
+        "safety",
+        "confirmation"
+    ],
+    "precondition_status_set": [
+        "missing",
+        "unknown",
+        "satisfied",
+        "violated",
+        "stale"
+    ],
+    "rules": {
+        "unknown_not_satisfied": true,
+        "missing_not_satisfied": true,
+        "stale_not_satisfied": true,
+        "auto_pass_on_unknown_forbidden": true
+    }
+}

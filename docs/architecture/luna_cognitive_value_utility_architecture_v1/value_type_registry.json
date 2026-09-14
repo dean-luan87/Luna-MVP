@@ -1,0 +1,10 @@
+{
+  "title": "Value Type Registry v1",
+  "types": ["Survival Value", "Safety Value", "Integrity Value", "Mission Value", "Relationship Value", "Growth Value"],
+  "hierarchy_order": ["Survival Value", "Safety Value", "Integrity Value", "Mission Value", "Relationship Value", "Growth Value"],
+  "contextual_evaluation": true,
+  "fixed_weight_table": false,
+  "hard_constraint_check_required": true,
+  "candidate_only": true,
+  "emotion_is_not_value_authority": true
+}

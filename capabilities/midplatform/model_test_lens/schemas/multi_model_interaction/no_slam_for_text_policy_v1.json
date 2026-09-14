@@ -1,0 +1,51 @@
+{
+  "schema_id": "NoSlamForTextPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "SLAM 不参与文字定位与文字识别。文字由 OCR/Detection-Grounding/VLM route 承担。",
+  "planning_only": true,
+  "principle": "不要用 SLAM 找文字。SLAM 职责是空间结构、位姿、地图、通行关系。",
+  "slam_allowed_roles": [
+    {
+      "role": "spatial_reference_candidate",
+      "description": "文字所在区域的空间位置参考（非文字发现）"
+    },
+    {
+      "role": "walkable_area_reference",
+      "description": "可通行区域结构参考"
+    },
+    {
+      "role": "structure_reference",
+      "description": "门、站台边缘、墙面、屏幕等结构参考"
+    },
+    {
+      "role": "pose_map_geometry_support",
+      "description": "位姿、地图、几何支撑"
+    }
+  ],
+  "slam_forbidden_text_roles": [
+    "text_detection",
+    "text_recognition",
+    "sign_identification",
+    "ocr_route_direct_generation",
+    "fact_text_generation"
+  ],
+  "text_discovery_responsible_models": [
+    "ocr_text_detector",
+    "detection_grounding",
+    "vlm_route_candidate"
+  ],
+  "boundary_flags": {
+    "no_slam_text_detection": true,
+    "no_slam_text_recognition": true,
+    "no_slam_ocr_route_direct_generation": true,
+    "no_slam_sign_identification": true,
+    "no_fact_write": true,
+    "planning_only": true
+  },
+  "forbidden_chains": [
+    "slam_output_direct_to_ocr_text_fact",
+    "slam_output_as_sign_label_fact",
+    "slam_finds_text_region_for_ocr_bypass_midplatform"
+  ]
+}

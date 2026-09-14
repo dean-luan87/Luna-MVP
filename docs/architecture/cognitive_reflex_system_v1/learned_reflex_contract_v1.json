@@ -1,0 +1,16 @@
+{
+  "contract_name": "Learned Reflex Contract v1",
+  "source": "Learning System",
+  "reflex_type": "Learned Reflex",
+  "experience_reference": {},
+  "pattern_reference": {},
+  "validation_required": true,
+  "governance_admission_required": true,
+  "context_binding_required": true,
+  "feedback_required": true,
+  "revocable": true,
+  "one_episode_cannot_create_permanent_reflex": true,
+  "candidate_only": true,
+  "automatic_action": false,
+  "unknowns_are_preserved": true
+}

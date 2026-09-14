@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Loop Contract v1",
+  "owner": "Cognitive OS Governance",
+  "sequence": ["Wake-up", "Collect Pending Event", "Update Runtime Context", "Execute Cognitive Flow Candidate", "Generate State Update Proposal", "Record Trace", "Persist Required State", "Sleep / Continue"],
+  "schema": ["runtime_loop_id", "trigger", "input", "output", "state_change_allowed", "action_allowed", "trace_id"],
+  "constraints": {"state_change_allowed": false, "action_allowed": false, "decision_direct": false, "reality_write_direct": false},
+  "rules": {"proposal_through_owner": true, "loop_is_not_implementation": true, "trace_required": true}
+}

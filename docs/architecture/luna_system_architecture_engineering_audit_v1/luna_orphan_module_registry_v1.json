@@ -1,0 +1,13 @@
+{
+  "title": "Luna Orphan Module Registry v1",
+  "registry_type": "read_only_orphan_candidate_registry",
+  "entries": [
+    {"module": "cognitive_flow", "source": "docs/architecture/cognitive_flow", "status": "Orphan", "consumer": "unknown", "owner": "unassigned", "priority": "P1"},
+    {"module": "capabilities/device_env", "source": "capabilities/device_env", "status": "Orphan Candidate", "consumer": "Hardware Capability boundary", "owner": "Capability Governance", "priority": "P1"},
+    {"module": "capabilities/model_weights", "source": "capabilities/model_weights", "status": "Skeleton", "consumer": "Model Manager future interface", "owner": "Capability Governance", "priority": "P2"},
+    {"module": "Social / Emotion Runtime", "source": "docs/architecture/cognitive_emotion_context_boundary_v1", "status": "Planning Only", "consumer": "Future Emotion Engine", "owner": "Future phase", "priority": "P2"}
+  ],
+  "orphan_definition": "module or asset with no confirmed canonical consumer or owner; candidate status is not a deletion instruction",
+  "resolution_options": ["assign_owner", "bind_consumer", "mark_historical", "keep_skeleton", "deprecate_after_review"],
+  "rules": {"no_delete": true, "no_auto_rewire": true, "human_review_required": true, "unknowns_are_preserved": true, "provenance_is_preserved": true}
+}

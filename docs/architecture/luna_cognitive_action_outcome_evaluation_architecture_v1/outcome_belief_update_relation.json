@@ -1,0 +1,11 @@
+{
+  "title": "Outcome Belief Update Relation v1",
+  "flow": ["Belief", "Prediction/Expectation", "Outcome", "Prediction Error", "Belief Update Candidate"],
+  "inputs": ["Belief Reference", "Prediction or Expectation", "Actual Outcome", "Evidence", "Field Context"],
+  "belief_update_is_candidate": true,
+  "direct_belief_mutation": false,
+  "reality_precedence": true,
+  "prediction_error_preserved": true,
+  "unknowns_preserved": true,
+  "automatic_belief_update": false
+}

@@ -1,0 +1,9 @@
+{
+  "schema_id": "AskUserStrategyV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["should_ask_user", "ask_reason", "trigger_condition", "candidate_only", "not_fact"],
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

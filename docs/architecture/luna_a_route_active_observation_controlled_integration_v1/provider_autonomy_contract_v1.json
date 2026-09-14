@@ -1,0 +1,12 @@
+{
+  "contract_id": "a_route_provider_autonomy_contract_v1",
+  "provider_autonomous_continuous_execution": false,
+  "forbidden_authorization_triggers": ["camera_frame_arrival", "audio_frame_arrival", "previous_successful_detection", "provider_availability", "model_availability", "observation_gateway_admission", "prior_routing_candidate", "previous_successful_ocr", "previous_successful_slam_update"],
+  "required_authorization_chain": ["observation_demand_candidate", "observation_request_candidate", "attention_scope_candidate", "capability_requirement_candidate", "capability_model_admission_candidate", "bounded_provider_session_candidate"],
+  "session_candidate_flags": {"runtime_execution": false, "provider_invocation": false, "candidate_only": true},
+  "safety_exception_type": "SafetyCriticalObservationExceptionCandidate",
+  "safety_exception_required_fields": ["explicit_policy_ref", "reason", "target_scope", "capability_scope", "bounded_budget", "temporal_validity", "revoke_condition", "trace_ref", "provenance_refs"],
+  "general_provider_autonomy": false,
+  "provider_cannot": ["start_itself", "extend_itself", "select_followup_provider_itself", "mutate_context", "mutate_field", "mutate_intent", "mutate_task", "mutate_decision"],
+  "evidence_refs": ["capabilities/midplatform/field_perception_orchestrator/integration/field_perception_active_observation_control_engine_v1.py", "docs/architecture/luna_a_route_active_observation_control_gap_audit_v1/provider_autonomy_boundary_v1.json"]
+}

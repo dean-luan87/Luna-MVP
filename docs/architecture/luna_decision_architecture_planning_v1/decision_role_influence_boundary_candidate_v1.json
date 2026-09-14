@@ -1,0 +1,12 @@
+{
+    "artifact": "decision_role_influence_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "role_influence": {
+        "role_can_alter_allowed_scope": true,
+        "role_can_adjust_candidate_eligibility": true,
+        "role_is_decision_owner": false,
+        "role_cannot_bypass_permission_or_safety": true
+    },
+    "cross_write": false,
+    "mutates_role_policy": false
+}

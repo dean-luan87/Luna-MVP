@@ -1,0 +1,139 @@
+{
+  "schema_id": "VisualLayerOwnershipPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+  "description": "定义 Model Test Lens 各视觉层的表达 owner 与 boundary 冲突处理规则。",
+  "canvas_boundary_owners": {
+    "segmentation": {
+      "layer_id": "segmentation",
+      "owner": true,
+      "source_models": ["mobile_sam", "segmentation"],
+      "may_draw_boundary": true,
+      "may_draw_mask_fill_on_selected": true,
+      "may_express_priority_on_boundary": false,
+      "may_express_route_on_canvas": false,
+      "region_id_binding": "entity_id"
+    },
+    "observation_attention": {
+      "layer_id": "observation_attention",
+      "owner": false,
+      "may_draw_boundary": false,
+      "may_clone_segmentation_box": false,
+      "may_draw_secondary_box": false,
+      "may_draw_float_marker": true,
+      "float_marker_default_priorities": ["P0_immediate_attention", "P1_high_attention"],
+      "region_id_binding": "region_id"
+    },
+    "followup_model_route": {
+      "layer_id": "followup_model_route",
+      "owner": false,
+      "may_draw_boundary": false,
+      "may_draw_default_on_canvas": false,
+      "primary_expression_surface": "right_panel"
+    },
+    "human_correction": {
+      "layer_id": "human_correction",
+      "owner": false,
+      "may_draw_boundary": false,
+      "may_upgrade_to_ground_truth": false,
+      "primary_expression_surface": "right_panel_and_correction_drawer",
+      "effect": "priority_signal_only"
+    },
+    "detection_runner": {
+      "layer_id": "detection_runner",
+      "owner": false,
+      "may_draw_boundary_default": false,
+      "planned_primary_surface": "right_panel",
+      "status": "future_reserved"
+    },
+    "ocr_runner": {
+      "layer_id": "ocr_runner",
+      "owner": false,
+      "may_draw_boundary_default": false,
+      "planned_primary_surface": "right_panel",
+      "status": "future_reserved"
+    },
+    "tracking_runner": {
+      "layer_id": "tracking_runner",
+      "owner": false,
+      "may_draw_boundary_default": false,
+      "planned_primary_surface": "right_panel",
+      "status": "future_reserved"
+    },
+    "depth_runner": {
+      "layer_id": "depth_runner",
+      "owner": false,
+      "may_draw_boundary_default": false,
+      "planned_primary_surface": "right_panel",
+      "status": "future_reserved"
+    },
+    "slam_runner": {
+      "layer_id": "slam_runner",
+      "owner": false,
+      "may_draw_boundary_default": false,
+      "planned_primary_surface": "right_panel",
+      "status": "future_reserved"
+    }
+  },
+  "expression_surfaces": {
+    "canvas": {
+      "role": "spatial_localization",
+      "allowed": ["segmentation_boundary", "region_number", "p0_p1_float_marker", "selected_highlight_on_existing_boundary"],
+      "forbidden": ["second_boundary_system", "full_scheduling_explanation", "route_icon_wall", "candidate_only_banner_on_canvas"]
+    },
+    "right_panel": {
+      "role": "observation_judgment",
+      "allowed": ["priority_queue", "why_observe", "followup_route_list", "motion_state_candidate", "correction_boost_note", "candidate_only", "not_fact"]
+    },
+    "bottom_dock": {
+      "role": "frame_scheduling_summary",
+      "allowed": ["priority_counts", "motion_type_counts", "candidate_scheduling_tag"]
+    },
+    "interaction": {
+      "role": "region_record_mapping",
+      "allowed": ["click_select", "hover_highlight", "scroll_to_record"]
+    }
+  },
+  "layer_conflict_rules": [
+    {
+      "rule_id": "single_boundary_per_region",
+      "description": "同一 region_id 在 canvas 中只能存在一条 segmentation boundary",
+      "enforcement": "hard"
+    },
+    {
+      "rule_id": "attention_no_boundary_clone",
+      "description": "Observation Attention 不得 clone 或替换 segmentation boundary",
+      "enforcement": "hard"
+    },
+    {
+      "rule_id": "select_does_not_toggle_boundary_visibility",
+      "description": "selected 状态不得隐藏或新增 boundary，仅允许描边增强",
+      "enforcement": "hard"
+    },
+    {
+      "rule_id": "one_model_one_canvas_box_system",
+      "description": "任意时刻主图只允许一套 box 系统（segmentation owner）",
+      "enforcement": "hard"
+    },
+    {
+      "rule_id": "future_runner_panel_first",
+      "description": "未来 runner 结果默认进入 panel，不默认叠加 canvas boundary",
+      "enforcement": "planning"
+    }
+  ],
+  "forbidden_operations": [
+    "draw_secondary_boundary_from_attention",
+    "clone_segmentation_box_for_priority",
+    "hide_segmentation_boundary_on_select",
+    "replace_boundary_with_priority_box",
+    "stack_multiple_model_boundary_systems",
+    "icon_only_default_canvas_expression"
+  ],
+  "boundary_flags": {
+    "segmentation_is_sole_boundary_owner": true,
+    "attention_annotation_layer_only": true,
+    "planning_only": true,
+    "candidate_only": true,
+    "not_fact": true
+  }
+}

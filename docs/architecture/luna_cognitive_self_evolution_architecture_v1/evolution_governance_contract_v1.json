@@ -1,0 +1,16 @@
+{
+  "title": "Evolution Governance Contract v1",
+  "owner": "Governance Plane / Evolution Governance",
+  "adoption_pipeline": ["Candidate", "Evidence", "Confidence", "Review", "Adoption"],
+  "review_inputs": ["Trace", "Supporting Evidence", "Contradicting Evidence", "Risk", "Unknown"],
+  "forbidden_targets": ["Constitution", "Value", "Identity", "Goal", "Reality", "Emotion Runtime", "Model Parameters"],
+  "rules": {
+    "candidate_admission_required": true,
+    "revocation_supported": true,
+    "rollback_supported": true,
+    "current_reality_recheck_required": true,
+    "automatic_adoption_forbidden": true,
+    "automatic_learning_runtime_forbidden": true,
+    "audit_trace_required": true
+  }
+}

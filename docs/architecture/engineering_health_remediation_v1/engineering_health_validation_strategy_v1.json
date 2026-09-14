@@ -1,0 +1,22 @@
+{
+  "title": "Engineering Health Validation Strategy v1",
+  "checks": [
+    {"id": "python_compile", "command": "python3 -m compileall capabilities/", "authority": "Agent V0 and User Terminal confirmation", "pass_signal": "V0_PY_COMPILE_OK"},
+    {"id": "json_parse", "scope": "phase JSON assets", "authority": "Agent V0", "pass_signal": "all JSON parse"},
+    {"id": "asset_inventory", "scope": "docs/architecture/", "authority": "Agent V0", "pass_signal": "every cognitive directory has a status"},
+    {"id": "canonical_registry", "scope": "duplicate schema groups", "authority": "Agent V0", "pass_signal": "canonical and aliases parse"},
+    {"id": "duplicate_map", "scope": "known duplicate groups", "authority": "Agent V0", "pass_signal": "every group has decision"},
+    {"id": "large_file_registry", "scope": "Python thresholds", "authority": "Agent V0", "pass_signal": "every blocker candidate has action and priority"},
+    {"id": "boundary_scan", "scope": "phase assets", "authority": "Agent V0", "pass_signal": "no runtime/model/hardware/action implementation"},
+    {"id": "final_phase_verification", "command": "python3 docs/architecture/engineering_health_remediation_v1/verify_engineering_health_remediation_v1.py", "authority": "User Terminal V2", "pass_signal": "V2_FINAL_VERIFICATION_PASSED"},
+    {"id": "final_audit", "authority": "ChatGPT V3", "pass_signal": "audit decision"}
+  ],
+  "failure_rules": {
+    "compile_failure_blocks": true,
+    "missing_asset_is_registered_not_auto_created": true,
+    "duplicate_without_decision_blocks": true,
+    "large_file_without_action_blocks": true,
+    "v0_does_not_grant_go": true,
+    "unknowns_are_preserved": true
+  }
+}

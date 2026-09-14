@@ -1,0 +1,13 @@
+{
+  "contract_id": "self_schema_v1",
+  "owner": "Schema Layer",
+  "schema_type": "Self Schema",
+  "inputs": ["Self Memory", "Capability History", "Self Regulation", "capability_context", "validated_pattern_candidate"],
+  "outputs": ["self_schema_candidate", "capability_boundary_structure", "unknowns", "provenance"],
+  "self_bound": true,
+  "candidate_only": true,
+  "direct_self_update": false,
+  "identity_write": false,
+  "value_write": false,
+  "goal_write": false
+}

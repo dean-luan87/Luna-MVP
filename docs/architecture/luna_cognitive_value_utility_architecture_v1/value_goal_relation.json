@@ -1,0 +1,12 @@
+{
+  "title": "Value Goal Relation v1",
+  "flow": ["Goal Candidate", "Value Evaluation Candidate", "Utility Candidate", "Goal Priority Candidate"],
+  "value_role": "evaluate contextual importance and resource worth",
+  "goal_creates_value": false,
+  "value_creates_goal": false,
+  "value_modifies_goal": false,
+  "goal_priority_is_candidate": true,
+  "self_review_required": true,
+  "brain_review_required": true,
+  "candidate_only": true
+}

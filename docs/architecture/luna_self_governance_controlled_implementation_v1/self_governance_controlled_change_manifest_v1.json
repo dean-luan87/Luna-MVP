@@ -1,0 +1,18 @@
+{
+  "artifact": "self_governance_controlled_change_manifest_v1",
+  "phase": "Phase-Luna-Self-Governance-Controlled-Implementation-v1-001",
+  "canonical_owner": "Self Governance",
+  "new_code_root": "capabilities/midplatform/core/self_governance/",
+  "new_doc_root": "docs/architecture/luna_self_governance_controlled_implementation_v1/",
+  "existing_files_modified": [],
+  "planning_assets_modified": [],
+  "historical_assets_modified": [],
+  "allowed_change_boundary_only": true,
+  "blocker_count": 0,
+  "audit_classification": {
+    "A": "reused current candidate-only and trace/guard patterns",
+    "B": "historical/reference assets and future adapter opportunities; non-blocking",
+    "C": "legacy owner naming conflicts isolated by one new owner; non-blocking",
+    "D": "Personality, Emotion, persistence, transfer, and runtime remain deferred"
+  }
+}

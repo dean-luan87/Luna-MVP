@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Real-Image-Quality-Review-And-Prompt-Strategy-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:07:08.046384+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "multi_image_trial_route_record",
+  "record": {
+    "record_id": "multi_image_trial_route_v1",
+    "route_a": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+    "route_a_purpose": "register_four_more_street_images_multi_image_stability_trial",
+    "route_b": "Phase-P1-MobileSAM-Detector-Assisted-Prompt-Planning-v1-001",
+    "route_b_purpose": "plan_detector_ocr_auto_prompt_generation_no_execution",
+    "route_c": "Phase-P1-MobileSAM-Real-Image-Quality-Review-Post-Review-Closure-v1-001",
+    "route_c_purpose": "close_single_image_mobile_sam_p1_trial_loop",
+    "recommended_route": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001"
+  }
+}

@@ -1,0 +1,40 @@
+{
+    "version": "1.0",
+    "name": "Temporal Status Transition Matrix",
+    "description": "时间状态转移约束矩阵。",
+    "statuses": [
+        "pending",
+        "active",
+        "inactive",
+        "stale",
+        "expired",
+        "suspended",
+        "revoked",
+        "unknown"
+    ],
+    "forbidden_transitions": [
+        {
+            "from": "revoked",
+            "to": "active",
+            "allowed": false,
+            "reason": "revoked 不得转 active。"
+        },
+        {
+            "from": "expired",
+            "to": "active",
+            "allowed": false,
+            "reason": "expired 无新证据不得转 active。",
+            "requires_new_evidence": true
+        }
+    ],
+    "conditional_transitions": [
+        {
+            "from": "suspended",
+            "to": "active",
+            "allowed": true,
+            "requires_refresh_evidence": true,
+            "reason": "suspended 恢复需要 refresh evidence。"
+        }
+    ],
+    "matrix_complete": true
+}

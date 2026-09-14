@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Memory Relation Contract",
+  "owner":"Cognitive Field and Memory Governance",
+  "relations":["current_field_reads_relevant_prior_field","memory_provides_temporal_continuity","current_reality_overrides_memory","field_transition_can_form_experience_candidate"],
+  "memory_activation":["field_match","task_match","role_match","time_relevance","confidence","unknowns"],
+  "memory_permissions":{"read_context":true,"write_current_reality":false,"replace_field":false,"create_decision":false},
+  "rules":{"memory_is_not_query_only":true,"memory_is_not_field_owner":true,"memory_not_field_owner":true,"current_reality_precedence":true}
+}

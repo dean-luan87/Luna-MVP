@@ -1,0 +1,44 @@
+{
+  "schema_id": "OcrAdmissionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Interaction-MobileSAM-OCR-Controlled-Execution-Planning-v1-001",
+  "description": "OCR admission gate。admitted 后方可生成 OCR controlled execution candidate。",
+  "admitted_conditions": [
+    "ocr_request_exists",
+    "source_ocr_task_candidate_exists",
+    "route_type_is_ocr",
+    "trace_chain_complete",
+    "source_region_locatable",
+    "region_crop_or_geometry_available",
+    "source_result_candidate_exists",
+    "candidate_only_not_fact_not_executed_flags_present"
+  ],
+  "rejected_conditions": [
+    "orphan_ocr_request",
+    "route_not_ocr",
+    "source_task_missing",
+    "source_region_missing",
+    "trace_incomplete",
+    "request_cancelled",
+    "bypass_midplatform_attempt",
+    "confirmed_text_in_request",
+    "fact_label_in_request"
+  ],
+  "admission_outcomes": {
+    "admitted": { "may_generate": ["ocr_controlled_execution_candidate"] },
+    "rejected": { "may_generate": [] },
+    "pending_admission": { "may_generate": [] },
+    "cancelled": { "may_generate": [] }
+  },
+  "execution_candidate_gates": {
+    "pending_request_cannot_generate_execution_candidate": true,
+    "rejected_request_cannot_generate_execution_candidate": true,
+    "cancelled_request_cannot_generate_execution_candidate": true,
+    "ocr_execution_candidate_requires_admitted_request": true
+  },
+  "boundary_flags": {
+    "ocr_admission_requires_ocr_route": true,
+    "no_orphan_ocr_execution_candidate": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Self Capability Awareness Contract v1",
+  "owner": "Cognitive Self Model / Capability Awareness",
+  "inputs": ["Self Capability Profile", "Capability State", "Performance Evidence", "Field Context", "Condition", "Confidence"],
+  "output": "Current Capability Awareness",
+  "schema": ["capability", "context", "condition", "availability", "confidence", "evidence_refs", "limitation", "unknown", "last_validated"],
+  "rules": {
+    "context_bound": true,
+    "evidence_backed": true,
+    "provider_not_authority": true,
+    "unknown_first_class": true,
+    "decision_reference_only": true,
+    "identity_unchanged": true
+  }
+}

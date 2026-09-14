@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Memory Ownership Review",
+  "record_owner": "Memory System",
+  "layers": [
+    {"memory": "Working Memory", "owner": "Cognitive Workspace", "writer": "Workspace", "readers": ["Brain", "Attention"], "lifecycle": "active -> background -> closed"},
+    {"memory": "Long-term Memory", "owner": "Memory System", "writer": "Memory Consolidation", "readers": ["Workspace", "Learning", "Brain"], "lifecycle": "candidate -> admitted -> active -> archived"},
+    {"memory": "Experience Memory", "owner": "Memory System", "writer": "Outcome + Experience Admission", "readers": ["Learning", "Self Evolution", "Brain"], "lifecycle": "candidate -> evaluated -> admitted"},
+    {"memory": "Self Memory", "owner": "Self Model / Memory System", "writer": "Admitted Self Experience", "readers": ["Self Model", "Self Regulation", "Brain"], "lifecycle": "candidate -> validated -> active"}
+  ],
+  "admission_flow": ["Observation", "Evidence", "Validation", "Memory Candidate", "Consolidation"],
+  "forbidden": ["Action → Direct Memory Write", "Model Output → Direct Memory Fact", "Provider → Memory Authority", "Learning → Unreviewed Memory Mutation"],
+  "rules": {"single_long_term_owner": true, "admission_required": true, "reality_over_memory": true, "working_memory_not_long_term_authority": true}
+}

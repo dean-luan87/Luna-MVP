@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Self Rhythm Engineering Mapping",
+  "mappings":[
+    {"architecture_module":"Self Rhythm Controller","target_layer":"L2_SELF / Self Regulation","current_engineering_asset":"docs/architecture/luna_cognitive_self_regulation_architecture_v1/","status":"Architecture Only","owner":"Self Regulation","migration_needed":false,"next_gate":"dedicated controlled implementation phase"},
+    {"architecture_module":"Runtime Rhythm Interface","target_layer":"L2_RUNTIME boundary","current_engineering_asset":"docs/architecture/luna_cognitive_runtime_foundation_v1/runtime_rhythm_interface_not_yet_implemented","status":"Architecture Only","owner":"Cognitive Runtime Governance","migration_needed":false,"next_gate":"Runtime integration review"},
+    {"architecture_module":"Cognitive Budget Policy","target_layer":"L2_SELF / Cognitive Loop interface","current_engineering_asset":"docs/runtime/luna_cognitive_runtime_cognitive_loop_integration_v1/","status":"Architecture Only","owner":"Self Regulation","migration_needed":false,"next_gate":"Memory Runtime planning"},
+    {"architecture_module":"Capability Budget Policy","target_layer":"L2_CAPABILITY boundary","current_engineering_asset":"docs/architecture/luna_capability_governance_architecture_v1/","status":"Architecture Only","owner":"Capability Governance","migration_needed":false,"next_gate":"Capability Runtime planning"}
+  ],
+  "rules":{"mapping_only":true,"no_file_move":true,"no_runtime_activation":true,"owner_required":true}
+}

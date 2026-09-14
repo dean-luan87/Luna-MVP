@@ -1,0 +1,13 @@
+{
+  "canonical_owner": "Model Manager / Model Governance",
+  "repository_path": "capabilities/midplatform/model_manager/model_contract_repository/",
+  "parallel_semantic_owner_created": false,
+  "assets": {
+    "yolov5n": {"repository_contract": true, "local_weight_available": true, "availability_basis": "external_visible_yolov5n_pt_reference"},
+    "yolo11n": {"repository_contract": true, "local_weight_available": false, "availability_basis": "no_visible_yolo11n_weight"},
+    "yolo26n": {"repository_contract": true, "local_weight_available": false, "availability_basis": "no_visible_yolo26n_weight"}
+  },
+  "existing_ultralytics_runtime_reference": "capabilities/vision_runtime/yolo_candidate_adapter_v0.py",
+  "existing_yolo11_ocr_line_is_detection_provider": false,
+  "no_download_or_execution": true
+}

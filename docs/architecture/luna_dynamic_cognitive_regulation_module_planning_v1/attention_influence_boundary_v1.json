@@ -1,0 +1,15 @@
+{
+    "artifact": "attention_influence_boundary_v1",
+    "allowed_outputs": [
+        "attention_modulation_candidate",
+        "salience_modulation_candidate",
+        "attention_budget_candidate"
+    ],
+    "forbidden_outputs": [
+        "attention_owner_transfer",
+        "direct_attention_state_mutation",
+        "decision_priority_override",
+        "action_priority_override"
+    ],
+    "rule": "attention modulation is influence candidate only"
+}

@@ -1,0 +1,13 @@
+{
+  "implementation_files_created": [
+    "capabilities/midplatform/core/observation_gateway/integration/__init__.py",
+    "capabilities/midplatform/core/observation_gateway/integration/real_visual_evidence_gateway_adapter_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/b1_real_visual_evidence_context_world_controlled/__init__.py",
+    "capabilities/midplatform/core/context_foundation/integration/b1_real_visual_evidence_context_world_controlled/b1_real_visual_evidence_context_world_fixture_v1.py",
+    "capabilities/midplatform/core/context_foundation/integration/b1_real_visual_evidence_context_world_controlled/run_b1_real_visual_evidence_context_world_controlled_implementation_v1.py"
+  ],
+  "existing_implementation_files_modified": [],
+  "existing_semantic_owners_modified": [],
+  "s0_s3_provider_implementation_modified": false,
+  "scope": "new integration surfaces only"
+}

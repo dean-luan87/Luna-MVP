@@ -1,0 +1,12 @@
+{
+  "handling_id": "invalid_missing_confidence_policy_001",
+  "policy_id": "confidence_policy_aggregation",
+  "candidate_refs": ["object_evidence_candidate:obj_001", "region_evidence_candidate:reg_001"],
+  "model_family_refs": ["object_detection_completion_family", "segmentation_family"],
+  "adapter_mapping_refs": ["recognition_model_output_adapter"],
+  "source_chain": "midplatform_model_data_handling_dryrun_v1",
+  "fallback_plan": "fallback_to_min_confidence",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "allowed_use": "candidate_only",
+  "commercial_use_status": "per_model_license_check_required"
+}

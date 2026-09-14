@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Memory Layer Boundary",
+  "owner":"Memory System",
+  "memory_scopes":[
+    {"scope":"self_memory","owner":"Self Layer","content":"capability, limitation, runtime, and self growth history"},
+    {"scope":"social_memory","owner":"Social Self Layer","content":"people, relationships, interactions, and social context"},
+    {"scope":"world_memory","owner":"Cognitive Core","content":"long-term environment and Field patterns"}
+  ],
+  "memory_is":["validated experience retention","future context support","scope-bound reference"],
+  "memory_is_not":["Reality","Decision","Identity","Goal","Constitution","automatic rule"],
+  "rules":{"current_reality_precedes_memory":true,"scope_owner_unique":true,"retrieval_context_required":true}
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Expectation Memory Interface v1",
+  "contract_type": "Expectation and Memory Separation",
+  "input": {
+    "expectation_reference": "expectation-example",
+    "feedback_reference": "feedback-example",
+    "experience_record": {},
+    "field_context": {},
+    "time_context": {},
+    "provenance": [],
+    "unknowns": []
+  },
+  "memory_record": {
+    "observed_event": {},
+    "expectation_at_time": {},
+    "feedback_status": "Unknown",
+    "difference_reference": null,
+    "experience_candidate": null
+  },
+  "boundary": {
+    "memory_records_what_occurred": true,
+    "expectation_records_what_was_expected": true,
+    "memory_does_not_override_reality": true,
+    "memory_does_not_modify_expectation_automatically": true,
+    "unknowns_are_preserved": true
+  }
+}

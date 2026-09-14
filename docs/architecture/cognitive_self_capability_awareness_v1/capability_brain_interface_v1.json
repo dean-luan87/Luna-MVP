@@ -1,0 +1,29 @@
+{
+  "title": "Capability Brain Interface v1",
+  "contract_type": "Capability to Brain Interface",
+  "brain_input": {
+    "capability_boundary": "declared capability scope",
+    "capability_state": "current state candidate",
+    "capability_confidence": "calibrated reliability candidate",
+    "limitations": [],
+    "unknowns": [],
+    "resource_constraints": {},
+    "alternative_capability_candidates": [],
+    "provenance": []
+  },
+  "brain_authority": {
+    "brain_retains_goal": true,
+    "brain_retains_decision": true,
+    "brain_retains_value_evaluation": true,
+    "brain_retains_action_authority": true,
+    "provider_internal_details_are_not_required": true
+  },
+  "boundary": {
+    "capability_does_not_command_brain": true,
+    "capability_does_not_modify_goal": true,
+    "capability_does_not_modify_decision": true,
+    "capability_does_not_define_reality": true,
+    "capability_does_not_define_identity": true,
+    "brain_receives_boundary_not_raw_provider_control": true
+  }
+}

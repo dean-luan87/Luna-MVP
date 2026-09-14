@@ -1,0 +1,19 @@
+{
+  "mapping_id": "function_parameter_mapping_v1",
+  "mappings": [
+    {"function_id": "attention_function", "parameters": ["risk_sensitivity", "novelty_sensitivity", "task_sensitivity"]},
+    {"function_id": "memory_influence_function", "parameters": ["activation_strength", "influence_weight", "context_dependency", "temporal_decay"]},
+    {"function_id": "confidence_dynamics_function", "parameters": ["evidence_weight", "prediction_error_sensitivity", "confidence_decay", "contradiction_threshold"]},
+    {"function_id": "goal_drive_function", "parameters": ["goal_activation_threshold", "task_relevance_weight", "resource_suppression_weight"]},
+    {"function_id": "utility_function", "parameters": ["value_weight", "resource_cost_weight", "risk_weight"]},
+    {"function_id": "decision_function", "parameters": ["candidate_threshold", "reconsideration_threshold", "reversibility_weight"]},
+    {"function_id": "error_signal_function", "parameters": ["prediction_error_weight", "outcome_quality_weight", "impact_threshold"]},
+    {"function_id": "parameter_evolution_candidate_generator", "parameters": ["learning_threshold", "pattern_strength_threshold", "growth_utility_threshold"]}
+  ],
+  "parameters_are_bounded": true,
+  "field_scope_required": true,
+  "version_required": true,
+  "rollback_required": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

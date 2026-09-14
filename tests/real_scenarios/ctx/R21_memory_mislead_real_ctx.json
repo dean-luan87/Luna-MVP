@@ -1,0 +1,26 @@
+{
+  "frame_seq": 21,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R21_memory_mislead_real_ctx",
+  "focus_object_label": "bottle",
+
+  "motion_instability": 0.2,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "blocked",
+
+  "confirmation_input_type": "unknown",
+  "confirmation_input_raw_text": "不知道",
+
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 0,
+
+  "visual_audit_objects_main": [
+    { "label": "cup", "bbox": [0, 0, 130, 130], "conf": 0.82 },
+    { "label": "bottle", "bbox": [45, 25, 90, 100], "conf": 0.84 },
+    { "label": "box", "bbox": [150, 30, 210, 90], "conf": 0.50 }
+  ]
+}
+

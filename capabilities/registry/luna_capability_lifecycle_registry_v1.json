@@ -1,0 +1,113 @@
+{
+    "registry_version": "v1",
+    "name": "Luna Capability Lifecycle Registry",
+    "last_updated": "2026-07-16",
+    "statuses": [
+        {
+            "status_id": "planned",
+            "description": "Capability is planned but no implementation artifact is committed as a callable module.",
+            "module_callable": false,
+            "system_integration_allowed": false,
+            "production_allowed": false,
+            "replacement_allowed": false,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "skeleton_ready",
+            "description": "Skeleton/module shell exists with boundary placeholders; not yet end-to-end integrated.",
+            "module_callable": false,
+            "system_integration_allowed": false,
+            "production_allowed": false,
+            "replacement_allowed": false,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "building",
+            "description": "Core logic is under active implementation with partial runners or contracts.",
+            "module_callable": false,
+            "system_integration_allowed": false,
+            "production_allowed": false,
+            "replacement_allowed": false,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "integration_ready",
+            "description": "Main chain is wired and callable in controlled scope; module integration evidence is incomplete or partial.",
+            "module_callable": true,
+            "system_integration_allowed": true,
+            "production_allowed": false,
+            "replacement_allowed": true,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "functional_module_ready",
+            "description": "Main chain complete, module integration passed, and boundary contract established. This does not imply production enabled.",
+            "module_callable": true,
+            "system_integration_allowed": true,
+            "production_allowed": false,
+            "replacement_allowed": true,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "degraded",
+            "description": "Callable with known limitations and explicit degradation notes.",
+            "module_callable": true,
+            "system_integration_allowed": true,
+            "production_allowed": false,
+            "replacement_allowed": true,
+            "upgrade_allowed": true,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "blocked",
+            "description": "Blocked by governance, dependency, or unresolved critical defect; cannot enter system integration.",
+            "module_callable": false,
+            "system_integration_allowed": false,
+            "production_allowed": false,
+            "replacement_allowed": true,
+            "upgrade_allowed": true,
+            "blocking": true,
+            "terminal": false
+        },
+        {
+            "status_id": "deprecated",
+            "description": "Kept for compatibility reads; no new dependents are allowed.",
+            "module_callable": true,
+            "system_integration_allowed": true,
+            "production_allowed": false,
+            "replacement_allowed": true,
+            "upgrade_allowed": false,
+            "blocking": false,
+            "terminal": false
+        },
+        {
+            "status_id": "retired",
+            "description": "Removed from callable surface; invocation is not allowed.",
+            "module_callable": false,
+            "system_integration_allowed": false,
+            "production_allowed": false,
+            "replacement_allowed": false,
+            "upgrade_allowed": false,
+            "blocking": false,
+            "terminal": true
+        }
+    ],
+    "rules": {
+        "functional_module_ready_does_not_imply_production": true,
+        "degraded_must_disclose_limitations": true,
+        "blocked_disallows_system_integration": true,
+        "deprecated_disallows_new_dependencies": true,
+        "retired_disallows_invocation": true
+    }
+}

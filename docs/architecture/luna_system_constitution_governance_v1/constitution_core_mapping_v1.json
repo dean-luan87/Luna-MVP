@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Constitution Core Mapping",
+  "mappings": [
+    {"principle": "System Stability Principle", "modules": ["Self Regulation", "Runtime Governance", "Capability Governance"], "protected_invariant": "constitution_protection"},
+    {"principle": "Evidence First Principle", "modules": ["Reality/Evidence", "Memory", "Hypothesis", "Calibration"], "protected_invariant": "evidence_boundary"},
+    {"principle": "Boundary Respect Principle", "modules": ["Brain", "Capability Governance", "Action Boundary", "Provider"], "protected_invariant": "decision_owner"},
+    {"principle": "Unknown Preservation Principle", "modules": ["Situation", "Hypothesis", "Expectation", "Workspace"], "protected_invariant": "evidence_boundary"},
+    {"principle": "State Ownership Principle", "modules": ["Global State", "Self Model", "Memory", "Field", "Attention"], "protected_invariant": "unique_state_owner"},
+    {"principle": "Human Interaction Safety Principle", "modules": ["Action Boundary", "Governance", "Brain", "Capability Governance"], "protected_invariant": "action_boundary"}
+  ],
+  "rules": {"every_principle_mapped": true, "every_mapping_has_invariant": true, "mapping_is_read_only": true, "no_runtime_activation": true}
+}

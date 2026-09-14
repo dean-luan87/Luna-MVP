@@ -1,0 +1,18 @@
+{
+  "contract_id": "self_regulation_owner_boundary_v1",
+  "canonical_owner": "Self Regulation Function",
+  "subfunction_owner": "Self Regulation Function",
+  "homeostasis_owner": "Self Regulation Function",
+  "calibration_owner": "Self Regulation Function",
+  "adaptation_owner": "Self Regulation Function",
+  "drift_detection_owner": "Self Regulation Function",
+  "constitution_authority": "System Constitution",
+  "application_authority": "External Governance/Application Boundary",
+  "execution_authority": "Runtime Boundary",
+  "brain_authority": "Brain",
+  "capability_authority": "Capability Governance",
+  "self_regulation_can": ["Observe", "Assess", "Constrain", "Propose", "Defer", "Reject", "Request Review"],
+  "self_regulation_cannot": ["Execute Action", "Modify Constitution", "Modify Identity", "Modify Goal", "Modify Value", "Modify Brain Core Rules", "Switch Model", "Control Hardware", "Invoke Provider", "Train Model", "Persist Parameter Update"],
+  "single_regulation_owner": true,
+  "candidate_only": true
+}

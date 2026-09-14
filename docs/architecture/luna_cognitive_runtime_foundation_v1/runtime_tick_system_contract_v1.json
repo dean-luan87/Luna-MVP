@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Tick System Contract v1",
+  "owner": "Cognitive OS Governance",
+  "tick_types": ["System Tick", "Cognitive Tick", "Event Tick"],
+  "schema": ["tick_id", "priority", "scope", "trigger", "timeout", "interruptible", "trace_id"],
+  "examples": {"System Tick":["Health Check","Lifecycle Check"],"Cognitive Tick":["Context Update","Attention Refresh"],"Event Tick":["Event Validation","Event Routing"]},
+  "rules": {"tick_not_action": true, "priority_required": true, "timeout_required": true, "real_scheduler_out_of_scope": true}
+}

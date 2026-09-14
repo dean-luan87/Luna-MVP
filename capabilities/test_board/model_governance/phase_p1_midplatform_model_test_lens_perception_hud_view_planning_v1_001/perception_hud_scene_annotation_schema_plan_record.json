@@ -1,0 +1,65 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:21:11.426693+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "hud_is_read_only": true,
+  "candidate_output_only": true,
+  "record": {
+    "plan_id": "perception_hud_scene_annotation_schema_plan_v1",
+    "schema_ref": "capabilities/midplatform/model_test_lens/schemas/perception_hud/perception_hud_scene_annotation_schema_v1.json",
+    "entity_types": [
+      "object",
+      "region",
+      "text",
+      "motion",
+      "landmark",
+      "road_structure",
+      "person",
+      "vehicle",
+      "unknown"
+    ],
+    "spatial_relations": [
+      "left",
+      "right",
+      "center",
+      "front",
+      "near",
+      "far",
+      "on_path",
+      "off_path",
+      "unknown"
+    ],
+    "task_relevance": [
+      "relevant",
+      "possible_risk",
+      "background",
+      "needs_confirmation",
+      "unknown"
+    ],
+    "uncertainty_tags": [
+      "low_confidence",
+      "boundary_uncertain",
+      "occluded",
+      "missing_depth",
+      "missing_tracking",
+      "missing_ocr",
+      "need_next_frame"
+    ],
+    "task_contexts": [
+      "general_scene_understanding",
+      "street_navigation_test",
+      "crossing_road_test",
+      "find_object_test",
+      "find_text_test",
+      "indoor_navigation_test",
+      "model_quality_review"
+    ],
+    "candidate_only": true
+  }
+}

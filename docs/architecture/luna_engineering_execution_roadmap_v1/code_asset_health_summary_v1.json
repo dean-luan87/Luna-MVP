@@ -1,0 +1,17 @@
+{
+  "version":"1.0",
+  "name":"Luna Code Asset Health Summary",
+  "scan_mode":"read-only AST inventory",
+  "roots":["capabilities/","tools/"],
+  "python_files_checked":5652,
+  "ast_parse_errors":0,
+  "long_file_policy":{"normal_max_lines":600,"warning_over":800,"blocker_candidate_over":1200},
+  "long_files":[
+    {"path":"capabilities/voice/runtime/voice_final_text_dispatcher.py","line_count":5161,"category":"Active Code","action":"future decomposition plan only","priority":"P2","risk":"high"},
+    {"path":"tools/real_scenario_pack.py","line_count":1902,"category":"Tooling","action":"governance review before refactor","priority":"P2","risk":"medium"},
+    {"path":"tools/decision_monitor_viewer.py","line_count":1738,"category":"Tooling","action":"retain and register seam","priority":"P2","risk":"medium"},
+    {"path":"capabilities/governance/gate_taxonomy_and_requirement_framework_planning_v1.py","line_count":1596,"category":"Governance Planning","action":"frozen compatibility mapping","priority":"P1","risk":"medium"}
+  ],
+  "health_interpretation":{"syntax":"pass","import_health":"not asserted by AST-only scan","runtime_health":"not executed","large_file_health":"governance risk registered"},
+  "rules":{"read_only":true,"no_file_split":true,"no_runtime_execution":true,"line_thresholds_registered":true}
+}

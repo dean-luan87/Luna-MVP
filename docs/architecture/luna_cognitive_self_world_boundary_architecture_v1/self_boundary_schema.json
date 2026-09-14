@@ -1,0 +1,26 @@
+{
+  "title": "Self World Boundary Schema v1",
+  "schema_version": "1.0",
+  "type": "object",
+  "required": ["boundary_id", "external_world_ref", "internal_state_refs", "identity_ref", "capability_refs", "constitution_ref", "boundary_types", "ownership_context", "provenance", "unknowns"],
+  "properties": {
+    "boundary_id": {"type": "string"},
+    "external_world_ref": {"type": "string"},
+    "internal_state_refs": {"type": "array"},
+    "identity_ref": {"type": "string"},
+    "capability_refs": {"type": "array"},
+    "constitution_ref": {"type": "string"},
+    "boundary_types": {"type": "array"},
+    "ownership_context": {"type": "object"},
+    "social_self_ref": {"type": ["string", "null"]},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"}
+  },
+  "boundary_types": ["Physical Boundary", "Computational Boundary", "Cognitive Boundary", "Identity Boundary", "Ownership Boundary"],
+  "reality_is_external_authority": true,
+  "self_is_not_all_memory": true,
+  "social_self_is_not_self": true,
+  "candidate_only": true,
+  "identity_mutation": false,
+  "self_runtime": false
+}

@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Learning Boundary Review",
+  "pipeline": ["Experience", "Pattern", "Strategy Candidate", "Learning Signal", "Candidate Update"],
+  "inputs": ["Outcome", "Feedback", "Prediction/Expectation Difference", "Performance Evidence", "Memory Context"],
+  "outputs": ["Pattern Candidate", "Strategy Candidate", "Attention Adaptation Candidate", "Capability Profile Candidate"],
+  "approval": {"candidate_owner": "Learning System", "reviewers": ["Brain", "Governance", "Experience/Memory Admission"], "active_change_requires_review": true},
+  "forbidden": ["Experience → Automatic Rule Change", "Learning → Value Rewrite", "Learning → Reality Mutation", "Learning → Automatic Goal Change", "Learning → Model Training"],
+  "rules": {"candidate_only": true, "reality_priority": true, "unknown_preserved": true, "rollback_or_revoke_supported": true, "no_auto_adoption": true}
+}

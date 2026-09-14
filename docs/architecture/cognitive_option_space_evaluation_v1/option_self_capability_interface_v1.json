@@ -1,0 +1,31 @@
+{
+  "title": "Option Self Capability Interface v1",
+  "contract_type": "Option to Self Capability Interface",
+  "inputs": {
+    "self_capability_state": "current capability state",
+    "self_state": "current condition",
+    "capability_requirements": [],
+    "resource_constraints": {},
+    "limitations": [],
+    "provenance": []
+  },
+  "outputs": {
+    "capability_fit_candidate": "candidate",
+    "feasibility_candidate": "candidate",
+    "capability_gap_candidate": "candidate",
+    "alternative_option_candidate": "candidate",
+    "option_confidence_adjustment_candidate": "candidate"
+  },
+  "examples": {
+    "child_crossing": "high-risk or blocked capability fit candidate",
+    "adult_crossing": "possible capability fit candidate",
+    "degraded_capability": "lower confidence and alternative candidate"
+  },
+  "boundary": {
+    "self_capability_does_not_select_option": true,
+    "self_capability_does_not_select_decision": true,
+    "self_capability_does_not_modify_goal": true,
+    "capability_fit_is_candidate_only": true,
+    "unknown_is_preserved": true
+  }
+}

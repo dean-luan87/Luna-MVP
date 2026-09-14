@@ -1,0 +1,40 @@
+{
+  "title": "Luna Dependency Graph v1",
+  "layers": [
+    {"layer": "L0", "name": "Constitution", "depends_on": []},
+    {"layer": "L1", "name": "Governance Plane", "depends_on": ["L0"]},
+    {"layer": "L2", "name": "Cognitive Core", "depends_on": ["L0", "L1"]},
+    {"layer": "L3", "name": "Cognitive Runtime", "depends_on": ["L1", "L2"]},
+    {"layer": "L4", "name": "Capability Runtime", "depends_on": ["L1", "L2", "L3"]},
+    {"layer": "L5", "name": "Hardware / Model / Provider", "depends_on": ["L1", "L4"]}
+  ],
+  "required_edges": [
+    "Reality → Field",
+    "Field → Situation",
+    "Situation → Global Cognitive State",
+    "Global Cognitive State → Brain",
+    "Brain → Decision Candidate",
+    "Decision Candidate → Decision Commitment",
+    "Decision Commitment → Action Boundary",
+    "Outcome Evidence → Experience",
+    "Experience → Learning Candidate"
+  ],
+  "forbidden_edges": [
+    "Capability → Brain",
+    "Model → Goal",
+    "Provider → Reality",
+    "Provider → Brain",
+    "Learning → Reality",
+    "Emotion → Decision Override",
+    "Hardware → Identity"
+  ],
+  "dependency_classes": ["Required Dependency", "Optional Dependency", "Candidate Dependency", "Future Interface"],
+  "rules": {
+    "no_reverse_layer_dependency": true,
+    "core_capability_isolation": true,
+    "provider_is_evidence_only": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true,
+    "graph_is_audit_reference_not_runtime": true
+  }
+}

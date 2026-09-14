@@ -1,0 +1,28 @@
+{
+  "title": "Self State Brain Interface v1",
+  "contract_type": "Self State to Brain Interface",
+  "brain_input": {
+    "state_summary": "current condition summary",
+    "constraint_candidate": "current resource or health constraint",
+    "confidence_adjustment_candidate": "calibration input",
+    "unknowns": [],
+    "provenance": [],
+    "validity": {},
+    "recovery_candidate": "optional"
+  },
+  "brain_authority": {
+    "brain_retains_goal": true,
+    "brain_retains_decision": true,
+    "brain_retains_value_evaluation": true,
+    "brain_retains_action_authority": true,
+    "brain_retains_identity_authority": true
+  },
+  "boundary": {
+    "self_state_does_not_command_brain": true,
+    "self_state_does_not_modify_goal": true,
+    "self_state_does_not_modify_decision": true,
+    "self_state_does_not_modify_identity": true,
+    "self_state_does_not_issue_action": true,
+    "brain_receives_summary_not_raw_hardware_control": true
+  }
+}

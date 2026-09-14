@@ -1,0 +1,9 @@
+{
+  "title": "Capability Impact Analysis Contract v1",
+  "owner": "Self Regulation / Capability Impact Analysis",
+  "pipeline": ["Failure Event", "Capability Impact Analysis", "Dependency Graph Evaluation", "Affected Capability Update", "Self State Update"],
+  "inputs": ["Failure Event", "Failure Domain", "Dependency Graph", "Current Capability State", "Current Self State"],
+  "outputs": ["Affected Capability Update Candidate", "Unaffected Capability Confirmation", "System Operational Status Candidate", "Unknown Increase Candidate"],
+  "schema": ["analysis_id", "failure_ref", "domain", "affected", "unaffected", "system_status", "risk", "confidence", "unknown", "trace_id"],
+  "rules": {"dependency_evaluation_required":true,"local_failure_isolated":true,"unaffected_confirmation_required":true,"unknown_preserved":true,"self_state_update_candidate_only":true,"no_direct_shutdown":true}
+}

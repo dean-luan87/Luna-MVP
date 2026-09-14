@@ -1,0 +1,40 @@
+{
+    "version": "1.0",
+    "name": "Temporal Validity Schema",
+    "description": "定义 temporal_validity 对象结构与状态。",
+    "fields": [
+        "temporal_type",
+        "valid_from",
+        "valid_until",
+        "recurrence_pattern",
+        "recurrence_timezone",
+        "expected_duration",
+        "activation_event_refs",
+        "deactivation_event_refs",
+        "refresh_at",
+        "refresh_policy",
+        "temporal_confidence",
+        "decay_policy",
+        "inherited_from_ref",
+        "until_revoked",
+        "grace_period",
+        "stale_after",
+        "expired_at",
+        "current_temporal_status"
+    ],
+    "temporal_statuses": [
+        "pending",
+        "active",
+        "inactive",
+        "stale",
+        "expired",
+        "suspended",
+        "revoked",
+        "unknown"
+    ],
+    "rules": {
+        "expired_not_active": true,
+        "revoked_not_active": true,
+        "suspended_requires_refresh_evidence_for_reactivation": true
+    }
+}

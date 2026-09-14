@@ -1,0 +1,23 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "visual_genome",
+  "dataset_ref": "visual_genome/scene_graph_subset",
+  "license_ref": {"license": "CC BY 4.0", "license_source": "visual_genome_terms", "commercial_use_confirmed": false},
+  "source_chain": ["visual_genome", "vision_test_source_backup_pool", "visual_genome_sample"],
+  "annotation_origin": {"provider": "visual_genome_export", "export_format": "scene_graph"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "visual_genome_sample_001"},
+  "annotation_format": "scene_graph",
+  "confidence": 0.77,
+  "allowed_use": "benchmark_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"object": "object_evidence_candidate", "attribute": "attribute_candidate", "relationship": "scene_relation_candidate"},
+  "images": [
+    {"image_id": "vg_img_040", "file_name": "counter_040.jpg", "width": 800, "height": 600, "scene_label_hint": "shop_counter", "confidence": 0.79}
+  ],
+  "annotations": [
+    {"ann_id": "vg_ann_040", "type": "object", "label": "counter", "image_id": "vg_img_040", "bbox": [200, 300, 600, 520], "confidence": 0.84},
+    {"ann_id": "vg_ann_041", "type": "object", "label": "person", "image_id": "vg_img_040", "bbox": [620, 250, 760, 560], "confidence": 0.8},
+    {"ann_id": "vg_ann_042", "type": "attribute", "label": "counter_is_wooden", "image_id": "vg_img_040", "subject_ref": "vg_ann_040", "attribute": "wooden", "confidence": 0.7},
+    {"ann_id": "vg_ann_043", "type": "relationship", "label": "person_near_counter", "image_id": "vg_img_040", "relation": "near", "subject_ref": "vg_ann_041", "object_ref": "vg_ann_040", "relation_refs": ["vg_ann_041", "vg_ann_040"], "confidence": 0.75}
+  ]
+}

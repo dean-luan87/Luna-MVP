@@ -1,0 +1,14 @@
+{
+  "schema_version": "v1",
+  "registry_type": "Permission / Authority Registry",
+  "purpose": "explicit allowed and forbidden operations",
+  "required_fields": ["authority_id", "subject", "allowed_operations", "forbidden_operations", "scope", "escalation_path", "validity", "provenance"],
+  "examples": [
+    {"subject": "camera", "allowed_operations": ["collect_visual_evidence"], "forbidden_operations": ["identify_user", "make_decision"]},
+    {"subject": "ocr", "allowed_operations": ["provide_text_candidate"], "forbidden_operations": ["interpret_reality", "define_goal"]},
+    {"subject": "hardware_manager", "allowed_operations": ["register", "report_health"], "forbidden_operations": ["open_device", "change_life_goal"]}
+  ],
+  "authority_registry_is_not_decision_system": true,
+  "brain_final_judgment": true,
+  "reducer_sole_state_mutation_authority": true
+}

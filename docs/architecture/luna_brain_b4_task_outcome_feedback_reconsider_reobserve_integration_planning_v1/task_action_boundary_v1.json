@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_task_action_boundary_v1",
+  "route":"TaskCandidate/readiness -> Action Governance candidate boundary",
+  "existing_contracts":["ActionGovernanceInputV1", "ActionCandidateV1", "ActionToRuntimeExecutorHandoffCandidateV1", "ActionToTaskManagerHandoffCandidateV1"],
+  "rules":["TaskCandidate != ActionCandidate", "Action Candidate != execution", "Action readiness != Runtime execution", "Task Manager does not silently execute Action"],
+  "b4_behavior":"Use controlled Action candidate/reference or existing handoff only; no device, scheduler, or runtime side effect.",
+  "action_admission_owner":"Action Governance"
+}

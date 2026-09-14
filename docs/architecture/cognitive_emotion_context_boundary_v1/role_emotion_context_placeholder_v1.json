@@ -1,0 +1,15 @@
+{
+  "placeholder_name": "Role Emotion Context Placeholder v1",
+  "role_reference": {},
+  "active_role": {},
+  "field_context": {},
+  "responsibility_context": {},
+  "emotion_context_candidate": {},
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "role_emotion_context_candidate": true,
+  "does_not_modify_identity": true,
+  "does_not_compute_emotion": true,
+  "unknowns_are_preserved": true
+}

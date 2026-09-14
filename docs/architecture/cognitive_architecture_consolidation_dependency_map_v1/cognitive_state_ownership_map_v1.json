@@ -1,0 +1,25 @@
+{
+  "title": "Cognitive State Ownership Map v1",
+  "state_attributes": ["Owner", "Writer", "Reader", "state_scope", "unknowns", "provenance"],
+  "states": [
+    {"state": "Field State", "Owner": "Field System", "Writer": "Field State Pipeline", "Reader": ["Attention", "Situation", "Workspace", "Brain"]},
+    {"state": "Self State", "Owner": "Self System", "Writer": "Self State Pipeline", "Reader": ["Attention", "Workspace", "Brain", "Capability"]},
+    {"state": "Workspace State", "Owner": "Workspace", "Writer": "Workspace Update Contract", "Reader": ["Brain", "Runtime"]},
+    {"state": "Attention State", "Owner": "Attention System", "Writer": "Attention Arbitration", "Reader": ["Workspace", "Brain", "Runtime"]},
+    {"state": "Hypothesis State", "Owner": "Hypothesis System", "Writer": "Evidence Validation Candidate", "Reader": ["Situation", "Expectation", "Brain", "Learning"]},
+    {"state": "Belief State", "Owner": "Belief Governance", "Writer": "Validated Pattern Candidate", "Reader": ["Expectation", "Memory", "Brain"]},
+    {"state": "Expectation State", "Owner": "Expectation Feedback System", "Writer": "Feedback Candidate", "Reader": ["Attention", "Brain", "Learning"]},
+    {"state": "Goal State", "Owner": "Goal System + Brain Review", "Writer": "Goal Governance", "Reader": ["Task", "Workspace", "Brain"]},
+    {"state": "Task State", "Owner": "Task Continuity System", "Writer": "Task Lifecycle", "Reader": ["Workspace", "Attention", "Brain"]},
+    {"state": "Capability State", "Owner": "Capability Governance", "Writer": "Capability State Pipeline", "Reader": ["Decision Commitment", "Attention", "Self"]}
+  ],
+  "map_rules": {
+    "one_normative_owner_per_state": true,
+    "writer_must_be_authorized": true,
+    "readers_cannot_write_by_reading": true,
+    "state_transition_is_candidate_based": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true,
+    "state_map_does_not_implement_runtime": true
+  }
+}

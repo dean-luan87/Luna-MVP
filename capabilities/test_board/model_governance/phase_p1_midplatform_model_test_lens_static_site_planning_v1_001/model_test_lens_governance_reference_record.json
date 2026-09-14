@@ -1,0 +1,25 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.960922+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "model_test_lens": true,
+  "not_whitebox_product_page": true,
+  "runtime_allowed": false,
+  "model_execution_allowed": false,
+  "candidate_output_only": true,
+  "record_type": "model_test_lens_governance_reference_record",
+  "record": {
+    "record_id": "model_test_lens_governance_reference_v1",
+    "governance_manifest_ref": "capabilities/midplatform/governance_standards/governance_standards_manifest_v1.json",
+    "legacy_inventory_ref": "capabilities/midplatform/governance_standards/legacy_rules/legacy_reusable_governance_rules_inventory_v1.json",
+    "model_onboarding_standard_ref": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_v1.md",
+    "test_board_protocol_ref": "TestBoardProtectedArtifactRuleV1",
+    "page_bypasses_approval_gate": false
+  }
+}

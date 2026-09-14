@@ -1,0 +1,12 @@
+{
+  "analysis_id": "b2_current_world_input_contract_analysis_v1",
+  "source": "B1 CurrentWorldCandidateV1",
+  "source_semantics": ["candidate_only", "field_mutation_false", "field_truth_declaration_false", "provenance_refs", "trace_ref", "uncertainty_refs", "conflict_refs", "temporal_refs"],
+  "direct_flow_support": {
+    "CognitiveFlowInputV1": "explicit optional current_world_ref exists",
+    "CognitiveStateFormationInputV1": "no explicit current_world_ref field observed"
+  },
+  "planned_mapping": "Use a narrow read-only adapter carrying the B1 CurrentWorld reference and source refs into the existing Cognitive State Formation input without changing the canonical input type in this planning phase.",
+  "contract_gap": "The State Formation input contract does not explicitly name CurrentWorldCandidate as a first-class field; whether a new version is required must be resolved before implementation.",
+  "prohibitions": ["do_not_rebuild_gateway", "do_not_reinvoke_yolo", "do_not_copy_world_into_context_as_truth", "do_not_promote_candidate_to_fact"]
+}

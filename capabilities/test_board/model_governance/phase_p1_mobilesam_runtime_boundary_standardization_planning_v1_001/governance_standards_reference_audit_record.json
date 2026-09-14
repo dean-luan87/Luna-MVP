@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Runtime-Boundary-Standardization-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:38:54.578829+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "runtime_execution_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "governance_standards_reference_audit_record",
+  "record": {
+    "record_id": "governance_standards_reference_audit_v1",
+    "manifest_ref_ok": true,
+    "index_ref_ok": true,
+    "reference_policy_ref_ok": true,
+    "legacy_inventory_ref_ok": true,
+    "reuse_before_create_policy_present": true,
+    "runtime_admission_gate_present": true
+  }
+}

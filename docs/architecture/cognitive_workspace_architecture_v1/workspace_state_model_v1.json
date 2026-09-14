@@ -1,0 +1,11 @@
+{
+  "schema_name": "Workspace State Model v1",
+  "states": ["Created", "Active", "Updated", "Background", "Closed"],
+  "primary_workspace": "Primary Workspace",
+  "background_workspace": "Background Workspace",
+  "state_owner": "Workspace Lifecycle Governance",
+  "state_transition_is_candidate_based": true,
+  "closed_workspace_releases_focus_only": true,
+  "closed_workspace_does_not_delete_memory": true,
+  "unknowns_are_preserved": true
+}

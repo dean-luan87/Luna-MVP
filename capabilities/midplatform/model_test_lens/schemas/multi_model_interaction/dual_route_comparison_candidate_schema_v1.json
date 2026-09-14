@@ -1,0 +1,107 @@
+{
+  "schema_id": "DualRouteComparisonCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Multi-Model-Perception-Route-Dual-Validation-Planning-v1-001",
+  "description": "中台对 Route A / Route B 的比较候选。本阶段终点。不裁决 fact，不执行 runner。",
+  "planning_only": true,
+  "planning_endpoint": "dual_route_comparison_candidate",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "comparison_id",
+    "route_a_refs",
+    "route_b_refs",
+    "agreement_level",
+    "recommended_followup_route",
+    "candidate_only",
+    "not_fact",
+    "trace_chain"
+  ],
+  "field_definitions": {
+    "comparison_id": { "type": "string" },
+    "route_a_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Refs to grounding_detection_candidate / sam_refine_mask_candidate"
+    },
+    "route_b_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Refs to vlm_route_candidate"
+    },
+    "agreement_level": {
+      "type": "string",
+      "enum": ["high_overlap", "partial_overlap", "conflict", "route_a_miss_route_b_only", "route_b_miss_route_a_only", "no_overlap"]
+    },
+    "conflict_type": {
+      "type": "string",
+      "enum": ["none", "label_semantic_conflict", "region_mismatch", "followup_model_conflict", "low_confidence_both"]
+    },
+    "region_overlap_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "text_likelihood_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "route_agreement_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "uncertainty_score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "recommended_followup_route": {
+      "type": "string",
+      "enum": ["ocr_task_candidate", "detection_task_candidate", "depth_task_candidate", "manual_review", "low_confidence_ocr_candidate", "conflict_review", "no_followup"]
+    },
+    "priority_signal": {
+      "type": "string",
+      "enum": ["boost", "neutral", "downgrade", "block_auto_admission"]
+    },
+    "comparison_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "region_overlap",
+          "text_likelihood",
+          "route_agreement",
+          "route_conflict",
+          "trace_completeness",
+          "uncertainty",
+          "recommended_next_task"
+        ]
+      }
+    },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "dual_route_comparison_not_fact": { "type": "boolean", "const": true },
+    "trace_chain": { "type": "array" }
+  },
+  "forbidden_operations": [
+    "comparison_as_fact",
+    "comparison_confirm_category",
+    "comparison_confirm_text",
+    "comparison_direct_ocr_execution",
+    "conflict_auto_fact_resolution"
+  ],
+  "boundary_flags": {
+    "dual_route_comparison_not_fact": true,
+    "dual_route_conflict_not_auto_fact": true,
+    "no_fact_write": true,
+    "no_ocr_execution": true,
+    "no_navigation_decision": true,
+    "planning_only": true
+  },
+  "example_cases": {
+    "agreement_ocr_boost": {
+      "route_a": "direction_sign bbox",
+      "route_b": "top sign OCR route",
+      "agreement_level": "high_overlap",
+      "recommended_followup_route": "ocr_task_candidate",
+      "priority_signal": "boost"
+    },
+    "route_a_miss": {
+      "agreement_level": "route_a_miss_route_b_only",
+      "recommended_followup_route": "manual_review",
+      "priority_signal": "downgrade"
+    },
+    "conflict_person_vs_sign": {
+      "agreement_level": "conflict",
+      "conflict_type": "label_semantic_conflict",
+      "recommended_followup_route": "conflict_review",
+      "priority_signal": "block_auto_admission"
+    }
+  }
+}

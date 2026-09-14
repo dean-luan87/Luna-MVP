@@ -1,0 +1,8 @@
+# OCR Stage-2 RapidOCR mainline (Phase-012) — lightweight deps only.
+# Do not add PaddleOCR here.
+
+rapidocr-onnxruntime
+onnxruntime
+opencv-python
+Pillow
+numpy

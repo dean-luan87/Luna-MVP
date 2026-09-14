@@ -1,0 +1,7 @@
+{
+  "title": "Self Regulation Learning Interface v1",
+  "owner": "Learning System",
+  "inputs": ["Health History", "Failure Pattern", "Degradation Pattern", "Recovery Outcome", "Expectation Difference"],
+  "outputs": ["Learning Signal", "Capability Limitation Evidence", "Self Evolution Input Candidate"],
+  "rules": {"learning_is_separate_from_stability":true,"self_regulation_does_not_auto_learn":true,"self_evolution_receives_candidate":true,"unknown_preserved":true,"no_strategy_auto_adoption":true}
+}

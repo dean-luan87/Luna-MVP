@@ -1,0 +1,7 @@
+{
+  "source_package_availability": "local source tree exists and validates required markers",
+  "python_dependency_availability": "declared dependency readiness candidate; no imports executed",
+  "loader_compatibility": "contract-level compatibility only",
+  "provider_invocation": "separate downstream authorization boundary",
+  "inequalities": ["Source Package Availability != Python Dependency Availability", "Python Dependency Availability != Loader Compatibility", "Loader Compatibility != Provider Invocation"]
+}

@@ -1,0 +1,18 @@
+{
+  "artifact": "personality_deferred_registry_v1",
+  "classification": "D",
+  "deferred_items": [
+    "Emotion Engine implementation",
+    "personality trait activation",
+    "personality expression runtime",
+    "memory/experience semantic compression",
+    "affective memory compression",
+    "emotion-memory summary generation",
+    "personality-memory semantic fusion",
+    "persistent personality profile storage",
+    "cross-user personality transfer",
+    "model call, scheduler, task, device, action, and runtime integration"
+  ],
+  "allowed_future_refs": ["semantic_compression_ref", "affective_memory_summary_ref", "emotion_memory_summary_ref", "personality_memory_fusion_ref"],
+  "current_phase_rule": "No deferred item may be implemented, activated, persisted, or silently represented as a completed capability in this planning phase."
+}

@@ -1,0 +1,38 @@
+{
+  "artifact_id": "field_role_interaction_resource_constraint_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Resource Governance",
+  "bounded_dimensions": [
+    "active_field_projection_scope",
+    "active_role_projection_scope",
+    "relationship_overlap_scope",
+    "historical_reactivation_scope",
+    "interaction_depth",
+    "trace_detail",
+    "uncertainty_expansion"
+  ],
+  "fixed_limits": {
+    "max_fields": null,
+    "max_roles": null,
+    "max_overlaps": null,
+    "max_history": null,
+    "max_interaction_depth": null
+  },
+  "pressure_policy": {
+    "authority": "Resource Governance",
+    "on_insufficiency": ["shrink_interaction_scope", "defer_weak_projection", "preserve_core_references", "preserve_trace_and_unknown"],
+    "delete_core_field": false,
+    "delete_core_role": false,
+    "delete_relationship": false,
+    "transfer_source_ownership": false
+  },
+  "rules": {
+    "resource_governance_bounds_expansion": true,
+    "fixed_global_cardinality_forbidden": true,
+    "resource_pressure_changes_scope_not_truth": true,
+    "dormant_or_deferred_is_not_deleted": true
+  },
+  "candidate_only": true,
+  "active_contract": false,
+  "runtime_implemented": false
+}

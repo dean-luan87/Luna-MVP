@@ -1,0 +1,408 @@
+{
+    "artifact": "causal_minimum_scenario_suite_v1",
+    "status": "PLANNING_CANDIDATE",
+    "scenario_count": 12,
+    "required_case_fields": [
+        "inputs",
+        "source_owners",
+        "hypothesis_candidates",
+        "supporting_evidence",
+        "opposing_evidence",
+        "confounders",
+        "temporal_order",
+        "uncertainty",
+        "forbidden_conclusions",
+        "expected_handoff"
+    ],
+    "scenarios": [
+        {
+            "scenario_id": "C01_TEMPORAL_PRECEDENCE_NO_CAUSALITY",
+            "theme": "temporal precedence but no causality",
+            "inputs": [
+                "event A before event B",
+                "limited evidence"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Context Governance"
+            ],
+            "hypothesis_candidates": [
+                "A may influence B"
+            ],
+            "supporting_evidence": [
+                "sequence_ref"
+            ],
+            "opposing_evidence": [
+                "missing_mechanism_ref"
+            ],
+            "confounders": [
+                "hidden_driver_candidate"
+            ],
+            "temporal_order": "A_before_B",
+            "uncertainty": [
+                "mechanism_unknown"
+            ],
+            "forbidden_conclusions": [
+                "A causes B as fact"
+            ],
+            "expected_handoff": "candidate_only"
+        },
+        {
+            "scenario_id": "C02_STRONG_ASSOCIATION_UNRESOLVED_CAUSE",
+            "theme": "strong association but unresolved cause",
+            "inputs": [
+                "high association signal",
+                "multiple possible causes"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Memory Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1",
+                "H2"
+            ],
+            "supporting_evidence": [
+                "association_ref"
+            ],
+            "opposing_evidence": [
+                "missing_intervention_ref"
+            ],
+            "confounders": [
+                "sampling_bias_candidate"
+            ],
+            "temporal_order": "co-varying",
+            "uncertainty": [
+                "causal_direction_unknown"
+            ],
+            "forbidden_conclusions": [
+                "association equals causality"
+            ],
+            "expected_handoff": "alternatives_preserved"
+        },
+        {
+            "scenario_id": "C03_TWO_COMPETING_HYPOTHESES",
+            "theme": "two competing causal hypotheses",
+            "inputs": [
+                "same outcome",
+                "two plausible cause sets"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Field Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1",
+                "H2"
+            ],
+            "supporting_evidence": [
+                "support_h1",
+                "support_h2"
+            ],
+            "opposing_evidence": [
+                "oppose_h1",
+                "oppose_h2"
+            ],
+            "confounders": [],
+            "temporal_order": "mixed",
+            "uncertainty": [
+                "winner_not_determined"
+            ],
+            "forbidden_conclusions": [
+                "forced_winner"
+            ],
+            "expected_handoff": "competition_with_uncertainty"
+        },
+        {
+            "scenario_id": "C04_THIRD_VARIABLE_CONFOUNDER",
+            "theme": "third-variable confounder",
+            "inputs": [
+                "A-B relation",
+                "potential third variable C"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Memory Governance",
+                "Context Governance"
+            ],
+            "hypothesis_candidates": [
+                "A->B",
+                "C->A_and_B"
+            ],
+            "supporting_evidence": [
+                "A_B_association"
+            ],
+            "opposing_evidence": [
+                "C_presence_ref"
+            ],
+            "confounders": [
+                "C"
+            ],
+            "temporal_order": "ambiguous",
+            "uncertainty": [
+                "confounder_strength_unknown"
+            ],
+            "forbidden_conclusions": [
+                "ignore_confounder"
+            ],
+            "expected_handoff": "confounder_explicit"
+        },
+        {
+            "scenario_id": "C05_SUPPORTING_EVIDENCE_ACCUMULATION",
+            "theme": "supporting evidence accumulation",
+            "inputs": [
+                "iterative support evidence"
+            ],
+            "source_owners": [
+                "Observation Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1"
+            ],
+            "supporting_evidence": [
+                "s1",
+                "s2",
+                "s3"
+            ],
+            "opposing_evidence": [
+                "weak_o1"
+            ],
+            "confounders": [],
+            "temporal_order": "consistent",
+            "uncertainty": [
+                "residual_unknown"
+            ],
+            "forbidden_conclusions": [
+                "automatic_fact_promotion"
+            ],
+            "expected_handoff": "supported_candidate_not_fact"
+        },
+        {
+            "scenario_id": "C06_OPPOSING_EVIDENCE",
+            "theme": "opposing evidence",
+            "inputs": [
+                "previous support",
+                "new opposing evidence"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Context Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1"
+            ],
+            "supporting_evidence": [
+                "s_old"
+            ],
+            "opposing_evidence": [
+                "o_new"
+            ],
+            "confounders": [
+                "measurement_noise_candidate"
+            ],
+            "temporal_order": "updated",
+            "uncertainty": [
+                "support_opposition_conflict"
+            ],
+            "forbidden_conclusions": [
+                "ignore_opposition"
+            ],
+            "expected_handoff": "contested_or_suspended_candidate"
+        },
+        {
+            "scenario_id": "C07_HYPOTHESIS_REVISION",
+            "theme": "hypothesis revision",
+            "inputs": [
+                "new evidence",
+                "old hypothesis trace"
+            ],
+            "source_owners": [
+                "Observation Governance",
+                "Causal Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1_rev1",
+                "H1_rev2"
+            ],
+            "supporting_evidence": [
+                "s_new"
+            ],
+            "opposing_evidence": [
+                "o_old"
+            ],
+            "confounders": [
+                "context_shift_candidate"
+            ],
+            "temporal_order": "traceable_revision",
+            "uncertainty": [
+                "revision_effect_unknown"
+            ],
+            "forbidden_conclusions": [
+                "silent_overwrite"
+            ],
+            "expected_handoff": "revision_chain_preserved"
+        },
+        {
+            "scenario_id": "C08_REVOKED_EVIDENCE",
+            "theme": "revoked evidence",
+            "inputs": [
+                "invalidated source evidence"
+            ],
+            "source_owners": [
+                "Observation Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1"
+            ],
+            "supporting_evidence": [
+                "s_invalidated"
+            ],
+            "opposing_evidence": [
+                "revocation_ref"
+            ],
+            "confounders": [],
+            "temporal_order": "revocation_after_admission",
+            "uncertainty": [
+                "post_revocation_gap"
+            ],
+            "forbidden_conclusions": [
+                "keep_supported_without_revision"
+            ],
+            "expected_handoff": "revoked_or_revised_candidate"
+        },
+        {
+            "scenario_id": "C09_MEMORY_PRIOR_INFLUENCE_NO_AUTHORITY",
+            "theme": "memory prior influence without authority",
+            "inputs": [
+                "memory prior refs",
+                "current evidence"
+            ],
+            "source_owners": [
+                "Memory Governance",
+                "Observation Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1"
+            ],
+            "supporting_evidence": [
+                "prior_match"
+            ],
+            "opposing_evidence": [
+                "new_counter_example"
+            ],
+            "confounders": [
+                "recall_bias_candidate"
+            ],
+            "temporal_order": "history_plus_current",
+            "uncertainty": [
+                "prior_bias"
+            ],
+            "forbidden_conclusions": [
+                "memory prior equals causal fact"
+            ],
+            "expected_handoff": "prior_as_influence_only"
+        },
+        {
+            "scenario_id": "C10_INTENT_INFLUENCE_NO_AUTHORITY",
+            "theme": "intent influence without authority",
+            "inputs": [
+                "intent refs",
+                "observation evidence"
+            ],
+            "source_owners": [
+                "Intent Governance",
+                "Observation Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1"
+            ],
+            "supporting_evidence": [
+                "intent_alignment_ref"
+            ],
+            "opposing_evidence": [
+                "evidence_mismatch_ref"
+            ],
+            "confounders": [
+                "preference_bias_candidate"
+            ],
+            "temporal_order": "intent_before_outcome",
+            "uncertainty": [
+                "intent_direction_vs_cause_gap"
+            ],
+            "forbidden_conclusions": [
+                "intent preference decides causal conclusion"
+            ],
+            "expected_handoff": "intent_influence_only"
+        },
+        {
+            "scenario_id": "C11_COUNTERFACTUAL_CANDIDATE",
+            "theme": "counterfactual candidate",
+            "inputs": [
+                "base hypothesis",
+                "what-if intervention candidate"
+            ],
+            "source_owners": [
+                "Causal Governance",
+                "Context Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1",
+                "CF_H1"
+            ],
+            "supporting_evidence": [
+                "baseline_refs"
+            ],
+            "opposing_evidence": [
+                "counter_evidence_refs"
+            ],
+            "confounders": [
+                "intervention_feasibility_candidate"
+            ],
+            "temporal_order": "counterfactual_window",
+            "uncertainty": [
+                "counterfactual_assumption_gap"
+            ],
+            "forbidden_conclusions": [
+                "counterfactual_as_fact"
+            ],
+            "expected_handoff": "counterfactual_candidate_only"
+        },
+        {
+            "scenario_id": "C12_CAUSAL_TO_DECISION_CANDIDATE_HANDOFF",
+            "theme": "causal-to-decision candidate handoff",
+            "inputs": [
+                "causal candidate set",
+                "alternatives",
+                "uncertainty",
+                "conflict refs"
+            ],
+            "source_owners": [
+                "Causal Governance"
+            ],
+            "hypothesis_candidates": [
+                "H1",
+                "H2"
+            ],
+            "supporting_evidence": [
+                "s1",
+                "s2"
+            ],
+            "opposing_evidence": [
+                "o1"
+            ],
+            "confounders": [
+                "c1"
+            ],
+            "temporal_order": "admitted",
+            "uncertainty": [
+                "conflict_unresolved"
+            ],
+            "forbidden_conclusions": [
+                "final_decision",
+                "action_instruction",
+                "task_creation"
+            ],
+            "expected_handoff": "decision_consumer_candidate_only"
+        }
+    ]
+}

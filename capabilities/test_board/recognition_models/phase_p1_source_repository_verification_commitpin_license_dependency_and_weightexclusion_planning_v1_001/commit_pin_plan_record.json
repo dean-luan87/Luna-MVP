@@ -1,0 +1,38 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "commit_pin_plan_record",
+  "source_commit_pin_planning_records": [
+    {
+      "asset_id": "byte_track",
+      "commit_pin_required": true,
+      "commit_hash_currently_unverified": true,
+      "branch_or_tag_candidate_currently_unverified": true,
+      "commit_must_be_resolved_before_execution": true,
+      "commit_pin_must_not_be_fabricated": true,
+      "commit_drift_after_pin_blocks_execution": true,
+      "commit_pin_review_required": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "commit_pin_required": true,
+      "commit_hash_currently_unverified": true,
+      "branch_or_tag_candidate_currently_unverified": true,
+      "commit_must_be_resolved_before_execution": true,
+      "commit_pin_must_not_be_fabricated": true,
+      "commit_drift_after_pin_blocks_execution": true,
+      "commit_pin_review_required": true
+    }
+  ]
+}

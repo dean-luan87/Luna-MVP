@@ -1,0 +1,29 @@
+{
+  "frame_seq": 94,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R94_phase_closure_shifted_but_advisory_boundary_should_hold_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.22,
+  "phase_and_closure_aligned_but_outcome_summary_misaligned_observed": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.6-F：phase/closure 与 outcome 张力，无 resume 目标串，advisory 边界应守住",
+  "object_search_flow_type": "phase_closure_shift_boundary_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "phase_closure_shift_boundary_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [15, 20, 81, 94], "conf": 0.83 },
+    { "label": "box", "bbox": [160, 44, 224, 112], "conf": 0.57 }
+  ]
+}

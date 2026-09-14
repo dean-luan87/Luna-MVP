@@ -1,0 +1,14 @@
+{
+  "interface_name": "Emotion Brain Interface v1",
+  "emotion_reference": {},
+  "emotion_state_candidate": {},
+  "field_context": {},
+  "role_context": {},
+  "relationship_context": {},
+  "brain_receives_emotion_reference": true,
+  "brain_retains_goal_authority": true,
+  "brain_retains_value_authority": true,
+  "brain_retains_final_decision_authority": true,
+  "emotion_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

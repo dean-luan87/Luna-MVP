@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "ObservationAttentionRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "title": "Observation Attention Record",
+  "description": "单区域观察注意力记录。attention candidate only — 不写 fact，不触发 runtime/navigation/speech。",
+  "type": "object",
+  "required": [
+    "attention_record_id",
+    "source_envelope_ref",
+    "source_model_id",
+    "source_model_category",
+    "task_context",
+    "region_id",
+    "region_display_name",
+    "priority_level",
+    "priority_reason",
+    "motion_state_candidate",
+    "recommended_followup_model",
+    "attention_summary",
+    "candidate_only",
+    "not_fact",
+    "not_navigation_instruction",
+    "not_runtime_output",
+    "not_speech_output",
+    "created_at"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "attention_record_id": {
+      "type": "string",
+      "pattern": "^attention_[a-z0-9_]+$"
+    },
+    "source_envelope_ref": {"type": "string"},
+    "source_hud_annotation_ref": {"type": "string"},
+    "source_model_id": {"type": "string"},
+    "source_model_category": {"type": "string"},
+    "task_context": {
+      "type": "string",
+      "enum": [
+        "general_scene_understanding",
+        "street_navigation_test",
+        "crossing_road_test",
+        "find_object_test",
+        "find_text_test",
+        "indoor_navigation_test",
+        "model_quality_review"
+      ]
+    },
+    "region_id": {"type": "string"},
+    "region_display_name": {"type": "string"},
+    "region_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "region_geometry_ref": {"type": "string"},
+    "prompt_label_candidate": {
+      "type": "string",
+      "description": "MobileSAM prompt label — candidate only, not fact category"
+    },
+    "priority_level": {
+      "type": "string",
+      "enum": [
+        "P0_immediate_attention",
+        "P1_high_attention",
+        "P2_medium_attention",
+        "P3_low_attention",
+        "ignore_for_now"
+      ]
+    },
+    "priority_reason": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1
+    },
+    "uncertainty_tags": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "recommended_followup_model": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "followup_route_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "human_correction_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "motion_state_candidate": {
+      "type": "string",
+      "enum": [
+        "static_candidate",
+        "dynamic_candidate",
+        "scene_structure_candidate",
+        "unknown_motion_state",
+        "needs_tracking_review"
+      ],
+      "description": "motion_state_candidate only — not confirmed motion fact"
+    },
+    "motion_state_confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "候选置信度，非事实置信度"
+    },
+    "motion_state_reason": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "static_dynamic_evidence_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "tracking_id / mask_displacement / bbox_displacement / optical_flow 等证据引用"
+    },
+    "video_or_single_frame_context": {
+      "type": "string",
+      "enum": ["single_frame", "video_multi_frame", "frame_sequence"]
+    },
+    "tracking_required": {"type": "boolean"},
+    "ocr_required": {"type": "boolean"},
+    "depth_required": {"type": "boolean"},
+    "detection_required": {"type": "boolean"},
+    "attention_summary": {
+      "type": "string",
+      "description": "为什么该区域值得观察、下一步用什么模型"
+    },
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true},
+    "not_navigation_instruction": {"type": "boolean", "const": true},
+    "not_runtime_output": {"type": "boolean", "const": true},
+    "not_speech_output": {"type": "boolean", "const": true},
+    "must_not_modify_original_envelope": {"type": "boolean", "const": true},
+    "must_not_modify_model_output": {"type": "boolean", "const": true},
+    "created_at": {"type": "string", "format": "date-time"},
+    "test_board_refs": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "forbidden_operations": [
+    "execute_detection",
+    "execute_ocr",
+    "execute_slam",
+    "execute_depth",
+    "execute_inference",
+    "write_fact",
+    "write_semantic",
+    "mutate_registry",
+    "trigger_runtime",
+    "call_output_adapter",
+    "trigger_navigation",
+    "trigger_speech",
+    "modify_original_envelope",
+    "overwrite_model_output",
+    "upgrade_prompt_label_to_fact",
+    "treat_correction_as_ground_truth",
+    "execute_followup_route_immediately",
+    "output_confirmed_dynamic_from_single_frame",
+    "treat_correction_as_motion_ground_truth"
+  ],
+  "example": {
+    "attention_record_id": "attention_street_scene_vehicle_001",
+    "source_envelope_ref": "envelope://mobile_sam_multi_real_image_example_envelope_v1",
+    "source_hud_annotation_ref": "entity_03",
+    "source_model_id": "mobile_sam",
+    "source_model_category": "segmentation",
+    "task_context": "street_navigation_test",
+    "region_id": "entity_03",
+    "region_display_name": "前方车辆候选",
+    "region_confidence": 0.86,
+    "region_geometry_ref": "mask_overlay_vehicle_001",
+    "prompt_label_candidate": "vehicle_or_small_dynamic_object",
+    "motion_state_candidate": "dynamic_candidate",
+    "motion_state_confidence": 0.62,
+    "motion_state_reason": ["label_suggests_dynamic", "single_frame_insufficient"],
+    "static_dynamic_evidence_refs": [],
+    "video_or_single_frame_context": "single_frame",
+    "tracking_required": true,
+    "ocr_required": false,
+    "depth_required": true,
+    "detection_required": true,
+    "priority_level": "P0_immediate_attention",
+    "priority_reason": ["possible_risk", "needs_tracking_review", "needs_detection_review"],
+    "uncertainty_tags": ["missing_tracking", "need_detection"],
+    "recommended_followup_model": ["tracking", "detection", "depth"],
+    "followup_route_refs": ["route_tracking_vehicle_p0", "route_detection_confirm_vehicle_p0"],
+    "attention_summary": "前方车辆候选为动态观察候选（单帧标签提示），需 Tracking + Detection + Depth 复核，不得断言 confirmed_dynamic。",
+    "candidate_only": true,
+    "not_fact": true,
+    "not_navigation_instruction": true,
+    "not_runtime_output": true,
+    "not_speech_output": true,
+    "must_not_modify_original_envelope": true,
+    "must_not_modify_model_output": true,
+    "created_at": "2026-07-03T02:00:00Z",
+    "test_board_refs": []
+  }
+}

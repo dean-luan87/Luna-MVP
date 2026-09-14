@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Capability Budget Policy",
+  "owner":"Self Rhythm Controller",
+  "inputs":["capability_health","capability_state","resource_state","task_requirement","risk"],
+  "outputs":["capability_intensity_hint","concurrency_hint","defer_background_hint","reason","confidence"],
+  "mode_profiles":{"active":"normal","focus":"elevated_candidate","observe":"low_frequency","maintain":"maintenance_candidate","recovery":"restricted","low_power":"minimal"},
+  "capability_governance_boundary":{"governance_selects_admissible_options":true,"rhythm_selects_model":false,"rhythm_switches_provider":false,"runtime_acceptance_required":true},
+  "rules":{"no_capability_ownership":true,"no_model_switching":true,"no_provider_switching":true,"failure_isolation_preserved":true}
+}

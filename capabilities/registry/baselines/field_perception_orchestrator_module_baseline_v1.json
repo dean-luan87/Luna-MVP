@@ -1,0 +1,51 @@
+{
+    "capability_id": "luna.field_perception_orchestrator",
+    "capability_name": "Luna Field Perception Orchestrator",
+    "baseline_version": "v1",
+    "module_version": "v1",
+    "baseline_status": "active",
+    "classification": "calibration_baseline_only",
+    "calibration_enabled": true,
+    "normal_runtime_load_allowed": false,
+    "anomaly_diagnostic_load_allowed": true,
+    "implementation": {
+        "module_api_path": "capabilities/midplatform/field_perception_orchestrator/module/field_perception_module_api_v1.py",
+        "controlled_handoff_api_path": "capabilities/midplatform/field_perception_orchestrator/integration/field_perception_visual_handoff_api_v1.py",
+        "integration_runner_path": "tools/evaluation/midplatform/run_field_perception_visual_handoff_integration_v1.py"
+    },
+    "expected_statuses": [
+        "no_visual_invocation_required",
+        "duplicate_suppressed",
+        "fresh_evidence_reused",
+        "budget_degraded",
+        "handoff_ready",
+        "no_eligible_model"
+    ],
+    "boundary_flags": {
+        "candidate_only": true,
+        "real_model_execution_allowed": false,
+        "real_visual_evidence_generation_allowed": false,
+        "field_state_write_allowed": false,
+        "runtime_loop_allowed": false
+    },
+    "dependencies": [
+        "luna.task_manager",
+        "luna.field_state_reducer",
+        "luna.vision_manager",
+        "luna.model_manager",
+        "luna.observation_manager"
+    ],
+    "integration_evidence": {
+        "total_cases": 16,
+        "passed_cases": 16,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "boundary_preserved": true,
+        "unhandled_exceptions": 0,
+        "evidence_ref": "_tmp_eval_out/field_perception_visual_handoff_integration_v1_smoke_v0/field_perception_visual_handoff_integration_v1.json"
+    },
+    "notes": [
+        "Calibration baseline only; not a runtime config input.",
+        "Controlled visual invocation handoff covers Field Perception to Vision Manager to Model Manager to Observation Manager."
+    ]
+}

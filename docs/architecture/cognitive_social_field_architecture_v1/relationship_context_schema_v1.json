@@ -1,0 +1,18 @@
+{
+  "schema_name": "Relationship Context Schema v1",
+  "relationship_id": "relationship-example",
+  "participant_a": "participant-a",
+  "participant_b": "participant-b",
+  "context": "work-field-example",
+  "history": [],
+  "confidence": null,
+  "boundary": [],
+  "timestamp": null,
+  "provenance": [],
+  "unknowns": [],
+  "relationship_is_contextual": true,
+  "relationship_is_temporal": true,
+  "direct_emotion_inference": false,
+  "relationship_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

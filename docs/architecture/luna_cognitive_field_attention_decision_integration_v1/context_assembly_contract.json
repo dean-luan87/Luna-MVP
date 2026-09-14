@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Field Context Assembly Contract",
+  "owner":"Cognitive Context Assembly",
+  "inputs":["Field state","Attention candidate","Self state","Social Self state","Role state","Memory candidates","Knowledge context","Task"],
+  "output_fields":["context_id","field_ref","situation","selected_information","self_context","social_context","role_context","memory_context","knowledge_context","unknowns","risk"],
+  "permissions":{"compose_context":true,"write_reality":false,"write_memory":false,"write_identity":false,"create_action":false},
+  "rules":{"source_provenance_required":true,"unknowns_preserved":true,"context_not_reality":true,"context_not_decision":true}
+}

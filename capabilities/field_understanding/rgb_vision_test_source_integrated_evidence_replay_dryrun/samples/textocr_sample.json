@@ -1,0 +1,21 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "textocr",
+  "dataset_ref": "textocr/scene_text_subset",
+  "license_ref": {"license": "CC BY 4.0", "license_source": "textocr_terms", "commercial_use_confirmed": false},
+  "source_chain": ["textocr", "vision_test_source_backup_pool", "textocr_sample"],
+  "annotation_origin": {"provider": "textocr_export", "export_format": "text_polygon_transcription"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "textocr_sample_001"},
+  "annotation_format": "text_polygon",
+  "confidence": 0.85,
+  "allowed_use": "benchmark_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"text": "text_evidence_candidate"},
+  "images": [
+    {"image_id": "ocr_img_030", "file_name": "signage_030.jpg", "width": 640, "height": 480, "scene_label_hint": "signage", "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ocr_ann_030", "type": "text", "label": "entrance_sign", "image_id": "ocr_img_030", "text": "ENTRANCE", "text_span": [300, 45, 378, 105], "bbox": [300, 40, 380, 110], "confidence": 0.92},
+    {"ann_id": "ocr_ann_031", "type": "text", "label": "ticket_gate", "image_id": "ocr_img_030", "text": "TICKETS", "text_span": [120, 200, 260, 250], "bbox": [115, 195, 265, 255], "confidence": 0.86}
+  ]
+}

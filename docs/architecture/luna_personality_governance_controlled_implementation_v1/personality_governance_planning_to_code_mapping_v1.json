@@ -1,0 +1,32 @@
+{
+  "artifact": "personality_governance_planning_to_code_mapping_v1",
+  "planning_root": "docs/architecture/luna_personality_governance_architecture_planning_v1/",
+  "code_root": "capabilities/midplatform/core/personality_governance/",
+  "mapping": {
+    "personality_governance_owner_boundary_v1.json": ["personality_governance_registry_v1.py", "personality_governance_ownership_guard_v1.py"],
+    "personality_concept_boundary_matrix_v1.json": ["personality_governance_registry_v1.py", "personality_governance_static_validators_v1.py"],
+    "personality_trait_candidate_schema_v1.json": ["personality_trait_types_v1.py"],
+    "personality_profile_candidate_schema_v1.json": ["personality_profile_types_v1.py"],
+    "personality_trait_taxonomy_v1.json": ["personality_governance_registry_v1.py"],
+    "personality_trait_stability_model_v1.json": ["personality_stability_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_evidence_admission_model_v1.json": ["personality_admission_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_revision_revocation_model_v1.json": ["personality_revision_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_self_boundary_v1.json": ["personality_influence_types_v1.py", "personality_governance_ownership_guard_v1.py"],
+    "personality_memory_boundary_v1.json": ["personality_admission_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_learning_boundary_v1.json": ["personality_admission_types_v1.py", "personality_influence_types_v1.py"],
+    "personality_emotion_boundary_v1.json": ["personality_influence_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_dynamic_regulation_boundary_v1.json": ["personality_influence_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_pcn_boundary_v1.json": ["personality_influence_types_v1.py", "personality_trace_types_v1.py"],
+    "personality_intent_boundary_v1.json": ["personality_influence_types_v1.py", "personality_governance_ownership_guard_v1.py"],
+    "personality_privacy_sensitivity_boundary_v1.json": ["personality_governance_registry_v1.py", "personality_governance_static_validators_v1.py"],
+    "personality_trace_provenance_contract_v1.json": ["personality_trace_types_v1.py", "personality_governance_engine_v1.py"],
+    "personality_idempotency_contract_v1.json": ["personality_governance_registry_v1.py", "personality_governance_engine_v1.py"],
+    "personality_semantic_compression_deferred_boundary_v1.json": ["personality_governance_registry_v1.py", "personality_io_types_v1.py"],
+    "personality_negative_guards_v1.json": ["personality_governance_registry_v1.py", "personality_governance_ownership_guard_v1.py"],
+    "personality_minimum_scenario_suite_v1.json": ["personality_governance_fixture_v1.py", "run_personality_governance_controlled_implementation_v1.py"],
+    "personality_gap_registry_v1.json": ["personality_governance_implementation_summary_v1.md"],
+    "personality_deferred_registry_v1.json": ["personality_governance_implementation_summary_v1.md"]
+  },
+  "unimplemented_planning_items": ["Emotion Engine", "semantic compression", "persistent storage", "cross-user transfer", "trait activation", "runtime expression"],
+  "mapping_is_candidate_only": true
+}

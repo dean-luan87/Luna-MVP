@@ -1,0 +1,24 @@
+{
+  "lifecycle_id": "self_regulation_function_enhancement_lifecycle_v1",
+  "owner": "Self Regulation Function",
+  "states": ["Observed", "Assessed", "Candidate", "Range Checked", "Drift Checked", "Under Self Review", "Accepted Candidate", "Rejected", "Deferred", "Applied Externally", "Monitoring", "Rolled Back", "Archived"],
+  "transitions": [
+    {"from": "Observed", "to": "Assessed", "condition": "input and evidence package complete"},
+    {"from": "Assessed", "to": "Candidate", "condition": "regulation need identified"},
+    {"from": "Candidate", "to": "Range Checked", "condition": "homeostasis mechanism evaluated"},
+    {"from": "Range Checked", "to": "Drift Checked", "condition": "stability and drift evaluated"},
+    {"from": "Drift Checked", "to": "Under Self Review", "condition": "candidate package is reviewable"},
+    {"from": "Under Self Review", "to": "Accepted Candidate", "condition": "review accepts candidate"},
+    {"from": "Under Self Review", "to": "Rejected", "condition": "boundary, evidence, or risk fails"},
+    {"from": "Under Self Review", "to": "Deferred", "condition": "unknowns or evidence are insufficient"},
+    {"from": "Accepted Candidate", "to": "Applied Externally", "condition": "external application boundary permits it"},
+    {"from": "Applied Externally", "to": "Monitoring", "condition": "application is observable"},
+    {"from": "Monitoring", "to": "Rolled Back", "condition": "risk or drift exceeds governance boundary"},
+    {"from": "Monitoring", "to": "Archived", "condition": "monitoring closes"}
+  ],
+  "state_owner_required": true,
+  "no_implicit_activation": true,
+  "rollback_required": true,
+  "monitoring_required": true,
+  "candidate_only": true
+}

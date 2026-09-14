@@ -1,0 +1,110 @@
+{
+    "version": "1.0",
+    "name": "Luna Verification Status Registry",
+    "statuses": [
+        {
+            "status": "NOT_STARTED",
+            "owner": "Agent",
+            "entry_condition": "Phase work has not started.",
+            "exit_condition": "Agent starts execution.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": false,
+            "chatgpt_audit_required": false
+        },
+        {
+            "status": "IN_AGENT_EXECUTION",
+            "owner": "Agent",
+            "entry_condition": "Agent begins authorized phase work.",
+            "exit_condition": "Agent reaches readiness or blocker.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": false,
+            "chatgpt_audit_required": false
+        },
+        {
+            "status": "STATIC_CHECK_READY",
+            "owner": "Agent",
+            "entry_condition": "V0 static checks pass.",
+            "exit_condition": "Await user V2 or proceed to authorized V1.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": false
+        },
+        {
+            "status": "COMPONENT_VALIDATION_PASSED",
+            "owner": "Agent",
+            "entry_condition": "Authorized V1 validation passes.",
+            "exit_condition": "Await user V2 final phase verification.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": false
+        },
+        {
+            "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+            "owner": "Agent",
+            "entry_condition": "Agent completed authorized scope and must stop before V2.",
+            "exit_condition": "User runs V2 and returns full output.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        },
+        {
+            "status": "BLOCKED_BEFORE_USER_TERMINAL_VERIFICATION",
+            "owner": "Agent",
+            "entry_condition": "Agent detected blocker before V2.",
+            "exit_condition": "Remediation instructions accepted and executed.",
+            "final_state": false,
+            "agent_allowed_to_emit": true,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        },
+        {
+            "status": "BLOCKED_BY_VERIFIER_FAILURE",
+            "owner": "User Terminal",
+            "entry_condition": "V2 final phase verifier reports failure/blocker.",
+            "exit_condition": "Remediation and verifier rerun pass.",
+            "final_state": false,
+            "agent_allowed_to_emit": false,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        },
+        {
+            "status": "BLOCKED_BY_OUTPUT_CONTRACT_DEVIATION",
+            "owner": "ChatGPT",
+            "entry_condition": "Audit detects output contract drift.",
+            "exit_condition": "Contract corrected and V2 rerun passes.",
+            "final_state": false,
+            "agent_allowed_to_emit": false,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        },
+        {
+            "status": "BLOCKED_BY_BOUNDARY_VIOLATION",
+            "owner": "ChatGPT",
+            "entry_condition": "Audit detects boundary violation.",
+            "exit_condition": "Violation corrected and governance approved.",
+            "final_state": false,
+            "agent_allowed_to_emit": false,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        },
+        {
+            "status": "GO",
+            "owner": "ChatGPT",
+            "entry_condition": "User-executed V2 passes and V3 audit approves.",
+            "exit_condition": "Move to next phase.",
+            "final_state": true,
+            "agent_allowed_to_emit": false,
+            "user_terminal_required": true,
+            "chatgpt_audit_required": true
+        }
+    ],
+    "agent_may_not_emit_go": true,
+    "agent_highest_normal_completion_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "go_requires_user_v2_plus_chatgpt_v3": true,
+    "status_registry_complete": true
+}

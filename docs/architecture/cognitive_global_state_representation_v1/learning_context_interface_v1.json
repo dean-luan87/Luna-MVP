@@ -1,0 +1,25 @@
+{
+  "title": "Global State Learning Context Interface v1",
+  "contract_type": "Learning Context Projection",
+  "input": {
+    "experience_candidates": [],
+    "feedback_candidates": [],
+    "state_transition_records": [],
+    "pattern_candidates": [],
+    "learning_version": "candidate",
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "learning_context": {},
+    "future_adjustment_candidates": [],
+    "learning_signals": []
+  },
+  "boundary": {
+    "global_state_does_not_execute_learning": true,
+    "learning_context_is_candidate_only": true,
+    "learning_does_not_mutate_global_state": true,
+    "learning_does_not_modify_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_cycle_inheritance_contract_v1",
+    "allowed_cross_cycle_refs": [
+        "persistent_intent_ref",
+        "current_world_ref_or_version",
+        "unresolved_hypothesis_refs",
+        "regulation_candidate_ref",
+        "uncertainty_refs",
+        "pending_reconsideration_ref",
+        "provenance_chain_ref"
+    ],
+    "forbidden_cross_cycle_state": [
+        "mutable_runtime_state",
+        "owner_internal_working_buffers",
+        "implicit_scheduler_state",
+        "active_parameter_store_mutation"
+    ],
+    "rules": {
+        "reference_only_inheritance": true,
+        "trace_link_required": true,
+        "previous_cycle_id_required": true,
+        "completed_cycle_immutability": true
+    }
+}

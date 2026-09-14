@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Trace Schema",
+    "required_fields": [
+        "trace_id",
+        "evaluation_id",
+        "policy_id",
+        "ordered_rule_ids",
+        "evaluated_rule_ids",
+        "rule_results",
+        "short_circuit_steps",
+        "evidence_refs",
+        "temporal_refs",
+        "confidence_refs",
+        "conflict_refs",
+        "governance_refs",
+        "rejection_reason_refs",
+        "snapshot_versions",
+        "replay_key",
+        "created_at"
+    ],
+    "trace_schema_complete": true
+}

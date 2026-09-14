@@ -1,0 +1,10 @@
+{
+  "schema_version": "v1",
+  "interface_type": "field_governance_to_brain",
+  "brain_inputs": ["field_state", "resource_state", "conflict_candidate", "diagnostic_candidate", "field_relationship_candidate"],
+  "brain_authority": ["goal", "priority_judgment", "final_decision", "adjustment_acceptance"],
+  "governance_authority": ["field_registry", "admission_candidate", "lifecycle_candidate", "resource_candidate", "information_boundary", "diagnostic_candidate"],
+  "governance_does_not": ["make_decision", "create_goal", "interpret_reality", "execute_action", "modify_reality"],
+  "raw_reality_access": false,
+  "raw_model_access": false
+}

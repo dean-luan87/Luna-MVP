@@ -1,0 +1,10 @@
+{
+  "phase": "Phase-Luna-Brain-B3-Cognitive-State-Intent-Decision-Task-Integration-Planning-v1-001",
+  "mode": "INVENTORY + TECHNICAL PLANNING ONLY",
+  "objective": "Define the canonical route from B2 Cognitive State/Flow references through Intent Governance and Decision Governance to a candidate-only Task boundary.",
+  "entry": ["B1 GO", "B2 GO", "B2 candidate-only outputs available"],
+  "exit": ["ownership matrix documented", "existing contracts mapped", "selected route documented", "minimum implementation scope documented", "negative guards documented"],
+  "out_of_scope": ["implementation code", "provider/model inference", "Intent/Decision/Task execution", "Action/Runtime", "scheduler/device control", "semantic compression", "dynamic cognitive functions"],
+  "authority": {"intent": "Intent Governance", "decision": "Decision Governance", "task": "Task Manager", "action": "Action Governance", "runtime": "Runtime Executor"},
+  "status": "WAITING_FOR_USER_REVIEW"
+}

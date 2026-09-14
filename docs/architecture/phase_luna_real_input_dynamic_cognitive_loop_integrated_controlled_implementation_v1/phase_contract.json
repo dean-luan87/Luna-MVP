@@ -1,0 +1,9 @@
+{
+  "phase": "Phase-Luna-Real-Input-Dynamic-Cognitive-Loop-Integrated-Controlled-Implementation-v1-001",
+  "mode": "CONTROLLED_CANDIDATE_ONLY",
+  "canonical_owner": "Cognitive Flow Governance integration boundary",
+  "goal": "Connect B1 Current World, B2 Cognitive State/Flow, Dynamic Flow, Capability Requirement/Resolution/Outcome, and B4 reconsideration references.",
+  "scenario_count": 28,
+  "execution": {"runtime": false, "provider": false, "model": false, "camera": false, "action": false},
+  "non_goals": ["Learning", "Memory mutation", "automatic capability acquisition", "SRSK", "semantic folding/expansion"]
+}

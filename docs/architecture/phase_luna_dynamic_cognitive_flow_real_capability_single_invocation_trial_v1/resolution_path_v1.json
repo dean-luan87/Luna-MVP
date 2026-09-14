@@ -1,0 +1,17 @@
+{
+  "path": [
+    "Cognitive Need",
+    "CapabilityRequirementV1(problem_class=object_presence, requested_operation=DETECT_OBJECT)",
+    "Capability Scope IN_SCOPE for object_detection",
+    "Capability Resolution READY_CANDIDATE",
+    "Model Contract Repository model-asset:yolo11n:weights-v1",
+    "loader:ultralytics:yolo:v1",
+    "adapter:yolo:visual-evidence:v1",
+    "capability:object-detection:v1",
+    "provider admission candidate",
+    "one YOLO11n single-frame provider call"
+  ],
+  "brain_selected_provider": false,
+  "brain_selected_model": false,
+  "provider_identity_source": "existing Model Contract Repository and S3-Y11 admission mapping"
+}

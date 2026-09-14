@@ -1,0 +1,26 @@
+{
+  "schema_id": "ModelAdmissionPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Foundation-Planning-v1-001",
+  "principle": "模型存在不等于可用；须经 Admission 门控后进入 Available Pool。",
+  "admission_pipeline": [
+    {"stage": "model_candidate", "description": "新模型/工具候选注册"},
+    {"stage": "security_review", "description": "安全与边界审查"},
+    {"stage": "capability_review", "description": "能力声明与弱点审查"},
+    {"stage": "benchmark", "description": "基准与 smoke 验证"},
+    {"stage": "admission_decision", "description": "准入决策"},
+    {"stage": "available_pool", "description": "进入可用池"}
+  ],
+  "rules": [
+    {"rule_id": "no_auto_admission", "description": "禁止自动准入"},
+    {"rule_id": "external_teacher_requires_validation", "description": "外部 Teacher 须经验证链"},
+    {"rule_id": "tool_os_models_pre_admitted", "description": "Tool OS 内建工具可预准入"},
+    {"rule_id": "candidate_not_executable", "description": "candidate 状态不可执行"},
+    {"rule_id": "blocked_never_routes", "description": "blocked 模型不参与路由"}
+  ],
+  "boundary_flags": {
+    "no_auto_admission": true,
+    "no_auto_execution": true,
+    "admission_candidate_only": true
+  }
+}

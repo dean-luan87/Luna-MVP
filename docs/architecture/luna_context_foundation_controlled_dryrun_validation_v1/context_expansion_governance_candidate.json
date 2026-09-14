@@ -1,0 +1,27 @@
+{
+  "candidate_id": "luna_context_expansion_governance_candidate_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "expansion_source": [
+    "Existing Evidence",
+    "Historical Experience Reference",
+    "Memory Projection",
+    "System Rules Reference"
+  ],
+  "evidence_required": true,
+  "resource_budget_reference": "Context Expansion Budget Reference",
+  "inference_allowed": true,
+  "inference_scope": "Candidate Completion only",
+  "context_owned_reasoning": false,
+  "causal_inference_allowed": false,
+  "intent_generation_allowed": false,
+  "decision_generation_allowed": false,
+  "fact_generation_allowed": false,
+  "candidate_status_required": true,
+  "confidence_required": true,
+  "source_reference_required": true,
+  "source_owner_precedence": true,
+  "unsupported_information_creation_allowed": false,
+  "expansion_result": "Context Expansion Candidate",
+  "active_governance": false
+}
+

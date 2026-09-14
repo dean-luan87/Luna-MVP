@@ -1,0 +1,100 @@
+{
+  "analysis_id": "universal-slot-canonical-extension-gap-analysis-v1",
+  "status": "MAPPING_ONLY",
+  "gaps": [
+    {
+      "gap_id": "GAP-01",
+      "current_owner": "Capability Registry / Capability Governance",
+      "current_asset": "capability_owner_definition_v1.json; capability_registry_boundary_v1.json",
+      "missing_concept": "persistent generic Slot identity and version",
+      "type_extension_required": true,
+      "adapter_sufficient": false,
+      "migration_risk": "medium",
+      "backward_compatibility_risk": "medium",
+      "recommended_phase": "Universal Slot controlled contract implementation"
+    },
+    {
+      "gap_id": "GAP-02",
+      "current_owner": "Capability Admission",
+      "current_asset": "capability_admission_hierarchy_v1.json",
+      "missing_concept": "separate Slot compatibility and Module-to-Slot binding record",
+      "type_extension_required": true,
+      "adapter_sufficient": "initially",
+      "migration_risk": "medium",
+      "backward_compatibility_risk": "low if additive",
+      "recommended_phase": "Slot admission/binding mapping"
+    },
+    {
+      "gap_id": "GAP-03",
+      "current_owner": "Capability Governance / Memory/Experience",
+      "current_asset": "capability_memory_interface_v1.json; self_history_reference_contract_v1.json",
+      "missing_concept": "Slot binding history and recovery projection",
+      "type_extension_required": true,
+      "adapter_sufficient": "for read-only view",
+      "migration_risk": "medium",
+      "backward_compatibility_risk": "medium",
+      "recommended_phase": "Capability history/recovery mapping"
+    },
+    {
+      "gap_id": "GAP-04",
+      "current_owner": "Capability Governance / Model Manager / Provider Governance",
+      "current_asset": "model_manager_boundary_v1.json; provider_boundary_v1.json",
+      "missing_concept": "generic Module Implementation dependency envelope",
+      "type_extension_required": "possibly",
+      "adapter_sufficient": true,
+      "migration_risk": "low",
+      "backward_compatibility_risk": "low",
+      "recommended_phase": "Module/Implementation conformance audit"
+    },
+    {
+      "gap_id": "GAP-05",
+      "current_owner": "Capability Governance / Safety Constitution",
+      "current_asset": "capability_lifecycle_contract_v1.json; safety_boundary_contract_v1.json",
+      "missing_concept": "SURVIVAL_BASELINE vs SYSTEM_REQUIRED vs OPTIONAL requirement classification",
+      "type_extension_required": true,
+      "adapter_sufficient": "legacy alias during migration",
+      "migration_risk": "high for safety semantics",
+      "backward_compatibility_risk": "high if enums are renamed silently",
+      "recommended_phase": "Safety requirement hierarchy review"
+    },
+    {
+      "gap_id": "GAP-06",
+      "current_owner": "Capability Self / Memory/Experience",
+      "current_asset": "self_capability_state_schema_v1.json; capability_memory_interface_v1.json",
+      "missing_concept": "Slot-aware current/historical/recoverable projection",
+      "type_extension_required": "possibly",
+      "adapter_sufficient": true,
+      "migration_risk": "medium",
+      "backward_compatibility_risk": "medium",
+      "recommended_phase": "Capability Self mapping implementation"
+    },
+    {
+      "gap_id": "GAP-07",
+      "current_owner": "System Maintenance / Capability Governance",
+      "current_asset": "maintenance diagnostic and remediation candidate modules",
+      "missing_concept": "generic Slot rollback/recovery reference",
+      "type_extension_required": "possibly",
+      "adapter_sufficient": true,
+      "migration_risk": "medium",
+      "backward_compatibility_risk": "low if reference-only",
+      "recommended_phase": "Maintenance and recovery conformance mapping"
+    },
+    {
+      "gap_id": "GAP-08",
+      "current_owner": "Visual integration surface",
+      "current_asset": "SafetyCapabilitySlotV1 and visual manifests",
+      "missing_concept": "Universal Slot conformance mapping",
+      "type_extension_required": "not in this phase",
+      "adapter_sufficient": true,
+      "migration_risk": "high if promoted directly",
+      "backward_compatibility_risk": "high if visual types become canonical",
+      "recommended_phase": "Separate visual conformance/remediation phase"
+    }
+  ],
+  "rules": {
+    "no_parallel_owner": true,
+    "prefer_additive_extensions": true,
+    "do_not_modify_visual_implementation_in_audit": true,
+    "do_not_silently_rename_existing_enums": true
+  }
+}

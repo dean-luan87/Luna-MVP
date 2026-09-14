@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_state_output_v1",
+  "owner": "Cognitive State Management",
+  "outputs": ["state_candidate", "reason", "evidence_refs", "confidence", "resource_budget_hint", "allowed_activity_candidate", "unknowns"],
+  "candidate_only": true,
+  "runtime_control": false,
+  "model_control": false,
+  "hardware_control": false,
+  "decision_authority": false,
+  "consumer": "Cognitive Kernel",
+  "runtime_future_role": "may_review_and_apply_admitted_policy"
+}

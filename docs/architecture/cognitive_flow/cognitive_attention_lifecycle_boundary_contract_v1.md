@@ -1,0 +1,22 @@
+# Cognitive Attention Lifecycle Boundary Contract v1
+
+- Attention != Memory.
+- Attention != Experience.
+- Attention != Decision.
+- Attention != Goal.
+- Attention != Truth.
+- Attention Lifecycle != State Mutation.
+- Attention Activation != Allocation Authority.
+- Attention Maintenance != Persistence Authority.
+- Attention Decay != Time To Live.
+- Attention Decay != Deletion.
+- Attention Suspension != Closure.
+- Attention Closure != Memory Delete.
+- Attention Closure != Experience Delete.
+- Attention Pattern Extraction != Experience Adoption.
+- Attention Feedback != Automatic Attention Change.
+- Frequency != Value.
+- Repetition != Importance.
+- Novelty != Relevance.
+- Risk != Probability.
+- Reducer remains the only State Mutation Authority.

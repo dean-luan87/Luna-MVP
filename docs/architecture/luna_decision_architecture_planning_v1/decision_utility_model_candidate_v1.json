@@ -1,0 +1,19 @@
+{
+    "artifact": "decision_utility_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "utility_definition": "Potential value or benefit estimate for an option under current context.",
+    "utility_fields": [
+        "utility_ref_id",
+        "value_dimensions",
+        "benefit_candidate",
+        "tradeoff_notes",
+        "context_dependence_refs",
+        "uncertainty",
+        "provenance"
+    ],
+    "utility_rules": {
+        "utility_not_permission": true,
+        "high_utility_not_authorization": true,
+        "utility_is_soft_preference": true
+    }
+}

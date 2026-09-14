@@ -1,0 +1,53 @@
+{
+    "capability_id": "luna.protocol_manager",
+    "capability_name": "Luna Protocol Manager",
+    "module_version": "v1",
+    "lifecycle_status": "functional_module_ready",
+    "readiness_standard_ref": "docs/architecture/capability_registry/luna_capability_readiness_standard_v1.md",
+    "implementation": {
+        "module_api": {
+            "path": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_api_v1.py",
+            "entrypoint": "run_protocol_manager_module_v1"
+        },
+        "facade": {
+            "path": "capabilities/midplatform/protocol_manager/module/protocol_manager_module_facade_v1.py",
+            "entrypoint": "run_protocol_manager_module_v1"
+        },
+        "core_reused": [
+            "capabilities/midplatform/protocols/protocol_types_v1.py",
+            "capabilities/midplatform/protocols/protocol_registry_v1.py",
+            "capabilities/midplatform/protocols/protocol_checker_v1.py",
+            "capabilities/midplatform/protocols/protocol_error_codes_v1.py",
+            "capabilities/midplatform/protocols/protocol_health_monitor_contract_v1.py",
+            "capabilities/midplatform/protocols/protocol_whitebox_binding_v1.py"
+        ]
+    },
+    "integration": {
+        "runner": {
+            "path": "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py",
+            "scenarios": 18
+        },
+        "ready_evidence": {
+            "total_cases": 18,
+            "passed_cases": 18,
+            "failed_cases": [],
+            "diagnostics_present_all": true,
+            "trace_present_all": true,
+            "replay_present_all": true,
+            "deterministic_replay": true,
+            "boundary_preserved": true,
+            "evidence_ref": "tools/evaluation/midplatform/run_protocol_manager_module_integration_v1.py"
+        }
+    },
+    "constraints": {
+        "no_direct_protocol_registry_write": true,
+        "no_runtime_protocol_load": true,
+        "no_dynamic_binding_execution": true,
+        "no_direct_state_mutation": true,
+        "candidate_only_processing": true
+    },
+    "historical_aliases": [
+        "protocol_registry_controller",
+        "protocol_checker_manager"
+    ]
+}

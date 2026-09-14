@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.960922+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "model_test_lens": true,
+  "not_whitebox_product_page": true,
+  "runtime_allowed": false,
+  "model_execution_allowed": false,
+  "candidate_output_only": true,
+  "record_type": "model_test_lens_whitebox_separation_record",
+  "record": {
+    "record_id": "model_test_lens_whitebox_separation_v1",
+    "whitebox_purpose": "system_decision_parameter_chain_runtime_product_explanation",
+    "model_test_lens_purpose": "single_model_capability_boundary_research_test_evaluation",
+    "whitebox_covers_runtime_product_explanation": true,
+    "model_test_lens_covers_model_capability_evaluation": true
+  }
+}

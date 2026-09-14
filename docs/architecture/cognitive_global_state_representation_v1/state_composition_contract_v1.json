@@ -1,0 +1,33 @@
+{
+  "title": "Global State Composition Contract v1",
+  "contract_type": "Read-only State Composition",
+  "inputs": [
+    "Reality State", "Field State", "Self State", "Role State", "Relationship State",
+    "Situation State", "Intent State", "Goal State", "Task State", "Workspace State",
+    "Attention State", "Drive State", "Value State", "Hypothesis State", "Belief State",
+    "Expectation State", "Memory Context", "Learning Context", "Capability State", "Unknown State"
+  ],
+  "composition_steps": [
+    "read owner state",
+    "validate source version",
+    "validate timestamp and Field context",
+    "preserve conflicts and Unknown State",
+    "compose Global Cognitive State Snapshot",
+    "publish Global Cognitive State Package"
+  ],
+  "output": {
+    "global_cognitive_state_snapshot": "candidate",
+    "global_cognitive_state_package": "candidate",
+    "provenance": []
+  },
+  "boundary": {
+    "composer_is_read_only": true,
+    "composer_does_not_create_reality": true,
+    "composer_does_not_resolve_hypothesis": true,
+    "composer_does_not_update_belief": true,
+    "composer_does_not_update_expectation": true,
+    "composer_does_not_allocate_attention": true,
+    "composer_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

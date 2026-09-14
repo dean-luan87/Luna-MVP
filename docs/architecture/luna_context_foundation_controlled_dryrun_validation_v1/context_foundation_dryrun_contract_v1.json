@@ -1,0 +1,55 @@
+{
+  "contract_id": "luna_context_foundation_controlled_dryrun_contract_v1",
+  "status": "VALIDATION_CANDIDATE",
+  "execution_profile": "Controlled Validation Only",
+  "owner": "Context Foundation Governance Candidate",
+  "allowed_flow": [
+    "Synthetic Projection",
+    "Context Assembly",
+    "Context Envelope Candidate",
+    "Context Trace Candidate"
+  ],
+  "allowed_inputs": [
+    "Source-owned Projection Reference",
+    "Synthetic Projection Fixture",
+    "Context Expansion Budget Reference",
+    "Mental Field Carryover Reference",
+    "Unknown Completion Candidate Reference"
+  ],
+  "allowed_outputs": [
+    "Context Envelope Candidate",
+    "Context Trace Candidate",
+    "Unknown Completion Candidate Reference",
+    "Degraded Context Scope Candidate"
+  ],
+  "forbidden_flows": [
+    "Context -> Fact",
+    "Context -> Intent",
+    "Context -> Causal Explanation",
+    "Context -> Decision",
+    "Context -> Action",
+    "Context -> Source Mutation",
+    "Context -> Runtime Command"
+  ],
+  "owner_boundary": {
+    "context_write_scope": [
+      "Context Envelope Candidate",
+      "Context Trace Candidate"
+    ],
+    "source_owner_precedence": true,
+    "source_owner_transfer": false,
+    "source_mutation_allowed": false
+  },
+  "candidate_only": true,
+  "unknown_preservation_required": true,
+  "evidence_required_for_expansion": true,
+  "resource_budget_reference_required": true,
+  "trace_required": true,
+  "runtime_execution": false,
+  "database_access": false,
+  "model_call": false,
+  "provider_call": false,
+  "state_mutation": false,
+  "active_contract": false
+}
+

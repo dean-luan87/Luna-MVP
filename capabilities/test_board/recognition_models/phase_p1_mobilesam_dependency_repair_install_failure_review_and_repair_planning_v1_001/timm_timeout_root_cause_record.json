@@ -1,0 +1,32 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:04:26.475242+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "timm_install_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_timeout_root_cause_record",
+  "timm_timeout_root_cause_record": {
+    "record_id": "timm_timeout_root_cause_v1",
+    "failure_category": "dependency_install_timeout",
+    "root_cause_candidate": "transitive_dependency_download_install_too_heavy_under_isolated_target",
+    "isolated_target_install_attempted": true,
+    "full_transitive_dependency_download_attempted": true,
+    "heavy_deps_include_torch_torchvision": true,
+    "timeout_seconds": 1200,
+    "return_code": -1,
+    "target_path_empty_after_timeout": true,
+    "not_timm_package_missing": true,
+    "not_mobile_sam_weight_issue": true,
+    "not_mobile_sam_code_issue": true,
+    "is_dependency_install_strategy_issue": true,
+    "same_full_isolated_install_retry_not_recommended": true
+  }
+}

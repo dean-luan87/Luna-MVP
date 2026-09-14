@@ -1,0 +1,12 @@
+{
+  "contract_id": "integrated_parameter_evolution_boundary_v1",
+  "flow": ["Outcome Feedback", "Self Calibration", "Optimization Candidate", "Self Review", "Accept/Reject/Defer", "Adaptive Parameter Candidate"],
+  "mutable_targets": ["Attention Weight", "Exploration Threshold", "Memory Activation Weight", "Confidence Threshold", "Goal Activation Threshold", "Decision Reconsideration Threshold", "Strategy Weight"],
+  "protected_targets": ["Constitution", "Identity", "Safety Boundary", "Core Brain Rules", "Reality", "Current Goal Directly"],
+  "approval_owners": ["Self Governance", "Constitution Governance", "Capability Governance"],
+  "automatic_parameter_update": false,
+  "automatic_self_modification": false,
+  "rollback_required": true,
+  "versioning_required": true,
+  "candidate_only": true
+}

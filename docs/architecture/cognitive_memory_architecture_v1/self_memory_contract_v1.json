@@ -1,0 +1,14 @@
+{
+  "contract_name": "Self Memory Contract v1",
+  "memory_class": "Self Memory",
+  "identity_reference": "identity-example",
+  "capability_history": [],
+  "state_history": [],
+  "self_context": [],
+  "evidence_reference": [],
+  "identity_continuity_required": true,
+  "memory_does_not_modify_identity": true,
+  "memory_does_not_claim_capability_without_evidence": true,
+  "current_reality_precedence": true,
+  "unknowns_are_preserved": true
+}

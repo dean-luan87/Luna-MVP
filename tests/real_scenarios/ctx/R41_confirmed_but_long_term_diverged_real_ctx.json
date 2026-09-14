@@ -1,0 +1,32 @@
+{
+  "frame_seq": 41,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R41_confirmed_but_long_term_diverged_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.25,
+
+  "long_term_divergence_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_yes",
+  "confirmation_input_raw_text": "对，就是这个（短期语言确认）——但后续多步执行持续走向相反区域（长期行为背离）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 3,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 16, 72, 82], "conf": 0.88 },
+    { "label": "box", "bbox": [158, 38, 228, 108], "conf": 0.58 }
+  ]
+}

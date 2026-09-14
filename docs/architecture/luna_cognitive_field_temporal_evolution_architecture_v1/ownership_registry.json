@@ -1,0 +1,17 @@
+{
+  "registry_id": "field_temporal_evolution_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Cognitive Field Structure", "owner": "Cognitive Field", "writer": "Field Governance", "readers": ["Field Temporal Evolution", "Attention", "Brain"]},
+    {"object": "Field Identity Candidate", "owner": "Field Temporal Evolution", "writer": "Temporal Continuity Governance", "readers": ["Cognitive Field", "Brain", "Memory Context"]},
+    {"object": "Field Snapshot", "owner": "Field Snapshot Governance", "writer": "Field Snapshot Governance", "readers": ["Field Temporal Evolution", "Attention", "Brain"]},
+    {"object": "Field Transition Candidate", "owner": "Field Transition Governance", "writer": "Transition Governance", "readers": ["Cognitive Field", "Brain", "Information Lifecycle"]},
+    {"object": "Field Event Candidate", "owner": "Field Event Governance", "writer": "Field Event Governance", "readers": ["Cognitive Field", "Information Lifecycle", "Reality Validation"]},
+    {"object": "Field Evolution History Candidate", "owner": "Field Evolution History Governance", "writer": "History Governance", "readers": ["Cognitive Field", "Memory Governance", "Brain"]},
+    {"object": "Historical Memory Context", "owner": "Memory", "writer": "Memory Governance", "readers": ["Field Temporal Evolution", "Context Assembly"]},
+    {"object": "Self Capability Boundary", "owner": "Self Regulation", "writer": "Self Regulation", "readers": ["Field Temporal Evolution", "Brain", "Capability Governance"]},
+    {"object": "Role Constraint Context", "owner": "Role", "writer": "Role Governance", "readers": ["Field Temporal Evolution", "Brain"]},
+    {"object": "Runtime Execution", "owner": "Runtime", "writer": "Runtime Governance", "readers": ["Field Temporal Evolution"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "field_temporal_is_candidate_only": true, "runtime_is_future_executor": true}
+}

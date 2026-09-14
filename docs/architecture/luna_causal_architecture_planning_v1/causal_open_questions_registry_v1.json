@@ -1,0 +1,36 @@
+{
+    "artifact": "causal_open_questions_registry_v1",
+    "status": "PLANNING_CANDIDATE",
+    "open_questions": [
+        {
+            "id": "Q01",
+            "question": "Should causal support confidence candidate use bounded numeric range or symbolic tiers in controlled implementation?",
+            "impact": "schema typing and verifier thresholds",
+            "resolved": false
+        },
+        {
+            "id": "Q02",
+            "question": "How should temporal ordering uncertainty be represented when sources provide inconsistent clocks?",
+            "impact": "temporal boundary modeling",
+            "resolved": false
+        },
+        {
+            "id": "Q03",
+            "question": "What minimum trace fields are mandatory for counterfactual revision auditability?",
+            "impact": "trace schema completeness",
+            "resolved": false
+        },
+        {
+            "id": "Q04",
+            "question": "Should decision consumer rejection reasons feed back as causal revision candidates in next phase?",
+            "impact": "handoff feedback interface",
+            "resolved": false
+        },
+        {
+            "id": "Q05",
+            "question": "How to normalize legacy Causal Reasoning Governance naming during implementation without touching frozen upstream assets?",
+            "impact": "owner alias handling",
+            "resolved": false
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_id": "SituationCaseRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "description": "Situation Understanding 参考案例，不是 fact 记录。",
+  "required_fields": [
+    "case_id",
+    "case_type",
+    "case_title",
+    "canonical_scene_type",
+    "recommended_tools",
+    "noop_tools",
+    "source_refs",
+    "accepted_from_learning_candidate_refs",
+    "review_status",
+    "candidate_only",
+    "not_fact"
+  ],
+  "case_type_enum": [
+    "shopfront_sign",
+    "subway_platform",
+    "street_crossing",
+    "corridor",
+    "indoor_store",
+    "unknown_scene",
+    "custom"
+  ],
+  "boundary_flags": {
+    "case_record_not_fact": true,
+    "policy_review_required_for_case_entry": true,
+    "planning_only": true
+  }
+}

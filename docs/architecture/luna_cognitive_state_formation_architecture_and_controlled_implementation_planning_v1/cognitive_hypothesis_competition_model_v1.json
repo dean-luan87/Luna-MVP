@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_hypothesis_competition_model_v1",
+    "competition_support": {
+        "multi_hypothesis_coexistence": true,
+        "support_opposition_tracking": true,
+        "conflict_preservation": true,
+        "alternative_explanation_retention": true
+    },
+    "operations": [
+        "revise",
+        "suspend",
+        "revoke",
+        "defer_for_more_evidence"
+    ],
+    "handoff_rule": {
+        "to_causal": "candidate_reference_only",
+        "forbidden": [
+            "causal_truth",
+            "decision",
+            "action",
+            "task"
+        ]
+    }
+}

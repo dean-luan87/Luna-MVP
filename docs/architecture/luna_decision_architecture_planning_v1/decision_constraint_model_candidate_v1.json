@@ -1,0 +1,18 @@
+{
+    "artifact": "decision_constraint_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "constraint_definition": "Non-negotiable boundaries that candidates must not violate.",
+    "constraint_types": [
+        "constitution",
+        "safety",
+        "permission",
+        "role_scope",
+        "resource_floor",
+        "compliance"
+    ],
+    "constraint_rules": {
+        "hard_constraints_before_soft_preferences": true,
+        "hard_constraints_can_block_selection": true,
+        "constraint_violation_cannot_be_compensated_by_utility": true
+    }
+}

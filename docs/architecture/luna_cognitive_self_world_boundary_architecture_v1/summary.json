@@ -1,0 +1,18 @@
+{
+  "phase": "Phase-Luna-Cognitive-Self-World-Boundary-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_SELF_WORLD_BOUNDARY_ARCHITECTURE_READY",
+  "boundary_types": ["Physical Boundary", "Computational Boundary", "Cognitive Boundary", "Identity Boundary", "Ownership Boundary"],
+  "memory_types": ["Self Memory", "Social Memory", "Field Memory"],
+  "self_evolution_flow": ["Experience", "Memory", "Schema", "Growth Candidate", "Self Review", "Self Evolution Candidate"],
+  "reusable_assets": ["luna_cognitive_self_model_architecture_v1", "luna_self_social_self_architecture_refactoring_v1", "luna_cognitive_memory_cognitive_architecture_v1", "luna_cognitive_information_lifecycle_v1", "cognitive_self_capability_profile_v1", "luna_cognitive_self_evolution_architecture_v1", "luna_system_constitution_governance_v1", "luna_cognitive_self_regulation_boundary_amendment_v1"],
+  "parallel_risks": ["Memory vs Self ownership contamination", "Social Self vs Self Identity drift", "Capability evidence vs Reality confusion", "Outcome failure vs Identity rewrite"],
+  "migration_mapping": ["Self Model boundary contracts to unified Self–World boundary", "Self/Social Self mapping to stable/plastic ownership", "Memory layers to Self/Social/Field labels", "Self Evolution growth candidates to Self Governance review"],
+  "runtime": false,
+  "self_runtime": false,
+  "identity_modification": false,
+  "automatic_personality_change": false,
+  "emotion_runtime": false,
+  "social_runtime": false,
+  "learning_runtime": false
+}

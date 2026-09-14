@@ -1,0 +1,16 @@
+{
+  "title": "Capability Governance Asset Inventory v1",
+  "status": "present_distributed",
+  "entries": [
+    {"asset_id":"cap.registry.canonical","path":"capabilities/registry/luna_capability_registry_v1.json","type":"registry","layer_candidate":"L4 Capability Governance","current_owner":"Capability Registry Plane","description":"Root capability registry with lifecycle and manifest schema references.","status":"Active Asset"},
+    {"asset_id":"cap.registry.lifecycle","path":"capabilities/registry/luna_capability_lifecycle_registry_v1.json","type":"lifecycle_registry","layer_candidate":"L4 Capability Governance","current_owner":"Capability Lifecycle Governance","description":"Capability lifecycle statuses and admission rules.","status":"Active Asset"},
+    {"asset_id":"cap.registry.manifest_schema","path":"capabilities/registry/schemas/capability_module_manifest_schema_v1.json","type":"schema","layer_candidate":"L4 Capability Governance","current_owner":"Capability Registry Plane","description":"Manifest schema for capability modules.","status":"Active Asset"},
+    {"asset_id":"cap.registry.baseline","path":"capabilities/registry/luna_capability_module_baseline_registry_v1.json","type":"baseline_registry","layer_candidate":"L4 Governance / Baseline","current_owner":"Capability Baseline Plane","description":"Module baseline registry for engineering governance and calibration.","status":"Active Asset"},
+    {"asset_id":"cap.registry.dependency","path":"capabilities/registry/luna_capability_dependency_map_v1.json","type":"dependency_map","layer_candidate":"L4 Capability Governance","current_owner":"Capability Registry Plane","description":"Capability dependency mapping.","status":"Active Asset"},
+    {"asset_id":"cap.registry.docs","path":"docs/architecture/capability_registry/","type":"architecture_family","layer_candidate":"L4 Capability Governance","current_owner":"Capability Registry Governance","description":"Capability standards, calibration, readiness and maintenance documents.","status":"Active Asset"},
+    {"asset_id":"cap.registry.model_manager_copy","path":"capabilities/midplatform/model_manager/registries/capability_registry_v1.json","type":"registry","layer_candidate":"L4 Capability Governance","current_owner":"Model Manager Registry","description":"Capability-first registry parallel to capabilities/registry.","status":"Duplicate Candidate"},
+    {"asset_id":"cap.registry.teacher_copy","path":"capabilities/midplatform/teacher_routing/teacher_capability_registry_v1.json","type":"domain_registry","layer_candidate":"L4 Domain Capability","current_owner":"Teacher Routing","description":"Domain-specific capability registry.","status":"Duplicate Candidate"},
+    {"asset_id":"cap.registry.hardware","path":"capabilities/midplatform/hardware_profile_capability_registry_v1.py","type":"hardware_registry","layer_candidate":"L4 Hardware Capability","current_owner":"Hardware Profile Capability Registry","description":"Hardware capability profile registration surface.","status":"Active Asset"}
+  ],
+  "summary": {"canonical_registry_present":true,"lifecycle_present":true,"manifest_present":true,"dependency_map_present":true,"calibration_standard_present":true,"parallel_registry_candidates":3}
+}

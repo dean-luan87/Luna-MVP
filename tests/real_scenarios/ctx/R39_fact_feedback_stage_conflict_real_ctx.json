@@ -1,0 +1,32 @@
+{
+  "frame_seq": 39,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R39_fact_feedback_stage_conflict_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "fact_feedback_stage_conflict_expected": true,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "不是这个（事实A与反馈B冲突，但阶段C仍沿用）",
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 1,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [8, 12, 76, 80], "conf": 0.9 },
+    { "label": "box", "bbox": [160, 30, 220, 100], "conf": 0.6 }
+  ]
+}
+

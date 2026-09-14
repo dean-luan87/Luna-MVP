@@ -1,0 +1,27 @@
+{
+  "title": "Decision Learning Interface v1",
+  "contract_type": "Decision Outcome to Learning Candidate",
+  "input": {
+    "decision_outcome": {},
+    "commitment_reference": "commitment-example",
+    "outcome_evidence": [],
+    "experience_candidate": {},
+    "field_context": {},
+    "strategy_reference": null,
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "decision_quality_candidate": {},
+    "pattern_candidate": {},
+    "strategy_effect_candidate": {},
+    "future_candidate": {}
+  },
+  "boundary": {
+    "learning_does_not_modify_decision": true,
+    "learning_does_not_modify_strategy_automatically": true,
+    "learning_does_not_modify_value": true,
+    "learning_does_not_modify_goal": true,
+    "unknowns_are_preserved": true
+  }
+}

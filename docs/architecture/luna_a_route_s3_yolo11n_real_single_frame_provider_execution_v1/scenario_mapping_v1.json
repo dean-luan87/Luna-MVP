@@ -1,0 +1,10 @@
+{
+  "controlled_scenario_ids": [
+    "Y11E-01", "Y11E-02", "Y11E-03", "Y11E-04", "Y11E-05", "Y11E-06",
+    "Y11E-07", "Y11E-08", "Y11E-09", "Y11E-10", "Y11E-11", "Y11E-12",
+    "Y11E-13", "Y11E-14", "Y11E-15", "Y11E-16", "Y11E-17", "Y11E-18"
+  ],
+  "real_case_id": "S3-Y11-REAL-01",
+  "real_case_requires_provider_success": true,
+  "zero_detections_allowed": true
+}

@@ -1,0 +1,39 @@
+{
+  "frozen_false": [
+    "automatic_fact_admission",
+    "provider_semantic_authority",
+    "observation_is_world_truth",
+    "visual_detection_is_object_truth",
+    "provider_can_mutate_field",
+    "provider_can_mutate_context",
+    "observation_can_mutate_field",
+    "context_can_mutate_field",
+    "current_world_is_field_truth",
+    "field_state_direct_mutation",
+    "second_field_writer",
+    "direct_current_world_truth_declaration",
+    "intent_mutation",
+    "decision_mutation",
+    "task_mutation",
+    "action_execution",
+    "ocr_execution",
+    "slam_execution",
+    "vio_execution",
+    "vlm_execution",
+    "semantic_compression_execution",
+    "online_learning",
+    "hidden_provider_continuation",
+    "runtime_execution",
+    "database_write",
+    "vector_store_write",
+    "embedding_execution",
+    "cross_user_transfer"
+  ],
+  "required_true": [
+    "candidate_only",
+    "provenance_required",
+    "trace_reverse_lookup_required",
+    "field_state_reducer_is_single_mutation_authority",
+    "reducer_input_only_admitted_events"
+  ]
+}

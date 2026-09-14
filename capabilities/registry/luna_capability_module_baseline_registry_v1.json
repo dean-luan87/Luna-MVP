@@ -1,0 +1,150 @@
+{
+    "registry_version": "v1",
+    "schema_ref": "capabilities/registry/schemas/capability_module_baseline_schema_v1.json",
+    "last_updated": "2026-07-17",
+    "entries": [
+        {
+            "capability_id": "luna.field_perception_orchestrator",
+            "baseline_path": "capabilities/registry/baselines/field_perception_orchestrator_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-17"
+        },
+        {
+            "capability_id": "luna.field_state_reducer",
+            "baseline_path": "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.field_state_read_model",
+            "baseline_path": "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-17"
+        },
+        {
+            "capability_id": "luna.task_manager",
+            "baseline_path": "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.model_manager",
+            "baseline_path": "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.vision_manager",
+            "baseline_path": "capabilities/registry/baselines/vision_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.ocr_manager",
+            "baseline_path": "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.speech_manager",
+            "baseline_path": "capabilities/registry/baselines/speech_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.protocol_manager",
+            "baseline_path": "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.permission_and_admission_manager",
+            "baseline_path": "capabilities/registry/baselines/permission_and_admission_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.observation_manager",
+            "baseline_path": "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.navigation_manager",
+            "baseline_path": "capabilities/registry/baselines/navigation_manager_module_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-16"
+        },
+        {
+            "capability_id": "luna.system_integration_validation",
+            "baseline_path": "capabilities/registry/baselines/system_integration_validation_baseline_v1.json",
+            "baseline_version": "v1",
+            "module_version": "v1",
+            "baseline_status": "active",
+            "calibration_enabled": true,
+            "normal_runtime_load_allowed": false,
+            "anomaly_diagnostic_load_allowed": true,
+            "last_reviewed_at": "2026-07-17"
+        }
+    ]
+}

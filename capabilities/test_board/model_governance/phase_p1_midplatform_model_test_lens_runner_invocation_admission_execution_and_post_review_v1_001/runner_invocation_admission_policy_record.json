@@ -1,0 +1,31 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Runner-Invocation-Admission-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "runner_invocation_admission_policy_record",
+    "patch": {
+      "modules": [
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_copy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_policy_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_invocation_admission_summary_v1.js",
+        "capabilities/midplatform/model_test_lens/schemas/runner_invocation_admission/runner_invocation_admission_result_schema_v1.json",
+        "capabilities/midplatform/model_test_lens/schemas/runner_invocation_admission/runner_invocation_admission_policy_v1.json",
+        "capabilities/midplatform/governance_standards/model_test_lens_ui/runner_invocation_admission_governance_standard_v1.md"
+      ],
+      "updated": [
+        "capabilities/midplatform/model_test_lens/static_site/index.html",
+        "capabilities/midplatform/model_test_lens/static_site/app.js",
+        "capabilities/midplatform/model_test_lens/static_site/styles.css",
+        "capabilities/midplatform/model_test_lens/static_site/runner_manual_trigger_request_panel_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/runner_manual_trigger_request_state_v1.js",
+        "capabilities/midplatform/model_test_lens/static_site/luna_observation_compact_ui_v1.js"
+      ]
+    }
+  }
+}

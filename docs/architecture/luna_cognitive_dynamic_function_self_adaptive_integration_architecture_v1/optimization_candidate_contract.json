@@ -1,0 +1,12 @@
+{
+  "contract_id": "optimization_candidate_v1",
+  "required_fields": ["candidate_id", "source", "field_scope", "parameter_refs", "expected_benefit", "cost", "risk", "reversibility", "evidence", "validation_metric", "rollback_ref", "unknowns"],
+  "sources": ["Self Calibration", "Hive Observation", "Outcome Evaluation", "Selective Learning"],
+  "outputs": ["Accept Candidate", "Reject Candidate", "Defer Candidate", "Revise Candidate"],
+  "self_review_required": true,
+  "constitution_review_required": true,
+  "capability_governance_review_required": true,
+  "direct_update": false,
+  "automatic_adoption": false,
+  "candidate_only": true
+}

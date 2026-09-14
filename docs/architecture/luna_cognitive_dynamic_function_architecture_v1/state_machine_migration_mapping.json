@@ -1,0 +1,18 @@
+{
+  "mapping_id": "state_machine_to_dynamic_function_v1",
+  "source": "Cognitive State Machine",
+  "target": "Dynamic Cognitive Function Model",
+  "mapping": [
+    {"legacy_state": "Observation", "vector_dimensions": ["observation_activation", "risk_attention", "exploration_drive"]},
+    {"legacy_state": "Understanding", "vector_dimensions": ["understanding_confidence", "memory_activation"]},
+    {"legacy_state": "Decision", "vector_dimensions": ["decision_pressure", "risk_attention", "understanding_confidence"]},
+    {"legacy_state": "Action", "vector_dimensions": ["decision_pressure", "risk_attention"]},
+    {"legacy_state": "Reflection", "vector_dimensions": ["understanding_confidence", "memory_activation"]},
+    {"legacy_state": "Learning", "vector_dimensions": ["exploration_drive", "memory_activation", "understanding_confidence"]}
+  ],
+  "state_machine_remains_compatible": true,
+  "dynamic_model_replaces_runtime_state_machine": false,
+  "migration_is_architecture_mapping_only": true,
+  "automatic_migration": false,
+  "candidate_only": true
+}

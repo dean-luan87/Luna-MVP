@@ -1,0 +1,12 @@
+{
+  "interface_name": "Reflex Learning Interface v1",
+  "experience_reference": {},
+  "pattern_reference": {},
+  "learned_reflex_candidate": {},
+  "validation_candidate": {},
+  "feedback": {},
+  "revocation_candidate": {},
+  "governance_admission_required": true,
+  "learning_does_not_auto_activate_reflex": true,
+  "unknowns_are_preserved": true
+}

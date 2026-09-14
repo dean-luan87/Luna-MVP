@@ -1,0 +1,13 @@
+{
+  "title": "Luna Duplicate Asset Registry v1",
+  "duplicate_groups": [
+    {"stem": "cognitive_field_brain_interface_v1", "count": 2, "canonical_owner": "Field Architecture Governance", "status": "Duplicate", "resolution": "keep_parallel pending semantic review"},
+    {"stem": "cognitive_field_a_route_interface_v1", "count": 2, "canonical_owner": "Field Architecture Governance", "status": "Duplicate", "resolution": "alias legacy"},
+    {"stem": "capability_attention_interface_v1", "count": 3, "canonical_owner": "Capability Governance", "status": "Duplicate", "resolution": "canonical registry alias"},
+    {"stem": "decision_revision_contract_v1", "count": 2, "canonical_owner": "Decision Governance", "status": "Duplicate", "resolution": "Decision Commitment canonical"},
+    {"stem": "attention_capability_feedback_contract_v1", "count": 2, "canonical_owner": "Attention Governance", "status": "Duplicate", "resolution": "historical alias"},
+    {"stem": "relationship_context_schema_v1", "count": 2, "canonical_owner": "Social Field Governance", "status": "Duplicate", "resolution": "Role/Relationship canonical"},
+    {"stem": "capability_admission_contract_v1", "count": 2, "canonical_owner": "Capability Governance", "status": "Duplicate", "resolution": "Capability Runtime canonical"}
+  ],
+  "registry_rules": {"no_delete": true, "no_overwrite": true, "canonical_registry_required": true, "semantic_review_before_merge": true, "unknowns_are_preserved": true}
+}

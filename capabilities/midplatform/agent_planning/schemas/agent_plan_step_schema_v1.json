@@ -1,0 +1,10 @@
+{
+  "schema_id": "AgentPlanStepV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["step_id", "step_order", "step_type", "step_goal", "candidate_only", "not_fact"],
+  "boundary_flags": { "all_steps_traceable": true },
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1", "all_steps_traceable"]
+}

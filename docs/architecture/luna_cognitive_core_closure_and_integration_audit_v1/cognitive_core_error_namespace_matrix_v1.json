@@ -1,0 +1,102 @@
+{
+    "artifact": "cognitive_core_error_namespace_matrix_v1",
+    "overall_status": "CLOSED",
+    "rules": {
+        "error_propagation_not_retry_authority": true,
+        "failure_not_automatic_retry": true
+    },
+    "entries": [
+        {
+            "module": "Context-PCN-Intent Mainline",
+            "namespace": "ContextPcnIntentIntegrationErrorV1.code/stage families",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "compatibility failure",
+                "duplicate/idempotency"
+            ]
+        },
+        {
+            "module": "Intent Governance",
+            "namespace": "INTENT_BOUNDARY_ / INTENT_INPUT_ / INTENT_LIFECYCLE_ / INTENT_INTERACTION_ / INTENT_RESOURCE_ / INTENT_HANDOFF_ / INTENT_TRACE_",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "permission failure",
+                "compatibility failure",
+                "admission rejection"
+            ]
+        },
+        {
+            "module": "Cognitive State Formation",
+            "namespace": "CognitiveStateFormationErrorV1 family",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "permission failure",
+                "compatibility failure"
+            ]
+        },
+        {
+            "module": "Dynamic Cognitive Regulation",
+            "namespace": "DynamicCognitiveRegulationErrorV1 / RegulationIssueV1",
+            "categories": [
+                "invalid input",
+                "permission failure",
+                "bound violation",
+                "admission rejection",
+                "duplicate/idempotency"
+            ]
+        },
+        {
+            "module": "Cognitive Flow",
+            "namespace": "CognitiveFlowErrorV1 family",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "permission failure",
+                "compatibility failure",
+                "duplicate/idempotency"
+            ]
+        },
+        {
+            "module": "Cognitive Memory & Experience",
+            "namespace": "CognitiveMemoryExperienceErrorV1 family",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "evidence insufficiency",
+                "contradiction",
+                "revision/revocation",
+                "duplicate/idempotency",
+                "deferred capability"
+            ]
+        },
+        {
+            "module": "Cognitive Learning",
+            "namespace": "CognitiveLearningErrorV1 family",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "evidence insufficiency",
+                "contradiction",
+                "admission rejection",
+                "bound violation",
+                "revision/revocation",
+                "duplicate/idempotency",
+                "deferred capability",
+                "runtime unavailable"
+            ]
+        },
+        {
+            "module": "Causal Governance",
+            "namespace": "causal_governance.controlled_implementation.v1",
+            "categories": [
+                "invalid input",
+                "missing refs",
+                "permission failure",
+                "compatibility failure"
+            ]
+        }
+    ]
+}

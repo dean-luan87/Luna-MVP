@@ -1,0 +1,12 @@
+{
+  "required_preservation": {
+    "provenance_refs": "carry provider admission, provider trace, evidence trace, frame/source, gateway trace, context trace, field event trace, reducer trace where applicable",
+    "trace_refs": "retain reverse path from Current World candidate to Context, Field Event, Observation, Visual Evidence, Provider, Frame and Model Manager admission",
+    "temporal_refs": "carry evidence temporal_ref, observed_at, valid_from/valid_until candidates, event occurred/observed/received timestamps and reducer temporal snapshot",
+    "uncertainty_refs": "carry VisualDetection uncertainty_refs through gateway, observation, Context and Current World candidates",
+    "contradiction_refs": "carry evidence contradiction_refs and gateway/field conflict lineage without collapsing disagreement",
+    "correction_refs": "preserve user/owner correction lineage and supersession/revocation references"
+  },
+  "authority_rule": "provenance and trace enable auditability but never grant truth or mutation authority",
+  "loss_forbidden": ["bbox", "class_candidate", "confidence", "frame_ref", "region_ref", "temporal_ref", "uncertainty_refs", "contradiction_refs", "provenance_refs", "trace_ref"]
+}

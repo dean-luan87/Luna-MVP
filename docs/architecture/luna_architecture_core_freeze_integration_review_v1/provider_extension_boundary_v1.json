@@ -1,0 +1,10 @@
+{
+  "title": "Provider / Model Extension Boundary v1",
+  "status": "future_admission",
+  "entry": "Capability Boundary",
+  "inputs": ["Capability Requirement", "Resource Constraint", "Admission Contract"],
+  "outputs": ["Evidence Candidate", "Capability Health Candidate", "Performance Evidence"],
+  "allowed": ["Capability Implementation", "Evidence Candidate", "Health Candidate"],
+  "forbidden": ["LLM → Brain Replacement", "Provider → Reality Authority", "Provider → Memory Authority", "Provider → Goal Ownership", "Provider → Identity Rewrite"],
+  "rules": {"capability_first":true,"model_not_cognitive_owner":true,"admission_required":true,"evidence_gateway_required":true,"hardware_compatibility_required":true}
+}

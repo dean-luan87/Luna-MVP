@@ -1,0 +1,30 @@
+{
+    "artifact": "cognitive_memory_experience_negative_guards_v1",
+    "guards": {
+        "memory_can_create_fact_directly": false,
+        "memory_can_mutate_field": false,
+        "memory_can_mutate_context": false,
+        "memory_can_mutate_pcn": false,
+        "memory_can_mutate_intent": false,
+        "memory_can_mutate_attention": false,
+        "memory_can_mutate_hypothesis": false,
+        "memory_can_mutate_current_world": false,
+        "memory_can_mutate_state_vector": false,
+        "memory_can_mutate_regulation_parameter": false,
+        "memory_can_activate_parameter_genome": false,
+        "memory_can_execute_learning": false,
+        "memory_can_mutate_personality": false,
+        "memory_can_create_task": false,
+        "memory_can_control_device": false,
+        "memory_can_run_scheduler": false,
+        "memory_can_call_model": false,
+        "database_write": false,
+        "vector_store_write": false,
+        "embedding_execution": false,
+        "runtime_execution": false,
+        "model_call": false,
+        "source_owner_mutation": false,
+        "real_side_effect": false,
+        "planning_only": true
+    }
+}

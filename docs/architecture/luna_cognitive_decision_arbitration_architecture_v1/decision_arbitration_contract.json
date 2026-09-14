@@ -1,0 +1,14 @@
+{
+  "title": "Decision Arbitration Contract v1",
+  "flow": ["Candidate Set", "Hard Constraint Filter", "Utility Evaluation", "Priority Ranking", "Decision Selection"],
+  "inputs": ["Decision Candidate Set", "Understanding", "Goal", "Value Utility", "Self Constraint", "Risk", "Capability State"],
+  "outputs": ["Selected Decision Candidate", "Rejected Candidate", "Deferred Candidate", "Reconsideration Candidate"],
+  "hard_constraint_filter_first": true,
+  "selected_output_is_candidate": true,
+  "decision_commitment": false,
+  "action_execution": false,
+  "planner": false,
+  "automatic_arbitration": false,
+  "brain_generates_candidates": true,
+  "arbitration_selects_candidate": true
+}

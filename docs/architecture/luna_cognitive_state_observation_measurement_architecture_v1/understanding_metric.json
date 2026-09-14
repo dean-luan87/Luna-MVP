@@ -1,0 +1,11 @@
+{
+  "metric_id": "understanding_metrics_v1",
+  "metrics": ["field_identification_accuracy", "entity_relation_accuracy", "change_detection", "understanding_stability", "reasonable_revision"],
+  "inputs": ["Field State", "Evidence", "Understanding Candidate", "Validation Result", "Prediction Error"],
+  "outputs": ["Field Understanding Score Candidate", "Understanding Stability Candidate", "Correction Quality Candidate"],
+  "confidence_calibrated": true,
+  "error_persistence_is_penalized": true,
+  "reasonable_revision_is_rewarded": true,
+  "automatic_belief_update": false,
+  "candidate_only": true
+}

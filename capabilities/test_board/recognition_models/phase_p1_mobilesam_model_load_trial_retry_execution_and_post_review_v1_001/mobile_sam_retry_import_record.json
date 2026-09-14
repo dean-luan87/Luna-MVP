@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Retry-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:31:44.844313+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "mobile_sam_only": true,
+  "model_load_retry_execution": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "record_type": "mobile_sam_retry_import_record",
+  "mobile_sam_retry_import_execution_record": {
+    "record_id": "mobile_sam_retry_import_record_v1",
+    "import_target": "mobile_sam",
+    "mobile_sam_code_path_added": "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_source_retry_workspace/install_target/mobile_sam",
+    "timm_target_path_added": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_timm_repair_workspace/install_target",
+    "import_attempted": true,
+    "import_success": true,
+    "import_error": "",
+    "imported_module_file": "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_source_retry_workspace/install_target/mobile_sam/mobile_sam/__init__.py",
+    "dependency_gap_resolved": true
+  }
+}

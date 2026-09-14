@@ -1,0 +1,11 @@
+{
+  "schema_version":"1.0",
+  "expected_input":"ExecutionRequestCandidate",
+  "actual_result":"ExecutionResultCandidate",
+  "required_fields":["execution_id","request_id","status","started_at","ended_at","trace_ref","provenance_refs","uncertainty_refs","failure_ref","partial_result_ref"],
+  "statuses":["PENDING","STARTED","SUCCEEDED","PARTIAL","FAILED","CANCELLED","REVOKED","EXPIRED"],
+  "truth_declared":false,
+  "external_reality_truth":false,
+  "runtime_execution_in_planning":false,
+  "comparison_consumer":"Outcome Evaluation Governance"
+}

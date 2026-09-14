@@ -1,0 +1,18 @@
+{
+  "schema_name": "Strategy Candidate Schema v1",
+  "strategy_candidate_id": "strategy-example",
+  "field_context": {},
+  "task_context": {},
+  "goal_reference": {},
+  "pattern_reference": {},
+  "expected_benefit_candidate": {},
+  "risk_candidate": {},
+  "resource_cost": {},
+  "capability_requirement": {},
+  "unknowns": [],
+  "validation_status": "Pending",
+  "activation_status": "Not Activated",
+  "automatic_strategy_switching": false,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

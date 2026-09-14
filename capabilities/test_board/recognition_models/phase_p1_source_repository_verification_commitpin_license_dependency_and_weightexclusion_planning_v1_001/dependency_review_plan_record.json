@@ -1,0 +1,44 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T03:56:31.366081+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "network_lookup_allowed": false,
+  "git_clone_allowed": false,
+  "source_install_allowed": false,
+  "weight_download_allowed": false,
+  "record_type": "dependency_review_plan_record",
+  "source_dependency_review_planning_records": [
+    {
+      "asset_id": "byte_track",
+      "dependency_review_required": true,
+      "source_requirements_currently_unverified": true,
+      "transitive_dependencies_currently_unverified": true,
+      "dependency_conflict_review_required": true,
+      "build_or_compile_risk_review_required": true,
+      "torch_dependency_review_required": true,
+      "opencv_dependency_review_required": true,
+      "numpy_scipy_dependency_review_required": true,
+      "dependency_review_must_complete_before_source_execution_retry": true,
+      "dependency_review_must_not_be_fabricated": true
+    },
+    {
+      "asset_id": "mobile_sam",
+      "dependency_review_required": true,
+      "source_requirements_currently_unverified": true,
+      "transitive_dependencies_currently_unverified": true,
+      "dependency_conflict_review_required": true,
+      "build_or_compile_risk_review_required": true,
+      "torch_dependency_review_required": true,
+      "opencv_dependency_review_required": true,
+      "numpy_scipy_dependency_review_required": true,
+      "dependency_review_must_complete_before_source_execution_retry": true,
+      "dependency_review_must_not_be_fabricated": true
+    }
+  ]
+}

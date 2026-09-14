@@ -1,0 +1,13 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S2-Real-Raw-Camera-Input-Stream-Controlled-Replacement-v1-001",
+  "new_semantic_owner": false,
+  "canonical_owner_reused": "Field Perception Orchestrator",
+  "new_code_files": ["raw_camera_stream_types_v1.py", "raw_camera_stream_adapter_v1.py", "raw_camera_stream_fixture_v1.py", "run_a_route_s2_real_raw_camera_input_stream_controlled_replacement_v1.py"],
+  "existing_owner_files_modified": false,
+  "s0_modified": false,
+  "s1_modified": false,
+  "observation_gateway_modified": false,
+  "raw_payload_copied_to_eval_out": false,
+  "provider_execution_added": false,
+  "s3_plus_activated": false
+}

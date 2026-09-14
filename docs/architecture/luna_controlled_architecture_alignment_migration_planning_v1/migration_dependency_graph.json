@@ -1,0 +1,124 @@
+{
+  "graph_id": "luna_controlled_architecture_alignment_migration_dependency_graph_v1",
+  "graph_semantics": "migration_precondition_order_not_runtime_dataflow",
+  "primary_sequence": [
+    "Field System",
+    "Personal Cognitive Network",
+    "Intent",
+    "Causal Reasoning",
+    "A/B Route",
+    "Decision",
+    "Task Execution"
+  ],
+  "nodes": [
+    {
+      "node": "Field System",
+      "owner": "Field System",
+      "migration_position": 0,
+      "current_status": "implemented_active_baseline",
+      "required_before_exit": ["Reducer mainline preserved", "Read-model boundary preserved", "Field Context projection contract candidate defined"]
+    },
+    {
+      "node": "Personal Cognitive Network",
+      "owner": "Personal Cognitive Network Governance",
+      "migration_position": 1,
+      "current_status": "architecture_boundary_only",
+      "required_before_exit": ["Source-owner references defined", "Typed connection boundary defined", "No source persistence ownership"]
+    },
+    {
+      "node": "Intent",
+      "owner": "Intent Governance",
+      "migration_position": 2,
+      "current_status": "architecture_only",
+      "required_before_exit": ["Existing Intent contracts reused", "Field/network input alignment defined", "Goal Task Decision boundaries preserved"]
+    },
+    {
+      "node": "Causal Reasoning",
+      "owner": "Causal Reasoning Governance",
+      "migration_position": 3,
+      "current_status": "planning_only",
+      "required_before_exit": ["Evidence and counter-evidence fields defined", "Intent context dependency defined", "No fact or action authority"]
+    },
+    {
+      "node": "A/B Route",
+      "owner": "A/B Route Boundary Governance",
+      "migration_position": 4,
+      "current_status": "future_boundary_only",
+      "required_before_exit": ["Expansion handoff defined", "A Route precedence preserved", "No live-state mutation"]
+    },
+    {
+      "node": "Decision",
+      "owner": "Decision Arbitration",
+      "migration_position": 5,
+      "current_status": "architecture_only",
+      "required_before_exit": ["Candidate inputs aligned", "Constraint filtering preserved", "Decision Action separation preserved"]
+    },
+    {
+      "node": "Task Execution",
+      "owner": "Task Manager",
+      "migration_position": 6,
+      "current_status": "implemented_active_baseline",
+      "required_before_exit": ["Task orchestration API preserved", "Action owner remains separate", "Capability route remains candidate-only"]
+    }
+  ],
+  "edges": [
+    {
+      "from": "Field System",
+      "to": "Personal Cognitive Network",
+      "dependency_type": "migration_precondition",
+      "reason": "A stable Field State and projection contract is required before network activation projections can be aligned.",
+      "failure_behavior": "block Personal Cognitive Network migration planning"
+    },
+    {
+      "from": "Personal Cognitive Network",
+      "to": "Intent",
+      "dependency_type": "migration_precondition",
+      "reason": "Intent alignment requires an owner-safe context projection contract.",
+      "failure_behavior": "keep existing Intent architecture unchanged"
+    },
+    {
+      "from": "Intent",
+      "to": "Causal Reasoning",
+      "dependency_type": "migration_precondition",
+      "reason": "The controlled migration order freezes Intent candidate semantics before aligning causal context contracts.",
+      "failure_behavior": "block causal contract alignment"
+    },
+    {
+      "from": "Causal Reasoning",
+      "to": "A/B Route",
+      "dependency_type": "migration_precondition",
+      "reason": "Future-space handoff requires bounded causal candidates rather than facts or executable graphs.",
+      "failure_behavior": "retain A/B as future boundary only"
+    },
+    {
+      "from": "A/B Route",
+      "to": "Decision",
+      "dependency_type": "migration_precondition",
+      "reason": "Decision input alignment must distinguish current A-route evidence from B-route simulation candidates.",
+      "failure_behavior": "exclude B-route input from Decision alignment"
+    },
+    {
+      "from": "Decision",
+      "to": "Task Execution",
+      "dependency_type": "migration_precondition",
+      "reason": "Task Manager alignment follows stable Decision Candidate and Action Boundary contracts.",
+      "failure_behavior": "preserve current Task Manager mainline without new upstream binding"
+    }
+  ],
+  "protected_inputs": [
+    {"asset": "Observation Manager", "feeds": "Field System", "owner_preserved": true},
+    {"asset": "Self", "feeds": "Personal Cognitive Network", "owner_preserved": true},
+    {"asset": "Role", "feeds": "Personal Cognitive Network", "owner_preserved": true},
+    {"asset": "Relationship", "feeds": "Personal Cognitive Network", "owner_preserved": true},
+    {"asset": "Memory", "feeds": "Personal Cognitive Network", "owner_preserved": true},
+    {"asset": "Emotion", "feeds": "Personal Cognitive Network", "owner_preserved": true},
+    {"asset": "Value", "feeds": "Intent and Decision", "owner_preserved": true},
+    {"asset": "Model Manager", "feeds": "Task Execution capability routing", "owner_preserved": true},
+    {"asset": "Action Boundary", "feeds": "Future governed execution", "owner_preserved": true}
+  ],
+  "field_foundation_cannot_be_bypassed": true,
+  "order_fixed": true,
+  "acyclic": true,
+  "runtime_dataflow_not_defined": true,
+  "migration_execution": false
+}

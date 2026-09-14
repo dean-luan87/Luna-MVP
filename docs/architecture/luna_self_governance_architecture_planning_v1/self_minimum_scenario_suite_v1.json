@@ -1,0 +1,142 @@
+{
+    "artifact": "self_minimum_scenario_suite_v1",
+    "scenario_count": 34,
+    "scenarios": [
+        {
+            "scenario_id": "S01",
+            "title": "basic self reference"
+        },
+        {
+            "scenario_id": "S02",
+            "title": "own intent attribution"
+        },
+        {
+            "scenario_id": "S03",
+            "title": "external person's intent not self"
+        },
+        {
+            "scenario_id": "S04",
+            "title": "preference evidence candidate"
+        },
+        {
+            "scenario_id": "S05",
+            "title": "repeated preference does not become immutable self fact"
+        },
+        {
+            "scenario_id": "S06",
+            "title": "explicit correction revises self attribution"
+        },
+        {
+            "scenario_id": "S07",
+            "title": "role attribution"
+        },
+        {
+            "scenario_id": "S08",
+            "title": "role expires"
+        },
+        {
+            "scenario_id": "S09",
+            "title": "relationship position reference"
+        },
+        {
+            "scenario_id": "S10",
+            "title": "relationship change revises self understanding"
+        },
+        {
+            "scenario_id": "S11",
+            "title": "capability attribution"
+        },
+        {
+            "scenario_id": "S12",
+            "title": "temporary resource limitation not permanent capability trait"
+        },
+        {
+            "scenario_id": "S13",
+            "title": "own experience attribution"
+        },
+        {
+            "scenario_id": "S14",
+            "title": "observed other's experience not self"
+        },
+        {
+            "scenario_id": "S15",
+            "title": "self-related memory influence"
+        },
+        {
+            "scenario_id": "S16",
+            "title": "memory contradiction"
+        },
+        {
+            "scenario_id": "S17",
+            "title": "learning self-evolution evidence"
+        },
+        {
+            "scenario_id": "S18",
+            "title": "learning cannot mutate self directly"
+        },
+        {
+            "scenario_id": "S19",
+            "title": "regulation tendency reference"
+        },
+        {
+            "scenario_id": "S20",
+            "title": "regulation parameter not self identity"
+        },
+        {
+            "scenario_id": "S21",
+            "title": "emotional evidence reference only"
+        },
+        {
+            "scenario_id": "S22",
+            "title": "emotion cannot mutate self directly"
+        },
+        {
+            "scenario_id": "S23",
+            "title": "personality evidence future boundary"
+        },
+        {
+            "scenario_id": "S24",
+            "title": "personality not implemented here"
+        },
+        {
+            "scenario_id": "S25",
+            "title": "contested identity attribution"
+        },
+        {
+            "scenario_id": "S26",
+            "title": "explicit user confirmation"
+        },
+        {
+            "scenario_id": "S27",
+            "title": "revocation"
+        },
+        {
+            "scenario_id": "S28",
+            "title": "provenance reverse lookup"
+        },
+        {
+            "scenario_id": "S29",
+            "title": "duplicate attribution guard"
+        },
+        {
+            "scenario_id": "S30",
+            "title": "continuity across cycle"
+        },
+        {
+            "scenario_id": "S31",
+            "title": "stale preference expiration"
+        },
+        {
+            "scenario_id": "S32",
+            "title": "sensitive self information"
+        },
+        {
+            "scenario_id": "S33",
+            "title": "do-not-transfer self evidence"
+        },
+        {
+            "scenario_id": "S34",
+            "title": "unresolved attribution remains uncertain"
+        }
+    ]
+}

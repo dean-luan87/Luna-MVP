@@ -1,0 +1,38 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:04:45.613266+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "registry_patch_applied": true,
+    "readiness_level_written": "inference_trial_verified",
+    "changed_field_names": [
+      "candidate_output_verified",
+      "fact_write_ready",
+      "inference_output_boundary",
+      "inference_trial_candidate_output_ref",
+      "inference_trial_input_manifest_ref",
+      "inference_trial_input_type",
+      "inference_trial_phase_ref",
+      "inference_trial_result",
+      "inference_trial_verified",
+      "navigation_action_speech_ready",
+      "readiness_level",
+      "single_local_test_image_inference_verified"
+    ],
+    "inference_executed_this_phase": false,
+    "registry_mutated_this_phase": true,
+    "recommended_next_phase": "Phase-P1-MobileSAM-Runtime-Boundary-Standardization-Planning-v1-001",
+    "optional_parallel_phase": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+    "transition_note": "REAL EXECUTION (mobile_sam_only). Registry overlay patched with inference_trial_verified metadata only. byte_track unchanged. broad inference_ready/runtime/output/semantic/fact/navigation/commercial remain false. NO inference/runtime. MobileSAM P1 chain: code → weight → model_load_verified → inference_trial_verified."
+  },
+  "final_decision": "P1_MOBILE_SAM_INFERENCE_TRIAL_REGISTRY_PATCH_EXECUTION_GO"
+}

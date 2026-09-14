@@ -1,0 +1,21 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-UI-Standardization-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T06:21:11.429440+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "ui_standardization_planning": true,
+  "candidate_output_only": true,
+  "record": {
+    "plan_id": "governance_standards_model_test_lens_ui_patch_plan_v1",
+    "governance_ref": "capabilities/midplatform/governance_standards/model_test_lens_ui/model_test_lens_perception_hud_ui_governance_standard_v1.md",
+    "registry_ref": "capabilities/midplatform/governance_standards/model_test_lens_ui/model_test_lens_ui_standard_registry_v1.json",
+    "upstream_perception_hud_planning_phase": "Phase-P1-Midplatform-Model-Test-Lens-Perception-HUD-View-Planning-v1-001",
+    "protected": true,
+    "non_deletable": true
+  }
+}

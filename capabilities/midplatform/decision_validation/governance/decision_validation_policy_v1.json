@@ -1,0 +1,44 @@
+{
+  "schema_id": "DecisionValidationPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Decision-Validation-Layer-Planning-v1-001",
+  "layer_id": "L2_5_Decision_Validation",
+  "planning_only": true,
+  "principle": "Decision Validation 验证 plan candidate，不拥有 plan、不执行工具；所有执行须经 Tool OS。",
+  "rules": [
+    {"rule_id": "agent_plan_validation_only", "description": "Validation 不拥有 plan"},
+    {"rule_id": "no_plan_override", "description": "Validation 不直接修改 selected plan"},
+    {"rule_id": "no_tool_execution", "description": "Validation 不执行工具"},
+    {"rule_id": "tool_os_before_execution", "description": "所有执行必须进入 Tool OS"},
+    {"rule_id": "constitution_priority", "description": "违反 Constitution 的 plan 必须 blocked"},
+    {"rule_id": "situation_alignment_required", "description": "Plan 必须符合 L1 Situation"},
+    {"rule_id": "missing_information_check", "description": "验证计划是否解决当前信息缺口"},
+    {"rule_id": "noop_validation", "description": "检查 noop 是否合理"},
+    {"rule_id": "risk_sensitive_validation", "description": "高风险任务提高验证要求"},
+    {"rule_id": "human_review_required_when_uncertain", "description": "高不确定情况进入 review"},
+    {"rule_id": "single_teacher_future_ready", "description": "接口支持未来单 Teacher 验证源"},
+    {"rule_id": "multi_teacher_future_ready", "description": "预留未来多模型验证接口"},
+    {"rule_id": "no_blanket_activation", "description": "禁止 blanket 激活全部模型"},
+    {"rule_id": "text_goal_no_slam_tool", "description": "文字目标不得使用 SLAM 作为主工具"}
+  ],
+  "validation_sources_current": ["policy_validator", "case_library_validator", "rule_validator"],
+  "validation_sources_future": [
+    "single_teacher_validator",
+    "multi_teacher_validator"
+  ],
+  "boundary_flags": {
+    "agent_plan_validation_only": true,
+    "no_plan_override": true,
+    "no_tool_execution": true,
+    "tool_os_before_execution": true,
+    "constitution_priority": true,
+    "situation_alignment_required": true,
+    "missing_information_check": true,
+    "noop_validation": true,
+    "risk_sensitive_validation": true,
+    "human_review_required_when_uncertain": true,
+    "single_teacher_future_ready": true,
+    "multi_teacher_future_ready": true,
+    "planning_only": true
+  }
+}

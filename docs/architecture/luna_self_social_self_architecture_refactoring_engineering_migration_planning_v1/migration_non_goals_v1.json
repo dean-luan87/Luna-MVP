@@ -1,0 +1,7 @@
+{
+  "version": "1.0",
+  "name": "Migration Planning Non-Goals",
+  "forbidden_actions": ["Runtime Implementation", "Emotion Runtime", "Role Runtime", "Social Runtime", "Memory Migration", "Code Refactor", "Module Deletion", "File Move", "Automatic Owner Rewrite", "Automatic Registry Activation"],
+  "allowed_actions": ["Read-only Scan", "Impact Inventory", "Ownership Mapping", "Code Impact Registration", "Runtime Impact Review", "Workflow Definition", "Risk Registration"],
+  "rules": {"no_runtime": true, "no_memory_migration": true, "no_code_refactor": true, "no_file_move": true, "no_module_deletion": true, "plan_only": true}
+}

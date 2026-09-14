@@ -1,0 +1,23 @@
+{
+  "phase": "Phase-P1-Luna-Roboflow-Integrated-Vision-Provider-Cognitive-Loop-PoC-Controlled-Implementation-v1-001",
+  "primary_goal": "Find the likely exit from the current room/environment.",
+  "required_capabilities": ["object_detection"],
+  "observation_images": [
+    "capabilities/test_assets/p1/mobile_sam/mobile_sam_real_local_image_street_scene_v1.png",
+    "capabilities/test_assets/p1/ocr/ocr_real_image_shop_sign_nostalgic_flavor_v1_001.png"
+  ],
+  "provider_ref": "provider:roboflow:vision:poc:v1",
+  "workflow_ref": "workflow:roboflow:lei-luan:custom-workflow:v1",
+  "model_ref": "model-asset:rf-detr-small:roboflow-v1",
+  "workflow_output_mapping": {"detections": "$[0].model_output_3.predictions"},
+  "transport": "inference_sdk.InferenceHTTPClient.run_workflow",
+  "raw_schema_is_internal_only": true,
+  "answer_is_not_encoded": true,
+  "real_mode_requires_explicit_flag": true,
+  "real_mode_requires_user_terminal_preparation": true,
+  "real_transport": "inference_sdk.InferenceHTTPClient.run_workflow",
+  "real_workflow_input_name": "image",
+  "real_workflow_output_mapping_required": true,
+  "real_mode_semantic_assessment_user_supplied": false,
+  "real_mode_cycle_boundary": "stop_after_first_provider_response_and_luna_cognition"
+}

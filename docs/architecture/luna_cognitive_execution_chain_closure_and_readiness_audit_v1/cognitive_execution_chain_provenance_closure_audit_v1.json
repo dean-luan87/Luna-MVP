@@ -1,0 +1,28 @@
+{
+    "artifact": "cognitive_execution_chain_provenance_closure_audit_v1",
+    "forward_path": [
+        "source_observation_or_context_ref",
+        "intent_provenance_ref",
+        "causal_provenance_ref",
+        "decision_provenance_ref",
+        "action_provenance_ref",
+        "execution_result_provenance_ref"
+    ],
+    "reverse_locatability": {
+        "execution_result_to_action_candidate": true,
+        "execution_result_to_decision_candidate": true,
+        "execution_result_to_causal_hypothesis": true,
+        "execution_result_to_intent_candidate": true,
+        "execution_result_to_source_evidence_or_context_ref": true
+    },
+    "rule_assertions": {
+        "provenance_continuity_not_fact_authority": true,
+        "integration_reference_only": true,
+        "integration_new_fact_conclusion_forbidden": true
+    },
+    "evidence": {
+        "controlled_verifier_check": "C16_provenance_reverse_locatability",
+        "scenario_ref": "C06"
+    },
+    "closure_status": "CLOSED_WITH_ADAPTER"
+}

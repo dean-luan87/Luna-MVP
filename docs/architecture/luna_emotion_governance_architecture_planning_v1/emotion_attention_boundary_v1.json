@@ -1,0 +1,16 @@
+{
+  "artifact": "emotion_attention_boundary_v1",
+  "canonical_owner": "Emotion Governance",
+  "attention_owner": "Attention / Cognitive State Formation owner",
+  "allowed_interfaces": ["EmotionToAttentionSalienceCandidate", "EmotionToUrgencyInfluenceCandidate", "AttentionContextToEmotionCandidate"],
+  "frozen_rules": {
+    "emotion_may_provide_salience_candidate": true,
+    "emotion_may_provide_urgency_candidate": true,
+    "emotion_does_not_own_attention": true,
+    "emotion_does_not_allocate_attention": true,
+    "emotion_does_not_mutate_attention_state": true,
+    "attention_decision_remains_downstream": true,
+    "candidate_only": true
+  },
+  "forbidden": ["attention_allocation", "attention_scheduler", "attention_state_write", "emotion_as_attention_authority"]
+}

@@ -1,0 +1,317 @@
+{
+    "artifact": "cognitive_core_owner_closure_matrix_v1",
+    "overall_status": "CLOSED",
+    "unresolved_c_blockers": 0,
+    "modules": [
+        {
+            "module": "Context Foundation",
+            "canonical_owner": "Context Foundation",
+            "owned_semantic_objects": [
+                "Context Envelope Candidate",
+                "Context Trace Candidate"
+            ],
+            "allowed_mutation_authority": [
+                "context candidate assembly metadata only"
+            ],
+            "forbidden_ownership": [
+                "Field state",
+                "Memory",
+                "Intent",
+                "Causal truth",
+                "Decision",
+                "Action",
+                "Runtime"
+            ],
+            "upstream_inputs": [
+                "Field refs",
+                "Observation refs",
+                "Self/role/relationship projections"
+            ],
+            "downstream_outputs": [
+                "Context candidate",
+                "Context->PCN handoff candidate"
+            ],
+            "influence_only_relationships": [
+                "Memory/self/role/relationship references only"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Personal Cognitive Network",
+            "canonical_owner": "Personal Cognitive Network Governance",
+            "owned_semantic_objects": [
+                "PCN projection candidate",
+                "PCN activation candidate",
+                "PCN trace candidate"
+            ],
+            "allowed_mutation_authority": [
+                "PCN candidate graph and projection metadata only"
+            ],
+            "forbidden_ownership": [
+                "Context",
+                "Field",
+                "Intent",
+                "Memory fact",
+                "Emotion authority",
+                "Decision",
+                "Action"
+            ],
+            "upstream_inputs": [
+                "Context candidate",
+                "Memory projection refs",
+                "Field/role/relationship refs"
+            ],
+            "downstream_outputs": [
+                "PCN snapshot/projection candidate",
+                "PCN->Intent handoff candidate"
+            ],
+            "influence_only_relationships": [
+                "Resource constraint reference"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Intent Governance",
+            "canonical_owner": "Intent Governance",
+            "owned_semantic_objects": [
+                "Potential Intent Candidate",
+                "Intent Candidate",
+                "Intent State Candidate",
+                "Intent Trace Candidate"
+            ],
+            "allowed_mutation_authority": [
+                "intent candidate lifecycle only"
+            ],
+            "forbidden_ownership": [
+                "Context",
+                "PCN",
+                "Causal",
+                "Decision",
+                "Task",
+                "Action",
+                "Runtime",
+                "Self identity"
+            ],
+            "upstream_inputs": [
+                "Context refs",
+                "PCN refs",
+                "Field refs",
+                "Memory/experience refs"
+            ],
+            "downstream_outputs": [
+                "Intent candidate",
+                "Intent-derived handoff refs"
+            ],
+            "influence_only_relationships": [
+                "Memory, emotion, value, resource inputs are reference-only"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Cognitive State Formation",
+            "canonical_owner": "Cognitive State Formation Governance",
+            "owned_semantic_objects": [
+                "Attention Candidate",
+                "Cognitive Hypothesis Candidate",
+                "Current World Candidate",
+                "Cognitive State Vector Candidate"
+            ],
+            "allowed_mutation_authority": [
+                "state-formation candidate assembly only"
+            ],
+            "forbidden_ownership": [
+                "Field mutation authority",
+                "Intent ownership",
+                "Causal ownership",
+                "Decision",
+                "Action",
+                "Runtime"
+            ],
+            "upstream_inputs": [
+                "Context refs",
+                "PCN refs",
+                "Intent refs",
+                "Field refs",
+                "Observation refs"
+            ],
+            "downstream_outputs": [
+                "Attention/Hypothesis/Current World/State Vector candidates",
+                "Causal handoff candidate"
+            ],
+            "influence_only_relationships": [
+                "Risk, uncertainty, task, role, memory refs are non-owning"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Dynamic Cognitive Regulation",
+            "canonical_owner": "Dynamic Cognitive Regulation Governance",
+            "owned_semantic_objects": [
+                "Regulation Candidate",
+                "Influence Handoff Candidate",
+                "Parameter Admission/Bounds Governance"
+            ],
+            "allowed_mutation_authority": [
+                "bounded candidate evaluation and admission metadata only"
+            ],
+            "forbidden_ownership": [
+                "State vector",
+                "Intent",
+                "Hypothesis truth",
+                "Current world",
+                "Parameter activation",
+                "Genome activation",
+                "Runtime"
+            ],
+            "upstream_inputs": [
+                "Cognitive State Vector Candidate",
+                "Context refs",
+                "Intent refs",
+                "Hypothesis refs",
+                "Policy/bounds refs",
+                "Learning update candidate refs"
+            ],
+            "downstream_outputs": [
+                "Regulation candidate",
+                "Influence handoff candidate"
+            ],
+            "influence_only_relationships": [
+                "Emotion and resource sources are influence-only"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Cognitive Flow Governance",
+            "canonical_owner": "Cognitive Flow Governance",
+            "owned_semantic_objects": [
+                "Cycle lifecycle candidate",
+                "Transition candidate",
+                "Reconsideration candidate",
+                "Trace links only"
+            ],
+            "allowed_mutation_authority": [
+                "cycle organization and lifecycle coordination only"
+            ],
+            "forbidden_ownership": [
+                "Context",
+                "PCN",
+                "Intent",
+                "Attention",
+                "Hypothesis",
+                "Current World",
+                "State Vector",
+                "Dynamic Regulation",
+                "Memory",
+                "Learning"
+            ],
+            "upstream_inputs": [
+                "All candidate refs and traces"
+            ],
+            "downstream_outputs": [
+                "Lifecycle handoff candidates",
+                "Memory observation candidate",
+                "Future learning handoff candidate"
+            ],
+            "influence_only_relationships": [
+                "reads candidate refs; cannot rewrite owner outputs"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Cognitive Memory & Experience Governance",
+            "canonical_owner": "Cognitive Memory & Experience Governance",
+            "owned_semantic_objects": [
+                "Experience Candidate",
+                "Memory Candidate",
+                "Learning Evidence Candidate",
+                "Memory lifecycle candidates"
+            ],
+            "allowed_mutation_authority": [
+                "experience/memory candidate formation and admission metadata only"
+            ],
+            "forbidden_ownership": [
+                "Field fact",
+                "Context",
+                "PCN",
+                "Intent",
+                "Learning execution",
+                "Parameter mutation",
+                "Persistent memory write"
+            ],
+            "upstream_inputs": [
+                "Cycle refs",
+                "Context/field/PCN/intent/attention/hypothesis refs",
+                "Current world ref",
+                "State vector ref",
+                "Regulation ref"
+            ],
+            "downstream_outputs": [
+                "Experience candidate",
+                "Memory candidate",
+                "Learning evidence candidate"
+            ],
+            "influence_only_relationships": [
+                "retrieval and influence candidates are non-owning"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        },
+        {
+            "module": "Cognitive Learning Governance",
+            "canonical_owner": "Cognitive Learning Governance",
+            "owned_semantic_objects": [
+                "Learning Evidence Candidate",
+                "Learning Candidate",
+                "Parameter Update Candidate",
+                "Learning lifecycle candidates"
+            ],
+            "allowed_mutation_authority": [
+                "learning candidate formation, confidence/generalization, parameter-update proposal only"
+            ],
+            "forbidden_ownership": [
+                "Memory",
+                "Experience",
+                "Context",
+                "PCN",
+                "Intent",
+                "Hypothesis truth",
+                "Current world",
+                "Regulation parameter store",
+                "Parameter activation",
+                "Genome activation",
+                "Self",
+                "Personality",
+                "Emotion"
+            ],
+            "upstream_inputs": [
+                "Experience refs",
+                "Memory refs",
+                "Outcome/feedback refs",
+                "Context/intent/hypothesis/current-world/state-vector/regulation refs"
+            ],
+            "downstream_outputs": [
+                "Learning candidate",
+                "Parameter update candidate"
+            ],
+            "influence_only_relationships": [
+                "Self/personality/emotion evidence remains influence-only"
+            ],
+            "candidate_formation_authority": true,
+            "closure_status": "CLOSED"
+        }
+    ],
+    "audit_assertions": {
+        "duplicate_semantic_ownership_detected": false,
+        "super_owner_drift_detected": false,
+        "integration_owner_drift_detected": false,
+        "hidden_mutation_authority_detected": false,
+        "ambiguous_ownership_detected": false,
+        "flow_lifecycle_only_authority_preserved": true
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Luna Governance Tree v1",
+  "root": {"id": "luna_cognitive_system", "owner": "Luna Architecture Governance", "children": ["L0", "L1", "L2", "L3", "L4"]},
+  "nodes": [
+    {"id": "L0", "owner": "Constitution", "children": ["safety_constitution", "reality_priority", "unknown_policy", "permission_boundary", "authority_boundary"]},
+    {"id": "L1", "owner": "Cognitive OS Governance", "children": ["lifecycle", "registry", "contract_governance", "admission", "flow_control", "state_management", "event_management", "diagnostics", "resource_governance", "runtime_governance"]},
+    {"id": "L2", "owner": "Cognitive Core Governance", "children": ["world_cognition", "self_cognition", "cognitive_operation", "motivation", "decision"]},
+    {"id": "L3", "owner": "Social-Emotion Boundary Governance", "children": ["social_cognition", "emotion_context", "self_integration"]},
+    {"id": "L4", "owner": "Capability Governance", "children": ["capability_system", "model_system", "hardware_system", "evidence_system", "execution_system"]}
+  ],
+  "tree_rules": {"single_parent": true, "single_owner": true, "no_delete_historical": true, "boundary_only_l3": true}
+}

@@ -1,0 +1,17 @@
+{
+  "schema_id": "TeacherUsageMetricsSchemaV1",
+  "version": "v1",
+  "metrics": [
+    {"metric_id": "teacher_request_count", "description": "Teacher 请求次数"},
+    {"metric_id": "teacher_noop_count", "description": "Admission noop 次数"},
+    {"metric_id": "teacher_noop_rate", "description": "noop / (request + noop)"},
+    {"metric_id": "accepted_evidence_count", "description": "accepted_as_evidence 次数"},
+    {"metric_id": "accepted_evidence_rate", "description": "accepted / admitted"},
+    {"metric_id": "rejected_claim_count", "description": "policy reject 次数"},
+    {"metric_id": "rejected_claim_rate", "description": "rejected / admitted"},
+    {"metric_id": "latency_ms_total", "description": "累计延迟"},
+    {"metric_id": "latency_ms_avg", "description": "平均延迟"},
+    {"metric_id": "cost_estimate_total", "description": "估算成本"},
+    {"metric_id": "token_usage_total", "description": "token 用量"}
+  ]
+}

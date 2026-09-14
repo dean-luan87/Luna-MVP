@@ -1,0 +1,17 @@
+{
+  "artifact":"deferred_registry_v1",
+  "deferred":[
+    {"capability":"Result Comparison runtime","reason":"this phase plans contracts only"},
+    {"capability":"Prediction Engine","reason":"explicitly prohibited"},
+    {"capability":"Learning runtime","reason":"Cognitive Learning remains candidate-only"},
+    {"capability":"Dynamic Cognitive Function","reason":"separate audit/planning boundary"},
+    {"capability":"Emotion Engine and Advanced Emotion Governance","reason":"outside A Route current phase"},
+    {"capability":"B Route","reason":"deferred until A Route product completion"},
+    {"capability":"semantic compression","reason":"deferred"},
+    {"capability":"affective memory compression","reason":"deferred"},
+    {"capability":"personality-memory semantic fusion","reason":"deferred"},
+    {"capability":"cross-user transfer","reason":"deferred privacy boundary"},
+    {"capability":"real persistence and model/provider execution","reason":"planning-only phase"}
+  ],
+  "no_implementation_created":true
+}

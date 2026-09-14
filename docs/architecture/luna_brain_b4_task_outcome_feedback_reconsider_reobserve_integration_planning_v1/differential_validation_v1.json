@@ -1,0 +1,7 @@
+{
+  "artifact":"b4_differential_validation_v1",
+  "compare":["Synthetic Task/Action -> controlled Runtime Result -> Outcome/Feedback", "Real B3 TaskCandidate reference -> controlled Runtime Result candidate -> Outcome/Feedback"],
+  "invariants":["ownership", "candidate-only semantics", "lifecycle shape", "trace/provenance", "temporal refs", "uncertainty/conflict", "safety/permission/resource guards", "no side effects", "reobserve authority"],
+  "allowed_differences":["outcome content", "success/failure label", "retry count", "task wording", "actual result values"],
+  "forbidden_differences":["runtime execution", "automatic retry", "Task mutation outside Task Manager", "Outcome truth declaration", "provider invocation", "memory/learning write"]
+}

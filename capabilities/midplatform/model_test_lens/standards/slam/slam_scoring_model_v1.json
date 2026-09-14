@@ -1,0 +1,14 @@
+{
+  "scoring_model_id": "slam_scoring_model_v1",
+  "version": "1",
+  "formula": "SLAM_score = 0.5 * ATE_score + 0.2 * stability + 0.2 * drift_penalty + 0.1 * structural_quality",
+  "weights": {
+    "ate_score": 0.5,
+    "stability": 0.2,
+    "drift_penalty": 0.2,
+    "structural_quality": 0.1
+  },
+  "ate_score_mapping": "ate_score = max(0, 1 - ate_m / ate_ref_m); default ate_ref_m = 0.5",
+  "drift_penalty_mapping": "drift_penalty = max(0, 1 - drift_rate / drift_ref); default drift_ref = 0.05",
+  "muep_bridge": "SLAM primary task score feeds MUEP layer_a_task.primary_metric_score_normalized"
+}

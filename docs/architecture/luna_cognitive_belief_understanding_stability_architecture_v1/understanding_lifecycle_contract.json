@@ -1,0 +1,10 @@
+{
+  "contract_id": "understanding_lifecycle_v1",
+  "owner": "Understanding",
+  "states": ["Candidate Understanding", "Supported Understanding", "Active Understanding", "Challenged Understanding", "Invalidated Understanding", "Archived Understanding"],
+  "required_conditions": ["multiple_evidence_support", "context_stability", "decision_relevance"],
+  "automatic_transition": false,
+  "invalidated_is_deleted": false,
+  "unknown_allowed": true,
+  "candidate_only": true
+}

@@ -1,0 +1,34 @@
+{
+  "schema_id": "RunnerErrorCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-MobileSAM-Single-Model-Execution-Integration-v1-002",
+  "description": "Runner 错误候选。不得写 fact，不得污染 observation layer。",
+  "required_fields": [
+    "envelope_type",
+    "execution_id",
+    "error_type",
+    "error_stage",
+    "recoverable",
+    "trace_chain",
+    "not_fact"
+  ],
+  "field_definitions": {
+    "envelope_type": { "type": "string", "const": "runner_error_candidate" },
+    "execution_id": { "type": "string" },
+    "source_execution_candidate_id": { "type": "string" },
+    "error_type": { "type": "string" },
+    "error_stage": {
+      "type": "string",
+      "enum": ["sandbox_validation", "adapter_input", "runner_bridge", "mobilesam_inference", "output_envelope"]
+    },
+    "error_reason": { "type": "string" },
+    "recoverable": { "type": "boolean" },
+    "trace_chain": { "type": "array" },
+    "not_fact": { "type": "boolean", "const": true },
+    "runner_error_not_fact": { "type": "boolean", "const": true }
+  },
+  "boundary_flags": {
+    "runner_error_not_fact": true,
+    "no_fact_write_on_error": true
+  }
+}

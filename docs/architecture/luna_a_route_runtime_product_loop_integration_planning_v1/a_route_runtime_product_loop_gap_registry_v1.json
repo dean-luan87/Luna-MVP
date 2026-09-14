@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "gaps":[
+    {"id":"G01","capability":"canonical runtime product-loop caller/admission","classification":"A","priority":"P0","why":"controlled stages are not a runtime loop","recommended_next_module":"A Route Runtime Product Loop Integration"},
+    {"id":"G02","capability":"typed input and user-visible output adapter","classification":"B","priority":"P0","why":"standalone product path is unproven","recommended_next_module":"A Route Runtime Product Loop Integration + channel adapter"},
+    {"id":"G03","capability":"Action to Runtime to Actual Result closure","classification":"B","priority":"P0","why":"runtime executor remains candidate/planning-only","recommended_next_module":"runtime handoff adapter"},
+    {"id":"G04","capability":"Outcome Evaluation route callback","classification":"A","priority":"P0","why":"evaluation cannot currently advance the product lifecycle","recommended_next_module":"loop caller adapter"},
+    {"id":"G05","capability":"session continuity and interruption handling","classification":"B","priority":"P0","why":"pending work/result/cycle resume is not runtime connected","recommended_next_module":"bounded session continuity adapter"},
+    {"id":"G06","capability":"unified trace spine","classification":"B","priority":"P1","why":"owner-local traces exist but route-wide runtime continuity is unproven","recommended_next_module":"trace adapter"},
+    {"id":"G07","capability":"correction/admission/diagnostics/resource hardening","classification":"B","priority":"P1","why":"contracts exist but product callback integration is incomplete","recommended_next_module":"product safety and correction adapter"}
+  ]
+}

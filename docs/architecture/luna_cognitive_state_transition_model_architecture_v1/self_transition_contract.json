@@ -1,0 +1,13 @@
+{
+  "contract_id": "self_transition_v1",
+  "equation": "Self(t+1)=f(Self(t),GrowthCandidate)",
+  "inputs": ["Current Self State", "Validated Growth Candidate", "Evidence", "Self Boundary", "Constitution", "Risk", "Reversibility"],
+  "outputs": ["Self Review Candidate", "Capability Update Candidate", "Strategy Update Candidate", "Reject Candidate", "Defer Candidate"],
+  "stable_core": ["Identity", "Constitution", "Safety Boundary", "Ownership Boundary"],
+  "adaptive_targets": ["Capability", "Strategy", "Cognitive Parameters", "Schema", "Thresholds"],
+  "self_review_required": true,
+  "automatic_self_update": false,
+  "identity_change": false,
+  "constitution_change": false,
+  "candidate_only": true
+}

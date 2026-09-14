@@ -1,0 +1,8 @@
+{
+  "title": "Closed Loop to Runtime Interface v1",
+  "owner": "Cognitive OS Governance",
+  "runtime_provides": ["Tick", "Wake-up", "Process", "State Synchronization", "Trace", "Recovery"],
+  "closed_loop_requests": ["Cycle Activation Candidate", "Stage Transition Candidate", "Feedback Routing Candidate", "Cycle Completion Candidate"],
+  "runtime_not_modified": ["Constitution", "Governance Authority", "Decision Ownership", "Reality"],
+  "rules": {"runtime_owns_timing": true, "closed_loop_owns_cycle_definition": true, "no_real_loop": true, "interface_only": true}
+}

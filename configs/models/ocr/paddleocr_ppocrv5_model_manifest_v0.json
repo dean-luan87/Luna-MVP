@@ -1,0 +1,59 @@
+{
+  "manifest_version": "v0",
+  "model_config_id": "paddleocr_ppocrv5_lightweight_zh_en_v0",
+  "model_family": "paddleocr",
+  "model_name": "PaddleOCR",
+  "model_variant": "ppocrv5_pipeline",
+  "model_task": "ocr_raw_text_candidates",
+  "candidate_tier": "lightweight_navigation_ocr",
+  "provider_kind": "local_model",
+  "weights_source": "manual_download_required",
+  "weights_paths": {
+    "det_model_path": "ocr/paddleocr_ppocrv5/det",
+    "rec_model_path": "ocr/paddleocr_ppocrv5/rec",
+    "cls_model_path": "ocr/paddleocr_ppocrv5/cls",
+    "tokenizer_path": null,
+    "other_assets": []
+  },
+  "weights_sha256": {},
+  "weights_file_size_bytes": {},
+  "dependency_profile_id": "paddleocr_py_cpu_default_v0",
+  "python_version": null,
+  "paddleocr_version": null,
+  "paddlepaddle_version": null,
+  "opencv_version": null,
+  "numpy_version": null,
+  "pillow_version": null,
+  "platform": null,
+  "supported_languages": [
+    "zh",
+    "en"
+  ],
+  "supports_chinese": true,
+  "supports_english": true,
+  "supports_digits": true,
+  "supports_bbox": true,
+  "supports_confidence": true,
+  "supports_orientation": true,
+  "supports_layout": false,
+  "supports_video_frame_input": true,
+  "expected_input_format": "image/frame",
+  "expected_output_format": "raw_text_candidates(text,bbox,confidence,frame_id,model_config_id,line_order,raw_text_joined)",
+  "raw_text_only": true,
+  "semantic_interpretation_enabled": false,
+  "allows_execute_now": false,
+  "real_tts_invoked": false,
+  "created_at": null,
+  "verified_at": null,
+  "verification_status": "pending",
+  "fallback_policy": {
+    "fallback_model_config_id": "macos_vision_ocr_system_v0",
+    "notes": "fallback/system comparator only; does not enter runtime in ModelOCR-003"
+  },
+  "risks": [
+    "weights_not_prepared_yet",
+    "dependency_not_verified_yet"
+  ],
+  "notes": "ModelOCR-003: manifest skeleton only; no weights downloaded; do not fake hashes."
+}
+

@@ -1,0 +1,60 @@
+{
+  "title": "Self State Schema v1",
+  "type": "object",
+  "required": [
+    "identity_reference",
+    "physical_state",
+    "cognitive_state",
+    "capability_state_reference",
+    "resource_state",
+    "validity",
+    "provenance"
+  ],
+  "properties": {
+    "identity_reference": {
+      "type": "object",
+      "description": "Stable Self Identity reference; never rewritten by transient State"
+    },
+    "physical_state": {
+      "type": "object",
+      "properties": {
+        "battery": {},
+        "temperature": {},
+        "sensor_health": {},
+        "storage": {},
+        "network": {}
+      }
+    },
+    "cognitive_state": {
+      "type": "object",
+      "properties": {
+        "current_load": {},
+        "active_field_count": {},
+        "attention_consumption": {},
+        "unknown_accumulation": {}
+      }
+    },
+    "capability_state_reference": {"type": "array"},
+    "resource_state": {
+      "type": "object",
+      "properties": {"compute": {}, "memory": {}, "time": {}}
+    },
+    "validity": {"type": "object"},
+    "provenance": {"type": "array"},
+    "unknowns": {"type": "array"},
+    "update_candidate": {"type": "object"}
+  },
+  "boundaries": {
+    "self_state_is_not_self_identity": true,
+    "self_state_is_not_capability_identity": true,
+    "self_state_is_not_reality": true,
+    "self_state_is_not_personality": true,
+    "self_state_is_not_emotion": true,
+    "does_not_modify_identity": true,
+    "does_not_modify_goal": true,
+    "does_not_modify_decision": true,
+    "does_not_modify_action": true,
+    "does_not_modify_reality": true,
+    "reducer_is_sole_state_mutation_authority": true
+  }
+}

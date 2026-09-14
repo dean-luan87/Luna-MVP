@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Decision Self Boundary",
+  "owner":"Brain and Self Governance",
+  "self_inputs":["capability","limitation","resource","stability","identity boundary"],
+  "decision_constraints":["capability feasibility","stability requirement","self preservation","constitution invariants"],
+  "permissions":{"self_constrains_candidate":true,"self_creates_goal":false,"self_overrides_brain":false,"self_rewrites_identity":false},
+  "rules":{"Self Regulation_protects_stability":true,"Brain_evaluates_candidate":true,"no_self_modification":true}
+}

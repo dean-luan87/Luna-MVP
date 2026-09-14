@@ -1,0 +1,12 @@
+{
+  "contract_id": "context_memory_activation_v1",
+  "owner": "Cognitive Context Assembly",
+  "activation_trigger": "current_field_candidate",
+  "inputs": ["current_field_candidate", "task_context", "role_context", "attention_candidate", "memory_index"],
+  "outputs": ["relevant_memory_candidates", "context_package", "retrieval_trace"],
+  "field_activates_memory": true,
+  "memory_not_autonomous": true,
+  "memory_is_not_reality": true,
+  "current_reality_precedence": true,
+  "memory_write": false
+}

@@ -1,0 +1,36 @@
+{
+  "schema_id": "WebReferenceCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "web_reference_id",
+    "query_text",
+    "extracted_clues",
+    "candidate_only",
+    "not_fact",
+    "review_status",
+    "provenance_ref"
+  ],
+  "field_definitions": {
+    "web_reference_id": { "type": "string" },
+    "query_text": { "type": "string" },
+    "source_title_optional": { "type": "string" },
+    "source_uri_optional": { "type": "string" },
+    "extracted_clues": { "type": "array" },
+    "scene_similarity_hints": { "type": "array" },
+    "usage_limit_note": { "type": "string" },
+    "trust_tier": { "type": "string", "enum": ["high", "medium", "low", "unknown"] },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "review_status": { "type": "string" },
+    "provenance_ref": { "type": "string" }
+  },
+  "boundary_flags": {
+    "web_reference_candidate_only": true,
+    "no_direct_web_training": true,
+    "planning_only": true
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "version": "voice_output_governance_samples_v0",
+  "notes": "Offline-only dry-run samples for Phase-Voice-OutputGovernance-002",
+  "samples": [
+    {
+      "sample_id": "normal_speakable_dry_run",
+      "request": {
+        "request_id": "req_normal_001",
+        "source_module": "sample",
+        "output_category": "prompt",
+        "text_candidate": "前方有台阶，请注意。",
+        "priority": 100,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "safety_step_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "safety",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_001",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "accepted_dry_run" }
+    },
+    {
+      "sample_id": "expired_request",
+      "request": {
+        "request_id": "req_expired_001",
+        "source_module": "sample",
+        "output_category": "prompt",
+        "text_candidate": "前方红灯，请停下。",
+        "priority": 80,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "nav_light_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "navigation",
+        "expires_at_offset_s": -10,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_002",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "suppressed", "suppression_reason_contains": "expired" }
+    },
+    {
+      "sample_id": "stale_navigation_instruction",
+      "request": {
+        "request_id": "req_stale_001",
+        "source_module": "sample",
+        "output_category": "navigation",
+        "text_candidate": "请向左转。",
+        "priority": 60,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "nav_turn_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "navigation",
+        "expires_at_offset_s": 30,
+        "stale": true,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_003",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "suppressed", "suppression_reason_contains": "stale" }
+    },
+    {
+      "sample_id": "cancelled_request",
+      "request": {
+        "request_id": "req_cancel_001",
+        "source_module": "sample",
+        "output_category": "task",
+        "text_candidate": "任务已结束。",
+        "priority": 40,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "task_done_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "task",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": true,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_004",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "cancelled" }
+    },
+    {
+      "sample_id": "duplicate_low_priority",
+      "request": {
+        "request_id": "req_dup_001",
+        "source_module": "sample",
+        "output_category": "chat",
+        "text_candidate": "好的。",
+        "priority": 10,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "chat_ok_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "chat",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_005",
+        "cooldown_keys_seen": ["chat_ok_1"],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "suppressed", "suppression_reason_contains": "duplicate" }
+    },
+    {
+      "sample_id": "low_priority_interrupt_attempt",
+      "request": {
+        "request_id": "req_int_low_001",
+        "source_module": "sample",
+        "output_category": "chat",
+        "text_candidate": "我来补充一下。",
+        "priority": 10,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "chat_more_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "chat",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": true,
+        "interrupt_allowed_by_policy": true,
+        "current_playing_priority": "safety",
+        "user_speaking": false,
+        "scene_hash": "scene_006",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "suppressed", "suppression_reason_contains": "interrupt_denied" }
+    },
+    {
+      "sample_id": "high_priority_interrupt_allowed",
+      "request": {
+        "request_id": "req_int_high_001",
+        "source_module": "sample",
+        "output_category": "prompt",
+        "text_candidate": "注意脚下，前方有风险。",
+        "priority": 100,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "safety_risk_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "safety",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": true,
+        "interrupt_allowed_by_policy": true,
+        "current_playing_priority": "chat",
+        "user_speaking": false,
+        "scene_hash": "scene_007",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "accepted_dry_run" }
+    },
+    {
+      "sample_id": "provider_unhealthy",
+      "request": {
+        "request_id": "req_provider_bad_001",
+        "source_module": "sample",
+        "output_category": "prompt",
+        "text_candidate": "我在。",
+        "priority": 10,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "ack_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "chat",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_008",
+        "cooldown_keys_seen": [],
+        "provider_id": "piper",
+        "provider_status": "unhealthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "fallback_candidate" }
+    },
+    {
+      "sample_id": "unspeakable_text",
+      "request": {
+        "request_id": "req_guard_block_001",
+        "source_module": "sample",
+        "output_category": "debug",
+        "text_candidate": "TODO: internal placeholder",
+        "priority": 0,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "dbg_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "debug",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_009",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "suppressed", "suppression_reason_contains": "guard_blocked" }
+    },
+    {
+      "sample_id": "uncertain_text_must_not_be_certain",
+      "request": {
+        "request_id": "req_uncertain_001",
+        "source_module": "sample",
+        "output_category": "chat",
+        "text_candidate": "可能前面有台阶，但我肯定没看错。",
+        "priority": 10,
+        "interruptible": true,
+        "dedup_allowed": true,
+        "cooldown_key": "uncertain_1",
+        "metadata": {}
+      },
+      "context": {
+        "priority_label": "chat",
+        "expires_at_offset_s": 30,
+        "stale": false,
+        "cancel_requested": false,
+        "interrupt_requested": false,
+        "interrupt_allowed_by_policy": false,
+        "current_playing_priority": null,
+        "user_speaking": false,
+        "scene_hash": "scene_010",
+        "cooldown_keys_seen": [],
+        "provider_id": "dry_run_provider",
+        "provider_status": "healthy",
+        "dependency_ready": false
+      },
+      "expect": { "final_action": "accepted_dry_run", "expect_degraded": true }
+    }
+  ]
+}
+

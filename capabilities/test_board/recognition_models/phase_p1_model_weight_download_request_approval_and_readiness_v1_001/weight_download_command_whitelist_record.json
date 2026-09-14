@@ -1,0 +1,38 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T06:35:39.262791+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "weight_download_execution_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_download_command_whitelist_record",
+  "weight_download_command_whitelist_records": [
+    {
+      "asset_id": "mobile_sam",
+      "command_template": "TEMPLATE_ONLY_DO_NOT_EXECUTE: fetch weights/mobile_sam.pt pinned to MobileSAM commit f706ad9c4eb7f219c00d9050e46328518ffb65d2 (verified repository commit or verified release asset) -> capabilities/model_weights/p1/mobile_sam/mobile_sam.pt ; then compute sha256",
+      "template_only_do_not_execute": true,
+      "command_not_executed": true,
+      "expected_output_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+      "hash_after_download_required": true,
+      "command_execution_readiness": true,
+      "source_pinned_to_verified_commit_or_release": true
+    },
+    {
+      "asset_id": "byte_track",
+      "command_template": "PLACEHOLDER_ONLY_SOURCE_UNRESOLVED: no command may be executed until byte_track weight source is resolved",
+      "template_only_do_not_execute": true,
+      "command_not_executed": true,
+      "expected_output_path": "capabilities/model_weights/p1/byte_track/",
+      "hash_after_download_required": true,
+      "command_execution_readiness": false,
+      "source_pinned_to_verified_commit_or_release": false
+    }
+  ]
+}

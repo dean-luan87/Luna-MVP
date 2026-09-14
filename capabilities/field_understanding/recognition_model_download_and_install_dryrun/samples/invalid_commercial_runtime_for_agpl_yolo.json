@@ -1,0 +1,22 @@
+{
+  "model_id": "yolo_lightweight_nano",
+  "model_family": "object_detection_model_family",
+  "install_target": "yolo_lightweight_p0",
+  "download_source": "pypi:ultralytics+weights:yolo_nano",
+  "package_name": "ultralytics",
+  "model_resource_ref": "yolo_nano_weights_local_path",
+  "license_ref": "agpl_3_0",
+  "allowed_use": "commercial_runtime",
+  "commercial_use_status": "agpl_commercial_runtime_uncleared",
+  "dependency_list": ["ultralytics", "torch", "opencv-python", "numpy"],
+  "local_runtime_requirement": "cpu_python3",
+  "gpu_required": false,
+  "offline_supported": true,
+  "expected_import_module": "ultralytics",
+  "expected_version_check": "ultralytics.__version__",
+  "local_resource_check": "verify_yolo_nano_weights_present_or_downloadable",
+  "fallback_plan": "degrade_to_no_object_evidence_candidate",
+  "source_chain": "recognition_model_download_and_install_dryrun_v1",
+  "inference_allowed": false,
+  "commercial_runtime_ready": true
+}

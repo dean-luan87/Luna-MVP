@@ -1,0 +1,28 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "coco",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "bypass-adapter-dataset/1",
+    "dataset_url": "https://universe.roboflow.com/example/bypass-adapter-dataset"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "export_format": "coco"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export"],
+  "bypass_adapter": true,
+  "native_direct_to_field": true,
+  "direct_to_field_task_guidance": true,
+  "images": [
+    {"image_id": "img_100", "file_name": "x_100.jpg", "width": 640, "height": 480, "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_100", "type": "bbox", "label": "sign", "image_id": "img_100", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

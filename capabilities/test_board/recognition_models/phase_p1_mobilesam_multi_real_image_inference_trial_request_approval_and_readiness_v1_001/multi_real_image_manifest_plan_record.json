@@ -1,0 +1,81 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:27:52.380460+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "real_inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "multi_real_image_manifest_plan_record",
+  "record": {
+    "record_id": "multi_real_image_manifest_plan_v1",
+    "execution_manifest_output_rel": "_tmp_eval_out/p1_mobile_sam_multi_real_image_inference_trial_execution_and_post_review_v1_smoke_v0/mobile_sam_multi_real_image_manifest_v1.json",
+    "planned_manifest_entries": [
+      {
+        "test_asset_id": "mobile_sam_multi_real_image_street_scene_v1_001",
+        "image_path": "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_001.png",
+        "source_file_id": "cursor_asset_image_37f0c55b",
+        "scene_type": "daytime_tree_lined_sidewalk_scene",
+        "source_type": "user_supplied_scoped_local_test_asset",
+        "live_camera_frame": false,
+        "external_url_source": false,
+        "dataset_source": false,
+        "personal_sensitive_image": false,
+        "sha256": "pending_verification_in_execution_phase",
+        "width": "pending_verification_in_execution_phase",
+        "height": "pending_verification_in_execution_phase"
+      },
+      {
+        "test_asset_id": "mobile_sam_multi_real_image_street_scene_v1_002",
+        "image_path": "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_002.png",
+        "source_file_id": "cursor_asset_image_5cfa18a2",
+        "scene_type": "daytime_hazy_urban_street_scene",
+        "source_type": "user_supplied_scoped_local_test_asset",
+        "live_camera_frame": false,
+        "external_url_source": false,
+        "dataset_source": false,
+        "personal_sensitive_image": false,
+        "sha256": "pending_verification_in_execution_phase",
+        "width": "pending_verification_in_execution_phase",
+        "height": "pending_verification_in_execution_phase"
+      },
+      {
+        "test_asset_id": "mobile_sam_multi_real_image_street_scene_v1_003",
+        "image_path": "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_003.png",
+        "source_file_id": "cursor_asset_image_25b23081",
+        "scene_type": "daytime_street_vendor_stalls_scene",
+        "source_type": "user_supplied_scoped_local_test_asset",
+        "live_camera_frame": false,
+        "external_url_source": false,
+        "dataset_source": false,
+        "personal_sensitive_image": false,
+        "sha256": "pending_verification_in_execution_phase",
+        "width": "pending_verification_in_execution_phase",
+        "height": "pending_verification_in_execution_phase"
+      },
+      {
+        "test_asset_id": "mobile_sam_multi_real_image_street_scene_v1_004",
+        "image_path": "capabilities/test_assets/p1/mobile_sam/multi/mobile_sam_multi_real_image_street_scene_v1_004.png",
+        "source_file_id": "cursor_asset_image_f0cfef10",
+        "scene_type": "daytime_sidewalk_scooters_scene",
+        "source_type": "user_supplied_scoped_local_test_asset",
+        "live_camera_frame": false,
+        "external_url_source": false,
+        "dataset_source": false,
+        "personal_sensitive_image": false,
+        "sha256": "pending_verification_in_execution_phase",
+        "width": "pending_verification_in_execution_phase",
+        "height": "pending_verification_in_execution_phase"
+      }
+    ],
+    "sha256_verification_deferred_to_execution": true
+  }
+}

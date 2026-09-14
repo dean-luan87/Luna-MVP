@@ -1,0 +1,36 @@
+{
+    "model_id": "personal_cognitive_network_growth_model_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Personal Cognitive Network Governance",
+    "candidate_only": true,
+    "growth_flow": [
+        "new_information_or_experience",
+        "insufficient_existing_network_capacity_detected",
+        "link_growth_candidate_generated",
+        "source_boundary_resource_constraints_checked",
+        "new_link_candidate_admitted"
+    ],
+    "reinforcement": {
+        "high_frequency_links": "may_strengthen",
+        "high_value_links": "may_strengthen",
+        "high_relevance_links": "may_strengthen"
+    },
+    "weakening_and_dormancy": {
+        "long_inactive_links": "may_weaken",
+        "rarely_used_links": "may_enter_dormant",
+        "dormant_not_deleted": true
+    },
+    "resource_governed": {
+        "fixed_max_nodes_forbidden": true,
+        "fixed_max_links_forbidden": true,
+        "fixed_retention_days_forbidden": true,
+        "fixed_decay_cycle_forbidden": true,
+        "scaling_control_source": "system_resource_governance"
+    },
+    "forbidden": [
+        "automatic_deletion_due_to_inactivity",
+        "source_object_ownership_transfer",
+        "source_object_persistence",
+        "source_object_mutation"
+    ]
+}

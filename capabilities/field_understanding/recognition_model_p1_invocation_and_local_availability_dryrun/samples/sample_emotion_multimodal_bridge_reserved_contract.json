@@ -1,0 +1,29 @@
+{
+  "model_family": "emotion_multimodal_bridge_family",
+  "candidate_models": ["emotion_multimodal_fusion_interface_reserved"],
+  "planned_target_candidates": [
+    "affective_scene_hint_candidate",
+    "user_state_hint_candidate",
+    "social_context_hint_candidate"
+  ],
+  "package_or_module_refs": ["emotion_multimodal_bridge_interface(reserved)"],
+  "command_refs": [],
+  "local_resource_refs": ["reserved_no_local_resource_probe_executed"],
+  "license_ref": "reserved_interface_no_external_model_license_yet",
+  "model_origin": "luna_internal_reserved_emotion_multimodal_bridge_interface",
+  "source_chain": "recognition_model_p1_invocation_and_local_availability_dryrun_v1",
+  "callable_contract_ref": "emotion_multimodal_bridge.reserved_only_contract_v1",
+  "output_schema_ref": "emotion_multimodal_bridge_output_schema_reserved_v1",
+  "adapter_mapping_ref": "affective_scene_hint_candidate",
+  "fallback_plan": "reserved_only_no_execution_fallback_to_no_affective_hint",
+  "unavailable_record_policy": "declare_reserved_only_record_no_execution",
+  "allowed_use": "reserved_only_future_emotion_multimodal_evidence_bridge",
+  "commercial_use_status": "not_evaluated_reserved",
+  "availability_probe_mode": "reserved_only_contract",
+  "availability_status": "reserved_only",
+  "boundaries": [
+    "no_psychological_judgment_fact_write",
+    "no_behavior_manipulation",
+    "only_future_emotion_multimodal_evidence_bridge"
+  ]
+}

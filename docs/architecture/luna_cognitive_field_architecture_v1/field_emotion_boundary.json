@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Field Emotion Boundary",
+  "owner":"Integration Layer",
+  "inputs":["Field state","Memory context","Social relationship context","Self state","feedback"],
+  "output":"Emotion Tendency Candidate",
+  "status":"boundary_only",
+  "allowed_effects":["context metadata","future preference weight candidate","future attention context"],
+  "forbidden_effects":["decision override","action","value rewrite","identity rewrite","emotion runtime","personality switch"],
+  "rules":{"emotion_not_field_owner":true,"emotion_not_route":true,"no_runtime_in_phase":true}
+}

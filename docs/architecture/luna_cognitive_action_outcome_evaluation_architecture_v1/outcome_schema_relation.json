@@ -1,0 +1,11 @@
+{
+  "title": "Outcome Schema Relation v1",
+  "flow": ["Outcome Pattern Candidates", "Repetition/Impact Validation", "Schema Candidate", "Schema Governance"],
+  "schema_requires_repeated_pattern": true,
+  "single_outcome_updates_schema": false,
+  "schema_candidate_only": true,
+  "automatic_schema_update": false,
+  "schema_is_not_reality": true,
+  "source_lineage_preserved": true,
+  "conflict_status_preserved": true
+}

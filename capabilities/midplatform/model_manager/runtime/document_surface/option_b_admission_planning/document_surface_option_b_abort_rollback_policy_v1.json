@@ -1,0 +1,29 @@
+{
+  "schema_id": "DocumentSurfaceOptionBAbortRollbackPolicyV1",
+  "version": "v1",
+  "planning_only": true,
+  "abort_conditions": [
+    "dependency_not_admitted",
+    "model_weight_missing",
+    "license_not_cleared",
+    "unsupported_runtime",
+    "output_contract_violation",
+    "raw_output_contains_text_or_fact",
+    "segmentation_output_schema_invalid",
+    "excessive_mask_count",
+    "timeout",
+    "memory_limit_exceeded",
+    "fallback_attempt_detected",
+    "protocol_compliance_failed"
+  ],
+  "rollback_policy": {
+    "no_active_registry_update": true,
+    "no_runtime_activation": true,
+    "no_silent_fallback_to_option_a": true,
+    "no_fallback_to_ocr_vlm_layout": true,
+    "retain_trace": true,
+    "return_to": "admission_planning_or_candidate_review"
+  },
+  "candidate_only": true,
+  "not_fact": true
+}

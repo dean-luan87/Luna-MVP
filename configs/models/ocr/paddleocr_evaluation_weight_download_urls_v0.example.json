@@ -1,0 +1,31 @@
+{
+  "schema": "paddleocr_evaluation_weight_download_urls_v0",
+  "phase": "Phase-PaddleOCR-Weights-003",
+  "notes": "Fill URLs from official PaddleOCR / Paddle distribution after you obtain them; pass this file with --allow-download --download-url-manifest <path>.",
+  "files": [
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/det/inference.pdmodel",
+      "url": null
+    },
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/det/inference.pdiparams",
+      "url": null
+    },
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/rec/inference.pdmodel",
+      "url": null
+    },
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/rec/inference.pdiparams",
+      "url": null
+    },
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/cls/inference.pdmodel",
+      "url": null
+    },
+    {
+      "relative_path": "ocr/paddleocr_ppocrv5/cls/inference.pdiparams",
+      "url": null
+    }
+  ]
+}

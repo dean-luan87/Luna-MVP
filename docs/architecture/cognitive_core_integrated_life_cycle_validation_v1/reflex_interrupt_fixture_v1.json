@@ -1,0 +1,10 @@
+{
+  "fixture_name": "Reflex Interrupt Fixture v1",
+  "foreground": {"field": "Navigation Field", "task": "Route Support", "status": "Active"},
+  "interrupt": {"source": "Reflex", "risk": "Sudden Danger", "candidate": "Attention Boost"},
+  "reflex_type": "Innate Reflex",
+  "escalation": "Brain Review Candidate",
+  "action_execution": false,
+  "task_state": "Suspend Candidate",
+  "unknowns_are_preserved": true
+}

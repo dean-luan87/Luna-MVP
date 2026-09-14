@@ -1,0 +1,30 @@
+{
+  "policy_id": "luna_dynamic_cognitive_architecture_development_roadmap_change_control_v1",
+  "roadmap_status": "DEVELOPMENT_ROADMAP_FREEZE_CANDIDATE",
+  "change_process": [
+    "separate phase instruction",
+    "roadmap impact analysis",
+    "architecture and Owner review",
+    "dependency and phase-gate review",
+    "Schema, Contract, and Runtime boundary review",
+    "compatibility and rollback plan",
+    "V0 static checks",
+    "user-terminal V2 final verification",
+    "ChatGPT V3 audit"
+  ],
+  "changes_requiring_exception": [
+    "reorder Phase 0 through Phase 5",
+    "skip or merge a phase gate",
+    "create a parallel cognitive development mainline",
+    "move cognitive ownership into Runtime, Task Manager, Model Manager, Memory, Observation, or PCN",
+    "allow Context Foundation to generate Intent or Causal conclusions",
+    "allow PCN to own source objects",
+    "allow B Route to override current Reality",
+    "allow Experience Compression to write Memory or Self directly"
+  ],
+  "minor_clarification_without_order_change": "Requires documented review but may not alter Owner, Writer, phase order, gate, candidate status, or Runtime boundary.",
+  "implementation_phase_may_self_approve_change": false,
+  "automatic_roadmap_update_allowed": false,
+  "exception_registry": [],
+  "roadmap_activated": false
+}

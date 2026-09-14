@@ -1,0 +1,28 @@
+{
+  "title": "Brain Situation Evaluation Contract v1",
+  "contract_type": "Situation Evaluation Candidate",
+  "input": {
+    "situation_reference": "situation-example",
+    "global_cognitive_state": {},
+    "interpretation_candidate": {},
+    "evidence": [],
+    "hypothesis_candidates": [],
+    "expectation_feedback": [],
+    "risk": [],
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "situation_evaluation_candidate": {},
+    "relevance": {},
+    "risk_assessment": {},
+    "confidence": {},
+    "information_gap": []
+  },
+  "boundary": {
+    "evaluation_does_not_replace_situation": true,
+    "evaluation_does_not_modify_reality": true,
+    "evaluation_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

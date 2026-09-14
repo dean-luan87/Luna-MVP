@@ -1,0 +1,65 @@
+{
+  "format_ref": "rtab_map_graph_export_file",
+  "export_session_id": "rtab_int_graph_session_0001",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_graph_int_0001.g2o",
+    "map_ref": "rtab_map_demo_room_v1"
+  },
+  "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001"],
+  "graph_nodes": [
+    {
+      "node_id": "gnode_301",
+      "timestamp_ms": 3000,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.94,
+      "coordinate_scope": "local",
+      "anchor_role": "stable_spatial_anchor",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001", "gnode_301"]
+    },
+    {
+      "node_id": "gnode_302",
+      "timestamp_ms": 3100,
+      "x": 1.2, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.05, "qw": 0.99875,
+      "confidence": 0.91,
+      "coordinate_scope": "local",
+      "anchor_role": "adjacent_spatial_anchor",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001", "gnode_302"]
+    },
+    {
+      "node_id": "gnode_303",
+      "timestamp_ms": 3200,
+      "x": 2.4, "y": 0.1, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.1, "qw": 0.995,
+      "confidence": 0.82,
+      "coordinate_scope": "aligned_local",
+      "anchor_role": "relocalization_hint_node",
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001", "gnode_303"]
+    }
+  ],
+  "graph_edges": [
+    {
+      "edge_id": "gedge_301_302",
+      "from_node_id": "gnode_301",
+      "to_node_id": "gnode_302",
+      "edge_type": "normal",
+      "timestamp_ms": 3150,
+      "confidence": 0.9,
+      "relative_translation": [1.2, 0.0, 0.0],
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001", "gedge_301_302"]
+    },
+    {
+      "edge_id": "gedge_303_301",
+      "from_node_id": "gnode_303",
+      "to_node_id": "gnode_301",
+      "edge_type": "loop_closure",
+      "timestamp_ms": 3250,
+      "confidence": 0.78,
+      "relative_translation": [-2.35, -0.08, 0.0],
+      "loop_closure_drift_metric_m": 0.05,
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_session_0001", "gedge_303_301"]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Observation-Attention-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "planning_only": true,
+    "forbidden_operations": [
+      "execute_detection",
+      "execute_ocr",
+      "execute_slam",
+      "execute_depth",
+      "execute_inference",
+      "write_fact",
+      "write_semantic",
+      "mutate_registry",
+      "trigger_runtime",
+      "call_output_adapter",
+      "trigger_navigation",
+      "trigger_speech",
+      "modify_original_envelope",
+      "overwrite_model_output",
+      "upgrade_prompt_label_to_fact",
+      "treat_correction_as_ground_truth",
+      "execute_followup_route_immediately",
+      "output_confirmed_dynamic_from_single_frame",
+      "treat_correction_as_motion_ground_truth"
+    ],
+    "failed_checks": []
+  }
+}

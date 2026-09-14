@@ -1,0 +1,31 @@
+{
+  "title": "Action Attention Interface v1",
+  "contract_type": "Action Execution to Attention Interface",
+  "inputs": {
+    "action_intent": "required",
+    "execution_state_candidate": "candidate",
+    "risk_context": {},
+    "capability_context": {},
+    "provenance": []
+  },
+  "outputs": {
+    "new_observation_requirement_candidate": "candidate",
+    "attention_adjustment_candidate": "candidate",
+    "monitoring_priority_candidate": "candidate",
+    "execution_feedback_candidate": "candidate"
+  },
+  "examples": {
+    "crossing": "increase vehicle observation candidate",
+    "navigation": "maintain route-observation candidate",
+    "completion": "release execution monitoring candidate",
+    "failure": "increase uncertainty-observation candidate"
+  },
+  "boundary": {
+    "action_does_not_modify_attention_directly": true,
+    "attention_does_not_execute_action": true,
+    "attention_does_not_modify_goal": true,
+    "attention_does_not_modify_decision": true,
+    "candidate_only": true,
+    "no_automatic_frequency_adjustment": true
+  }
+}

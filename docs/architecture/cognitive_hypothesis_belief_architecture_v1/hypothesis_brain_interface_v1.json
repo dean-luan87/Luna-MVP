@@ -1,0 +1,32 @@
+{
+  "title": "Hypothesis Brain Interface v1",
+  "contract_type": "Hypothesis Decision Context Package",
+  "input": {
+    "reality": {},
+    "evidence": [],
+    "hypothesis_candidates": [],
+    "belief_candidates": [],
+    "confidence": {},
+    "unknown": [],
+    "risk": [],
+    "conflict": [],
+    "field_context": {},
+    "situation_context": {},
+    "provenance": []
+  },
+  "brain_evaluation": {
+    "adopt_candidate": "candidate",
+    "reject_candidate": "candidate",
+    "keep_multiple": "candidate",
+    "request_more_evidence": "candidate",
+    "defer": "candidate",
+    "final_judgment": "Brain retains final judgment authority"
+  },
+  "boundary": {
+    "hypothesis_is_context_not_decision": true,
+    "belief_is_context_not_decision": true,
+    "brain_retains_final_decision_authority": true,
+    "brain_receives_reality_and_evidence": true,
+    "unknowns_are_preserved": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "exploration_stop_condition_v1",
+  "owner": "Self Layer",
+  "conditions": ["Value Exhausted", "Budget Exhausted", "Information Ceiling", "Decision Sufficient", "Accept Unknown"],
+  "outputs": ["stop_candidate", "reason", "remaining_unknowns", "provenance"],
+  "accept_unknown_allowed": true,
+  "forced_resolution": false,
+  "unlimited_exploration": false,
+  "direct_action": false,
+  "candidate_only": true
+}

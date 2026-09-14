@@ -1,0 +1,48 @@
+{
+  "artifact": "intent_competition_coexistence_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "Intent Governance",
+  "supported_multiplicity": [
+    "multiple potential Intent candidates",
+    "multiple active Intent candidates",
+    "conflicting Intent candidates",
+    "coexisting Intent candidates",
+    "nested Intent candidates",
+    "suppressed Intent candidates",
+    "dormant Intent candidates",
+    "reactivated Intent candidates"
+  ],
+  "interaction_candidates": [
+    {"type": "COEXISTENCE", "meaning": "Candidates can remain concurrently relevant without forced ranking."},
+    {"type": "COMPETITION", "meaning": "Candidates contend for limited cognitive or downstream consideration."},
+    {"type": "CONFLICT", "meaning": "Candidate future-state directions are incompatible under current constraints."},
+    {"type": "SUPPRESSION", "meaning": "A candidate remains preserved while its active influence is reduced."},
+    {"type": "AMPLIFICATION", "meaning": "Source-owned evidence or constraints increase a candidate's active influence."},
+    {"type": "INHIBITION", "meaning": "A constraint reduces formation or active projection without deleting the candidate."},
+    {"type": "TEMPORARY_DOMINANCE", "meaning": "One candidate temporarily has stronger active projection; this is not a Decision."},
+    {"type": "REACTIVATION", "meaning": "A dormant or suppressed candidate returns under new evidence or context."}
+  ],
+  "required_interaction_trace": [
+    "participant_candidate_refs",
+    "source_refs",
+    "context_refs",
+    "resource_ref",
+    "uncertainty",
+    "observed_relation",
+    "provenance"
+  ],
+  "preservation_rules": [
+    "no winner deletion",
+    "suppressed candidates keep provenance",
+    "dormant candidates remain eligible for governed reactivation",
+    "conflict remains explicit when unresolved",
+    "competition does not imply priority truth"
+  ],
+  "guards": {
+    "competition_is_decision": false,
+    "temporary_dominance_is_decision": false,
+    "coexistence_requires_resolution": false,
+    "winner_take_all": false,
+    "automatic_action": false
+  }
+}

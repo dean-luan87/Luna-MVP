@@ -1,0 +1,48 @@
+{
+    "version": "1.0",
+    "name": "Field Event Envelope Schema",
+    "description": "定义统一 FieldEvent Envelope 的核心字段与约束。",
+    "core_fields": [
+        "event_id",
+        "event_type",
+        "schema_version",
+        "occurred_at",
+        "observed_at",
+        "asserted_at",
+        "recorded_at",
+        "source_scope",
+        "owner_scope",
+        "perspective_scope",
+        "field_scope",
+        "space_anchor_refs",
+        "target_object_refs",
+        "evidence_refs",
+        "trace_refs",
+        "governance_refs",
+        "temporal_validity",
+        "confidence",
+        "candidate_only",
+        "not_fact",
+        "revision",
+        "supersedes_event_ref",
+        "correlation_id",
+        "causation_event_ref",
+        "replayable",
+        "reversible",
+        "revoked",
+        "revocation_reason",
+        "extension_data"
+    ],
+    "defaults": {
+        "candidate_only": true,
+        "not_fact": true,
+        "replayable": true,
+        "reversible": true,
+        "revoked": false
+    },
+    "boundary_flags": {
+        "admission_does_not_equal_fact": true,
+        "admission_does_not_equal_state_mutation": true,
+        "direct_state_mutation_allowed": false
+    }
+}

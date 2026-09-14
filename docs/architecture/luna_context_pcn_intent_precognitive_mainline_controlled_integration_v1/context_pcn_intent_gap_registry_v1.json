@@ -1,0 +1,190 @@
+{
+    "artifact": "context_pcn_intent_gap_registry_v1",
+    "source_of_truth": [
+        "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json",
+        "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json"
+    ],
+    "context_to_pcn_gap_audit": [
+        {
+            "field": "source_owner",
+            "semantic": "Context Foundation producer owner",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped to ContextToPcnHandoffV1.source_owner"
+        },
+        {
+            "field": "target_owner",
+            "semantic": "PCN consumer owner",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped to ContextToPcnHandoffV1.target_owner"
+        },
+        {
+            "field": "context_candidate_ref",
+            "semantic": "Context Envelope Candidate ref",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from ContextEnvelopeCandidateV1.context_id"
+        },
+        {
+            "field": "context_schema_ref",
+            "semantic": "Context schema/version",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from ContextEnvelopeCandidateV1.version"
+        },
+        {
+            "field": "field_context_refs",
+            "semantic": "Current Context/Related Projection references",
+            "required": true,
+            "cardinality": "1..n",
+            "compatibility": "projection flatten",
+            "classification": "A",
+            "resolution": "projection ids extracted from Context envelope"
+        },
+        {
+            "field": "trace_ref",
+            "semantic": "Trace Reference",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from ContextEnvelopeCandidateV1.trace_reference"
+        },
+        {
+            "field": "provenance_ref",
+            "semantic": "Provenance",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "first provenance entry",
+            "classification": "A",
+            "resolution": "mapped from ContextEnvelopeCandidateV1.provenance[0]"
+        },
+        {
+            "field": "version",
+            "semantic": "handoff version",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "candidate-v1 compatibility gate"
+        },
+        {
+            "field": "candidate_only",
+            "semantic": "candidate-only boundary",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "hard-coded true"
+        },
+        {
+            "field": "source_mutation",
+            "semantic": "no source mutation",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "hard-coded false"
+        }
+    ],
+    "pcn_to_intent_gap_audit": [
+        {
+            "field": "source_owner",
+            "semantic": "PCN producer owner",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped to PcnToIntentHandoffV1.source_owner"
+        },
+        {
+            "field": "target_owner",
+            "semantic": "Intent consumer owner",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped to PcnToIntentHandoffV1.target_owner"
+        },
+        {
+            "field": "pcn_candidate_ref",
+            "semantic": "PCN projection candidate reference",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from ActiveCognitiveProjectionCandidate.projection_id"
+        },
+        {
+            "field": "identity/self/role/context refs",
+            "semantic": "intent influence inputs only, not authority transfer",
+            "required": true,
+            "cardinality": "1..n",
+            "compatibility": "composed refs",
+            "classification": "A",
+            "resolution": "mapped into identity_self_role_context_refs and Intent input partitions"
+        },
+        {
+            "field": "trace_ref",
+            "semantic": "Trace Reference",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from PCN trace id"
+        },
+        {
+            "field": "provenance_ref",
+            "semantic": "Provenance",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "mapped from PCN projection provenance"
+        },
+        {
+            "field": "version",
+            "semantic": "handoff version",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "candidate-v1 compatibility gate"
+        },
+        {
+            "field": "candidate_only",
+            "semantic": "candidate-only boundary",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "hard-coded true"
+        },
+        {
+            "field": "source_mutation",
+            "semantic": "no source mutation",
+            "required": true,
+            "cardinality": "1",
+            "compatibility": "direct",
+            "classification": "A",
+            "resolution": "hard-coded false"
+        }
+    ],
+    "classification_summary": {
+        "A": 19,
+        "B": 0,
+        "C": 0,
+        "D": 0
+    },
+    "blocker": false,
+    "note": "No existing module contract change required for current controlled integration scope."
+}

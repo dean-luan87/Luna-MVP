@@ -1,0 +1,12 @@
+{
+  "contract_name": "Runtime Process Scheduler Contract v1",
+  "process_classes": ["Survival", "Foreground", "Background", "Maintenance"],
+  "process_request": {},
+  "allocation_candidate": {},
+  "suspension_candidate": {},
+  "resume_candidate": {},
+  "scheduler_does_not_choose_goal": true,
+  "scheduler_does_not_resolve_value_conflict": true,
+  "scheduler_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

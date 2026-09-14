@@ -1,0 +1,9 @@
+{
+  "title": "Capability Result Collector Contract v1",
+  "owner": "Capability Governance",
+  "pipeline": ["Provider Output", "Raw Result", "Result Collector", "Evidence Gateway"],
+  "raw_result_schema": ["execution_id", "provider_reference", "content", "status", "timestamp", "trace_id"],
+  "collector_outputs": ["Collected Result Candidate", "Invalid Result Candidate", "Failure Candidate"],
+  "direct_paths_forbidden": ["Raw Result → Memory", "Raw Result → Reality", "Raw Result → Decision"],
+  "rules": {"gateway_required": true, "raw_result_not_evidence": true, "collector_not_brain": true}
+}

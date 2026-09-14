@@ -1,0 +1,46 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:48:22.530878+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "inference_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_inference_command_whitelist_record",
+  "mobile_sam_inference_command_whitelist_record": {
+    "record_id": "mobile_sam_inference_command_whitelist_v1",
+    "allowed_future_steps": [
+      "pre_inference_snapshot",
+      "sha256_recheck",
+      "controlled_sys_path_setup",
+      "import_mobile_sam",
+      "load_checkpoint",
+      "load_local_test_image_from_manifest",
+      "one_controlled_inference_call",
+      "save_candidate_mask_result_summary_to_tmp_eval_out",
+      "memory_timeout_monitor",
+      "cleanup"
+    ],
+    "forbidden_future_steps": [
+      "live_camera",
+      "external_network",
+      "runtime_server",
+      "output_adapter_call",
+      "semantic_write",
+      "fact_write",
+      "navigation_action_speech",
+      "batch_dataset",
+      "registry_mutation"
+    ],
+    "command_template_only": true,
+    "command_not_executed": true,
+    "inference_command_requires_next_phase": true
+  }
+}

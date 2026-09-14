@@ -1,0 +1,17 @@
+{
+  "contract_id": "self_calibration_v1",
+  "equation": "Calibration=f(Outcome,History,Performance)",
+  "inputs": ["Outcome", "Prediction Error", "Capability Performance", "Long-term Pattern", "Field Scope", "Parameter History"],
+  "outputs": ["Optimization Candidate", "Calibration Confidence", "No Change Candidate", "Defer Candidate"],
+  "calibration_is_not_learning_runtime": true,
+  "calibration_is_not_automatic_update": true,
+  "evidence_required": true,
+  "field_scope_required": true,
+  "versioning_required": true,
+  "rollback_required": true,
+  "self_review_required": true,
+  "does_not_modify_identity": true,
+  "does_not_modify_constitution": true,
+  "candidate_only": true,
+  "runtime": false
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version":"1.0",
+  "principle":"route orchestration errors do not replace owner-specific errors",
+  "namespaces":[
+    {"stage":"ingress","errors":["MISSING_INPUT","DUPLICATE_INPUT","INVALID_INPUT_CONTRACT"]},
+    {"stage":"observation","errors":["OBSERVATION_DEMAND_UNAVAILABLE","OBSERVATION_DEFERRED","PROVIDER_ADMISSION_UNAVAILABLE"]},
+    {"stage":"context","errors":["CONTEXT_HANDOFF_INVALID","FIELD_HANDOFF_INVALID"]},
+    {"stage":"cognition","errors":["COGNITIVE_STAGE_UNAVAILABLE","DECISION_HANDOFF_INVALID"]},
+    {"stage":"execution","errors":["RUNTIME_ADMISSION_UNAVAILABLE","EXECUTION_FAILED","EXECUTION_RESULT_MISSING"]},
+    {"stage":"feedback","errors":["OUTCOME_EVALUATION_UNAVAILABLE","DUPLICATE_FEEDBACK","RECONSIDERATION_DEPTH_EXCEEDED"]},
+    {"stage":"cycle","errors":["CYCLE_ALREADY_COMPLETE","NEXT_CYCLE_INVALID","UPSTREAM_FAILURE_PROPAGATED"]}
+  ],
+  "owner_error_preservation":true
+}

@@ -1,0 +1,20 @@
+{
+    "artifact": "action_rollback_boundary_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "rollback_states": [
+        "rollback_possible",
+        "rollback_required",
+        "rollback_not_supported",
+        "rollback_unknown"
+    ],
+    "required_fields": [
+        "rollback_trigger_refs",
+        "rollback_executor_responsibility_ref",
+        "rollback_result_reference"
+    ],
+    "rules": {
+        "rollback_candidate_not_execution": true,
+        "action_governance_generates_context_only": true,
+        "executor_owns_rollback_execution": true
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "artifact": "cognitive_cycle_definition_v1",
+    "definition": "One bounded evolution of Luna's cognitive state under a fixed input snapshot/reference window, producing linked owner candidates and a deterministic cycle outcome state.",
+    "cycle_start_condition": [
+        "new_context_reference_available",
+        "persistent_intent_or_reconsideration_pending",
+        "field_or_self_trigger_requires_cycle"
+    ],
+    "input_snapshot_boundary": {
+        "context_refs": "required",
+        "pcn_refs": "optional_but_preferred",
+        "intent_refs": "optional_but_cycle_relevant",
+        "field_refs": "read_only",
+        "causal_refs": "read_only_optional",
+        "state_vector_ref": "produced_in_cycle",
+        "regulation_candidate_ref": "produced_or_inherited"
+    },
+    "participation": {
+        "context": "cycle bootstrap context source",
+        "pcn": "relational and activation context source",
+        "intent": "goal-pressure and direction source",
+        "attention": "state formation substage",
+        "hypothesis": "state formation substage",
+        "current_world": "state formation substage",
+        "cognitive_state_vector": "cycle state summary output",
+        "dynamic_regulation": "post-state-vector bounded regulation stage"
+    },
+    "reconsideration_condition": [
+        "new_context_or_field_update",
+        "invalidated_required_ref",
+        "dynamic_regulation_requests_reconsideration",
+        "unresolved_hypothesis_conflict"
+    ],
+    "transition_condition": [
+        "required_owner_candidates_present",
+        "trace_complete",
+        "no_blocking_interrupt"
+    ],
+    "suspend_condition": [
+        "resource_constraint",
+        "safety_interrupt",
+        "required_ref_missing",
+        "user_interrupt"
+    ],
+    "resume_condition": [
+        "suspend_reason_cleared",
+        "required_refs_revalidated",
+        "resume_candidate_approved"
+    ],
+    "termination_condition": [
+        "cycle_completed",
+        "cycle_aborted",
+        "cycle_suspended_for_future_resume"
+    ],
+    "next_cycle_inheritance": "reference_only_and_trace_linked"
+}

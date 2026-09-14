@@ -1,0 +1,181 @@
+{
+  "version": "m3-5-3",
+  "description": "M3.5.3 更大范围灰度：在 M3.5.2（20 条）上再补 5 条同类/轻边界/R*，不引入全新任务类型；不改 prefilter。",
+  "cases": [
+    {
+      "id": "S1_simple_nav",
+      "bucket": "simple",
+      "text": "导航到公司。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S2_simple_poi",
+      "bucket": "simple",
+      "text": "带我去最近的便利店。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S3_simple_with_fillers",
+      "bucket": "simple",
+      "text": "呃，那个，导航回家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C1_mixed_nav",
+      "bucket": "complex",
+      "text": "我有点焦虑，想去安静的书店，帮我导航过去。",
+      "mixed_keywords": ["焦虑"],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C2_mixed_health_nav",
+      "bucket": "complex",
+      "text": "最近胃不舒服老反酸，还是得去趟医院看看，帮我导航到最近的三甲医院消化内科。",
+      "mixed_keywords": ["反酸", "胃", "不舒服"],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C3_ordered_itinerary_multistep",
+      "bucket": "complex",
+      "text": "先去加油站加满油，再去超市，最后回家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "C4_long_constraints",
+      "bucket": "complex",
+      "text": "我现在在朝阳门地铁站附近，帮我导航到三里屯太古里，走地面别走高架，我晕车。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C5_long_itinerary",
+      "bucket": "complex",
+      "text": "明天上午先去税务局办税，然后回公司取公章，中午和客户在陆家嘴吃饭，下午去银行办对公业务，最后回张江办公室。请按顺序帮我拆成可执行的导航步骤，不要合并成一步。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "R1_unsupported_registration",
+      "bucket": "reject_or_rule",
+      "text": "帮我自动挂号并插队看专家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R2_unsupported_remote_control",
+      "bucket": "reject_or_rule",
+      "text": "你帮我远程解锁小区门禁、打开我家房门，再顺便把快递拆了。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R3_unsupported_payment",
+      "bucket": "reject_or_rule",
+      "text": "你直接帮我支付并转账给他。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C6_multistep_non_itinerary",
+      "bucket": "complex",
+      "text": "先写代码再测试最后上线。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "S4_simple_nav_longer",
+      "bucket": "simple",
+      "text": "我想从当前位置出发，走最快路线到机场，尽量避开拥堵路段，到了附近提醒我一下。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S5_simple_poi_longer",
+      "bucket": "simple",
+      "text": "帮我找一家评分高一点、距离两公里以内、现在还在营业的咖啡店，然后导航过去。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "L1_light_itinerary_two_stops",
+      "bucket": "complex",
+      "text": "先去便利店买个水，再去健身房。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "L2_light_itinerary_dropoff_nav",
+      "bucket": "complex",
+      "text": "先送孩子在幼儿园门口放下，再导航去公司停车场，中间尽量别走单行线。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "B1_boundary_nav_constraints",
+      "bucket": "complex",
+      "text": "我在人民广场附近，去外滩要避开过江隧道，我容易晕车，最好走地面路线。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "B2_boundary_nav_night_road",
+      "bucket": "complex",
+      "text": "晚上九点从酒店出发去江边看夜景，走路况好一点的路，别走太窄的弄堂。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R4_unsupported_proxy_payment",
+      "bucket": "reject_or_rule",
+      "text": "帮我在线支付并转账购药，不要经过我确认。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R5_unsupported_vehicle_admin",
+      "bucket": "reject_or_rule",
+      "text": "替我去车管所选号并自动过户上牌，全程不用我到场。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S6_simple_nav_transit",
+      "bucket": "simple",
+      "text": "我走路不太方便，帮我导航到最近的地铁站，尽量选步行少一点的入口。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C7_mixed_sleep_park_nav",
+      "bucket": "complex",
+      "text": "最近睡眠不太好，想去公园走走散心，帮我导航到附近适合散步的城市公园。",
+      "mixed_keywords": ["睡眠"],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "B3_boundary_nav_avoid_highway",
+      "bucket": "complex",
+      "text": "我一上高速就紧张，帮我导航到高铁站，路线里尽量别上高速。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "N1_same_family_poi_gas",
+      "bucket": "simple",
+      "text": "附近有没有顺路的加油站，帮我导航到最近的一家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R6_unsupported_takeout_auto",
+      "bucket": "reject_or_rule",
+      "text": "帮我点个外卖送到公司，全自动下单，不要问我选哪家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    }
+  ]
+}

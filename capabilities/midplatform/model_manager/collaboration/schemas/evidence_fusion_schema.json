@@ -1,0 +1,37 @@
+{
+  "schema_id": "EvidenceFusionV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Model-Collaboration-Planning-v1-001",
+  "description": "证据融合候选 — 非答案融合，非事实写入",
+  "required_fields": [
+    "fusion_id",
+    "fusion_type",
+    "evidence_slots",
+    "fusion_candidate"
+  ],
+  "fusion_types": ["pipeline_accumulation", "parallel_collection", "challenge_supplement"],
+  "forbidden": ["answer_synthesis", "majority_vote", "fact_write"],
+  "properties": {
+    "fusion_id": {"type": "string"},
+    "fusion_type": {"type": "string"},
+    "evidence_slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slot_id", "provider_role", "evidence_type"],
+        "properties": {
+          "slot_id": {"type": "string"},
+          "provider_role": {"type": "string"},
+          "model_id": {"type": "string"},
+          "evidence_type": {"type": "string"},
+          "status": {"type": "string", "enum": ["pending", "collected", "rejected"]}
+        }
+      }
+    },
+    "fusion_candidate": {"type": "boolean", "const": true},
+    "not_answer_fusion": {"type": "boolean", "const": true},
+    "requires_validation": {"type": "boolean", "const": true},
+    "candidate_only": {"type": "boolean", "const": true},
+    "not_fact": {"type": "boolean", "const": true}
+  }
+}

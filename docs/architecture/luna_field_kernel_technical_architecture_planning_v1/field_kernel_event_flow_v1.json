@@ -1,0 +1,65 @@
+{
+    "event_before_mutation": true,
+    "event_types": [
+        "field_event",
+        "validation_event",
+        "anchor_resolution_event",
+        "candidate_construction_event",
+        "state_reduction_event",
+        "snapshot_event",
+        "timeline_append_event",
+        "projection_event",
+        "revocation_event",
+        "expiration_event",
+        "human_correction_event"
+    ],
+    "validation_steps": [
+        "normalize event",
+        "validate format",
+        "validate anchor presence",
+        "validate safety constraints"
+    ],
+    "anchor_resolution_steps": [
+        "resolve SpaceAnchor",
+        "resolve temporal anchor",
+        "compute anchor certainty",
+        "detect missing anchor"
+    ],
+    "candidate_build_steps": [
+        "aggregate evidence",
+        "build candidate definition",
+        "compute confidence components",
+        "mark unresolved candidates"
+    ],
+    "reducer_steps": [
+        "apply admitted candidates",
+        "update substrate state",
+        "mark expired/suspended",
+        "generate state snapshot"
+    ],
+    "timeline_steps": [
+        "append event to timeline",
+        "record snapshot reference",
+        "emit replay marker",
+        "archive expired entries"
+    ],
+    "projection_steps": [
+        "collect available definitions",
+        "apply perspective weights",
+        "generate active projection candidate",
+        "emit projection eligibility"
+    ],
+    "trace_steps": [
+        "record event trace",
+        "record state transition",
+        "record projection trace",
+        "record failure diagnostics"
+    ],
+    "failure_routes": [
+        "reject invalid event",
+        "rollback on partial update",
+        "quarantine corrupted snapshot",
+        "request more evidence",
+        "escalate to human review"
+    ]
+}

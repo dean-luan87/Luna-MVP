@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "plan_ref": "capabilities/midplatform/model_test_lens/runner_manual_trigger/runner_manual_trigger_plan_v1.md"
+  }
+}

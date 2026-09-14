@@ -1,0 +1,19 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T03:03:39.304659+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "planning_status": "go",
+    "transition_note": "PLANNING ONLY. Local Runner Bridge Service at 127.0.0.1:8787; UI at localhost:8765 submits jobs; runner executes after approval; adapter required for envelope. Next: skeleton execution with MobileSAM + SLAM limited route."
+  },
+  "final_decision": "P1_MIDPLATFORM_MODEL_TEST_LENS_LOCAL_RUNNER_BRIDGE_SERVICE_PLANNING_GO"
+}

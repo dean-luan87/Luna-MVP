@@ -1,0 +1,41 @@
+{
+  "schema_id": "QwenVLModelManagerProviderProfileV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-QwenVL-Real-Provider-Integration-Planning-v1-001",
+  "model_id": "qwen_vl",
+  "model_label": "Qwen-VL v1",
+  "type": "vision_language_model",
+  "provider_type": "external_teacher",
+  "owner": "model_manager",
+  "managed_by": "LunaModelManager",
+  "lifecycle_state": "active",
+  "admission_status": "admitted",
+  "capabilities": [
+    "scene_understanding",
+    "visual_reasoning",
+    "unknown_scene_reasoning"
+  ],
+  "weaknesses": [
+    "precise_ocr",
+    "real_time_detection",
+    "read_small_text"
+  ],
+  "input": [
+    "image",
+    "situation_candidate",
+    "plan_candidate",
+    "missing_information"
+  ],
+  "output": [
+    "evidence_candidate",
+    "scene_hypothesis_candidate",
+    "visual_reasoning_candidate"
+  ],
+  "source_module": "model_manager/providers/qwen_vl",
+  "legacy_module_frozen": "teacher_adapter/providers/qwen_vl",
+  "routing_capabilities": {
+    "unknown_scene_reasoning": {"priority": 1, "score_hint": 0.85},
+    "text_recognition": {"priority": 5, "score_hint": 0.4, "note": "weak for precise_ocr"}
+  },
+  "candidate_only": true
+}

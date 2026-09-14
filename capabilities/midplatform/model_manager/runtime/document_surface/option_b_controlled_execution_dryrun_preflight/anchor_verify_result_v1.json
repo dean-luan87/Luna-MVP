@@ -1,0 +1,25 @@
+{
+  "phase_id": "Phase-P1-OptionB-CE-DryRun-Preflight-Anchor-Verify-v1-001",
+  "input_file": "capabilities/midplatform/model_manager/runtime/document_surface/option_b_controlled_execution_dryrun_preflight/handoff_anchor_v1.json",
+  "passed_checks": [
+    "anchor_mode==manual_trusted_handoff",
+    "upstream_scan_allowed==false",
+    "global_search_allowed==false",
+    "recursive_scan_allowed==false",
+    "option_b_preflight_closure_final_decision_GO",
+    "option_b_controlled_execution_planning_final_decision_GO",
+    "boundary_status==frozen",
+    "controlled_execution_allowed==false",
+    "option_b_execution_allowed==false",
+    "segmentation_execution_allowed==false",
+    "image_content_read_allowed==false",
+    "active_model_selected==false",
+    "active_skill_selected==false",
+    "runtime_activation_allowed==false",
+    "protocol_compliance_check==required"
+  ],
+  "failed_checks": [],
+  "blocker_count": 0,
+  "anchor_valid": true,
+  "final_decision": "ANCHOR_VERIFY_GO"
+}

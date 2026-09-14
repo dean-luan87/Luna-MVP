@@ -1,0 +1,8 @@
+{
+  "title": "Action Execution Context v1",
+  "owner": "Action Runtime Governance",
+  "schema": ["execution_id", "action_type", "target", "environment", "permission", "risk_level", "timeout", "trace_id", "lifecycle_state"],
+  "scope": ["single approved action", "declared target", "declared environment", "declared permission", "declared resources"],
+  "forbidden_context": ["unrestricted Brain state", "unbounded Goal", "unrelated device context", "implicit permission"],
+  "rules": {"boundary_required": true, "timeout_required": true, "permission_required": true, "trace_required": true, "no_shared_unauthorized_context": true}
+}

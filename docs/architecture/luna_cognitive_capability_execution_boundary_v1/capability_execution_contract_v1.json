@@ -1,0 +1,9 @@
+{
+  "title": "Capability Execution Contract v1",
+  "owner": "Capability Governance",
+  "input_schema": ["capability", "input_type", "permission", "resource_budget", "context", "trace_id"],
+  "output_type": "Evidence Candidate",
+  "output_schema": ["source", "content", "confidence", "timestamp", "context", "limitation", "provenance", "trace_id"],
+  "provider_not_allowed": ["create Goal", "modify Memory", "control Brain", "write Reality", "create Action"],
+  "rules": {"evidence_required": true, "direct_reality_forbidden": true, "direct_decision_forbidden": true, "direct_action_forbidden": true}
+}

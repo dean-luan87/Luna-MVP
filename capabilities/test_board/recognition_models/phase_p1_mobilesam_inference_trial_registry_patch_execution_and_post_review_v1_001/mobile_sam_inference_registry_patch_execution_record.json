@@ -1,0 +1,51 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T04:04:45.614265+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "registry_mutation_allowed": true,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_inference_registry_patch_execution_record",
+  "mobile_sam_inference_registry_patch_execution_record": {
+    "record_id": "mobile_sam_inference_registry_patch_execution_record_v1",
+    "registry_patch_attempted": true,
+    "registry_patch_applied": true,
+    "changed_asset_ids": [
+      "mobile_sam"
+    ],
+    "changed_field_names": [
+      "inference_trial_verified",
+      "candidate_output_verified",
+      "single_local_test_image_inference_verified",
+      "inference_trial_phase_ref",
+      "inference_trial_result",
+      "inference_trial_input_type",
+      "inference_trial_input_manifest_ref",
+      "inference_trial_candidate_output_ref",
+      "inference_output_boundary",
+      "readiness_level",
+      "fact_write_ready",
+      "navigation_action_speech_ready"
+    ],
+    "changed_field_count": 12,
+    "write_timestamp": "2026-07-01T04:04:45.611184+00:00",
+    "pre_patch_sha256": "e8edd0dda33c1b8b4177aedba574e14bd47cac0f1b9ae5374f8a5fef9b7105b7",
+    "post_patch_sha256": "caf2f550157c02f80f0b78b0c3af0fa3d36b48ff98774b05f2df338877d9a318",
+    "patch_scope": "mobile_sam_inference_trial_verified_metadata",
+    "no_broad_inference_promoted": true,
+    "no_runtime_fields_promoted": true,
+    "no_output_adapter_fields_promoted": true,
+    "no_semantic_fields_promoted": true,
+    "no_fact_fields_promoted": true,
+    "no_navigation_action_speech_fields_promoted": true
+  }
+}

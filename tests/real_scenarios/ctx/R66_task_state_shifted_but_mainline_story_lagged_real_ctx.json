@@ -1,0 +1,31 @@
+{
+  "frame_seq": 66,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R66_task_state_shifted_but_mainline_story_lagged_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.25,
+  "task_state_shifted_but_mainline_story_lagged_observed": true,
+  "source_shift_twice_but_mainline_lagged_expected": true,
+  "dynamic_source_shift_but_mainline_static_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "任务层已切到核对清单，但主链叙事还停留在上一拍",
+  "object_search_flow_type": "task_state_lead_flow",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "task_state_lead_flow",
+    "fallback",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [12, 17, 80, 91], "conf": 0.84 },
+    { "label": "box", "bbox": [155, 45, 228, 118], "conf": 0.62 }
+  ]
+}

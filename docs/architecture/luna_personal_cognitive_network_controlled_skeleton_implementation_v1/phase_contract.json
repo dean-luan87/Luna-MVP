@@ -1,0 +1,101 @@
+{
+    "phase": "Phase-Luna-Personal-Cognitive-Network-Controlled-Skeleton-Implementation-v1-001",
+    "stage": "PCN Controlled Skeleton Implementation",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "previous_phase": "Phase-Luna-Personal-Cognitive-Network-Integrated-Scenario-Validation-And-Planning-Closure-v1-001",
+    "previous_phase_decision": "LUNA_PCN_INTEGRATED_SCENARIO_VALIDATION_AND_PLANNING_CLOSURE_READY",
+    "planning_closure": "READY_FOR_CONTROLLED_SKELETON",
+    "target_code_directory": "capabilities/midplatform/core/personal_cognitive_network/",
+    "target_documentation_directory": "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/",
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_personal_cognitive_network_planning_v1/",
+        "docs/architecture/luna_personal_cognitive_network_field_role_interaction_alignment_v1/",
+        "docs/architecture/luna_personal_cognitive_network_integrated_scenario_validation_and_planning_closure_v1/",
+        "docs/architecture/luna_context_foundation_module_closure_v1/",
+        "capabilities/midplatform/core/"
+    ],
+    "in_scope": [
+        "PCN object/link/state skeleton types",
+        "PCN controlled skeleton implementation",
+        "activation, growth, dormancy/reactivation placeholders",
+        "interaction reference handoff",
+        "resource constraint candidate handling",
+        "trace and static validators",
+        "12 synthetic fixtures",
+        "controlled runner asset creation",
+        "planning to code mapping",
+        "skeleton contract",
+        "final phase verifier asset creation"
+    ],
+    "out_of_scope": [
+        "real graph algorithm",
+        "networkx",
+        "graph database",
+        "cnn",
+        "gnn",
+        "neural network",
+        "persistence",
+        "runtime integration",
+        "pcn learning algorithm",
+        "interaction kernel runtime",
+        "causal engine",
+        "intent engine",
+        "emotion engine",
+        "decision arbitration runtime"
+    ],
+    "required_final_files": [
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_link_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_projection_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_resource_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_trace_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_error_types_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_protocol_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_activation_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_growth_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_interaction_handoff_skeleton_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_static_validators_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_fixture_v1.py",
+        "capabilities/midplatform/core/personal_cognitive_network/run_personal_cognitive_network_controlled_skeleton_v1.py",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/personal_cognitive_network_controlled_skeleton_implementation_v1.md",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_controlled_skeleton_contract_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_skeleton_clarification_inheritance_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/pcn_controlled_skeleton_change_manifest_v1.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/verify_personal_cognitive_network_controlled_skeleton_v1.py"
+    ],
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "markdown nonempty",
+            "python ast",
+            "py_compile",
+            "import boundary",
+            "static consistency",
+            "side-effect boundary"
+        ],
+        "V1": "Agent may run only if phase explicitly authorizes; this phase forbids execution in agent runbook",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "verification_authority": {
+        "V0": "Agent",
+        "V1": "Conditionally allowed by mode but not executed in this agent run",
+        "V2": "User Terminal Only",
+        "V3": "ChatGPT Only"
+    },
+    "runtime_execution": false,
+    "final_verifier_execution_by_agent": false,
+    "next_phase_not_authorized": true,
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "python3 docs/architecture/luna_personal_cognitive_network_controlled_skeleton_implementation_v1/verify_personal_cognitive_network_controlled_skeleton_v1.py"
+    ]
+}

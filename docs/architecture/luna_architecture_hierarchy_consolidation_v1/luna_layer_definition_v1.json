@@ -1,0 +1,11 @@
+{
+  "title": "Luna Five Layer Definition v1",
+  "layers": [
+    {"id": "L0", "name": "Constitution Layer", "owner": "Constitution", "purpose": "Non-negotiable constraints", "may_modify": ["constitution proposals through governance"], "may_not": ["runtime scheduling", "cognition", "action"]},
+    {"id": "L1", "name": "Cognitive Operating System", "owner": "Cognitive OS Governance", "purpose": "Lifecycle, governance, state, events, diagnostics, and runtime substrate", "may_modify": ["lifecycle candidates", "registry state", "runtime state candidates"], "may_not": ["Reality meaning", "Brain judgment", "external action"]},
+    {"id": "L2", "name": "Cognitive Core", "owner": "Cognitive Core Governance", "purpose": "World/self cognition, motivation, memory, learning, judgment", "may_modify": ["cognitive candidates", "decision candidates"], "may_not": ["provider selection authority", "direct Reality write", "action execution"]},
+    {"id": "L3", "name": "Social & Emotion Intelligence", "owner": "Social-Emotion Boundary Governance", "purpose": "Social and emotion context; future intelligence domain", "may_modify": ["context candidates"], "may_not": ["Reality", "Constitution", "Identity", "Decision override"]},
+    {"id": "L4", "name": "Capability & Execution System", "owner": "Capability Governance", "purpose": "External capability, provider, hardware, evidence, and execution gates", "may_modify": ["evidence candidates", "capability state candidates", "action requests"], "may_not": ["Brain control", "Goal creation", "direct Reality write"]}
+  ],
+  "rules": {"exactly_five_layers": true, "unique_layer_owner": true, "layer_is_canonical": true, "no_runtime_activation": true}
+}

@@ -1,0 +1,26 @@
+{
+  "artifact": "emotion_conflict_mixed_state_model_v1",
+  "candidate_only": true,
+  "supported_conditions": [
+    "contradictory emotional evidence",
+    "mixed emotions",
+    "unresolved emotion attribution",
+    "multiple concurrent emotion candidates",
+    "uncertainty",
+    "context-specific divergence",
+    "temporal divergence"
+  ],
+  "representation_rules": {
+    "contradictory_evidence_preserved": true,
+    "mixed_emotion_refs_preserved": true,
+    "competing_state_refs_preserved": true,
+    "unresolved_attribution_preserved": true,
+    "context_scope_preserved": true,
+    "uncertainty_preserved": true,
+    "no_silent_averaging": true,
+    "no_forced_single_category": true,
+    "no_conflict_deletion": true
+  },
+  "allowed_states": ["CONTESTED", "MIXED", "EVIDENCE_ACCUMULATING", "INSUFFICIENT_EVIDENCE", "REVISED"],
+  "resolution_rule": "Conflict resolution produces a candidate revision or clarification request; it does not silently convert disagreement into certainty."
+}

@@ -1,0 +1,11 @@
+{
+  "owner": "Field Perception Orchestrator / Active Observation Control",
+  "type_reused": "ObservationControlDecisionV1",
+  "trigger": "candidate uncertainty or contradiction",
+  "allowed": ["CONTINUE", "RECONSIDER"],
+  "candidate_only": true,
+  "provider_invocation": false,
+  "camera_activation": false,
+  "scheduler_execution": false,
+  "gateway_admission_is_continuation_authority": false
+}

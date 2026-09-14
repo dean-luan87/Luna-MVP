@@ -1,0 +1,53 @@
+# Luna Badge MVP 系统配置文件
+
+# 摄像头配置
+camera:
+  device_id: 0                    # 摄像头设备ID
+  width: 640                      # 图像宽度
+  height: 480                     # 图像高度
+  fps: 30                         # 帧率
+
+# 检测配置
+detection:
+  yolo:
+    model_path: "yolov5n.pt"      # YOLO模型路径
+    confidence_threshold: 0.5     # 置信度阈值
+    nms_threshold: 0.4            # NMS阈值
+    input_size: 640               # 输入尺寸
+  
+  deepsort:
+    max_distance: 0.2             # 最大距离
+    min_confidence: 0.3           # 最小置信度
+    max_age: 30                   # 最大年龄
+  
+  path_prediction:
+    prediction_frames: 10         # 预测帧数
+    min_trajectory_length: 5      # 最小轨迹长度
+
+# 语音配置
+speech:
+  default_voice: "zh-CN-XiaoxiaoNeural"  # 默认语音
+  default_speed: 1.0                      # 默认语速
+  enable_async: true                      # 启用异步播报
+  max_queue_size: 10                      # 最大队列大小
+
+# 冷却配置
+cooldown:
+  global_enabled: true            # 启用全局冷却
+  default_cooldown_time: 3        # 默认冷却时间
+  category_cooldowns:
+    system: 10                    # 系统消息冷却时间
+    navigation: 3                 # 导航消息冷却时间
+    obstacle: 2                   # 障碍物消息冷却时间
+
+# 日志配置
+logging:
+  level: "INFO"                   # 日志级别
+  save_to_file: true              # 保存到文件
+  log_file: "luna_mvp.log"        # 日志文件路径
+
+# 系统配置
+system:
+  debug_mode: false               # 调试模式
+  show_video: true                # 显示视频窗口
+  auto_save_interval: 60          # 自动保存间隔

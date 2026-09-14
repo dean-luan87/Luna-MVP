@@ -1,0 +1,25 @@
+{
+  "title": "Hypothesis Learning Interface v1",
+  "contract_type": "Hypothesis Validation to Learning",
+  "input": {
+    "hypothesis_reference": "hypothesis-example",
+    "validation_result": {},
+    "evidence_references": [],
+    "field_reference": "field-example",
+    "experience_reference": null,
+    "provenance": [],
+    "unknowns": []
+  },
+  "output": {
+    "pattern_candidate": {},
+    "future_candidate": {},
+    "belief_admission_candidate": {}
+  },
+  "boundary": {
+    "learning_receives_validation_result": true,
+    "learning_does_not_solidify_belief_automatically": true,
+    "learning_does_not_modify_reality": true,
+    "experience_is_not_reality": true,
+    "unknowns_are_preserved": true
+  }
+}

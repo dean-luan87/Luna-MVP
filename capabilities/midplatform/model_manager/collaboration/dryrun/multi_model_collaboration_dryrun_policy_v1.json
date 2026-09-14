@@ -1,0 +1,40 @@
+{
+  "schema_id": "MultiModelCollaborationDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Model-Manager-Multi-Model-Collaboration-DryRun-v1-001",
+  "layer_id": "Model_Manager_Collaboration_DryRun",
+  "dryrun_only": true,
+  "principle": "Collaboration Engine 作为 L2 与具体模型之间的能力编排层",
+  "chain": [
+    "L1_Situation_Candidate",
+    "L2_Agent_Plan_Candidate",
+    "Collaboration_Planner",
+    "Collaboration_Plan_Candidate",
+    "Collaboration_Slot_Fill",
+    "Provider_Sequence_Or_Parallel_Or_Challenge",
+    "Evidence_Fusion_Candidate",
+    "Decision_Validation",
+    "Tool_OS_Handoff_Candidate"
+  ],
+  "rules": [
+    {"rule_id": "collaboration_slot_not_model", "description": "Slot 绑定 capability，不绑定模型"},
+    {"rule_id": "pipeline_ocr_before_vlm", "description": "Pipeline 中 OCR 主能力，VLM 仅上下文验证"},
+    {"rule_id": "parallel_evidence_not_answer", "description": "Parallel 产出 evidence set，非单一答案"},
+    {"rule_id": "challenge_no_plan_override", "description": "Challenge 不覆盖 L2 selected plan"},
+    {"rule_id": "conflict_no_confidence_vote", "description": "冲突禁止 confidence 投票"},
+    {"rule_id": "degradation_explicit", "description": "降级须记录 lost_capability"},
+    {"rule_id": "no_multi_model_voting", "description": "禁止多模型投票"},
+    {"rule_id": "no_auto_answer_fusion", "description": "禁止自动答案融合"},
+    {"rule_id": "fusion_then_validation", "description": "Fusion → Validation → Candidate"}
+  ],
+  "boundary_flags": {
+    "collaboration_slot_abstraction": true,
+    "collaboration_not_competition": true,
+    "no_multi_model_voting": true,
+    "no_auto_answer_fusion": true,
+    "challenge_does_not_override_plan": true,
+    "degradation_explicit_not_silent": true,
+    "dryrun_no_real_inference": true,
+    "tool_os_handoff_not_execution": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version":"1.0",
+  "name":"Self Rhythm Boundary Contract",
+  "owner":"Self Rhythm Controller",
+  "permissions":{
+    "self_rhythm_controller":{"can":["observe rhythm inputs","generate mode candidate","generate resource budget hint","generate trace candidate"],"cannot":["modify Constitution","modify Identity","modify Value","modify Goal","modify Brain rules","modify Scheduler","control Hardware","switch Model","switch Provider","execute Action"]},
+    "self_regulation":{"can":["assess health","provide degradation and recovery context","approve stability constraints"],"cannot":["delegate constitutional authority"]},
+    "cognitive_runtime":{"can":["accept or reject rhythm hint","apply authorized scheduling policy"],"cannot":["delegate decision authority to rhythm"]},
+    "brain":{"can":["read rhythm context","evaluate candidates"],"cannot":["be overridden by rhythm hint"]},
+    "emotion_context":{"can":["remain future context metadata"],"cannot":["define power mode","override self rhythm"]}
+  },
+  "rules":{"unique_owner":true,"hint_not_command":true,"self_regulation_extension":true,"emotion_separate":true}
+}

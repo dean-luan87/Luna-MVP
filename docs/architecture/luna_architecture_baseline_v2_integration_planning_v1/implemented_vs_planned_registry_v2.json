@@ -1,0 +1,19 @@
+{
+  "version":"2.0",
+  "name":"Implemented versus Planned Registry",
+  "entries":[
+    {"architecture_module":"System Constitution","status":"implemented","evidence":["docs/architecture/luna_system_constitution_governance_v1/"],"owner":"Constitution","next_gate":"baseline maintenance"},
+    {"architecture_module":"Cognitive Core","status":"implemented","evidence":["docs/architecture/luna_cognitive_core_integration_review_v1/"],"owner":"Cognitive Core Governance","next_gate":"runtime readiness review"},
+    {"architecture_module":"Self Layer","status":"implemented","evidence":["docs/architecture/luna_cognitive_self_model_architecture_v1/","docs/architecture/luna_cognitive_self_regulation_architecture_v1/"],"owner":"Self Governance","next_gate":"baseline maintenance"},
+    {"architecture_module":"Social Self Layer","status":"implemented","evidence":["docs/architecture/luna_self_social_self_architecture_refactoring_v1/"],"owner":"Social Self Governance","next_gate":"role engineering plan"},
+    {"architecture_module":"Capability Governance","status":"implemented","evidence":["docs/architecture/luna_capability_governance_architecture_v1/"],"owner":"Capability Governance","next_gate":"controlled integration"},
+    {"architecture_module":"Action System","status":"implemented","evidence":["docs/architecture/luna_cognitive_action_boundary_v1/","docs/architecture/luna_action_runtime_foundation_v1/"],"owner":"Action Governance","next_gate":"user-authorized runtime phase"},
+    {"architecture_module":"Cognitive Runtime","status":"implemented","evidence":["docs/architecture/luna_cognitive_runtime_foundation_v1/"],"owner":"Cognitive Runtime Governance","next_gate":"runtime activation authorization"},
+    {"architecture_module":"Emotion Engine","status":"conceptual","evidence":["docs/architecture/cognitive_emotion_context_boundary_v1/"],"owner":"Cognitive Integration","next_gate":"future dedicated phase"},
+    {"architecture_module":"Role Manager Runtime","status":"planned","evidence":["docs/architecture/cognitive_role_relationship_system_v1/"],"owner":"Social Self Governance","next_gate":"engineering migration approval"},
+    {"architecture_module":"World Model","status":"conceptual","evidence":[],"owner":"Cognitive Core Governance","next_gate":"future boundary review"},
+    {"architecture_module":"Embodiment","status":"planned","evidence":[],"owner":"Capability and Action Governance","next_gate":"hardware boundary review"},
+    {"architecture_module":"External LLM","status":"planned","evidence":["docs/architecture/cognitive_model_manager_runtime_boundary_v1/"],"owner":"Capability Governance","next_gate":"provider admission and user authorization"}
+  ],
+  "rules":{"statuses_valid":["implemented","planned","conceptual","missing"],"evidence_required":true,"no_runtime_activation":true,"no_status_inference":true}
+}

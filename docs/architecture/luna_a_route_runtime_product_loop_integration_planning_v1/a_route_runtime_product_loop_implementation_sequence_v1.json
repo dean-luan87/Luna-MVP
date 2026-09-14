@@ -1,0 +1,12 @@
+{
+  "schema_version":"1.0",
+  "sequence":[
+    {"order":1,"module":"A Route Runtime Product Loop Integration","scope":"reuse A Route Orchestration as caller; input, stage, handoff and bounded control adapter","priority":"P0"},
+    {"order":2,"module":"Runtime Admission and Result Adapter","scope":"connect Action candidates to explicit Runtime Executor admission and Actual Result contract","priority":"P0"},
+    {"order":3,"module":"Outcome Feedback and Cycle Continuity Adapter","scope":"connect Outcome Evaluation to completion, bounded reobserve, reconsideration, learning signal and next-cycle ingress","priority":"P0"},
+    {"order":4,"module":"User Input / Output Channel Adapter","scope":"connect user ingress, status/response candidate and correction/interruption","priority":"P0"},
+    {"order":5,"module":"Session Continuity and Product Safety Adapter","scope":"cycle resume, pending work, diagnostics, resource and human correction integration","priority":"P1"},
+    {"order":6,"module":"A Route Product Completion Audit","scope":"prove M7/M8 boundaries and regression baseline","priority":"P0"}
+  ],
+  "fragmentation_policy":"module-level construction only; do not split into schema-only phases"
+}

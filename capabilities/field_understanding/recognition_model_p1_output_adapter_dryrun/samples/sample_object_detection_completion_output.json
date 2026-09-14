@@ -1,0 +1,22 @@
+{
+  "model_id": "mock_p1_object_detection_v1",
+  "model_family": "object_detection_completion_family",
+  "model_version_ref": "mock_yolo_lightweight_v1_0_0",
+  "model_origin": "external_open_source_object_detection_model",
+  "license_ref": "agpl_3_0_yolo_or_per_model_license_commercial_uncleared",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_p1_0001",
+  "output_schema_ref": "object_detection_output_schema_v1",
+  "confidence": 0.81,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "object_evidence_candidate",
+  "allowed_use": "test_only_until_commercial_license_cleared",
+  "commercial_use_status": "commercial_runtime_not_approved",
+  "fallback_plan": "fallback_to_p0_test_only_detection_or_unavailable_record",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain",
+  "label": "chair",
+  "bbox": [50, 100, 200, 280],
+  "open_vocab_phrase": "wooden chair",
+  "class_id": 56,
+  "boundaries": ["object_identity_is_not_fact"]
+}

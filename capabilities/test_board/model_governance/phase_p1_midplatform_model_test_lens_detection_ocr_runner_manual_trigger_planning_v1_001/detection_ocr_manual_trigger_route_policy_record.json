@@ -1,0 +1,148 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "DetectionOcrManualTriggerRoutePolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+    "description": "Detection / OCR runner_invocation_request 来源边界。request 不等于 execution。",
+    "planning_only": true,
+    "scope_runner_types": [
+      "Detection",
+      "OCR"
+    ],
+    "detection_request": {
+      "allowed_sources": [
+        "object_like_candidate",
+        "label_uncertain",
+        "correction_boosted_priority_signal",
+        "dynamic_candidate_by_label_not_confirmed",
+        "needs_tracking_review_suggest_detection_not_replace_tracking"
+      ],
+      "required_route": {
+        "source_target_model_id": "detection",
+        "requested_runner_type": "Detection"
+      },
+      "admission_conditions_any": [
+        {
+          "field": "detection_required",
+          "equals": true
+        },
+        {
+          "field": "motion_state_candidate",
+          "in": [
+            "dynamic_candidate",
+            "needs_tracking_review"
+          ]
+        },
+        {
+          "field": "correction_boosted",
+          "equals": true,
+          "note": "priority signal only"
+        },
+        {
+          "field": "prompt_label_candidate",
+          "confidence": "low",
+          "categories": [
+            "vehicle",
+            "sign",
+            "object",
+            "person"
+          ]
+        }
+      ],
+      "forbidden": [
+        "prompt_label_as_detection_ground_truth",
+        "confirmed_dynamic_from_single_frame",
+        "replace_tracking_with_detection_only",
+        "detection_on_pure_text_only_without_label_uncertain",
+        "fact_write_from_request",
+        "navigation_from_request"
+      ]
+    },
+    "ocr_request": {
+      "allowed_sources": [
+        "static_candidate",
+        "text_likely_region",
+        "sign_screen_poster_label_candidate",
+        "human_correction_read_this_text_priority_signal"
+      ],
+      "required_route": {
+        "source_target_model_id": "ocr",
+        "requested_runner_type": "OCR"
+      },
+      "admission_conditions_all": [
+        {
+          "field": "ocr_required",
+          "equals": true
+        },
+        {
+          "field": "motion_state_candidate",
+          "in": [
+            "static_candidate",
+            "unknown_motion_state"
+          ]
+        },
+        {
+          "field": "region_label_hints",
+          "any_of": [
+            "sign",
+            "text",
+            "advertisement",
+            "screen",
+            "poster",
+            "label"
+          ]
+        }
+      ],
+      "forbidden": [
+        "ocr_on_dynamic_only_region",
+        "ocr_result_as_fact_in_planning_phase",
+        "confirmed_text_content_from_single_frame",
+        "fact_write_from_request",
+        "navigation_from_request"
+      ]
+    },
+    "cross_runner_forbidden": [
+      "detection_request_from_ocr_only_route",
+      "ocr_request_from_detection_only_route",
+      "ui_bypass_task_candidate_direct_request",
+      "request_implying_execution_complete"
+    ],
+    "ui_copy_guidance_future": {
+      "allowed_button_labels": [
+        "生成检测请求",
+        "生成 OCR 请求",
+        "送入准入检查",
+        "暂不执行"
+      ],
+      "forbidden_button_labels": [
+        "开始检测",
+        "开始 OCR",
+        "立即执行",
+        "运行模型",
+        "开始识别"
+      ],
+      "request_panel_title": "待准入请求",
+      "must_show": [
+        "candidate_only",
+        "not_executed",
+        "not_fact",
+        "recommended only"
+      ]
+    },
+    "boundary_flags": {
+      "invocation_request_not_execution": true,
+      "detection_request_requires_detection_route": true,
+      "ocr_request_requires_ocr_route": true,
+      "not_fact": true,
+      "not_executed": true,
+      "planning_only": true
+    }
+  }
+}

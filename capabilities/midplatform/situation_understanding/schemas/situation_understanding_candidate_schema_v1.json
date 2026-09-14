@@ -1,0 +1,42 @@
+{
+  "schema_id": "SituationUnderstandingCandidateV1",
+  "version": "v1",
+  "layer_id": "L1_Situation_Understanding",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "situation_id", "scene_profile_candidate", "survival_context",
+    "task_clue_candidates", "missing_information_candidates",
+    "attention_target_hints", "model_need_hints", "uncertainty", "trace_refs",
+    "candidate_only", "not_fact"
+  ],
+  "boundary_flags": {
+    "situation_candidate_not_fact": true,
+    "no_runner_invocation": true,
+    "no_fact_admission_bypass": true,
+    "no_navigation_decision": true,
+    "candidate_only_required": true
+  },
+  "field_definitions": {
+    "situation_id": { "type": "string" },
+    "scene_profile_candidate": { "$ref": "scene_profile_candidate_schema_v1.json" },
+    "survival_context": { "$ref": "survival_context_schema_v1.json" },
+    "task_clue_candidates": { "type": "array", "items": { "$ref": "task_clue_candidate_schema_v1.json" } },
+    "missing_information_candidates": { "type": "array", "items": { "$ref": "missing_information_candidate_schema_v1.json" } },
+    "attention_target_hints": { "type": "array", "items": { "$ref": "attention_target_hint_schema_v1.json" } },
+    "model_need_hints": {
+      "type": "object",
+      "properties": {
+        "likely_needed": { "type": "array", "items": { "$ref": "model_need_hint_schema_v1.json" } },
+        "optional": { "type": "array", "items": { "$ref": "model_need_hint_schema_v1.json" } },
+        "not_needed": { "type": "array", "items": { "$ref": "model_need_hint_schema_v1.json" } }
+      }
+    },
+    "uncertainty": { "$ref": "situation_uncertainty_schema_v1.json" },
+    "trace_refs": { "type": "array" },
+    "candidate_only": { "type": "boolean", "const": true },
+    "not_fact": { "type": "boolean", "const": true },
+    "policy_refs": { "type": "array" }
+  },
+  "policy_refs": ["luna_situation_understanding_policy_v1"]
+}

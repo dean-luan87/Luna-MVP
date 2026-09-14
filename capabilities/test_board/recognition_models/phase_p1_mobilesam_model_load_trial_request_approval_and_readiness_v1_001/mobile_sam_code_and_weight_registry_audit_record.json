@@ -1,0 +1,45 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_code_and_weight_registry_audit_record",
+  "mobile_sam_code_and_weight_registry_audit": {
+    "audit_id": "mobile_sam_code_and_weight_registry_audit_v1",
+    "overlay_file_ref": "capabilities/midplatform/model_registry/code_only_source_install_registry_overlay_v1.json",
+    "overlay_exists": true,
+    "readiness_level": "code_and_weight_ready",
+    "readiness_level_ok": true,
+    "true_field_checks": {
+      "code_only_install_verified": true,
+      "find_spec_verified": true,
+      "weight_downloaded": true,
+      "weight_integrity_verified": true,
+      "storage_verified": true
+    },
+    "false_field_checks": {
+      "model_load_ready": true,
+      "model_ready": true,
+      "inference_ready": true,
+      "runtime_ready": true,
+      "output_adapter_ready": true,
+      "semantic_layer_ready": true,
+      "commercial_runtime_approved": true
+    },
+    "weight_file_path_ok": true,
+    "weight_size_ok": true,
+    "weight_sha256_ok": true,
+    "byte_track_weight_downloaded": false,
+    "byte_track_out_of_scope": true,
+    "audit_passed": true
+  }
+}

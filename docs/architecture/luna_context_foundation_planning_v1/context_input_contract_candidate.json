@@ -1,0 +1,70 @@
+{
+  "contract_id": "luna_context_input_contract_candidate_v1",
+  "inputs": [
+    {
+      "producer": "Field State System",
+      "input_type": "Field Context Projection Candidate",
+      "allowed_input": ["Current Field", "World State Reference", "Temporal Validity", "Uncertainty", "Provenance", "Trace Reference"],
+      "forbidden_input": ["Field Mutation Command", "Reality Override", "Intent", "Decision", "Action"],
+      "write_authority": "Field State Reducer",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Observation Manager",
+      "input_type": "Observation Projection Candidate",
+      "allowed_input": ["Evidence Reference", "Observation Candidate", "Uncertainty", "Quality", "Provenance", "Trace Reference"],
+      "forbidden_input": ["Fact", "Decision", "Action", "Direct Field Mutation"],
+      "write_authority": "Observation Manager",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Memory System",
+      "input_type": "Memory Context Projection Candidate",
+      "allowed_input": ["Historical Reference", "Experience Reference", "Compressed Memory Reference", "Association", "Confidence", "Unknown", "Provenance"],
+      "forbidden_input": ["Raw Memory", "Memory Store Handle", "Database Handle", "Reality Override", "Decision", "Source Mutation"],
+      "write_authority": "Memory Governance",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Self System",
+      "input_type": "Self Context Projection Candidate",
+      "allowed_input": ["Current Identity Reference", "Capability Reference", "Boundary Reference", "Resource Reference", "Regulation Reference"],
+      "forbidden_input": ["Identity Mutation", "Constitution Mutation", "Role Ownership Transfer", "Goal Mutation"],
+      "write_authority": "Self Governance",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Role System / Social Self",
+      "input_type": "Role Context Projection Candidate",
+      "allowed_input": ["Current Role Reference", "Responsibility Reference", "Role Boundary", "Field Binding", "Temporal Validity", "Unknown"],
+      "forbidden_input": ["Identity Mutation", "Role Creation Command", "Decision", "Social Action"],
+      "write_authority": "Role Governance",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Relationship System / Social Self",
+      "input_type": "Relationship Context Projection Candidate",
+      "allowed_input": ["Relation Reference", "Relation Importance Candidate", "Participant References", "History Reference", "Current State", "Confidence", "Unknown"],
+      "forbidden_input": ["Relationship Mutation", "Relationship Judgment Fact", "Value Rewrite", "Decision"],
+      "write_authority": "Relationship Governance",
+      "status": "PLANNING_CANDIDATE"
+    },
+    {
+      "producer": "Emotion Context Boundary / Integration Layer",
+      "input_type": "Emotion Context Projection Candidate",
+      "allowed_input": ["Current Emotional State Reference", "Emotional Influence Candidate", "Evidence", "Confidence", "Temporal Scope", "Unknown", "Revocation Reference"],
+      "forbidden_input": ["Emotion Calculation Command", "Emotion Decision", "Value Rewrite", "Identity Rewrite", "Action"],
+      "write_authority": "Emotion Context Boundary / Integration Governance",
+      "status": "PLANNING_CANDIDATE"
+    }
+  ],
+  "context_consumer": "Context Foundation Governance Candidate",
+  "context_write_authority": "Context Envelope Candidate only",
+  "projection_only": true,
+  "direct_database_access": false,
+  "direct_runtime_access": false,
+  "direct_raw_memory_access": false,
+  "source_owner_precedence": true,
+  "active_contract": false,
+  "status": "PLANNING_CANDIDATE"
+}

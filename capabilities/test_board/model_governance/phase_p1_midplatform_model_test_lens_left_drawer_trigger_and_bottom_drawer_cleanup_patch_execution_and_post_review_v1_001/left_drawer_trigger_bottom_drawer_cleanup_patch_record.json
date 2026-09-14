@@ -1,0 +1,11 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Left-Drawer-Trigger-And-Bottom-Drawer-Cleanup-Patch-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "real_test",
+  "record": {
+    "id": "left_drawer_trigger_bottom_drawer_cleanup_patch_record"
+  }
+}

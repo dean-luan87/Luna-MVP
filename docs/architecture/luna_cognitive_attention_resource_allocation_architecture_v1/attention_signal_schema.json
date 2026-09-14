@@ -1,0 +1,10 @@
+{
+  "schema_id": "attention_signal_v1",
+  "owner": "Attention Layer",
+  "fields": ["signal_id", "field_importance", "task_relevance", "safety_impact", "uncertainty", "belief_conflict", "memory_relevance", "schema_match", "self_budget", "resource_cost", "provenance", "unknowns"],
+  "signal_sources": ["Field", "Task", "Risk", "Uncertainty", "Belief", "Memory", "Schema", "Self"],
+  "perception_is_not_attention": true,
+  "model_attention_is_not_cognitive_attention": true,
+  "candidate_only": true,
+  "decision_authority": false
+}

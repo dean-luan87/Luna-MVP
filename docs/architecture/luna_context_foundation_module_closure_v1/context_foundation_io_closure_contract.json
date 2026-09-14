@@ -1,0 +1,47 @@
+{
+  "contract_id": "luna_context_foundation_io_closure_contract_v1",
+  "owner": "Context_Foundation",
+  "input_semantics": "Owner Projection only",
+  "inputs": [
+    {"source_owner": "Field State System", "input_type": "Field Context Projection Reference", "read_only": true},
+    {"source_owner": "Observation Manager", "input_type": "Observation Projection Reference", "read_only": true},
+    {"source_owner": "Memory System", "input_type": "Memory Context Projection Reference", "read_only": true},
+    {"source_owner": "Self System", "input_type": "Self Context Projection Reference", "read_only": true},
+    {"source_owner": "Role System / Social Self", "input_type": "Role Context Projection Reference", "read_only": true},
+    {"source_owner": "Relationship System / Social Self", "input_type": "Relationship Context Projection Reference", "read_only": true},
+    {"source_owner": "Emotion Context Boundary / Integration Layer", "input_type": "Emotion Context Projection Reference", "read_only": true},
+    {"source_owner": "Mental Field Continuity source owners", "input_type": "Mental Field Continuity Reference", "read_only": true}
+  ],
+  "constraint_inputs": [
+    "Temporal Validity Reference",
+    "Resource Budget Reference",
+    "Current-Reality precedence",
+    "Unknown and contradiction references"
+  ],
+  "primary_output": "Context Envelope Candidate",
+  "allowed_outputs": [
+    "Context Envelope Candidate",
+    "Context Trace Candidate",
+    "Degraded Context Scope Candidate",
+    "Unknown Completion Candidate Reference"
+  ],
+  "forbidden_outputs": [
+    "Action",
+    "Decision",
+    "Fact",
+    "Intent",
+    "Goal",
+    "Causal Result",
+    "Runtime Command",
+    "Memory Mutation",
+    "Field Mutation",
+    "Emotion Mutation"
+  ],
+  "candidate_only": true,
+  "source_owner_precedence": true,
+  "source_owner_transfer": false,
+  "source_mutation_allowed": false,
+  "active_contract": false,
+  "runtime_integration": false,
+  "status": "FROZEN_CLOSURE_BASELINE"
+}

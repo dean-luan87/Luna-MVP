@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Overlay Policy",
+    "overlay_is_separate_state_layer": true,
+    "substrate_mutation_allowed": false,
+    "overlay_expiry_requires_substrate_refresh": true,
+    "overlay_can_mask_state_temporarily": true,
+    "overlay_can_replace_substrate_permanently": false,
+    "overlay_end_auto_restore_without_evidence": false,
+    "overlay_conflict_preserved": true,
+    "overlay_provenance_required": true,
+    "overlay_replayable": true,
+    "overlay_coverages": [
+        "temporary passage",
+        "construction detour",
+        "temporary closure",
+        "temporary service suspension",
+        "temporary facility relocation",
+        "event crowd control",
+        "weather-related temporary obstruction",
+        "emergency access override candidate"
+    ]
+}

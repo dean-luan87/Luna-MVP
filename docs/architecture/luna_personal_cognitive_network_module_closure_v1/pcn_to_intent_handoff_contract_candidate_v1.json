@@ -1,0 +1,35 @@
+{
+    "artifact_id": "pcn_to_intent_handoff_contract_candidate_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "handoff_type": "CANDIDATE_ONLY",
+    "producer": "Personal Cognitive Network Governance",
+    "consumer": "Intent Governance",
+    "allowed_handoff_payload": [
+        "context_linked_cognitive_projection_candidate",
+        "active_cognitive_object_references",
+        "active_link_references",
+        "subjective_strength_references",
+        "role_relationship_projection_references",
+        "field_interaction_references",
+        "dormancy_reactivation_references",
+        "resource_degradation_metadata",
+        "provenance_and_trace_references"
+    ],
+    "forbidden_handoff_payload": [
+        "final_intent",
+        "intent_decision",
+        "causal_result",
+        "action",
+        "truth_arbitration"
+    ],
+    "semantic_non_equivalence": {
+        "pcn_activation_not_intent": true,
+        "strong_cognitive_link_not_intent": true,
+        "repeated_activation_not_intent": true,
+        "field_occupation_not_intent": true,
+        "role_competition_not_intent_decision": true
+    },
+    "intent_implementation_started": false,
+    "causal_implementation_started": false,
+    "decision_action_implementation_started": false
+}

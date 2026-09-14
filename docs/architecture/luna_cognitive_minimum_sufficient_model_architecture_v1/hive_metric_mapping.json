@@ -1,0 +1,12 @@
+{
+  "mapping_id": "hive_metric_mapping_v1",
+  "comparison_tuple": ["Luna State Vector", "Function Parameters", "Outcome Quality"],
+  "metrics": ["goal_achievement", "safety_result", "resource_efficiency", "understanding_accuracy", "prediction_error", "capability_stability", "learning_value", "recovery_quality"],
+  "outputs": ["State Comparison Candidate", "Parameter Improvement Candidate", "Metric Confidence", "Unknowns"],
+  "hive_is_observer_only": true,
+  "hive_has_no_write_permission": true,
+  "privacy_scope_required": true,
+  "self_review_required": true,
+  "automatic_optimization": false,
+  "candidate_only": true
+}

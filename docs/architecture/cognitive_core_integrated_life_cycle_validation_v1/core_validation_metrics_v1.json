@@ -1,0 +1,22 @@
+{
+  "schema_name": "Core Validation Metrics v1",
+  "metrics": [
+    "information_flow_integrity",
+    "authority_boundary_integrity",
+    "field_role_continuity",
+    "workspace_refresh_integrity",
+    "attention_learning_linkage",
+    "reflex_interrupt_integrity",
+    "emotion_context_isolation",
+    "unknown_retention",
+    "provenance_retention",
+    "self_identity_continuity",
+    "failure_isolation",
+    "longitudinal_stability"
+  ],
+  "measurement_mode": "Static Fixture Review",
+  "runtime_execution": false,
+  "model_execution": false,
+  "action_execution": false,
+  "unknowns_are_preserved": true
+}

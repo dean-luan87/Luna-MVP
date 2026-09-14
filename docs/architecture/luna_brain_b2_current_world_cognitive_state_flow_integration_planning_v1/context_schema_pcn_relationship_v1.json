@@ -1,0 +1,8 @@
+{
+  "relationship_id": "b2_context_schema_pcn_relationship_v1",
+  "context": {"owner": "Context Foundation", "role": "typed read-only assembly of source-owned projections", "not": ["reality owner", "PCN owner", "intent generator", "causal conclusion", "memory writer"]},
+  "schema": {"role": "contract/protocol structure and ownership mapping", "authority": "does not create semantic truth or a second state owner"},
+  "pcn": {"owner": "Personal Cognitive Network Governance", "role": "typed links, activation/context projections, priors/constraints as candidate references", "mutation": false},
+  "dependency": ["Context Foundation -> PCN reference", "PCN reference -> Intent binding", "source-owner precedence", "read-only projections"],
+  "b2_rule": "Cognitive State Formation consumes Context and PCN references; it does not mutate either owner."
+}

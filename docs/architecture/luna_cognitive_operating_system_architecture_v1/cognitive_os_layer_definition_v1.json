@@ -1,0 +1,9 @@
+{
+  "title": "Cognitive OS Layer Definition v1",
+  "layer": "L1",
+  "parent": "L0 Constitution Layer",
+  "children": ["Module Lifecycle System", "Cognitive Flow Controller", "State Management System", "Event System", "Trace System", "Recovery System", "Contract Enforcement System", "Admission System", "Health Monitoring System"],
+  "consumers": ["L2 Cognitive Core", "L3 Social & Emotion Boundary", "L4 Capability & Execution Boundary"],
+  "not_authority": ["Decision ownership", "Reality modification", "Goal creation", "Action execution"],
+  "rules": {"subsystem_owner_required": true, "state_writer_required": true, "event_lifecycle_required": true, "runtime_not_activated": true}
+}

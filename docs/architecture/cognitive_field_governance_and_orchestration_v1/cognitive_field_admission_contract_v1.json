@@ -1,0 +1,10 @@
+{
+  "schema_version": "v1",
+  "contract_type": "field_admission",
+  "admission_sources": ["Brain Intent", "Neural Detection", "External Event", "User Request"],
+  "flow": ["Field Request", "Validation", "Admission", "Activation Candidate"],
+  "required_validation": ["source", "scope", "owner_reference", "lifecycle", "resource_requirement", "boundary_policy", "validity", "provenance", "unknowns"],
+  "external_model_direct_creation": false,
+  "evidence_may_request_admission": true,
+  "admission_does_not": ["make_decision", "create_goal", "execute_action", "modify_reality", "modify_self", "bypass_brain"]
+}

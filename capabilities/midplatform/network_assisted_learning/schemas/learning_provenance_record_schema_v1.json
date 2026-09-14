@@ -1,0 +1,31 @@
+{
+  "schema_id": "LearningProvenanceRecordSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "provenance_id",
+    "origin_type",
+    "origin_ref",
+    "transformation_steps",
+    "policy_review_refs",
+    "trace_refs"
+  ],
+  "field_definitions": {
+    "provenance_id": { "type": "string" },
+    "origin_type": { "type": "string" },
+    "origin_ref": { "type": "string" },
+    "collection_time_optional": { "type": "string" },
+    "transformation_steps": { "type": "array" },
+    "teacher_model_refs_optional": { "type": "array" },
+    "human_review_refs_optional": { "type": "array" },
+    "policy_review_refs": { "type": "array" },
+    "trace_refs": { "type": "array" }
+  },
+  "boundary_flags": {
+    "provenance_required": true,
+    "planning_only": true
+  }
+}

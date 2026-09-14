@@ -1,0 +1,10 @@
+{
+  "schema_id": "episode_memory_v1",
+  "owner": "Memory System",
+  "fields": ["episode_id", "time", "space", "field_ref", "role_ref", "task_ref", "event_sequence", "outcome", "experience_evaluation", "source_evidence", "confidence", "unknowns", "provenance"],
+  "required_binding": ["time", "space", "field_ref", "role_ref", "task_ref", "event_sequence", "outcome"],
+  "experience_evaluation_required": true,
+  "observation_auto_admission": false,
+  "candidate_only": true,
+  "reality_authority": false
+}

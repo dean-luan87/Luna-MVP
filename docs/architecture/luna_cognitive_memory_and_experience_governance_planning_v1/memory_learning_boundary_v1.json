@@ -1,0 +1,16 @@
+{
+    "artifact": "memory_learning_boundary_v1",
+    "future_route": [
+        "Memory / Experience",
+        "Learning Evidence Candidate",
+        "Learning Governance",
+        "Parameter Update Candidate",
+        "Dynamic Cognitive Regulation admission/bounds",
+        "separately approved activation"
+    ],
+    "rules": {
+        "memory_does_not_execute_learning": true,
+        "learning_not_implemented_in_phase": true,
+        "candidate_only_bridge": true
+    }
+}

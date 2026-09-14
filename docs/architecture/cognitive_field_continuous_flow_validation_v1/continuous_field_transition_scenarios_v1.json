@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "continuous_field_transition_scenarios",
+  "deterministic": true,
+  "time_horizon": "24h",
+  "timeline": [
+    {"time": "08:00", "field": "home_field", "state": "Active"},
+    {"time": "09:00", "field": "commute_field", "state": "Active", "prior": "home_field:Suspend"},
+    {"time": "10:00", "field": "office_field", "state": "Active", "prior": "commute_field:Suspend"},
+    {"time": "18:00", "field": "commercial_field", "state": "Active", "prior": "office_field:Background"},
+    {"time": "20:00", "field": "home_field", "state": "Active", "prior": "commercial_field:Close"}
+  ],
+  "stable_layer": ["identity", "survival_constitution", "core_capability"],
+  "adaptive_layer_changes": ["current_goal", "attention_scope", "field_rules"],
+  "transient_layer_policy": "create_and_release",
+  "identity_drift": false,
+  "action_execution": false
+}

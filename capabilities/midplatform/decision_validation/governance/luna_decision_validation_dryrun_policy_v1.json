@@ -1,0 +1,37 @@
+{
+  "schema_id": "LunaDecisionValidationDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Decision-Validation-Layer-DryRun-v1-001",
+  "layer_id": "L2_5_Decision_Validation",
+  "dryrun_only": true,
+  "principle": "L2 plan must pass L2.5 validation before Tool OS handoff candidate is cleared.",
+  "chain": [
+    "job_envelope",
+    "runner_evidence",
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "decision_validation_candidate",
+    "tool_os_handoff_candidate"
+  ],
+  "rules": [
+    {"rule_id": "l1_drives_l2", "description": "L1 驱动 L2（经 agent planning dryrun）"},
+    {"rule_id": "l2_feeds_validation", "description": "L2 plan 必须进入 L2.5 validation"},
+    {"rule_id": "validation_gates_handoff", "description": "仅 validated_candidate 可清除 handoff gate"},
+    {"rule_id": "no_plan_override_by_validation", "description": "Validation 不覆盖 selected plan"},
+    {"rule_id": "no_teacher_in_dryrun", "description": "DryRun 不接 Teacher"},
+    {"rule_id": "no_tool_execution_in_dryrun", "description": "DryRun 不执行工具"},
+    {"rule_id": "no_runner_invocation_in_dryrun", "description": "DryRun 不触发 runner"},
+    {"rule_id": "no_fact_write_in_dryrun", "description": "DryRun 不写 fact"}
+  ],
+  "boundary_flags": {
+    "l1_drives_l2": true,
+    "l2_feeds_validation": true,
+    "validation_gates_handoff": true,
+    "no_plan_override_by_validation": true,
+    "no_teacher_in_dryrun": true,
+    "no_tool_execution_in_dryrun": true,
+    "no_runner_invocation_in_dryrun": true,
+    "no_fact_write_in_dryrun": true,
+    "dryrun_only": true
+  }
+}

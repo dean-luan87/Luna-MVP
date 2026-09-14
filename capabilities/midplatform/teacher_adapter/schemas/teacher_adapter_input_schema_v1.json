@@ -1,0 +1,14 @@
+{
+  "schema_id": "TeacherAdapterInputSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "situation_understanding_candidate",
+    "available_capabilities",
+    "policy_context",
+    "task_type",
+    "required_output_type",
+    "candidate_only",
+    "not_fact"
+  ],
+  "optional_fields": ["agent_plan_candidate_optional", "input_evidence"]
+}

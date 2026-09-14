@@ -1,0 +1,9 @@
+{
+  "phase_status": "CONTROLLED_IMPLEMENTATION",
+  "must_remain_false": [
+    "provider_invocation", "model_inference", "camera_activation", "ocr_execution", "slam_execution", "vio_execution", "vlm_execution", "automatic_download", "automatic_install", "automatic_upgrade", "automatic_rollback", "provider_semantic_authority", "automatic_fact_admission", "world_truth_promotion", "field_mutation", "current_world_mutation", "intent_mutation", "decision_mutation", "task_mutation", "learning_execution", "memory_mutation", "semantic_compression", "dynamic_cognitive_function_execution", "vision_owns_semantic_sufficiency", "snsp_effective_rule_authority", "srsk_truth_authority", "user_uninstalls_mandatory_safety", "user_bypasses_safety_baseline", "unapproved_safety_provider_activation", "provider_to_brain_shortcut"
+  ],
+  "candidate_only": true,
+  "model_manager_admission_retained": true,
+  "observation_gateway_required": true
+}

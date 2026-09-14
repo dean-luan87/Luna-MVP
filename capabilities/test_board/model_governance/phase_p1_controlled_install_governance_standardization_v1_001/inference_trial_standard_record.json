@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "inference_trial_standard_record",
+  "inference_trial_standard_record": {
+    "record_id": "inference_trial_standard_v1",
+    "requires_model_load_verified": true,
+    "test_image_manifest_required": true,
+    "candidate_output_only": true,
+    "success_means_inference_trial_verified_only": true,
+    "broad_inference_ready_must_remain_false": true
+  }
+}

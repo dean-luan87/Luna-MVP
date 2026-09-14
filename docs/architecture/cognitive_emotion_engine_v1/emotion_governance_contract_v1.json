@@ -1,0 +1,22 @@
+{
+  "contract_name": "Emotion Governance Contract v1",
+  "reality_priority": true,
+  "unknowns_are_preserved": true,
+  "provenance_required": true,
+  "confidence_required": true,
+  "context_binding_required": true,
+  "revocability_required": true,
+  "emotion_recognition_runtime": false,
+  "automatic_emotional_expression": false,
+  "personality_switching_runtime": false,
+  "automatic_value_change": false,
+  "automatic_identity_change": false,
+  "social_judgment": false,
+  "b_simulation": false,
+  "action_runtime": false,
+  "emotion_does_not_modify_reality": true,
+  "emotion_does_not_modify_goal": true,
+  "emotion_does_not_modify_value": true,
+  "emotion_does_not_modify_identity": true,
+  "emotion_does_not_modify_decision": true
+}

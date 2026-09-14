@@ -1,0 +1,69 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_execution_outcome_validation",
+  "scope": "Decision_Candidate_to_Outcome_Interpretation_only",
+  "cases": [
+    {
+      "case_id": "prediction_reality_environment_difference",
+      "expected_outcome": {
+        "route_state": "passable"
+      },
+      "actual_outcome": {
+        "route_state": "construction_closed"
+      },
+      "difference_candidate": {
+        "classification": "Environment Change"
+      },
+      "assertion": "prediction_is_not_rewritten_as_fact"
+    },
+    {
+      "case_id": "information_gap_difference",
+      "expected_outcome": {
+        "surface_state": "clear"
+      },
+      "actual_outcome": {
+        "surface_state": "hidden_ice"
+      },
+      "difference_candidate": {
+        "classification": "Information Gap"
+      },
+      "assertion": "missing_information_remains_visible"
+    },
+    {
+      "case_id": "understanding_gap_difference",
+      "expected_outcome": {
+        "object_relation": "non_blocking"
+      },
+      "actual_outcome": {
+        "object_relation": "blocking"
+      },
+      "difference_candidate": {
+        "classification": "Understanding Gap"
+      },
+      "assertion": "representation_error_is_not_execution_error"
+    },
+    {
+      "case_id": "repeated_failure_pattern_candidate",
+      "outcome_sequence": [
+        "validated_similar_deviation_1",
+        "validated_similar_deviation_2",
+        "validated_similar_deviation_3"
+      ],
+      "expected_adaptation_boundary": {
+        "pattern_candidate": true,
+        "requires_validation_before_adoption": true
+      },
+      "forbidden_outputs": [
+        "single_outcome_changes_strategy",
+        "automatic_self_model_update",
+        "online_learning"
+      ],
+      "assertion": "repetition_forms_candidate_not_adoption"
+    }
+  ],
+  "assertions": {
+    "prediction_reality_difference_is_traceable": true,
+    "difference_taxonomy_is_candidate_only": true,
+    "experience_adoption_excluded": true
+  }
+}

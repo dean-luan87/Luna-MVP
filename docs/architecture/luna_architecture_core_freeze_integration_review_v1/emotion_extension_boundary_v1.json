@@ -1,0 +1,9 @@
+{
+  "title": "Emotion Extension Boundary v1",
+  "status": "interface_only",
+  "inputs": ["Field Context", "Role Context", "Relationship Context", "Memory Metadata", "Self Context"],
+  "outputs": ["Emotion Context Candidate", "Attention Influence Candidate", "Preference Candidate"],
+  "allowed": ["Context", "Attention Candidate", "Preference Candidate"],
+  "forbidden": ["Emotion → Direct Action", "Emotion → Decision Override", "Emotion → Constitution", "Emotion → Identity Rewrite", "Emotion → Value Rewrite"],
+  "rules": {"no_emotion_runtime":true,"no_emotion_decision_authority":true,"no_direct_action":true,"future_engine_separate":true}
+}

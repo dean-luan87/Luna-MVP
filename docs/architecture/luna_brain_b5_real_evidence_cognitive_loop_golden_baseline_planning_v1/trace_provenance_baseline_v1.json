@@ -1,0 +1,7 @@
+{
+  "mandatory_reverse_trace":"Outcome/Reobserve -> Task -> Decision -> Intent -> Cognitive State/Flow -> Current World -> Context -> Observation Gateway -> Visual Evidence -> Provider/Model/Frame",
+  "required_ref_classes":["trace_refs","provenance_refs","temporal_refs","uncertainty_refs","conflict_refs","contradiction_refs"],
+  "provenance_grants_auditability":true,
+  "provenance_grants_authority":false,
+  "trace_break": "baseline violation requiring targeted or full regression"
+}

@@ -1,0 +1,21 @@
+{
+    "artifact": "learning_dynamic_regulation_boundary_v1",
+    "allowed_outputs": [
+        "ParameterUpdateCandidate"
+    ],
+    "dynamic_regulation_remains_owner_of": [
+        "parameter classification",
+        "bounds",
+        "regulation admission",
+        "parameter update admission",
+        "genome candidate governance",
+        "activation governance"
+    ],
+    "forbidden": [
+        "bypass_bounds",
+        "activate_parameters",
+        "activate_genome",
+        "alter_parameter_class",
+        "persist_parameter_values"
+    ]
+}

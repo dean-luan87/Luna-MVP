@@ -1,0 +1,13 @@
+{
+    "artifact": "self_emotion_boundary_v1",
+    "future_owner": "Emotion Governance / Emotion Engine",
+    "future_evidence_interfaces": [
+        "EmotionEvidenceToSelfCandidate",
+        "SelfContextToEmotionCandidate"
+    ],
+    "forbidden_in_this_phase": [
+        "Emotion Engine implementation",
+        "emotional semantic compression",
+        "emotion direct self mutation"
+    ]
+}

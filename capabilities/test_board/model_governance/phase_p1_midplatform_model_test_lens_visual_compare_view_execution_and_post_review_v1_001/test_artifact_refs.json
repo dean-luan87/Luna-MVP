@@ -1,0 +1,18 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Compare-View-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T06:06:25.802901+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_artifact_refs",
+  "artifact_refs": [
+    "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_model_test_lens_visual_compare_view_execution_v1_smoke_v0/p1_midplatform_model_test_lens_visual_compare_view_execution_review_v1.json"
+  ],
+  "source_review_file": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_midplatform_model_test_lens_visual_compare_view_execution_v1_smoke_v0/p1_midplatform_model_test_lens_visual_compare_view_execution_review_v1.json"
+}

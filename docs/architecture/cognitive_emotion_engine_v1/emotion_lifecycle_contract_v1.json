@@ -1,0 +1,15 @@
+{
+  "contract_name": "Emotion Lifecycle Contract v1",
+  "states": ["Triggered", "Active", "Decay", "Integrated", "Archived"],
+  "transitions": [
+    "Triggered → Active",
+    "Active → Decay",
+    "Decay → Integrated",
+    "Integrated → Archived"
+  ],
+  "decay_is_context_and_evidence_aware": true,
+  "integration_creates_memory_candidate": true,
+  "integration_creates_learning_candidate": true,
+  "lifecycle_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

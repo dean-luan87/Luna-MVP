@@ -1,0 +1,21 @@
+{
+    "artifact": "self_attribution_state_model_v1",
+    "states": [
+        "PROPOSED",
+        "SUPPORTED_CANDIDATE",
+        "UNCERTAIN",
+        "CONTESTED",
+        "NEEDS_CONFIRMATION",
+        "REVISED",
+        "SUPERSEDED",
+        "REVOKED",
+        "EXPIRED"
+    ],
+    "rules": {
+        "default_is_not_fact": true,
+        "explicit_user_correction_precedence": true,
+        "contradiction_can_demote_to_contested": true,
+        "stale_candidate_can_expire": true,
+        "confirmation_required_for_high_sensitivity": true
+    }
+}

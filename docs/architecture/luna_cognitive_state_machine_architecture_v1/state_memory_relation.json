@@ -1,0 +1,16 @@
+{
+  "relation_id": "cognitive_state_memory_v1",
+  "mapping": {
+    "Observation": "Field and evidence context may activate relevant memory",
+    "Understanding": "Memory provides contextual comparison, not reality authority",
+    "Reflection": "Validated outcome may form experience candidate",
+    "Learning": "Pattern and schema candidates may inform growth review"
+  },
+  "memory_is_not_state": true,
+  "memory_is_not_reality": true,
+  "current_reality_precedence": true,
+  "single_outcome_not_memory": true,
+  "state_does_not_auto_write_memory": true,
+  "memory_does_not_switch_state": true,
+  "candidate_only": true
+}

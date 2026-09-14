@@ -1,0 +1,84 @@
+{
+    "record_version": "v1",
+    "phase": "Phase-P1-Field-Kernel-Field-State-Read-Model-Promotion-And-Governance-Admission-v1-001",
+    "capability_id": "luna.field_state_read_model",
+    "module_id": "luna.midplatform.field_state_read_model",
+    "module_version": "v1",
+    "promotion_eligibility": "eligible",
+    "recommended_promotion_status": "promotion_candidate",
+    "production_status": false,
+    "unresolved_blockers": [],
+    "eligibility_checks": {
+        "module_identity_unique": true,
+        "manifest_complete": true,
+        "registry_discoverable": true,
+        "baseline_registry_closed_loop": true,
+        "dependency_boundary_clear": true,
+        "skeleton_evidence_complete": true,
+        "contract_dryrun_evidence_complete": true,
+        "runtime_evidence_complete": true,
+        "module_integration_evidence_complete": true,
+        "all_previous_runners_passed": true,
+        "all_previous_verifiers_passed": true,
+        "boundary_preserved": true,
+        "mutation_authority_false": true,
+        "candidate_only": true,
+        "no_real_store": true,
+        "no_runtime_loop": true,
+        "no_downstream_dispatch": true,
+        "no_unresolved_blocker": true,
+        "known_limitations_recorded": true,
+        "prohibited_capabilities_recorded": true,
+        "promotion_constraints_recorded": true
+    },
+    "previous_phase_results": {
+        "controlled_skeleton": {
+            "runner": "10/10",
+            "verifier": "18/18",
+            "evidence_ref": "_tmp_eval_out/field_state_read_model_controlled_skeleton_v1_smoke_v0/field_state_read_model_controlled_skeleton_v1.json"
+        },
+        "contract_dryrun": {
+            "runner": "45/45",
+            "verifier": "20/20",
+            "evidence_ref": "_tmp_eval_out/field_state_read_model_contract_dryrun_v1_smoke_v0/field_state_read_model_contract_dryrun_v1.json"
+        },
+        "controlled_runtime": {
+            "runner": "24/24",
+            "verifier": "25/25",
+            "evidence_ref": "_tmp_eval_out/field_state_read_model_controlled_runtime_v1_smoke_v0/field_state_read_model_controlled_runtime_v1.json"
+        },
+        "module_integration": {
+            "runner": "25/25",
+            "verifier": "26/26",
+            "verification_source": "phase_precondition_user_terminal",
+            "evidence_ref": "_tmp_eval_out/field_state_read_model_module_integration_v1_smoke_v0/field_state_read_model_module_integration_v1.json"
+        }
+    },
+    "known_limitations": [
+        "no real state store",
+        "no asynchronous runtime",
+        "no downstream dispatch",
+        "no batch query",
+        "no retry orchestration",
+        "no persistence",
+        "no real source adapter"
+    ],
+    "prohibited_capabilities": [
+        "source_of_truth_authority",
+        "state_owner_authority",
+        "fact_authority",
+        "mutation_owner_authority",
+        "event_reducer_authority",
+        "admission_authority",
+        "database_runtime_dependency",
+        "network_client_dependency"
+    ],
+    "promotion_constraints": [
+        "do not promote to mutation authority",
+        "do not introduce reducer internal implementation dependency",
+        "do not connect real store before dedicated controlled source policy phase",
+        "do not mark production in this phase",
+        "do not admit L1 rules without later governance authority"
+    ],
+    "resolved_at": "2026-07-20"
+}

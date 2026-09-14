@@ -1,0 +1,46 @@
+{
+  "record_id": "luna_controlled_architecture_alignment_m5_architecture_freeze_record_v1",
+  "architecture_version": "Luna Dynamic Cognitive Architecture v2.0",
+  "freeze_status": "ARCHITECTURE_FREEZE_CANDIDATE",
+  "freeze_scope": [
+    "Dynamic Cognitive Architecture v2",
+    "Owner Boundary",
+    "Schema Boundary",
+    "Contract Boundary",
+    "Runtime Boundary",
+    "Development Governance"
+  ],
+  "excluded_scope": [
+    "code modification",
+    "Runtime modification or activation",
+    "Baseline modification or replacement",
+    "Active Schema modification",
+    "Active Contract modification",
+    "Candidate Contract activation",
+    "Owner Metadata mutation",
+    "Personal Cognitive Network implementation",
+    "Causal Runtime implementation",
+    "Intent Runtime implementation",
+    "B Route Runtime implementation",
+    "Adapter implementation",
+    "migration execution"
+  ],
+  "source_phase_refs": [
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/owner_alignment_registry_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/responsibility_boundary_matrix_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_boundary_inventory_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m3_runtime_boundary_alignment_v1/runtime_cognitive_boundary_matrix_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m4_migration_integrity_validation_v1/cross_phase_consistency_matrix.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m4_migration_integrity_validation_v1/migration_integrity_checklist.json"
+  ],
+  "effective_for_future_development": true,
+  "activation_condition": "USER_TERMINAL_V2_PASS_AND_CHATGPT_V3_APPROVAL",
+  "currently_active": false,
+  "replaces_architecture_baseline_v2": false,
+  "creates_second_cognitive_architecture": false,
+  "migration_executed": false
+}

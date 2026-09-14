@@ -1,0 +1,50 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Behavior Policy Controlled Skeleton Summary",
+    "phase_id": "Phase-Luna-Field-State-Reducer-Behavior-Policy-Controlled-Skeleton-Implementation-v1-001",
+    "execution_mode": "build_first",
+    "build_policy": "full_file_set_then_single_v0",
+    "required_final_files_total": 18,
+    "required_final_files_complete": true,
+    "code_files": {
+        "count": 11,
+        "items": [
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_trace_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_error_types_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_registry_skeleton_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_eligibility_skeleton_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_precedence_skeleton_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_policy_composition_skeleton_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_decision_skeleton_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_static_validators_v1.py",
+            "capabilities/midplatform/core/field_state_reducer/behavior_policy/field_state_reducer_behavior_policy_fixture_v1.py",
+            "tools/evaluation/midplatform/run_field_state_reducer_behavior_policy_controlled_skeleton_v1.py"
+        ]
+    },
+    "docs_files": {
+        "count": 7,
+        "items": [
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1.md",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_planning_to_code_mapping_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_skeleton_contract_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_skeleton_test_strategy_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_skeleton_negative_guards_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/field_state_reducer_behavior_policy_skeleton_summary_v1.json",
+            "docs/architecture/luna_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1/verify_field_state_reducer_behavior_policy_controlled_skeleton_implementation_v1.py"
+        ]
+    },
+    "policy_count": 11,
+    "state_type_count": 12,
+    "skeleton_only": true,
+    "candidate_only": true,
+    "runtime_execution": false,
+    "state_mutation": false,
+    "fact_promotion": false,
+    "action_trigger": false,
+    "provider_recall": false,
+    "external_lookup": false,
+    "model_call": false,
+    "database_io": false,
+    "summary_complete": true
+}

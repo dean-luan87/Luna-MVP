@@ -1,0 +1,12 @@
+# Luna Evaluation — Task Manager Owner Approval Request Module Handoff v1
+
+## Phase
+
+`Phase-Midplatform-Task-Manager-Owner-Approval-Request-Module-Handoff-v1-001`
+
+## Commands
+
+```bash
+python3 tools/evaluation/midplatform/run_task_manager_owner_approval_request_module_handoff_v1.py
+python3 tools/evaluation/midplatform/verify_task_manager_owner_approval_request_module_handoff_v1.py
+```

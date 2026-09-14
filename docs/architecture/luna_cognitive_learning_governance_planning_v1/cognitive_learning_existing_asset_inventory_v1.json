@@ -1,0 +1,83 @@
+{
+    "artifact": "cognitive_learning_existing_asset_inventory_v1",
+    "classifications": {
+        "A": "directly reusable current asset",
+        "B": "useful historical/reference architecture",
+        "C": "conflicting/deprecated ownership or semantics",
+        "D": "intentionally deferred capability"
+    },
+    "assets": [
+        {
+            "path": "docs/architecture/luna_cognitive_memory_and_experience_governance_planning_v1",
+            "classification": "A",
+            "reason": "frozen upstream semantic source for Memory/Experience -> Learning boundary"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_memory_experience_controlled_implementation_v1",
+            "classification": "A",
+            "reason": "passed controlled implementation producing candidate-only memory and experience evidence"
+        },
+        {
+            "path": "docs/architecture/luna_dynamic_cognitive_regulation_module_planning_v1",
+            "classification": "A",
+            "reason": "frozen downstream parameter update admission and bounds target"
+        },
+        {
+            "path": "docs/architecture/luna_dynamic_cognitive_regulation_controlled_implementation_v1",
+            "classification": "A",
+            "reason": "passed controlled implementation for downstream regulation owner boundary"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_flow_and_state_machine_organization_planning_v1",
+            "classification": "A",
+            "reason": "cycle trace and inheritance semantics for learning evidence provenance"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_flow_controlled_implementation_v1",
+            "classification": "A",
+            "reason": "cycle outputs and future learning insertion boundary already frozen"
+        },
+        {
+            "path": "capabilities/midplatform/core/cognitive_memory_experience",
+            "classification": "A",
+            "reason": "current canonical source of Memory/Experience candidate outputs"
+        },
+        {
+            "path": "capabilities/midplatform/core/dynamic_cognitive_regulation",
+            "classification": "A",
+            "reason": "current canonical sink of future ParameterUpdateCandidate"
+        },
+        {
+            "path": "docs/architecture/cognitive_learning_system_v1",
+            "classification": "B",
+            "reason": "historical learning architecture reference for candidate semantics and learning boundaries"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_self_regulation_architecture_v1",
+            "classification": "B",
+            "reason": "useful for stability/approval relation but not current learning owner source"
+        },
+        {
+            "path": "docs/architecture/cognitive_learning_system_v1/learning_governance_contract_v1.json",
+            "classification": "B",
+            "reason": "captures learning_is_not_fact and no runtime training constraints"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_selective_learning_architecture_v1",
+            "classification": "C",
+            "reason": "historical owner naming (Selective Learning Governance) conflicts with current desired canonical owner naming and coupling to self-evolution"
+        },
+        {
+            "path": "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1",
+            "classification": "B",
+            "reason": "memory-side reference for future learning evidence sourcing, not learning owner"
+        },
+        {
+            "path": "runtime training / embeddings / semantic compression execution",
+            "classification": "D",
+            "reason": "explicitly deferred capabilities in this phase"
+        }
+    ],
+    "equivalent_current_canonical_learning_module_found": false,
+    "notes": "No current passed core module implements end-to-end LearningEvidenceCandidate -> LearningCandidate -> ParameterUpdateCandidate semantics."
+}

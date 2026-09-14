@@ -1,0 +1,10 @@
+{
+  "contract_id": "adaptive_layer_constraint_v1",
+  "adaptive": ["Attention Weight", "Exploration Threshold", "Memory Activation", "Strategy", "Capability", "Schema", "Cognitive Parameters"],
+  "allowed_sources": ["Validated Experience", "Outcome Evaluation", "Self Calibration", "Approved Optimization Candidate"],
+  "requirements": ["Evidence", "Field Scope", "Utility", "Risk", "Reversibility", "Self Review", "Version", "Rollback"],
+  "stable_core_protection": true,
+  "automatic_change": false,
+  "model_training": false,
+  "candidate_only": true
+}

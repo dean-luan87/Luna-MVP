@@ -1,0 +1,24 @@
+{
+    "artifact": "cognitive_parameter_bounds_contract_v1",
+    "required_fields": [
+        "parameter_id",
+        "parameter_class",
+        "current_value",
+        "lower_bound",
+        "upper_bound",
+        "step_bound",
+        "policy_ref",
+        "trace_ref"
+    ],
+    "rules": {
+        "lower_upper_required": true,
+        "out_of_bound_rejected": true,
+        "immutable_class_mutation_rejected": true,
+        "silent_unbounded_drift_forbidden": true,
+        "idempotent_same_input_same_output": true
+    },
+    "boundary_actions": {
+        "reach_upper_bound": "clamp_and_emit_boundary_reason",
+        "reach_lower_bound": "clamp_and_emit_boundary_reason"
+    }
+}

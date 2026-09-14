@@ -1,0 +1,13 @@
+{
+  "contract_id": "cognitive_fitness_v1",
+  "equation": "Fitness=f(Understanding,Decision,Resource,Adaptation,Self Stability)",
+  "inputs": ["Understanding Metrics", "Decision Quality", "Resource Efficiency", "Adaptation Efficiency", "Self Stability", "Field Scope"],
+  "outputs": ["Cognitive Fitness Candidate", "Fitness Dimensions", "Confidence", "Unknowns"],
+  "dimensions": ["understanding", "decision", "resource", "adaptation", "self_stability"],
+  "fitness_is_field_specific": true,
+  "fitness_is_not_competition": true,
+  "fitness_is_not_user_reward": true,
+  "fitness_is_not_decision_authority": true,
+  "cross_field_normalization_required": true,
+  "candidate_only": true
+}

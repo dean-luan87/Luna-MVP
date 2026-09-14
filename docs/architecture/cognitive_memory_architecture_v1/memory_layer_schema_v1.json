@@ -1,0 +1,23 @@
+{
+  "schema_name": "Memory Layer Schema v1",
+  "memory_id": "memory-example",
+  "memory_class": "Working | Episodic | Field | Semantic | Self | Relationship Placeholder",
+  "field_reference": "field-example",
+  "time_reference": "time-example",
+  "self_reference": "self-example",
+  "goal_reference": "goal-example",
+  "task_reference": "task-example",
+  "context_reference": "context-example",
+  "experience_reference": "experience-example",
+  "content_candidate": null,
+  "confidence": null,
+  "importance": null,
+  "recency": null,
+  "provenance": [],
+  "unknowns": [],
+  "conflicts": [],
+  "decay_state": "Stable | Decaying | Archived | Released Candidate",
+  "memory_is_not_reality": true,
+  "current_reality_precedence": true,
+  "unknowns_are_preserved": true
+}

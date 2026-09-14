@@ -1,0 +1,25 @@
+{
+  "layers": [
+    "PHYSICAL_ASSET",
+    "MODEL_IDENTITY",
+    "MODEL_CONTRACT",
+    "LOADER_CONTRACT",
+    "PROVIDER_ADAPTER_CONTRACT",
+    "CAPABILITY_CONTRACT",
+    "EVIDENCE_CONTRACT",
+    "CHECKSUM",
+    "PYTHON_DEPENDENCY",
+    "TECHNICAL_ADMISSION"
+  ],
+  "transitions": {
+    "missing_asset": "ADMISSION_BLOCKED_ASSET_MISSING",
+    "identity_conflict": "ADMISSION_BLOCKED_IDENTITY",
+    "checksum_mismatch": "ADMISSION_BLOCKED_CHECKSUM",
+    "checksum_unavailable": "ADMISSION_BLOCKED_CHECKSUM",
+    "dependency_unresolved_or_missing": "ADMISSION_BLOCKED_DEPENDENCY",
+    "all_prerequisites_verified": "ADMISSION_READY_CANDIDATE"
+  },
+  "ready_candidate_is_not_execution": true,
+  "technical_admission_is_not_commercial_approval": true,
+  "inference_executed": false
+}

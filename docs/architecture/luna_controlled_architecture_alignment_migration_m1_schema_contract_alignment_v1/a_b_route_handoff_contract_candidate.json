@@ -1,0 +1,47 @@
+{
+    "contract_id": "a_b_route_handoff_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "A/B Route Boundary Governance",
+    "producer": "A/B Route Boundary Governance",
+    "consumer": [
+        "Decision Arbitration"
+    ],
+    "candidate_fact": "simulation_handoff_candidate_only",
+    "unknown": {
+        "allowed": true,
+        "representation": "simulation_gap_or_unresolved_future_branch",
+        "behavior": "exclude_from_current_fact_path"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "a_route_ref",
+            "causal_candidate_ref",
+            "risk_ref"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "simulation_reference_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "candidate_only_handoff"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "future_branch_reassessment"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_simulation_candidate_when_invalidated"
+    },
+    "failure_behavior": {
+        "on_missing_a_route_context": "block_handoff_candidate",
+        "on_reality_conflict": "exclude_b_route_from_decision_input",
+        "on_boundary_violation": "record_override_attempt_and_block"
+    },
+    "write_authority": "A/B Route Boundary Governance",
+    "compatibility_alias": "ab_route_candidate_alias"
+}

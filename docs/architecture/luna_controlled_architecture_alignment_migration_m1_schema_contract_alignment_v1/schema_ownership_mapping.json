@@ -1,0 +1,336 @@
+{
+    "mapping_id": "luna_controlled_architecture_alignment_m1_schema_ownership_mapping_v1",
+    "phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M1-Schema-Contract-Alignment-v1-001",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "source_owner_precedence": true,
+    "second_writer_prohibited": true,
+    "dependency_graph": {
+        "semantics": "contract_precondition_order_not_runtime_execution",
+        "edges": [
+            {
+                "from": "Observation Cognitive Handoff",
+                "to": "Field Context Projection",
+                "reason": "Observation candidates must be admitted and reduced before field context projection is exposed."
+            },
+            {
+                "from": "Field Context Projection",
+                "to": "PCN Reference",
+                "reason": "PCN projections require field-scoped context and source-owner precedence."
+            },
+            {
+                "from": "Memory Context Projection",
+                "to": "PCN Reference",
+                "reason": "Historical influence reaches cognition through read-only memory projection."
+            },
+            {
+                "from": "PCN Reference",
+                "to": "Intent Binding",
+                "reason": "Intent binding consumes context projection rather than source ownership."
+            },
+            {
+                "from": "Intent Binding",
+                "to": "Causal Candidate",
+                "reason": "Causal alignment in M1 freezes intent context first."
+            },
+            {
+                "from": "Causal Candidate",
+                "to": "A/B Route Handoff",
+                "reason": "Future-space handoff must consume revisable causal candidates instead of facts."
+            },
+            {
+                "from": "A/B Route Handoff",
+                "to": "Decision Input",
+                "reason": "Decision input must distinguish current-reality from simulation candidates."
+            },
+            {
+                "from": "Decision Input",
+                "to": "Task Reference",
+                "reason": "Task Manager only consumes approved downstream references."
+            },
+            {
+                "from": "Model Capability Reference",
+                "to": "Task Reference",
+                "reason": "Capability routing remains downstream and candidate-only."
+            },
+            {
+                "from": "Protocol Reference",
+                "to": "Task Reference",
+                "reason": "Protocol compatibility constrains downstream orchestration handoff."
+            },
+            {
+                "from": "Decision Input",
+                "to": "Experience Projection",
+                "reason": "Experience planning preserves decision trace without mutating memory."
+            }
+        ]
+    },
+    "schemas": [
+        {
+            "schema_name": "Field Context Projection",
+            "owner": "Field System",
+            "producer": "Field State Reducer",
+            "consumer": [
+                "Personal Cognitive Network Governance",
+                "Intent Governance",
+                "Decision Arbitration"
+            ],
+            "write_authority": "Field State Reducer",
+            "candidate_fact_boundary": "candidate_only_projection_not_fact_not_mutation",
+            "forbidden_authority": [
+                "Intent write",
+                "Decision write",
+                "Action execution",
+                "Memory mutation",
+                "Parallel reducer mainline"
+            ],
+            "compatibility_alias": "field_state_projection_alias",
+            "dependency_refs": [
+                "Observation Cognitive Handoff"
+            ]
+        },
+        {
+            "schema_name": "Observation Cognitive Handoff",
+            "owner": "Observation Manager / Reality Evidence Pipeline",
+            "producer": "Observation Manager",
+            "consumer": [
+                "Field System",
+                "Permission and Admission boundary"
+            ],
+            "write_authority": "Observation Manager",
+            "candidate_fact_boundary": "observation_candidate_and_evidence_candidate_only",
+            "forbidden_authority": [
+                "Decision generation",
+                "Fact declaration",
+                "Action execution"
+            ],
+            "compatibility_alias": "observation_admission_handoff_alias",
+            "dependency_refs": []
+        },
+        {
+            "schema_name": "Memory Context Projection",
+            "owner": "Memory System",
+            "producer": "Memory System",
+            "consumer": [
+                "Personal Cognitive Network Governance",
+                "Intent Governance",
+                "Experience Governance"
+            ],
+            "write_authority": "Memory System",
+            "candidate_fact_boundary": "read_only_historical_projection_candidate",
+            "forbidden_authority": [
+                "Reality override",
+                "Decision write",
+                "Source mutation",
+                "PCN persistence"
+            ],
+            "compatibility_alias": "memory_projection_alias",
+            "dependency_refs": []
+        },
+        {
+            "schema_name": "PCN Reference",
+            "owner": "Personal Cognitive Network Governance",
+            "producer": "Personal Cognitive Network Governance",
+            "consumer": [
+                "Intent Governance",
+                "Causal Reasoning Governance",
+                "Decision Arbitration"
+            ],
+            "write_authority": "Personal Cognitive Network Governance",
+            "candidate_fact_boundary": "typed_link_and_context_projection_candidate_only",
+            "forbidden_authority": [
+                "Source ownership",
+                "Source persistence",
+                "Source mutation",
+                "Self ownership",
+                "Role ownership",
+                "Relationship ownership",
+                "Memory ownership",
+                "Emotion ownership",
+                "Value ownership",
+                "Belief ownership"
+            ],
+            "compatibility_alias": "pcn_reference_projection_alias",
+            "dependency_refs": [
+                "Field Context Projection",
+                "Memory Context Projection"
+            ]
+        },
+        {
+            "schema_name": "Intent Binding",
+            "owner": "Intent Governance",
+            "producer": "Intent Governance",
+            "consumer": [
+                "Causal Reasoning Governance",
+                "Decision Arbitration",
+                "Cognitive Routing Governance"
+            ],
+            "write_authority": "Intent Governance",
+            "candidate_fact_boundary": "intent_binding_candidate_only",
+            "forbidden_authority": [
+                "Goal ownership transfer",
+                "Task ownership",
+                "Decision selection",
+                "Action execution"
+            ],
+            "compatibility_alias": "intent_context_binding_alias",
+            "dependency_refs": [
+                "PCN Reference"
+            ]
+        },
+        {
+            "schema_name": "Causal Candidate",
+            "owner": "Causal Reasoning Governance",
+            "producer": "Causal Reasoning Governance",
+            "consumer": [
+                "A/B Route Boundary Governance",
+                "Decision Arbitration",
+                "Intent Governance"
+            ],
+            "write_authority": "Causal Reasoning Governance",
+            "candidate_fact_boundary": "evidence_bound_revisable_causal_candidate_only",
+            "forbidden_authority": [
+                "Fact promotion",
+                "World model runtime",
+                "Decision selection",
+                "Action execution"
+            ],
+            "compatibility_alias": "causal_projection_alias",
+            "dependency_refs": [
+                "Intent Binding"
+            ]
+        },
+        {
+            "schema_name": "Experience Projection",
+            "owner": "Experience Governance",
+            "producer": "Experience Governance",
+            "consumer": [
+                "Memory System",
+                "Personal Cognitive Network Governance"
+            ],
+            "write_authority": "Experience Governance",
+            "candidate_fact_boundary": "experience_representation_candidate_only",
+            "forbidden_authority": [
+                "Direct memory write",
+                "Direct network mutation",
+                "Knowledge fact creation",
+                "Action execution"
+            ],
+            "compatibility_alias": "experience_projection_alias",
+            "dependency_refs": [
+                "Decision Input"
+            ],
+            "future_admission_note": "Experience candidates may inform future memory admission after M1, but that downstream relationship is not modeled as a precondition dependency in this planning graph to preserve acyclic contract alignment."
+        },
+        {
+            "schema_name": "A/B Route Handoff",
+            "owner": "A/B Route Boundary Governance",
+            "producer": "A/B Route Boundary Governance",
+            "consumer": [
+                "Decision Arbitration"
+            ],
+            "write_authority": "A/B Route Boundary Governance",
+            "candidate_fact_boundary": "simulation_candidate_only_not_current_reality",
+            "forbidden_authority": [
+                "Current reality override",
+                "A route mutation",
+                "Current decision override",
+                "Action execution"
+            ],
+            "compatibility_alias": "ab_route_candidate_alias",
+            "dependency_refs": [
+                "Causal Candidate"
+            ]
+        },
+        {
+            "schema_name": "Decision Input",
+            "owner": "Decision Arbitration",
+            "producer": "Decision Arbitration",
+            "consumer": [
+                "Task Manager",
+                "Action Governance / Action Runtime",
+                "Experience Governance"
+            ],
+            "write_authority": "Decision Arbitration",
+            "candidate_fact_boundary": "decision_input_candidate_only_not_action",
+            "forbidden_authority": [
+                "Action execution",
+                "Task lifecycle ownership",
+                "Reality mutation",
+                "Memory mutation"
+            ],
+            "compatibility_alias": "decision_candidate_input_alias",
+            "dependency_refs": [
+                "A/B Route Handoff",
+                "Field Context Projection",
+                "Task Reference",
+                "Model Capability Reference",
+                "Protocol Reference"
+            ]
+        },
+        {
+            "schema_name": "Task Reference",
+            "owner": "Task Manager",
+            "producer": "Task Manager",
+            "consumer": [
+                "Observation Manager",
+                "Capability Governance"
+            ],
+            "write_authority": "Task Manager",
+            "candidate_fact_boundary": "approved_task_reference_candidate_only",
+            "forbidden_authority": [
+                "Intent generation",
+                "Causal judgment",
+                "Final decision",
+                "Runtime dispatch",
+                "Action execution"
+            ],
+            "compatibility_alias": "task_handoff_reference_alias",
+            "dependency_refs": [
+                "Decision Input",
+                "Model Capability Reference",
+                "Protocol Reference"
+            ]
+        },
+        {
+            "schema_name": "Model Capability Reference",
+            "owner": "Capability Governance / Model Manager",
+            "producer": "Model Manager",
+            "consumer": [
+                "Task Manager",
+                "Vision Manager",
+                "OCR Manager"
+            ],
+            "write_authority": "Model Manager",
+            "candidate_fact_boundary": "model_selection_candidate_only",
+            "forbidden_authority": [
+                "Cognitive fact generation",
+                "Intent generation",
+                "Decision authority",
+                "Action execution"
+            ],
+            "compatibility_alias": "model_capability_reference_alias",
+            "dependency_refs": []
+        },
+        {
+            "schema_name": "Protocol Reference",
+            "owner": "Cognitive OS Governance / Protocol Manager",
+            "producer": "Protocol Manager",
+            "consumer": [
+                "Task Manager",
+                "Observation Manager",
+                "Model Manager"
+            ],
+            "write_authority": "Protocol Manager",
+            "candidate_fact_boundary": "protocol_governance_candidate_only",
+            "forbidden_authority": [
+                "Cognitive fact generation",
+                "State mutation",
+                "Action execution",
+                "Runtime protocol loading"
+            ],
+            "compatibility_alias": "protocol_reference_alias",
+            "dependency_refs": []
+        }
+    ]
+}

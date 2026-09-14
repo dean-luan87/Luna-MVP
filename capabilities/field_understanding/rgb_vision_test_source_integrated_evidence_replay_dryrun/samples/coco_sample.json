@@ -1,0 +1,22 @@
+{
+  "format_ref": "vision_test_source_sample",
+  "source_id": "coco",
+  "dataset_ref": "coco/val2017_subset",
+  "license_ref": {"license": "CC BY 4.0", "license_source": "coco_annotations_license", "image_license": "flickr_per_image", "commercial_use_confirmed": false},
+  "source_chain": ["coco", "vision_test_source_backup_pool", "coco_sample"],
+  "annotation_origin": {"provider": "coco_export", "export_format": "coco_instances"},
+  "sample_origin": {"sample_set": "controlled_local_sample", "sample_id": "coco_sample_001"},
+  "annotation_format": "coco",
+  "confidence": 0.8,
+  "allowed_use": "benchmark_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "candidate_mapping": {"bbox": "object_evidence_candidate", "segmentation": "region_evidence_candidate"},
+  "images": [
+    {"image_id": "coco_img_010", "file_name": "street_010.jpg", "width": 800, "height": 600, "scene_label_hint": "street_scene", "confidence": 0.81}
+  ],
+  "annotations": [
+    {"ann_id": "coco_ann_010", "type": "bbox", "label": "person", "image_id": "coco_img_010", "bbox": [50, 100, 180, 480], "confidence": 0.9},
+    {"ann_id": "coco_ann_011", "type": "bbox", "label": "car", "image_id": "coco_img_010", "bbox": [400, 250, 700, 460], "confidence": 0.85},
+    {"ann_id": "coco_ann_012", "type": "segmentation", "label": "road", "image_id": "coco_img_010", "mask_ref": "mask://coco_img_010/road", "polygon": [[0, 460], [800, 460], [800, 600], [0, 600]], "confidence": 0.82}
+  ]
+}

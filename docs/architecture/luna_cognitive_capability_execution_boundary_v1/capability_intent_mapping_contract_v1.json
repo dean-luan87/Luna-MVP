@@ -1,0 +1,8 @@
+{
+  "title": "Capability Intent Mapping Contract v1",
+  "owner": "Capability Governance",
+  "schema": ["intent", "required_capability", "optional_capability", "forbidden_capability", "context", "trace_id"],
+  "flow": ["Cognitive Intent", "Capability Requirement", "Required/Optional Candidates", "Admission Input"],
+  "examples": [{"intent":"understand distant sign","required_capability":["text_understanding"],"optional_capability":["visual_understanding","context_matching"],"forbidden_capability":["direct_action"]}],
+  "rules": {"mapping_not_decision": true, "forbidden_capability_preserved": true, "provider_agnostic": true}
+}

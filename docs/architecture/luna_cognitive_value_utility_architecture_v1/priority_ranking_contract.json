@@ -1,0 +1,12 @@
+{
+  "title": "Priority Ranking Contract v1",
+  "inputs": ["Value Candidate", "Utility Candidate", "Hard Constraint Result", "Goal Priority Candidate", "Self Resource State", "Field Context"],
+  "outputs": ["Priority Candidate", "Utility Level Candidate", "Accept Candidate", "Reject Candidate", "Defer Candidate"],
+  "utility_levels": ["HIGH", "MEDIUM", "LOW", "REJECT"],
+  "constraint_check_precedes_ranking": true,
+  "ranking_is_not_decision": true,
+  "ranking_is_not_action": true,
+  "automatic_ranking": false,
+  "brain_review_required": true,
+  "candidate_only": true
+}

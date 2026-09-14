@@ -1,0 +1,11 @@
+{
+  "mapping_id": "value_state_mapping_v1",
+  "core_state": "Value",
+  "components": ["benefit", "cost", "risk", "utility"],
+  "source_modules": ["Value Utility", "Cognitive Utility Model", "Self Resource", "Constitution", "Goal"],
+  "outputs": ["Utility Candidate", "Priority Candidate", "Hard Constraint Candidate", "Tradeoff Candidate"],
+  "hard_constraints_precede_score": true,
+  "value_is_not_decision_authority": true,
+  "value_is_not_action": true,
+  "candidate_only": true
+}

@@ -1,0 +1,14 @@
+{
+  "artifact": "b3_scenario_mapping_v1",
+  "count": 26,
+  "ranges": {
+    "B3-01..B3-07": "real input/read-only/Intent influence/multi-intent/dominance",
+    "B3-08..B3-15": "observation need, Intent result, Decision outcomes, safety/permission/resource",
+    "B3-16..B3-20": "Decision->Task handoff, TaskCandidate/readiness, cancellation",
+    "B3-21..B3-23": "runtime/provenance/compression guards",
+    "B3-24..B3-25": "synthetic regression and differential governance",
+    "B3-26": "real end-to-end candidate chain"
+  },
+  "real_component": "REAL_B2_COGNITIVE_STATE_FLOW_INPUT",
+  "synthetic_components": ["Intent Governance", "Decision Governance", "Task Manager"]
+}

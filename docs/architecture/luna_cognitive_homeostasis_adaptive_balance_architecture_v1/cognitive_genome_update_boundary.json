@@ -1,0 +1,12 @@
+{
+  "contract_id": "cognitive_genome_update_boundary_v1",
+  "classes": ["Immutable", "Adaptive", "Experimental"],
+  "immutable_targets": ["Safety", "Identity", "Reality Priority", "Constitution"],
+  "adaptive_targets": ["Attention Weight", "Exploration Threshold", "Memory Activation", "Strategy", "Capability"],
+  "experimental_targets": ["New Behavior Strategy", "Unvalidated Parameter", "Prototype Threshold"],
+  "update_flow": ["Measurement", "Homeostasis Check", "Drift Check", "Self Review", "Accept/Reject/Defer", "Versioned Candidate"],
+  "automatic_update": false,
+  "self_review_required": true,
+  "rollback_required": true,
+  "candidate_only": true
+}

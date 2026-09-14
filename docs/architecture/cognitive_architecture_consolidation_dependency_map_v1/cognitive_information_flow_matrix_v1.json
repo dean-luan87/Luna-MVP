@@ -1,0 +1,31 @@
+{
+  "title": "Cognitive Information Flow Matrix v1",
+  "matrix_type": "source_target_permission_matrix",
+  "permissions": ["provide context", "update candidate", "read context", "request validation", "candidate output", "future interface", "forbidden"],
+  "allowed_flows": [
+    {"source": "Evidence", "target": "Reality Update Pipeline", "permission": "update candidate", "authority": "Reducer"},
+    {"source": "Field", "target": "Situation", "permission": "provide context", "authority": "Field System"},
+    {"source": "Learning", "target": "Memory", "permission": "candidate output", "authority": "Experience System"},
+    {"source": "Memory", "target": "Brain", "permission": "read context", "authority": "Memory System"},
+    {"source": "Attention", "target": "Workspace", "permission": "update candidate", "authority": "Attention System"},
+    {"source": "Brain", "target": "Decision Commitment", "permission": "candidate output", "authority": "Brain"},
+    {"source": "Decision Commitment", "target": "Action Boundary", "permission": "candidate output", "authority": "Action Boundary"},
+    {"source": "Outcome Evidence", "target": "Experience", "permission": "update candidate", "authority": "Experience System"}
+  ],
+  "forbidden_flows": [
+    {"source": "Learning", "target": "Reality", "permission": "forbidden"},
+    {"source": "Emotion Context", "target": "Decision Override", "permission": "forbidden"},
+    {"source": "Capability", "target": "Goal Creation", "permission": "forbidden"},
+    {"source": "Provider", "target": "Brain Direct Access", "permission": "forbidden"},
+    {"source": "Model", "target": "Decision", "permission": "forbidden"},
+    {"source": "Action Boundary", "target": "Reality Direct Write", "permission": "forbidden"}
+  ],
+  "flow_rules": {
+    "candidate_is_not_fact": true,
+    "reader_does_not_gain_writer_authority": true,
+    "reality_evidence_has_priority": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true,
+    "matrix_does_not_execute_runtime": true
+  }
+}

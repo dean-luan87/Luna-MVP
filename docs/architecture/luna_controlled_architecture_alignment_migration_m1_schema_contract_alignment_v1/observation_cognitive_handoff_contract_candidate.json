@@ -1,0 +1,58 @@
+{
+    "contract_id": "observation_cognitive_handoff_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Observation Manager / Reality Evidence Pipeline",
+    "producer": "Observation Manager",
+    "consumer": [
+        "Field System",
+        "Permission and Admission boundary"
+    ],
+    "candidate_fact": "observation_candidate_only_not_fact",
+    "unknown": {
+        "allowed": true,
+        "representation": "unresolved_observation_slots",
+        "behavior": "carry_forward_without_decision_authority"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "evidence_refs",
+            "collection_path"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "deterministic_evidence_replay_reference"
+    },
+    "admission": {
+        "required": true,
+        "mode": "handoff_only_no_fact_promotion"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "evidence_reassessment"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_candidate_when_evidence_invalidates"
+    },
+    "failure_behavior": {
+        "on_missing_evidence": "emit_evidence_partial_candidate",
+        "on_quality_failure": "emit_collection_recommendation_only",
+        "on_protocol_gap": "mark_handoff_unresolved"
+    },
+    "write_authority": "Observation Manager",
+    "allowed_payload_fields": [
+        "observation_candidate",
+        "priority",
+        "evidence",
+        "collection_recommendation"
+    ],
+    "forbidden_payload_fields": [
+        "decision",
+        "fact",
+        "action"
+    ],
+    "compatibility_alias": "observation_admission_handoff_alias"
+}

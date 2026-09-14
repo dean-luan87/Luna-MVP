@@ -1,0 +1,29 @@
+{
+    "artifact": "parameter_update_candidate_schema_v1",
+    "entity": "ParameterUpdateCandidateV1",
+    "fields": [
+        "parameter_update_candidate_id",
+        "learning_candidate_refs",
+        "target_regulation_parameter_refs",
+        "parameter_class_refs",
+        "proposed_direction",
+        "proposed_delta_candidate",
+        "proposed_bounds_ref",
+        "expected_effect_candidate",
+        "risk_candidate",
+        "reversibility_candidate",
+        "approval_requirement_candidate",
+        "activation_allowed",
+        "persistence_allowed",
+        "genome_activation_allowed",
+        "source_owner_mutation",
+        "trace_ref",
+        "provenance_refs"
+    ],
+    "defaults": {
+        "activation_allowed": false,
+        "persistence_allowed": false,
+        "genome_activation_allowed": false,
+        "source_owner_mutation": false
+    }
+}

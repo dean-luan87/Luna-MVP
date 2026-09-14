@@ -1,0 +1,14 @@
+{
+    "artifact": "hypothesis_influence_boundary_v1",
+    "allowed_outputs": [
+        "reconsideration_sensitivity_candidate",
+        "confidence_threshold_candidate",
+        "conflict_tolerance_candidate"
+    ],
+    "forbidden_outputs": [
+        "direct_hypothesis_mutation",
+        "hypothesis_truth_declaration",
+        "causal_mutation"
+    ],
+    "rule": "hypothesis influence only; no hypothesis or causal ownership mutation"
+}

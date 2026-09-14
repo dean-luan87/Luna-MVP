@@ -1,0 +1,11 @@
+{
+  "contract_name": "Runtime Resource Governance Contract v1",
+  "resources": ["Compute", "Energy", "Memory", "Time", "Sensor Availability"],
+  "resource_request": {},
+  "allocation_candidate": {},
+  "degradation_candidate": {},
+  "attention_owns_resource_policy": true,
+  "governance_owns_permission": true,
+  "runtime_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

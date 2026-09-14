@@ -1,0 +1,11 @@
+{
+  "schema_id": "PlanningTeacherOutputSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "alternative_plan_candidate",
+    "does_not_override_selected_plan",
+    "candidate_only",
+    "not_fact"
+  ],
+  "ownership": "Agent Planning retains selected_plan_candidate ownership"
+}

@@ -1,0 +1,19 @@
+{
+  "model_id": "mock_ocr_v1",
+  "model_family": "ocr_model_family",
+  "model_version_ref": "mock_ocr_v1_0_0",
+  "model_origin": "external_open_source_ocr_model",
+  "license_ref": "apache_2_0_or_per_model_license",
+  "source_chain": "recognition_model_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_0001",
+  "output_schema_ref": "ocr_output_schema_v1",
+  "confidence": 0.88,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "text_evidence_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "text_items": [
+    {"text": "EXIT", "bbox_or_polygon": [10, 12, 80, 40], "confidence": 0.91, "language": "en", "orientation": "horizontal"},
+    {"text": "Gate 3", "bbox_or_polygon": [12, 60, 120, 92], "confidence": 0.85, "language": "en", "orientation": "horizontal"}
+  ]
+}

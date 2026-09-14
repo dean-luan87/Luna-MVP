@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Execution-DryRun-Foundation-v1-001",
+  "module": "runtime_trials",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T02:45:34.866938+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_EXECUTION_DRYRUN_FOUNDATION_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "stage_ref_count": 10,
+    "runtime_simulation_node_count": 10,
+    "model_invocation_plan_count": 10,
+    "execution_trace_count": 10,
+    "dryrun_execution_result_count": 10,
+    "state_match_count": 10,
+    "fallback_chain_count": 4,
+    "resource_constraint_profile_count": 4,
+    "negative_guard_count": 8,
+    "blocker_count": 0
+  }
+}

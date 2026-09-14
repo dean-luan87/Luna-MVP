@@ -1,0 +1,10 @@
+{
+  "boundary_id": "cognitive_memory_dependency_v1",
+  "reusable_assets": ["docs/architecture/luna_cognitive_information_lifecycle_v1", "docs/architecture/luna_cognitive_field_architecture_v1", "docs/architecture/luna_cognitive_field_temporal_evolution_architecture_v1", "docs/architecture/luna_cognitive_information_processing_pipeline_architecture_v1", "docs/architecture/luna_knowledge_memory_boundary_architecture_v1", "docs/runtime/luna_cognitive_memory_runtime_integration_v1"],
+  "allowed_dependencies": ["Field Evolution -> Experience Candidate", "Experience -> Memory Candidate", "Information Lifecycle -> Memory Lifecycle", "Field -> Memory Activation", "Knowledge -> Field Context", "Memory -> Growth Candidate", "Brain -> Decision Candidate", "Runtime -> future admitted execution"],
+  "forbidden_dependencies": ["Memory -> Direct Self Modification", "Memory -> Direct Decision Override", "Knowledge -> Automatic Memory", "Experience -> Automatic Growth", "Memory Retrieval -> Reality Replacement", "Pattern -> Fact Assertion", "Memory -> Identity Rewrite", "Memory -> Goal Rewrite", "Memory -> Constitution Rewrite", "Memory -> Direct Action"],
+  "no_parallel_memory_system": true,
+  "runtime_implementation": false,
+  "store_implementation": false,
+  "database_access": false
+}

@@ -1,0 +1,46 @@
+{
+  "schema_id": "SituationTrainingDatasetCandidateSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Network-Assisted-Situation-Learning-Planning-v1-001",
+  "planning_only": true,
+  "planning_endpoint": "situation_training_dataset_candidate",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": [
+    "dataset_candidate_id",
+    "case_refs",
+    "input_feature_spec",
+    "output_label_spec",
+    "allowed_training_use",
+    "blocked_training_use",
+    "review_status",
+    "requires_human_approval",
+    "provenance_refs",
+    "candidate_only",
+    "not_fact"
+  ],
+  "field_definitions": {
+    "review_status": {
+      "type": "string",
+      "enum": ["pending_human_approval", "approved", "rejected", "hold"]
+    },
+    "allowed_training_use": {
+      "type": "array",
+      "example": ["situation_understanding_model"]
+    },
+    "blocked_training_use": {
+      "type": "array",
+      "example": ["direct_fact_prediction", "runner_invocation"]
+    }
+  },
+  "forbidden_operations": [
+    "direct_model_training_in_planning",
+    "auto_final_training_dataset"
+  ],
+  "boundary_flags": {
+    "training_dataset_candidate_not_final_training": true,
+    "human_review_required_for_training_dataset": true,
+    "no_direct_web_training": true,
+    "planning_only": true
+  }
+}

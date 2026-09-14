@@ -1,0 +1,17 @@
+{
+  "interface_name": "Capability Model Manager Interface v1",
+  "capability_need": null,
+  "self_capability_state": null,
+  "hardware_state": null,
+  "model_selection_candidate": null,
+  "implementation_options": [],
+  "resource_constraints": [],
+  "context": null,
+  "model_manager_provides_options": true,
+  "model_manager_does_not_define_capability": true,
+  "model_manager_does_not_modify_identity": true,
+  "model_manager_does_not_modify_goal": true,
+  "model_manager_does_not_modify_decision": true,
+  "automatic_model_switching": false,
+  "unknowns_are_preserved": true
+}

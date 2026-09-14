@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Knowledge to Experience Transition",
+  "source":"Knowledge Library",
+  "target":"Experience System",
+  "required_conditions":["admitted_knowledge","active_field","active_role","active_task","time_context","space_context","interaction","outcome_evidence"],
+  "transition_output":"Experience Candidate",
+  "failure_outputs":["knowledge_only","insufficient_context","unknown_preserved"],
+  "rules":{"action_or_interaction_required":true,"reading_alone_insufficient":true,"no_automatic_memory":true,"no_self_mutation":true}
+}

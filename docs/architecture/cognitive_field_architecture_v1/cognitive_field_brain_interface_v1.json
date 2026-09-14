@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "interface_type": "cognitive_field_brain",
+  "brain_inputs": ["field_state", "a_route_feedback", "resource_constraint", "conflict_candidate"],
+  "brain_does_not_receive": ["raw_reality_database", "raw_model_output"],
+  "field_authority": {
+    "goal": false,
+    "intent": false,
+    "decision": false,
+    "final_judgment": false
+  },
+  "brain_authority": ["goal", "intent", "final_judgment", "decision_acceptance"],
+  "field_is_read_organized_environment": true,
+  "field_does_not_modify_reality": true
+}

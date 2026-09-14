@@ -1,0 +1,12 @@
+{
+  "contract_id": "attention_allocation_v1",
+  "owner": "Attention Layer",
+  "inputs": ["current_field", "attention_signals", "attention_value_candidate", "self_budget", "cognitive_state", "self_rhythm_hint"],
+  "outputs": ["attention_allocation_candidate", "resource_request_candidate", "selection_trace", "defer_candidate", "suspend_candidate"],
+  "self_governance_required": true,
+  "active_attention_requires_approval": true,
+  "attention_produces_understanding": false,
+  "automatic_allocation": false,
+  "runtime_scheduling": false,
+  "candidate_only": true
+}

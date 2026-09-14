@@ -1,0 +1,15 @@
+{
+  "model_asset": "model-asset:yolov5n:weights-v1",
+  "model_contract_resolution": "MODEL_CONTRACT_RESOLVED",
+  "loader_contract_resolution": "LOADER_CONTRACT_RESOLVED",
+  "loader_contract": "loader:yolov5:torch-hub-local:v1",
+  "local_source_package_resolution": "LOCAL_SOURCE_PACKAGE_NOT_FOUND",
+  "compatibility": "BLOCKED",
+  "dependency_status": "NOT_SATISFIED",
+  "admission": "BLOCKED",
+  "reasons": ["LOCAL_SOURCE_PACKAGE_REQUIRED", "LOCAL_SOURCE_PACKAGE_NOT_FOUND", "DEPENDENCY_NOT_SATISFIED"],
+  "inference": false,
+  "provider_invocation": false,
+  "network_access": false,
+  "automatic_download": false
+}

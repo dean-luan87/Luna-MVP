@@ -1,0 +1,15 @@
+{
+  "contract_name": "Emotion Brain Attention Drive Boundary v1",
+  "emotion_context_candidate": {},
+  "attention_influence_candidate": {},
+  "drive_modulation_candidate": {},
+  "memory_retrieval_candidate": {},
+  "brain_context_reference": {},
+  "attention_allocation": false,
+  "drive_ownership": false,
+  "brain_goal_authority": true,
+  "brain_value_authority": true,
+  "brain_final_decision_authority": true,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

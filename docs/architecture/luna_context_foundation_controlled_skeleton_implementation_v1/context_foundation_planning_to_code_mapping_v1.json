@@ -1,0 +1,99 @@
+{
+  "version": "1.0",
+  "name": "Context Foundation Planning to Code Mapping v1",
+  "status": "CONTROLLED_SKELETON_CANDIDATE",
+  "mappings": [
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_v1/context_projection_schema_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_projection_types_v1.py",
+        "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py"
+      ],
+      "mapping_type": "candidate_schema_to_reference_only_dataclass",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_v1/context_input_contract_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_foundation_protocol_v1.py",
+        "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py"
+      ],
+      "mapping_type": "candidate_input_contract_to_protocol_and_validator",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_v1/context_output_boundary_contract_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+        "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py"
+      ],
+      "mapping_type": "candidate_output_boundary_to_controlled_assembly",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_v1/context_foundation_scenario_validation.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py",
+        "capabilities/midplatform/core/context_foundation/run_context_foundation_controlled_skeleton_v1.py"
+      ],
+      "mapping_type": "planning_scenarios_to_synthetic_fixture",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_alignment_update_v1/mental_field_continuity_schema_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_carryover_types_v1.py"
+      ],
+      "mapping_type": "candidate_schema_to_reference_only_carryover_type",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_alignment_update_v1/context_carryover_projection_contract_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_carryover_types_v1.py",
+        "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py"
+      ],
+      "mapping_type": "candidate_contract_to_reference_only_guard",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "docs/architecture/luna_context_foundation_planning_alignment_update_v1/field_emotional_signature_reference_candidate.json",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_projection_types_v1.py"
+      ],
+      "mapping_type": "emotional_signature_to_source_owned_projection_reference",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    },
+    {
+      "planning_asset": "Context Foundation trace requirement",
+      "code_assets": [
+        "capabilities/midplatform/core/context_foundation/context_foundation_trace_types_v1.py"
+      ],
+      "mapping_type": "trace_requirement_to_immutable_trace_candidate",
+      "planning_asset_modified": false,
+      "runtime_logic_deferred": true
+    }
+  ],
+  "all_code_assets": [
+    "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_projection_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_carryover_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_protocol_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_trace_types_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_static_validators_v1.py",
+    "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py",
+    "capabilities/midplatform/core/context_foundation/run_context_foundation_controlled_skeleton_v1.py"
+  ],
+  "planning_to_code_mapping_complete": true,
+  "existing_planning_assets_modified": false,
+  "parallel_implementation_created": false
+}
+

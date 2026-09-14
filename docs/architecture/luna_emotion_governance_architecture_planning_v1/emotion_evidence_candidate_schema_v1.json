@@ -1,0 +1,49 @@
+{
+  "artifact": "emotion_evidence_candidate_schema_v1",
+  "entity": "EmotionEvidenceCandidateV1",
+  "schema_version": "emotion-evidence-candidate-schema-v1",
+  "required_fields": [
+    "emotion_evidence_candidate_id",
+    "evidence_kind",
+    "valence_candidate",
+    "arousal_candidate",
+    "activation_intensity_candidate",
+    "emotion_category_candidate",
+    "source_refs",
+    "experience_refs",
+    "memory_refs",
+    "self_refs",
+    "personality_refs",
+    "intent_refs",
+    "attention_refs",
+    "regulation_refs",
+    "relationship_refs",
+    "pcn_refs",
+    "temporal_valid_from",
+    "temporal_valid_until",
+    "uncertainty_refs",
+    "contradiction_refs",
+    "mixed_emotion_refs",
+    "confidence_candidate",
+    "sensitivity",
+    "trace_ref",
+    "provenance_refs",
+    "schema_version",
+    "contract_version"
+  ],
+  "invariants": {
+    "candidate_only": true,
+    "emotion_state_mutation": false,
+    "source_owner_mutation": false,
+    "persisted": false,
+    "truth_declared": false,
+    "external_reality_mutation": false
+  },
+  "rules": {
+    "stimulus_alone_is_insufficient": true,
+    "unknowns_preserved": true,
+    "named_categories_are_candidates": true,
+    "contradictions_preserved": true,
+    "mixed_emotions_preserved": true
+  }
+}

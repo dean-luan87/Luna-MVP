@@ -1,0 +1,25 @@
+{
+  "model_id": "mock_scene_relation_v1",
+  "model_family": "scene_relation_model_family",
+  "model_version_ref": "mock_relation_v1_0_0",
+  "model_origin": "external_scene_graph_or_vlm_model",
+  "license_ref": "per_model_license_check_required",
+  "source_chain": "recognition_model_output_adapter_dryrun_v1",
+  "input_ref": "mock_object_region_0001",
+  "output_schema_ref": "scene_relation_output_schema_v1",
+  "confidence": 0.72,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "adapter_mapping_ref": "scene_relation_candidate",
+  "allowed_use": "test_only",
+  "commercial_use_status": "unknown_until_license_verified",
+  "relations": [
+    {
+      "subject": "arrow_sign",
+      "relation": "points_toward",
+      "object": "doorway",
+      "region_ref": "mock_region_0001",
+      "attribute": "green",
+      "confidence": 0.72
+    }
+  ]
+}

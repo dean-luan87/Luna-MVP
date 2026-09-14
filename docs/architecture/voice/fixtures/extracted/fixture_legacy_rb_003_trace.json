@@ -1,0 +1,154 @@
+{
+  "request_id": "fixture_legacy_rb_003",
+  "trace_id": "trace_fixture_003",
+  "session_id": null,
+  "task_context_id": null,
+  "chain_type": "legacy_rollback_chain",
+  "final_execution_mode": "legacy_fallback",
+  "provider_name": "piper",
+  "started_at": 1700000200.0,
+  "ended_at": 1700000202.0,
+  "status": "ok",
+  "stages": [
+    {
+      "stage_name": "request_ingress",
+      "status": "ok",
+      "timestamp": 1700000202.0,
+      "key_fields": {
+        "request_id": "fixture_legacy_rb_003",
+        "cutover_enabled": true,
+        "cutover_mode": "provider_chain_first"
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "message_preparation",
+      "status": "not_connected",
+      "timestamp": null,
+      "key_fields": {
+        "note": "SpeechRequest 未在日志行中持久化；需主链显式落盘"
+      },
+      "source_observation_type": "SpeechRequest",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "request_runtime",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "RequestRuntimeObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "submit_invoked",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "OutputSubmitObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "playback_result",
+      "status": "missing",
+      "timestamp": null,
+      "key_fields": {},
+      "source_observation_type": "PlaybackRuntimeObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "bridge_or_routing_decision",
+      "status": "ok",
+      "timestamp": 1700000202.0,
+      "key_fields": {
+        "selector_hit": true
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "core_or_policy_handling",
+      "status": "reserved",
+      "timestamp": null,
+      "key_fields": {
+        "note": "policy 结构化观测未接；非 not_connected 即 reserved"
+      },
+      "source_observation_type": "",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "provider_selection",
+      "status": "ok",
+      "timestamp": 1700000200.0,
+      "key_fields": {
+        "chosen_provider": "piper",
+        "provider_order": [
+          "piper"
+        ],
+        "selection_reason": "active_provider",
+        "preset_name": "calm_female_v1"
+      },
+      "source_observation_type": "ProviderSelectionObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "provider_execution",
+      "status": "fail",
+      "timestamp": 1700000202.0,
+      "key_fields": {
+        "provider_chain_ok": false,
+        "failure_type": "not_available"
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "fallback_or_rollback",
+      "status": "ok",
+      "timestamp": 1700000200.5,
+      "key_fields": {
+        "primary_provider": "piper",
+        "fallback_provider": "piper",
+        "failure_type": "not_available",
+        "output_valid": false
+      },
+      "source_observation_type": "ProviderFallbackObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "fallback_or_rollback",
+      "status": "ok",
+      "timestamp": 1700000201.0,
+      "key_fields": {
+        "rollback_trigger": "provider_chain_failure",
+        "rollback_reason": "provider_chain_failed",
+        "provider_chain_status": "failed"
+      },
+      "source_observation_type": "TTSRollbackObservation",
+      "source_ref": ""
+    },
+    {
+      "stage_name": "playback_result",
+      "status": "partial",
+      "timestamp": 1700000202.0,
+      "key_fields": {
+        "final_execution_mode": "legacy_fallback",
+        "final_executor": "legacy_main_chain"
+      },
+      "source_observation_type": "TTSCutoverObservation",
+      "source_ref": ""
+    }
+  ],
+  "errors": [
+    {
+      "stage_name": "provider_execution",
+      "error_type": "provider_chain_failure",
+      "error_reason": "not_available",
+      "severity": "error"
+    }
+  ],
+  "notes": [],
+  "raw_observation_refs": [
+    "docs/architecture/voice/fixtures/min_trace_samples.jsonl:3"
+  ]
+}

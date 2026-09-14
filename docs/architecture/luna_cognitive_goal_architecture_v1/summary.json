@@ -1,0 +1,22 @@
+{
+  "phase": "Phase-Luna-Cognitive-Goal-Architecture-v1-001",
+  "status": "architecture_only",
+  "readiness_token": "LUNA_COGNITIVE_GOAL_ARCHITECTURE_READY",
+  "canonical_flow": ["Self", "Value", "Goal", "Task", "Action", "Outcome", "Experience"],
+  "goal_types": ["Existence Goal", "Capability Goal", "Social Goal", "Task Goal"],
+  "goal_sources": ["Self-Originated Goal", "User-Originated Goal", "Environment-Originated Goal", "System-Originated Goal"],
+  "lifecycle": ["Detected", "Candidate", "Evaluated", "Admitted", "Active", "Progressing", "Completed", "Expired", "Archived"],
+  "reusable_assets": ["cognitive_goal_task_temporal_continuity_v1", "intent_goal_interface_v1", "task_manager_skeleton_v1", "task_manager_module_facade_v1", "brain_decision_candidate_schema_v1", "self_regulation_boundary_v1"],
+  "task_manager_reuse": true,
+  "parallel_risks": ["parallel Goal Manager", "parallel Task Manager", "Task-to-Goal ownership drift", "Memory/Emotion automatic goal creation"],
+  "owner_conflicts": ["historical Goal authority vs new Self Goal Governance", "Task Manager execution ownership vs Goal direction"],
+  "migration_mapping": ["existing goal/task continuity contracts to Goal Layer adapter", "existing Intent→Goal interface to candidate admission", "Task Manager remains execution workflow owner"],
+  "runtime": false,
+  "goal_runtime": false,
+  "automatic_goal_generation": false,
+  "automatic_goal_adjustment": false,
+  "task_execution": false,
+  "action_execution": false,
+  "emotion_runtime": false,
+  "b_route_runtime": false
+}

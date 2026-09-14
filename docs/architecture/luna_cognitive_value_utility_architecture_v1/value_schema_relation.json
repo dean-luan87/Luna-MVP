@@ -1,0 +1,10 @@
+{
+  "title": "Value Schema Relation v1",
+  "schema_provides": ["Pattern Context", "Regularity Context", "Prior Context"],
+  "flow": ["Schema Context", "Importance/Probability Candidate", "Utility Context"],
+  "schema_creates_value_automatically": false,
+  "schema_overrides_current_evidence": false,
+  "current_evidence_precedence": true,
+  "schema_does_not_decide": true,
+  "candidate_only": true
+}

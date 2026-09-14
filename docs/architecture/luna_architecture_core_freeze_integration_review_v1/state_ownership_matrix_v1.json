@@ -1,0 +1,15 @@
+{
+  "title": "State Ownership Matrix v1",
+  "rows": [
+    {"state":"Reality State","owner":"Reality Workspace","writer":"Reality Reducer","readers":["Field","Situation","Global State"]},
+    {"state":"Field State","owner":"Cognitive Field","writer":"Field Reducer","readers":["Attention","Workspace","Brain"]},
+    {"state":"Workspace State","owner":"Cognitive Workspace","writer":"Workspace Composer","readers":["Brain","Trace"]},
+    {"state":"Self State","owner":"Cognitive Self Model","writer":"Self Model Update Boundary","readers":["Brain","Action Boundary","Workspace"]},
+    {"state":"Memory State","owner":"Memory System","writer":"Memory Admission","readers":["Workspace","Learning","Self Evolution"]},
+    {"state":"Capability State","owner":"Capability Runtime","writer":"Capability Health Boundary","readers":["Self Model","Attention","Governance"]},
+    {"state":"Attention State","owner":"Attention System","writer":"Attention Arbitration","readers":["Workspace","Runtime Governance"]},
+    {"state":"Decision State","owner":"Brain","writer":"Brain Evaluation","readers":["Action Boundary","Trace"]},
+    {"state":"Action State","owner":"Action Runtime Foundation","writer":"Action Runtime Adapter","readers":["Outcome","Trace","Learning"]}
+  ],
+  "rules": {"single_owner":true,"writer_explicit":true,"readers_cannot_write":true,"state_lifecycle_required":true}
+}

@@ -1,0 +1,22 @@
+{
+    "artifact_id": "pcn_controlled_dryrun_input_contract_v1",
+    "status": "CONTROLLED_VALIDATION_CANDIDATE",
+    "synthetic_only": true,
+    "allowed_inputs": [
+        "Synthetic Context Reference",
+        "Synthetic Source References",
+        "Synthetic Cognitive Link Candidates",
+        "Interaction Candidate References",
+        "Resource Budget Reference",
+        "Fixture Metadata"
+    ],
+    "forbidden_inputs": [
+        "Real Memory",
+        "Real Field Runtime",
+        "Database",
+        "Model",
+        "Provider",
+        "Network"
+    ],
+    "runtime_integration_allowed": false
+}

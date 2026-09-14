@@ -1,0 +1,239 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/decision/decision-candidate/v1",
+    "title": "Decision Candidate Schema v1",
+    "description": "Planning-only candidate schema for Decision Governance.",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "decision_candidate_id",
+        "owner",
+        "candidate_kind",
+        "intent_refs",
+        "causal_refs",
+        "context_refs",
+        "field_refs",
+        "role_refs",
+        "evidence_refs",
+        "option_refs",
+        "risk_refs",
+        "utility_refs",
+        "constraint_refs",
+        "permission_refs",
+        "safety_refs",
+        "resource_refs",
+        "uncertainty",
+        "reversibility",
+        "confirmation_requirement",
+        "decision_state",
+        "provenance",
+        "created_at",
+        "version",
+        "revision_lineage",
+        "execution_eligibility_candidate"
+    ],
+    "properties": {
+        "decision_candidate_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "owner": {
+            "const": "Decision Governance"
+        },
+        "candidate_kind": {
+            "const": "DECISION_CANDIDATE"
+        },
+        "intent_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "causal_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "context_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "field_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "role_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "evidence_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "option_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "risk_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "utility_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "constraint_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "permission_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "safety_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "resource_refs": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            }
+        },
+        "uncertainty": {
+            "type": "object",
+            "required": [
+                "unknowns",
+                "confidence_candidate",
+                "confidence_not_truth"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "unknowns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "confidence_candidate": {
+                    "type": [
+                        "number",
+                        "string",
+                        "null"
+                    ]
+                },
+                "confidence_not_truth": {
+                    "const": true
+                }
+            }
+        },
+        "reversibility": {
+            "type": "string",
+            "enum": [
+                "REVERSIBLE",
+                "PARTIALLY_REVERSIBLE",
+                "IRREVERSIBLE",
+                "UNKNOWN_REVERSIBILITY"
+            ]
+        },
+        "confirmation_requirement": {
+            "type": "string",
+            "enum": [
+                "NO_CONFIRMATION_REQUIRED",
+                "CONFIRMATION_REQUIRED",
+                "OWNER_APPROVAL_REQUIRED",
+                "HUMAN_OVERRIDE_ALLOWED",
+                "HUMAN_OVERRIDE_PROHIBITED"
+            ]
+        },
+        "decision_state": {
+            "type": "string",
+            "minLength": 1
+        },
+        "provenance": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/ref"
+            },
+            "minItems": 1
+        },
+        "created_at": {
+            "type": "string",
+            "minLength": 1
+        },
+        "version": {
+            "type": "string",
+            "minLength": 1
+        },
+        "revision_lineage": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "execution_eligibility_candidate": {
+            "type": "boolean"
+        },
+        "decision_authority": {
+            "const": true
+        },
+        "action_authority": {
+            "const": false
+        },
+        "task_authority": {
+            "const": false
+        }
+    },
+    "$defs": {
+        "ref": {
+            "type": "object",
+            "required": [
+                "owner",
+                "ref_id"
+            ],
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ref_id": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            },
+            "additionalProperties": true
+        }
+    },
+    "planning_guards": {
+        "candidate_only": true,
+        "decision_not_action": true,
+        "decision_not_task": true,
+        "selected_not_executed": true,
+        "active_schema": false
+    }
+}

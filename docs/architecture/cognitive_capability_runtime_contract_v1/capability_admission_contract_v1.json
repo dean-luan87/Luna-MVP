@@ -1,0 +1,22 @@
+{
+  "contract_name": "Capability Admission Contract v1",
+  "request_reference": "capability-request-example",
+  "requirement_match": "candidate",
+  "permission_check": "candidate",
+  "constitution_boundary_check": "candidate",
+  "resource_budget_check": "candidate",
+  "current_capability_state_check": "candidate",
+  "risk_level_check": "candidate",
+  "evidence_expectation_check": "candidate",
+  "provenance_check": "candidate",
+  "admission_state": "Created | Qualified | Admitted Candidate | Deferred | Rejected | Expired",
+  "provider_invocation_candidate": null,
+  "admission_is_not_execution": true,
+  "admission_does_not_modify_reality": true,
+  "admission_does_not_modify_goal": true,
+  "admission_does_not_modify_decision": true,
+  "provider_is_not_admission_authority": true,
+  "runtime_does_not_create_need": true,
+  "resource_denial_returns_candidate": true,
+  "unknowns_are_preserved": true
+}

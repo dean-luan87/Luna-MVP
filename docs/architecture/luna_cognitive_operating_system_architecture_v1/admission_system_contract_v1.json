@@ -1,0 +1,8 @@
+{
+  "title": "Admission System Contract v1",
+  "owner": "Cognitive OS Governance",
+  "stages": ["Proposal", "Registry", "Schema Check", "Contract Check", "Dependency Check", "Permission Check", "Health Check", "Admission"],
+  "required_input": ["module_id", "owner", "layer", "version", "contract", "dependency", "requested_state"],
+  "admission_outputs": ["Admitted Candidate", "Rejected Candidate", "Deferred Candidate"],
+  "rules": {"all_stages_required": true, "no_bypass": true, "no_auto_activation": true, "new_model_requires_capability_binding": true}
+}

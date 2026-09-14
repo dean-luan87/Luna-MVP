@@ -1,0 +1,16 @@
+{
+  "title": "Module Interaction Matrix v1",
+  "owner": "Cognitive OS Governance",
+  "columns": ["module", "input", "output", "read", "write", "permission"],
+  "rows": [
+    {"module":"Field","input":"Evidence","output":"Context","read":["Reality"],"write":["Field State Proposal"],"permission":"Field Owner"},
+    {"module":"Attention","input":"Context","output":"Focus Candidate","read":["Field","Risk","Drive","Value"],"write":["Attention State Proposal"],"permission":"Attention Owner"},
+    {"module":"Brain","input":"Global State Package","output":"Decision Candidate","read":["State","Intent","Goal","Value"],"write":["Decision Candidate"],"permission":"Brain"},
+    {"module":"Memory","input":"Experience","output":"Retrieval Candidate","read":["Field","Task","Attention"],"write":["Memory Candidate"],"permission":"Memory Owner"},
+    {"module":"Learning","input":"Outcome","output":"Strategy Candidate","read":["Expectation Difference","Experience"],"write":["Learning Candidate"],"permission":"Learning Owner"},
+    {"module":"Emotion Context","input":"Field/Role Event","output":"Emotion Context Candidate","read":["Social Field","Memory"],"write":["Context Candidate"],"permission":"L3 Boundary"},
+    {"module":"Capability","input":"Capability Request","output":"Evidence Candidate","read":["Capability Profile","Resource State"],"write":["Evidence Candidate"],"permission":"Capability Gateway"},
+    {"module":"Action Runtime","input":"Approved Action","output":"Outcome Candidate","read":["Action Context","Expectation"],"write":["Outcome Candidate"],"permission":"Future Action Runtime"}
+  ],
+  "rules": {"input_output_required": true, "read_write_explicit": true, "cross_layer_direct_call_forbidden": true, "global_state_not_owner": true}
+}

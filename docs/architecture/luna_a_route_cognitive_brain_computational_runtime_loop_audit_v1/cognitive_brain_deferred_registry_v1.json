@@ -1,0 +1,16 @@
+{
+  "artifact":"cognitive_brain_deferred_registry_v1",
+  "deferred":[
+    {"id":"D-EMOTION","capability":"Emotion Engine and advanced Emotion Governance runtime","reason":"Emotion implementation remains outside this cognitive brain audit and prior phases explicitly deferred it"},
+    {"id":"D-BROUTE","capability":"B Route","reason":"A Route product completion precedes B Route"},
+    {"id":"D-COMPRESS","capability":"semantic compression","reason":"no owner/runtime decision in this audit; remain deferred"},
+    {"id":"D-AFFECTIVE","capability":"affective memory compression and emotion-memory summaries","reason":"deferred to future cross-owner decision; not inferred into Emotion or Memory"},
+    {"id":"D-FUSION","capability":"personality-memory semantic fusion","reason":"Personality baseline frozen and no cross-owner synthesis implementation allowed"},
+    {"id":"D-TRANSFER","capability":"cross-user cognitive transfer","reason":"privacy and owner boundaries"},
+    {"id":"D-REAL-DATA","capability":"real-data validation of cognitive algorithms","reason":"repository evidence is synthetic/controlled only"},
+    {"id":"D-GENOME","capability":"parameter genome activation/evolution","reason":"candidate/governance only; not necessary for A Route baseline"}
+  ],
+  "emotion_status":"DEFERRED",
+  "b_route_status":"DEFERRED",
+  "semantic_compression_status":"DEFERRED"
+}

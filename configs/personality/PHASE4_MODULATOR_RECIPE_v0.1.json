@@ -1,0 +1,38 @@
+{
+  "_comment": "Phase4 调制器配方 v0.1，封口径：λ 默认与已验证安全带；safe 区间非最终 λ_max",
+  "version": "0.1",
+  "description": "Phase4 alpha 调制器：risk_density_ema + alpha_eff clamp，基于 Phase3 v1.1 底盘",
+  "freeze_date": "2026-02",
+  "lambda_default": 0.10,
+  "lambda_verified_safe": [0.0, 0.40],
+  "lambda_verified_scope": "suite=v1.1 (golden_stress_v2_powerclips_*), seed=42 only; NOT final lambda_max",
+  "phase3_base": "configs/personality/PHASE3_PRODUCTION_RECIPE_v1.1.json",
+  "phase3_params": {
+    "exploit_ratio": 0.85,
+    "peak_hold_frames": 3,
+    "alpha_mean": 0.696,
+    "alpha_std": 0.013,
+    "alpha_min": 0.65,
+    "alpha_max": 0.73,
+    "decay_mean": 0.869,
+    "decay_std": 0.004,
+    "decay_min": 0.86,
+    "decay_max": 0.88,
+    "explore_alpha_min": 0.69,
+    "explore_alpha_max": 0.72,
+    "explore_decay_min": 0.865,
+    "explore_decay_max": 0.885
+  },
+  "modulation": {
+    "alpha_min": 0.55,
+    "alpha_max": 0.80,
+    "risk_density_alpha": 0.2
+  },
+  "health_gate": {
+    "determinism_pass": true,
+    "early_gain_mean_min": 4.0,
+    "miss_rate_max": 0,
+    "overreact_rate_max": 0.60,
+    "champion_vol_max": 0.01
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mapping_id": "field_state_mapping_v1",
+  "core_state": "Field",
+  "components": ["space", "time", "environment", "relationships", "events"],
+  "source_modules": ["Cognitive Field", "Field Temporal Evolution", "External Evidence", "Social Self", "Role"],
+  "outputs": ["Field State Candidate", "Field Transition Candidate", "Field Influence Candidate"],
+  "field_is_not_reality": true,
+  "field_is_input_state_space": true,
+  "field_does_not_override_self": true,
+  "candidate_only": true
+}

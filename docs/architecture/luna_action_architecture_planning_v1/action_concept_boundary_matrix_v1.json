@@ -1,0 +1,42 @@
+{
+    "artifact": "action_concept_boundary_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "canonical_owner": "Action Governance",
+    "concepts": [
+        "decision_candidate",
+        "selected_decision_candidate",
+        "action_option",
+        "action_candidate",
+        "action_eligibility",
+        "execution_readiness_candidate",
+        "execution_authorization_candidate",
+        "runtime_command",
+        "execution_request",
+        "task",
+        "plan",
+        "scheduler_operation",
+        "runtime_execution",
+        "actuator_command",
+        "rollback_request",
+        "cancellation",
+        "failure_result"
+    ],
+    "non_equivalence_guards": {
+        "decision_not_action": true,
+        "selected_decision_not_action_execution": true,
+        "action_candidate_not_runtime_command": true,
+        "eligible_not_executed": true,
+        "ready_not_executed": true,
+        "authorized_not_executed": true,
+        "action_governance_not_executor": true,
+        "action_governance_not_task_manager": true
+    },
+    "permission_safety_position": {
+        "action_consumes_permission_context": true,
+        "action_consumes_safety_context": true,
+        "permission_context_not_permanent_authorization": true,
+        "safety_context_not_permanent_authorization": true,
+        "action_mutates_permission_policy": false,
+        "action_mutates_safety_policy": false
+    }
+}

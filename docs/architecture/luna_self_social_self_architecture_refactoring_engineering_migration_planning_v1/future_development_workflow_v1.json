@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "name": "Future Development Workflow",
+  "steps": [
+    {"step": 1, "name": "Subject Ownership Classification", "question": "Who does this belong to", "output": "Owner Candidate"},
+    {"step": 2, "name": "Cognitive Object Definition", "question": "What state/object does it manage", "output": "Object Contract"},
+    {"step": 3, "name": "Permission Definition", "question": "What can it write/read and what is forbidden", "output": "Permission Contract"},
+    {"step": 4, "name": "Interface Definition", "question": "Who consumes its output", "output": "Interface Contract"},
+    {"step": 5, "name": "Engineering Implementation", "question": "How is the admitted contract implemented", "output": "Implementation Plan"}
+  ],
+  "example": {"module": "Role Manager", "owner": "Social Self", "objects": ["Role State", "Role Responsibility", "Role Boundary", "Role Transition"], "forbidden": ["Self Identity", "Constitution"]},
+  "rules": {"implementation_is_last": true, "owner_required": true, "object_required": true, "permission_required": true, "interface_required": true, "governance_admission_required": true}
+}

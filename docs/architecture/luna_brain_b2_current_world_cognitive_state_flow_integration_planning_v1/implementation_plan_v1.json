@@ -1,0 +1,14 @@
+{
+  "plan_id": "b2_implementation_plan_v1",
+  "steps": [
+    {"step": 1, "action": "freeze the B1 artifact/reference input and provenance replay boundary", "owner": "Cognitive State Formation integration", "status": "future"},
+    {"step": 2, "action": "resolve the explicit CurrentWorld input contract gap", "owner": "Cognitive State Formation Governance", "status": "blocked_pending_contract_decision"},
+    {"step": 3, "action": "adapt real B1 CurrentWorld and read-only source refs into existing State Formation input", "owner": "Cognitive State Formation integration", "status": "future"},
+    {"step": 4, "action": "reuse existing State Formation engine and validators", "owner": "Cognitive State Formation Governance", "status": "future"},
+    {"step": 5, "action": "map outputs into existing Cognitive Flow snapshot/input and reuse flow engine", "owner": "Cognitive Flow Governance", "status": "future"},
+    {"step": 6, "action": "add differential cases against synthetic State Formation and Flow fixtures", "owner": "B2 integration", "status": "future"},
+    {"step": 7, "action": "verify no mutation, truth, provider, learning, compression, or downstream execution", "owner": "B2 verifier", "status": "future"}
+  ],
+  "expected_existing_files_to_modify": ["none confirmed in planning phase; likely only a new integration surface under Cognitive State Formation and/or Cognitive Flow"],
+  "protected_files": ["Observation Gateway core", "B1 YOLO/Context integration", "Field State Reducer", "Intent Governance", "Decision/Task/Action owners"]
+}

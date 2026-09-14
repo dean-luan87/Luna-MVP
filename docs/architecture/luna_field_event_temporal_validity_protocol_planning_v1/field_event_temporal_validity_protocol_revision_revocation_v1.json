@@ -1,0 +1,17 @@
+{
+    "version": "1.0",
+    "name": "Field Event Revision and Revocation Protocol",
+    "description": "定义修订、撤回、证据撤销和派生状态失效的协议",
+    "revision_events": [
+        "human_correction_submitted",
+        "field_definition_corrected",
+        "evidence_retracted",
+        "revocation_requested",
+        "revision_applied"
+    ],
+    "principles": {
+        "history_immutable": "历史事件不可物理删除。",
+        "correction_as_event": "更正必须通过新事件表达。",
+        "revocation_impacts_lineage": "撤回影响所有派生状态，并必须保留 lineage。"
+    }
+}

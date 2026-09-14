@@ -1,0 +1,12 @@
+{
+  "schema_id": "ToolOSReadinessSchemaV1",
+  "version": "v1",
+  "required_fields": [
+    "should_handoff_to_tool_os",
+    "required_checks",
+    "admission_required",
+    "candidate_only",
+    "not_fact"
+  ],
+  "note": "readiness candidate is not execution permission"
+}

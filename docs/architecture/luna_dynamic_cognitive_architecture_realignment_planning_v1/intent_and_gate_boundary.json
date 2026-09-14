@@ -1,0 +1,18 @@
+{
+  "contract_id": "intent_processing_evaluation_gate_boundary_v1",
+  "intent_owner": "Intent Governance",
+  "gate_owner": "Cognitive Routing Governance",
+  "reused_architecture": "docs/architecture/cognitive_intent_architecture_v1/",
+  "intent_inputs": ["User Expression", "Field", "Self", "Role", "Relationship", "Goal", "Task", "Value Constraint", "Risk", "Unknowns"],
+  "intent_outputs": ["Intent Candidate", "Intent Conflict Candidate", "Clarification Candidate", "Goal Alignment Candidate"],
+  "gate_inputs": ["Intent Candidate", "Cognitive Sufficiency", "Uncertainty", "Risk", "Conflict", "Causal Depth", "Resource State"],
+  "gate_outputs": ["Direct Response Candidate", "Cognitive Expansion Candidate", "Clarification Candidate", "Defer Candidate", "Reject Candidate"],
+  "direct_response_is_not_action": true,
+  "cognitive_expansion_is_not_b_route_execution": true,
+  "gate_is_not_decision_owner": true,
+  "intent_is_not_goal_owner": true,
+  "intent_is_not_task_owner": true,
+  "candidate_only": true,
+  "automatic_goal_generation": false,
+  "runtime": false
+}

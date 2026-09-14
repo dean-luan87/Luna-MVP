@@ -1,0 +1,190 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Static-Site-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T11:04:54.960922+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "model_test_lens": true,
+  "not_whitebox_product_page": true,
+  "runtime_allowed": false,
+  "model_execution_allowed": false,
+  "candidate_output_only": true,
+  "record_type": "model_test_lens_model_panel_registry_record",
+  "record": {
+    "record_id": "model_test_lens_model_panel_registry_v1",
+    "panels": [
+      {
+        "panel_id": "ocr",
+        "panel_path": "model_panels/ocr",
+        "model_category": "ocr",
+        "input_types": [
+          "image",
+          "video_frame"
+        ],
+        "visualization_outputs": [
+          "text_boxes",
+          "recognized_text",
+          "confidence",
+          "reading_order",
+          "candidate_correction",
+          "failure_modes"
+        ],
+        "fact_write_allowed": false
+      },
+      {
+        "panel_id": "slam_vio",
+        "panel_path": "model_panels/slam",
+        "model_category": "slam_vio",
+        "input_types": [
+          "frame_sequence",
+          "pose_trace",
+          "imu_candidate",
+          "map_candidate"
+        ],
+        "visualization_outputs": [
+          "trajectory",
+          "keyframes",
+          "local_map",
+          "drift_metrics",
+          "tracking_lost_points"
+        ],
+        "navigation_drive_allowed": false
+      },
+      {
+        "panel_id": "depth_world",
+        "panel_path": "model_panels/depth",
+        "model_category": "depth_world",
+        "input_types": [
+          "image",
+          "video_frame"
+        ],
+        "visualization_outputs": [
+          "depth_map",
+          "walkable_area_candidate",
+          "scale_uncertainty",
+          "quality_risk"
+        ],
+        "actionable_fact_write_allowed": false
+      },
+      {
+        "panel_id": "vision_segmentation",
+        "panel_path": "model_panels/vision_segmentation",
+        "model_category": "segmentation",
+        "input_types": [
+          "image",
+          "prompt_box",
+          "prompt_point"
+        ],
+        "visualization_outputs": [
+          "mask_overlay",
+          "area_ratio",
+          "score",
+          "prompt_type",
+          "candidate_mask"
+        ],
+        "primary_model_example": "mobile_sam",
+        "candidate_only": true
+      },
+      {
+        "panel_id": "detection_tracking",
+        "panel_path": "model_panels/tracking",
+        "model_category": "detection_tracking",
+        "input_types": [
+          "image",
+          "video"
+        ],
+        "visualization_outputs": [
+          "bbox",
+          "track_id",
+          "confidence",
+          "id_switch",
+          "lost_track"
+        ],
+        "action_layer_allowed": false
+      },
+      {
+        "panel_id": "asr",
+        "panel_path": "model_panels/asr",
+        "model_category": "asr",
+        "input_types": [
+          "audio"
+        ],
+        "visualization_outputs": [
+          "transcript",
+          "timestamp",
+          "segment_confidence",
+          "wer_if_reference"
+        ]
+      },
+      {
+        "panel_id": "tts",
+        "panel_path": "model_panels/tts",
+        "model_category": "tts",
+        "input_types": [
+          "text",
+          "style_params"
+        ],
+        "visualization_outputs": [
+          "audio_ref",
+          "waveform",
+          "duration",
+          "pause_markers",
+          "quality_notes"
+        ],
+        "speech_output_gate_allowed": false
+      },
+      {
+        "panel_id": "speaker",
+        "panel_path": "model_panels/speaker",
+        "model_category": "speaker",
+        "input_types": [
+          "audio"
+        ],
+        "visualization_outputs": [
+          "speaker_segments",
+          "candidate_speaker_id",
+          "confidence"
+        ],
+        "identity_fact_write_allowed": false
+      },
+      {
+        "panel_id": "face_expression_gesture",
+        "panel_path": "model_panels/face_expression",
+        "model_category": "face_expression_gesture",
+        "input_types": [
+          "image",
+          "video"
+        ],
+        "visualization_outputs": [
+          "face_boxes",
+          "landmarks",
+          "expression_candidate",
+          "gesture_candidate"
+        ],
+        "identity_emotion_fact_write_allowed": false
+      },
+      {
+        "panel_id": "multimodal_vlm",
+        "panel_path": "model_panels/multimodal",
+        "model_category": "multimodal_vlm",
+        "input_types": [
+          "image",
+          "video",
+          "text_prompt"
+        ],
+        "visualization_outputs": [
+          "answer_candidate",
+          "evidence_refs",
+          "hallucination_risk"
+        ],
+        "fact_layer_allowed": false
+      }
+    ],
+    "panel_count": 10,
+    "all_required_panels_defined": true
+  }
+}

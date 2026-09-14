@@ -1,0 +1,65 @@
+{
+  "schema_id": "RegionIntelligenceProtocolChainV1",
+  "version": "v1",
+  "description": "Luna 中台协议治理链 — Region Intelligence / Document Surface 受控能力分支",
+  "governance_chain": [
+    "L0 Constitution / Safety",
+    "L1 Situation Understanding Protocol",
+    "Attention Allocation Protocol",
+    "Region Intelligence / Ownership Protocol",
+    "Model Manager Protocol",
+    "Runtime Boundary Contract",
+    "Evidence / Candidate / Fact Admission",
+    "Change Control / Review / Freeze"
+  ],
+  "legacy_protocols_required": [
+    {
+      "protocol_ref": "LUNA-PROTO-L1-OUTPUT-CANDIDATE-GOVERNANCE-V1",
+      "role": "Candidate / Fact Admission",
+      "required_flags": ["candidate_only", "not_fact"]
+    },
+    {
+      "protocol_ref": "LUNA-PROTO-L1-PROTOCOL-TRACEABILITY-GOVERNANCE-V1",
+      "role": "Evidence Chain / Traceability",
+      "required_trace_fields": [
+        "source_region_id",
+        "attention_gate_status",
+        "runtime_id"
+      ]
+    },
+    {
+      "protocol_ref": "Runtime Boundary Contract",
+      "role": "Runtime boundary enforcement",
+      "forbidden_capabilities": ["ocr", "global_ocr", "vlm", "full_scene_segmentation", "layout_semantic_parse"]
+    },
+    {
+      "protocol_ref": "Model Manager Admission / Registry",
+      "role": "Runtime provider governance",
+      "required_registry_fields": ["capability", "runtime_id", "output_type"]
+    },
+    {
+      "protocol_ref": "LUNA-PROTO-L1-MODEL-SKILL-ADMISSION-CONTRACT-V1",
+      "role": "Model / Skill Admission Contract",
+      "option_b_alignment": "document_surface_detector_v1_segmentation_candidate_route",
+      "required_flags": ["model_candidate_route", "skill_candidate_route", "model_skill_admission_required", "candidate_only", "not_fact"]
+    },
+    {
+      "protocol_ref": "Change Control / Review / Freeze",
+      "role": "Phase governance",
+      "required_phases": [
+        "Planning",
+        "DryRun",
+        "Post-Review",
+        "Implementation Planning",
+        "Implementation DryRun"
+      ]
+    }
+  ],
+  "protocol_patches": [
+    "Field Understanding Protocol Patch",
+    "Attention Gate Protocol Patch",
+    "Ownership Graph Protocol Patch",
+    "Lightweight Runtime Protocol Patch"
+  ],
+  "next_alignment_phase": "Phase-P1-Midplatform-Luna-Region-Intelligence-Protocol-Alignment-Post-Review-v1-001"
+}

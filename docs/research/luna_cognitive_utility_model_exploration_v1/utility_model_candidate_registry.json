@@ -1,0 +1,17 @@
+{
+  "title": "Cognitive Utility Model Candidate Registry v1",
+  "status": "research_only",
+  "candidates": [
+    {"id": "expected_utility", "name": "Expected Utility Theory", "question": "Is this outcome worth the cost?", "decision": "adopt_as_candidate", "luna_fit": "bounded", "runtime": false},
+    {"id": "mcda", "name": "MCDA", "question": "How can multiple value dimensions be compared?", "decision": "adopt_as_comparison_aid", "luna_fit": "bounded", "runtime": false},
+    {"id": "information_gain", "name": "Information Gain", "question": "Is reducing this uncertainty worth exploring?", "decision": "adopt_for_exploration_candidate", "luna_fit": "bounded", "runtime": false},
+    {"id": "pomdp", "name": "POMDP", "question": "How might a partially observed sequence evolve?", "decision": "defer_to_future_b_route", "luna_fit": "future_only", "runtime": false},
+    {"id": "rl_reward", "name": "RL Reward Model", "question": "What proxy reward should be maximized?", "decision": "reject_as_core", "luna_fit": "unsafe_proxy_risk", "runtime": false},
+    {"id": "pure_optimizer", "name": "Unconstrained Optimization", "question": "What scalar optimum is available?", "decision": "reject_as_core", "luna_fit": "boundary_incompatible", "runtime": false}
+  ],
+  "recommended_stack": ["expected_utility", "mcda", "information_gain", "self_constraint"],
+  "hard_constraint_layer": "Constitution + Self",
+  "decision_authority": "Brain / future Decision Arbitration",
+  "automatic_selection": false,
+  "implementation": false
+}

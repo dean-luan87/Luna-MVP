@@ -1,0 +1,8 @@
+{
+  "version":"1.0",
+  "name":"Memory Information Relation",
+  "owner":"Memory Governance",
+  "inputs":["validated experience","retention evaluation","folded pattern","principle candidate"],
+  "outputs":["Self Memory","Social Memory","World Memory","dormant reference","archived reference"],
+  "rules":{"memory_is_advanced_lifecycle_stage":true,"validation_required":true,"current_reality_precedes":true,"memory_not_all_information":true}
+}

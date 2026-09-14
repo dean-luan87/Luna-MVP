@@ -1,0 +1,12 @@
+{
+  "title": "Value Exploration Relation v1",
+  "inputs": ["Expected Information Gain", "Exploration Cost", "Safety Impact", "Decision Impact", "Unknowns"],
+  "formula": "Expected Information Gain - Exploration Cost",
+  "output": "Exploration Utility Candidate",
+  "exploration_is_investment": true,
+  "calculation_implemented": false,
+  "value_does_not_start_exploration": true,
+  "self_approval_required": true,
+  "exploration_execution": false,
+  "candidate_only": true
+}

@@ -1,0 +1,17 @@
+{
+  "profile_name": "Hardware Capability Profile v1",
+  "hardware_id": "hardware-example",
+  "capability_id": "vision_sensor_capability",
+  "capability_contribution": ["Object Observation", "OCR Input", "Scene Evidence"],
+  "input_boundary": "physical sensor state",
+  "output_boundary": "Evidence Candidate",
+  "resource_profile": {"energy": null, "compute": null, "memory": null, "latency": null},
+  "confidence_boundary": {"low_light": "medium", "occlusion": "candidate", "motion_blur": "candidate"},
+  "limitations": ["low light", "occlusion", "motion blur"],
+  "provider_mapping_candidate": null,
+  "capability_is_not_understanding": true,
+  "capability_is_not_decision": true,
+  "capability_is_not_reality": true,
+  "evidence_gateway_required": true,
+  "unknowns_are_preserved": true
+}

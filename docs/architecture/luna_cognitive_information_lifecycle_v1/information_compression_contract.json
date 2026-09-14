@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Information Compression Contract",
+  "owner":"Information Lifecycle Governance",
+  "compression_targets":["redundant observations","repeated episodes","stable experience patterns"],
+  "preservation_requirements":["provenance","uncertainty","contradictions","scope","time window","representative evidence"],
+  "compression_outputs":["compressed_pattern_candidate","retained_episode_refs","reconstruction_metadata"],
+  "forbidden_effects":["silent_fact_change","loss_of_unknown","loss_of_conflict","automatic_memory_write","automatic_self_update"],
+  "rules":{"compression_review_required":true,"lossless_lineage_required":true,"runtime_not_implemented":true}
+}

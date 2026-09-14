@@ -1,0 +1,11 @@
+{
+  "contract_id": "schema_lifecycle_v1",
+  "owner": "Information Lifecycle",
+  "states": ["Observed", "Candidate", "Validated", "Active", "Reinforced", "Compressed", "Generalized", "Dormant", "Archived", "Removed"],
+  "removed_definition": "no_longer_in_current_cognitive_influence",
+  "destructive_deletion": false,
+  "long_term_validation_required": true,
+  "automatic_transition": false,
+  "candidate_only": true,
+  "memory_lifecycle_reused": true
+}

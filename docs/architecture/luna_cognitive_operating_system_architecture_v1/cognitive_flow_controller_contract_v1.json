@@ -1,0 +1,16 @@
+{
+  "title": "Cognitive Flow Controller Contract v1",
+  "owner": "Cognitive OS Governance",
+  "nodes": [
+    {"node_id":"observe","input":"Observation Request","output":"Evidence Candidate","owner":"Capability/Evidence Boundary","interruptible":true},
+    {"node_id":"context","input":"Evidence and Reality","output":"Field/Situation Context","owner":"Cognitive Core","interruptible":true},
+    {"node_id":"attention","input":"Context and resource state","output":"Attention Allocation Candidate","owner":"Cognitive Core","interruptible":true},
+    {"node_id":"hypothesis","input":"Unknown and evidence","output":"Hypothesis Candidate","owner":"Cognitive Core","interruptible":true},
+    {"node_id":"evaluate","input":"Global Cognitive State","output":"Brain Input Package","owner":"Cognitive Core","interruptible":true},
+    {"node_id":"brain","input":"Brain Input Package","output":"Decision Candidate","owner":"Brain","interruptible":true},
+    {"node_id":"feedback","input":"Outcome Evidence","output":"Experience Candidate","owner":"Cognitive Core","interruptible":true},
+    {"node_id":"learning","input":"Experience and Difference","output":"Learning Candidate","owner":"Cognitive Core","interruptible":true}
+  ],
+  "ordering": ["observe", "context", "attention", "hypothesis", "evaluate", "brain", "feedback", "learning"],
+  "rules": {"controller_not_brain": true, "controller_not_decision_owner": true, "event_cannot_direct_action": true}
+}

@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field State Provenance Trace Schema",
+    "fields": [
+        "trace_id",
+        "state_id",
+        "reducer_run_id",
+        "reducer_version",
+        "policy_version",
+        "input_event_ids",
+        "ordered_event_ids",
+        "accepted_event_ids",
+        "rejected_event_ids",
+        "ignored_event_ids",
+        "conflict_ids",
+        "temporal_snapshot",
+        "decision_steps",
+        "resulting_state_hash",
+        "replay_key",
+        "created_at"
+    ],
+    "provenance_trace_complete": true
+}

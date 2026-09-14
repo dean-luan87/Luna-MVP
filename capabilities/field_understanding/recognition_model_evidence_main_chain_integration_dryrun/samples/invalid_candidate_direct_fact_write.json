@@ -1,0 +1,8 @@
+{
+  "candidate_type": "text_evidence_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "confidence": 0.994,
+  "text": "EXIT",
+  "candidate_only": false,
+  "direct_fact_write_requested": true
+}

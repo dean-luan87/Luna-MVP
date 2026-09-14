@@ -1,0 +1,31 @@
+{
+  "title": "Cognitive Interface Registry v1",
+  "registry_type": "canonical_interface_reference",
+  "interface_classes": ["Required Dependency", "Optional Dependency", "Candidate Dependency", "Future Interface"],
+  "interfaces": [
+    {"interface": "Evidence → Reality Update Pipeline", "class": "Required Dependency", "output": "Reality Update Candidate", "writer": "Reducer"},
+    {"interface": "Field → Situation", "class": "Required Dependency", "output": "Field Context", "writer": "Field System"},
+    {"interface": "Attention → Workspace", "class": "Required Dependency", "output": "Attention State Candidate", "writer": "Workspace Contract"},
+    {"interface": "Memory → Brain", "class": "Candidate Dependency", "output": "Relevant Memory Context", "writer": "Memory System"},
+    {"interface": "Brain → Decision Commitment", "class": "Candidate Dependency", "output": "Decision Commitment Candidate", "writer": "Decision Governance"},
+    {"interface": "Decision Commitment → Action Boundary", "class": "Future Interface", "output": "Action Request Candidate", "writer": "Action Boundary"},
+    {"interface": "Outcome → Experience / Learning", "class": "Candidate Dependency", "output": "Experience / Learning Candidate", "writer": "Experience System"},
+    {"interface": "Capability → Cognitive Core", "class": "Future Interface", "output": "Capability State / Evidence Candidate", "writer": "Capability Governance"}
+  ],
+  "forbidden_interfaces": [
+    "Provider → Brain Direct Access",
+    "Model → Decision",
+    "Capability → Goal Creation",
+    "Learning → Reality",
+    "Emotion → Decision Override",
+    "Action Boundary → Reality Direct Write"
+  ],
+  "interface_rules": {
+    "protocol_binding_required": true,
+    "authority_binding_required": true,
+    "candidate_output_is_not_authoritative_write": true,
+    "unknowns_are_preserved": true,
+    "provenance_is_preserved": true,
+    "registry_does_not_execute": true
+  }
+}

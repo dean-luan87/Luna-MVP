@@ -1,0 +1,82 @@
+{
+  "routes_id": "luna_observation_lens_v1_followup_routes",
+  "version": "v1",
+  "ui_template_reuse_required": true,
+  "routes": [
+    {
+      "route_id": "detection_yolo_runner_v1",
+      "model_category": "detection",
+      "priority": "P0",
+      "goal": "车辆、行人、路牌等 bounding box 识别，补充分割无法确认的类别",
+      "hud_mapping": "中央 HUD：box + 类别 + 置信度；对象胶囊：车辆/行人/物体",
+      "drawer_mapping": "指标 drawer：mAP / confidence / object count",
+      "forbidden_default": ["raw_box_json"]
+    },
+    {
+      "route_id": "ocr_runner_v1",
+      "model_category": "ocr",
+      "priority": "P0",
+      "goal": "路牌、广告屏、文字区域识别与复核",
+      "hud_mapping": "中央 HUD：文本框 + 短标签；对象胶囊：文字区域/路牌/广告",
+      "drawer_mapping": "指标 drawer：CER / WER / reading order",
+      "forbidden_default": ["raw_ocr_boxes"]
+    },
+    {
+      "route_id": "slam_video_backend_v1",
+      "model_category": "slam_vio",
+      "priority": "P1",
+      "goal": "视频 → trajectory → ATE/RPE/drift → HUD",
+      "hud_mapping": "关键帧 / feature points / tracking state / trajectory mini-map",
+      "drawer_mapping": "指标 drawer：ATE / RPE / drift / tracking stability",
+      "constraints": ["no_gt_no_ate", "no_fake_trajectory_or_gt"]
+    },
+    {
+      "route_id": "depth_world_perception_v1",
+      "model_category": "depth",
+      "priority": "P1",
+      "goal": "障碍距离、可通行区域、近远关系",
+      "hud_mapping": "depth heatmap / near-far zones / obstacle bands",
+      "drawer_mapping": "指标 drawer：depth error / coverage / uncertainty"
+    },
+    {
+      "route_id": "asr_runner_v1",
+      "model_category": "asr",
+      "priority": "P2",
+      "goal": "语音转写与时间对齐观察",
+      "hud_mapping": "音频波形 / 时间轴；对象胶囊：词段/不确定词",
+      "drawer_mapping": "指标 drawer：WER / CER / timestamp alignment"
+    },
+    {
+      "route_id": "tts_runner_v1",
+      "model_category": "tts",
+      "priority": "P2",
+      "goal": "合成语音质量与韵律观察",
+      "hud_mapping": "文本 + waveform + prosody timeline",
+      "drawer_mapping": "指标 drawer：MOS / duration / pause metrics"
+    },
+    {
+      "route_id": "speaker_diarization_v1",
+      "model_category": "speaker",
+      "priority": "P2",
+      "goal": "说话人分离与重叠段观察",
+      "hud_mapping": "speaker timeline；对象胶囊：说话人片段/重叠/未知",
+      "drawer_mapping": "指标 drawer：EER / diarization error"
+    },
+    {
+      "route_id": "vlm_evidence_regions_v1",
+      "model_category": "vlm",
+      "priority": "P2",
+      "goal": "多模态回答与证据区域对照",
+      "hud_mapping": "回答引用区域 / supporting regions",
+      "drawer_mapping": "指标 drawer：QA accuracy / hallucination risk"
+    },
+    {
+      "route_id": "whitebox_lens_v1",
+      "model_category": "whitebox",
+      "priority": "P1",
+      "goal": "evidence chain / trace / decision path / gate status",
+      "hud_mapping": "白盒 drawer slot；不与主 HUD 抢占默认首屏",
+      "drawer_mapping": "白盒 drawer：trace / gate / decision path"
+    }
+  ]
+}

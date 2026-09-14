@@ -1,0 +1,11 @@
+{
+  "contract_id": "core_state_dependency_v1",
+  "nodes": ["Reality", "Field", "Self", "Understanding", "Goal", "Value", "Memory", "Resource", "Action Candidate", "Outcome"],
+  "allowed_edges": ["Reality -> Field", "Field -> Understanding", "Memory -> Understanding", "Understanding -> Goal", "Goal -> Value", "Value -> Action Candidate", "Action Candidate -> Outcome", "Outcome -> Memory", "Resource -> Global Regulation", "Self -> Boundary Governance"],
+  "feedback_edges_are_candidates": true,
+  "reality_precedence": true,
+  "self_boundary_precedence": true,
+  "resource_is_global_constraint": true,
+  "direct_execution": false,
+  "candidate_only": true
+}

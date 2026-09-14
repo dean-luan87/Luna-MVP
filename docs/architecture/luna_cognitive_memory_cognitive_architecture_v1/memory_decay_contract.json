@@ -1,0 +1,12 @@
+{
+  "contract_id": "memory_decay_v1",
+  "owner": "Information Lifecycle",
+  "input": "memory_candidate_or_memory",
+  "factors": ["time_decay", "reinforcement", "context_match", "current_relevance", "validation_status"],
+  "output": "influence_adjustment_candidate",
+  "decay_reduces_influence": true,
+  "removed_is_not_deleted": true,
+  "automatic_deletion": false,
+  "current_reality_precedence": true,
+  "memory_truth_overwrite": false
+}

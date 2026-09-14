@@ -1,0 +1,20 @@
+{
+  "physical_asset_states": [
+    "ASSET_NOT_PRESENT",
+    "ASSET_PRESENT_UNVERIFIED",
+    "ASSET_PRESENT_VERIFIED_CANDIDATE",
+    "ASSET_INVALID_FILE",
+    "ASSET_PATH_MISMATCH"
+  ],
+  "fields": [
+    "file_exists",
+    "is_regular_file",
+    "file_size",
+    "observed_filename",
+    "observed_extension",
+    "observed_path",
+    "governed_path_match"
+  ],
+  "physical_presence_grants_admission": false,
+  "copy_is_automatic": false
+}

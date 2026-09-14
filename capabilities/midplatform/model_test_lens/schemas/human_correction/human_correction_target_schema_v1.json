@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "HumanCorrectionTargetSchemaV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "title": "Human Correction Target",
+  "description": "纠错目标：指向 HUD 标注、对象胶囊、推理面板语句或漏识别区域。仅 candidate，不修改原始 envelope。",
+  "type": "object",
+  "required": [
+    "target_id",
+    "target_type",
+    "source_envelope_ref",
+    "source_model_id",
+    "source_model_category",
+    "candidate_only"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "target_id": {
+      "type": "string",
+      "description": "目标唯一标识，如 object_04 或 reasoning_stmt_02"
+    },
+    "target_type": {
+      "type": "string",
+      "enum": [
+        "object_chip",
+        "hud_annotation",
+        "segmentation_mask",
+        "detection_box",
+        "ocr_text_box",
+        "slam_track",
+        "depth_region",
+        "reasoning_panel_statement",
+        "recommendation_item",
+        "whole_scene",
+        "missing_region"
+      ]
+    },
+    "source_envelope_ref": {
+      "type": "string",
+      "description": "引用原始 envelope，不得被纠错覆盖"
+    },
+    "source_model_id": {
+      "type": "string",
+      "examples": ["mobile_sam", "yolo_v8", "paddle_ocr"]
+    },
+    "source_model_category": {
+      "type": "string",
+      "enum": [
+        "segmentation",
+        "detection",
+        "ocr",
+        "slam_vio",
+        "depth",
+        "asr",
+        "tts",
+        "speaker",
+        "vlm",
+        "reasoning_panel"
+      ]
+    },
+    "source_object_id": {
+      "type": "string",
+      "description": "可选，关联 HUD 对象编号"
+    },
+    "source_annotation_id": {
+      "type": "string",
+      "description": "可选，关联 overlay annotation id"
+    },
+    "source_reasoning_panel_id": {
+      "type": "string",
+      "description": "可选，关联右侧 Luna 观察面板语句 id"
+    },
+    "source_geometry_ref": {
+      "type": "string",
+      "description": "可选，引用 envelope 内几何字段路径"
+    },
+    "target_display_name": {
+      "type": "string",
+      "description": "用户可见短名，如 ① 路牌候选"
+    },
+    "candidate_only": {
+      "type": "boolean",
+      "const": true
+    }
+  },
+  "entry_points": {
+    "object_chip_bar": {
+      "trigger": "指错",
+      "target_type": "object_chip",
+      "ui_slot": "hud_object_chip_bar_v1"
+    },
+    "hud_canvas": {
+      "trigger": "点击框/mask/编号",
+      "target_types": ["hud_annotation", "segmentation_mask", "detection_box", "missing_region"],
+      "ui_slot": "perception_hud_view_v1"
+    },
+    "reasoning_panel": {
+      "trigger": "指出问题",
+      "target_types": ["reasoning_panel_statement", "recommendation_item"],
+      "ui_slot": "hud_reasoning_compression_v1"
+    },
+    "bottom_drawer": {
+      "trigger": "纠错 tab",
+      "tab_id": "correction",
+      "ui_slot": "luna_bottom_drawer_tabs_v1",
+      "default_collapsed": true
+    }
+  }
+}

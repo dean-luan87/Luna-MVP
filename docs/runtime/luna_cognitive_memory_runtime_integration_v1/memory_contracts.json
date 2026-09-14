@@ -1,0 +1,11 @@
+{
+  "version":"1.0",
+  "name":"Luna Cognitive Memory Runtime Integration Contracts",
+  "flow":["Experience Record","Memory Candidate","Memory Governance Review","Memory Storage","Context-bound Retrieval"],
+  "scopes":["self","social"],
+  "owners":{"self":"Self Layer","social":"Social Self Layer","governance":"Memory Governance"},
+  "required_gates":["provenance","scope","explicit_validation","retrieval_context"],
+  "self_rhythm_interface":{"input":"advisory memory budget hint","runtime_owner":"Cognitive Runtime","direct_resource_control":false},
+  "forbidden_permissions":["decision authority","reality mutation","identity mutation","goal mutation","direct brain override","automatic learning","model training","external persistence"],
+  "verification":{"agent":"V0 static checks only","user_terminal":"V2 verifier and fixture","chatgpt":"V3 audit"}
+}

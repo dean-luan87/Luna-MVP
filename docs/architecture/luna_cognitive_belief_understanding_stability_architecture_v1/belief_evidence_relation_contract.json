@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_evidence_relation_v1",
+  "owner": "Evidence Layer",
+  "inputs": ["evidence", "hypothesis", "field_context", "context"],
+  "outputs": ["belief_candidate", "supporting_evidence_refs", "contradicting_evidence_refs", "confidence_candidate", "unknowns"],
+  "source_required": true,
+  "supporting_and_contradicting_preserved": true,
+  "evidence_is_belief": false,
+  "reality_write": false,
+  "candidate_only": true
+}

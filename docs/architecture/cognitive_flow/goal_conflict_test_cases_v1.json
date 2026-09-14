@@ -1,0 +1,59 @@
+{
+  "schema_version": "v1",
+  "fixture_type": "deterministic_behavior_robustness_validation",
+  "scope": "candidate_only_behavior_robustness",
+  "cases": [
+    {
+      "case_id": "fast_arrival_conflicts_with_hazardous_road",
+      "goal_context": {
+        "user_preference": "arrive_quickly"
+      },
+      "situation_reference": {
+        "route_a": "short_high_risk",
+        "route_b": "long_low_risk"
+      },
+      "expected_evaluation_visibility": [
+        "Survival Impact",
+        "Goal Alignment",
+        "Risk",
+        "Resource Cost"
+      ],
+      "forbidden_outputs": [
+        "speed_overrides_safety_without_evaluation",
+        "automatic_route_action"
+      ],
+      "assertions": {
+        "survival_and_risk_remain_visible": true,
+        "goal_conflict_is_not_silently_collapsed": true,
+        "brain_final_judgment_boundary_preserved": true
+      }
+    },
+    {
+      "case_id": "shopping_mall_closes_after_initial_plan",
+      "initial_context": {
+        "destination": "shopping_mall",
+        "mall_state": "open",
+        "decision_candidate": "enter_mall"
+      },
+      "environment_shift_evidence": {
+        "mall_state": "closed",
+        "material_change": true
+      },
+      "expected_candidates": {
+        "world_update_candidate": true,
+        "situation_reassessment_candidate": true,
+        "decision_reconsideration_candidate": true
+      },
+      "forbidden_outputs": [
+        "old_plan_immutable",
+        "original_decision_declared_wrong_by_hindsight",
+        "automatic_action"
+      ],
+      "assertions": {
+        "unexpected_environment_shift_reopens_cognitive_chain": true,
+        "past_available_context_respected": true,
+        "runtime_excluded": true
+      }
+    }
+  ]
+}

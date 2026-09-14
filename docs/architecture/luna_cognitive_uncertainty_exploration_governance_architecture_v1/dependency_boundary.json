@@ -1,0 +1,10 @@
+{
+  "boundary_id": "uncertainty_exploration_dependency_v1",
+  "reusable_assets": ["docs/architecture/luna_cognitive_state_management_reality_validation_architecture_v1", "docs/architecture/cognitive_hypothesis_belief_architecture_v1", "docs/architecture/luna_cognitive_field_architecture_v1", "docs/architecture/luna_cognitive_information_lifecycle_v1", "docs/architecture/luna_cognitive_memory_cognitive_architecture_v1", "docs/architecture/luna_cognitive_schema_architecture_v1", "docs/architecture/luna_cognitive_self_regulation_architecture_v1", "docs/architecture/luna_self_rhythm_controller_architecture_v1"],
+  "allowed_dependencies": ["Cognitive Kernel -> Uncertainty Candidate", "Uncertainty -> Impact Evaluation", "Impact Evaluation -> Exploration Candidate", "Self Layer -> Approval", "Self Rhythm -> Resource Constraint", "Cognitive State -> Current Mode", "Knowledge/Memory/Schema -> Context", "Brain -> Consume Results", "Runtime -> future admitted execution"],
+  "forbidden_dependencies": ["Uncertainty -> Direct Action", "Exploration -> Direct Self Modification", "Knowledge Retrieval -> Automatic Exploration", "Exploration -> Unlimited Resource Usage", "Unknown -> Forced Resolution", "Memory -> Override Reality", "Exploration -> Scheduler Modification", "Exploration -> Model Switching", "Exploration -> Hardware Control", "Exploration -> B Route Runtime"],
+  "no_parallel_exploration_engine": true,
+  "runtime": false,
+  "scheduler": false,
+  "database_access": false
+}

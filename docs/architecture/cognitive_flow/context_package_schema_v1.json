@@ -1,0 +1,12 @@
+{
+  "schema_version": "v1",
+  "schema_type": "reality_context_package",
+  "required_fields": ["package_id", "projection_scope", "observable_state", "state_change", "relevant_constraints", "unknowns", "validity", "provenance", "generated_at"],
+  "observable_state": {"description": "current observed state candidates", "interpretation": false},
+  "state_change": {"description": "observed transition candidates", "interpretation": false},
+  "relevant_constraints": {"description": "fact-level constraints", "interpretation": false},
+  "unknowns": {"description": "explicit unresolved references", "must_preserve": true},
+  "provenance": {"required": true, "fields": ["source", "evidence_reference", "state_reference", "timestamp", "confidence", "uncertainty", "transform_trace"]},
+  "forbidden_sections": ["recommendation", "judgment", "plan", "prediction", "emotion", "decision", "action"],
+  "situation_engine": false
+}

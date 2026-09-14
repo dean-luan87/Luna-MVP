@@ -1,0 +1,32 @@
+{
+    "contract_id": "context_pcn_activation_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "candidate_only": true,
+    "producer": "Context Foundation",
+    "consumer": "Personal Cognitive Network Governance",
+    "input": [
+        "Context Envelope Candidate",
+        "Context Projection References",
+        "Current Field Reference",
+        "Role References",
+        "Relationship References",
+        "Memory References",
+        "Mental Field Continuity Reference",
+        "Resource Budget Reference"
+    ],
+    "output": "PCN Activation Candidate",
+    "forbidden_output": [
+        "Intent",
+        "Causal Result",
+        "Decision",
+        "Action"
+    ],
+    "constraints": [
+        "source_owner_precedence",
+        "read_only_reference_input",
+        "trace_required",
+        "unknown_preservation",
+        "resource_bounded_activation"
+    ],
+    "second_writer_prohibited": true
+}

@@ -1,0 +1,14 @@
+{
+  "loop": "Observe -> Understand -> Decide -> Act -> Observe Result -> Compare -> Learn/Experience -> Next Cycle",
+  "steps": [
+    {"step":"Observe","status":"PARTIAL","evidence_refs":["capabilities/midplatform/core/field_understanding","docs/architecture/luna_field_event_temporal_validity_protocol_planning_v1"],"gap":"No canonical user/device observation gateway."},
+    {"step":"Understand","status":"PARTIAL","evidence_refs":["capabilities/midplatform/core/context_foundation","capabilities/midplatform/core/cognitive_state_formation"],"gap":"Context, attention, hypothesis, and current-world components are not runtime-integrated."},
+    {"step":"Decide","status":"PARTIAL","evidence_refs":["capabilities/midplatform/core/intent_governance","capabilities/midplatform/core/decision_governance"],"gap":"Candidate decision path is not admitted by a live orchestration layer."},
+    {"step":"Act","status":"BLOCKED","evidence_refs":["capabilities/midplatform/core/action_governance","docs/architecture/luna_action_runtime_foundation_v1/action_runtime_layer_definition_v1.json"],"gap":"External execution is explicitly disabled and no A Route runtime handoff exists."},
+    {"step":"Observe Result","status":"BLOCKED","evidence_refs":["docs/architecture/luna_action_runtime_foundation_v1/action_outcome_collector_v1.json"],"gap":"Result contracts are candidate-only and disconnected from route observation."},
+    {"step":"Compare","status":"BLOCKED","evidence_refs":["docs/architecture/luna_runtime_executor_architecture_planning_v1/execution_result_handoff_contract_candidate_v1.json"],"gap":"No canonical expected-vs-observed comparison stage."},
+    {"step":"Learn/Experience","status":"PARTIAL","evidence_refs":["capabilities/midplatform/core/cognitive_memory_experience","capabilities/midplatform/core/cognitive_learning"],"gap":"Candidate admission exists without persistence and live verified-outcome feed."},
+    {"step":"Next Cycle","status":"BLOCKED","evidence_refs":["capabilities/midplatform/core/cognitive_flow","capabilities/midplatform/core/self_governance","capabilities/midplatform/core/personality_governance"],"gap":"No persistent runtime cycle carries corrected state and references forward."}
+  ],
+  "overall_status":"BLOCKED"
+}

@@ -1,0 +1,14 @@
+{
+  "version":"1.0",
+  "name":"Luna Engineering Change Workflow",
+  "steps":[
+    {"order":1,"step":"Architecture Classification","required_output":"target layer and canonical module"},
+    {"order":2,"step":"Owner Assignment","required_output":"unique owner and state writer"},
+    {"order":3,"step":"Contract Definition","required_output":"schema, lifecycle, and evidence boundary"},
+    {"order":4,"step":"Permission Boundary","required_output":"allowed and forbidden dependencies"},
+    {"order":5,"step":"Engineering Mapping","required_output":"asset path, status, and migration risk"},
+    {"order":6,"step":"Implementation","required_output":"in-scope code under explicit phase"},
+    {"order":7,"step":"Verification","required_output":"V0, user V2, and ChatGPT V3 audit"}
+  ],
+  "rules":{"ordered":true,"owner_before_implementation":true,"contract_before_code":true,"verification_required":true,"no_orphan_module":true}
+}

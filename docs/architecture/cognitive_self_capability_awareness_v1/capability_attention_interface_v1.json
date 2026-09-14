@@ -1,0 +1,30 @@
+{
+  "title": "Capability Attention Interface v1",
+  "contract_type": "Capability to Attention Interface",
+  "input": {
+    "capability_state": "Available | Degraded | Limited | Unavailable | Unknown",
+    "capability_confidence": "Capability Confidence Candidate",
+    "limitation": [],
+    "resource_context": {},
+    "provenance": []
+  },
+  "output": {
+    "observation_cost_change_candidate": "candidate",
+    "attention_reallocation_candidate": "candidate",
+    "attention_reallocation_label": "Attention Reallocation Candidate",
+    "alternative_observation_candidate": "candidate",
+    "uncertainty_increase_candidate": "candidate",
+    "brain_awareness_candidate": "candidate"
+  },
+  "rules": {
+    "capability_degradation": "may increase Observation Cost",
+    "attention_reallocation_candidate": "requires Attention governance",
+    "attention_does_not_modify_capability_state": true,
+    "capability_does_not_select_goal": true,
+    "capability_does_not_select_decision": true,
+    "no_automatic_frequency_adjustment": true,
+    "no_hardware_control": true,
+    "no_direct_reality_update": true,
+    "evidence_gateway_required": true
+  }
+}

@@ -1,0 +1,68 @@
+{
+    "version": "1.0",
+    "name": "Field State Conflict Resolution Matrix",
+    "conflict_rules": [
+        {
+            "scenario": "positive_vs_negative",
+            "resolution": "preserve_conflict",
+            "state_status_on_unresolved": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "active_vs_revoked",
+            "resolution": "revocation_override",
+            "state_status_on_unresolved": "revoked",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "permanent_vs_temporary",
+            "resolution": "temporary_overlay_separation",
+            "state_status_on_unresolved": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "direct_observation_vs_inferred_event",
+            "resolution": "preserve_conflict",
+            "state_status_on_unresolved": "unresolved",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "high_confidence_vs_low_confidence",
+            "resolution": "highest_confidence_valid_event",
+            "state_status_on_unresolved": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "newer_vs_older",
+            "resolution": "latest_valid_event",
+            "state_status_on_unresolved": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "owner_correction_vs_machine_candidate",
+            "resolution": "explicit_owner_override_candidate",
+            "state_status_on_unresolved": "provisional",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "same_priority_contradictory_events",
+            "resolution": "preserve_conflict",
+            "state_status_on_unresolved": "conflicted",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "mutually_exclusive_states",
+            "resolution": "preserve_conflict",
+            "state_status_on_unresolved": "unresolved",
+            "fact_promotion_allowed": false
+        },
+        {
+            "scenario": "partially_compatible_states",
+            "resolution": "multi_event_consensus",
+            "state_status_on_unresolved": "degraded",
+            "fact_promotion_allowed": false
+        }
+    ],
+    "conflict_preservation_supported": true,
+    "unresolved_state_supported": true
+}

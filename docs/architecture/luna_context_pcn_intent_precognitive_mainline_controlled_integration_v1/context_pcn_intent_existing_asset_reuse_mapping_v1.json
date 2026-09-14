@@ -1,0 +1,33 @@
+{
+    "artifact": "context_pcn_intent_existing_asset_reuse_mapping_v1",
+    "reused_modules": [
+        {
+            "owner": "Context Foundation",
+            "code": [
+                "capabilities/midplatform/core/context_foundation/context_foundation_skeleton_v1.py",
+                "capabilities/midplatform/core/context_foundation/context_foundation_types_v1.py",
+                "capabilities/midplatform/core/context_foundation/context_foundation_fixture_v1.py"
+            ],
+            "doc_contract": "docs/architecture/luna_context_foundation_module_closure_v1/context_to_pcn_handoff_contract_candidate.json"
+        },
+        {
+            "owner": "Personal Cognitive Network Governance",
+            "code": [
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_skeleton_v1.py",
+                "capabilities/midplatform/core/personal_cognitive_network/personal_cognitive_network_types_v1.py"
+            ],
+            "doc_contract": "docs/architecture/luna_personal_cognitive_network_module_closure_v1/pcn_to_intent_handoff_contract_candidate_v1.json"
+        },
+        {
+            "owner": "Intent Governance",
+            "code": [
+                "capabilities/midplatform/core/intent_governance/intent_governance_skeleton_v1.py",
+                "capabilities/midplatform/core/intent_governance/intent_io_types_v1.py",
+                "capabilities/midplatform/core/intent_governance/intent_core_types_v1.py"
+            ],
+            "doc_contract": "docs/architecture/luna_intent_architecture_planning_v1/intent_formation_contract_candidate_v1.json"
+        }
+    ],
+    "no_parallel_owner_created": true,
+    "no_existing_module_modified": true
+}

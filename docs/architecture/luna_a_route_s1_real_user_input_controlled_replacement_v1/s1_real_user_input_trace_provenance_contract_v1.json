@@ -1,0 +1,10 @@
+{
+  "trace_contract_id": "a-route-s1-real-user-input-trace-v1",
+  "reverse_route": ["ProductLoopInputV1", "RealUserInputRecordV1", "raw_input_ref", "original user-provided payload"],
+  "downstream_route": ["Product Output Candidate", "S0 controlled product loop trace", "ProductLoopInputV1", "RealUserInputRecordV1", "raw_input_ref"],
+  "required_refs": ["input_id", "trace_ref", "provenance_refs", "source_ref", "session_ref", "cycle_ref"],
+  "correction_lineage_preserved": true,
+  "raw_input_duplicate_storage": false,
+  "provenance_grants_authority": false,
+  "candidate_only": true
+}

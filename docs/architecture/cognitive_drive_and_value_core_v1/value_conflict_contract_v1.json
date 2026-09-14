@@ -1,0 +1,14 @@
+{
+  "contract_name": "Value Conflict Contract v1",
+  "value_candidates": ["Survival Value", "Self Integrity Value", "User Goal Value", "Social Value", "Learning Value"],
+  "drive_candidates": ["Survival Drive", "Task Drive", "Self Continuity Drive", "Exploration Drive", "Social Drive"],
+  "tradeoff_candidate": null,
+  "constraints": [],
+  "unknowns": [],
+  "provenance": [],
+  "survival_constitution_is_highest": true,
+  "conflict_is_not_decision": true,
+  "automatic_resolution": false,
+  "brain_review_required": true,
+  "unknowns_are_preserved": true
+}

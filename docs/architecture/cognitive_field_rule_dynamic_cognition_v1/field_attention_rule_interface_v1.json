@@ -1,0 +1,19 @@
+{
+  "interface_name": "Field Attention Rule Interface v1",
+  "field_reference": "field-example",
+  "rule_reference": "rule-example",
+  "dynamic_reference": "dynamic-example",
+  "attention_bias_candidate": {"targets": ["exit", "sign", "flow"], "priority": null},
+  "information_value": null,
+  "uncertainty": [],
+  "risk_context": null,
+  "resource_cost": null,
+  "reactivation_candidate": null,
+  "release_candidate": null,
+  "attention_does_not_modify_reality": true,
+  "attention_does_not_modify_goal": true,
+  "attention_does_not_modify_decision": true,
+  "attention_does_not_execute_action": true,
+  "candidate_only": true,
+  "unknowns_are_preserved": true
+}

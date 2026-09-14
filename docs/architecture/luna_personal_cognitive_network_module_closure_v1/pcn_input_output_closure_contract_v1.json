@@ -1,0 +1,37 @@
+{
+    "artifact_id": "pcn_input_output_closure_contract_v1",
+    "status": "MODULE_CLOSURE_CANDIDATE",
+    "inputs": {
+        "context_linked_references": true,
+        "memory_projection_references": true,
+        "field_role_relationship_references": true,
+        "interaction_candidate_references": true,
+        "resource_constraint_reference": true
+    },
+    "outputs": {
+        "personal_cognitive_projection_candidate": true,
+        "active_cognitive_object_references": true,
+        "active_link_references": true,
+        "subjective_strength_references": true,
+        "dormancy_reactivation_references": true,
+        "trace_references": true
+    },
+    "forbidden_outputs": {
+        "fact": true,
+        "intent": true,
+        "causal_result": true,
+        "decision": true,
+        "action": true,
+        "runtime_command": true
+    },
+    "equivalence_guards": {
+        "pcn_activation_not_intent": true,
+        "strong_link_not_intent": true,
+        "repeated_activation_not_intent": true,
+        "field_occupation_not_intent": true,
+        "role_competition_not_intent_decision": true
+    },
+    "candidate_only": true,
+    "runtime_integration": false,
+    "persistence": false
+}

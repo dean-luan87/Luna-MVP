@@ -1,0 +1,36 @@
+{
+  "schema_id": "LunaAgentPlanningDryrunPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Agent-Planning-Layer-DryRun-v1-001",
+  "layer_id": "L2_Agent_Planning",
+  "dryrun_only": true,
+  "principle": "L1 drives L2; L2 constrains tools via plan competition; models are tools not the brain.",
+  "chain": [
+    "job_envelope",
+    "runner_evidence",
+    "situation_understanding_candidate",
+    "agent_plan_candidate",
+    "tool_os_handoff_candidate"
+  ],
+  "rules": [
+    {"rule_id": "l1_drives_l2", "description": "Agent Planning 必须消费 Situation Understanding candidate"},
+    {"rule_id": "l2_constrains_tools", "description": "L2 约束工具组合，禁止变成 blanket 模型调度器"},
+    {"rule_id": "plan_competition_required", "description": "DryRun 必须产出竞争计划并选出 selected_plan_candidate"},
+    {"rule_id": "goal_overrides_scene_default_task", "description": "用户目标优先于场景默认任务"},
+    {"rule_id": "text_task_no_slam_activation", "description": "文字/店招计划不得因空间结构启动 SLAM"},
+    {"rule_id": "no_tool_execution_in_dryrun", "description": "DryRun 不执行工具"},
+    {"rule_id": "no_runner_invocation_in_dryrun", "description": "DryRun 不触发 runner"},
+    {"rule_id": "tool_os_handoff_is_candidate_only", "description": "handoff 仅是 L3 入口候选"}
+  ],
+  "boundary_flags": {
+    "l1_drives_l2": true,
+    "l2_constrains_tools": true,
+    "plan_competition_required": true,
+    "goal_overrides_scene_default_task": true,
+    "text_task_no_slam_activation": true,
+    "no_tool_execution_in_dryrun": true,
+    "no_runner_invocation_in_dryrun": true,
+    "tool_os_handoff_is_candidate_only": true,
+    "dryrun_only": true
+  }
+}

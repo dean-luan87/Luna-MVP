@@ -1,0 +1,129 @@
+{
+  "authorization_id": "model_download_authorization_v1",
+  "download_authorization_all_false": true,
+  "entries": [
+    {
+      "model_project_id": "SAM2",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Grounded_SAM2",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "ByteTrack",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "YOLO_lightweight",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "PaddleOCR",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "RapidOCR",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Whisper",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "faster_whisper",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "SenseVoice",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "pyannote_audio",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Kimera",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Hydra",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "HOV_SG",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Open3DSG",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Esper",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Flecs",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "NetworkX",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "RDFLib",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Neo4j",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Luna_dataclass_ECS_skeleton",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "Luna_geometry_simulator",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    },
+    {
+      "model_project_id": "structured_LLM_reasoning",
+      "download_authorized": false,
+      "authorization_reason": "capability_review_not_complete"
+    }
+  ],
+  "phase": "Phase-Midplatform-Field-First-Core-Model-Preinstall-Plan-and-Cache-Manifest-Prepare-v1-001",
+  "scope": "field_first_core_model_preinstall_plan_only",
+  "source_chain": "field_first_core_model_preinstall_plan_v1",
+  "governance_constraints_ref": "migration_governance_development_constraints_v1",
+  "foundation_id": "midplatform_task_manager_foundation_v1",
+  "runtime_status": "not_enabled",
+  "field_first_core_model_preinstall_plan_only": true,
+  "midplatform_overall_status": "construction_consolidation",
+  "foundation_consolidation_not_final_midplatform_completion": true,
+  "no_fragmentary_phase_expansion": true,
+  "integration_test_executed": false,
+  "output_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_model_preinstall_plan_v1_smoke_v0",
+  "ideal_operation_root": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/field_first_core_ideal_operation_mechanism_and_model_requirement_mapping_v1_smoke_v0"
+}

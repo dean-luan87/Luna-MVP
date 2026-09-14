@@ -1,0 +1,42 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T06:45:17.757852+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "execution_scope": "mobile_sam_only",
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "weight_download_execution_record",
+  "weight_download_execution_record": {
+    "asset_id": "mobile_sam",
+    "download_url": "https://raw.githubusercontent.com/ChaoningZhang/MobileSAM/f706ad9c4eb7f219c00d9050e46328518ffb65d2/weights/mobile_sam.pt",
+    "source_repository": "https://github.com/ChaoningZhang/MobileSAM",
+    "source_commit": "f706ad9c4eb7f219c00d9050e46328518ffb65d2",
+    "source_file": "weights/mobile_sam.pt",
+    "destination_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "download_attempted": true,
+    "download_status": "downloaded_ok",
+    "download_return_ok": true,
+    "overwrote_existing": false,
+    "downloaded_to_controlled_path": true,
+    "url_pinned_to_commit": true,
+    "timestamp": "2026-06-30T06:45:17.721386+00:00"
+  },
+  "weight_download_network_log_record": {
+    "asset_id": "mobile_sam",
+    "download_url": "https://raw.githubusercontent.com/ChaoningZhang/MobileSAM/f706ad9c4eb7f219c00d9050e46328518ffb65d2/weights/mobile_sam.pt",
+    "target_domain": "raw.githubusercontent.com",
+    "expected_file": "mobile_sam.pt",
+    "destination_path": "capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "timestamp": "2026-06-30T06:45:12.951979+00:00",
+    "download_status": "downloaded_ok",
+    "network_boundary_compliant": true,
+    "unapproved_network_access": false
+  }
+}

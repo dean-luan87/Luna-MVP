@@ -1,0 +1,18 @@
+{
+  "registry_id": "dynamic_cognitive_duplicate_owner_risks_v1",
+  "risks": [
+    {"risk_id": "personal_network_vs_self", "conflict": "Personal Cognitive Network owning Self Identity", "canonical_owner": "Self Governance", "resolution": "network stores references/projections only", "severity": "critical"},
+    {"risk_id": "personal_network_vs_memory", "conflict": "Personal Cognitive Network becoming a second Memory store", "canonical_owner": "Memory System", "resolution": "network consumes admitted memory references and activation candidates", "severity": "critical"},
+    {"risk_id": "personal_network_vs_role_relationship", "conflict": "network owning role or relationship lifecycle", "canonical_owner": "Social Self Governance", "resolution": "source owners remain canonical", "severity": "high"},
+    {"risk_id": "intent_engine_duplicate", "conflict": "new Intent Engine replacing Cognitive Intent Architecture v1", "canonical_owner": "Intent Governance", "resolution": "reuse and align existing contracts", "severity": "high"},
+    {"risk_id": "causal_engine_duplicate", "conflict": "new causal core ignoring existing causality plans", "canonical_owner": "Causal Reasoning Governance", "resolution": "extend existing candidate schemas", "severity": "high"},
+    {"risk_id": "observation_attention_vs_cognitive_attention", "conflict": "perceptual coordinator owning cognitive attention", "canonical_owner": "Attention Governance", "resolution": "separate evidence coordination from cognitive allocation", "severity": "high"},
+    {"risk_id": "task_manager_vs_action", "conflict": "Task Manager treated as Action Execution Layer", "canonical_owner": "Action Governance / Action Runtime", "resolution": "Task Manager remains orchestration only", "severity": "critical"},
+    {"risk_id": "emotion_vs_value", "conflict": "Emotion Engine becoming Value Evaluation owner", "canonical_owner": "Value Utility Governance", "resolution": "emotion contributes attachment/adaptive-signal candidates only", "severity": "critical"},
+    {"risk_id": "intent_gate_vs_decision", "conflict": "Intent Evaluation Gate selecting final action", "canonical_owner": "Decision Arbitration", "resolution": "gate emits routing candidates only", "severity": "critical"},
+    {"risk_id": "field_adapter_vs_reducer", "conflict": "new Field Context Manager replacing Field State Reducer", "canonical_owner": "Field System", "resolution": "adapter over existing reducer output", "severity": "high"}
+  ],
+  "delete_or_merge_authorized": false,
+  "owner_change_authorized": false,
+  "runtime_change_authorized": false
+}

@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Runtime Rhythm Interface",
+  "producer":"Self Rhythm Controller",
+  "consumer":"Cognitive Runtime",
+  "hint_fields":["runtime_mode","tick_frequency_hint","capability_budget","cognitive_budget","reason","confidence","trace_ref"],
+  "runtime_permissions":{"receive_hint":true,"accept_or_reject":true,"clamp_budget":true,"modify_constitution":false,"modify_brain_rules":false},
+  "producer_forbidden":["direct_scheduler_write","direct_hardware_control","direct_action","model_switching"],
+  "rules":{"hint_not_command":true,"runtime_remains_final_scheduler_owner":true,"safety_over_hint":true}
+}

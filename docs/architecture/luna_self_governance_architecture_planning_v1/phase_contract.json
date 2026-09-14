@@ -1,0 +1,181 @@
+{
+    "Phase": "Phase-Luna-Self-Governance-Architecture-Planning-v1-001",
+    "Stage": "Self Governance architecture planning",
+    "Execution Mode": "Planning Only",
+    "Current Work Description": "Define a narrow Self Governance owner for self-attribution and self-continuity semantics using read-only audit of existing canonical core assets and historical self-related architecture assets. No runtime, no existing module mutation, no self/personality/emotion implementation code.",
+    "Previous Phase": "Phase-Luna-Cognitive-Core-Closure-And-Integration-Audit-v1-001",
+    "Previous Phase Decision": "READY_FOR_SELF_PERSONALITY_EMOTION",
+    "Input Assets": [
+        "capabilities/midplatform/core/context_foundation/",
+        "capabilities/midplatform/core/personal_cognitive_network/",
+        "capabilities/midplatform/core/intent_governance/",
+        "capabilities/midplatform/core/cognitive_state_formation/",
+        "capabilities/midplatform/core/dynamic_cognitive_regulation/",
+        "capabilities/midplatform/core/cognitive_flow/",
+        "capabilities/midplatform/core/cognitive_memory_experience/",
+        "capabilities/midplatform/core/cognitive_learning/",
+        "capabilities/midplatform/core/field_state_reducer/",
+        "capabilities/midplatform/core/causal_governance/",
+        "capabilities/midplatform/core/context_pcn_intent_mainline/",
+        "capabilities/midplatform/core/cognitive_execution_chain/"
+    ],
+    "Required Pre-Read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_engineering_phase_execution_role_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_verification_execution_authority_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_execution_mode_verification_authority_matrix_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_required_fields_standard_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_phase_instruction_template_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_runner_and_verifier_naming_standard_v1.md",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_status_registry_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_verification_failure_classification_and_remediation_standard_v1.json",
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/luna_agent_product_development_compliance_contract_v1.json"
+    ],
+    "Target Directory": "docs/architecture/luna_self_governance_architecture_planning_v1/",
+    "Scope": [
+        "read and search existing assets",
+        "create planning documents only inside target directory",
+        "perform editor diagnostics"
+    ],
+    "Out Of Scope": [
+        "modify existing modules or previous phase outputs",
+        "run python, verifier, runner, py_compile, pytest, shell validation",
+        "implement runtime code",
+        "declare GO"
+    ],
+    "Required Final Files": [
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_governance_architecture_plan_v1.md",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_governance_existing_asset_inventory_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_governance_owner_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_concept_boundary_matrix_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_reference_schema_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_attribution_candidate_schema_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_continuity_candidate_schema_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_boundary_classification_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_stability_mutability_model_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_attribution_state_model_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_revision_revocation_model_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_pcn_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_memory_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_learning_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_intent_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_dynamic_regulation_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_personality_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_emotion_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_privacy_sensitivity_boundary_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_trace_provenance_contract_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_idempotency_contract_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_negative_guards_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_minimum_scenario_suite_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_gap_registry_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/self_deferred_registry_v1.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/phase_contract.json",
+        "docs/architecture/luna_self_governance_architecture_planning_v1/verify_self_governance_architecture_planning_v1.py"
+    ],
+    "Implementation Principles": [
+        "planning_only",
+        "audit_existing_assets_first",
+        "no_runtime",
+        "no_existing_module_mutation",
+        "single narrow self owner",
+        "candidate_only semantics"
+    ],
+    "Required Checks": {
+        "V0": "required file set, JSON parse, AST parse, phase contract boundary flag coherence",
+        "V1": "not allowed",
+        "V2": "user-terminal final phase verifier only",
+        "V3": "ChatGPT final audit"
+    },
+    "Negative Guards": [
+        "no runtime execution",
+        "no existing module mutation",
+        "no semantic compression implementation",
+        "no direct self mutation runtime",
+        "no check weakening",
+        "no hardcoded pass"
+    ],
+    "Verification Authority": {
+        "V0": "AGENT_EDITOR_STATIC_ONLY",
+        "V1": "NOT_ALLOWED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "Allowed Agent Checks": [
+        "read files",
+        "search",
+        "editor diagnostics"
+    ],
+    "Allowed Agent Execution": [
+        "create planning assets inside target directory only"
+    ],
+    "Prohibited Agent Execution": [
+        "python",
+        "run verifier",
+        "run runner",
+        "py_compile",
+        "pytest",
+        "shell validation",
+        "implement runtime code",
+        "declare GO"
+    ],
+    "Agent Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "User Terminal Commands": [
+        "cd /Users/luanlei/Desktop/Luna-Core",
+        "python3 docs/architecture/luna_self_governance_architecture_planning_v1/verify_self_governance_architecture_planning_v1.py"
+    ],
+    "Expected Success Decision": "SELF_GOVERNANCE_ARCHITECTURE_PLANNING_READY",
+    "Expected Next": "SELF_GOVERNANCE_ARCHITECTURE_PLANNING_GO",
+    "Expected Failure Decision": "SELF_GOVERNANCE_ARCHITECTURE_PLANNING_REMEDIATION_REQUIRED",
+    "Expected Failure Next": "LUNA_SELF_GOVERNANCE_ARCHITECTURE_PLANNING_REMEDIATION",
+    "Stop Condition": "Stop after all planning assets are created and editor diagnostics complete.",
+    "Blocker Conditions": [
+        "new self planning would require existing module mutation",
+        "owner conflict cannot be isolated in planning",
+        "runtime capability becomes necessary"
+    ],
+    "Completion Report Format": [
+        "new files",
+        "existing files modified",
+        "historical/current Self asset A/B/C/D classification",
+        "canonical owner decision",
+        "Self vs Identity decision",
+        "Self attribution model",
+        "Self boundary classification",
+        "stable/semi-stable/transient Self model",
+        "PCN boundary",
+        "Memory boundary",
+        "Learning boundary",
+        "Intent boundary",
+        "Dynamic Regulation boundary",
+        "Personality boundary",
+        "Emotion boundary",
+        "revision/revocation model",
+        "privacy/sensitivity",
+        "trace/provenance",
+        "idempotency",
+        "scenario coverage",
+        "gap A/B/C/D",
+        "deferred registry",
+        "blocker count",
+        "exact terminal verifier command"
+    ],
+    "Current Status Contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "boundary_flags": {
+        "planning_only": true,
+        "audit_only": true,
+        "runtime_execution": false,
+        "database_write": false,
+        "vector_store_write": false,
+        "embedding_execution": false,
+        "model_call": false,
+        "scheduler_execution": false,
+        "task_mutation": false,
+        "device_control": false,
+        "source_owner_mutation": false,
+        "memory_mutation": false,
+        "learning_execution": false,
+        "personality_mutation": false,
+        "emotion_mutation": false,
+        "semantic_compression_execution": false,
+        "real_side_effect": false
+    }
+}

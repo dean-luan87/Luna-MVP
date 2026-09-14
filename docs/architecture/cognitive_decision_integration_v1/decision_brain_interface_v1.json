@@ -1,0 +1,34 @@
+{
+  "title": "Decision Brain Interface v1",
+  "contract_type": "Brain Review Interface",
+  "input": {
+    "decision_context_package": "required",
+    "situation": {},
+    "options": [],
+    "constraints": {},
+    "risk": {},
+    "unknown": [],
+    "capability": {},
+    "self_state": {},
+    "confidence": {},
+    "provenance": []
+  },
+  "brain_review": {
+    "accept": "candidate",
+    "modify": "candidate",
+    "reject": "candidate",
+    "request_more_information": "candidate",
+    "goal_alignment_review": "Brain authority",
+    "value_review": "Brain authority",
+    "decision_authority": "Brain retains final authority"
+  },
+  "boundary": {
+    "integration_does_not_command_brain": true,
+    "integration_does_not_modify_goal": true,
+    "integration_does_not_modify_value": true,
+    "integration_does_not_create_action": true,
+    "integration_does_not_execute": true,
+    "brain_retains_decision_authority": true,
+    "brain_can_request_reobservation": true
+  }
+}

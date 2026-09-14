@@ -1,0 +1,15 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Runner-Bridge-Service-Skeleton-Execution-And-Post-Review-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "record": {
+    "code_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/_tmp_eval_out/p1_source_retry_workspace/install_target/mobile_sam",
+    "code_exists": true,
+    "timm_target": "/Users/luanlei/Desktop/Luna-Core/_tmp_eval_out/p1_timm_repair_workspace/install_target",
+    "timm_exists": true,
+    "weight_path": "/Users/luanlei/Desktop/Luna-Core/capabilities/model_weights/p1/mobile_sam/mobile_sam.pt",
+    "weight_exists": true,
+    "ready": true
+  }
+}

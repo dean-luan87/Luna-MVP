@@ -1,0 +1,12 @@
+{
+  "interface_name": "Workspace Memory Interface v1",
+  "current_context": {},
+  "memory_retrieval_request": {},
+  "relevant_memory_candidate": [],
+  "memory_type": ["Working Memory", "Episodic Memory", "Field Memory", "Semantic Memory", "Self Memory"],
+  "memory_provenance": [],
+  "memory_enters_workspace_as_candidate": true,
+  "memory_does_not_override_reality": true,
+  "workspace_does_not_modify_memory": true,
+  "unknowns_are_preserved": true
+}

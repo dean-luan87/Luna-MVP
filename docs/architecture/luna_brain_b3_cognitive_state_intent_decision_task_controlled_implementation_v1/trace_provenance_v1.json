@@ -1,0 +1,6 @@
+{
+  "artifact": "b3_trace_provenance_v1",
+  "reverse_path": ["TaskCandidate", "DecisionCandidate", "Intent Governance result", "Cognitive State/Flow", "Current World", "Context", "original B2/B1 evidence lineage"],
+  "preserved": ["trace refs", "provenance refs", "temporal refs", "uncertainty refs", "conflict refs", "Intent lifecycle refs", "Decision refs", "Task refs"],
+  "authority_rule": "Provenance grants auditability, not truth, ownership, authorization, or execution authority."
+}

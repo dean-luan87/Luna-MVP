@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_update_v1",
+  "owner": "Belief Layer",
+  "inputs": ["current_belief", "new_evidence", "evidence_reliability", "context_change", "reality_validation_result"],
+  "update_types": ["Strengthen", "Weaken", "Replace", "Invalidate", "Suspend"],
+  "outputs": ["belief_update_candidate", "confidence_delta", "updated_uncertainty", "provenance"],
+  "original_belief_preserved": true,
+  "automatic_update": false,
+  "reality_precedence": true,
+  "candidate_only": true
+}

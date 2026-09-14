@@ -1,0 +1,10 @@
+{
+  "metric_id": "memory_utility_v1",
+  "inputs": ["Memory Influence", "Current Understanding", "Field Context", "Decision Quality", "Outcome", "Counterfactual Memory Omission Candidate"],
+  "outputs": ["Memory Utility Candidate", "Activation Relevance Candidate", "Influence Cost Candidate"],
+  "utility_is_improvement_contribution": true,
+  "more_memory_is_not_always_better": true,
+  "memory_is_not_reality": true,
+  "automatic_memory_write": false,
+  "candidate_only": true
+}

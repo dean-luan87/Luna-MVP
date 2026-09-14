@@ -1,0 +1,43 @@
+{
+  "artifact_id": "pcn_integrated_cognitive_flow_model_candidate_v1",
+  "phase": "Phase-Luna-Personal-Cognitive-Network-Integrated-Scenario-Validation-And-Planning-Closure-v1-001",
+  "status": "PLANNING_CANDIDATE",
+  "owner": "PCN Integration Planning Governance",
+  "forward_coordination": [
+    "CURRENT_CONTEXT",
+    "FIELD_ROLE_ACTIVATION",
+    "RELATED_RELATIONSHIP_ACTIVATION",
+    "PCN_LOCAL_NETWORK_ACTIVATION",
+    "INTERACTION_CANDIDATE",
+    "ACTIVE_COGNITIVE_PROJECTION",
+    "FUTURE_INTENT_CAUSAL_HANDOFF"
+  ],
+  "nested_relations": [
+    {"relation": "Context_to_PCN", "constraint": "Context relevance, validity, Unknown, and source ownership bound activation.", "feedback": "PCN may return a context-relevance feedback candidate.", "activation_or_projection": "Context Envelope Candidate seeds a bounded PCN activation candidate.", "source_mutation_allowed": false},
+    {"relation": "Field_to_Role", "constraint": "Current Field and HARD boundaries constrain eligible Role projections.", "feedback": "Role activation may return a Field-relevance candidate.", "activation_or_projection": "Multiple Field-bound Role projections may coexist.", "source_mutation_allowed": false},
+    {"relation": "Role_to_Relationship", "constraint": "Role and Relationship lifecycles constrain joint projection.", "feedback": "Relationship relevance may adjust projection emphasis as a candidate.", "activation_or_projection": "Distinct Relationship instances remain separately projected.", "source_mutation_allowed": false},
+    {"relation": "Memory_to_PCN", "constraint": "Memory supplies source-owned historical references with current-Reality precedence.", "feedback": "PCN may request a narrower relevance projection candidate.", "activation_or_projection": "Related Memory projection may activate without copying Memory bodies.", "source_mutation_allowed": false},
+    {"relation": "Resource_to_Activation", "constraint": "Resource Governance bounds Field, Role, Relationship, Memory, and link expansion.", "feedback": "PCN reports degraded projection and budget pressure candidates.", "activation_or_projection": "LOW_RESOURCE shrinks active projection only.", "source_mutation_allowed": false},
+    {"relation": "Context_to_Interaction", "constraint": "Current Context and Unknown define the local interaction neighborhood.", "feedback": "Interaction may return a relevance or clarification candidate.", "activation_or_projection": "The kernel observes local projection response only.", "source_mutation_allowed": false},
+    {"relation": "PCN_to_Interaction", "constraint": "PCN provides bounded activation and link projections.", "feedback": "Interaction candidate may influence later activation review without writing PCN.", "activation_or_projection": "PCN owns links/activation/projection; kernel owns local interaction candidate.", "source_mutation_allowed": false},
+    {"relation": "Observation_Axis_to_Projection", "constraint": "Selected role, stance, and relationship perspective limit projection emphasis.", "feedback": "Interaction evidence may request axis review but cannot switch the axis.", "activation_or_projection": "Perspective-bounded projection only.", "source_mutation_allowed": false}
+  ],
+  "future_nested_relations": [
+    {"relation": "Intent_to_PCN", "status": "INACTIVE_FUTURE_HANDOFF", "mutual_write": false},
+    {"relation": "Causal_to_PCN", "status": "INACTIVE_FUTURE_HANDOFF", "mutual_write": false},
+    {"relation": "Experience_to_PCN", "status": "INACTIVE_FUTURE_HANDOFF", "mutual_write": false},
+    {"relation": "Emotion_to_Interaction", "status": "INACTIVE_FUTURE_HANDOFF", "mutual_write": false}
+  ],
+  "rules": {
+    "single_direction_pipeline": false,
+    "bidirectional_means_mutual_write": false,
+    "source_owner_precedence": true,
+    "current_reality_precedence": true,
+    "unknown_preserved": true,
+    "interaction_output_is_candidate_only": true,
+    "future_handoff_is_runtime": false
+  },
+  "candidate_only": true,
+  "runtime_implemented": false,
+  "skeleton_implemented": false
+}

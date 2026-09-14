@@ -1,0 +1,604 @@
+{
+  "inventory_id": "LegacyReusableGovernanceRulesInventoryV1",
+  "version": "1.0.0-canonical",
+  "created_by_phase": "Phase-P1-Midplatform-Governance-Standards-Packaging-Execution-And-Post-Review-v1-001",
+  "library_root": "capabilities/midplatform/governance_standards",
+  "status": "canonical_copy_no_delete",
+  "rule_count": 17,
+  "rules": [
+    {
+      "rule_id": "TestBoardProtectedArtifactRuleV1",
+      "rule_name": "Test Board Protected Artifact Governance",
+      "category": "test_board_governance",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/test_board/test_board_protected_artifact_rule_v1.md",
+      "current_source_refs": [
+        "capabilities/test_board/test_board_protocol_v1.py",
+        "TestBoardProtectedArtifactRuleV1"
+      ],
+      "reusable_scope": "all_phases_dry_run_real_test_planning_closure",
+      "when_to_use": "Any dry-run, real-test, post-review, planning, or closure phase that produces review artifacts.",
+      "how_to_use": "Import TEST_BOARD_PROTECTED_ARTIFACT_RULE_V1 and call write_test_board_records with test_mode matching phase type.",
+      "required_inputs": [
+        "phase_id",
+        "review_result",
+        "test_mode"
+      ],
+      "required_outputs": [
+        "test_process_record",
+        "test_result_summary",
+        "test_conclusion_record",
+        "test_artifact_refs",
+        "protected_marker",
+        "non_deletable_notice",
+        "manifest"
+      ],
+      "required_records": [
+        "test_process_record",
+        "test_conclusion_record",
+        "manifest"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "post_review_gate",
+        "closure_gate"
+      ],
+      "forbidden_usage": "Skipping test board; cleanup deleting protected records; unprotected artifacts.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "ControlledTrialGovernanceLifecycleTemplateV1",
+      "rule_name": "Controlled Trial Governance Lifecycle Template",
+      "category": "controlled_trial_governance",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/templates/controlled_trial_governance_lifecycle_template_v1.md",
+      "current_source_refs": [
+        "capabilities/midplatform/controlled_trial_governance/controlled_trial_governance_lifecycle_template_v1.py",
+        "ControlledTrialGovernanceLifecycleTemplateV1"
+      ],
+      "reusable_scope": "any_real_execution_chain",
+      "when_to_use": "Before any real install, download, model-load, inference, or registry write execution.",
+      "how_to_use": "Follow planning → request/approval/readiness → execution/post-review → registry patch → closure.",
+      "required_inputs": [
+        "upstream_go",
+        "owner_approval",
+        "readiness_checklist"
+      ],
+      "required_outputs": [
+        "planning_artifact",
+        "execution_audit",
+        "post_review"
+      ],
+      "required_records": [
+        "request_record",
+        "approval_record",
+        "readiness_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "execution_gate",
+        "post_review_gate"
+      ],
+      "forbidden_usage": "Treating planning output as execution result; skipping post-review.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "OwnerApprovalGovernanceStandardV1",
+      "rule_name": "Owner Approval Governance",
+      "category": "owner_approval",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/owner_approval/owner_approval_governance_standard_v1.md",
+      "current_source_refs": [
+        "multiple P1 phase types_v1 owner_approval flags"
+      ],
+      "reusable_scope": "install_download_model_load_inference_runtime_registry_fact",
+      "when_to_use": "Any install, download, model-load, inference, runtime, registry patch, or fact write request.",
+      "how_to_use": "Issue scoped owner_approval_granted_for_*; approval_not_execution_now; never broaden scope implicitly.",
+      "required_inputs": [
+        "request_record",
+        "risk_summary",
+        "owner_context"
+      ],
+      "required_outputs": [
+        "owner_approval_record",
+        "approval_scope"
+      ],
+      "required_records": [
+        "owner_approval_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "execution_readiness_gate"
+      ],
+      "forbidden_usage": "approval_not_runtime_approval; approval_not_semantic_approval; auto-expanding permissions.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "NegativeGuardPatternV1",
+      "rule_name": "Negative Guard Pattern",
+      "category": "negative_guards",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/negative_guards/negative_guard_pattern_v1.md",
+      "current_source_refs": [
+        "all P1 review modules NEGATIVE_GUARDS"
+      ],
+      "reusable_scope": "every_governed_phase",
+      "when_to_use": "Every phase must define invalid scenarios that must BLOCK if violated.",
+      "how_to_use": "Declare negative_guard_count, negative_guard_passed; static invariant checks per guard.",
+      "required_inputs": [
+        "phase_flags",
+        "invariant_state"
+      ],
+      "required_outputs": [
+        "negative_guards array",
+        "negative_guard_passed count"
+      ],
+      "required_records": [
+        "negative_guards in review json"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "post_review_gate"
+      ],
+      "forbidden_usage": "Masking boundary violations with GO or FAILED_NO_BOUNDARY_VIOLATION.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "FailureSemanticsStandardV1",
+      "rule_name": "Failure Semantics GO / FAILED_NO_BOUNDARY / BLOCKED",
+      "category": "failure_semantics",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/failure_semantics/failure_semantics_standard_v1.md",
+      "current_source_refs": [
+        "model_asset_onboarding_governance_standard_v1.md section Failure Semantics",
+        "multiple phase FINAL_DECISION_* constants"
+      ],
+      "reusable_scope": "execution_and_post_review_phases",
+      "when_to_use": "Any phase with execution outcome and boundary audit.",
+      "how_to_use": "GO on success+clean boundary; FAILED_NO_BOUNDARY_VIOLATION on failure+clean boundary; BLOCKED on violation.",
+      "required_inputs": [
+        "execution_result",
+        "boundary_audit"
+      ],
+      "required_outputs": [
+        "final_decision",
+        "blocker_count"
+      ],
+      "required_records": [
+        "post_review_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "repair_planning_gate"
+      ],
+      "forbidden_usage": "Fake GO on failure; treat repairable gap as BLOCKED protocol failure.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "RegistryPatchGovernanceStandardV1",
+      "rule_name": "Registry Overlay Patch Governance",
+      "category": "registry_patch",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/registry_patch/registry_patch_governance_standard_v1.md",
+      "current_source_refs": [
+        "model_asset_onboarding_governance_standard_v1.md",
+        "P1 registry patch execution phases"
+      ],
+      "reusable_scope": "registry_overlay_mutations",
+      "when_to_use": "Any registry overlay write or readiness promotion.",
+      "how_to_use": "Planning first; snapshot before write; scoped diff; post-review; rollback readiness.",
+      "required_inputs": [
+        "patch_plan",
+        "pre_patch_snapshot"
+      ],
+      "required_outputs": [
+        "diff",
+        "write_audit",
+        "post_review"
+      ],
+      "required_records": [
+        "registry_patch_plan",
+        "snapshot_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "registry_patch_gate",
+        "rollback_readiness_gate"
+      ],
+      "forbidden_usage": "Broad readiness promotion from narrow trial; out-of-scope asset mutation.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "ModelAssetOnboardingGovernanceStandardV1",
+      "rule_name": "Model Asset Onboarding Governance",
+      "category": "model_onboarding",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/model_onboarding/model_asset_onboarding_governance_standard_v1.md",
+      "current_source_refs": [
+        "capabilities/midplatform/model_asset_onboarding_governance_standard/"
+      ],
+      "reusable_scope": "all_model_asset_onboarding",
+      "when_to_use": "Any new model package/source install, weight, dependency repair, model-load, inference trial.",
+      "how_to_use": "Reuse model_asset_onboarding_governance_standard_v1.md lifecycle; do not redesign per model.",
+      "required_inputs": [
+        "asset_id",
+        "install_route",
+        "readiness_level"
+      ],
+      "required_outputs": [
+        "readiness_progression",
+        "registry_patch_plans"
+      ],
+      "required_records": [
+        "stage_refs",
+        "approval_records"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "model_load_gate",
+        "inference_trial_gate"
+      ],
+      "forbidden_usage": "Per-model custom onboarding without standardization phase.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "RuntimeBoundaryGovernanceStandardV1",
+      "rule_name": "Runtime Boundary Governance",
+      "category": "runtime_boundary",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/runtime_boundary/runtime_boundary_governance_standard_v1.md",
+      "current_source_refs": [
+        "P1 MobileSAM runtime boundary planning phases",
+        "model_asset_onboarding_governance_standard_v1.md"
+      ],
+      "reusable_scope": "runtime_admission_and_activation",
+      "when_to_use": "After inference_trial_verified; before any runtime execution or activation.",
+      "how_to_use": "Separate runtime boundary planning; runtime admission gate; runtime_ready not auto-granted.",
+      "required_inputs": [
+        "candidate_output_verified",
+        "registry_readiness"
+      ],
+      "required_outputs": [
+        "runtime_boundary_plan",
+        "admission_gate_record"
+      ],
+      "required_records": [
+        "runtime_boundary_planning_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "runtime_request_gate",
+        "runtime_execution_gate"
+      ],
+      "forbidden_usage": "Using inference trial output as runtime-ready; skipping admission gate.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "InputOutputSymmetryGovernanceStandardV1",
+      "rule_name": "Input / Output Symmetry Governance",
+      "category": "input_output_symmetry",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/input_output_symmetry/input_output_symmetry_governance_standard_v1.md",
+      "current_source_refs": [
+        "P1 evidence chain phases",
+        "candidate traceability patterns"
+      ],
+      "reusable_scope": "candidate_to_output_record_fact_paths",
+      "when_to_use": "When any input candidate becomes output, record, or fact-layer input.",
+      "how_to_use": "Preserve evidence refs, protocol refs, error namespace, whitebox candidate ref.",
+      "required_inputs": [
+        "input_candidate_ref",
+        "protocol_ref"
+      ],
+      "required_outputs": [
+        "traceability_chain",
+        "admission_record"
+      ],
+      "required_records": [
+        "evidence_refs",
+        "artifact_refs"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "fact_admission_gate"
+      ],
+      "forbidden_usage": "Dropping input evidence chain on output side.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "ProtocolGovernanceStandardV1",
+      "rule_name": "Protocol Canonical Governance",
+      "category": "protocol_governance",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/protocol_governance/protocol_governance_standard_index_v1.md",
+      "current_source_refs": [
+        "Protocol Canonical Standard",
+        "Protocol Management Rule"
+      ],
+      "reusable_scope": "all_new_protocols",
+      "when_to_use": "Adding, updating, deprecating, validating, or referencing any protocol.",
+      "how_to_use": "Assign canonical path, version, owner, validation plan; no scattered protocol in business code.",
+      "required_inputs": [
+        "protocol_id",
+        "version",
+        "owner"
+      ],
+      "required_outputs": [
+        "canonical_path",
+        "validation_record"
+      ],
+      "required_records": [
+        "protocol_registry_entry"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "protocol_validation_gate"
+      ],
+      "forbidden_usage": "Embedding protocol definitions only in business/runtime code.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "FileSizeModuleSplitGovernanceRuleV1",
+      "rule_name": "File Size and Module Split Governance",
+      "category": "file_governance",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/file_governance/file_size_module_split_governance_rule_v1.md",
+      "current_source_refs": [
+        "Luna file governance conventions"
+      ],
+      "reusable_scope": "standards_runners_verifiers_registry_test_board",
+      "when_to_use": "Authoring or reviewing any standard, runner, verifier, registry, or test board file.",
+      "how_to_use": "Python ≤600 suggest/800 warn/1200 block; Markdown ≤800/1200/1800; JSON large tables use index+detail.",
+      "required_inputs": [
+        "file_path",
+        "line_count"
+      ],
+      "required_outputs": [
+        "split_plan if over limit"
+      ],
+      "required_records": [
+        "file_size_audit"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "review_gate"
+      ],
+      "forbidden_usage": "Continuing to grow monolithic files past blocker thresholds.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "ValidateOnceReferenceGovernanceStandardV1",
+      "rule_name": "Validate-once Reference Governance",
+      "category": "validation_rules",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/validation_rules/validate_once_reference_governance_standard_v1.md",
+      "current_source_refs": [
+        "validate_once_reference_review_ok pattern"
+      ],
+      "reusable_scope": "shared_protocol_and_standard_references",
+      "when_to_use": "After canonical protocol/standard passes first validation.",
+      "how_to_use": "Subsequent failures default to module implementation issues; re-validate only on protocol change or reference drift.",
+      "required_inputs": [
+        "canonical_validation_record",
+        "reference_path"
+      ],
+      "required_outputs": [
+        "reference_drift_check"
+      ],
+      "required_records": [
+        "validate_once_reference_review_ok"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "reference_drift_gate"
+      ],
+      "forbidden_usage": "Repeated full protocol re-audit without drift or version change.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "EvidenceCandidateGovernanceStandardV1",
+      "rule_name": "Evidence and Candidate Governance",
+      "category": "evidence_candidate",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/evidence_candidate/evidence_candidate_governance_standard_v1.md",
+      "current_source_refs": [
+        "fact admission phases",
+        "candidate-only output rules"
+      ],
+      "reusable_scope": "ocr_vision_inference_api_outputs",
+      "when_to_use": "OCR, vision, model inference, runtime candidate, or external API output may enter fact layer.",
+      "how_to_use": "Treat external data as candidate; require fact admission and evidence chain; no direct fact write.",
+      "required_inputs": [
+        "candidate_ref",
+        "source_type"
+      ],
+      "required_outputs": [
+        "admission_record",
+        "evidence_chain"
+      ],
+      "required_records": [
+        "candidate_record",
+        "admission_gate_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "fact_admission_gate"
+      ],
+      "forbidden_usage": "Direct fact write from model or API output.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "RuntimeOutputSemanticExclusionStandardV1",
+      "rule_name": "Runtime Output Semantic Exclusion",
+      "category": "runtime_boundary",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/runtime_boundary/runtime_output_semantic_exclusion_standard_v1.md",
+      "current_source_refs": [
+        "model_asset_onboarding semantic/fact/navigation exclusion"
+      ],
+      "reusable_scope": "model_and_midplatform_candidates",
+      "when_to_use": "Any model or midplatform candidate may drive user output, speech, navigation, or facts.",
+      "how_to_use": "Require separate approval per output adapter, semantic, fact, navigation/action/speech gate.",
+      "required_inputs": [
+        "candidate_output",
+        "readiness_level"
+      ],
+      "required_outputs": [
+        "exclusion_audit"
+      ],
+      "required_records": [
+        "exclusion_planning_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "output_adapter_gate",
+        "semantic_gate",
+        "fact_gate"
+      ],
+      "forbidden_usage": "Direct user-visible output or navigation from trial candidate.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "RollbackGovernanceStandardV1",
+      "rule_name": "Rollback Governance",
+      "category": "rollback",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/rollback/rollback_governance_standard_v1.md",
+      "current_source_refs": [
+        "registry patch snapshots",
+        "install rollback patterns"
+      ],
+      "reusable_scope": "file_write_registry_install_download_runtime_trial",
+      "when_to_use": "Before any file write, registry write, install, download, or runtime trial.",
+      "how_to_use": "Pre-snapshot; rollback readiness; define trigger conditions; preserve test board on rollback.",
+      "required_inputs": [
+        "pre_snapshot",
+        "rollback_plan"
+      ],
+      "required_outputs": [
+        "rollback_readiness_record"
+      ],
+      "required_records": [
+        "snapshot_record",
+        "rollback_readiness_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "rollback_readiness_gate"
+      ],
+      "forbidden_usage": "Destructive write without snapshot; cleanup deleting evidence.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "ArtifactProtectionCleanupGovernanceStandardV1",
+      "rule_name": "Artifact Protection and Cleanup Governance",
+      "category": "artifact_protection",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/rollback/artifact_protection_cleanup_governance_standard_v1.md",
+      "current_source_refs": [
+        "test board cleanup rules",
+        "protected_marker"
+      ],
+      "reusable_scope": "eval_test_board_review_artifacts",
+      "when_to_use": "Any temp cleanup, eval cleanup, or artifact cleanup operation.",
+      "how_to_use": "Define cleanup forbidden scope; never delete test board, review, manifest, protected records.",
+      "required_inputs": [
+        "cleanup_scope",
+        "protected_paths"
+      ],
+      "required_outputs": [
+        "cleanup_audit"
+      ],
+      "required_records": [
+        "protected_marker",
+        "non_deletable_notice"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "cleanup_gate"
+      ],
+      "forbidden_usage": "Deleting test board or review artifacts during cleanup.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    },
+    {
+      "rule_id": "RuntimeNotMainProgramRuleV1",
+      "rule_name": "Governance Standards Are Not Main Program",
+      "category": "main_program_separation",
+      "canonical_target_path": "capabilities/midplatform/governance_standards/index/runtime_not_main_program_rule_v1.md",
+      "current_source_refs": [
+        "governance_standards packaging planning separation rules"
+      ],
+      "reusable_scope": "all_governance_and_runtime_interaction",
+      "when_to_use": "When wiring runtime, main program, or governance standards together.",
+      "how_to_use": "governance_standards = policy/protocol/template; runtime reads admission only; no bypass.",
+      "required_inputs": [
+        "admission_gate_output"
+      ],
+      "required_outputs": [
+        "admission_result_ref"
+      ],
+      "required_records": [
+        "separation_policy_record"
+      ],
+      "negative_guards_required": true,
+      "downstream_gates": [
+        "runtime_admission_gate"
+      ],
+      "forbidden_usage": "Copy-paste governance into main program; runtime bypassing admission gate.",
+      "owner_layer": "midplatform_governance",
+      "main_program_separated": true,
+      "protected": true,
+      "non_deletable": true,
+      "status": "canonicalized_or_planned"
+    }
+  ],
+  "migration_mode": "canonical_copy_no_delete"
+}

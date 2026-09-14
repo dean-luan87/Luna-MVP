@@ -1,0 +1,32 @@
+{
+  "registry_id": "luna_controlled_architecture_alignment_m5_architecture_freeze_exception_registry_v1",
+  "freeze_status": "ARCHITECTURE_FREEZE_CANDIDATE",
+  "default_status": "FUTURE_ONLY",
+  "exceptions": [],
+  "exception_count": 0,
+  "exception_process": {
+    "approval_required": true,
+    "required_steps": [
+      "separate phase instruction",
+      "architecture impact analysis",
+      "Owner and Writer review",
+      "Schema and Contract compatibility review",
+      "Runtime boundary review",
+      "migration and rollback plan",
+      "V0 static checks",
+      "user-terminal V2 final verification",
+      "ChatGPT V3 audit"
+    ],
+    "required_record_fields": [
+      "exception",
+      "approval_required",
+      "reason",
+      "scope",
+      "status"
+    ],
+    "allowed_status": "FUTURE_ONLY",
+    "implicit_exception_allowed": false,
+    "implementation_change_may_self_approve": false
+  },
+  "migration_executed": false
+}

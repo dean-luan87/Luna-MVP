@@ -1,0 +1,16 @@
+{
+  "model_id": "mock_p1_scene_relation_invalid_e",
+  "model_family": "scene_relation_vlm_family",
+  "model_version_ref": "mock_lightweight_vlm_v1_0_0",
+  "model_origin": "external_open_source_or_hosted_vlm",
+  "license_ref": "per_model_license_check_required",
+  "source_chain": "recognition_model_p1_output_adapter_dryrun_v1",
+  "input_ref": "mock_rgb_frame_p1_0001",
+  "output_schema_ref": "scene_relation_structured_output_schema_v1",
+  "confidence": 0.68,
+  "frame_ref_or_timestamp_ms": 1734500000000,
+  "allowed_use": "structured_candidate_only",
+  "commercial_use_status": "per_model_license_check_required",
+  "fallback_plan": "fallback_to_no_relation_hypothesis",
+  "unavailable_record_policy": "declare_unavailable_record_with_reason_and_source_chain"
+}

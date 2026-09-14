@@ -1,0 +1,10 @@
+{
+  "contract_id": "attention_belief_relation_v1",
+  "owner": "Belief",
+  "inputs": ["belief_conflict", "supporting_evidence", "contradicting_evidence", "field_context"],
+  "outputs": ["attention_boost_candidate", "validation_attention_candidate", "conflict_trace"],
+  "belief_conflict_increases_attention": true,
+  "belief_controls_attention": false,
+  "reality_validation_link": true,
+  "candidate_only": true
+}

@@ -1,0 +1,9 @@
+{
+  "version":"1.0",
+  "name":"Temporal Decay Contract",
+  "owner":"Information Lifecycle Governance",
+  "conceptual_formula":"Current Influence = Original Value × Time Decay × Reinforcement × Context Match",
+  "inputs":["original_value","elapsed_time","reinforcement","context_match","confidence","impact"],
+  "outputs":["influence_candidate","reactivation_candidate","dormancy_candidate"],
+  "rules":{"decay_reduces_influence_not_deletes":true,"reinforcement_can_restore_influence":true,"context_match_required_for_activation":true,"high_impact_can_resist_decay":true}
+}

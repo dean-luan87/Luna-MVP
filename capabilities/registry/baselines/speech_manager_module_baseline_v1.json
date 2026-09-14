@@ -1,0 +1,158 @@
+{
+    "capability_id": "luna.speech_manager",
+    "module_version": "v1",
+    "baseline_version": "v1",
+    "baseline_status": "active",
+    "formal_mainline": {
+        "entrypoints": [
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_facade_v1.py"
+        ],
+        "mainline_assets": [
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_types_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_input_adapter_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_request_governance_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_priority_resolver_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_interruption_controller_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_content_governance_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_provider_candidate_adapter_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_trace_replay_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_output_builder_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_facade_v1.py",
+            "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+            "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py"
+        ]
+    },
+    "module_api": {
+        "path": "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py",
+        "entrypoint": "run_speech_manager_module_v1",
+        "exists": true
+    },
+    "owned_responsibilities": [
+        "Assemble candidate-only speech governance, priority, interruption, content, provider, diagnostics, trace, and replay outputs",
+        "Preserve speaker and ASR outputs as candidates only and keep real runtime invocations blocked",
+        "Provide a thin module facade and deterministic module integration evidence"
+    ],
+    "forbidden_authorities": [
+        "asr_runtime_call",
+        "tts_runtime_call",
+        "vop_runtime_call",
+        "direct_state_mutation",
+        "fact_admission",
+        "action_execution",
+        "production_runtime_dispatch"
+    ],
+    "reused_assets": [
+        "capabilities/voice/interfaces/tts_provider.py",
+        "capabilities/voice/interfaces/voice_output_plane.py",
+        "capabilities/voice/README.md",
+        "capabilities/midplatform/voice_output_plane_adapter_for_guidance_v1.py",
+        "capabilities/midplatform/navigation_guidance_to_speech_candidate_adapter_v1.py",
+        "capabilities/voice/voice_interruption_governance_dryrun_v1.py"
+    ],
+    "extended_assets": [
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_types_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_input_adapter_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_request_governance_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_priority_resolver_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_interruption_controller_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_content_governance_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_provider_candidate_adapter_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_trace_replay_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_output_builder_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_facade_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_api_v1.py"
+    ],
+    "internal_components": [
+        "input_adapter",
+        "request_governance",
+        "priority_resolver",
+        "interruption_controller",
+        "content_governance",
+        "provider_candidate_adapter",
+        "diagnostics",
+        "trace_replay",
+        "module_output_builder"
+    ],
+    "legacy_assets": [
+        "capabilities/midplatform/voice_output_plane_adapter_for_guidance_v1.py",
+        "capabilities/voice/voice_interruption_governance_dryrun_v1.py"
+    ],
+    "duplicate_risks": [
+        "Do not create parallel ASR, TTS, Speech Gate, or VOP top-level capabilities outside luna.speech_manager",
+        "Do not promote internal adapters or provider candidates as separate top-level capabilities"
+    ],
+    "dependency_contracts": [
+        {
+            "depends_on": "luna.model_manager",
+            "dependency_type": "provider_selection",
+            "required": false,
+            "interface_ref": "capabilities/midplatform/model_manager/module/model_manager_module_api_v1.py",
+            "fallback_behavior": "use_default_tts_provider_candidate",
+            "unavailable_behavior": "degrade_to_cached_or_local_tts",
+            "confidence": "inferred"
+        }
+    ],
+    "input_contract_ref": [
+        "capabilities/midplatform/speech_manager/module/speech_manager_module_input_adapter_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_request_governance_v1.py"
+    ],
+    "output_contract_ref": [
+        "capabilities/midplatform/speech_manager/module/speech_manager_provider_candidate_adapter_v1.py",
+        "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py"
+    ],
+    "lifecycle_contract_ref": "capabilities/midplatform/speech_manager/module/speech_manager_module_output_builder_v1.py",
+    "diagnostic_contract": {
+        "supported": true,
+        "refs": [
+            "capabilities/midplatform/speech_manager/module/speech_manager_diagnostics_v1.py"
+        ]
+    },
+    "trace_replay_contract": {
+        "trace_supported": true,
+        "replay_supported": true,
+        "refs": [
+            "capabilities/midplatform/speech_manager/module/speech_manager_trace_replay_v1.py",
+            "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py"
+        ]
+    },
+    "ready_evidence": {
+        "lifecycle_status": "functional_module_ready",
+        "total_cases": 19,
+        "passed_cases": 19,
+        "failed_cases": [],
+        "deterministic_replay": true,
+        "trace_present_all": true,
+        "replay_present_all": true,
+        "boundary_preserved": true,
+        "speaker_identity_auto_confirmed_false": true,
+        "asr_candidate_auto_fact_false": true,
+        "evidence_ref": "tools/evaluation/midplatform/run_speech_manager_module_integration_v1.py"
+    },
+    "calibration_triggers": [
+        "module_output_contract_violation",
+        "module_api_mismatch",
+        "lifecycle_status_anomaly",
+        "deterministic_replay_failure",
+        "trace_missing",
+        "dependency_contract_drift",
+        "registry_implementation_mismatch",
+        "duplicate_mainline_detected",
+        "critical_asset_missing",
+        "module_version_major_change"
+    ],
+    "calibration_procedure": {
+        "standard_ref": "docs/architecture/capability_registry/luna_capability_module_calibration_standard_v1.md",
+        "steps": [
+            "Load baseline in anomaly diagnostic context only",
+            "Compare formal mainline and module API against registry and manifest",
+            "Re-run module integration evidence path and compare ready_evidence",
+            "If mainline drift is structural, trigger REBASELINE"
+        ]
+    },
+    "baseline_created_at": "2026-07-16",
+    "last_baseline_review": "2026-07-16",
+    "baseline_update_required": false
+}

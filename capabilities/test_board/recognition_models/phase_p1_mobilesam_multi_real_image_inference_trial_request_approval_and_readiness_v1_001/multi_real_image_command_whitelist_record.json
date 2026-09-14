@@ -1,0 +1,50 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T05:27:52.380460+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "real_inference_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "multi_real_image_command_whitelist_record",
+  "record": {
+    "record_id": "multi_real_image_command_whitelist_v1",
+    "allowed_future_steps": [
+      "pre_inference_snapshot",
+      "registry_model_readiness_recheck",
+      "sha256_recheck_for_weight",
+      "sha256_size_width_height_for_multi_real_local_images",
+      "controlled_sys_path_setup",
+      "import_mobile_sam",
+      "load_checkpoint",
+      "read_manifest_images_only",
+      "execute_planned_prompt_points_boxes_per_image",
+      "save_candidate_masks_summaries_to_tmp_eval_out",
+      "memory_timeout_monitor",
+      "cleanup",
+      "post_review"
+    ],
+    "forbidden_future_steps": [
+      "live_camera",
+      "external_url",
+      "non_manifest_image",
+      "batch_dataset",
+      "runtime_server",
+      "output_adapter_call",
+      "semantic_write",
+      "fact_write",
+      "navigation_action_speech",
+      "registry_mutation",
+      "additional_download"
+    ],
+    "command_template_only": true
+  }
+}

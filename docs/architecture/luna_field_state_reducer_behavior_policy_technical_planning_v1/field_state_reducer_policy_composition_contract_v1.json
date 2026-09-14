@@ -1,0 +1,101 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Composition Contract",
+    "sequential_composition": [
+        {
+            "name": "revocation_then_safe_fallback",
+            "sequence": [
+                "revocation_override",
+                "no_state_change"
+            ],
+            "description": "撤销优先，若无安全可执行结果则 no_state_change。"
+        },
+        {
+            "name": "expiration_then_unresolved",
+            "sequence": [
+                "expiration_degrade",
+                "insufficient_evidence_unresolved"
+            ],
+            "description": "过期支持先降级，再在证据不足时 unresolved。"
+        },
+        {
+            "name": "consensus_then_confidence_treatment",
+            "sequence": [
+                "multi_event_consensus",
+                "highest_confidence_valid_event"
+            ],
+            "description": "先验证共识，再进行 state-type 置信度处理。"
+        },
+        {
+            "name": "owner_correction_then_governed_candidate",
+            "sequence": [
+                "explicit_owner_override_candidate",
+                "multi_event_consensus"
+            ],
+            "description": "owner correction 仅进入 governed candidate 评估。"
+        }
+    ],
+    "guarded_composition": [
+        {
+            "name": "revocation_guard",
+            "guard": "revocation_event_valid",
+            "policy": "revocation_override"
+        },
+        {
+            "name": "conflict_guard",
+            "guard": "hard_contradiction_present",
+            "policy": "conflict_preservation"
+        }
+    ],
+    "fallback_composition": {
+        "default_fallback": "no_state_change",
+        "fallback_trigger": "no_safe_policy_or_unresolved_conflict"
+    },
+    "overlay_parallel_composition": {
+        "parallel_pair": [
+            "temporary_overlay_separation",
+            "no_state_change"
+        ],
+        "description": "overlay 并行处理，不改写 substrate。"
+    },
+    "conflict_parallel_preservation": {
+        "parallel_pair": [
+            "conflict_preservation",
+            "insufficient_evidence_unresolved"
+        ],
+        "description": "冲突保留与 unresolved 并行输出。"
+    },
+    "non_composable_policy_pairs": [
+        [
+            "revocation_override",
+            "latest_valid_event"
+        ],
+        [
+            "revocation_override",
+            "highest_confidence_valid_event"
+        ],
+        [
+            "conflict_preservation",
+            "force_single_winner"
+        ]
+    ],
+    "maximum_composition_depth": 3,
+    "deterministic_composition_order": [
+        "revocation_override",
+        "conflict_preservation",
+        "expiration_degrade",
+        "temporary_overlay_separation",
+        "multi_event_consensus",
+        "highest_confidence_valid_event",
+        "latest_valid_event",
+        "explicit_owner_override_candidate",
+        "insufficient_evidence_unresolved",
+        "negative_event_override",
+        "no_state_change"
+    ],
+    "policy_result_feed_forward_allowed": true,
+    "policy_side_effect_allowed": false,
+    "state_write_during_composition_allowed": false,
+    "action_trigger_during_composition_allowed": false,
+    "composition_contract_complete": true
+}

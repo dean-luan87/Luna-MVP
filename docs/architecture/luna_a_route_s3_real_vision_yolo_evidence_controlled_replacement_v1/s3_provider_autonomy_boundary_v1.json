@@ -1,0 +1,9 @@
+{
+  "vision_provider_autonomous_execution": false,
+  "invocation_requires": ["active observation demand", "VISION_DETECTION requirement", "bounded provider session", "model/provider admission", "valid raw frame reference"],
+  "non_authorizers": ["new frame arrival", "camera active", "model loaded", "GPU available", "previous detection success", "high detection confidence", "Observation Gateway admission"],
+  "no_hidden_retry": true,
+  "no_hidden_continuation": true,
+  "provider_failure_route": ["bounded fallback candidate", "RECONSIDER", "FAIL"],
+  "provider_session_controls": ["STOP", "REVOKE", "budget exhaustion"]
+}

@@ -1,0 +1,347 @@
+{
+    "matrix_id": "world_object_relationship_matrix_v1",
+    "schema_version": "1.0.0",
+    "relationships": [
+        {
+            "source_type": "entity",
+            "relation_type": "contains",
+            "target_type": "entity",
+            "cardinality": "one_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain",
+                "Candidate / Fact Admission"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "belongs_to",
+            "target_type": "entity",
+            "cardinality": "many_to_one",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "field",
+            "relation_type": "adjacent_to",
+            "target_type": "field",
+            "cardinality": "many_to_many",
+            "directionality": "undirected",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Runtime Boundary"
+            ]
+        },
+        {
+            "source_type": "field",
+            "relation_type": "overlaps",
+            "target_type": "field",
+            "cardinality": "many_to_many",
+            "directionality": "undirected",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "inherits_rules_from",
+            "target_type": "relation",
+            "cardinality": "one_to_many",
+            "directionality": "directed",
+            "temporal_required": false,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Governance Asset Reuse"
+            ]
+        },
+        {
+            "source_type": "projection",
+            "relation_type": "temporarily_overrides",
+            "target_type": "state",
+            "cardinality": "one_to_one",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "projection_to_fact"
+            ],
+            "governance_refs": [
+                "Runtime Boundary"
+            ]
+        },
+        {
+            "source_type": "event",
+            "relation_type": "transitions_to",
+            "target_type": "state",
+            "cardinality": "one_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "auto_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "named_by",
+            "target_type": "entity",
+            "cardinality": "one_to_one",
+            "directionality": "directed",
+            "temporal_required": false,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "name_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "used_as",
+            "target_type": "state",
+            "cardinality": "one_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "usage_as_fact"
+            ],
+            "governance_refs": [
+                "Candidate / Fact Admission"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "perceived_by",
+            "target_type": "perspective",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "perception_as_fact"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "meaningful_to",
+            "target_type": "perspective",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "meaning_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "attachment",
+            "relation_type": "emotionally_attached_to",
+            "target_type": "entity",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "emotion_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "attachment",
+            "relation_type": "remembered_through",
+            "target_type": "event",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "memory_as_fact"
+            ],
+            "governance_refs": [
+                "Memory System"
+            ]
+        },
+        {
+            "source_type": "event",
+            "relation_type": "triggered_by",
+            "target_type": "context",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "trigger_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "state",
+            "relation_type": "supported_by",
+            "target_type": "evidence",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "support_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "relation",
+            "relation_type": "contradicted_by",
+            "target_type": "relation",
+            "cardinality": "many_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "contradiction_as_fact"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective"
+            ]
+        },
+        {
+            "source_type": "relation",
+            "relation_type": "conflicts_with",
+            "target_type": "relation",
+            "cardinality": "many_to_many",
+            "directionality": "undirected",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "conflict_as_fact"
+            ],
+            "governance_refs": [
+                "Safety Overrides Perspective"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "coexists_with",
+            "target_type": "entity",
+            "cardinality": "many_to_many",
+            "directionality": "undirected",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "coexistence_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "supersedes",
+            "target_type": "entity",
+            "cardinality": "one_to_one",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "supersession_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        },
+        {
+            "source_type": "entity",
+            "relation_type": "derived_from",
+            "target_type": "entity",
+            "cardinality": "one_to_many",
+            "directionality": "directed",
+            "temporal_required": true,
+            "perspective_required": true,
+            "evidence_required": true,
+            "candidate_only": true,
+            "prohibited_promotions": [
+                "derivation_as_fact"
+            ],
+            "governance_refs": [
+                "Evidence Chain"
+            ]
+        }
+    ]
+}

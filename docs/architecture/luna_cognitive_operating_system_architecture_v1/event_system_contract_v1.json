@@ -1,0 +1,9 @@
+{
+  "title": "Event System Contract v1",
+  "owner": "Cognitive OS Governance",
+  "event_types": ["External Event", "Internal Event", "System Event"],
+  "schema": ["event_id", "source", "timestamp", "target", "payload", "trace_id", "lifecycle_state"],
+  "lifecycle": ["Created", "Validated", "Routed", "Consumed", "Acknowledged", "Expired", "Archived"],
+  "routing": {"registered_target_required": true, "trace_id_required": true, "payload_is_candidate": true},
+  "forbidden": ["Event → direct Action", "Provider → Brain control", "Event → Reality direct write"]
+}

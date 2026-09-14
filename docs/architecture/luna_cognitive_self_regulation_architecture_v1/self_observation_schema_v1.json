@@ -1,0 +1,8 @@
+{
+  "title": "Self Observation Schema v1",
+  "owner": "Self Regulation / Self Observation",
+  "sources": ["Runtime", "Hardware", "Capability", "Model", "Memory", "Resource"],
+  "schema": ["observation_id", "source", "subject", "observed_change", "timestamp", "confidence", "evidence_refs", "unknown", "trace_id"],
+  "outputs": ["Self Observation Event", "Health Assessment Input", "Regulation Candidate Input"],
+  "rules": {"read_only":true,"non_decisional":true,"provenance_required":true,"unknown_preserved":true,"no_direct_action":true}
+}

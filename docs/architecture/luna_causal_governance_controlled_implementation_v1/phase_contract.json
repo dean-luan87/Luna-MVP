@@ -1,0 +1,110 @@
+{
+    "contract_id": "luna_causal_governance_controlled_implementation_phase_contract_v1",
+    "phase": "Phase-Luna-Causal-Governance-Controlled-Implementation-v1-001",
+    "stage": "Causal Governance Controlled Implementation",
+    "execution_mode": "Controlled Skeleton Implementation",
+    "current_work_description": {
+        "in_scope": [
+            "Causal Governance core controlled module",
+            "deterministic synthetic fixture execution logic",
+            "candidate-only handoff",
+            "static verifier and implementation docs"
+        ],
+        "out_of_scope": [
+            "real runtime stream",
+            "model/database/network operations",
+            "final decision/action/task",
+            "existing active schema or contract changes",
+            "cross-module owner metadata mutation"
+        ]
+    },
+    "previous_phase": "Phase-Luna-Causal-Architecture-Planning-v1-001",
+    "previous_phase_decision": "GO",
+    "input_assets": [
+        "docs/architecture/luna_causal_architecture_planning_v1/"
+    ],
+    "required_pre_read": [
+        "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_owner_boundary_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_concept_boundary_matrix_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_hypothesis_schema_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_state_model_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_formation_contract_candidate_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_minimum_scenario_suite_v1.json",
+        "docs/architecture/luna_causal_architecture_planning_v1/causal_negative_guards_v1.json"
+    ],
+    "target_directory": "capabilities/midplatform/core/causal_governance/",
+    "documentation_directory": "docs/architecture/luna_causal_governance_controlled_implementation_v1/",
+    "required_final_files": [
+        "capabilities/midplatform/core/causal_governance/__init__.py",
+        "capabilities/midplatform/core/causal_governance/causal_error_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_core_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_state_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_evidence_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_confounder_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_counterfactual_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_trace_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_handoff_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_io_types_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_registry_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_ownership_guard_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_protocol_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_static_validators_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_fixture_v1.py",
+        "capabilities/midplatform/core/causal_governance/causal_governance_engine_v1.py",
+        "capabilities/midplatform/core/causal_governance/run_causal_governance_controlled_implementation_v1.py",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_controlled_implementation_overview_v1.md",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_controlled_execution_contract_v1.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_negative_guards_v1.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_planning_to_code_mapping_v1.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_implementation_summary_v1.md",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/causal_governance_controlled_change_manifest_v1.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/phase_contract.json",
+        "docs/architecture/luna_causal_governance_controlled_implementation_v1/verify_causal_governance_controlled_implementation_v1.py"
+    ],
+    "required_checks": {
+        "V0": [
+            "required file existence",
+            "json parse",
+            "ast parse",
+            "editor diagnostics"
+        ],
+        "V1": "AGENT_NOT_EXECUTED_IN_THIS_STAGE",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "verification_authority": {
+        "V0": "AGENT_STATIC_ONLY",
+        "V1": "AGENT_ALLOWED_BY_MODE_BUT_SKIPPED",
+        "V2": "USER_TERMINAL_ONLY",
+        "V3": "CHATGPT_ONLY"
+    },
+    "allowed_agent_checks": [
+        "file existence",
+        "json parsing",
+        "ast parsing",
+        "editor diagnostics"
+    ],
+    "prohibited_agent_execution": [
+        "python",
+        "python3",
+        "py_compile",
+        "runner",
+        "verifier",
+        "pytest",
+        "shell validation"
+    ],
+    "agent_stop_point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "user_terminal_commands": [
+        "python3 capabilities/midplatform/core/causal_governance/run_causal_governance_controlled_implementation_v1.py",
+        "python3 docs/architecture/luna_causal_governance_controlled_implementation_v1/verify_causal_governance_controlled_implementation_v1.py"
+    ],
+    "expected_success_decision": "LUNA_CAUSAL_GOVERNANCE_CONTROLLED_IMPLEMENTATION_READY",
+    "expected_failure_decision": "LUNA_CAUSAL_GOVERNANCE_CONTROLLED_IMPLEMENTATION_REMEDIATION_REQUIRED",
+    "current_status_contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+    "runtime_executed": false,
+    "runner_executed_by_agent": false,
+    "verifier_executed_by_agent": false,
+    "state_mutation_executed": false,
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE"
+}

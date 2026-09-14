@@ -1,0 +1,125 @@
+{
+    "artifact": "cognitive_execution_chain_forward_handoff_matrix_v1",
+    "status": "PLANNING_CANDIDATE",
+    "forward_chain": [
+        {
+            "hop_id": "H1",
+            "producer_owner": "Intent Governance",
+            "consumer_owner": "Causal Governance",
+            "source_type": "IntentToCausalHandoffCandidateV1",
+            "target_type": "CausalGovernanceInputV1.intent_refs/influence_refs",
+            "required_refs": [
+                "intent_candidate_refs",
+                "context_refs",
+                "provenance"
+            ],
+            "optional_refs": [
+                "competition_refs",
+                "suppression_refs",
+                "temporary_dominance_refs",
+                "resource_ref"
+            ],
+            "forbidden_fields": [
+                "decision_output",
+                "action_output",
+                "task_output",
+                "runtime_instruction"
+            ],
+            "candidate_only": true,
+            "mutation_allowed": false,
+            "trace_required": true,
+            "provenance_required": true,
+            "version_required": true
+        },
+        {
+            "hop_id": "H2",
+            "producer_owner": "Causal Governance",
+            "consumer_owner": "Decision Governance",
+            "source_type": "CausalToDecisionHandoffCandidateV1",
+            "target_type": "DecisionGovernanceInputV1.causal_refs/evidence_refs/constraint_refs",
+            "required_refs": [
+                "causal_hypothesis_refs",
+                "supporting_evidence_refs",
+                "opposing_evidence_refs",
+                "provenance"
+            ],
+            "optional_refs": [
+                "alternative_hypothesis_refs",
+                "unresolved_conflict_refs",
+                "counterfactual_refs"
+            ],
+            "forbidden_fields": [
+                "final_decision",
+                "action_instruction",
+                "task_creation",
+                "execution_request"
+            ],
+            "candidate_only": true,
+            "mutation_allowed": false,
+            "trace_required": true,
+            "provenance_required": true,
+            "version_required": true
+        },
+        {
+            "hop_id": "H3",
+            "producer_owner": "Decision Governance",
+            "consumer_owner": "Action Governance",
+            "source_type": "DecisionToActionTaskHandoffCandidateV1",
+            "target_type": "ActionGovernanceInputV1.selected_decision_refs/permission_refs/safety_refs",
+            "required_refs": [
+                "selected_candidate_ref",
+                "decision_candidate_refs",
+                "permission_status_refs",
+                "safety_status_refs",
+                "provenance"
+            ],
+            "optional_refs": [
+                "constraint_refs",
+                "uncertainty",
+                "confirmation_requirement"
+            ],
+            "forbidden_fields": [
+                "actual_action_execution",
+                "task_created",
+                "scheduler_operation",
+                "database_mutation"
+            ],
+            "candidate_only": true,
+            "mutation_allowed": false,
+            "trace_required": true,
+            "provenance_required": true,
+            "version_required": true
+        },
+        {
+            "hop_id": "H4",
+            "producer_owner": "Action Governance",
+            "consumer_owner": "Runtime Executor",
+            "source_type": "ActionToRuntimeExecutorHandoffCandidateV1",
+            "target_type": "ExecutionRequestCandidateV1/RuntimeExecutorInputV1",
+            "required_refs": [
+                "action_candidate_ref",
+                "execution_readiness",
+                "permission_refs",
+                "safety_refs",
+                "provenance"
+            ],
+            "optional_refs": [
+                "dependency_refs",
+                "resource_refs",
+                "rollback_context_ref",
+                "confirmation_state"
+            ],
+            "forbidden_fields": [
+                "execute_now_command",
+                "device_control_command",
+                "scheduler_execution_command",
+                "database_mutation_command"
+            ],
+            "candidate_only": true,
+            "mutation_allowed": false,
+            "trace_required": true,
+            "provenance_required": true,
+            "version_required": true
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+  "format_ref": "rtab_map_graph_export_file",
+  "export_session_id": "rtab_int_graph_invalid_0001",
+  "file_origin": {
+    "exporter": "rtabmap-export",
+    "source_file": "rtabmap_graph_int_invalid_0001.g2o"
+  },
+  "source_chain": ["rtab_map_graph_export", "rtab_int_graph_invalid_0001"],
+  "graph_nodes": [
+    {
+      "timestamp_ms": 7000,
+      "x": 0.0, "y": 0.0, "z": 0.0,
+      "qx": 0.0, "qy": 0.0, "qz": 0.0, "qw": 1.0,
+      "confidence": 0.90,
+      "source_chain": ["rtab_map_graph_export", "rtab_int_graph_invalid_0001", "gnode_bad"]
+    }
+  ],
+  "graph_edges": []
+}

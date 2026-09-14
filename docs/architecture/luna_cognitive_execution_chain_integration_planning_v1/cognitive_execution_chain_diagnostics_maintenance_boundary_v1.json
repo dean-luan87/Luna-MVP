@@ -1,0 +1,23 @@
+{
+    "artifact": "cognitive_execution_chain_diagnostics_maintenance_boundary_v1",
+    "status": "PLANNING_CANDIDATE",
+    "ingress_events": [
+        "runtime_failure",
+        "action_governance_failure",
+        "cross_layer_schema_mismatch",
+        "handoff_rejection",
+        "version_incompatibility",
+        "trace_discontinuity"
+    ],
+    "routing_targets": [
+        "System Diagnostics",
+        "Maintenance Plane"
+    ],
+    "rules": [
+        "diagnostics_owner_preserved",
+        "maintenance_owner_preserved",
+        "integration_does_not_absorb_diagnostics_authority",
+        "diagnostics_outputs_are_candidates_only"
+    ],
+    "mutation_allowed": false
+}

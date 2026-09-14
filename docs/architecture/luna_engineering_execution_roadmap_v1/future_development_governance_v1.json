@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Luna Future Development Governance",
+  "workflow_reference":"engineering_change_workflow_v1.json",
+  "required_classifications":["Self","Social Self","Cognitive","Capability","Action","Governance"],
+  "required_registry_updates":["canonical module registry","owner registry","engineering mapping","implementation status","dependency graph"],
+  "gates":["Architecture Classification","Owner Assignment","Contract Definition","Permission Boundary","Implementation","Verification"],
+  "forbidden_shortcuts":["orphan module","unregistered owner","direct provider to brain","direct model to goal","runtime activation before gates","automatic capability migration"],
+  "rules":{"new_module_requires_owner":true,"new_module_requires_contract":true,"new_module_requires_mapping":true,"baseline_v2_is_source_of_truth":true,"planning_only":true}
+}

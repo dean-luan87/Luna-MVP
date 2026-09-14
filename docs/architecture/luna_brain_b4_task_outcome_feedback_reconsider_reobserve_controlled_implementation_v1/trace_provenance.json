@@ -1,0 +1,5 @@
+{
+  "reverse_trace":"TaskFeedback -> OutcomeEvaluation -> ActualResult/ExpectedOutcome -> controlled Runtime Result -> ActionCandidate -> B3 Task/Decision",
+  "preserved":["trace_ref","provenance_refs","temporal refs","uncertainty refs","conflict refs","idempotency signatures"],
+  "provenance_grants_authority":false
+}

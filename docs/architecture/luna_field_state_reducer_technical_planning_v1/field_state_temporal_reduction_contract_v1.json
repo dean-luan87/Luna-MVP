@@ -1,0 +1,23 @@
+{
+    "version": "1.0",
+    "name": "Field State Temporal Reduction Contract",
+    "temporal_statuses": [
+        "not_yet_valid",
+        "active",
+        "expiring",
+        "expired",
+        "suspended",
+        "revoked",
+        "superseded",
+        "unknown"
+    ],
+    "rules": {
+        "expired_event_not_active_support": true,
+        "revoked_event_not_reactivatable": true,
+        "suspended_event_not_auto_recover": true,
+        "temporary_overlay_not_persist_to_substrate": true,
+        "overlay_end_requires_substrate_re_evaluation": true
+    },
+    "overlay_substrate_mutation_false": true,
+    "overlay_end_requires_refresh_true": true
+}

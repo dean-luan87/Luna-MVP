@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Code-Only-Install-Registry-Patch-And-Readiness-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T04:38:21.787250+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "weight_download_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "followup_weight_download_route_record",
+  "followup_weight_download_route_record": {
+    "routing_id": "followup_weight_download_route_v1",
+    "recommended_next_phase": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+    "next_phase_allows_registry_patch_execution": true,
+    "next_phase_still_forbids_weight_download": true,
+    "weight_download_phase_after_patch_post_review": "Phase-P1-Model-Weight-Download-Request-Approval-And-Readiness-v1-001",
+    "no_weight_download_until_registry_patch_post_review": true
+  }
+}

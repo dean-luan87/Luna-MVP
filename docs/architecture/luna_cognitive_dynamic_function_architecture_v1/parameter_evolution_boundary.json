@@ -1,0 +1,13 @@
+{
+  "contract_id": "parameter_evolution_boundary_v1",
+  "flow": ["Hive Observation", "Parameter Improvement Candidate", "Luna Self Review", "Accept/Reject/Defer", "Parameter Evolution Candidate"],
+  "mutable_targets": ["Cognitive State Vector Parameters", "Attention Threshold Candidate", "Exploration Threshold Candidate", "Memory Decay Candidate", "Risk Sensitivity Candidate", "Context Weight Candidate"],
+  "protected_targets": ["Constitution", "Identity", "Safety Boundary", "Core Brain Rules", "Reality", "Current Goal Directly"],
+  "approval_owners": ["Self Governance", "Constitution Governance", "Capability Governance"],
+  "automatic_parameter_evolution": false,
+  "automatic_self_modification": false,
+  "hive_has_no_write_permission": true,
+  "rollback_required": true,
+  "versioning_required": true,
+  "candidate_only": true
+}

@@ -1,0 +1,18 @@
+{
+  "contract_name": "Memory Retrieval Contract v1",
+  "current_field_reference": "field-example",
+  "goal_reference": "goal-example",
+  "task_reference": "task-example",
+  "attention_reference": "attention-example",
+  "context_reference": "context-example",
+  "memory_query": null,
+  "relevant_memory": [],
+  "retrieval_scope": ["Field", "Time", "Self", "Goal", "Task", "Context", "Attention"],
+  "reality_reconciliation_required": true,
+  "current_reality_precedence": true,
+  "retrieval_does_not_search_all_history": true,
+  "retrieval_does_not_create_goal": true,
+  "retrieval_does_not_make_decision": true,
+  "retrieval_does_not_execute_action": true,
+  "unknowns_are_preserved": true
+}

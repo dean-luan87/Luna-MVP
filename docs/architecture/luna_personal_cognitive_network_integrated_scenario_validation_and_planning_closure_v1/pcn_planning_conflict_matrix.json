@@ -1,0 +1,24 @@
+{
+  "artifact_id": "pcn_planning_conflict_matrix_v1",
+  "status": "PLANNING_CANDIDATE",
+  "comparison": "Personal Cognitive Network Planning VS Field / Role Interaction Alignment",
+  "allowed_statuses": ["COMPATIBLE", "CLARIFICATION_REQUIRED", "BLOCKED"],
+  "records": [
+    {"area": "Object Model", "status": "COMPATIBLE", "finding": "Reference-only PCN objects preserve all source Owners and admit Field/Role/Relationship projections without body copying.", "closure_effect": "STABLE"},
+    {"area": "Link Model", "status": "CLARIFICATION_REQUIRED", "finding": "Future skeleton contracts must represent multiple Relationship instances and interaction references without merging source objects.", "closure_effect": "NON_BLOCKING_SKELETON_REQUIREMENT"},
+    {"area": "Activation", "status": "CLARIFICATION_REQUIRED", "finding": "Future skeleton must distinguish ordinary activation, temporary occupation, resonance, overlap, and historical reactivation.", "closure_effect": "NON_BLOCKING_SKELETON_REQUIREMENT"},
+    {"area": "Growth", "status": "CLARIFICATION_REQUIRED", "finding": "Persistent influence and structural change remain governance candidates; no event or repetition count promotes structure automatically.", "closure_effect": "NON_BLOCKING_SKELETON_REQUIREMENT"},
+    {"area": "Dormancy", "status": "COMPATIBLE", "finding": "Dormant links and historical relationships remain retained and reactivatable rather than deleted.", "closure_effect": "STABLE"},
+    {"area": "Subjective Cognition", "status": "COMPATIBLE", "finding": "Strong subjective associations remain representable while Strength, Truth, and Causal Fact stay separate.", "closure_effect": "STABLE"},
+    {"area": "Resource Constraint", "status": "COMPATIBLE", "finding": "Resource pressure shrinks active projection scope and never deletes source objects or changes truth status.", "closure_effect": "STABLE"},
+    {"area": "Nested Constraints", "status": "CLARIFICATION_REQUIRED", "finding": "Future skeleton must include Observation Axis and Interaction Kernel feedback references while preserving no-mutual-write rules.", "closure_effect": "NON_BLOCKING_SKELETON_REQUIREMENT"},
+    {"area": "Scenario Model", "status": "CLARIFICATION_REQUIRED", "finding": "The original six scenarios are extended by this planning-only 12-scenario suite; no original scenario asset is changed.", "closure_effect": "NON_BLOCKING_SKELETON_REQUIREMENT"},
+    {"area": "Context Handoff", "status": "COMPATIBLE", "finding": "Context Envelope Candidate remains the read-only activation seed; PCN may return only a relevance feedback candidate.", "closure_effect": "STABLE"},
+    {"area": "Memory Boundary", "status": "COMPATIBLE", "finding": "Memory supplies historical projections and retains admission, persistence, retrieval, and consolidation authority.", "closure_effect": "STABLE"},
+    {"area": "Causal Boundary", "status": "COMPATIBLE", "finding": "Association, strength, resonance, and reactivation never become causal facts inside PCN or Interaction Kernel.", "closure_effect": "STABLE"}
+  ],
+  "counts": {"COMPATIBLE": 7, "CLARIFICATION_REQUIRED": 5, "BLOCKED": 0},
+  "blocker_count": 0,
+  "closure_permitted": true,
+  "candidate_only": true
+}

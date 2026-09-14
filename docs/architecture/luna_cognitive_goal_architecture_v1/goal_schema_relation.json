@@ -1,0 +1,11 @@
+{
+  "title": "Goal Schema Relation v1",
+  "flow": ["Schema Context", "Goal Candidate Context", "Self Governance Review"],
+  "schema_role": "provide patterns and regularity context",
+  "schema_can_create_goal_automatically": false,
+  "schema_can_modify_goal": false,
+  "schema_overrides_evidence": false,
+  "current_evidence_precedence": true,
+  "candidate_only": true,
+  "schema_owner": "Schema"
+}

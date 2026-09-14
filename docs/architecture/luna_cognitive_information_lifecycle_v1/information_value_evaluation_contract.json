@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Information Value Evaluation Contract",
+  "owner":"Information Lifecycle Governance",
+  "dimensions":["current_relevance","future_utility","self_impact","role_impact","pattern_potential","uncertainty"],
+  "score_model":"candidate score composed from declared dimensions; no hidden automatic action",
+  "inputs":["Field","Task","Role","Self","Social Self","time","provenance","confidence","unknowns"],
+  "outputs":["value_candidate","retention_candidate","attention_priority_candidate","unknown_preserved"],
+  "rules":{"all_information_evaluated":true,"uncertainty_is_not_zero_value":true,"score_not_decision":true,"candidate_only":true}
+}

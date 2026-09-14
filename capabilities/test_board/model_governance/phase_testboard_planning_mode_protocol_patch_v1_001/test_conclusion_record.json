@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-TestBoard-Planning-Mode-Protocol-Patch-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-29T03:54:10.389833+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "test_board_planning_mode_protocol_patch_status": "planning_added_as_first_class_test_mode_backward_compatible_no_migration",
+    "next_step_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-P1-Probe-Reconciliation-Post-Review-v1-001",
+    "transition_note": "planning is now a first-class valid test_mode in TestBoardProtectedArtifactRuleV1. It does not replace virtual_test; all legacy modes (virtual_test / dry_run / real_test / runtime_trial / post_review / closure_review) remain valid. write_test_board_records(test_mode='planning') was verified in a throwaway temp dir: manifest + six protected/non-deletable records all carry test_mode='planning'. No existing record was modified, migrated or deleted; the prior registry-planning phase's virtual_test+test_mode_label='planning' records remain valid. Future planning phases should use the planning mode directly. Protocol patch success is NOT runtime/install/inference/semantic-layer approval. Next: the registry <-> P1 probe reconciliation post-review."
+  },
+  "final_decision": "TEST_BOARD_PLANNING_MODE_PROTOCOL_PATCH_GO"
+}

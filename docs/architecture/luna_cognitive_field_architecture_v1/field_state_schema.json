@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "name":"Cognitive Field State Schema",
+  "owner":"Cognitive Field System",
+  "required_components":["temporal_state","spatial_state","environment_state","object_state","relationship_state","task_state","role_state","self_state","memory_state","knowledge_state","emotion_context_state","cognitive_state"],
+  "common_metadata":["field_id","source_evidence","provenance","confidence","unknowns","last_update","lifecycle_state"],
+  "state_properties":{"reality_reference":"read-only reference","interpretation":"candidate understanding","unknowns":"first-class","current_reality_precedence":true},
+  "forbidden_writes":["external_reality","constitution","identity","goal","action"],
+  "rules":{"field_not_reality":true,"field_not_database":true,"component_owner_required":true,"unknown_preserved":true}
+}

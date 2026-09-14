@@ -1,0 +1,15 @@
+{
+  "title": "Permission Matrix v1",
+  "columns": ["module", "read", "propose", "update", "execute", "forbidden"],
+  "rows": [
+    {"module":"Brain","read":["Global Cognitive State","Evidence","Self Context"],"propose":["Decision Candidate"],"update":[],"execute":[],"forbidden":["Action Execution","Reality Mutation"]},
+    {"module":"Attention System","read":["Field","Task","Risk","Drive","Value"],"propose":["Observation Priority"],"update":["Attention State"],"execute":[],"forbidden":["Goal Rewrite","Decision Override"]},
+    {"module":"Memory System","read":["Experience","Outcome","Memory Query"],"propose":["Memory Consolidation Candidate"],"update":["Admitted Memory Records"],"execute":[],"forbidden":["Value Rewrite","Decision"]},
+    {"module":"Learning System","read":["Outcome","Expectation Difference","Experience"],"propose":["Pattern","Strategy","Learning Candidate"],"update":["Learning Candidate Records"],"execute":[],"forbidden":["Automatic Rule Change","Value Rewrite"]},
+    {"module":"Self Evolution","read":["Pattern","Performance Evidence","Self Capability Profile"],"propose":["Growth Candidate","Self Model Update Candidate"],"update":["Evolution Candidate Records"],"execute":[],"forbidden":["Identity Rewrite","Model Training"]},
+    {"module":"Capability Runtime","read":["Capability Request","Resource Profile"],"propose":["Evidence Candidate","Health Candidate"],"update":["Capability Runtime State"],"execute":["Admitted Capability Invocation"],"forbidden":["Goal","Brain","Reality Authority"]},
+    {"module":"Action Boundary","read":["Decision Candidate","Self Eligibility","Authority"],"propose":["Action Request"],"update":["Action Admission State"],"execute":[],"forbidden":["Action Execution Without Admission"]},
+    {"module":"Action Runtime","read":["Admitted Action Request"],"propose":["Outcome Evidence"],"update":["Action State"],"execute":["Approved External Adapter"],"forbidden":["Decision","Goal","Memory Fact Direct Write"]}
+  ],
+  "rules": {"permissions_explicit":true,"read_not_write":true,"execute_requires_admission":true,"forbidden_actions_explicit":true}
+}

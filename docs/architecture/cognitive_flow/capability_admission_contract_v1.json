@@ -1,0 +1,21 @@
+{
+  "schema_version": "v1",
+  "contract_type": "capability_admission",
+  "admission_input": {
+    "provider_identity": "provider_candidate_reference",
+    "supported_capability": "text_evidence_extraction",
+    "input_boundary": "declared evidence request",
+    "output_boundary": "validated evidence candidate",
+    "known_limitation": ["occlusion", "low_light", "distance"],
+    "resource_profile": {
+      "compute": "candidate",
+      "memory": "candidate",
+      "latency": "candidate",
+      "power": "candidate"
+    }
+  },
+  "admission_result": ["admitted_provider_candidate", "rejected_provider_candidate", "degraded_provider_candidate"],
+  "world_understanding_claim_forbidden": true,
+  "admission_is_not_provider_execution": true,
+  "admission_is_not_reality_assertion": true
+}

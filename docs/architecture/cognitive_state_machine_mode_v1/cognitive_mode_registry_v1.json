@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Cognitive Mode Registry",
+  "modes": [
+    {"mode_id": "Survival Mode", "resource_profile": "safety-heavy", "attention_profile": "high"},
+    {"mode_id": "Normal Mode", "resource_profile": "balanced", "attention_profile": "balanced"},
+    {"mode_id": "Focus Mode", "resource_profile": "goal-concentrated", "attention_profile": "focused"},
+    {"mode_id": "Recovery Mode", "resource_profile": "low-consumption", "attention_profile": "reduced"},
+    {"mode_id": "Maintenance Mode", "resource_profile": "background", "attention_profile": "low-frequency"}
+  ],
+  "mode_is_not_goal": true,
+  "mode_is_not_decision": true,
+  "mode_is_not_action": true,
+  "automatic_mode_change": false,
+  "role_runtime": false,
+  "emotion_runtime": false,
+  "b_runtime": false
+}

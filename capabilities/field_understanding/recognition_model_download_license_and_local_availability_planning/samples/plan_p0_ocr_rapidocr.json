@@ -1,0 +1,23 @@
+{
+  "model_id": "rapidocr_onnxruntime",
+  "model_role": "ocr",
+  "model_family": "ocr_model_family",
+  "tier": "P0",
+  "download_allowed": true,
+  "download_source": "pypi:rapidocr_onnxruntime+github:RapidAI/RapidOCR",
+  "model_weight_required": true,
+  "license_ref": "apache_2_0",
+  "license_allows_current_use": true,
+  "commercial_use_status": "commercial_allowed_under_apache_2_0",
+  "size_estimate": "small_tens_of_mb_onnx",
+  "dependencies": ["onnxruntime", "opencv-python", "numpy"],
+  "dependencies_acceptable": true,
+  "local_env_can_run": true,
+  "gpu_required": false,
+  "offline_supported": true,
+  "output_format_stable": true,
+  "output_schema_ref": "ocr_output_schema_v1",
+  "fallback_on_failure": "degrade_to_no_text_evidence_candidate",
+  "adapter_mapping_ref": "text_evidence_candidate",
+  "notes": "cpu_friendly_onnx_ocr_good_first_p0_choice"
+}

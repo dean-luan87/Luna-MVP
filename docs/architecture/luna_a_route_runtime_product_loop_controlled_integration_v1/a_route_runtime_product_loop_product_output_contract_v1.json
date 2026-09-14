@@ -1,0 +1,9 @@
+{
+  "schema_version":"1.0",
+  "kinds":["RESPONSE","GUIDANCE","STATUS","CLARIFICATION_REQUEST","OBSERVATION_REQUIRED","TASK_COMPLETED","TASK_FAILED","DEFERRED"],
+  "candidate_only":true,
+  "user_delivery_executed":false,
+  "tts_execution":false,
+  "ui_execution":false,
+  "device_control":false
+}

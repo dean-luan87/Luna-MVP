@@ -1,0 +1,24 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Multi-Real-Image-Inference-Trial-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T11:00:00.553130+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "candidate_output_only": true,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "navigation_action_speech_allowed": false,
+  "record_type": "multi_real_image_followup_review_route_record",
+  "record": {
+    "route_id": "multi_real_image_followup_review_route_v1",
+    "decision_branch": "go",
+    "recommended_next_phase": "Phase-P1-MobileSAM-Multi-Real-Image-Quality-Review-And-Automated-Test-Planning-v1-001",
+    "next_phase_scope": "mobile_sam_multi_real_image_quality_observation_and_automated_test_planning"
+  }
+}

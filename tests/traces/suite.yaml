@@ -1,0 +1,9 @@
+# Trace Suite 样本配置（封版）
+# label -> 项目根目录下的视频文件名，运行 suite 时与 --video / --label 一一对应。
+# 稳定回归锚点（必跑）
+medium_long_01: test_video_complex_6m42s.mp4
+# 压力/抖动样本（用于去抖治理验证）
+stress_oscillate_01: video-6m14s.mp4
+# 可选：低风险基线
+easy_01: video-1m01s.mp4
+easy_02: video-2m01s.mp4

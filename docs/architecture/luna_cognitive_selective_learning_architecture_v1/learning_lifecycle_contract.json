@@ -1,0 +1,12 @@
+{
+  "title": "Selective Learning Lifecycle Contract v1",
+  "states": ["Detected", "Candidate", "Evaluated", "Admitted", "Applied Candidate", "Validated", "Growth Candidate", "Rejected", "Deferred", "Archived"],
+  "automatic_transition": false,
+  "admission_required": true,
+  "validation_required": true,
+  "revocation_supported": true,
+  "rollback_supported": true,
+  "learning_runtime": false,
+  "automatic_learning": false,
+  "candidate_only": true
+}

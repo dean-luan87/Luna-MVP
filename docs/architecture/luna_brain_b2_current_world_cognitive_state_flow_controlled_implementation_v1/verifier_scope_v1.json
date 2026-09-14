@@ -1,0 +1,5 @@
+{
+  "checks": ["scenario suite", "synthetic regressions", "exact source file set", "exact documentation file set", "read-only Current World", "candidate-only State/Flow", "Observation Need non-execution", "trace/provenance/temporal/uncertainty/conflict", "no provider/downstream mutation", "no generated artifact false failure"],
+  "scan_rule": "regular source/doc files only; ignore __pycache__, .DS_Store, _eval_out, and other generated entries",
+  "status": "USER_TERMINAL_VERIFICATION_REQUIRED"
+}

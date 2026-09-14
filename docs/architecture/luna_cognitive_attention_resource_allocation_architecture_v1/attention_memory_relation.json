@@ -1,0 +1,10 @@
+{
+  "contract_id": "attention_memory_relation_v1",
+  "owner": "Attention Layer",
+  "flow": ["Current Field", "Attention", "Relevant Memory Activation", "Context Enhancement"],
+  "attention_activates_memory": true,
+  "memory_forces_attention": false,
+  "memory_direct_preemption": false,
+  "context_required": true,
+  "candidate_only": true
+}

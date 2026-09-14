@@ -1,0 +1,51 @@
+{
+    "artifact": "cognitive_state_formation_boundary_risk_matrix_v1",
+    "focus_judgements": {
+        "J1_attention_hypothesis_current_world_single_module": {
+            "decision": "YES",
+            "reason": "Attention allocates candidate focus, Hypothesis forms candidate explanations, Current World composes read-only global snapshot; three parts are one state-formation pipeline and should be one complete module to avoid contract drift across micro-stages."
+        },
+        "J2_hypothesis_vs_causal_governance_boundary": {
+            "boundary": [
+                "Hypothesis: candidate explanation space construction with conflict and unknown preservation",
+                "Causal Governance: causal-hypothesis qualification and evidence-structured downstream handoff for decision chain"
+            ],
+            "anti_duplication_rule": "Hypothesis module must not output causal truth, decision, or action; Causal remains owner of causal hypothesis state and causal handoff semantics."
+        },
+        "J3_current_world_vs_field_state_reducer_boundary": {
+            "boundary": [
+                "Current World: read-only multi-owner state composition snapshot",
+                "Field State Reducer: field-specific reduction/policy candidate production"
+            ],
+            "anti_duplication_rule": "Current World cannot become second field owner or second world state runtime; it references field outputs and preserves provenance only."
+        },
+        "J4_dynamic_function_start_readiness": {
+            "decision": "DEFER",
+            "reason": "Dynamic function/state-vector requires stable, high-quality input states (attention/hypothesis/current-world) that are not yet module-closed in controlled implementation form."
+        },
+        "J5_learning_dependency_on_memory_experience": {
+            "decision": "DEFER",
+            "reason": "Learning architecture exists but memory/experience has not completed formal controlled integration as a full module, so direct implementation now risks parallel lifecycle/owner definitions."
+        }
+    },
+    "risk_matrix": [
+        {
+            "candidate_id": "A",
+            "major_risk": "state-composer overreach into decision or field mutation",
+            "risk_level": "medium",
+            "mitigation": "enforce read-only composition + no decision/no mutation guards"
+        },
+        {
+            "candidate_id": "B",
+            "major_risk": "parallel memory governance implementation",
+            "risk_level": "high",
+            "mitigation": "adapter-first integration and memory-owner freeze"
+        },
+        {
+            "candidate_id": "C",
+            "major_risk": "parameter/state-vector authority leakage into owner layers",
+            "risk_level": "high",
+            "mitigation": "strict governance boundaries and deferred start until state inputs close"
+        }
+    ]
+}

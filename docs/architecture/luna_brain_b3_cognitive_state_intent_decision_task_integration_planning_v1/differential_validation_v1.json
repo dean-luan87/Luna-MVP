@@ -1,0 +1,8 @@
+{
+  "artifact": "b3_differential_validation_v1",
+  "comparison": ["Synthetic Cognitive State/Flow → Intent/Decision/Task", "Real B2 Cognitive State/Flow → Intent/Decision/Task"],
+  "invariants": ["canonical owner identity", "reference-only input shape", "candidate/lifecycle transition shape", "trace/provenance chain", "uncertainty/conflict preservation", "resource/permission/safety guard behavior", "candidate-only and no-mutation flags", "unrelated module behavior"],
+  "allowed_differences": ["Intent content", "Decision option/content", "Task wording", "priority/utility values", "attention or hypothesis-derived refs", "candidate count"],
+  "forbidden_differences": ["Cognitive State creating Intent directly", "Decision creating Task directly", "Task becoming runtime", "provider invocation", "action/device/scheduler execution", "source mutation", "truth promotion", "hidden retries/loops"],
+  "replay_rule": "Consume validated structured B2 artifacts/references; arbitrary evaluation output is not runtime truth and B3 must not rerun B1/B2/provider logic."
+}

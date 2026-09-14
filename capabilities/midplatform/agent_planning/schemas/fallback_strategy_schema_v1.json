@@ -1,0 +1,9 @@
+{
+  "schema_id": "FallbackStrategyV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["fallback_type", "trigger_condition", "reason", "candidate_only", "not_fact"],
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

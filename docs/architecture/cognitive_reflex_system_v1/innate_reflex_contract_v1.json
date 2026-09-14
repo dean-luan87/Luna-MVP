@@ -1,0 +1,15 @@
+{
+  "contract_name": "Innate Reflex Contract v1",
+  "source": "Constitution",
+  "reflex_type": "Innate Reflex",
+  "fixed": true,
+  "high_priority": true,
+  "learning": "Forbidden",
+  "constitution_mutation": false,
+  "hardware_over_temperature": "Protection Candidate",
+  "user_danger": "Protection Candidate",
+  "extreme_low_battery": "Energy Reduction Candidate",
+  "candidate_only": true,
+  "automatic_action": false,
+  "unknowns_are_preserved": true
+}

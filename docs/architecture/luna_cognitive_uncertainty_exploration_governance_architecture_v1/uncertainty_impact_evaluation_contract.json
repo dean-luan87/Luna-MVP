@@ -1,0 +1,12 @@
+{
+  "contract_id": "uncertainty_impact_evaluation_v1",
+  "owner": "Exploration Evaluation",
+  "inputs": ["safety_impact", "decision_impact", "task_impact", "future_utility", "information_gain", "exploration_cost"],
+  "outputs": ["exploration_value_candidate", "priority_candidate", "reason", "unknowns"],
+  "value_levels": ["CRITICAL", "HIGH", "MEDIUM", "LOW", "IGNORE"],
+  "value_formula": "Impact * Expected Benefit * Information Gain - Resource Cost",
+  "calculation_implemented": false,
+  "candidate_only": true,
+  "self_approval_required": true,
+  "direct_exploration": false
+}

@@ -1,0 +1,11 @@
+{
+  "record_kind": "model_availability",
+  "candidate_type": "model_availability_state_candidate",
+  "source_chain": "recognition_model_real_output_adapter_dryrun_v1",
+  "target": "yolo_lightweight_p0",
+  "availability_state": "declared_unavailable",
+  "reason": "no_local_weight",
+  "non_blocker": false,
+  "treat_unavailable_as_blocker": true,
+  "yolo_weight_download_requested": true
+}

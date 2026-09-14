@@ -1,0 +1,43 @@
+{
+    "phase_id": "Phase-Luna-Cognitive-Execution-Chain-Integration-Planning-v1-001",
+    "phase_type": "LUNA_ARCHITECTURE_PLANNING",
+    "status": "PLANNING_CANDIDATE",
+    "execution_mode": "CONTROLLED_STATIC_PLANNING",
+    "objective": "Build v1 integration planning contracts for five-layer cognitive execution chain without introducing runtime execution.",
+    "scope": {
+        "included": [
+            "Intent Governance",
+            "Causal Governance",
+            "Decision Governance",
+            "Action Governance",
+            "Runtime Executor",
+            "Cross-layer integration planning contracts"
+        ],
+        "excluded": [
+            "new owner creation",
+            "runtime integration implementation",
+            "scheduler execution",
+            "database mutation",
+            "device control"
+        ]
+    },
+    "owner_constraints": {
+        "allow_new_owner": false,
+        "integration_mutation_authority": false,
+        "five_owner_preservation_required": true
+    },
+    "runtime_constraints": {
+        "planning_only": true,
+        "runtime_executed": false,
+        "database_write": false,
+        "device_control": false,
+        "scheduler_execution": false,
+        "model_call": false
+    },
+    "verification_contract": {
+        "agent_max_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+        "agent_must_not_declare_go": true,
+        "v2_terminal_verifier_required": true,
+        "final_verifier_file": "verify_cognitive_execution_chain_integration_planning_v1.py"
+    }
+}

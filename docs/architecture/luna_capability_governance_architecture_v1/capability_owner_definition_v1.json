@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Capability Owner Definition",
+  "owner": "Capability Registry",
+  "owned_concepts": ["Capability Identity", "Capability Schema", "Capability Contract", "Capability Dependencies", "Capability Lifecycle"],
+  "registry_fields": ["capability_id", "purpose", "inputs", "outputs", "dependencies", "owner", "lifecycle", "evidence_expectation"],
+  "example": {"capability_id": "vision_understanding", "purpose": "understand_visual_environment", "inputs": ["image_evidence"], "outputs": ["visual_evidence"], "owner": "capability_registry"},
+  "not_owned": ["Model Version", "Provider", "Runtime Scheduling", "Decision", "Goal", "Action"],
+  "rules": {"one_capability_one_owner": true, "owner_is_registry": true, "model_separate": true, "lifecycle_included": true}
+}

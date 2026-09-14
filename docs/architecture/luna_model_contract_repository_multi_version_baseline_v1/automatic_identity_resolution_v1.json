@@ -1,0 +1,8 @@
+{
+  "inputs": ["explicit_model_asset_id", "manifest_path", "model_family", "model_name", "model_version", "weights_version", "weights_path", "checksum", "provider_metadata"],
+  "match_order": ["explicit_model_asset_id", "exact_declared_fields", "manifest_weight_path_and_identity"],
+  "extension_only_is_sufficient": false,
+  "outcomes": ["RESOLVED_UNIQUE", "NO_MATCH", "AMBIGUOUS_MATCH", "CONTRACT_CONFLICT", "CONTRACT_DEPRECATED", "CONTRACT_BLOCKED"],
+  "human_contract_selection_required_normal_path": false,
+  "ambiguity_policy": "BLOCK"
+}

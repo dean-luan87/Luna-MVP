@@ -1,0 +1,8 @@
+{
+  "title": "Cognitive Interrupt Contract v1",
+  "owner": "Cognitive OS Governance",
+  "interrupt_sources": ["Reflex Signal", "Safety Event", "Capability Failure", "State Conflict", "Task Deadline"],
+  "required_fields": ["interrupt_id", "priority", "source", "current_node", "resume_point", "reason", "lifecycle_state"],
+  "flow": ["Signal", "Prioritize", "Suspend Current Node", "Safety Handling Candidate", "Recovery Candidate", "Resume or Escalate"],
+  "rules": {"priority_required": true, "resume_point_required": true, "reflex_bypass_is_safety_only": true, "interrupt_not_decision": true}
+}

@@ -1,0 +1,64 @@
+# TTS 语音配置文件
+
+# 语音播报配置
+speech_events:
+  system_startup:
+    text_variants:
+      - "Luna系统启动完成"
+      - "系统初始化成功"
+    style: "friendly"
+    priority: 0
+    cooldown: 10
+  
+  path_clear:
+    text_variants:
+      - "前方路径畅通"
+      - "路径无障碍"
+    style: "calm"
+    priority: 1
+    cooldown: 3
+  
+  path_obstructed:
+    text_variants:
+      - "前方有障碍物，请注意安全"
+      - "检测到障碍物，请小心"
+    style: "urgent"
+    priority: 0
+    cooldown: 2
+  
+  system_error:
+    text_variants:
+      - "系统出现错误"
+      - "检测到异常"
+    style: "warning"
+    priority: 0
+    cooldown: 5
+
+# 语音风格配置
+speech_styles:
+  friendly:
+    speed: 1.0
+    volume: 0.8
+    voice: "zh-CN-XiaoxiaoNeural"
+  
+  calm:
+    speed: 0.9
+    volume: 0.7
+    voice: "zh-CN-YunxiNeural"
+  
+  urgent:
+    speed: 1.2
+    volume: 0.9
+    voice: "zh-CN-XiaoxiaoNeural"
+  
+  warning:
+    speed: 1.1
+    volume: 0.8
+    voice: "zh-CN-YunxiNeural"
+
+# 默认配置
+default_config:
+  voice: "zh-CN-XiaoxiaoNeural"
+  speed: 1.0
+  volume: 0.8
+  language: "zh-CN"

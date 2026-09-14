@@ -1,0 +1,13 @@
+{
+  "artifact": "personality_pcn_boundary_v1",
+  "pcn_owner_preserved": "Personal Cognitive Network Governance",
+  "allowed_inputs": ["relationship refs", "role refs", "social links", "interaction context refs", "field/context scope refs"],
+  "forbidden": ["Relationship = Personality", "Role = Personality", "Social context behavior = Global Personality", "PCN mutation by Personality", "Personality mutation of PCN"],
+  "rules": {
+    "pcn_is_context_only": true,
+    "context_specific_trait_candidates_allowed": true,
+    "global_generalization_requires_diverse_contexts": true,
+    "relationship_owner_transfer": false,
+    "pcn_relationship_truth_becomes_personality_truth": false
+  }
+}

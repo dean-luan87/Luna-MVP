@@ -1,0 +1,22 @@
+{
+  "phase": "Phase-Luna-S3-Production-Vision-Model-Route-Decision-And-Contract-Onboarding-v1-001",
+  "mode": "INVENTORY_ROUTE_DECISION_CONTRACT_ONBOARDING",
+  "canonical_owner": "Model Manager / Model Governance",
+  "yolov5_role": "LEGACY_REFERENCE",
+  "yolo11_role": "STABILITY_COMPARATOR",
+  "yolo26_role": "PRIMARY_CANDIDATE",
+  "best_fit": false,
+  "production_approved": false,
+  "model_inference_executed": false,
+  "provider_invocation_executed": false,
+  "network_access": false,
+  "automatic_model_download": false,
+  "automatic_package_download": false,
+  "s0_s1_s2_modified": false,
+  "s3_evidence_semantics_modified": false,
+  "ocr_execution": false,
+  "slam_execution": false,
+  "vlm_execution": false,
+  "semantic_compression": false,
+  "status": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

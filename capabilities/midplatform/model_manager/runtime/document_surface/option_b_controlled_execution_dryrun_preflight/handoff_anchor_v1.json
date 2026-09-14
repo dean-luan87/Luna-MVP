@@ -1,0 +1,75 @@
+{
+  "handoff_anchor_id": "option_b_controlled_execution_dryrun_preflight_handoff_anchor_v1",
+  "created_by": "human_approved_stage_handoff",
+  "anchor_mode": "manual_trusted_handoff",
+  "upstream_scan_allowed": false,
+  "global_search_allowed": false,
+  "recursive_scan_allowed": false,
+  "confirmed_upstream_decisions": {
+    "option_b_preflight_closure": {
+      "final_decision": "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_DOCUMENT_SURFACE_DETECTOR_OPTIONB_PREFLIGHT_CLOSURE_GO",
+      "ready_flag": "option_b_preflight_closure_ready",
+      "ready_value": true
+    },
+    "option_b_controlled_execution_planning": {
+      "final_decision": "P1_MIDPLATFORM_LUNA_MODEL_MANAGER_REGION_INTELLIGENCE_OWNERSHIP_DOCUMENT_SURFACE_DETECTOR_OPTIONB_CONTROLLED_EXECUTION_PLANNING_GO",
+      "ready_flag": "option_b_controlled_execution_planning_ready",
+      "ready_value": true
+    }
+  },
+  "confirmed_boundaries": {
+    "boundary_status": "frozen",
+    "controlled_execution_planning_completed": true,
+    "controlled_execution_allowed": false,
+    "option_b_execution_allowed": false,
+    "segmentation_execution_allowed": false,
+    "image_content_read_allowed": false,
+    "active_model_selected": false,
+    "active_skill_selected": false,
+    "active_registry_update_allowed": false,
+    "runtime_activation_allowed": false,
+    "protocol_compliance_check": "required"
+  },
+  "candidate_scope": {
+    "allowed_execution_candidates": [
+      "A1_classical_helper_ok_candidate",
+      "C1_document_specific_surface_model_ok_for_preflight"
+    ],
+    "blocked_references": [
+      "A2_uncontrolled_binary",
+      "B1_weight_missing",
+      "B2_license_unknown",
+      "B3_caption_text",
+      "C2_document_type_fact",
+      "D1_hardware_missing"
+    ]
+  },
+  "required_fixture_categories": [
+    "overlapping_receipts_clear_two_surfaces",
+    "high_overlap_with_visible_corners",
+    "receipt_attached_clear",
+    "receipt_attached_uncertain",
+    "low_contrast_single_paper",
+    "texture_false_positive_no_document",
+    "true_screen_document_fixture",
+    "single_clear_boundary_baseline"
+  ],
+  "protocol_refs": [
+    "LUNA-PROTO-L1-MODEL-SKILL-ADMISSION-CONTRACT-V1",
+    "Runtime Boundary Contract",
+    "Candidate / Fact Admission Contract",
+    "Evidence Chain Contract",
+    "Model Manager Registry Contract",
+    "Change Control / Review / Freeze",
+    "Permission / Admission Contract",
+    "Input / Output Symmetry Contract"
+  ],
+  "next_phase_allowed": "OptionB-Controlled-Execution-DryRun-Preflight",
+  "next_phase_not_allowed": [
+    "OptionB execution",
+    "segmentation execution",
+    "active model selection",
+    "runtime activation",
+    "OCR per surface"
+  ]
+}

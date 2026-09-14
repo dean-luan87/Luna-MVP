@@ -1,0 +1,16 @@
+{
+  "registry_id": "luna_core_state_registry_v1",
+  "unique_core_state_owner": true,
+  "states": [
+    {"state": "Field", "question": "Where am I?", "owner": "Cognitive Field", "components": ["space", "time", "environment", "relationships", "events"]},
+    {"state": "Self", "question": "Who am I?", "owner": "Self Governance", "components": ["identity", "capability", "boundary", "regulation"]},
+    {"state": "Understanding", "question": "What do I believe reality is?", "owner": "Understanding Governance", "components": ["belief", "hypothesis", "confidence", "unknowns"]},
+    {"state": "Goal", "question": "Why am I acting?", "owner": "Goal Governance", "components": ["intent", "task", "priority", "activation"]},
+    {"state": "Value", "question": "What is worth pursuing?", "owner": "Value Utility Governance", "components": ["benefit", "cost", "risk", "utility"]},
+    {"state": "Memory", "question": "How does the past influence now?", "owner": "Memory Governance", "components": ["activation", "influence", "decay", "context_dependency"]},
+    {"state": "Resource", "question": "What can I invest now?", "owner": "Resource and Self Regulation Governance", "components": ["compute", "time", "energy", "attention", "network", "storage"]}
+  ],
+  "module_is_not_core_state": true,
+  "second_truth_source_forbidden": true,
+  "candidate_only": true
+}

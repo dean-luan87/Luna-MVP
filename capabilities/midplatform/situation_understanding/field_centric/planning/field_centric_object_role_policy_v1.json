@@ -1,0 +1,39 @@
+{
+  "schema_id": "FieldCentricObjectRolePlanningPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-Planning-v1-001",
+  "layer_id": "L1_Field_Understanding",
+  "planning_only": true,
+  "core_principle": "不是识别物体，而是在场中理解世界",
+  "field_not_scene_label": true,
+  "pipeline": [
+    "field_understanding",
+    "expected_entity_behavior_information_risk_profile",
+    "interaction_graph",
+    "object_role_inference",
+    "unresolved_object_memory"
+  ],
+  "field_determines": [
+    "expected_entities",
+    "behavior_normality",
+    "information_value",
+    "risk_patterns"
+  ],
+  "forbidden": [
+    "object_first_recognition",
+    "attention_from_saliency_only",
+    "scene_label_equals_field",
+    "unknown_object_without_field_constraint",
+    "behavior_without_field_context"
+  ],
+  "boundary_flags": {
+    "planning_only": true,
+    "field_centric": true,
+    "field_before_object_role": true,
+    "attention_from_field_and_goal": true,
+    "interaction_infers_role": true,
+    "unresolved_object_memory": true,
+    "candidate_only": true
+  },
+  "next_phase": "Phase-P1-Midplatform-Luna-Situation-Understanding-Field-Centric-Object-Role-DryRun-v1-001"
+}

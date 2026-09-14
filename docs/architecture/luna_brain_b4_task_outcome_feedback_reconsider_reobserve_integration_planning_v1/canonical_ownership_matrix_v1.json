@@ -1,0 +1,15 @@
+{
+  "artifact":"b4_canonical_ownership_matrix_v1",
+  "owners":[
+    {"concept":"Task lifecycle/readiness/cancel/recovery","owner":"Task Manager"},
+    {"concept":"Action Candidate/admission/readiness","owner":"Action Governance"},
+    {"concept":"Runtime execution/admission/result/failure/timeout/retry","owner":"Runtime Executor"},
+    {"concept":"Outcome comparability/deviation/evaluation/attribution","owner":"Outcome Evaluation Governance"},
+    {"concept":"Reconsideration and reobserve handoff candidates","owner":"Outcome Evaluation Governance with Cognitive Flow / Active Observation Control consumers"},
+    {"concept":"Cognitive Flow re-entry/lifecycle","owner":"Cognitive Flow"},
+    {"concept":"Experience candidate and memory admission","owner":"Cognitive Memory/Experience"},
+    {"concept":"Learning","owner":"Cognitive Learning Governance"},
+    {"concept":"Safety/permission/resource policy","owner":"existing governance owners; consumed as gates/references"}
+  ],
+  "forbidden": ["Outcome Evaluation mutates Task/Action/Decision/Intent/Field/Memory", "Task Manager executes Action", "Runtime Executor makes Decision", "Experience writes Memory in B4"]
+}

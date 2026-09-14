@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-06-30T07:14:48.352287+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "mobile_sam_only": true,
+  "model_load_execution_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "mobile_sam_model_load_rollback_cleanup_record",
+  "mobile_sam_model_load_rollback_cleanup": {
+    "plan_id": "mobile_sam_model_load_rollback_cleanup_plan_v1",
+    "pre_model_load_snapshot_required": true,
+    "rollback_required": true,
+    "rollback_preserves_weight_file": true,
+    "rollback_preserves_registry": true,
+    "rollback_preserves_test_board": true,
+    "rollback_preserves_review_artifacts": true,
+    "failed_model_load_cleanup_required": true,
+    "partial_model_object_cleanup_required": true,
+    "no_registry_mutation_on_failure": true
+  }
+}

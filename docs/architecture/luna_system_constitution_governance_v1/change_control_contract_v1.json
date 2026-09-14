@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "System Change Control Contract",
+  "lifecycle": ["Proposal", "Evaluation", "Validation", "Admission", "Activation", "Monitoring"],
+  "change_types": ["New Module", "New Capability", "New Model", "New Provider", "Core Rule Adjustment", "Protocol Change"],
+  "required_reviews": ["Constitution Check", "Boundary Review", "Compatibility Review", "Risk Review", "Evidence/Calibration Review", "Rollback/Recovery Plan"],
+  "protected_changes": ["Constitution", "Identity", "Value", "Brain Rules"],
+  "activation": {"requires_admission": true, "requires_validation": true, "requires_monitoring": true, "automatic_activation": false},
+  "rules": {"no_direct_activation": true, "historical_assets_preserved": true, "change_trace_required": true, "constitution_runtime_editing_forbidden": true}
+}

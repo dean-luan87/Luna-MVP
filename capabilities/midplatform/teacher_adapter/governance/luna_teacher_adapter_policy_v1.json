@@ -1,0 +1,68 @@
+{
+  "schema_id": "LunaTeacherAdapterPolicyV1",
+  "version": "v1",
+  "phase_ref": "Phase-P1-Midplatform-Third-Party-Teacher-Adapter-Planning-v1-001",
+  "layer_id": "Teacher_Adapter",
+  "planning_only": true,
+  "principle": "第三方模型是 Luna 的顾问/老师，输出 teacher_evidence_candidate；不得直接决策、写 fact 或覆盖 L2 selected plan。",
+  "rules": [
+    {"rule_id": "teacher_evidence_not_fact", "description": "Teacher 输出是证据候选，不是事实"},
+    {"rule_id": "no_direct_l1_scene_override", "description": "Teacher 不得直接覆盖 L1 scene owner"},
+    {"rule_id": "no_direct_l2_selected_plan_override", "description": "Teacher 不得覆盖 selected_plan_candidate"},
+    {"rule_id": "teacher_admission_required", "description": "调用 Teacher 前必须经过 admission policy"},
+    {"rule_id": "specialized_tool_preferred_over_vlm", "description": "专业工具可用时禁止滥用 VLM Teacher"},
+    {"rule_id": "shopfront_text_ocr_no_vlm", "description": "店招+文字需求+OCR可用时 Teacher noop"},
+    {"rule_id": "unknown_scene_high_uncertainty_allows_vlm", "description": "unknown_scene+高不确定+缺失信息允许 Perception Teacher"},
+    {"rule_id": "alternative_plan_only", "description": "Planning Teacher 只输出 alternative_plan_candidate"},
+    {"rule_id": "learning_requires_policy_review", "description": "Learning Teacher 输出必须 pending_policy_review"},
+    {"rule_id": "bad_teacher_tool_conflict_reject", "description": "Teacher 建议与架构冲突时 policy reject"},
+    {"rule_id": "no_runner_invocation", "description": "Teacher 不触发 runner"},
+    {"rule_id": "no_tool_execution", "description": "Teacher 不执行工具"},
+    {"rule_id": "no_fact_write", "description": "Teacher 不写 fact"},
+    {"rule_id": "no_direct_training", "description": "Teacher 输出不得直接训练 Luna"},
+    {"rule_id": "no_real_network_in_planning", "description": "规划阶段禁止真实网络调用"},
+    {"rule_id": "provider_routed_via_adapter", "description": "Luna 只认识 Teacher Adapter Interface，不直接绑定 provider"}
+  ],
+  "admission_matrix": [
+    {
+      "rule_id": "allow_unknown_scene_vlm",
+      "when": {"scene_type": "unknown_scene", "uncertainty_high": true, "missing_information": true},
+      "teacher_role": "perception_teacher",
+      "preferred_provider": "gemini",
+      "admission_status": "admitted"
+    },
+    {
+      "rule_id": "deny_shopfront_ocr_vlm",
+      "when": {"scene_type": "shopfront_sign", "missing_info": "text_content", "ocr_available": true},
+      "teacher_role": "perception_teacher",
+      "admission_status": "noop",
+      "noop_reason": "OCR preferred over VLM for text_content"
+    },
+    {
+      "rule_id": "allow_planning_alternative",
+      "when": {"plan_competition_present": true, "request_type": "alternative_plan"},
+      "teacher_role": "planning_teacher",
+      "admission_status": "admitted"
+    },
+    {
+      "rule_id": "reject_slam_for_text",
+      "when": {"teacher_suggests": "slam_for_text"},
+      "admission_status": "rejected",
+      "reject_reason": "policy_conflict_slam_not_for_text"
+    }
+  ],
+  "boundary_flags": {
+    "teacher_evidence_not_fact": true,
+    "no_direct_l1_scene_override": true,
+    "no_direct_l2_selected_plan_override": true,
+    "no_runner_invocation": true,
+    "no_tool_execution": true,
+    "no_fact_write": true,
+    "no_direct_training": true,
+    "teacher_admission_required": true,
+    "specialized_tool_preferred_over_vlm": true,
+    "alternative_plan_only": true,
+    "learning_requires_policy_review": true,
+    "planning_only": true
+  }
+}

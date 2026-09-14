@@ -1,0 +1,17 @@
+{
+  "owner":"Outcome Evaluation Governance",
+  "module_version":"1.0.0",
+  "schema_version":"outcome-evaluation-v1",
+  "contract_version":"outcome-evaluation-contract-v1",
+  "mode":"CONTROLLED_SYNTHETIC_CANDIDATE_ONLY",
+  "inputs":["ExpectedOutcomeInputV1","ActualResultInputV1"],
+  "outputs":["ComparabilityGateCandidateV1","DeviationCandidateV1","OutcomeEvaluationCandidateV1","AttributionCandidateV1","ReconsiderationHandoffCandidateV1","LearningSignalHandoffCandidateV1","ObservationNeedHandoffCandidateV1"],
+  "runtime_execution":false,
+  "provider_invocation":false,
+  "model_call":false,
+  "candidate_only":true,
+  "truth_declared":false,
+  "mutation_authority":false,
+  "persistence":false,
+  "semantic_compression":false
+}

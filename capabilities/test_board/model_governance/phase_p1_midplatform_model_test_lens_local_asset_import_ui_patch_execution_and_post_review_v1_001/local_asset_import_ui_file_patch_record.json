@@ -1,0 +1,36 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-UI-Patch-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T03:12:12.131971+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record": {
+    "record_id": "local_asset_import_ui_file_patch_v1",
+    "static_site_root_rel": "capabilities/midplatform/model_test_lens/static_site",
+    "files_written": [
+      "capabilities/midplatform/model_test_lens/static_site/index.html",
+      "capabilities/midplatform/model_test_lens/static_site/app.js",
+      "capabilities/midplatform/model_test_lens/static_site/styles.css",
+      "capabilities/midplatform/model_test_lens/static_site/local_asset_import_ui_v1.js",
+      "capabilities/midplatform/model_test_lens/static_site/runner_bridge_ui_v1.js",
+      "capabilities/midplatform/model_test_lens/static_site/local_asset_import_examples_v1.js"
+    ],
+    "index_html_updated": true,
+    "app_js_updated": true,
+    "styles_css_updated": true,
+    "local_asset_import_ui_js_written": true,
+    "runner_bridge_ui_js_written": true,
+    "local_asset_import_examples_js_written": true,
+    "ui_patch_files_written": true
+  }
+}

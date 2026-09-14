@@ -1,0 +1,7 @@
+{
+  "runner": "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/run_dynamic_cognitive_flow_real_capability_single_invocation_trial_v1.py",
+  "verifier": "capabilities/midplatform/core/cognitive_flow/integration/dynamic_cognitive_flow_real_capability_single_invocation_trial/verify_dynamic_cognitive_flow_real_capability_single_invocation_trial_v1.py",
+  "runner_contract": ["one real provider attempt", "JSON summary", "persist trial snapshot", "non-zero on failed cases"],
+  "verifier_contract": ["read snapshot only", "never invoke provider", "JSON summary", "non-zero on missing snapshot or failed checks"],
+  "terminal_order": ["run Runner once with existing model/source/checksum/dependency arguments", "run Verifier read-only"]
+}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "name": "Internal / External Cognition Mapping",
+  "modes": [
+    {"mode": "Internal Cognition", "object": "Self", "responsibilities": ["State", "Capability", "Limitation", "Stability"], "owner": "Self Layer"},
+    {"mode": "External Cognition", "object": "World / Social Field", "responsibilities": ["Environment", "People", "Social Rules", "Relationships"], "owner": "Cognitive Field + Social Self Layer"},
+    {"mode": "Brain Integration", "object": "Internal + External Context", "responsibilities": ["Context Integration", "Candidate Evaluation", "Decision Candidate"], "owner": "Brain"}
+  ],
+  "flow": ["Internal Cognition", "External Cognition", "Brain Integration", "Decision"],
+  "rules": {"internal_external_distinct": true, "brain_integrates": true, "social_context_not_identity": true, "decision_owned_by_brain": true}
+}

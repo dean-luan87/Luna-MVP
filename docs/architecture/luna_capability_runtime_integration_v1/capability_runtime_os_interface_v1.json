@@ -1,0 +1,8 @@
+{
+  "title": "Capability Runtime to L1 OS Interface v1",
+  "owner": "Cognitive OS Governance",
+  "inputs": ["Lifecycle Contract", "Event Contract", "State Contract", "Trace Contract", "Resource Governance", "Recovery Contract"],
+  "outputs": ["Execution Lifecycle Candidate", "Health Event", "Resource Proposal", "Trace Reference", "Failure Recovery Candidate"],
+  "runtime_not_modify": ["Constitution", "Governance Authority", "Brain", "Goal", "Decision", "Reality"],
+  "rules": {"l1_owns_lifecycle": true, "l1_owns_contracts": true, "runtime_does_not_control_os": true, "interface_only": true}
+}

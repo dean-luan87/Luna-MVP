@@ -1,0 +1,129 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "CanvasPanelInteractionPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Visual-Expression-System-Planning-v1-001",
+    "description": "主图 canvas 与右侧 observation panel 的 click / hover / selected 联动规则。",
+    "states": {
+      "default": {
+        "segmentation_boundary_visible": true,
+        "attention_float_markers": "p0_p1_only",
+        "right_panel": "priority_queue_expanded"
+      },
+      "hover_canvas_region": {
+        "segmentation_boundary_visible": true,
+        "boundary_mutation": "none",
+        "highlight": "subtle_stroke_on_existing_boundary",
+        "float_marker": "one_line_hint_allowed",
+        "forbidden": [
+          "hide_other_boundaries",
+          "draw_new_boundary",
+          "full_route_list_on_canvas"
+        ]
+      },
+      "hover_panel_record": {
+        "segmentation_boundary_visible": true,
+        "boundary_mutation": "none",
+        "highlight": "subtle_stroke_on_mapped_region",
+        "forbidden": [
+          "toggle_segmentation_layer_visibility"
+        ]
+      },
+      "selected": {
+        "segmentation_boundary_visible": true,
+        "boundary_mutation": "stroke_enhance_only",
+        "mask_fill_allowed": true,
+        "secondary_boundary_forbidden": true,
+        "other_regions": "dim_markers_not_hide_boundaries",
+        "right_panel": "scroll_to_and_highlight_record"
+      }
+    },
+    "interactions": {
+      "click_right_panel_record": {
+        "action": "select_region_by_id",
+        "effects": [
+          "highlight_mapped_segmentation_region",
+          "keep_original_segmentation_boundary_visible",
+          "do_not_create_second_boundary",
+          "do_not_hide_unselected_boundaries",
+          "set_panel_record_selected",
+          "dim_non_selected_float_markers"
+        ],
+        "forbidden": [
+          "hide_segmentation_boundary",
+          "clone_boundary_for_attention",
+          "trigger_runner",
+          "write_fact"
+        ]
+      },
+      "click_canvas_region": {
+        "action": "map_hit_test_to_region_id",
+        "effects": [
+          "scroll_right_panel_to_record",
+          "select_matching_record_if_exists",
+          "highlight_segmentation_region"
+        ],
+        "if_no_attention_record": {
+          "right_panel_message": "该区域暂无优先观察建议",
+          "still_show_segmentation_boundary": true
+        },
+        "forbidden": [
+          "trigger_runner",
+          "write_fact",
+          "navigation_decision"
+        ]
+      },
+      "hover_canvas_region": {
+        "effects": [
+          "show_one_line_hint",
+          "subtle_boundary_highlight"
+        ],
+        "hint_format_examples": [
+          "④ P1 前方车辆｜需跟踪复核",
+          "① P0 路牌｜结构候选"
+        ],
+        "forbidden": [
+          "full_why_observe_on_canvas",
+          "full_followup_route_list_on_canvas"
+        ]
+      },
+      "hover_right_panel_record": {
+        "effects": [
+          "highlight_mapped_canvas_region",
+          "keep_all_segmentation_boundaries_visible"
+        ]
+      }
+    },
+    "segmentation_boundary_invariants": [
+      "must_remain_visible_on_panel_click",
+      "must_not_be_replaced_by_attention_box",
+      "must_not_disappear_on_select",
+      "one_boundary_per_region_id",
+      "selected_state_uses_same_geometry"
+    ],
+    "forbidden_operations": [
+      "hide_segmentation_on_attention_select",
+      "swap_boundary_rendering_mode_on_select",
+      "toggle_segmentation_layer_off_on_focus",
+      "create_attention_boundary_clone",
+      "execute_runner_from_canvas_click",
+      "write_fact_from_canvas_interaction",
+      "trigger_navigation_from_interaction"
+    ],
+    "boundary_flags": {
+      "interaction_candidate_only": true,
+      "not_navigation_instruction": true,
+      "not_runner_trigger": true,
+      "not_runner_execution": true,
+      "not_fact_write": true,
+      "planning_only": true
+    }
+  }
+}

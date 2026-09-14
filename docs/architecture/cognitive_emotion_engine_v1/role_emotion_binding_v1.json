@@ -1,0 +1,12 @@
+{
+  "interface_name": "Role Emotion Binding v1",
+  "role_reference": {},
+  "active_role": {},
+  "field_context": {},
+  "responsibility": {},
+  "expectation": {},
+  "emotion_state_candidate": {},
+  "role_emotion_candidate": true,
+  "role_does_not_modify_identity": true,
+  "unknowns_are_preserved": true
+}

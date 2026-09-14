@@ -1,0 +1,20 @@
+{
+  "probe_is_user_terminal_controlled": true,
+  "probe_loads_model": false,
+  "probe_invokes_provider": false,
+  "probe_network_access": false,
+  "probe_installs_packages": false,
+  "dependencies": [
+    {"name": "ultralytics", "required_or_conditional": "required", "declared_constraint": ">=8.0.0"},
+    {"name": "torch", "required_or_conditional": "conditional", "declared_constraint": null},
+    {"name": "torchvision", "required_or_conditional": "conditional", "declared_constraint": null},
+    {"name": "PIL", "required_or_conditional": "required_by_provider_path", "declared_constraint": null},
+    {"name": "cv2", "required_or_conditional": "required_by_provider_path", "declared_constraint": null}
+  ],
+  "statuses": [
+    "PYTHON_DEPENDENCY_UNRESOLVED",
+    "PYTHON_DEPENDENCY_VERIFIED",
+    "PYTHON_DEPENDENCY_MISSING",
+    "PYTHON_DEPENDENCY_VERSION_INCOMPATIBLE"
+  ]
+}

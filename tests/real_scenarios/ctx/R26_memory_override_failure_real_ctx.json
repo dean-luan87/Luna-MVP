@@ -1,0 +1,31 @@
+{
+  "frame_seq": 26,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R26_memory_override_failure_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.2,
+
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "blocked",
+
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "旧记忆更像(新证据也不被采纳)",
+
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+
+  "object_search_flow_type": "container_check_flow",
+  "object_search_step_index": 0,
+  "object_search_resolution_path": [
+    "container_check_flow",
+    "rechecking",
+    "fallback"
+  ],
+
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [10, 10, 70, 70], "conf": 0.9 },
+    { "label": "cup", "bbox": [0, 0, 55, 55], "conf": 0.75 },
+    { "label": "box", "bbox": [160, 40, 220, 110], "conf": 0.6 }
+  ]
+}
+

@@ -1,0 +1,7 @@
+{
+  "title": "Decision Action Feedback Loop v1",
+  "owner": "Cognitive Core Governance",
+  "pipeline": ["Decision", "Action Candidate", "Validation", "Execution Future", "Outcome", "Expectation Difference", "Learning Signal"],
+  "required_reentry": ["Expectation", "Memory", "Learning"],
+  "rules": {"action_boundary_required": true, "outcome_required": true, "difference_preserved": true, "learning_candidate_only": true}
+}

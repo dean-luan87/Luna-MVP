@@ -1,0 +1,33 @@
+{
+    "version": "1.0",
+    "name": "Field Event Admission Contract",
+    "description": "定义事件准入流程、验证步骤和候选结果类型",
+    "admission_steps": [
+        "schema_validation",
+        "source_admission",
+        "owner_scope_validation",
+        "evidence_admission",
+        "temporal_validation",
+        "perspective_validation",
+        "target_existence_validation",
+        "duplicate_detection",
+        "contradiction_detection",
+        "permission_check",
+        "governance_check"
+    ],
+    "result_types": [
+        "admitted_event_candidate",
+        "rejected_event_candidate",
+        "quarantined_event_candidate",
+        "duplicate_event_candidate",
+        "unresolved_event_candidate",
+        "correction_required_candidate"
+    ],
+    "governance_assertions": {
+        "admission_not_fact": "事件准入仅表示可候选，不等于事实准入。",
+        "no_direct_state_write": "准入不得直接修改 FieldState。",
+        "trace_required": "每个准入决策必须保留 trace 记录。"
+    },
+    "admission_does_not_equal_fact": true,
+    "admission_does_not_equal_state_mutation": true
+}

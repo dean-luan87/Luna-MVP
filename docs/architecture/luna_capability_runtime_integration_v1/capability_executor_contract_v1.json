@@ -1,0 +1,9 @@
+{
+  "title": "Capability Executor Contract v1",
+  "owner": "Capability Governance",
+  "input": "Admitted Capability Request",
+  "pipeline": ["Capability Request", "Execution Context", "Capability Validation", "Provider Invocation Candidate", "Execution Result", "Evidence Gateway"],
+  "schema": ["execution_id", "request_id", "capability_id", "provider_id", "status", "trace_id"],
+  "not_allowed": ["Goal creation", "Decision modification", "Reality modification", "Evidence Gateway bypass"],
+  "rules": {"admission_required": true, "evidence_gateway_required": true, "provider_invocation_is_candidate": true, "executor_not_brain": true}
+}

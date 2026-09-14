@@ -1,0 +1,124 @@
+{
+    "failures": [
+        {
+            "failure_type": "invalid_event",
+            "detection_point": "Event Validator",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": false,
+            "replay_allowed": false,
+            "quarantine_required": true,
+            "request_more_evidence": false,
+            "human_review_required": true,
+            "output_candidate_type": "rejected_event"
+        },
+        {
+            "failure_type": "missing_evidence",
+            "detection_point": "Evidence Normalizer",
+            "severity": "medium",
+            "abort_required": true,
+            "rollback_required": false,
+            "replay_allowed": false,
+            "quarantine_required": false,
+            "request_more_evidence": true,
+            "human_review_required": true,
+            "output_candidate_type": "evidence_request"
+        },
+        {
+            "failure_type": "conflicting_evidence",
+            "detection_point": "Field Candidate Builder",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": true,
+            "request_more_evidence": true,
+            "human_review_required": true,
+            "output_candidate_type": "unresolved_candidate"
+        },
+        {
+            "failure_type": "stale_temporal_definition",
+            "detection_point": "Temporal Field Graph",
+            "severity": "medium",
+            "abort_required": false,
+            "rollback_required": false,
+            "replay_allowed": true,
+            "quarantine_required": false,
+            "request_more_evidence": false,
+            "human_review_required": false,
+            "output_candidate_type": "expired_marker"
+        },
+        {
+            "failure_type": "missing_space_anchor",
+            "detection_point": "Anchor Resolver",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": false,
+            "replay_allowed": false,
+            "quarantine_required": true,
+            "request_more_evidence": true,
+            "human_review_required": true,
+            "output_candidate_type": "anchor_request"
+        },
+        {
+            "failure_type": "projection_failure",
+            "detection_point": "Active Field Projection Builder",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": true,
+            "request_more_evidence": false,
+            "human_review_required": true,
+            "output_candidate_type": "projection_error_candidate"
+        },
+        {
+            "failure_type": "partial_state_update",
+            "detection_point": "Field State Reducer",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": true,
+            "request_more_evidence": false,
+            "human_review_required": true,
+            "output_candidate_type": "rollback_candidate"
+        },
+        {
+            "failure_type": "corrupted_snapshot",
+            "detection_point": "Field Snapshot Store Interface",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": true,
+            "request_more_evidence": false,
+            "human_review_required": true,
+            "output_candidate_type": "snapshot_replay_candidate"
+        },
+        {
+            "failure_type": "revocation_failure",
+            "detection_point": "Revision and Revocation Manager",
+            "severity": "high",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": true,
+            "request_more_evidence": false,
+            "human_review_required": true,
+            "output_candidate_type": "revocation_retry_candidate"
+        },
+        {
+            "failure_type": "human_correction_conflict",
+            "detection_point": "Human Correction Adapter",
+            "severity": "medium",
+            "abort_required": true,
+            "rollback_required": true,
+            "replay_allowed": true,
+            "quarantine_required": false,
+            "request_more_evidence": true,
+            "human_review_required": true,
+            "output_candidate_type": "correction_conflict_candidate"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Decision Arbitration Dependency Boundary v1",
+  "allowed_dependencies": [
+    "Understanding -> Decision Candidate Context",
+    "Brain -> Decision Candidate Set",
+    "Goal -> Decision Candidate Context",
+    "Value Utility -> Utility and Priority Candidates",
+    "Self -> Constraint and Veto Context",
+    "Constitution -> Hard Constraint Context",
+    "Decision Arbitration -> Selected Decision Candidate",
+    "Decision Arbitration -> Reconsideration Candidate",
+    "Action Boundary -> Future Execution Gate",
+    "B Route -> Simulation Candidate Placeholder"
+  ],
+  "forbidden_dependencies": [
+    "Brain -> Execute Action",
+    "Decision Arbitration -> Execute Action",
+    "Decision Candidate -> Action Command",
+    "Decision -> Direct Reality Mutation",
+    "Decision Arbitration -> Create Goal",
+    "Decision Arbitration -> Modify Value",
+    "Decision Arbitration -> Rewrite Constitution",
+    "Memory -> Override Current Reality",
+    "B Route -> Override Current Decision",
+    "External Algorithm -> Commit Decision",
+    "Provider -> Generate Decision",
+    "Runtime -> Generate Decision",
+    "Decision Arbitration -> Run Planner",
+    "Decision Arbitration -> Run Emotion Runtime"
+  ],
+  "brain_is_candidate_owner": true,
+  "arbitration_is_selection_owner": true,
+  "action_boundary_is_execution_owner": true,
+  "no_planner": true,
+  "no_decision_runtime": true,
+  "no_action_execution": true,
+  "no_b_route_runtime": true,
+  "no_emotion_runtime": true
+}

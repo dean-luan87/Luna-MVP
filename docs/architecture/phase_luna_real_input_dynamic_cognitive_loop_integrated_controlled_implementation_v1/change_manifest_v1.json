@@ -1,0 +1,13 @@
+{
+  "files_created": [
+    "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/real_input_dynamic_cognitive_loop_integration_types_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/real_input_dynamic_cognitive_loop_integration_adapter_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/real_input_dynamic_cognitive_loop_integration_fixture_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/run_real_input_dynamic_cognitive_loop_integrated_controlled_implementation_v1.py",
+    "capabilities/midplatform/core/cognitive_flow/integration/real_input_dynamic_cognitive_loop_controlled/verify_real_input_dynamic_cognitive_loop_integrated_controlled_implementation_v1.py"
+  ],
+  "canonical_types_changed": false,
+  "canonical_owner_changed": false,
+  "business_logic_expanded": false,
+  "existing_single_module_assets_modified": false
+}

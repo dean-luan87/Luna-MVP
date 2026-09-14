@@ -1,0 +1,14 @@
+{
+  "schema_id": "DocumentSurfaceRollbackPolicyV1",
+  "version": "v1",
+  "on_controlled_execution_failure": {
+    "do_not_modify_runtime_registry": true,
+    "do_not_activate_runtime": true,
+    "do_not_expand_input_directory": true,
+    "do_not_enable_ocr_vlm_fallback": true,
+    "preserve_failure_trace": true,
+    "handoff_to": ["implementation_planning_review", "dependency_admission_review"]
+  },
+  "candidate_only": true,
+  "not_fact": true
+}

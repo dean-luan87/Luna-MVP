@@ -1,0 +1,12 @@
+{
+  "contract_id": "observation_context_handoff_candidate_v1",
+  "producer": "Observation Gateway",
+  "consumer": "Context Foundation",
+  "required_refs": ["admitted_observation_refs", "evidence_refs", "temporal_refs", "uncertainty_refs", "contradiction_refs", "correction_refs", "provenance_refs", "trace_ref"],
+  "read_only_inputs": ["task_refs", "field_refs", "pcn_refs", "intent_refs"],
+  "context_mutation": false,
+  "admitted_observation_is_fact": false,
+  "candidate_only": true,
+  "controlled_handoff_ready": true,
+  "runtime_handoff_ready": false
+}

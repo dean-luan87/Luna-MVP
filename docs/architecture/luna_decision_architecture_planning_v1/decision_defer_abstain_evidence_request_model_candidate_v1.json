@@ -1,0 +1,18 @@
+{
+    "artifact": "decision_defer_abstain_evidence_request_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "supported_outcomes": [
+        "DEFER",
+        "ABSTAIN",
+        "REQUEST_MORE_EVIDENCE"
+    ],
+    "semantic_distinction": {
+        "DEFER": "No selection now; revisit when boundary conditions change.",
+        "ABSTAIN": "Current governance indicates no decision should be selected.",
+        "REQUEST_MORE_EVIDENCE": "Additional observation/context/causal evidence is required before selection."
+    },
+    "guards": {
+        "default_pick_one_forbidden": true,
+        "reason_trace_required": true
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_id": "StopConditionV1",
+  "version": "v1",
+  "candidate_only": true,
+  "not_fact": true,
+  "required_fields": ["condition_type", "reason", "candidate_only", "not_fact"],
+  "trace_refs": { "type": "array" },
+  "policy_refs": ["luna_agent_planning_policy_v1"]
+}

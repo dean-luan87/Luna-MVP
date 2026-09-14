@@ -1,0 +1,50 @@
+{
+  "schema_id": "QwenVLTeacherEvidenceCandidateSchemaV1",
+  "version": "v1",
+  "output_type": "teacher_evidence_candidate",
+  "required_fields": [
+    "teacher_id",
+    "teacher_provider",
+    "teacher_role",
+    "evidence_type",
+    "confidence_candidate",
+    "supporting_reason",
+    "uncertainty",
+    "candidate_only",
+    "not_fact",
+    "trace_refs"
+  ],
+  "optional_fields": [
+    "scene_hypothesis_candidate",
+    "visual_attention_candidate",
+    "task_clue_candidate",
+    "conflict_candidates",
+    "policy_risk_candidates",
+    "supporting_evidence"
+  ],
+  "field_definitions": {
+    "teacher_provider": {"const": "qwen_vl"},
+    "teacher_role": {"const": "perception_teacher"},
+    "evidence_type": {
+      "enum": [
+        "scene_hypothesis_candidate",
+        "visual_attention_candidate",
+        "task_clue_candidate"
+      ]
+    },
+    "confidence_candidate": {"type": "number", "minimum": 0, "maximum": 1},
+    "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+    "candidate_only": {"const": true},
+    "not_fact": {"const": true}
+  },
+  "forbidden_fields_as_fact": [
+    "confirmed_scene",
+    "fact_label",
+    "final_plan",
+    "selected_plan",
+    "executed_tool",
+    "teacher_result",
+    "teacher_fact",
+    "teacher_decision"
+  ]
+}

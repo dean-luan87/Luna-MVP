@@ -1,0 +1,11 @@
+{
+  "guard_set_id": "field_temporal_evolution_negative_guards_v1",
+  "execution_mode": "architecture_only",
+  "forbidden": ["runtime_implementation", "field_runtime", "world_model", "b_route_simulation", "prediction_engine", "action_execution", "automatic_learning", "memory_consolidation_runtime", "emotion_runtime", "field_evolution_direct_memory_mutation", "field_transition_direct_action", "field_history_overwrites_reality", "memory_forces_field_change", "prediction_replaces_reality", "model_provider_integration", "hardware_control", "parallel_field_implementation", "parallel_memory_implementation"],
+  "identity_must_remain_candidate": true,
+  "snapshot_is_not_memory": true,
+  "unknown_preserved": true,
+  "evidence_required_for_history": true,
+  "no_check_weaken": true,
+  "no_hardcoded_pass": true
+}

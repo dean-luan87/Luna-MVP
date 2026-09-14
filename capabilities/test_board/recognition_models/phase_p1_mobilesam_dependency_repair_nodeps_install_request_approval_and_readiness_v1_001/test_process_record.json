@@ -1,0 +1,183 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-NoDeps-Install-Request-Approval-And-Readiness-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T01:19:17.540952+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_process_record",
+  "scope": "p1_mobile_sam_dependency_repair_nodeps_install_request_approval_and_readiness",
+  "steps_executed": [
+    "this_phase_is_nodeps_timm_install_request_approval_and_readiness_only",
+    "scope_is_mobile_sam_only",
+    "target_dependency_is_timm",
+    "selected_route_must_be_timm_no_deps_controlled_install",
+    "pip_install_is_not_allowed_in_this_phase",
+    "timm_install_is_not_allowed_in_this_phase",
+    "real_import_is_not_allowed",
+    "torch_torchvision_import_is_not_allowed",
+    "mobile_sam_import_is_not_allowed",
+    "model_load_is_not_allowed",
+    "model_load_retry_is_not_allowed",
+    "inference_is_not_allowed",
+    "segmentation_prediction_is_not_allowed",
+    "runtime_execution_is_not_allowed",
+    "output_adapter_is_not_allowed",
+    "semantic_layer_is_not_allowed",
+    "additional_weight_download_is_not_allowed",
+    "registry_mutation_is_not_allowed",
+    "command_whitelist_must_include_no_deps",
+    "global_install_is_not_allowed",
+    "transitive_dependency_install_is_not_allowed_by_route",
+    "torch_reuse_does_not_allow_torch_reinstall",
+    "torchvision_reuse_boundary_is_required",
+    "nodeps_approval_is_not_install_execution_now",
+    "nodeps_approval_is_not_model_load_retry_approval",
+    "nodeps_approval_is_not_inference_approval",
+    "nodeps_approval_is_not_runtime_approval",
+    "commercial_runtime_is_not_approved",
+    "rollback_plan_is_required",
+    "post_install_find_spec_probe_is_required",
+    "candidate_only_boundary_is_preserved",
+    "test_board_record_is_required",
+    "test_process_record_is_required",
+    "test_conclusion_record_is_required",
+    "test_artifacts_are_protected",
+    "test_records_are_non_deletable",
+    "cleanup_must_not_delete_test_board_artifacts",
+    "all_virtual_and_real_test_artifacts_must_be_written_to_the_test_board",
+    "test_process_records_must_be_preserved",
+    "test_conclusions_must_be_preserved",
+    "test_board_artifacts_are_protected_and_must_not_be_deleted",
+    "cleanup_scripts_must_not_remove_protected_test_board_artifacts",
+    "any_test_artifact_deletion_requires_explicit_governance_approval"
+  ],
+  "passed_check_count": 91,
+  "failed_check_count": 0,
+  "stage_refs": [
+    {
+      "stage_index": 1,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-Install-Failure-Review-And-Repair-Planning-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 2,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 3,
+      "phase_ref": "Phase-P1-MobileSAM-Dependency-Repair-Install-Request-Approval-And-Readiness-v1-001",
+      "expected_go": "P1_MOBILE_SAM_DEPENDENCY_REPAIR_INSTALL_REQUEST_APPROVAL_AND_READINESS_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 4,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Failure-Review-And-Repair-Planning-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_FAILURE_REVIEW_AND_REPAIR_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 5,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Trial-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_EXECUTION_FAILED_NO_BOUNDARY_VIOLATION",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 6,
+      "phase_ref": "Phase-P1-MobileSAM-Model-Load-Trial-Request-Approval-And-Readiness-v1-001",
+      "expected_go": "P1_MOBILE_SAM_MODEL_LOAD_TRIAL_REQUEST_APPROVAL_AND_READINESS_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 7,
+      "phase_ref": "Phase-P1-MobileSAM-Weight-Registry-Patch-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MOBILE_SAM_WEIGHT_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 8,
+      "phase_ref": "Phase-P1-Model-Weight-Download-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_MODEL_WEIGHT_DOWNLOAD_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 9,
+      "phase_ref": "Phase-P1-Source-Code-Only-Install-Registry-Patch-Execution-And-Post-Review-v1-001",
+      "expected_go": "P1_SOURCE_CODE_ONLY_INSTALL_REGISTRY_PATCH_EXECUTION_AND_POST_REVIEW_GO",
+      "gated": true,
+      "artifact_read_mode": "sealed_ref_fallback",
+      "go_verified": true
+    },
+    {
+      "stage_index": 10,
+      "phase_ref": "Phase-P1-Controlled-Source-Install-Execution-Retry-And-Post-Review-v1-001",
+      "expected_go": "P1_CONTROLLED_SOURCE_INSTALL_EXECUTION_RETRY_CODE_ONLY_GO",
+      "gated": true,
+      "artifact_read_mode": "sealed_ref_fallback",
+      "go_verified": true
+    },
+    {
+      "stage_index": 11,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-Planning-v1-001",
+      "expected_go": "MIDPLATFORM_MODEL_VERSION_DEPENDENCY_REGISTRY_PLANNING_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 12,
+      "phase_ref": "Phase-Test-Board-Protected-Artifact-Rule-v1-001",
+      "expected_go": "TEST_BOARD_PROTECTED_ARTIFACT_RULE_GO",
+      "gated": true,
+      "artifact_read_mode": "artifact_present",
+      "go_verified": true
+    },
+    {
+      "stage_index": 13,
+      "phase_ref": "Phase-Midplatform-Model-Version-Dependency-Registry-P1-Probe-Reconciliation-Post-Review-v1-001",
+      "expected_go": null,
+      "gated": false,
+      "artifact_read_mode": "reference_only",
+      "go_verified": true
+    }
+  ],
+  "upstream_sealed_phase_review": {
+    "mobile_sam_timm_install_failure_repair_planning_go_verified": true,
+    "mobile_sam_dependency_repair_install_execution_failed_no_boundary_violation_verified": true,
+    "mobile_sam_dependency_repair_install_request_approval_readiness_go_verified": true,
+    "mobile_sam_model_load_failure_repair_planning_go_verified": true,
+    "mobile_sam_model_load_trial_execution_failed_no_boundary_violation_verified": true,
+    "mobile_sam_model_load_request_approval_readiness_go_verified": true,
+    "mobile_sam_weight_registry_patch_execution_go_verified": true,
+    "model_weight_download_execution_post_review_go_verified": true,
+    "source_code_only_registry_patch_execution_go_verified": true,
+    "source_install_execution_retry_code_only_go_verified": true,
+    "model_version_dependency_registry_planning_go_verified": true,
+    "test_board_protocol_go_verified": true,
+    "controlled_trial_template_ref_ok": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "artifact": "runtime_executor_existing_asset_reuse_mapping_v1",
+    "status": "PLANNING_CANDIDATE",
+    "mapping": [
+        {
+            "existing_asset": "docs/architecture/luna_action_architecture_planning_v1/action_runtime_executor_handoff_contract_candidate_v1.json",
+            "reused_for": "upstream handoff candidate-only semantics",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_architecture_planning_v1/action_execution_readiness_model_candidate_v1.json",
+            "reused_for": "readiness not equal execution boundary",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_architecture_planning_v1/action_permission_safety_boundary_candidate_v1.json",
+            "reused_for": "permission and safety re-check semantics",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_foundation_v1/action_executor_contract_v1.json",
+            "reused_for": "historical runtime executor owner naming and contract skeleton",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_foundation_v1/action_execution_adapter_boundary_v1.json",
+            "reused_for": "adapter and device isolation boundary",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_foundation_v1/action_scheduler_boundary_v1.json",
+            "reused_for": "scheduler non-ownership and boundary-only semantics",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_foundation_v1/action_outcome_collector_v1.json",
+            "reused_for": "result schema and outcome candidate separation",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_action_runtime_foundation_v1/action_recovery_contract_v1.json",
+            "reused_for": "failure and rollback candidate boundaries",
+            "modification": false
+        },
+        {
+            "existing_asset": "docs/architecture/luna_decision_architecture_planning_v1/decision_to_action_task_handoff_contract_candidate_v1.json",
+            "reused_for": "upstream to downstream handoff discipline",
+            "modification": false
+        }
+    ]
+}

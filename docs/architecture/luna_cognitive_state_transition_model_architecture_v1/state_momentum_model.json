@@ -1,0 +1,13 @@
+{
+  "model_id": "state_momentum_v1",
+  "definition": "Past state influence on next state candidate",
+  "inputs": ["Previous State Vector", "Current Evidence", "Recent Outcome", "Time Since Transition"],
+  "outputs": ["Momentum Candidate", "Persistence Weight Candidate", "Reconsideration Candidate"],
+  "parameters": ["momentum_weight", "decay_rate", "minimum_persistence_window"],
+  "field_scoped": true,
+  "versioned": true,
+  "rollback_required": true,
+  "not_scheduler": true,
+  "automatic_update": false,
+  "candidate_only": true
+}

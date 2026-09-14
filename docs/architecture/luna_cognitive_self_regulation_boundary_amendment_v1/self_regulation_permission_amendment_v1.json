@@ -1,0 +1,13 @@
+{
+  "title": "Self Regulation Permission Amendment v1",
+  "owner": "Self Regulation Governance",
+  "permissions": {
+    "observe": ["Self State", "Capability Health", "Resource State", "Model Health", "Failure Evidence"],
+    "analyze": ["Failure Impact", "Dependency Blast Radius", "Capability Fitness", "Stability Risk"],
+    "propose": ["Regulation Candidate", "Degradation Candidate", "Recovery Candidate", "Upgrade Rejection Candidate", "Capability Governance Request"],
+    "update": ["Self Regulation Candidate Records", "Health Context Candidate", "Degraded Profile Candidate"],
+    "execute": []
+  },
+  "forbidden": ["Constitution Modification", "Value Modification", "Identity Modification", "Goal Modification", "Brain Rule Modification", "Hardware Action", "Provider Invocation", "Model Switching", "Automatic Rollback", "Learning Execution"],
+  "rules": {"execute_empty":true,"admission_externalized":true,"candidate_review_required":true,"self_preservation_veto_allowed":true,"no_direct_action":true}
+}

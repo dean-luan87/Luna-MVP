@@ -1,0 +1,7 @@
+{
+  "artifact": "b3_reconsideration_defer_contract_v1",
+  "observation_need_owner": "Active Observation Control / Field Perception Orchestrator",
+  "cognitive_effect": ["preserve unresolved Potential Intent", "Decision DEFER", "Decision REQUEST_MORE_EVIDENCE", "Task REQUIRES_OBSERVATION or BLOCKED"],
+  "execution": {"provider_invocation": false, "camera_activation": false, "scheduler_execution": false},
+  "rule": "B3 can express an observation need but cannot execute it."
+}

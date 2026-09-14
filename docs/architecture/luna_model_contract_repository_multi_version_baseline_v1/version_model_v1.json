@@ -1,0 +1,21 @@
+{
+  "version_dimensions": [
+    "model_asset_version",
+    "loader_contract_version",
+    "provider_adapter_version",
+    "capability_contract_version",
+    "canonical_evidence_contract_version",
+    "deployment_profile_version_optional",
+    "benchmark_profile_version_optional",
+    "recommendation_profile_version_optional"
+  ],
+  "inequalities": [
+    "Model Asset Version != Loader Contract Version",
+    "Loader Contract Version != Provider Adapter Version",
+    "Provider Adapter Version != Capability Contract Version",
+    "Capability Contract Version != Canonical Evidence Contract Version",
+    "Model Upgrade != Contract Upgrade",
+    "Model Upgrade != Capability Expansion"
+  ],
+  "coexistence": true
+}

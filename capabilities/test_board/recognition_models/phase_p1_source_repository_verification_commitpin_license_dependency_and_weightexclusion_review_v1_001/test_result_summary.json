@@ -1,0 +1,31 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Source-Repository-Verification-CommitPin-License-Dependency-And-WeightExclusion-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T04:11:21.996968+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_SOURCE_REPOSITORY_VERIFICATION_COMMITPIN_LICENSE_DEPENDENCY_WEIGHT_EXCLUSION_REVIEW_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "source_repository_verification_commitpin_review_profile_count": 1,
+    "stage_ref_count": 13,
+    "scoped_network_evidence_log_count": 13,
+    "source_repository_verification_evidence_count": 2,
+    "source_commit_pin_resolution_evidence_count": 2,
+    "source_license_review_evidence_count": 2,
+    "source_dependency_manifest_review_evidence_count": 2,
+    "mobile_sam_weight_exclusion_feasibility_review_count": 1,
+    "source_execution_retry_readiness_gate_review_count": 2,
+    "source_repository_verification_review_decision_record_count": 1,
+    "source_repository_review_risk_record_count": 2,
+    "negative_guard_count": 21,
+    "blocker_count": 0
+  }
+}

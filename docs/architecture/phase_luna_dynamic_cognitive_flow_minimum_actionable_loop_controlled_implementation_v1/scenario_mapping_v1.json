@@ -1,0 +1,20 @@
+{
+  "scenario_count": 36,
+  "groups": {
+    "A01-A06": "seven provisional observation candidates; insufficiency; early sufficiency termination",
+    "B01-B06": "hypothesis invalidation, supersession, replan and alternative minimum Need",
+    "C01-C06": "capability unavailable/degraded, no hallucination, alternative evidence Need or DEFER",
+    "D01-D06": "execution outcome vs requirement satisfaction vs task contribution vs cognitive sufficiency",
+    "E01-E06": "capability failure with independent goal sufficiency and STOP_SUFFICIENT",
+    "F01-F06": "state-version reassessment, stale Requirement supersession and invocation guard"
+  },
+  "core_fixture": {
+    "scenario": "exit search",
+    "candidate_points": 7,
+    "first_two_observations": "INSUFFICIENT",
+    "third_observation": "exit evidence and SUFFICIENT",
+    "after_third": "STOP_SUFFICIENT",
+    "candidates_4_to_7": "not materialized and not failures"
+  },
+  "scope_note": "No duplicate Scope/Capability Bridge scenarios are introduced; scenarios focus on state transition and early termination."
+}

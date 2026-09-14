@@ -1,0 +1,14 @@
+{
+  "interface_name": "Workspace Task Interface v1",
+  "task_reference": {},
+  "active_task_context": {},
+  "goal_reference": {},
+  "progress_reference": {},
+  "completion_condition_reference": {},
+  "pending_information": [],
+  "next_requirement": {},
+  "workspace_does_not_create_task": true,
+  "task_does_not_make_decision": true,
+  "task_context_is_current_focus_only": true,
+  "unknowns_are_preserved": true
+}

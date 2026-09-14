@@ -1,0 +1,19 @@
+{
+  "contract_name": "Field Rule Confidence Contract v1",
+  "rule_reference": "rule-example",
+  "evidence_references": [],
+  "confidence": null,
+  "provenance": [],
+  "validity": "candidate",
+  "scope": "candidate",
+  "unknowns": [],
+  "reality_reference": "candidate",
+  "rule_candidate_status": "Observed Candidate | Supported Candidate | Conflicted Candidate | Stale Candidate | Rejected Candidate",
+  "rule_is_not_reality": true,
+  "rule_is_not_fact": true,
+  "confidence_does_not_create_decision": true,
+  "new_evidence_can_update_rule": true,
+  "temporary_rule_can_expire": true,
+  "unknowns_are_preserved": true,
+  "reducer_is_sole_state_mutation_authority": true
+}

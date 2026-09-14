@@ -1,0 +1,16 @@
+{
+  "fixture_name": "Core Failure Injection Cases v1",
+  "cases": [
+    {"case": "Wrong Evidence", "expected": "Reality Conflict Candidate"},
+    {"case": "Capability Degradation", "expected": "Self Capability Candidate"},
+    {"case": "Task Interrupted", "expected": "Task Suspend / Resume Candidate"},
+    {"case": "Goal Conflict", "expected": "Brain Review Candidate"},
+    {"case": "Stale Experience", "expected": "Reality Priority / Revocation Candidate"},
+    {"case": "Reflex Uncertainty", "expected": "Brain Escalation Candidate"},
+    {"case": "Malformed Emotion Context", "expected": "Placeholder Rejection Candidate"}
+  ],
+  "no_real_action": true,
+  "no_model_call": true,
+  "no_hardware_call": true,
+  "unknowns_are_preserved": true
+}

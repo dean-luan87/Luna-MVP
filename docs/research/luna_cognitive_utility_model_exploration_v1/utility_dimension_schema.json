@@ -1,0 +1,21 @@
+{
+  "title": "Luna Utility Dimension Schema v1",
+  "status": "research_only",
+  "dimensions": [
+    {"id": "goal_value", "name": "Goal Value", "source": "Goal Layer", "role": "directional benefit"},
+    {"id": "safety_value", "name": "Safety Value", "source": "Constitution / Self Regulation", "role": "hard or contextual protection"},
+    {"id": "growth_value", "name": "Growth Value", "source": "Self Evolution / Learning boundary", "role": "future capability benefit"},
+    {"id": "information_value", "name": "Information Value", "source": "Uncertainty / Exploration Governance", "role": "uncertainty reduction"},
+    {"id": "importance", "name": "Importance", "source": "Value Layer + Field", "role": "contextual criterion"},
+    {"id": "probability", "name": "Probability Candidate", "source": "Belief + Capability + Experience", "role": "uncertain outcome likelihood"},
+    {"id": "resource_cost", "name": "Resource Cost", "source": "Self Resource / Self Rhythm", "role": "finite investment"},
+    {"id": "risk_cost", "name": "Risk Cost", "source": "Self Regulation + Constitution", "role": "risk penalty or rejection"},
+    {"id": "reversibility", "name": "Reversibility", "source": "Action Boundary (future)", "role": "irreversible impact context"},
+    {"id": "unknown", "name": "Unknown", "source": "Unknown Management", "role": "review and confidence requirement"},
+    {"id": "user_attention_cost", "name": "User Attention Cost", "source": "Self / Interaction Context", "role": "social resource cost"}
+  ],
+  "vector_preservation_required": true,
+  "scalarization_is_candidate_only": true,
+  "unknown_is_not_zero": true,
+  "hard_constraints_are_non_compensatory": true
+}

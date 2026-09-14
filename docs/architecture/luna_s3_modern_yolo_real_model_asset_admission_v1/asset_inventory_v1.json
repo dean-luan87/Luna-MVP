@@ -1,0 +1,16 @@
+{
+  "canonical_owner": "Model Manager / Model Governance",
+  "target_model": "YOLO11n",
+  "target_route_role": "STABILITY_COMPARATOR",
+  "physical_asset_inventory": {
+    "declared_asset": true,
+    "real_file_present": false,
+    "real_file_absent": true,
+    "known_registered_path": "vision/detection/yolo/yolo11n.pt",
+    "allowed_location_search_result": "ASSET_NOT_PRESENT"
+  },
+  "yolov5_reference_file_present": true,
+  "yolo26_physical_asset_present": false,
+  "parallel_registry_created": false,
+  "model_inference_executed": false
+}

@@ -1,0 +1,13 @@
+{
+  "mapping_id": "b_route_simulation_mapping_v1",
+  "simulation_target": "L(t+n)",
+  "inputs": ["Current Luna State Vector", "Candidate Function Parameters", "Candidate Field Evolution", "Unknowns"],
+  "outputs": ["Future State Candidate", "Outcome Candidate", "Risk Candidate", "Reconsideration Candidate"],
+  "b_route_is_future_interface_only": true,
+  "b_route_does_not_override_a_route": true,
+  "b_route_does_not_modify_self": true,
+  "b_route_does_not_turn_virtual_outcome_into_experience": true,
+  "b_route_does_not_update_parameters": true,
+  "b_route_runtime": false,
+  "candidate_only": true
+}

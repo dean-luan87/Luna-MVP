@@ -1,0 +1,8 @@
+{
+  "title": "Action Outcome Collector v1",
+  "owner": "Action Runtime Governance",
+  "pipeline": ["Execution", "Raw Outcome", "Outcome Collector", "Verification"],
+  "schema": ["outcome_id", "execution_id", "expected", "actual", "difference", "confidence", "timestamp", "trace_id"],
+  "outputs": ["Outcome Candidate", "Invalid Outcome Candidate", "Unknown Outcome Candidate"],
+  "rules": {"raw_outcome_not_evidence_until_verified": true, "difference_required": true, "collector_not_learning_owner": true}
+}

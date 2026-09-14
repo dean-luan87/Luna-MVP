@@ -1,0 +1,20 @@
+{
+  "contract_name": "Human Flow Understanding Contract v1",
+  "field_reference": "field-example",
+  "density_candidate": "sparse | normal | dense | unknown",
+  "direction_candidate": "entering | leaving | crossing | stationary | unknown",
+  "flow_pattern_candidate": "queue | gathering | dispersal | evacuation | circulation | unknown",
+  "supporting_evidence": [],
+  "confidence": null,
+  "provenance": [],
+  "uncertainty": [],
+  "unknowns": [],
+  "group_pattern_only": true,
+  "does_not_identify_motive": true,
+  "does_not_identify_emotion": true,
+  "does_not_infer_social_relationship": true,
+  "does_not_create_role": true,
+  "does_not_predict": true,
+  "does_not_execute_action": true,
+  "reality_update_requires_reducer": true
+}

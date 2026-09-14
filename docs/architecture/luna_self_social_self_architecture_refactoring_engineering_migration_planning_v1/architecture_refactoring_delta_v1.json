@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "name": "Self Social Self Architecture Refactoring Delta",
+  "previous_phase": "Phase-Luna-Self-Social-Self-Architecture-Refactoring-v1-001",
+  "previous_decision": "LUNA_SELF_SOCIAL_SELF_ARCHITECTURE_READY",
+  "new_layers": ["Self Layer", "Social Self Layer", "Integration Layer"],
+  "delta": [
+    {"change": "Self Model ownership", "from": "mixed Self/Social context", "to": "Self Layer", "implementation": "mapping_only"},
+    {"change": "Role and Relationship ownership", "from": "mixed Self context", "to": "Social Self Layer", "implementation": "mapping_only"},
+    {"change": "Emotion Context ownership", "from": "Emotion boundary", "to": "Integration Layer", "implementation": "boundary_reclassification"},
+    {"change": "Engineering governance", "from": "phase-local mapping", "to": "ownership registry and change workflow", "implementation": "planning_only"}
+  ],
+  "rules": {"architecture_first": true, "mapping_before_move": true, "owner_before_implementation": true, "no_code_change": true, "no_file_move": true, "no_module_deletion": true}
+}

@@ -1,0 +1,9 @@
+content:
+  test_event:
+    style: friendly
+    text_variants:
+    - 测试语音
+    - 测试播报
+description: 测试语音包
+language: zh-CN
+version: 1.0.0

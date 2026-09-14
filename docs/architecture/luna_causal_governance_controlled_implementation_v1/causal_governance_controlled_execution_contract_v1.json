@@ -1,0 +1,39 @@
+{
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "phase": "Phase-Luna-Causal-Governance-Controlled-Implementation-v1-001",
+    "canonical_owner": "Causal Governance",
+    "legacy_aliases": [
+        {
+            "name": "Causal Reasoning Governance",
+            "authority": false,
+            "mutation_authority": false
+        }
+    ],
+    "candidate_only": true,
+    "synthetic_fixture_only": true,
+    "deterministic_governance_logic": true,
+    "runtime_execution": false,
+    "source_mutation_allowed": false,
+    "database_write": false,
+    "network_call": false,
+    "model_call": false,
+    "decision_output": false,
+    "action_output": false,
+    "task_output": false,
+    "required_behaviors": [
+        "hypothesis_lifecycle",
+        "support_opposition_relations",
+        "multi_hypothesis_coexistence",
+        "alternative_explanation",
+        "confounder_candidate",
+        "temporal_guard",
+        "counterfactual_candidate",
+        "uncertainty_visibility",
+        "provenance_trace",
+        "revision_suspension_revocation",
+        "candidate_handoff_to_decision"
+    ],
+    "active_schema_changed": false,
+    "active_contract_changed": false,
+    "owner_metadata_changed": false
+}

@@ -1,0 +1,9 @@
+{
+  "contract_id": "context_world_contradiction_correction_integration_v1",
+  "preserve": ["conflicting observations", "observation versus Field State conflict", "multiple unresolved candidates", "correction lineage", "source revocation", "stale Field information", "supersession lineage"],
+  "correction_precedence": "explicit correction changes future candidates but never overwrites historical provenance",
+  "silent_overwrite": false,
+  "contradiction_state": "visible_and_unresolved_until_owner_adjudication",
+  "field_reducer_role": "only Field State owner may adjudicate mutation",
+  "candidate_only": true
+}

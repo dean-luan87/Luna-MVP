@@ -1,0 +1,31 @@
+{
+  "guard_set_id": "b2_negative_guards_v1",
+  "false": {
+    "world_truth_promotion": false,
+    "hypothesis_as_fact": false,
+    "provider_semantic_authority": false,
+    "provider_confidence_as_cognitive_confidence": false,
+    "automatic_fact_admission": false,
+    "field_state_mutation": false,
+    "current_world_direct_mutation": false,
+    "intent_mutation": false,
+    "decision_mutation": false,
+    "task_mutation": false,
+    "action_execution": false,
+    "provider_invocation": false,
+    "ocr_execution": false,
+    "slam_execution": false,
+    "vio_execution": false,
+    "vlm_execution": false,
+    "semantic_compression": false,
+    "online_learning": false,
+    "emotion_engine_execution": false,
+    "b_route_execution": false,
+    "database_write": false,
+    "vector_store_write": false,
+    "embedding_execution": false,
+    "hidden_provider_continuation": false,
+    "single_truth_collapse": false
+  },
+  "required_preservation": ["unknown_refs", "conflict_refs", "uncertainty_refs", "temporal_refs", "trace_refs", "provenance_refs", "alternative_hypotheses"]
+}

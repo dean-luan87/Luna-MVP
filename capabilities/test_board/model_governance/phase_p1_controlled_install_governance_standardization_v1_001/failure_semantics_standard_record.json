@@ -1,0 +1,22 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.341382+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "standardization_phase": true,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "failure_semantics_standard_record",
+  "failure_semantics_standard_record": {
+    "record_id": "failure_semantics_standard_v1",
+    "go_semantics_defined": true,
+    "failed_no_boundary_violation_defined": true,
+    "blocked_semantics_defined": true
+  }
+}

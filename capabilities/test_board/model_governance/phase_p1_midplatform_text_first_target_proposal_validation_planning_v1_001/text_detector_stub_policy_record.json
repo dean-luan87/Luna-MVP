@@ -1,0 +1,60 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "text_first_target_proposal_planning": true,
+  "record": {
+    "schema_id": "TextDetectorStubPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Text-First-Target-Proposal-Validation-Planning-v1-001",
+    "description": "Text detector stub 策略：确定性模拟文字区域，不输出 OCR 识别结果。",
+    "planning_only": true,
+    "stub_id": "text_detector_stub_v1",
+    "outputs": [
+      "text_region_candidate",
+      "text_line_candidate",
+      "text_block_candidate"
+    ],
+    "forbidden_outputs": [
+      "recognized_text",
+      "ocr_result",
+      "fact_label",
+      "confirmed_sign_text",
+      "navigation_instruction"
+    ],
+    "scene_fixtures": {
+      "subway_direction_sign": {
+        "image_ref_hint": "subway_platform_jiahuihu",
+        "expected_bbox_norm": [
+          0.22,
+          0.02,
+          0.78,
+          0.2
+        ],
+        "candidate_type": "text_region_candidate",
+        "scene_hint": "subway_direction_sign"
+      },
+      "shop_sign_main_text": {
+        "image_ref_hint": "shop_sign",
+        "expected_bbox_norm": [
+          0.18,
+          0.22,
+          0.82,
+          0.58
+        ],
+        "candidate_type": "text_block_candidate",
+        "scene_hint": "shop_sign_main_text"
+      }
+    },
+    "boundary_flags": {
+      "text_detector_stub_not_ocr_result": true,
+      "no_ocr_recognition": true,
+      "text_region_candidate_not_fact": true,
+      "no_fact_write": true,
+      "planning_only": true
+    }
+  }
+}

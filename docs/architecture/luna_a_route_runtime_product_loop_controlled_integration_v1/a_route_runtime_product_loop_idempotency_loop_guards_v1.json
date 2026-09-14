@@ -1,0 +1,7 @@
+{
+  "schema_version":"1.0",
+  "guards":["duplicate input","duplicate observation demand","duplicate observation feedback","duplicate decision handoff","duplicate task","duplicate action","duplicate execution request","duplicate execution result","duplicate outcome evaluation","duplicate next-cycle ingress","duplicate user correction","bounded reconsideration","bounded re-observation","repeated failure signature","completed-cycle immutability","aborted-cycle immutability","no hidden retry","no hidden provider continuation","no hidden runtime execution"],
+  "global_mutable_state":false,
+  "max_reconsideration_depth":2,
+  "max_reobservation_depth":2
+}

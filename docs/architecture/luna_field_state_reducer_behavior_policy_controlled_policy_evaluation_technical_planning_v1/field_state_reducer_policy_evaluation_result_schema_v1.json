@@ -1,0 +1,32 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Result Schema",
+    "required_fields": [
+        "evaluation_id",
+        "policy_id",
+        "state_type",
+        "evaluation_status",
+        "satisfied_rule_ids",
+        "unsatisfied_rule_ids",
+        "blocked_rule_ids",
+        "skipped_rule_ids",
+        "missing_input_fields",
+        "evidence_sufficiency_status",
+        "temporal_evaluation_status",
+        "confidence_evaluation_status",
+        "conflict_evaluation_status",
+        "governance_evaluation_status",
+        "rejection_reasons",
+        "selection_candidate_allowed",
+        "evaluation_trace_ref",
+        "replay_key",
+        "evaluated_contract_versions"
+    ],
+    "policy_selection_executed": false,
+    "policy_execution_executed": false,
+    "state_mutation_executed": false,
+    "fact_promotion_executed": false,
+    "action_trigger_executed": false,
+    "runtime_execution": false,
+    "result_schema_complete": true
+}

@@ -1,0 +1,19 @@
+{
+  "schema_id": "DocumentSurfaceOptionBPreflightChecklistV1",
+  "version": "v1",
+  "planning_only": true,
+  "preflight_execution_forbidden": true,
+  "checks": [
+    {"check_id": "dependency_availability_check", "output_type": "dependency_availability_check_candidate", "abort_on": ["dependency_missing", "dependency_uncontrolled"]},
+    {"check_id": "model_weight_presence_check", "output_type": "model_weight_presence_check_candidate", "abort_on": ["weight_missing", "uncontrolled_weight_location"]},
+    {"check_id": "license_check", "output_type": "license_check_candidate", "abort_on": ["license_unknown", "license_incompatible", "commercial_use_unclear"]},
+    {"check_id": "input_boundary_check", "output_type": "input_boundary_check_candidate", "abort_on": ["input_boundary_violation"]},
+    {"check_id": "output_boundary_check", "output_type": "output_boundary_check_candidate", "abort_on": ["output_boundary_violation"]},
+    {"check_id": "raw_output_normalization_check", "output_type": "raw_output_normalization_check_candidate", "abort_on": ["wrapper_missing", "raw_output_contract_violation"]},
+    {"check_id": "candidate_schema_compliance_check", "output_type": "candidate_schema_compliance_check_candidate", "abort_on": ["candidate_schema_violation"]},
+    {"check_id": "no_text_fact_leak_check", "output_type": "no_text_fact_leak_check_candidate", "abort_on": ["text_or_fact_leak_detected"]},
+    {"check_id": "runtime_trace_check", "output_type": "runtime_trace_check_candidate", "required_fields": ["preflight_run_id", "candidate_id", "protocol_refs", "execution_performed", "segmentation_performed"]}
+  ],
+  "candidate_only": true,
+  "not_fact": true
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Action Boundary to L3 Interface v1",
+  "owner": "Social-Emotion Boundary Governance",
+  "allowed": ["Emotion Context → Action Priority Candidate", "Social Context → Action Risk Context", "Role Context → Action Constraint Context"],
+  "forbidden": ["Emotion → Direct Action", "Social Field → Execution", "Role → Permission Bypass", "Emotion → Decision Override"],
+  "rules": {"context_candidate_only": true, "direct_execution_forbidden": true, "priority_not_authority": true}
+}

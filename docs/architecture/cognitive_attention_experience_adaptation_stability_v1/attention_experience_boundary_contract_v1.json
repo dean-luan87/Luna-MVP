@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "contract_name": "Attention Experience Boundary Contract",
+  "input": {
+    "experience_candidate": "required",
+    "field_context": "required",
+    "self_capability": "required",
+    "reality_stability": "required",
+    "outcome_feedback": "candidate"
+  },
+  "intermediate": "Attention Pattern Candidate",
+  "validation": {
+    "required": true,
+    "single_event_insufficient": true,
+    "provenance_required": true,
+    "confidence_required": true,
+    "scope_required": true
+  },
+  "output": "Attention Prior Candidate",
+  "direct_attention_control": false,
+  "direct_brain_modification": false,
+  "direct_goal_modification": false,
+  "direct_decision": false,
+  "direct_reality_mutation": false
+}

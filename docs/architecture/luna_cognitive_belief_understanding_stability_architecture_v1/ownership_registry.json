@@ -1,0 +1,17 @@
+{
+  "registry_id": "belief_understanding_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"object": "Reality Fact", "owner": "Reality", "writer": "Reality Governance", "readers": ["Evidence", "Validation", "Understanding"]},
+    {"object": "Evidence", "owner": "Evidence Layer", "writer": "Evidence Gateway", "readers": ["Hypothesis", "Belief", "Validation"]},
+    {"object": "Hypothesis Candidate", "owner": "Hypothesis", "writer": "Hypothesis Governance", "readers": ["Belief", "Understanding", "Validation"]},
+    {"object": "Belief Object", "owner": "Belief Layer", "writer": "Belief Governance", "readers": ["Understanding", "Validation", "Brain"]},
+    {"object": "Current Understanding", "owner": "Understanding", "writer": "Understanding Governance", "readers": ["Brain", "Decision Candidate", "Validation"]},
+    {"object": "Validation Event", "owner": "Reality Validation", "writer": "Validation Governance", "readers": ["Belief", "Understanding", "Memory", "Schema"]},
+    {"object": "Historical Context", "owner": "Memory", "writer": "Memory Governance", "readers": ["Belief", "Understanding"]},
+    {"object": "Long-term Prior", "owner": "Schema", "writer": "Schema Governance", "readers": ["Hypothesis", "Belief", "Understanding"]},
+    {"object": "Self Belief Candidate", "owner": "Self", "writer": "Self Governance", "readers": ["Brain", "Self Regulation"]},
+    {"object": "Decision Candidate", "owner": "Brain", "writer": "Brain", "readers": ["Action Boundary", "Validation"]}
+  ],
+  "rules": {"unique_owner": true, "writer_declared": true, "candidate_writes_only": true, "reality_highest_priority": true}
+}

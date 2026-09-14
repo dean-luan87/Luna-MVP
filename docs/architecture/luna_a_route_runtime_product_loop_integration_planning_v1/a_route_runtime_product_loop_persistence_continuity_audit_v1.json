@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "items":[
+    {"id":"P01","name":"cycle_id continuity","status":"candidate/session-local only","priority":"P0","gap":"runtime lifecycle store/adapter absent"},
+    {"id":"P02","name":"task continuity","status":"candidate only","priority":"P0","gap":"resume contract not runtime connected"},
+    {"id":"P03","name":"pending action continuity","status":"absent for runtime","priority":"P0","gap":"runtime admission/result persistence absent"},
+    {"id":"P04","name":"interrupted cycle resume","status":"planning/contract only","priority":"P1","gap":"resume coordinator absent"},
+    {"id":"P05","name":"unresolved observation need","status":"candidate handoff exists","priority":"P1","gap":"durable reentry absent"},
+    {"id":"P06","name":"unresolved hypothesis","status":"candidate/reference only","priority":"P1","gap":"continuity adapter absent"},
+    {"id":"P07","name":"pending reconsideration","status":"controlled candidate only","priority":"P1","gap":"route callback absent"},
+    {"id":"P08","name":"last outcome evaluation","status":"synthetic/candidate only","priority":"P0","gap":"runtime result producer and store absent"},
+    {"id":"P09","name":"user correction lineage","status":"typed candidate contracts","priority":"P1","gap":"user correction ingress adapter absent"}
+  ],
+  "v1_policy":"Session-local execution may be the first bounded product-loop scope, but it must still preserve cycle identity, idempotency and completed-cycle immutability.",
+  "database_write_in_this_phase":false
+}

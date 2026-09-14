@@ -1,0 +1,21 @@
+{
+  "title": "Self Model Lifecycle v1",
+  "owner": "Cognitive Self Model",
+  "states": ["Created", "Composed", "Validated", "Active", "Updated", "Stale", "Superseded", "Archived"],
+  "schema": ["self_model_id", "state", "snapshot_version", "created_at", "updated_at", "owner", "source_trace"],
+  "transitions": [
+    {"from": "Created", "to": "Composed", "condition": "required components referenced"},
+    {"from": "Composed", "to": "Validated", "condition": "sources and confidence checked"},
+    {"from": "Validated", "to": "Active", "condition": "current context accepts snapshot"},
+    {"from": "Active", "to": "Updated", "condition": "reviewed update admitted"},
+    {"from": "Active", "to": "Stale", "condition": "context or resource changes"},
+    {"from": "Stale", "to": "Superseded", "condition": "new validated snapshot exists"},
+    {"from": "Superseded", "to": "Archived", "condition": "history retention closes"}
+  ],
+  "rules": {
+    "state_owner_required": true,
+    "snapshot_trace_required": true,
+    "stale_not_deleted": true,
+    "identity_continuity_preserved": true
+  }
+}

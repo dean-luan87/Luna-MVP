@@ -1,0 +1,8 @@
+{
+  "contract_id": "luna-visual-capability-lifecycle-v1",
+  "states": ["MANDATORY", "AVAILABLE", "NOT_INSTALLED", "INSTALLING", "INSTALLED", "ACTIVE", "SUSPENDED", "DEGRADED", "INCOMPATIBLE", "RETIRED"],
+  "optional_capability_rules": ["install_requires_admission", "activation_requires_dependencies", "uninstall_requires_non_mandatory", "replace_requires_compatibility_and_rollback"],
+  "safety_capability_rules": ["cannot_transition_to_NOT_INSTALLED", "cannot_transition_to_RETIRED", "cannot_disable_below_minimum", "DEGRADED_requires_diagnostic_and_rollback_candidate"],
+  "runtime_execution": false,
+  "planning_status": "NO_RUNTIME_LIFECYCLE_IMPLEMENTED"
+}

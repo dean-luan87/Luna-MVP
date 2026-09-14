@@ -1,0 +1,24 @@
+{
+  "phase": "Phase-Luna-Real-Capability-Trial-Runtime-Admission-Compatibility-Migration-v1-001",
+  "scenario_count": 22,
+  "classifications": {
+    "UNCHANGED": ["RCT-01", "RCT-02"],
+    "WRAPPED_BY_RUNTIME_ADMISSION": ["RCT-03", "RCT-04"],
+    "EXPECTED_BLOCK_BEFORE_PROVIDER": [],
+    "POST_PROVIDER_UNCHANGED": [
+      "RCT-05", "RCT-06", "RCT-07", "RCT-08", "RCT-09", "RCT-10",
+      "RCT-11", "RCT-12", "RCT-13", "RCT-14", "RCT-15", "RCT-16",
+      "RCT-17", "RCT-18", "RCT-19", "RCT-20", "RCT-21", "RCT-22"
+    ]
+  },
+  "focused_migration_cases": [
+    "valid_terminal_readiness",
+    "dependency_blocked_before_provider",
+    "checksum_blocked_before_provider",
+    "model_path_blocked_before_provider",
+    "logical_resolution_blocked_before_provider",
+    "executable_candidate_required",
+    "runtime_assessment_does_not_invoke_provider",
+    "request_more_evidence_no_second_invocation"
+  ]
+}

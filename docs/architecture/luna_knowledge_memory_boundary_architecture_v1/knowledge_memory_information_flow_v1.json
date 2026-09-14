@@ -1,0 +1,16 @@
+{
+  "version":"1.0",
+  "name":"Knowledge Memory Information Flow",
+  "links":[
+    {"from":"Knowledge Library","to":"Knowledge Admission","object":"knowledge candidate","permission":"submit"},
+    {"from":"Knowledge Admission","to":"Local Knowledge Boundary","object":"admitted knowledge","permission":"admit candidate"},
+    {"from":"Local Knowledge Boundary","to":"Cognitive Processing","object":"knowledge context","permission":"read reference"},
+    {"from":"Cognitive Processing","to":"Field + Role + Task","object":"situated usage","permission":"context binding"},
+    {"from":"Field + Role + Task","to":"Experience","object":"interaction and outcome","permission":"candidate formation"},
+    {"from":"Experience","to":"Memory Governance","object":"experience candidate","permission":"retention review"},
+    {"from":"Memory Governance","to":"Self / Social / World Memory","object":"validated memory candidate","permission":"store by scope"},
+    {"from":"Memory","to":"Self / Social Growth","object":"growth candidate","permission":"candidate only"}
+  ],
+  "precedence":["Current Reality","Evidence","Knowledge","Memory","Growth Candidate"],
+  "rules":{"closed_candidate_flow":true,"reality_precedence":true,"scope_preserved":true,"no_direct_growth":true}
+}

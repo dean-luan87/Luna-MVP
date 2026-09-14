@@ -1,0 +1,364 @@
+{
+  "schema_version": "paddleocr_labeled_set_manifest_v0",
+  "samples": [
+    {
+      "id": "labeled_001",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_1.jpeg",
+      "category": "plain_chinese_print",
+      "ground_truth_text": "句句治愈 句句自愈 YI GUO SHU ZHAI",
+      "ground_truth_items": [
+        {
+          "text": "句句治愈 句句自愈 YI GUO SHU ZHAI",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "none"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_002",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_2.jpeg",
+      "category": "plain_chinese_print",
+      "ground_truth_text": "示例中文二行",
+      "ground_truth_items": [
+        {
+          "text": "示例中文二行",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "none"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_003",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_3.jpg",
+      "category": "mixed_zh_en",
+      "ground_truth_text": "Hello 世界 123",
+      "ground_truth_items": [
+        {
+          "text": "Hello 世界 123",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "none"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_004",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_4.png",
+      "category": "punctuation_and_symbols",
+      "ground_truth_text": "，。！？：；\"\"（）",
+      "ground_truth_items": [
+        {
+          "text": "，。！？：；\"\"（）",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "none"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_005",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_5.png",
+      "category": "artistic_text",
+      "ground_truth_text": "艺术字样张",
+      "ground_truth_items": [
+        {
+          "text": "艺术字样张",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "none"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_006",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_6.png",
+      "category": "icon_or_graphic_false_text",
+      "ground_truth_text": "图标旁文字",
+      "ground_truth_items": [
+        {
+          "text": "图标旁文字",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_007",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_7.png",
+      "category": "multi_region_text",
+      "ground_truth_text": "左上文字 右下文字",
+      "ground_truth_items": [
+        {
+          "text": "左上文字 右下文字",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_008",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_8.png",
+      "category": "reading_order_sensitive",
+      "ground_truth_text": "先读后读测试",
+      "ground_truth_items": [
+        {
+          "text": "先读后读测试",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_009",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_10.png",
+      "category": "small_text",
+      "ground_truth_text": "小字密集区",
+      "ground_truth_items": [
+        {
+          "text": "小字密集区",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_010",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_12.png",
+      "category": "blurred_text",
+      "ground_truth_text": "模糊场景字",
+      "ground_truth_items": [
+        {
+          "text": "模糊场景字",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_011",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_stage2_readable_sample.png",
+      "category": "tilted_text",
+      "ground_truth_text": "倾斜文本行",
+      "ground_truth_items": [
+        {
+          "text": "倾斜文本行",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_012",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_stage2_approval_sample.png",
+      "category": "product_label",
+      "ground_truth_text": "净含量 500ml",
+      "ground_truth_items": [
+        {
+          "text": "净含量 500ml",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_013",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_1.jpeg",
+      "category": "storefront_sign",
+      "ground_truth_text": "店铺招牌字",
+      "ground_truth_items": [
+        {
+          "text": "店铺招牌字",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_014",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_2.jpeg",
+      "category": "poster_or_notice",
+      "ground_truth_text": "通知公告栏",
+      "ground_truth_items": [
+        {
+          "text": "通知公告栏",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_015",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_3.jpg",
+      "category": "low_light_or_reflection",
+      "ground_truth_text": "反光低照字",
+      "ground_truth_items": [
+        {
+          "text": "反光低照字",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_016",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_4.png",
+      "category": "plain_chinese_print",
+      "ground_truth_text": "第二段印刷体",
+      "ground_truth_items": [
+        {
+          "text": "第二段印刷体",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_017",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_5.png",
+      "category": "mixed_zh_en",
+      "ground_truth_text": "Mixed CASE 测试",
+      "ground_truth_items": [
+        {
+          "text": "Mixed CASE 测试",
+          "reading_order_index": 0,
+          "region_id": "r1",
+          "optional_polygon": null
+        }
+      ],
+      "include_in_accuracy": true,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_018",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_6.png",
+      "category": "punctuation_and_symbols",
+      "ground_truth_text": null,
+      "ground_truth_items": [],
+      "include_in_accuracy": false,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_019",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_7.png",
+      "category": "artistic_text",
+      "ground_truth_text": null,
+      "ground_truth_items": [],
+      "include_in_accuracy": false,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    },
+    {
+      "id": "labeled_020",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_8.png",
+      "category": "multi_region_text",
+      "ground_truth_text": null,
+      "ground_truth_items": [],
+      "include_in_accuracy": false,
+      "expected_risks": [
+        "ocr_noise"
+      ],
+      "notes": "example manifest; replace GT after human review"
+    }
+  ]
+}

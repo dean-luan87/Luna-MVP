@@ -1,0 +1,27 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "json",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "crowd-tracking/4",
+    "dataset_url": "https://universe.roboflow.com/example/crowd-tracking"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export_plus_tracking_placeholder",
+    "annotation_tool": "roboflow_annotate",
+    "export_format": "json_track_placeholder"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export", "roboflow_tracking_placeholder"],
+  "images": [
+    {"image_id": "img_040", "file_name": "crowd_040.jpg", "width": 1280, "height": 720, "scene_label_hint": "crowd", "confidence": 0.78}
+  ],
+  "annotations": [
+    {"ann_id": "ann_040", "type": "track", "label": "moving_person", "image_id": "img_040", "track_id": "trk_001", "trajectory": [[210, 380], [205, 360], [200, 340]], "velocity_hint": {"vx": -2.0, "vy": -4.0}, "confidence": 0.85},
+    {"ann_id": "ann_041", "type": "track", "label": "vehicle", "image_id": "img_040", "track_id": "trk_002", "trajectory": [[520, 300], [540, 305], [560, 310]], "velocity_hint": {"vx": 4.0, "vy": 1.0}, "confidence": 0.72}
+  ]
+}

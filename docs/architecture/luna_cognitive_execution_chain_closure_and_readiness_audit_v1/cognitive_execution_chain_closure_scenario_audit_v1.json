@@ -1,0 +1,105 @@
+{
+    "artifact": "cognitive_execution_chain_closure_scenario_audit_v1",
+    "evidence_source": "docs/architecture/luna_cognitive_execution_chain_controlled_integration_v1/verify_cognitive_execution_chain_controlled_integration_v1.py",
+    "summary": {
+        "total_checks": 33,
+        "passed_check_count": 33,
+        "failed_check_count": 0,
+        "blocker_count": 0
+    },
+    "mapped_categories": [
+        {
+            "category": "forward chain",
+            "coverage_checks": [
+                "C08",
+                "C09",
+                "C10",
+                "C11",
+                "C12",
+                "C13",
+                "C14"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "stop conditions",
+            "coverage_checks": [
+                "C09",
+                "C10",
+                "C11",
+                "C12",
+                "C13",
+                "C14",
+                "C26",
+                "C27",
+                "C28",
+                "C29"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "compatibility",
+            "coverage_checks": [
+                "C17",
+                "C18",
+                "C19"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "idempotency",
+            "coverage_checks": [
+                "C20",
+                "C21",
+                "C30"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "feedback",
+            "coverage_checks": [
+                "C22",
+                "C23",
+                "C24",
+                "C25",
+                "C26",
+                "C27",
+                "C28",
+                "C29"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "trace",
+            "coverage_checks": [
+                "C15"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "provenance",
+            "coverage_checks": [
+                "C16"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "owner preservation",
+            "coverage_checks": [
+                "C04",
+                "C05",
+                "C06"
+            ],
+            "status": "covered"
+        },
+        {
+            "category": "no side effects",
+            "coverage_checks": [
+                "C31",
+                "C33"
+            ],
+            "status": "covered"
+        }
+    ],
+    "note": "This audit maps existing controlled integration evidence only and does not rerun runtime scenarios."
+}

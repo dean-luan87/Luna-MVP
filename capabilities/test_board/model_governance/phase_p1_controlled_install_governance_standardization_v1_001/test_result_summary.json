@@ -1,0 +1,33 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Controlled-Install-Governance-Standardization-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:11:05.340540+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_CONTROLLED_INSTALL_GOVERNANCE_STANDARDIZATION_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "model_asset_onboarding_governance_standard_profile_count": 1,
+    "stage_ref_count": 15,
+    "model_onboarding_lifecycle_standard_record_count": 1,
+    "install_strategy_standard_record_count": 1,
+    "source_repo_verification_standard_record_count": 1,
+    "weight_governance_standard_record_count": 1,
+    "dependency_repair_standard_record_count": 1,
+    "model_load_trial_standard_record_count": 1,
+    "inference_trial_standard_record_count": 1,
+    "registry_overlay_patch_standard_record_count": 1,
+    "failure_semantics_standard_record_count": 1,
+    "test_board_artifact_standard_record_count": 1,
+    "reusable_phase_template_route_record_count": 1,
+    "negative_guard_count": 19,
+    "blocker_count": 0
+  }
+}

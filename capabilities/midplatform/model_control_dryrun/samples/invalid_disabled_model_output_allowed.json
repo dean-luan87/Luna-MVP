@@ -1,0 +1,12 @@
+{
+  "control_id": "invalid_disabled_model_output_allowed_001",
+  "policy_id": "model_disable",
+  "model_family": "scene_relation_vlm_family",
+  "license_ref": "license:research_non_commercial",
+  "allowed_use": "candidate_only",
+  "availability_state": "disabled",
+  "source_chain": "midplatform_model_control_dryrun_v1",
+  "confidence_policy_ref": "disable_confidence_policy_v1",
+  "fallback_plan": "fallback_to_blocked_output_record",
+  "disabled_model_output_allowed": true
+}

@@ -1,0 +1,8 @@
+{
+  "title": "Runtime Wake-up Contract v1",
+  "owner": "Cognitive OS Governance",
+  "sources": ["External Wake-up", "Internal Wake-up", "Reflex Wake-up"],
+  "schema": ["wake_id", "source", "priority", "reason", "target_process", "trace_id", "lifecycle_state"],
+  "flow": ["Receive Signal", "Validate", "Prioritize", "Select Target Process", "Create Runtime Context"],
+  "rules": {"high_priority_may_interrupt": true, "wake_up_not_decision": true, "wake_up_not_action": true, "source_required": true}
+}

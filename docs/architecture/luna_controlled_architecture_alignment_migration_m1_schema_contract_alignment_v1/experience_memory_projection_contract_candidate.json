@@ -1,0 +1,48 @@
+{
+    "contract_id": "experience_memory_projection_contract_candidate_v1",
+    "planning_status": "PLANNING_CANDIDATE",
+    "owner": "Experience Governance",
+    "producer": "Experience Governance",
+    "consumer": [
+        "Memory System",
+        "Personal Cognitive Network Governance"
+    ],
+    "candidate_fact": "experience_projection_candidate_only",
+    "unknown": {
+        "allowed": true,
+        "representation": "partial_outcome_or_pattern_gap",
+        "behavior": "retain_candidate_without_write"
+    },
+    "trace": {
+        "required": true,
+        "fields": [
+            "trace_id",
+            "decision_trace_ref",
+            "action_trace_ref",
+            "outcome_feedback_ref"
+        ]
+    },
+    "replay": {
+        "required": true,
+        "mode": "outcome_to_experience_reference_replay"
+    },
+    "admission": {
+        "required": true,
+        "mode": "memory_system_admission_required_for_persistence"
+    },
+    "revision": {
+        "supported": true,
+        "mode": "outcome_validation_or_pattern_revision"
+    },
+    "revocation": {
+        "supported": true,
+        "mode": "withdraw_candidate_when_outcome_invalid"
+    },
+    "failure_behavior": {
+        "on_missing_outcome": "emit_projection_unavailable_candidate",
+        "on_admission_reject": "retain_nonpersistent_candidate",
+        "on_boundary_violation": "block_experience_projection"
+    },
+    "write_authority": "Experience Governance",
+    "compatibility_alias": "experience_projection_alias"
+}

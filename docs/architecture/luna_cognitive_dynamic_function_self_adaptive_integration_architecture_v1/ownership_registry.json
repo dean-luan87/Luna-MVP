@@ -1,0 +1,26 @@
+{
+  "registry_id": "dynamic_self_adaptive_ownership_v1",
+  "unique_owner_required": true,
+  "ownership": [
+    {"module": "Dynamic Function", "owner": "Cognitive Function Governance", "writer": "Function Contract Boundary", "reader": "Capability Modules"},
+    {"module": "Field Function", "owner": "Cognitive Field Governance", "writer": "Field Candidate Flow", "reader": "Dynamic Function"},
+    {"module": "Attention Function", "owner": "Attention System", "writer": "Attention Candidate Flow", "reader": "Dynamic Function"},
+    {"module": "Memory Function", "owner": "Memory Governance", "writer": "Memory Influence Candidate Flow", "reader": "Understanding"},
+    {"module": "Knowledge Function", "owner": "Knowledge Governance", "writer": "Prior Knowledge Candidate Flow", "reader": "Field and Understanding"},
+    {"module": "Belief/Understanding Function", "owner": "Belief and Understanding Governance", "writer": "Confidence Candidate Flow", "reader": "Goal and Decision"},
+    {"module": "Goal Function", "owner": "Goal Governance", "writer": "Goal Activation Candidate Flow", "reader": "Value and Decision"},
+    {"module": "Value Function", "owner": "Value Utility Governance", "writer": "Utility Candidate Flow", "reader": "Decision Function"},
+    {"module": "Decision Function", "owner": "Decision Arbitration", "writer": "Decision Candidate Flow", "reader": "Action Boundary"},
+    {"module": "Outcome Error Function", "owner": "Outcome Evaluation", "writer": "Error Signal Candidate Flow", "reader": "Self Calibration"},
+    {"module": "Learning Function", "owner": "Selective Learning Governance", "writer": "Parameter Evolution Candidate Flow", "reader": "Self Calibration and Self Review"},
+    {"module": "Self Regulation Function", "owner": "Self Regulation", "writer": "Regulation Candidate Flow", "reader": "Dynamic Function"},
+    {"module": "Self Calibration Function", "owner": "Self Calibration Governance", "writer": "Calibration Candidate Flow", "reader": "Adaptive Parameter Governance"},
+    {"module": "Adaptive Parameter", "owner": "Parameter Governance", "writer": "Versioned Parameter Candidate Flow", "reader": "Self Review"},
+    {"module": "Cognitive Genome", "owner": "Cognitive Genome Governance", "writer": "Genome Candidate Registry", "reader": "Hive Observation and Self Review"},
+    {"module": "Hive", "owner": "Hive Evaluation Boundary", "writer": "Observation Interface", "reader": "Self Review"},
+    {"module": "Self", "owner": "Self Governance", "writer": "Self Review", "reader": "All Adaptive Governance"},
+    {"module": "Constitution", "owner": "Constitution Governance", "writer": "Constitution Change Governance", "reader": "All Adaptive Governance"},
+    {"module": "Runtime", "owner": "Runtime Boundary", "writer": "Future Runtime Implementation", "reader": "Approved Candidates"},
+    {"module": "B Route", "owner": "B Route Governance", "writer": "Future Simulation Boundary", "reader": "A Route Candidates"}
+  ]
+}

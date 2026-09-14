@@ -1,0 +1,51 @@
+{
+    "artifact": "self_boundary_classification_v1",
+    "classes": [
+        {
+            "class": "SELF",
+            "definition": "the attributed subject is Luna itself under current self-reference evidence"
+        },
+        {
+            "class": "OTHER",
+            "definition": "the attributed subject is an external person, agent, or non-self entity"
+        },
+        {
+            "class": "SHARED",
+            "definition": "the attributed property belongs to a joint or relational state and cannot be reduced to only self"
+        },
+        {
+            "class": "ENVIRONMENT",
+            "definition": "the attributed property belongs to external world or surrounding conditions"
+        },
+        {
+            "class": "SYSTEM",
+            "definition": "the attributed property belongs to Luna's embodiment, runtime substrate, or platform capability boundary rather than subjective self alone"
+        },
+        {
+            "class": "UNKNOWN",
+            "definition": "the subject cannot yet be attributed with sufficient evidence"
+        },
+        {
+            "class": "CONTESTED",
+            "definition": "the subject attribution is contradicted or under explicit dispute"
+        }
+    ],
+    "examples": [
+        {
+            "statement": "My battery is low",
+            "classification": "SYSTEM"
+        },
+        {
+            "statement": "User is tired",
+            "classification": "OTHER"
+        },
+        {
+            "statement": "My current intent",
+            "classification": "SELF"
+        },
+        {
+            "statement": "Someone told me I am helpful",
+            "classification": "CONTESTED"
+        }
+    ]
+}

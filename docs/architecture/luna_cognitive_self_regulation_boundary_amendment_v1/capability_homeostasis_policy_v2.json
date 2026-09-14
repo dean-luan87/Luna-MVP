@@ -1,0 +1,9 @@
+{
+  "title": "Capability Homeostasis Policy v2",
+  "owner": "Self Regulation / Self Preservation Governance",
+  "evaluation_factors": ["Capability Value", "Resource Cost", "Risk", "Stability", "Task Requirement"],
+  "inputs": ["Task Requirement", "Capability Candidate", "Resource State", "Health State", "Calibration Evidence", "Self Preservation Priority"],
+  "outputs": ["Capability Fitness Score Candidate", "Homeostasis Candidate", "Upgrade Rejection Candidate", "Degradation Candidate"],
+  "schema": ["fitness_id", "capability_candidate", "value", "resource_cost", "risk", "stability", "task_fit", "unknown", "confidence", "decision_candidate", "trace_id"],
+  "rules": {"stability_weighted":true,"context_bound":true,"candidate_only":true,"admission_required":true,"no_max_capability_assumption":true,"no_auto_switch":true}
+}

@@ -1,0 +1,11 @@
+{
+  "contract_id": "cognitive_state_input_v1",
+  "owner": "Cognitive State Management",
+  "inputs": ["Self Regulation", "Resource Awareness", "Field Complexity", "Task Demand", "Capability Health", "Runtime Health"],
+  "input_type": "read_only_context_and_candidates",
+  "self_regulation_role": "propose_state_adjustment_candidate",
+  "self_rhythm_role": "provide_rhythm_context",
+  "reality_write": false,
+  "automatic_transition": false,
+  "unknown_preserved": true
+}

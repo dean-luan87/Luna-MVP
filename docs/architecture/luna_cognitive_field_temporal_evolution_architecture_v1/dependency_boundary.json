@@ -1,0 +1,9 @@
+{
+  "boundary_id": "field_temporal_evolution_dependency_v1",
+  "existing_assets_reused": ["docs/architecture/luna_cognitive_field_architecture_v1", "docs/architecture/luna_cognitive_information_lifecycle_v1", "docs/architecture/luna_cognitive_information_processing_pipeline_architecture_v1", "docs/architecture/luna_cognitive_state_management_reality_validation_architecture_v1", "docs/runtime/luna_cognitive_memory_runtime_integration_v1", "capabilities/cognitive_flow/field_kernel/temporal_evolution"],
+  "allowed_dependencies": ["Reality Event -> Field Event Candidate", "Field -> Field Snapshot", "Field Snapshot -> Temporal Continuity Candidate", "Memory -> Historical Context", "Self Regulation -> Capability Boundary Context", "Role -> Role Continuity Context", "Information Lifecycle -> Event Lifecycle Context", "Brain -> consume evolution candidates", "Runtime -> future execute admitted change"],
+  "forbidden_dependencies": ["Field Evolution -> Direct Memory Mutation", "Field Transition -> Direct Action", "Field History -> Reality Overwrite", "Memory -> Force Field Mutation", "Prediction -> Replace Reality", "Field Evolution -> World Model", "Field Evolution -> B Route Runtime", "Field Evolution -> Self Identity Rewrite"],
+  "no_parallel_field_implementation": true,
+  "no_parallel_memory_implementation": true,
+  "architecture_only": true
+}

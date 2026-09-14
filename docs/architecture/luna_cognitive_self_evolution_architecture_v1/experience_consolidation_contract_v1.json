@@ -1,0 +1,15 @@
+{
+  "title": "Experience Consolidation Contract v1",
+  "owner": "Self Evolution / Experience Consolidation",
+  "inputs": ["Action Outcome", "Expectation Difference", "Feedback", "Context Trace"],
+  "output": "Experience Candidate",
+  "schema": ["experience_id", "context", "task", "outcome", "difference", "confidence", "reuse_candidate", "trace_id", "unknown"],
+  "rules": {
+    "experience_is_not_fact": true,
+    "reality_priority": true,
+    "unknown_preserved": true,
+    "trace_required": true,
+    "candidate_only": true,
+    "no_direct_profile_write": true
+  }
+}

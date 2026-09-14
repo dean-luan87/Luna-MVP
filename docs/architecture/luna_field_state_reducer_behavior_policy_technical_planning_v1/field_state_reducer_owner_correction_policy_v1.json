@@ -1,0 +1,16 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Owner Correction Policy",
+    "owner_correction_is_candidate": true,
+    "owner_correction_is_fact": false,
+    "direct_state_mutation_allowed": false,
+    "supporting_evidence_required": true,
+    "contradiction_review_required": true,
+    "provenance_required": true,
+    "revocation_allowed": true,
+    "correction_requires_new_event": true,
+    "correction_can_supersede_machine_candidate": true,
+    "correction_can_override_confirmed_fact_without_review": false,
+    "replayable": true,
+    "auditable": true
+}

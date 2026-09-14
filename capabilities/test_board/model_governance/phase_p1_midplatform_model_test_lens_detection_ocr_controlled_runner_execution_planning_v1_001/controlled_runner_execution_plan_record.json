@@ -1,0 +1,12 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Controlled-Runner-Execution-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "plan_ref": "capabilities/midplatform/model_test_lens/controlled_runner_execution/controlled_runner_execution_plan_v1.md"
+  }
+}

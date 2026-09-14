@@ -1,0 +1,21 @@
+{
+    "phase_id": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-DryRun-v1-001",
+    "candidate_count": 2,
+    "probe_performed_count": 0,
+    "dependency_confirmed_count": 0,
+    "version_confirmed_count": 0,
+    "import_count": 0,
+    "pip_count": 0,
+    "subprocess_count": 0,
+    "execution_admitted_count": 0,
+    "download_count": 0,
+    "install_count": 0,
+    "image_read_count": 0,
+    "segmentation_execution_count": 0,
+    "runtime_activation_count": 0,
+    "candidate_only": true,
+    "not_fact": true,
+    "blocker_count": 0,
+    "final_decision": "EXPLICIT_DEPENDENCY_PROBE_DRYRUN_GO",
+    "recommended_next_phase": "Phase-P1-Midplatform-Luna-Model-Manager-Region-Intelligence-Ownership-Document-Surface-Detector-OptionB-Controlled-Execution-DryRun-Explicit-Dependency-Probe-PostReview-v1-001"
+}

@@ -1,0 +1,141 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Controlled DryRun Expected Results",
+    "cases": [
+        {
+            "case_id": "baseline_all_fixtures_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "repeated_identical_input_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "reversed_input_order_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "single_event_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "conflict_fixture_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "overlay_fixture_case",
+            "validation_passed": true,
+            "skeleton_called": true,
+            "reduction_decision": "skeleton_no_state_change",
+            "resulting_state": null,
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "non_admitted_event_rejection_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "non_admitted_event_not_allowed",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "raw_observation_rejection_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "raw_observation_not_allowed",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "missing_temporal_snapshot_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "missing_temporal_snapshot",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "missing_version_snapshot_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "missing_version_snapshot",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "unstable_event_id_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "unstable_event_order",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "direct_mutation_request_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "direct_state_mutation_forbidden",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "provider_recall_request_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "provider_recall_forbidden",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "external_lookup_request_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "external_lookup_forbidden",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "action_trigger_request_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "action_trigger_forbidden",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        },
+        {
+            "case_id": "event_mutation_guard_case",
+            "validation_passed": false,
+            "skeleton_called": false,
+            "structured_error_code": "non_admitted_event_not_allowed",
+            "state_mutation_executed": false,
+            "runtime_execution": false
+        }
+    ],
+    "expected_results_complete": true
+}

@@ -1,0 +1,92 @@
+{
+  "input_refs": {
+    "ocr_evidence_pack_contract_md": "docs/architecture/ocr_bridge/LUNA_OCR_EVIDENCE_PACK_CONTRACT_V0.md",
+    "ocr_evidence_pack_py": "capabilities/ocr_bridge/ocr_evidence_pack_contract_v0.py",
+    "ocr_governance_config": "configs/ocr/ocr_provider_runtime_governance_v0.example.json",
+    "ocr_governance_standard_md": "docs/architecture/ocr/LUNA_OCR_PROVIDER_RUNTIME_GOVERNANCE_STANDARD_V0.md",
+    "stcm_config": "configs/midplatform/spatiotemporal_consistency_manager_v0.example.json",
+    "stcm_cross_contract_alignment_md": "docs/architecture/midplatform/LUNA_STCM_CROSS_CONTRACT_FIELD_ALIGNMENT_V0.md",
+    "stcm_docs": [
+      "docs/architecture/midplatform/LUNA_SPATIOTEMPORAL_CONSISTENCY_MANAGER_V0.md",
+      "docs/architecture/midplatform/LUNA_MODEL_CALL_DEADLINE_AND_TIMEOUT_POLICY_V0.md",
+      "docs/architecture/midplatform/LUNA_INFORMATION_VALUE_AND_FALLBACK_POLICY_V0.md",
+      "docs/architecture/midplatform/LUNA_CROSS_MODAL_TIME_SPACE_GOVERNANCE_V0.md"
+    ],
+    "vision_contract_refs": [
+      "docs/architecture/LUNA_NAVIGATION_PERCEPTION_SIGNAL_CONTRACT_V0.md",
+      "docs/architecture/LUNA_YOLO_TO_PERCEPTION_SIGNAL_ADAPTER_MAPPING_V0.md"
+    ],
+    "voice_governance_refs": [
+      "docs/architecture/LUNA_VOICE_OUTPUT_GOVERNANCE_DEFINITION_V0.md",
+      "docs/architecture/LUNA_VOICE_OUTPUT_PRIORITY_EXPIRY_SUPPRESSION_POLICY_V0.md",
+      "docs/architecture/voice/LUNA_VOICE_TIME_GOVERNANCE_V1.md"
+    ]
+  },
+  "known_conflicts": [
+    {
+      "conflict_id": "STCM-CONFLICT-001",
+      "description": "OCRRequest.latency_budget_ms 与 ModelCallDeadline.max_latency_ms 命名不同但语义重叠；实现须单一来源推导 effective_deadline_ms。",
+      "resolution": "Orchestrator 取 min(request.latency_budget_ms, class_max, global_sync_cap) 并写入 ModelCallDeadline.max_latency_ms。"
+    },
+    {
+      "conflict_id": "STCM-CONFLICT-002",
+      "description": "OCRDispatchDecision.fallback_provider 与 ModelCallDeadline 单次调用语义：fallback 可能触发第二次 call_id。",
+      "resolution": "每次 provider 执行生成独立 ModelCallOutcome；fallback 链在审计上不可合并为单次 silent success。"
+    }
+  ],
+  "known_gaps": [
+    {
+      "gap_id": "STCM-GAP-001",
+      "description": "OcrEvidencePackV0 顶层骨架未包含 observed_at / valid_until；STCM 须在消费边界外包或由 trace 注入。",
+      "severity": "medium"
+    },
+    {
+      "gap_id": "STCM-GAP-002",
+      "description": "Voice 侧 speech_request_id / enqueue_time 在不同 trace 文档中命名不一；须以 Voice Governed Submit unified export 为 canonical（后续 phase）。",
+      "severity": "low"
+    }
+  ],
+  "mappings": {
+    "ocr_dispatch_to_iv_assessment": [
+      {"from": "evidence_required", "to": "InformationValueAssessment.task_dependency", "transform": "boolean_to_blocking_or_helpful_heuristic"},
+      {"from": "estimated_latency_ms", "to": "ModelCallDeadline feasibility + IVAssessment.fallback_required", "transform": "compare_to_deadline_window"},
+      {"from": "fallback_provider", "to": "ModelCallOutcome.fallback_decision", "transform": "enum_extension"},
+      {"from": "reason_codes", "to": "ModelCallOutcome.decision_reason_codes", "transform": "passthrough_or_prefix"},
+      {"from": "selected_level", "to": "ModelCallDeadline.provider_level", "transform": "passthrough"},
+      {"from": "selected_provider", "to": "ModelCallDeadline.provider_name", "transform": "passthrough"},
+      {"from": "sync_allowed", "to": "ModelCallDeadline.timeout_policy + urgency", "transform": "derive_async_if_false"}
+    ],
+    "ocr_request_to_model_call_deadline": [
+      {"from": "allow_heavy_ocr", "to": "ModelCallDeadline.provider_level permission", "transform": "ocr_level_cap"},
+      {"from": "allow_remote", "to": "ModelCallDeadline.fallback_allowed / remote branch", "transform": "privacy_gate"},
+      {"from": "image_ref", "to": "SpatiotemporalAnchor.spatial_anchor_ref", "transform": "bundle_ref"},
+      {"from": "latency_budget_ms", "to": "ModelCallDeadline.max_latency_ms", "transform": "min_with_class_and_global"},
+      {"from": "request_id", "to": "ModelCallDeadline.call_id", "transform": "stable_hash_or_passthrough"},
+      {"from": "roi_refs", "to": "SpatiotemporalAnchor.spatial_anchor_ref (multi)", "transform": "list_or_subanchors"},
+      {"from": "source_task_id", "to": "ModelCallDeadline.task_id", "transform": "passthrough"},
+      {"from": "task_context", "to": "ModelCallDeadline.task_context", "transform": "passthrough"},
+      {"from": "urgency", "to": "ModelCallDeadline.urgency + deadline_class", "transform": "map_table_v1_pending"}
+    ],
+    "ocr_evidence_pack_to_spatiotemporal_anchor": [
+      {"from": "eligible_text_evidence[].source_refs", "to": "SpatiotemporalAnchor.spatial_anchor_ref / roi_id", "transform": "per_evidence"},
+      {"from": "pack_id", "to": "SpatiotemporalAnchor.anchor_id or output_ref", "transform": "pack_scope"},
+      {"from": "source_image_ref", "to": "SpatiotemporalAnchor.spatial_anchor_ref", "transform": "image_or_frame_bundle"},
+      {"from": "source_provider_ref", "to": "SpatiotemporalAnchor.source_module=ocr", "transform": "metadata"},
+      {"from": "uncertainty + confidence (unified pipeline)", "to": "SpatiotemporalAnchor.confidence / stale_risk", "transform": "pipeline_defined"}
+    ],
+    "vision_output_to_spatiotemporal_anchor": [
+      {"from": "risk TTL (policy)", "to": "SpatiotemporalAnchor.valid_until", "transform": "deadline_class_safety_realtime"},
+      {"from": "source_frame_id / frame_id", "to": "SpatiotemporalAnchor.frame_id", "transform": "passthrough"},
+      {"from": "timestamp_or_frame_id", "to": "SpatiotemporalAnchor.observed_at", "transform": "parse_timestamp"},
+      {"from": "track / detection id", "to": "SpatiotemporalAnchor.spatial_anchor_ref", "transform": "visual_frame_ref"}
+    ],
+    "voice_output_to_model_call_outcome": [
+      {"from": "expires_at (voice expiry policy)", "to": "ModelCallDeadline.deadline_at / valid_until", "transform": "hard_expiry"},
+      {"from": "enqueue_time / submit time (trace)", "to": "ModelCallDeadline.requested_at", "transform": "trace_field"},
+      {"from": "output text ref (trace)", "to": "ModelCallOutcome.output_ref / notice_message_ref", "transform": "trace_schema"},
+      {"from": "spoken / dropped (trace)", "to": "ModelCallOutcome.voice_notice_emitted / status", "transform": "trace_schema"},
+      {"from": "voice request / trace request_id", "to": "ModelCallOutcome.call_id or voice_notice_ref", "transform": "trace_canonical_pending"}
+    ]
+  },
+  "schema_version": "stcm_cross_contract_field_alignment_v0"
+}

@@ -1,0 +1,81 @@
+{
+  "phase": "Phase-Luna-Intent-Architecture-Planning-v1-001",
+  "stage": "Intent Architecture Planning",
+  "execution_mode": "Planning Only",
+  "execution_profile": "Architecture Planning / Contract Candidate Only",
+  "status": "PLANNING_CANDIDATE",
+  "previous_phase": "Phase-Luna-Personal-Cognitive-Network-Module-Closure-v1-001",
+  "previous_phase_decision": "PCN_MODULE_CLOSURE_VERIFIED",
+  "target_directory": "docs/architecture/luna_intent_architecture_planning_v1/",
+  "owner": "Intent Governance",
+  "scope": [
+    "define subject-level Intent semantics and exclusions",
+    "define candidate-only formation, lifecycle, coexistence, dominance, carryover, and resource boundaries",
+    "define source-owned influence references and Intent-to-Causal handoff candidate",
+    "review existing Intent-like, Goal, Task, Decision, Self Drive, Emotion, Memory, Role, Field, and Relationship assets",
+    "create a minimum scenario suite and a read-only phase verifier"
+  ],
+  "out_of_scope": [
+    "Intent Runtime",
+    "active schema or contract activation",
+    "automatic Intent inference or promotion",
+    "persistence implementation",
+    "Context or PCN modification",
+    "Self, Field, Role, Relationship, Memory, Experience, Emotion, Goal, Value, Causal, Decision, Action, Task, Model, or Runtime modification"
+  ],
+  "required_final_files": [
+    "intent_architecture_plan_v1.md",
+    "intent_concept_boundary_matrix_v1.json",
+    "intent_owner_boundary_candidate_v1.json",
+    "potential_intent_schema_candidate_v1.json",
+    "intent_candidate_schema_v1.json",
+    "intent_state_model_candidate_v1.json",
+    "intent_formation_contract_candidate_v1.json",
+    "intent_competition_coexistence_model_candidate_v1.json",
+    "intent_temporary_dominance_model_candidate_v1.json",
+    "intent_carryover_model_candidate_v1.json",
+    "intent_self_influence_boundary_candidate_v1.json",
+    "intent_field_role_relationship_boundary_candidate_v1.json",
+    "intent_emotion_influence_boundary_candidate_v1.json",
+    "intent_memory_experience_boundary_candidate_v1.json",
+    "intent_resource_constraint_model_candidate_v1.json",
+    "intent_nested_constraint_model_candidate_v1.json",
+    "intent_to_causal_handoff_contract_candidate_v1.json",
+    "intent_minimum_scenario_suite_v1.json",
+    "intent_existing_asset_reuse_mapping_v1.json",
+    "intent_architecture_risk_review_v1.md",
+    "intent_open_questions_registry_v1.json",
+    "intent_planning_change_manifest_v1.json",
+    "phase_contract.json",
+    "verify_intent_architecture_planning_v1.py"
+  ],
+  "verification_authority": {
+    "V0": "AGENT_STATIC_ONLY",
+    "V1": "NOT_AUTHORIZED",
+    "V2": "USER_TERMINAL_ONLY",
+    "V3": "CHATGPT_ONLY"
+  },
+  "allowed_agent_actions": [
+    "read_files",
+    "create_phase_files",
+    "modify_phase_new_files",
+    "editor_static_diagnostics"
+  ],
+  "prohibited_agent_execution": [
+    "final_phase_verifier",
+    "runtime",
+    "model",
+    "database",
+    "network",
+    "migration",
+    "active_schema_activation"
+  ],
+  "modified_existing_files_required_empty": true,
+  "next_phase_not_automatically_authorized": true,
+  "agent_stop_status": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "expected_success_decision": "V2_FINAL_VERIFICATION_PASSED",
+  "expected_success_readiness": "LUNA_INTENT_ARCHITECTURE_PLANNING_READY",
+  "expected_failure_decision": "BLOCKED_BY_VERIFIER_FAILURE",
+  "expected_failure_readiness": "LUNA_INTENT_ARCHITECTURE_PLANNING_REMEDIATION_REQUIRED",
+  "user_terminal_command": "python3 docs/architecture/luna_intent_architecture_planning_v1/verify_intent_architecture_planning_v1.py"
+}

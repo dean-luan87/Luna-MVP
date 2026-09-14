@@ -1,0 +1,16 @@
+{
+  "phase_id": "Phase-Luna-A-Route-S1-Real-User-Input-Controlled-Replacement-v1-001",
+  "new_semantic_owner": false,
+  "existing_owner_files_modified": false,
+  "s0_assets_modified": false,
+  "new_code_files": [
+    "a_route_real_user_input_adapter_types_v1.py",
+    "a_route_real_user_input_adapter_v1.py",
+    "a_route_real_user_input_fixture_v1.py",
+    "run_a_route_s1_real_user_input_controlled_replacement_v1.py"
+  ],
+  "downstream_engine_modified": false,
+  "new_top_level_capability": false,
+  "real_component_scope": ["USER_INPUT"],
+  "deferred_components": ["microphone", "ASR", "camera", "YOLO", "OCR", "SLAM/VIO", "real runtime", "real UI/TTS"]
+}

@@ -1,0 +1,74 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Local-Asset-Import-And-Runner-Bridge-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-02T02:51:10.106488+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "page_must_not_execute_model": true,
+  "candidate_output_only": true,
+  "record": {
+    "schema_id": "local_test_asset_manifest_schema_v1",
+    "schema_rel": "capabilities/midplatform/model_test_lens/schemas/local_asset_import/local_test_asset_manifest_schema_v1.json",
+    "asset_types": [
+      "image",
+      "video",
+      "frame_sequence",
+      "audio",
+      "text"
+    ],
+    "asset_type_model_map": [
+      {
+        "asset_type": "image",
+        "applicable_models": [
+          "segmentation",
+          "ocr",
+          "depth_world",
+          "detection_tracking",
+          "face_expression_gesture",
+          "multimodal_vlm"
+        ]
+      },
+      {
+        "asset_type": "video",
+        "applicable_models": [
+          "slam_vio",
+          "detection_tracking",
+          "ocr",
+          "segmentation",
+          "multimodal_vlm",
+          "face_expression_gesture"
+        ]
+      },
+      {
+        "asset_type": "frame_sequence",
+        "applicable_models": [
+          "slam_vio",
+          "detection_tracking",
+          "ocr",
+          "segmentation"
+        ]
+      },
+      {
+        "asset_type": "audio",
+        "applicable_models": [
+          "asr",
+          "speaker",
+          "tts"
+        ]
+      },
+      {
+        "asset_type": "text",
+        "applicable_models": [
+          "tts",
+          "multimodal_vlm"
+        ]
+      }
+    ],
+    "sha256_required": true,
+    "candidate_only": true
+  }
+}

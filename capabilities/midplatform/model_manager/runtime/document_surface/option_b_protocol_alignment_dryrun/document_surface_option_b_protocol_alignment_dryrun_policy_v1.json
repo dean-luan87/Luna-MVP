@@ -1,0 +1,19 @@
+{
+  "policy_id": "document_surface_option_b_protocol_alignment_dryrun_policy_v1",
+  "protocol_alignment_dryrun_only": true,
+  "preflight_planning_forbidden": true,
+  "preflight_execution_forbidden": true,
+  "segmentation_execution_forbidden": true,
+  "model_download_forbidden": true,
+  "dependency_install_forbidden": true,
+  "runtime_activation_allowed": false,
+  "controlled_execution_allowed": false,
+  "option_b_execution_allowed": false,
+  "active_registry_update_allowed": false,
+  "boundary_status": "frozen",
+  "primary_contract": "LUNA-PROTO-L1-MODEL-SKILL-ADMISSION-CONTRACT-V1",
+  "existing_midplatform_protocol_chain_extension": true,
+  "protocol_patch_not_new_branch": true,
+  "candidate_only": true,
+  "not_fact": true
+}

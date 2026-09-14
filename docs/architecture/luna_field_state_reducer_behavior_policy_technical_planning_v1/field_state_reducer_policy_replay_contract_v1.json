@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Replay Contract",
+    "deterministic_policy_replay": true,
+    "policy_registry_snapshot_required": true,
+    "eligibility_matrix_snapshot_required": true,
+    "precedence_matrix_snapshot_required": true,
+    "composition_contract_snapshot_required": true,
+    "state_type_mapping_snapshot_required": true,
+    "confidence_policy_snapshot_required": true,
+    "temporal_policy_snapshot_required": true,
+    "conflict_policy_snapshot_required": true,
+    "external_lookup_during_replay_allowed": false,
+    "provider_recall_during_replay_allowed": false,
+    "action_trigger_during_replay_allowed": false,
+    "current_runtime_state_dependency_allowed": false,
+    "policy_version_fallback_allowed": false,
+    "replay_contract_complete": true
+}

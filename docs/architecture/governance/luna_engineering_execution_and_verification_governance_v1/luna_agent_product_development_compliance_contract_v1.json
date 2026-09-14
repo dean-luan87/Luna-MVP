@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "name": "Luna Agent Product Development Compliance Contract",
+    "must_read_governance_before_phase": true,
+    "must_read_phase_instruction_before_edit": true,
+    "must_identify_execution_mode": true,
+    "must_declare_verification_authority": true,
+    "must_stop_at_agent_stop_point": true,
+    "must_not_run_final_phase_verifier": true,
+    "must_not_declare_go": true,
+    "must_not_enter_next_phase_automatically": true,
+    "must_preserve_passed_assets": true,
+    "must_use_minimal_remediation": true,
+    "must_not_use_private_editor_memory_as_only_source": true,
+    "must_use_repository_governance_assets": true,
+    "must_report_boundary_confirmation": true,
+    "must_provide_exact_user_terminal_command": true,
+    "compliance_contract_complete": true
+}

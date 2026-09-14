@@ -1,0 +1,15 @@
+{
+  "reverse_lookup": [
+    "canonical evidence",
+    "provider-native detection",
+    "single frame",
+    "bounded session",
+    "observation request",
+    "observation demand",
+    "Model Manager admission",
+    "model asset contract"
+  ],
+  "provenance_grants_authority": false,
+  "raw_frame_bytes_persisted": false,
+  "provider_error_detail_retained": true
+}

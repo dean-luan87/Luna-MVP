@@ -1,0 +1,26 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Simple-Mode-UX-Patch-Execution-And-Post-Review-v1-001",
+  "module": "model_governance",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-02T05:31:09.170326+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "real_execution_phase": true,
+  "model_execution_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record": {
+    "one_click_local_test_button_present": true,
+    "mobilesam_one_click_flow_present": true,
+    "slam_limited_one_click_flow_present": true,
+    "user_friendly_progress_steps_present": true,
+    "user_friendly_error_messages_present": true,
+    "service_status_simplified": true,
+    "local_runner_bridge_service_preserved": true
+  }
+}

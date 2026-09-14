@@ -1,0 +1,25 @@
+{
+  "format_ref": "roboflow_dataset",
+  "annotation_format": "some_proprietary_binary_blob",
+  "license_ref": {
+    "license": "CC BY 4.0",
+    "license_source": "roboflow_universe_cite_this_project",
+    "commercial_use_confirmed": false
+  },
+  "dataset_origin": {
+    "platform": "roboflow_universe",
+    "dataset_ref": "weird-format-dataset/1",
+    "dataset_url": "https://universe.roboflow.com/example/weird-format-dataset"
+  },
+  "annotation_origin": {
+    "provider": "roboflow_export",
+    "export_format": "unknown"
+  },
+  "source_chain": ["roboflow_universe", "roboflow_dataset_export"],
+  "images": [
+    {"image_id": "img_070", "file_name": "x_070.jpg", "width": 640, "height": 480, "confidence": 0.8}
+  ],
+  "annotations": [
+    {"ann_id": "ann_070", "type": "bbox", "label": "obstacle", "image_id": "img_070", "bbox": [10, 10, 100, 200], "confidence": 0.8}
+  ]
+}

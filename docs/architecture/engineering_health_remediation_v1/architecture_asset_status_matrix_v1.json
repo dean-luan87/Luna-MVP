@@ -1,0 +1,23 @@
+{
+  "title": "Architecture Asset Status Matrix v1",
+  "rows": [
+    {"category": "Category A", "status": "active", "required": ["architecture.md", "contract/schema json", "verifier"], "deletion_allowed": false},
+    {"category": "Category B", "status": "historical", "required": ["status metadata", "provenance"], "deletion_allowed": false},
+    {"category": "Category C", "status": "verification_only", "required": ["verifier", "scope note"], "deletion_allowed": false},
+    {"category": "Category D", "status": "missing_asset_candidate", "required": ["inventory entry", "remediation decision"], "deletion_allowed": false}
+  ],
+  "status_ownership": {
+    "active": "Architecture Governance",
+    "historical": "Architecture Governance",
+    "verification_only": "Verification Governance",
+    "missing_asset_candidate": "Engineering Health Remediation"
+  },
+  "matrix_rules": {
+    "all_architecture_assets_have_status": true,
+    "historical_assets_are_retained": true,
+    "missing_assets_are_not_auto_created": true,
+    "status_change_requires_review": true,
+    "no_runtime_behavior": true,
+    "unknowns_are_preserved": true
+  }
+}

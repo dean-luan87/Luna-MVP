@@ -1,0 +1,28 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Dependency-Repair-Install-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-06-30T08:52:29.597968+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "real_execution_phase": true,
+  "timm_install_allowed": true,
+  "real_import_allowed": false,
+  "model_load_allowed": false,
+  "inference_allowed": false,
+  "runtime_allowed": false,
+  "record_type": "timm_environment_contamination_audit_record",
+  "timm_environment_contamination_audit": {
+    "audit_id": "timm_environment_contamination_audit_v1",
+    "global_site_packages_timm_present_before": false,
+    "global_site_packages_timm_present_after": false,
+    "global_env_changed": false,
+    "torch_version_before": "2.8.0",
+    "torch_version_after": "2.8.0",
+    "torch_changed": false,
+    "contamination_detected": false,
+    "install_confined_to_target": true
+  }
+}

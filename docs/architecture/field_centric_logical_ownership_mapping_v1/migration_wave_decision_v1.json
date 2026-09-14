@@ -1,0 +1,116 @@
+{
+    "waves": [
+        {
+            "wave_id": "Wave 0",
+            "status": "completed_architecture_freeze",
+            "selected_now": false,
+            "allowed_actions": [
+                "document_target_architecture"
+            ],
+            "prohibited_actions": [
+                "directory_move",
+                "import_rewrite"
+            ],
+            "entry_conditions": [
+                "planning_artifacts_present"
+            ],
+            "exit_conditions": [
+                "architecture_frozen"
+            ],
+            "owner_approval_required": false
+        },
+        {
+            "wave_id": "Wave 1",
+            "status": "selected_now_logical_ownership_mapping",
+            "selected_now": true,
+            "allowed_actions": [
+                "logical_remap",
+                "compatibility_notes"
+            ],
+            "prohibited_actions": [
+                "file_move",
+                "bulk_import_change",
+                "runtime_activation"
+            ],
+            "entry_conditions": [
+                "architecture_frozen"
+            ],
+            "exit_conditions": [
+                "logical_mapping_complete"
+            ],
+            "owner_approval_required": false
+        },
+        {
+            "wave_id": "Wave 2",
+            "status": "deferred_compatibility_aliases_and_adapters",
+            "selected_now": false,
+            "allowed_actions": [
+                "adapter_planning"
+            ],
+            "prohibited_actions": [
+                "legacy_deletion",
+                "bulk_import_change"
+            ],
+            "entry_conditions": [
+                "logical_mapping_complete"
+            ],
+            "exit_conditions": [
+                "adapter_layer_ready"
+            ],
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 3",
+            "status": "blocked_controlled_directory_migration_planning",
+            "selected_now": false,
+            "allowed_actions": [],
+            "prohibited_actions": [
+                "file_move",
+                "import_change",
+                "runtime_activation"
+            ],
+            "entry_conditions": [
+                "adapter_layer_ready"
+            ],
+            "exit_conditions": [
+                "migration_plan_reviewed"
+            ],
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 4",
+            "status": "blocked_controlled_migration_dryrun",
+            "selected_now": false,
+            "allowed_actions": [],
+            "prohibited_actions": [
+                "real_migration",
+                "model_execution"
+            ],
+            "entry_conditions": [
+                "migration_plan_reviewed"
+            ],
+            "exit_conditions": [
+                "dry_run_complete"
+            ],
+            "owner_approval_required": true
+        },
+        {
+            "wave_id": "Wave 5",
+            "status": "blocked_real_migration",
+            "selected_now": false,
+            "allowed_actions": [],
+            "prohibited_actions": [
+                "silent_migration",
+                "runtime_activation"
+            ],
+            "entry_conditions": [
+                "dry_run_complete",
+                "owner_approval_complete"
+            ],
+            "exit_conditions": [
+                "migration_complete"
+            ],
+            "owner_approval_required": true
+        }
+    ]
+}

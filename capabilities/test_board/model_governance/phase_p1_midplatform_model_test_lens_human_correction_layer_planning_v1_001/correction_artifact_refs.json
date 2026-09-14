@@ -1,0 +1,21 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Human-Correction-Layer-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "refs": [
+      "capabilities/midplatform/model_test_lens/human_correction/human_correction_layer_plan_v1.md",
+      "capabilities/midplatform/model_test_lens/human_correction/human_correction_types_v1.py",
+      "capabilities/midplatform/model_test_lens/schemas/human_correction/human_correction_record_schema_v1.json",
+      "capabilities/midplatform/model_test_lens/schemas/human_correction/human_correction_target_schema_v1.json",
+      "capabilities/midplatform/model_test_lens/schemas/human_correction/human_correction_feedback_taxonomy_v1.json",
+      "capabilities/midplatform/model_test_lens/schemas/human_correction/human_correction_training_signal_schema_v1.json",
+      "capabilities/midplatform/governance_standards/model_test_lens_ui/human_correction_layer_governance_standard_v1.md",
+      "capabilities/midplatform/model_test_lens/review_model_test_lens_human_correction_layer_planning_v1.py"
+    ]
+  }
+}

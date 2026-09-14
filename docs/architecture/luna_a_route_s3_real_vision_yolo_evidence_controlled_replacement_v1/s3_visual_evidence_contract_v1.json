@@ -1,0 +1,24 @@
+{
+  "schema": "VisualDetectionEvidenceCandidateV1",
+  "required_fields": ["evidence_id", "provider_ref", "model_ref", "frame_ref", "detection_ref", "class_candidate", "bbox", "confidence", "region_ref", "temporal_ref", "uncertainty_refs", "contradiction_refs", "trace_ref", "provenance_refs"],
+  "inequalities": [
+    "YOLO Detection != Fact",
+    "YOLO Class != World Truth",
+    "BBox != Object Identity Truth",
+    "Detection Confidence != Correctness",
+    "Detection Confidence != Evidence Sufficiency",
+    "Vision Evidence != Observation Truth",
+    "Vision Evidence != Field State",
+    "Vision Evidence != Current World Truth",
+    "Vision Evidence != Intent",
+    "Vision Evidence != Task",
+    "Vision Evidence != Action",
+    "Vision Evidence != Natural-Language Conclusion",
+    "Provider Output != Semantic Authority"
+  ],
+  "candidate_only": true,
+  "truth_declared": false,
+  "fact_admitted": false,
+  "natural_language_conclusion_generated": false,
+  "downstream_mutation_authority": false
+}

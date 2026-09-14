@@ -1,0 +1,30 @@
+{
+    "contract_id": "luna_intent_governance_controlled_implementation_contract_v1",
+    "status": "CONTROLLED_IMPLEMENTATION_CANDIDATE",
+    "owner": "Intent Governance",
+    "candidate_only": true,
+    "synthetic_fixture_only": true,
+    "controlled_execution_only": true,
+    "deterministic_trace_required": true,
+    "source_owner_precedence": true,
+    "source_owner_transfer": false,
+    "source_mutation_allowed": false,
+    "runtime_execution": false,
+    "active_schema": false,
+    "active_contract": false,
+    "database_access": false,
+    "network_access": false,
+    "model_call": false,
+    "provider_call": false,
+    "forbidden_outputs": [
+        "Causal Explanation",
+        "Causal Truth",
+        "Decision",
+        "Action",
+        "Task",
+        "Goal Mutation",
+        "Runtime Instruction",
+        "State Mutation"
+    ],
+    "handoff_kind": "INTENT_TO_CAUSAL_HANDOFF_CANDIDATE"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_id": "information_structuring_v1",
+  "owner": "Cognitive Kernel / Information Structuring",
+  "input": "evidence_candidate",
+  "output_entities": ["Entity", "Event", "Relation", "State", "Change"],
+  "required_fields": ["source_evidence", "time_context", "space_context", "confidence", "unknowns"],
+  "interpretation_authority": false,
+  "meaning_authority": false,
+  "reality_write": false,
+  "traceability_required": true
+}

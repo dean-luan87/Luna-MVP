@@ -1,0 +1,29 @@
+{
+  "frame_seq": 100,
+  "current_ts": 0.0,
+  "trace_anchor_id": "R100_high_tension_review_only_not_advisory_real_ctx",
+  "focus_object_label": "bottle",
+  "motion_instability": 0.21,
+  "phase_and_closure_aligned_but_outcome_summary_misaligned_observed": true,
+  "phase_correct_but_closure_semantics_misaligned_expected": true,
+  "memory_hint_present": true,
+  "novel_candidate_present": true,
+  "search_subtask_state": "waiting_user_reply",
+  "search_terminal_status": "none",
+  "confirmation_input_type": "confirmed_no",
+  "confirmation_input_raw_text": "M1.7-F：记忆与新观测冲突+phase/outcome 张力高，可至 review；无 resume 目标串，advisory 应保持未命中",
+  "object_search_flow_type": "high_tension_review_only_m17",
+  "object_search_step_index": 2,
+  "object_search_retry_count": 2,
+  "object_search_resolution_path": [
+    "high_tension_review_only_m17",
+    "rechecking",
+    "fallback",
+    "rechecking",
+    "fallback"
+  ],
+  "visual_audit_objects_main": [
+    { "label": "bottle", "bbox": [15, 19, 82, 93], "conf": 0.81 },
+    { "label": "thermos", "bbox": [52, 22, 108, 88], "conf": 0.73 }
+  ]
+}

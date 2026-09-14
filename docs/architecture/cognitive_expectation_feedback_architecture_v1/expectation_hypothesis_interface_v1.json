@@ -1,0 +1,28 @@
+{
+  "title": "Expectation Hypothesis Interface v1",
+  "contract_type": "Hypothesis to Expectation Candidate",
+  "input": {
+    "hypothesis_reference": "hypothesis-example",
+    "hypothesis_explanation": "candidate explanation",
+    "supporting_evidence": [],
+    "contradicting_evidence": [],
+    "field_context": {},
+    "situation_context": {},
+    "confidence": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "expectation_candidate": "expectation-example",
+    "expected_evidence": [],
+    "validation_condition": {},
+    "difference_basis": {}
+  },
+  "boundary": {
+    "hypothesis_is_not_expectation": true,
+    "expectation_is_not_prediction": true,
+    "hypothesis_does_not_create_reality": true,
+    "expectation_does_not_make_decision": true,
+    "unknowns_are_preserved": true
+  }
+}

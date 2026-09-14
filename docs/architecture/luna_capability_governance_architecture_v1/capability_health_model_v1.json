@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Capability Health Model",
+  "states": ["Healthy", "Warning", "Degraded", "Critical", "Unknown"],
+  "dimensions": ["Accuracy", "Stability", "Latency", "Resource Cost", "Failure Rate"],
+  "outputs": ["Capability Health Score", "Capability Health Candidate", "Self State Synchronization Candidate"],
+  "example": {"capability_id": "ocr", "health": "Degraded", "self_state_effect": "information_processing_capability_decreased", "system_effect": "core_remains_operational"},
+  "rules": {"health_not_identity": true, "health_not_system_failure": true, "local_failure_isolated": true, "unknown_preserved": true, "candidate_only": true}
+}

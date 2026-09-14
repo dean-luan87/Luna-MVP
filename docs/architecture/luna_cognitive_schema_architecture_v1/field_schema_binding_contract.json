@@ -1,0 +1,11 @@
+{
+  "contract_id": "field_schema_binding_v1",
+  "owner": "Field",
+  "inputs": ["current_field", "field_identity_candidate", "field_evolution_history", "field_memory_context", "field_rules"],
+  "outputs": ["field_schema_context_candidate", "context_match", "unknowns"],
+  "schema_context_only": true,
+  "field_owns_schema": false,
+  "reality_replacement": false,
+  "candidate_only": true,
+  "current_reality_precedence": true
+}

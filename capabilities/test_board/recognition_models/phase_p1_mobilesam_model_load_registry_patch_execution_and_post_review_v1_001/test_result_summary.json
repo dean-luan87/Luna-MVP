@@ -1,0 +1,30 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Model-Load-Registry-Patch-Execution-And-Post-Review-v1-001",
+  "module": "recognition_models",
+  "test_mode": "real_test",
+  "recorded_at_utc": "2026-07-01T01:42:38.532508+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_result_summary",
+  "final_decision": "P1_MOBILE_SAM_MODEL_LOAD_REGISTRY_PATCH_EXECUTION_GO",
+  "blocker_count": 0,
+  "count_fields": {
+    "mobile_sam_model_load_registry_patch_execution_profile_count": 1,
+    "stage_ref_count": 15,
+    "mobile_sam_model_load_registry_pre_patch_snapshot_record_count": 1,
+    "mobile_sam_model_load_registry_patch_execution_record_count": 1,
+    "mobile_sam_model_load_registry_patch_diff_record_count": 1,
+    "mobile_sam_model_load_registry_post_review_audit_count": 1,
+    "mobile_sam_model_load_registry_rollback_readiness_record_count": 1,
+    "mobile_sam_model_load_verified_readiness_record_count": 1,
+    "mobile_sam_inference_boundary_preservation_record_count": 1,
+    "mobile_sam_followup_inference_trial_request_route_count": 1,
+    "negative_guard_count": 19,
+    "blocker_count": 0
+  }
+}

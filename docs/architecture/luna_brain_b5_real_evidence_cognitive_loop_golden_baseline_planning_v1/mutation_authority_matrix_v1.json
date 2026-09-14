@@ -1,0 +1,13 @@
+{
+  "sole_authorities":[
+    {"state":"Field State","authority":"Field State Reducer","direct_provider_mutation":false},
+    {"state":"Intent","authority":"Intent Governance","direct_cognitive_mutation":false},
+    {"state":"Task","authority":"Task Manager","direct_outcome_mutation":false},
+    {"state":"Action","authority":"Action Governance","direct_task_execution":false},
+    {"state":"Runtime execution","authority":"Runtime Executor","enabled_in_b1_b4":false},
+    {"state":"Outcome","authority":"Outcome Evaluation Governance","direct_world_truth":false},
+    {"state":"Memory","authority":"Cognitive Memory & Experience Governance","enabled_in_b1_b4":false},
+    {"state":"Learning","authority":"Cognitive Learning Governance","enabled_in_b1_b4":false}
+  ],
+  "prohibited_direct_paths":["Provider -> Field State","Provider -> Current World truth","Cognitive State -> Intent mutation","Outcome -> Task direct mutation","Task Manager -> Action execution","Action -> Runtime side effect","Cognitive feedback -> Provider invocation","Outcome -> Memory/Learning write"]
+}

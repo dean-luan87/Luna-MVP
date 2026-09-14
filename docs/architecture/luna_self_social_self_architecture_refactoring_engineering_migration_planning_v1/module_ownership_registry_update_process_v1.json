@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "name": "Module Ownership Registry Update Process",
+  "ownership_classes": ["Self", "Social Self", "Cognitive Core", "Capability", "Action", "Governance"],
+  "process": ["Proposal", "Subject Ownership Classification", "Cognitive Object Definition", "Permission Definition", "Interface Definition", "Ownership Review", "Registry Update", "Implementation Planning", "Validation"],
+  "required_questions": ["What does the module belong to", "What state/object does it manage", "What can it write", "What can it only read", "Who consumes its output", "What is forbidden"],
+  "new_module_gate": ["Owner assigned", "Object schema defined", "Permission boundary defined", "Interface contract defined", "Impact inventory recorded", "Governance admitted"],
+  "rules": {"no_directory_without_owner": true, "owner_before_code": true, "object_before_interface": true, "permission_before_implementation": true, "registry_update_required": true}
+}

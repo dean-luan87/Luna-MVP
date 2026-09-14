@@ -1,0 +1,17 @@
+{
+    "artifact": "action_reversibility_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "reversibility_levels": [
+        "reversible",
+        "partially_reversible",
+        "irreversible",
+        "unknown"
+    ],
+    "irreversible_escalation_rules": {
+        "stronger_confirmation_requirement": true,
+        "stronger_safety_threshold": true,
+        "stronger_permission_strictness": true,
+        "stronger_precondition_completeness": true
+    },
+    "planning_note": "No scoring algorithm is frozen in this phase."
+}

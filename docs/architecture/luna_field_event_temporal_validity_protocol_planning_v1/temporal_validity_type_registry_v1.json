@@ -1,0 +1,18 @@
+{
+    "version": "1.0",
+    "name": "Temporal Validity Type Registry",
+    "description": "时间有效性类型注册表。",
+    "temporal_validity_types": [
+        "persistent",
+        "interval",
+        "recurring",
+        "temporary",
+        "seasonal",
+        "event_driven",
+        "until_revoked",
+        "inherited",
+        "unknown_validity"
+    ],
+    "type_count": 9,
+    "registry_complete": true
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "paddleocr_benchmark_sample_manifest_v0",
+  "samples": [
+    {
+      "category": "plain_chinese_print",
+      "expected_notes": "印刷体中文短句",
+      "ground_truth_text": "句句治愈 句句自愈 YI GUO SHU ZHAI",
+      "id": "sample_001",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_1.jpeg",
+      "include_in_accuracy": true,
+      "multi_region_mix_suspected": false,
+      "reading_order_issue_suspected": false
+    },
+    {
+      "category": "mixed_zh_en",
+      "expected_notes": "中英混排（无强标注 GT 时仅结构评测）",
+      "ground_truth_text": null,
+      "id": "sample_002",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_2.jpeg",
+      "include_in_accuracy": false,
+      "multi_region_mix_suspected": false,
+      "reading_order_issue_suspected": false
+    },
+    {
+      "category": "punctuation_and_symbols",
+      "expected_notes": "标点/符号压力（无 GT）",
+      "ground_truth_text": null,
+      "id": "sample_003",
+      "image_path": "/Users/luanlei/Desktop/Luna-Workspace-Min/fixtures/ocr_3.jpg",
+      "include_in_accuracy": false,
+      "multi_region_mix_suspected": false,
+      "reading_order_issue_suspected": false
+    }
+  ]
+}

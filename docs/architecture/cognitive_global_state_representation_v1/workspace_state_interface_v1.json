@@ -1,0 +1,27 @@
+{
+  "title": "Global State Workspace State Interface v1",
+  "contract_type": "Workspace State Projection",
+  "input": {
+    "workspace_reference": "workspace-example",
+    "workspace_state": {},
+    "active_field": "field-example",
+    "active_task": "task-example",
+    "workspace_version": "candidate",
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "workspace_state_reference": "candidate",
+    "current_focus": {},
+    "known_state": {},
+    "unknown_state": {},
+    "conflict_state": {}
+  },
+  "boundary": {
+    "global_state_references_workspace_only": true,
+    "global_state_does_not_create_workspace": true,
+    "global_state_does_not_mutate_workspace": true,
+    "workspace_owner_retains_authority": true,
+    "unknowns_are_preserved": true
+  }
+}

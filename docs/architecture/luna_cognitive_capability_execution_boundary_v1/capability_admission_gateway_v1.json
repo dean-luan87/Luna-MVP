@@ -1,0 +1,8 @@
+{
+  "title": "Capability Admission Gateway v1",
+  "owner": "Capability Governance",
+  "pipeline": ["Capability Request", "Registry Lookup", "Capability Profile", "Permission Check", "Health Check", "Calibration Check", "Resource Check", "Admission Result"],
+  "result_values": ["Admitted Candidate", "Rejected Candidate", "Deferred Candidate", "Degraded Candidate"],
+  "required_checks": ["exists", "trusted", "context_fit", "permission", "health", "calibration", "resource_budget"],
+  "rules": {"all_checks_required": true, "no_bypass": true, "admission_not_execution": true, "admission_not_decision": true}
+}

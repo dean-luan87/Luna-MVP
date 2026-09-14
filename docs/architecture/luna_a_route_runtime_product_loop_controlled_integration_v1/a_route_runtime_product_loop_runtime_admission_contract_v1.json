@@ -1,0 +1,8 @@
+{
+  "schema_version":"1.0",
+  "inequalities":["Action Candidate != Runtime Authorization","Runtime Admission Candidate != Runtime Execution","Controlled Execution Request != Real Execution","Runtime Result != Outcome Evaluation"],
+  "RuntimeAdmissionCandidateV1":{"runtime_authorized":false,"provider_invocation":false,"device_control":false,"candidate_only":true},
+  "ControlledExecutionRequestV1":{"real_execution":false,"candidate_only":true},
+  "ControlledExecutionResultV1":{"real_runtime_execution":false,"external_reality_truth":false,"candidate_only":true},
+  "synthetic_result_allowed":true
+}

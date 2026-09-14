@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "schema_id": "model_test_case_manifest_schema_v1",
+  "title": "Model Test Case Manifest V1",
+  "description": "Local manifest for Model Test Lens import. Planning schema only; page reads local files.",
+  "type": "object",
+  "required": [
+    "manifest_id",
+    "test_case_id",
+    "model_id",
+    "model_category",
+    "input_asset_refs",
+    "source_roots_allowed"
+  ],
+  "properties": {
+    "manifest_id": { "type": "string" },
+    "test_case_id": { "type": "string" },
+    "model_id": { "type": "string" },
+    "model_category": {
+      "type": "string",
+      "enum": [
+        "ocr", "slam_vio", "depth_world", "segmentation", "detection_tracking",
+        "asr", "tts", "speaker", "face_expression_gesture", "multimodal_vlm"
+      ]
+    },
+    "model_version_or_registry_ref": { "type": "string" },
+    "execution_phase_ref": { "type": "string" },
+    "input_asset_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_ref", "asset_type"],
+        "properties": {
+          "asset_ref": { "type": "string", "description": "Local path relative to repo or absolute" },
+          "asset_type": { "type": "string", "enum": ["image", "video", "audio", "text", "json", "trace"] },
+          "sha256": { "type": "string" },
+          "scene_type": { "type": "string" }
+        }
+      }
+    },
+    "prompt_manifest_ref": { "type": "string" },
+    "result_envelope_ref": { "type": "string" },
+    "test_board_refs": { "type": "array", "items": { "type": "string" } },
+    "source_roots_allowed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": [
+        "_tmp_eval_out/",
+        "capabilities/test_board/",
+        "capabilities/test_assets/",
+        "capabilities/midplatform/model_test_lens/"
+      ]
+    },
+    "forbidden_source_types": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["external_url", "live_camera", "runtime_server", "uncontrolled_dataset"]
+    },
+    "boundary_flags": {
+      "type": "object",
+      "properties": {
+        "candidate_only": { "type": "boolean", "const": true },
+        "local_static_read_only": { "type": "boolean", "const": true }
+      }
+    }
+  },
+  "additionalProperties": false
+}

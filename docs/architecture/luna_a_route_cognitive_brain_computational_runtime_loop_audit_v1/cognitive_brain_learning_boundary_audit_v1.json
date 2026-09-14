@@ -1,0 +1,14 @@
+{
+  "artifact":"cognitive_brain_learning_boundary_audit_v1",
+  "flow":"Result -> Comparison -> Error -> Learning Signal Candidate -> future bounded adjustment",
+  "result":"controlled candidate status exists",
+  "comparison":"contract only; no executable producer",
+  "error":"prediction/decision/observation/execution distinctions are documented but not adjudicated by one runtime-capable comparator",
+  "learning_signal":"Cognitive Learning emits synthetic evidence, learning, admission, contradiction, revision, revocation and parameter update candidates",
+  "future_adjustment":"parameter update candidate is not activated or persisted",
+  "semantic_compression":"DEFERRED",
+  "direct_learning_execution":false,
+  "direct_memory_mutation":false,
+  "maturity":"M5_DETERMINISTIC_CONTROLLED_ALGORITHM downstream of a M3 comparison contract",
+  "evidence_refs":["capabilities/midplatform/core/cognitive_learning/cognitive_learning_engine_v1.py","capabilities/midplatform/core/cognitive_learning/parameter_update_candidate_types_v1.py","docs/architecture/cognitive_learning_system_v1/learning_signal_schema_v1.json"]
+}

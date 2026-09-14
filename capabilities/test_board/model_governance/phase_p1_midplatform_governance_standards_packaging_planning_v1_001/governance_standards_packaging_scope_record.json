@@ -1,0 +1,50 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Midplatform-Governance-Standards-Packaging-Planning-v1-001",
+  "module": "model_governance",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T04:22:12.554330+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "file_move_allowed": false,
+  "main_program_mutation_allowed": false,
+  "runtime_allowed": false,
+  "inference_allowed": false,
+  "registry_mutation_allowed": false,
+  "record_type": "governance_standards_packaging_scope_record",
+  "governance_standards_packaging_scope_record": {
+    "record_id": "governance_standards_packaging_scope_v1",
+    "library_root": "capabilities/midplatform/governance_standards",
+    "library_stores": [
+      "reusable_governance_rules",
+      "lifecycle_flows",
+      "approval_gate_templates",
+      "negative_guard_templates",
+      "readiness_level_standards",
+      "registry_patch_standards",
+      "test_board_protected_artifact_standards",
+      "rollback_standards",
+      "failure_semantics",
+      "runtime_boundary_standards",
+      "output_adapter_boundary_standards",
+      "semantic_fact_navigation_exclusion_standards",
+      "case_mappings",
+      "reusable_phase_templates"
+    ],
+    "library_excludes": [
+      "model_code",
+      "runtime_main_program",
+      "output_adapter_implementation",
+      "business_logic",
+      "inference_scripts",
+      "weight_files",
+      "datasets",
+      "temporary_eval_output",
+      "user_data",
+      "fact_layer_records"
+    ],
+    "planning_only": true
+  }
+}

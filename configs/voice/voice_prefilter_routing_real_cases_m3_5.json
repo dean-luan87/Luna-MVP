@@ -1,0 +1,91 @@
+{
+  "version": "m3-5",
+  "description": "M3.5 真实场景抽测：用于显式开关灰度下的 prefilter 路由与稳定性/性能观测（不改 schema/validator/builder）。",
+  "cases": [
+    {
+      "id": "S1_simple_nav",
+      "bucket": "simple",
+      "text": "导航到公司。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S2_simple_poi",
+      "bucket": "simple",
+      "text": "带我去最近的便利店。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "S3_simple_with_fillers",
+      "bucket": "simple",
+      "text": "呃，那个，导航回家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C1_mixed_nav",
+      "bucket": "complex",
+      "text": "我有点焦虑，想去安静的书店，帮我导航过去。",
+      "mixed_keywords": ["焦虑"],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C2_mixed_health_nav",
+      "bucket": "complex",
+      "text": "最近胃不舒服老反酸，还是得去趟医院看看，帮我导航到最近的三甲医院消化内科。",
+      "mixed_keywords": ["反酸", "胃", "不舒服"],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C3_ordered_itinerary_multistep",
+      "bucket": "complex",
+      "text": "先去加油站加满油，再去超市，最后回家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "C4_long_constraints",
+      "bucket": "complex",
+      "text": "我现在在朝阳门地铁站附近，帮我导航到三里屯太古里，走地面别走高架，我晕车。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C5_long_itinerary",
+      "bucket": "complex",
+      "text": "明天上午先去税务局办税，然后回公司取公章，中午和客户在陆家嘴吃饭，下午去银行办对公业务，最后回张江办公室。请按顺序帮我拆成可执行的导航步骤，不要合并成一步。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    },
+    {
+      "id": "R1_unsupported_registration",
+      "bucket": "reject_or_rule",
+      "text": "帮我自动挂号并插队看专家。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R2_unsupported_remote_control",
+      "bucket": "reject_or_rule",
+      "text": "你帮我远程解锁小区门禁、打开我家房门，再顺便把快递拆了。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "R3_unsupported_payment",
+      "bucket": "reject_or_rule",
+      "text": "你直接帮我支付并转账给他。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": true, "expect_min_plan_steps": null }
+    },
+    {
+      "id": "C6_multistep_non_itinerary",
+      "bucket": "complex",
+      "text": "先写代码再测试最后上线。",
+      "mixed_keywords": [],
+      "heuristic": { "unsupported_risk": false, "expect_min_plan_steps": 2 }
+    }
+  ]
+}
+

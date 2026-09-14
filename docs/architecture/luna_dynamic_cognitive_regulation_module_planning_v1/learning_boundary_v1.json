@@ -1,0 +1,15 @@
+{
+    "artifact": "learning_boundary_v1",
+    "boundary": {
+        "self_regulation_not_learning": true,
+        "learning_can_propose_parameter_update_candidate": true,
+        "learning_cannot_auto_apply_parameter_update": true,
+        "self_regulation_cannot_auto_learn_weights": true,
+        "self_regulation_cannot_persist_permanent_parameter_change": true
+    },
+    "forbidden": [
+        "model_weight_mutation",
+        "online_learning_runtime",
+        "silent_adaptive_mutation"
+    ]
+}

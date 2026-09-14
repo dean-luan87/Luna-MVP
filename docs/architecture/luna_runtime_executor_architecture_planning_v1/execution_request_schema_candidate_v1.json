@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "luna://planning/runtime-executor/execution-request-schema/v1",
+    "title": "Execution Request Schema Candidate v1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "execution_request_id",
+        "action_candidate_ref",
+        "execution_readiness_ref",
+        "permission_recheck_ref",
+        "safety_recheck_ref",
+        "confirmation_ref",
+        "resource_constraint_ref",
+        "reversibility",
+        "request_time",
+        "provenance_ref",
+        "candidate_only",
+        "planning_only"
+    ],
+    "properties": {
+        "execution_request_id": {
+            "type": "string"
+        },
+        "action_candidate_ref": {
+            "type": "string"
+        },
+        "execution_readiness_ref": {
+            "type": "string"
+        },
+        "permission_recheck_ref": {
+            "type": "string"
+        },
+        "safety_recheck_ref": {
+            "type": "string"
+        },
+        "confirmation_ref": {
+            "type": "string"
+        },
+        "resource_constraint_ref": {
+            "type": "string"
+        },
+        "reversibility": {
+            "type": "string",
+            "enum": [
+                "reversible",
+                "partially_reversible",
+                "irreversible",
+                "unknown"
+            ]
+        },
+        "request_time": {
+            "type": "string"
+        },
+        "idempotency_key": {
+            "type": "string"
+        },
+        "provenance_ref": {
+            "type": "string"
+        },
+        "candidate_only": {
+            "const": true
+        },
+        "planning_only": {
+            "const": true
+        }
+    }
+}

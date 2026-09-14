@@ -1,0 +1,48 @@
+{
+  "artifact": "intent_resource_constraint_model_candidate_v1",
+  "status": "PLANNING_CANDIDATE",
+  "intent_owner": "Intent Governance",
+  "resource_owner": "Self Regulation / Runtime Governance",
+  "resource_dimensions": [
+    "hardware resource",
+    "runtime health and budget",
+    "cognitive resource",
+    "attention budget",
+    "memory retrieval breadth",
+    "projection breadth",
+    "time availability"
+  ],
+  "allowed_degradation_candidates": [
+    "reduce active projection breadth",
+    "reduce alternative expansion breadth",
+    "reduce historical-reference breadth",
+    "defer noncritical qualification",
+    "mark incomplete evaluation",
+    "preserve Unknown"
+  ],
+  "preservation_requirements": [
+    "source references",
+    "dormant candidates",
+    "suppressed candidates",
+    "provenance",
+    "uncertainty",
+    "truth status separation"
+  ],
+  "not_frozen": {
+    "max_intents": null,
+    "max_nesting_depth": null,
+    "retention_duration": null,
+    "competition_threshold": null,
+    "promotion_threshold": null
+  },
+  "forbidden": [
+    "delete source records",
+    "delete dormant Intent candidates",
+    "force a winner",
+    "change truth status because of resource scarcity",
+    "manufacture Intent",
+    "make a Decision",
+    "switch model or hardware directly"
+  ],
+  "rule": "Resource conditions constrain how broadly Intent is projected and evaluated, never what Reality is or which candidate is true."
+}

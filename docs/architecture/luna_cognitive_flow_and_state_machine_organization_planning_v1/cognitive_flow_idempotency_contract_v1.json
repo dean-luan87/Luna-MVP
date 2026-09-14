@@ -1,0 +1,15 @@
+{
+    "artifact": "cognitive_flow_idempotency_contract_v1",
+    "guards": [
+        "duplicate_cycle_start_guard",
+        "duplicate_handoff_guard",
+        "repeated_transition_request_guard",
+        "resume_idempotency_guard",
+        "completed_cycle_immutability_guard"
+    ],
+    "determinism_rules": {
+        "same_input_snapshot_same_transition_candidate": true,
+        "no_hidden_mutable_global_state": true,
+        "same_resume_request_same_resume_candidate": true
+    }
+}

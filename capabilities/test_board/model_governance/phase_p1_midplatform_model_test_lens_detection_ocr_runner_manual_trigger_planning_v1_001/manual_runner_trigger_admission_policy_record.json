@@ -1,0 +1,162 @@
+{
+  "phase_id": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "test_artifact_protected": true,
+  "test_mode": "planning",
+  "planning_only": true,
+  "record": {
+    "schema_id": "ManualRunnerTriggerAdmissionPolicyV1",
+    "version": "v1",
+    "phase_ref": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-Planning-v1-001",
+    "description": "从 pinned runner_task_candidate 生成 runner_invocation_request 的手动触发准入门禁。本阶段不执行 runner。",
+    "planning_only": true,
+    "auto_runner_trigger_allowed": false,
+    "default_trigger_mode": "manual_only",
+    "three_layer_separation": {
+      "runner_task_candidate": "what_could_be_considered",
+      "runner_invocation_request": "prepared_application_to_execute",
+      "runner_execution": "actual_model_run_forbidden_in_this_phase"
+    },
+    "request_generation_entry": {
+      "only_from": "pinned_runner_task_candidate",
+      "forbidden_bypass": true,
+      "description": "不允许 UI/API 绕过 runner_task_candidate 直接生成 request"
+    },
+    "queue_state_rules": {
+      "pinned": {
+        "may_generate_request": true
+      },
+      "candidate": {
+        "may_generate_request": false,
+        "reason": "must_pin_first"
+      },
+      "manual_only": {
+        "may_generate_request": false,
+        "reason": "must_pin_first"
+      },
+      "excluded": {
+        "may_generate_request": false,
+        "reason": "excluded_task_cannot_generate_request"
+      },
+      "stale_candidate": {
+        "may_generate_request": false,
+        "reason": "stale_task_requires_reconfirmation"
+      },
+      "blocked_by_policy": {
+        "may_generate_request": false,
+        "reason": "blocked_task_cannot_generate_request"
+      }
+    },
+    "priority_rules": {
+      "P0_immediate_attention": {
+        "requires_pin": false,
+        "note": "auto_eligible 仍须 pin 后才可 request"
+      },
+      "P1_high_attention": {
+        "requires_pin": false,
+        "note": "auto_eligible 仍须 pin 后才可 request"
+      },
+      "P2_medium_attention": {
+        "requires_pin": true,
+        "manual_only": true
+      },
+      "P3_low_attention": {
+        "requires_pin": true,
+        "manual_only": true
+      }
+    },
+    "universal_pin_requirement": {
+      "description": "所有 request 生成路径统一要求 queue_state=pinned",
+      "queue_state_required": "pinned"
+    },
+    "route_type_matching": {
+      "Detection": {
+        "source_target_model_id": "detection",
+        "forbidden_mismatch": true
+      },
+      "OCR": {
+        "source_target_model_id": "ocr",
+        "forbidden_mismatch": true
+      }
+    },
+    "admission_status_machine": {
+      "allowed": [
+        "pending_admission",
+        "admitted",
+        "rejected",
+        "cancelled"
+      ],
+      "forbidden": [
+        "running",
+        "executed",
+        "completed"
+      ],
+      "initial_on_create": "pending_admission"
+    },
+    "execution_status_machine": {
+      "allowed_in_planning_phase": [
+        "not_executed"
+      ],
+      "forbidden": [
+        "running",
+        "executed",
+        "completed",
+        "failed_with_model_output",
+        "fact_written",
+        "navigation_decided"
+      ]
+    },
+    "trace_chain_required": true,
+    "orphan_request_forbidden": true,
+    "admission_pipeline": [
+      "verify_pinned_runner_task_candidate",
+      "verify_not_excluded_or_blocked_or_stale",
+      "verify_route_type_match",
+      "verify_trace_chain_complete",
+      "emit_runner_invocation_request_pending_admission"
+    ],
+    "forbidden_operations": [
+      "runner_execution",
+      "model_call",
+      "fact_write",
+      "navigation_decision",
+      "auto_runner_trigger",
+      "bypass_runner_task_candidate",
+      "generate_request_from_excluded",
+      "generate_request_from_stale_without_reconfirm",
+      "generate_request_from_blocked",
+      "visual_expression_mutation"
+    ],
+    "correction_boost_rules": {
+      "description": "Human correction 仅影响 admission explanation，非 ground truth",
+      "may_affect_admission_explanation": true,
+      "forbidden": [
+        "treat_as_ground_truth",
+        "skip_pin_requirement",
+        "auto_execute_runner"
+      ]
+    },
+    "browser_runtime_guard_inheritance": {
+      "app_js_must_use_window": true,
+      "bare_global_forbidden": true,
+      "guard_module": "browser_runtime_guard_v1.js"
+    },
+    "visual_expression_preservation": {
+      "no_canvas_execution_status": true,
+      "no_boundary_mutation": true,
+      "no_runner_box_on_canvas": true,
+      "canvas_frozen": true
+    },
+    "boundary_flags": {
+      "planning_only": true,
+      "invocation_request_only": true,
+      "not_runner_execution": true,
+      "not_fact_write": true,
+      "not_auto_runner_trigger": true,
+      "execution_status_not_executed_only": true
+    },
+    "recommended_next_execution": "Phase-P1-Midplatform-Model-Test-Lens-Detection-OCR-Runner-Manual-Trigger-UI-Execution-v1-001"
+  }
+}

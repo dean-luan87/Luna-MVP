@@ -1,0 +1,22 @@
+{
+    "artifact": "action_resource_constraint_model_candidate_v1",
+    "status": "PLANNING_CANDIDATE",
+    "resource_states": [
+        "available",
+        "constrained",
+        "degraded",
+        "unavailable",
+        "unknown"
+    ],
+    "resource_reactions": [
+        "remain_eligible",
+        "become_precondition_pending",
+        "become_suspended",
+        "become_blocked"
+    ],
+    "rules": {
+        "resource_unavailable_can_suspend": true,
+        "resource_unknown_not_auto_pass": true,
+        "resource_checks_no_runtime_side_effect": true
+    }
+}

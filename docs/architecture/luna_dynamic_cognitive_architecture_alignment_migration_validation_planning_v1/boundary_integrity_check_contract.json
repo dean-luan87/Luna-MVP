@@ -1,0 +1,24 @@
+{
+  "contract_id": "post_migration_boundary_integrity_check_v1",
+  "forbidden_authority_edges": [
+    "Task Manager -> Causal Judgment",
+    "Task Manager -> Action Execution",
+    "Model Manager -> Cognitive Conclusion",
+    "Model Manager -> Decision Authority",
+    "OCR/Vision -> Direct Fact Promotion",
+    "Memory -> Direct Cognitive Core Mutation",
+    "Memory -> Reality Override",
+    "Personal Cognitive Network -> Self Ownership",
+    "Personal Cognitive Network -> Memory Ownership",
+    "Intent -> Decision Execution",
+    "Causal -> Fact Promotion",
+    "Causal -> Action Execution",
+    "Emotion -> Value Ownership",
+    "B Route -> A Route State Mutation"
+  ],
+  "required_boundaries": ["candidate_fact_admission", "decision_action_separation", "memory_network_separation", "task_action_separation", "model_cognition_separation", "perceptual_cognitive_attention_separation", "a_b_route_separation"],
+  "unique_owner_required": true,
+  "boundary_violation_blocks_freeze": true,
+  "runtime_authority_change_forbidden": true,
+  "candidate_only": true
+}

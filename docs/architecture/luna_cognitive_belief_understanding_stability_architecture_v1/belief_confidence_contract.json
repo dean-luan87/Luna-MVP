@@ -1,0 +1,11 @@
+{
+  "contract_id": "belief_confidence_v1",
+  "owner": "Belief Layer",
+  "inputs": ["supporting_evidence", "contradicting_evidence", "evidence_reliability", "context_stability", "validation_result", "uncertainty"],
+  "outputs": ["confidence_candidate", "confidence_delta_candidate", "uncertainty"],
+  "confidence_is_truth": false,
+  "truth_assertion": false,
+  "calculation_implemented": false,
+  "unknown_preserved": true,
+  "candidate_only": true
+}

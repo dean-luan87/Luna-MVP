@@ -1,0 +1,26 @@
+{
+  "schema_id": "QwenVLRawTeacherResponseSchemaV1",
+  "version": "v1",
+  "description": "Qwen-VL API 原始返回，不得直接进入 Luna 决策链",
+  "required_fields": [
+    "provider_id",
+    "request_id",
+    "raw_response",
+    "candidate_only",
+    "not_fact"
+  ],
+  "optional_fields": [
+    "latency_ms",
+    "usage",
+    "model_id",
+    "live_call",
+    "recorded_fixture_id",
+    "error"
+  ],
+  "forbidden_direct_use_as": [
+    "teacher_evidence_candidate",
+    "fact",
+    "selected_plan",
+    "scene_owner"
+  ]
+}

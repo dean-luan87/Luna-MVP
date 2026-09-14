@@ -1,0 +1,20 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-Real-Install-Local-Availability-DryRun-v1-001",
+  "module": "recognition_models",
+  "test_mode": "dry_run",
+  "recorded_at_utc": "2026-06-29T03:30:47.885892+00:00",
+  "test_board_record_required": true,
+  "test_process_record_required": true,
+  "test_conclusion_record_required": true,
+  "test_artifact_protected": true,
+  "test_record_non_deletable": true,
+  "test_deletion_forbidden": true,
+  "record_type": "test_conclusion_record",
+  "conclusions": {
+    "p1_real_install_local_availability_dryrun_status": "local_availability_probed_find_spec_only_no_install_no_download_no_inference_no_runtime",
+    "next_step_options_ref": "p1_real_install_plan_or_controlled_install_dryrun",
+    "transition_note": "Real local-environment probe of P1/P2 model assets using importlib.util.find_spec ONLY: no real import executed, no dependency install, no pip install, no model/weight/dataset download, no inference, no live camera/sensor, no runtime. Each of the 17 assets has a package probe, import-spec probe, (when weight-bearing) local weight-path probe, dependency gap record, license/runtime alignment check, install-readiness state and an availability matrix row. Package visibility is NOT runtime approval; weight visibility is NOT inference approval; install readiness is NOT runtime readiness. Runtime-trial eligibility stays false for every asset, real-output-adapter dry-run stays false, commercial runtime is not approved, AGPL/unknown licenses do not become commercial runtime, and reserved-only / deferred VLM families are not executed. Protected, non-deletable records are written to the test board. Local availability success is NOT real-output-adapter approval and NOT runtime approval. Next: decide whether to enter a P1 Real Install Plan / Controlled Install DryRun — still not real inference and not the semantic layer."
+  },
+  "final_decision": "P1_REAL_INSTALL_LOCAL_AVAILABILITY_DRYRUN_GO"
+}

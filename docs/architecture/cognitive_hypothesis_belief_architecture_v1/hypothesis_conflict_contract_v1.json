@@ -1,0 +1,22 @@
+{
+  "title": "Hypothesis Conflict Contract v1",
+  "contract_type": "Hypothesis Conflict",
+  "conflict_id": "hypothesis-conflict-example",
+  "hypothesis_candidates": ["hypothesis-a", "hypothesis-b", "hypothesis-c"],
+  "shared_evidence": [],
+  "field_context": {},
+  "situation_context": {},
+  "confidence_comparison": [],
+  "supporting_evidence": [],
+  "contradicting_evidence": [],
+  "risk": [],
+  "unknowns": [],
+  "tradeoffs": [],
+  "provenance": [],
+  "resolution_status": "Unresolved | Brain Evaluation | More Evidence Requested | Multiple Active | Deferred | Resolved Candidate",
+  "conflict_is_preserved": true,
+  "conflict_does_not_auto_select": true,
+  "conflict_requires_brain_evaluation": true,
+  "conflict_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

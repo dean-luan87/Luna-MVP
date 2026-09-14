@@ -1,0 +1,15 @@
+{
+  "schema_name": "Reflex Trigger Schema v1",
+  "trigger_id": "trigger-example",
+  "condition": {},
+  "field_context": {},
+  "risk": {},
+  "active_role": {},
+  "safety_constraint": {},
+  "evidence": [],
+  "confidence": null,
+  "unknowns": [],
+  "trigger_formula": "Condition + Field Context + Risk + Active Role + Safety Constraint",
+  "trigger_does_not_make_decision": true,
+  "unknowns_are_preserved": true
+}

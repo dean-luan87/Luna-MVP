@@ -1,0 +1,28 @@
+{
+  "title": "Global State Belief Expectation Interface v1",
+  "contract_type": "Belief and Expectation State Projection",
+  "input": {
+    "hypothesis_state": {},
+    "belief_state": {},
+    "expectation_state": {},
+    "feedback_state": {},
+    "field_context": {},
+    "confidence": {},
+    "unknowns": [],
+    "provenance": []
+  },
+  "output": {
+    "hypothesis_state_reference": "candidate",
+    "belief_state_reference": "candidate",
+    "expectation_state_reference": "candidate",
+    "feedback_status": [],
+    "conflict_state": []
+  },
+  "boundary": {
+    "global_state_does_not_resolve_hypothesis": true,
+    "global_state_does_not_modify_belief": true,
+    "global_state_does_not_modify_expectation": true,
+    "reality_and_feedback_remain_authoritative": true,
+    "unknowns_are_preserved": true
+  }
+}

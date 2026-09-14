@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "luna://planning/intent/potential-intent-candidate/v1",
+  "title": "Potential Intent Candidate v1",
+  "description": "Planning-only representation of insufficient evidence that conditions may be forming a subjective future-state tendency.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "potential_intent_id",
+    "owner",
+    "candidate_kind",
+    "source_refs",
+    "context_refs",
+    "pcn_refs",
+    "why_candidate",
+    "supporting_refs",
+    "uncertainty",
+    "alternative_candidates",
+    "provenance",
+    "formation_trace",
+    "temporal_validity",
+    "resource_constraint_ref",
+    "status"
+  ],
+  "properties": {
+    "potential_intent_id": {"type": "string", "minLength": 1},
+    "owner": {"const": "Intent Governance"},
+    "candidate_kind": {"const": "POTENTIAL_INTENT_CANDIDATE"},
+    "source_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "minItems": 1},
+    "context_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "minItems": 1},
+    "pcn_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "why_candidate": {"type": "string", "minLength": 1},
+    "supporting_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "uncertainty": {"type": "object", "required": ["unknowns", "confidence_is_not_truth"], "properties": {"unknowns": {"type": "array", "items": {"type": "string"}}, "confidence_is_not_truth": {"const": true}}},
+    "alternative_candidates": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+    "provenance": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "minItems": 1},
+    "formation_trace": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "temporal_validity": {"type": "object", "required": ["observed_at", "validity_candidate"], "properties": {"observed_at": {"type": "string"}, "validity_candidate": {"type": "string"}}},
+    "resource_constraint_ref": {"anyOf": [{"$ref": "#/$defs/ref"}, {"type": "null"}]},
+    "status": {"const": "POTENTIAL"}
+  },
+  "$defs": {
+    "ref": {"type": "object", "required": ["owner", "ref_id"], "properties": {"owner": {"type": "string", "minLength": 1}, "ref_id": {"type": "string", "minLength": 1}}, "additionalProperties": true}
+  },
+  "planning_guards": {
+    "insufficient_evidence_preserved": true,
+    "automatic_promotion_forbidden": true,
+    "context_does_not_create_intent": true,
+    "pcn_does_not_create_intent": true,
+    "active_schema": false
+  }
+}

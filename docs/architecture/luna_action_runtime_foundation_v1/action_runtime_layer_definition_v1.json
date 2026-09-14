@@ -1,0 +1,10 @@
+{
+  "title": "Action Runtime Foundation Layer Definition v1",
+  "layer": "Action Boundary → External Execution Foundation",
+  "owner": "Action Runtime Governance",
+  "subsystems": ["Action Executor", "Execution Context Manager", "Action Lifecycle Manager", "Action Resource Governance", "Action Scheduler Boundary", "Execution Adapter Boundary", "Action Monitor", "Outcome Collector", "Action Verification", "Action Recovery", "Action Trace Integration"],
+  "upstream": ["Action Boundary", "L1 Lifecycle/Event/State/Recovery"],
+  "downstream": ["Future External Executor", "Outcome Evidence", "L2 Experience / Learning"],
+  "not_authority": ["Goal Ownership", "Decision Ownership", "Value Modification", "Constitution Modification", "Cognitive Control"],
+  "rules": {"contract_only": true, "execution_disabled": true, "external_side_effect_disabled": true, "approved_candidate_required": true}
+}

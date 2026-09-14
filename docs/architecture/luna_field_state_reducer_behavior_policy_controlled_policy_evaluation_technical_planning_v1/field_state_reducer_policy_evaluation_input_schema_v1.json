@@ -1,0 +1,30 @@
+{
+    "version": "1.0",
+    "name": "Field State Reducer Policy Evaluation Input Schema",
+    "required_fields": [
+        "evaluation_id",
+        "reducer_run_id",
+        "field_id",
+        "state_type",
+        "policy_id",
+        "admitted_events",
+        "existing_state_snapshot",
+        "temporal_snapshot",
+        "confidence_policy_snapshot",
+        "conflict_snapshot",
+        "owner_correction_snapshot",
+        "overlay_snapshot",
+        "provenance_snapshot",
+        "policy_registry_version",
+        "eligibility_matrix_version",
+        "evaluation_contract_version",
+        "evaluation_requested_at"
+    ],
+    "runtime_state_dependency_requested": false,
+    "provider_recall_requested": false,
+    "external_lookup_requested": false,
+    "model_call_requested": false,
+    "state_write_requested": false,
+    "action_trigger_requested": false,
+    "input_schema_complete": true
+}

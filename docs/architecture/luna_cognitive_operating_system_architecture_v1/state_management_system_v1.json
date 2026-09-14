@@ -1,0 +1,14 @@
+{
+  "title": "State Management System v1",
+  "owner": "Cognitive OS Governance",
+  "state_record": ["state_id", "owner", "writer", "reader", "version", "lifecycle", "snapshot_policy"],
+  "states": [
+    {"state_id":"Reality State","owner":"Reality Reducer","writer":"Reality Reducer","reader":["Field","Situation","Global Cognitive State"],"lifecycle":"candidate-accepted-updated"},
+    {"state_id":"Field State","owner":"Cognitive Core","writer":"Field Reducer","reader":["Attention","Workspace","Situation"],"lifecycle":"created-active-updated-closed"},
+    {"state_id":"Self State","owner":"Cognitive Core","writer":"Self State Reducer","reader":["Attention","Brain","Capability"],"lifecycle":"observed-updated-recovered"},
+    {"state_id":"Workspace State","owner":"Cognitive Core","writer":"Workspace Reducer","reader":["Brain","Trace"],"lifecycle":"created-active-updated-closed"},
+    {"state_id":"Capability State","owner":"Capability Governance","writer":"Capability State Reducer","reader":["Attention","Runtime Governance","Self Capability"],"lifecycle":"available-degraded-limited-unavailable"},
+    {"state_id":"Cognitive OS State","owner":"Cognitive OS Governance","writer":"State Management System","reader":["Diagnostics","Trace","Recovery"],"lifecycle":"created-active-suspended-recovered"}
+  ],
+  "rules": {"single_writer": true, "reader_is_not_writer": true, "snapshot_before_recovery": true, "state_conflict_escalates": true}
+}

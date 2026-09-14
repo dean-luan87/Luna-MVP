@@ -1,0 +1,21 @@
+{
+  "owner": "existing_governance_owners_only",
+  "records": [
+    {"domain":"visual_evidence","owner":"FPO/Vision Provider Integration","admission_authority":"Observation Gateway","mutation_authority":"none"},
+    {"domain":"capability_registration","owner":"Capability Governance","admission_authority":"Capability Governance + Model Manager","mutation_authority":"Capability Governance"},
+    {"domain":"model_provider_admission","owner":"Model Manager","admission_authority":"Model Manager","mutation_authority":"none"},
+    {"domain":"observation_routing","owner":"Observation Gateway","admission_authority":"Observation Gateway","mutation_authority":"none"},
+    {"domain":"task_observation_control","owner":"FPO/Active Observation Control","admission_authority":"FPO contracts","mutation_authority":"none"},
+    {"domain":"evidence_sufficiency","owner":"FPO/Active Observation Control","admission_authority":"FPO contracts","mutation_authority":"none"},
+    {"domain":"semantic_resolution_and_sufficiency","owner":"future SRSK","admission_authority":"future cognitive governance","mutation_authority":"none"},
+    {"domain":"social_norm_semantic_prior","owner":"future SNSP maintenance/distribution governance","admission_authority":"governed pack admission","mutation_authority":"none"},
+    {"domain":"field_rule_reconciliation","owner":"existing Field/Event governance","admission_authority":"Field Rule reconciliation","mutation_authority":"canonical Field State authority only"},
+    {"domain":"context_world","owner":"existing Context/Current World owners","admission_authority":"existing contracts","mutation_authority":"canonical existing owners"},
+    {"domain":"field_state","owner":"Field State Reducer","admission_authority":"Field Event Admission","mutation_authority":"Field State Reducer"},
+    {"domain":"learning_need","owner":"Cognitive Learning Governance","admission_authority":"Brain governance","mutation_authority":"deferred"},
+    {"domain":"baseline","owner":"Brain Golden Baseline Governance","admission_authority":"baseline consistency","mutation_authority":"none"}
+  ],
+  "new_semantic_owner": false,
+  "semantic_authority_is_truth_authority": false,
+  "semantic_authority_is_mutation_authority": false
+}

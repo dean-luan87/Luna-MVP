@@ -1,0 +1,8 @@
+{
+  "artifact":"b4_synthetic_baseline_v1",
+  "A_reusable":["Action Governance synthetic fixtures", "Runtime Executor synthetic fixtures", "Outcome Evaluation O01-O36", "Cognitive Flow reconsideration fixtures", "Task Manager interruption/recovery/lifecycle fixtures"],
+  "B_adapter_required":["TaskCandidate/Action refs -> ExpectedOutcomeInputV1", "controlled Runtime Result -> ActualResultInputV1", "Outcome feedback -> Task Manager/Cognitive Flow handoff"],
+  "C_deprecated_or_bypass":["direct provider outcome claims", "feedback paths that promote result to truth", "parallel task/action owner"],
+  "D_deferred":["Experience/Memory persistence", "Learning execution", "real Runtime", "real Action"],
+  "replacement_boundary":"Replace synthetic Task/Action input with validated B3 references only; retain O01-O36 and existing Action/Runtime regressions."
+}

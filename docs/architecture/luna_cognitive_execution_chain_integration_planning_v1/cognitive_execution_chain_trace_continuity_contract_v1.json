@@ -1,0 +1,27 @@
+{
+    "artifact": "cognitive_execution_chain_trace_continuity_contract_v1",
+    "status": "PLANNING_CANDIDATE",
+    "trace_backbone": {
+        "root_trace_id": "required",
+        "intent_trace_ref": "required",
+        "causal_trace_ref": "required",
+        "decision_trace_ref": "required",
+        "action_trace_ref": "required",
+        "execution_trace_ref": "required"
+    },
+    "linking_extensions": {
+        "parent_trace_ref": "required_for_feedback",
+        "handoff_trace_ref": "required_each_handoff",
+        "revision_lineage": "required_when_revised",
+        "attempt_refs": "required_for_execution_attempts"
+    },
+    "rules": [
+        "each_layer_owns_its_trace",
+        "integration_links_refs_only",
+        "trace_linking_not_trace_rewriting",
+        "missing_trace_ref_hard_block",
+        "trace_ref_must_be_source_addressable"
+    ],
+    "candidate_only": true,
+    "mutation_allowed": false
+}

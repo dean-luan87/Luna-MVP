@@ -1,0 +1,27 @@
+{
+  "protocol_id": "TestBoardProtectedArtifactRuleV1",
+  "phase_id": "Phase-P1-MobileSAM-Inference-Trial-Registry-Patch-And-Runtime-Boundary-Planning-v1-001",
+  "module": "recognition_models",
+  "test_mode": "planning",
+  "recorded_at_utc": "2026-07-01T02:09:01.655850+00:00",
+  "protected": true,
+  "non_deletable": true,
+  "deletion_forbidden": true,
+  "planning_only": true,
+  "registry_mutation_allowed": false,
+  "runtime_allowed": false,
+  "output_adapter_allowed": false,
+  "semantic_layer_allowed": false,
+  "fact_write_allowed": false,
+  "record_type": "mobile_sam_output_adapter_boundary_plan_record",
+  "mobile_sam_output_adapter_boundary_plan_record": {
+    "record_id": "mobile_sam_output_adapter_boundary_plan_v1",
+    "output_adapter_allowed_now": false,
+    "output_adapter_ready_must_remain_false": true,
+    "output_adapter_requires_separate_review": true,
+    "output_adapter_requires_candidate_to_output_mapping": true,
+    "output_adapter_requires_failure_mode_review": true,
+    "output_adapter_requires_user_visible_output_policy": true,
+    "output_adapter_requires_speech_gate_if_speech": true
+  }
+}

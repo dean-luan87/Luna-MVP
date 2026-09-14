@@ -1,0 +1,193 @@
+{
+  "Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M2-Owner-Metadata-Alignment-v1-001",
+  "Stage": "M2 Owner Metadata Alignment",
+  "Execution Mode": "Planning Only",
+  "planning_status": "PLANNING_CANDIDATE",
+  "Current Work Description": {
+    "in_scope": [
+      "Owner Alignment Candidate",
+      "Metadata Alignment Candidate",
+      "Registry Mapping Candidate",
+      "Responsibility Boundary Candidate",
+      "Owner conflict review",
+      "Governance review assets",
+      "V0 static checks"
+    ],
+    "out_of_scope": [
+      "active Owner metadata modification",
+      "active registry or baseline modification",
+      "active schema or contract modification",
+      "code or capability implementation",
+      "Runtime modification or execution",
+      "PCN Causal or Intent Runtime implementation",
+      "migration execution",
+      "M3 entry"
+    ]
+  },
+  "Previous Phase": "Phase-Luna-Controlled-Architecture-Alignment-Migration-M1-Schema-Contract-Alignment-v1-001",
+  "Previous Phase Decision": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M1_SCHEMA_CONTRACT_ALIGNMENT_READY",
+  "Input Assets": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/",
+    "capabilities/registry/baselines/"
+  ],
+  "Required Pre-Read": [
+    "docs/architecture/governance/luna_engineering_execution_and_verification_governance_v1/",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/dynamic_cognitive_architecture_v2_canonical_alignment.md",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m0_documentation_alignment_v1/module_responsibility_alignment_registry.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/schema_ownership_mapping.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/existing_contract_compatibility_matrix.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/cognitive_boundary_flow_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_m1_schema_contract_alignment_v1/personal_cognitive_network_reference_contract_candidate.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/cognitive_asset_ownership_matrix.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/migration_dependency_graph.json",
+    "docs/architecture/luna_controlled_architecture_alignment_migration_planning_v1/migration_risk_register.json",
+    "capabilities/registry/baselines/field_state_reducer_module_baseline_v1.json",
+    "capabilities/registry/baselines/field_state_read_model_module_baseline_v1.json",
+    "capabilities/registry/baselines/observation_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/task_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/model_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/protocol_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/ocr_manager_module_baseline_v1.json",
+    "capabilities/registry/baselines/vision_manager_module_baseline_v1.json"
+  ],
+  "Target Directory": "docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/",
+  "Scope": [
+    "create planning-only Owner and metadata candidate assets in the target directory",
+    "map M1 owner boundaries to future governance metadata without activation",
+    "preserve all existing module owners and active baselines",
+    "run V0 static checks only"
+  ],
+  "Out Of Scope": [
+    "modify any existing file",
+    "modify Runtime code or boundary",
+    "modify active baseline schema contract registry or metadata",
+    "create implementation module or adapter",
+    "create Runtime Owner",
+    "execute migration",
+    "start M3"
+  ],
+  "Required Final Files": [
+    "owner_alignment_registry_candidate.json",
+    "responsibility_boundary_matrix_candidate.json",
+    "capability_registry_alignment_candidate.json",
+    "owner_conflict_review.json",
+    "owner_metadata_alignment_plan.md",
+    "m2_change_manifest.json",
+    "phase_contract.json",
+    "verify_controlled_architecture_alignment_m2_owner_metadata_alignment_v1.py"
+  ],
+  "Implementation Principles": [
+    "planning candidate only",
+    "architecture domain is not ownership transfer",
+    "single Owner and single Writer per responsibility",
+    "source Owner precedence",
+    "projection does not imply mutation",
+    "active baseline immutability",
+    "no parallel mainline",
+    "minimal in-scope change"
+  ],
+  "Required Checks": {
+    "V0": [
+      "required file existence",
+      "JSON parse",
+      "Markdown nonempty",
+      "Owner coverage and uniqueness",
+      "Writer uniqueness",
+      "Forbidden Responsibility completeness",
+      "PCN Task Observation Memory boundary checks",
+      "source reference existence",
+      "manifest side-effect boundary",
+      "AST py_compile and import boundary"
+    ],
+    "V1": [],
+    "V2": ["user terminal final phase verifier"],
+    "V3": ["ChatGPT final audit"]
+  },
+  "Negative Guards": [
+    "no-check-weaken",
+    "no-hardcoded-pass",
+    "no final phase verifier by Agent",
+    "no existing file modification",
+    "no active Owner metadata modification",
+    "no active registry or baseline modification",
+    "no schema contract code or Runtime modification",
+    "no Owner transfer",
+    "no duplicate Writer",
+    "no migration execution",
+    "no M3 entry"
+  ],
+  "Verification Authority": {
+    "V0": "Agent",
+    "V1": "Not Authorized",
+    "V2": "User Terminal Only",
+    "V3": "ChatGPT Only"
+  },
+  "Allowed Agent Checks": [
+    "file existence",
+    "JSON parse",
+    "Markdown nonempty",
+    "reference path existence",
+    "static Owner Writer and boundary consistency",
+    "AST",
+    "py_compile",
+    "standard-library import boundary"
+  ],
+  "Allowed Agent Execution": [
+    "read required governance M0 M1 migration and baseline assets",
+    "create M2 planning candidate assets in the target directory",
+    "run V0 static checks",
+    "prepare exact user terminal command"
+  ],
+  "Prohibited Agent Execution": [
+    "run final phase verifier",
+    "run Runner or Runtime",
+    "modify existing code Runtime schema contract baseline registry or metadata",
+    "create PCN Causal Intent or other Runtime implementation",
+    "execute migration",
+    "enter M3"
+  ],
+  "Agent Stop Point": "WAITING_FOR_USER_TERMINAL_VERIFICATION",
+  "User Terminal Commands": [
+    "python3 docs/architecture/luna_controlled_architecture_alignment_migration_m2_owner_metadata_alignment_v1/verify_controlled_architecture_alignment_m2_owner_metadata_alignment_v1.py"
+  ],
+  "Expected Success Decision": "V2_FINAL_VERIFICATION_PASSED",
+  "Expected Success Readiness": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M2_OWNER_METADATA_ALIGNMENT_READY",
+  "Expected Next": "RETURN_COMPLETE_OUTPUT_TO_CHATGPT_FOR_V3_AUDIT",
+  "Expected Failure Decision": "BLOCKED_BY_VERIFIER_FAILURE",
+  "Expected Failure Readiness": "LUNA_CONTROLLED_ARCHITECTURE_ALIGNMENT_M2_OWNER_METADATA_ALIGNMENT_REMEDIATION_REQUIRED",
+  "Expected Failure Next": "REMEDIATE_REPORTED_FAILURES_ONLY",
+  "Stop Condition": "All required M2 planning candidate assets and authorized V0 static checks are complete; stop before user-terminal V2, active metadata changes, migration, Runtime work, or M3.",
+  "Blocker Conditions": [
+    "existing Owner cannot be reconciled uniquely",
+    "duplicate Owner or Writer",
+    "PCN source ownership or mutation",
+    "Task Manager Intent or Causal authority",
+    "Observation Decision authority",
+    "Memory Reality override",
+    "active metadata change required",
+    "source reference missing",
+    "code Runtime baseline registry schema or contract side effect",
+    "verifier syntax or import failure"
+  ],
+  "Completion Report Format": [
+    "Read files",
+    "Created files",
+    "Modified files",
+    "Owner coverage",
+    "Boundary validation",
+    "Conflict findings",
+    "Static checks",
+    "Side-effect boundary",
+    "Known blockers",
+    "User terminal command",
+    "Current status"
+  ],
+  "Migration": false,
+  "Runtime Change": false,
+  "Active Metadata Change": false,
+  "M3 Started": false,
+  "Current Status Contract": "WAITING_FOR_USER_TERMINAL_VERIFICATION"
+}

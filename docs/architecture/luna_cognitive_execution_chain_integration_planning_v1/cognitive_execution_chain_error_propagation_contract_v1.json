@@ -1,0 +1,96 @@
+{
+    "artifact": "cognitive_execution_chain_error_propagation_contract_v1",
+    "status": "PLANNING_CANDIDATE",
+    "propagation_items": [
+        {
+            "error_id": "ERR-INTENT-FORMATION",
+            "origin_owner": "Intent Governance",
+            "origin_error_namespace": "INTENT_*",
+            "propagation_target": [
+                "Causal Governance",
+                "Diagnostics"
+            ],
+            "propagation_kind": "intent_influence_update_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true
+        },
+        {
+            "error_id": "ERR-CAUSAL-UNRESOLVED",
+            "origin_owner": "Causal Governance",
+            "origin_error_namespace": "causal_governance.controlled_implementation.v1",
+            "propagation_target": [
+                "Decision Governance",
+                "Intent Governance",
+                "Diagnostics"
+            ],
+            "propagation_kind": "causal_re_evaluation_request_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true
+        },
+        {
+            "error_id": "ERR-DECISION-DEFER-ABSTAIN-REJECT",
+            "origin_owner": "Decision Governance",
+            "origin_error_namespace": "decision_governance.controlled_implementation.v1",
+            "propagation_target": [
+                "Action Governance",
+                "Causal Governance",
+                "Diagnostics"
+            ],
+            "propagation_kind": "decision_reconsideration_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "none",
+            "reconsideration_allowed": true
+        },
+        {
+            "error_id": "ERR-ACTION-BLOCKED-SUSPENDED-CANCELLED",
+            "origin_owner": "Action Governance",
+            "origin_error_namespace": "action_governance.controlled_implementation.v1",
+            "propagation_target": [
+                "Decision Governance",
+                "Task Manager",
+                "Diagnostics"
+            ],
+            "propagation_kind": "action_reconsideration_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "decision_or_executor_explicit_only",
+            "reconsideration_allowed": true
+        },
+        {
+            "error_id": "ERR-EXECUTOR-ADMISSION-REJECT",
+            "origin_owner": "Runtime Executor",
+            "origin_error_namespace": "RuntimeExecutorErrorV1",
+            "propagation_target": [
+                "Action Governance",
+                "Decision Governance",
+                "Diagnostics"
+            ],
+            "propagation_kind": "execution_reconsideration_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "explicit_authority_required",
+            "reconsideration_allowed": true
+        },
+        {
+            "error_id": "ERR-EXECUTOR-FAILURE-TIMEOUT-PARTIAL-ROLLBACK",
+            "origin_owner": "Runtime Executor",
+            "origin_error_namespace": "RuntimeExecutorErrorV1",
+            "propagation_target": [
+                "Action Governance",
+                "Task Manager",
+                "Diagnostics",
+                "Maintenance Plane"
+            ],
+            "propagation_kind": "result_handoff_candidate",
+            "candidate_only": true,
+            "owner_mutation_forbidden": true,
+            "retry_authority": "explicit_authority_required",
+            "reconsideration_allowed": true
+        }
+    ]
+}
