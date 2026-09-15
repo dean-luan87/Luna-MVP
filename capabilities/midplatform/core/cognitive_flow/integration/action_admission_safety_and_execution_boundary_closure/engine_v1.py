@@ -16,6 +16,10 @@ from capabilities.midplatform.core.action_governance.action_governance_engine_v1
 from capabilities.midplatform.core.action_governance.action_governance_fixture_v1 import (
     get_action_synthetic_fixtures_v1,
 )
+from capabilities.midplatform.core.action_governance.action_resource_types_v1 import (
+    RESOURCE_AVAILABLE,
+    normalize_resource_state,
+)
 from capabilities.midplatform.core.cognitive_flow.integration.task_to_action_boundary_controlled_handoff.engine_v1 import (
     build_task_to_action_run_v1,
 )
@@ -69,6 +73,7 @@ def _positive_case(source_case: Dict[str, Any]) -> Dict[str, Any]:
     candidate = action.get("action_candidate") or {}
     trace = action.get("action_trace") or {}
     runtime_handoff = action.get("runtime_handoff") or {}
+    resource_state = normalize_resource_state(request.get("resource_state"))
     runtime_handoff_ref = str(
         runtime_handoff.get("handoff_id") or action.get("runtime_handoff_ref") or ""
     )
@@ -77,6 +82,7 @@ def _positive_case(source_case: Dict[str, Any]) -> Dict[str, Any]:
         and action.get("action_state") == "READY_CANDIDATE"
         and action.get("action_readiness") == "candidate_ready"
         and runtime_handoff.get("execution_readiness") == "candidate_ready"
+        and resource_state == RESOURCE_AVAILABLE
     )
 
     # Action Governance exposes readiness as a candidate without a separate
@@ -132,7 +138,7 @@ def _positive_case(source_case: Dict[str, Any]) -> Dict[str, Any]:
             "precondition_refs": [item.get("precondition_id") for item in preconditions],
             "dependency_refs": [item.get("dependency_id") for item in dependencies],
             "resource_refs": list(_ref_ids(request.get("resource_refs") or ())),
-            "resource_state": request.get("resource_state"),
+            "resource_state": resource_state,
         },
         "risk_validation": {
             "status": "NOT_INSTRUMENTED",
@@ -280,7 +286,10 @@ def _negative_case(fixture_id: str, public_id: str) -> Dict[str, Any]:
 
 
 def build_action_admission_safety_run_v1() -> Dict[str, Any]:
-    source = build_task_to_action_run_v1()
+    # This controlled safety fixture explicitly supplies available resources;
+    # the generic Task-to-Action adapter defaults to UNKNOWN when no resource
+    # proof is present.
+    source = build_task_to_action_run_v1(resource_state="available")
     cases = [_positive_case(case) for case in source.get("cases") or ()]
     negatives = [
         _negative_case("A03_PERMISSION_REVOKED_TO_BLOCKED", "action_without_permission"),

@@ -38,6 +38,7 @@ class TaskToActionHandoffCandidateV1:
     action_execution: bool = False
     runtime_dispatch: bool = False
     device_control: bool = False
+    resource_state: str = "unknown"
 
 
 __all__ = [

@@ -37,7 +37,11 @@ from capabilities.midplatform.core.action_governance.action_registry_v1 import (
     TASK_MANAGER_OWNER,
 )
 from capabilities.midplatform.core.action_governance.action_resource_types_v1 import (
+    RESOURCE_PENDING_REACTION,
+    RESOURCE_UNKNOWN,
+    RESOURCE_UNAVAILABLE,
     ResourceConstraintStatusV1,
+    normalize_resource_state,
 )
 from capabilities.midplatform.core.action_governance.action_rollback_types_v1 import (
     RollbackContextCandidateV1,
@@ -78,7 +82,7 @@ class ActionGovernanceEngineV1:
         )
 
     def _derive_state_and_readiness(
-        self, request: ActionGovernanceInputV1
+        self, request: ActionGovernanceInputV1, resource_state: str
     ) -> Tuple[str, str, str]:
         if request.cancellation_requested or (not request.target_valid):
             return (
@@ -96,7 +100,7 @@ class ActionGovernanceEngineV1:
         if request.rollback_required:
             return ("ROLLBACK_REQUIRED", "blocked", "rollback_context_required")
 
-        if request.resource_state == "unavailable":
+        if resource_state == RESOURCE_UNAVAILABLE:
             return ("SUSPENDED", "suspended", "resource_unavailable")
 
         if self._has_precondition_missing(request.preconditions):
@@ -147,7 +151,10 @@ class ActionGovernanceEngineV1:
         return ("READY_CANDIDATE", "candidate_ready", "all_gates_satisfied")
 
     def run_case(self, request: ActionGovernanceInputV1) -> ActionGovernanceOutputV1:
-        state, readiness_state, reason = self._derive_state_and_readiness(request)
+        resource_state = normalize_resource_state(request.resource_state)
+        state, readiness_state, reason = self._derive_state_and_readiness(
+            request, resource_state
+        )
 
         candidate = ActionCandidateV1(
             action_candidate_id=f"action:{request.scenario_id}",
@@ -198,12 +205,12 @@ class ActionGovernanceEngineV1:
         )
 
         resource_reaction = "remain_eligible"
-        if request.resource_state == "unavailable":
+        if resource_state == RESOURCE_UNAVAILABLE:
             resource_reaction = "become_suspended"
-        elif request.resource_state == "unknown":
-            resource_reaction = "become_blocked"
+        elif resource_state == RESOURCE_UNKNOWN:
+            resource_reaction = RESOURCE_PENDING_REACTION
         resource_status = ResourceConstraintStatusV1(
-            state=request.resource_state,
+            state=resource_state,
             reaction=resource_reaction,
         )
 

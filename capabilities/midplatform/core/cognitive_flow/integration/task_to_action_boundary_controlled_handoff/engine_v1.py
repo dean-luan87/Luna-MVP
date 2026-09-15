@@ -23,6 +23,9 @@ from capabilities.midplatform.core.action_governance.action_io_types_v1 import (
 from capabilities.midplatform.core.action_governance.action_precondition_types_v1 import (
     ActionPreconditionCandidateV1,
 )
+from capabilities.midplatform.core.action_governance.action_resource_types_v1 import (
+    normalize_resource_state,
+)
 from capabilities.midplatform.core.action_governance.action_static_validators_v1 import (
     validate_action_candidate,
     validate_dependencies,
@@ -124,6 +127,12 @@ def _build_task_to_action_handoff(
     if not option_ref:
         return None, ("action_handoff_requires_decision_option_ref",)
 
+    declared_resource_state = (
+        task.get("resource_state")
+        if "resource_state" in task
+        else case.get("resource_state")
+    )
+
     provenance_refs = _unique(
         (
             *tuple(task_handoff.get("provenance_refs") or ()),
@@ -169,6 +178,7 @@ def _build_task_to_action_handoff(
                 for ref in ((case.get("decision_case") or {}).get("decision") or {}).get("request", {}).get("resource_refs", [])
             ),
             provenance_refs=provenance_refs,
+            resource_state=normalize_resource_state(declared_resource_state),
         ),
         (),
     )
@@ -213,7 +223,7 @@ def _action_request(handoff: TaskToActionHandoffCandidateV1) -> Dict[str, Any]:
         "preconditions": (precondition,),
         "dependencies": (dependency,),
         "resource_refs": tuple(_source("Resource Governance", ref, "RESOURCE") for ref in handoff.resource_refs),
-        "resource_state": "available",
+        "resource_state": normalize_resource_state(handoff.resource_state),
         "permission_valid": True,
         "safety_valid": True,
         "confirmation": ConfirmationStatusV1(
@@ -373,9 +383,12 @@ def _negative_action_handoff_probe_v1() -> Dict[str, Any]:
     }
 
 
-def build_task_to_action_run_v1() -> Dict[str, Any]:
+def build_task_to_action_run_v1(resource_state: object = "unknown") -> Dict[str, Any]:
     source = build_decision_task_run_v1()
-    cases = [_case_result(case) for case in source["cases"]]
+    cases = [
+        _case_result({**case, "resource_state": resource_state})
+        for case in source["cases"]
+    ]
     return {
         "phase": PHASE,
         "source_integration_phase": source.get("phase"),
