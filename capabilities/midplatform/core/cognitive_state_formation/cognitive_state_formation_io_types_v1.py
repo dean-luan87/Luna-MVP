@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Tuple
+from typing import TYPE_CHECKING, Tuple
 
 from capabilities.midplatform.core.cognitive_state_formation.attention_types_v1 import (
     AttentionCandidateV1,
@@ -16,6 +16,7 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_hypothesi
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
     NegativeGuardStatusV1,
     ProvenanceEnvelopeV1,
+    CognitiveReferenceSemanticV1,
     SourceRefV1,
     TraceEnvelopeV1,
 )
@@ -39,6 +40,10 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_condition
     CognitiveEvidenceRelevanceCandidateV1,
     CognitiveRelationInterpretationCandidateV1,
 )
+if TYPE_CHECKING:
+    from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_types_v1 import (
+        ARouteRequiredCognitiveConditionFormationResultV1,
+    )
 from capabilities.midplatform.core.execution_mode_v1 import SYNTHETIC_CONTROLLED
 from .cognitive_loop_types_v1 import (
     CognitiveInformationGapCandidateV1,
@@ -96,6 +101,11 @@ class CognitiveStateFormationInputV1:
     # Optional typed, read-only relation projections produced by an upstream
     # governed Field State adapter.  Empty preserves legacy callers.
     relation_interpretation_candidates: Tuple[CognitiveRelationInterpretationCandidateV1, ...] = field(default_factory=tuple)
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
+    semantic_reference_values: Tuple[CognitiveReferenceSemanticV1, ...] = field(default_factory=tuple)
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
 
 
 @dataclass(frozen=True)
@@ -127,3 +137,7 @@ class CognitiveStateFormationOutputV1:
     cognitive_cycle_index: int = 1
     evidence_relevance_candidates: Tuple[CognitiveEvidenceRelevanceCandidateV1, ...] = field(default_factory=tuple)
     relation_interpretation_candidates: Tuple[CognitiveRelationInterpretationCandidateV1, ...] = field(default_factory=tuple)
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None

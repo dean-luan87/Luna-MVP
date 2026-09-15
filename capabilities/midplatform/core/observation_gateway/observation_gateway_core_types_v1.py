@@ -153,6 +153,9 @@ class ObservationGatewayRuntimeAdmissionV1:
     cycle_index: int = 1
     required_information_refs: Tuple[str, ...] = ()
     available_information_refs: Tuple[str, ...] = ()
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
     evidence_information_refs: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     inherited_information_refs: Tuple[str, ...] = ()
     prior_current_world_ref: str | None = None
@@ -163,6 +166,7 @@ class ObservationGatewayRuntimeAdmissionV1:
     prior_sufficiency_candidate: object | None = None
     prior_information_gap_candidate: object | None = None
     prior_reobservation_candidate: object | None = None
+    required_cognitive_condition_formation_result: object | None = None
 
 
 @dataclass(frozen=True)
@@ -227,6 +231,9 @@ class ObservationIngressRequestV1:
     runtime_observation: RuntimeObservationEnvelopeV1 | None = None
     required_information_refs: Tuple[str, ...] = ()
     available_information_refs: Tuple[str, ...] = ()
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
     evidence_information_refs: Tuple[Tuple[str, Tuple[str, ...]], ...] = ()
     inherited_information_refs: Tuple[str, ...] = ()
     cycle_index: int = 1
@@ -238,6 +245,7 @@ class ObservationIngressRequestV1:
     prior_sufficiency_candidate: object | None = None
     prior_information_gap_candidate: object | None = None
     prior_reobservation_candidate: object | None = None
+    required_cognitive_condition_formation_result: object | None = None
 
 
 @dataclass(frozen=True)

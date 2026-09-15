@@ -27,6 +27,7 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_type
     CognitiveStopCandidateV1,
     CognitiveSufficiencyCandidateV1,
     validate_cognitive_loop_candidates_v1,
+    validated_requirement_establishment_from_condition_formation_v1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_conditioning_types_v1 import (
     CognitiveEvidenceRelevanceCandidateV1,
@@ -68,25 +69,34 @@ class CognitiveStateFormationEngineV1:
         return tuple(getattr(item, "source_ref", str(item)) for item in refs)
 
     @staticmethod
-    def _tokens(refs: Tuple[object, ...]) -> Tuple[str, ...]:
-        return tuple(value.lower() for value in CognitiveStateFormationEngineV1._values(refs))
+    def _semantic_values(
+        request: CognitiveStateFormationInputV1, semantic_kind: str
+    ) -> Tuple[str, ...]:
+        return tuple(
+            item.semantic_value.lower()
+            for item in request.semantic_reference_values
+            if item.semantic_kind == semantic_kind and item.semantic_value
+        )
+
+    @staticmethod
+    def _semantic_values_for_ref(
+        request: CognitiveStateFormationInputV1, source_ref: str, semantic_kind: str
+    ) -> Tuple[str, ...]:
+        return tuple(
+            item.semantic_value.lower()
+            for item in request.semantic_reference_values
+            if item.source_ref == source_ref
+            and item.semantic_kind == semantic_kind
+            and item.semantic_value
+        )
 
     def _conditioning_target(self, request: CognitiveStateFormationInputV1) -> str:
-        values = self._tokens(
-            (*request.task_refs, *request.goal_refs, *request.information_need_refs)
-        )
-        for target in ("document", "exit", "operational-state", "state", "location", "identity", "locate", "target"):
-            if any(target in value for value in values):
-                return "location" if target in {"locate", "target"} else target.replace("-", "_")
-        return "target"
+        values = self._semantic_values(request, "TARGET")
+        return values[0].replace("-", "_") if values else "unknown"
 
     def _role_label(self, request: CognitiveStateFormationInputV1) -> str:
-        role_values = self._tokens(request.role_refs)
-        if any("owner" in value for value in role_values):
-            return "workspace-owner"
-        if any("visitor" in value for value in role_values):
-            return "visitor"
-        return "unspecified-role"
+        values = self._semantic_values(request, "ROLE")
+        return values[0] if values else "unknown-role"
 
     def _build_evidence_relevance_candidates(
         self, request: CognitiveStateFormationInputV1
@@ -97,10 +107,7 @@ class CognitiveStateFormationEngineV1:
             for evidence_ref, info_refs in request.evidence_information_refs
         }
         required_information = set(request.required_information_refs)
-        role_values = self._tokens(request.role_refs)
-        condition_values = self._tokens(
-            (*request.task_refs, *request.goal_refs, *request.information_need_refs)
-        )
+        role_values = self._semantic_values(request, "ROLE")
         target = self._conditioning_target(request)
         result = []
         for index, evidence_ref in enumerate(evidence_refs, start=1):
@@ -124,25 +131,11 @@ class CognitiveStateFormationEngineV1:
                     )
                 )
                 continue
-            value = evidence_ref.lower()
-            matched_topics = tuple(
-                candidate
-                for candidate in (
-                    "operational",
-                    "state",
-                    "location",
-                    "document",
-                    "exit",
-                    "door",
-                    "identity",
-                    "desk",
-                )
-                if candidate in value
-            )
-            topic = matched_topics[0] if matched_topics else "other"
+            matched_topics = self._semantic_values_for_ref(request, evidence_ref, "EVIDENCE_TOPIC")
+            topic = matched_topics[0] if matched_topics else "unknown"
             score = 0.15
             reasons = []
-            if topic == target or (target == "exit" and "door" in matched_topics) or (target == "operational_state" and any(item in {"operational", "state"} for item in matched_topics)):
+            if target in matched_topics or (target == "exit" and "door" in matched_topics) or (target == "operational_state" and any(item in {"operational", "state"} for item in matched_topics)):
                 score += 0.55
                 reasons.append("evidence topic matches the active information need")
             if any("owner" in role for role in role_values) and any(item in {"document", "desk"} for item in matched_topics):
@@ -157,6 +150,8 @@ class CognitiveStateFormationEngineV1:
             if any("owner" in role for role in role_values) and any(item in {"door", "exit"} for item in matched_topics):
                 score -= 0.05
                 reasons.append("workspace-owner perspective lowers exit relevance for this need")
+            if not matched_topics:
+                reasons.append("evidence semantic topic is unavailable from the typed input")
             if not reasons:
                 reasons.append("evidence is retained but has no demonstrated alignment with the active need")
             score = round(max(0.0, min(1.0, score)), 3)
@@ -231,11 +226,7 @@ class CognitiveStateFormationEngineV1:
                         goal_refs=self._values(request.goal_refs),
                         information_need_refs=self._values(request.information_need_refs),
                         interpretation_candidate=interpretation,
-                        relevance_state=(
-                            "RELEVANT"
-                            if target in interpretation.lower()
-                            else "CONTEXTUALLY_RELEVANT"
-                        ),
+                        relevance_state=relation.relevance_state,
                         candidate_only=True,
                         field_state_candidate_ref=relation.field_state_candidate_ref,
                         subject_ref=relation.subject_ref,
@@ -272,7 +263,7 @@ class CognitiveStateFormationEngineV1:
                     goal_refs=self._values(request.goal_refs),
                     information_need_refs=self._values(request.information_need_refs),
                     interpretation_candidate=interpretation,
-                    relevance_state="RELEVANT" if target in relation.lower() or target in interpretation.lower() else "CONTEXTUALLY_RELEVANT",
+                    relevance_state="UNRESOLVED",
                 )
             )
         return tuple(result)
@@ -289,7 +280,8 @@ class CognitiveStateFormationEngineV1:
             for index, evidence_ref in enumerate(evidence_refs, start=1):
                 relevance_item = relevance_candidates[index - 1] if index <= len(relevance_candidates) else None
                 relevance = relevance_item.relevance_score_candidate if relevance_item else 0.0
-                uncertainty = 0.65 if any(token in evidence_ref.lower() for token in ("absent", "unknown", "conflict")) else 0.20
+                evidence_states = self._semantic_values_for_ref(request, evidence_ref, "EVIDENCE_STATE")
+                uncertainty = 0.65 if evidence_states else 0.20
                 salience = round(0.35 + relevance * 0.35, 3)
                 risk = 0.20
                 urgency = round(0.30 + relevance * 0.20, 3)
@@ -425,7 +417,11 @@ class CognitiveStateFormationEngineV1:
         if self._is_conditioned_replay(request):
             ranked = sorted(items, key=lambda x: x.attention_priority_candidate, reverse=True)
             selected = (ranked[0].attention_id,) if ranked else ()
-            conflict = any("absent" in ref.lower() or "conflict" in ref.lower() for ref in self._values(request.evidence_refs))
+            conflict = any(
+                state in {"absent", "conflict", "contradictory"}
+                for ref in self._values(request.evidence_refs)
+                for state in self._semantic_values_for_ref(request, ref, "EVIDENCE_STATE")
+            )
             missing = not bool(self._values(request.evidence_refs))
             return AttentionSelectionCandidateV1(
                 selection_id=f"sel:{request.scenario_id}",
@@ -526,8 +522,9 @@ class CognitiveStateFormationEngineV1:
             available = self._coverage_information_refs(request)
             missing = required - available
             conflicting = any(
-                any(token in ref.lower() for token in ("absent", "conflict", "contradict"))
+                state in {"absent", "conflict", "contradictory"}
                 for ref in evidence_refs
+                for state in self._semantic_values_for_ref(request, ref, "EVIDENCE_STATE")
             )
             if request.prior_information_gap_ref and request.prior_reobservation_ref:
                 state = "REVISED"
@@ -538,9 +535,8 @@ class CognitiveStateFormationEngineV1:
             else:
                 state = "SUPPORTED"
             target = self._conditioning_target(request)
-            role_values = self._tokens(request.role_refs)
-            role_label = "workspace-owner" if any("owner" in value for value in role_values) else "visitor" if any("visitor" in value for value in role_values) else "unspecified-role"
-            task_values = self._values(request.task_refs)
+            role_label = self._role_label(request)
+            task_values = self._semantic_values(request, "TASK_LABEL")
             task_label = task_values[0] if task_values else "task-unresolved"
             count = 2 if conflicting else 1
             hypotheses: List[CognitiveHypothesisCandidateV1] = []
@@ -548,7 +544,14 @@ class CognitiveStateFormationEngineV1:
                 hid = f"hyp:{request.scenario_id}:{index}"
                 alternatives = tuple(f"hyp:{request.scenario_id}:{j}" for j in range(1, count + 1) if j != index)
                 unknowns = tuple(sorted(missing))
-                opposition = tuple(ref for ref in evidence_refs if any(token in ref.lower() for token in ("absent", "oppose", "contradict")))
+                opposition = tuple(
+                    ref
+                    for ref in evidence_refs
+                    if any(
+                        state in {"absent", "opposed", "contradictory"}
+                        for state in self._semantic_values_for_ref(request, ref, "EVIDENCE_STATE")
+                    )
+                )
                 hypotheses.append(
                     CognitiveHypothesisCandidateV1(
                         hypothesis_id=hid,
@@ -949,7 +952,26 @@ class CognitiveStateFormationEngineV1:
         missing = tuple(ref for ref in required if ref not in available)
         execution_ref = request.execution_ref or f"cognitive:{request.scenario_id}:candidate"
         sufficiency_ref = f"sufficiency:{execution_ref}:v1"
-        sufficient = not missing
+        establishment_projection = (
+            validated_requirement_establishment_from_condition_formation_v1(
+                request.required_cognitive_condition_formation_result
+            )
+            if request.required_cognitive_condition_formation_result is not None
+            else None
+        )
+        if establishment_projection is not None:
+            establishment_status, establishment_ref, establishment_basis = establishment_projection
+        else:
+            declared_status = request.requirement_establishment_status
+            establishment_status = (
+                declared_status
+                if declared_status in {"UNAVAILABLE", "INVALID", "WITHHELD"}
+                else "NOT_ESTABLISHED"
+            )
+            establishment_ref = None
+            establishment_basis = None
+        can_evaluate_sufficiency = establishment_status == "ESTABLISHED"
+        sufficient = can_evaluate_sufficiency and not missing
         goal_values = self._values(request.goal_refs)
         concern_values = self._values(request.concern_refs)
         if self._is_conditioned_replay(request):
@@ -963,7 +985,15 @@ class CognitiveStateFormationEngineV1:
             owner_ref=CANONICAL_OWNER,
             goal_ref=goal_ref,
             concern_ref=concern_ref,
-            status="SUFFICIENT" if sufficient else "INSUFFICIENT",
+            status=(
+                "SUFFICIENT"
+                if sufficient
+                else "INSUFFICIENT"
+                if can_evaluate_sufficiency
+                else "WITHHELD"
+                if establishment_status == "WITHHELD"
+                else "UNKNOWN"
+            ),
             evidence_refs=evidence_refs,
             required_information_refs=required,
             missing_information_refs=missing,
@@ -971,9 +1001,16 @@ class CognitiveStateFormationEngineV1:
                 "active cognitive need is covered by admitted relevant information"
                 if sufficient
                 else "active cognitive need still has required information missing"
+                if can_evaluate_sufficiency
+                else "requirement establishment proof is unavailable; sufficiency is withheld"
             ),
             stop_required=sufficient,
+            requirement_establishment_status=establishment_status,
+            requirement_establishment_ref=establishment_ref,
+            requirement_establishment_basis=establishment_basis,
         )
+        if not can_evaluate_sufficiency:
+            return sufficiency, None, None, None, None, None
         if sufficient:
             stop = CognitiveStopCandidateV1(
                 stop_ref=f"stop:{execution_ref}:v1",
@@ -1135,4 +1172,8 @@ class CognitiveStateFormationEngineV1:
             cognitive_cycle_index=request.cycle_index,
             evidence_relevance_candidates=evidence_relevance_candidates,
             relation_interpretation_candidates=relation_interpretation_candidates,
+            requirement_establishment_status=sufficiency.requirement_establishment_status,
+            requirement_establishment_ref=sufficiency.requirement_establishment_ref,
+            requirement_establishment_basis=sufficiency.requirement_establishment_basis,
+            required_cognitive_condition_formation_result=request.required_cognitive_condition_formation_result,
         )

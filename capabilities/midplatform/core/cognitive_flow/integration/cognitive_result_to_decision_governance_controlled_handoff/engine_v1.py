@@ -72,6 +72,10 @@ def build_cognitive_decision_handoff_candidate_v1(
 ) -> Tuple[Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
     """Gate a Decision handoff on canonical final cognition readiness."""
 
+    from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
+        validated_requirement_establishment_from_condition_formation_v1,
+    )
+
     request = case.get("brain_request") or {}
     need = case.get("information_need") or {}
     loop = case.get("loop_instance") or {}
@@ -79,6 +83,13 @@ def build_cognitive_decision_handoff_candidate_v1(
         return None, ("decision_handoff_requires_cognitive_proof",)
     if proof.get("sufficiency_status") != "SUFFICIENT":
         return None, ("decision_handoff_requires_sufficient_cognition",)
+    if proof.get("requirement_establishment_status") != "ESTABLISHED" or not proof.get("requirement_establishment_ref"):
+        return None, ("decision_handoff_requires_requirement_establishment",)
+    establishment = validated_requirement_establishment_from_condition_formation_v1(
+        proof.get("required_cognitive_condition_formation_result")
+    )
+    if establishment is None or establishment[1] != proof.get("requirement_establishment_ref"):
+        return None, ("decision_handoff_requires_validated_requirement_establishment",)
     if not proof.get("sufficiency_ref"):
         return None, ("decision_handoff_requires_sufficiency_ref",)
     if not proof.get("stop_ref"):

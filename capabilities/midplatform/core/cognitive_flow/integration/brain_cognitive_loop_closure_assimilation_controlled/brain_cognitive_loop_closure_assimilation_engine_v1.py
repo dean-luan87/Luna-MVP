@@ -163,7 +163,23 @@ def _build_closure(
     loop: BrainCognitiveLoopInstanceV1,
     proof: Any,
 ):
-    if proof is None or proof.sufficiency_status != "SUFFICIENT" or not proof.sufficiency_ref:
+    from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
+        validated_requirement_establishment_from_condition_formation_v1,
+    )
+    establishment = validated_requirement_establishment_from_condition_formation_v1(
+        getattr(proof, "required_cognitive_condition_formation_result", None)
+        if proof is not None
+        else None
+    )
+    if (
+        proof is None
+        or proof.sufficiency_status != "SUFFICIENT"
+        or proof.requirement_establishment_status != "ESTABLISHED"
+        or not proof.requirement_establishment_ref
+        or not proof.sufficiency_ref
+        or establishment is None
+        or establishment[1] != proof.requirement_establishment_ref
+    ):
         return (None, None, None, None, None, None, ("closure_requires_sufficient_cognition",))
     if not proof.stop_ref:
         return (None, None, None, None, None, None, ("closure_requires_canonical_stop",))

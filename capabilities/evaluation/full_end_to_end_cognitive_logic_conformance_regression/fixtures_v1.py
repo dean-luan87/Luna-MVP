@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import Tuple
 
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    CognitiveReferenceSemanticV1,
     SourceRefV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
@@ -23,6 +24,18 @@ from capabilities.midplatform.core.a_route_orchestration.a_route_orchestration_c
 from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,
     ControlledReplayInputV1,
+)
+from capabilities.cognitive_flow.current_cognitive_context.context_inputs_v1 import GoalContextV1
+from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_engine_v1 import (
+    ARouteRequiredCognitiveConditionFormationEngineV1,
+)
+from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_types_v1 import (
+    ARouteRequiredCognitiveConditionFormationRequestV1,
+    CurrentCognitiveSituationV1,
+    GovernedObjectiveConditionRuleV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
+    requirement_establishment_from_condition_formation_status_v1,
 )
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
     ObservationIngressRequestV1,
@@ -70,8 +83,87 @@ def _information_need_ref(spec: ContrastSpecV1) -> str:
     return f"information-need:{spec.task_ref.removeprefix('task:')}"
 
 
+def _semantic_values(spec: ContrastSpecV1) -> Tuple[CognitiveReferenceSemanticV1, ...]:
+    target_by_goal = {
+        "goal:find-document": "document",
+        "goal:identify-exit": "exit",
+        "goal:locate-target": "location",
+        "goal:verify-state": "operational_state",
+        "goal:assess-document": "document",
+    }
+    task_by_ref = {
+        "task:find-document": "find-document",
+        "task:identify-exit": "identify-exit",
+        "task:assess-target": "assess-target",
+        "task:assess-document": "assess-document",
+    }
+    values = [
+        CognitiveReferenceSemanticV1(spec.role_ref, "ROLE", "workspace-owner" if spec.role_ref == "role:workspace-owner" else "visitor"),
+        CognitiveReferenceSemanticV1(spec.goal_ref, "TARGET", target_by_goal.get(spec.goal_ref, "unknown")),
+        CognitiveReferenceSemanticV1(spec.task_ref, "TASK_LABEL", task_by_ref.get(spec.task_ref, "unknown-task")),
+    ]
+    topic_by_evidence = {
+        "evidence:office:document-location": ("document", "location"),
+        "evidence:office:door-location": ("exit", "location"),
+        "evidence:office:document-present": ("document",),
+        "evidence:office:document-absent": ("document",),
+    }
+    for ref in spec.evidence_refs:
+        for topic in topic_by_evidence.get(ref, ("unknown",)):
+            values.append(
+                CognitiveReferenceSemanticV1(
+                    ref,
+                    "EVIDENCE_TOPIC",
+                    topic,
+                )
+            )
+        if ref.endswith(":document-absent"):
+            values.append(CognitiveReferenceSemanticV1(ref, "EVIDENCE_STATE", "absent"))
+    return tuple(values)
+
+
+def _canonical_establishment_proof(
+    spec: ContrastSpecV1,
+):
+    rules = (
+        GovernedObjectiveConditionRuleV1(
+            rule_ref=f"rule:full-e2e:{spec.contrast_id}:v1",
+            condition_ref=f"condition:full-e2e:{spec.contrast_id}:v1",
+            objective_refs=(spec.goal_ref,),
+            satisfaction_coverage_refs=spec.required_information_refs,
+            source_refs=(f"governance:full-e2e:{spec.contrast_id}:v1",),
+            provenance_refs=(f"provenance:full-e2e:{spec.contrast_id}:v1",),
+        ),
+    ) if spec.required_information_refs else ()
+    return ARouteRequiredCognitiveConditionFormationEngineV1().form(
+        ARouteRequiredCognitiveConditionFormationRequestV1(
+            goal_context=GoalContextV1(
+                goal_ref=spec.goal_ref,
+                primary_goal=spec.goal_ref,
+                secondary_goal_refs=(),
+                success_condition_refs=(),
+                stop_condition_refs=(),
+                provenance={"source": "controlled-full-e2e-fixture"},
+                trace=f"trace:full-e2e:{spec.contrast_id}:v1",
+            ),
+            governed_condition_rules=rules,
+            current_situation=CurrentCognitiveSituationV1(
+                current_cognitive_coverage_refs=spec.available_information_refs,
+            ),
+            intent_ref=spec.intent_ref,
+            concern_ref=f"concern:{spec.goal_ref.removeprefix('goal:')}",
+            context_ref="context:office",
+            field_ref="field:office",
+            formation_trace_ref=f"trace:full-e2e:required-conditions:{spec.contrast_id}:v1",
+        )
+    )
+
+
 def build_request_v1(spec: ContrastSpecV1) -> CognitiveStateFormationInputV1:
     """Retain a direct CState adapter for compatibility with local readers."""
+    establishment_status, establishment_basis = requirement_establishment_from_condition_formation_status_v1(
+        "CONDITIONS_FORMED"
+    )
     return CognitiveStateFormationInputV1(
         scenario_id=spec.scenario_id,
         context_refs=(_ref("Context Foundation", "context:office", "CONTEXT", spec.contrast_id),),
@@ -90,6 +182,11 @@ def build_request_v1(spec: ContrastSpecV1) -> CognitiveStateFormationInputV1:
         role_refs=(_ref("Social Self / Role Governance", spec.role_ref, "ROLE", spec.contrast_id),),
         required_information_refs=spec.required_information_refs,
         available_information_refs=spec.available_information_refs,
+        requirement_establishment_status=establishment_status,
+        requirement_establishment_ref=f"required-conditions:{spec.contrast_id}:v1",
+        requirement_establishment_basis=establishment_basis,
+        required_cognitive_condition_formation_result=_canonical_establishment_proof(spec),
+        semantic_reference_values=_semantic_values(spec),
         synthetic_only=True,
         candidate_only=True,
         execution_ref=f"cognitive-logic-contrast:{spec.contrast_id}",
@@ -107,6 +204,9 @@ def build_replay_inputs_v1(
     spec: ContrastSpecV1,
 ) -> tuple[ObservationIngressRequestV1, ARouteOrchestrationRequestV1]:
     """Build the real Gateway→A-Route request surface for one contrast."""
+    establishment_status, establishment_basis = requirement_establishment_from_condition_formation_status_v1(
+        "CONDITIONS_FORMED"
+    )
     execution_identity = f"full-e2e-cognitive-logic:{spec.contrast_id}"
     replay = ControlledReplayInputV1(
         replay_input_ref=f"replay-input:full-e2e-cognitive-logic:{spec.contrast_id}:v1",
@@ -124,6 +224,10 @@ def build_replay_inputs_v1(
         ),
         required_information_refs=spec.required_information_refs,
         available_information_refs=spec.available_information_refs,
+        requirement_establishment_status=establishment_status,
+        requirement_establishment_ref=f"required-conditions:{spec.contrast_id}:v1",
+        requirement_establishment_basis=establishment_basis,
+        required_cognitive_condition_formation_result=_canonical_establishment_proof(spec),
     )
     gateway_request = ObservationIngressRequestV1(
         scenario_id=spec.scenario_id,
@@ -165,6 +269,7 @@ def build_replay_inputs_v1(
         goal_refs=(spec.goal_ref,),
         concern_refs=(f"concern:{spec.goal_ref.removeprefix('goal:')}",),
         information_need_refs=(_information_need_ref(spec),),
+        semantic_reference_values=_semantic_values(spec),
     )
     return gateway_request, route_request
 

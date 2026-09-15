@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Tuple
+from typing import TYPE_CHECKING, Dict, Tuple
 
 from capabilities.midplatform.core.execution_mode_v1 import (
     SYNTHETIC_CONTROLLED,
@@ -12,12 +12,19 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_type
     CognitiveReobservationCandidateV1,
     CognitiveSufficiencyCandidateV1,
 )
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    CognitiveReferenceSemanticV1,
+)
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_conditioning_types_v1 import (
     CognitiveRelationInterpretationCandidateV1,
 )
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
     ObservationGatewayRuntimeAdmissionV1,
 )
+if TYPE_CHECKING:
+    from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_types_v1 import (
+        ARouteRequiredCognitiveConditionFormationResultV1,
+    )
 
 SCHEMA_VERSION = "a-route-orchestration-schema-v1"
 CONTRACT_VERSION = "a-route-orchestration-contract-v1"
@@ -164,6 +171,10 @@ class ARouteCognitiveExecutionEvidenceV1:
     relation_interpretation_semantic_candidates: Tuple[CognitiveRelationInterpretationCandidateV1, ...] = ()
     current_world_relation_interpretation_refs: Tuple[str, ...] = ()
     conditioned_conflict_refs: Tuple[str, ...] = ()
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
 
 
 @dataclass(frozen=True)
@@ -224,6 +235,8 @@ class ARouteOrchestrationRequestV1:
     concern_refs: Tuple[str, ...] = ()
     information_need_refs: Tuple[str, ...] = ()
     relation_interpretation_candidates: Tuple[CognitiveRelationInterpretationCandidateV1, ...] = ()
+    semantic_reference_values: Tuple[CognitiveReferenceSemanticV1, ...] = ()
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
 
 
 @dataclass(frozen=True)

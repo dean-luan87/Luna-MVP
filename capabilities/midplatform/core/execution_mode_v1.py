@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Tuple
 
 if TYPE_CHECKING:
+    from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_types_v1 import (
+        ARouteRequiredCognitiveConditionFormationResultV1,
+    )
     from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
         CognitiveInformationGapCandidateV1,
         CognitiveReobservationCandidateV1,
@@ -43,6 +46,10 @@ class ControlledReplayInputV1:
     cycle_index: int = 1
     required_information_refs: Tuple[str, ...] = ()
     available_information_refs: Tuple[str, ...] = ()
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
     prior_current_world_ref: str | None = None
     prior_hypothesis_refs: Tuple[str, ...] = ()
     prior_information_gap_ref: str | None = None
@@ -75,6 +82,10 @@ class ControlledReplayAdmissionV1:
     cycle_index: int = 1
     required_information_refs: Tuple[str, ...] = ()
     available_information_refs: Tuple[str, ...] = ()
+    requirement_establishment_status: str = "NOT_ESTABLISHED"
+    requirement_establishment_ref: str | None = None
+    requirement_establishment_basis: str | None = None
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
     prior_current_world_ref: str | None = None
     prior_hypothesis_refs: Tuple[str, ...] = ()
     prior_information_gap_ref: str | None = None
@@ -125,6 +136,14 @@ def validate_controlled_replay_input(
         errors.append("replay_forbidden_runtime_capability_claimed")
     if replay.world_truth_declared or not replay.candidate_only:
         errors.append("replay_authority_boundary_invalid")
+    if replay.required_cognitive_condition_formation_result is not None:
+        from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
+            validated_requirement_establishment_from_condition_formation_v1,
+        )
+        if validated_requirement_establishment_from_condition_formation_v1(
+            replay.required_cognitive_condition_formation_result
+        ) is None:
+            errors.append("replay_required_condition_formation_proof_invalid")
     if replay.cycle_index < 1:
         errors.append("replay_cycle_index_invalid")
     if replay.cycle_index > 1 and not replay.prior_information_gap_ref:
@@ -174,6 +193,10 @@ def validate_controlled_replay_admission(
         cycle_index=admission.cycle_index,
         required_information_refs=admission.required_information_refs,
         available_information_refs=admission.available_information_refs,
+        requirement_establishment_status=admission.requirement_establishment_status,
+        requirement_establishment_ref=admission.requirement_establishment_ref,
+        requirement_establishment_basis=admission.requirement_establishment_basis,
+        required_cognitive_condition_formation_result=admission.required_cognitive_condition_formation_result,
         prior_current_world_ref=admission.prior_current_world_ref,
         prior_hypothesis_refs=admission.prior_hypothesis_refs,
         prior_information_gap_ref=admission.prior_information_gap_ref,

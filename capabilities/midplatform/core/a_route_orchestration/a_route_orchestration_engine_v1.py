@@ -12,6 +12,9 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
     CognitiveStateFormationInputV1,
 )
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
+    validated_requirement_establishment_from_condition_formation_v1,
+)
 from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,
     LIVE_RUNTIME,
@@ -70,6 +73,10 @@ class _NormalizedAdmissionInformationV1:
     available_information_refs: Tuple[str, ...]
     evidence_information_refs: Tuple[Tuple[str, Tuple[str, ...]], ...]
     inherited_information_refs: Tuple[str, ...]
+    requirement_establishment_status: str
+    requirement_establishment_ref: str | None
+    requirement_establishment_basis: str | None
+    required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None
 
 
 class ARouteOrchestrationEngineV1:
@@ -254,18 +261,32 @@ class ARouteOrchestrationEngineV1:
         """
 
         if request.execution_mode == CONTROLLED_REPLAY_RUNTIME:
+            establishment = validated_requirement_establishment_from_condition_formation_v1(
+                admission.required_cognitive_condition_formation_result
+            )
             return _NormalizedAdmissionInformationV1(
                 required_information_refs=admission.required_information_refs,
                 available_information_refs=admission.available_information_refs,
                 evidence_information_refs=(),
                 inherited_information_refs=(),
+                requirement_establishment_status=establishment[0] if establishment else "NOT_ESTABLISHED",
+                requirement_establishment_ref=establishment[1] if establishment else None,
+                requirement_establishment_basis=establishment[2] if establishment else None,
+                required_cognitive_condition_formation_result=admission.required_cognitive_condition_formation_result if establishment else None,
             )
         if request.execution_mode == LIVE_RUNTIME:
+            establishment = validated_requirement_establishment_from_condition_formation_v1(
+                admission.required_cognitive_condition_formation_result
+            )
             return _NormalizedAdmissionInformationV1(
                 required_information_refs=admission.required_information_refs,
                 available_information_refs=admission.available_information_refs,
                 evidence_information_refs=admission.evidence_information_refs,
                 inherited_information_refs=admission.inherited_information_refs,
+                requirement_establishment_status=establishment[0] if establishment else "NOT_ESTABLISHED",
+                requirement_establishment_ref=establishment[1] if establishment else None,
+                requirement_establishment_basis=establishment[2] if establishment else None,
+                required_cognitive_condition_formation_result=admission.required_cognitive_condition_formation_result if establishment else None,
             )
         raise ValueError("unsupported A-Route admission normalization mode")
 
@@ -452,12 +473,17 @@ class ARouteOrchestrationEngineV1:
             information_need_refs=information_need_refs,
             relation_refs=relation_refs,
             relation_interpretation_candidates=request.relation_interpretation_candidates,
+            semantic_reference_values=request.semantic_reference_values,
             evidence_refs=evidence_refs,
             current_world_ref=current_world_ref,
             required_information_refs=normalized_information.required_information_refs,
             available_information_refs=normalized_information.available_information_refs,
             evidence_information_refs=normalized_information.evidence_information_refs,
             inherited_information_refs=normalized_information.inherited_information_refs,
+            requirement_establishment_status=normalized_information.requirement_establishment_status,
+            requirement_establishment_ref=normalized_information.requirement_establishment_ref,
+            requirement_establishment_basis=normalized_information.requirement_establishment_basis,
+            required_cognitive_condition_formation_result=normalized_information.required_cognitive_condition_formation_result,
             prior_current_world_ref=current_world_ref,
             prior_hypothesis_refs=admission.prior_hypothesis_refs,
             prior_information_gap_ref=admission.prior_information_gap_ref,
@@ -621,6 +647,13 @@ class ARouteOrchestrationEngineV1:
             relation_interpretation_semantic_candidates=state_output.relation_interpretation_candidates,
             current_world_relation_interpretation_refs=state_output.current_world_candidate.relation_interpretation_refs,
             conditioned_conflict_refs=state_output.current_world_candidate.conflict_refs,
+            requirement_establishment_status=state_output.sufficiency_candidate.requirement_establishment_status
+            if state_output.sufficiency_candidate else "NOT_ESTABLISHED",
+            requirement_establishment_ref=state_output.sufficiency_candidate.requirement_establishment_ref
+            if state_output.sufficiency_candidate else None,
+            requirement_establishment_basis=state_output.sufficiency_candidate.requirement_establishment_basis
+            if state_output.sufficiency_candidate else None,
+            required_cognitive_condition_formation_result=state_output.required_cognitive_condition_formation_result,
         )
         if state_output.sufficiency_candidate and state_output.sufficiency_candidate.status == "SUFFICIENT":
             return self._result(

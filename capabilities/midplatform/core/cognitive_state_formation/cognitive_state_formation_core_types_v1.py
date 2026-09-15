@@ -7,6 +7,20 @@ from typing import Dict, Tuple
 
 
 @dataclass(frozen=True)
+class CognitiveReferenceSemanticV1:
+    """Typed semantic payload paired with an opaque reference identity.
+
+    ``source_ref`` remains an identity/provenance handle.  Semantic
+    conditioning may use this record only when an upstream governed adapter
+    supplies the payload explicitly.
+    """
+
+    source_ref: str
+    semantic_kind: str
+    semantic_value: str
+
+
+@dataclass(frozen=True)
 class SourceRefV1:
     owner: str
     source_ref: str

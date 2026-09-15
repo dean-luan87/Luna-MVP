@@ -6,17 +6,69 @@ from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,
     ControlledReplayInputV1,
 )
+from capabilities.cognitive_flow.current_cognitive_context.context_inputs_v1 import GoalContextV1
+from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_engine_v1 import (
+    ARouteRequiredCognitiveConditionFormationEngineV1,
+)
+from capabilities.midplatform.core.a_route_orchestration.a_route_required_cognitive_condition_formation_types_v1 import (
+    ARouteRequiredCognitiveConditionFormationRequestV1,
+    CurrentCognitiveSituationV1,
+    GovernedObjectiveConditionRuleV1,
+)
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
     CognitiveInformationGapCandidateV1,
     CognitiveReobservationCandidateV1,
     CognitiveSufficiencyCandidateV1,
+    requirement_establishment_from_condition_formation_status_v1,
 )
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
     ObservationIngressRequestV1,
 )
 
 
+def _canonical_establishment_proof(
+    *,
+    case_id: str,
+    required_information_refs: tuple[str, ...],
+    available_information_refs: tuple[str, ...],
+):
+    goal_ref = f"goal:controlled-replay:{case_id}"
+    rules = (
+        GovernedObjectiveConditionRuleV1(
+            rule_ref=f"rule:controlled-replay:{case_id}:v1",
+            condition_ref=f"condition:controlled-replay:{case_id}:v1",
+            objective_refs=(goal_ref,),
+            satisfaction_coverage_refs=required_information_refs,
+            source_refs=(f"governance:controlled-replay:{case_id}:v1",),
+            provenance_refs=(f"provenance:controlled-replay:{case_id}:v1",),
+        ),
+    ) if required_information_refs else ()
+    return ARouteRequiredCognitiveConditionFormationEngineV1().form(
+        ARouteRequiredCognitiveConditionFormationRequestV1(
+            goal_context=GoalContextV1(
+                goal_ref=goal_ref,
+                primary_goal=goal_ref,
+                secondary_goal_refs=(),
+                success_condition_refs=(),
+                stop_condition_refs=(),
+                provenance={"source": "controlled-replay-fixture"},
+                trace=f"trace:controlled-replay:{case_id}:v1",
+            ),
+            governed_condition_rules=rules,
+            current_situation=CurrentCognitiveSituationV1(
+                current_cognitive_coverage_refs=available_information_refs,
+            ),
+            formation_trace_ref=f"trace:controlled-replay:required-conditions:{case_id}:v1",
+        )
+    )
+
+
 def build_controlled_replay_input_v1() -> ControlledReplayInputV1:
+    proof = _canonical_establishment_proof(
+        case_id="obvious-target",
+        required_information_refs=(),
+        available_information_refs=(),
+    )
     return ControlledReplayInputV1(
         replay_input_ref="replay-input:controlled-fixture:level1:obvious-target:v1",
         replay_version="v1",
@@ -28,6 +80,7 @@ def build_controlled_replay_input_v1() -> ControlledReplayInputV1:
             "source-version:controlled-recorded-fixture:v1",
         ),
         ordering_refs=("order:controlled-replay:obvious-target:0001",),
+        required_cognitive_condition_formation_result=proof,
     )
 
 
@@ -71,6 +124,14 @@ def build_minimum_sufficient_loop_replay_input_v1(
     prior_information_gap_candidate: CognitiveInformationGapCandidateV1 | None = None,
     prior_reobservation_candidate: CognitiveReobservationCandidateV1 | None = None,
 ) -> ControlledReplayInputV1:
+    proof = _canonical_establishment_proof(
+        case_id=case_id,
+        required_information_refs=("information:target-identity", "information:target-location"),
+        available_information_refs=available_information_refs,
+    )
+    establishment_status, establishment_basis = requirement_establishment_from_condition_formation_status_v1(
+        proof.status
+    )
     return ControlledReplayInputV1(
         replay_input_ref=f"replay-input:controlled-fixture:{case_id}:cycle-{cycle_index}:v1",
         replay_version="v1",
@@ -85,6 +146,10 @@ def build_minimum_sufficient_loop_replay_input_v1(
         cycle_index=cycle_index,
         required_information_refs=("information:target-identity", "information:target-location"),
         available_information_refs=available_information_refs,
+        requirement_establishment_status=establishment_status,
+        requirement_establishment_ref=proof.trace_ref,
+        requirement_establishment_basis=establishment_basis,
+        required_cognitive_condition_formation_result=proof,
         prior_current_world_ref=prior_current_world_ref,
         prior_hypothesis_refs=prior_hypothesis_refs,
         prior_information_gap_ref=prior_information_gap_ref,
