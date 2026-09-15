@@ -286,8 +286,11 @@ def _postflight_artifact(pipeline: dict[str, Any]) -> dict[str, Any]:
     return {
         "candidate_only": False, "read_only": True, "truth_declared": False,
         "world_truth_declared": False, "provider_binding_authoritative": bound,
-        "runtime_allocation_authoritative": allocated, "execution_instance_created": created,
-        "runtime_started": False, "resource_allocated": allocated, "provider_session_started": False,
+        "runtime_allocation_authoritative": allocated,
+        "execution_instance_created": False,
+        "runtime_started": False, "resource_allocated": False, "provider_session_started": False,
+        "mechanical_execution_identity_record_created": created,
+        "mechanical_resource_allocation_record_created": allocated,
         "provider_invoked": False, "model_invoked": False, "gateway_submission": False,
         "observation_produced": False, "evidence_produced": False,
     }

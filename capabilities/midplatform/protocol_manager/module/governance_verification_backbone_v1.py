@@ -63,6 +63,26 @@ COMMON_GOVERNANCE_PROFILES = (
     "ADAPTER_BOUNDARY",
 )
 
+# These fields describe real runtime signals.  Mechanical record formation
+# uses the explicitly namespaced fields below and must not suppress these
+# checks.
+RUNTIME_SIGNAL_FIELDS = (
+    "runtime_started",
+    "provider_session_started",
+    "gateway_submission",
+    "execution_instance_created",
+    "resource_allocated",
+)
+
+# These fields are scoped to controlled mechanical records.  They do not
+# assert that a runtime instance, provider session, gateway request, or real
+# resource was created.
+MECHANICAL_RECORD_FIELDS = (
+    "mechanical_provider_session_record_created",
+    "mechanical_execution_identity_record_created",
+    "mechanical_resource_allocation_record_created",
+)
+
 
 def _unique(values: Iterable[str]) -> Tuple[str, ...]:
     return tuple(dict.fromkeys(value for value in values if value and value.strip()))
@@ -571,14 +591,8 @@ def run_governance_postflight(
         blockers.append("truth_declared_without_authority")
     if not profile.world_truth_authority and artifact.get("world_truth_declared") is True:
         blockers.append("world_truth_declared_without_authority")
-    if not profile.runtime_authority and not profile.mechanical_authority:
-        for field_name in (
-            "runtime_started",
-            "execution_instance_created",
-            "provider_session_started",
-            "gateway_submission",
-            "resource_allocated",
-        ):
+    if not profile.runtime_authority:
+        for field_name in RUNTIME_SIGNAL_FIELDS:
             if artifact.get(field_name) is True:
                 blockers.append(f"runtime_effect_without_authority:{field_name}")
     if artifact.get("authoritative_effects"):
