@@ -3,10 +3,18 @@
 from __future__ import annotations
 
 import json
+import argparse
 from pathlib import Path
 from typing import Any
 
 from capabilities.midplatform.protocol_manager.module.governance_verification_backbone_v1 import compute_unified_final_decision
+from capabilities.evaluation.common.artifact_source_binding_v1 import (
+    verify_binding,
+)
+from capabilities.evaluation.common.verification_trust_composition_v1 import (
+    compose_verification_trust,
+    legacy_provenance_status,
+)
 
 from .fixtures_v1 import build_provider_binding_runtime_allocation_execution_cases_v1
 
@@ -18,19 +26,51 @@ def _check(checks: dict[str, bool], name: str, value: bool) -> None:
     checks[name] = bool(value)
 
 
-def _cases(summary: dict[str, Any]) -> dict[str, dict[str, Any]]:
-    return {item["case_id"]: item for item in summary.get("cases", ())}
+def _cases(summary: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], tuple[str, ...]]:
+    raw_cases = summary.get("cases")
+    if not isinstance(raw_cases, list):
+        return {}, ("cases_missing_or_wrong_type",)
+    cases: dict[str, dict[str, Any]] = {}
+    errors: list[str] = []
+    for index, item in enumerate(raw_cases):
+        if not isinstance(item, dict):
+            errors.append(f"case_{index}_wrong_type")
+            continue
+        case_id = item.get("case_id")
+        if not isinstance(case_id, str) or not case_id.strip():
+            errors.append(f"case_{index}_identity_missing")
+            continue
+        if case_id in cases:
+            errors.append(f"duplicate_case_id:{case_id}")
+            continue
+        cases[case_id] = item
+    return cases, tuple(errors)
 
 
 def _list(value: Any) -> list[dict[str, Any]]:
     return value if isinstance(value, list) else []
 
 
-def verify(summary: dict[str, Any]) -> dict[str, Any]:
+def verify(
+    summary: dict[str, Any],
+    *,
+    binding_claim: dict[str, Any] | None = None,
+    artifact_path: Path | None = None,
+    repo_root: Path | None = None,
+    binding_result: Any = None,
+) -> dict[str, Any]:
+    """Verify semantics and derive provenance only from raw binding inputs.
+
+    ``binding_result`` is retained as an ignored compatibility keyword. A
+    caller-supplied result, including one that claims trust, is never used as
+    authority; callers must provide the raw claim and artifact path.
+    """
     checks: dict[str, bool] = {}
     expected_cases = build_provider_binding_runtime_allocation_execution_cases_v1()
-    actual = _cases(summary)
-    _check(checks, "required_cases_present", {case.case_id for case in expected_cases} <= set(actual))
+    actual, case_errors = _cases(summary)
+    expected_ids = {case.case_id for case in expected_cases}
+    _check(checks, "case_identity_valid", not case_errors and set(actual) == expected_ids)
+    _check(checks, "required_cases_present", not case_errors and expected_ids <= set(actual))
     _check(checks, "controlled_marker", summary.get("source_mode") == "controlled_provider_binding_runtime_allocation_execution_instance")
     _check(checks, "governance_backbone_reused", summary.get("governance_backbone_reused") is True)
     _check(checks, "preflight_before_business_engine", summary.get("preflight_before_business_engine") is True)
@@ -131,7 +171,21 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
     contract_failures = tuple(name for name, passed in checks.items() if not passed)
     cognitive = "PASS" if functional else "FAIL"
     operational = "PASS" if functional else "FAIL"
-    final_decision = compute_unified_final_decision(functional_checks_passed=functional, contract_failures=contract_failures, governance_preflight=governance_preflight, governance_postflight=governance_postflight, cognitive_logic_result=cognitive, operational_result=operational)
+    binding_result = None
+    if binding_claim is not None and artifact_path is not None:
+        binding_result = verify_binding(
+            binding_claim,
+            repo_root=repo_root or Path(__file__).resolve().parents[4],
+            artifact_path=artifact_path,
+        )
+    trust = compose_verification_trust(semantic_passed=functional, binding_result=binding_result)
+    provenance_trusted = trust.trusted_current_evidence
+    trusted_functional = trust.trusted_current_evidence
+    provenance_status = legacy_provenance_status(trust)
+    trusted_failures = contract_failures if functional else contract_failures
+    if not provenance_trusted:
+        trusted_failures = (*trusted_failures, "provenance_binding")
+    final_decision = compute_unified_final_decision(functional_checks_passed=trusted_functional, contract_failures=trusted_failures, governance_preflight=governance_preflight, governance_postflight=governance_postflight, cognitive_logic_result=cognitive, operational_result=operational)
     return {
         "check_count": len(checks), "passed_count": sum(1 for passed in checks.values() if passed),
         "failed_checks": [name for name, passed in checks.items() if not passed], "all_checks_passed": functional,
@@ -139,11 +193,28 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
         "governance_postflight": governance_postflight, "cognitive_logic_result": cognitive,
         "operational_result": operational, "final_decision": final_decision,
         "status": "VERIFIED_ARTIFACT_RESULT",
+        "provenance_status": provenance_status,
+        "trust_state": trust.state,
+        "trusted_current_evidence": trusted_functional,
+        "controlled_scope_passed": functional,
     }
 
 
 def main() -> int:
-    result = verify(json.loads(SUMMARY_PATH.read_text(encoding="utf-8")))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--summary", type=Path, default=SUMMARY_PATH)
+    parser.add_argument("--binding", type=Path)
+    args = parser.parse_args()
+    summary = json.loads(args.summary.read_text(encoding="utf-8"))
+    binding_claim = None
+    if args.binding is not None:
+        binding_claim = json.loads(args.binding.read_text(encoding="utf-8"))
+    result = verify(
+        summary,
+        binding_claim=binding_claim,
+        artifact_path=args.summary if binding_claim is not None else None,
+        repo_root=Path(__file__).resolve().parents[4],
+    )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0 if result["final_decision"] == "GO" else 1
 

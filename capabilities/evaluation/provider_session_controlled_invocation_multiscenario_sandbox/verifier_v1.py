@@ -3,11 +3,23 @@
 from __future__ import annotations
 
 import json
+import argparse
 from pathlib import Path
 from typing import Any
 
 from capabilities.midplatform.protocol_manager.module.governance_verification_backbone_v1 import (
     compute_unified_final_decision,
+)
+from capabilities.evaluation.common.side_effect_observation_v1 import (
+    OBSERVED_NOT_EXECUTED,
+    classify_observer_record,
+)
+from capabilities.evaluation.common.artifact_source_binding_v1 import (
+    verify_binding,
+)
+from capabilities.evaluation.common.verification_trust_composition_v1 import (
+    compose_verification_trust,
+    legacy_provenance_status,
 )
 
 from .fixtures_v1 import build_provider_session_cases_v1
@@ -22,6 +34,15 @@ def _check(checks: dict[str, bool], name: str, value: bool) -> None:
 
 def _list(value: Any) -> list[dict[str, Any]]:
     return value if isinstance(value, list) else []
+
+
+def _controlled_side_effect_status(value: Any) -> bool:
+    return value in {
+        "DECLARED_NOT_EXECUTED",
+        "REQUEST_NOT_ISSUED",
+        "CONTROLLED_PATH_NOT_EXECUTED",
+        "OBSERVED_NOT_EXECUTED",
+    }
 
 
 def _validated_cases(summary: dict[str, Any]) -> tuple[dict[str, dict[str, Any]], tuple[str, ...]]:
@@ -84,7 +105,20 @@ def _reported_invocation_status(item: dict[str, Any]) -> str:
     return "NO_INVOCATION"
 
 
-def verify(summary: dict[str, Any]) -> dict[str, Any]:
+def verify(
+    summary: dict[str, Any],
+    *,
+    binding_claim: dict[str, Any] | None = None,
+    artifact_path: Path | None = None,
+    repo_root: Path | None = None,
+    binding_result: Any = None,
+) -> dict[str, Any]:
+    """Verify semantics and derive provenance only from raw binding inputs.
+
+    ``binding_result`` is retained as an ignored compatibility keyword. A
+    caller-supplied result, including one that claims trust, is never used as
+    authority; callers must provide the raw claim and artifact path.
+    """
     checks: dict[str, bool] = {}
     cases, case_errors = _validated_cases(summary)
     expected = build_provider_session_cases_v1()
@@ -96,7 +130,8 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
     declared_synthetic_only = all(summary.get(key) is True for key in ("synthetic_only", "controlled", "no_real_runtime_effect", "no_real_provider_effect", "no_real_model_effect"))
     declared_no_real_effects = all(summary.get(key) is False for key in ("real_provider_invoked", "real_model_invoked", "network_called", "subprocess_started", "thread_started", "socket_used", "runtime_observation_created", "gateway_submission", "evidence_created", "truth_declared", "world_truth_declared"))
     observed_effects = summary.get("verifier_observed_side_effects")
-    observed_no_real_effects = isinstance(observed_effects, dict) and observed_effects.get("status") == "OBSERVED_NOT_EXECUTED" and isinstance(observed_effects.get("values"), dict) and all(value is False for value in observed_effects["values"].values()) and bool(observed_effects.get("evidence_refs"))
+    observation_status = classify_observer_record(observed_effects)
+    observed_no_real_effects = observation_status == OBSERVED_NOT_EXECUTED and isinstance(observed_effects.get("values"), dict) and all(value is False for value in observed_effects["values"].values())
     _check(checks, "synthetic_only_runner_declared", declared_synthetic_only)
     _check(checks, "no_real_effects_runner_declared", declared_no_real_effects)
     _check(checks, "no_real_effects_verifier_observed", observed_no_real_effects)
@@ -122,9 +157,9 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
         _check(checks, f"{case.case_id}:invocation_status", _reported_invocation_status(item) == case.expected_invocation_status)
         _check(checks, f"{case.case_id}:invocation_count", len(invocations) == case.expected_invocation_count)
         if case.expected_session_count:
-            _check(checks, f"{case.case_id}:session_boundary", all(s.get("authoritative") is True and s.get("read_only") is True and s.get("synthetic") is True and s.get("controlled") is True and s.get("no_real_provider_effect") is True and s.get("no_real_model_effect") is True and s.get("side_effect_evidence_status") == "OBSERVED_NOT_EXECUTED" for s in sessions))
+            _check(checks, f"{case.case_id}:session_boundary", all(s.get("authoritative") is True and s.get("read_only") is True and s.get("synthetic") is True and s.get("controlled") is True and s.get("no_real_provider_effect") is True and s.get("no_real_model_effect") is True and _controlled_side_effect_status(s.get("side_effect_evidence_status")) for s in sessions))
         if case.expected_invocation_count:
-            _check(checks, f"{case.case_id}:invocation_boundary", all(i.get("authoritative") is True and i.get("read_only") is True and i.get("controlled_invocation_started") is True and i.get("real_provider_invoked") is False and i.get("real_model_invoked") is False and i.get("network_called") is False and i.get("subprocess_started") is False and i.get("thread_started") is False and i.get("socket_used") is False and i.get("runtime_observation_created") is False and i.get("gateway_submission") is False and i.get("evidence_created") is False and i.get("truth_declared") is False and i.get("world_truth_declared") is False and i.get("side_effect_evidence_status") == "OBSERVED_NOT_EXECUTED" for i in invocations))
+            _check(checks, f"{case.case_id}:invocation_boundary", all(i.get("authoritative") is True and i.get("read_only") is True and i.get("controlled_invocation_started") is True and i.get("real_provider_invoked") is False and i.get("real_model_invoked") is False and i.get("network_called") is False and i.get("subprocess_started") is False and i.get("thread_started") is False and i.get("socket_used") is False and i.get("runtime_observation_created") is False and i.get("gateway_submission") is False and i.get("evidence_created") is False and i.get("truth_declared") is False and i.get("world_truth_declared") is False and _controlled_side_effect_status(i.get("side_effect_evidence_status")) for i in invocations))
         _check(checks, f"{case.case_id}:postflight", postflight.get("status") == "PASS")
 
     _check(checks, "provider_only_model_null", all(item.get("source_model_ref") is None for item in _list(cases.get("PROVIDER_ONLY_SESSION_MODEL_NULL", {}).get("sessions"))))
@@ -193,12 +228,27 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
     _check(checks, "unified_final_decision_go", compute_unified_final_decision(functional_checks_passed=True, contract_failures=(), governance_preflight="PASS", governance_postflight="PASS", cognitive_logic_result="PASS", operational_result="PASS") == "GO")
     _check(checks, "governance_failure_forces_no_go", compute_unified_final_decision(functional_checks_passed=True, contract_failures=(), governance_preflight="GOVERNANCE_PREFLIGHT_BLOCKED", governance_postflight="PASS", cognitive_logic_result="PASS", operational_result="PASS") == "NO_GO")
     functional = all(checks.values())
+    controlled_scope_passed = all(value for name, value in checks.items() if name != "no_real_effects_verifier_observed")
     governance_preflight = "PASS" if all(item.get("governance_preflight", {}).get("status") == "PASS" or item.get("business_engine_executed") is False for item in cases.values()) else "GOVERNANCE_PREFLIGHT_BLOCKED"
     governance_postflight = "PASS" if all(item.get("governance_postflight", {}).get("status") == "PASS" for item in cases.values() if item.get("business_engine_executed") is True) else "GOVERNANCE_POSTFLIGHT_BLOCKED"
     failures = tuple(name for name, passed in checks.items() if not passed)
     cognitive = "PASS" if functional else "FAIL"
     operational = "PASS" if functional else "FAIL"
-    decision = compute_unified_final_decision(functional_checks_passed=functional, contract_failures=failures, governance_preflight=governance_preflight, governance_postflight=governance_postflight, cognitive_logic_result=cognitive, operational_result=operational)
+    binding_result = None
+    if binding_claim is not None and artifact_path is not None:
+        binding_result = verify_binding(
+            binding_claim,
+            repo_root=repo_root or Path(__file__).resolve().parents[4],
+            artifact_path=artifact_path,
+        )
+    trust = compose_verification_trust(semantic_passed=functional, binding_result=binding_result)
+    provenance_trusted = trust.trusted_current_evidence
+    provenance_status = legacy_provenance_status(trust)
+    trusted_functional = trust.trusted_current_evidence
+    trusted_failures = failures if functional else failures
+    if not provenance_trusted:
+        trusted_failures = (*trusted_failures, "provenance_binding")
+    decision = compute_unified_final_decision(functional_checks_passed=trusted_functional, contract_failures=trusted_failures, governance_preflight=governance_preflight, governance_postflight=governance_postflight, cognitive_logic_result=cognitive, operational_result=operational)
     return {
         "check_count": len(checks),
         "passed_count": sum(1 for passed in checks.values() if passed),
@@ -219,11 +269,29 @@ def verify(summary: dict[str, Any]) -> dict[str, Any]:
             "verifier_observed": observed_no_real_effects,
             "contract_expected": "OBSERVED_NOT_EXECUTED",
         },
+        "actual_side_effect_observation_status": observation_status,
+        "controlled_scope_passed": controlled_scope_passed,
+        "provenance_status": provenance_status,
+        "trust_state": trust.state,
+        "trusted_current_evidence": trusted_functional,
     }
 
 
 def main() -> int:
-    result = verify(json.loads(SUMMARY_PATH.read_text(encoding="utf-8")))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--summary", type=Path, default=SUMMARY_PATH)
+    parser.add_argument("--binding", type=Path)
+    args = parser.parse_args()
+    summary = json.loads(args.summary.read_text(encoding="utf-8"))
+    binding_claim = None
+    if args.binding is not None:
+        binding_claim = json.loads(args.binding.read_text(encoding="utf-8"))
+    result = verify(
+        summary,
+        binding_claim=binding_claim,
+        artifact_path=args.summary if binding_claim is not None else None,
+        repo_root=Path(__file__).resolve().parents[4],
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
     return 0 if result["final_decision"] == "GO" else 1
 

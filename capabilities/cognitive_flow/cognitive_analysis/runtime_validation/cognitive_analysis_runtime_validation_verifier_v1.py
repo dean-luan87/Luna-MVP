@@ -14,6 +14,10 @@ from .cognitive_analysis_runtime_validation_types_v1 import (
     RUNTIME_VALIDATION_VERIFIER_ID_V1,
     CognitiveAnalysisRuntimeValidationVerificationResultV1,
 )
+from capabilities.evaluation.common.side_effect_observation_v1 import (
+    OBSERVED_NOT_EXECUTED,
+    classify_side_effect_map,
+)
 
 
 RUNTIME_DRYRUN_RESULT_FILENAME_V1 = "cognitive_analysis_runtime_dryrun_run_result_v1.json"
@@ -63,7 +67,7 @@ def verify_runtime_validation_closure_v1(
     determinism_evidence = validation.get("determinism_evidence") or {}
     deterministic_ok = validation_present and validation.get("determinism_status") == "DETERMINISM_VERIFIED" and validation.get("deterministic_validation_result") is True and validation_raw == _canonical_json_v1(validation) and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
     side_effect_evidence = source.get("side_effect_evidence")
-    side_effect_status = "OBSERVED_NOT_EXECUTED" if isinstance(side_effect_evidence, dict) and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if isinstance(side_effect_evidence, dict) else "UNKNOWN")
+    side_effect_status = classify_side_effect_map(side_effect_evidence)
     side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
     checks = (
         source_present,
@@ -103,6 +107,8 @@ def verify_runtime_validation_closure_v1(
             else "RUNTIME_VALIDATION_CLOSURE_VERIFICATION_CANDIDATE_BLOCKED"
         ),
         determinism_status=validation.get("determinism_status", "DETERMINISM_UNVERIFIED"),
+        actual_side_effect_observation_status=side_effect_status,
+        controlled_scope_passed=all(checks[:12]),
     )
     validation_dir.mkdir(parents=True, exist_ok=True)
     (validation_dir / VERIFICATION_RESULT_FILENAME_V1).write_text(_canonical_json_v1(result), encoding="utf-8")

@@ -50,3 +50,5 @@ class CognitiveAnalysisRuntimeValidationVerificationResultV1:
     runtime_authorized: bool
     final_candidate_decision: str
     determinism_status: str = "DETERMINISM_UNVERIFIED"
+    actual_side_effect_observation_status: str = "UNKNOWN"
+    controlled_scope_passed: bool = False

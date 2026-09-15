@@ -15,6 +15,10 @@ from .cognitive_analysis_runtime_assessment_types_v1 import (
     RUNTIME_CAPABILITY_ASSESSMENT_VERIFIER_ID_V1,
     CognitiveAnalysisRuntimeCapabilityAssessmentVerificationResultV1,
 )
+from capabilities.evaluation.common.side_effect_observation_v1 import (
+    OBSERVED_NOT_EXECUTED,
+    classify_side_effect_map,
+)
 
 
 ASSESSMENT_REPORT_FILENAME_V1 = "cognitive_analysis_runtime_capability_assessment_report_v1.json"
@@ -58,9 +62,9 @@ def verify_runtime_capability_assessment_v1(
     determinism_evidence = report.get("determinism_evidence") or {}
     deterministic_ok = present and report.get("determinism_status") == "DETERMINISM_VERIFIED" and report.get("deterministic_output") is True and raw == _canonical_json_v1(report) and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
     side_effect_evidence = report.get("side_effect_evidence")
-    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
-    side_effect_status = "OBSERVED_NOT_EXECUTED" if declared_side_effects and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if declared_side_effects else "UNKNOWN")
-    side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
+    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "REQUEST_NOT_ISSUED", "CONTROLLED_PATH_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
+    side_effect_status = classify_side_effect_map(side_effect_evidence)
+    side_effect_proof = side_effect_status == OBSERVED_NOT_EXECUTED
     checks = (
         present,
         report.get("phase") == RUNTIME_CAPABILITY_ASSESSMENT_PHASE_V1,
@@ -96,6 +100,8 @@ def verify_runtime_capability_assessment_v1(
         ),
         determinism_status=report.get("determinism_status", "DETERMINISM_UNVERIFIED"),
         side_effect_evidence_status=side_effect_status,
+        actual_side_effect_observation_status=side_effect_status,
+        controlled_scope_passed=all(checks[:9]),
     )
     input_dir.mkdir(parents=True, exist_ok=True)
     (input_dir / VERIFICATION_RESULT_FILENAME_V1).write_text(_canonical_json_v1(result), encoding="utf-8")

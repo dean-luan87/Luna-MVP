@@ -17,6 +17,10 @@ from .cognitive_analysis_runtime_dryrun_types_v1 import (
     RUNTIME_SKELETON_DRYRUN_VERIFIER_ID_V1,
     CognitiveAnalysisRuntimeDryRunVerificationResultV1,
 )
+from capabilities.evaluation.common.side_effect_observation_v1 import (
+    OBSERVED_NOT_EXECUTED,
+    classify_side_effect_map,
+)
 
 
 RUN_RESULT_FILENAME_V1 = "cognitive_analysis_runtime_dryrun_run_result_v1.json"
@@ -52,9 +56,9 @@ def verify_runtime_skeleton_dryrun_v1(
     determinism_evidence = run.get("determinism_evidence") or {}
     determinism_proof_ok = present and run.get("determinism_status") == "DETERMINISM_VERIFIED" and run.get("deterministic_serialization") is True and determinism_evidence.get("reconstruction_a") != determinism_evidence.get("reconstruction_b") and determinism_evidence.get("canonical_digest_a") == determinism_evidence.get("canonical_digest_b")
     side_effect_evidence = run.get("side_effect_evidence")
-    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
-    side_effect_status = "OBSERVED_NOT_EXECUTED" if declared_side_effects and side_effect_evidence and all(value == "OBSERVED_NOT_EXECUTED" for value in side_effect_evidence.values()) else ("DECLARED_NOT_EXECUTED" if declared_side_effects else "UNKNOWN")
-    side_effect_proof = side_effect_status == "OBSERVED_NOT_EXECUTED"
+    declared_side_effects = present and isinstance(side_effect_evidence, dict) and all(value in {"DECLARED_NOT_EXECUTED", "OBSERVED_NOT_EXECUTED", "REQUEST_NOT_ISSUED", "CONTROLLED_PATH_NOT_EXECUTED", "UNKNOWN"} for value in side_effect_evidence.values())
+    side_effect_status = classify_side_effect_map(side_effect_evidence)
+    side_effect_proof = side_effect_status == OBSERVED_NOT_EXECUTED
     checks = (
         present,
         run.get("phase") == RUNTIME_SKELETON_DRYRUN_PHASE_V1,
@@ -92,6 +96,8 @@ def verify_runtime_skeleton_dryrun_v1(
         ),
         determinism_status=run.get("determinism_status", "DETERMINISM_UNVERIFIED"),
         side_effect_evidence_status=side_effect_status,
+        actual_side_effect_observation_status=side_effect_status,
+        controlled_scope_passed=all(checks[:8]),
     )
     input_dir.mkdir(parents=True, exist_ok=True)
     write_json_v1(input_dir / VERIFICATION_RESULT_FILENAME_V1, result)
