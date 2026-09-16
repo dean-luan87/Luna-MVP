@@ -16,10 +16,12 @@ from .observation_gateway_core_types_v1 import (
     INGRESS_TYPES,
     ROUTING_TARGETS,
     ObservationCandidateV1,
+    EvidenceReferenceBindingV1,
     ObservationGatewayResultV1,
     ObservationIngressCandidateV1,
     ObservationIngressRequestV1,
     ObservationGatewayRuntimeAdmissionV1,
+    ObservationGatewayAdmissionRuntimeStateV1,
     PerceptionEvidenceV1,
 )
 from .observation_gateway_error_types_v1 import ObservationGatewayErrorV1, make_error
@@ -30,6 +32,14 @@ from .observation_gateway_static_validators_v1 import validate_runtime_observati
 
 class ObservationGatewayEngineV1:
     """Deterministic evidence normalization/admission/routing coordinator."""
+
+    def __init__(
+        self,
+        admission_runtime_state: ObservationGatewayAdmissionRuntimeStateV1 | None = None,
+    ) -> None:
+        self.admission_runtime_state = (
+            admission_runtime_state or ObservationGatewayAdmissionRuntimeStateV1()
+        )
 
     @staticmethod
     def _execution_identity(request: ObservationIngressRequestV1) -> str:
@@ -267,6 +277,10 @@ class ObservationGatewayEngineV1:
                 provenance_refs=replay.provenance_refs,
                 ordering_refs=replay.ordering_refs,
                 gateway_admission_ref=f"gateway-admission:{sid}:v1",
+                evidence_binding=EvidenceReferenceBindingV1(
+                    gateway_admission_ref=f"gateway-admission:{sid}:v1",
+                    evidence_refs=tuple(replay.evidence_refs),
+                ),
                 admission_state="ADMITTED_OBSERVATION",
                 cycle_index=replay.cycle_index,
                 required_information_refs=replay.required_information_refs,
@@ -375,6 +389,10 @@ class ObservationGatewayEngineV1:
                 evidence_refs=tuple(item.evidence_id for item in evidence),
                 provenance_refs=tuple(dict.fromkeys((*runtime.provenance_refs, *observation.provenance_refs))),
                 gateway_trace_ref=f"root-trace:{sid}",
+                evidence_binding=EvidenceReferenceBindingV1(
+                    gateway_admission_ref=f"gateway-admission:{sid}:v1",
+                    evidence_refs=tuple(item.evidence_id for item in evidence),
+                ),
                 cycle_index=request.cycle_index,
                 required_information_refs=request.required_information_refs,
                 available_information_refs=request.available_information_refs,
@@ -393,6 +411,43 @@ class ObservationGatewayEngineV1:
                 prior_information_gap_candidate=request.prior_information_gap_candidate,
                 prior_reobservation_candidate=request.prior_reobservation_candidate,
             )
+        if admission == "ADMITTED_OBSERVATION":
+            admission_ref = (
+                replay_admission.gateway_admission_ref
+                if replay_admission is not None
+                else runtime_admission.gateway_admission_ref
+                if runtime_admission is not None
+                else f"gateway-admission:{sid}:v1"
+            )
+            admitted_refs = (
+                tuple(replay_admission.evidence_refs)
+                if replay_admission is not None
+                else tuple(runtime_admission.evidence_refs)
+                if runtime_admission is not None
+                else tuple(item.evidence_id for item in evidence)
+            )
+            admission_provenance = (
+                tuple(replay_admission.provenance_refs)
+                if replay_admission is not None
+                else tuple(runtime_admission.provenance_refs)
+                if runtime_admission is not None
+                else tuple(ref for item in evidence for ref in item.provenance_refs)
+            )
+            if not self.admission_runtime_state._record_admission(
+                execution_identity_ref=sid,
+                gateway_admission_ref=admission_ref,
+                evidence_refs=admitted_refs,
+                execution_mode=request.execution_mode,
+                trace_refs=(f"root-trace:{sid}",),
+                provenance_refs=admission_provenance,
+                canonical_admission=replay_admission or runtime_admission,
+            ):
+                return self._error_result(
+                    request,
+                    "ADMISSION_STATE_CONFLICT",
+                    "Gateway admission state could not be recorded",
+                    "ADMISSION",
+                )
         return self._result(
             request,
             ingress,

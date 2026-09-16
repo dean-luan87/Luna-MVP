@@ -21,6 +21,9 @@ from capabilities.midplatform.core.a_route_orchestration.a_route_orchestration_c
 from capabilities.midplatform.core.observation_gateway.observation_gateway_engine_v1 import (
     ObservationGatewayEngineV1,
 )
+from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
+    ObservationGatewayAdmissionRuntimeStateV1,
+)
 from capabilities.midplatform.core.decision_governance.decision_core_types_v1 import (
     DecisionOptionCandidateV1,
     RiskCandidateV1,
@@ -46,6 +49,12 @@ OUTPUT_DIR = Path("_eval_out/full_end_to_end_cognitive_logic_conformance_regress
 
 
 def _jsonable(value: Any) -> Any:
+    if isinstance(value, ObservationGatewayAdmissionRuntimeStateV1):
+        return {
+            "owner": "Observation Gateway",
+            "semantics": "ADMISSION_FACT_ONLY",
+            "authority_serialized": False,
+        }
     if is_dataclass(value):
         return {key: _jsonable(item) for key, item in asdict(value).items()}
     if isinstance(value, dict):
@@ -118,7 +127,10 @@ def _run_contrast(spec: ContrastSpecV1) -> Dict[str, Any]:
             safety_refs=(DecisionSourceRefV1("Safety Governance", f"safety:{spec.contrast_id}", "SAFETY"),),
             resource_refs=(DecisionSourceRefV1("Resource Governance", f"resource:{spec.contrast_id}", "RESOURCE"),),
             constraint_refs=(DecisionSourceRefV1("Cognitive State Formation Governance", proof.sufficiency_ref or "", "SUFFICIENCY"),),
-            evidence_refs=tuple(DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE") for ref in proof.ingress_refs),
+            evidence_refs=tuple(
+                DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE")
+                for ref in proof.canonical_gateway_admission_result.evidence_refs
+            ) if proof.canonical_gateway_admission_result else (),
             options=(DecisionOptionCandidateV1(
                 option_id=f"option:{spec.contrast_id}:{target}",
                 option_statement=f"candidate downstream response for {target}: {proof.conditioned_hypothesis_statement or 'conditioned cognition'}",

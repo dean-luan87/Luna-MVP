@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Mapping, Tuple
+from typing import Dict, Mapping, Tuple, Union
 
 from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,
@@ -76,6 +76,108 @@ class PerceptionEvidenceV1:
 
 
 @dataclass(frozen=True)
+class EvidenceReferenceBindingV1:
+    """Read-only Evidence projection derived from a Gateway admission."""
+
+    gateway_admission_ref: str
+    evidence_refs: Tuple[str, ...]
+    owner_ref: str = "Observation Gateway Governance"
+    binding_kind: str = "ADMITTED_EVIDENCE"
+    candidate_only: bool = True
+
+
+@dataclass(frozen=True)
+class GatewayAdmissionStateRecordV1:
+    """The governed fact that Gateway admitted Evidence for one execution."""
+
+    execution_identity_ref: str
+    gateway_admission_ref: str
+    evidence_refs: Tuple[str, ...]
+    admission_state: str = "ADMITTED"
+    execution_mode: str = SYNTHETIC_CONTROLLED
+    trace_refs: Tuple[str, ...] = ()
+    provenance_refs: Tuple[str, ...] = ()
+
+
+class ObservationGatewayAdmissionRuntimeStateV1:
+    """Gateway-owned, execution-scoped admission state.
+
+    The public surface is read-only. Only the Observation Gateway engine
+    calls the private mutation hook after completing its admission checks.
+    DTO construction therefore cannot create an admission fact.
+    """
+
+    __slots__ = ("_records", "_canonical_admissions")
+
+    def __init__(self) -> None:
+        self._records: Dict[Tuple[str, str], GatewayAdmissionStateRecordV1] = {}
+        self._canonical_admissions: Dict[Tuple[str, str], object] = {}
+
+    def _record_admission(
+        self,
+        *,
+        execution_identity_ref: str,
+        gateway_admission_ref: str,
+        evidence_refs: Tuple[str, ...],
+        execution_mode: str,
+        trace_refs: Tuple[str, ...] = (),
+        provenance_refs: Tuple[str, ...] = (),
+        canonical_admission: object | None = None,
+    ) -> bool:
+        """Record one Gateway-owned transition, preserving exact key data."""
+
+        if not execution_identity_ref or not gateway_admission_ref or not evidence_refs:
+            return False
+        normalized_refs = tuple(evidence_refs)
+        if any(not isinstance(ref, str) or not ref for ref in normalized_refs):
+            return False
+        if len(set(normalized_refs)) != len(normalized_refs):
+            return False
+        record = GatewayAdmissionStateRecordV1(
+            execution_identity_ref=execution_identity_ref,
+            gateway_admission_ref=gateway_admission_ref,
+            evidence_refs=normalized_refs,
+            execution_mode=execution_mode,
+            trace_refs=tuple(trace_refs),
+            provenance_refs=tuple(provenance_refs),
+        )
+        key = (execution_identity_ref, gateway_admission_ref)
+        previous = self._records.get(key)
+        if previous is not None:
+            return previous == record and self._canonical_admissions.get(key) is canonical_admission
+        self._records[key] = record
+        if canonical_admission is not None:
+            self._canonical_admissions[key] = canonical_admission
+        return True
+
+    def lookup(
+        self,
+        execution_identity_ref: str,
+        gateway_admission_ref: str,
+    ) -> GatewayAdmissionStateRecordV1 | None:
+        """Read the Gateway admission fact for an exact execution scope."""
+
+        return self._records.get((execution_identity_ref, gateway_admission_ref))
+
+    def matches_canonical_admission(
+        self,
+        execution_identity_ref: str,
+        gateway_admission_ref: str,
+        admission: object,
+    ) -> bool:
+        """Check the Gateway-produced admission object for this state key."""
+
+        key = (execution_identity_ref, gateway_admission_ref)
+        return self._records.get(key) is not None and self._canonical_admissions.get(key) is admission
+
+    def __copy__(self):
+        return type(self)()
+
+    def __deepcopy__(self, memo):
+        return type(self)()
+
+
+@dataclass(frozen=True)
 class ObservationCandidateV1:
     observation_id: str
     observation_type: str
@@ -143,6 +245,7 @@ class ObservationGatewayRuntimeAdmissionV1:
     evidence_refs: Tuple[str, ...]
     provenance_refs: Tuple[str, ...]
     gateway_trace_ref: str
+    evidence_binding: EvidenceReferenceBindingV1 | None = None
     admission_state: str = "ADMITTED_OBSERVATION"
     owner_ref: str = "Observation Gateway Governance"
     candidate_only: bool = True
@@ -167,6 +270,12 @@ class ObservationGatewayRuntimeAdmissionV1:
     prior_information_gap_candidate: object | None = None
     prior_reobservation_candidate: object | None = None
     required_cognitive_condition_formation_result: object | None = None
+
+
+CanonicalGatewayAdmissionResultV1 = Union[
+    ObservationGatewayRuntimeAdmissionV1,
+    ControlledReplayAdmissionV1,
+]
 
 
 @dataclass(frozen=True)

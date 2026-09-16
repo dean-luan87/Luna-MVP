@@ -37,6 +37,11 @@ class CognitiveDecisionHandoffCandidateV1:
     stop_ref: str
     provenance_refs: Tuple[str, ...]
     execution_instance_ref: str
+    evidence_owner_ref: str = ""
+    evidence_binding_kind: str = ""
+    gateway_admission_ref: str = ""
+    admitted_evidence_refs: Tuple[str, ...] = ()
+    canonical_gateway_admission_result: object | None = None
     candidate_only: bool = True
     decision_handoff_eligible: bool = True
     task_execution: bool = False
@@ -63,4 +68,3 @@ __all__ = [
     "CognitiveDecisionHandoffCandidateV1",
     "DecisionHandoffAttemptV1",
 ]
-

@@ -72,6 +72,7 @@ class ControlledReplayAdmissionV1:
     provenance_refs: Tuple[str, ...]
     ordering_refs: Tuple[str, ...]
     gateway_admission_ref: str
+    evidence_binding: object | None = None
     admission_state: str = "ADMITTED_OBSERVATION"
     owner_ref: str = "Observation Gateway Governance"
     candidate_only: bool = True

@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import asdict, is_dataclass
+from collections.abc import Mapping
 from typing import Any, Dict, Iterable, Optional, Tuple
 
 from capabilities.midplatform.core.cognitive_flow.integration.brain_cognitive_loop_closure_assimilation_controlled.brain_cognitive_loop_closure_assimilation_engine_v1 import (
     build_brain_closure_run_v1,
+    run_brain_cognitive_case_v1,
 )
 from capabilities.midplatform.core.decision_governance.decision_core_types_v1 import (
     DecisionOptionCandidateV1,
@@ -27,6 +29,11 @@ from capabilities.midplatform.core.decision_governance.decision_static_validator
     validate_no_runtime_side_effects,
     validate_trace_completeness,
 )
+from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
+    CanonicalGatewayAdmissionResultV1,
+    EvidenceReferenceBindingV1,
+    ObservationGatewayAdmissionRuntimeStateV1,
+)
 
 from .cognitive_result_to_decision_governance_handoff_types_v1 import (
     COGNITION_OWNER,
@@ -42,9 +49,17 @@ EXPECTED_CASES = (
     "CASE_A_SUFFICIENT_STOP",
     "CASE_B_GAP_REOBSERVE_REVISE_STOP",
 )
+EVIDENCE_OWNER = "Observation Gateway Governance"
+EVIDENCE_BINDING_KIND = "ADMITTED_EVIDENCE"
 
 
 def _jsonable(value: Any) -> Any:
+    if isinstance(value, ObservationGatewayAdmissionRuntimeStateV1):
+        return {
+            "owner": "Observation Gateway",
+            "semantics": "ADMISSION_FACT_ONLY",
+            "authority_serialized": False,
+        }
     if is_dataclass(value):
         return {key: _jsonable(item) for key, item in asdict(value).items()}
     if isinstance(value, dict):
@@ -58,6 +73,12 @@ def _ref(owner: str, ref_id: str, ref_type: str) -> SourceRefV1:
     return SourceRefV1(owner=owner, ref_id=ref_id, ref_type=ref_type)
 
 
+def _proof_value(proof: Any, key: str, default: Any = None) -> Any:
+    if isinstance(proof, Mapping):
+        return proof.get(key, default)
+    return getattr(proof, key, default)
+
+
 def _proofs(case: Dict[str, Any]) -> list[Dict[str, Any]]:
     return list(case.get("cognitive_proofs") or [])
 
@@ -67,8 +88,78 @@ def _final_proof(case: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     return proofs[-1] if proofs else None
 
 
+def _validated_evidence_binding(
+    case: Dict[str, Any],
+    proof: Any,
+) -> Tuple[Optional[Tuple[str, ...]], Optional[str]]:
+    """Validate projections against Gateway-owned admission runtime state."""
+
+    proof_admission = _proof_value(proof, "canonical_gateway_admission_result")
+    if proof_admission is None:
+        return None, "decision_handoff_requires_canonical_gateway_admission_result"
+    runtime_state = case.get("gateway_admission_runtime_state")
+    proof_state = _proof_value(proof, "gateway_admission_runtime_state")
+    if not isinstance(runtime_state, ObservationGatewayAdmissionRuntimeStateV1):
+        return None, "decision_handoff_requires_canonical_gateway_admission_state"
+    if proof_state is not runtime_state:
+        return None, "decision_handoff_rejects_noncanonical_gateway_admission_state"
+    execution_identity_ref = case.get("gateway_execution_identity_ref")
+    proof_execution_identity_ref = _proof_value(proof, "gateway_execution_identity_ref")
+    if not execution_identity_ref or proof_execution_identity_ref != execution_identity_ref:
+        return None, "decision_handoff_gateway_execution_identity_mismatch"
+    admission_ref = _proof_value(proof_admission, "gateway_admission_ref")
+    admitted_refs = tuple(_proof_value(proof_admission, "evidence_refs") or ())
+    state_record = runtime_state.lookup(execution_identity_ref, admission_ref)
+    if state_record is None or state_record.admission_state != "ADMITTED":
+        return None, "decision_handoff_requires_governed_gateway_admission"
+    if not runtime_state.matches_canonical_admission(
+        execution_identity_ref, admission_ref, proof_admission
+    ):
+        return None, "decision_handoff_rejects_noncanonical_gateway_admission_result"
+    if tuple(state_record.evidence_refs) != admitted_refs:
+        return None, "decision_handoff_gateway_admission_evidence_mismatch"
+
+    binding = _proof_value(proof, "evidence_binding")
+    if binding is not None:
+        if not isinstance(binding, EvidenceReferenceBindingV1):
+            return None, "decision_handoff_requires_canonical_evidence_binding"
+        if binding.owner_ref != EVIDENCE_OWNER or binding.binding_kind != EVIDENCE_BINDING_KIND:
+            return None, "decision_handoff_rejects_untyped_evidence_binding"
+        if binding.candidate_only is not True:
+            return None, "decision_handoff_rejects_non_candidate_evidence_binding"
+        if binding.gateway_admission_ref != admission_ref:
+            return None, "decision_handoff_evidence_binding_admission_mismatch"
+        if tuple(binding.evidence_refs) != admitted_refs:
+            return None, "decision_handoff_evidence_binding_set_mismatch"
+        if len(set(binding.evidence_refs)) != len(binding.evidence_refs):
+            return None, "decision_handoff_rejects_duplicate_evidence_refs"
+
+    refs = admitted_refs
+    if not refs:
+        return None, "decision_handoff_requires_bound_evidence_refs"
+    if any(not isinstance(ref, str) or not ref for ref in refs):
+        return None, "decision_handoff_rejects_malformed_evidence_refs"
+    if len(set(refs)) != len(refs):
+        return None, "decision_handoff_rejects_duplicate_evidence_refs"
+    proof_admission_ref = _proof_value(proof, "gateway_admission_ref")
+    if proof_admission_ref != admission_ref:
+        return None, "decision_handoff_evidence_binding_admission_mismatch"
+    proof_admitted_refs = tuple(_proof_value(proof, "admitted_evidence_refs") or ())
+    if proof_admitted_refs != refs:
+        return None, "decision_handoff_evidence_binding_set_mismatch"
+    return refs, None
+
+
+def _canonical_gateway_admission(
+    case: Dict[str, Any],
+    proof: Any = None,
+) -> Optional[CanonicalGatewayAdmissionResultV1]:
+    proof_admission = _proof_value(proof, "canonical_gateway_admission_result")
+    return proof_admission if proof_admission is not None else None
+
+
 def build_cognitive_decision_handoff_candidate_v1(
-    case: Dict[str, Any], proof: Optional[Dict[str, Any]]
+    case: Dict[str, Any], proof: Optional[Any]
 ) -> Tuple[Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
     """Gate a Decision handoff on canonical final cognition readiness."""
 
@@ -81,33 +172,35 @@ def build_cognitive_decision_handoff_candidate_v1(
     loop = case.get("loop_instance") or {}
     if proof is None:
         return None, ("decision_handoff_requires_cognitive_proof",)
-    if proof.get("sufficiency_status") != "SUFFICIENT":
+    if _proof_value(proof, "sufficiency_status") != "SUFFICIENT":
         return None, ("decision_handoff_requires_sufficient_cognition",)
-    if proof.get("requirement_establishment_status") != "ESTABLISHED" or not proof.get("requirement_establishment_ref"):
+    if _proof_value(proof, "requirement_establishment_status") != "ESTABLISHED" or not _proof_value(proof, "requirement_establishment_ref"):
         return None, ("decision_handoff_requires_requirement_establishment",)
     establishment = validated_requirement_establishment_from_condition_formation_v1(
-        proof.get("required_cognitive_condition_formation_result")
+        _proof_value(proof, "required_cognitive_condition_formation_result")
     )
-    if establishment is None or establishment[1] != proof.get("requirement_establishment_ref"):
+    if establishment is None or establishment[1] != _proof_value(proof, "requirement_establishment_ref"):
         return None, ("decision_handoff_requires_validated_requirement_establishment",)
-    if not proof.get("sufficiency_ref"):
+    if not _proof_value(proof, "sufficiency_ref"):
         return None, ("decision_handoff_requires_sufficiency_ref",)
-    if not proof.get("stop_ref"):
+    if not _proof_value(proof, "stop_ref"):
         return None, ("decision_handoff_requires_canonical_stop",)
-    if not proof.get("current_world_ref"):
+    if not _proof_value(proof, "current_world_ref"):
         return None, ("decision_handoff_requires_current_world_ref",)
-    if not proof.get("hypothesis_refs"):
+    if not _proof_value(proof, "hypothesis_refs"):
         return None, ("decision_handoff_requires_hypothesis_refs",)
-    if not proof.get("ingress_refs"):
-        return None, ("decision_handoff_requires_evidence_refs",)
+    canonical_admission = _canonical_gateway_admission(case, proof)
+    evidence_refs, evidence_error = _validated_evidence_binding(case, proof)
+    if evidence_error:
+        return None, (evidence_error,)
 
-    handoff_ref = f"cognitive-decision-handoff:{case['case_id']}:{proof['execution_ref']}"
+    handoff_ref = f"cognitive-decision-handoff:{case['case_id']}:{_proof_value(proof, 'execution_ref')}"
     provenance_refs = (
-        proof["execution_ref"],
-        proof["sufficiency_ref"],
-        proof["stop_ref"],
-        *tuple(proof.get("hypothesis_refs") or ()),
-        *tuple(proof.get("ingress_refs") or ()),
+        _proof_value(proof, "execution_ref"),
+        _proof_value(proof, "sufficiency_ref"),
+        _proof_value(proof, "stop_ref"),
+        *tuple(_proof_value(proof, "hypothesis_refs") or ()),
+        *evidence_refs,
     )
     return (
         CognitiveDecisionHandoffCandidateV1(
@@ -121,14 +214,19 @@ def build_cognitive_decision_handoff_candidate_v1(
             context_ref=request["context_ref"],
             information_need_ref=need["information_need_ref"],
             cognitive_loop_ref=loop["cognitive_loop_ref"],
-            a_route_execution_ref=proof["execution_ref"],
-            current_world_ref=proof["current_world_ref"],
-            hypothesis_refs=tuple(proof["hypothesis_refs"]),
-            evidence_refs=tuple(proof["ingress_refs"]),
-            sufficiency_ref=proof["sufficiency_ref"],
-            stop_ref=proof["stop_ref"],
+            a_route_execution_ref=_proof_value(proof, "execution_ref"),
+            current_world_ref=_proof_value(proof, "current_world_ref"),
+            hypothesis_refs=tuple(_proof_value(proof, "hypothesis_refs")),
+            evidence_refs=evidence_refs,
+            sufficiency_ref=_proof_value(proof, "sufficiency_ref"),
+            stop_ref=_proof_value(proof, "stop_ref"),
             provenance_refs=provenance_refs,
-            execution_instance_ref=proof["execution_ref"].split(":", 1)[0],
+            execution_instance_ref=_proof_value(proof, "execution_ref").split(":", 1)[0],
+            evidence_owner_ref=EVIDENCE_OWNER,
+            evidence_binding_kind=EVIDENCE_BINDING_KIND,
+            gateway_admission_ref=_proof_value(proof, "gateway_admission_ref"),
+            admitted_evidence_refs=tuple(_proof_value(proof, "admitted_evidence_refs")),
+            canonical_gateway_admission_result=canonical_admission,
         ),
         (),
     )
@@ -154,7 +252,7 @@ def _decision_input(handoff: CognitiveDecisionHandoffCandidateV1) -> DecisionGov
         _ref(COGNITION_OWNER, handoff.stop_ref, "STOP"),
     )
     evidence_refs = tuple(
-        _ref(COGNITION_OWNER, ref, "EVIDENCE") for ref in handoff.evidence_refs
+        _ref(handoff.evidence_owner_ref, ref, "EVIDENCE") for ref in handoff.evidence_refs
     )
     option_id = f"option:{handoff.case_id}:controlled-candidate"
     option = DecisionOptionCandidateV1(
@@ -199,7 +297,7 @@ def _decision_input(handoff: CognitiveDecisionHandoffCandidateV1) -> DecisionGov
     )
 
 
-def _attempt(cycle_index: int, proof: Optional[Dict[str, Any]], case: Dict[str, Any]) -> Tuple[DecisionHandoffAttemptV1, Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
+def _attempt(cycle_index: int, proof: Optional[Any], case: Dict[str, Any]) -> Tuple[DecisionHandoffAttemptV1, Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
     handoff, errors = build_cognitive_decision_handoff_candidate_v1(case, proof)
     if handoff is None:
         return (
@@ -207,9 +305,9 @@ def _attempt(cycle_index: int, proof: Optional[Dict[str, Any]], case: Dict[str, 
                 cycle_index=cycle_index,
                 status="ABSENT",
                 rejection_reason=errors[0],
-                source_execution_ref=proof.get("execution_ref") if proof else None,
-                sufficiency_status=proof.get("sufficiency_status") if proof else None,
-                stop_ref=proof.get("stop_ref") if proof else None,
+                source_execution_ref=_proof_value(proof, "execution_ref") if proof else None,
+                sufficiency_status=_proof_value(proof, "sufficiency_status") if proof else None,
+                stop_ref=_proof_value(proof, "stop_ref") if proof else None,
             ),
             None,
             errors,
@@ -229,6 +327,24 @@ def _attempt(cycle_index: int, proof: Optional[Dict[str, Any]], case: Dict[str, 
 
 
 def _decision_result(handoff: CognitiveDecisionHandoffCandidateV1) -> Dict[str, Any]:
+    if (
+        handoff.evidence_owner_ref != EVIDENCE_OWNER
+        or handoff.evidence_binding_kind != EVIDENCE_BINDING_KIND
+    ):
+        return {
+            "request": None,
+            "output": None,
+            "decision_candidate_refs": [],
+            "decision_trace_ref": None,
+            "decision_trace_causal_refs": [],
+            "decision_trace_evidence_refs": [],
+            "decision_candidate_provenance_via_cognition": False,
+            "cognition_provenance_refs": list(handoff.provenance_refs),
+            "checks": {"evidence_binding_valid": False},
+            "all_checks_passed": False,
+            "decision_governance_consumed": False,
+            "rejection_errors": ["decision_handoff_rejects_unbound_evidence"],
+        }
     request = _decision_input(handoff)
     all_refs = (
         request.intent_refs
@@ -268,27 +384,41 @@ def _decision_result(handoff: CognitiveDecisionHandoffCandidateV1) -> Dict[str, 
         "cognition_provenance_refs": list(handoff.provenance_refs),
         "checks": checks,
         "all_checks_passed": all(checks.values()),
+        "decision_governance_consumed": True,
     }
 
 
 def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
-    proofs = _proofs(case)
+    case_data = _jsonable(case) if is_dataclass(case) else case
+    proof_objects = list(getattr(case, "cognitive_proofs", ())) if is_dataclass(case) else _proofs(case)
+    proofs = [_jsonable(proof) for proof in proof_objects]
     attempts = []
     handoff: Optional[CognitiveDecisionHandoffCandidateV1] = None
     attempt_errors: list[str] = []
-    for index, proof in enumerate(proofs, start=1):
-        attempt, candidate, errors = _attempt(index, proof, case)
+    handoff_case = case_data
+    if is_dataclass(case):
+        handoff_case = dict(case_data)
+        handoff_case["gateway_results"] = tuple(case.gateway_results)
+        final_proof_object = proof_objects[-1] if proof_objects else None
+        handoff_case["gateway_execution_identity_ref"] = _proof_value(
+            final_proof_object, "gateway_execution_identity_ref"
+        )
+        handoff_case["gateway_admission_runtime_state"] = _proof_value(
+            final_proof_object, "gateway_admission_runtime_state"
+        )
+    for index, proof in enumerate(proof_objects, start=1):
+        attempt, candidate, errors = _attempt(index, proof, handoff_case)
         attempts.append(_jsonable(attempt))
         attempt_errors.extend(errors)
         if candidate is not None:
             handoff = candidate
 
     decision = _decision_result(handoff) if handoff else None
-    final_proof = _final_proof(case) or {}
-    request = case.get("brain_request") or {}
-    need = case.get("information_need") or {}
-    loop = case.get("loop_instance") or {}
-    gateways = list(case.get("gateway_results") or [])
+    final_proof = proofs[-1] if proofs else {}
+    request = case_data.get("brain_request") or {}
+    need = case_data.get("information_need") or {}
+    loop = case_data.get("loop_instance") or {}
+    gateways = list(case_data.get("gateway_results") or [])
     traceability = {
         "goal_ref": request.get("goal_ref"),
         "intent_ref": request.get("intent_ref"),
@@ -332,10 +462,10 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
             None,
         ),
         "stop_ref": final_proof.get("stop_ref"),
-        "closure_candidate_ref": (case.get("closure_assessment") or {}).get("assessment_ref"),
-        "assimilation_candidate_ref": (case.get("assimilation_candidate") or {}).get("assimilation_ref"),
+        "closure_candidate_ref": (case_data.get("closure_assessment") or {}).get("assessment_ref"),
+        "assimilation_candidate_ref": (case_data.get("assimilation_candidate") or {}).get("assimilation_ref"),
     }
-    raw_errors = list(case.get("validation_errors") or [])
+    raw_errors = list(case_data.get("validation_errors") or [])
     # The expected absent first-cycle attempt is a governed rejection, not a
     # positive-case validation error.
     positive_errors = [
@@ -347,10 +477,10 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         traceability["decision_trace_ref"] = decision["decision_trace_ref"]
         traceability["decision_candidate_refs"] = decision["decision_candidate_refs"]
     return {
-        "case_id": case.get("case_id"),
-        "cognitive_case": case,
+        "case_id": case_data.get("case_id"),
+        "cognitive_case": case_data,
         "execution_mode": final_proof.get("execution_mode"),
-        "cognitive_cycle_count": (case.get("loop_instance") or {}).get("cycle_count"),
+        "cognitive_cycle_count": (case_data.get("loop_instance") or {}).get("cycle_count"),
         "final_cognition_execution_ref": final_proof.get("execution_ref"),
         "final_sufficiency_ref": final_proof.get("sufficiency_ref"),
         "final_sufficiency_status": final_proof.get("sufficiency_status"),
@@ -359,7 +489,7 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         "handoff_attempts": attempts,
         "decision_handoff": _jsonable(handoff) if handoff else None,
         "decision_handoff_ref": handoff.handoff_ref if handoff else None,
-        "decision_governance_consumed": decision is not None,
+        "decision_governance_consumed": bool(decision and decision.get("decision_governance_consumed")),
         "decision": decision,
         "owner_boundaries": {
             "cstate_owns_decision": False,
@@ -384,10 +514,20 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def _negative_premature_handoff(cases: Iterable[Dict[str, Any]]) -> Dict[str, Any]:
-    case = next(item for item in cases if item.get("case_id") == "CASE_B_GAP_REOBSERVE_REVISE_STOP")
-    proof = _proofs(case)[0]
-    handoff, errors = build_cognitive_decision_handoff_candidate_v1(case, proof)
+def _negative_premature_handoff(cases: Iterable[Any]) -> Dict[str, Any]:
+    case = next(
+        item for item in cases
+        if (item.case_id if is_dataclass(item) else item.get("case_id"))
+        == "CASE_B_GAP_REOBSERVE_REVISE_STOP"
+    )
+    if is_dataclass(case):
+        case_data = _jsonable(case)
+        case_data["gateway_results"] = tuple(case.gateway_results)
+        proof = case.cognitive_proofs[0]
+    else:
+        case_data = case
+        proof = _proofs(case)[0]
+    handoff, errors = build_cognitive_decision_handoff_candidate_v1(case_data, proof)
     rejected = handoff is None and "decision_handoff_requires_sufficient_cognition" in errors
     return {
         "fixture": "premature_decision_handoff_before_sufficiency",
@@ -395,7 +535,7 @@ def _negative_premature_handoff(cases: Iterable[Dict[str, Any]]) -> Dict[str, An
         "rejected": rejected,
         "decision_governance_called": False,
         "cycle": 1,
-        "sufficiency_status": proof.get("sufficiency_status"),
+        "sufficiency_status": _proof_value(proof, "sufficiency_status"),
         "errors": list(errors),
     }
 
@@ -404,15 +544,18 @@ def build_decision_handoff_run_v1(
     execution_instance_ref: str = EXECUTION_INSTANCE_REF,
 ) -> Dict[str, Any]:
     source = build_brain_closure_run_v1(execution_instance_ref)
-    source_cases = list(source["cases"])
-    cases = [_case_result(case) for case in source_cases]
+    typed_cases = [
+        run_brain_cognitive_case_v1(case_id, execution_instance_ref)
+        for case_id in EXPECTED_CASES
+    ]
+    cases = [_case_result(case) for case in typed_cases]
     return {
         "phase": PHASE,
         "source_integration_phase": source.get("phase"),
         "execution_instance_ref": execution_instance_ref,
         "case_count": len(cases),
         "cases": cases,
-        "negative_test": _negative_premature_handoff(source_cases),
+        "negative_test": _negative_premature_handoff(typed_cases),
         "deferred": ["task_execution", "action_execution", "model_provider_execution", "archive_integration"],
     }
 

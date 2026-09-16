@@ -19,6 +19,9 @@ from capabilities.midplatform.core.execution_mode_v1 import CONTROLLED_REPLAY_RU
 from capabilities.midplatform.core.observation_gateway.observation_gateway_engine_v1 import (
     ObservationGatewayEngineV1,
 )
+from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
+    ObservationGatewayAdmissionRuntimeStateV1,
+)
 from capabilities.midplatform.core.cognitive_flow.integration.cognitive_loop_governed_continuity_candidate_controlled.cognitive_loop_lifecycle_closure_types_v1 import (
     BrainAssimilationCandidateV1,
     ClosureAssessmentCandidateV1,
@@ -69,6 +72,12 @@ NEGATIVE_GUARD_RUNTIME_COVERAGE = frozenset({"closure_without_sufficiency"})
 
 
 def _jsonable(value: Any) -> Any:
+    if isinstance(value, ObservationGatewayAdmissionRuntimeStateV1):
+        return {
+            "owner": "Observation Gateway",
+            "semantics": "ADMISSION_FACT_ONLY",
+            "authority_serialized": False,
+        }
     if is_dataclass(value):
         return {key: _jsonable(item) for key, item in asdict(value).items()}
     if isinstance(value, dict):
@@ -90,7 +99,8 @@ def _route_for_brain(
         replay=replay,
         execution_identity_ref=execution_ref,
     )
-    gateway = ObservationGatewayEngineV1().run_case(gateway_request)
+    gateway_engine = ObservationGatewayEngineV1()
+    gateway = gateway_engine.run_case(gateway_request)
     observation = gateway.observation
     admission = gateway.replay_admission
     ingress = ARouteIngressRefsV1(
@@ -107,6 +117,7 @@ def _route_for_brain(
             execution_mode=CONTROLLED_REPLAY_RUNTIME,
             execution_identity_ref=execution_ref,
             replay_admission=admission,
+            gateway_admission_runtime_state=gateway_engine.admission_runtime_state,
             synthetic_only=False,
             candidate_only=True,
         )
@@ -183,6 +194,8 @@ def _build_closure(
         return (None, None, None, None, None, None, ("closure_requires_sufficient_cognition",))
     if not proof.stop_ref:
         return (None, None, None, None, None, None, ("closure_requires_canonical_stop",))
+    evidence_binding = getattr(proof, "evidence_binding", None)
+    evidence_refs = tuple(getattr(evidence_binding, "evidence_refs", ()) or ())
     closure_ref = f"closure-candidate:{loop.cognitive_loop_ref}:v1"
     assessment = ClosureAssessmentCandidateV1(
         assessment_ref=closure_ref,
@@ -193,7 +206,7 @@ def _build_closure(
         current_need_ref=request.information_need_ref,
         closure_reason="STOP_SUFFICIENT",
         local_sufficiency_ref=proof.sufficiency_ref,
-        evidence_refs=proof.ingress_refs,
+        evidence_refs=evidence_refs,
         outstanding_requirement_refs=(),
         outstanding_observation_refs=(),
         suggested_lifecycle_disposition="COMPLETED",
@@ -234,7 +247,7 @@ def _build_closure(
         final_state_version_ref=proof.execution_ref,
         need_lineage_refs=(request.information_need_ref,),
         hypothesis_lineage_refs=proof.hypothesis_refs,
-        evidence_refs=proof.ingress_refs,
+        evidence_refs=evidence_refs,
         current_world_refs=(proof.current_world_ref,) if proof.current_world_ref else (),
         closure_reason_ref="closure-reason:STOP_SUFFICIENT",
         trace_refs=(proof.execution_ref,),
@@ -247,7 +260,7 @@ def _build_closure(
         final_disposition="COMPLETED",
         final_state_version_ref=proof.execution_ref,
         closure_record_ref=closure_record_ref,
-        evidence_refs=proof.ingress_refs,
+        evidence_refs=evidence_refs,
         sufficiency_reason_ref=proof.sufficiency_ref,
         current_world_refs=(proof.current_world_ref,) if proof.current_world_ref else (),
         trace_refs=(proof.execution_ref,),

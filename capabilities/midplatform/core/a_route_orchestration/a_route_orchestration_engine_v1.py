@@ -24,7 +24,6 @@ from capabilities.midplatform.core.execution_mode_v1 import (
 from capabilities.midplatform.core.observation_gateway.observation_gateway_static_validators_v1 import (
     validate_runtime_observation_admission,
 )
-
 from .a_route_orchestration_core_types_v1 import (
     ARouteHandoffRecordV1,
     ARouteCognitiveExecutionEvidenceV1,
@@ -579,6 +578,12 @@ class ARouteOrchestrationEngineV1:
             decision_handoff_ref=None,
             decision_handoff_availability="not_observed",
             runtime_executed=True,
+            evidence_binding=admission.evidence_binding,
+            canonical_gateway_admission_result=admission,
+            gateway_admission_ref=admission.gateway_admission_ref,
+            admitted_evidence_refs=tuple(admission.evidence_refs),
+            gateway_execution_identity_ref=request.execution_identity_ref,
+            gateway_admission_runtime_state=request.gateway_admission_runtime_state,
             execution_proof_source="CognitiveStateFormationEngineV1.run_case",
             cognitive_cycle_index=state_output.cognitive_cycle_index,
             sufficiency_status=state_output.sufficiency_candidate.status if state_output.sufficiency_candidate else "not_observed",

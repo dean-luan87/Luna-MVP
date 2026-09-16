@@ -140,7 +140,10 @@ def _independent_decision_projection(spec: Any, proof: Any) -> tuple[str | None,
         safety_refs=(DecisionSourceRefV1("Safety Governance", f"safety:{spec.contrast_id}", "SAFETY"),),
         resource_refs=(DecisionSourceRefV1("Resource Governance", f"resource:{spec.contrast_id}", "RESOURCE"),),
         constraint_refs=(DecisionSourceRefV1("Cognitive State Formation Governance", proof.sufficiency_ref or "", "SUFFICIENCY"),),
-        evidence_refs=tuple(DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE") for ref in proof.ingress_refs),
+        evidence_refs=tuple(
+            DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE")
+            for ref in proof.canonical_gateway_admission_result.evidence_refs
+        ) if proof.canonical_gateway_admission_result else (),
         options=(DecisionOptionCandidateV1(
             option_id=f"option:{spec.contrast_id}:{target}",
             option_statement=f"candidate downstream response for {target}: {proof.conditioned_hypothesis_statement or 'conditioned cognition'}",
