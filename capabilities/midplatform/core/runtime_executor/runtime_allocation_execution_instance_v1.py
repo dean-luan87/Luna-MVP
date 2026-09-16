@@ -16,6 +16,9 @@ from typing import Iterable, Optional, Tuple
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantDecisionV1,
 )
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
+    query_active_authorization_for_grant,
+)
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateV1,
 )
@@ -47,6 +50,7 @@ def _valid_grant(grant: object, binding_ref: str) -> bool:
         and grant.authoritative
         and not grant.candidate_only
         and not grant.revocation_ref
+        and query_active_authorization_for_grant(grant) is not None
     )
 
 

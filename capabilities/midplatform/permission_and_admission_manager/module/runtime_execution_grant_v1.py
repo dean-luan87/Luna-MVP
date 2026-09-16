@@ -10,7 +10,8 @@ execution instance, start a session, submit to Gateway, or invoke a provider.
 from __future__ import annotations
 
 import hashlib
-from dataclasses import dataclass, field
+import uuid
+from dataclasses import dataclass, field, replace
 from typing import Iterable, Mapping, Optional, Tuple
 
 from capabilities.midplatform.core.runtime_executor.runtime_allocation_preparation_candidate_v1 import (
@@ -22,6 +23,13 @@ from capabilities.midplatform.permission_and_admission_manager.module.permission
 )
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateV1,
+)
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
+    RuntimeAuthorizationScopeV1,
+    RuntimeAuthorizationStateV1,
+    _authorize_canonical_runtime_authorization,
+    _invalidate_canonical_runtime_authorization,
+    query_active_authorization_for_grant,
 )
 
 
@@ -89,7 +97,7 @@ class RuntimeExecutionGrantInputV1:
 
 @dataclass(frozen=True)
 class RuntimeExecutionGrantDecisionV1:
-    """Authoritative decision without any runtime side effect."""
+    """Decision record/projection backed by owner-controlled auth state."""
 
     grant_ref: str
     request_ref: str
@@ -158,6 +166,8 @@ class RuntimeExecutionGrantDecisionV1:
     resource_scheduling: bool = False
     observation_execution: bool = False
     execution_authorized: bool = False
+    authorization_ref: str = ""
+    freshness_status: str = "FRESH"
 
 
 @dataclass(frozen=True)
@@ -396,6 +406,12 @@ def _grant_ref(request_ref: str, execution_ref: str) -> str:
     return f"runtime-execution-grant:{digest}"
 
 
+def _authorization_ref(_request_ref: str, _execution_ref: str) -> str:
+    # This identifies one authorization occurrence.  The owner-controlled
+    # state transition, rather than this value, establishes authority.
+    return f"runtime-authorization:{uuid.uuid4().hex}"
+
+
 def _decision_for(
     request: RuntimeExecutionGrantInputV1,
     binding: ProviderBindingCandidateV1,
@@ -411,8 +427,10 @@ def _decision_for(
         decision, reason, failure_owner = "REVOKED", "grant_revoked", OWNER
     elif request.validity_status == "EXPIRED":
         decision, reason, failure_owner = "DENIED", "grant_expired", OWNER
+    elif request.validity_status != "FRESH":
+        decision, reason, failure_owner = "DENIED", "grant_not_current", OWNER
     elif request.freshness_status == "STALE":
-        decision, reason, failure_owner = "DENIED", "grant_stale", OWNER
+        decision, reason, failure_owner = "DENIED", "grant_prerequisite_not_fresh", OWNER
     elif request.provider_binding_status != "ELIGIBLE":
         decision, reason, failure_owner = "DENIED", "provider_binding_not_eligible", "Provider Governance"
     elif request.capability_admission_status != "ADMITTED":
@@ -478,6 +496,11 @@ def _decision_for(
         denial_reason=reason,
         failure_owner_ref=failure_owner,
         execution_authorized=decision == "GRANTED",
+        authorization_ref=_authorization_ref(
+            request.grant_request_ref,
+            execution.execution_instance_preparation_candidate_ref,
+        ),
+        freshness_status=request.freshness_status,
     )
 
 
@@ -501,7 +524,28 @@ def form_runtime_execution_grants(
     for execution in request.execution_instance_preparation_candidates:
         allocation = allocations[execution.source_runtime_allocation_preparation_candidate_ref]
         binding = bindings[allocation.source_provider_binding_candidate_ref]
-        decisions.append(_decision_for(request, binding, allocation, execution))
+        decision = _decision_for(request, binding, allocation, execution)
+        if decision.decision == "GRANTED":
+            state = _authorize_canonical_runtime_authorization(
+                authorization_ref=decision.authorization_ref,
+                scope=RuntimeAuthorizationScopeV1.from_grant(decision),
+            )
+            if state is None:
+                decision = replace(
+                    decision,
+                    decision="DENIED",
+                    denial_reason="authorization_state_transition_failed",
+                    failure_owner_ref=OWNER,
+                    execution_authorized=False,
+                )
+        decision = replace(
+            decision,
+            execution_authorized=(
+                decision.decision == "GRANTED"
+                and query_active_authorization_for_grant(decision) is not None
+            ),
+        )
+        decisions.append(decision)
     return _result(
         request,
         "RUNTIME_EXECUTION_GRANTS_FORMED",
@@ -510,6 +554,21 @@ def form_runtime_execution_grants(
             item.execution_instance_preparation_candidate_ref
             for item in request.execution_instance_preparation_candidates
         ),
+    )
+
+
+def invalidate_runtime_authorization_state(
+    *,
+    authorization_ref: str,
+    subject_ref: str,
+    reason: str,
+) -> Optional[RuntimeAuthorizationStateV1]:
+    """Request owner-controlled invalidation by canonical identifiers."""
+
+    return _invalidate_canonical_runtime_authorization(
+        authorization_ref=authorization_ref,
+        subject_ref=subject_ref,
+        reason=reason,
     )
 
 
@@ -522,4 +581,5 @@ __all__ = [
     "RuntimeExecutionGrantDecisionV1",
     "RuntimeExecutionGrantResultV1",
     "form_runtime_execution_grants",
+    "invalidate_runtime_authorization_state",
 ]

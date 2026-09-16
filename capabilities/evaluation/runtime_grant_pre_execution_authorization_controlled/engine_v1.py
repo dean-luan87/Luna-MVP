@@ -18,6 +18,9 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_ex
     RuntimeExecutionGrantInputV1,
     form_runtime_execution_grants,
 )
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
+    query_active_authorization_for_grant,
+)
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateInputV1,
     form_provider_binding_candidates,
@@ -238,6 +241,13 @@ def _run_pipeline(case: Any) -> dict[str, Any]:
         "grant_request_snapshot_before": _json_safe(grant_request),
         "grant_request_snapshot_after": _json_safe(grant_request),
         "grant": _json_safe(grant),
+        "runtime_authorization_state_formed": any(
+            item.decision == "GRANTED" for item in grant.decisions
+        ) and all(
+            query_active_authorization_for_grant(item) is not None
+            for item in grant.decisions
+            if item.decision == "GRANTED"
+        ),
         "pipeline_status": grant.formation_status,
         "business_engine_executed": True,
     }
@@ -307,6 +317,9 @@ class RuntimeGrantPreExecutionAuthorizationEvaluationEngineV1:
                     "deterministic": replay is not None
                     and [item.get("grant_ref") for item in decisions]
                     == [item.get("grant_ref") for item in replay.get("decisions", [])],
+                    "new_authorization_occurrence": replay is not None
+                    and [item.get("authorization_ref") for item in decisions]
+                    != [item.get("authorization_ref") for item in replay.get("decisions", [])],
                 }
             else:
                 pipeline = {

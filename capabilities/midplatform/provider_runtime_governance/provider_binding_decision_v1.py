@@ -15,6 +15,9 @@ from typing import Iterable, Optional, Tuple
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantDecisionV1,
 )
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
+    query_active_authorization_for_grant,
+)
 from .provider_binding_candidate_v1 import ProviderBindingCandidateV1
 
 
@@ -186,6 +189,7 @@ def _validate(request: object) -> Tuple[str, ...]:
             or matching[0].validity_status != "FRESH"
             or not matching[0].authoritative
             or matching[0].candidate_only
+            or query_active_authorization_for_grant(matching[0]) is None
         ):
             errors.append(f"runtime_grant_not_valid:{candidate.provider_binding_candidate_ref}")
     return tuple(dict.fromkeys(errors))

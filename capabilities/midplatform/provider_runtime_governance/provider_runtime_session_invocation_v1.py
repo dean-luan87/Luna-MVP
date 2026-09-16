@@ -19,6 +19,9 @@ from capabilities.midplatform.core.runtime_executor.runtime_allocation_execution
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantDecisionV1,
 )
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
+    query_active_authorization_for_grant,
+)
 from capabilities.midplatform.provider_runtime_governance.provider_binding_decision_v1 import (
     ProviderBindingDecisionV1,
 )
@@ -231,6 +234,7 @@ def _valid_session_sources(request: ProviderRuntimeSessionInputV1) -> Tuple[str,
         or grant.validity_status != "FRESH"
         or not grant.execution_authorized
         or grant.revocation_ref
+        or query_active_authorization_for_grant(grant) is None
     ):
         errors.append("runtime_grant_not_valid")
     if allocation.allocation_status != "ALLOCATED" or not allocation.authoritative or not allocation.runtime_allocated:
