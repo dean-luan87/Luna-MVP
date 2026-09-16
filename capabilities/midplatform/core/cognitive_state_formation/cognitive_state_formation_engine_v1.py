@@ -52,6 +52,9 @@ from capabilities.midplatform.core.execution_mode_v1 import (
     SYNTHETIC_CONTROLLED,
     validate_execution_mode,
 )
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_static_validators_v1 import (
+    validate_input_contract,
+)
 
 
 class CognitiveStateFormationEngineV1:
@@ -1058,6 +1061,9 @@ class CognitiveStateFormationEngineV1:
     def run_case(
         self, request: CognitiveStateFormationInputV1
     ) -> CognitiveStateFormationOutputV1:
+        input_errors = validate_input_contract(request)
+        if input_errors:
+            raise ValueError("cognitive_state_input_invalid:" + ";".join(input_errors))
         mode_errors = validate_execution_mode(
             request.execution_mode,
             synthetic_only=request.synthetic_only,

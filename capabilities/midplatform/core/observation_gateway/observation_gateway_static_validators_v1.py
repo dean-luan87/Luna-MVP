@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Tuple
 
 from .observation_gateway_core_types_v1 import (
     ADMISSION_STATES,
@@ -9,9 +9,59 @@ from .observation_gateway_core_types_v1 import (
     ObservationCandidateV1,
     ObservationGatewayNegativeGuardsV1,
     ObservationIngressCandidateV1,
+    ObservationIngressRequestV1,
     PerceptionEvidenceV1,
     RuntimeObservationEnvelopeV1,
 )
+
+
+def _valid_ref_collection(value: object, *, allow_empty: bool = True) -> bool:
+    """Validate a collection representation without treating strings as collections."""
+    if not isinstance(value, (list, tuple)):
+        return False
+    if not allow_empty and not value:
+        return False
+    return all(isinstance(item, str) and bool(item.strip()) for item in value)
+
+
+def validate_ingress_request_shape(request: ObservationIngressRequestV1) -> Tuple[str, ...]:
+    """Validate raw ingress shape before any evidence/candidate formation."""
+    if not isinstance(request, ObservationIngressRequestV1):
+        return ("request_must_be_observation_ingress_request",)
+    errors = []
+    collection_fields = (
+        "evidence_refs", "spatial_refs", "routing_targets",
+        "required_information_refs", "available_information_refs",
+        "inherited_information_refs", "prior_hypothesis_refs",
+    )
+    for name in collection_fields:
+        if not _valid_ref_collection(getattr(request, name), allow_empty=True):
+            errors.append(f"{name}_must_be_string_collection")
+    if not isinstance(request.evidence_information_refs, (list, tuple)):
+        errors.append("evidence_information_refs_must_be_collection")
+    else:
+        for index, item in enumerate(request.evidence_information_refs):
+            if (
+                not isinstance(item, (list, tuple)) or len(item) != 2
+                or not isinstance(item[0], str) or not item[0].strip()
+                or not _valid_ref_collection(item[1], allow_empty=True)
+            ):
+                errors.append(f"evidence_information_refs[{index}]_shape_invalid")
+    runtime = request.runtime_observation
+    if runtime is not None:
+        for name in ("provenance_refs", "trace_refs", "spatial_refs", "context_refs"):
+            if not _valid_ref_collection(getattr(runtime, name), allow_empty=True):
+                errors.append(f"runtime_observation.{name}_must_be_string_collection")
+    replay = request.replay_input
+    if replay is not None:
+        for name in (
+            "evidence_refs", "provenance_refs", "ordering_refs",
+            "required_information_refs", "available_information_refs",
+            "prior_hypothesis_refs",
+        ):
+            if not _valid_ref_collection(getattr(replay, name), allow_empty=True):
+                errors.append(f"replay_input.{name}_must_be_string_collection")
+    return tuple(dict.fromkeys(errors))
 from .observation_gateway_trace_types_v1 import ObservationGatewayTraceV1
 from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,

@@ -41,6 +41,12 @@ def _unique(values: Iterable[str]) -> Tuple[str, ...]:
     return tuple(dict.fromkeys(value for value in values if value and value.strip()))
 
 
+def _valid_ref_collection(value: object, *, allow_empty: bool = True) -> bool:
+    return isinstance(value, (list, tuple)) and (allow_empty or bool(value)) and all(
+        isinstance(item, str) and bool(item.strip()) for item in value
+    )
+
+
 def _valid_grant(grant: object, binding_ref: str) -> bool:
     return (
         isinstance(grant, RuntimeExecutionGrantDecisionV1)
@@ -143,6 +149,9 @@ def _validate_allocation(request: object) -> Tuple[str, ...]:
     ):
         if not isinstance(value, tuple):
             errors.append(f"{name}_must_be_tuple")
+    for name in ("resource_identity_refs", "provenance_refs"):
+        if not _valid_ref_collection(getattr(request, name), allow_empty=True):
+            errors.append(f"{name}_must_contain_strings")
     if not request.allocation_request_ref or not request.runtime_ref or not request.trace_ref:
         errors.append("allocation_request_incomplete")
     if not request.candidate_only:
@@ -191,6 +200,15 @@ def _validate_allocation(request: object) -> Tuple[str, ...]:
             or prep.source_state_ref != decision.source_state_ref
         ):
             errors.append(f"binding_preparation_lineage_mismatch:{decision.binding_ref}")
+        if prep is not None:
+            for name in (
+                "resource_class_refs", "execution_class_refs", "context_refs",
+                "lineage_refs", "provenance_refs",
+            ):
+                if not _valid_ref_collection(getattr(prep, name), allow_empty=True):
+                    errors.append(f"{name}_invalid:{decision.binding_ref}")
+            if not _valid_ref_collection(prep.execution_class_refs, allow_empty=False):
+                errors.append(f"execution_class_refs_missing:{decision.binding_ref}")
         if grant is not None and not _valid_grant(grant, decision.source_binding_candidate_ref):
             errors.append(f"runtime_grant_not_valid:{decision.binding_ref}")
     return tuple(dict.fromkeys(errors))

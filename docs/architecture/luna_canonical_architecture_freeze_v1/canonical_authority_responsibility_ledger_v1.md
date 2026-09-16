@@ -29,6 +29,7 @@
 | Diagnostic classification | System Diagnostics | Correct observed fact, health/drift/freshness classification | Diagnostic evidence/finding/snapshot | Probes/telemetry | Diagnostics | Governance/admission consumers |
 | Working Envelope binding | Working Envelope | Correct Concern/Grant/source binding, version/invalidation and supersession | Envelope admission/refresh/supersession | Brain/source refs | Working Envelope | A/Brain |
 | Protocol lifecycle | Protocol Governance | Correct protocol identity/version/compatibility/change control | Registration/change/deprecation/supersession | Source-owner proposals | Protocol Governance | Affected owner adaptation |
+| Contract integrity / input shape | Canonical owner boundary for each contract; shared protocol is governance text | Correct structural validation and local contract rejection | Validate raw/external/reconstructed structure before semantic processing; no semantic admission or authority mutation | Producers, adapters, replay and tests | Boundary that owns the declared contract | Typed contract may proceed to its existing semantic/admission owner |
 | Loop mechanics | Cognitive Loop | Correct mechanical persistence of authorized refs | OPEN/CONTINUE/FREEZE/CLOSE/ARCHIVE mechanics | All owner commands | Loop implementation | None; semantic owner remains source |
 | Memory candidate | Candidate producer now; future Memory Governance | Candidate source binding/provenance correctness | Candidate handoff only | Brain/Outcome/A/Loop | Candidate producer | Deferred Memory governance |
 | Experience candidate | Candidate producer now; future Experience Governance | Candidate bounded relation/provenance correctness | Candidate handoff only | Brain/Outcome/A/Loop | Candidate producer | Deferred Experience governance |
@@ -36,4 +37,3 @@
 ## Enforcement split
 
 Safety, Permission, Resource, Grant and Protocol policies retain their policy/version authority. Decision, Task, Runtime Admission, Provider, Observation and Action enforce supplied refs at their own boundaries. Enforcement failure belongs to the enforcing boundary; policy-definition failure belongs to the policy owner. No enforcement point may weaken or replace policy.
-

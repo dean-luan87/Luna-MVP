@@ -27,7 +27,10 @@ from .observation_gateway_core_types_v1 import (
 from .observation_gateway_error_types_v1 import ObservationGatewayErrorV1, make_error
 from .observation_gateway_ownership_guard_v1 import build_negative_guards
 from .observation_gateway_trace_types_v1 import ObservationGatewayTraceV1
-from .observation_gateway_static_validators_v1 import validate_runtime_observation_envelope
+from .observation_gateway_static_validators_v1 import (
+    validate_ingress_request_shape,
+    validate_runtime_observation_envelope,
+)
 
 
 class ObservationGatewayEngineV1:
@@ -236,6 +239,9 @@ class ObservationGatewayEngineV1:
 
     def run_case(self, request: ObservationIngressRequestV1) -> ObservationGatewayResultV1:
         sid = self._execution_identity(request)
+        shape_errors = validate_ingress_request_shape(request)
+        if shape_errors:
+            return self._error_result(request, "INVALID_INPUT_SHAPE", ";".join(shape_errors))
         mode_errors = validate_execution_mode(
             request.execution_mode,
             synthetic_only=request.synthetic_only,

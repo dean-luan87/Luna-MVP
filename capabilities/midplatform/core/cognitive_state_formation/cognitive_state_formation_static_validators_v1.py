@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Sequence
+from typing import Any, Iterable, Sequence, Tuple
 
 from capabilities.midplatform.core.cognitive_state_formation.attention_types_v1 import (
     AttentionCandidateV1,
@@ -12,6 +12,7 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_hypothesi
     HypothesisCompetitionResultV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    CognitiveReferenceSemanticV1,
     NegativeGuardStatusV1,
     SourceRefV1,
 )
@@ -19,7 +20,11 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
     CognitiveToCausalHandoffCandidateV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
+    CognitiveStateFormationInputV1,
     CognitiveStateFormationOutputV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_conditioning_types_v1 import (
+    CognitiveRelationInterpretationCandidateV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_ownership_guard_v1 import (
     validate_field_ref_read_only,
@@ -42,6 +47,61 @@ from capabilities.midplatform.core.execution_mode_v1 import (
     LIVE_RUNTIME,
     SYNTHETIC_CONTROLLED,
 )
+
+
+def _valid_typed_refs(value: Any) -> bool:
+    return isinstance(value, (list, tuple)) and all(isinstance(item, SourceRefV1) for item in value)
+
+
+def _valid_string_refs(value: Any) -> bool:
+    return isinstance(value, (list, tuple)) and all(isinstance(item, str) and bool(item.strip()) for item in value)
+
+
+def validate_input_contract(request: CognitiveStateFormationInputV1) -> Tuple[str, ...]:
+    """Reject invalid structure before semantic or epistemic processing."""
+    if not isinstance(request, CognitiveStateFormationInputV1):
+        return ("request_type_invalid",)
+    errors = []
+    if not isinstance(request.scenario_id, str) or not request.scenario_id.strip():
+        errors.append("scenario_id_invalid_field_type")
+    for name in (
+        "context_refs", "pcn_refs", "intent_refs", "field_refs", "observation_refs",
+        "risk_refs", "uncertainty_refs", "task_refs", "role_refs", "memory_refs",
+        "evidence_refs", "goal_refs", "concern_refs", "information_need_refs", "relation_refs",
+    ):
+        if not _valid_typed_refs(getattr(request, name)):
+            errors.append(f"{name}_must_contain_typed_source_refs")
+    for name in ("required_information_refs", "available_information_refs", "inherited_information_refs", "prior_hypothesis_refs"):
+        if not _valid_string_refs(getattr(request, name)):
+            errors.append(f"{name}_must_contain_strings")
+    for name in ("current_world_ref", "prior_current_world_ref"):
+        value = getattr(request, name)
+        if value is not None and not isinstance(value, SourceRefV1):
+            errors.append(f"{name}_invalid_shape")
+    if not isinstance(request.evidence_information_refs, (list, tuple)):
+        errors.append("evidence_information_refs_invalid_shape")
+    else:
+        for index, item in enumerate(request.evidence_information_refs):
+            if (not isinstance(item, (list, tuple)) or len(item) != 2
+                    or not isinstance(item[0], str) or not item[0].strip()
+                    or not _valid_string_refs(item[1])):
+                errors.append(f"evidence_information_refs[{index}]_invalid_shape")
+    if not isinstance(request.semantic_reference_values, (list, tuple)) or any(
+        not isinstance(item, CognitiveReferenceSemanticV1) for item in request.semantic_reference_values
+    ):
+        errors.append("semantic_reference_values_invalid_shape")
+    if not isinstance(request.relation_interpretation_candidates, (list, tuple)) or any(
+        not isinstance(item, CognitiveRelationInterpretationCandidateV1)
+        for item in request.relation_interpretation_candidates
+    ):
+        errors.append("relation_interpretation_candidates_invalid_shape")
+    for name in ("requirement_establishment_status", "execution_mode"):
+        if not isinstance(getattr(request, name), str) or not getattr(request, name).strip():
+            errors.append(f"{name}_invalid_field_type")
+    for name in ("synthetic_only", "candidate_only"):
+        if not isinstance(getattr(request, name), bool):
+            errors.append(f"{name}_invalid_field_type")
+    return tuple(dict.fromkeys(errors))
 
 
 def validate_no_field_mutation(world: CurrentWorldCandidateV1) -> bool:

@@ -43,10 +43,15 @@ def _mapping(value: Any) -> Mapping[str, Any]:
     return {}
 
 
-def _refs(value: Any) -> Tuple[str, ...]:
+def _strict_refs(value: Any, field_name: str, *, allow_empty: bool = True) -> Tuple[Tuple[str, ...], Tuple[str, ...]]:
     if not isinstance(value, (list, tuple)):
-        return ()
-    return tuple(str(item) for item in value if isinstance(item, str) and item)
+        return (), (f"invalid_field_type:{field_name}",)
+    refs = tuple(value)
+    if not allow_empty and not refs:
+        return (), (f"missing:{field_name}",)
+    if any(not isinstance(item, str) or not item.strip() for item in refs):
+        return (), (f"invalid_member_type:{field_name}",)
+    return refs, ()
 
 
 def form_field_event_candidate_from_evidence(
@@ -80,11 +85,14 @@ def form_field_event_candidate_from_evidence(
         "trace_ref",
         "provenance_refs",
     )
+    provenance_refs, provenance_errors = _strict_refs(
+        source.get("provenance_refs"), "provenance_refs", allow_empty=False
+    )
+    errors.extend(provenance_errors)
     for name in required:
         value = source.get(name)
         if name == "provenance_refs":
-            if not _refs(value):
-                errors.append(f"missing:{name}")
+            continue
         elif not isinstance(value, str) or not value.strip():
             errors.append(f"missing:{name}")
     if source.get("candidate_only") is not True:
@@ -113,7 +121,6 @@ def form_field_event_candidate_from_evidence(
             validation_errors=tuple(dict.fromkeys(errors)),
         )
 
-    provenance_refs = _refs(source.get("provenance_refs"))
     event_id = f"field-event:{evidence_ref}:{field_ref}"
     source_chain = tuple(
         dict.fromkeys(

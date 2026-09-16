@@ -166,7 +166,7 @@ def _task_manager_request(handoff: DecisionToTaskManagerHandoffCandidateV1) -> D
         },
         "context_refs": [handoff.context_ref, handoff.cognitive_loop_ref],
         "decision_refs": [handoff.decision_candidate_ref, handoff.decision_trace_ref],
-        "dependency_refs": [],
+        "dependency_refs": (),
         "dependency_snapshot": {},
         "resource_constraints": {"resource_refs": list(handoff.resource_refs)},
         "permission_snapshot": {

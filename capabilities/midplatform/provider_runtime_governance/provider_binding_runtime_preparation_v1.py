@@ -30,6 +30,12 @@ def _unique(values: Iterable[str]) -> Tuple[str, ...]:
     return tuple(dict.fromkeys(value for value in values if value and value.strip()))
 
 
+def _valid_ref_collection(value: object, *, allow_empty: bool = True) -> bool:
+    return isinstance(value, (list, tuple)) and (allow_empty or bool(value)) and all(
+        isinstance(item, str) and bool(item.strip()) for item in value
+    )
+
+
 @dataclass(frozen=True)
 class ProviderBindingRuntimePreparationCandidateV1:
     """A preparation projection, not a Provider Binding record."""
@@ -199,6 +205,9 @@ def _validate(request: ProviderBindingRuntimePreparationInputV1) -> Tuple[str, .
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("preparation_not_candidate_only")
+    for name in ("context_refs", "provenance_refs"):
+        if not _valid_ref_collection(getattr(request, name), allow_empty=True):
+            errors.append(f"{name}_must_contain_strings")
     if not isinstance(request.provider_target_candidates, tuple):
         errors.append("provider_target_candidates_must_be_tuple")
         return tuple(dict.fromkeys(errors))
@@ -261,6 +270,14 @@ def _validate(request: ProviderBindingRuntimePreparationInputV1) -> Tuple[str, .
         ):
             if ref not in target.lineage_refs:
                 errors.append(f"lineage_ref_missing:{target.provider_target_candidate_ref}:{ref}")
+        for name in (
+            "observation_target_refs", "observation_constraint_refs",
+            "expected_information_contribution_refs", "information_need_refs",
+            "information_gap_refs",
+            "context_refs", "lineage_refs", "provenance_refs",
+        ):
+            if not _valid_ref_collection(getattr(target, name), allow_empty=True):
+                errors.append(f"{name}_invalid:{target.provider_target_candidate_ref}")
     return tuple(dict.fromkeys(errors))
 
 

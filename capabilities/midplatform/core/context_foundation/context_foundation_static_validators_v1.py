@@ -14,6 +14,7 @@ from capabilities.midplatform.core.context_foundation.context_foundation_types_v
     ContextAssemblyInputV1,
     ContextEnvelopeCandidateV1,
     ContextValidationResultV1,
+    TemporalScopeReferenceV1,
 )
 from capabilities.midplatform.core.context_foundation.context_projection_types_v1 import (
     ProjectionKindV1,
@@ -71,6 +72,14 @@ def validate_projection_reference_complete(
     projection: ProjectionReferenceV1,
 ) -> ContextValidationResultV1:
     issues: List[str] = []
+    for name in ("projection_id", "projection_version", "timestamp", "validity", "unknown_state", "trace_reference", "source_owner", "projection_kind"):
+        value = getattr(projection, name)
+        if not isinstance(value, str):
+            issues.append(f"{name}_invalid_type")
+    if not isinstance(projection.provenance, (list, tuple)) or any(
+        not isinstance(item, str) or not item.strip() for item in projection.provenance
+    ):
+        issues.append("provenance_invalid_shape")
     required_values = {
         "projection_id": projection.projection_id,
         "projection_version": projection.projection_version,
@@ -84,8 +93,12 @@ def validate_projection_reference_complete(
             issues.append(f"missing_{name}")
     if not projection.provenance:
         issues.append("missing_provenance")
-    if projection.confidence is not None and not 0.0 <= projection.confidence <= 1.0:
-        issues.append("confidence_out_of_range")
+    if projection.confidence is not None and (
+        not isinstance(projection.confidence, (int, float))
+        or isinstance(projection.confidence, bool)
+        or not 0.0 <= projection.confidence <= 1.0
+    ):
+        issues.append("confidence_invalid_or_out_of_range")
     if projection.read_only is not True:
         issues.append("projection_must_be_read_only")
     if projection.reference_only is not True:
@@ -110,14 +123,27 @@ def validate_context_input(
     request: ContextAssemblyInputV1,
 ) -> ContextValidationResultV1:
     issues: List[str] = []
-    if not request.context_id:
+    if not isinstance(request.context_id, str) or not request.context_id.strip():
         issues.append("context_id_missing")
-    if not request.version:
+    if not isinstance(request.version, str) or not request.version.strip():
         issues.append("context_version_missing")
+    if not isinstance(request.temporal_scope, TemporalScopeReferenceV1):
+        return _result(("temporal_scope_invalid_shape",))
     if not request.temporal_scope.scope_id:
         issues.append("temporal_scope_missing")
     if request.temporal_scope.reference_only is not True:
         issues.append("temporal_scope_must_be_reference_only")
+    projection_candidates = (
+        request.field_projection_reference,
+        request.observation_projection_reference,
+        request.memory_projection_reference,
+        request.self_projection_reference,
+        request.role_projection_reference,
+        request.relationship_projection_reference,
+        request.emotion_projection_reference,
+    )
+    if any(item is not None and not isinstance(item, ProjectionReferenceV1) for item in projection_candidates):
+        return _result((*issues, "projection_reference_invalid_shape"))
     if request.direct_mutation_requested:
         issues.append("direct_mutation_forbidden")
     if request.skeleton_only is not True:
@@ -257,4 +283,3 @@ def validate_context_envelope_boundary(
     if actual_field_names & forbidden_field_names:
         issues.append("forbidden_context_field_present")
     return _result(issues)
-

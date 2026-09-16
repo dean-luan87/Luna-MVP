@@ -32,6 +32,7 @@ from .a_route_orchestration_core_types_v1 import (
     ARouteStageResultV1,
 )
 from .a_route_orchestration_error_types_v1 import ARouteOrchestrationErrorV1, make_error
+from .a_route_orchestration_static_validators_v1 import validate_request_shape
 from .a_route_orchestration_ownership_guard_v1 import build_negative_guards
 from .a_route_orchestration_protocol_v1 import (
     STAGE_PRODUCERS,
@@ -707,6 +708,10 @@ class ARouteOrchestrationEngineV1:
         handoffs: List[ARouteHandoffRecordV1] = []
         errors: List[ARouteOrchestrationErrorV1] = []
         sid = self._execution_identity(request)
+
+        shape_errors = validate_request_shape(request)
+        if shape_errors:
+            return self._stop(request, stages, handoffs, errors, "INGRESS", "INVALID_INPUT_SHAPE", ";".join(shape_errors))
 
         mode_errors = validate_execution_mode(
             request.execution_mode,

@@ -24,6 +24,12 @@ def _unique(values: Iterable[str]) -> Tuple[str, ...]:
     return tuple(dict.fromkeys(value for value in values if value and value.strip()))
 
 
+def _valid_ref_collection(value: object, *, allow_empty: bool = True) -> bool:
+    return isinstance(value, (list, tuple)) and (allow_empty or bool(value)) and all(
+        isinstance(item, str) and bool(item.strip()) for item in value
+    )
+
+
 @dataclass(frozen=True)
 class RuntimeAllocationPreparationCandidateV1:
     runtime_allocation_preparation_candidate_ref: str
@@ -229,6 +235,9 @@ def _binding_errors(request: object) -> Tuple[str, ...]:
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("candidate_only_required")
+    for name in ("context_refs", "provenance_refs"):
+        if not _valid_ref_collection(getattr(request, name), allow_empty=True):
+            errors.append(f"{name}_must_contain_strings")
     if not isinstance(request.provider_binding_candidates, tuple):
         return tuple((*errors, "provider_binding_candidates_must_be_tuple"))
     refs = _refs(request.provider_binding_candidates, ProviderBindingCandidateV1)
@@ -290,6 +299,14 @@ def _binding_errors(request: object) -> Tuple[str, ...]:
                 errors.append(f"lineage_ref_missing:{item.provider_binding_candidate_ref}:{ref}")
         if not item.runtime_requirement_refs and not item.resource_class_refs and not item.execution_class_refs:
             errors.append(f"runtime_requirement_missing:{item.provider_binding_candidate_ref}")
+        for name in (
+            "runtime_requirement_refs", "resource_class_refs", "execution_class_refs",
+            "observation_target_refs", "observation_constraint_refs",
+            "expected_information_contribution_refs", "context_refs", "lineage_refs",
+            "provenance_refs",
+        ):
+            if not _valid_ref_collection(getattr(item, name), allow_empty=True):
+                errors.append(f"{name}_invalid:{item.provider_binding_candidate_ref}")
     return tuple(dict.fromkeys(errors))
 
 

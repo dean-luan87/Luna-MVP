@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import Dict, List, Tuple
 
 from .field_state_reducer_module_types_v1 import (
@@ -24,6 +25,27 @@ def adapt_module_input_v1(
 ) -> Tuple[AdaptedModuleInputV1 | None, Tuple[str, ...], Tuple[str, ...]]:
     missing_inputs: List[str] = []
     rejection_reasons: List[str] = []
+
+    if not isinstance(request, FieldStateReducerModuleRequestV1):
+        return None, ("request_type_invalid",), ()
+
+    if not isinstance(request.admitted_events, tuple):
+        rejection_reasons.append("admitted_events_must_be_tuple")
+    elif any(not isinstance(event, Mapping) for event in request.admitted_events):
+        rejection_reasons.append("admitted_events_members_must_be_mapping")
+    for name in (
+        "existing_state_snapshot", "temporal_snapshot", "policy_registry_snapshot",
+        "evaluation_contract_snapshot", "selection_contract_snapshot",
+        "reduction_contract_snapshot", "conflict_snapshot", "overlay_snapshot",
+        "owner_correction_snapshot", "provenance_snapshot", "version_snapshots",
+    ):
+        if not isinstance(getattr(request, name), Mapping):
+            rejection_reasons.append(f"{name}_must_be_mapping")
+    if isinstance(request.version_snapshots, Mapping) and any(
+        not isinstance(key, str) or not key.strip() or not isinstance(value, str) or not value.strip()
+        for key, value in request.version_snapshots.items()
+    ):
+        rejection_reasons.append("version_snapshots_members_invalid")
 
     if not request.reducer_request_id:
         missing_inputs.append("reducer_request_id")
@@ -57,8 +79,13 @@ def adapt_module_input_v1(
 
     # Admitted event and stable event id checks.
     admitted_event_refs: List[str] = []
-    for idx, event in enumerate(request.admitted_events):
-        event_id = str(event.get("event_id", ""))
+    for idx, event in enumerate(request.admitted_events if isinstance(request.admitted_events, tuple) else ()):
+        if not isinstance(event, Mapping):
+            continue
+        event_id = event.get("event_id", "")
+        if not isinstance(event_id, str):
+            rejection_reasons.append(f"admitted_events[{idx}].event_id_invalid_type")
+            continue
         if not event_id:
             missing_inputs.append(f"admitted_events[{idx}].event_id")
             continue
@@ -68,7 +95,7 @@ def adapt_module_input_v1(
 
     # Version completeness check.
     for key in _REQUIRED_VERSION_KEYS:
-        if not str(request.version_snapshots.get(key, "")):
+        if not isinstance(request.version_snapshots, Mapping) or not isinstance(request.version_snapshots.get(key, ""), str) or not request.version_snapshots.get(key, "").strip():
             missing_inputs.append(f"version_snapshots.{key}")
 
     if missing_inputs or rejection_reasons:

@@ -1,11 +1,13 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Tuple
 
 from .a_route_orchestration_core_types_v1 import (
     ARouteHandoffRecordV1,
     ARouteNegativeGuardsV1,
     ARouteStageResultV1,
+    ARouteIngressRefsV1,
+    ARouteOrchestrationRequestV1,
     HANDOFF_STATUSES,
     LIFECYCLE_STAGES,
 )
@@ -68,3 +70,27 @@ def validate_negative_guards(guards: ARouteNegativeGuardsV1) -> bool:
 
 def validate_lifecycle_state(state: str) -> bool:
     return state in LIFECYCLE_STAGES or state in {"STOPPED", "DEFERRED", "FAILED", "RECONSIDERING", "SUSPENDED"}
+
+
+def validate_request_shape(request: ARouteOrchestrationRequestV1) -> Tuple[str, ...]:
+    """Validate transport references before orchestration normalization."""
+    if not isinstance(request, ARouteOrchestrationRequestV1):
+        return ("request_type_invalid",)
+    errors = []
+    if not isinstance(request.ingress, ARouteIngressRefsV1):
+        return ("ingress_shape_invalid",)
+    for name in ("observation_refs", "perception_refs", "user_input_refs", "field_refs", "relation_refs"):
+        value = getattr(request.ingress, name)
+        if not isinstance(value, (list, tuple)) or any(not isinstance(item, str) or not item.strip() for item in value):
+            errors.append(f"ingress.{name}_must_contain_strings")
+    for name in ("role_refs", "task_refs", "goal_refs", "concern_refs", "information_need_refs"):
+        value = getattr(request, name)
+        if not isinstance(value, (list, tuple)) or any(not isinstance(item, str) or not item.strip() for item in value):
+            errors.append(f"{name}_must_contain_strings")
+    if not isinstance(request.relation_interpretation_candidates, (list, tuple)):
+        errors.append("relation_interpretation_candidates_invalid_shape")
+    if not isinstance(request.semantic_reference_values, (list, tuple)):
+        errors.append("semantic_reference_values_invalid_shape")
+    if not isinstance(request.scenario_id, str) or not request.scenario_id.strip():
+        errors.append("scenario_id_invalid_field_type")
+    return tuple(dict.fromkeys(errors))

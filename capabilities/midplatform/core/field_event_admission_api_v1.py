@@ -46,10 +46,12 @@ def _utc_text(value: Optional[datetime]) -> Optional[str]:
     return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def _safe_tuple(value: Any) -> Tuple[str, ...]:
+def _strict_tuple(value: Any) -> Tuple[str, ...] | None:
     if not isinstance(value, (list, tuple)):
-        return ()
-    return tuple(item for item in value if isinstance(item, str) and item)
+        return None
+    if any(not isinstance(item, str) or not item.strip() for item in value):
+        return None
+    return tuple(value)
 
 
 def _assessment(
@@ -92,8 +94,8 @@ def _result(
     steps: Tuple[AdmissionDecisionStepV1, ...],
 ) -> FieldEventAdmissionResultV1:
     reducer_eligible = status is AdmissionStatusV1.ADMITTED_EVENT
-    evidence_refs = _safe_tuple(event.get("evidence_refs"))
-    source_chain = _safe_tuple(event.get("source_chain"))
+    evidence_refs = _strict_tuple(event.get("evidence_refs")) or ()
+    source_chain = _strict_tuple(event.get("source_chain")) or ()
     reducer_candidate: Optional[Dict[str, Any]] = None
     if reducer_eligible:
         reducer_candidate = {
@@ -158,10 +160,19 @@ def admit_field_event(
             AdmissionReasonCodeV1.MISSING_REQUIRED_FIELD, empty_temporal,
             (_step("01", "structural_validation", "rejected"),),
         )
+    scalar_fields = ("event_id", "event_type", "field_ref", "trace_ref")
+    if any(not isinstance(event.get(name), str) or not event[name].strip() for name in scalar_fields):
+        return _result(
+            event, policy, AdmissionStatusV1.REJECTED_EVENT,
+            AdmissionReasonCodeV1.INVALID_FIELD_TYPE, empty_temporal,
+            (_step("01", "structural_validation", "invalid"),),
+        )
     if (
         not isinstance(event.get("payload"), Mapping)
-        or not _safe_tuple(event.get("source_chain"))
-        or not _safe_tuple(event.get("evidence_refs"))
+        or _strict_tuple(event.get("source_chain")) is None
+        or _strict_tuple(event.get("evidence_refs")) is None
+        or not _strict_tuple(event.get("source_chain"))
+        or not _strict_tuple(event.get("evidence_refs"))
         or evaluated is None
         or policy.max_event_age_seconds < 0
         or policy.max_out_of_order_seconds < 0
