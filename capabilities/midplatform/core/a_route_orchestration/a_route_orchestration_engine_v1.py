@@ -24,6 +24,13 @@ from capabilities.midplatform.core.execution_mode_v1 import (
 from capabilities.midplatform.core.observation_gateway.observation_gateway_static_validators_v1 import (
     validate_runtime_observation_admission,
 )
+from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_engine_v1 import (
+    form_cognitive_semantic_judgment,
+    validate_a_semantic_judgment_projection,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_types_v1 import (
+    ASemanticDecisionContextV1,
+)
 from .a_route_orchestration_core_types_v1 import (
     ARouteHandoffRecordV1,
     ARouteCognitiveExecutionEvidenceV1,
@@ -523,21 +530,74 @@ class ARouteOrchestrationEngineV1:
                 control_state="FAILED",
             )
 
+        def _source_refs(values: Tuple[SourceRefV1, ...]) -> Tuple[str, ...]:
+            return tuple(value.source_ref for value in values)
+
+        a_context = ASemanticDecisionContextV1(
+            work_ref=execution_ref,
+            concern_ref=(
+                concern_refs[0].source_ref
+                if concern_refs
+                else f"concern:{request.scenario_id}"
+            ),
+            a_grant_ref=f"grant:a:{execution_ref}",
+            source_state_version_ref=execution_ref,
+            goal_refs=_source_refs(goal_refs),
+            intent_refs=_source_refs(intent_refs),
+            role_refs=_source_refs(role_refs),
+            perspective_refs=(),
+            field_refs=_source_refs(field_refs),
+            context_refs=_source_refs(state_refs),
+            current_world_refs=(state_output.current_world_candidate.current_world_id,),
+            task_behavior_refs=_source_refs(task_refs),
+            emotion_modulation_refs=(),
+            experience_refs=(),
+            safety_refs=(),
+            permission_refs=(),
+            resource_envelope_refs=(),
+            evidence_refs=_source_refs(evidence_refs),
+            prior_need_refs=_source_refs(information_need_refs),
+            prior_hypothesis_refs=tuple(admission.prior_hypothesis_refs),
+            prior_requirement_refs=tuple(normalized_information.required_information_refs),
+            trace_refs=(f"trace:{execution_ref}:a-semantic",),
+            provenance_refs=(f"provenance:{execution_ref}:a-semantic",),
+            candidate_only=True,
+            synthetic_only=request.synthetic_only,
+            contradiction_refs=tuple(getattr(admission, "contradiction_refs", ()) or ()),
+        )
+        a_judgment = form_cognitive_semantic_judgment(
+            context=a_context,
+            source_snapshot_ref=state_output.cognitive_state_vector_candidate.state_vector_id,
+            current_world_ref=state_output.current_world_candidate.current_world_id,
+            attention_refs=tuple(
+                state_output.attention_selection_candidate.selected_attention_refs
+            ),
+            evidence_refs=_source_refs(evidence_refs),
+            required_information_refs=normalized_information.required_information_refs,
+            available_information_refs=normalized_information.available_information_refs,
+            requirement_establishment_status=normalized_information.requirement_establishment_status,
+            prior_hypothesis_refs=tuple(admission.prior_hypothesis_refs),
+            prior_information_gap_ref=admission.prior_information_gap_ref,
+            prior_reobservation_ref=admission.prior_reobservation_ref,
+            conflict_refs=tuple(getattr(admission, "contradiction_refs", ()) or ()),
+        )
+
         loop_output_refs = tuple(
             ref
             for ref in (
-                state_output.sufficiency_candidate.sufficiency_ref if state_output.sufficiency_candidate else None,
-                state_output.information_gap_candidate.information_gap_ref if state_output.information_gap_candidate else None,
-                state_output.reobservation_candidate.reobservation_ref if state_output.reobservation_candidate else None,
-                state_output.next_cycle_ingress_ref,
-                state_output.hypothesis_revision_candidate.hypothesis_revision_ref if state_output.hypothesis_revision_candidate else None,
-                state_output.stop_candidate.stop_ref if state_output.stop_candidate else None,
+                a_judgment.sufficiency_ref,
+                a_judgment.information_gap_ref,
+                a_judgment.reobservation_ref,
+                a_judgment.next_cycle_ingress_ref,
+                a_judgment.reconsideration_ref,
+                a_judgment.local_disposition_ref,
+                *(item.hypothesis_ref for item in a_judgment.hypothesis_candidates),
             )
             if ref
         )
         output_refs = (
             state_output.current_world_candidate.current_world_id,
-            *(item.hypothesis_id for item in state_output.cognitive_hypotheses),
+            *(item.hypothesis_ref for item in a_judgment.hypothesis_candidates),
             state_output.cognitive_state_vector_candidate.state_vector_id,
             state_output.causal_handoff_candidate.handoff_id,
             *loop_output_refs,
@@ -567,15 +627,15 @@ class ARouteOrchestrationEngineV1:
             ingress_refs=ingress_refs,
             cognitive_transition_refs=state_output.cognitive_transition_refs,
             current_world_ref=state_output.current_world_candidate.current_world_id,
-            hypothesis_refs=tuple(item.hypothesis_id for item in state_output.cognitive_hypotheses),
+            hypothesis_refs=tuple(item.hypothesis_ref for item in a_judgment.hypothesis_candidates),
             current_world_availability="observed",
             hypothesis_availability="observed",
-            sufficiency_ref=state_output.sufficiency_candidate.sufficiency_ref if state_output.sufficiency_candidate else None,
-            sufficiency_availability="observed" if state_output.sufficiency_candidate else "not_observed",
-            information_gap_ref=state_output.information_gap_candidate.information_gap_ref if state_output.information_gap_candidate else None,
-            information_gap_availability="observed" if state_output.information_gap_candidate else "not_observed",
-            stop_ref=state_output.stop_candidate.stop_ref if state_output.stop_candidate else None,
-            stop_availability="observed" if state_output.stop_candidate else "not_observed",
+            sufficiency_ref=a_judgment.sufficiency_ref,
+            sufficiency_availability="observed",
+            information_gap_ref=a_judgment.information_gap_ref,
+            information_gap_availability="observed" if a_judgment.information_gap_ref else "not_observed",
+            stop_ref=a_judgment.local_disposition_ref,
+            stop_availability="observed" if a_judgment.local_disposition_ref else "not_observed",
             decision_handoff_ref=None,
             decision_handoff_availability="not_observed",
             runtime_executed=True,
@@ -585,25 +645,33 @@ class ARouteOrchestrationEngineV1:
             admitted_evidence_refs=tuple(admission.evidence_refs),
             gateway_execution_identity_ref=request.execution_identity_ref,
             gateway_admission_runtime_state=request.gateway_admission_runtime_state,
-            execution_proof_source="CognitiveStateFormationEngineV1.run_case",
+            execution_proof_source="AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
             cognitive_cycle_index=state_output.cognitive_cycle_index,
-            sufficiency_status=state_output.sufficiency_candidate.status if state_output.sufficiency_candidate else "not_observed",
-            sufficiency_owner_ref=state_output.sufficiency_candidate.owner_ref if state_output.sufficiency_candidate else None,
-            sufficiency_candidate=state_output.sufficiency_candidate,
-            information_gap_owner_ref=state_output.information_gap_candidate.owner_ref if state_output.information_gap_candidate else None,
-            information_gap_candidate=state_output.information_gap_candidate,
-            reobservation_ref=state_output.reobservation_candidate.reobservation_ref if state_output.reobservation_candidate else None,
-            reobservation_owner_ref=state_output.reobservation_candidate.owner_ref if state_output.reobservation_candidate else None,
-            reobservation_candidate=state_output.reobservation_candidate,
-            reobservation_information_gap_ref=state_output.reobservation_candidate.information_gap_ref if state_output.reobservation_candidate else None,
-            next_cycle_ingress_ref=state_output.next_cycle_ingress_ref,
+            sufficiency_status=a_judgment.sufficiency_status,
+            sufficiency_owner_ref="A_REASONING_ROLE",
+            sufficiency_candidate=None,
+            information_gap_owner_ref="A_REASONING_ROLE" if a_judgment.information_gap_ref else None,
+            information_gap_candidate=None,
+            reobservation_ref=a_judgment.reobservation_ref,
+            reobservation_owner_ref=a_judgment.reobservation_owner_ref,
+            reobservation_candidate=None,
+            reobservation_information_gap_ref=a_judgment.information_gap_ref,
+            next_cycle_ingress_ref=a_judgment.next_cycle_ingress_ref,
             prior_next_cycle_ingress_ref=admission.prior_next_cycle_ingress_ref,
-            hypothesis_revision_ref=state_output.hypothesis_revision_candidate.hypothesis_revision_ref if state_output.hypothesis_revision_candidate else None,
-            hypothesis_revision_owner_ref=state_output.hypothesis_revision_candidate.owner_ref if state_output.hypothesis_revision_candidate else None,
-            hypothesis_revision_information_gap_ref=state_output.hypothesis_revision_candidate.information_gap_ref if state_output.hypothesis_revision_candidate else None,
-            hypothesis_revision_reobservation_ref=state_output.hypothesis_revision_candidate.reobservation_ref if state_output.hypothesis_revision_candidate else None,
-            stop_reason=state_output.stop_candidate.reason if state_output.stop_candidate else None,
-            stop_owner_ref=state_output.stop_candidate.owner_ref if state_output.stop_candidate else None,
+            hypothesis_revision_ref=a_judgment.reconsideration_ref,
+            hypothesis_revision_owner_ref="A_REASONING_ROLE" if a_judgment.reconsideration_ref else None,
+            hypothesis_revision_information_gap_ref=(
+                admission.prior_information_gap_ref
+                if a_judgment.reconsideration_ref
+                else None
+            ),
+            hypothesis_revision_reobservation_ref=admission.prior_reobservation_ref if a_judgment.reconsideration_ref else None,
+            stop_reason=(
+                "MINIMUM_SUFFICIENT_INFORMATION_REACHED"
+                if a_judgment.local_disposition == "STOP_SUFFICIENT"
+                else a_judgment.local_disposition
+            ),
+            stop_owner_ref="A_REASONING_ROLE" if a_judgment.local_disposition_ref else None,
             role_refs=tuple(r.source_ref for r in state_request.role_refs),
             task_refs=tuple(r.source_ref for r in state_request.task_refs),
             goal_refs=tuple(r.source_ref for r in state_request.goal_refs),
@@ -628,18 +696,15 @@ class ARouteOrchestrationEngineV1:
                 if state_output.attention_candidates else None
             ),
             conditioned_hypothesis_statement=(
-                state_output.cognitive_hypotheses[0].hypothesis_statement_candidate
-                if state_output.cognitive_hypotheses else None
+                a_judgment.hypothesis_candidates[0].hypothesis_statement
+                if a_judgment.hypothesis_candidates else None
             ),
             conditioned_hypothesis_state=(
-                state_output.cognitive_hypotheses[0].state
-                if state_output.cognitive_hypotheses else None
+                a_judgment.hypothesis_candidates[0].state
+                if a_judgment.hypothesis_candidates else None
             ),
             conditioned_world_kind_candidate=state_output.current_world_candidate.world_state_kind_candidate,
-            conditioned_missing_information_refs=(
-                state_output.sufficiency_candidate.missing_information_refs
-                if state_output.sufficiency_candidate else ()
-            ),
+            conditioned_missing_information_refs=a_judgment.missing_information_refs,
             field_refs=tuple(r.source_ref for r in state_request.field_refs),
             selected_attention_count=len(state_output.attention_selection_candidate.selected_attention_refs),
             conditioned_evidence_relevance=tuple(
@@ -652,16 +717,54 @@ class ARouteOrchestrationEngineV1:
             ),
             relation_interpretation_semantic_candidates=state_output.relation_interpretation_candidates,
             current_world_relation_interpretation_refs=state_output.current_world_candidate.relation_interpretation_refs,
-            conditioned_conflict_refs=state_output.current_world_candidate.conflict_refs,
-            requirement_establishment_status=state_output.sufficiency_candidate.requirement_establishment_status
-            if state_output.sufficiency_candidate else "NOT_ESTABLISHED",
-            requirement_establishment_ref=state_output.sufficiency_candidate.requirement_establishment_ref
-            if state_output.sufficiency_candidate else None,
-            requirement_establishment_basis=state_output.sufficiency_candidate.requirement_establishment_basis
-            if state_output.sufficiency_candidate else None,
+            conditioned_conflict_refs=tuple(
+                ref
+                for hypothesis in a_judgment.hypothesis_candidates
+                for ref in hypothesis.conflict_refs
+            ),
+            requirement_establishment_status=normalized_information.requirement_establishment_status,
+            requirement_establishment_ref=normalized_information.requirement_establishment_ref,
+            requirement_establishment_basis=normalized_information.requirement_establishment_basis,
             required_cognitive_condition_formation_result=state_output.required_cognitive_condition_formation_result,
+            semantic_owner_ref="A_REASONING_ROLE",
+            semantic_judgment_ref=a_judgment.judgment_ref,
+            cognitive_semantic_judgment=a_judgment,
+            semantic_provenance_refs=a_judgment.provenance_refs,
         )
-        if state_output.sufficiency_candidate and state_output.sufficiency_candidate.status == "SUFFICIENT":
+        binding_errors = validate_a_semantic_judgment_projection(
+            a_judgment,
+            semantic_owner_ref=cognitive_execution.semantic_owner_ref,
+            semantic_judgment_ref=cognitive_execution.semantic_judgment_ref,
+            hypothesis_refs=cognitive_execution.hypothesis_refs,
+            sufficiency_ref=cognitive_execution.sufficiency_ref,
+            sufficiency_status=cognitive_execution.sufficiency_status,
+            information_gap_ref=cognitive_execution.information_gap_ref,
+            reobservation_ref=cognitive_execution.reobservation_ref,
+            hypothesis_revision_ref=cognitive_execution.hypothesis_revision_ref,
+            hypothesis_revision_information_gap_ref=(
+                cognitive_execution.hypothesis_revision_information_gap_ref
+            ),
+            hypothesis_revision_reobservation_ref=(
+                cognitive_execution.hypothesis_revision_reobservation_ref
+            ),
+            stop_ref=cognitive_execution.stop_ref,
+            semantic_provenance_refs=cognitive_execution.semantic_provenance_refs,
+            conflict_refs=cognitive_execution.conditioned_conflict_refs,
+        )
+        if binding_errors:
+            return self._stop(
+                request,
+                stages,
+                handoffs,
+                errors,
+                "A_SEMANTIC_JUDGMENT",
+                "A_SEMANTIC_JUDGMENT_BINDING_INVALID",
+                "ARoute proof is not an exact projection of the A judgment",
+                tuple(binding_errors),
+                lifecycle_state="FAILED",
+                control_state="FAILED",
+            )
+        if a_judgment.sufficiency_status == "SUFFICIENT":
             return self._result(
                 request,
                 "COGNITIVE_STATE_READY",
@@ -678,7 +781,7 @@ class ARouteOrchestrationEngineV1:
             stages,
             handoffs,
             errors,
-            next_cycle_refs=(state_output.next_cycle_ingress_ref,) if state_output.next_cycle_ingress_ref else (),
+            next_cycle_refs=(a_judgment.next_cycle_ingress_ref,) if a_judgment.next_cycle_ingress_ref else (),
             deferred_refs=("minimum_sufficient_loop_requires_next_cycle",),
             cognitive_execution=cognitive_execution,
         )

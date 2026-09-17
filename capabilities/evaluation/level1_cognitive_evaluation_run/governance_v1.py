@@ -188,10 +188,10 @@ def evaluate_plane_g_compliance_v1(
         ("G12_PROMOTION_BOUNDARY", not any((memory_promotion, knowledge_promotion, experience_promotion)), "promotion flags"),
         ("G13_UNAVAILABLE_METRIC_INTEGRITY", bool(unavailable_metrics) and not zero_filled_unavailable_metrics, "explicit unavailable metrics"),
         ("G14_DECISION_ACTION_SEPARATION", not action_execution and not (decision_handoff_ref and action_execution), "handoff does not execute action"),
-        ("G15_SUFFICIENCY_OWNER_BOUNDARY", not sufficiency_ref or sufficiency_owner_ref == "Cognitive State Formation Governance", "canonical sufficiency owner"),
-        ("G16_INFORMATION_GAP_OWNER_BOUNDARY", not information_gap_ref or information_gap_owner_ref == "Cognitive State Formation Governance", "canonical information gap owner"),
+        ("G15_SUFFICIENCY_OWNER_BOUNDARY", not sufficiency_ref or sufficiency_owner_ref == "A_REASONING_ROLE", "canonical sufficiency owner"),
+        ("G16_INFORMATION_GAP_OWNER_BOUNDARY", not information_gap_ref or information_gap_owner_ref == "A_REASONING_ROLE", "canonical information gap owner"),
         ("G17_REOBSERVATION_JUSTIFICATION", not reobservation_ref or (bool(information_gap_ref) and bool(next_cycle_ingress_ref) and reobservation_owner_ref == "Field Perception Orchestrator"), "re-observation is justified by an information gap"),
-        ("G18_STOP_AUTHORITY_BOUNDARY", not stop_ref or stop_owner_ref == "Cognitive State Formation Governance", "canonical stop owner"),
+        ("G18_STOP_AUTHORITY_BOUNDARY", not stop_ref or stop_owner_ref == "A_REASONING_ROLE", "canonical stop owner"),
         ("G19_PREMATURE_STOP_GUARD", not premature_stop, "stop follows required information"),
         ("G20_POST_SUFFICIENCY_OVEROBSERVATION_GUARD", not unnecessary_observation, "no observation after minimum sufficiency"),
     )

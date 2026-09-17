@@ -32,6 +32,9 @@ from capabilities.midplatform.core.cognitive_flow.integration.cognitive_loop_gov
     CognitiveOutcomeCandidateV1,
     LoopClosureRecordCandidateV1,
 )
+from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_engine_v1 import (
+    validate_a_semantic_judgment_projection,
+)
 from capabilities.midplatform.model_manager.registries.universal_capability_slot.cognitive_need_capability_requirement_bridge_types_v1 import (
     CognitiveNeedCandidateV1,
 )
@@ -182,14 +185,47 @@ def _build_closure(
         if proof is not None
         else None
     )
+    semantic_judgment = getattr(proof, "cognitive_semantic_judgment", None) if proof is not None else None
+    judgment_errors = (
+        validate_a_semantic_judgment_projection(
+            semantic_judgment,
+            semantic_owner_ref=getattr(proof, "semantic_owner_ref", None),
+            semantic_judgment_ref=getattr(proof, "semantic_judgment_ref", None),
+            hypothesis_refs=getattr(proof, "hypothesis_refs", None),
+            sufficiency_ref=getattr(proof, "sufficiency_ref", None),
+            sufficiency_status=getattr(proof, "sufficiency_status", None),
+            information_gap_ref=getattr(proof, "information_gap_ref", None),
+            reobservation_ref=getattr(proof, "reobservation_ref", None),
+            hypothesis_revision_ref=getattr(proof, "hypothesis_revision_ref", None),
+            hypothesis_revision_information_gap_ref=getattr(
+                proof, "hypothesis_revision_information_gap_ref", None
+            ),
+            hypothesis_revision_reobservation_ref=getattr(
+                proof, "hypothesis_revision_reobservation_ref", None
+            ),
+            stop_ref=getattr(proof, "stop_ref", None),
+            semantic_provenance_refs=getattr(proof, "semantic_provenance_refs", None),
+        )
+        if proof is not None
+        else ("a_judgment_missing",)
+    )
     if (
         proof is None
+        or getattr(proof, "semantic_owner_ref", None) != "A_REASONING_ROLE"
+        or semantic_judgment is None
+        or getattr(semantic_judgment, "semantic_owner_ref", None) != "A_REASONING_ROLE"
+        or getattr(semantic_judgment, "local_disposition", None) != "STOP_SUFFICIENT"
+        or getattr(semantic_judgment, "missing_information_refs", ())
+        or getattr(semantic_judgment, "information_gap_ref", None)
+        or getattr(semantic_judgment, "reobservation_ref", None)
+        or getattr(semantic_judgment, "next_cycle_ingress_ref", None)
         or proof.sufficiency_status != "SUFFICIENT"
         or proof.requirement_establishment_status != "ESTABLISHED"
         or not proof.requirement_establishment_ref
         or not proof.sufficiency_ref
         or establishment is None
         or establishment[1] != proof.requirement_establishment_ref
+        or judgment_errors
     ):
         return (None, None, None, None, None, None, ("closure_requires_sufficient_cognition",))
     if not proof.stop_ref:

@@ -95,6 +95,9 @@ class ControlledReplayAdmissionV1:
     prior_sufficiency_candidate: CognitiveSufficiencyCandidateV1 | None = None
     prior_information_gap_candidate: CognitiveInformationGapCandidateV1 | None = None
     prior_reobservation_candidate: CognitiveReobservationCandidateV1 | None = None
+    # Gateway-preserved structured contradiction lineage.  A may interpret
+    # this reference locally; the admission contract does not interpret it.
+    contradiction_refs: Tuple[str, ...] = ()
 
 
 def validate_execution_mode(mode: str, *, synthetic_only: bool) -> Tuple[str, ...]:
@@ -153,12 +156,9 @@ def validate_controlled_replay_input(
         errors.append("replay_followup_reobservation_link_missing")
     if replay.cycle_index > 1 and not replay.prior_next_cycle_ingress_ref:
         errors.append("replay_followup_next_cycle_ingress_link_missing")
-    if replay.cycle_index > 1 and replay.prior_sufficiency_candidate is None:
-        errors.append("replay_followup_sufficiency_candidate_missing")
-    if replay.cycle_index > 1 and replay.prior_information_gap_candidate is None:
-        errors.append("replay_followup_information_gap_candidate_missing")
-    if replay.cycle_index > 1 and replay.prior_reobservation_candidate is None:
-        errors.append("replay_followup_reobservation_candidate_missing")
+    # P11 canonical replay carries prior cycle semantics through the
+    # A-owned judgment refs.  Legacy CState loop candidates remain optional
+    # compatibility projections and must not gate cycle continuation.
     if replay.prior_information_gap_candidate is not None and replay.prior_information_gap_candidate.information_gap_ref != replay.prior_information_gap_ref:
         errors.append("replay_followup_information_gap_candidate_ref_mismatch")
     if replay.prior_reobservation_candidate is not None and replay.prior_reobservation_candidate.reobservation_ref != replay.prior_reobservation_ref:
@@ -208,6 +208,12 @@ def validate_controlled_replay_admission(
         prior_reobservation_candidate=admission.prior_reobservation_candidate,
     )
     errors = list(validate_controlled_replay_input(replay))
+    contradiction_refs = admission.contradiction_refs
+    if type(contradiction_refs) is not tuple or any(
+        type(ref) is not str or not ref.strip()
+        for ref in (contradiction_refs if type(contradiction_refs) is tuple else ())
+    ):
+        errors.append("replay_contradiction_refs_invalid")
     if admission.owner_ref != "Observation Gateway Governance":
         errors.append("replay_admission_owner_invalid")
     if not admission.gateway_admission_ref:

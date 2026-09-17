@@ -110,6 +110,7 @@ class CognitiveStateFormationInputV1:
 
 @dataclass(frozen=True)
 class CognitiveStateFormationOutputV1:
+    """Aligned cognitive snapshot plus non-authoritative compatibility views."""
     scenario_id: str
     attention_candidates: Tuple[AttentionCandidateV1, ...]
     attention_selection_candidate: AttentionSelectionCandidateV1
@@ -141,3 +142,7 @@ class CognitiveStateFormationOutputV1:
     requirement_establishment_ref: str | None = None
     requirement_establishment_basis: str | None = None
     required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
+    semantic_owner_ref: str = "A_REASONING_ROLE"
+    semantic_projection_only: bool = True
+    semantic_authority: bool = False
+    formation_role: str = "SNAPSHOT_FORMATION"

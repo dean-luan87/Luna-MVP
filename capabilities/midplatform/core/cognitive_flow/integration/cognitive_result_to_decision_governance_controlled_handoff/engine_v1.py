@@ -34,6 +34,9 @@ from capabilities.midplatform.core.observation_gateway.observation_gateway_core_
     EvidenceReferenceBindingV1,
     ObservationGatewayAdmissionRuntimeStateV1,
 )
+from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_engine_v1 import (
+    validate_a_semantic_judgment_projection,
+)
 
 from .cognitive_result_to_decision_governance_handoff_types_v1 import (
     COGNITION_OWNER,
@@ -172,6 +175,32 @@ def build_cognitive_decision_handoff_candidate_v1(
     loop = case.get("loop_instance") or {}
     if proof is None:
         return None, ("decision_handoff_requires_cognitive_proof",)
+    if _proof_value(proof, "semantic_owner_ref") != "A_REASONING_ROLE":
+        return None, ("decision_handoff_requires_a_owned_semantic_judgment",)
+    semantic_judgment = _proof_value(proof, "cognitive_semantic_judgment")
+    if semantic_judgment is None or _proof_value(semantic_judgment, "semantic_owner_ref") != "A_REASONING_ROLE":
+        return None, ("decision_handoff_requires_a_owned_semantic_judgment",)
+    judgment_errors = validate_a_semantic_judgment_projection(
+        semantic_judgment,
+        semantic_owner_ref=_proof_value(proof, "semantic_owner_ref"),
+        semantic_judgment_ref=_proof_value(proof, "semantic_judgment_ref"),
+        hypothesis_refs=_proof_value(proof, "hypothesis_refs"),
+        sufficiency_ref=_proof_value(proof, "sufficiency_ref"),
+        sufficiency_status=_proof_value(proof, "sufficiency_status"),
+        information_gap_ref=_proof_value(proof, "information_gap_ref"),
+        reobservation_ref=_proof_value(proof, "reobservation_ref"),
+        hypothesis_revision_ref=_proof_value(proof, "hypothesis_revision_ref"),
+        hypothesis_revision_information_gap_ref=_proof_value(
+            proof, "hypothesis_revision_information_gap_ref"
+        ),
+        hypothesis_revision_reobservation_ref=_proof_value(
+            proof, "hypothesis_revision_reobservation_ref"
+        ),
+        stop_ref=_proof_value(proof, "stop_ref"),
+        semantic_provenance_refs=_proof_value(proof, "semantic_provenance_refs"),
+    )
+    if judgment_errors:
+        return None, ("decision_handoff_rejects_unbound_a_judgment", *judgment_errors)
     if _proof_value(proof, "sufficiency_status") != "SUFFICIENT":
         return None, ("decision_handoff_requires_sufficient_cognition",)
     if _proof_value(proof, "requirement_establishment_status") != "ESTABLISHED" or not _proof_value(proof, "requirement_establishment_ref"):
@@ -222,6 +251,8 @@ def build_cognitive_decision_handoff_candidate_v1(
             stop_ref=_proof_value(proof, "stop_ref"),
             provenance_refs=provenance_refs,
             execution_instance_ref=_proof_value(proof, "execution_ref").split(":", 1)[0],
+            semantic_owner_ref=_proof_value(proof, "semantic_owner_ref"),
+            semantic_judgment_ref=_proof_value(semantic_judgment, "judgment_ref"),
             evidence_owner_ref=EVIDENCE_OWNER,
             evidence_binding_kind=EVIDENCE_BINDING_KIND,
             gateway_admission_ref=_proof_value(proof, "gateway_admission_ref"),
@@ -248,8 +279,8 @@ def _decision_input(handoff: CognitiveDecisionHandoffCandidateV1) -> DecisionGov
     safety_refs = (_ref(policy_owner, f"safety:{handoff.case_id}:controlled-candidate", "SAFETY"),)
     resource_refs = (_ref(policy_owner, f"resource:{handoff.case_id}:controlled-candidate", "RESOURCE"),)
     constraint_refs = (
-        _ref(COGNITION_OWNER, handoff.sufficiency_ref, "SUFFICIENCY"),
-        _ref(COGNITION_OWNER, handoff.stop_ref, "STOP"),
+        _ref(handoff.semantic_owner_ref, handoff.sufficiency_ref, "SUFFICIENCY"),
+        _ref(handoff.semantic_owner_ref, handoff.stop_ref, "STOP"),
     )
     evidence_refs = tuple(
         _ref(handoff.evidence_owner_ref, ref, "EVIDENCE") for ref in handoff.evidence_refs

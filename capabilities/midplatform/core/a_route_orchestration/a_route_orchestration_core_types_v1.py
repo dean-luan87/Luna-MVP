@@ -107,7 +107,12 @@ class ARouteIngressRefsV1:
 
 @dataclass(frozen=True)
 class ARouteCognitiveExecutionEvidenceV1:
-    """Canonical proof emitted by A-Route after Cognitive State Formation runs."""
+    """Canonical proof emitted after snapshot formation and A judgment.
+
+    The envelope remains produced by the cognitive lifecycle boundary.  Its
+    semantic fields are explicitly sourced from the A-owned judgment; the
+    CState fields retained above are compatibility projections.
+    """
 
     execution_ref: str
     execution_mode: str
@@ -140,7 +145,7 @@ class ARouteCognitiveExecutionEvidenceV1:
     admitted_evidence_refs: Tuple[str, ...] = ()
     gateway_execution_identity_ref: str | None = None
     gateway_admission_runtime_state: ObservationGatewayAdmissionRuntimeStateV1 | None = None
-    execution_proof_source: str = "CognitiveStateFormationEngineV1.run_case"
+    execution_proof_source: str = "AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment"
     cognitive_cycle_index: int = 1
     sufficiency_status: str = "not_observed"
     sufficiency_owner_ref: str | None = None
@@ -184,6 +189,10 @@ class ARouteCognitiveExecutionEvidenceV1:
     requirement_establishment_ref: str | None = None
     requirement_establishment_basis: str | None = None
     required_cognitive_condition_formation_result: ARouteRequiredCognitiveConditionFormationResultV1 | None = None
+    semantic_owner_ref: str = "A_REASONING_ROLE"
+    semantic_judgment_ref: str = ""
+    cognitive_semantic_judgment: object | None = None
+    semantic_provenance_refs: Tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)

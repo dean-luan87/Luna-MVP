@@ -96,6 +96,61 @@ def _add(checks: list[Dict[str, Any]], check_id: str, passed: bool, observed: An
     checks.append(_check(check_id, passed, observed))
 
 
+def _revision_observation() -> Dict[str, Any]:
+    """Recompute cycle evidence change and its A-owned revision binding."""
+    source = build_action_admission_safety_run_v1()
+    case = next(
+        (
+            item for item in (source.get("cases") or ())
+            if item.get("case_id") == "CASE_B_GAP_REOBSERVE_REVISE_STOP"
+        ),
+        {},
+    )
+    cognitive = (case.get("source_case") or {}).get("task_case") or {}
+    cognitive = (cognitive.get("decision_case") or {}).get("cognitive_case") or {}
+    proofs = cognitive.get("cognitive_proofs") or []
+    gateways = cognitive.get("gateway_results") or []
+    first = proofs[0] if len(proofs) > 0 else {}
+    second = proofs[1] if len(proofs) > 1 else {}
+    previous_evidence_refs = tuple(
+        item.get("evidence_id")
+        for item in (gateways[0].get("evidence") or [])
+        if item.get("evidence_id")
+    ) if gateways else ()
+    current_evidence_refs = tuple(
+        item.get("evidence_id")
+        for item in (gateways[1].get("evidence") or [])
+        if item.get("evidence_id")
+    ) if len(gateways) > 1 else ()
+    material_change = bool(
+        previous_evidence_refs
+        and current_evidence_refs
+        and bool(set(current_evidence_refs) - set(previous_evidence_refs))
+    )
+    judgment = second.get("cognitive_semantic_judgment") or {}
+    revision_ref = second.get("hypothesis_revision_ref")
+    revision_owner_ref = second.get("hypothesis_revision_owner_ref")
+    revision_bound = (
+        bool(revision_ref)
+        and revision_owner_ref == "A_REASONING_ROLE"
+        and judgment.get("semantic_owner_ref") == "A_REASONING_ROLE"
+        and judgment.get("candidate_only") is True
+        and judgment.get("reconsideration_ref") == revision_ref
+        and judgment.get("prior_information_gap_ref") == first.get("information_gap_ref")
+        and judgment.get("prior_reobservation_ref") == first.get("reobservation_ref")
+    )
+    return {
+        "previous_evidence_refs": list(previous_evidence_refs),
+        "current_evidence_refs": list(current_evidence_refs),
+        "material_change": material_change,
+        "revision_ref": revision_ref,
+        "revision_owner_ref": revision_owner_ref,
+        "judgment_owner_ref": judgment.get("semantic_owner_ref"),
+        "judgment_reconsideration_ref": judgment.get("reconsideration_ref"),
+        "revision_bound": revision_bound,
+    }
+
+
 def _semantic_projection(
     proof: Any,
     decision_candidate_signature: str | None = None,
@@ -139,7 +194,7 @@ def _independent_decision_projection(spec: Any, proof: Any) -> tuple[str | None,
         permission_refs=(DecisionSourceRefV1("Permission Governance", f"permission:{spec.contrast_id}", "PERMISSION"),),
         safety_refs=(DecisionSourceRefV1("Safety Governance", f"safety:{spec.contrast_id}", "SAFETY"),),
         resource_refs=(DecisionSourceRefV1("Resource Governance", f"resource:{spec.contrast_id}", "RESOURCE"),),
-        constraint_refs=(DecisionSourceRefV1("Cognitive State Formation Governance", proof.sufficiency_ref or "", "SUFFICIENCY"),),
+        constraint_refs=(DecisionSourceRefV1("A_REASONING_ROLE", proof.sufficiency_ref or "", "SUFFICIENCY"),),
         evidence_refs=tuple(
             DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE")
             for ref in proof.canonical_gateway_admission_result.evidence_refs
@@ -189,29 +244,16 @@ def _independent_decision_projection(spec: Any, proof: Any) -> tuple[str | None,
     return signature, projection
 
 
-def _expected_transition_sequence(execution_ref: str | None, sufficiency_status: str | None) -> list[str]:
+def _expected_transition_sequence(execution_ref: str | None, _sufficiency_status: str | None) -> list[str]:
     if not execution_ref:
         return []
     prefix = f"transition:{execution_ref}:"
-    transitions = [
+    return [
         f"{prefix}ingress-to-attention",
-        f"{prefix}attention-to-hypothesis",
-        f"{prefix}hypothesis-to-current-world",
-        f"{prefix}current-world-to-sufficiency",
+        f"{prefix}attention-to-current-world",
+        f"{prefix}current-world-to-state-vector",
+        f"{prefix}snapshot-packaged",
     ]
-    if sufficiency_status == "SUFFICIENT":
-        transitions.append(f"{prefix}sufficiency-to-stop")
-    elif sufficiency_status == "INSUFFICIENT":
-        transitions.extend(
-            [
-                f"{prefix}sufficiency-to-information-gap",
-                f"{prefix}information-gap-to-reobservation",
-                f"{prefix}reobservation-to-next-cycle",
-            ]
-        )
-    else:
-        return []
-    return transitions
 
 
 def _independent_contrast(spec: Any) -> Dict[str, Any]:
@@ -236,7 +278,7 @@ def _independent_contrast(spec: Any) -> Dict[str, Any]:
     decision_candidate_signature, decision_candidate_semantic_projection = _independent_decision_projection(spec, proof)
     semantic = _semantic_projection(proof, decision_candidate_signature, decision_candidate_semantic_projection)
     execution_proof = {
-        "engine": "ARouteOrchestrationEngineV1→CognitiveStateFormationEngineV1.run_case",
+        "engine": "ARouteOrchestrationEngineV1→CognitiveStateFormationEngineV1.snapshot→AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
         "execution_ref": execution_ref,
         "runtime_executed": proof.runtime_executed if proof else False,
         "owner_ref": proof.owner_ref if proof else None,
@@ -447,6 +489,7 @@ def _cognitive_checks(summary: Dict[str, Any]) -> list[Dict[str, Any]]:
     missing = independent["missing-evidence"]
     conflict = independent["conflicting-evidence"]
 
+    revision_observation = _revision_observation()
     checks.extend(
         [
             _check("role_changes_attention", "attention_priority_candidate" in role["changed_semantic_fields"] or "selected_attention_count" in role["changed_semantic_fields"], role),
@@ -467,7 +510,12 @@ def _cognitive_checks(summary: Dict[str, Any]) -> list[Dict[str, Any]]:
             _check("current_world_candidate_not_promoted_to_world_truth", owner["semantic_projection"]["world_truth_declared"] is False),
             _check("conflicting_evidence_preserved", bool(conflict["semantic_projection"]["conflict_refs"]) and conflict["semantic_projection"]["hypothesis_state"] == "CONTESTED" and conflict["semantic_projection"]["causal_truth"] is False, conflict["semantic_projection"]),
             _check("missing_information_produces_gap", missing["semantic_projection"]["sufficiency_status"] == "INSUFFICIENT" and missing["information_gap_ref"], missing["semantic_projection"]),
-            _check("material_new_evidence_can_trigger_revision", bool((build_action_admission_safety_run_v1().get("cases") or [{}])[1].get("source_case", {}).get("task_case", {}).get("decision_case", {}).get("cognitive_case", {}).get("cognitive_proofs", [{}])[-1].get("hypothesis_revision_ref"))),
+            _check(
+                "material_new_evidence_can_trigger_revision",
+                revision_observation["material_change"]
+                and revision_observation["revision_bound"],
+                revision_observation,
+            ),
             _check("sufficient_information_produces_stop", owner["semantic_projection"]["sufficiency_status"] == "SUFFICIENT" and owner["stop_ref"]),
             _check("no_premature_stop", missing["stop_ref"] is None),
             _check("no_post_sufficiency_over_observation", owner["reobservation_ref"] is None),

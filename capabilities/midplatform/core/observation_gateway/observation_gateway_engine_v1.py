@@ -303,6 +303,11 @@ class ObservationGatewayEngineV1:
                 prior_sufficiency_candidate=replay.prior_sufficiency_candidate,
                 prior_information_gap_candidate=replay.prior_information_gap_candidate,
                 prior_reobservation_candidate=replay.prior_reobservation_candidate,
+                contradiction_refs=(
+                    (f"contradiction:{sid}",)
+                    if request.multi_evidence_contradiction
+                    else ()
+                ),
             )
         if request.invalid_ingress or request.ingress_type not in INGRESS_TYPES:
             return self._error_result(request, "UNSUPPORTED_INGRESS_TYPE", "unsupported or invalid ingress type")
@@ -416,6 +421,9 @@ class ObservationGatewayEngineV1:
                 prior_sufficiency_candidate=request.prior_sufficiency_candidate,
                 prior_information_gap_candidate=request.prior_information_gap_candidate,
                 prior_reobservation_candidate=request.prior_reobservation_candidate,
+                contradiction_refs=tuple(
+                    ref for item in evidence for ref in item.contradiction_refs
+                ),
             )
         if admission == "ADMITTED_OBSERVATION":
             admission_ref = (

@@ -33,6 +33,7 @@ class ASemanticDecisionContextV1:
     provenance_refs: Tuple[str, ...]
     candidate_only: bool = True
     synthetic_only: bool = True
+    contradiction_refs: Tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -123,6 +124,55 @@ class ASemanticDecisionValidationCandidateV1:
 
 
 @dataclass(frozen=True)
+class ACognitiveHypothesisDecisionCandidateV1:
+    """A-owned concern-local hypothesis judgment over a CState snapshot."""
+
+    hypothesis_ref: str
+    hypothesis_statement: str
+    supporting_evidence_refs: Tuple[str, ...]
+    unknown_refs: Tuple[str, ...]
+    source_snapshot_ref: str
+    state: str
+    trace_ref: str
+    provenance_refs: Tuple[str, ...]
+    semantic_owner_ref: str = "A_REASONING_ROLE"
+    candidate_only: bool = True
+    truth_declared: bool = False
+    world_truth_declared: bool = False
+    conflict_refs: Tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class ACognitiveSemanticJudgmentV1:
+    """Canonical A-owned local semantic judgment for one cognitive cycle."""
+
+    judgment_ref: str
+    source_snapshot_ref: str
+    current_world_ref: str
+    hypothesis_candidates: Tuple[ACognitiveHypothesisDecisionCandidateV1, ...]
+    sufficiency_ref: str
+    sufficiency_status: str
+    missing_information_refs: Tuple[str, ...]
+    information_gap_ref: str | None
+    reobservation_ref: str | None
+    next_cycle_ingress_ref: str | None
+    reobservation_owner_ref: str | None
+    reconsideration_ref: str | None
+    local_disposition: str
+    local_disposition_ref: str | None
+    disposition_reason_refs: Tuple[str, ...]
+    trace_ref: str
+    provenance_refs: Tuple[str, ...]
+    prior_information_gap_ref: str | None = None
+    prior_reobservation_ref: str | None = None
+    semantic_owner_ref: str = "A_REASONING_ROLE"
+    candidate_only: bool = True
+    relationship_truth_mutation: bool = False
+    field_truth_declared: bool = False
+    current_world_truth_declared: bool = False
+
+
+@dataclass(frozen=True)
 class ASemanticDecisionBundleV1:
     context: ASemanticDecisionContextV1
     need_decision: Optional[ACurrentNeedDecisionCandidateV1]
@@ -134,6 +184,7 @@ class ASemanticDecisionBundleV1:
     compatibility_wrapper_only: bool
     candidate_only: bool = True
     synthetic_only: bool = True
+    cognitive_judgment: ACognitiveSemanticJudgmentV1 | None = None
 
 
 __all__ = [
@@ -144,4 +195,6 @@ __all__ = [
     "ANextStepDecisionCandidateV1",
     "ASemanticDecisionBundleV1",
     "ASemanticDecisionValidationCandidateV1",
+    "ACognitiveHypothesisDecisionCandidateV1",
+    "ACognitiveSemanticJudgmentV1",
 ]

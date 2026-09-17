@@ -126,7 +126,7 @@ def _run_contrast(spec: ContrastSpecV1) -> Dict[str, Any]:
             permission_refs=(DecisionSourceRefV1("Permission Governance", f"permission:{spec.contrast_id}", "PERMISSION"),),
             safety_refs=(DecisionSourceRefV1("Safety Governance", f"safety:{spec.contrast_id}", "SAFETY"),),
             resource_refs=(DecisionSourceRefV1("Resource Governance", f"resource:{spec.contrast_id}", "RESOURCE"),),
-            constraint_refs=(DecisionSourceRefV1("Cognitive State Formation Governance", proof.sufficiency_ref or "", "SUFFICIENCY"),),
+            constraint_refs=(DecisionSourceRefV1("A_REASONING_ROLE", proof.sufficiency_ref or "", "SUFFICIENCY"),),
             evidence_refs=tuple(
                 DecisionSourceRefV1("Observation Gateway Governance", ref, "EVIDENCE")
                 for ref in proof.canonical_gateway_admission_result.evidence_refs
@@ -193,7 +193,7 @@ def _run_contrast(spec: ContrastSpecV1) -> Dict[str, Any]:
             "available_information_refs": list(spec.available_information_refs),
         },
         "execution_proof": {
-            "engine": "ARouteOrchestrationEngineV1→CognitiveStateFormationEngineV1.run_case",
+            "engine": "ARouteOrchestrationEngineV1→CognitiveStateFormationEngineV1.snapshot→AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
             "execution_ref": proof.execution_ref if proof else None,
             "runtime_executed": proof.runtime_executed if proof else False,
             "owner_ref": proof.owner_ref if proof else None,

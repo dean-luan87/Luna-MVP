@@ -60,6 +60,30 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
 class CognitiveStateFormationEngineV1:
     """Deterministic candidate formation with governed synthetic/replay execution."""
 
+    @staticmethod
+    def _semantic_compatibility_enabled(
+        request: CognitiveStateFormationInputV1,
+    ) -> bool:
+        """Keep legacy semantic projections behind an explicit synthetic mode."""
+        return request.execution_mode == SYNTHETIC_CONTROLLED and request.synthetic_only
+
+    @staticmethod
+    def _empty_snapshot_competition(sid: str) -> HypothesisCompetitionResultV1:
+        """Return a structural snapshot envelope without semantic hypotheses."""
+        return HypothesisCompetitionResultV1(
+            competition_id=f"cmp:{sid}:snapshot",
+            active_hypothesis_refs=(),
+            suspended_hypothesis_refs=(),
+            revoked_hypothesis_refs=(),
+            insufficient_evidence_refs=(),
+            alternative_explanation_refs=(),
+            conflict_refs=(),
+            support_accumulation_refs=(),
+            opposition_refs=(),
+            trace_ref=f"trace:{sid}:snapshot-competition",
+            provenance_refs=(f"prov:{sid}:snapshot-competition",),
+        )
+
     def _score(self, base: float, sid_num: int, delta: float) -> float:
         return round(base + (sid_num % 3) * delta, 3)
 
@@ -514,11 +538,17 @@ class CognitiveStateFormationEngineV1:
             return "SUSPENDED"
         return "CONTESTED"
 
-    def _build_hypotheses(
+    def _build_hypothesis_projection(
         self,
         request: CognitiveStateFormationInputV1,
         attention_selection: AttentionSelectionCandidateV1,
     ) -> Tuple[CognitiveHypothesisCandidateV1, ...]:
+        """Build compatibility hypothesis projections for the snapshot.
+
+        Canonical concern-local hypothesis meaning is formed by A after this
+        snapshot is assembled.  These candidates remain available for legacy
+        replay and trace contracts only.
+        """
         if self._is_conditioned_replay(request):
             evidence_refs = self._values(request.evidence_refs)
             required = set(request.required_information_refs)
@@ -936,7 +966,7 @@ class CognitiveStateFormationEngineV1:
             single_truth_collapse=False,
         )
 
-    def _build_cognitive_loop_candidates(
+    def _build_cognitive_loop_projections(
         self,
         request: CognitiveStateFormationInputV1,
         world: CurrentWorldCandidateV1,
@@ -1084,36 +1114,58 @@ class CognitiveStateFormationEngineV1:
             if request.cycle_index > 1 and not request.prior_next_cycle_ingress_ref:
                 raise ValueError("cognitive_state_runtime_next_cycle_ingress_ref_missing")
 
+        semantic_compatibility = self._semantic_compatibility_enabled(request)
         attention_candidates = self._build_attention_candidates(request)
         attention_selection = self._select_attention(request, attention_candidates)
-        hypotheses = self._build_hypotheses(request, attention_selection)
+        hypotheses = (
+            self._build_hypothesis_projection(request, attention_selection)
+            if semantic_compatibility
+            else ()
+        )
         evidence_relevance_candidates = self._build_evidence_relevance_candidates(request)
         relation_interpretation_candidates = self._build_relation_interpretation_candidates(request)
-        competition = self._build_competition(request.scenario_id, hypotheses)
+        competition = (
+            self._build_competition(request.scenario_id, hypotheses)
+            if semantic_compatibility
+            else self._empty_snapshot_competition(request.scenario_id)
+        )
         world = self._build_world(request, attention_selection, competition)
         vector = self._build_vector(request.scenario_id, world, competition)
         handoff = self._build_handoff(request.scenario_id, request, world, competition)
-        sufficiency, information_gap, reobservation, hypothesis_revision, stop, next_cycle_ref = self._build_cognitive_loop_candidates(
-            request, world, hypotheses
-        )
-        loop_errors = validate_cognitive_loop_candidates_v1(
-            sufficiency=sufficiency,
-            information_gap=information_gap,
-            reobservation=reobservation,
-            hypothesis_revision=None,
-            stop=stop,
-        )
-        if hypothesis_revision is not None:
-            prior_loop_errors = validate_cognitive_loop_candidates_v1(
-                sufficiency=request.prior_sufficiency_candidate,
-                information_gap=request.prior_information_gap_candidate,
-                reobservation=request.prior_reobservation_candidate,
-                hypothesis_revision=hypothesis_revision,
-                stop=None,
+        if semantic_compatibility:
+            (
+                sufficiency,
+                information_gap,
+                reobservation,
+                hypothesis_revision,
+                stop,
+                next_cycle_ref,
+            ) = self._build_cognitive_loop_projections(request, world, hypotheses)
+            loop_errors = validate_cognitive_loop_candidates_v1(
+                sufficiency=sufficiency,
+                information_gap=information_gap,
+                reobservation=reobservation,
+                hypothesis_revision=None,
+                stop=stop,
             )
-            loop_errors = (*loop_errors, *prior_loop_errors)
-        if loop_errors:
-            raise ValueError("cognitive_loop_contract_invalid:" + ";".join(loop_errors))
+            if hypothesis_revision is not None:
+                prior_loop_errors = validate_cognitive_loop_candidates_v1(
+                    sufficiency=request.prior_sufficiency_candidate,
+                    information_gap=request.prior_information_gap_candidate,
+                    reobservation=request.prior_reobservation_candidate,
+                    hypothesis_revision=hypothesis_revision,
+                    stop=None,
+                )
+                loop_errors = (*loop_errors, *prior_loop_errors)
+            if loop_errors:
+                raise ValueError("cognitive_loop_contract_invalid:" + ";".join(loop_errors))
+        else:
+            sufficiency = None
+            information_gap = None
+            reobservation = None
+            hypothesis_revision = None
+            stop = None
+            next_cycle_ref = None
         trace, provenance = self._build_trace_and_provenance(
             request, request.scenario_id, world, competition, handoff
         )
@@ -1122,33 +1174,42 @@ class CognitiveStateFormationEngineV1:
         transition_refs = (
             (
                 f"transition:{request.execution_ref}:ingress-to-attention",
-                f"transition:{request.execution_ref}:attention-to-hypothesis",
-                f"transition:{request.execution_ref}:hypothesis-to-current-world",
-                *(
-                    (
-                        f"transition:{request.execution_ref}:current-world-to-sufficiency",
-                        f"transition:{request.execution_ref}:sufficiency-to-stop",
-                    )
-                    if stop is not None
-                    else (
-                        f"transition:{request.execution_ref}:current-world-to-sufficiency",
-                        f"transition:{request.execution_ref}:sufficiency-to-information-gap",
-                        f"transition:{request.execution_ref}:information-gap-to-reobservation",
-                        f"transition:{request.execution_ref}:reobservation-to-next-cycle",
-                    )
-                ),
-                *(
-                    (
-                        f"transition:{request.execution_ref}:next-cycle-to-hypothesis-revision",
-                        f"transition:{request.execution_ref}:hypothesis-revision-to-sufficiency",
-                    )
-                    if hypothesis_revision is not None
-                    else ()
-                ),
+                f"transition:{request.execution_ref}:attention-to-current-world",
+                f"transition:{request.execution_ref}:current-world-to-state-vector",
+                f"transition:{request.execution_ref}:snapshot-packaged",
             )
             if runtime_executed
             else ()
         )
+        if semantic_compatibility and runtime_executed:
+            transition_refs = (
+                (
+                    f"transition:{request.execution_ref}:ingress-to-attention",
+                    f"transition:{request.execution_ref}:attention-to-hypothesis",
+                    f"transition:{request.execution_ref}:hypothesis-to-current-world",
+                    *(
+                        (
+                            f"transition:{request.execution_ref}:current-world-to-sufficiency",
+                            f"transition:{request.execution_ref}:sufficiency-to-stop",
+                        )
+                        if stop is not None
+                        else (
+                            f"transition:{request.execution_ref}:current-world-to-sufficiency",
+                            f"transition:{request.execution_ref}:sufficiency-to-information-gap",
+                            f"transition:{request.execution_ref}:information-gap-to-reobservation",
+                            f"transition:{request.execution_ref}:reobservation-to-next-cycle",
+                        )
+                    ),
+                    *(
+                        (
+                            f"transition:{request.execution_ref}:next-cycle-to-hypothesis-revision",
+                            f"transition:{request.execution_ref}:hypothesis-revision-to-sufficiency",
+                        )
+                        if hypothesis_revision is not None
+                        else ()
+                    ),
+                )
+            )
 
         return CognitiveStateFormationOutputV1(
             scenario_id=request.scenario_id,
@@ -1178,8 +1239,24 @@ class CognitiveStateFormationEngineV1:
             cognitive_cycle_index=request.cycle_index,
             evidence_relevance_candidates=evidence_relevance_candidates,
             relation_interpretation_candidates=relation_interpretation_candidates,
-            requirement_establishment_status=sufficiency.requirement_establishment_status,
-            requirement_establishment_ref=sufficiency.requirement_establishment_ref,
-            requirement_establishment_basis=sufficiency.requirement_establishment_basis,
+            requirement_establishment_status=(
+                sufficiency.requirement_establishment_status
+                if semantic_compatibility and sufficiency is not None
+                else request.requirement_establishment_status
+            ),
+            requirement_establishment_ref=(
+                sufficiency.requirement_establishment_ref
+                if semantic_compatibility and sufficiency is not None
+                else request.requirement_establishment_ref
+            ),
+            requirement_establishment_basis=(
+                sufficiency.requirement_establishment_basis
+                if semantic_compatibility and sufficiency is not None
+                else request.requirement_establishment_basis
+            ),
             required_cognitive_condition_formation_result=request.required_cognitive_condition_formation_result,
+            semantic_owner_ref="A_REASONING_ROLE",
+            semantic_projection_only=True,
+            semantic_authority=False,
+            formation_role="SNAPSHOT_FORMATION",
         )

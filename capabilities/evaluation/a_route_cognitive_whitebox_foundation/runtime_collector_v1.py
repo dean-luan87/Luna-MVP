@@ -21,6 +21,7 @@ from .types_v1 import (
 
 WHITEBOX_OWNER = "Cognitive Development Backend / White-box Observation"
 CANONICAL_COGNITION_OWNER = "Cognitive State Formation Governance"
+CANONICAL_SEMANTIC_OWNER = "A_REASONING_ROLE"
 
 
 @dataclass(frozen=True)
@@ -97,7 +98,7 @@ def collect_runtime_whitebox_loop_v1(
                     sequence,
                     "HYPOTHESIS",
                     hypothesis_ref,
-                    CANONICAL_COGNITION_OWNER,
+                    CANONICAL_SEMANTIC_OWNER,
                     execution_identity_ref=evaluation_run_id,
                     cycle=cycle_index - 1,
                     predecessor_refs=(previous,),

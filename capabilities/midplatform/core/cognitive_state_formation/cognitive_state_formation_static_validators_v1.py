@@ -202,6 +202,10 @@ def validate_output_contract(
     return (
         output.candidate_only is True
         and output.source_mutation_executed is False
+        and output.semantic_owner_ref == "A_REASONING_ROLE"
+        and output.semantic_projection_only is True
+        and output.semantic_authority is False
+        and output.formation_role == "SNAPSHOT_FORMATION"
         and validate_ref_read_only(all_refs)
         and validate_no_owner_transfer(all_refs)
         and validate_attention_boundary(output.attention_candidates)
@@ -236,13 +240,24 @@ def validate_output_contract(
             )
         )
         and (
-            output.execution_mode == SYNTHETIC_CONTROLLED
-            or not validate_cognitive_loop_candidates_v1(
-                sufficiency=output.sufficiency_candidate,
-                information_gap=output.information_gap_candidate,
-                reobservation=output.reobservation_candidate,
-                hypothesis_revision=output.hypothesis_revision_candidate,
-                stop=output.stop_candidate,
+            (
+                output.execution_mode == SYNTHETIC_CONTROLLED
+                and not validate_cognitive_loop_candidates_v1(
+                    sufficiency=output.sufficiency_candidate,
+                    information_gap=output.information_gap_candidate,
+                    reobservation=output.reobservation_candidate,
+                    hypothesis_revision=output.hypothesis_revision_candidate,
+                    stop=output.stop_candidate,
+                )
+            )
+            or (
+                output.execution_mode in {CONTROLLED_REPLAY_RUNTIME, LIVE_RUNTIME}
+                and output.sufficiency_candidate is None
+                and output.information_gap_candidate is None
+                and output.reobservation_candidate is None
+                and output.hypothesis_revision_candidate is None
+                and output.stop_candidate is None
+                and output.next_cycle_ingress_ref is None
             )
         )
     )

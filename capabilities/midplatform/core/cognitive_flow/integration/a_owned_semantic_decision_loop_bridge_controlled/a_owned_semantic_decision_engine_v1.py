@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional, Tuple
+from typing import Any, Iterable, Optional, Tuple
 
 from capabilities.midplatform.core.cognitive_flow.cognitive_dynamic_loop_types_v1 import (
     DynamicCognitiveLoopOutputV1,
@@ -33,6 +33,8 @@ from .a_owned_semantic_decision_registry_v1 import (
     SUFFICIENCY_STATUSES,
 )
 from .a_owned_semantic_decision_types_v1 import (
+    ACognitiveHypothesisDecisionCandidateV1,
+    ACognitiveSemanticJudgmentV1,
     ACurrentNeedDecisionCandidateV1,
     ALocalSufficiencyDecisionCandidateV1,
     ANextStepDecisionCandidateV1,
@@ -49,6 +51,314 @@ def _trace(ref: str) -> str:
 
 def _provenance(ref: str) -> Tuple[str, ...]:
     return (f"provenance:{ref}",)
+
+
+def _strict_ref_tuple(value: Any, field: str) -> Tuple[str, ...]:
+    if type(value) is not tuple:
+        raise ValueError(f"A_CONTRACT_REJECTION:{field}_must_be_tuple")
+    if any(type(item) is not str or not item.strip() for item in value):
+        raise ValueError(f"A_CONTRACT_REJECTION:{field}_member_invalid")
+    return value
+
+
+def _strict_optional_ref(value: Any, field: str) -> str | None:
+    if value is not None and (type(value) is not str or not value.strip()):
+        raise ValueError(f"A_CONTRACT_REJECTION:{field}_invalid")
+    return value
+
+
+def validate_a_semantic_judgment_input(
+    *,
+    context: ASemanticDecisionContextV1,
+    source_snapshot_ref: str,
+    current_world_ref: str,
+    attention_refs: Tuple[str, ...],
+    evidence_refs: Tuple[str, ...],
+    required_information_refs: Tuple[str, ...],
+    available_information_refs: Tuple[str, ...],
+    requirement_establishment_status: str,
+    prior_hypothesis_refs: Tuple[str, ...],
+    prior_information_gap_ref: str | None,
+    prior_reobservation_ref: str | None,
+    conflict_refs: Tuple[str, ...] = (),
+) -> None:
+    """Validate the A entry contract before any semantic computation."""
+    if not isinstance(context, ASemanticDecisionContextV1):
+        raise ValueError("A_CONTRACT_REJECTION:context_type_invalid")
+    if (
+        type(context.candidate_only) is not bool
+        or type(context.synthetic_only) is not bool
+        or context.candidate_only is not True
+    ):
+        raise ValueError("A_CONTRACT_REJECTION:context_control_flags_invalid")
+    for field in (
+        "work_ref", "concern_ref", "a_grant_ref", "source_state_version_ref",
+    ):
+        value = getattr(context, field)
+        if type(value) is not str or not value.strip():
+            raise ValueError(f"A_CONTRACT_REJECTION:context_{field}_invalid")
+    for field in (
+        "goal_refs", "intent_refs", "role_refs", "perspective_refs", "field_refs",
+        "context_refs", "current_world_refs", "task_behavior_refs",
+        "emotion_modulation_refs", "experience_refs", "safety_refs", "permission_refs",
+        "resource_envelope_refs", "evidence_refs", "prior_need_refs",
+        "prior_hypothesis_refs", "prior_requirement_refs", "trace_refs",
+        "provenance_refs", "contradiction_refs",
+    ):
+        _strict_ref_tuple(getattr(context, field), f"context.{field}")
+    for field, value in (
+        ("source_snapshot_ref", source_snapshot_ref),
+        ("current_world_ref", current_world_ref),
+    ):
+        if type(value) is not str or not value.strip():
+            raise ValueError(f"A_CONTRACT_REJECTION:{field}_invalid")
+    for field, value in (
+        ("attention_refs", attention_refs),
+        ("evidence_refs", evidence_refs),
+        ("required_information_refs", required_information_refs),
+        ("available_information_refs", available_information_refs),
+        ("prior_hypothesis_refs", prior_hypothesis_refs),
+        ("conflict_refs", conflict_refs),
+    ):
+        _strict_ref_tuple(value, field)
+    if type(requirement_establishment_status) is not str or not requirement_establishment_status.strip():
+        raise ValueError("A_CONTRACT_REJECTION:requirement_establishment_status_invalid")
+    _strict_optional_ref(prior_information_gap_ref, "prior_information_gap_ref")
+    _strict_optional_ref(prior_reobservation_ref, "prior_reobservation_ref")
+    if (prior_information_gap_ref is None) != (prior_reobservation_ref is None):
+        raise ValueError("A_CONTRACT_REJECTION:prior_revision_refs_incomplete")
+    if context.contradiction_refs != conflict_refs:
+        raise ValueError("A_CONTRACT_REJECTION:conflict_refs_context_mismatch")
+
+
+def _judgment_ref_tuple(value: Any, field: str) -> bool:
+    return type(value) is tuple and all(
+        type(item) is str and bool(item.strip()) for item in value
+    )
+
+
+def validate_a_semantic_judgment_projection(
+    judgment: Any,
+    *,
+    semantic_owner_ref: Any,
+    semantic_judgment_ref: Any,
+    hypothesis_refs: Any,
+    sufficiency_ref: Any,
+    sufficiency_status: Any,
+    information_gap_ref: Any,
+    reobservation_ref: Any,
+    hypothesis_revision_ref: Any,
+    hypothesis_revision_information_gap_ref: Any,
+    hypothesis_revision_reobservation_ref: Any,
+    stop_ref: Any,
+    semantic_provenance_refs: Any,
+    conflict_refs: Any = (),
+) -> Tuple[str, ...]:
+    """Check that a proof is an exact projection of the A judgment."""
+    errors = []
+    if not isinstance(judgment, ACognitiveSemanticJudgmentV1):
+        return ("a_judgment_type_invalid",)
+    if judgment.candidate_only is not True:
+        errors.append("a_judgment_candidate_boundary_invalid")
+    for hypothesis in judgment.hypothesis_candidates:
+        if (
+            not isinstance(hypothesis, ACognitiveHypothesisDecisionCandidateV1)
+            or hypothesis.semantic_owner_ref != "A_REASONING_ROLE"
+            or hypothesis.candidate_only is not True
+            or hypothesis.truth_declared is not False
+            or hypothesis.world_truth_declared is not False
+            or not _judgment_ref_tuple(hypothesis.conflict_refs, "hypothesis.conflict_refs")
+        ):
+            errors.append("a_judgment_hypothesis_boundary_invalid")
+            break
+    if not _judgment_ref_tuple(conflict_refs, "conflict_refs"):
+        errors.append("a_judgment_conflict_refs_invalid")
+    else:
+        judgment_conflict_refs = tuple(
+            ref
+            for hypothesis in judgment.hypothesis_candidates
+            for ref in hypothesis.conflict_refs
+        )
+        if conflict_refs != judgment_conflict_refs:
+            errors.append("a_judgment_conflict_refs_mismatch")
+    if judgment.semantic_owner_ref != "A_REASONING_ROLE" or semantic_owner_ref != judgment.semantic_owner_ref:
+        errors.append("a_judgment_owner_unbound")
+    if not judgment.judgment_ref or not isinstance(judgment.judgment_ref, str):
+        errors.append("a_judgment_ref_invalid")
+    elif semantic_judgment_ref != judgment.judgment_ref:
+        errors.append("a_judgment_ref_mismatch")
+    if not _judgment_ref_tuple(hypothesis_refs, "hypothesis_refs"):
+        errors.append("a_judgment_hypothesis_refs_invalid")
+    elif hypothesis_refs != tuple(item.hypothesis_ref for item in judgment.hypothesis_candidates):
+        errors.append("a_judgment_hypothesis_refs_mismatch")
+    if sufficiency_ref != judgment.sufficiency_ref:
+        errors.append("a_judgment_sufficiency_ref_mismatch")
+    if sufficiency_status != judgment.sufficiency_status:
+        errors.append("a_judgment_sufficiency_status_mismatch")
+    if information_gap_ref != judgment.information_gap_ref:
+        errors.append("a_judgment_information_gap_mismatch")
+    if reobservation_ref != judgment.reobservation_ref:
+        errors.append("a_judgment_reobservation_mismatch")
+    if hypothesis_revision_ref != judgment.reconsideration_ref:
+        errors.append("a_judgment_revision_mismatch")
+    if hypothesis_revision_information_gap_ref != judgment.prior_information_gap_ref:
+        errors.append("a_judgment_revision_gap_mismatch")
+    if hypothesis_revision_reobservation_ref != judgment.prior_reobservation_ref:
+        errors.append("a_judgment_revision_reobservation_mismatch")
+    if stop_ref != judgment.local_disposition_ref:
+        errors.append("a_judgment_stop_mismatch")
+    if not _judgment_ref_tuple(semantic_provenance_refs, "semantic_provenance_refs"):
+        errors.append("a_judgment_provenance_invalid")
+    elif semantic_provenance_refs != judgment.provenance_refs:
+        errors.append("a_judgment_provenance_mismatch")
+    if judgment.relationship_truth_mutation or judgment.field_truth_declared or judgment.current_world_truth_declared:
+        errors.append("a_judgment_negative_boundary_violation")
+    return tuple(errors)
+
+
+def form_cognitive_semantic_judgment(
+    *,
+    context: ASemanticDecisionContextV1,
+    source_snapshot_ref: str,
+    current_world_ref: str,
+    attention_refs: Tuple[str, ...],
+    evidence_refs: Tuple[str, ...],
+    required_information_refs: Tuple[str, ...],
+    available_information_refs: Tuple[str, ...],
+    requirement_establishment_status: str,
+    prior_hypothesis_refs: Tuple[str, ...] = (),
+    prior_information_gap_ref: str | None = None,
+    prior_reobservation_ref: str | None = None,
+    conflict_refs: Tuple[str, ...] = (),
+) -> ACognitiveSemanticJudgmentV1:
+    """Form concern-local semantics from a pre-semantic CState snapshot.
+
+    CState supplies aligned references and a candidate Current World view.  A
+    owns the interpretation and disposition derived from those inputs.  This
+    function deliberately does not mutate Field/relationship state or declare
+    world truth.
+    """
+
+    validate_a_semantic_judgment_input(
+        context=context,
+        source_snapshot_ref=source_snapshot_ref,
+        current_world_ref=current_world_ref,
+        attention_refs=attention_refs,
+        evidence_refs=evidence_refs,
+        required_information_refs=required_information_refs,
+        available_information_refs=available_information_refs,
+        requirement_establishment_status=requirement_establishment_status,
+        prior_hypothesis_refs=prior_hypothesis_refs,
+        prior_information_gap_ref=prior_information_gap_ref,
+        prior_reobservation_ref=prior_reobservation_ref,
+        conflict_refs=conflict_refs,
+    )
+    required = required_information_refs
+    available = set(available_information_refs)
+    missing = tuple(ref for ref in required if ref not in available)
+    established = requirement_establishment_status == "ESTABLISHED"
+    if established and not missing:
+        sufficiency_status = "SUFFICIENT"
+    elif established:
+        sufficiency_status = "INSUFFICIENT"
+    elif requirement_establishment_status == "WITHHELD":
+        sufficiency_status = "WITHHELD"
+    else:
+        sufficiency_status = "UNKNOWN"
+
+    if prior_information_gap_ref and prior_reobservation_ref:
+        hypothesis_state = "REVISED"
+    elif conflict_refs:
+        hypothesis_state = "CONTESTED"
+    elif missing:
+        hypothesis_state = "INSUFFICIENT_EVIDENCE"
+    else:
+        hypothesis_state = "SUPPORTED"
+    hypothesis_ref = f"a-hypothesis:{context.work_ref}:{context.source_state_version_ref}:v1"
+    hypothesis = ACognitiveHypothesisDecisionCandidateV1(
+        hypothesis_ref=hypothesis_ref,
+        hypothesis_statement=(
+            f"A concern-local interpretation for {context.concern_ref} over "
+            f"snapshot {source_snapshot_ref}"
+        ),
+        supporting_evidence_refs=tuple(evidence_refs),
+        unknown_refs=missing,
+        source_snapshot_ref=source_snapshot_ref,
+        state=hypothesis_state,
+        trace_ref=_trace(f"a-semantic:{context.work_ref}:hypothesis"),
+        provenance_refs=(
+            *context.provenance_refs,
+            *tuple(evidence_refs),
+            source_snapshot_ref,
+        ),
+        conflict_refs=conflict_refs,
+    )
+
+    if sufficiency_status == "SUFFICIENT":
+        local_disposition = "STOP_SUFFICIENT"
+        disposition_reasons = ("a:cognitive_information_sufficient",)
+        information_gap_ref = None
+        reobservation_ref = None
+        next_cycle_ingress_ref = None
+        reobservation_owner_ref = None
+    elif prior_information_gap_ref and prior_reobservation_ref:
+        local_disposition = "RECONSIDER"
+        disposition_reasons = (prior_information_gap_ref, prior_reobservation_ref)
+        information_gap_ref = prior_information_gap_ref
+        reobservation_ref = None
+        next_cycle_ingress_ref = None
+        reobservation_owner_ref = None
+    elif sufficiency_status == "INSUFFICIENT":
+        local_disposition = "ACQUIRE_INFORMATION"
+        information_gap_ref = f"information-gap:{context.source_state_version_ref}:v1"
+        reobservation_ref = f"reobservation:{context.source_state_version_ref}:v1"
+        next_cycle_ingress_ref = f"next-cycle-ingress:{context.source_state_version_ref}:v1"
+        reobservation_owner_ref = "Field Perception Orchestrator"
+        disposition_reasons = tuple(missing) or ("a:required-information-missing",)
+    else:
+        local_disposition = "CONTINUE"
+        information_gap_ref = None
+        reobservation_ref = None
+        next_cycle_ingress_ref = None
+        reobservation_owner_ref = None
+        disposition_reasons = ("a:cognitive-sufficiency-undetermined",)
+
+    reconsideration_ref = (
+        f"hypothesis-revision:{context.source_state_version_ref}:v1"
+        if prior_information_gap_ref and prior_reobservation_ref
+        else None
+    )
+    judgment_ref = f"a-semantic-judgment:{context.work_ref}:{context.source_state_version_ref}:v1"
+    return ACognitiveSemanticJudgmentV1(
+        judgment_ref=judgment_ref,
+        source_snapshot_ref=source_snapshot_ref,
+        current_world_ref=current_world_ref,
+        hypothesis_candidates=(hypothesis,),
+        sufficiency_ref=f"sufficiency:{context.source_state_version_ref}:v1",
+        sufficiency_status=sufficiency_status,
+        missing_information_refs=missing,
+        information_gap_ref=information_gap_ref,
+        reobservation_ref=reobservation_ref,
+        next_cycle_ingress_ref=next_cycle_ingress_ref,
+        reobservation_owner_ref=reobservation_owner_ref,
+        reconsideration_ref=reconsideration_ref,
+        local_disposition=local_disposition,
+        local_disposition_ref=(
+            f"stop:{context.source_state_version_ref}:v1"
+            if local_disposition == "STOP_SUFFICIENT"
+            else None
+        ),
+        disposition_reason_refs=disposition_reasons,
+        trace_ref=_trace(judgment_ref),
+        provenance_refs=(
+            *context.provenance_refs,
+            source_snapshot_ref,
+            current_world_ref,
+            *attention_refs,
+        ),
+        prior_information_gap_ref=prior_information_gap_ref,
+        prior_reobservation_ref=prior_reobservation_ref,
+    )
 
 
 def _validation(
@@ -518,6 +828,9 @@ def _return_state(state: LoopMechanicalStateCandidateV1) -> LoopMechanicalReturn
 
 __all__ = [
     "bridge_bundle_to_loop",
+    "form_cognitive_semantic_judgment",
+    "validate_a_semantic_judgment_input",
+    "validate_a_semantic_judgment_projection",
     "build_need_decision",
     "build_next_step_decision",
     "build_reconsideration_decision",

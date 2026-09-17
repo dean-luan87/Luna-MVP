@@ -27,7 +27,7 @@ def verify_summary_v1(summary: Dict[str, Any]) -> Dict[str, Any]:
         "cognition_execution_claim_supported": summary.get("cognition_execution") is True
         and summary.get("runtime_executed") is True
         and proof.get("runtime_executed") is True,
-        "execution_proof_is_canonical": proof.get("execution_proof_source") == "CognitiveStateFormationEngineV1.run_case",
+        "execution_proof_is_canonical": proof.get("execution_proof_source") == "AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
         "execution_proof_mode_matches": proof.get("execution_mode") == CONTROLLED_REPLAY_RUNTIME,
         "canonical_cognition_owner": proof.get("owner_ref") == CANONICAL_COGNITION_OWNER,
         "execution_proof_candidate_boundary": proof.get("candidate_only") is True

@@ -11,6 +11,7 @@ from capabilities.midplatform.core.execution_mode_v1 import CONTROLLED_REPLAY_RU
 
 
 COGNITION_OWNER = "Cognitive State Formation Governance"
+SEMANTIC_OWNER = "A_REASONING_ROLE"
 BRAIN_RESPONSIBILITY_DOMAIN = "BRAIN"
 BRAIN_CANONICAL_OWNER_STATUS = "OWNER_UNRESOLVED"
 LOOP_OWNER = "Cognitive Flow Governance"
@@ -60,9 +61,9 @@ def _case_a_checks(case: Dict[str, Any]) -> list[Dict[str, Any]]:
     return [
         _check("case_a_one_cycle", case.get("cognitive_cycle_count") == 1),
         _check("case_a_sufficient", proof.get("sufficiency_status") == "SUFFICIENT"),
-        _check("case_a_sufficiency_owner", proof.get("sufficiency_owner_ref") == COGNITION_OWNER),
+        _check("case_a_sufficiency_owner", proof.get("sufficiency_owner_ref") == SEMANTIC_OWNER),
         _check("case_a_stop_present", bool(proof.get("stop_ref"))),
-        _check("case_a_stop_owner", proof.get("stop_owner_ref") == COGNITION_OWNER),
+        _check("case_a_stop_owner", proof.get("stop_owner_ref") == SEMANTIC_OWNER),
         _check("case_a_no_gap", not proof.get("information_gap_ref")),
         _check("case_a_no_reobservation", not proof.get("reobservation_ref") and not proof.get("next_cycle_ingress_ref")),
     ]
@@ -87,11 +88,11 @@ def _case_b_checks(case: Dict[str, Any]) -> list[Dict[str, Any]]:
         _check("case_b_admission_reobservation_link", second_admission.get("prior_reobservation_ref") == first.get("reobservation_ref")),
         _check("case_b_admission_next_cycle_link", second_admission.get("prior_next_cycle_ingress_ref") == first.get("next_cycle_ingress_ref")),
         _check("case_b_revision_present", bool(second.get("hypothesis_revision_ref"))),
-        _check("case_b_revision_owner", second.get("hypothesis_revision_owner_ref") == COGNITION_OWNER),
+        _check("case_b_revision_owner", second.get("hypothesis_revision_owner_ref") == SEMANTIC_OWNER),
         _check("case_b_revision_gap_link", second.get("hypothesis_revision_information_gap_ref") == first.get("information_gap_ref")),
         _check("case_b_revision_reobservation_link", second.get("hypothesis_revision_reobservation_ref") == first.get("reobservation_ref")),
         _check("case_b_final_sufficient", second.get("sufficiency_status") == "SUFFICIENT"),
-        _check("case_b_final_stop", bool(second.get("stop_ref")) and second.get("stop_owner_ref") == COGNITION_OWNER),
+        _check("case_b_final_stop", bool(second.get("stop_ref")) and second.get("stop_owner_ref") == SEMANTIC_OWNER),
         _check("case_b_no_cycle_1_stop", not first.get("stop_ref")),
     ]
 

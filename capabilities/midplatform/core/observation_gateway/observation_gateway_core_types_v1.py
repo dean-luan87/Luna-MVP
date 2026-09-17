@@ -270,6 +270,7 @@ class ObservationGatewayRuntimeAdmissionV1:
     prior_information_gap_candidate: object | None = None
     prior_reobservation_candidate: object | None = None
     required_cognitive_condition_formation_result: object | None = None
+    contradiction_refs: Tuple[str, ...] = ()
 
 
 CanonicalGatewayAdmissionResultV1 = Union[

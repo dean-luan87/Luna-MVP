@@ -37,6 +37,8 @@ class CognitiveDecisionHandoffCandidateV1:
     stop_ref: str
     provenance_refs: Tuple[str, ...]
     execution_instance_ref: str
+    semantic_owner_ref: str = "A_REASONING_ROLE"
+    semantic_judgment_ref: str = ""
     evidence_owner_ref: str = ""
     evidence_binding_kind: str = ""
     gateway_admission_ref: str = ""

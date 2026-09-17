@@ -12,6 +12,7 @@ from capabilities.midplatform.core.execution_mode_v1 import CONTROLLED_REPLAY_RU
 
 PHASE = "Phase-P1-Luna-Cognitive-End-To-End-Controlled-Integration-And-Closure-v1-001"
 COGNITION_OWNER = "Cognitive State Formation Governance"
+SEMANTIC_OWNER = "A_REASONING_ROLE"
 FLOW_OWNER = "Cognitive Flow Governance"
 FPO_OWNER = "Field Perception Orchestrator"
 BRAIN_DOMAIN = "BRAIN"
@@ -80,13 +81,13 @@ def _common_checks(case: Dict[str, Any]) -> list[Dict[str, Any]]:
         _check("proofs_candidate_only", bool(proofs) and all(item.get("candidate_only") is True for item in proofs)),
         _check("proofs_have_transitions", bool(proofs) and all(item.get("cognitive_transition_refs") for item in proofs)),
         _check("sufficient_proof_owner", all(
-            item.get("sufficiency_owner_ref") == COGNITION_OWNER for item in proofs if item.get("sufficiency_ref")
+            item.get("sufficiency_owner_ref") == SEMANTIC_OWNER for item in proofs if item.get("sufficiency_ref")
         )),
         _check("reobservation_owner_preserved", all(
             item.get("reobservation_owner_ref") == FPO_OWNER for item in proofs if item.get("reobservation_ref")
         )),
         _check("stop_owner_preserved", all(
-            item.get("stop_owner_ref") == COGNITION_OWNER for item in proofs if item.get("stop_ref")
+            item.get("stop_owner_ref") == SEMANTIC_OWNER for item in proofs if item.get("stop_ref")
         )),
         _check("closure_acceptance_unresolved", case.get("closure_acceptance_owner_ref") == UNRESOLVED),
         _check("closure_present", bool(case.get("closure_candidate_ref"))),
@@ -172,11 +173,11 @@ def _case_b_checks(case: Dict[str, Any]) -> list[Dict[str, Any]]:
         _check("case_b_cycle_2_prior_ingress_link", second.get("prior_next_cycle_ingress_ref") == first.get("next_cycle_ingress_ref")),
         _check("case_b_new_evidence", bool(first_evidence) and bool(second_evidence) and set(first_evidence).isdisjoint(second_evidence)),
         _check("case_b_revision_present", bool(second.get("hypothesis_revision_ref"))),
-        _check("case_b_revision_owner", second.get("hypothesis_revision_owner_ref") == COGNITION_OWNER),
+        _check("case_b_revision_owner", second.get("hypothesis_revision_owner_ref") == SEMANTIC_OWNER),
         _check("case_b_revision_gap_link", second.get("hypothesis_revision_information_gap_ref") == first.get("information_gap_ref") == trace.get("information_gap_ref")),
         _check("case_b_revision_reobservation_link", second.get("hypothesis_revision_reobservation_ref") == first.get("reobservation_ref") == trace.get("reobservation_ref")),
         _check("case_b_final_sufficient", second.get("sufficiency_status") == "SUFFICIENT"),
-        _check("case_b_final_stop", bool(second.get("stop_ref")) and second.get("stop_owner_ref") == COGNITION_OWNER),
+        _check("case_b_final_stop", bool(second.get("stop_ref")) and second.get("stop_owner_ref") == SEMANTIC_OWNER),
         _check("case_b_no_cycle_1_stop", not first.get("stop_ref")),
         _check("case_b_closure_after_final_stop", bool(case.get("closure_candidate_ref")) and bool(second.get("stop_ref"))),
         _check("case_b_assimilation_after_closure", bool(case.get("assimilation_candidate_ref")) and bool(case.get("closure_candidate_ref"))),
