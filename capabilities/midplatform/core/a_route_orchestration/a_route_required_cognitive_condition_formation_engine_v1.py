@@ -51,13 +51,13 @@ class ARouteRequiredCognitiveConditionFormationEngineV1:
         situation_refs: set[str],
     ) -> tuple[str, str, Tuple[str, ...], str, Tuple[str, ...]]:
         if not objective_refs.intersection(rule.objective_refs):
-            return DORMANT, "objective_not_active", (), "UNSATISFIED"
+            return DORMANT, "objective_not_active", (), "UNSATISFIED", ()
         if not set(rule.activation_all_refs).issubset(situation_refs):
-            return DORMANT, "activation_all_not_satisfied", (), "UNSATISFIED"
+            return DORMANT, "activation_all_not_satisfied", (), "UNSATISFIED", ()
         if rule.activation_any_refs and not set(rule.activation_any_refs).intersection(situation_refs):
-            return DORMANT, "activation_any_not_satisfied", (), "UNSATISFIED"
+            return DORMANT, "activation_any_not_satisfied", (), "UNSATISFIED", ()
         if set(rule.suppress_if_any_refs).intersection(situation_refs):
-            return DORMANT, "suppressed_by_current_situation", (), "UNSATISFIED"
+            return DORMANT, "suppressed_by_current_situation", (), "UNSATISFIED", ()
         if rule.alternative_satisfaction_basis_refs:
             matched_satisfaction_refs = tuple(
                 ref
