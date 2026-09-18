@@ -32,6 +32,7 @@ EXPECTED_IMPLEMENTATION_FILES = {
     "a_owned_semantic_decision_types_v1.py",
     "a_owned_semantic_decision_registry_v1.py",
     "a_owned_semantic_decision_engine_v1.py",
+    "loop_mechanical_bridge_v1.py",
     "a_owned_semantic_decision_fixture_v1.py",
     "a_owned_semantic_decision_adapter_v1.py",
     "run_a_owned_semantic_decision_to_loop_mechanical_bridge_controlled_v1.py",

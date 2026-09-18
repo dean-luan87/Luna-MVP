@@ -26,13 +26,13 @@ from capabilities.midplatform.core.cognitive_flow.integration.authority_grant_me
 )
 
 from .a_owned_semantic_decision_engine_v1 import (
-    bridge_bundle_to_loop,
     build_need_decision,
     build_next_step_decision,
     build_reconsideration_decision,
     build_sufficiency_decision,
     wrap_dynamic_flow_output,
 )
+from .loop_mechanical_bridge_v1 import bridge_bundle_to_loop
 from .a_owned_semantic_decision_fixture_v1 import build_a_owned_semantic_decision_cases_v1
 from .a_owned_semantic_decision_registry_v1 import (
     COMPATIBILITY_SOURCE_OWNER,
