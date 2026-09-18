@@ -297,7 +297,7 @@ def _build_current_world(
         uncertainty_refs=context.uncertainty_refs,
         conflict_refs=conflicts,
         temporal_refs=context.temporal_refs,
-        source_versions={"context": "context-world-integration-v1", "field": "field-state-reference-v1"},
+        source_versions=(("context", "context-world-integration-v1"), ("field", "field-state-reference-v1")),
         world_state_kind_candidate="conflicted_world" if conflicts else "partial_world",
         world_stability_candidate=status,
         trace_ref=_ref("trace:current-world", case_id),

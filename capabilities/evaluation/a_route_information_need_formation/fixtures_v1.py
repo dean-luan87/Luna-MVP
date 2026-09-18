@@ -61,7 +61,7 @@ def _world(world_id: str, trace: str) -> CurrentWorldCandidateV1:
         uncertainty_refs=(),
         conflict_refs=(),
         temporal_refs=(),
-        source_versions={"current_world": "current-world-candidate-v1"},
+        source_versions=(("current_world", "current-world-candidate-v1"),),
         world_state_kind_candidate="PARTIAL",
         world_stability_candidate="LOW",
         trace_ref=trace,

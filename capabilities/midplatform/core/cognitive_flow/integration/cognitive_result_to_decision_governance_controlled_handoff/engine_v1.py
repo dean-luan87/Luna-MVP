@@ -32,7 +32,7 @@ from capabilities.midplatform.core.decision_governance.decision_static_validator
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
     CanonicalGatewayAdmissionResultV1,
     EvidenceReferenceBindingV1,
-    ObservationGatewayAdmissionRuntimeStateV1,
+    ObservationGatewayAdmissionQueryV1,
 )
 from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_engine_v1 import (
     validate_a_semantic_judgment_projection,
@@ -57,10 +57,10 @@ EVIDENCE_BINDING_KIND = "ADMITTED_EVIDENCE"
 
 
 def _jsonable(value: Any) -> Any:
-    if isinstance(value, ObservationGatewayAdmissionRuntimeStateV1):
+    if isinstance(value, ObservationGatewayAdmissionQueryV1):
         return {
             "owner": "Observation Gateway",
-            "semantics": "ADMISSION_FACT_ONLY",
+            "semantics": "CURRENT_ADMISSION_QUERY_ONLY",
             "authority_serialized": False,
         }
     if is_dataclass(value):
@@ -95,27 +95,32 @@ def _validated_evidence_binding(
     case: Dict[str, Any],
     proof: Any,
 ) -> Tuple[Optional[Tuple[str, ...]], Optional[str]]:
-    """Validate projections against Gateway-owned admission runtime state."""
+    """Validate projections against a Gateway-owned current-state query."""
 
     proof_admission = _proof_value(proof, "canonical_gateway_admission_result")
     if proof_admission is None:
         return None, "decision_handoff_requires_canonical_gateway_admission_result"
-    runtime_state = case.get("gateway_admission_runtime_state")
-    proof_state = _proof_value(proof, "gateway_admission_runtime_state")
-    if not isinstance(runtime_state, ObservationGatewayAdmissionRuntimeStateV1):
-        return None, "decision_handoff_requires_canonical_gateway_admission_state"
-    if proof_state is not runtime_state:
-        return None, "decision_handoff_rejects_noncanonical_gateway_admission_state"
     execution_identity_ref = case.get("gateway_execution_identity_ref")
     proof_execution_identity_ref = _proof_value(proof, "gateway_execution_identity_ref")
     if not execution_identity_ref or proof_execution_identity_ref != execution_identity_ref:
         return None, "decision_handoff_gateway_execution_identity_mismatch"
     admission_ref = _proof_value(proof_admission, "gateway_admission_ref")
+    gateway_query = next(
+        (
+            query
+            for query in tuple(case.get("gateway_admission_queries") or ())
+            if isinstance(query, ObservationGatewayAdmissionQueryV1)
+            and query.lookup(execution_identity_ref, admission_ref) is not None
+        ),
+        None,
+    )
+    if gateway_query is None:
+        return None, "decision_handoff_requires_gateway_admission_query"
     admitted_refs = tuple(_proof_value(proof_admission, "evidence_refs") or ())
-    state_record = runtime_state.lookup(execution_identity_ref, admission_ref)
+    state_record = gateway_query.lookup(execution_identity_ref, admission_ref)
     if state_record is None or state_record.admission_state != "ADMITTED":
         return None, "decision_handoff_requires_governed_gateway_admission"
-    if not runtime_state.matches_canonical_admission(
+    if not gateway_query.matches_canonical_admission(
         execution_identity_ref, admission_ref, proof_admission
     ):
         return None, "decision_handoff_rejects_noncanonical_gateway_admission_result"
@@ -430,15 +435,13 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
     if is_dataclass(case):
         handoff_case = dict(case_data)
         handoff_case["gateway_results"] = tuple(case.gateway_results)
-        final_proof_object = proof_objects[-1] if proof_objects else None
-        handoff_case["gateway_execution_identity_ref"] = _proof_value(
-            final_proof_object, "gateway_execution_identity_ref"
-        )
-        handoff_case["gateway_admission_runtime_state"] = _proof_value(
-            final_proof_object, "gateway_admission_runtime_state"
-        )
+        handoff_case["gateway_admission_queries"] = case.gateway_admission_queries
     for index, proof in enumerate(proof_objects, start=1):
-        attempt, candidate, errors = _attempt(index, proof, handoff_case)
+        attempt_case = dict(handoff_case)
+        attempt_case["gateway_execution_identity_ref"] = _proof_value(
+            proof, "gateway_execution_identity_ref"
+        )
+        attempt, candidate, errors = _attempt(index, proof, attempt_case)
         attempts.append(_jsonable(attempt))
         attempt_errors.extend(errors)
         if candidate is not None:

@@ -14,6 +14,7 @@ from capabilities.midplatform.core.a_route_orchestration.a_route_orchestration_c
     ARouteOrchestrationResultV1,
 )
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
+    ObservationGatewayAdmissionQueryV1,
     ObservationGatewayResultV1,
 )
 from capabilities.midplatform.core.cognitive_flow.integration.cognitive_loop_governed_continuity_candidate_controlled.cognitive_loop_lifecycle_closure_types_v1 import (
@@ -101,6 +102,7 @@ class BrainCognitiveCaseResultV1:
     information_need: BrainInformationNeedCandidateV1
     loop_instance: BrainCognitiveLoopInstanceV1
     gateway_results: Tuple[ObservationGatewayResultV1, ...]
+    gateway_admission_queries: Tuple[ObservationGatewayAdmissionQueryV1, ...]
     route_results: Tuple[ARouteOrchestrationResultV1, ...]
     cognitive_proofs: Tuple[ARouteCognitiveExecutionEvidenceV1, ...]
     closure_assessment: Optional[ClosureAssessmentCandidateV1]

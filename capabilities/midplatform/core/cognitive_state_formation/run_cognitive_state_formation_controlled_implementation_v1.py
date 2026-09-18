@@ -125,7 +125,9 @@ def run_controlled() -> Dict[str, Any]:
                 "root_trace_id": output.trace.root_trace_id,
                 "world_trace": output.trace.current_world_trace_ref,
                 "handoff_trace": output.trace.downstream_handoff_trace_ref,
-                "reverse_lookup_keys": sorted(output.provenance.reverse_lookup.keys()),
+                "reverse_lookup_keys": sorted(
+                    key for key, _ in output.provenance.reverse_lookup
+                ),
             }
         )
 

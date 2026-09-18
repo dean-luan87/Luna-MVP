@@ -21,7 +21,6 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_condition
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
     CanonicalGatewayAdmissionResultV1,
     EvidenceReferenceBindingV1,
-    ObservationGatewayAdmissionRuntimeStateV1,
     ObservationGatewayRuntimeAdmissionV1,
 )
 if TYPE_CHECKING:
@@ -144,7 +143,6 @@ class ARouteCognitiveExecutionEvidenceV1:
     gateway_admission_ref: str | None = None
     admitted_evidence_refs: Tuple[str, ...] = ()
     gateway_execution_identity_ref: str | None = None
-    gateway_admission_runtime_state: ObservationGatewayAdmissionRuntimeStateV1 | None = None
     execution_proof_source: str = "AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment"
     cognitive_cycle_index: int = 1
     sufficiency_status: str = "not_observed"
@@ -247,7 +245,6 @@ class ARouteOrchestrationRequestV1:
     execution_identity_ref: str | None = None
     replay_admission: ControlledReplayAdmissionV1 | None = None
     runtime_admission: ObservationGatewayRuntimeAdmissionV1 | None = None
-    gateway_admission_runtime_state: ObservationGatewayAdmissionRuntimeStateV1 | None = None
     role_refs: Tuple[str, ...] = ()
     task_refs: Tuple[str, ...] = ()
     goal_refs: Tuple[str, ...] = ()

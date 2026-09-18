@@ -95,12 +95,11 @@ def _current_world(
         uncertainty_refs=uncertainty_refs,
         conflict_refs=conflict_refs,
         temporal_refs=(provider_result.frame_ref,),
-        source_versions={
-            f"provider:{provider_result.provider_ref}": provider_result.source_version_refs[0]
+        source_versions=(
+            ((f"provider:{provider_result.provider_ref}", provider_result.source_version_refs[0]),)
             if provider_result.source_version_refs
-            else "",
-            "evidence": provider_result.result_id,
-        },
+            else ()
+        ) + (("evidence", provider_result.result_id),),
         world_state_kind_candidate="visual-evidence-derived",
         world_stability_candidate="uncertain" if uncertainty_refs or conflict_refs else "candidate",
         trace_ref=f"{provider_result.trace_ref}:current-world-candidate",

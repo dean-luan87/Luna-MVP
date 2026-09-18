@@ -3,7 +3,29 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Dict, Tuple
+from typing import Tuple
+
+
+ReverseLookupPairsV1 = Tuple[Tuple[str, Tuple[str, ...]], ...]
+
+
+def _validate_reverse_lookup(value: object) -> None:
+    if not isinstance(value, tuple):
+        raise TypeError("reverse_lookup_must_be_tuple_of_pairs")
+    keys = set()
+    for item in value:
+        if not isinstance(item, tuple) or len(item) != 2:
+            raise TypeError("reverse_lookup_pair_must_be_two_tuple")
+        key, refs = item
+        if not isinstance(key, str) or not key.strip():
+            raise ValueError("reverse_lookup_key_must_be_non_empty_string")
+        if not isinstance(refs, tuple):
+            raise TypeError("reverse_lookup_refs_must_be_tuple")
+        if any(not isinstance(ref, str) or not ref.strip() for ref in refs):
+            raise ValueError("reverse_lookup_refs_must_be_non_empty_strings")
+        if key in keys:
+            raise ValueError("reverse_lookup_duplicate_key")
+        keys.add(key)
 
 
 @dataclass(frozen=True)
@@ -72,4 +94,7 @@ class ProvenanceEnvelopeV1:
     source_refs: Tuple[str, ...]
     owner_refs: Tuple[str, ...]
     version_refs: Tuple[str, ...]
-    reverse_lookup: Dict[str, Tuple[str, ...]]
+    reverse_lookup: ReverseLookupPairsV1
+
+    def __post_init__(self) -> None:
+        _validate_reverse_lookup(self.reverse_lookup)

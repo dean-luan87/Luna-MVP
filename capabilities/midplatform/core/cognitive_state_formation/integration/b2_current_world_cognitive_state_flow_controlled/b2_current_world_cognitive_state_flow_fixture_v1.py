@@ -43,7 +43,7 @@ def _world(
         uncertainty_refs=uncertainty,
         conflict_refs=conflict,
         temporal_refs=(f"temporal:{world_id}", f"observed:{world_id}"),
-        source_versions={"current_world": source_version, "context": "v1"},
+        source_versions=(("current_world", source_version), ("context", "v1")),
         world_state_kind_candidate="CONFLICTED" if conflict else "PARTIAL",
         world_stability_candidate="LOW" if conflict or uncertainty else "MEDIUM",
         trace_ref=f"trace:{world_id}",

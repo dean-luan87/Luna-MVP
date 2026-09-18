@@ -748,14 +748,21 @@ class CognitiveStateFormationEngineV1:
                 uncertainty_refs=self._values(request.uncertainty_refs),
                 conflict_refs=competition.conflict_refs,
                 temporal_refs=(f"temporal:{sid}",),
-                source_versions={
-                    "context": "v1",
-                    "pcn": "v1",
-                    "intent": "v1",
-                    "field": "v1",
-                    "observation": "v1",
-                    "current_world": "current-world-candidate-v1" if request.current_world_ref is not None else "",
-                },
+                source_versions=(
+                    ("context", "v1"),
+                    ("pcn", "v1"),
+                    ("intent", "v1"),
+                    ("field", "v1"),
+                    ("observation", "v1"),
+                ) + (("current_world", "current-world-candidate-v1"),)
+                if request.current_world_ref is not None
+                else (
+                    ("context", "v1"),
+                    ("pcn", "v1"),
+                    ("intent", "v1"),
+                    ("field", "v1"),
+                    ("observation", "v1"),
+                ),
                 world_state_kind_candidate=kind,
                 world_stability_candidate="LOW" if kind in {"UNKNOWN", "CONFLICTED", "PARTIAL"} else "MEDIUM",
                 trace_ref=f"trace:{sid}:world",
@@ -786,16 +793,21 @@ class CognitiveStateFormationEngineV1:
             uncertainty_refs=tuple(r.source_ref for r in request.uncertainty_refs),
             conflict_refs=conflict_refs,
             temporal_refs=(f"temporal:{sid}",),
-            source_versions={
-                "context": "v1",
-                "pcn": "v1",
-                "intent": "v1",
-                "field": "v1",
-                "observation": "v1",
-                "current_world": "current-world-candidate-v1"
-                if request.current_world_ref is not None
-                else "",
-            },
+            source_versions=(
+                ("context", "v1"),
+                ("pcn", "v1"),
+                ("intent", "v1"),
+                ("field", "v1"),
+                ("observation", "v1"),
+            ) + (("current_world", "current-world-candidate-v1"),)
+            if request.current_world_ref is not None
+            else (
+                ("context", "v1"),
+                ("pcn", "v1"),
+                ("intent", "v1"),
+                ("field", "v1"),
+                ("observation", "v1"),
+            ),
             world_state_kind_candidate=kind,
             world_stability_candidate="LOW"
             if kind in {"UNKNOWN", "CONFLICTED"}
@@ -923,8 +935,8 @@ class CognitiveStateFormationEngineV1:
                 "Causal Governance",
             ),
             version_refs=("v1",),
-            reverse_lookup={
-                world.current_world_id: (
+            reverse_lookup=(
+                (world.current_world_id, (
                     *((request.current_world_ref.source_ref,)
                       if request.current_world_ref is not None
                       else ()),
@@ -933,14 +945,14 @@ class CognitiveStateFormationEngineV1:
                     *world.context_refs,
                     *world.field_state_refs,
                     *world.observation_refs,
-                ),
-                handoff.handoff_id: (
+                )),
+                (handoff.handoff_id, (
                     *handoff.active_hypothesis_refs,
                     *handoff.evidence_refs,
                     *handoff.context_refs,
                     *handoff.field_state_refs,
-                ),
-            },
+                )),
+            ),
         )
         return trace, provenance
 

@@ -123,6 +123,38 @@ def validate_current_world_candidate_only(world: CurrentWorldCandidateV1) -> boo
     )
 
 
+def validate_immutable_snapshot_mappings(world: CurrentWorldCandidateV1) -> bool:
+    return (
+        isinstance(world.source_versions, tuple)
+        and all(
+            isinstance(item, tuple)
+            and len(item) == 2
+            and isinstance(item[0], str)
+            and bool(item[0].strip())
+            and isinstance(item[1], str)
+            and bool(item[1].strip())
+            for item in world.source_versions
+        )
+        and len({item[0] for item in world.source_versions}) == len(world.source_versions)
+    )
+
+
+def validate_immutable_reverse_lookup(value: object) -> bool:
+    return (
+        isinstance(value, tuple)
+        and all(
+            isinstance(item, tuple)
+            and len(item) == 2
+            and isinstance(item[0], str)
+            and bool(item[0].strip())
+            and isinstance(item[1], tuple)
+            and all(isinstance(ref, str) and bool(ref.strip()) for ref in item[1])
+            for item in value
+        )
+        and len({item[0] for item in value}) == len(value)
+    )
+
+
 def validate_field_ref_read_only_boundary(field_refs: Iterable[SourceRefV1]) -> bool:
     return validate_field_ref_read_only(field_refs)
 
@@ -214,6 +246,8 @@ def validate_output_contract(
             output.hypothesis_competition_result
         )
         and validate_current_world_candidate_only(output.current_world_candidate)
+        and validate_immutable_snapshot_mappings(output.current_world_candidate)
+        and validate_immutable_reverse_lookup(output.provenance.reverse_lookup)
         and validate_no_field_mutation(output.current_world_candidate)
         and validate_causal_handoff_boundary(output.causal_handoff_candidate)
         and validate_negative_guard_status(output.negative_guard_status)

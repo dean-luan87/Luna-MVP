@@ -212,11 +212,13 @@ def test_t14_canonical_invalidation_blocks_later_consumption():
     result, grant = _genuine_grant()
     state = query_active_authorization_for_grant(grant)
     assert state is not None
+    assert state.status == "AUTHORIZED"
     invalidate_runtime_authorization_state(
         authorization_ref=grant.authorization_ref,
         subject_ref=grant.source_execution_instance_preparation_ref,
         reason="permission_revoked",
     )
+    assert state.status == "AUTHORIZED"
     assert query_active_authorization_for_grant(grant) is None
 
 

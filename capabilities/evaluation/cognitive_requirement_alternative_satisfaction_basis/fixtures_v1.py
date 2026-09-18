@@ -66,7 +66,7 @@ def _world(case_id: str) -> CurrentWorldCandidateV1:
         uncertainty_refs=(),
         conflict_refs=(),
         temporal_refs=(),
-        source_versions={"current_world": "current-world-candidate-v1"},
+        source_versions=(("current_world", "current-world-candidate-v1"),),
         world_state_kind_candidate="PARTIAL",
         world_stability_candidate="CONTROLLED",
         trace_ref=f"trace:world:controlled:alternative-basis:{case_id}",

@@ -385,7 +385,7 @@ def _current_world_candidate(
         uncertainty_refs=(f"uncertainty:controlled:{case.case_id}",) if case.insufficient_evidence else (),
         conflict_refs=conflict_refs,
         temporal_refs=(f"temporal:controlled:{case.case_id}",),
-        source_versions={"field": "luna.field_kernel.v1", "context": "context-foundation.v1"},
+        source_versions=(("field", "luna.field_kernel.v1"), ("context", "context-foundation.v1")),
         world_state_kind_candidate="conflicted_world" if case.conflict else "partial_world",
         world_stability_candidate="UNKNOWN" if case.insufficient_evidence else "CANDIDATE",
         trace_ref=f"trace:current-world:controlled:{case.case_id}",

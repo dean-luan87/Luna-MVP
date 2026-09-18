@@ -36,7 +36,7 @@ def _typed_case_and_proof() -> tuple[dict, object]:
     case = asdict(typed_case)
     case['gateway_results'] = typed_case.gateway_results
     case['gateway_execution_identity_ref'] = typed_case.cognitive_proofs[-1].gateway_execution_identity_ref
-    case['gateway_admission_runtime_state'] = typed_case.cognitive_proofs[-1].gateway_admission_runtime_state
+    case['gateway_admission_queries'] = typed_case.gateway_admission_queries
     return case, typed_case.cognitive_proofs[-1]
 
 
@@ -45,7 +45,6 @@ def _source_case_and_proof() -> tuple[dict, dict]:
     proof_data = asdict(proof)
     proof_data['canonical_gateway_admission_result'] = proof.canonical_gateway_admission_result
     proof_data['evidence_binding'] = proof.evidence_binding
-    proof_data['gateway_admission_runtime_state'] = proof.gateway_admission_runtime_state
     return case, proof_data
 
 
@@ -447,9 +446,7 @@ def test_t39_execution_mode_carrier_alone_cannot_create_evidence_authority() -> 
     case, proof = _typed_case_and_proof()
     carrier_only_case = dict(case)
     carrier_only_case['gateway_results'] = ()
-    carrier_only_case['gateway_admission_runtime_state'] = type(
-        case['gateway_admission_runtime_state']
-    )()
+    carrier_only_case['gateway_admission_queries'] = ()
     handoff, errors = build_cognitive_decision_handoff_candidate_v1(
         carrier_only_case, proof
     )
@@ -470,7 +467,7 @@ def test_t41_genuine_gateway_governed_admission_is_accepted() -> None:
     handoff, errors = build_cognitive_decision_handoff_candidate_v1(case, proof)
     assert errors == ()
     assert handoff is not None
-    record = case['gateway_admission_runtime_state'].lookup(
+    record = case['gateway_admission_queries'][-1].lookup(
         case['gateway_execution_identity_ref'], proof.gateway_admission_ref
     )
     assert record is not None
@@ -481,14 +478,13 @@ def test_t42_caller_created_gateway_dto_without_state_is_rejected() -> None:
     case, proof = _typed_case_and_proof()
     forged = replace(
         proof,
-        gateway_admission_runtime_state=None,
         canonical_gateway_admission_result=replace(
             proof.canonical_gateway_admission_result,
             gateway_admission_ref='gateway-admission:caller',
             evidence_refs=('provenance:caller',),
         ),
     )
-    case['gateway_admission_runtime_state'] = None
+    case['gateway_admission_queries'] = ()
     assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
 
 
@@ -509,34 +505,28 @@ def test_t43_caller_created_dto_binding_and_proof_are_rejected() -> None:
         evidence_binding=fake_binding,
         gateway_admission_ref='gateway-admission:caller',
         admitted_evidence_refs=('provenance:caller',),
-        gateway_admission_runtime_state=None,
     )
-    case['gateway_admission_runtime_state'] = None
+    case['gateway_admission_queries'] = ()
     assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
 
 
 def test_t44_fake_runtime_state_dto_has_no_authority() -> None:
     case, proof = _typed_case_and_proof()
-    fake_state = ObservationGatewayAdmissionRuntimeStateV1()
-    forged = replace(proof, gateway_admission_runtime_state=fake_state)
-    case['gateway_admission_runtime_state'] = fake_state
+    forged = proof
+    case['gateway_admission_queries'] = (object(),)
     assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
-    assert fake_state.lookup(case['gateway_execution_identity_ref'], proof.gateway_admission_ref) is None
 
 
 def test_t45_value_copy_of_runtime_state_has_no_authority() -> None:
     case, proof = _typed_case_and_proof()
-    copied_state = deepcopy(case['gateway_admission_runtime_state'])
-    forged = replace(proof, gateway_admission_runtime_state=copied_state)
-    case['gateway_admission_runtime_state'] = copied_state
-    assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
+    case['gateway_admission_queries'] = (object(),)
+    assert build_cognitive_decision_handoff_candidate_v1(case, proof)[0] is None
 
 
 def test_t46_genuine_gateway_dto_without_canonical_state_is_rejected() -> None:
     case, proof = _typed_case_and_proof()
-    case['gateway_admission_runtime_state'] = None
-    forged = replace(proof, gateway_admission_runtime_state=None)
-    assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
+    case['gateway_admission_queries'] = ()
+    assert build_cognitive_decision_handoff_candidate_v1(case, proof)[0] is None
 
 
 def test_t47_genuine_state_with_substituted_evidence_set_is_rejected() -> None:
@@ -569,7 +559,7 @@ def test_t49_admission_from_execution_a_cannot_authorize_execution_b() -> None:
     case_b = asdict(case_b_typed)
     case_b['gateway_results'] = case_b_typed.gateway_results
     case_b['gateway_execution_identity_ref'] = case_b_typed.cognitive_proofs[-1].gateway_execution_identity_ref
-    case_b['gateway_admission_runtime_state'] = case_b_typed.cognitive_proofs[-1].gateway_admission_runtime_state
+    case_b['gateway_admission_queries'] = case_b_typed.gateway_admission_queries
     assert build_cognitive_decision_handoff_candidate_v1(case_b, proof_a)[0] is None
 
 
@@ -598,10 +588,8 @@ def test_t53_decision_remains_gateway_state_decoupled() -> None:
 
 def test_t54_serialized_old_admission_record_cannot_restore_authority() -> None:
     case, proof = _typed_case_and_proof()
-    empty_state = ObservationGatewayAdmissionRuntimeStateV1()
-    forged = replace(proof, gateway_admission_runtime_state=empty_state)
-    case['gateway_admission_runtime_state'] = empty_state
-    assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
+    case['gateway_admission_queries'] = ()
+    assert build_cognitive_decision_handoff_candidate_v1(case, proof)[0] is None
 
 
 def test_t55_controlled_replay_creates_a_new_gateway_state_transition() -> None:
@@ -609,8 +597,8 @@ def test_t55_controlled_replay_creates_a_new_gateway_state_transition() -> None:
     case_b = run_brain_cognitive_case_v1('CASE_A_SUFFICIENT_STOP', 'f05-t55-b')
     proof_a = case_a.cognitive_proofs[-1]
     proof_b = case_b.cognitive_proofs[-1]
-    state_a = proof_a.gateway_admission_runtime_state
-    state_b = proof_b.gateway_admission_runtime_state
+    state_a = case_a.gateway_admission_queries[-1]
+    state_b = case_b.gateway_admission_queries[-1]
     assert state_a is not state_b
     assert state_a.lookup(
         proof_a.gateway_execution_identity_ref, proof_a.gateway_admission_ref
@@ -629,7 +617,7 @@ def test_t56_evaluation_cannot_fabricate_gateway_admission_state() -> None:
 
 def test_t57_binding_alone_cannot_establish_admission() -> None:
     case, proof = _typed_case_and_proof()
-    case['gateway_admission_runtime_state'] = None
+    case['gateway_admission_queries'] = ()
     assert build_cognitive_decision_handoff_candidate_v1(case, proof)[0] is None
 
 
@@ -645,9 +633,8 @@ def test_t58_self_consistent_dto_package_without_state_is_rejected() -> None:
         canonical_gateway_admission_result=fake_admission,
         gateway_admission_ref='gateway-admission:self-consistent',
         admitted_evidence_refs=('provenance:self-consistent',),
-        gateway_admission_runtime_state=None,
     )
-    case['gateway_admission_runtime_state'] = None
+    case['gateway_admission_queries'] = ()
     assert build_cognitive_decision_handoff_candidate_v1(case, forged)[0] is None
 
 

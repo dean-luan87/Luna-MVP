@@ -22,6 +22,7 @@ from .observation_gateway_core_types_v1 import (
     ObservationIngressRequestV1,
     ObservationGatewayRuntimeAdmissionV1,
     ObservationGatewayAdmissionRuntimeStateV1,
+    ObservationGatewayAdmissionQueryV1,
     PerceptionEvidenceV1,
 )
 from .observation_gateway_error_types_v1 import ObservationGatewayErrorV1, make_error
@@ -36,13 +37,19 @@ from .observation_gateway_static_validators_v1 import (
 class ObservationGatewayEngineV1:
     """Deterministic evidence normalization/admission/routing coordinator."""
 
-    def __init__(
-        self,
-        admission_runtime_state: ObservationGatewayAdmissionRuntimeStateV1 | None = None,
-    ) -> None:
-        self.admission_runtime_state = (
-            admission_runtime_state or ObservationGatewayAdmissionRuntimeStateV1()
+    __slots__ = ("__admission_runtime_state", "__admission_query")
+
+    def __init__(self) -> None:
+        self.__admission_runtime_state = ObservationGatewayAdmissionRuntimeStateV1()
+        self.__admission_query = ObservationGatewayAdmissionQueryV1._from_gateway_owner(
+            self.__admission_runtime_state
         )
+
+    @property
+    def admission_query(self) -> ObservationGatewayAdmissionQueryV1:
+        """Return the owner-mediated current-state query surface."""
+
+        return self.__admission_query
 
     @staticmethod
     def _execution_identity(request: ObservationIngressRequestV1) -> str:
@@ -447,7 +454,7 @@ class ObservationGatewayEngineV1:
                 if runtime_admission is not None
                 else tuple(ref for item in evidence for ref in item.provenance_refs)
             )
-            if not self.admission_runtime_state._record_admission(
+            if not self.__admission_runtime_state._record_admission(
                 execution_identity_ref=sid,
                 gateway_admission_ref=admission_ref,
                 evidence_refs=admitted_refs,

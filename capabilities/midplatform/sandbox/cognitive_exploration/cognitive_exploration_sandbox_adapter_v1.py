@@ -83,7 +83,7 @@ def build_current_world(
         uncertainty_refs=tuple(gap_ref(scenario, ref) for ref in scenario.required_conditions),
         conflict_refs=scenario.governed_conflict_refs,
         temporal_refs=(f"round:{round_id}",),
-        source_versions={"sandbox": "controlled-v1"},
+        source_versions=(("sandbox", "controlled-v1"),),
         world_state_kind_candidate="PARTIAL",
         world_stability_candidate="CONTROLLED",
         trace_ref=f"trace:sandbox:world:{scenario.scenario_id}:{round_id}",

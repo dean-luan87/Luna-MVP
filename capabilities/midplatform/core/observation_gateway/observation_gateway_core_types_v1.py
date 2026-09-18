@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import weakref
 from typing import Dict, Mapping, Tuple, Union
 
 from capabilities.midplatform.core.execution_mode_v1 import (
@@ -100,11 +101,11 @@ class GatewayAdmissionStateRecordV1:
 
 
 class ObservationGatewayAdmissionRuntimeStateV1:
-    """Gateway-owned, execution-scoped admission state.
+    """Gateway-owned, execution-scoped mutable admission store.
 
-    The public surface is read-only. Only the Observation Gateway engine
-    calls the private mutation hook after completing its admission checks.
-    DTO construction therefore cannot create an admission fact.
+    This type is an owner-internal root.  It must never be placed in a proof,
+    DTO, or downstream handoff.  Downstream consumers use the separate
+    ``ObservationGatewayAdmissionQueryV1`` surface instead.
     """
 
     __slots__ = ("_records", "_canonical_admissions")
@@ -175,6 +176,72 @@ class ObservationGatewayAdmissionRuntimeStateV1:
 
     def __deepcopy__(self, memo):
         return type(self)()
+
+
+class ObservationGatewayAdmissionQueryV1:
+    """Owner-mediated read surface for current Gateway admission state."""
+
+    __slots__ = ("__query_identity", "__weakref__")
+
+    def __init__(self) -> None:
+        self.__query_identity = object()
+
+    @classmethod
+    def _from_gateway_owner(
+        cls, state: ObservationGatewayAdmissionRuntimeStateV1
+    ) -> "ObservationGatewayAdmissionQueryV1":
+        query = cls()
+        _GATEWAY_QUERY_BINDINGS[query] = state
+        return query
+
+    def lookup(
+        self,
+        execution_identity_ref: str,
+        gateway_admission_ref: str,
+    ) -> GatewayAdmissionStateRecordV1 | None:
+        if (
+            not isinstance(execution_identity_ref, str)
+            or not execution_identity_ref
+            or not isinstance(gateway_admission_ref, str)
+            or not gateway_admission_ref
+        ):
+            return None
+        state = _GATEWAY_QUERY_BINDINGS.get(self)
+        if state is None:
+            return None
+        record = state.lookup(execution_identity_ref, gateway_admission_ref)
+        return record if isinstance(record, GatewayAdmissionStateRecordV1) else None
+
+    def matches_canonical_admission(
+        self,
+        execution_identity_ref: str,
+        gateway_admission_ref: str,
+        admission: object,
+    ) -> bool:
+        if self.lookup(execution_identity_ref, gateway_admission_ref) is None:
+            return False
+        state = _GATEWAY_QUERY_BINDINGS.get(self)
+        if state is None:
+            return False
+        return state.matches_canonical_admission(
+            execution_identity_ref, gateway_admission_ref, admission
+        ) is True
+
+    def __copy__(self):
+        return self
+
+    def __deepcopy__(self, memo):
+        memo[id(self)] = self
+        return self
+
+    def __getstate__(self) -> dict:
+        return {"state_surface": "gateway_admission_query_only"}
+
+    def __setstate__(self, _state: object) -> None:
+        raise TypeError("gateway_admission_query_is_not_deserializable")
+
+
+_GATEWAY_QUERY_BINDINGS: weakref.WeakKeyDictionary = weakref.WeakKeyDictionary()
 
 
 @dataclass(frozen=True)

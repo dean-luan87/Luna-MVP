@@ -20,7 +20,7 @@ from capabilities.midplatform.core.observation_gateway.observation_gateway_engin
     ObservationGatewayEngineV1,
 )
 from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
-    ObservationGatewayAdmissionRuntimeStateV1,
+    ObservationGatewayAdmissionQueryV1,
 )
 from capabilities.midplatform.core.cognitive_flow.integration.cognitive_loop_governed_continuity_candidate_controlled.cognitive_loop_lifecycle_closure_types_v1 import (
     BrainAssimilationCandidateV1,
@@ -75,10 +75,10 @@ NEGATIVE_GUARD_RUNTIME_COVERAGE = frozenset({"closure_without_sufficiency"})
 
 
 def _jsonable(value: Any) -> Any:
-    if isinstance(value, ObservationGatewayAdmissionRuntimeStateV1):
+    if isinstance(value, ObservationGatewayAdmissionQueryV1):
         return {
             "owner": "Observation Gateway",
-            "semantics": "ADMISSION_FACT_ONLY",
+            "semantics": "CURRENT_ADMISSION_QUERY_ONLY",
             "authority_serialized": False,
         }
     if is_dataclass(value):
@@ -120,12 +120,11 @@ def _route_for_brain(
             execution_mode=CONTROLLED_REPLAY_RUNTIME,
             execution_identity_ref=execution_ref,
             replay_admission=admission,
-            gateway_admission_runtime_state=gateway_engine.admission_runtime_state,
             synthetic_only=False,
             candidate_only=True,
         )
     )
-    return gateway, route
+    return gateway, route, gateway_engine.admission_query
 
 
 def _build_request(case_id: str, execution_instance_ref: str) -> BrainCognitiveRequestV1:
@@ -321,7 +320,7 @@ def _case_a(execution_instance_ref: str) -> BrainCognitiveCaseResultV1:
     need = _build_information_need(request)
     loop_ref = f"cognitive-loop:CASE_A_SUFFICIENT_STOP:{execution_instance_ref}"
     replay = build_case_a_replay_v1()[0]
-    gateway, route = _route_for_brain(request, replay, "S01", "case-a:cycle-1")
+    gateway, route, gateway_query = _route_for_brain(request, replay, "S01", "case-a:cycle-1")
     proof = route.cognitive_execution
     loop = BrainCognitiveLoopInstanceV1(
         cognitive_loop_ref=loop_ref,
@@ -344,6 +343,7 @@ def _case_a(execution_instance_ref: str) -> BrainCognitiveCaseResultV1:
         information_need=need,
         loop_instance=loop,
         gateway_results=(gateway,),
+        gateway_admission_queries=(gateway_query,),
         route_results=(route,),
         cognitive_proofs=(proof,) if proof else (),
         closure_assessment=closure[0],
@@ -362,10 +362,10 @@ def _case_b(execution_instance_ref: str) -> BrainCognitiveCaseResultV1:
     need = _build_information_need(request)
     loop_ref = f"cognitive-loop:CASE_B_GAP_REOBSERVE_REVISE_STOP:{execution_instance_ref}"
     replay_a = build_case_b_cycle_1_replay_v1()
-    gateway_a, route_a = _route_for_brain(request, replay_a, "S04", "case-b:cycle-1")
+    gateway_a, route_a, gateway_query_a = _route_for_brain(request, replay_a, "S04", "case-b:cycle-1")
     proof_a = route_a.cognitive_execution
     replay_b = build_case_b_cycle_2_replay_v1(proof_a)
-    gateway_b, route_b = _route_for_brain(request, replay_b, "S10", "case-b:cycle-2")
+    gateway_b, route_b, gateway_query_b = _route_for_brain(request, replay_b, "S10", "case-b:cycle-2")
     proof_b = route_b.cognitive_execution
     proofs = tuple(item for item in (proof_a, proof_b) if item)
     loop = BrainCognitiveLoopInstanceV1(
@@ -404,6 +404,7 @@ def _case_b(execution_instance_ref: str) -> BrainCognitiveCaseResultV1:
         information_need=need,
         loop_instance=loop,
         gateway_results=(gateway_a, gateway_b),
+        gateway_admission_queries=(gateway_query_a, gateway_query_b),
         route_results=(route_a, route_b),
         cognitive_proofs=proofs,
         closure_assessment=closure[0],

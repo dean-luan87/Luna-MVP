@@ -67,7 +67,13 @@ class RuntimeAuthorizationScopeV1:
 
 @dataclass(frozen=True)
 class RuntimeAuthorizationStateV1:
-    """Descriptive state returned by a read-only state query."""
+    """Immutable descriptive state-at-read snapshot.
+
+    This record is historical/observational only.  Possessing a snapshot with
+    ``status == "AUTHORIZED"`` does not grant current execution authority;
+    consumers must re-query the canonical Permission / Admission Manager
+    store before admitting or executing a current grant.
+    """
 
     authorization_ref: str
     subject_ref: str

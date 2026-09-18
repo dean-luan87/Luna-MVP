@@ -644,7 +644,6 @@ class ARouteOrchestrationEngineV1:
             gateway_admission_ref=admission.gateway_admission_ref,
             admitted_evidence_refs=tuple(admission.evidence_refs),
             gateway_execution_identity_ref=request.execution_identity_ref,
-            gateway_admission_runtime_state=request.gateway_admission_runtime_state,
             execution_proof_source="AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
             cognitive_cycle_index=state_output.cognitive_cycle_index,
             sufficiency_status=a_judgment.sufficiency_status,

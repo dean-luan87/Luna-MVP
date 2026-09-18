@@ -139,7 +139,10 @@ def _current_world_candidate(result: ResultSourceInputV1, handoff: SourceStateHa
         uncertainty_refs=result.uncertainty_refs,
         conflict_refs=(),
         temporal_refs=tuple(ref for ref in (result.effective_time_ref,) if ref),
-        source_versions={f"source_{index}": value for index, value in enumerate(result.source_version_refs)},
+        source_versions=tuple(
+            (f"source_{index}", value)
+            for index, value in enumerate(result.source_version_refs)
+        ),
         world_state_kind_candidate="EVIDENCE_RETURN_CANDIDATE",
         world_stability_candidate=result.status_candidate,
         trace_ref=result.trace_refs[0],
