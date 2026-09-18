@@ -14,11 +14,6 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_hypothesi
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
     NegativeGuardStatusV1,
-    ProvenanceEnvelopeV1,
-    TraceEnvelopeV1,
-)
-from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_handoff_types_v1 import (
-    CognitiveToCausalHandoffCandidateV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
     CognitiveHypothesisRevisionCandidateV1,
@@ -40,11 +35,15 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_registry_v1 import (
     CANONICAL_OWNER,
 )
-from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_vector_types_v1 import (
-    CognitiveStateVectorCandidateV1,
-)
 from capabilities.midplatform.core.cognitive_state_formation.current_world_types_v1 import (
     CurrentWorldCandidateV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_projection_v1 import (
+    _build_handoff,
+    _build_vector,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_versioning_v1 import (
+    _build_trace_and_provenance,
 )
 from capabilities.midplatform.core.execution_mode_v1 import (
     CONTROLLED_REPLAY_RUNTIME,
@@ -820,142 +819,6 @@ class CognitiveStateFormationEngineV1:
             ),
         )
 
-    def _build_vector(
-        self,
-        sid: str,
-        world: CurrentWorldCandidateV1,
-        competition: HypothesisCompetitionResultV1,
-    ) -> CognitiveStateVectorCandidateV1:
-        return CognitiveStateVectorCandidateV1(
-            state_vector_id=f"vector:{sid}",
-            attention_distribution_refs=world.attention_refs,
-            hypothesis_state_refs=competition.active_hypothesis_refs
-            + competition.insufficient_evidence_refs,
-            uncertainty_level_candidate="HIGH"
-            if world.world_state_kind_candidate in {"UNKNOWN", "CONFLICTED"}
-            else "MEDIUM",
-            conflict_level_candidate="HIGH" if world.conflict_refs else "LOW",
-            world_stability_candidate=world.world_stability_candidate,
-            intent_pressure_candidate="MEDIUM",
-            resource_pressure_candidate="LOW",
-            current_world_ref=world.current_world_id,
-            trace_ref=f"trace:{sid}:vector",
-            provenance_refs=(f"prov:{sid}:vector",),
-        )
-
-    def _build_handoff(
-        self,
-        sid: str,
-        request: CognitiveStateFormationInputV1,
-        world: CurrentWorldCandidateV1,
-        competition: HypothesisCompetitionResultV1,
-    ) -> CognitiveToCausalHandoffCandidateV1:
-        evidence_refs = tuple(r.source_ref for r in request.evidence_refs)
-        if not evidence_refs:
-            evidence_refs = tuple(
-                f"evidence:{sid}:{idx}"
-                for idx in range(1, len(competition.active_hypothesis_refs) + 2)
-            )
-        return CognitiveToCausalHandoffCandidateV1(
-            handoff_id=f"handoff:{sid}",
-            handoff_type="CANDIDATE_REFERENCE_ONLY",
-            producer_owner=CANONICAL_OWNER,
-            consumer_owner="Causal Governance",
-            attention_refs=world.attention_refs,
-            active_hypothesis_refs=world.active_hypothesis_refs,
-            alternative_hypothesis_refs=world.alternative_hypothesis_refs,
-            context_refs=tuple(r.source_ref for r in request.context_refs),
-            field_state_refs=tuple(r.source_ref for r in request.field_refs),
-            observation_refs=tuple(r.source_ref for r in request.observation_refs),
-            uncertainty_refs=tuple(r.source_ref for r in request.uncertainty_refs),
-            conflict_refs=world.conflict_refs,
-            evidence_refs=evidence_refs,
-            trace_ref=f"trace:{sid}:handoff",
-            provenance_refs=(f"prov:{sid}:handoff",),
-        )
-
-    def _build_trace_and_provenance(
-        self,
-        request: CognitiveStateFormationInputV1,
-        sid: str,
-        world: CurrentWorldCandidateV1,
-        competition: HypothesisCompetitionResultV1,
-        handoff: CognitiveToCausalHandoffCandidateV1,
-    ) -> Tuple[TraceEnvelopeV1, ProvenanceEnvelopeV1]:
-        trace = TraceEnvelopeV1(
-            root_trace_id=f"trace:{sid}:root",
-            attention_trace_ref=f"trace:{sid}:attention",
-            hypothesis_trace_ref=f"trace:{sid}:hypothesis",
-            current_world_trace_ref=world.trace_ref,
-            downstream_handoff_trace_ref=handoff.trace_ref,
-            revision_lineage_refs=(f"lineage:{sid}:revision",)
-            if sid in {"S10"}
-            else (),
-            revocation_lineage_refs=(f"lineage:{sid}:revocation",)
-            if sid in {"S11", "S20"}
-            else (),
-            source_version_lineage_refs=(
-                "context:v1",
-                "pcn:v1",
-                "intent:v1",
-                "field:v1",
-                "observation:v1",
-                "current-world-candidate-v1"
-                if request.current_world_ref is not None
-                else "",
-            ),
-            alternative_hypothesis_lineage_refs=competition.alternative_explanation_refs,
-        )
-        provenance = ProvenanceEnvelopeV1(
-            source_refs=tuple(
-                item
-                for item in (
-                    *((request.current_world_ref.source_ref,)
-                      if request.current_world_ref is not None
-                      else ()),
-                    "context",
-                    "pcn",
-                    "intent",
-                    "field",
-                    "observation",
-                    "risk",
-                    "uncertainty",
-                    "task",
-                    "role",
-                    "memory",
-                )
-                if item
-            ),
-            owner_refs=(
-                "Context Foundation",
-                "Personal Cognitive Network Governance",
-                "Intent Governance",
-                "Field State Reducer",
-                "Cognitive State Formation Governance",
-                "Causal Governance",
-            ),
-            version_refs=("v1",),
-            reverse_lookup=(
-                (world.current_world_id, (
-                    *((request.current_world_ref.source_ref,)
-                      if request.current_world_ref is not None
-                      else ()),
-                    *world.active_hypothesis_refs,
-                    *world.attention_refs,
-                    *world.context_refs,
-                    *world.field_state_refs,
-                    *world.observation_refs,
-                )),
-                (handoff.handoff_id, (
-                    *handoff.active_hypothesis_refs,
-                    *handoff.evidence_refs,
-                    *handoff.context_refs,
-                    *handoff.field_state_refs,
-                )),
-            ),
-        )
-        return trace, provenance
-
     def _build_negative_guard_status(self) -> NegativeGuardStatusV1:
         return NegativeGuardStatusV1(
             candidate_only=True,
@@ -1142,8 +1005,8 @@ class CognitiveStateFormationEngineV1:
             else self._empty_snapshot_competition(request.scenario_id)
         )
         world = self._build_world(request, attention_selection, competition)
-        vector = self._build_vector(request.scenario_id, world, competition)
-        handoff = self._build_handoff(request.scenario_id, request, world, competition)
+        vector = _build_vector(request.scenario_id, world, competition)
+        handoff = _build_handoff(request.scenario_id, request, world, competition)
         if semantic_compatibility:
             (
                 sufficiency,
@@ -1178,7 +1041,7 @@ class CognitiveStateFormationEngineV1:
             hypothesis_revision = None
             stop = None
             next_cycle_ref = None
-        trace, provenance = self._build_trace_and_provenance(
+        trace, provenance = _build_trace_and_provenance(
             request, request.scenario_id, world, competition, handoff
         )
 
