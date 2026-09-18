@@ -11,6 +11,7 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
     CognitiveStateFormationInputV1,
+    CognitiveStateFormationOutputV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
     validated_requirement_establishment_from_condition_formation_v1,
@@ -29,7 +30,11 @@ from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_d
     validate_a_semantic_judgment_projection,
 )
 from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_types_v1 import (
+    ACognitiveSemanticJudgmentV1,
     ASemanticDecisionContextV1,
+)
+from capabilities.midplatform.core.observation_gateway.observation_gateway_core_types_v1 import (
+    CanonicalGatewayAdmissionResultV1,
 )
 from .a_route_orchestration_core_types_v1 import (
     ARouteHandoffRecordV1,
@@ -296,6 +301,135 @@ class ARouteOrchestrationEngineV1:
                 required_cognitive_condition_formation_result=admission.required_cognitive_condition_formation_result if establishment else None,
             )
         raise ValueError("unsupported A-Route admission normalization mode")
+
+    @staticmethod
+    def _build_cognitive_execution_evidence(
+        execution_ref: str,
+        execution_mode: str,
+        gateway_execution_identity_ref: str | None,
+        ingress_refs: Tuple[str, ...],
+        admission: CanonicalGatewayAdmissionResultV1,
+        normalized_information: _NormalizedAdmissionInformationV1,
+        state_request: CognitiveStateFormationInputV1,
+        state_output: CognitiveStateFormationOutputV1,
+        a_judgment: ACognitiveSemanticJudgmentV1,
+    ) -> ARouteCognitiveExecutionEvidenceV1:
+        """Construct the immutable ARoute proof from typed upstream outputs."""
+
+        return ARouteCognitiveExecutionEvidenceV1(
+            execution_ref=execution_ref,
+            execution_mode=execution_mode,
+            owner_ref="Cognitive State Formation Governance",
+            ingress_refs=ingress_refs,
+            cognitive_transition_refs=state_output.cognitive_transition_refs,
+            current_world_ref=state_output.current_world_candidate.current_world_id,
+            hypothesis_refs=tuple(item.hypothesis_ref for item in a_judgment.hypothesis_candidates),
+            current_world_availability="observed",
+            hypothesis_availability="observed",
+            sufficiency_ref=a_judgment.sufficiency_ref,
+            sufficiency_availability="observed",
+            information_gap_ref=a_judgment.information_gap_ref,
+            information_gap_availability="observed" if a_judgment.information_gap_ref else "not_observed",
+            stop_ref=a_judgment.local_disposition_ref,
+            stop_availability="observed" if a_judgment.local_disposition_ref else "not_observed",
+            decision_handoff_ref=None,
+            decision_handoff_availability="not_observed",
+            runtime_executed=True,
+            evidence_binding=admission.evidence_binding,
+            canonical_gateway_admission_result=admission,
+            gateway_admission_ref=admission.gateway_admission_ref,
+            admitted_evidence_refs=tuple(admission.evidence_refs),
+            gateway_execution_identity_ref=gateway_execution_identity_ref,
+            execution_proof_source="AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
+            cognitive_cycle_index=state_output.cognitive_cycle_index,
+            sufficiency_status=a_judgment.sufficiency_status,
+            sufficiency_owner_ref="A_REASONING_ROLE",
+            sufficiency_candidate=None,
+            information_gap_owner_ref="A_REASONING_ROLE" if a_judgment.information_gap_ref else None,
+            information_gap_candidate=None,
+            reobservation_ref=a_judgment.reobservation_ref,
+            reobservation_owner_ref=a_judgment.reobservation_owner_ref,
+            reobservation_candidate=None,
+            reobservation_information_gap_ref=a_judgment.information_gap_ref,
+            next_cycle_ingress_ref=a_judgment.next_cycle_ingress_ref,
+            prior_next_cycle_ingress_ref=admission.prior_next_cycle_ingress_ref,
+            hypothesis_revision_ref=a_judgment.reconsideration_ref,
+            hypothesis_revision_owner_ref="A_REASONING_ROLE" if a_judgment.reconsideration_ref else None,
+            hypothesis_revision_information_gap_ref=(
+                admission.prior_information_gap_ref
+                if a_judgment.reconsideration_ref
+                else None
+            ),
+            hypothesis_revision_reobservation_ref=(
+                admission.prior_reobservation_ref
+                if a_judgment.reconsideration_ref
+                else None
+            ),
+            stop_reason=(
+                "MINIMUM_SUFFICIENT_INFORMATION_REACHED"
+                if a_judgment.local_disposition == "STOP_SUFFICIENT"
+                else a_judgment.local_disposition
+            ),
+            stop_owner_ref="A_REASONING_ROLE" if a_judgment.local_disposition_ref else None,
+            role_refs=tuple(r.source_ref for r in state_request.role_refs),
+            task_refs=tuple(r.source_ref for r in state_request.task_refs),
+            goal_refs=tuple(r.source_ref for r in state_request.goal_refs),
+            concern_refs=tuple(r.source_ref for r in state_request.concern_refs),
+            information_need_refs=tuple(r.source_ref for r in state_request.information_need_refs),
+            conditioned_attention_refs=tuple(
+                item.attention_id for item in state_output.attention_candidates
+            ),
+            conditioned_evidence_relevance_refs=tuple(
+                item.relevance_ref for item in state_output.evidence_relevance_candidates
+            ),
+            relation_interpretation_refs=tuple(
+                item.relation_interpretation_ref
+                for item in state_output.relation_interpretation_candidates
+            ),
+            conditioned_attention_priority_candidate=(
+                state_output.attention_candidates[0].attention_priority_candidate
+                if state_output.attention_candidates else None
+            ),
+            conditioned_attention_relevance_candidate=(
+                state_output.attention_candidates[0].relevance_score_candidate
+                if state_output.attention_candidates else None
+            ),
+            conditioned_hypothesis_statement=(
+                a_judgment.hypothesis_candidates[0].hypothesis_statement
+                if a_judgment.hypothesis_candidates else None
+            ),
+            conditioned_hypothesis_state=(
+                a_judgment.hypothesis_candidates[0].state
+                if a_judgment.hypothesis_candidates else None
+            ),
+            conditioned_world_kind_candidate=state_output.current_world_candidate.world_state_kind_candidate,
+            conditioned_missing_information_refs=a_judgment.missing_information_refs,
+            field_refs=tuple(r.source_ref for r in state_request.field_refs),
+            selected_attention_count=len(state_output.attention_selection_candidate.selected_attention_refs),
+            conditioned_evidence_relevance=tuple(
+                f"{item.evidence_ref}:{item.relevance_state}:{item.relevance_score_candidate}"
+                for item in state_output.evidence_relevance_candidates
+            ),
+            relation_interpretation_candidates=tuple(
+                item.interpretation_candidate
+                for item in state_output.relation_interpretation_candidates
+            ),
+            relation_interpretation_semantic_candidates=state_output.relation_interpretation_candidates,
+            current_world_relation_interpretation_refs=state_output.current_world_candidate.relation_interpretation_refs,
+            conditioned_conflict_refs=tuple(
+                ref
+                for hypothesis in a_judgment.hypothesis_candidates
+                for ref in hypothesis.conflict_refs
+            ),
+            requirement_establishment_status=normalized_information.requirement_establishment_status,
+            requirement_establishment_ref=normalized_information.requirement_establishment_ref,
+            requirement_establishment_basis=normalized_information.requirement_establishment_basis,
+            required_cognitive_condition_formation_result=state_output.required_cognitive_condition_formation_result,
+            semantic_owner_ref="A_REASONING_ROLE",
+            semantic_judgment_ref=a_judgment.judgment_ref,
+            cognitive_semantic_judgment=a_judgment,
+            semantic_provenance_refs=a_judgment.provenance_refs,
+        )
 
     def _run_admitted_runtime(
         self,
@@ -620,115 +754,16 @@ class ARouteOrchestrationEngineV1:
                 runtime=True,
             )
         )
-        cognitive_execution = ARouteCognitiveExecutionEvidenceV1(
+        cognitive_execution = self._build_cognitive_execution_evidence(
             execution_ref=execution_ref,
             execution_mode=request.execution_mode,
-            owner_ref="Cognitive State Formation Governance",
-            ingress_refs=ingress_refs,
-            cognitive_transition_refs=state_output.cognitive_transition_refs,
-            current_world_ref=state_output.current_world_candidate.current_world_id,
-            hypothesis_refs=tuple(item.hypothesis_ref for item in a_judgment.hypothesis_candidates),
-            current_world_availability="observed",
-            hypothesis_availability="observed",
-            sufficiency_ref=a_judgment.sufficiency_ref,
-            sufficiency_availability="observed",
-            information_gap_ref=a_judgment.information_gap_ref,
-            information_gap_availability="observed" if a_judgment.information_gap_ref else "not_observed",
-            stop_ref=a_judgment.local_disposition_ref,
-            stop_availability="observed" if a_judgment.local_disposition_ref else "not_observed",
-            decision_handoff_ref=None,
-            decision_handoff_availability="not_observed",
-            runtime_executed=True,
-            evidence_binding=admission.evidence_binding,
-            canonical_gateway_admission_result=admission,
-            gateway_admission_ref=admission.gateway_admission_ref,
-            admitted_evidence_refs=tuple(admission.evidence_refs),
             gateway_execution_identity_ref=request.execution_identity_ref,
-            execution_proof_source="AOwnedSemanticDecisionEngineV1.form_cognitive_semantic_judgment",
-            cognitive_cycle_index=state_output.cognitive_cycle_index,
-            sufficiency_status=a_judgment.sufficiency_status,
-            sufficiency_owner_ref="A_REASONING_ROLE",
-            sufficiency_candidate=None,
-            information_gap_owner_ref="A_REASONING_ROLE" if a_judgment.information_gap_ref else None,
-            information_gap_candidate=None,
-            reobservation_ref=a_judgment.reobservation_ref,
-            reobservation_owner_ref=a_judgment.reobservation_owner_ref,
-            reobservation_candidate=None,
-            reobservation_information_gap_ref=a_judgment.information_gap_ref,
-            next_cycle_ingress_ref=a_judgment.next_cycle_ingress_ref,
-            prior_next_cycle_ingress_ref=admission.prior_next_cycle_ingress_ref,
-            hypothesis_revision_ref=a_judgment.reconsideration_ref,
-            hypothesis_revision_owner_ref="A_REASONING_ROLE" if a_judgment.reconsideration_ref else None,
-            hypothesis_revision_information_gap_ref=(
-                admission.prior_information_gap_ref
-                if a_judgment.reconsideration_ref
-                else None
-            ),
-            hypothesis_revision_reobservation_ref=admission.prior_reobservation_ref if a_judgment.reconsideration_ref else None,
-            stop_reason=(
-                "MINIMUM_SUFFICIENT_INFORMATION_REACHED"
-                if a_judgment.local_disposition == "STOP_SUFFICIENT"
-                else a_judgment.local_disposition
-            ),
-            stop_owner_ref="A_REASONING_ROLE" if a_judgment.local_disposition_ref else None,
-            role_refs=tuple(r.source_ref for r in state_request.role_refs),
-            task_refs=tuple(r.source_ref for r in state_request.task_refs),
-            goal_refs=tuple(r.source_ref for r in state_request.goal_refs),
-            concern_refs=tuple(r.source_ref for r in state_request.concern_refs),
-            information_need_refs=tuple(r.source_ref for r in state_request.information_need_refs),
-            conditioned_attention_refs=tuple(
-                item.attention_id for item in state_output.attention_candidates
-            ),
-            conditioned_evidence_relevance_refs=tuple(
-                item.relevance_ref for item in state_output.evidence_relevance_candidates
-            ),
-            relation_interpretation_refs=tuple(
-                item.relation_interpretation_ref
-                for item in state_output.relation_interpretation_candidates
-            ),
-            conditioned_attention_priority_candidate=(
-                state_output.attention_candidates[0].attention_priority_candidate
-                if state_output.attention_candidates else None
-            ),
-            conditioned_attention_relevance_candidate=(
-                state_output.attention_candidates[0].relevance_score_candidate
-                if state_output.attention_candidates else None
-            ),
-            conditioned_hypothesis_statement=(
-                a_judgment.hypothesis_candidates[0].hypothesis_statement
-                if a_judgment.hypothesis_candidates else None
-            ),
-            conditioned_hypothesis_state=(
-                a_judgment.hypothesis_candidates[0].state
-                if a_judgment.hypothesis_candidates else None
-            ),
-            conditioned_world_kind_candidate=state_output.current_world_candidate.world_state_kind_candidate,
-            conditioned_missing_information_refs=a_judgment.missing_information_refs,
-            field_refs=tuple(r.source_ref for r in state_request.field_refs),
-            selected_attention_count=len(state_output.attention_selection_candidate.selected_attention_refs),
-            conditioned_evidence_relevance=tuple(
-                f"{item.evidence_ref}:{item.relevance_state}:{item.relevance_score_candidate}"
-                for item in state_output.evidence_relevance_candidates
-            ),
-            relation_interpretation_candidates=tuple(
-                item.interpretation_candidate
-                for item in state_output.relation_interpretation_candidates
-            ),
-            relation_interpretation_semantic_candidates=state_output.relation_interpretation_candidates,
-            current_world_relation_interpretation_refs=state_output.current_world_candidate.relation_interpretation_refs,
-            conditioned_conflict_refs=tuple(
-                ref
-                for hypothesis in a_judgment.hypothesis_candidates
-                for ref in hypothesis.conflict_refs
-            ),
-            requirement_establishment_status=normalized_information.requirement_establishment_status,
-            requirement_establishment_ref=normalized_information.requirement_establishment_ref,
-            requirement_establishment_basis=normalized_information.requirement_establishment_basis,
-            required_cognitive_condition_formation_result=state_output.required_cognitive_condition_formation_result,
-            semantic_owner_ref="A_REASONING_ROLE",
-            semantic_judgment_ref=a_judgment.judgment_ref,
-            cognitive_semantic_judgment=a_judgment,
-            semantic_provenance_refs=a_judgment.provenance_refs,
+            ingress_refs=ingress_refs,
+            admission=admission,
+            normalized_information=normalized_information,
+            state_request=state_request,
+            state_output=state_output,
+            a_judgment=a_judgment,
         )
         binding_errors = validate_a_semantic_judgment_projection(
             a_judgment,
