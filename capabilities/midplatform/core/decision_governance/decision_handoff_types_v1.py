@@ -26,3 +26,5 @@ class DecisionToActionTaskHandoffCandidateV1:
     decision_executed: bool = False
     action_triggered: bool = False
     task_created: bool = False
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None

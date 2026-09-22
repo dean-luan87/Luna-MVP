@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+from weakref import WeakValueDictionary
 from typing import Dict, List, Tuple
 
 from capabilities.midplatform.core.cognitive_state_formation.attention_types_v1 import (
@@ -13,6 +15,7 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_hypothesi
     HypothesisCompetitionResultV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    CognitiveStateVersionRecordV1,
     NegativeGuardStatusV1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
@@ -34,6 +37,11 @@ from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_for
 )
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_registry_v1 import (
     CANONICAL_OWNER,
+    COGNITIVE_STATE_VERSION_INVALIDATED,
+    COGNITIVE_STATE_VERSION_OWNER,
+    COGNITIVE_STATE_VERSION_PROFILES,
+    COGNITIVE_STATE_VERSION_VALID,
+    resolve_cognitive_state_version_profile_v1,
 )
 from capabilities.midplatform.core.cognitive_state_formation.current_world_types_v1 import (
     CurrentWorldCandidateV1,
@@ -54,6 +62,173 @@ from capabilities.midplatform.core.execution_mode_v1 import (
 from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_static_validators_v1 import (
     validate_input_contract,
 )
+
+
+_OWNER_FORMED_OUTPUTS = WeakValueDictionary()
+_OWNER_VERSION_RECORDS: Dict[
+    str, Dict[str, CognitiveStateVersionRecordV1]
+] = {}
+_OWNER_VERSION_REF_TO_PROFILE: Dict[str, str] = {}
+_OWNER_VERSION_COUNTERS: Dict[str, int] = {
+    profile_ref: 0 for profile_ref in COGNITIVE_STATE_VERSION_PROFILES
+}
+
+
+def _unique_refs(*groups: Tuple[str, ...]) -> Tuple[str, ...]:
+    return tuple(dict.fromkeys(ref for group in groups for ref in group if ref))
+
+
+def _register_owner_formed_output(
+    output: CognitiveStateFormationOutputV1,
+) -> None:
+    """Keep formation provenance private to the Cognitive State owner."""
+    _OWNER_FORMED_OUTPUTS[id(output)] = output
+
+
+def _register_owner_version_namespace_v1(
+    record: CognitiveStateVersionRecordV1,
+) -> bool:
+    """Register owner-issued identity location; never establishes validity."""
+
+    existing = _OWNER_VERSION_REF_TO_PROFILE.get(record.version_ref)
+    if existing is not None:
+        return existing == record.profile_ref
+    _OWNER_VERSION_REF_TO_PROFILE[record.version_ref] = record.profile_ref
+    return True
+
+
+def _resolve_owner_version_profile_v1(
+    version_ref: str,
+    explicit_profile_ref: str | None,
+) -> str | None:
+    """Resolve namespace from the owner index, with optional consistency check."""
+
+    resolved = _OWNER_VERSION_REF_TO_PROFILE.get(version_ref)
+    if resolved is None:
+        return None
+    if explicit_profile_ref is None:
+        return resolved
+    explicit = resolve_cognitive_state_version_profile_v1(explicit_profile_ref)
+    return resolved if explicit == resolved else None
+
+
+def issue_cognitive_state_version_v1(
+    formation_output: CognitiveStateFormationOutputV1,
+    *,
+    profile_ref: str | None = None,
+) -> CognitiveStateVersionRecordV1 | None:
+    """Issue a canonical version only for an owner-formed candidate output."""
+    resolved_profile = resolve_cognitive_state_version_profile_v1(profile_ref)
+    if resolved_profile is None:
+        return None
+    if _OWNER_FORMED_OUTPUTS.get(id(formation_output)) is not formation_output:
+        return None
+    if not isinstance(formation_output, CognitiveStateFormationOutputV1):
+        return None
+    if (
+        formation_output.candidate_only is not True
+        or formation_output.semantic_projection_only is not True
+        or formation_output.semantic_authority is not False
+    ):
+        return None
+
+    world = formation_output.current_world_candidate
+    vector = formation_output.cognitive_state_vector_candidate
+    handoff = formation_output.causal_handoff_candidate
+    if (
+        world.candidate_only is not True
+        or vector.candidate_only is not True
+        or not world.source_versions
+    ):
+        return None
+
+    counter = _OWNER_VERSION_COUNTERS[resolved_profile] + 1
+    _OWNER_VERSION_COUNTERS[resolved_profile] = counter
+    profile_token = resolved_profile.rsplit(":", 1)[-1]
+    cognitive_state_ref = f"cognitive-state:{profile_token}:{counter}"
+    version_ref = f"cognitive-state-version:{profile_token}:{counter}"
+    source_identity_refs = _unique_refs(
+        (world.current_world_id, vector.state_vector_id, handoff.handoff_id),
+        world.context_refs,
+        world.field_state_refs,
+        world.observation_refs,
+        handoff.evidence_refs,
+    )
+    alignment_basis_refs = _unique_refs(
+        (world.current_world_id, vector.current_world_ref, handoff.handoff_id),
+    )
+    provenance_refs = _unique_refs(
+        formation_output.provenance.source_refs,
+        formation_output.provenance.version_refs,
+        world.provenance_refs,
+        vector.provenance_refs,
+        handoff.provenance_refs,
+    )
+    record = CognitiveStateVersionRecordV1(
+        cognitive_state_ref=cognitive_state_ref,
+        version_ref=version_ref,
+        source_version_refs=tuple(world.source_versions),
+        source_identity_refs=source_identity_refs,
+        alignment_basis_refs=alignment_basis_refs,
+        provenance_refs=provenance_refs,
+        unknown_refs=_unique_refs(world.uncertainty_refs, world.conflict_refs),
+        stale_refs=(),
+        profile_ref=resolved_profile,
+        owner_ref=COGNITIVE_STATE_VERSION_OWNER,
+        status=COGNITIVE_STATE_VERSION_VALID,
+    )
+    if not _register_owner_version_namespace_v1(record):
+        return None
+    _OWNER_VERSION_RECORDS.setdefault(resolved_profile, {})[version_ref] = record
+    return record
+
+
+def query_valid_cognitive_state_version_v1(
+    version_ref: str,
+    *,
+    profile_ref: str | None = None,
+) -> CognitiveStateVersionRecordV1 | None:
+    """Return a valid owner record; historical/invalidated refs fail closed."""
+    if not isinstance(version_ref, str) or not version_ref.strip():
+        return None
+    resolved_profile = _resolve_owner_version_profile_v1(version_ref, profile_ref)
+    if resolved_profile is None:
+        return None
+    record = _OWNER_VERSION_RECORDS.get(resolved_profile, {}).get(version_ref)
+    if record is None or record.status != COGNITIVE_STATE_VERSION_VALID:
+        return None
+    return record
+
+
+def invalidate_cognitive_state_version_v1(
+    version_ref: str,
+    *,
+    reason_ref: str,
+    profile_ref: str | None = None,
+) -> CognitiveStateVersionRecordV1 | None:
+    """Invalidate one owner record without mutating its source components."""
+    resolved_profile = _resolve_owner_version_profile_v1(version_ref, profile_ref)
+    if (
+        resolved_profile is None
+        or not isinstance(version_ref, str)
+        or not version_ref.strip()
+        or not isinstance(reason_ref, str)
+        or not reason_ref.strip()
+    ):
+        return None
+    records = _OWNER_VERSION_RECORDS.get(resolved_profile, {})
+    record = records.get(version_ref)
+    if record is None:
+        return None
+    if record.status == COGNITIVE_STATE_VERSION_INVALIDATED:
+        return record
+    invalidated = replace(
+        record,
+        status=COGNITIVE_STATE_VERSION_INVALIDATED,
+        invalidation_reason_ref=reason_ref,
+    )
+    records[version_ref] = invalidated
+    return invalidated
 
 
 class CognitiveStateFormationEngineV1:
@@ -1086,7 +1261,7 @@ class CognitiveStateFormationEngineV1:
                 )
             )
 
-        return CognitiveStateFormationOutputV1(
+        output = CognitiveStateFormationOutputV1(
             scenario_id=request.scenario_id,
             attention_candidates=attention_candidates,
             attention_selection_candidate=attention_selection,
@@ -1135,3 +1310,5 @@ class CognitiveStateFormationEngineV1:
             semantic_authority=False,
             formation_role="SNAPSHOT_FORMATION",
         )
+        _register_owner_formed_output(output)
+        return output

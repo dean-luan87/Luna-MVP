@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import hashlib
 from dataclasses import dataclass, field
-from typing import Iterable, Tuple
+from typing import Iterable, Optional, Tuple
 
 from .provider_binding_runtime_preparation_v1 import (
     ProviderBindingRuntimePreparationCandidateV1,
@@ -74,6 +74,9 @@ class ProviderBindingCandidateV1:
     capability_activation: bool = False
     slot_reservation: bool = False
     resource_allocation: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -93,6 +96,9 @@ class ProviderBindingCandidateInputV1:
     resource_class_refs: Tuple[str, ...] = field(default_factory=tuple)
     execution_class_refs: Tuple[str, ...] = field(default_factory=tuple)
     candidate_only: bool = True
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -124,6 +130,9 @@ class ProviderBindingCandidateResultV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     validation_errors: Tuple[str, ...] = field(default_factory=tuple)
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 def _candidate_ref(preparation_ref: str, source_ref: str) -> str:
@@ -162,6 +171,11 @@ def _result(
         trace_ref=getattr(request, "trace_ref", "") or f"trace:{preparation_ref}",
         provenance_refs=_unique(("provenance:provider-binding-candidate:v1", *getattr(request, "provenance_refs", ()))),
         validation_errors=errors,
+        admitted_action_ref=getattr(request, "admitted_action_ref", None),
+        working_envelope_ref=getattr(request, "working_envelope_ref", None),
+        working_envelope_version_ref=getattr(
+            request, "working_envelope_version_ref", None
+        ),
     )
 
 
@@ -171,14 +185,19 @@ def _validate(request: object) -> Tuple[str, ...]:
     errors = []
     if not request.preparation_ref:
         errors.append("preparation_ref_missing")
-    if not request.parent_cognitive_problem_ref:
-        errors.append("parent_cognitive_problem_ref_missing")
-    if not request.source_state_ref:
-        errors.append("source_state_ref_missing")
     if not request.trace_ref:
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("candidate_only_required")
+    canonical_scope = (
+        request.admitted_action_ref,
+        request.working_envelope_ref,
+        request.working_envelope_version_ref,
+    )
+    if any(value is not None for value in canonical_scope) and not all(
+        isinstance(value, str) and value.strip() for value in canonical_scope
+    ):
+        errors.append("canonical_runtime_scope_incomplete")
     if not isinstance(request.preparation_candidates, tuple):
         return tuple((*errors, "preparation_candidates_must_be_tuple"))
     refs = _source_refs(request.preparation_candidates)
@@ -198,8 +217,6 @@ def _validate(request: object) -> Tuple[str, ...]:
             candidate.capability_candidate_ref,
             candidate.capability_class_ref,
             candidate.provider_candidate_ref,
-            candidate.parent_cognitive_problem_ref,
-            candidate.source_state_ref,
             candidate.trace_ref,
         )
         if (
@@ -227,10 +244,22 @@ def _validate(request: object) -> Tuple[str, ...]:
             or candidate.observation_execution
         ):
             errors.append(f"preparation_candidate_boundary_invalid:{candidate.provider_binding_preparation_candidate_ref}")
-        if candidate.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref:
-            errors.append(f"parent_problem_mismatch:{candidate.provider_binding_preparation_candidate_ref}")
-        if candidate.source_state_ref != request.source_state_ref:
-            errors.append(f"source_state_mismatch:{candidate.provider_binding_preparation_candidate_ref}")
+        if any(
+            value is not None
+            for value in (
+                request.admitted_action_ref,
+                request.working_envelope_ref,
+                request.working_envelope_version_ref,
+            )
+        ) and (
+            candidate.admitted_action_ref != request.admitted_action_ref
+            or candidate.working_envelope_ref != request.working_envelope_ref
+            or candidate.working_envelope_version_ref
+            != request.working_envelope_version_ref
+        ):
+            errors.append(
+                f"canonical_runtime_scope_mismatch:{candidate.provider_binding_preparation_candidate_ref}"
+            )
         for ref in (
             candidate.provider_binding_preparation_candidate_ref,
             candidate.source_provider_target_candidate_ref,
@@ -289,6 +318,16 @@ def form_provider_binding_candidates(
                 lineage_refs=_unique((*source.lineage_refs, source.provider_binding_preparation_candidate_ref, candidate_ref)),
                 provenance_refs=_unique((*source.provenance_refs, *request.provenance_refs)),
                 trace_ref=request.trace_ref or source.trace_ref,
+                admitted_action_ref=(
+                    request.admitted_action_ref or source.admitted_action_ref
+                ),
+                working_envelope_ref=(
+                    request.working_envelope_ref or source.working_envelope_ref
+                ),
+                working_envelope_version_ref=(
+                    request.working_envelope_version_ref
+                    or source.working_envelope_version_ref
+                ),
             )
         )
     return _result(request, "PROVIDER_BINDING_CANDIDATES_FORMED", source_refs, tuple(candidates))

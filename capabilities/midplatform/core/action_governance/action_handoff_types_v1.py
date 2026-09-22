@@ -28,6 +28,11 @@ class ActionToRuntimeExecutorHandoffCandidateV1:
     action_executed: bool = False
     scheduler_executed: bool = False
     device_control_executed: bool = False
+    # These are mechanical lineage fields.  They do not prove currentness or
+    # carry Action/Envelope authority; downstream owners must re-query them.
+    admitted_action_ref: str | None = None
+    working_envelope_ref: str | None = None
+    working_envelope_version_ref: str | None = None
 
 
 @dataclass(frozen=True)

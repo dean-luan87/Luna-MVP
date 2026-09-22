@@ -76,6 +76,9 @@ class ProviderBindingDecisionV1:
     capability_activation: bool = False
     slot_reservation: bool = False
     resource_allocation: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -192,6 +195,19 @@ def _validate(request: object) -> Tuple[str, ...]:
             or query_active_authorization_for_grant(matching[0]) is None
         ):
             errors.append(f"runtime_grant_not_valid:{candidate.provider_binding_candidate_ref}")
+        candidate_scope = (
+            candidate.admitted_action_ref,
+            candidate.working_envelope_ref,
+            candidate.working_envelope_version_ref,
+        )
+        if not all(isinstance(value, str) and value.strip() for value in candidate_scope):
+            errors.append(f"canonical_runtime_scope_incomplete:{candidate.provider_binding_candidate_ref}")
+        elif matching and (
+            matching[0].admitted_action_ref,
+            matching[0].working_envelope_ref,
+            matching[0].working_envelope_version_ref,
+        ) != candidate_scope:
+            errors.append(f"canonical_runtime_scope_mismatch:{candidate.provider_binding_candidate_ref}")
     return tuple(dict.fromkeys(errors))
 
 
@@ -263,6 +279,9 @@ def form_provider_binding_decisions(request: object) -> ProviderBindingDecisionR
                 failure_owner_ref=failure_owner,
                 provider_bound=decision == "BOUND",
                 model_binding=False,
+                admitted_action_ref=candidate.admitted_action_ref,
+                working_envelope_ref=candidate.working_envelope_ref,
+                working_envelope_version_ref=candidate.working_envelope_version_ref,
             )
         )
     return ProviderBindingDecisionResultV1(

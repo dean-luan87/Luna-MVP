@@ -107,6 +107,9 @@ class ProviderRuntimeTargetPreparationCandidateV1:
     slot_reservation: bool = False
     resource_scheduling: bool = False
     observation_execution: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -124,6 +127,9 @@ class ProviderRuntimeTargetPreparationInputV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     candidate_only: bool = True
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -160,6 +166,9 @@ class ProviderRuntimeTargetPreparationResultV1:
     truth_declared: bool = False
     world_truth_declared: bool = False
     validation_errors: Tuple[str, ...] = ()
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 def _candidate_ref(preparation_ref: str, compatibility_ref: str, provider_ref: str, mapping_ref: str) -> str:
@@ -224,6 +233,11 @@ def _result(
         ),
         trace_ref=request_trace_ref or f"trace:{preparation_ref}",
         validation_errors=errors,
+        admitted_action_ref=getattr(request, "admitted_action_ref", None),
+        working_envelope_ref=getattr(request, "working_envelope_ref", None),
+        working_envelope_version_ref=getattr(
+            request, "working_envelope_version_ref", None
+        ),
     )
 
 
@@ -233,14 +247,19 @@ def _validate(request: ProviderRuntimeTargetPreparationInputV1) -> Tuple[str, ..
         return ("request_type_invalid",)
     if not request.preparation_ref:
         errors.append("preparation_ref_missing")
-    if not request.parent_cognitive_problem_ref:
-        errors.append("parent_cognitive_problem_ref_missing")
-    if not request.source_state_ref:
-        errors.append("source_state_ref_missing")
     if not request.trace_ref:
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("preparation_not_candidate_only")
+    canonical_scope = (
+        request.admitted_action_ref,
+        request.working_envelope_ref,
+        request.working_envelope_version_ref,
+    )
+    if any(value is not None for value in canonical_scope) and not all(
+        isinstance(value, str) and value.strip() for value in canonical_scope
+    ):
+        errors.append("canonical_runtime_scope_incomplete")
     if not isinstance(request.compatibility_candidates, tuple):
         errors.append("compatibility_candidates_must_be_tuple")
     if not isinstance(request.provider_mappings, tuple):
@@ -263,8 +282,6 @@ def _validate(request: ProviderRuntimeTargetPreparationInputV1) -> Tuple[str, ..
             item.source_capability_resolution_candidate_ref,
             item.capability_candidate_ref,
             item.capability_class_ref,
-            item.parent_cognitive_problem_ref,
-            item.source_state_ref,
             item.trace_ref,
         )
         if not all(required):
@@ -292,12 +309,6 @@ def _validate(request: ProviderRuntimeTargetPreparationInputV1) -> Tuple[str, ..
             errors.append(
                 f"invalid_compatibility_candidate_flags:{item.admission_compatibility_candidate_ref}"
             )
-        if item.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref:
-            errors.append(
-                f"parent_problem_mismatch:{item.admission_compatibility_candidate_ref}"
-            )
-        if item.source_state_ref != request.source_state_ref:
-            errors.append(f"source_state_mismatch:{item.admission_compatibility_candidate_ref}")
         if item.source_observation_demand_ref not in item.lineage_refs:
             errors.append(f"demand_lineage_missing:{item.admission_compatibility_candidate_ref}")
         if item.source_capability_resolution_candidate_ref not in item.lineage_refs:
@@ -434,6 +445,9 @@ def form_provider_runtime_target_candidates(
                         (*compatibility.provenance_refs, *request.provenance_refs)
                     ),
                     trace_ref=request.trace_ref or compatibility.trace_ref,
+                    admitted_action_ref=request.admitted_action_ref,
+                    working_envelope_ref=request.working_envelope_ref,
+                    working_envelope_version_ref=request.working_envelope_version_ref,
                 )
             )
 

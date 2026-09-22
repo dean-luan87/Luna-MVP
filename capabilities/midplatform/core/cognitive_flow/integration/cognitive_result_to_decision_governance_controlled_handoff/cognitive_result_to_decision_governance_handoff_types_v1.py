@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Tuple
+from typing import Optional, Tuple
 
 
 COGNITION_OWNER = "Cognitive State Formation Governance"
@@ -44,6 +44,8 @@ class CognitiveDecisionHandoffCandidateV1:
     gateway_admission_ref: str = ""
     admitted_evidence_refs: Tuple[str, ...] = ()
     canonical_gateway_admission_result: object | None = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
     candidate_only: bool = True
     decision_handoff_eligible: bool = True
     task_execution: bool = False

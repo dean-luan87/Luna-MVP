@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from typing import Any, Dict, List, Tuple
 
 from capabilities.midplatform.provider_runtime_governance.domain_profiles.spatial_evidence_provider_governance_profile_v1 import (
@@ -24,12 +25,30 @@ from capabilities.midplatform.provider_runtime_governance.provider_runtime_gover
     ProviderDomainGovernanceProfile,
     ProviderEnableRequest,
     ProviderManagerDecision,
+    ProviderRuntimeEligibilityResultV1,
+    ProviderRuntimeEvaluationProfileV1,
+    CANONICAL_PREGRANT_AUTHORITY_BINDING_KEY_FIELDS,
+    PREGRANT_AUTHORITY_BINDING_KEY_FIELDS,
     SHARED_MANAGER_REF,
     SUPPORTED_DOMAIN_IDS,
     candidate_to_dict,
 )
 
 REGISTRY_ID = "provider_runtime_governance_registry_v1"
+PREGRANT_CATALOG_REF = "provider-runtime-governance-catalog"
+PREGRANT_CATALOG_VERSION = "v1"
+PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF = "provider-runtime-profile:production-canonical"
+CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF = "provider-runtime-profile:controlled-binding-evaluation-v1"
+EVALUATION_PROFILE_CATALOG_REF = "provider-runtime-evaluation-profiles"
+EVALUATION_PROFILE_CATALOG_VERSION = "v1"
+CONTROLLED_PROVIDER_REFS = (
+    "provider:controlled:1",
+    "provider:controlled:2",
+    "provider:controlled:model",
+    "provider:controlled:shared",
+    "provider:controlled:scenario12:signage",
+    "provider:controlled:scenario12:flow",
+)
 
 MANAGER_STATUSES: Tuple[str, ...] = (
     "planning",
@@ -298,3 +317,140 @@ def build_shared_provider_runtime_governance_catalog_v1() -> Dict[str, object]:
 
 def build_shared_provider_runtime_governance_matrix_v1() -> Dict[str, object]:
     return build_shared_provider_runtime_governance_catalog_v1()
+
+
+def _production_provider_refs() -> Tuple[str, ...]:
+    catalog = build_shared_provider_runtime_governance_catalog_v1()
+    profiles = catalog.get("domain_profiles", ())
+    return tuple(
+        dict.fromkeys(
+            provider_ref
+            for profile in profiles
+            for provider_ref in profile.get("provider_refs", ())
+        )
+    )
+
+
+def _provider_evaluation_profiles() -> Dict[str, ProviderRuntimeEvaluationProfileV1]:
+    return {
+        PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF: ProviderRuntimeEvaluationProfileV1(
+            profile_ref=PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF,
+            owner_ref="Provider Governance",
+            catalog_ref=PREGRANT_CATALOG_REF,
+            catalog_version=PREGRANT_CATALOG_VERSION,
+            provider_refs=_production_provider_refs(),
+            provenance_refs=("provenance:provider-runtime-governance:production",),
+            production_canonical=True,
+        ),
+        CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF: ProviderRuntimeEvaluationProfileV1(
+            profile_ref=CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF,
+            owner_ref="Provider Governance",
+            catalog_ref=EVALUATION_PROFILE_CATALOG_REF,
+            catalog_version=EVALUATION_PROFILE_CATALOG_VERSION,
+            provider_refs=CONTROLLED_PROVIDER_REFS,
+            provenance_refs=("provenance:provider-runtime-governance:controlled-evaluation",),
+            production_canonical=False,
+        ),
+    }
+
+
+def resolve_provider_runtime_evaluation_profile_v1(
+    profile_ref: object = PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF,
+) -> ProviderRuntimeEvaluationProfileV1 | None:
+    if not isinstance(profile_ref, str) or not profile_ref.strip():
+        return None
+    return _provider_evaluation_profiles().get(profile_ref)
+
+
+def _pregrant_result_ref(
+    binding_key: Tuple[str, ...],
+    provider_ref: str,
+    capability_ref: str,
+    profile_ref: str,
+) -> str:
+    digest = hashlib.sha256(
+        "|".join(
+            (*binding_key, provider_ref, capability_ref, profile_ref, PREGRANT_CATALOG_VERSION)
+        ).encode("utf-8")
+    ).hexdigest()[:24]
+    return f"provider-runtime-eligibility:{digest}"
+
+
+def evaluate_provider_runtime_eligibility_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    provider_candidate_ref: str,
+    capability_candidate_ref: str,
+    execution_instance_preparation_candidate_ref: str,
+    profile_ref: object = PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF,
+) -> ProviderRuntimeEligibilityResultV1:
+    """Resolve provider eligibility from an owner-defined current profile.
+
+    Binding candidates and caller status fields are never treated as Provider
+    admission.  The profile is selected by reference only; its catalog content
+    is resolved inside Provider Governance and an unknown profile fails closed.
+    """
+
+    profile = resolve_provider_runtime_evaluation_profile_v1(profile_ref)
+    if profile is None:
+        return ProviderRuntimeEligibilityResultV1(
+            result_ref="",
+            binding_key=tuple(binding_key),
+            provider_candidate_ref=provider_candidate_ref,
+            capability_candidate_ref=capability_candidate_ref,
+            execution_instance_preparation_candidate_ref=execution_instance_preparation_candidate_ref,
+            status="DENIED",
+            reason="provider_evaluation_profile_invalid",
+            catalog_ref=EVALUATION_PROFILE_CATALOG_REF,
+            catalog_version=EVALUATION_PROFILE_CATALOG_VERSION,
+            evaluation_profile_ref="",
+        )
+
+    canonical_binding = (
+        len(binding_key) == len(CANONICAL_PREGRANT_AUTHORITY_BINDING_KEY_FIELDS)
+        and binding_key[0] == "runtime-scope:v2"
+    )
+    if not canonical_binding or not all(binding_key):
+        return ProviderRuntimeEligibilityResultV1(
+            result_ref="",
+            binding_key=tuple(binding_key),
+            provider_candidate_ref=provider_candidate_ref,
+            capability_candidate_ref=capability_candidate_ref,
+            execution_instance_preparation_candidate_ref=execution_instance_preparation_candidate_ref,
+            status="DENIED",
+            reason="provider_binding_key_invalid",
+            catalog_ref=profile.catalog_ref,
+            catalog_version=profile.catalog_version,
+            evaluation_profile_ref=profile.profile_ref,
+        )
+
+    known = provider_candidate_ref in profile.provider_refs
+    return ProviderRuntimeEligibilityResultV1(
+        result_ref=_pregrant_result_ref(
+            binding_key,
+            provider_candidate_ref,
+            capability_candidate_ref,
+            profile.profile_ref,
+        ),
+        binding_key=tuple(binding_key),
+        provider_candidate_ref=provider_candidate_ref,
+        capability_candidate_ref=capability_candidate_ref,
+        execution_instance_preparation_candidate_ref=execution_instance_preparation_candidate_ref,
+        status="ELIGIBLE" if known else "DENIED",
+        reason="current_provider_profile_match" if known else "provider_not_registered_in_selected_profile",
+        catalog_ref=profile.catalog_ref,
+        catalog_version=profile.catalog_version,
+        evaluation_profile_ref=profile.profile_ref,
+    )
+
+
+__all__ = [
+    "evaluate_provider_runtime_eligibility_v1",
+    "resolve_provider_runtime_evaluation_profile_v1",
+    "build_shared_provider_runtime_governance_catalog_v1",
+    "build_shared_provider_runtime_governance_matrix_v1",
+    "PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF",
+    "CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF",
+    "ProviderRuntimeEligibilityResultV1",
+    "ProviderRuntimeEvaluationProfileV1",
+]

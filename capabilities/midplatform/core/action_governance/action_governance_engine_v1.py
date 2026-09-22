@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Tuple
+import hashlib
+from typing import Dict, Optional, Tuple
+from weakref import WeakValueDictionary
 
 from capabilities.midplatform.core.action_governance.action_core_types_v1 import (
     ActionCandidateV1,
@@ -52,6 +54,120 @@ from capabilities.midplatform.core.action_governance.action_state_types_v1 impor
 from capabilities.midplatform.core.action_governance.action_trace_types_v1 import (
     ActionTraceCandidateV1,
 )
+
+from capabilities.midplatform.core.action_governance.action_permission_safety_types_v1 import (
+    RuntimeSafetyPrerequisiteDecisionV1,
+)
+
+
+RUNTIME_SAFETY_POLICY_VERSION = "brain-safety-runtime:v1"
+RUNTIME_SAFETY_ALLOWED_EFFECT_CLASSES = (
+    "runtime-execution",
+    "controlled-observation",
+)
+ACTION_ADMISSION_SAFETY_SCOPE = "ACTION_ADMISSION"
+RUNTIME_EXECUTION_SAFETY_SCOPE = "RUNTIME_EXECUTION"
+_CURRENT_RUNTIME_SAFETY_RECORDS: Dict[
+    Tuple[str, ...], RuntimeSafetyPrerequisiteDecisionV1
+] = {}
+_OWNER_FORMED_ACTION_OUTPUTS = WeakValueDictionary()
+
+
+def _register_owner_formed_action_output(output: ActionGovernanceOutputV1) -> None:
+    """Keep Action Governance formation provenance private to this owner."""
+
+    _OWNER_FORMED_ACTION_OUTPUTS[id(output)] = output
+
+
+def _is_owner_formed_action_output_v1(output: object) -> bool:
+    """Accept only the exact output object formed by Action Governance."""
+
+    return _OWNER_FORMED_ACTION_OUTPUTS.get(id(output)) is output
+
+
+def _safety_result_ref(binding_key: Tuple[str, ...], effect_class: str) -> str:
+    digest = hashlib.sha256(
+        "|".join((*binding_key, effect_class, RUNTIME_SAFETY_POLICY_VERSION)).encode("utf-8")
+    ).hexdigest()[:24]
+    return f"runtime-safety-prerequisite:{digest}"
+
+
+def form_runtime_safety_prerequisite_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    effect_class: str,
+    scope_kind: str = RUNTIME_EXECUTION_SAFETY_SCOPE,
+) -> RuntimeSafetyPrerequisiteDecisionV1:
+    """Form the current Action/Safety owner prerequisite for one binding."""
+
+    if scope_kind == ACTION_ADMISSION_SAFETY_SCOPE:
+        valid_binding = len(binding_key) == 6 and all(binding_key)
+    elif scope_kind == RUNTIME_EXECUTION_SAFETY_SCOPE:
+        valid_binding = (
+            len(binding_key) == 8
+            and binding_key[0] == "runtime-scope:v2"
+            and all(binding_key)
+        )
+    else:
+        valid_binding = False
+    allowed = valid_binding and effect_class in RUNTIME_SAFETY_ALLOWED_EFFECT_CLASSES
+    result_ref = _safety_result_ref(binding_key, effect_class) if valid_binding else ""
+    expiry_ref = f"safety-expiry:{result_ref}" if result_ref else ""
+    result = RuntimeSafetyPrerequisiteDecisionV1(
+        result_ref=result_ref,
+        binding_key=tuple(binding_key),
+        effect_class=effect_class,
+        status="ALLOWED" if allowed else "BLOCKED",
+        policy_version_ref=RUNTIME_SAFETY_POLICY_VERSION,
+        reason="current_safety_policy_allows" if allowed else "safety_policy_blocks_or_binding_invalid",
+        expiry_boundary_ref=expiry_ref,
+    )
+    if allowed:
+        _CURRENT_RUNTIME_SAFETY_RECORDS[tuple(binding_key)] = result
+    return result
+
+
+def query_current_runtime_safety_prerequisite_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    result_ref: str,
+) -> Optional[RuntimeSafetyPrerequisiteDecisionV1]:
+    """Return only the current owner record for the exact binding."""
+
+    record = _CURRENT_RUNTIME_SAFETY_RECORDS.get(tuple(binding_key))
+    if record is None:
+        return None
+    if record.result_ref != result_ref:
+        return None
+    if record.policy_version_ref != RUNTIME_SAFETY_POLICY_VERSION:
+        return None
+    if record.revoked or record.status != "ALLOWED":
+        return None
+    return record
+
+
+def invalidate_runtime_safety_prerequisite_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    reason: str,
+) -> Optional[RuntimeSafetyPrerequisiteDecisionV1]:
+    """Invalidate the owner-private current Safety record."""
+
+    current = _CURRENT_RUNTIME_SAFETY_RECORDS.get(tuple(binding_key))
+    if current is None:
+        return None
+    invalidated = RuntimeSafetyPrerequisiteDecisionV1(
+        result_ref=current.result_ref,
+        binding_key=current.binding_key,
+        effect_class=current.effect_class,
+        status="BLOCKED",
+        policy_version_ref=current.policy_version_ref,
+        reason=reason,
+        expiry_boundary_ref=current.expiry_boundary_ref,
+        revoked=True,
+    )
+    _CURRENT_RUNTIME_SAFETY_RECORDS[tuple(binding_key)] = invalidated
+    return invalidated
 
 
 class ActionGovernanceEngineV1:
@@ -337,7 +453,7 @@ class ActionGovernanceEngineV1:
             task_created=False,
         )
 
-        return ActionGovernanceOutputV1(
+        output = ActionGovernanceOutputV1(
             scenario_id=request.scenario_id,
             action_candidate=candidate,
             precondition_results=request.preconditions,
@@ -359,3 +475,5 @@ class ActionGovernanceEngineV1:
             database_write_executed=False,
             device_control_executed=False,
         )
+        _register_owner_formed_action_output(output)
+        return output

@@ -19,8 +19,18 @@ from capabilities.midplatform.core.runtime_executor.runtime_allocation_preparati
     form_runtime_allocation_preparation_candidates,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
+    build_pregrant_authority_binding_key,
     RuntimeExecutionGrantInputV1,
     form_runtime_execution_grants,
+)
+from capabilities.midplatform.provider_runtime_governance.provider_runtime_governance_registry_v1 import (
+    CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF,
+)
+from capabilities.midplatform.model_manager.registries.universal_capability_slot.universal_capability_slot_resolution_v1 import (
+    CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    form_runtime_safety_prerequisite_v1,
 )
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateInputV1,
@@ -54,6 +64,9 @@ from .fixtures_v1 import (
     STATE,
     build_provider_binding_runtime_allocation_execution_cases_v1,
 )
+from capabilities.evaluation.runtime_grant_pre_execution_authorization_controlled.fixtures_v1 import (
+    build_controlled_canonical_runtime_scope_v1,
+)
 
 
 def _json_safe(value: Any) -> Any:
@@ -68,7 +81,13 @@ def _json_safe(value: Any) -> Any:
     return value
 
 
-def _target_request(case: Any) -> ProviderRuntimeTargetPreparationInputV1:
+def _target_request(
+    case: Any,
+    *,
+    admitted_action_ref: str,
+    working_envelope_ref: str,
+    working_envelope_version_ref: str,
+) -> ProviderRuntimeTargetPreparationInputV1:
     return ProviderRuntimeTargetPreparationInputV1(
         preparation_ref=f"execution-target:{case.case_id.lower()}",
         parent_cognitive_problem_ref=PROBLEM,
@@ -78,6 +97,9 @@ def _target_request(case: Any) -> ProviderRuntimeTargetPreparationInputV1:
         context_refs=CONTEXT,
         trace_ref=f"trace:execution-target:{case.case_id.lower()}",
         provenance_refs=(f"provenance:execution-target:{case.case_id.lower()}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
 
 
@@ -100,7 +122,24 @@ def _empty_pipeline(case: Any, target_request: Any, target: Any) -> dict[str, An
 
 
 def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
-    target_request = _target_request(case)
+    canonical_scope = build_controlled_canonical_runtime_scope_v1(
+        f"provider-binding:{case.case_id.lower()}"
+    )
+    if canonical_scope is None:
+        return {
+            "binding_decision": None,
+            "allocation": None,
+            "execution_instance": None,
+            "business_engine_executed": True,
+            "pipeline_status": "CANONICAL_SCOPE_UNAVAILABLE",
+        }
+    admitted_action_ref, working_envelope_ref, working_envelope_version_ref = canonical_scope
+    target_request = _target_request(
+        case,
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
+    )
     target_before = _json_safe(target_request)
     target = form_provider_runtime_target_candidates(target_request)
     target_after = _json_safe(target_request)
@@ -118,6 +157,9 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
         context_refs=target.context_refs,
         trace_ref=f"trace:binding-prep:{case.case_id.lower()}",
         provenance_refs=(f"provenance:binding-prep:{case.case_id.lower()}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
     binding_prep = form_provider_binding_runtime_preparation_candidates(binding_prep_request)
     if not binding_prep.candidates:
@@ -140,26 +182,32 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
         runtime_requirement_refs=(f"runtime-requirement:{case.case_id.lower()}",),
         resource_class_refs=(f"resource-class:{case.case_id.lower()}",),
         execution_class_refs=(f"execution-class:{case.case_id.lower()}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
-    binding_candidate = form_provider_binding_candidates(binding_candidate_request)
-    if not binding_candidate.candidates:
+    provider_binding_candidate_result = form_provider_binding_candidates(binding_candidate_request)
+    if not provider_binding_candidate_result.candidates:
         return {
             "target_request_snapshot_before": target_before, "target_request_snapshot_after": target_after,
             "target_preparation": _json_safe(target), "binding_preparation": _json_safe(binding_prep),
-            "binding_candidate": _json_safe(binding_candidate), "allocation_preparation": None,
+            "binding_candidate": _json_safe(provider_binding_candidate_result), "allocation_preparation": None,
             "execution_preparation": None, "grant": None, "binding_decision": None,
             "allocation": None, "execution_instance": None, "business_engine_executed": True,
-            "pipeline_status": binding_candidate.formation_status,
+            "pipeline_status": provider_binding_candidate_result.formation_status,
         }
 
     allocation_prep_request = RuntimeAllocationPreparationInputV1(
         preparation_ref=f"allocation-prep:{case.case_id.lower()}",
         parent_cognitive_problem_ref=target.parent_cognitive_problem_ref,
         source_state_ref=target.source_state_ref,
-        provider_binding_candidates=binding_candidate.candidates,
+        provider_binding_candidates=provider_binding_candidate_result.candidates,
         context_refs=target.context_refs,
         trace_ref=f"trace:allocation-prep:{case.case_id.lower()}",
         provenance_refs=(f"provenance:allocation-prep:{case.case_id.lower()}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
     allocation_prep = form_runtime_allocation_preparation_candidates(allocation_prep_request)
     execution_prep_request = ExecutionInstancePreparationInputV1(
@@ -171,13 +219,52 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
         context_refs=target.context_refs,
         trace_ref=f"trace:instance-prep:{case.case_id.lower()}",
         provenance_refs=(f"provenance:instance-prep:{case.case_id.lower()}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
     execution_prep = form_execution_instance_preparation_candidates(execution_prep_request)
+    safety_refs = []
+    effect_class = "runtime-execution"
+    if any(
+        (
+            case.provider_binding_status != "ELIGIBLE",
+            case.capability_admission_status != "ADMITTED",
+            case.permission_status != "ALLOWED",
+            case.safety_status != "ALLOWED",
+            case.constitution_status != "ALLOWED",
+            (case.grant_resource_feasibility_status or "SATISFIABLE") != "SATISFIABLE",
+            case.runtime_boundary_status != "VALID",
+            case.freshness_status != "FRESH",
+            case.validity_status != "FRESH",
+            not case.execution_ready,
+        )
+    ):
+        effect_class = "blocked-controlled-scenario"
+    for execution_candidate in execution_prep.candidates:
+        matched_binding_candidate = next(
+            item
+            for item in provider_binding_candidate_result.candidates
+            if item.provider_binding_candidate_ref == execution_candidate.source_provider_binding_candidate_ref
+        )
+        binding_key = build_pregrant_authority_binding_key(
+            execution_instance_preparation_candidate_ref=execution_candidate.execution_instance_preparation_candidate_ref,
+            provider_candidate_ref=matched_binding_candidate.provider_candidate_ref,
+            capability_candidate_ref=matched_binding_candidate.capability_candidate_ref,
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
+        )
+        safety = form_runtime_safety_prerequisite_v1(
+            binding_key=(*binding_key, effect_class),
+            effect_class=effect_class,
+        )
+        safety_refs.append(safety.result_ref)
     grant_request = RuntimeExecutionGrantInputV1(
         grant_request_ref=f"grant-request:{case.case_id.lower()}",
         parent_cognitive_problem_ref=target.parent_cognitive_problem_ref,
         source_state_ref=target.source_state_ref,
-        provider_binding_candidates=binding_candidate.candidates,
+        provider_binding_candidates=provider_binding_candidate_result.candidates,
         runtime_allocation_candidates=allocation_prep.candidates,
         execution_instance_preparation_candidates=execution_prep.candidates,
         permission_refs=(f"permission:{case.case_id.lower()}",),
@@ -187,20 +274,23 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
         constraint_refs=(f"constraint:{case.case_id.lower()}",),
         validity_scope=(f"scope:{case.case_id.lower()}",),
         expiry_boundary_ref=f"expiry:{case.case_id.lower()}",
-        provider_binding_status=case.provider_binding_status,
-        capability_admission_status=case.capability_admission_status,
-        permission_status=case.permission_status,
-        safety_status=case.safety_status,
-        constitution_status=case.constitution_status,
-        resource_feasibility_status=case.grant_resource_feasibility_status or "SATISFIABLE",
-        runtime_boundary_status=case.runtime_boundary_status,
-        freshness_status=case.freshness_status,
-        validity_status=case.validity_status,
-        execution_ready=case.execution_ready,
+        effect_class=effect_class,
+        safety_prerequisite_refs=tuple(safety_refs),
+        provider_evaluation_profile_ref=CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF,
+        capability_evaluation_profile_ref=CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF,
         context_refs=target.context_refs,
-        lineage_refs=tuple(dict.fromkeys(ref for item in binding_candidate.candidates for ref in item.lineage_refs)),
+        lineage_refs=tuple(
+            dict.fromkeys(
+                ref
+                for item in provider_binding_candidate_result.candidates
+                for ref in item.lineage_refs
+            )
+        ),
         provenance_refs=(f"provenance:grant:{case.case_id.lower()}",),
         trace_ref=f"trace:grant:{case.case_id.lower()}",
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
     if case.malformed_grant:
         grant_request = replace(grant_request, execution_instance_preparation_candidates=execution_prep.candidates[0] if execution_prep.candidates else ())
@@ -210,7 +300,7 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
         return {
             "target_request_snapshot_before": target_before, "target_request_snapshot_after": target_after,
             "target_preparation": _json_safe(target), "binding_preparation": _json_safe(binding_prep),
-            "binding_candidate": _json_safe(binding_candidate), "allocation_preparation": _json_safe(allocation_prep),
+            "binding_candidate": _json_safe(provider_binding_candidate_result), "allocation_preparation": _json_safe(allocation_prep),
             "execution_preparation": _json_safe(execution_prep), "grant": _json_safe(grant),
             "binding_decision": None, "allocation": None, "execution_instance": None,
             "business_engine_executed": True, "pipeline_status": grant.formation_status,
@@ -218,7 +308,7 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
 
     binding_decision_request = ProviderBindingDecisionInputV1(
         decision_request_ref=f"binding-decision:{case.case_id.lower()}",
-        binding_candidates=binding_candidate.candidates,
+        binding_candidates=provider_binding_candidate_result.candidates,
         runtime_grants=valid_grants,
         provider_eligibility_status=case.provider_eligibility_status,
         binding_status=case.binding_status,
@@ -264,7 +354,7 @@ def _run_pipeline(case: Any, *, include_replay: bool = True) -> dict[str, Any]:
     result = {
         "target_request_snapshot_before": target_before, "target_request_snapshot_after": target_after,
         "target_preparation": _json_safe(target), "binding_preparation": _json_safe(binding_prep),
-        "binding_candidate": _json_safe(binding_candidate), "allocation_preparation": _json_safe(allocation_prep),
+        "binding_candidate": _json_safe(provider_binding_candidate_result), "allocation_preparation": _json_safe(allocation_prep),
         "execution_preparation": _json_safe(execution_prep), "grant": _json_safe(grant),
         "binding_decision": _json_safe(binding_decision), "allocation": _json_safe(allocation),
         "execution_instance": _json_safe(execution_instance), "business_engine_executed": True,
@@ -311,7 +401,19 @@ class ProviderBindingRuntimeAllocationExecutionEvaluationEngineV1:
                 if boundary_errors or failure_errors:
                     postflight = replace(postflight, status="GOVERNANCE_POSTFLIGHT_BLOCKED", blocker_refs=tuple(dict.fromkeys((*postflight.blocker_refs, *boundary_errors, *failure_errors))))
             else:
-                pipeline = {"business_engine_executed": False, "binding_decision": None, "allocation": None, "execution_instance": None, "target_request_snapshot_before": _json_safe(_target_request(case)), "target_request_snapshot_after": _json_safe(_target_request(case))}
+                admitted_action_ref, working_envelope_ref, working_envelope_version_ref = (
+                    build_controlled_canonical_runtime_scope_v1(
+                        f"provider-binding:{case.case_id.lower()}"
+                    )
+                )
+                diagnostic_target_request = _target_request(
+                    case,
+                    admitted_action_ref=admitted_action_ref,
+                    working_envelope_ref=working_envelope_ref,
+                    working_envelope_version_ref=working_envelope_version_ref,
+                )
+                diagnostic_snapshot = _json_safe(diagnostic_target_request)
+                pipeline = {"business_engine_executed": False, "binding_decision": None, "allocation": None, "execution_instance": None, "target_request_snapshot_before": diagnostic_snapshot, "target_request_snapshot_after": diagnostic_snapshot}
                 postflight = None
             results.append({
                 "case_id": case.case_id, "expected": {"binding_status": case.expected_binding_status, "binding_count": case.expected_binding_count, "bound_count": case.expected_bound_count, "allocation_status": case.expected_allocation_status, "allocation_count": case.expected_allocation_count, "allocated_count": case.expected_allocated_count, "instance_status": case.expected_instance_status, "instance_count": case.expected_instance_count},

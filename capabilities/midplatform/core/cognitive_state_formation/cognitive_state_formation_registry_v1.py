@@ -5,6 +5,35 @@ from __future__ import annotations
 from typing import Dict, Tuple
 
 CANONICAL_OWNER = "Cognitive State Formation Governance"
+COGNITIVE_STATE_VERSION_OWNER = CANONICAL_OWNER
+
+COGNITIVE_STATE_VERSION_VALID = "VALID"
+COGNITIVE_STATE_VERSION_INVALIDATED = "INVALIDATED"
+
+COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL = (
+    "cognitive-state-profile:production-canonical"
+)
+COGNITIVE_STATE_PROFILE_CONTROLLED_EVALUATION_V1 = (
+    "cognitive-state-profile:controlled-evaluation-v1"
+)
+
+COGNITIVE_STATE_VERSION_PROFILES: Tuple[str, ...] = (
+    COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL,
+    COGNITIVE_STATE_PROFILE_CONTROLLED_EVALUATION_V1,
+)
+
+
+def resolve_cognitive_state_version_profile_v1(
+    profile_ref: str | None,
+) -> str | None:
+    """Resolve an owner-defined profile; omitted means production canonical."""
+    if profile_ref is None:
+        return COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL
+    if not isinstance(profile_ref, str) or not profile_ref.strip():
+        return None
+    if profile_ref not in COGNITIVE_STATE_VERSION_PROFILES:
+        return None
+    return profile_ref
 
 UPSTREAM_OWNERS: Tuple[str, ...] = (
     "Context Foundation",

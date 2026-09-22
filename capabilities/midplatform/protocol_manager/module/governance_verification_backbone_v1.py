@@ -11,6 +11,7 @@ semantic owner.
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Mapping, Optional, Tuple
 
@@ -192,6 +193,22 @@ class GovernancePreflightResultV1:
     profile_errors: Tuple[str, ...]
     protocol_errors: Tuple[str, ...]
     candidate_only: bool = True
+    read_only: bool = True
+
+
+@dataclass(frozen=True)
+class ProtocolRuntimeComplianceResultV1:
+    """Current Protocol Manager compliance prerequisite for runtime grant."""
+
+    result_ref: str
+    binding_key: Tuple[str, ...]
+    protocol_refs: Tuple[str, ...]
+    status: str
+    reason: str
+    policy_version_ref: str
+    owner_ref: str = OWNER
+    authoritative: bool = True
+    candidate_only: bool = False
     read_only: bool = True
 
 
@@ -614,6 +631,34 @@ def run_governance_postflight(
     )
 
 
+def evaluate_runtime_protocol_compliance_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    protocol_refs: Tuple[str, ...],
+) -> ProtocolRuntimeComplianceResultV1:
+    """Evaluate current Protocol policy without trusting caller status fields."""
+
+    policy_version_ref = "protocol-runtime-compliance:v1"
+    valid_binding = (
+        len(binding_key) == 7
+        and binding_key[0] == "runtime-scope:v2"
+        and all(binding_key)
+    )
+    valid_refs = isinstance(protocol_refs, tuple) and bool(protocol_refs)
+    compliant = valid_binding and valid_refs
+    digest = hashlib.sha256(
+        "|".join((*binding_key, *protocol_refs, policy_version_ref)).encode("utf-8")
+    ).hexdigest()[:24]
+    return ProtocolRuntimeComplianceResultV1(
+        result_ref=f"protocol-runtime-compliance:{digest}" if valid_binding else "",
+        binding_key=tuple(binding_key),
+        protocol_refs=tuple(protocol_refs),
+        status="COMPLIANT" if compliant else "BLOCKED",
+        reason="current_protocol_profile_compliant" if compliant else "protocol_scope_unresolved",
+        policy_version_ref=policy_version_ref,
+    )
+
+
 def validate_adapter_boundary(adapter: Mapping[str, Any]) -> Tuple[str, ...]:
     errors = []
     if not adapter.get("source_refs") or not adapter.get("output_refs"):
@@ -714,6 +759,7 @@ __all__ = [
     "PhaseGovernanceProfileV1",
     "ApplicableGovernanceSetV1",
     "GovernancePreflightResultV1",
+    "ProtocolRuntimeComplianceResultV1",
     "GovernancePostflightResultV1",
     "CORE_GOVERNANCE_RULE_REGISTRY_V1",
     "build_core_governance_rule_registry_v1",
@@ -721,6 +767,7 @@ __all__ = [
     "validate_authority_responsibility_records",
     "run_governance_preflight",
     "run_governance_postflight",
+    "evaluate_runtime_protocol_compliance_v1",
     "validate_adapter_boundary",
     "validate_requester_executor_boundary",
     "validate_failure_ownership",

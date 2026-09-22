@@ -206,6 +206,24 @@ PROVIDER_DOMAIN_GOVERNANCE_PROFILE_FIELDS: Tuple[str, ...] = (
     "candidate_only",
 )
 
+PREGRANT_AUTHORITY_BINDING_KEY_FIELDS: Tuple[str, ...] = (
+    "parent_cognitive_problem_ref",
+    "source_state_ref",
+    "execution_instance_preparation_candidate_ref",
+    "provider_candidate_ref",
+    "capability_candidate_ref",
+)
+
+CANONICAL_PREGRANT_AUTHORITY_BINDING_KEY_FIELDS: Tuple[str, ...] = (
+    "runtime_scope_version",
+    "admitted_action_ref",
+    "working_envelope_ref",
+    "working_envelope_version_ref",
+    "execution_instance_preparation_candidate_ref",
+    "provider_candidate_ref",
+    "capability_candidate_ref",
+)
+
 NON_EXECUTION_FLAGS: Dict[str, bool] = {
     "candidate_only": True,
     "architecture_definition_only": True,
@@ -368,6 +386,39 @@ class ProviderDomainGovernanceProfile:
     domain_risk_tags: Tuple[str, ...]
     uses_shared_manager_skeleton: bool
     candidate_only: bool = True
+
+
+@dataclass(frozen=True)
+class ProviderRuntimeEvaluationProfileV1:
+    """Owner-defined catalog view for one runtime eligibility evaluation mode."""
+
+    profile_ref: str
+    owner_ref: str
+    catalog_ref: str
+    catalog_version: str
+    provider_refs: Tuple[str, ...]
+    provenance_refs: Tuple[str, ...] = ()
+    production_canonical: bool = False
+
+
+@dataclass(frozen=True)
+class ProviderRuntimeEligibilityResultV1:
+    """Owner-derived provider eligibility for one pre-grant binding."""
+
+    result_ref: str
+    binding_key: Tuple[str, ...]
+    provider_candidate_ref: str
+    capability_candidate_ref: str
+    execution_instance_preparation_candidate_ref: str
+    status: str
+    reason: str
+    catalog_ref: str
+    catalog_version: str
+    evaluation_profile_ref: str = ""
+    owner_ref: str = "Provider Governance"
+    authoritative: bool = True
+    candidate_only: bool = False
+    read_only: bool = True
 
 
 def candidate_to_dict(obj: Any) -> Dict[str, Any]:

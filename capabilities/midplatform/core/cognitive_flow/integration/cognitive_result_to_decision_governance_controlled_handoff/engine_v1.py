@@ -33,9 +33,15 @@ from capabilities.midplatform.core.observation_gateway.observation_gateway_core_
     CanonicalGatewayAdmissionResultV1,
     EvidenceReferenceBindingV1,
     ObservationGatewayAdmissionQueryV1,
+    resolve_owner_bound_gateway_record,
 )
 from capabilities.midplatform.core.cognitive_flow.integration.a_owned_semantic_decision_loop_bridge_controlled.a_owned_semantic_decision_engine_v1 import (
     validate_a_semantic_judgment_projection,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_working_envelope_cognitive_requirement_bridge_controlled.working_envelope_governance_v1 import (
+    WORKING_ENVELOPE_CURRENT,
+    WorkingEnvelopeRecordV1,
+    query_current_working_envelope_v1,
 )
 
 from .cognitive_result_to_decision_governance_handoff_types_v1 import (
@@ -105,25 +111,31 @@ def _validated_evidence_binding(
     if not execution_identity_ref or proof_execution_identity_ref != execution_identity_ref:
         return None, "decision_handoff_gateway_execution_identity_mismatch"
     admission_ref = _proof_value(proof_admission, "gateway_admission_ref")
-    gateway_query = next(
+    gateway_resolution = next(
         (
-            query
+            (query, owner_record)
             for query in tuple(case.get("gateway_admission_queries") or ())
             if isinstance(query, ObservationGatewayAdmissionQueryV1)
-            and query.lookup(execution_identity_ref, admission_ref) is not None
+            and (
+                owner_record := resolve_owner_bound_gateway_record(
+                    query,
+                    execution_identity_ref,
+                    admission_ref,
+                )
+            )
+            is not None
         ),
         None,
     )
-    if gateway_query is None:
+    if gateway_resolution is None:
         return None, "decision_handoff_requires_gateway_admission_query"
     admitted_refs = tuple(_proof_value(proof_admission, "evidence_refs") or ())
-    state_record = gateway_query.lookup(execution_identity_ref, admission_ref)
-    if state_record is None or state_record.admission_state != "ADMITTED":
-        return None, "decision_handoff_requires_governed_gateway_admission"
-    if not gateway_query.matches_canonical_admission(
-        execution_identity_ref, admission_ref, proof_admission
-    ):
+    _gateway_query, owner_record = gateway_resolution
+    state_record, canonical_admission = owner_record
+    if canonical_admission is not proof_admission:
         return None, "decision_handoff_rejects_noncanonical_gateway_admission_result"
+    if state_record.admission_state != "ADMITTED":
+        return None, "decision_handoff_requires_governed_gateway_admission"
     if tuple(state_record.evidence_refs) != admitted_refs:
         return None, "decision_handoff_gateway_admission_evidence_mismatch"
 
@@ -166,10 +178,55 @@ def _canonical_gateway_admission(
     return proof_admission if proof_admission is not None else None
 
 
+def _working_envelope_lineage(
+    working_envelope: Optional[WorkingEnvelopeRecordV1],
+) -> Tuple[Tuple[Optional[str], Optional[str]], Optional[str]]:
+    """Accept only the owner record shape as a lineage entrypoint.
+
+    The bridge accepts only the owner registry's current record as its
+    entrypoint and transports the identity.  Future Action admission must
+    still re-query the Envelope owner at its own boundary.
+    """
+
+    if working_envelope is None:
+        return (None, None), None
+    if not isinstance(working_envelope, WorkingEnvelopeRecordV1):
+        return (None, None), "decision_handoff_requires_canonical_working_envelope_record"
+    if working_envelope.canonical is not True or working_envelope.state != WORKING_ENVELOPE_CURRENT:
+        return (None, None), "decision_handoff_requires_current_working_envelope_record"
+    owner_record = query_current_working_envelope_v1(
+        working_envelope.envelope_ref,
+        profile_ref=working_envelope.profile_ref,
+    )
+    if owner_record is not working_envelope:
+        return (None, None), "decision_handoff_requires_owner_issued_working_envelope_record"
+    if not all(
+        isinstance(value, str) and value
+        for value in (
+            working_envelope.envelope_ref,
+            working_envelope.envelope_version_ref,
+        )
+    ):
+        return (None, None), "decision_handoff_requires_working_envelope_identity"
+    return (
+        (working_envelope.envelope_ref, working_envelope.envelope_version_ref),
+        None,
+    )
+
+
 def build_cognitive_decision_handoff_candidate_v1(
-    case: Dict[str, Any], proof: Optional[Any]
+    case: Dict[str, Any],
+    proof: Optional[Any],
+    *,
+    working_envelope: Optional[WorkingEnvelopeRecordV1] = None,
 ) -> Tuple[Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
     """Gate a Decision handoff on canonical final cognition readiness."""
+
+    (working_envelope_ref, working_envelope_version_ref), envelope_error = _working_envelope_lineage(
+        working_envelope
+    )
+    if envelope_error:
+        return None, (envelope_error,)
 
     from capabilities.midplatform.core.cognitive_state_formation.cognitive_loop_types_v1 import (
         validated_requirement_establishment_from_condition_formation_v1,
@@ -263,6 +320,8 @@ def build_cognitive_decision_handoff_candidate_v1(
             gateway_admission_ref=_proof_value(proof, "gateway_admission_ref"),
             admitted_evidence_refs=tuple(_proof_value(proof, "admitted_evidence_refs")),
             canonical_gateway_admission_result=canonical_admission,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         ),
         (),
     )
@@ -330,11 +389,22 @@ def _decision_input(handoff: CognitiveDecisionHandoffCandidateV1) -> DecisionGov
         intent_preferred_option_ids=(option_id,),
         synthetic_only=True,
         candidate_only=True,
+        working_envelope_ref=handoff.working_envelope_ref,
+        working_envelope_version_ref=handoff.working_envelope_version_ref,
     )
 
 
-def _attempt(cycle_index: int, proof: Optional[Any], case: Dict[str, Any]) -> Tuple[DecisionHandoffAttemptV1, Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
-    handoff, errors = build_cognitive_decision_handoff_candidate_v1(case, proof)
+def _attempt(
+    cycle_index: int,
+    proof: Optional[Any],
+    case: Dict[str, Any],
+    working_envelope: Optional[WorkingEnvelopeRecordV1] = None,
+) -> Tuple[DecisionHandoffAttemptV1, Optional[CognitiveDecisionHandoffCandidateV1], Tuple[str, ...]]:
+    handoff, errors = build_cognitive_decision_handoff_candidate_v1(
+        case,
+        proof,
+        working_envelope=working_envelope,
+    )
     if handoff is None:
         return (
             DecisionHandoffAttemptV1(
@@ -424,7 +494,10 @@ def _decision_result(handoff: CognitiveDecisionHandoffCandidateV1) -> Dict[str, 
     }
 
 
-def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
+def _case_result(
+    case: Dict[str, Any],
+    working_envelope: Optional[WorkingEnvelopeRecordV1] = None,
+) -> Dict[str, Any]:
     case_data = _jsonable(case) if is_dataclass(case) else case
     proof_objects = list(getattr(case, "cognitive_proofs", ())) if is_dataclass(case) else _proofs(case)
     proofs = [_jsonable(proof) for proof in proof_objects]
@@ -441,7 +514,12 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         attempt_case["gateway_execution_identity_ref"] = _proof_value(
             proof, "gateway_execution_identity_ref"
         )
-        attempt, candidate, errors = _attempt(index, proof, attempt_case)
+        attempt, candidate, errors = _attempt(
+            index,
+            proof,
+            attempt_case,
+            working_envelope=working_envelope,
+        )
         attempts.append(_jsonable(attempt))
         attempt_errors.extend(errors)
         if candidate is not None:
@@ -519,6 +597,10 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         "final_sufficiency_ref": final_proof.get("sufficiency_ref"),
         "final_sufficiency_status": final_proof.get("sufficiency_status"),
         "final_stop_ref": final_proof.get("stop_ref"),
+        "working_envelope_ref": handoff.working_envelope_ref if handoff else None,
+        "working_envelope_version_ref": (
+            handoff.working_envelope_version_ref if handoff else None
+        ),
         "traceability": traceability,
         "handoff_attempts": attempts,
         "decision_handoff": _jsonable(handoff) if handoff else None,
@@ -576,13 +658,17 @@ def _negative_premature_handoff(cases: Iterable[Any]) -> Dict[str, Any]:
 
 def build_decision_handoff_run_v1(
     execution_instance_ref: str = EXECUTION_INSTANCE_REF,
+    working_envelope: Optional[WorkingEnvelopeRecordV1] = None,
 ) -> Dict[str, Any]:
     source = build_brain_closure_run_v1(execution_instance_ref)
     typed_cases = [
         run_brain_cognitive_case_v1(case_id, execution_instance_ref)
         for case_id in EXPECTED_CASES
     ]
-    cases = [_case_result(case) for case in typed_cases]
+    cases = [
+        _case_result(case, working_envelope=working_envelope)
+        for case in typed_cases
+    ]
     return {
         "phase": PHASE,
         "source_integration_phase": source.get("phase"),

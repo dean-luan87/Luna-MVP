@@ -98,6 +98,14 @@ def _build_task_to_action_handoff(
     final_sufficiency_ref = str(proof.get("sufficiency_ref") or "")
     final_stop_ref = str(proof.get("stop_ref") or "")
     task_handoff = case.get("task_handoff") or {}
+    working_envelope_ref = (
+        case.get("working_envelope_ref")
+        or task_handoff.get("working_envelope_ref")
+    )
+    working_envelope_version_ref = (
+        case.get("working_envelope_version_ref")
+        or task_handoff.get("working_envelope_version_ref")
+    )
 
     required = (
         task_state_ref,
@@ -178,6 +186,8 @@ def _build_task_to_action_handoff(
                 for ref in ((case.get("decision_case") or {}).get("decision") or {}).get("request", {}).get("resource_refs", [])
             ),
             provenance_refs=provenance_refs,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
             resource_state=normalize_resource_state(declared_resource_state),
         ),
         (),
@@ -245,6 +255,8 @@ def _action_request(handoff: TaskToActionHandoffCandidateV1) -> Dict[str, Any]:
         ),
         "synthetic_only": True,
         "candidate_only": True,
+        "working_envelope_ref": handoff.working_envelope_ref,
+        "working_envelope_version_ref": handoff.working_envelope_version_ref,
     }
 
 
@@ -340,6 +352,10 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         "task_status": task.get("task_state"),
         "task_to_action_handoff": _jsonable(handoff) if handoff else None,
         "task_to_action_handoff_ref": handoff.handoff_ref if handoff else None,
+        "working_envelope_ref": handoff.working_envelope_ref if handoff else None,
+        "working_envelope_version_ref": (
+            handoff.working_envelope_version_ref if handoff else None
+        ),
         "action_boundary": action,
         "cycle_action_handoff_attempts": cycle_attempts,
         "validation_errors": list(case.get("validation_errors") or ()) + list(errors),
@@ -383,8 +399,11 @@ def _negative_action_handoff_probe_v1() -> Dict[str, Any]:
     }
 
 
-def build_task_to_action_run_v1(resource_state: object = "unknown") -> Dict[str, Any]:
-    source = build_decision_task_run_v1()
+def build_task_to_action_run_v1(
+    resource_state: object = "unknown",
+    working_envelope=None,
+) -> Dict[str, Any]:
+    source = build_decision_task_run_v1(working_envelope=working_envelope)
     cases = [
         _case_result({**case, "resource_state": resource_state})
         for case in source["cases"]

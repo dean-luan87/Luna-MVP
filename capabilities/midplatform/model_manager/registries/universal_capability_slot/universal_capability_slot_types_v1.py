@@ -278,6 +278,39 @@ class CapabilityResolutionCandidateV1:
 
 
 @dataclass(frozen=True)
+class CapabilityRuntimeAdmissionResultV1:
+    """Owner-derived capability admission prerequisite for one runtime scope."""
+
+    result_ref: str
+    binding_key: Tuple[str, ...]
+    capability_candidate_ref: str
+    provider_candidate_ref: str
+    execution_instance_preparation_candidate_ref: str
+    status: str
+    reason: str
+    catalog_ref: str
+    catalog_version: str
+    evaluation_profile_ref: str = ""
+    owner_ref: str = ADMISSION_OWNER
+    authoritative: bool = True
+    candidate_only: bool = False
+    read_only: bool = True
+
+
+@dataclass(frozen=True)
+class CapabilityRuntimeEvaluationProfileV1:
+    """Owner-defined catalog view for one runtime admission evaluation mode."""
+
+    profile_ref: str
+    owner_ref: str
+    catalog_ref: str
+    catalog_version: str
+    capability_refs: Tuple[str, ...]
+    provenance_refs: Tuple[str, ...] = ()
+    production_canonical: bool = False
+
+
+@dataclass(frozen=True)
 class CapabilityInvocationCandidateV1:
     invocation_id: str
     requirement_ref: str

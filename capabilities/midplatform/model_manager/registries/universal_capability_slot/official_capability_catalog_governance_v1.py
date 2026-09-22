@@ -12,10 +12,22 @@ from .official_capability_catalog_types_v1 import (
     OfficialCapabilityCatalogV1,
     SlotCompatibilityMappingV1,
 )
+from .universal_capability_slot_types_v1 import CapabilityRuntimeEvaluationProfileV1
 
 CATALOG_ID = "luna-official-capability-catalog"
 CATALOG_VERSION = "v1"
 SLOT_CONTRACT_REF = "UniversalCapabilitySlotV1"
+CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF = (
+    "capability-runtime-profile:controlled-binding-evaluation-v1"
+)
+CONTROLLED_CAPABILITY_EVALUATION_CATALOG_REF = "capability-runtime-evaluation-profiles"
+CONTROLLED_CAPABILITY_EVALUATION_CATALOG_VERSION = "v1"
+CONTROLLED_CAPABILITY_REFS = (
+    "capability:controlled:a",
+    "capability:controlled:b",
+    "capability:scenario12:signage-information",
+    "capability:scenario12:flow-information",
+)
 
 
 def _csa(
@@ -213,6 +225,20 @@ def build_official_capability_catalog() -> OfficialCapabilityCatalogV1:
         annotations=annotations,
         asset_mappings=mappings,
         slot_mappings=slot_mappings,
+    )
+
+
+def build_controlled_capability_runtime_evaluation_profile_v1() -> CapabilityRuntimeEvaluationProfileV1:
+    """Return the owner-defined catalog view for controlled evaluation only."""
+
+    return CapabilityRuntimeEvaluationProfileV1(
+        profile_ref=CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF,
+        owner_ref="Capability Admission Governance",
+        catalog_ref=CONTROLLED_CAPABILITY_EVALUATION_CATALOG_REF,
+        catalog_version=CONTROLLED_CAPABILITY_EVALUATION_CATALOG_VERSION,
+        capability_refs=CONTROLLED_CAPABILITY_REFS,
+        provenance_refs=("provenance:capability-runtime-governance:controlled-evaluation",),
+        production_canonical=False,
     )
 
 

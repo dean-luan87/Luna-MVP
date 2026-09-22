@@ -73,6 +73,9 @@ class ProviderRuntimeSessionV1:
     lineage_refs: Tuple[str, ...]
     provenance_refs: Tuple[str, ...]
     trace_ref: str
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
     authoritative: bool = True
     read_only: bool = True
     execution_started: bool = False
@@ -127,6 +130,9 @@ class ProviderInvocationRecordV1:
     lineage_refs: Tuple[str, ...]
     provenance_refs: Tuple[str, ...]
     trace_ref: str
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
     authoritative: bool = True
     read_only: bool = True
     controlled_invocation_started: bool = True
@@ -191,16 +197,21 @@ def _valid_source_lineage(
         errors.append("execution_capability_mismatch")
     if execution.source_model_ref != binding.source_model_ref:
         errors.append("execution_model_mismatch")
-    for left, right, label in (
-        (execution.parent_cognitive_problem_ref, binding.parent_cognitive_problem_ref, "execution_binding_problem"),
-        (execution.source_state_ref, binding.source_state_ref, "execution_binding_state"),
-        (grant.parent_cognitive_problem_ref, binding.parent_cognitive_problem_ref, "grant_binding_problem"),
-        (grant.source_state_ref, binding.source_state_ref, "grant_binding_state"),
-        (allocation.parent_cognitive_problem_ref, binding.parent_cognitive_problem_ref, "allocation_binding_problem"),
-        (allocation.source_state_ref, binding.source_state_ref, "allocation_binding_state"),
+    scopes = tuple(
+        (
+            source.admitted_action_ref,
+            source.working_envelope_ref,
+            source.working_envelope_version_ref,
+        )
+        for source in (execution, binding, grant, allocation)
+    )
+    if not all(
+        all(isinstance(value, str) and value.strip() for value in scope)
+        for scope in scopes
     ):
-        if left != right:
-            errors.append(label)
+        errors.append("canonical_runtime_scope_incomplete")
+    elif len(set(scopes)) != 1:
+        errors.append("canonical_runtime_scope_mismatch")
     return tuple(dict.fromkeys(errors))
 
 
@@ -280,6 +291,9 @@ def create_provider_runtime_session(
         lineage_refs=_unique((*execution.lineage_refs, binding.binding_ref, grant.grant_ref, allocation.allocation_ref)),
         provenance_refs=_unique((*execution.provenance_refs, *binding.provenance_refs, *grant.provenance_refs, *allocation.provenance_refs, *request.provenance_refs)),
         trace_ref=request.trace_ref,
+        admitted_action_ref=execution.admitted_action_ref,
+        working_envelope_ref=execution.working_envelope_ref,
+        working_envelope_version_ref=execution.working_envelope_version_ref,
     )
     return ProviderRuntimeSessionResultV1(
         request.session_request_ref, "PROVIDER_RUNTIME_SESSION_CREATED", session,
@@ -309,6 +323,20 @@ def _valid_invocation_sources(request: ProviderInvocationInputV1) -> Tuple[str, 
         return tuple(errors)
     errors.extend(_valid_source_lineage(request.execution_instance, request.provider_binding, request.runtime_grant, request.runtime_allocation))
     session = request.session
+    execution_scope = (
+        request.execution_instance.admitted_action_ref,
+        request.execution_instance.working_envelope_ref,
+        request.execution_instance.working_envelope_version_ref,
+    )
+    session_scope = (
+        session.admitted_action_ref,
+        session.working_envelope_ref,
+        session.working_envelope_version_ref,
+    )
+    if not all(isinstance(value, str) and value.strip() for value in session_scope):
+        errors.append("canonical_runtime_scope_incomplete")
+    elif session_scope != execution_scope:
+        errors.append("canonical_runtime_scope_mismatch")
     if session.status not in {"CREATED", "READY"}:
         errors.append("session_not_startable")
     if session.execution_instance_ref != request.execution_instance.execution_instance_ref:
@@ -376,6 +404,9 @@ def start_controlled_provider_invocation(
         lineage_refs=_unique((*session.lineage_refs, invocation_ref)),
         provenance_refs=_unique((*session.provenance_refs, *request.provenance_refs)),
         trace_ref=request.trace_ref,
+        admitted_action_ref=session.admitted_action_ref,
+        working_envelope_ref=session.working_envelope_ref,
+        working_envelope_version_ref=session.working_envelope_version_ref,
         controlled_invocation_completed=completed,
     )
     transitioned = replace(session, status=session_status, execution_started=True)

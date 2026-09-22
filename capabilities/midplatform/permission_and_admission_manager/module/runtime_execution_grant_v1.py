@@ -31,6 +31,23 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_au
     _invalidate_canonical_runtime_authorization,
     query_active_authorization_for_grant,
 )
+from capabilities.midplatform.provider_runtime_governance.provider_runtime_governance_registry_v1 import (
+    PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF,
+    evaluate_provider_runtime_eligibility_v1,
+)
+from capabilities.midplatform.model_manager.registries.universal_capability_slot.universal_capability_slot_resolution_v1 import (
+    PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF,
+    evaluate_runtime_capability_admission_v1,
+)
+from capabilities.midplatform.protocol_manager.module.governance_verification_backbone_v1 import (
+    evaluate_runtime_protocol_compliance_v1,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    query_current_runtime_safety_prerequisite_v1,
+)
+from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
+    query_current_admitted_action_v1,
+)
 
 
 OWNER = "Permission / Admission Manager"
@@ -45,6 +62,8 @@ FORMATION_STATUSES = (
 )
 DECISIONS = ("GRANTED", "DENIED", "DEFERRED", "REVOKED")
 VALIDITY_STATUSES = ("FRESH", "STALE", "EXPIRED", "REVOKED")
+PREGRANT_BINDING_KEY_LENGTH = 5
+CANONICAL_PREGRANT_BINDING_KEY_LENGTH = 7
 
 
 def _unique(values: Iterable[str]) -> Tuple[str, ...]:
@@ -75,6 +94,13 @@ class RuntimeExecutionGrantInputV1:
     validity_scope: Tuple[str, ...] = field(default_factory=tuple)
     expiry_boundary_ref: str = ""
     revocation_ref: Optional[str] = None
+    safety_prerequisite_ref: Optional[str] = None
+    safety_prerequisite_refs: Tuple[str, ...] = field(default_factory=tuple)
+    effect_class: str = "runtime-execution"
+    provider_evaluation_profile_ref: str = PRODUCTION_PROVIDER_EVALUATION_PROFILE_REF
+    capability_evaluation_profile_ref: str = PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF
+    # Deprecated diagnostic fields. They are retained for controlled caller
+    # migration but never participate in authorization.
     provider_binding_status: str = "ELIGIBLE"
     capability_admission_status: str = "ADMITTED"
     permission_status: str = "ALLOWED"
@@ -93,6 +119,9 @@ class RuntimeExecutionGrantInputV1:
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     trace_ref: str = ""
     candidate_only: bool = True
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -168,6 +197,11 @@ class RuntimeExecutionGrantDecisionV1:
     execution_authorized: bool = False
     authorization_ref: str = ""
     freshness_status: str = "FRESH"
+    provider_evaluation_profile_ref: str = ""
+    capability_evaluation_profile_ref: str = ""
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -194,6 +228,9 @@ class RuntimeExecutionGrantResultV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     validation_errors: Tuple[str, ...] = field(default_factory=tuple)
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 def _result(
@@ -220,9 +257,24 @@ def _result(
             (
                 "provenance:runtime-execution-grant:v1",
                 *getattr(request, "provenance_refs", ()),
+                (
+                    f"provider-evaluation-profile:{getattr(request, 'provider_evaluation_profile_ref', '')}"
+                    if getattr(request, "provider_evaluation_profile_ref", "")
+                    else ""
+                ),
+                (
+                    f"capability-evaluation-profile:{getattr(request, 'capability_evaluation_profile_ref', '')}"
+                    if getattr(request, "capability_evaluation_profile_ref", "")
+                    else ""
+                ),
             )
         ),
         validation_errors=errors,
+        admitted_action_ref=getattr(request, "admitted_action_ref", None),
+        working_envelope_ref=getattr(request, "working_envelope_ref", None),
+        working_envelope_version_ref=getattr(
+            request, "working_envelope_version_ref", None
+        ),
     )
 
 
@@ -237,6 +289,7 @@ def _collection_errors(request: RuntimeExecutionGrantInputV1) -> list[str]:
         ),
         ("permission_refs", request.permission_refs),
         ("safety_refs", request.safety_refs),
+        ("safety_prerequisite_refs", request.safety_prerequisite_refs),
         ("protocol_refs", request.protocol_refs),
         ("governance_refs", request.governance_refs),
         ("constraint_refs", request.constraint_refs),
@@ -251,14 +304,56 @@ def _collection_errors(request: RuntimeExecutionGrantInputV1) -> list[str]:
     return errors
 
 
+def build_pregrant_authority_binding_key(
+    *,
+    execution_instance_preparation_candidate_ref: str,
+    provider_candidate_ref: str,
+    capability_candidate_ref: str,
+    admitted_action_ref: Optional[str] = None,
+    working_envelope_ref: Optional[str] = None,
+    working_envelope_version_ref: Optional[str] = None,
+    parent_cognitive_problem_ref: str = "",
+    source_state_ref: str = "",
+) -> Tuple[str, ...]:
+    """Build the only authority-bearing Runtime Scope key.
+
+    The legacy parent/source pair remains accepted by the DTO for data-shape
+    compatibility, but it is deliberately not a fallback authority key.
+    Incomplete v2 scope is represented by an empty key so every downstream
+    owner prerequisite fails closed.
+    """
+    canonical_scope = (
+        admitted_action_ref,
+        working_envelope_ref,
+        working_envelope_version_ref,
+    )
+    if all(isinstance(value, str) and value.strip() for value in canonical_scope):
+        return (
+            "runtime-scope:v2",
+            admitted_action_ref,
+            working_envelope_ref,
+            working_envelope_version_ref,
+            execution_instance_preparation_candidate_ref,
+            provider_candidate_ref,
+            capability_candidate_ref,
+        )
+    return ()
+
+
 def _validate(request: object) -> Tuple[str, ...]:
     if not isinstance(request, RuntimeExecutionGrantInputV1):
         return ("request_type_invalid",)
     errors = _collection_errors(request)
+    canonical_scope = (
+        request.admitted_action_ref,
+        request.working_envelope_ref,
+        request.working_envelope_version_ref,
+    )
+    canonical_scope_complete = all(
+        isinstance(value, str) and value.strip() for value in canonical_scope
+    )
     required = (
         request.grant_request_ref,
-        request.parent_cognitive_problem_ref,
-        request.source_state_ref,
         request.expiry_boundary_ref,
         request.trace_ref,
         request.grant_authority_ref,
@@ -266,10 +361,32 @@ def _validate(request: object) -> Tuple[str, ...]:
     )
     if not all(required):
         errors.append("grant_request_incomplete")
+    if not canonical_scope_complete:
+        errors.append("canonical_runtime_scope_incomplete")
     if not request.candidate_only:
         errors.append("input_candidate_only_required")
+    if all(isinstance(value, str) and value.strip() for value in canonical_scope):
+        admitted_action = query_current_admitted_action_v1(
+            request.admitted_action_ref or ""
+        )
+        if admitted_action is None:
+            errors.append("admitted_action_not_current")
+        elif (
+            admitted_action.working_envelope_ref != request.working_envelope_ref
+            or admitted_action.working_envelope_version_ref
+            != request.working_envelope_version_ref
+        ):
+            errors.append("admitted_action_envelope_scope_mismatch")
     if not request.permission_refs or not request.safety_refs or not request.protocol_refs:
         errors.append("authorization_basis_refs_incomplete")
+    if not request.safety_prerequisite_ref and not request.safety_prerequisite_refs:
+        errors.append("safety_prerequisite_missing")
+    if not request.effect_class:
+        errors.append("effect_class_missing")
+    if not isinstance(request.provider_evaluation_profile_ref, str) or not request.provider_evaluation_profile_ref.strip():
+        errors.append("provider_evaluation_profile_invalid")
+    if not isinstance(request.capability_evaluation_profile_ref, str) or not request.capability_evaluation_profile_ref.strip():
+        errors.append("capability_evaluation_profile_invalid")
     if not request.governance_refs or not request.validity_scope:
         errors.append("governance_or_validity_refs_incomplete")
     if request.grant_authority_ref != AUTHORITY_REF:
@@ -335,14 +452,29 @@ def _validate(request: object) -> Tuple[str, ...]:
         if (
             allocation.provider_binding_candidate_ref != binding.provider_binding_candidate_ref
             or item.source_provider_binding_candidate_ref != binding.provider_binding_candidate_ref
-            or binding.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref
-            or binding.source_state_ref != request.source_state_ref
-            or allocation.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref
-            or allocation.source_state_ref != request.source_state_ref
-            or item.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref
-            or item.source_state_ref != request.source_state_ref
         ):
             errors.append(f"lineage_mismatch:{item.execution_instance_preparation_candidate_ref}")
+        if all(
+            isinstance(value, str) and value.strip() for value in canonical_scope
+        ) and any(
+            (
+                binding.admitted_action_ref != request.admitted_action_ref,
+                binding.working_envelope_ref != request.working_envelope_ref,
+                binding.working_envelope_version_ref
+                != request.working_envelope_version_ref,
+                allocation.admitted_action_ref != request.admitted_action_ref,
+                allocation.working_envelope_ref != request.working_envelope_ref,
+                allocation.working_envelope_version_ref
+                != request.working_envelope_version_ref,
+                item.admitted_action_ref != request.admitted_action_ref,
+                item.working_envelope_ref != request.working_envelope_ref,
+                item.working_envelope_version_ref
+                != request.working_envelope_version_ref,
+            )
+        ):
+            errors.append(
+                f"canonical_runtime_scope_mismatch:{item.execution_instance_preparation_candidate_ref}"
+            )
         for candidate in (binding, allocation, item):
             if (
                 not candidate.candidate_only
@@ -357,11 +489,6 @@ def _validate(request: object) -> Tuple[str, ...]:
 
 
 def _permission_assessment(request: RuntimeExecutionGrantInputV1) -> Mapping[str, object]:
-    decision_mode = {
-        "ALLOWED": "allow",
-        "DENIED": "reject",
-        "DEFERRED": "defer",
-    }[request.permission_status]
     payload = {
         "request_id": request.grant_request_ref,
         "request_type": REQUEST_TYPE,
@@ -383,19 +510,14 @@ def _permission_assessment(request: RuntimeExecutionGrantInputV1) -> Mapping[str
                     "ownership_required": True,
                     "authority_required": True,
                     "allow_runtime_dispatch": False,
-                    "decision_mode": decision_mode,
+                    "decision_mode": "allow",
                     "allowed_authorities": ("runtime_execution_authorization",),
                     "allowed_operations": ("runtime_execution_authorization",),
                 }
             }
         },
-        "risk_context": {
-            "runtime_boundary_blocked": request.runtime_boundary_status != "VALID",
-        },
-        "temporal_snapshot": {
-            "revoked": request.validity_status == "REVOKED",
-            "expired": request.validity_status == "EXPIRED",
-        },
+        "risk_context": {},
+        "temporal_snapshot": {},
         "trace_ref": request.trace_ref,
     }
     return run_permission_and_admission_manager_module_v1(payload)
@@ -418,46 +540,78 @@ def _decision_for(
     allocation: RuntimeAllocationPreparationCandidateV1,
     execution: ExecutionInstancePreparationCandidateV1,
 ) -> RuntimeExecutionGrantDecisionV1:
+    binding_key = build_pregrant_authority_binding_key(
+        execution_instance_preparation_candidate_ref=execution.execution_instance_preparation_candidate_ref,
+        provider_candidate_ref=binding.provider_candidate_ref,
+        capability_candidate_ref=binding.capability_candidate_ref,
+        admitted_action_ref=request.admitted_action_ref,
+        working_envelope_ref=request.working_envelope_ref,
+        working_envelope_version_ref=request.working_envelope_version_ref,
+        parent_cognitive_problem_ref=request.parent_cognitive_problem_ref,
+        source_state_ref=request.source_state_ref,
+    )
+    provider_eligibility = evaluate_provider_runtime_eligibility_v1(
+        binding_key=binding_key,
+        provider_candidate_ref=binding.provider_candidate_ref,
+        capability_candidate_ref=binding.capability_candidate_ref,
+        execution_instance_preparation_candidate_ref=execution.execution_instance_preparation_candidate_ref,
+        profile_ref=request.provider_evaluation_profile_ref,
+    )
+    capability_admission = evaluate_runtime_capability_admission_v1(
+        binding_key=binding_key,
+        capability_candidate_ref=binding.capability_candidate_ref,
+        provider_candidate_ref=binding.provider_candidate_ref,
+        execution_instance_preparation_candidate_ref=execution.execution_instance_preparation_candidate_ref,
+        profile_ref=request.capability_evaluation_profile_ref,
+    )
+    protocol_compliance = evaluate_runtime_protocol_compliance_v1(
+        binding_key=binding_key,
+        protocol_refs=request.protocol_refs,
+    )
+    safety_binding_key = (*binding_key, request.effect_class)
+    safety_refs = tuple(
+        ref for ref in (
+            request.safety_prerequisite_ref,
+            *request.safety_prerequisite_refs,
+        ) if ref
+    )
+    safety_prerequisite = None
+    for result_ref in safety_refs:
+        current = query_current_runtime_safety_prerequisite_v1(
+            binding_key=safety_binding_key,
+            result_ref=result_ref,
+        )
+        if current is not None:
+            safety_prerequisite = current
+            break
     permission = _permission_assessment(request)
     permission_eligible = bool(permission.get("eligibility", {}).get("eligible"))
     decision = "GRANTED"
     reason: Optional[str] = None
     failure_owner: Optional[str] = None
-    if request.validity_status == "REVOKED":
-        decision, reason, failure_owner = "REVOKED", "grant_revoked", OWNER
-    elif request.validity_status == "EXPIRED":
-        decision, reason, failure_owner = "DENIED", "grant_expired", OWNER
-    elif request.validity_status != "FRESH":
-        decision, reason, failure_owner = "DENIED", "grant_not_current", OWNER
-    elif request.freshness_status == "STALE":
-        decision, reason, failure_owner = "DENIED", "grant_prerequisite_not_fresh", OWNER
-    elif request.provider_binding_status != "ELIGIBLE":
+    if provider_eligibility.status != "ELIGIBLE":
         decision, reason, failure_owner = "DENIED", "provider_binding_not_eligible", "Provider Governance"
-    elif request.capability_admission_status != "ADMITTED":
+    elif capability_admission.status != "ADMITTED":
         decision, reason, failure_owner = "DENIED", "capability_not_admitted", "Capability Governance"
-    elif request.permission_status == "DEFERRED":
-        decision, reason, failure_owner = "DEFERRED", "permission_deferred", OWNER
     elif not permission_eligible:
         decision, reason, failure_owner = "DENIED", "permission_not_allowed", OWNER
-    elif request.safety_status == "DEFERRED":
-        decision, reason, failure_owner = "DEFERRED", "safety_deferred", "Safety Governance"
-    elif request.safety_status != "ALLOWED":
+    elif safety_prerequisite is None:
+        decision, reason, failure_owner = "DENIED", "safety_prerequisite_not_current", "Safety Governance"
+    elif safety_prerequisite.status != "ALLOWED":
         decision, reason, failure_owner = "DENIED", "safety_blocked", "Safety Governance"
-    elif request.constitution_status != "ALLOWED":
-        decision, reason, failure_owner = "DENIED", "constitution_blocked", "Protocol Manager"
-    elif request.resource_feasibility_status != "SATISFIABLE":
+    elif protocol_compliance.status != "COMPLIANT":
+        decision, reason, failure_owner = "DENIED", "protocol_not_compliant", "Protocol Manager"
+    elif not allocation.resource_class_refs or not allocation.execution_class_refs:
         decision, reason, failure_owner = "DENIED", "resource_unavailable", "Resource Governance"
-    elif request.runtime_boundary_status != "VALID":
+    elif not execution.runtime_envelope_shape_refs:
         decision, reason, failure_owner = "DENIED", "runtime_boundary_invalid", "Runtime Executor"
-    elif not request.execution_ready:
-        decision, reason, failure_owner = "DENIED", "execution_not_ready", "Runtime Executor"
 
     return RuntimeExecutionGrantDecisionV1(
         grant_ref=_grant_ref(request.grant_request_ref, execution.execution_instance_preparation_candidate_ref),
         request_ref=request.grant_request_ref,
         owner_ref=OWNER,
-        authority_ref=request.grant_authority_ref,
-        responsibility_ref=request.grant_responsibility_ref,
+        authority_ref=AUTHORITY_REF,
+        responsibility_ref=RESPONSIBILITY_REF,
         decision=decision,
         source_provider_binding_candidate_ref=binding.provider_binding_candidate_ref,
         source_runtime_allocation_preparation_ref=allocation.runtime_allocation_preparation_candidate_ref,
@@ -471,14 +625,20 @@ def _decision_for(
         source_perception_routing_candidate_ref=binding.source_perception_routing_candidate_ref,
         source_admission_compatibility_candidate_ref=binding.source_admission_compatibility_candidate_ref,
         permission_refs=request.permission_refs,
-        safety_refs=request.safety_refs,
-        protocol_refs=request.protocol_refs,
+        safety_refs=_unique(
+            (
+                *request.safety_refs,
+                request.safety_prerequisite_ref or "",
+                *request.safety_prerequisite_refs,
+            )
+        ),
+        protocol_refs=_unique((*request.protocol_refs, protocol_compliance.result_ref)),
         governance_refs=request.governance_refs,
         constraint_refs=request.constraint_refs,
         validity_scope=request.validity_scope,
-        validity_status=request.validity_status,
+        validity_status="FRESH",
         expiry_boundary_ref=request.expiry_boundary_ref,
-        revocation_ref=request.revocation_ref,
+        revocation_ref=None,
         observation_class=binding.observation_class,
         observation_target_refs=binding.observation_target_refs,
         observation_constraint_refs=binding.observation_constraint_refs,
@@ -491,7 +651,16 @@ def _decision_for(
         source_state_ref=binding.source_state_ref,
         context_refs=binding.context_refs,
         lineage_refs=_unique((*binding.lineage_refs, *allocation.lineage_refs, *execution.lineage_refs)),
-        provenance_refs=_unique((*binding.provenance_refs, *allocation.provenance_refs, *execution.provenance_refs, *request.provenance_refs)),
+        provenance_refs=_unique(
+            (
+                *binding.provenance_refs,
+                *allocation.provenance_refs,
+                *execution.provenance_refs,
+                *request.provenance_refs,
+                f"provider-evaluation-profile:{provider_eligibility.evaluation_profile_ref}",
+                f"capability-evaluation-profile:{capability_admission.evaluation_profile_ref}",
+            )
+        ),
         trace_ref=request.trace_ref,
         denial_reason=reason,
         failure_owner_ref=failure_owner,
@@ -500,7 +669,12 @@ def _decision_for(
             request.grant_request_ref,
             execution.execution_instance_preparation_candidate_ref,
         ),
-        freshness_status=request.freshness_status,
+        freshness_status="FRESH",
+        provider_evaluation_profile_ref=provider_eligibility.evaluation_profile_ref,
+        capability_evaluation_profile_ref=capability_admission.evaluation_profile_ref,
+        admitted_action_ref=request.admitted_action_ref,
+        working_envelope_ref=request.working_envelope_ref,
+        working_envelope_version_ref=request.working_envelope_version_ref,
     )
 
 
@@ -580,6 +754,8 @@ __all__ = [
     "RuntimeExecutionGrantInputV1",
     "RuntimeExecutionGrantDecisionV1",
     "RuntimeExecutionGrantResultV1",
+    "build_pregrant_authority_binding_key",
+    "CANONICAL_PREGRANT_BINDING_KEY_LENGTH",
     "form_runtime_execution_grants",
     "invalidate_runtime_authorization_state",
 ]

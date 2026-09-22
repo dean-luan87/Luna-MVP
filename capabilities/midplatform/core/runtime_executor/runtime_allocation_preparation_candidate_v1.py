@@ -78,6 +78,9 @@ class RuntimeAllocationPreparationCandidateV1:
     capability_activation: bool = False
     slot_reservation: bool = False
     resource_scheduling: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -92,6 +95,9 @@ class RuntimeAllocationPreparationInputV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     candidate_only: bool = True
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -122,6 +128,9 @@ class RuntimeAllocationPreparationResultV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     validation_errors: Tuple[str, ...] = field(default_factory=tuple)
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -155,6 +164,9 @@ class ExecutionInstancePreparationCandidateV1:
     gateway_submission: bool = False
     provider_invocation: bool = False
     model_invocation: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -170,6 +182,9 @@ class ExecutionInstancePreparationInputV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     candidate_only: bool = True
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -197,6 +212,9 @@ class ExecutionInstancePreparationResultV1:
     trace_ref: str = ""
     provenance_refs: Tuple[str, ...] = field(default_factory=tuple)
     validation_errors: Tuple[str, ...] = field(default_factory=tuple)
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 def _refs(value: object, expected_type: type) -> Tuple[str, ...]:
@@ -227,14 +245,19 @@ def _binding_errors(request: object) -> Tuple[str, ...]:
     errors = []
     if not request.preparation_ref:
         errors.append("preparation_ref_missing")
-    if not request.parent_cognitive_problem_ref:
-        errors.append("parent_cognitive_problem_ref_missing")
-    if not request.source_state_ref:
-        errors.append("source_state_ref_missing")
     if not request.trace_ref:
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("candidate_only_required")
+    canonical_scope = (
+        request.admitted_action_ref,
+        request.working_envelope_ref,
+        request.working_envelope_version_ref,
+    )
+    if any(value is not None for value in canonical_scope) and not all(
+        isinstance(value, str) and value.strip() for value in canonical_scope
+    ):
+        errors.append("canonical_runtime_scope_incomplete")
     for name in ("context_refs", "provenance_refs"):
         if not _valid_ref_collection(getattr(request, name), allow_empty=True):
             errors.append(f"{name}_must_contain_strings")
@@ -259,8 +282,6 @@ def _binding_errors(request: object) -> Tuple[str, ...]:
             item.provider_candidate_ref,
             item.capability_candidate_ref,
             item.capability_class_ref,
-            item.parent_cognitive_problem_ref,
-            item.source_state_ref,
             item.trace_ref,
         )
         if not all(required):
@@ -283,10 +304,22 @@ def _binding_errors(request: object) -> Tuple[str, ...]:
             or item.resource_allocation
         ):
             errors.append(f"binding_candidate_boundary_invalid:{item.provider_binding_candidate_ref}")
-        if item.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref:
-            errors.append(f"parent_problem_mismatch:{item.provider_binding_candidate_ref}")
-        if item.source_state_ref != request.source_state_ref:
-            errors.append(f"source_state_mismatch:{item.provider_binding_candidate_ref}")
+        if any(
+            value is not None
+            for value in (
+                request.admitted_action_ref,
+                request.working_envelope_ref,
+                request.working_envelope_version_ref,
+            )
+        ) and (
+            item.admitted_action_ref != request.admitted_action_ref
+            or item.working_envelope_ref != request.working_envelope_ref
+            or item.working_envelope_version_ref
+            != request.working_envelope_version_ref
+        ):
+            errors.append(
+                f"canonical_runtime_scope_mismatch:{item.provider_binding_candidate_ref}"
+            )
         for ref in (
             item.provider_binding_candidate_ref,
             item.source_provider_binding_preparation_candidate_ref,
@@ -336,6 +369,11 @@ def _allocation_result(
             ("provenance:runtime-allocation-preparation:v1", *getattr(request, "provenance_refs", ()))
         ),
         validation_errors=errors,
+        admitted_action_ref=getattr(request, "admitted_action_ref", None),
+        working_envelope_ref=getattr(request, "working_envelope_ref", None),
+        working_envelope_version_ref=getattr(
+            request, "working_envelope_version_ref", None
+        ),
     )
 
 
@@ -382,6 +420,16 @@ def form_runtime_allocation_preparation_candidates(
                 lineage_refs=_unique((*source.lineage_refs, candidate_ref)),
                 provenance_refs=_unique((*source.provenance_refs, *request.provenance_refs)),
                 trace_ref=request.trace_ref or source.trace_ref,
+                admitted_action_ref=(
+                    request.admitted_action_ref or source.admitted_action_ref
+                ),
+                working_envelope_ref=(
+                    request.working_envelope_ref or source.working_envelope_ref
+                ),
+                working_envelope_version_ref=(
+                    request.working_envelope_version_ref
+                    or source.working_envelope_version_ref
+                ),
             )
         )
     return _allocation_result(
@@ -398,14 +446,19 @@ def _instance_errors(request: object) -> Tuple[str, ...]:
     errors = []
     if not request.preparation_ref:
         errors.append("preparation_ref_missing")
-    if not request.parent_cognitive_problem_ref:
-        errors.append("parent_cognitive_problem_ref_missing")
-    if not request.source_state_ref:
-        errors.append("source_state_ref_missing")
     if not request.trace_ref:
         errors.append("trace_ref_missing")
     if not request.candidate_only:
         errors.append("candidate_only_required")
+    canonical_scope = (
+        request.admitted_action_ref,
+        request.working_envelope_ref,
+        request.working_envelope_version_ref,
+    )
+    if any(value is not None for value in canonical_scope) and not all(
+        isinstance(value, str) and value.strip() for value in canonical_scope
+    ):
+        errors.append("canonical_runtime_scope_incomplete")
     if not isinstance(request.runtime_allocation_candidates, tuple):
         return tuple((*errors, "runtime_allocation_candidates_must_be_tuple"))
     refs = _refs(request.runtime_allocation_candidates, RuntimeAllocationPreparationCandidateV1)
@@ -422,8 +475,6 @@ def _instance_errors(request: object) -> Tuple[str, ...]:
             item.provider_candidate_ref,
             item.capability_candidate_ref,
             item.capability_class_ref,
-            item.parent_cognitive_problem_ref,
-            item.source_state_ref,
             item.trace_ref,
         )
         if not all(required) or not item.execution_class_refs:
@@ -442,10 +493,22 @@ def _instance_errors(request: object) -> Tuple[str, ...]:
             or item.model_invocation
         ):
             errors.append(f"allocation_candidate_boundary_invalid:{item.runtime_allocation_preparation_candidate_ref}")
-        if item.parent_cognitive_problem_ref != request.parent_cognitive_problem_ref:
-            errors.append(f"parent_problem_mismatch:{item.runtime_allocation_preparation_candidate_ref}")
-        if item.source_state_ref != request.source_state_ref:
-            errors.append(f"source_state_mismatch:{item.runtime_allocation_preparation_candidate_ref}")
+        if any(
+            value is not None
+            for value in (
+                request.admitted_action_ref,
+                request.working_envelope_ref,
+                request.working_envelope_version_ref,
+            )
+        ) and (
+            item.admitted_action_ref != request.admitted_action_ref
+            or item.working_envelope_ref != request.working_envelope_ref
+            or item.working_envelope_version_ref
+            != request.working_envelope_version_ref
+        ):
+            errors.append(
+                f"canonical_runtime_scope_mismatch:{item.runtime_allocation_preparation_candidate_ref}"
+            )
         if item.runtime_allocation_preparation_candidate_ref not in item.lineage_refs:
             errors.append(f"lineage_ref_missing:{item.runtime_allocation_preparation_candidate_ref}")
     return tuple(dict.fromkeys(errors))
@@ -477,6 +540,11 @@ def _instance_result(
             ("provenance:execution-instance-preparation:v1", *getattr(request, "provenance_refs", ()))
         ),
         validation_errors=errors,
+        admitted_action_ref=getattr(request, "admitted_action_ref", None),
+        working_envelope_ref=getattr(request, "working_envelope_ref", None),
+        working_envelope_version_ref=getattr(
+            request, "working_envelope_version_ref", None
+        ),
     )
 
 
@@ -517,6 +585,16 @@ def form_execution_instance_preparation_candidates(
                 lineage_refs=_unique((*source.lineage_refs, candidate_ref)),
                 provenance_refs=_unique((*source.provenance_refs, *request.provenance_refs)),
                 trace_ref=request.trace_ref or source.trace_ref,
+                admitted_action_ref=(
+                    request.admitted_action_ref or source.admitted_action_ref
+                ),
+                working_envelope_ref=(
+                    request.working_envelope_ref or source.working_envelope_ref
+                ),
+                working_envelope_version_ref=(
+                    request.working_envelope_version_ref
+                    or source.working_envelope_version_ref
+                ),
             )
         )
     return _instance_result(

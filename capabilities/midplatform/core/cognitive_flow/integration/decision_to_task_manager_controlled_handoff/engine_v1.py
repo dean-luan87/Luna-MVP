@@ -85,6 +85,7 @@ def build_decision_task_handoff_candidate_v1(
     cognitive_case = case.get("cognitive_case") or {}
     request = cognitive_case.get("brain_request") or {}
     loop = cognitive_case.get("loop_instance") or {}
+    decision_request = decision.get("request") or {}
     trace_ref = decision.get("decision_trace_ref")
     source_handoff = (decision_output.get("handoff_candidate") or {}).get("handoff_id")
     proof = _proofs(case)[-1] if _proofs(case) else {}
@@ -120,20 +121,28 @@ def build_decision_task_handoff_candidate_v1(
             context_ref=request.get("context_ref", ""),
             cognitive_loop_ref=loop.get("cognitive_loop_ref", ""),
             constraint_refs=tuple(
-                ref.get("ref_id", "") for ref in decision.get("request", {}).get("constraint_refs", [])
+                ref.get("ref_id", "") for ref in decision_request.get("constraint_refs", [])
             ),
             permission_refs=tuple(
-                ref.get("ref_id", "") for ref in decision.get("request", {}).get("permission_refs", [])
+                ref.get("ref_id", "") for ref in decision_request.get("permission_refs", [])
             ),
             safety_refs=tuple(
-                ref.get("ref_id", "") for ref in decision.get("request", {}).get("safety_refs", [])
+                ref.get("ref_id", "") for ref in decision_request.get("safety_refs", [])
             ),
             resource_refs=tuple(
-                ref.get("ref_id", "") for ref in decision.get("request", {}).get("resource_refs", [])
+                ref.get("ref_id", "") for ref in decision_request.get("resource_refs", [])
             ),
             provenance_refs=provenance_refs,
             execution_instance_ref=(
                 request.get("execution_instance_ref") or proof["execution_ref"]
+            ),
+            working_envelope_ref=(
+                downstream_handoff.get("working_envelope_ref")
+                or decision_request.get("working_envelope_ref")
+            ),
+            working_envelope_version_ref=(
+                downstream_handoff.get("working_envelope_version_ref")
+                or decision_request.get("working_envelope_version_ref")
             ),
         ),
         (),
@@ -181,7 +190,11 @@ def _task_manager_request(handoff: DecisionToTaskManagerHandoffCandidateV1) -> D
             "decision_candidate_ref": handoff.decision_candidate_ref,
             "decision_trace_ref": handoff.decision_trace_ref,
             "cognition_execution_ref": cognition_execution_ref,
+            "working_envelope_ref": handoff.working_envelope_ref,
+            "working_envelope_version_ref": handoff.working_envelope_version_ref,
         },
+        "working_envelope_ref": handoff.working_envelope_ref,
+        "working_envelope_version_ref": handoff.working_envelope_version_ref,
         "requested_control": "",
     }
 
@@ -197,6 +210,8 @@ def _task_result(handoff: DecisionToTaskManagerHandoffCandidateV1) -> Dict[str, 
     admission = _admission_step(result)
     return {
         "request": request,
+        "working_envelope_ref": handoff.working_envelope_ref,
+        "working_envelope_version_ref": handoff.working_envelope_version_ref,
         "admission": admission,
         "task_manager_owner_ref": TASK_MANAGER_OWNER,
         "task_manager_invoked": True,
@@ -255,6 +270,10 @@ def _case_result(case: Dict[str, Any]) -> Dict[str, Any]:
         "decision_candidate_ref": handoff.decision_candidate_ref if handoff else None,
         "decision_trace_ref": handoff.decision_trace_ref if handoff else None,
         "decision_handoff_ref": handoff.source_decision_handoff_ref if handoff else None,
+        "working_envelope_ref": handoff.working_envelope_ref if handoff else None,
+        "working_envelope_version_ref": (
+            handoff.working_envelope_version_ref if handoff else None
+        ),
         "task_handoff": _jsonable(handoff) if handoff else None,
         "task_handoff_ref": handoff.handoff_ref if handoff else None,
         "task_manager": task,
@@ -312,8 +331,12 @@ def _negative_task_handoff_probe_v1() -> Dict[str, Any]:
 
 def build_decision_task_run_v1(
     execution_instance_ref: str = EXECUTION_INSTANCE_REF,
+    working_envelope=None,
 ) -> Dict[str, Any]:
-    source = build_decision_handoff_run_v1(execution_instance_ref)
+    source = build_decision_handoff_run_v1(
+        execution_instance_ref,
+        working_envelope=working_envelope,
+    )
     cases = [_case_result(case) for case in source["cases"]]
     return {
         "phase": PHASE,

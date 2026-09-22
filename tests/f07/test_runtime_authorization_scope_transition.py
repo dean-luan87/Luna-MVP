@@ -27,8 +27,56 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_au
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantInputV1,
+    build_pregrant_authority_binding_key,
     form_runtime_execution_grants,
     invalidate_runtime_authorization_state,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    ActionGovernanceEngineV1,
+    form_runtime_safety_prerequisite_v1,
+)
+from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
+    ACTION_ADMISSION_PROFILE_PRODUCTION_CANONICAL,
+    admit_action_v1,
+)
+from capabilities.midplatform.core.action_governance.action_io_types_v1 import (
+    ActionGovernanceInputV1,
+)
+from capabilities.midplatform.core.brain_governance.concern_governance_v1 import (
+    BRAIN_PRODUCTION_PROFILE_REF,
+    admit_concern,
+)
+from capabilities.midplatform.core.brain_governance.cognitive_grant_governance_v1 import (
+    issue_cognitive_grant,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_working_envelope_cognitive_requirement_bridge_controlled.a_working_envelope_cognitive_requirement_engine_v1 import (
+    build_working_envelope,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_working_envelope_cognitive_requirement_bridge_controlled.working_envelope_governance_v1 import (
+    WORKING_ENVELOPE_PROFILE_PRODUCTION_CANONICAL,
+    admit_working_envelope_v1,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.decision_to_task_manager_controlled_handoff.engine_v1 import (
+    build_decision_task_run_v1,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.task_to_action_boundary_controlled_handoff.engine_v1 import (
+    _action_request,
+    _build_task_to_action_handoff,
+)
+from capabilities.midplatform.core.cognitive_state_formation import (
+    issue_cognitive_state_version_v1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    SourceRefV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_engine_v1 import (
+    CognitiveStateFormationEngineV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
+    CognitiveStateFormationInputV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_registry_v1 import (
+    COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL,
 )
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateInputV1,
@@ -39,8 +87,116 @@ from capabilities.midplatform.provider_runtime_governance.provider_binding_runti
 )
 
 
+def _canonical_runtime_scope(case: str):
+    concern = admit_concern(
+        request_ref=f"request:{case}",
+        goal_ref=f"goal:{case}",
+        intent_ref=f"intent:{case}",
+        scope_ref=f"scope:{case}",
+        basis_refs=(f"basis:{case}",),
+        policy_refs=(f"policy:{case}",),
+        profile_ref=BRAIN_PRODUCTION_PROFILE_REF,
+    )
+    assert concern is not None
+    grant = issue_cognitive_grant(
+        concern_ref=concern.concern_ref,
+        receiver_ref=f"receiver:{case}",
+        receiver_role="A_REASONING_ROLE",
+        granted_authority_refs=("REALITY_REASONING",),
+        work_ref=f"work:{case}",
+        scope_ref=f"scope:{case}",
+        expiry_ref=f"expiry:{case}",
+        basis_refs=(f"grant-basis:{case}",),
+        policy_refs=(f"grant-policy:{case}",),
+        profile_ref=BRAIN_PRODUCTION_PROFILE_REF,
+    )
+    assert grant is not None
+
+    def _ref(owner: str, value: str) -> SourceRefV1:
+        return SourceRefV1(owner, value, "v1", f"trace:{value}", f"provenance:{value}")
+
+    state = CognitiveStateFormationEngineV1().run_case(
+        CognitiveStateFormationInputV1(
+            scenario_id="F09",
+            context_refs=(_ref("Context", f"context:{case}"),),
+            pcn_refs=(_ref("PCN", f"pcn:{case}"),),
+            intent_refs=(_ref("Intent", f"intent:{case}"),),
+            field_refs=(_ref("Field", f"field:{case}"),),
+            observation_refs=(_ref("Observation", f"observation:{case}"),),
+            evidence_refs=(_ref("Evidence", f"evidence:{case}"),),
+            goal_refs=(_ref("Goal", f"goal:{case}"),),
+            concern_refs=(_ref("Concern", f"concern:{case}"),),
+            information_need_refs=(_ref("Need", f"need:{case}"),),
+            task_refs=(_ref("Task", f"task:{case}"),),
+            role_refs=(_ref("Role", f"role:{case}"),),
+            relation_refs=(_ref("Field", f"relation:{case}"),),
+            candidate_only=True,
+            synthetic_only=True,
+        )
+    )
+    state_version = issue_cognitive_state_version_v1(
+        state,
+        profile_ref=COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL,
+    )
+    assert state_version is not None
+    envelope = admit_working_envelope_v1(
+        build_working_envelope(
+            work_ref=f"work:{case}",
+            concern_ref=concern.concern_ref,
+            authority_grant_ref=grant.grant_ref,
+            source_state_version_ref=state_version.version_ref,
+            goal_refs=(f"goal:{case}",),
+            context_refs=(f"context:{case}",),
+            current_world_refs=(f"world:{case}:v1",),
+            field_refs=(f"field:{case}",),
+        ),
+        profile_ref=WORKING_ENVELOPE_PROFILE_PRODUCTION_CANONICAL,
+    )
+    assert envelope is not None
+    task_summary = build_decision_task_run_v1(
+        f"action-runtime:{case}",
+        working_envelope=envelope,
+    )
+    task_case = next(
+        item for item in task_summary["cases"] if item["case_id"] == "CASE_A_SUFFICIENT_STOP"
+    )
+    task_handoff, errors = _build_task_to_action_handoff(
+        {**task_case, "resource_state": "available"}
+    )
+    assert not errors and task_handoff is not None
+    action_request = _action_request(task_handoff)
+    action_request["scenario_id"] = f"action-runtime:{case}"
+    action_output = ActionGovernanceEngineV1().run_case(
+        ActionGovernanceInputV1(**action_request)
+    )
+    safety_key = (
+        action_output.action_candidate.action_candidate_id,
+        task_handoff.task_state_ref,
+        task_handoff.decision_candidate_ref,
+        envelope.envelope_ref,
+        envelope.envelope_version_ref,
+        "runtime-execution",
+    )
+    action_safety = form_runtime_safety_prerequisite_v1(
+        binding_key=safety_key,
+        effect_class="runtime-execution",
+        scope_kind="ACTION_ADMISSION",
+    )
+    admitted_action = admit_action_v1(
+        action_output,
+        task_handoff=task_handoff,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+        safety_prerequisite=action_safety,
+        profile_ref=ACTION_ADMISSION_PROFILE_PRODUCTION_CANONICAL,
+    )
+    assert admitted_action is not None
+    return admitted_action, envelope
+
+
 def _genuine_grant(**changes):
     case = build_runtime_grant_cases_v1()[0]
+    admitted_action, envelope = _canonical_runtime_scope("f07-runtime")
     target = form_provider_binding_runtime_preparation_candidates(
         _target_request(case.case_id, case.target_candidates)
     )
@@ -81,16 +237,67 @@ def _genuine_grant(**changes):
             provenance_refs=(f"provenance:f07-execution:{case.case_id.lower()}",),
         )
     )
+    canonical_binding = replace(
+        binding.candidates[0],
+        provider_candidate_ref="provider_openvins",
+        capability_candidate_ref="spatial_mapping",
+        capability_class_ref="capability-class:spatial-mapping",
+        admitted_action_ref=admitted_action.admitted_action_ref,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+    )
+    canonical_allocation = replace(
+        allocation.candidates[0],
+        provider_candidate_ref=canonical_binding.provider_candidate_ref,
+        capability_candidate_ref=canonical_binding.capability_candidate_ref,
+        capability_class_ref=canonical_binding.capability_class_ref,
+        admitted_action_ref=admitted_action.admitted_action_ref,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+    )
+    canonical_execution = replace(
+        execution.candidates[0],
+        provider_candidate_ref=canonical_binding.provider_candidate_ref,
+        capability_candidate_ref=canonical_binding.capability_candidate_ref,
+        capability_class_ref=canonical_binding.capability_class_ref,
+        admitted_action_ref=admitted_action.admitted_action_ref,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+    )
+    requested_permission = changes.get("permission_status", "ALLOWED")
+    requested_resource = changes.get("resource_feasibility_status", "SATISFIABLE")
+    requested_freshness = changes.get("freshness_status", "FRESH")
+    requested_validity = changes.get("validity_status", "FRESH")
+    effect_class = "runtime-execution"
+    if (
+        requested_permission != "ALLOWED"
+        or requested_resource != "SATISFIABLE"
+        or requested_freshness != "FRESH"
+        or requested_validity != "FRESH"
+    ):
+        effect_class = "blocked-controlled-scenario"
+    binding_key = build_pregrant_authority_binding_key(
+        execution_instance_preparation_candidate_ref=canonical_execution.execution_instance_preparation_candidate_ref,
+        provider_candidate_ref=canonical_binding.provider_candidate_ref,
+        capability_candidate_ref=canonical_binding.capability_candidate_ref,
+        admitted_action_ref=admitted_action.admitted_action_ref,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+    )
+    safety = form_runtime_safety_prerequisite_v1(
+        binding_key=(*binding_key, effect_class),
+        effect_class=effect_class,
+    )
     request = RuntimeExecutionGrantInputV1(
         grant_request_ref=f"f07-grant:{case.case_id.lower()}",
         parent_cognitive_problem_ref=execution.parent_cognitive_problem_ref,
         source_state_ref=execution.source_state_ref,
-        provider_binding_candidates=binding.candidates,
-        runtime_allocation_candidates=allocation.candidates,
-        execution_instance_preparation_candidates=execution.candidates,
+        provider_binding_candidates=(canonical_binding,),
+        runtime_allocation_candidates=(canonical_allocation,),
+        execution_instance_preparation_candidates=(canonical_execution,),
         permission_refs=("permission:f07",),
         safety_refs=("safety:f07",),
-        protocol_refs=("protocol:f07",),
+        protocol_refs=("protocol:runtime-execution-grant:v1",),
         governance_refs=("governance:f07",),
         constraint_refs=("constraint:f07",),
         validity_scope=("scope:f07",),
@@ -99,11 +306,14 @@ def _genuine_grant(**changes):
         provenance_refs=("provenance:f07-grant",),
         grant_authority_ref=case.grant_authority_ref,
         grant_responsibility_ref=case.grant_responsibility_ref,
+        admitted_action_ref=admitted_action.admitted_action_ref,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
         freshness_status=changes.pop("freshness_status", "FRESH"),
         validity_status=changes.pop("validity_status", "FRESH"),
-        resource_feasibility_status=changes.pop(
-            "resource_feasibility_status", "SATISFIABLE"
-        ),
+        resource_feasibility_status=changes.pop("resource_feasibility_status", "SATISFIABLE"),
+        effect_class=effect_class,
+        safety_prerequisite_ref=safety.result_ref,
         **changes,
     )
     result = form_runtime_execution_grants(request)
@@ -155,6 +365,18 @@ def test_t04_serialized_grant_reconstruction_cannot_restore_authority():
 def test_t05_t07_scope_reuse_is_rejected(field, value):
     _, grant = _genuine_grant()
     assert query_active_authorization_for_grant(replace(grant, **{field: value})) is None
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("parent_cognitive_problem_ref", "problem:legacy-other"),
+        ("source_state_ref", "state:legacy-other"),
+    ],
+)
+def test_legacy_metadata_mismatch_does_not_deny_current_authorization(field, value):
+    _, grant = _genuine_grant()
+    assert query_active_authorization_for_grant(replace(grant, **{field: value})) is not None
 
 
 def test_t08_authorization_ref_with_altered_scope_is_rejected():

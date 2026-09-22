@@ -74,6 +74,8 @@ class ActionGovernanceInputV1:
     task_reference_context_refs: Tuple[SourceRefV1, ...] = ()
     synthetic_only: bool = True
     candidate_only: bool = True
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -98,3 +100,5 @@ class ActionGovernanceOutputV1:
     scheduler_executed: bool
     database_write_executed: bool
     device_control_executed: bool
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None

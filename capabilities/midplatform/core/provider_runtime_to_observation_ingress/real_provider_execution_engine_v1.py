@@ -47,6 +47,9 @@ from capabilities.midplatform.core.cognitive_flow.integration.governed_capabilit
     adapt_governed_bundle_to_canonical_yolo11n_records_v1,
     produce_yolo11n_governed_execution_records_v1,
 )
+from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
+    RuntimeExecutionGrantDecisionV1,
+)
 from capabilities.midplatform.model_manager.model_contract_repository.yolo11n_external_provisioning.yolo11n_external_provisioning_types_v1 import (
     resolve_yolo11n_external_provisioning_v1,
 )
@@ -158,6 +161,7 @@ class RealProviderExecutionEngineV1:
         *,
         source_ref: str,
         model_path: str,
+        runtime_authorization_grant: Optional[RuntimeExecutionGrantDecisionV1] = None,
     ) -> Dict[str, Any]:
         if self.execution_mode != "LIVE_RUNTIME":
             return {"case_id": case.case_id, "errors": ["real_provider_requires_live_runtime"]}
@@ -272,6 +276,7 @@ class RealProviderExecutionEngineV1:
             admission,
             execute_real_provider=True,
             model_path=model_path,
+            runtime_authorization_grant=runtime_authorization_grant,
         )
         provider_result = _provider_result(provider_request, provider)
         details["provider_native_result"] = _jsonable(provider)

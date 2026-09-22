@@ -11,6 +11,9 @@ from capabilities.evaluation.provider_binding_runtime_allocation_execution_insta
     STATE as SOURCE_STATE,
     build_provider_binding_runtime_allocation_execution_cases_v1,
 )
+from capabilities.evaluation.runtime_grant_pre_execution_authorization_controlled.fixtures_v1 import (
+    build_controlled_canonical_runtime_scope_v1,
+)
 from capabilities.midplatform.core.runtime_executor.runtime_allocation_execution_instance_v1 import (
     ExecutionInstanceInputV1,
     RuntimeAllocationInputV1,
@@ -24,8 +27,12 @@ from capabilities.midplatform.core.runtime_executor.runtime_allocation_preparati
     form_runtime_allocation_preparation_candidates,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
+    build_pregrant_authority_binding_key,
     RuntimeExecutionGrantInputV1,
     form_runtime_execution_grants,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    form_runtime_safety_prerequisite_v1,
 )
 from capabilities.midplatform.provider_runtime_governance.provider_binding_candidate_v1 import (
     ProviderBindingCandidateInputV1,
@@ -84,6 +91,17 @@ def _json_safe(value: Any) -> Any:
 
 def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
     suffix = case.case_id.lower()
+    canonical_scope = build_controlled_canonical_runtime_scope_v1(
+        f"provider-session:{suffix}"
+    )
+    if canonical_scope is None:
+        return {
+            "grant": type("Unavailable", (), {"decisions": ()})(),
+            "binding_decisions": type("Unavailable", (), {"decisions": ()})(),
+            "allocation": type("Unavailable", (), {"records": ()})(),
+            "instances": type("Unavailable", (), {"instances": ()})(),
+        }
+    admitted_action_ref, working_envelope_ref, working_envelope_version_ref = canonical_scope
     target_request = ProviderRuntimeTargetPreparationInputV1(
         preparation_ref=f"session-source-target:{suffix}",
         parent_cognitive_problem_ref=SOURCE_PROBLEM,
@@ -93,9 +111,24 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
         context_refs=SOURCE_CONTEXT,
         trace_ref=f"trace:session-source-target:{suffix}",
         provenance_refs=(f"provenance:session-source-target:{suffix}",),
+        admitted_action_ref=admitted_action_ref,
+        working_envelope_ref=working_envelope_ref,
+        working_envelope_version_ref=working_envelope_version_ref,
     )
     target_before = _json_safe(target_request)
     target = form_provider_runtime_target_candidates(target_request)
+    target = replace(
+        target,
+        targets=tuple(
+            replace(
+                item,
+                provider_candidate_ref="provider_openvins",
+                capability_candidate_ref="spatial_mapping",
+                capability_class_ref="capability-class:spatial-mapping",
+            )
+            for item in target.targets
+        ),
+    )
     target_after = _json_safe(target_request)
     binding_prep = form_provider_binding_runtime_preparation_candidates(
         ProviderBindingRuntimePreparationInputV1(
@@ -106,6 +139,9 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
             context_refs=target.context_refs,
             trace_ref=f"trace:session-source-binding-prep:{suffix}",
             provenance_refs=(f"provenance:session-source-binding-prep:{suffix}",),
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         )
     )
     binding_candidates = form_provider_binding_candidates(
@@ -120,6 +156,9 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
             runtime_requirement_refs=(f"runtime-requirement:{suffix}",),
             resource_class_refs=(f"resource-class:{suffix}",),
             execution_class_refs=(f"execution-class:{suffix}",),
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         )
     )
     allocation_prep = form_runtime_allocation_preparation_candidates(
@@ -131,6 +170,9 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
             context_refs=target.context_refs,
             trace_ref=f"trace:session-source-allocation-prep:{suffix}",
             provenance_refs=(f"provenance:session-source-allocation-prep:{suffix}",),
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         )
     )
     execution_prep = form_execution_instance_preparation_candidates(
@@ -143,8 +185,34 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
             context_refs=target.context_refs,
             trace_ref=f"trace:session-source-instance-prep:{suffix}",
             provenance_refs=(f"provenance:session-source-instance-prep:{suffix}",),
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         )
     )
+    safety_refs = []
+    effect_class = "controlled-observation"
+    if case.grant_status == "DENIED" or case.grant_validity_status in {"STALE", "EXPIRED", "REVOKED"}:
+        effect_class = "blocked-controlled-scenario"
+    for execution_candidate in execution_prep.candidates:
+        binding_candidate = next(
+            item
+            for item in binding_candidates.candidates
+            if item.provider_binding_candidate_ref == execution_candidate.source_provider_binding_candidate_ref
+        )
+        binding_key = build_pregrant_authority_binding_key(
+            execution_instance_preparation_candidate_ref=execution_candidate.execution_instance_preparation_candidate_ref,
+            provider_candidate_ref=binding_candidate.provider_candidate_ref,
+            capability_candidate_ref=binding_candidate.capability_candidate_ref,
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
+        )
+        safety = form_runtime_safety_prerequisite_v1(
+            binding_key=(*binding_key, effect_class),
+            effect_class=effect_class,
+        )
+        safety_refs.append(safety.result_ref)
     grant = form_runtime_execution_grants(
         RuntimeExecutionGrantInputV1(
             grant_request_ref=f"session-source-grant:{suffix}",
@@ -160,12 +228,17 @@ def _source_chain(case: SessionCaseV1, source_case: Any) -> dict[str, Any]:
             constraint_refs=(f"constraint:{suffix}",),
             validity_scope=(f"scope:{suffix}",),
             expiry_boundary_ref=f"expiry:{suffix}",
+            effect_class=effect_class,
+            safety_prerequisite_refs=tuple(safety_refs),
             context_refs=target.context_refs,
             lineage_refs=tuple(
                 dict.fromkeys(ref for item in binding_candidates.candidates for ref in item.lineage_refs)
             ),
             provenance_refs=(f"provenance:session-source-grant:{suffix}",),
             trace_ref=f"trace:session-source-grant:{suffix}",
+            admitted_action_ref=admitted_action_ref,
+            working_envelope_ref=working_envelope_ref,
+            working_envelope_version_ref=working_envelope_version_ref,
         )
     )
     valid_grants = tuple(item for item in grant.decisions if item.decision == "GRANTED")

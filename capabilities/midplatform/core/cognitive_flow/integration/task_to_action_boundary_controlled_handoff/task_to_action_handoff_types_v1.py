@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Optional, Tuple
 
 
 TASK_MANAGER_OWNER = "Task Manager"
@@ -34,6 +34,8 @@ class TaskToActionHandoffCandidateV1:
     safety_refs: Tuple[str, ...]
     resource_refs: Tuple[str, ...]
     provenance_refs: Tuple[str, ...]
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
     candidate_only: bool = True
     action_execution: bool = False
     runtime_dispatch: bool = False

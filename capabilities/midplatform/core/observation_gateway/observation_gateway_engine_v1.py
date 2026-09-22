@@ -23,6 +23,7 @@ from .observation_gateway_core_types_v1 import (
     ObservationGatewayRuntimeAdmissionV1,
     ObservationGatewayAdmissionRuntimeStateV1,
     ObservationGatewayAdmissionQueryV1,
+    _register_gateway_owner_query,
     PerceptionEvidenceV1,
 )
 from .observation_gateway_error_types_v1 import ObservationGatewayErrorV1, make_error
@@ -44,6 +45,7 @@ class ObservationGatewayEngineV1:
         self.__admission_query = ObservationGatewayAdmissionQueryV1._from_gateway_owner(
             self.__admission_runtime_state
         )
+        _register_gateway_owner_query(self.__admission_query)
 
     @property
     def admission_query(self) -> ObservationGatewayAdmissionQueryV1:

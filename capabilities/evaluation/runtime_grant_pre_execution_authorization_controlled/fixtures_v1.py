@@ -26,6 +26,53 @@ from capabilities.midplatform.protocol_manager.module.governance_verification_ba
     PhaseGovernanceProfileV1,
     PROTOCOL_SOURCE_REF,
 )
+from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
+    ACTION_ADMISSION_PROFILE_CONTROLLED_EVALUATION_V1,
+    admit_action_v1,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    ActionGovernanceEngineV1,
+    form_runtime_safety_prerequisite_v1,
+)
+from capabilities.midplatform.core.action_governance.action_io_types_v1 import (
+    ActionGovernanceInputV1,
+)
+from capabilities.midplatform.core.brain_governance.concern_governance_v1 import (
+    BRAIN_CONTROLLED_PROFILE_REF,
+    admit_concern,
+)
+from capabilities.midplatform.core.brain_governance.cognitive_grant_governance_v1 import (
+    issue_cognitive_grant,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_working_envelope_cognitive_requirement_bridge_controlled.a_working_envelope_cognitive_requirement_engine_v1 import (
+    build_working_envelope,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.a_working_envelope_cognitive_requirement_bridge_controlled.working_envelope_governance_v1 import (
+    WORKING_ENVELOPE_PROFILE_CONTROLLED_EVALUATION_V1,
+    admit_working_envelope_v1,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.decision_to_task_manager_controlled_handoff.engine_v1 import (
+    build_decision_task_run_v1,
+)
+from capabilities.midplatform.core.cognitive_flow.integration.task_to_action_boundary_controlled_handoff.engine_v1 import (
+    _action_request,
+    _build_task_to_action_handoff,
+)
+from capabilities.midplatform.core.cognitive_state_formation import (
+    issue_cognitive_state_version_v1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_core_types_v1 import (
+    SourceRefV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_engine_v1 import (
+    CognitiveStateFormationEngineV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_io_types_v1 import (
+    CognitiveStateFormationInputV1,
+)
+from capabilities.midplatform.core.cognitive_state_formation.cognitive_state_formation_registry_v1 import (
+    COGNITIVE_STATE_PROFILE_CONTROLLED_EVALUATION_V1,
+)
 from capabilities.evaluation.provider_binding_runtime_preparation_responsibility_controlled.fixtures_v1 import (
     PROBLEM,
     STATE,
@@ -38,6 +85,121 @@ from capabilities.evaluation.provider_binding_runtime_preparation_responsibility
 
 PHASE = "Phase-Runtime-Grant-PreExecution-Authorization-Controlled-Implementation-v1-001"
 EVALUATION_MARKER = "controlled_runtime_grant_pre_execution_authorization"
+
+
+def build_controlled_canonical_runtime_scope_v1(scope: str):
+    """Use owner APIs to create a controlled runtime-scope fixture."""
+
+    concern = admit_concern(
+        request_ref=f"request:{scope}",
+        goal_ref=f"goal:{scope}",
+        intent_ref=f"intent:{scope}",
+        scope_ref=f"scope:{scope}",
+        basis_refs=(f"basis:{scope}",),
+        policy_refs=(f"policy:{scope}",),
+        profile_ref=BRAIN_CONTROLLED_PROFILE_REF,
+    )
+    if concern is None:
+        return None
+    grant = issue_cognitive_grant(
+        concern_ref=concern.concern_ref,
+        receiver_ref=f"receiver:{scope}",
+        receiver_role="A_REASONING_ROLE",
+        granted_authority_refs=("REALITY_REASONING",),
+        work_ref=f"work:{scope}",
+        scope_ref=f"scope:{scope}",
+        expiry_ref=f"expiry:{scope}",
+        basis_refs=(f"grant-basis:{scope}",),
+        policy_refs=(f"grant-policy:{scope}",),
+        profile_ref=BRAIN_CONTROLLED_PROFILE_REF,
+    )
+    if grant is None:
+        return None
+
+    def _ref(owner: str, value: str) -> SourceRefV1:
+        return SourceRefV1(owner, value, "v1", f"trace:{value}", f"provenance:{value}")
+
+    state = CognitiveStateFormationEngineV1().run_case(
+        CognitiveStateFormationInputV1(
+            scenario_id="F09",
+            context_refs=(_ref("Context", f"context:{scope}"),),
+            pcn_refs=(_ref("PCN", f"pcn:{scope}"),),
+            intent_refs=(_ref("Intent", f"intent:{scope}"),),
+            field_refs=(_ref("Field", f"field:{scope}"),),
+            observation_refs=(_ref("Observation", f"observation:{scope}"),),
+            evidence_refs=(_ref("Evidence", f"evidence:{scope}"),),
+            goal_refs=(_ref("Goal", f"goal:{scope}"),),
+            concern_refs=(_ref("Concern", f"concern:{scope}"),),
+            information_need_refs=(_ref("Need", f"need:{scope}"),),
+            task_refs=(_ref("Task", f"task:{scope}"),),
+            role_refs=(_ref("Role", f"role:{scope}"),),
+            relation_refs=(_ref("Field", f"relation:{scope}"),),
+            candidate_only=True,
+            synthetic_only=True,
+        )
+    )
+    state_version = issue_cognitive_state_version_v1(
+        state,
+        profile_ref=COGNITIVE_STATE_PROFILE_CONTROLLED_EVALUATION_V1,
+    )
+    if state_version is None:
+        return None
+    envelope = admit_working_envelope_v1(
+        build_working_envelope(
+            work_ref=f"work:{scope}",
+            concern_ref=concern.concern_ref,
+            authority_grant_ref=grant.grant_ref,
+            source_state_version_ref=state_version.version_ref,
+            goal_refs=(f"goal:{scope}",),
+            context_refs=(f"context:{scope}",),
+            current_world_refs=(f"world:{scope}:v1",),
+            field_refs=(f"field:{scope}",),
+        ),
+        profile_ref=WORKING_ENVELOPE_PROFILE_CONTROLLED_EVALUATION_V1,
+    )
+    if envelope is None:
+        return None
+    task_summary = build_decision_task_run_v1(
+        f"action-runtime:{scope}",
+        working_envelope=envelope,
+    )
+    task_case = next(
+        item for item in task_summary["cases"] if item["case_id"] == "CASE_A_SUFFICIENT_STOP"
+    )
+    task_handoff, errors = _build_task_to_action_handoff(
+        {**task_case, "resource_state": "available"}
+    )
+    if errors or task_handoff is None:
+        return None
+    action_request = _action_request(task_handoff)
+    action_request["scenario_id"] = f"action-runtime:{scope}"
+    action_output = ActionGovernanceEngineV1().run_case(
+        ActionGovernanceInputV1(**action_request)
+    )
+    safety_key = (
+        action_output.action_candidate.action_candidate_id,
+        task_handoff.task_state_ref,
+        task_handoff.decision_candidate_ref,
+        envelope.envelope_ref,
+        envelope.envelope_version_ref,
+        "controlled-observation",
+    )
+    action_safety = form_runtime_safety_prerequisite_v1(
+        binding_key=safety_key,
+        effect_class="controlled-observation",
+        scope_kind="ACTION_ADMISSION",
+    )
+    action = admit_action_v1(
+        action_output,
+        task_handoff=task_handoff,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+        safety_prerequisite=action_safety,
+        profile_ref=ACTION_ADMISSION_PROFILE_CONTROLLED_EVALUATION_V1,
+    )
+    if action is None:
+        return None
+    return action.admitted_action_ref, envelope.envelope_ref, envelope.envelope_version_ref
 
 
 @dataclass(frozen=True)
@@ -235,5 +397,6 @@ __all__ = [
     "PHASE",
     "EVALUATION_MARKER",
     "RuntimeGrantCaseV1",
+    "build_controlled_canonical_runtime_scope_v1",
     "build_runtime_grant_cases_v1",
 ]

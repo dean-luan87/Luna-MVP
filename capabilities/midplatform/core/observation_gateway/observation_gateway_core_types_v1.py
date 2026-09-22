@@ -242,6 +242,62 @@ class ObservationGatewayAdmissionQueryV1:
 
 
 _GATEWAY_QUERY_BINDINGS: weakref.WeakKeyDictionary = weakref.WeakKeyDictionary()
+_GATEWAY_OWNER_QUERIES: weakref.WeakSet = weakref.WeakSet()
+
+
+def _register_gateway_owner_query(query: ObservationGatewayAdmissionQueryV1) -> None:
+    """Register a query identity issued by the Gateway engine."""
+
+    if isinstance(query, ObservationGatewayAdmissionQueryV1):
+        _GATEWAY_OWNER_QUERIES.add(query)
+
+
+def resolve_owner_bound_gateway_record(
+    query: object,
+    execution_identity_ref: str,
+    gateway_admission_ref: str,
+) -> tuple[GatewayAdmissionStateRecordV1, object | None] | None:
+    """Resolve owner state and its canonical admission identity.
+
+    The binding map is populated only by the Gateway owner construction path.
+    Resolution reads that owner-bound state directly without invoking
+    caller-overridable query methods.
+    """
+
+    try:
+        if query not in _GATEWAY_OWNER_QUERIES:
+            return None
+        state = _GATEWAY_QUERY_BINDINGS.get(query)
+    except TypeError:
+        return None
+    if state is None:
+        return None
+    record = state.lookup(execution_identity_ref, gateway_admission_ref)
+    if not isinstance(record, GatewayAdmissionStateRecordV1):
+        return None
+    canonical_admission = state._canonical_admissions.get(
+        (execution_identity_ref, gateway_admission_ref)
+    )
+    return record, canonical_admission
+
+
+def resolve_owner_bound_gateway_admission(
+    query: object,
+    execution_identity_ref: str,
+    gateway_admission_ref: str,
+    admission: object,
+) -> GatewayAdmissionStateRecordV1 | None:
+    """Resolve Gateway truth and require the canonical admission identity."""
+
+    resolution = resolve_owner_bound_gateway_record(
+        query,
+        execution_identity_ref,
+        gateway_admission_ref,
+    )
+    if resolution is None:
+        return None
+    record, canonical_admission = resolution
+    return record if canonical_admission is admission else None
 
 
 @dataclass(frozen=True)

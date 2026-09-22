@@ -43,6 +43,8 @@ class DecisionGovernanceInputV1:
     human_confirmation_available: bool = False
     synthetic_only: bool = True
     candidate_only: bool = True
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -63,3 +65,5 @@ class DecisionGovernanceOutputV1:
     database_write_executed: bool = False
     source_mutation_executed: bool = False
     fabricated_confirmation: bool = False
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None

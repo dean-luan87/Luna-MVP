@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Optional, Tuple
 
 
 DECISION_OWNER = "Decision Governance"
@@ -34,6 +34,8 @@ class DecisionToTaskManagerHandoffCandidateV1:
     resource_refs: Tuple[str, ...]
     provenance_refs: Tuple[str, ...]
     execution_instance_ref: str
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
     candidate_only: bool = True
     task_execution: bool = False
     action_execution: bool = False
@@ -44,4 +46,3 @@ __all__ = [
     "TASK_MANAGER_OWNER",
     "DecisionToTaskManagerHandoffCandidateV1",
 ]
-

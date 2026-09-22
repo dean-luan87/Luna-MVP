@@ -33,6 +33,36 @@ class RuntimeAuthorizationScopeV1:
     constraint_refs: Tuple[str, ...]
     validity_scope: Tuple[str, ...]
     expiry_boundary_ref: str
+    admitted_action_ref: str = ""
+    working_envelope_ref: str = ""
+    working_envelope_version_ref: str = ""
+
+    def canonical_scope_key(self) -> Tuple[object, ...]:
+        """Return only fields that can authorize the canonical runtime scope.
+
+        ``parent_cognitive_problem_ref`` and ``source_state_ref`` remain on
+        the descriptive DTO for compatibility and diagnostics.  They are not
+        part of the owner-controlled effect authorization identity.
+        """
+
+        return (
+            self.execution_instance_preparation_candidate_ref,
+            self.source_provider_binding_candidate_ref,
+            self.source_runtime_allocation_preparation_ref,
+            self.source_execution_instance_preparation_ref,
+            self.provider_candidate_ref,
+            self.capability_candidate_ref,
+            self.permission_refs,
+            self.safety_refs,
+            self.protocol_refs,
+            self.governance_refs,
+            self.constraint_refs,
+            self.validity_scope,
+            self.expiry_boundary_ref,
+            self.admitted_action_ref,
+            self.working_envelope_ref,
+            self.working_envelope_version_ref,
+        )
 
     @classmethod
     def from_grant(cls, grant: object) -> "RuntimeAuthorizationScopeV1":
@@ -62,6 +92,12 @@ class RuntimeAuthorizationScopeV1:
             constraint_refs=tuple(getattr(grant, "constraint_refs", ())),
             validity_scope=tuple(getattr(grant, "validity_scope", ())),
             expiry_boundary_ref=getattr(grant, "expiry_boundary_ref", ""),
+            admitted_action_ref=getattr(grant, "admitted_action_ref", "") or "",
+            working_envelope_ref=getattr(grant, "working_envelope_ref", "") or "",
+            working_envelope_version_ref=getattr(
+                grant, "working_envelope_version_ref", ""
+            )
+            or "",
         )
 
 
@@ -116,12 +152,24 @@ class RuntimeAuthorizationStateStoreV1:
         authorization_ref: str,
         scope: RuntimeAuthorizationScopeV1,
     ) -> Optional[RuntimeAuthorizationStateV1]:
-        if not authorization_ref or not scope.execution_instance_preparation_candidate_ref:
+        canonical_scope = (
+            scope.admitted_action_ref,
+            scope.working_envelope_ref,
+            scope.working_envelope_version_ref,
+        )
+        if (
+            not authorization_ref
+            or not scope.execution_instance_preparation_candidate_ref
+            or not all(isinstance(value, str) and value.strip() for value in canonical_scope)
+        ):
             return None
         key = (scope.execution_instance_preparation_candidate_ref, authorization_ref)
         existing = self._states.get(key)
         if existing is not None:
-            if existing.scope != scope or existing.status != "AUTHORIZED":
+            if (
+                existing.scope.canonical_scope_key() != scope.canonical_scope_key()
+                or existing.status != "AUTHORIZED"
+            ):
                 return None
             return existing
         state = RuntimeAuthorizationStateV1(
@@ -161,11 +209,18 @@ class RuntimeAuthorizationStateStoreV1:
         authorization_ref: str,
         scope: RuntimeAuthorizationScopeV1,
     ) -> Optional[RuntimeAuthorizationStateV1]:
+        canonical_scope = (
+            scope.admitted_action_ref,
+            scope.working_envelope_ref,
+            scope.working_envelope_version_ref,
+        )
+        if not all(isinstance(value, str) and value.strip() for value in canonical_scope):
+            return None
         key = (scope.execution_instance_preparation_candidate_ref, authorization_ref)
         state = self._states.get(key)
         if state is None or state.status != "AUTHORIZED":
             return None
-        if state.scope != scope:
+        if state.scope.canonical_scope_key() != scope.canonical_scope_key():
             return None
         return state
 

@@ -421,6 +421,8 @@ class DecisionGovernanceEngineV1:
             decision_executed=False,
             action_triggered=False,
             task_created=False,
+            working_envelope_ref=request.working_envelope_ref,
+            working_envelope_version_ref=request.working_envelope_version_ref,
         )
 
     def run_case(
@@ -467,4 +469,6 @@ class DecisionGovernanceEngineV1:
             database_write_executed=False,
             source_mutation_executed=False,
             fabricated_confirmation=False,
+            working_envelope_ref=request.working_envelope_ref,
+            working_envelope_version_ref=request.working_envelope_version_ref,
         )

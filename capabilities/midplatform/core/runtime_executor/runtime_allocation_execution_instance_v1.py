@@ -99,6 +99,9 @@ class RuntimeAllocationRecordV1:
     resource_scheduling: bool = False
     truth_declared: bool = False
     world_truth_declared: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -196,10 +199,26 @@ def _validate_allocation(request: object) -> Tuple[str, ...]:
             errors.append(f"binding_not_bound:{decision.binding_ref}")
         if prep is not None and (
             prep.provider_binding_candidate_ref != decision.source_binding_candidate_ref
-            or prep.parent_cognitive_problem_ref != decision.parent_cognitive_problem_ref
-            or prep.source_state_ref != decision.source_state_ref
         ):
             errors.append(f"binding_preparation_lineage_mismatch:{decision.binding_ref}")
+        if prep is not None:
+            decision_scope = (
+                decision.admitted_action_ref,
+                decision.working_envelope_ref,
+                decision.working_envelope_version_ref,
+            )
+            preparation_scope = (
+                prep.admitted_action_ref,
+                prep.working_envelope_ref,
+                prep.working_envelope_version_ref,
+            )
+            if not all(
+                isinstance(value, str) and value.strip()
+                for value in (*decision_scope, *preparation_scope)
+            ):
+                errors.append(f"canonical_runtime_scope_incomplete:{decision.binding_ref}")
+            elif decision_scope != preparation_scope:
+                errors.append(f"canonical_runtime_scope_mismatch:{decision.binding_ref}")
         if prep is not None:
             for name in (
                 "resource_class_refs", "execution_class_refs", "context_refs",
@@ -259,6 +278,9 @@ def form_runtime_allocation_records(request: object) -> RuntimeAllocationResultV
                 denial_reason=reason,
                 failure_owner_ref=RESOURCE_OWNER if reason else None,
                 runtime_allocated=status == "ALLOCATED",
+                admitted_action_ref=decision.admitted_action_ref,
+                working_envelope_ref=decision.working_envelope_ref,
+                working_envelope_version_ref=decision.working_envelope_version_ref,
             )
         )
     return RuntimeAllocationResultV1(
@@ -309,6 +331,9 @@ class ExecutionInstanceV1:
     evidence_produced: bool = False
     truth_declared: bool = False
     world_truth_declared: bool = False
+    admitted_action_ref: Optional[str] = None
+    working_envelope_ref: Optional[str] = None
+    working_envelope_version_ref: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -390,6 +415,23 @@ def _validate_instance(request: object) -> Tuple[str, ...]:
             errors.append(f"binding_not_bound:{prep.execution_instance_preparation_candidate_ref}")
         if binding is not None and allocation is not None and allocation.source_provider_binding_decision_ref != binding.binding_ref:
             errors.append(f"allocation_binding_mismatch:{prep.execution_instance_preparation_candidate_ref}")
+        sources = (prep, allocation, binding, grant)
+        scopes = tuple(
+            (
+                source.admitted_action_ref,
+                source.working_envelope_ref,
+                source.working_envelope_version_ref,
+            )
+            for source in sources
+            if source is not None
+        )
+        if len(scopes) != len(sources) or not all(
+            all(isinstance(value, str) and value.strip() for value in scope)
+            for scope in scopes
+        ):
+            errors.append(f"canonical_runtime_scope_incomplete:{prep.execution_instance_preparation_candidate_ref}")
+        elif len(set(scopes)) != 1:
+            errors.append(f"canonical_runtime_scope_mismatch:{prep.execution_instance_preparation_candidate_ref}")
     return tuple(dict.fromkeys(errors))
 
 
@@ -424,6 +466,9 @@ def create_execution_instances(request: object) -> ExecutionInstanceResultV1:
                 lineage_refs=_unique((*binding.lineage_refs, allocation.allocation_ref, prep.execution_instance_preparation_candidate_ref)),
                 provenance_refs=_unique((*binding.provenance_refs, *allocation.provenance_refs, *request.provenance_refs)),
                 trace_ref=request.trace_ref,
+                admitted_action_ref=binding.admitted_action_ref,
+                working_envelope_ref=binding.working_envelope_ref,
+                working_envelope_version_ref=binding.working_envelope_version_ref,
             )
         )
     return ExecutionInstanceResultV1(

@@ -98,3 +98,66 @@ class ProvenanceEnvelopeV1:
 
     def __post_init__(self) -> None:
         _validate_reverse_lookup(self.reverse_lookup)
+
+
+@dataclass(frozen=True)
+class CognitiveStateVersionRecordV1:
+    """Owner-issued immutable cognitive-state version record."""
+
+    cognitive_state_ref: str
+    version_ref: str
+    source_version_refs: Tuple[Tuple[str, str], ...]
+    source_identity_refs: Tuple[str, ...]
+    alignment_basis_refs: Tuple[str, ...]
+    provenance_refs: Tuple[str, ...]
+    unknown_refs: Tuple[str, ...]
+    stale_refs: Tuple[str, ...]
+    profile_ref: str
+    owner_ref: str
+    status: str
+    invalidation_reason_ref: str | None = None
+    candidate_only: bool = False
+    canonical: bool = True
+
+    def __post_init__(self) -> None:
+        scalar_fields = (
+            self.cognitive_state_ref,
+            self.version_ref,
+            self.profile_ref,
+            self.owner_ref,
+            self.status,
+        )
+        if any(not isinstance(value, str) or not value.strip() for value in scalar_fields):
+            raise ValueError("cognitive_state_version_record_scalar_invalid")
+        if not isinstance(self.source_version_refs, tuple):
+            raise TypeError("cognitive_state_version_source_versions_must_be_tuple")
+        source_keys = set()
+        for item in self.source_version_refs:
+            if (
+                not isinstance(item, tuple)
+                or len(item) != 2
+                or any(not isinstance(value, str) or not value.strip() for value in item)
+            ):
+                raise ValueError("cognitive_state_version_source_version_pair_invalid")
+            if item[0] in source_keys:
+                raise ValueError("cognitive_state_version_source_version_duplicate")
+            source_keys.add(item[0])
+        for name in (
+            "source_identity_refs",
+            "alignment_basis_refs",
+            "provenance_refs",
+            "unknown_refs",
+            "stale_refs",
+        ):
+            value = getattr(self, name)
+            if not isinstance(value, tuple) or any(
+                not isinstance(item, str) or not item.strip() for item in value
+            ):
+                raise ValueError(f"cognitive_state_version_{name}_invalid")
+        if self.invalidation_reason_ref is not None and (
+            not isinstance(self.invalidation_reason_ref, str)
+            or not self.invalidation_reason_ref.strip()
+        ):
+            raise ValueError("cognitive_state_version_invalidation_reason_invalid")
+        if self.candidate_only is not False or self.canonical is not True:
+            raise ValueError("cognitive_state_version_authority_flags_invalid")

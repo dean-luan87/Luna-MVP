@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from typing import Iterable, Optional, Tuple
 
 from .universal_capability_slot_types_v1 import (
@@ -12,6 +13,13 @@ from .universal_capability_slot_types_v1 import (
     CapabilityResolutionCandidateV1,
     CapabilityScopeAssessmentV1,
     UniversalCapabilitySlotV1,
+    CapabilityRuntimeAdmissionResultV1,
+    CapabilityRuntimeEvaluationProfileV1,
+)
+from .official_capability_catalog_governance_v1 import (
+    CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF,
+    build_controlled_capability_runtime_evaluation_profile_v1,
+    build_official_capability_catalog,
 )
 
 
@@ -24,6 +32,12 @@ SCOPE_RESULTS = (
     "AUTHORITY_NOT_ALLOWED",
     "PROBLEM_CLASS_UNSUPPORTED",
 )
+
+CAPABILITY_CATALOG_REF = "luna-official-capability-catalog"
+CAPABILITY_CATALOG_VERSION = "v1"
+PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF = "capability-runtime-profile:production-canonical"
+CANONICAL_RUNTIME_SCOPE_BINDING_KEY_LENGTH = 7
+CANONICAL_RUNTIME_SCOPE_BINDING_KEY_PREFIX = "runtime-scope:v2"
 
 
 def _match_module(
@@ -341,4 +355,82 @@ def build_scoped_invocation_candidate(
         provider_contract_refs=module.provider_contract_refs if module else resolution.provider_contract_refs,
         gateway_refs=tuple(gateway_refs),
         trace_refs=tuple(trace_refs),
+    )
+
+
+def evaluate_runtime_capability_admission_v1(
+    *,
+    binding_key: Tuple[str, ...],
+    capability_candidate_ref: str,
+    provider_candidate_ref: str,
+    execution_instance_preparation_candidate_ref: str,
+    profile_ref: object = PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF,
+) -> CapabilityRuntimeAdmissionResultV1:
+    """Resolve capability admission from an owner-defined current profile."""
+
+    profile = resolve_capability_runtime_evaluation_profile_v1(profile_ref)
+    if profile is None:
+        return CapabilityRuntimeAdmissionResultV1(
+            result_ref="",
+            binding_key=tuple(binding_key),
+            capability_candidate_ref=capability_candidate_ref,
+            provider_candidate_ref=provider_candidate_ref,
+            execution_instance_preparation_candidate_ref=execution_instance_preparation_candidate_ref,
+            status="DENIED",
+            reason="capability_evaluation_profile_invalid",
+            catalog_ref="capability-runtime-evaluation-profiles",
+            catalog_version="v1",
+            evaluation_profile_ref="",
+        )
+
+    digest = hashlib.sha256(
+        "|".join(
+            (
+                *binding_key,
+                capability_candidate_ref,
+                provider_candidate_ref,
+                profile.profile_ref,
+                profile.catalog_version,
+            )
+        ).encode("utf-8")
+    ).hexdigest()[:24]
+    result_ref = f"capability-runtime-admission:{digest}"
+    valid_binding = (
+        len(binding_key) == CANONICAL_RUNTIME_SCOPE_BINDING_KEY_LENGTH
+        and binding_key[0] == CANONICAL_RUNTIME_SCOPE_BINDING_KEY_PREFIX
+        and all(binding_key)
+    )
+    admitted = valid_binding and capability_candidate_ref in profile.capability_refs
+    return CapabilityRuntimeAdmissionResultV1(
+        result_ref=result_ref if valid_binding else "",
+        binding_key=tuple(binding_key),
+        capability_candidate_ref=capability_candidate_ref,
+        provider_candidate_ref=provider_candidate_ref,
+        execution_instance_preparation_candidate_ref=execution_instance_preparation_candidate_ref,
+        status="ADMITTED" if admitted else "DENIED",
+        reason="current_capability_profile_match" if admitted else "capability_not_registered_in_selected_profile",
+        catalog_ref=profile.catalog_ref,
+        catalog_version=profile.catalog_version,
+        evaluation_profile_ref=profile.profile_ref,
+    )
+
+
+def resolve_capability_runtime_evaluation_profile_v1(
+    profile_ref: object = PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF,
+) -> CapabilityRuntimeEvaluationProfileV1 | None:
+    if not isinstance(profile_ref, str) or not profile_ref.strip():
+        return None
+    if profile_ref == CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF:
+        return build_controlled_capability_runtime_evaluation_profile_v1()
+    if profile_ref != PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF:
+        return None
+    catalog = build_official_capability_catalog()
+    return CapabilityRuntimeEvaluationProfileV1(
+        profile_ref=PRODUCTION_CAPABILITY_EVALUATION_PROFILE_REF,
+        owner_ref="Capability Admission Governance",
+        catalog_ref=CAPABILITY_CATALOG_REF,
+        catalog_version=CAPABILITY_CATALOG_VERSION,
+        capability_refs=tuple(entry.module_ref for entry in catalog.entries),
+        provenance_refs=("provenance:capability-runtime-governance:production",),
+        production_canonical=True,
     )
