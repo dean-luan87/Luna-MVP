@@ -202,6 +202,11 @@ class RuntimeExecutionGrantDecisionV1:
     admitted_action_ref: Optional[str] = None
     working_envelope_ref: Optional[str] = None
     working_envelope_version_ref: Optional[str] = None
+    # Owner-issued Runtime Safety lineage.  ``safety_refs`` remains a
+    # compatibility/diagnostic projection and is never the effect-time truth
+    # source.
+    runtime_safety_prerequisite_ref: Optional[str] = None
+    runtime_safety_binding_key: Tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -675,6 +680,12 @@ def _decision_for(
         admitted_action_ref=request.admitted_action_ref,
         working_envelope_ref=request.working_envelope_ref,
         working_envelope_version_ref=request.working_envelope_version_ref,
+        runtime_safety_prerequisite_ref=(
+            safety_prerequisite.result_ref if safety_prerequisite is not None else None
+        ),
+        runtime_safety_binding_key=(
+            safety_prerequisite.binding_key if safety_prerequisite is not None else ()
+        ),
     )
 
 

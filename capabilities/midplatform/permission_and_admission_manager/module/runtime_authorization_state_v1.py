@@ -10,9 +10,22 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 from typing import Dict, Optional, Tuple
 
+from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
+    query_current_admitted_action_v1,
+)
+from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
+    query_current_runtime_safety_prerequisite_v1,
+)
+
 
 AUTHORIZATION_STATE_STATUSES = ("AUTHORIZED", "INVALIDATED")
 AUTHORIZATION_STATE_KEY = Tuple[str, str]
+EFFECT_ELIGIBILITY_FAILURE_CODES = (
+    "RUNTIME_AUTHORIZATION_NOT_CURRENT",
+    "ADMITTED_ACTION_NOT_CURRENT",
+    "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT",
+    "TEMPORAL_EFFECT_ELIGIBILITY_UNRESOLVED",
+)
 
 @dataclass(frozen=True)
 class RuntimeAuthorizationScopeV1:
@@ -36,6 +49,8 @@ class RuntimeAuthorizationScopeV1:
     admitted_action_ref: str = ""
     working_envelope_ref: str = ""
     working_envelope_version_ref: str = ""
+    runtime_safety_prerequisite_ref: str = ""
+    runtime_safety_binding_key: Tuple[str, ...] = ()
 
     def canonical_scope_key(self) -> Tuple[object, ...]:
         """Return only fields that can authorize the canonical runtime scope.
@@ -98,6 +113,13 @@ class RuntimeAuthorizationScopeV1:
                 grant, "working_envelope_version_ref", ""
             )
             or "",
+            runtime_safety_prerequisite_ref=getattr(
+                grant, "runtime_safety_prerequisite_ref", ""
+            )
+            or "",
+            runtime_safety_binding_key=tuple(
+                getattr(grant, "runtime_safety_binding_key", ())
+            ),
         )
 
 
@@ -116,6 +138,15 @@ class RuntimeAuthorizationStateV1:
     status: str
     scope: RuntimeAuthorizationScopeV1
     invalidation_reason: Optional[str] = None
+
+
+@dataclass(frozen=True)
+class RuntimeEffectEligibilityResultV1:
+    """Bounded effect-time answer owned by Permission / Admission Manager."""
+
+    eligible: bool
+    failure_code: Optional[str] = None
+    authorization_state: Optional[RuntimeAuthorizationStateV1] = None
 
 
 class RuntimeAuthorizationStateStoreV1:
@@ -302,6 +333,80 @@ def query_active_authorization_for_grant(
     )
 
 
+def query_current_effect_eligibility_for_grant(
+    grant: object,
+) -> RuntimeEffectEligibilityResultV1:
+    """Resolve the fixed P1 effect-time closure through canonical owners.
+
+    The Runtime Authorization state is resolved first.  Action and Safety
+    owner queries then use only the owner-issued typed projections stored in
+    that canonical state.  Compatibility ``safety_refs`` are intentionally
+    not consulted.
+    """
+
+    if (
+        getattr(grant, "decision", None) != "GRANTED"
+        or getattr(grant, "authoritative", None) is not True
+        or getattr(grant, "candidate_only", None) is not False
+        or getattr(grant, "execution_authorized", None) is not True
+        or getattr(grant, "validity_status", None) != "FRESH"
+        or getattr(grant, "revocation_ref", None)
+    ):
+        return RuntimeEffectEligibilityResultV1(
+            eligible=False,
+            failure_code="RUNTIME_AUTHORIZATION_NOT_CURRENT",
+        )
+
+    authorization_state = query_active_authorization_for_grant(grant)
+    if authorization_state is None:
+        return RuntimeEffectEligibilityResultV1(
+            eligible=False,
+            failure_code="RUNTIME_AUTHORIZATION_NOT_CURRENT",
+        )
+
+    scope = authorization_state.scope
+    if (
+        not scope.admitted_action_ref
+        or not scope.runtime_safety_prerequisite_ref
+        or not isinstance(scope.runtime_safety_binding_key, tuple)
+        or not scope.runtime_safety_binding_key
+        or not all(
+            isinstance(value, str) and value.strip()
+            for value in scope.runtime_safety_binding_key
+        )
+    ):
+        return RuntimeEffectEligibilityResultV1(
+            eligible=False,
+            failure_code="TEMPORAL_EFFECT_ELIGIBILITY_UNRESOLVED",
+            authorization_state=authorization_state,
+        )
+
+    if query_current_admitted_action_v1(scope.admitted_action_ref) is None:
+        return RuntimeEffectEligibilityResultV1(
+            eligible=False,
+            failure_code="ADMITTED_ACTION_NOT_CURRENT",
+            authorization_state=authorization_state,
+        )
+
+    if (
+        query_current_runtime_safety_prerequisite_v1(
+            binding_key=scope.runtime_safety_binding_key,
+            result_ref=scope.runtime_safety_prerequisite_ref,
+        )
+        is None
+    ):
+        return RuntimeEffectEligibilityResultV1(
+            eligible=False,
+            failure_code="RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT",
+            authorization_state=authorization_state,
+        )
+
+    return RuntimeEffectEligibilityResultV1(
+        eligible=True,
+        authorization_state=authorization_state,
+    )
+
+
 __all__ = [
     "AUTHORIZATION_STATE_STATUSES",
     "AUTHORIZATION_STATE_KEY",
@@ -309,5 +414,8 @@ __all__ = [
     "RuntimeAuthorizationStateV1",
     "RuntimeAuthorizationStateStoreV1",
     "RuntimeAuthorizationStateReadViewV1",
+    "RuntimeEffectEligibilityResultV1",
+    "EFFECT_ELIGIBILITY_FAILURE_CODES",
     "query_active_authorization_for_grant",
+    "query_current_effect_eligibility_for_grant",
 ]

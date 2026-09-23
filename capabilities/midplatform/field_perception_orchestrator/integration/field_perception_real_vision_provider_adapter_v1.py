@@ -17,7 +17,7 @@ from capabilities.midplatform.field_perception_orchestrator.integration.raw_came
     RawFrameRecordV1,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
-    query_active_authorization_for_grant,
+    query_current_effect_eligibility_for_grant,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantDecisionV1,
@@ -300,18 +300,14 @@ def run_authorized_vision_provider_v1(
             provider_error_detail="canonical Capability/Model, Runtime Admission, and Model/Provider references are required before real invocation",
         )
     if execute_real_provider:
+        effect_eligibility = query_current_effect_eligibility_for_grant(
+            runtime_authorization_grant
+        )
         owner_authorized = bool(
-            isinstance(runtime_authorization_grant, RuntimeExecutionGrantDecisionV1)
-            and runtime_authorization_grant.decision == "GRANTED"
-            and runtime_authorization_grant.authoritative is True
-            and runtime_authorization_grant.candidate_only is False
-            and runtime_authorization_grant.execution_authorized is True
-            and runtime_authorization_grant.validity_status == "FRESH"
-            and not runtime_authorization_grant.revocation_ref
+            effect_eligibility.eligible
+            and isinstance(runtime_authorization_grant, RuntimeExecutionGrantDecisionV1)
             and runtime_authorization_grant.provider_candidate_ref
             == admission.provider_candidate_ref
-            and query_active_authorization_for_grant(runtime_authorization_grant)
-            is not None
         )
         if not owner_authorized:
             return _result(
@@ -320,9 +316,12 @@ def run_authorized_vision_provider_v1(
                 accepted=False,
                 invocation_performed=False,
                 detector_mode="rejected",
-                error_code="RUNTIME_AUTHORIZATION_NOT_CURRENT",
+                error_code=(
+                    effect_eligibility.failure_code
+                    or "RUNTIME_AUTHORIZATION_NOT_CURRENT"
+                ),
                 provider_error_stage="runtime_authorization",
-                provider_error_detail="current Permission / Admission Manager authorization is required before real invocation",
+                provider_error_detail="current Permission / Admission Manager effect eligibility is required before real invocation",
             )
     if execute_real_provider and admission is not None and admission.canonical_invalidation_refs:
         return _result(

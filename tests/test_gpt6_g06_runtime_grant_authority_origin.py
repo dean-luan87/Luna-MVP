@@ -16,6 +16,7 @@ from capabilities.midplatform.core.runtime_executor.runtime_allocation_preparati
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_authorization_state_v1 import (
     query_active_authorization_for_grant,
+    query_current_effect_eligibility_for_grant,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantInputV1,
@@ -197,12 +198,12 @@ def _canonical_runtime_scope(case: str):
         profile_ref=ACTION_ADMISSION_PROFILE_PRODUCTION_CANONICAL,
     )
     assert admitted_action is not None
-    return admitted_action, envelope
+    return admitted_action, envelope, state
 
 
 def _public_candidate_chain():
     case = build_runtime_grant_cases_v1()[0]
-    admitted_action, envelope = _canonical_runtime_scope("gpt6-g06")
+    admitted_action, envelope, state = _canonical_runtime_scope("gpt6-g06")
     target = form_provider_binding_runtime_preparation_candidates(
         ProviderBindingRuntimePreparationInputV1(
             preparation_ref="gpt6-g06-target",
@@ -251,12 +252,12 @@ def _public_candidate_chain():
             provenance_refs=("provenance:gpt6-g06-execution",),
         )
     )
-    return case, binding, allocation, execution, admitted_action, envelope
+    return case, binding, allocation, execution, admitted_action, envelope, state
 
 
 def test_v2_scope_accepts_empty_legacy_metadata_through_all_preparation_sites():
     source_case = build_provider_runtime_target_preparation_cases_v1()[0]
-    admitted_action, envelope = _canonical_runtime_scope("g06-legacy-extinction")
+    admitted_action, envelope, _ = _canonical_runtime_scope("g06-legacy-extinction")
     scope = {
         "admitted_action_ref": admitted_action.admitted_action_ref,
         "working_envelope_ref": envelope.envelope_ref,
@@ -367,7 +368,7 @@ def test_v2_scope_accepts_empty_legacy_metadata_through_all_preparation_sites():
 
 
 def test_public_grant_path_requires_current_owner_prerequisites():
-    case, binding, allocation, execution, admitted_action, envelope = _public_candidate_chain()
+    case, binding, allocation, execution, admitted_action, envelope, state = _public_candidate_chain()
     canonical_binding = replace(
         binding.candidates[0],
         provider_candidate_ref="provider_openvins",
@@ -443,7 +444,21 @@ def test_public_grant_path_requires_current_owner_prerequisites():
     assert authorized.decisions
     grant = authorized.decisions[0]
     assert grant.decision == "GRANTED"
-    assert query_active_authorization_for_grant(grant) is not None
+    runtime_authorization_state = query_active_authorization_for_grant(grant)
+    assert runtime_authorization_state is not None
+    assert runtime_authorization_state.scope.runtime_safety_prerequisite_ref == safety.result_ref
+    assert runtime_authorization_state.scope.runtime_safety_binding_key == safety.binding_key
+    eligibility = query_current_effect_eligibility_for_grant(grant)
+    assert eligibility.eligible is True
+    assert eligibility.failure_code is None
+
+    new_state_version = issue_cognitive_state_version_v1(
+        state,
+        profile_ref=COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL,
+    )
+    assert new_state_version is not None
+    assert new_state_version.version_ref != envelope.cognitive_state_version_ref
+    assert query_current_effect_eligibility_for_grant(grant).eligible is True
 
     mismatched_binding_key = (*binding_key[:-1], "capability:gpt6-g06-mismatch")
     mismatched_safety = form_runtime_safety_prerequisite_v1(
@@ -467,6 +482,12 @@ def test_public_grant_path_requires_current_owner_prerequisites():
     denied = form_runtime_execution_grants(authorized_request)
     assert denied.decisions
     assert denied.decisions[0].decision == "DENIED"
+
+    eligibility_after_safety_invalidation = query_current_effect_eligibility_for_grant(
+        grant
+    )
+    assert eligibility_after_safety_invalidation.eligible is False
+    assert eligibility_after_safety_invalidation.failure_code == "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT"
 
     invalidated = invalidate_runtime_authorization_state(
         authorization_ref=grant.authorization_ref,

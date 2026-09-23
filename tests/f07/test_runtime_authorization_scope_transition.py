@@ -24,6 +24,7 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_au
     RuntimeAuthorizationStateStoreV1,
     RuntimeAuthorizationStateV1,
     query_active_authorization_for_grant,
+    query_current_effect_eligibility_for_grant,
 )
 from capabilities.midplatform.permission_and_admission_manager.module.runtime_execution_grant_v1 import (
     RuntimeExecutionGrantInputV1,
@@ -324,7 +325,23 @@ def _genuine_grant(**changes):
 def test_t01_genuine_canonical_authorization_is_active():
     _, grant = _genuine_grant()
     assert grant.decision == "GRANTED"
-    assert query_active_authorization_for_grant(grant) is not None
+    state = query_active_authorization_for_grant(grant)
+    assert state is not None
+    assert state.scope.runtime_safety_prerequisite_ref == grant.runtime_safety_prerequisite_ref
+    assert state.scope.runtime_safety_binding_key == grant.runtime_safety_binding_key
+    assert query_current_effect_eligibility_for_grant(grant).eligible is True
+
+
+def test_t01_effect_eligibility_uses_canonical_typed_projection_not_caller_fallback():
+    _, grant = _genuine_grant()
+    missing_typed_projection = replace(
+        grant,
+        runtime_safety_prerequisite_ref=None,
+        runtime_safety_binding_key=(),
+    )
+    result = query_current_effect_eligibility_for_grant(missing_typed_projection)
+    assert result.eligible is True
+    assert result.failure_code is None
 
 
 def test_t02_caller_created_granted_projection_is_rejected():
