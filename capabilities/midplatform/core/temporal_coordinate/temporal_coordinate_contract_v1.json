@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "luna.temporal_coordinate.contract.v1",
+  "title": "Luna Temporal Coordinate System Contract v1",
+  "type": "object",
+  "system_class": "SYSTEM_PRIMITIVE",
+  "authority_boundary": {
+    "domain_truth_authority": false,
+    "currentness_authority": false,
+    "effect_eligibility_authority": false,
+    "admission_authority": false,
+    "domain_mutation_authority": false,
+    "lifecycle_transition_authority": false,
+    "invalidation_authority": false,
+    "owner_requery_authority": false,
+    "global_manager": false,
+    "registry": false,
+    "mapping_engine": false,
+    "automatic_clock_mapping": false,
+    "domain_imports": false
+  },
+  "semantics": {
+    "interval_convention": "[start,end)",
+    "natural_comparability": "same_clock_domain_identity_only",
+    "mapping_execution": "not_implemented_v1",
+    "temporal_order_is_typed": true,
+    "domain_roles_are_not_intrinsic_point_properties": true,
+    "incomparable_is_a_valid_result": true,
+    "unknown_is_not_missing": true
+  },
+  "clock_domain": {
+    "required": [
+      "domain_id",
+      "clock_kind",
+      "unit",
+      "origin_semantics",
+      "persistence_scope",
+      "ordering_guarantee",
+      "duration_suitability"
+    ],
+    "enums": {
+      "clock_kind": [
+        "utc_wall",
+        "process_monotonic",
+        "device_monotonic",
+        "device_timestamp",
+        "provider_timestamp",
+        "external",
+        "unknown"
+      ],
+      "unit": ["nanosecond", "microsecond", "millisecond", "second", "native_tick", "unknown"],
+      "origin_semantics": [
+        "unix_epoch_utc",
+        "process_start",
+        "device_boot",
+        "provider_defined",
+        "external_declared",
+        "unknown"
+      ],
+      "persistence_scope": [
+        "process_only",
+        "device_session",
+        "device_persistent",
+        "cross_process",
+        "cross_device",
+        "external_contract",
+        "unknown"
+      ],
+      "ordering_guarantee": ["strict_monotonic", "non_decreasing", "none", "unknown"],
+      "duration_suitability": ["safe", "conditional", "unsafe", "unknown"]
+    }
+  },
+  "uncertainty": {
+    "statuses": ["exact", "bounded", "estimated", "inferred", "unknown"],
+    "exact_invariant": "EXACT requires null precision and uncertainty bounds",
+    "confidence_is_external": true
+  },
+  "mapping": {
+    "required": [
+      "mapping_ref",
+      "mapping_version",
+      "source_domain_id",
+      "target_domain_id",
+      "method",
+      "status"
+    ],
+    "statuses": ["declared", "verified", "unknown"],
+    "descriptor_grants_comparability": false
+  },
+  "wire": {
+    "enum_encoding": "canonical_string_value",
+    "integer_ticks": "integer",
+    "none_semantics": "explicit_null_or_open_bound",
+    "float_conversion": false,
+    "datetime_conversion": false,
+    "canonical_json": "sorted_keys_compact_utf8"
+  },
+  "forbidden": [
+    "TemporalManager",
+    "ClockRegistry",
+    "TemporalRegistry",
+    "CurrentnessRouter",
+    "TemporalDependencyGraph",
+    "OwnerResolver",
+    "MappingEngine",
+    "domain_truth_resolution",
+    "currentness_query",
+    "effect_eligibility_query",
+    "owner_requery",
+    "domain_mutation"
+  ]
+}
