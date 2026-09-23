@@ -78,6 +78,14 @@ class TemporalDurationSuitabilityV1(_ValueEnum):
     UNKNOWN = "unknown"
 
 
+class ConditionalDurationOperationV1(_ValueEnum):
+    BOUNDED_LOCAL_POLICY_DELTA = "bounded_local_policy_delta"
+
+
+class ConditionalDurationBasisV1(_ValueEnum):
+    DOMAIN_DECLARED_OPERATION = "domain_declared_operation"
+
+
 class TemporalUncertaintyStatusV1(_ValueEnum):
     EXACT = "exact"
     BOUNDED = "bounded"
@@ -200,6 +208,37 @@ def _clock_semantics_equal(left: "ClockDomainV1", right: "ClockDomainV1") -> boo
         and left.ordering_guarantee is right.ordering_guarantee
         and left.duration_suitability is right.duration_suitability
     )
+
+
+@dataclass(frozen=True)
+class ConditionalDurationPolicyV1:
+    """A domain contract declaration for one bounded duration operation.
+
+    This value is not an authorization token or proof of authority.  It only
+    identifies the domain-owned contract that permits a conditional duration
+    operation when the Foundation checks all other temporal constraints.
+    """
+
+    policy_id: str
+    policy_version: str
+    applicable_domain_id: str
+    allowed_operation: ConditionalDurationOperationV1
+    semantic_basis: ConditionalDurationBasisV1
+
+    def __post_init__(self) -> None:
+        _require_nonempty_text(self.policy_id, "policy_id")
+        _require_nonempty_text(self.policy_version, "policy_version")
+        _require_nonempty_text(self.applicable_domain_id, "applicable_domain_id")
+        _require_enum(
+            self.allowed_operation,
+            ConditionalDurationOperationV1,
+            "allowed_operation",
+        )
+        _require_enum(
+            self.semantic_basis,
+            ConditionalDurationBasisV1,
+            "semantic_basis",
+        )
 
 
 @dataclass(frozen=True)
@@ -680,6 +719,21 @@ def _point_bounds(point: TemporalPointV1) -> tuple[int, int] | None:
     return point.uncertainty.bounds_for(point.value_ticks)
 
 
+def _conditional_duration_policy_failure(
+    policy: ConditionalDurationPolicyV1 | None,
+    domain: ClockDomainV1,
+) -> str | None:
+    if policy is None:
+        return "conditional_duration_policy_required"
+    if policy.applicable_domain_id != domain.domain_id:
+        return "conditional_duration_policy_domain_mismatch"
+    if policy.allowed_operation is not ConditionalDurationOperationV1.BOUNDED_LOCAL_POLICY_DELTA:
+        return "conditional_duration_policy_operation_mismatch"
+    if policy.semantic_basis is not ConditionalDurationBasisV1.DOMAIN_DECLARED_OPERATION:
+        return "conditional_duration_policy_basis_mismatch"
+    return None
+
+
 def compare_points(
     left: TemporalPointV1,
     right: TemporalPointV1,
@@ -719,8 +773,17 @@ def duration_between(
     start: TemporalPointV1,
     end: TemporalPointV1,
     mapping: TemporalMappingV1 | None = None,
+    *,
+    conditional_policy: ConditionalDurationPolicyV1 | None = None,
 ) -> TemporalDurationResultV1:
-    """Return a numeric duration only for safe, exact, same-domain points."""
+    """Return a numeric duration only under the domain duration contract."""
+
+    if conditional_policy is not None and not isinstance(
+        conditional_policy, ConditionalDurationPolicyV1
+    ):
+        raise TypeError(
+            "conditional_policy must be ConditionalDurationPolicyV1 or None"
+        )
 
     comparable = is_comparable(start, end, mapping)
     if comparable.status is ComparabilityStatusV1.UNKNOWN:
@@ -745,13 +808,25 @@ def duration_between(
             comparable.status,
             "duration_suitability_unknown",
         )
-    if suitability is not TemporalDurationSuitabilityV1.SAFE:
+    if suitability is TemporalDurationSuitabilityV1.UNSAFE:
         return TemporalDurationResultV1(
             TemporalDurationStatusV1.UNSUITABLE,
             None,
             comparable.status,
             f"duration_suitability_{suitability.value}",
         )
+    if suitability is TemporalDurationSuitabilityV1.CONDITIONAL:
+        policy_failure = _conditional_duration_policy_failure(
+            conditional_policy,
+            start.clock_domain,
+        )
+        if policy_failure is not None:
+            return TemporalDurationResultV1(
+                TemporalDurationStatusV1.UNSUITABLE,
+                None,
+                comparable.status,
+                policy_failure,
+            )
     if (
         start.uncertainty.status is not TemporalUncertaintyStatusV1.EXACT
         or end.uncertainty.status is not TemporalUncertaintyStatusV1.EXACT

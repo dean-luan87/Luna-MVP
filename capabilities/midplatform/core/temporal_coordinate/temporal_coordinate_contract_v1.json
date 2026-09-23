@@ -26,7 +26,27 @@
     "temporal_order_is_typed": true,
     "domain_roles_are_not_intrinsic_point_properties": true,
     "incomparable_is_a_valid_result": true,
-    "unknown_is_not_missing": true
+    "unknown_is_not_missing": true,
+    "conditional_duration": {
+      "policy_type": "ConditionalDurationPolicyV1",
+      "policy_semantics": "domain_contract_declaration_not_authority_proof",
+      "required_fields": [
+        "policy_id",
+        "policy_version",
+        "applicable_domain_id",
+        "allowed_operation",
+        "semantic_basis"
+      ],
+      "allowed_operations": ["bounded_local_policy_delta"],
+      "semantic_bases": ["domain_declared_operation"],
+      "requires_explicit_policy": true,
+      "safe_policy_behavior": "existing_safe_semantics_unchanged",
+      "unsafe_policy_bypass": false,
+      "unknown_policy_bypass": false,
+      "caller_boolean_escape_hatch": false,
+      "policy_registry": false,
+      "policy_store": false
+    }
   },
   "clock_domain": {
     "required": [

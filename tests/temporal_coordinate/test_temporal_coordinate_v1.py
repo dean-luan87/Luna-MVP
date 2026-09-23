@@ -10,6 +10,9 @@ from capabilities.midplatform.core.temporal_coordinate.temporal_coordinate_v1 im
     ClockDomainV1,
     ClockKindV1,
     ComparabilityStatusV1,
+    ConditionalDurationBasisV1,
+    ConditionalDurationOperationV1,
+    ConditionalDurationPolicyV1,
     IntervalRelationV1,
     PointRelationV1,
     TemporalCoordinateConstructionError,
@@ -72,6 +75,16 @@ def _point(
         clock_domain=domain or _domain(),
         uncertainty=uncertainty or TemporalUncertaintyV1(TemporalUncertaintyStatusV1.EXACT),
         provenance=provenance,
+    )
+
+
+def _conditional_policy(domain_id: str = "wall:conditional") -> ConditionalDurationPolicyV1:
+    return ConditionalDurationPolicyV1(
+        policy_id="policy:field-event-local-delta",
+        policy_version="v1",
+        applicable_domain_id=domain_id,
+        allowed_operation=ConditionalDurationOperationV1.BOUNDED_LOCAL_POLICY_DELTA,
+        semantic_basis=ConditionalDurationBasisV1.DOMAIN_DECLARED_OPERATION,
     )
 
 
@@ -276,6 +289,168 @@ def test_duration_requires_safe_same_domain_and_exact_points() -> None:
     assert duration_between(_point(2, uncertainty=uncertain), _point(5)).status is TemporalDurationStatusV1.UNCERTAIN
 
 
+def test_safe_duration_with_conditional_policy_keeps_safe_semantics() -> None:
+    safe = _domain("wall:safe")
+    result = duration_between(
+        _point(2, safe),
+        _point(5, safe),
+        conditional_policy=_conditional_policy("wall:other"),
+    )
+    assert result.status is TemporalDurationStatusV1.EXACT
+    assert result.duration_ticks == 3
+
+
+def test_conditional_duration_requires_matching_policy() -> None:
+    domain = _domain(
+        "wall:conditional",
+        suitability=TemporalDurationSuitabilityV1.CONDITIONAL,
+    )
+    assert duration_between(_point(2, domain), _point(5, domain)).status is TemporalDurationStatusV1.UNSUITABLE
+    result = duration_between(
+        _point(2, domain),
+        _point(5, domain),
+        conditional_policy=_conditional_policy(),
+    )
+    assert result.status is TemporalDurationStatusV1.EXACT
+    assert result.duration_ticks == 3
+
+
+def test_conditional_duration_policy_domain_mismatch_is_blocked() -> None:
+    domain = _domain(
+        "wall:conditional",
+        suitability=TemporalDurationSuitabilityV1.CONDITIONAL,
+    )
+    result = duration_between(
+        _point(2, domain),
+        _point(5, domain),
+        conditional_policy=_conditional_policy("wall:other"),
+    )
+    assert result.status is TemporalDurationStatusV1.UNSUITABLE
+    assert result.duration_ticks is None
+    assert result.reason == "conditional_duration_policy_domain_mismatch"
+
+
+@pytest.mark.parametrize("field_name", ["policy_id", "policy_version", "applicable_domain_id"])
+def test_conditional_duration_policy_requires_nonempty_identity_fields(field_name: str) -> None:
+    values = {
+        "policy_id": "policy:test",
+        "policy_version": "v1",
+        "applicable_domain_id": "wall:conditional",
+        "allowed_operation": ConditionalDurationOperationV1.BOUNDED_LOCAL_POLICY_DELTA,
+        "semantic_basis": ConditionalDurationBasisV1.DOMAIN_DECLARED_OPERATION,
+    }
+    values[field_name] = ""
+    with pytest.raises(TemporalCoordinateConstructionError):
+        ConditionalDurationPolicyV1(**values)
+
+
+def test_conditional_duration_policy_rejects_untyped_enum_values() -> None:
+    with pytest.raises(TypeError):
+        ConditionalDurationPolicyV1(
+            policy_id="policy:test",
+            policy_version="v1",
+            applicable_domain_id="wall:conditional",
+            allowed_operation="bounded_local_policy_delta",  # type: ignore[arg-type]
+            semantic_basis=ConditionalDurationBasisV1.DOMAIN_DECLARED_OPERATION,
+        )
+    with pytest.raises(TypeError):
+        ConditionalDurationPolicyV1(
+            policy_id="policy:test",
+            policy_version="v1",
+            applicable_domain_id="wall:conditional",
+            allowed_operation=ConditionalDurationOperationV1.BOUNDED_LOCAL_POLICY_DELTA,
+            semantic_basis="domain_declared_operation",  # type: ignore[arg-type]
+        )
+
+
+def test_conditional_policy_cannot_upgrade_unsafe_or_unknown_domains() -> None:
+    unsafe = _domain(
+        "wall:unsafe",
+        suitability=TemporalDurationSuitabilityV1.UNSAFE,
+    )
+    unknown = _domain(
+        "wall:unknown",
+        kind=ClockKindV1.UNKNOWN,
+        unit=TemporalUnitV1.UNKNOWN,
+        origin=TemporalOriginV1.UNKNOWN,
+        persistence=TemporalPersistenceScopeV1.UNKNOWN,
+        ordering=TemporalOrderingGuaranteeV1.UNKNOWN,
+        suitability=TemporalDurationSuitabilityV1.UNKNOWN,
+    )
+    assert duration_between(
+        _point(2, unsafe), _point(5, unsafe), conditional_policy=_conditional_policy("wall:unsafe")
+    ).status is TemporalDurationStatusV1.UNSUITABLE
+    assert duration_between(
+        _point(2, unknown), _point(5, unknown), conditional_policy=_conditional_policy("wall:unknown")
+    ).status is TemporalDurationStatusV1.UNKNOWN
+
+
+def test_conditional_policy_cannot_bypass_domain_or_semantic_conflicts() -> None:
+    left = _point(
+        1,
+        _domain("wall:conditional", suitability=TemporalDurationSuitabilityV1.CONDITIONAL),
+    )
+    right = _point(
+        2,
+        _domain("wall:other", suitability=TemporalDurationSuitabilityV1.CONDITIONAL),
+    )
+    assert duration_between(
+        left,
+        right,
+        conditional_policy=_conditional_policy("wall:conditional"),
+    ).status is TemporalDurationStatusV1.NOT_COMPARABLE
+
+    conflicting = _domain(
+        "wall:conditional",
+        unit=TemporalUnitV1.MILLISECOND,
+        suitability=TemporalDurationSuitabilityV1.CONDITIONAL,
+    )
+    result = duration_between(
+        left,
+        _point(2, conflicting),
+        conditional_policy=_conditional_policy("wall:conditional"),
+    )
+    assert result.status is TemporalDurationStatusV1.UNKNOWN
+    assert result.duration_ticks is None
+
+
+def test_conditional_policy_cannot_bypass_uncertainty() -> None:
+    domain = _domain(
+        "wall:conditional",
+        suitability=TemporalDurationSuitabilityV1.CONDITIONAL,
+    )
+    uncertainty = TemporalUncertaintyV1(
+        TemporalUncertaintyStatusV1.BOUNDED,
+        uncertainty_before_ticks=1,
+        uncertainty_after_ticks=1,
+    )
+    result = duration_between(
+        _point(2, domain, uncertainty=uncertainty),
+        _point(5, domain),
+        conditional_policy=_conditional_policy(),
+    )
+    assert result.status is TemporalDurationStatusV1.UNCERTAIN
+    assert result.duration_ticks is None
+
+
+def test_conditional_policy_does_not_change_point_comparison() -> None:
+    domain = _domain(
+        "wall:conditional",
+        suitability=TemporalDurationSuitabilityV1.CONDITIONAL,
+    )
+    assert compare_points(_point(2, domain), _point(5, domain)).relation is PointRelationV1.BEFORE
+
+
+def test_conditional_policy_value_is_immutable_and_deterministic() -> None:
+    first = _conditional_policy()
+    second = _conditional_policy()
+    assert first == second
+    assert first.policy_id == "policy:field-event-local-delta"
+    assert first.policy_version == "v1"
+    with pytest.raises(AttributeError):
+        first.policy_id = "policy:changed"  # type: ignore[misc]
+
+
 def test_cross_domain_duration_fails_closed() -> None:
     mono = _domain(
         "mono:test",
@@ -380,7 +555,8 @@ def test_wire_enums_are_strings_and_ticks_are_integers() -> None:
 
 def test_static_architecture_guard_and_contract_negatives() -> None:
     module_path = Path(__file__).parents[2] / "capabilities/midplatform/core/temporal_coordinate/temporal_coordinate_v1.py"
-    tree = ast.parse(module_path.read_text(encoding="utf-8"))
+    module_source = module_path.read_text(encoding="utf-8")
+    tree = ast.parse(module_source)
     imported_modules = []
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
@@ -389,6 +565,17 @@ def test_static_architecture_guard_and_contract_negatives() -> None:
             imported_modules.append(node.module)
     assert all(not name.startswith("capabilities") for name in imported_modules)
     assert not any("Owner" in node.name or "Manager" in node.name or "Registry" in node.name for node in ast.walk(tree) if isinstance(node, ast.ClassDef))
+    assert not any(
+        token in module_source
+        for token in (
+            "allow_conditional",
+            "unsafe_override",
+            "skip_validation",
+            "trust_caller",
+            "assume_safe",
+            "force=True",
+        )
+    )
     contract_path = module_path.with_name("temporal_coordinate_contract_v1.json")
     contract = json.loads(contract_path.read_text(encoding="utf-8"))
     assert contract["system_class"] == "SYSTEM_PRIMITIVE"
@@ -403,3 +590,12 @@ def test_static_architecture_guard_and_contract_negatives() -> None:
     assert authority["mapping_engine"] is False
     assert authority["automatic_clock_mapping"] is False
     assert authority["domain_imports"] is False
+    conditional = contract["semantics"]["conditional_duration"]
+    assert conditional["policy_type"] == "ConditionalDurationPolicyV1"
+    assert conditional["policy_semantics"] == "domain_contract_declaration_not_authority_proof"
+    assert conditional["requires_explicit_policy"] is True
+    assert conditional["unsafe_policy_bypass"] is False
+    assert conditional["unknown_policy_bypass"] is False
+    assert conditional["caller_boolean_escape_hatch"] is False
+    assert conditional["policy_registry"] is False
+    assert conditional["policy_store"] is False
