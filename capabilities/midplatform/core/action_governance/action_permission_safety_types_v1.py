@@ -20,6 +20,13 @@ class PermissionSafetyStatusV1:
 class RuntimeSafetyPrerequisiteDecisionV1:
     """Owner-issued, execution-scoped Safety prerequisite.
 
+    ``binding_key`` identifies the stable Safety subject. ``result_ref``
+    identifies one evaluation occurrence, not a recoverable binding state.
+    A new evaluation (including BLOCKED) has a new ref; revoked occurrences
+    cannot become current again. Snapshots/lineage are not currentness proof.
+    Invalid input returns an identity-less, non-authoritative diagnostic,
+    not a completed evaluation and not an owner-state transition.
+
     This is not Runtime Authorization and cannot authorize provider effects.
     """
 

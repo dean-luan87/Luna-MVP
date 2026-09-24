@@ -28,6 +28,7 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_au
     RuntimeAuthorizationScopeV1,
     RuntimeAuthorizationStateV1,
     _authorize_canonical_runtime_authorization,
+    _diagnostic_safety_refs,
     _invalidate_canonical_runtime_authorization,
     query_active_authorization_for_grant,
 )
@@ -87,6 +88,8 @@ class RuntimeExecutionGrantInputV1:
         ExecutionInstancePreparationCandidateV1, ...
     ] = field(default_factory=tuple)
     permission_refs: Tuple[str, ...] = field(default_factory=tuple)
+    # Optional diagnostics only; canonical Safety resolution uses the
+    # explicit prerequisite ref(s) below and the Safety owner.
     safety_refs: Tuple[str, ...] = field(default_factory=tuple)
     protocol_refs: Tuple[str, ...] = field(default_factory=tuple)
     governance_refs: Tuple[str, ...] = field(default_factory=tuple)
@@ -293,7 +296,6 @@ def _collection_errors(request: RuntimeExecutionGrantInputV1) -> list[str]:
             request.execution_instance_preparation_candidates,
         ),
         ("permission_refs", request.permission_refs),
-        ("safety_refs", request.safety_refs),
         ("safety_prerequisite_refs", request.safety_prerequisite_refs),
         ("protocol_refs", request.protocol_refs),
         ("governance_refs", request.governance_refs),
@@ -382,7 +384,7 @@ def _validate(request: object) -> Tuple[str, ...]:
             != request.working_envelope_version_ref
         ):
             errors.append("admitted_action_envelope_scope_mismatch")
-    if not request.permission_refs or not request.safety_refs or not request.protocol_refs:
+    if not request.permission_refs or not request.protocol_refs:
         errors.append("authorization_basis_refs_incomplete")
     if not request.safety_prerequisite_ref and not request.safety_prerequisite_refs:
         errors.append("safety_prerequisite_missing")
@@ -632,7 +634,7 @@ def _decision_for(
         permission_refs=request.permission_refs,
         safety_refs=_unique(
             (
-                *request.safety_refs,
+                *_diagnostic_safety_refs(request.safety_refs),
                 request.safety_prerequisite_ref or "",
                 *request.safety_prerequisite_refs,
             )

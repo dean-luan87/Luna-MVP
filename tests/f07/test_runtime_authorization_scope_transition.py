@@ -5,6 +5,7 @@ from __future__ import annotations
 from copy import copy, deepcopy
 from dataclasses import replace
 import pickle
+from types import SimpleNamespace
 
 import pytest
 
@@ -35,6 +36,7 @@ from capabilities.midplatform.permission_and_admission_manager.module.runtime_ex
 from capabilities.midplatform.core.action_governance.action_governance_engine_v1 import (
     ActionGovernanceEngineV1,
     form_runtime_safety_prerequisite_v1,
+    invalidate_runtime_safety_prerequisite_v1,
 )
 from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
     ACTION_ADMISSION_PROFILE_PRODUCTION_CANONICAL,
@@ -344,6 +346,82 @@ def test_t01_effect_eligibility_uses_canonical_typed_projection_not_caller_fallb
     assert result.failure_code is None
 
 
+@pytest.mark.parametrize("diagnostic_refs", [
+    (), ("diagnostic:replacement",), ("diagnostic:b", "diagnostic:a"),
+    None, False, {"not": "a refs tuple"}, ("diagnostic:valid", None, []),
+])
+def test_diagnostic_safety_refs_cannot_change_scope_or_eligibility(diagnostic_refs):
+    _, grant = _genuine_grant()
+    state = query_active_authorization_for_grant(grant)
+    assert state is not None
+    changed = replace(grant, safety_refs=diagnostic_refs)
+    assert RuntimeAuthorizationScopeV1.from_grant(changed).canonical_scope_key() == state.scope.canonical_scope_key()
+    assert query_active_authorization_for_grant(changed) is state
+    result = query_current_effect_eligibility_for_grant(changed)
+    assert result.eligible is True and result.failure_code is None
+    assert result.authorization_state is state
+    assert state.scope.safety_refs == grant.safety_refs
+
+
+def test_missing_and_reordered_safety_diagnostics_preserve_canonical_resolution():
+    _, grant = _genuine_grant()
+    state = query_active_authorization_for_grant(grant)
+    assert state is not None
+    assert len(grant.safety_refs) > 1
+    reordered = replace(grant, safety_refs=tuple(reversed(grant.safety_refs)))
+    missing = SimpleNamespace(**{name: value for name, value in vars(grant).items() if name != "safety_refs"})
+    for projection in (reordered, missing):
+        assert query_active_authorization_for_grant(projection) is state
+        assert query_current_effect_eligibility_for_grant(projection).eligible is True
+    # Keeping diagnostic/serialization data does not grant it scope authority.
+    restored = pickle.loads(pickle.dumps(grant))
+    assert restored.safety_refs == grant.safety_refs
+    assert query_active_authorization_for_grant(restored) is state
+
+
+@pytest.mark.parametrize("typed_copy_changes", [
+    {"runtime_safety_prerequisite_ref": "safety:caller-copy"},
+    {"runtime_safety_prerequisite_ref": None},
+    {"runtime_safety_binding_key": ("caller:namespace",)},
+    {"runtime_safety_binding_key": ()},
+])
+def test_caller_typed_safety_copy_does_not_select_owner_truth(typed_copy_changes):
+    _, grant = _genuine_grant()
+    state = query_active_authorization_for_grant(grant)
+    assert state is not None
+    changed = replace(grant, **typed_copy_changes)
+    result = query_current_effect_eligibility_for_grant(changed)
+    assert result.eligible is True
+    assert result.authorization_state is state
+    assert state.scope.runtime_safety_prerequisite_ref == grant.runtime_safety_prerequisite_ref
+    assert state.scope.runtime_safety_binding_key == grant.runtime_safety_binding_key
+
+
+def test_new_safety_in_caller_copy_cannot_rebind_old_authorization():
+    _, grant = _genuine_grant()
+    state = query_active_authorization_for_grant(grant)
+    assert state is not None
+    key = state.scope.runtime_safety_binding_key
+    old_ref = state.scope.runtime_safety_prerequisite_ref
+    assert invalidate_runtime_safety_prerequisite_v1(binding_key=key, reason="f07-occurrence-revoked") is not None
+    new_safety = form_runtime_safety_prerequisite_v1(binding_key=key, effect_class=key[-1])
+    assert new_safety.result_ref != old_ref
+    for projection in (
+        grant,
+        replace(grant, runtime_safety_prerequisite_ref=new_safety.result_ref),
+        replace(grant, runtime_safety_binding_key=("caller:namespace",)),
+        replace(grant, runtime_safety_prerequisite_ref=None, runtime_safety_binding_key=()),
+        replace(grant, runtime_safety_prerequisite_ref=new_safety.result_ref,
+                runtime_safety_binding_key=new_safety.binding_key, safety_refs=(new_safety.result_ref,)),
+    ):
+        assert query_active_authorization_for_grant(projection) is state
+        result = query_current_effect_eligibility_for_grant(projection)
+        assert result.eligible is False
+        assert result.failure_code == "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT"
+    assert state.scope.runtime_safety_prerequisite_ref == old_ref
+    assert state.scope.runtime_safety_binding_key == key
+
+
 def test_t02_caller_created_granted_projection_is_rejected():
     _, grant = _genuine_grant()
     forged = replace(
@@ -377,11 +455,24 @@ def test_t04_serialized_grant_reconstruction_cannot_restore_authority():
         ("source_execution_instance_preparation_ref", "prep:other"),
         ("capability_candidate_ref", "capability:other"),
         ("source_provider_binding_candidate_ref", "binding:other"),
+        ("source_runtime_allocation_preparation_ref", "allocation:other"),
+        ("provider_candidate_ref", "provider:other"),
+        ("permission_refs", ("permission:other",)),
+        ("protocol_refs", ("protocol:other",)),
+        ("governance_refs", ("governance:other",)),
+        ("constraint_refs", ("constraint:other",)),
+        ("validity_scope", ("scope:other",)),
+        ("expiry_boundary_ref", "expiry:other"),
+        ("admitted_action_ref", "admitted-action:other"),
+        ("working_envelope_ref", "envelope:other"),
+        ("working_envelope_version_ref", "envelope:other:v2"),
     ],
 )
 def test_t05_t07_scope_reuse_is_rejected(field, value):
     _, grant = _genuine_grant()
     assert query_active_authorization_for_grant(replace(grant, **{field: value})) is None
+    assert query_current_effect_eligibility_for_grant(replace(grant, **{field: value})).failure_code == "RUNTIME_AUTHORIZATION_NOT_CURRENT"
+    assert query_current_effect_eligibility_for_grant(grant).eligible is True
 
 
 @pytest.mark.parametrize(

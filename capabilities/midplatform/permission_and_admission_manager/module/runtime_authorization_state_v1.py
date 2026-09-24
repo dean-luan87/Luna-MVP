@@ -27,6 +27,19 @@ EFFECT_ELIGIBILITY_FAILURE_CODES = (
     "TEMPORAL_EFFECT_ELIGIBILITY_UNRESOLVED",
 )
 
+
+def _diagnostic_safety_refs(value: object) -> Tuple[str, ...]:
+    """Copy plain diagnostic refs without turning malformed metadata into a gate.
+
+    No arbitrary iterable/coercion is evaluated. These refs never select
+    Safety truth, and unsupported diagnostic representations are omitted.
+    """
+
+    if type(value) not in (tuple, list):
+        return ()
+    return tuple(item for item in value if type(item) is str and item.strip())
+
+
 @dataclass(frozen=True)
 class RuntimeAuthorizationScopeV1:
     """Exact scope bound to one pre-execution authorization subject."""
@@ -55,9 +68,11 @@ class RuntimeAuthorizationScopeV1:
     def canonical_scope_key(self) -> Tuple[object, ...]:
         """Return only fields that can authorize the canonical runtime scope.
 
-        ``parent_cognitive_problem_ref`` and ``source_state_ref`` remain on
-        the descriptive DTO for compatibility and diagnostics.  They are not
-        part of the owner-controlled effect authorization identity.
+        ``parent_cognitive_problem_ref``, ``source_state_ref`` and
+        ``safety_refs`` remain descriptive compatibility/diagnostic fields.
+        They cannot authorize or deny canonical scope resolution. Safety
+        requery uses the typed projection in owner-stored state, not these
+        refs or caller modifications to a typed DTO copy.
         """
 
         return (
@@ -68,7 +83,6 @@ class RuntimeAuthorizationScopeV1:
             self.provider_candidate_ref,
             self.capability_candidate_ref,
             self.permission_refs,
-            self.safety_refs,
             self.protocol_refs,
             self.governance_refs,
             self.constraint_refs,
@@ -101,7 +115,7 @@ class RuntimeAuthorizationScopeV1:
             ),
             source_state_ref=getattr(grant, "source_state_ref", ""),
             permission_refs=tuple(getattr(grant, "permission_refs", ())),
-            safety_refs=tuple(getattr(grant, "safety_refs", ())),
+            safety_refs=_diagnostic_safety_refs(getattr(grant, "safety_refs", ())),
             protocol_refs=tuple(getattr(grant, "protocol_refs", ())),
             governance_refs=tuple(getattr(grant, "governance_refs", ())),
             constraint_refs=tuple(getattr(grant, "constraint_refs", ())),

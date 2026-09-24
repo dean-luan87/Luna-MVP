@@ -2,6 +2,10 @@
 
 from dataclasses import replace
 
+import pytest
+
+import capabilities.midplatform.core.action_governance.action_governance_engine_v1 as safety_owner
+
 from capabilities.evaluation.runtime_grant_pre_execution_authorization_controlled.fixtures_v1 import (
     build_runtime_grant_cases_v1,
 )
@@ -28,6 +32,7 @@ from capabilities.midplatform.core.action_governance.action_governance_engine_v1
     ActionGovernanceEngineV1,
     form_runtime_safety_prerequisite_v1,
     invalidate_runtime_safety_prerequisite_v1,
+    query_current_runtime_safety_prerequisite_v1,
 )
 from capabilities.midplatform.core.action_governance.action_admission_governance_v1 import (
     ACTION_ADMISSION_PROFILE_PRODUCTION_CANONICAL,
@@ -452,6 +457,29 @@ def test_public_grant_path_requires_current_owner_prerequisites():
     assert eligibility.eligible is True
     assert eligibility.failure_code is None
 
+    # Diagnostic presence, contents and shape cannot gate canonical issuance.
+    for diagnostic_refs in (
+        (), ("diagnostic:a", "diagnostic:b"), ("diagnostic:b", "diagnostic:a"),
+        ("diagnostic:replacement",), None, False, ("diagnostic:valid", None, []),
+    ):
+        diagnostic_result = form_runtime_execution_grants(
+            replace(authorized_request, safety_refs=diagnostic_refs)
+        )
+        assert diagnostic_result.formation_status == "RUNTIME_EXECUTION_GRANTS_FORMED"
+        diagnostic_grant = diagnostic_result.decisions[0]
+        assert diagnostic_grant.decision == "GRANTED"
+        assert diagnostic_grant.runtime_safety_prerequisite_ref == safety.result_ref
+        assert query_current_effect_eligibility_for_grant(diagnostic_grant).eligible is True
+    assert "diagnostic:valid" in diagnostic_grant.safety_refs
+    assert safety.result_ref in diagnostic_grant.safety_refs
+
+    legacy_only = form_runtime_execution_grants(
+        replace(authorized_request, safety_prerequisite_ref=None, safety_refs=(safety.result_ref,))
+    )
+    assert legacy_only.formation_status == "INVALID_INPUT"
+    assert "safety_prerequisite_missing" in legacy_only.validation_errors
+    assert not legacy_only.decisions
+
     new_state_version = issue_cognitive_state_version_v1(
         state,
         profile_ref=COGNITIVE_STATE_PROFILE_PRODUCTION_CANONICAL,
@@ -489,12 +517,168 @@ def test_public_grant_path_requires_current_owner_prerequisites():
     assert eligibility_after_safety_invalidation.eligible is False
     assert eligibility_after_safety_invalidation.failure_code == "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT"
 
+    replacement_safety = form_runtime_safety_prerequisite_v1(
+        binding_key=safety.binding_key,
+        effect_class=request.effect_class,
+    )
+    assert replacement_safety.result_ref != safety.result_ref
+    assert replacement_safety.binding_key == safety.binding_key
+    assert replacement_safety.policy_version_ref == safety.policy_version_ref
+    assert query_current_runtime_safety_prerequisite_v1(
+        binding_key=safety.binding_key, result_ref=safety.result_ref,
+    ) is None
+    assert query_current_runtime_safety_prerequisite_v1(
+        binding_key=safety.binding_key, result_ref=replacement_safety.result_ref,
+    ) is replacement_safety
+    assert query_active_authorization_for_grant(grant) is runtime_authorization_state
+    assert runtime_authorization_state.scope.runtime_safety_prerequisite_ref == safety.result_ref
+    assert query_current_effect_eligibility_for_grant(grant).failure_code == "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT"
+    # A new owner evaluation cannot repair an old explicit prerequisite ref.
+    old_request_result = form_runtime_execution_grants(authorized_request)
+    assert old_request_result.decisions[0].decision == "DENIED"
+    assert old_request_result.decisions[0].denial_reason == "safety_prerequisite_not_current"
+
+    replacement_grant = form_runtime_execution_grants(
+        replace(authorized_request, safety_prerequisite_ref=replacement_safety.result_ref, safety_refs=())
+    ).decisions[0]
+    assert replacement_grant.decision == "GRANTED"
+    assert replacement_grant.authorization_ref != grant.authorization_ref
+    assert replacement_grant.runtime_safety_prerequisite_ref == replacement_safety.result_ref
+    replacement_state = query_active_authorization_for_grant(replacement_grant)
+    assert replacement_state is not None
+    assert replacement_state.scope.runtime_safety_prerequisite_ref == replacement_safety.result_ref
+    assert query_current_effect_eligibility_for_grant(replacement_grant).eligible is True
+    assert query_current_effect_eligibility_for_grant(grant).eligible is False
+
     invalidated = invalidate_runtime_authorization_state(
         authorization_ref=grant.authorization_ref,
         subject_ref=grant.source_execution_instance_preparation_ref,
         reason="gpt6-g06-focused-cleanup",
     )
     assert invalidated is not None
+    third_safety = form_runtime_safety_prerequisite_v1(
+        binding_key=safety.binding_key,
+        effect_class=request.effect_class,
+    )
+    assert third_safety.result_ref not in {safety.result_ref, replacement_safety.result_ref}
+    assert query_active_authorization_for_grant(grant) is None
+    assert query_current_effect_eligibility_for_grant(grant).failure_code == "RUNTIME_AUTHORIZATION_NOT_CURRENT"
+    assert query_current_effect_eligibility_for_grant(replacement_grant).failure_code == "RUNTIME_SAFETY_PREREQUISITE_NOT_CURRENT"
+
+
+def _safety_test_binding(case, scope_kind="RUNTIME_EXECUTION"):
+    if scope_kind == "ACTION_ADMISSION":
+        return (f"action:{case}", "task:test", "decision:test", "envelope:test", "version:test", "runtime-execution")
+    return (*build_pregrant_authority_binding_key(
+        admitted_action_ref=f"admitted-action:{case}",
+        working_envelope_ref="envelope:test",
+        working_envelope_version_ref="version:test",
+        execution_instance_preparation_candidate_ref="execution:test",
+        provider_candidate_ref="provider:test",
+        capability_candidate_ref="capability:test",
+    ), "runtime-execution")
+
+
+@pytest.mark.parametrize("scope_kind", ["RUNTIME_EXECUTION", "ACTION_ADMISSION"])
+def test_safety_occurrences_never_revive_and_query_never_issues(scope_kind, monkeypatch):
+    key = _safety_test_binding("occurrence-cycles", scope_kind)
+    current = form_runtime_safety_prerequisite_v1(
+        binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+    )
+    assert current.status == "ALLOWED"
+    old_refs = set()
+
+    def issuance_forbidden():
+        raise AssertionError("query must not issue an evaluation")
+
+    for _ in range(3):
+        with monkeypatch.context() as query_guard:
+            query_guard.setattr(safety_owner, "_safety_result_ref", issuance_forbidden)
+            for _ in range(2):
+                assert query_current_runtime_safety_prerequisite_v1(
+                    binding_key=key, result_ref=current.result_ref,
+                ) is current
+        revoked = invalidate_runtime_safety_prerequisite_v1(binding_key=key, reason="test-revoke")
+        assert revoked is not None
+        assert revoked.result_ref == current.result_ref
+        assert revoked.revoked is True
+        assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=current.result_ref) is None
+        old_refs.add(current.result_ref)
+        previous = current
+        current = form_runtime_safety_prerequisite_v1(
+            binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+        )
+        assert current.result_ref not in old_refs
+        assert current.binding_key == previous.binding_key == key
+        assert current.policy_version_ref == previous.policy_version_ref
+        assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=current.result_ref) is current
+        for ref in old_refs:
+            assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=ref) is None
+
+    # A new evaluation is distinct even without an intervening revocation.
+    latest = form_runtime_safety_prerequisite_v1(
+        binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+    )
+    assert latest.result_ref != current.result_ref
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=current.result_ref) is None
+
+
+@pytest.mark.parametrize("scope_kind", ["RUNTIME_EXECUTION", "ACTION_ADMISSION"])
+def test_completed_blocked_evaluation_replaces_allowed_outcome(scope_kind, monkeypatch):
+    key = _safety_test_binding("blocked-outcome", scope_kind)
+    first = form_runtime_safety_prerequisite_v1(
+        binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+    )
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=first.result_ref) is first
+    # Exercise a negative owner policy outcome, not caller-supplied truth.
+    with monkeypatch.context() as owner_policy:
+        owner_policy.setattr(safety_owner, "RUNTIME_SAFETY_ALLOWED_EFFECT_CLASSES", ())
+        blocked = form_runtime_safety_prerequisite_v1(
+            binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+        )
+    assert blocked.status == "BLOCKED"
+    assert blocked.authoritative is True and blocked.candidate_only is False
+    assert blocked.result_ref and blocked.result_ref != first.result_ref
+    assert blocked.binding_key == first.binding_key
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=first.result_ref) is None
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=blocked.result_ref) is None
+    # The binding's latest owner outcome really is BLOCKED, not retained E1.
+    revoked = invalidate_runtime_safety_prerequisite_v1(binding_key=key, reason="blocked-outcome-check")
+    assert revoked is not None and revoked.result_ref == blocked.result_ref
+    recovery = form_runtime_safety_prerequisite_v1(
+        binding_key=key, effect_class="runtime-execution", scope_kind=scope_kind,
+    )
+    assert recovery.result_ref not in {first.result_ref, blocked.result_ref}
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=recovery.result_ref) is recovery
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=first.result_ref) is None
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=blocked.result_ref) is None
+
+
+@pytest.mark.parametrize("invalid_fields", [
+    {"binding_key": None}, {"binding_key": []}, {"binding_key": ()},
+    {"binding_key": ("runtime-scope:v2",) * 7},
+    {"binding_key": ("runtime-scope:v2", "a", "e", "v", "x", "p", True, "runtime-execution")},
+    {"binding_key": ("runtime-scope:v2", "a", "e", "v", "x", "p", " ", "runtime-execution")},
+    {"binding_key": ("runtime-scope:v2", "a", "e", "v", "x", "p", [], "runtime-execution")},
+    {"effect_class": None}, {"effect_class": False}, {"effect_class": " "},
+    {"scope_kind": "UNKNOWN"},
+])
+def test_malformed_safety_input_never_publishes_an_occurrence(invalid_fields, monkeypatch):
+    key = _safety_test_binding("invalid-input")
+    request = dict(binding_key=key, effect_class="runtime-execution", scope_kind="RUNTIME_EXECUTION")
+    current = form_runtime_safety_prerequisite_v1(**request)
+
+    def issuance_forbidden():
+        raise AssertionError("invalid input must not issue an evaluation")
+
+    with monkeypatch.context() as issuance_guard:
+        issuance_guard.setattr(safety_owner, "_safety_result_ref", issuance_forbidden)
+        invalid = form_runtime_safety_prerequisite_v1(**{**request, **invalid_fields})
+    assert invalid.status == "BLOCKED"
+    assert invalid.result_ref == invalid.expiry_boundary_ref == ""
+    assert invalid.reason == "safety_prerequisite_input_invalid"
+    assert invalid.authoritative is False and invalid.candidate_only is True
+    assert query_current_runtime_safety_prerequisite_v1(binding_key=key, result_ref=current.result_ref) is current
 
 
 def test_legacy_runtime_scope_cannot_form_any_positive_prerequisite():

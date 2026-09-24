@@ -289,6 +289,40 @@ def test_admission_requeries_envelope_and_safety_currentness():
     assert safety_binding_key
 
 
+def test_safety_reevaluation_cannot_revive_old_action_admission():
+    old, envelope, task_handoff, action_output, first, key = _admit("safety-occurrence")
+    assert query_current_admitted_action_v1(old.admitted_action_ref) is old
+    revoked = invalidate_runtime_safety_prerequisite_v1(binding_key=key, reason="safety-occurrence-revoked")
+    assert revoked is not None and revoked.result_ref == first.result_ref
+    assert query_current_admitted_action_v1(old.admitted_action_ref) is None
+
+    second = form_runtime_safety_prerequisite_v1(
+        binding_key=key, effect_class=first.effect_class, scope_kind="ACTION_ADMISSION",
+    )
+    assert second.result_ref != first.result_ref
+    assert second.binding_key == first.binding_key
+    assert second.status == "ALLOWED"
+    assert old.safety_prerequisite_ref == first.result_ref
+    assert query_current_admitted_action_v1(old.admitted_action_ref) is None
+    assert admit_action_v1(
+        action_output, task_handoff=task_handoff,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+        safety_prerequisite=first,
+    ) is None
+
+    new = admit_action_v1(
+        action_output, task_handoff=task_handoff,
+        working_envelope_ref=envelope.envelope_ref,
+        working_envelope_version_ref=envelope.envelope_version_ref,
+        safety_prerequisite=second,
+    )
+    assert new is not None and new.admitted_action_ref != old.admitted_action_ref
+    assert new.safety_prerequisite_ref == second.result_ref
+    assert query_current_admitted_action_v1(new.admitted_action_ref) is new
+    assert query_current_admitted_action_v1(old.admitted_action_ref) is None
+
+
 def test_refresh_supersedes_old_envelope_version_and_blocks_old_admission():
     envelope, task_handoff, action_output, safety, _ = _action_bundle("envelope-refresh")
     refreshed_candidate = build_working_envelope(

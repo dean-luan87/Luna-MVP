@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import hashlib
+import uuid
 from typing import Dict, Optional, Tuple
 from weakref import WeakValueDictionary
 
@@ -85,11 +85,11 @@ def _is_owner_formed_action_output_v1(output: object) -> bool:
     return _OWNER_FORMED_ACTION_OUTPUTS.get(id(output)) is output
 
 
-def _safety_result_ref(binding_key: Tuple[str, ...], effect_class: str) -> str:
-    digest = hashlib.sha256(
-        "|".join((*binding_key, effect_class, RUNTIME_SAFETY_POLICY_VERSION)).encode("utf-8")
-    ).hexdigest()[:24]
-    return f"runtime-safety-prerequisite:{digest}"
+def _safety_result_ref() -> str:
+    # Owner-issued occurrence, not a hash of the stable binding/policy.  As
+    # with Runtime Authorization, the private owner record establishes
+    # authority; knowing or constructing a ref cannot install that record.
+    return f"runtime-safety-prerequisite:{uuid.uuid4().hex}"
 
 
 def form_runtime_safety_prerequisite_v1(
@@ -98,32 +98,55 @@ def form_runtime_safety_prerequisite_v1(
     effect_class: str,
     scope_kind: str = RUNTIME_EXECUTION_SAFETY_SCOPE,
 ) -> RuntimeSafetyPrerequisiteDecisionV1:
-    """Form the current Action/Safety owner prerequisite for one binding."""
+    """Evaluate one stable binding and publish a new owner-issued occurrence.
 
-    if scope_kind == ACTION_ADMISSION_SAFETY_SCOPE:
-        valid_binding = len(binding_key) == 6 and all(binding_key)
+    A completed BLOCKED evaluation replaces the previous outcome too.
+    Malformed input has no occurrence identity and cannot change owner state.
+    Reading an existing evaluation is the query API's job, never this API's.
+    """
+
+    typed_binding = isinstance(binding_key, tuple) and all(
+        isinstance(value, str) and value.strip() for value in binding_key
+    )
+    if not typed_binding:
+        valid_binding = False
+    elif scope_kind == ACTION_ADMISSION_SAFETY_SCOPE:
+        valid_binding = len(binding_key) == 6
     elif scope_kind == RUNTIME_EXECUTION_SAFETY_SCOPE:
         valid_binding = (
             len(binding_key) == 8
             and binding_key[0] == "runtime-scope:v2"
-            and all(binding_key)
         )
     else:
         valid_binding = False
-    allowed = valid_binding and effect_class in RUNTIME_SAFETY_ALLOWED_EFFECT_CLASSES
-    result_ref = _safety_result_ref(binding_key, effect_class) if valid_binding else ""
-    expiry_ref = f"safety-expiry:{result_ref}" if result_ref else ""
+    if not valid_binding or not isinstance(effect_class, str) or not effect_class.strip():
+        return RuntimeSafetyPrerequisiteDecisionV1(
+            result_ref="",
+            binding_key=binding_key if typed_binding else (),
+            effect_class=effect_class if isinstance(effect_class, str) else "",
+            status="BLOCKED",
+            policy_version_ref=RUNTIME_SAFETY_POLICY_VERSION,
+            reason="safety_prerequisite_input_invalid",
+            expiry_boundary_ref="",
+            authoritative=False,
+            candidate_only=True,
+        )
+
+    allowed = effect_class in RUNTIME_SAFETY_ALLOWED_EFFECT_CLASSES
+    result_ref = _safety_result_ref()
+    expiry_ref = f"safety-expiry:{result_ref}"
     result = RuntimeSafetyPrerequisiteDecisionV1(
         result_ref=result_ref,
         binding_key=tuple(binding_key),
         effect_class=effect_class,
         status="ALLOWED" if allowed else "BLOCKED",
         policy_version_ref=RUNTIME_SAFETY_POLICY_VERSION,
-        reason="current_safety_policy_allows" if allowed else "safety_policy_blocks_or_binding_invalid",
+        reason="current_safety_policy_allows" if allowed else "current_safety_policy_blocks",
         expiry_boundary_ref=expiry_ref,
     )
-    if allowed:
-        _CURRENT_RUNTIME_SAFETY_RECORDS[tuple(binding_key)] = result
+    # Only the latest occurrence can be current.  Replacing this pointer
+    # never rewrites or recovers a previous (possibly revoked) occurrence.
+    _CURRENT_RUNTIME_SAFETY_RECORDS[tuple(binding_key)] = result
     return result
 
 
@@ -132,7 +155,7 @@ def query_current_runtime_safety_prerequisite_v1(
     binding_key: Tuple[str, ...],
     result_ref: str,
 ) -> Optional[RuntimeSafetyPrerequisiteDecisionV1]:
-    """Return only the current owner record for the exact binding."""
+    """Return only the latest ALLOWED occurrence for the exact binding/ref."""
 
     record = _CURRENT_RUNTIME_SAFETY_RECORDS.get(tuple(binding_key))
     if record is None:
@@ -151,7 +174,7 @@ def invalidate_runtime_safety_prerequisite_v1(
     binding_key: Tuple[str, ...],
     reason: str,
 ) -> Optional[RuntimeSafetyPrerequisiteDecisionV1]:
-    """Invalidate the owner-private current Safety record."""
+    """Terminally revoke the current occurrence; reevaluation must issue anew."""
 
     current = _CURRENT_RUNTIME_SAFETY_RECORDS.get(tuple(binding_key))
     if current is None:
