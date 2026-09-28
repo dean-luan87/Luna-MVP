@@ -37,9 +37,14 @@ COORDINATE_BASES = frozenset({
 REQUIREMENT_FIELDS = frozenset({"coordinate", "temporal", "identity", "score", "lineage"})
 REQUIREMENT_LEVELS = frozenset({"REQUIRED", "OPTIONAL", "NOT_APPLICABLE"})
 FROZEN_NATIVE_MODELS = frozenset({"YOLO26", "Qwen3-VL", "Qwen3-ASR", "ORB-SLAM3", "RelateAnything"})
-RELATIONS = frozenset({
-    "PRODUCED_FROM", "GROUNDED_FROM", "ALIGNED_WITH", "RELATION_ENDPOINT_FROM",
-})
+# Test-only structural classes, not a canonical ontology or provider-native proof.
+RELATION_CLASSES = {
+    "DERIVATION": ("CANDIDATE_OUTPUT", "UPSTREAM_INPUT", "_FROM"),
+    "GROUNDING": ("CANDIDATE_OUTPUT", "GROUNDING_MEDIA", "_FROM"),
+    "ALIGNMENT": ("CANDIDATE_OUTPUT", "ALIGNMENT_MEDIA", "_WITH"),
+    "ENDPOINT_LINEAGE": ("RELATION_CANDIDATE", "REGION_SET", "_FROM"),
+    "CONDITIONING": ("INFERENCE_OCCURRENCE", "INPUT_CONDITION", "_BY"),
+}
 NEGATIVE_AUTHORITY_KEYS = (
     "provider_output_is_truth", "adapter_can_admit_evidence",
     "adapter_can_admit_field_truth", "provider_local_id_is_canonical_identity",
@@ -54,7 +59,7 @@ REQUIRED_ENVELOPE_KEYS = frozenset({
     "configuration_snapshot", "input_refs", "native_payload", "expected_projection",
     "temporal_metadata", "coordinate_metadata", "identity_metadata",
     "score_metadata", "lineage_metadata", "expected_governance",
-    "migration_reference", "contract_requirements",
+    "migration_reference", "contract_requirements", "relation_declarations",
 })
 
 
@@ -74,6 +79,7 @@ def materialize_case(collection: dict[str, Any], model: dict[str, Any], case: di
         "invocation_ref": f"synthetic-invocation:{model['model_key']}:{case['kind']}",
         "configuration_snapshot": copy.deepcopy(model["configuration_snapshot"]),
         "contract_requirements": copy.deepcopy(model["contract_requirements"]),
+        "relation_declarations": copy.deepcopy(model["relation_declarations"]),
         "input_refs": copy.deepcopy(model["input_refs"]),
         "temporal_metadata": copy.deepcopy(model["temporal_metadata"]),
         "coordinate_metadata": copy.deepcopy(model["coordinate_metadata"]),
@@ -149,7 +155,7 @@ def _model_specific_errors(envelope: dict[str, Any]) -> tuple[str, ...] | None:
 
 
 def validate_provider_native(envelope: dict[str, Any]) -> tuple[str, ...] | None:
-    """Frozen five-model native proof; None means no native proof, not success."""
+    """Frozen native payload checks, not relation-meaning proof; None is no proof."""
     return _model_specific_errors(envelope)
 
 
@@ -159,6 +165,40 @@ def _required_metadata_present(kind: str, metadata: Any) -> bool:
     if kind == "lineage":
         return isinstance(metadata, dict) and bool(metadata.get("relations"))
     return isinstance(metadata, list) and bool(metadata)
+
+
+def _relation_declarations_valid(declarations: Any) -> bool:
+    if not isinstance(declarations, dict) or not declarations:
+        return False
+    for kind, declaration in declarations.items():
+        if (not isinstance(kind, str) or not re.fullmatch(r"[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)+", kind)
+                or not isinstance(declaration, dict)
+                or set(declaration) != {"semantic_class", "subject_role", "source_role", "creates_authority"}):
+            return False
+        if not isinstance(declaration["semantic_class"], str):
+            return False
+        roles = RELATION_CLASSES.get(declaration["semantic_class"])
+        if (roles is None or (declaration["subject_role"], declaration["source_role"]) != roles[:2]
+                or not kind.endswith(roles[2]) or declaration["creates_authority"] is not False):
+            return False
+    return True
+
+
+def _relation_valid(relation: Any, declarations: dict[str, Any], envelope: dict[str, Any]) -> bool:
+    if not isinstance(relation, dict) or not {"kind", "source_ref"}.issubset(relation):
+        return False
+    kind, source_ref = relation["kind"], relation["source_ref"]
+    if (not isinstance(kind, str) or kind not in declarations
+            or not isinstance(source_ref, str) or not source_ref.strip()):
+        return False
+    input_refs = envelope.get("input_refs")
+    if not isinstance(input_refs, list) or source_ref not in input_refs + [envelope.get("invocation_ref")]:
+        return False
+    if declarations[kind]["semantic_class"] == "CONDITIONING":
+        return (set(relation) == {"kind", "source_ref", "subject_ref"}
+                and relation["subject_ref"] == envelope.get("invocation_ref")
+                and source_ref in input_refs)
+    return set(relation) == {"kind", "source_ref"}
 
 
 def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
@@ -188,6 +228,9 @@ def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
                 errors.append(f"{kind}_required_missing")
             elif level == "NOT_APPLICABLE" and metadata is not None:
                 errors.append(f"{kind}_not_applicable_conflict")
+    declarations = envelope.get("relation_declarations")
+    if not _relation_declarations_valid(declarations):
+        errors.append("relation_declaration_invalid")
     if not isinstance(envelope.get("native_payload"), dict):
         errors.append("native_payload_invalid")
     governance = envelope.get("expected_governance")
@@ -241,7 +284,10 @@ def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
                 elif not score["score_range"][0] <= score["score_value"] <= score["score_range"][1]:
                     errors.append("score_value_out_of_range")
     lineage = envelope.get("lineage_metadata")
-    if lineage is not None and (not isinstance(lineage, dict) or lineage.get("creates_authority") is not False or not isinstance(lineage.get("relations"), list) or any(not isinstance(relation, dict) or relation.get("kind") not in RELATIONS or not relation.get("source_ref") for relation in lineage.get("relations", []))):
+    if lineage is not None and (not isinstance(lineage, dict) or lineage.get("creates_authority") is not False
+            or not isinstance(lineage.get("relations"), list)
+            or (_relation_declarations_valid(declarations)
+                and any(not _relation_valid(relation, declarations, envelope) for relation in lineage.get("relations", [])))):
         errors.append("lineage_boundary_invalid")
     native = envelope.get("native_payload")
     if isinstance(native, dict) and any(native.get(key) for key in ("luna_canonical_id", "world_truth_declared", "authority_granted")):
@@ -258,7 +304,7 @@ def _native_path_exists(payload: Any, path: str) -> bool:
 
 
 def validate_collection(collection: dict[str, Any]) -> tuple[str, ...]:
-    """Universal collection checks plus native checks for the frozen five only."""
+    """Structural collection checks plus frozen native payload checks, not relation-meaning proof."""
     errors: list[str] = []
     models = collection.get("models")
     if collection.get("fixture_schema_version") != SCHEMA_VERSION or not isinstance(models, list) or not models:

@@ -3,6 +3,7 @@
   "models": [
     {
       "model_key": "yolo26",
+      "relation_declarations": {"PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}},
       "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "OPTIONAL", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
@@ -25,6 +26,7 @@
     },
     {
       "model_key": "qwen3_vl",
+      "relation_declarations": {"GROUNDED_FROM": {"semantic_class": "GROUNDING", "subject_role": "CANDIDATE_OUTPUT", "source_role": "GROUNDING_MEDIA", "creates_authority": false}, "PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}},
       "contract_requirements": {"coordinate": "NOT_APPLICABLE", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
@@ -47,6 +49,7 @@
     },
     {
       "model_key": "qwen3_asr",
+      "relation_declarations": {"PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}, "ALIGNED_WITH": {"semantic_class": "ALIGNMENT", "subject_role": "CANDIDATE_OUTPUT", "source_role": "ALIGNMENT_MEDIA", "creates_authority": false}},
       "contract_requirements": {"coordinate": "NOT_APPLICABLE", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
@@ -69,6 +72,7 @@
     },
     {
       "model_key": "orb_slam3",
+      "relation_declarations": {"PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}},
       "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "REQUIRED", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
@@ -91,6 +95,7 @@
     },
     {
       "model_key": "relateanything",
+      "relation_declarations": {"RELATION_ENDPOINT_FROM": {"semantic_class": "ENDPOINT_LINEAGE", "subject_role": "RELATION_CANDIDATE", "source_role": "REGION_SET", "creates_authority": false}, "PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}},
       "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "OPTIONAL", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {

@@ -28,6 +28,9 @@ HISTORICAL_MODEL_DIGESTS = {
     "orb_slam3": "1aa8b545097f1fd60e8dfc98c3b1cf544c60ee6eb1c2352aee4032f4c06c4138",
     "relateanything": "f94e5f8d8ce9eb49996bbe4ca330a375eee7f0425400e8d10e79f51533754ed3",
 }
+HISTORICAL_RELATION_KINDS = frozenset({
+    "PRODUCED_FROM", "GROUNDED_FROM", "ALIGNED_WITH", "RELATION_ENDPOINT_FROM",
+})
 
 
 def envelope_for(model_key: str, kind: str) -> dict:
@@ -63,6 +66,30 @@ def future_provider_probe() -> dict:
     return model
 
 
+def conditioned_future_probe() -> dict:
+    """GENERALIZATION_PROBE_ONLY: no Grounding DINO or stored fixture record."""
+    model = future_provider_probe()
+    prompt_ref = "synthetic:probe:prompt"
+    model["input_refs"].append(prompt_ref)
+    model["relation_declarations"]["CONDITIONED_BY"] = {
+        "semantic_class": "CONDITIONING",
+        "subject_role": "INFERENCE_OCCURRENCE",
+        "source_role": "INPUT_CONDITION",
+        "creates_authority": False,
+    }
+    for case in model["cases"]:
+        invocation_ref = f"synthetic-invocation:{model['model_key']}:{case['kind']}"
+        case["native_payload"]["prompt_ref"] = prompt_ref
+        case["lineage_metadata"] = {
+            "relations": [
+                {"kind": "PRODUCED_FROM", "source_ref": "synthetic:probe:input"},
+                {"kind": "CONDITIONED_BY", "source_ref": prompt_ref, "subject_ref": invocation_ref},
+            ],
+            "creates_authority": False,
+        }
+    return model
+
+
 def test_frozen_five_models_twenty_cases_and_ten_snapshots_remain_intact() -> None:
     historical = [model for model in COLLECTION["models"] if model["model_key"] in HISTORICAL_MODEL_DIGESTS]
     assert len(historical) == len(HISTORICAL_MODEL_DIGESTS) == 5
@@ -70,9 +97,10 @@ def test_frozen_five_models_twenty_cases_and_ten_snapshots_remain_intact() -> No
     assert sum(len(model["snapshots"]) for model in historical) == 10
     assert all({case["kind"] for case in model["cases"]} == set(CASE_KINDS) for model in historical)
     for model in historical:
-        original = {key: value for key, value in model.items() if key != "contract_requirements"}
+        original = {key: value for key, value in model.items() if key not in {"contract_requirements", "relation_declarations"}}
         encoded = json.dumps(original, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
         assert hashlib.sha256(encoded.encode("utf-8")).hexdigest() == HISTORICAL_MODEL_DIGESTS[model["model_key"]]
+    assert {relation["kind"] for model in historical for relation in model["lineage_metadata"]["relations"]} == HISTORICAL_RELATION_KINDS
     assert validate_collection(COLLECTION) == ()
 
 
@@ -301,3 +329,77 @@ def test_synthetic_and_golden_source_boundaries_remain_distinct() -> None:
     envelope["source_kind"] = "REAL_GOLDEN"
     envelope["simulation"] = True
     assert "golden_must_not_be_simulation" in validate_envelope(envelope)
+
+
+def test_historical_relation_declarations_preserve_four_kinds_and_authority_boundary() -> None:
+    for model in COLLECTION["models"]:
+        declared = model["relation_declarations"]
+        used = {relation["kind"] for relation in model["lineage_metadata"]["relations"]}
+        assert used <= declared.keys() <= HISTORICAL_RELATION_KINDS
+        assert all(declaration["creates_authority"] is False for declaration in declared.values())
+        assert validate_envelope(envelope_for(model["model_key"], "NORMAL_POSITIVE_001")) == ()
+
+
+def test_conditioned_by_is_a_bounded_invocation_condition_not_derivation() -> None:
+    expanded = deepcopy(COLLECTION)
+    probe = conditioned_future_probe()
+    expanded["models"].append(probe)
+    assert len(expanded["models"]) == 6
+    assert validate_collection(expanded) == ()
+    assert validate_provider_native(materialize_case(expanded, probe, probe["cases"][0])) is None
+    for case in probe["cases"]:
+        envelope = materialize_case(expanded, probe, case)
+        prompt_ref = envelope["native_payload"]["prompt_ref"]
+        conditioned = next(relation for relation in envelope["lineage_metadata"]["relations"] if relation["kind"] == "CONDITIONED_BY")
+        produced = next(relation for relation in envelope["lineage_metadata"]["relations"] if relation["kind"] == "PRODUCED_FROM")
+        assert conditioned["subject_ref"] == envelope["invocation_ref"]
+        assert conditioned["source_ref"] == prompt_ref
+        assert prompt_ref in envelope["input_refs"]
+        assert produced["source_ref"] != prompt_ref
+        assert envelope["relation_declarations"]["CONDITIONED_BY"]["semantic_class"] == "CONDITIONING"
+        assert envelope["relation_declarations"]["PRODUCED_FROM"]["semantic_class"] == "DERIVATION"
+        assert validate_envelope(envelope) == (("authority_escalation_attempt",) if case["kind"] == "AUTHORITY_NEGATIVE_001" else ())
+        assert validate_provider_native(envelope) is None  # Universal validity is not provider-native proof.
+
+
+@pytest.mark.parametrize("field", [
+    "truth_proof", "currentness_proof", "canonical_identity_proof",
+    "admission_proof", "authorization_proof", "creates_authority",
+])
+def test_conditioning_relation_cannot_claim_authority_or_truth(field: str) -> None:
+    probe = conditioned_future_probe()
+    envelope = materialize_case({"fixture_schema_version": COLLECTION["fixture_schema_version"]}, probe, probe["cases"][0])
+    conditioned = envelope["lineage_metadata"]["relations"][1]
+    conditioned[field] = True
+    assert "lineage_boundary_invalid" in validate_envelope(envelope)
+
+
+def test_relation_declaration_and_endpoint_fail_closed() -> None:
+    probe = conditioned_future_probe()
+    envelope = materialize_case({"fixture_schema_version": COLLECTION["fixture_schema_version"]}, probe, probe["cases"][0])
+    for altered in (
+        {"kind": "", "source_ref": "synthetic:probe:prompt", "subject_ref": envelope["invocation_ref"]},
+        {"kind": "CONDITIONED_BY", "source_ref": "", "subject_ref": envelope["invocation_ref"]},
+        {"kind": "CONDITIONED_BY", "source_ref": "synthetic:probe:prompt", "subject_ref": "wrong-occurrence"},
+        {"kind": "CONDITIONED_BY", "source_ref": "synthetic:unlisted:prompt", "subject_ref": envelope["invocation_ref"]},
+    ):
+        broken = deepcopy(envelope)
+        broken["lineage_metadata"]["relations"][1] = altered
+        assert "lineage_boundary_invalid" in validate_envelope(broken)
+    broken = deepcopy(envelope)
+    broken["relation_declarations"]["CONDITIONED_BY"]["semantic_class"] = "AUTHORIZATION"
+    assert "relation_declaration_invalid" in validate_envelope(broken)
+    broken = deepcopy(envelope)
+    broken["relation_declarations"]["CONDITIONED_BY"]["source_role"] = "UPSTREAM_INPUT"
+    assert "relation_declaration_invalid" in validate_envelope(broken)
+    broken = deepcopy(envelope)
+    broken["relation_declarations"]["CONDITIONED_BY"]["creates_authority"] = True
+    assert "relation_declaration_invalid" in validate_envelope(broken)
+
+
+def test_arbitrary_relation_string_cannot_self_authorize() -> None:
+    probe = conditioned_future_probe()
+    envelope = materialize_case({"fixture_schema_version": COLLECTION["fixture_schema_version"]}, probe, probe["cases"][0])
+    envelope["relation_declarations"]["ANY_STRING"] = envelope["relation_declarations"].pop("CONDITIONED_BY")
+    envelope["lineage_metadata"]["relations"][1]["kind"] = "ANY_STRING"
+    assert "relation_declaration_invalid" in validate_envelope(envelope)
