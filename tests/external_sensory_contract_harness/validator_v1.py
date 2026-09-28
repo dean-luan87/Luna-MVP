@@ -34,7 +34,9 @@ COORDINATE_BASES = frozenset({
     "IMAGE_PIXEL", "IMAGE_NORMALIZED", "CAMERA_SENSOR_FRAME", "SLAM_MAP_FRAME",
     "TRAJECTORY_REFERENCE_FRAME", "RELATIVE_DEPTH", "METRIC_DEPTH",
 })
-COORDINATE_REQUIRED_MODELS = frozenset({"YOLO26", "ORB-SLAM3", "RelateAnything"})
+REQUIREMENT_FIELDS = frozenset({"coordinate", "temporal", "identity", "score", "lineage"})
+REQUIREMENT_LEVELS = frozenset({"REQUIRED", "OPTIONAL", "NOT_APPLICABLE"})
+FROZEN_NATIVE_MODELS = frozenset({"YOLO26", "Qwen3-VL", "Qwen3-ASR", "ORB-SLAM3", "RelateAnything"})
 RELATIONS = frozenset({
     "PRODUCED_FROM", "GROUNDED_FROM", "ALIGNED_WITH", "RELATION_ENDPOINT_FROM",
 })
@@ -52,7 +54,7 @@ REQUIRED_ENVELOPE_KEYS = frozenset({
     "configuration_snapshot", "input_refs", "native_payload", "expected_projection",
     "temporal_metadata", "coordinate_metadata", "identity_metadata",
     "score_metadata", "lineage_metadata", "expected_governance",
-    "migration_reference",
+    "migration_reference", "contract_requirements",
 })
 
 
@@ -71,6 +73,7 @@ def materialize_case(collection: dict[str, Any], model: dict[str, Any], case: di
         "case_id": f"{model['model_key']}:{case['kind']}",
         "invocation_ref": f"synthetic-invocation:{model['model_key']}:{case['kind']}",
         "configuration_snapshot": copy.deepcopy(model["configuration_snapshot"]),
+        "contract_requirements": copy.deepcopy(model["contract_requirements"]),
         "input_refs": copy.deepcopy(model["input_refs"]),
         "temporal_metadata": copy.deepcopy(model["temporal_metadata"]),
         "coordinate_metadata": copy.deepcopy(model["coordinate_metadata"]),
@@ -106,12 +109,14 @@ def _native_at(payload: Any, path: str) -> Any:
     return current
 
 
-def _model_specific_errors(envelope: dict[str, Any]) -> tuple[str, ...]:
+def _model_specific_errors(envelope: dict[str, Any]) -> tuple[str, ...] | None:
     """Bounded structural checks only; no model inference or world adjudication."""
     native = envelope.get("native_payload")
-    if not isinstance(native, dict):
-        return ()
     model = envelope.get("provider_model")
+    if model not in FROZEN_NATIVE_MODELS:
+        return None
+    if not isinstance(native, dict):
+        return ("native_payload_invalid",)
     empty = str(envelope.get("case_id", "")).endswith("EMPTY_OR_NO_RESULT_001")
     errors: list[str] = []
     if model == "YOLO26":
@@ -140,12 +145,24 @@ def _model_specific_errors(envelope: dict[str, Any]) -> tuple[str, ...]:
             errors.append("relation_vocabulary_invalid")
         elif not empty and (not relations or any(not isinstance(item, dict) or not all(key in item for key in ("subject_region", "predicate", "object_region", "rank")) for item in relations)):
             errors.append("relation_endpoint_invalid")
-    else:
-        errors.append("model_not_in_v1_set")
     return tuple(errors)
 
 
+def validate_provider_native(envelope: dict[str, Any]) -> tuple[str, ...] | None:
+    """Frozen five-model native proof; None means no native proof, not success."""
+    return _model_specific_errors(envelope)
+
+
+def _required_metadata_present(kind: str, metadata: Any) -> bool:
+    if kind == "coordinate":
+        return isinstance(metadata, dict) and bool(metadata)
+    if kind == "lineage":
+        return isinstance(metadata, dict) and bool(metadata.get("relations"))
+    return isinstance(metadata, list) and bool(metadata)
+
+
 def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
+    """Universal envelope and declared requirements; not native-contract proof."""
     errors: list[str] = []
     if not REQUIRED_ENVELOPE_KEYS.issubset(envelope):
         errors.append("required_envelope_field_missing")
@@ -160,6 +177,17 @@ def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
     for key in ("model_contract_ref", "provider_family", "provider_model", "provider_model_revision", "provider_interface_version", "native_contract_version", "adapter_contract_version", "capability_class", "case_id", "invocation_ref"):
         if not isinstance(envelope.get(key), str) or not envelope[key].strip():
             errors.append(f"{key}_missing")
+    requirements = envelope.get("contract_requirements")
+    if (not isinstance(requirements, dict) or set(requirements) != REQUIREMENT_FIELDS
+            or any(not isinstance(level, str) or level not in REQUIREMENT_LEVELS for level in requirements.values())):
+        errors.append("contract_requirements_invalid")
+    else:
+        for kind, level in requirements.items():
+            metadata = envelope.get(f"{kind}_metadata")
+            if level == "REQUIRED" and not _required_metadata_present(kind, metadata):
+                errors.append(f"{kind}_required_missing")
+            elif level == "NOT_APPLICABLE" and metadata is not None:
+                errors.append(f"{kind}_not_applicable_conflict")
     if not isinstance(envelope.get("native_payload"), dict):
         errors.append("native_payload_invalid")
     governance = envelope.get("expected_governance")
@@ -190,15 +218,17 @@ def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
                 if mapping.get("conversion") == "identity" and native_value != mapping.get("expected_value"):
                     errors.append("projection_value_mismatch")
     identities = envelope.get("identity_metadata")
-    if not isinstance(identities, list) or any(not isinstance(item, dict) or item.get("scope") not in IDENTITY_SCOPES or item.get("scope") == "LUNA_CANONICAL_ID" for item in identities):
+    if identities is not None and (not isinstance(identities, list) or any(not isinstance(item, dict) or item.get("scope") not in IDENTITY_SCOPES or item.get("scope") == "LUNA_CANONICAL_ID" for item in identities)):
         errors.append("identity_scope_invalid")
-    elif any(item.get("native_field") and not _native_path_exists(envelope.get("native_payload"), item["native_field"]) for item in identities):
+    elif identities is not None and any(item.get("native_field") and not _native_path_exists(envelope.get("native_payload"), item["native_field"]) for item in identities):
         errors.append("identity_native_path_missing")
     temporal = envelope.get("temporal_metadata")
-    if not isinstance(temporal, list) or any(not isinstance(item, dict) or item.get("role") not in TEMPORAL_ROLES or item.get("creates_currentness") is not False or item.get("clock_domain") is None for item in temporal):
+    if temporal is not None and (not isinstance(temporal, list) or any(not isinstance(item, dict) or item.get("role") not in TEMPORAL_ROLES or item.get("creates_currentness") is not False or item.get("clock_domain") is None for item in temporal)):
         errors.append("temporal_role_invalid")
     coordinates = envelope.get("coordinate_metadata")
-    if (coordinates is None and envelope.get("provider_model") in COORDINATE_REQUIRED_MODELS) or (coordinates is not None and (not isinstance(coordinates, dict) or coordinates.get("basis") not in COORDINATE_BASES or not coordinates.get("reference_scope"))):
+    if coordinates is not None and (not isinstance(coordinates, dict) or coordinates.get("basis") not in COORDINATE_BASES or not coordinates.get("reference_scope")):
+        errors.append("coordinate_basis_invalid")
+    elif coordinates is None and isinstance(requirements, dict) and requirements.get("coordinate") == "REQUIRED":
         errors.append("coordinate_basis_invalid")
     scores = envelope.get("score_metadata")
     if scores is not None:
@@ -211,12 +241,11 @@ def validate_envelope(envelope: dict[str, Any]) -> tuple[str, ...]:
                 elif not score["score_range"][0] <= score["score_value"] <= score["score_range"][1]:
                     errors.append("score_value_out_of_range")
     lineage = envelope.get("lineage_metadata")
-    if not isinstance(lineage, dict) or lineage.get("creates_authority") is not False or not isinstance(lineage.get("relations"), list) or any(not isinstance(relation, dict) or relation.get("kind") not in RELATIONS or not relation.get("source_ref") for relation in lineage.get("relations", [])):
+    if lineage is not None and (not isinstance(lineage, dict) or lineage.get("creates_authority") is not False or not isinstance(lineage.get("relations"), list) or any(not isinstance(relation, dict) or relation.get("kind") not in RELATIONS or not relation.get("source_ref") for relation in lineage.get("relations", []))):
         errors.append("lineage_boundary_invalid")
     native = envelope.get("native_payload")
     if isinstance(native, dict) and any(native.get(key) for key in ("luna_canonical_id", "world_truth_declared", "authority_granted")):
         errors.append("native_authority_claim_invalid")
-    errors.extend(_model_specific_errors(envelope))
     return tuple(dict.fromkeys(errors))
 
 
@@ -229,16 +258,21 @@ def _native_path_exists(payload: Any, path: str) -> bool:
 
 
 def validate_collection(collection: dict[str, Any]) -> tuple[str, ...]:
+    """Universal collection checks plus native checks for the frozen five only."""
     errors: list[str] = []
     models = collection.get("models")
-    if collection.get("fixture_schema_version") != SCHEMA_VERSION or not isinstance(models, list) or len(models) != 5:
+    if collection.get("fixture_schema_version") != SCHEMA_VERSION or not isinstance(models, list) or not models:
         return ("collection_shape_invalid",)
-    if len({model.get("model_key") for model in models}) != 5:
+    model_keys = [model.get("model_key") for model in models]
+    if any(not isinstance(key, str) or not key.strip() for key in model_keys):
+        return ("model_key_invalid",)
+    if len(set(model_keys)) != len(models):
         errors.append("duplicate_model_key")
+    case_ids: set[str] = set()
     for model in models:
         snapshots = model.get("snapshots", {})
         cases = model.get("cases", [])
-        if set(snapshots) != {"v1", "variant"} or {case.get("kind") for case in cases} != set(CASE_KINDS) or len(cases) != 4:
+        if set(snapshots) != {"v1", "variant"} or not set(CASE_KINDS).issubset({case.get("kind") for case in cases}):
             errors.append(f"case_or_snapshot_set_invalid:{model.get('model_key')}")
             continue
         old, variant = snapshots["v1"], snapshots["variant"]
@@ -253,7 +287,14 @@ def validate_collection(collection: dict[str, Any]) -> tuple[str, ...]:
             errors.append(f"simulated_variant_disguise:{model['model_key']}")
         for case in cases:
             envelope = materialize_case(collection, model, case)
-            result = validate_envelope(envelope)
+            if envelope["case_id"] in case_ids:
+                errors.append(f"duplicate_case_id:{envelope['case_id']}")
+            case_ids.add(envelope["case_id"])
+            result = list(validate_envelope(envelope))
+            native_result = validate_provider_native(envelope)
+            if native_result is not None:
+                result.extend(native_result)
+            result = tuple(dict.fromkeys(result))
             if case["kind"] == "AUTHORITY_NEGATIVE_001":
                 if result != ("authority_escalation_attempt",):
                     errors.append(f"negative_case_not_rejected:{model['model_key']}")

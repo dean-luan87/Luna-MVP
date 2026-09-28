@@ -3,6 +3,7 @@
   "models": [
     {
       "model_key": "yolo26",
+      "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "OPTIONAL", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
         "v1": {"model_contract_ref": "test-contract:yolo26:native-v1", "provider_family": "ultralytics_yolo", "provider_model": "YOLO26", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "native-v1", "adapter_contract_version": "candidate-map-v1", "capability_class": "OBJECT_DETECTION"},
@@ -24,6 +25,7 @@
     },
     {
       "model_key": "qwen3_vl",
+      "contract_requirements": {"coordinate": "NOT_APPLICABLE", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
         "v1": {"model_contract_ref": "test-contract:qwen3-vl:native-v1", "provider_family": "qwen_vl", "provider_model": "Qwen3-VL", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "native-v1", "adapter_contract_version": "candidate-map-v1", "capability_class": "VISION_LANGUAGE"},
@@ -45,6 +47,7 @@
     },
     {
       "model_key": "qwen3_asr",
+      "contract_requirements": {"coordinate": "NOT_APPLICABLE", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
         "v1": {"model_contract_ref": "test-contract:qwen3-asr:native-v1", "provider_family": "qwen_asr", "provider_model": "Qwen3-ASR", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "native-v1", "adapter_contract_version": "candidate-map-v1", "capability_class": "AUDIO_SPEECH"},
@@ -66,6 +69,7 @@
     },
     {
       "model_key": "orb_slam3",
+      "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "REQUIRED", "score": "NOT_APPLICABLE", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
         "v1": {"model_contract_ref": "test-contract:orb-slam3:native-v1", "provider_family": "orb_slam", "provider_model": "ORB-SLAM3", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "native-v1", "adapter_contract_version": "candidate-map-v1", "capability_class": "SPATIAL_LOCALIZATION"},
@@ -87,6 +91,7 @@
     },
     {
       "model_key": "relateanything",
+      "contract_requirements": {"coordinate": "REQUIRED", "temporal": "REQUIRED", "identity": "OPTIONAL", "score": "OPTIONAL", "lineage": "REQUIRED"},
       "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
       "snapshots": {
         "v1": {"model_contract_ref": "test-contract:relateanything:native-v1", "provider_family": "relation_model", "provider_model": "RelateAnything", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "native-v1", "adapter_contract_version": "candidate-map-v1", "capability_class": "SCENE_RELATION"},

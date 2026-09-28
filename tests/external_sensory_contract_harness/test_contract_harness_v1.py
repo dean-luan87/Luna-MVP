@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
+import json
 
 import pytest
 
@@ -14,10 +16,18 @@ from validator_v1 import (
     materialize_case,
     validate_collection,
     validate_envelope,
+    validate_provider_native,
 )
 
 
 COLLECTION = load_collection()
+HISTORICAL_MODEL_DIGESTS = {
+    "yolo26": "7efdb492b97351f06fbc67468ae931450f3ac3d2ebd45884dd1cce55e5a9b0ab",
+    "qwen3_vl": "6d2d974f3019b7262ad3df08e22a07214ac94867845be1c2fb2c329cb20dac4f",
+    "qwen3_asr": "fdf659c33e08d0f2e569d14f3c850f96f3cc508c9e6c1998d64667c3b01d3b2b",
+    "orb_slam3": "1aa8b545097f1fd60e8dfc98c3b1cf544c60ee6eb1c2352aee4032f4c06c4138",
+    "relateanything": "f94e5f8d8ce9eb49996bbe4ca330a375eee7f0425400e8d10e79f51533754ed3",
+}
 
 
 def envelope_for(model_key: str, kind: str) -> dict:
@@ -26,16 +36,49 @@ def envelope_for(model_key: str, kind: str) -> dict:
     return materialize_case(COLLECTION, model, case)
 
 
-def test_five_models_and_twenty_cases_load_with_expected_partitions() -> None:
-    assert len(COLLECTION["models"]) == 5
-    assert sum(len(model["cases"]) for model in COLLECTION["models"]) == 20
-    assert all({case["kind"] for case in model["cases"]} == set(CASE_KINDS) for model in COLLECTION["models"])
+def future_provider_probe() -> dict:
+    """GENERALIZATION_PROBE_ONLY: in-memory, never a model fixture record."""
+    model = deepcopy(next(item for item in COLLECTION["models"] if item["model_key"] == "qwen3_vl"))
+    model["model_key"] = "future_provider_probe"
+    for snapshot_name, snapshot in model["snapshots"].items():
+        snapshot.update({
+            "model_contract_ref": f"test-contract:anonymous-probe:{snapshot_name}",
+            "provider_family": "synthetic_probe",
+            "provider_model": "Anonymous Future Provider Probe",
+            "provider_model_revision": f"synthetic-probe-revision-{snapshot_name}",
+        })
+    model["configuration_snapshot"] = {}
+    model["input_refs"] = ["synthetic:probe:input"]
+    model["lineage_metadata"] = {
+        "relations": [{"kind": "PRODUCED_FROM", "source_ref": "synthetic:probe:input"}],
+        "creates_authority": False,
+    }
+    for case in model["cases"]:
+        case["native_payload"] = {"opaque_result": None if case["kind"] == "EMPTY_OR_NO_RESULT_001" else "probe"}
+        case["expected_projection"] = {
+            "candidate_only": True, "truth_declared": False, "admitted": False,
+            "candidate_kind": "opaque_candidate", "mappings": [],
+        }
+        case.pop("configuration_snapshot", None)
+    return model
+
+
+def test_frozen_five_models_twenty_cases_and_ten_snapshots_remain_intact() -> None:
+    historical = [model for model in COLLECTION["models"] if model["model_key"] in HISTORICAL_MODEL_DIGESTS]
+    assert len(historical) == len(HISTORICAL_MODEL_DIGESTS) == 5
+    assert sum(len(model["cases"]) for model in historical) == 20
+    assert sum(len(model["snapshots"]) for model in historical) == 10
+    assert all({case["kind"] for case in model["cases"]} == set(CASE_KINDS) for model in historical)
+    for model in historical:
+        original = {key: value for key, value in model.items() if key != "contract_requirements"}
+        encoded = json.dumps(original, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+        assert hashlib.sha256(encoded.encode("utf-8")).hexdigest() == HISTORICAL_MODEL_DIGESTS[model["model_key"]]
     assert validate_collection(COLLECTION) == ()
 
 
 def test_stored_cases_have_unique_materialized_synthetic_identities() -> None:
     cases = executable_cases(COLLECTION)
-    assert len(COLLECTION["models"]) == 5
+    assert len(COLLECTION["models"]) >= 5
     assert len(cases) >= 20
     assert len({case["case_id"] for case in cases}) == len(cases)
     assert all(case["source_kind"] == "SYNTHETIC" and case["simulation"] is True for case in cases)
@@ -54,6 +97,7 @@ def test_each_model_case_is_accepted_or_rejected_as_declared(model_key: str, kin
     assert envelope["simulation"] is True
     assert isinstance(envelope["native_payload"], dict)
     assert validate_envelope(envelope) == (("authority_escalation_attempt",) if kind == "AUTHORITY_NEGATIVE_001" else ())
+    assert validate_provider_native(envelope) == ()
 
 
 def test_version_dimensions_coexist_without_overwriting_v1() -> None:
@@ -169,3 +213,91 @@ def test_native_version_config_and_lineage_are_separate_from_admission() -> None
     assert vl["expected_projection"]["candidate_only"] is True
     assert vl["expected_projection"]["admitted"] is False
     assert vl["lineage_metadata"]["creates_authority"] is False
+
+
+def test_sixth_anonymous_provider_passes_universal_but_not_native_proof() -> None:
+    expanded = deepcopy(COLLECTION)
+    probe = future_provider_probe()
+    expanded["models"].append(probe)
+    assert validate_collection(expanded) == ()
+    assert len(expanded["models"]) == 6
+    for case in probe["cases"]:
+        envelope = materialize_case(expanded, probe, case)
+        assert validate_envelope(envelope) == (("authority_escalation_attempt",) if case["kind"] == "AUTHORITY_NEGATIVE_001" else ())
+        assert validate_provider_native(envelope) is None
+
+
+def test_duplicate_model_and_fixture_identity_still_fail() -> None:
+    duplicated = deepcopy(COLLECTION)
+    duplicated["models"].append(deepcopy(duplicated["models"][0]))
+    assert "duplicate_model_key" in validate_collection(duplicated)
+    assert any(error.startswith("duplicate_case_id:") for error in validate_collection(duplicated))
+    duplicated = deepcopy(COLLECTION)
+    duplicated["models"][0]["cases"].append(deepcopy(duplicated["models"][0]["cases"][0]))
+    assert any(error.startswith("duplicate_case_id:") for error in validate_collection(duplicated))
+
+
+def test_declared_coordinate_applicability_is_bounded_and_enforced() -> None:
+    required = envelope_for("yolo26", "NORMAL_POSITIVE_001")
+    required["coordinate_metadata"] = None
+    assert "coordinate_required_missing" in validate_envelope(required)
+    assert "coordinate_basis_invalid" in validate_envelope(required)
+    optional = envelope_for("yolo26", "NORMAL_POSITIVE_001")
+    optional["contract_requirements"]["coordinate"] = "OPTIONAL"
+    optional["coordinate_metadata"] = {"basis": "NOT_A_BASIS"}
+    assert "coordinate_basis_invalid" in validate_envelope(optional)
+    not_applicable = envelope_for("qwen3_vl", "NORMAL_POSITIVE_001")
+    assert not_applicable["contract_requirements"]["coordinate"] == "NOT_APPLICABLE"
+    assert not_applicable["coordinate_metadata"] is None
+    assert validate_envelope(not_applicable) == ()
+    not_applicable["coordinate_metadata"] = {"basis": "IMAGE_PIXEL", "reference_scope": "synthetic:image:desk-001"}
+    assert "coordinate_not_applicable_conflict" in validate_envelope(not_applicable)
+    malformed = envelope_for("yolo26", "NORMAL_POSITIVE_001")
+    malformed["contract_requirements"]["coordinate"] = "IGNORE"
+    assert "contract_requirements_invalid" in validate_envelope(malformed)
+
+
+@pytest.mark.parametrize("kind", ["temporal", "identity", "score", "lineage"])
+def test_declared_noncoordinate_requirements_are_enforced(kind: str) -> None:
+    envelope = envelope_for("yolo26", "NORMAL_POSITIVE_001")
+    envelope["contract_requirements"][kind] = "REQUIRED"
+    envelope[f"{kind}_metadata"] = None
+    assert f"{kind}_required_missing" in validate_envelope(envelope)
+
+
+@pytest.mark.parametrize("model_key,expected_error", [
+    ("yolo26", "detection_basis_invalid"),
+    ("orb_slam3", "slam_frame_or_scale_invalid"),
+])
+def test_false_declaration_cannot_bypass_frozen_native_coordinate_contract(model_key: str, expected_error: str) -> None:
+    envelope = envelope_for(model_key, "NORMAL_POSITIVE_001")
+    envelope["contract_requirements"]["coordinate"] = "NOT_APPLICABLE"
+    envelope["coordinate_metadata"] = None
+    assert expected_error in validate_provider_native(envelope)
+    altered = deepcopy(COLLECTION)
+    model = next(item for item in altered["models"] if item["model_key"] == model_key)
+    model["contract_requirements"]["coordinate"] = "NOT_APPLICABLE"
+    model["coordinate_metadata"] = None
+    assert any(expected_error in error for error in validate_collection(altered))
+
+
+@pytest.mark.parametrize("model_key,mutation,expected_error", [
+    ("yolo26", "detections", "detection_basis_invalid"),
+    ("qwen3_vl", "messages", "generated_payload_shape_invalid"),
+    ("qwen3_asr", "segments", "asr_media_time_invalid"),
+    ("orb_slam3", "coordinate_frame", "slam_frame_or_scale_invalid"),
+    ("relateanything", "predicate_vocabulary_version", "relation_vocabulary_invalid"),
+])
+def test_frozen_provider_native_assertions_remain_active(model_key: str, mutation: str, expected_error: str) -> None:
+    envelope = envelope_for(model_key, "NORMAL_POSITIVE_001")
+    envelope["native_payload"].pop(mutation)
+    assert expected_error in validate_provider_native(envelope)
+
+
+def test_synthetic_and_golden_source_boundaries_remain_distinct() -> None:
+    envelope = envelope_for("yolo26", "NORMAL_POSITIVE_001")
+    envelope["simulation"] = False
+    assert "synthetic_must_be_simulation" in validate_envelope(envelope)
+    envelope["source_kind"] = "REAL_GOLDEN"
+    envelope["simulation"] = True
+    assert "golden_must_not_be_simulation" in validate_envelope(envelope)
