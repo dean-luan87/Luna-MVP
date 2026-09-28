@@ -1,0 +1,61 @@
+{
+  "fixture_schema_version": "external-sensory-simulation-fixture-v1",
+  "models": [
+    {
+      "model_key": "grounding_dino",
+      "relation_declarations": {
+        "CONDITIONED_BY": {"semantic_class": "CONDITIONING", "subject_role": "INFERENCE_OCCURRENCE", "source_role": "INPUT_CONDITION", "creates_authority": false},
+        "PRODUCED_FROM": {"semantic_class": "DERIVATION", "subject_role": "CANDIDATE_OUTPUT", "source_role": "UPSTREAM_INPUT", "creates_authority": false}
+      },
+      "contract_requirements": {"coordinate": "REQUIRED", "temporal": "OPTIONAL", "identity": "OPTIONAL", "score": "REQUIRED", "lineage": "REQUIRED"},
+      "snapshot_classification": {"v1": "SYNTHETIC_BASELINE", "variant": "SIMULATED_CONTRACT_VARIANT"},
+      "snapshots": {
+        "v1": {"model_contract_ref": "test-contract:grounding-dino:synthetic-native-v1", "provider_family": "grounding_dino", "provider_model": "Grounding DINO", "provider_model_revision": "synthetic-revision-1", "provider_interface_version": "synthetic-interface-1", "native_contract_version": "synthetic-native-v1", "adapter_contract_version": "synthetic-candidate-map-v1", "capability_class": "TEXT_CONDITIONED_OPEN_SET_DETECTION"},
+        "variant": {"model_contract_ref": "test-contract:grounding-dino:synthetic-native-v2", "provider_family": "grounding_dino", "provider_model": "Grounding DINO", "provider_model_revision": "synthetic-revision-2", "provider_interface_version": "synthetic-interface-2", "native_contract_version": "synthetic-native-v2", "adapter_contract_version": "synthetic-candidate-map-v2", "capability_class": "TEXT_CONDITIONED_OPEN_SET_DETECTION"}
+      },
+      "configuration_snapshot": {"prompt_basis": "text_caption", "detection_threshold": 0.30, "box_encoding": "CXCYWH", "coordinate_basis": "IMAGE_NORMALIZED"},
+      "input_refs": ["synthetic:image:grounding-001", "synthetic:prompt:grounding-001"],
+      "temporal_metadata": [{"role": "MEDIA_CAPTURE_OR_EVENT_TIME", "value": null, "clock_domain": "UNKNOWN", "creates_currentness": false}],
+      "coordinate_metadata": {"basis": "IMAGE_NORMALIZED", "box_encoding": "CXCYWH", "value_range": [0.0, 1.0], "reference_scope": "synthetic:image:grounding-001", "world_coordinate_claimed": false},
+      "identity_metadata": [{"scope": "INVOCATION_LOCAL_ID", "native_field": "detections[0].detection_index"}, {"scope": "INVOCATION_LOCAL_ID", "native_field": "detections[0].query_index"}, {"scope": "INVOCATION_LOCAL_ID", "native_field": "detections[0].phrase_index"}],
+      "score_metadata": [{"score_name": "provider_grounding_score", "score_value": 0.82, "score_domain": "GROUNDING_DINO_SYNTHETIC_PROVIDER_LOCAL", "score_semantics": "provider-local text-conditioned detection ranking; not truth probability or Luna epistemic confidence", "score_range": [0.0, 1.0], "threshold": 0.30, "calibrated": false, "comparable_with": []}],
+      "lineage_metadata": {"relations": [], "creates_authority": false},
+      "cases": [
+        {
+          "kind": "NORMAL_POSITIVE_001",
+          "snapshot": "v1",
+          "native_payload": {"image_ref": "synthetic:image:grounding-001", "prompt_ref": "synthetic:prompt:grounding-001", "caption": "red cup on a table", "detections": [{"detection_index": 0, "query_index": 4, "phrase_index": 0, "box_cxcywh": [0.40, 0.45, 0.20, 0.30], "provider_score": 0.82, "phrase": "red cup"}]},
+          "lineage_metadata": {"relations": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:prompt:grounding-001", "subject_ref": "synthetic-invocation:grounding_dino:NORMAL_POSITIVE_001"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:grounding_dino:NORMAL_POSITIVE_001"}], "creates_authority": false},
+          "expected_projection": {"candidate_only": true, "truth_declared": false, "admitted": false, "candidate_kind": "text_conditioned_detection_candidate", "mappings": [{"native_path": "detections[0].box_cxcywh", "candidate_path": "detections[0].provider_box_cxcywh", "conversion": "identity", "loss": "none", "expected_value": [0.40, 0.45, 0.20, 0.30]}, {"native_path": "detections[0].provider_score", "candidate_path": "detections[0].provider_local_score", "conversion": "identity", "loss": "none", "expected_value": 0.82}, {"native_path": "detections[0].phrase", "candidate_path": "detections[0].phrase_candidate", "conversion": "identity", "loss": "none", "expected_value": "red cup"}, {"native_path": "detections[0].query_index", "candidate_path": "detections[0].invocation_local_query_index", "conversion": "identity", "loss": "none", "expected_value": 4}]}
+        },
+        {
+          "kind": "EMPTY_OR_NO_RESULT_001",
+          "snapshot": "v1",
+          "native_payload": {"image_ref": "synthetic:image:grounding-001", "prompt_ref": "synthetic:prompt:grounding-001", "caption": "red cup on a table", "detections": []},
+          "identity_metadata": [],
+          "score_metadata": [{"score_name": "configured_detection_threshold", "score_value": 0.30, "score_domain": "GROUNDING_DINO_SYNTHETIC_PROVIDER_LOCAL", "score_semantics": "configured acceptance threshold only; no detection score exists in this empty result", "score_range": [0.0, 1.0], "threshold": 0.30, "calibrated": false, "comparable_with": []}],
+          "lineage_metadata": {"relations": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:prompt:grounding-001", "subject_ref": "synthetic-invocation:grounding_dino:EMPTY_OR_NO_RESULT_001"}], "creates_authority": false},
+          "expected_projection": {"candidate_only": true, "truth_declared": false, "admitted": false, "candidate_kind": "text_conditioned_detection_candidate", "mappings": []}
+        },
+        {
+          "kind": "AUTHORITY_NEGATIVE_001",
+          "snapshot": "v1",
+          "native_payload": {"image_ref": "synthetic:image:grounding-001", "prompt_ref": "synthetic:prompt:grounding-001", "caption": "red cup on a table", "detections": [{"detection_index": 0, "query_index": 4, "phrase_index": 0, "box_cxcywh": [0.40, 0.45, 0.20, 0.30], "provider_score": 0.99, "phrase": "red cup"}]},
+          "score_metadata": [{"score_name": "provider_grounding_score", "score_value": 0.99, "score_domain": "GROUNDING_DINO_SYNTHETIC_PROVIDER_LOCAL", "score_semantics": "high provider-local ranking remains non-authoritative", "score_range": [0.0, 1.0], "threshold": 0.30, "calibrated": false, "comparable_with": []}],
+          "authority_attempt": {"provider_output_is_truth": true},
+          "lineage_metadata": {"relations": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:prompt:grounding-001", "subject_ref": "synthetic-invocation:grounding_dino:AUTHORITY_NEGATIVE_001"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:grounding_dino:AUTHORITY_NEGATIVE_001"}], "creates_authority": false},
+          "expected_projection": {"candidate_only": true, "truth_declared": false, "admitted": false, "candidate_kind": "text_conditioned_detection_candidate", "mappings": []}
+        },
+        {
+          "kind": "VERSION_VARIANT_001",
+          "snapshot": "variant",
+          "configuration_snapshot": {"prompt_basis": "text_caption", "detection_threshold": 0.25, "box_encoding": "CXCYWH", "coordinate_basis": "IMAGE_NORMALIZED"},
+          "native_payload": {"image_ref": "synthetic:image:grounding-001", "prompt_ref": "synthetic:prompt:grounding-001", "caption": "red cup on a table", "detections": [{"detection_index": 0, "query_index": 7, "phrase_index": 1, "box_cxcywh": [0.42, 0.44, 0.18, 0.28], "provider_score": 0.76, "phrase": "red cup"}]},
+          "score_metadata": [{"score_name": "provider_grounding_score", "score_value": 0.76, "score_domain": "GROUNDING_DINO_SYNTHETIC_PROVIDER_LOCAL", "score_semantics": "synthetic contract variant provider-local ranking only", "score_range": [0.0, 1.0], "threshold": 0.25, "calibrated": false, "comparable_with": []}],
+          "lineage_metadata": {"relations": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:prompt:grounding-001", "subject_ref": "synthetic-invocation:grounding_dino:VERSION_VARIANT_001"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:grounding_dino:VERSION_VARIANT_001"}], "creates_authority": false},
+          "expected_projection": {"candidate_only": true, "truth_declared": false, "admitted": false, "candidate_kind": "text_conditioned_detection_candidate", "mappings": [{"native_path": "detections[0].box_cxcywh", "candidate_path": "detections[0].provider_box_cxcywh", "conversion": "identity", "loss": "none", "expected_value": [0.42, 0.44, 0.18, 0.28]}, {"native_path": "detections[0].provider_score", "candidate_path": "detections[0].provider_local_score", "conversion": "identity", "loss": "none", "expected_value": 0.76}]}
+        }
+      ]
+    }
+  ]
+}
