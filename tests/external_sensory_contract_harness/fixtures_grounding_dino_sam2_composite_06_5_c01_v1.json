@@ -1,0 +1,73 @@
+{
+  "fixture_schema_version": "external-sensory-composite-fixture-v1",
+  "composite_key": "GROUNDING_DINO_TO_SAM2",
+  "composite_type": "SYNTHETIC_CROSS_PROVIDER_HANDOFF",
+  "upstream_provider": "GROUNDING_DINO",
+  "downstream_provider": "SAM2",
+  "model_count_increment": 0,
+  "provider_contract_snapshot_increment": 0,
+  "defaults": {
+    "source_kind": "SYNTHETIC",
+    "simulation": true,
+    "original_text_prompt": {"ref": "synthetic:prompt:grounding-001", "text": "red cup on a table"},
+    "image_space": {
+      "source": {"image_ref": "synthetic:image:grounding-001", "image_width": 1000, "image_height": 800, "orientation": "UPRIGHT", "resize": "NONE", "crop": "NONE", "letterbox": "NONE"},
+      "target": {"image_ref": "synthetic:image:grounding-001", "image_width": 1000, "image_height": 800, "orientation": "UPRIGHT", "resize": "NONE", "crop": "NONE", "letterbox": "NONE"}
+    },
+    "grounding": {
+      "invocation_ref": "synthetic-invocation:grounding_dino:C01",
+      "image_ref": "synthetic:image:grounding-001",
+      "prompt_ref": "synthetic:prompt:grounding-001",
+      "caption": "red cup on a table",
+      "detections": [{"detection_ref": "synthetic:detection:grounding-001", "detection_index": 0, "query_index": 4, "phrase_index": 0, "box_cxcywh": [0.4, 0.45, 0.2, 0.3], "provider_score": 0.82, "phrase": "red cup"}]
+    },
+    "derived_box_prompt": {
+      "ref": "synthetic:composite:box-prompt-001",
+      "source_detection_ref": "synthetic:detection:grounding-001",
+      "image_ref": "synthetic:image:grounding-001",
+      "coordinate_basis": "IMAGE_PIXEL",
+      "box_encoding": "XYXY",
+      "coordinate_type": "FINITE_FLOAT_PIXEL_COORDINATES",
+      "box_xyxy": [300.0, 240.0, 500.0, 480.0]
+    },
+    "sam2": {
+      "invocation_ref": "synthetic-invocation:sam2:C01",
+      "prompt_ref": "synthetic:composite:box-prompt-001",
+      "mask_ref": "synthetic:mask:sam2:C01",
+      "mask_index": 0,
+      "provider_quality_score": 0.84,
+      "image_ref": "synthetic:image:grounding-001",
+      "masks": [{"mask_index": 0, "representation": "BINARY_MASK_DESCRIPTOR", "mask_ref": "synthetic:mask:sam2:C01", "spatial_basis": "IMAGE_PIXEL", "reference_scope": "synthetic:image:grounding-001", "width": 1000, "height": 800, "foreground_pixel_count": 1200, "provider_quality_score": 0.84}]
+    },
+    "handoff_mapping": {
+      "handoff_ref": "synthetic:handoff:grounding-to-sam2:C01",
+      "source_detection_ref": "synthetic:detection:grounding-001",
+      "derived_prompt_ref": "synthetic:composite:box-prompt-001",
+      "source_coordinate_basis": "IMAGE_NORMALIZED",
+      "source_box_encoding": "CXCYWH",
+      "target_coordinate_basis": "IMAGE_PIXEL",
+      "target_box_encoding": "XYXY",
+      "image_space_basis": "synthetic:image-space:C01",
+      "transform": "NORMALIZED_CXCYWH_TO_PIXEL_XYXY",
+      "transform_authority": "NONE"
+    },
+    "processing_order": {"grounding": 1, "handoff": 2, "sam2": 3, "clock_domain": "C01_SYNTHETIC_PROCESSING_ORDER", "creates_currentness": false},
+    "relations": {
+      "grounding": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:prompt:grounding-001", "subject_ref": "synthetic-invocation:grounding_dino:C01"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:grounding_dino:C01"}],
+      "sam2": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:composite:box-prompt-001", "subject_ref": "synthetic-invocation:sam2:C01"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:sam2:C01"}],
+      "creates_authority": false
+    },
+    "authority": {"composite_creates_truth": false, "composite_creates_admission": false, "composite_creates_currentness": false, "composite_creates_canonical_identity": false, "composite_creates_runtime_authority": false, "composite_creates_mutation_authority": false, "handoff_mapping_authority": "NONE", "composite_confidence_created": false, "luna_epistemic_confidence_created": false, "cross_provider_score_comparison_allowed": false}
+  },
+  "cases": [
+    {"case_id": "GROUNDING_DINO_TO_SAM2:NORMAL_HANDOFF_001", "case_kind": "NORMAL_HANDOFF", "overrides": {}, "expected_errors": []},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:EMPTY_UPSTREAM_001", "case_kind": "EMPTY_UPSTREAM", "overrides": {"grounding": {"detections": []}, "derived_box_prompt": null, "sam2": null}, "expected_errors": []},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:INVALID_COORDINATE_HANDOFF_001", "case_kind": "INVALID_COORDINATE_HANDOFF", "overrides": {"grounding": {"detections": [{"detection_ref": "synthetic:detection:grounding-invalid", "detection_index": 0, "query_index": 4, "phrase_index": 0, "box_cxcywh": [0.95, 0.45, 0.2, 0.3], "provider_score": 0.82, "phrase": "red cup"}]}}, "expected_errors": ["grounding_box_invalid", "handoff_source_detection_invalid", "handoff_source_detection_missing", "mechanical_transform_invalid"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:IMAGE_SPACE_MISMATCH_001", "case_kind": "IMAGE_SPACE_MISMATCH", "overrides": {"image_space": {"target": {"image_ref": "synthetic:image:other-001"}}}, "expected_errors": ["image_space_mismatch"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:LINEAGE_BREAK_001", "case_kind": "LINEAGE_BREAK", "overrides": {"handoff_mapping": {"source_detection_ref": "synthetic:detection:missing"}}, "expected_errors": ["handoff_source_detection_missing"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:AUTHORITY_NEGATIVE_001", "case_kind": "AUTHORITY_NEGATIVE", "overrides": {"authority": {"composite_creates_truth": true, "composite_creates_runtime_authority": true}}, "expected_errors": ["composite_authority_claim_invalid"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:SCORE_BOUNDARY_001", "case_kind": "SCORE_BOUNDARY", "overrides": {"authority": {"cross_provider_score_comparison_allowed": true, "composite_confidence_created": true}}, "expected_errors": ["cross_provider_score_boundary_invalid"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:IDENTITY_ESCALATION_NEGATIVE_001", "case_kind": "IDENTITY_ESCALATION_NEGATIVE", "overrides": {"derived_box_prompt": {"ref": "synthetic:detection:grounding-001"}, "handoff_mapping": {"derived_prompt_ref": "synthetic:detection:grounding-001"}, "sam2": {"prompt_ref": "synthetic:detection:grounding-001"}, "relations": {"sam2": [{"kind": "CONDITIONED_BY", "source_ref": "synthetic:detection:grounding-001", "subject_ref": "synthetic-invocation:sam2:C01"}, {"kind": "PRODUCED_FROM", "source_ref": "synthetic-invocation:sam2:C01"}]}}, "expected_errors": ["identity_namespace_escalation"]},
+    {"case_id": "GROUNDING_DINO_TO_SAM2:TEMPORAL_ORDER_EDGE_001", "case_kind": "TEMPORAL_ORDER_EDGE", "overrides": {"processing_order": {"grounding": 2, "handoff": 1, "sam2": 3, "creates_currentness": true}}, "expected_errors": ["processing_order_invalid", "composite_currentness_claim_invalid"]}
+  ]
+}
