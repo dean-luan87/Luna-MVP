@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from typing import Any
 
 
@@ -15,6 +16,50 @@ def _index(value: Any) -> bool:
 
 def _score(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and 0 <= value <= 1
+
+
+def _finite_number(value: Any) -> bool:
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def _image_space_valid(config: Any, native: dict[str, Any], coordinate: Any) -> bool:
+    space = config.get("image_space") if isinstance(config, dict) else None
+    if not isinstance(space, dict) or set(space) != {"image_ref", "orientation", "resize", "crop", "letterbox"}:
+        return False
+    reference = native.get("image_ref")
+    return (
+        _nonempty(reference)
+        and space.get("image_ref") == reference
+        and space.get("orientation") == "UPRIGHT"
+        and space.get("resize") == "NONE"
+        and space.get("crop") == "NONE"
+        and space.get("letterbox") == "NONE"
+        and isinstance(coordinate, dict)
+        and coordinate.get("image_ref") == reference
+        and _index(coordinate.get("image_width")) and coordinate.get("image_width") > 0
+        and _index(coordinate.get("image_height")) and coordinate.get("image_height") > 0
+    )
+
+
+def _box_prompt_valid(prompt: Any, coordinate: Any) -> bool:
+    if not isinstance(prompt, dict) or not isinstance(coordinate, dict):
+        return False
+    box = prompt.get("box_xyxy")
+    width, height = coordinate.get("image_width"), coordinate.get("image_height")
+    return (
+        prompt.get("type") == "BOX"
+        and prompt.get("coordinate_basis") == "IMAGE_PIXEL"
+        and prompt.get("box_encoding") == "XYXY"
+        and prompt.get("coordinate_type") == "FINITE_FLOAT_PIXEL_COORDINATES"
+        and coordinate.get("prompt_encoding") == "XYXY"
+        and coordinate.get("box_encoding") == "XYXY"
+        and coordinate.get("coordinate_type") == "FINITE_FLOAT_PIXEL_COORDINATES"
+        and isinstance(box, list) and len(box) == 4
+        and all(_finite_number(value) for value in box)
+        and _index(width) and width > 0 and _index(height) and height > 0
+        and 0 <= box[0] < box[2] <= width
+        and 0 <= box[1] < box[3] <= height
+    )
 
 
 def validate_sam2_snapshots(model: dict[str, Any]) -> tuple[str, ...]:
@@ -102,16 +147,24 @@ def validate_sam2_native(envelope: dict[str, Any]) -> tuple[str, ...]:
         point = prompt.get("coordinates_xy") if isinstance(prompt, dict) else None
         width = coordinate.get("image_width") if isinstance(coordinate, dict) else None
         height = coordinate.get("image_height") if isinstance(coordinate, dict) else None
-        if (
-            not isinstance(prompt, dict) or prompt.get("type") != "POINT"
-            or prompt.get("coordinate_basis") != "IMAGE_PIXEL"
-            or not isinstance(point, list) or len(point) != 2 or not all(_index(value) for value in point)
+        prompt_type = prompt.get("type") if isinstance(prompt, dict) else None
+        if prompt_type == "POINT" and (
+            not isinstance(point, list) or len(point) != 2 or not all(_index(value) for value in point)
             or not _index(width) or not _index(height)
             or point[0] >= width or point[1] >= height
+            or prompt.get("coordinate_basis") != "IMAGE_PIXEL"
             or prompt.get("label") not in (0, 1)
             or not isinstance(coordinate, dict) or coordinate.get("prompt_encoding") != "XY_POINT"
         ):
             errors.append("sam2_point_prompt_invalid")
+        elif prompt_type == "BOX" and not _box_prompt_valid(prompt, coordinate):
+            errors.append("sam2_box_prompt_invalid")
+        elif prompt_type not in {"POINT", "BOX"}:
+            errors.append("sam2_point_prompt_invalid")
+        if prompt_type == "BOX" and not _image_space_valid(config, native, coordinate):
+            errors.append("sam2_image_space_invalid")
+        elif prompt_type == "POINT" and not _image_space_valid(config, native, coordinate):
+            errors.append("sam2_image_space_invalid")
         if envelope.get("temporal_metadata") != []:
             errors.append("sam2_image_temporal_claim_invalid")
     elif mode == "VIDEO_PROPAGATION":

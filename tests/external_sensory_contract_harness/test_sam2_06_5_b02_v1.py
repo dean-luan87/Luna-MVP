@@ -35,9 +35,22 @@ def test_sam2_is_model_seven_without_frozen_core_or_grounding_change() -> None:
     grounding = json.loads(Path(__file__).with_name("fixtures_grounding_dino_06_5_b01_v1.json").read_text(encoding="utf-8"))
     combined = {"fixture_schema_version": frozen["fixture_schema_version"],
                 "models": [*frozen["models"], *grounding["models"], *COLLECTION["models"]]}
+    base_cases = sum(len(model["cases"]) for model in frozen["models"])
+    grounding_cases = sum(len(model["cases"]) for model in grounding["models"])
+    sam2_current_cases = sum(len(model["cases"]) for model in COLLECTION["models"])
+    sam2_historical_cases = [case for model in COLLECTION["models"] for case in model["cases"] if case["kind"] != "BOX_PROMPT_POSITIVE_001"]
+    sam2_additive_cases = [case for model in COLLECTION["models"] for case in model["cases"] if case["kind"] == "BOX_PROMPT_POSITIVE_001"]
     assert (len(frozen["models"]), len(grounding["models"]), len(COLLECTION["models"])) == (5, 1, 1)
     assert len(combined["models"]) == 7
-    assert sum(len(model["cases"]) for model in combined["models"]) == 29
+    assert base_cases == 20
+    assert grounding_cases == 4
+    assert len(sam2_historical_cases) == 5
+    assert len(sam2_additive_cases) == 1
+    assert sam2_current_cases == 6
+    assert base_cases + grounding_cases + len(sam2_historical_cases) == 29
+    assert base_cases + grounding_cases + sam2_current_cases == 30
+    assert sam2_additive_cases[0]["kind"] == "BOX_PROMPT_POSITIVE_001"
+    assert len(combined["models"]) == 7
     assert sum(len(model["snapshots"]) for model in combined["models"]) == 14
     assert validate_collection(frozen) == ()
     assert validate_collection(grounding) == ()
@@ -85,6 +98,60 @@ def test_image_segmentation_preserves_prompt_mask_basis_and_lineage() -> None:
     assert {item["native_path"] for item in envelope["expected_projection"]["mappings"]} >= {
         "masks[0].mask_ref", "masks[0].representation", "masks[0].provider_quality_score",
     }
+
+
+def test_box_prompt_is_independent_of_grounding_and_preserves_image_space() -> None:
+    envelope = envelope_for("BOX_PROMPT_POSITIVE_001")
+    native = envelope["native_payload"]
+    prompt = native["prompt"]
+    space = envelope["configuration_snapshot"]["image_space"]
+    assert prompt["type"] == "BOX"
+    assert prompt["coordinate_basis"] == "IMAGE_PIXEL"
+    assert prompt["box_encoding"] == "XYXY"
+    assert prompt["coordinate_type"] == "FINITE_FLOAT_PIXEL_COORDINATES"
+    assert envelope["coordinate_metadata"]["image_ref"] == native["image_ref"]
+    assert envelope["coordinate_metadata"]["image_width"] == 8
+    assert envelope["coordinate_metadata"]["image_height"] == 8
+    assert space == {"image_ref": native["image_ref"], "orientation": "UPRIGHT", "resize": "NONE", "crop": "NONE", "letterbox": "NONE"}
+    assert all("grounding" not in ref.lower() for ref in envelope["input_refs"])
+    assert all("grounding" not in str(relation).lower() for relation in envelope["lineage_metadata"]["relations"])
+    assert validate_envelope(envelope) == ()
+    assert validate_sam2_native(envelope) == ()
+
+
+@pytest.mark.parametrize("mutation", ["reversed", "zero_area", "out_of_range", "nan"])
+def test_box_bounds_fail_closed(mutation: str) -> None:
+    envelope = envelope_for("BOX_PROMPT_POSITIVE_001")
+    box = envelope["native_payload"]["prompt"]["box_xyxy"]
+    if mutation == "reversed":
+        box[:] = [6.75, 1.5, 1.25, 7.0]
+    elif mutation == "zero_area":
+        box[:] = [1.25, 1.5, 1.25, 7.0]
+    elif mutation == "out_of_range":
+        box[:] = [1.25, 1.5, 6.75, 8.1]
+    else:
+        box[0] = float("nan")
+    assert "sam2_box_prompt_invalid" in validate_sam2_native(envelope)
+
+
+def test_box_image_space_declaration_fails_closed() -> None:
+    envelope = envelope_for("BOX_PROMPT_POSITIVE_001")
+    envelope["coordinate_metadata"]["image_width"] = 0
+    assert "sam2_image_space_invalid" in validate_sam2_native(envelope)
+
+
+def test_box_native_declaration_mismatch_fails_closed() -> None:
+    envelope = envelope_for("BOX_PROMPT_POSITIVE_001")
+    envelope["native_payload"]["prompt"]["type"] = "POINT"
+    assert "sam2_point_prompt_invalid" in validate_sam2_native(envelope)
+
+
+def test_box_authority_and_snapshot_boundaries_remain_closed() -> None:
+    envelope = envelope_for("BOX_PROMPT_POSITIVE_001")
+    envelope["native_payload"]["world_truth_declared"] = True
+    assert "sam2_native_authority_claim_invalid" in validate_sam2_native(envelope)
+    assert validate_sam2_snapshots(MODEL) == ()
+    assert set(MODEL["snapshots"]) == {"v1", "variant"}
 
 
 def test_video_propagation_has_sequence_local_time_identity_and_no_currentness() -> None:
@@ -228,8 +295,8 @@ def test_malformed_video_propagation_fails_closed(mutation: str) -> None:
 
 
 def test_no_real_golden_cross_model_input_or_composite_claim() -> None:
-    assert len(MODEL["cases"]) == 5
-    assert {case["kind"] for case in MODEL["cases"]} == {*CASE_KINDS, VIDEO_CASE}
+    assert len(MODEL["cases"]) == 6
+    assert {case["kind"] for case in MODEL["cases"]} == {*CASE_KINDS, VIDEO_CASE, "BOX_PROMPT_POSITIVE_001"}
     assert len({case["kind"] for case in MODEL["cases"]}) == len(MODEL["cases"])
     for case in MODEL["cases"]:
         envelope = materialize_case(COLLECTION, MODEL, case)
