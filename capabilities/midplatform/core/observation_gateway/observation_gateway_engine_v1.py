@@ -90,7 +90,7 @@ class ObservationGatewayEngineV1:
             "SYSTEM_EVENT": "system_event_evidence",
             "EXTERNAL_PROVIDER": "external_provider_evidence",
         }.get(request.ingress_type, "provider_evidence")
-        if runtime is not None and runtime.empty_result:
+        if runtime is not None and runtime.empty_result and request.ingress_type == "OCR":
             evidence_type = "ocr_empty_success"
         contradiction_refs = (f"contradiction:{sid}",) if request.multi_evidence_contradiction else ()
         correction_refs = (request.correction_ref,) if request.correction_ref else ()

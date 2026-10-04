@@ -42,6 +42,7 @@ CONTROLLED_PROVIDER_EVALUATION_PROFILE_REF = "provider-runtime-profile:controlle
 EVALUATION_PROFILE_CATALOG_REF = "provider-runtime-evaluation-profiles"
 EVALUATION_PROFILE_CATALOG_VERSION = "v1"
 CONTROLLED_PROVIDER_REFS = (
+    "provider:yolo:local:v1",
     "provider:controlled:1",
     "provider:controlled:2",
     "provider:controlled:model",

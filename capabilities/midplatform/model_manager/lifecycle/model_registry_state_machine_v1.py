@@ -15,7 +15,7 @@ LIFECYCLE_STATES = (
     "blocked",
 )
 
-ROUTING_ELIGIBLE_STATES: FrozenSet[str] = frozenset({"admitted", "active"})
+ROUTING_ELIGIBLE_STATES: FrozenSet[str] = frozenset({"active"})
 EXECUTION_ELIGIBLE_STATES: FrozenSet[str] = frozenset({"active"})
 
 VALID_TRANSITIONS: Dict[str, Tuple[str, ...]] = {
@@ -47,11 +47,8 @@ def can_transition(from_state: str, to_state: str) -> bool:
 
 
 def is_routing_eligible(state: str, *, admission_status: str = "") -> bool:
-    if state == "blocked":
-        return False
-    if state in ROUTING_ELIGIBLE_STATES:
-        return admission_status in ("admitted", "active", "") or state == "active"
-    return False
+    """Check only the production-routing lifecycle/admission prerequisite."""
+    return state in ROUTING_ELIGIBLE_STATES and admission_status == "admitted"
 
 
 def is_execution_eligible(state: str) -> bool:

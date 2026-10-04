@@ -100,6 +100,10 @@ def list_capability_providers(capability_id: str) -> List[Dict[str, Any]]:
 
 
 def is_provider_routing_eligible(provider: Dict[str, Any]) -> bool:
+    # Production routing requires a proven explicit Provider identity. Legacy
+    # records remain inspectable, but model_id is not an identity fallback.
+    if not str(provider.get("provider_id", "")):
+        return False
     state = provider.get("lifecycle_state", "candidate")
     admission = provider.get("admission_status", "")
     if state == "deprecated" or state == "blocked":

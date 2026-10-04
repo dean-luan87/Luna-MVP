@@ -138,6 +138,37 @@ L13 Verification
 
 Goal-Driven Structural Projection determines where the structure should grow. Minimum Sufficient Architecture determines how much to build now. Do not use future projection to justify speculative Managers, Registries, Governance Layers, Artifacts, or model-specific core coupling.
 
+## Future architecture design rules
+
+The eight core design rules and four derived implementation guards in `docs/architecture/governance/luna_governance_core_architecture_v1.md` are mandatory beneath the Supreme Design Principle and alongside the Six-Law. They govern future proposals; they do not assert a Workspace, Sedimentation Graph, or Lineage Spine is implemented.
+
+Core rules for design and review:
+
+1. Derive structure from Luna's product/system question and projected scale, not current files, DTOs, models, providers, or convenience.
+2. A semantic stage, type, ref, ID, module, persistence, or candidate does not itself establish a Canonical Fact.
+3. Prove an independent commitment/lifecycle first. If upstream refs + version + relation + occurrence suffice, `DO_NOT_PROMOTE_TO_CANONICAL_FACT`; determine an Owner only after proving the fact.
+4. Prefer bounded, versioned, branching information relationships over parallel copied state. Not every endpoint needs a DTO, persisted node, canonical identity, or Owner.
+5. Bound each cognitive work occurrence as applicable, but do not infer a `WorkScopeV1` artifact or Workspace authority. Check Concern, Cognitive Grant, Working Envelope, CState/read-basis, and Task/runtime context first.
+6. Share logical formation/provenance/impact relation semantics through distributed recording, never a central Truth Store. Relation queries do not establish current authority; `LINEAGE != AUTHORITY`.
+7. System primitives define shared semantics, not Domain Truth: `FIRST_CONSUMER != SYSTEM_OWNER`; `FIRST_IMPLEMENTER != DEFINITION_AUTHORITY`; `SYSTEM_SEMANTICS != DOMAIN_TRUTH`.
+8. Keep read-basis, Field, semantic product, Action, effect-time, and continued-execution currentness distinct. `READ_BASIS_VERSION != GLOBAL_WORLD_SNAPSHOT`; shared CState version does not establish a global instant.
+
+Derived guards: (A) first observable transformation divergence is not first semantic error; independent evidence/adjudication is required. (B) `EDGE_RECORDS_AUTHORITY_OUTCOME; EDGE_NEVER_CREATES_AUTHORITY_OUTCOME`; lineage cannot authorize, admit, establish currentness, or execute. (C) Ephemeral product, retained trace, durable operational state, and admitted long-term Memory stay separate. (D) Default to Minimum Sufficient Architecture, not global Managers, Registries, Resolvers, Blackboards, event sourcing, or central graph authority.
+
+Classify each proposed artifact as `SOURCE / OBSERVATION`, `TRANSFORMATION`, `VIEW / PROJECTION`, `SEMANTIC PRODUCT`, `CANONICAL COMMITMENT / STATE`, `EXECUTION RECORD`, or `LINEAGE / DIAGNOSTIC RECORD`. Current World is a derived view, Attention a selection facet, Hypothesis and Decision Candidate semantic products; their existing types/candidates require no independent canonical stores. CState version remains an independently governed read-basis, not a global world snapshot. Do not collapse Concern, Grant, Envelope, Action, Safety, or Runtime Authorization authority.
+
+Before promotion, apply `CANONICAL_FACT_UPGRADE_GATE_V1` in fact → independent identity/lifecycle → Owner/authority → Six-Law/TEMPORAL order. Before any new Owner/Manager/Registry/Store/Resolver, apply `NEW_AUTHORITY_STRUCTURE_GUARD_V1`. Check information, identity, Owner, authority, and lifecycle duplication; lineage loss; and legacy **positive and negative** authority residue. Changed transformations feeding canonical commitments must preserve reconstructable upstream artifact/version, occurrence, producer/model/config, temporal role, Role/Perspective/Concern, and authority refs where relevant. Prefer the smallest structure preserving semantic responsibility, lifecycle, identity, authority, lineage, and future extensibility. These rules grant no runtime or verification authority.
+
+## Stable development and freeze discipline
+
+The canonical `LUNA_PRE_EXPANSION_STABILIZATION_MASTER_WORKLIST_V1` and stable-development protocol are in `docs/architecture/governance/luna_governance_core_architecture_v1.md`. Execute STAB-00 through STAB-07 sequentially, only when the current item is explicitly authorized. Stop after each item for ChatGPT adjudication and required User Terminal verification; do not self-complete or start a later item. The planned `LUNA_STABLE_BASELINE_V1` is not established by documenting this protocol.
+
+Keep `DEVELOPMENT`, `VERIFIED`, `FROZEN`, and `STABLE_BASELINE` distinct: `GO != ENGINEERING_FROZEN`, `ENGINEERING_FROZEN != INTEGRATION_APPROVED`, and `INTEGRATION_APPROVED != STABLE_BASELINE`. A frozen module or contract may change only through controlled reopen. An original freeze commit and receipt remain immutable historical evidence; hotfixes do not bypass verification.
+
+Future production-behavior feature, fix, and hotfix work requires an isolated branch, not ordinary development on a stable-baseline branch. Before modifying frozen code, record `SOURCE_BASELINE`, `CHANGE_BRANCH`, `CHANGE_REASON`, `AFFECTED_FROZEN_MODULES`, and `AFFECTED_FROZEN_CONTRACTS`; assess contract, authority, Canonical Fact, public-interface, and migration impact. Check both `FROZEN_PATH_INTERSECTION` and `FROZEN_CONTRACT_IMPACT`. An untouched frozen file does not prove its contract is unchanged: caller/consumer assumptions, identity, authority origin, Owner requery, version, currentness, scope, lifecycle, effect-time, and legacy semantics may change elsewhere. Material impact requires controlled reopen or compatibility review before integration.
+
+The controlled path is reopen request → isolated branch → implementation → focused verification → sensitive regression → source closure → architecture/contract review where applicable → freeze candidate → integration approval → new frozen version → new stable baseline where applicable. Verification and integration approval are separate. Preserve exact-path freeze/archive receipts, evidence, limitations, and remote-publication state; never overwrite prior receipts.
+
 ## Scope and verification boundaries
 
 - Preserve existing dirty work unless the active phase explicitly authorizes a change.

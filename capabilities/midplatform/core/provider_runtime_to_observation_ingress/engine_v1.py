@@ -22,8 +22,10 @@ from capabilities.midplatform.field_perception_orchestrator.integration.field_pe
     FieldPerceptionActiveObservationControlEngineV1,
 )
 from capabilities.midplatform.model_manager.registry.provider_registry_loader_v1 import (
-    filter_routing_eligible,
     list_capability_providers,
+)
+from capabilities.midplatform.model_manager.engines.model_provider_routing_lifecycle_closure_v1 import (
+    filter_model_provider_routing_lifecycle_eligible,
 )
 from capabilities.midplatform.model_manager.registries.universal_capability_slot.capability_scope_resolution_fixture_v1 import (
     _bind,
@@ -160,7 +162,7 @@ class ProviderRuntimeObservationIngressEngineV1:
 
     @staticmethod
     def _select_provider(capability_ref: str) -> Dict[str, Any] | None:
-        providers = filter_routing_eligible(list_capability_providers(capability_ref))
+        providers = filter_model_provider_routing_lifecycle_eligible(list_capability_providers(capability_ref))
         return providers[0] if providers else None
 
     @staticmethod

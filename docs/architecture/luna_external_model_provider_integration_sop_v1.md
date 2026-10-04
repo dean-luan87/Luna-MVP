@@ -14,6 +14,10 @@ Runtime Governance 下变成 Observation / Evidence Candidate。
 不拥有 Capability Governance、cognition、World Truth、Decision、Task 或 Action
 authority。Provider 的职责在产生受约束的候选输出后结束。
 
+The [Brain–Organ Separation Principle](./luna_canonical_architecture_freeze_v1/canonical_architecture_summary_v1.md#0315-brainorgan-separation-principle) names the logical boundary behind this SOP; it preserves the existing Provider Runtime, Gateway, Evidence and downstream Owners and does not mandate remote deployment.
+Future direct or communication integration forms may differ in transport or invocation, but both retain this SOP's governed Provider Runtime, Runtime Observation, Observation Gateway, and Evidence boundaries.
+The accompanying [Model / Organ Integration Protocol](./luna_canonical_architecture_freeze_v1/canonical_architecture_summary_v1.md#0316-luna-model--organ-integration-protocol) is a target architecture for onboarding and lifecycle, not a claim that every controlled real-evaluation entry is already implemented. It complements this SOP without merging existing Owners or replacing its verified v1.0 runtime semantics.
+
 v1.0 的实际验证来源是：
 
 - [YOLO11n Real Provider Execution Integration](./phase_p1_luna_real_provider_execution_integration_v1/overview.md)
@@ -130,6 +134,26 @@ binding、admission ref 或把 native provider id 冒充 canonical registry id�
 `provider_real_execution_verified` 只能在实际 invocation、结果规范化以及后续
 治理检查满足后成立；Agent 或文档不能预先替代用户终端验证。
 
+### 5.1 Model / Organ onboarding and authorization entries — target contract
+
+标准接入次序是：
+
+1. 登记 Model / Provider / Capability identity、version 和 binding；
+2. 保持 `candidate` lifecycle，不以注册代替准入；
+3. 确认 dependency、model asset 与 configuration readiness；
+4. 由相应 Owner 审核 controlled evaluation provider/capability profile；
+5. 由 Permission / Admission Manager 签发与 Provider、Capability、scope 匹配且当前有效的有界 `RuntimeExecutionGrantDecisionV1`；
+6. 经受控真实评估入口执行 Provider native invocation；
+7. provider-specific normalizer 形成 `ProviderRuntimeResultV1`，随后复用既有 Runtime Observation → Observation Gateway → Evidence 路径；
+8. 由 runner/verifier 和既有治理记录形成可审计 evaluation evidence；
+9. 由既有 Model Governance / lifecycle owner **另行**作出 admission decision；
+10. 对 admitted Provider **另行**完成 activation；
+11. active 且符合 production eligibility/authorization 后进入 production routing。
+
+`CONTROLLED_REAL_EVALUATION` 和 `PRODUCTION_RUNTIME` 是不同的**授权入口**，不是替代本节现有 `LIVE_RUNTIME` execution-mode 值的新 enum。前者用于 candidate/evaluating 的有界证明，必须以 Owner-approved profile 和真实有效 grant 为前提；它不授予 production routing eligibility，也不自动改变 lifecycle。后者仅按生产路由与授权规则选择 Provider。不得先将候选 Provider 预准入再以其真实运行“证明”准入，也不得在 production selector 上设置 `allow_candidate`。两种入口复用**同一个 Runtime Semantic Contract**；不得为评估另造平行的 Runtime Result、Observation 或 Evidence 类型。真实执行成功只提供评估材料，`REAL_EXECUTION_SUCCESS != ADMITTED`，`ADMITTED != ACTIVE`。两种入口均须 fail closed、保留执行来源，并由 Gateway 独立完成 Evidence admission。
+
+这是 `TARGET_ARCHITECTURE`，并非 `CURRENT_IMPLEMENTATION_CONFORMANT`。06.5 `PR-ADMISSION-01` 仍为 `CONTROLLED_EVALUATION_ENTRY_GAP`；provider-independent bounded **real** evaluation entry 尚未实现，Grounding DINO 仍 `BLOCKED_PENDING_CONTROLLED_EVALUATION_ENTRY`。现有 YOLO/OCR 参考实现不应被误读为已经提供该通用入口。需另行执行 Model / Organ Integration Protocol Architecture Conformance Audit；本 SOP 更新不执行该审计，也不改变任何 Provider、Router、Grant 或 lifecycle 代码。
+
 ## 6. Result Normalization SOP
 
 Provider-specific adapter / normalizer 至少应完成：
@@ -239,6 +263,9 @@ Provider integration 禁止：
 - [ ] Provider 是否已注册；
 - [ ] Model 是否已注册；
 - [ ] Capability / Provider / Model binding 是否 canonical；
+- [ ] 候选 lifecycle 与生产 routing eligibility 是否保持分离；
+- [ ] 首次真实评估是否具备 Owner-approved controlled profile、匹配且当前有效的有界 Runtime grant，而不是预先 admitted/active；
+- [ ] 评估证据、独立 admission decision、独立 activation 是否按序记录；
 - [ ] Capability Requirement 与 normalized provider requirement 是否分离；
 - [ ] Provider Runtime entrypoint 是否存在；
 - [ ] Provider-specific dependency、asset 和 availability 是否明确；

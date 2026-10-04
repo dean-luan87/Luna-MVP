@@ -23,6 +23,7 @@ CONTROLLED_CAPABILITY_EVALUATION_PROFILE_REF = (
 CONTROLLED_CAPABILITY_EVALUATION_CATALOG_REF = "capability-runtime-evaluation-profiles"
 CONTROLLED_CAPABILITY_EVALUATION_CATALOG_VERSION = "v1"
 CONTROLLED_CAPABILITY_REFS = (
+    "object_detection",
     "capability:controlled:a",
     "capability:controlled:b",
     "capability:scenario12:signage-information",

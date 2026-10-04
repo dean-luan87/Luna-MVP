@@ -11,11 +11,13 @@ from pathlib import Path
 from typing import Any, Dict, Tuple
 
 from capabilities.midplatform.model_manager.registry.provider_registry_loader_v1 import (
-    filter_routing_eligible,
     get_capability_entry,
     get_provider_by_id,
     list_capability_providers,
     load_model_registry,
+)
+from capabilities.midplatform.model_manager.engines.model_provider_routing_lifecycle_closure_v1 import (
+    filter_model_provider_routing_lifecycle_eligible,
 )
 from capabilities.midplatform.ocr_manager.module.ocr_manager_engine_capability_adapter_v1 import (
     build_ocr_manager_engine_capability_adapter_v1,
@@ -37,7 +39,7 @@ def resolve_canonical_ocr_binding_v1() -> Tuple[Dict[str, Any] | None, Tuple[str
     if capability is None:
         return None, ("canonical_ocr_capability_missing",)
 
-    eligible = filter_routing_eligible(list_capability_providers(CANONICAL_CAPABILITY_ID))
+    eligible = filter_model_provider_routing_lifecycle_eligible(list_capability_providers(CANONICAL_CAPABILITY_ID))
     selected = next(
         (item for item in eligible if item.get("model_id") == CANONICAL_PROVIDER_MODEL_ID),
         None,
@@ -55,8 +57,6 @@ def resolve_canonical_ocr_binding_v1() -> Tuple[Dict[str, Any] | None, Tuple[str
         errors.append("canonical_ocr_model_or_provider_missing")
     if CANONICAL_CAPABILITY_ID not in (selected.get("capabilities") or ()):
         errors.append("canonical_ocr_provider_capability_mismatch")
-    if selected.get("lifecycle_state") != "active" or selected.get("admission_status") != "admitted":
-        errors.append("canonical_ocr_provider_not_active_admitted")
 
     engine = build_ocr_manager_engine_capability_adapter_v1(
         {"task_ocr_request": {"preferred_engine": "rapidocr"}},

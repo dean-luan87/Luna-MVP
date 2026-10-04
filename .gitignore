@@ -1,0 +1,79 @@
+# Luna source baseline policy — source/fixture names are not output filters.
+# Generated roots; symlink rules intentionally have no trailing slash.
+/_eval_out/
+/_tmp_eval_out/
+/_tmp_eval_inputs/
+/evaluation_archive/
+/OUT/
+/logs
+/archive
+/reports
+/whitebox_archive
+/runs/
+/traces/
+/artifacts/
+/replays/
+/snapshots/
+/debug/
+/exports/
+/tmp/
+/_action_scan/
+/_architecture_scan/
+/htmlcov/
+/Luna-Data/
+/Luna_Data/
+
+# Confirmed nested runtime records, not similarly named source packages.
+/capabilities/midplatform/model_test_lens/local_runner_bridge/jobs/job_*.json
+/data/voice/scenario_output/
+/Luna_Badge_MVP/logs/
+/luna_badge_tests/tests/logs/
+/luna_badge_tests/tests/tests/logs/
+# A local .git/info/exclude logs/ rule must not hide this source README.
+!/backend_bridge/logs/
+/backend_bridge/logs/*
+!/backend_bridge/logs/README.md
+/tests/freeze_ci_out.json
+/check_blackhole.wav
+/find_test*.jpg
+
+# Language, package and download caches (recursive by design).
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.cache/
+node_modules/
+.venv/
+.venv-*/
+venv/
+*.incomplete
+
+# Root build products; add nested products only after path review.
+/dist/
+/build/
+/coverage/
+
+# Private environment and local editor state; portable templates stay visible.
+.env
+.env.*
+!.env.example
+!.env.template
+/.cursor/
+/.vscode/
+.DS_Store
+
+# Last-resort model/raw-media guard. Approved small fixtures require exact
+# path exceptions after license/privacy and source-role review.
+*.pt
+*.pth
+*.onnx
+*.bin
+*.safetensors
+*.mp4
+*.mov
+*.avi
+# No blanket *.jsonl, *.log, *.trace, out*.json or freeze*.json rule.
+# No blanket traces/debug/snapshots/reports directory rule.
+# PNG/JPG/WebP and audio are disposition-reviewed, not globally discarded.

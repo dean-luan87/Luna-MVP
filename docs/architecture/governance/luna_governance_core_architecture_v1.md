@@ -245,6 +245,87 @@ These principles are complementary:
 
 None substitutes for another. Goal projection must not justify speculative architecture, and the Six-Law must not turn every DTO, candidate, or runtime record into a Canonical Fact.
 
+### Future architecture design rules
+
+The accepted contract is `BOUNDED_VERSIONED_BRANCHING_INFORMATION_RELATIONS_WITH_SELECTIVE_CANONICAL_COMMITMENTS`. The following eight core rules and four derived guards refine design-time review beneath Goal-Driven Structural Projection and alongside the existing Six-Law. They change no Owner or runtime authority and do not claim that a Workspace, Sedimentation Graph, or Lineage Spine exists in production.
+
+#### Eight core design rules
+
+1. **Goal-driven structure.** Derive lasting boundaries from Luna's system/product question and projected scale, not current files, DTOs, modules, models, providers, or implementation convenience. Every new structure needs a system-level reason.
+2. **Semantic stage is not Canonical Fact.** A processing or semantic stage does not itself establish an independently governed fact. A type, ref, ID, module, serialization, persistence, or candidate object cannot establish canonicality.
+3. **Selective canonical commitment.** First prove an independent System Question and distinct commitment/lifecycle/currentness need. If upstream identity + version + information relation + formation/execution occurrence preserves the requirement without semantic loss, default to `DO_NOT_PROMOTE_TO_CANONICAL_FACT`. Determine an Owner only after proving the fact; never invent an Owner to justify promotion.
+4. **Relationships before duplicated state.** Information may be transformed, combined, selected, interpreted, revised, superseded, abandoned, or committed in bounded, versioned, branching relations; this is neither a linear pipeline nor a truth ladder. Preserve upstream identity/version and relation/occurrence rather than parallel state. Not every relation endpoint needs a DTO, persistent node, canonical identity, or Owner-issued object.
+5. **Every cognitive work occurrence is bounded.** Specify applicable Concern, read-basis, Role/Perspective, resource constraints, and stop/cancellation conditions. This does not require a `WorkScopeV1` artifact: first check Concern, Cognitive Grant, Working Envelope, CState/read-basis, and Task/runtime context. A Work Scope organizes work but owns no truth, admission, currentness, mutation, or execution; a new Workspace authority requires separate adjudication.
+6. **Shared relation semantics, distributed recording, non-authoritative reconstruction.** Where semantically valid, forward formation, reverse provenance, and forward impact read the same logical information relationships recorded by bounded producers/Owners. A transformation feeding a canonical commitment preserves sufficient source, upstream artifact/version, occurrence, producer/model/config where relevant, temporal role, Role/Perspective/Concern where relevant, and authority refs for reconstruction. A relation query answers what was recorded, not what is authoritative now. `LINEAGE != AUTHORITY`; no central Graph or Lineage Truth Store follows from this rule.
+7. **System semantics are not Domain Truth.** Temporal, Spatial, Identity, Reference, Version, and similar primitives/governance define shared representation and comparison semantics, not Domain state, currentness, or admission. `FIRST_CONSUMER != SYSTEM_OWNER`; `FIRST_IMPLEMENTER != DEFINITION_AUTHORITY`; `SYSTEM_SEMANTICS != DOMAIN_TRUTH`.
+8. **Snapshot currentness is not effect currentness.** Distinguish latest input, current Field interpretation, cognitive read-basis version, active semantic product/hypothesis, current admitted Action, current effect eligibility, and continued execution eligibility. `READ_BASIS_VERSION != GLOBAL_WORLD_SNAPSHOT`: multiple Concerns reading one CState version do not establish a globally consistent instant across Owners. Cognition may use a permitted historical read-basis; execution must pass its effect-time Owner contract. Temporal coordinates never perform Owner requery.
+
+#### Four derived implementation guards
+
+- **Guard A — Traceability is not truth adjudication.** `FIRST_TRANSFORMATION_DIVERGENCE != FIRST_SEMANTIC_ERROR`. The earliest observable divergence may be a set of branches or indeterminate when records are missing; semantic-error attribution requires independent evidence, feedback, contract violation, observation, available ground truth, or explicit adjudication.
+- **Guard B — Edges record, never create, authority outcomes.** `EDGE_RECORDS_AUTHORITY_OUTCOME; EDGE_NEVER_CREATES_AUTHORITY_OUTCOME`. Candidate relation vocabulary includes `PRODUCED_FROM`, `SELECTED_FROM`, `REVISED_FROM`, `ALTERNATIVE_TO`, and `BOUND_TO`; this is not a universal ontology or authorization API. `SUPERSEDES`, `ADMITTED_FROM`, and `EXECUTED_AS` only mirror facts already established by the relevant Owner. Avoid a generic `AUTHORIZED_FROM` that launders lineage into authorization. `DERIVED_FROM != CAUSED_BY` and `TRACE_PARENT != CAUSAL_PARENT`.
+- **Guard C — Memory is selective sedimentation.** Keep ephemeral semantic product, retained diagnostic trace, durable operational state, and admitted long-term Memory separate. A recorded relation grants neither Memory admission nor truth status and does not require permanent payload retention.
+- **Guard D — Minimum Sufficient Architecture.** Do not pre-build a Global Manager, Central Truth Store, global Ref Resolver, global Currentness Manager, globally writable Blackboard, Global Invalidation Bus, full-repository Event Sourcing, generic distributed coordination framework, or central Sedimentation/Lineage Graph authority. Escalate only for a concrete requirement not closable within bounded responsibility and lifecycle contracts.
+
+Current World remains a derived view; Attention a working/selection facet; Hypothesis and Decision Candidate semantic products. Their types/refs do not require independent canonical stores. CState version remains a separately governed read-basis version, not a global world snapshot. None of this collapses Concern, Cognitive Grant, Working Envelope, Action, Safety, or Runtime Authorization authority. Preserve `LINEAGE_PRESERVATION != AUTHORITY_OWNERSHIP`, `LEGACY_REPRESENTATION_ALLOWED != LEGACY_AUTHORITY_ALLOWED`, and `CONTROLLED_WORLD != CONTROLLED_TRUTH`.
+
+### CANONICAL_FACT_UPGRADE_GATE_V1
+
+Apply this precondition before the existing Six-Law, in decision order:
+
+1. **Prove the fact.** Name its independent System Question and downstream commitment/state. Ask: "If its independent identity is removed, can upstream refs + version + relation + occurrence represent the requirement without semantic loss?" If yes, return `DO_NOT_PROMOTE_TO_CANONICAL_FACT` unless another independently documented lifecycle/commitment need exists.
+2. **Prove independent governance.** Identify the required identity, lifecycle/currentness (or terminal issuance), downstream use, and why a view, projection, handoff, serialization form, or existing canonical state cannot suffice.
+3. **Then identify Semantic Owner and authority origin.** Show why that Owner may establish the fact and re-establish authoritative state from its canonical identity. Never invent an Owner first and use it to justify the fact.
+4. **Apply existing governance.** Run WHO / WHY / REQUERY / ISSUANCE / PROJECTION / LEGACY and the applicable TEMPORAL authority check. Examine any new authority path; preserve Owner-requery, identity-issuance, projection-integrity, and legacy positive/negative-authority closure. This gate adds no new authority law and does not replace the Six-Law.
+
+If the first two steps fail, classify the object as source/observation, transformation, view/projection, semantic product, execution record, or lineage/diagnostic record. Do not demote an already independent Owner fact merely because a relation graph can refer to it.
+
+### NEW_AUTHORITY_STRUCTURE_GUARD_V1
+
+Before adding an Owner, Manager, Registry, Store, or Resolver, identify its independent system responsibility and lifecycle; show why existing Owner boundaries cannot legally own it; prove it does not duplicate query/requery authority or centralize unrelated Domain Truth; and state its explicit negative authority boundary. If this cannot be shown, return `DO_NOT_CREATE_NEW_AUTHORITY_STRUCTURE`. A system-level definition contract alone does not imply system-level domain-state management.
+
+### Stable development, frozen contract, and integration governance
+
+This protocol governs development after the architecture rules above; it neither changes their eight core rules/four derived guards nor creates runtime authority. `LUNA_STABLE_BASELINE_V1` is a target, not an existing baseline.
+
+| State | Meaning |
+| --- | --- |
+| `DEVELOPMENT` | Code may change within authorized scope; no stability promise. |
+| `VERIFIED` | Required functional/contract verification has passed, but freeze/archive is incomplete. |
+| `FROZEN` | GO, required source closure, local documentation, Notion where applicable, exact-path Git freeze, and receipt are complete for a module/phase/contract. |
+| `STABLE_BASELINE` | A compatible set of frozen modules/contracts has passed required integration regression and has explicit integration approval as the source for future development. |
+
+`GO != ENGINEERING_FROZEN`; `ENGINEERING_FROZEN != INTEGRATION_APPROVED`; `INTEGRATION_APPROVED != STABLE_BASELINE`. A phase freeze proves its bounded receipt, not integration of the full system. Integration requires compatible contract review and applicable verification before approval. Agent V0/V1 checks cannot grant GO or integration approval; preserve the existing V2 User Terminal and V3 ChatGPT decision boundary.
+
+#### Frozen module and contract protection
+
+Frozen does not mean unchangeable. It requires `CONTROLLED_REOPEN_PROTOCOL`:
+
+`FROZEN → REOPEN REQUEST → ISOLATED BRANCH → IMPLEMENTATION → FOCUSED VERIFICATION → SENSITIVE REGRESSION → SOURCE CLOSURE → ARCHITECTURE / CONTRACT REVIEW` where applicable `→ FREEZE CANDIDATE → INTEGRATION APPROVAL → NEW FROZEN VERSION → NEW STABLE BASELINE` where applicable.
+
+An isolated `feature/<scope>`, `fix/<scope>`, or `hotfix/<scope>` branch (or an approved equivalent naming policy) is required for future production-behavior work; a stable-baseline branch is not the ordinary development branch. Hotfix does not bypass verification. Before editing frozen code, record `SOURCE_BASELINE`, `CHANGE_BRANCH`, `CHANGE_REASON`, `AFFECTED_FROZEN_MODULES`, and `AFFECTED_FROZEN_CONTRACTS`. Classify `CONTRACT_CHANGE`, `AUTHORITY_CHANGE`, `CANONICAL_FACT_CHANGE`, `PUBLIC_INTERFACE_CHANGE`, and `MIGRATION_REQUIRED`. A reopened item cannot inherit the old GO as verification for changed behavior.
+
+Freeze impact is two-dimensional: `FROZEN_PATH_INTERSECTION` and `FROZEN_CONTRACT_IMPACT`. The latter may be material without a frozen-file edit: changes to callers/consumers, canonical identity interpretation, authority origin, Owner requery, version, currentness, scope, lifecycle, effect-time, or legacy compatibility can change a frozen contract. Either material impact requires controlled reopen or explicit compatibility review before integration. `FROZEN_FILE_UNCHANGED != FROZEN_CONTRACT_UNCHANGED`.
+
+Retain original freeze commits and receipts as historical evidence; never overwrite them. A new freeze/archive receipt records, where applicable: module/phase and version; source and parent baselines; freeze commit; exact path set and deterministic path-set hash; Canonical Facts, Owners, public contracts, and negative boundaries; dependencies and downstream consumers; verification evidence; known limitations; reopen conditions and migration notes; Notion receipt; and remote publication state. For a DOC_ONLY freeze, mark non-applicable fields explicitly rather than fabricate production facts.
+
+#### LUNA_PRE_EXPANSION_STABILIZATION_MASTER_WORKLIST_V1
+
+This is the single sequential STAB-00–STAB-07 worklist. Recording a future item is not authorization to execute it. At each item, stop, return evidence, and await ChatGPT adjudication and required User Terminal verification; no Agent may mark later items complete.
+
+| Item | Bounded objective | Completion gate |
+| --- | --- | --- |
+| `STAB-00` | Finalize the eight core rules/four guards and stable-development, frozen-path/contract, branch, integration, and controlled-reopen governance; no production change. | Architecture rules final; stable-development and reopen protocols plus both freeze-impact guards defined. |
+| `STAB-01` | Reconstruct auditable frozen module/contract inventory: responsibility, Owner/Final Authority, facts, contracts, negative boundaries, paths/receipt, dependencies/consumers, evidence, limitations, reopen triggers. Do not redesign merely because a module is old. | Frozen module and contract inventories complete; unknown critical freeze boundaries = 0. |
+| `STAB-02` | Enumerate actual product/runtime/provider/effect entries; distinguish real product, controlled, synthetic, legacy, and non-effect paths. Stop on confirmed bypass before broad remediation. | Real and governed/legacy effect-entry counts known; authority bypass entry count = 0. |
+| `STAB-03` | Audit actual Observation→Evidence→Field→CState/read-basis→reasoning→Envelope→Action→Safety→Authorization→effect projections without promoting every stage to fact. | Canonical identity/version/scope breaks, caller authority substitution, and legacy authority fallback counts = 0. |
+| `STAB-04` | Classify critical reachable behavior as `PRODUCTION`, `CONTROLLED_RUNTIME`, `SYNTHETIC`, `CONTRACT_ONLY`, `LEGACY`, or `DEPRECATED`, especially Decision, Memory/Experience/Learning, Provider sessions/invocations, and controlled loops. | No unknown critical maturity; no synthetic/controlled path misrepresented as production; legacy authority ambiguity = 0. |
+| `STAB-05` | Audit owner-local query/mutation/invalidation/requery namespaces, prioritizing Action mutation; fix only confirmed defects under separate authorization. | Confirmed namespace conflicts, query–mutation identity mismatches, and Owner-requery–mutation mismatches = 0. |
+| `STAB-06` | Select applicable py_compile, focused/sensitive regression, controlled checks, source closure, governance pre/postflight, and `git diff --check`; Agent prepares commands but does not execute authoritative terminal verification. Preserve the known `tests/freeze` external `luna_badge_v1_2` NOT_EXECUTED exception unless environment changes. | Applicable failures = 0; source closure and applicable governance pre/postflight PASS; unexplained critical NOT_EXECUTED = 0. |
+| `STAB-07` | Integrate compatible frozen scope and create `LUNA_STABLE_BASELINE_V1` with local/Notion governance, exact-path Git freeze, archive receipt, baselines, path set/hash, evidence, limitations, and publication state; no push without separate authorization. | STAB-00–06 adjudicated complete; stable baseline created and engineering freeze/integration approval recorded. |
+
+Temporal P1-01A implementation must not start before `LUNA_STABLE_BASELINE_V1` is established; afterward it is the next engineering-development candidate, not an automatic transition. For the current governance-edit item, only STAB-00 is authorized; STAB-01 remains pending and unauthorized.
+
 ### Finding taxonomy mapping
 
 The Six-Law maps evidence-backed findings as follows. The existence of a taxonomy entry does not create a finding; each finding requires source evidence.

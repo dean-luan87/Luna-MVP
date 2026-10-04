@@ -7,9 +7,11 @@ from typing import Any, Dict, List, Optional
 from uuid import uuid4
 
 from capabilities.midplatform.model_manager.registry.provider_registry_loader_v1 import (
-    filter_routing_eligible,
     get_provider_relations,
     list_capability_providers,
+)
+from capabilities.midplatform.model_manager.engines.model_provider_routing_lifecycle_closure_v1 import (
+    filter_model_provider_routing_lifecycle_eligible,
 )
 
 COST_TIER_SCORE = {"low": 1.0, "medium": 0.7, "high": 0.4}
@@ -126,7 +128,7 @@ def select_multi_provider_candidate(
     Does NOT execute model inference.
     """
     providers = list_capability_providers(capability_id)
-    eligible_providers = filter_routing_eligible(providers)
+    eligible_providers = filter_model_provider_routing_lifecycle_eligible(providers)
 
     scores: List[Dict[str, Any]] = []
     for prov in providers:

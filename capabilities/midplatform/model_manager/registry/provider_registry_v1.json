@@ -146,6 +146,7 @@
     },
     {
       "model_id": "ocr_v1",
+      "provider_id": "provider:ocr_v1",
       "model_label": "OCR Tool v1",
       "provider_type": "tool",
       "execution_mode": "tool_os",
